@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <PawnKindDef Abstract="True" Name="BaseYautjaPawnKind">
+    <race>Alien_Yautja</race>
+    <combatPower>40</combatPower>
+    <baseRecruitDifficulty>1.0</baseRecruitDifficulty>
+    <isFighter>true</isFighter>
+    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+    <forceNormalGearQuality>true</forceNormalGearQuality>
+	    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <drawSize>0.75</drawSize>
+        </bodyGraphicData>
+      </li>
+      <li>
+        <bodyGraphicData>
+          <drawSize>1</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="BaseYautjaPawnKind">
+    <defName>Yautja</defName>
+    <label>Yautja colonist</label>
+    <defaultFactionType>YautjaPlayerColony</defaultFactionType>
+    <backstoryCategories>
+			<li>Yautja_Standard</li>
+  	</backstoryCategories>
+    <apparelTags>
+		<li>YautjaGreaves</li>
+    </apparelTags>
+    <apparelMoney>
+      <min>1000</min>
+      <max>1000</max>
+    </apparelMoney>
+    <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
+  </PawnKindDef>
+  
+</Defs>

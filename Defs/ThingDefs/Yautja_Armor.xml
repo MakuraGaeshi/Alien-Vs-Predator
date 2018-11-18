@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!-- ========================= Yautja - Armour ========================== -->
+	<!-- ========================= Yautja - Hunter Armour Chestplate ========================== -->
+	<ThingDef ParentName="RRYArmorMakeableBase">
+		<defName>RRY_Apparel_HunterArmourChestplate</defName>
+		<label>Yautja Hunter Chestplate</label>
+		<description>.</description>
+		<graphicData>
+			<texPath>Things/Apparel/Yautja_Armour/Yautja_HunterArmor</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>2500</MarketValue>
+			<MaxHitPoints>500</MaxHitPoints>
+			<WorkToMake>60000</WorkToMake>
+			<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.50</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.450</ArmorRating_Heat>
+			<Insulation_Heat>10</Insulation_Heat>
+			<Insulation_Cold>10</Insulation_Cold>
+			<Mass>4</Mass>
+		</statBases>
+		<equippedStatOffsets>
+		<!--
+			<MoveSpeed>-0.03</MoveSpeed>
+			<WorkSpeedGlobal>-0.15</WorkSpeedGlobal>
+			<ShootingAccuracyPawn>0.25</ShootingAccuracyPawn>
+			<PsychicSensitivity>-0.10</PsychicSensitivity>
+			<ToxicSensitivity>-0.5</ToxicSensitivity>
+			-->
+		</equippedStatOffsets>
+		<costList>
+			<Steel>100</Steel>
+			<Plasteel>60</Plasteel>
+			<ComponentIndustrial>10</ComponentIndustrial>
+		</costList>
+		<recipeMaker>
+			
+		</recipeMaker>
+		<apparel>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Shoulders</li>
+				<li>Arms</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Apparel/Yautja_Armour/Yautja_HunterArmor</wornGraphicPath>
+			<layers>
+				<li>Middle</li>
+				<li>Shell</li>
+			</layers>
+			<tags>
+				<li>YautjaChestplate</li>
+				<li>YautjaArmour</li>
+				<li>Yautja</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+		</apparel>
+		<thingCategories>
+			<li>RRYArmour</li>
+		</thingCategories>
+		<tradeTags>
+			<li>Apparel</li>
+		</tradeTags>
+	</ThingDef>
+
+	<!-- ========================= Yautja - Hunter Armour Greaves ========================== -->
+	<ThingDef ParentName="RRYArmorMakeableBase">
+		<defName>RRY_Apparel_HunterArmourGreaves</defName>
+		<label>Yautja Hunter Greaves</label>
+		<description>.</description>
+		<graphicData>
+			<texPath>Things/Apparel/Yautja_Undersuit/Yautja_HunterArmorUndersuit</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>1000</MarketValue>
+			<MaxHitPoints>500</MaxHitPoints>
+			<WorkToMake>60000</WorkToMake>
+			<ArmorRating_Blunt>0.15</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.225</ArmorRating_Heat>
+			<Insulation_Heat>30</Insulation_Heat>
+			<Insulation_Cold>30</Insulation_Cold>
+			<Mass>4</Mass>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.03</MoveSpeed>
+			<WorkSpeedGlobal>-0.15</WorkSpeedGlobal>
+			<ShootingAccuracyPawn>0.25</ShootingAccuracyPawn>
+			<PsychicSensitivity>-0.10</PsychicSensitivity>
+			<ToxicSensitivity>-0.5</ToxicSensitivity>
+		</equippedStatOffsets>
+		<costList>
+			<Steel>100</Steel>
+			<Plasteel>60</Plasteel>
+			<ComponentIndustrial>10</ComponentIndustrial>
+		</costList>
+		<recipeMaker>
+			
+		</recipeMaker>
+		<apparel>
+			<bodyPartGroups>
+				<li>Legs</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Apparel/Yautja_Undersuit/Yautja_HunterArmorUndersuit</wornGraphicPath>
+			<layers>
+				<li>Middle</li>
+				<li>Shell</li>
+			</layers>
+			<tags>
+				<li>YautjaGreaves</li>
+				<li>YautjaArmour</li>
+				<li>Yautja</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+		</apparel>
+		<thingCategories>
+			<li>RRYArmour</li>
+		</thingCategories>
+		<tradeTags>
+			<li>Apparel</li>
+		</tradeTags>
+	</ThingDef>
+	
+	<!-- ========================= Yautja - Bio Mask ========================== -->
+	<ThingDef ParentName="RRYArmorMakeableBase">
+		<defName>RRY_Apparel_HunterBioMask</defName>
+		<label>Yautja Bio Mask</label>
+		<description>.</description>
+		<graphicData>
+		<texPath>Things/Apparel/Yautja_Armour_Helmet/Yautja_HunterArmour_Helmet</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>1</Mass>
+			<MarketValue>500</MarketValue>
+			<MaxHitPoints>150</MaxHitPoints>
+			<WorkToMake>30000</WorkToMake>
+			<ArmorRating_Sharp>0.20</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.36</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.27</ArmorRating_Heat>
+			<Insulation_Heat>3</Insulation_Heat>
+			<Insulation_Cold>5</Insulation_Cold>
+			<ToxicSensitivity>-0.5</ToxicSensitivity>
+		</statBases>
+		<equippedStatOffsets>
+		<!--
+			<MoveSpeed>-0.01</MoveSpeed>
+			<WorkSpeedGlobal>-0.05</WorkSpeedGlobal>
+			<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
+			<PsychicSensitivity>-0.10</PsychicSensitivity>
+			-->
+		</equippedStatOffsets>
+		<costList>
+			<Steel>50</Steel>
+			<Plasteel>30</Plasteel>
+			<ComponentIndustrial>5</ComponentIndustrial>
+		</costList>
+		<recipeMaker>
+		
+		</recipeMaker>
+		<apparel>
+			<bodyPartGroups>
+				<li>FullHead</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Apparel/Yautja_Armour_Helmet/Yautja_HunterArmour_Helmet</wornGraphicPath>
+			<layers>
+				<li>Overhead</li>
+			</layers>
+			<tags>
+				<li>YautjaBioMask</li>
+				<li>Yautja</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+		</apparel>
+		<thingCategories>
+			<li>RRYHeadgear</li>
+		</thingCategories>
+		<tradeTags>
+			<li>Headgear</li>
+		</tradeTags>
+	</ThingDef>
+</Defs>

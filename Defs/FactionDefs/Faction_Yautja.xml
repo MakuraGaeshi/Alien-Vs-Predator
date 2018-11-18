@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <FactionDef>
+		<defName>YautjaFaction</defName>
+		<label>Yautja warband</label>
+    <description>Feral Yautjas or Wildboyz are Yautjas who arise on a world that a spaceborne Yautja WAAAGH! has already assaulted, though they possess only pre-industrial levels of technology and culture. Feral Yautjas appear after a WAAAGH! has already infested a planet and then moved on to seek new battles elsewhere. Usually Feral Yautjas are a new generation of Yautjas grown from the fungal reproductive spores released by spaceborne Yautjas and left behind on the world their spaceborne counterparts have abandoned.\n\nFeral Yautjas can also be derived from an original population of spaceborne Yautjas stranded on a world who effectively devolve back to a feral state, losing their access to more advanced technology. The Feral Yautjas, while less advanced than their fellow Greenskins, do have access to a variety of wargear in their armoury. However, much of it wYautjas due to the strange effects it has on the mind and behaviour of the Yautja, rather than actually producing a physical effect upon the enemy.</description>
+	<pawnSingular>Yautja</pawnSingular>
+    <pawnsPlural>Yautji</pawnsPlural>
+    <listOrderPriority>20</listOrderPriority>
+    <settlementGenerationWeight>1</settlementGenerationWeight>
+    <requiredCountAtGameStart>1</requiredCountAtGameStart>
+    <canMakeRandomly>true</canMakeRandomly>
+    <canSiege>false</canSiege>
+    <canStageAttacks>true</canStageAttacks>
+    <leaderTitle>Yautji Elder</leaderTitle>
+    <startingGoodwill>
+      <min>-100</min>
+      <max>0</max>
+    </startingGoodwill>
+	<factionNameMaker>NamerRRYautjaFaction</factionNameMaker>
+	<settlementNameMaker>NamerRRYautjaBases</settlementNameMaker>
+	<techLevel>Neolithic</techLevel>
+  <backstoryCategories>
+			<li>Yautja</li>
+			<li>Raider</li>
+  	</backstoryCategories>
+			<hairTags>
+		<li>YautjaHair</li>
+			</hairTags>
+    <naturalColonyGoodwill>
+      <min>-60</min>
+      <max>0</max>
+    </naturalColonyGoodwill>
+    <visitorTraderKinds>
+      <li>Visitor_Yautja_Standard</li>
+    </visitorTraderKinds>
+   <caravanTraderKinds>
+      <li>Caravan_Outlander_BulkGoods</li>
+      <li>Caravan_Outlander_CombatSupplier</li>
+      <li>Caravan_Outlander_Exotic</li>
+    </caravanTraderKinds>
+    <baseTraderKinds>
+      <li>Base_Outlander_Standard</li>
+    </baseTraderKinds>
+    <allowedArrivalTemperatureRange>
+      <min>-50</min>
+      <max>45</max>
+    </allowedArrivalTemperatureRange>
+    <maxPawnCostPerTotalPointsCurve>
+      <points>
+        <li>(0,35)</li>
+        <li>(70, 50)</li>
+        <li>(700, 100)</li>
+        <li>(1300, 150)</li>
+        <li>(100000, 10000)</li>
+      </points>
+    </maxPawnCostPerTotalPointsCurve>
+    <pawnGroupMakers>
+      <li>
+        <kindDef>Combat</kindDef>
+        <options>
+		
+        </options>
+      </li>
+        <li>
+        <kindDef>Peaceful</kindDef>
+        <options>
+          <YautjaColonist>10</YautjaColonist>
+          <YautjaSlave>13</YautjaSlave>
+        </options>
+      </li>
+	  <li>
+      <kindDef>Trader</kindDef>
+        <traders>
+          <YautjaTrader>1</YautjaTrader>
+        </traders>
+        <carriers>
+          <Muffalo>2</Muffalo>
+          <Dromedary>2</Dromedary>
+        </carriers>
+        <guards>
+		
+        </guards>
+      </li>
+	  <li>
+        <kindDef>Settlement</kindDef>
+        <options>
+          <YautjaColonist>5</YautjaColonist>
+          <YautjaSlave>13</YautjaSlave>
+        </options>
+      </li>
+    </pawnGroupMakers>
+    <homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
+	<expandingIconTexture>Icons/YautjaIcon</expandingIconTexture>
+    <colorSpectrum>
+      <li>(0.45, 0.05, 0.05)</li>
+      <li>(0.80, 0.25, 0.05)</li>
+    </colorSpectrum>
+  </FactionDef>
+
+</Defs>

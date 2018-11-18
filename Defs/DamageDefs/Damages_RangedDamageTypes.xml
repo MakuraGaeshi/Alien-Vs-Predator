@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!--==================== Base Damage Type - STD =========================-->
+	<DamageDef Name="LocalRangedInjuryBase" Abstract="True">
+		<workerClass>DamageWorker_AddInjury</workerClass>
+		<harmsHealth>true</harmsHealth>
+		<isRanged>true</isRanged>
+	</DamageDef>
+	
+	<DamageDef Name="PlasmaInjury" ParentName="LocalRangedInjuryBase" Abstract="True">
+		<externalViolence>true</externalViolence>
+		<isExplosive>true</isExplosive>
+		<hediff>Burn</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Blunt</impactSoundType>
+		<armorCategory>Heat</armorCategory>
+		<combatLogRules>Damage_Bomb</combatLogRules>
+	</DamageDef>
+	
+	<!--==================== Plasma Damage Type =========================-->
+	<DamageDef ParentName="PlasmaInjury">
+		<defName>RRYPlasma</defName>
+		<label>plasma</label>
+		<deathMessage>{0} caught a plasma bolt.</deathMessage>
+		<defaultDamage>10</defaultDamage>
+		<buildingDamageFactor>1</buildingDamageFactor>
+	</DamageDef>
+</Defs>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<RulePackDef>
+		<defName>NamerRRYautjaFaction</defName>
+		<rulePack>
+		  <rulesStrings>
+			<li>name->[RRYautjaClans]</li>
+		  </rulesStrings>
+		  <rulesRaw>
+			<li Class="Rule_File">
+				<keyword>RRYautjaClans</keyword>
+				<path>NameBanks/RRYautjaClans</path>
+			</li>
+		  </rulesRaw>
+		</rulePack>
+	</RulePackDef>
+	
+	<RulePackDef>
+		<defName>NamerRRYautjaBases</defName>
+		<rulePack>
+			<rulesStrings>
+				<li>name->[RRYautjaBaseNames]</li>
+			</rulesStrings>
+			<rulesRaw>
+				<li Class="Rule_File">
+					<keyword>RRYautjaBaseNames</keyword>
+					<path>NameBanks/RRYautjaBaseNames</path>
+				</li>
+			</rulesRaw>
+		</rulePack>
+	</RulePackDef>
+
+	<RulePackDef>
+		<defName>NamerPersonYautja</defName>
+		<rulePack>
+		  <rulesStrings>
+			<li>name->[RRYautjaMale]</li>
+			<li>name->[RRYautjaFemale]</li>
+		  </rulesStrings>
+			<rulesRaw>
+			<li Class="Rule_File">
+				<keyword>RRYautjaMale</keyword>
+				<path>NameBanks/RRYautjaMale</path>
+			</li>
+			<li Class="Rule_File">
+				<keyword>RRYautjaFemale</keyword>
+				<path>NameBanks/RRYautjaFemale</path>
+			</li>
+			<li Class="Rule_File">
+				<keyword>RRYautjaNick</keyword>
+				<path>NameBanks/RRYautjaNick</path>
+			</li>
+		  </rulesRaw>
+		</rulePack>
+	</RulePackDef>
+
+</Defs>

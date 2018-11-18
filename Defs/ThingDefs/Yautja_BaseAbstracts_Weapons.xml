@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+<!--====================  Yautja - Base Weapon Template =========================-->	
+	<ThingDef Abstract="True" Name="RRYBaseWeapon">
+		<thingClass>ThingWithComps</thingClass>
+		<category>Item</category>
+		<drawGUIOverlay>true</drawGUIOverlay>
+		<altitudeLayer>Item</altitudeLayer>
+		<alwaysHaulable>true</alwaysHaulable>
+		<tickerType>Never</tickerType>
+		<equipmentType>Primary</equipmentType>
+		<useHitPoints>true</useHitPoints>
+		<pathCost>10</pathCost>
+		<selectable>true</selectable>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Flammability>1.0</Flammability>
+			<DeteriorationRate>2</DeteriorationRate>
+			<Beauty>-6</Beauty>
+			<SellPriceFactor>0.20</SellPriceFactor>
+		</statBases>
+		<comps>
+			<li Class="CompProperties_Forbiddable"/>
+			<li>
+				<compClass>CompEquippable</compClass>
+			</li>
+		</comps>
+		<graphicData>
+			<onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
+		</graphicData>
+	</ThingDef>
+	
+	<!-- ==================== Yautja - Base Gun Weapon Template ========================= -->		
+	<ThingDef Name="RRYBaseGun" Abstract="True" ParentName="RRYBaseWeapon">
+		<techLevel>Industrial</techLevel>
+		<smeltable>true</smeltable>
+		<thingCategories>
+      <li>WeaponsRanged</li>
+    </thingCategories>
+    <inspectorTabs>
+      <li>ITab_Art</li>
+    </inspectorTabs>
+    <comps>
+      <li>
+        <compClass>CompQuality</compClass>
+      </li>
+      <li Class="CompProperties_Art">
+        <nameMaker>NamerArtWeaponGun</nameMaker>
+        <descriptionMaker>ArtDescription_WeaponGun</descriptionMaker>
+        <minQualityForArtistic>Excellent</minQualityForArtistic>
+      </li>
+    </comps>
+	</ThingDef>
+	
+	<!-- ==================== Yautja - Base Makeable Gun Weapon Template ========================= -->
+	<ThingDef Name="RRYBaseMakeableGun" ParentName="RRYBaseGun" Abstract="True">
+    <recipeMaker>
+      <workSpeedStat>SmithingSpeed</workSpeedStat>
+      <workSkill>Crafting</workSkill>
+      <effectWorking>Smith</effectWorking>
+      <soundWorking>Recipe_Smith</soundWorking>
+      <recipeUsers>
+        <li>TableMachining</li>
+      </recipeUsers>
+      <unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
+      <researchPrerequisite>Gunsmithing</researchPrerequisite>
+    </recipeMaker>
+  </ThingDef>
+  
+  <!--==================== Mod - Base Melee Weapon Template =========================-->
+	<ThingDef Name="RRYBaseMeleeWeapon" Abstract="True" ParentName="RRYBaseWeapon">
+    <techLevel>Industrial</techLevel>
+		<smeltable>true</smeltable>
+    <thingCategories>
+      <li>WeaponsMelee</li>
+    </thingCategories>
+
+    <recipeMaker>
+      <workSpeedStat>SmithingSpeed</workSpeedStat>
+      <workSkill>Crafting</workSkill>
+      <effectWorking>Smith</effectWorking>
+      <soundWorking>Recipe_Smith</soundWorking>
+      <recipeUsers>
+        <li>ElectricSmithy</li>
+        <li>FueledSmithy</li>
+      </recipeUsers>
+      <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+      <researchPrerequisite>YautjaTechBase</researchPrerequisite>
+    </recipeMaker>
+    <inspectorTabs>
+      <li>ITab_Art</li>
+    </inspectorTabs>
+  </ThingDef>
+  
+	<!--==================== Mod - Base Sharp Melee Weapon Template =========================-->
+	<ThingDef Name="RRYBaseMeleeWeapon_Sharp" ParentName="RRYBaseMeleeWeapon" Abstract="True">
+    <recipeMaker>
+    <defaultIngredientFilter>
+      <categories>
+        <li>Root</li>
+      </categories>
+      <disallowedThingDefs>
+        <li>Silver</li>
+        <li>Gold</li>
+        <li>WoodLog</li>
+      </disallowedThingDefs>
+    </defaultIngredientFilter>
+    </recipeMaker>
+  </ThingDef>
+  
+	<!--==================== Mod - Base Blunt Melee Weapon Template =========================-->
+	<ThingDef Name="RRYBaseMeleeWeapon_Blunt" ParentName="RRYBaseMeleeWeapon" Abstract="True">
+    <recipeMaker>
+      <defaultIngredientFilter>
+        <categories>
+          <li>Root</li>
+        </categories>
+        <disallowedThingDefs>
+          <li>Silver</li>
+          <li>Gold</li>
+        </disallowedThingDefs>
+      </defaultIngredientFilter>
+    </recipeMaker>
+  </ThingDef>
+  
+	<!--==================== Mod - Base Sharp Quality Melee Weapon Template =========================-->
+	<ThingDef Name="RRYBaseMeleeWeapon_Sharp_Quality" Abstract="True" ParentName="RRYBaseMeleeWeapon_Sharp">
+		<comps>
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>
+			<li Class="CompProperties_Art">
+				<nameMaker>NamerArtWeaponMelee</nameMaker>
+				<descriptionMaker>ArtDescription_WeaponMelee</descriptionMaker>
+				<minQualityForArtistic>Excellent</minQualityForArtistic>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!--==================== Mod - Base Blunt Melee Quality Weapon Template =========================-->
+	<ThingDef Name="RRYBaseMeleeWeapon_Blunt_Quality" Abstract="True" ParentName="RRYBaseMeleeWeapon_Blunt">
+		<comps>
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>
+			<li Class="CompProperties_Art">
+				<nameMaker>NamerArtWeaponMelee</nameMaker>
+				<descriptionMaker>ArtDescription_WeaponMelee</descriptionMaker>
+				<minQualityForArtistic>Excellent</minQualityForArtistic>
+			</li>
+		</comps>
+	</ThingDef>	 
+</Defs>

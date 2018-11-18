@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!-- ========================= Yautja - Catagories ========================== -->
+	<!-- ========================= Yautja - Gear Catagories ========================== -->
+	<!-- ========================= Yautja - Weapon Catagories ========================== -->
+	<ThingCategoryDef>
+		<defName>RRYWeapons</defName>
+		<label>Weapons</label>
+		<parent>Weapons</parent>
+	</ThingCategoryDef>
+	
+	<ThingCategoryDef>
+		<defName>RRYRanged</defName>
+		<label>Ranged Weapons</label>
+		<parent>RRYWeapons</parent>
+	</ThingCategoryDef>
+	
+	<ThingCategoryDef>
+		<defName>RRYMelee</defName>
+		<label>Melee Weapons</label>
+		<parent>RRYWeapons</parent>
+	</ThingCategoryDef>
+			
+	<!-- ========================= Yautja - Armour Catagories ========================== -->
+	<ThingCategoryDef>
+		<defName>RRYArmour</defName>
+		<label>Armour</label>
+		<parent>Apparel</parent>
+	</ThingCategoryDef>
+	
+	<ThingCategoryDef>
+		<defName>RRYHeadgear</defName>
+		<label>Headgear</label>
+		<parent>Apparel</parent>
+	</ThingCategoryDef>
+	  	
+	<ThingCategoryDef>
+		<defName>RRYAddons</defName>
+		<label>Armour Addons</label>
+		<parent>Apparel</parent>
+	</ThingCategoryDef>
+
+</Defs>

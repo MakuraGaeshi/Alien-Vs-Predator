@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- ============================ Yautja Base ========================== -->
+  <PawnKindDef Name="YautjaBase" Abstract="True">
+    <defaultFactionType>YautjaFaction</defaultFactionType>
+    <race>Alien_Yautja</race>
+	<backstoryCategories>
+			<li>Yautja_Standard</li>
+  	</backstoryCategories>
+    <chemicalAddictionChance>0.035</chemicalAddictionChance>
+    <baseRecruitDifficulty>1</baseRecruitDifficulty>
+    <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
+    <apparelTags>
+      <li>Yautja</li>
+    </apparelTags>
+  </PawnKindDef>
+  
+  <!-- ============================ Yautja Civilian Base ========================== -->
+  <PawnKindDef Name="YautjaCivBase" ParentName="YautjaBase" Abstract="True">
+    <combatPower>25</combatPower>
+    <itemQuality>Normal</itemQuality>
+    <isFighter>false</isFighter>
+    <gearHealthRange>
+      <min>0.2</min>
+      <max>2.0</max>
+    </gearHealthRange>
+    <apparelMoney>
+      <min>300</min>
+      <max>900</max>
+    </apparelMoney>
+    <weaponMoney>
+      <min>300</min>
+      <max>750</max>
+    </weaponMoney>
+    <weaponTags>
+		<li>YautjaWristblade</li>
+    </weaponTags>
+    <techHediffsMoney>
+      <min>200</min>
+      <max>300</max>
+    </techHediffsMoney>
+    <techHediffsTags>
+      <li>Simple</li>
+    </techHediffsTags>
+    <techHediffsChance>0.51</techHediffsChance>
+    <invNutrition>2.55</invNutrition>
+    <inventoryOptions>
+      <skipChance>0.75</skipChance>
+      <subOptionsChooseOne>
+        <li>
+          <choiceChance>90</choiceChance>
+          <thingDef>Silver</thingDef>
+          <countRange>
+            <min>25</min>
+            <max>70</max>
+          </countRange>
+        </li>
+        <li>
+          <choiceChance>10</choiceChance>
+          <thingDef>Silver</thingDef>
+          <countRange>
+            <min>700</min>
+            <max>1000</max>
+          </countRange>
+        </li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+  </PawnKindDef>
+   
+  <!-- ============================ Yautja Civilians ========================== -->
+  <PawnKindDef ParentName="YautjaCivBase">
+    <defName>YautjaAncient</defName>
+    <label>Yautja Ancient</label>
+    <labelPlural>Yautja Ancients</labelPlural>
+    <factionLeader>true</factionLeader>
+    <isFighter>true</isFighter>
+    <gearHealthRange>
+      <min>0.5</min>
+      <max>2.0</max>
+    </gearHealthRange>
+    <apparelMoney>
+      <min>3000</min>
+      <max>9000</max>
+    </apparelMoney>
+    <apparelTags>
+      <li>Yautja</li>
+      <li>YautjaArmour</li>
+      <li>YautjaHead</li>
+    </apparelTags>
+    <weaponMoney>
+      <min>10000</min>
+      <max>15500</max>
+    </weaponMoney>
+    <weaponTags>
+		<li>YautjaGun</li>
+		<li>YautjaMelee</li>
+    </weaponTags>
+    <techHediffsMoney>
+      <min>200</min>
+      <max>300</max>
+    </techHediffsMoney>
+    <techHediffsTags>
+      <li>Advanced</li>
+    </techHediffsTags>
+	<backstoryCategories>
+			<li>Yautja_Ancient</li>
+  	</backstoryCategories>
+	<minGenerationAge>60</minGenerationAge>
+	<maxGenerationAge>600</maxGenerationAge>
+  </PawnKindDef>
+  
+  <PawnKindDef ParentName="YautjaCivBase">
+    <defName>YautjaTrader</defName>
+    <label>Yautja trader</label>
+    <trader>true</trader>
+	<backstoryCategories>
+			<li>Yautja_Standard</li>
+  	</backstoryCategories>
+  </PawnKindDef>
+  
+  <PawnKindDef ParentName="YautjaCivBase">
+    <defName>YautjaColonist</defName>
+    <label>Yautja colonist</label>
+	<backstoryCategories>
+			<li>Yautja_Standard</li>
+  	</backstoryCategories>
+  </PawnKindDef>
+  
+  <PawnKindDef ParentName="YautjaCivBase">
+    <defName>YautjaSlave</defName>
+    <label>Yautja slave</label>
+	<backstoryCategories>
+			<li>Yautja_Standard</li>
+  	</backstoryCategories>
+  </PawnKindDef>
+ 
+  <!-- ============================ Yautja Security ========================== -->
+  <PawnKindDef ParentName="YautjaCivBase">
+    <defName>YautjaUnblooded</defName>
+    <label>Unblooded Yautja</label>
+    <combatPower>100</combatPower>
+    <maxGenerationAge>40</maxGenerationAge>
+	<backstoryCategories>
+			<li>Yautja_Unblooded</li>
+  	</backstoryCategories>
+    <gearHealthRange>
+      <min>0.5</min>
+      <max>1.8</max>
+    </gearHealthRange>
+    <apparelMoney>
+      <min>1500</min>
+      <max>3000</max>
+    </apparelMoney>
+    <apparelTags>
+      <li>Yautja</li>
+      <li>YautjaArmour</li>
+	  <li>YautjaGreaves</li>
+      <li>YautjaHead</li>
+    </apparelTags>
+    <weaponMoney>
+      <min>300</min>
+      <max>1500</max>
+    </weaponMoney>
+    <weaponTags>
+		<li>YautjaWristblade</li>
+    </weaponTags>
+    <techHediffsMoney>
+      <min>200</min>
+      <max>500</max>
+    </techHediffsMoney>
+    <techHediffsTags>
+      <li>Advanced</li>
+    </techHediffsTags>
+    <techHediffsChance>0.20</techHediffsChance>
+    <invNutrition>2.55</invNutrition>
+    <inventoryOptions>
+      <skipChance>0.95</skipChance>
+      <thingDef>Silver</thingDef>
+      <countRange>
+        <min>30</min>
+        <max>100</max>
+      </countRange>
+    </inventoryOptions>
+  </PawnKindDef>
+  
+  <!-- ============================ Yautja Military Base ========================== -->
+  <PawnKindDef Name="YautjaMilBase" ParentName="YautjaBase" Abstract="True">
+    <chemicalAddictionChance>0</chemicalAddictionChance>
+    <isFighter>true</isFighter>
+	<race>Alien_Yautja</race>
+    <invNutrition>2.55</invNutrition>
+    <itemQuality>Normal</itemQuality>
+	<minGenerationAge>10</minGenerationAge>
+    <maxGenerationAge>300</maxGenerationAge>
+    <gearHealthRange>
+      <min>0.7</min>
+      <max>2.3</max>
+    </gearHealthRange>
+    <apparelTags>
+      <li>Yautja</li>
+      <li>YautjaArmour</li>
+	  <li>YautjaGreaves</li>
+      <li>YautjaHead</li>
+    </apparelTags>
+    <apparelMoney>
+      <min>1500</min>
+      <max>2800</max>
+    </apparelMoney>
+    <weaponMoney>
+      <min>750</min>
+      <max>1500</max>
+    </weaponMoney>
+    <weaponTags>
+		<li>YautjaWristblade</li>
+    </weaponTags>
+    <techHediffsMoney>
+      <min>1000</min>
+      <max>1500</max>
+    </techHediffsMoney>
+    <inventoryOptions>
+      <skipChance>0.8</skipChance>
+      <subOptionsChooseOne>
+        <li>
+          <thingDef>Silver</thingDef>
+          <countRange>
+            <min>50</min>
+            <max>200</max>
+          </countRange>
+        </li>
+        <li>
+          <thingDef>MedicineIndustrial</thingDef>
+          <countRange>
+            <min>1</min>
+            <max>1</max>
+          </countRange>
+        </li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+  </PawnKindDef>
+  
+  <!-- ============================ Yautja Military ========================== -->  
+  <!-- ============================ Yautja ========================== -->
+  <PawnKindDef Name="YautjaHunter" ParentName="YautjaMilBase" Abstract="True">
+    <label>yautja hunter</label>
+    <combatPower>170</combatPower>
+	<backstoryCategories>
+			<li>Yautja_Hunter</li>
+  	</backstoryCategories>
+    <apparelTags>
+	  <li>YautjaGreaves</li>
+      <li>YautjaArmour</li>
+      <li>YautjaHead</li>
+    </apparelTags>
+  </PawnKindDef>
+  
+  <!-- ============================ Young Blood ========================== -->
+  <PawnKindDef ParentName="YautjaHunter">
+    <defName>YautjaYoungBlood</defName>
+    <label>Yautja Young Blood</label>
+	<backstoryCategories>
+			<li>Yautja_YoungBlood</li>
+  	</backstoryCategories>
+    <weaponTags>
+		<li>YautjaGun</li>
+		<li>YautjaMelee</li>
+    </weaponTags>
+  </PawnKindDef>
+  
+    <!-- ============================ Blooded ========================== -->
+  <PawnKindDef ParentName="YautjaHunter">
+    <defName>YautjaBlooded</defName>
+    <label>Yautja Blooded</label>
+	<backstoryCategories>
+			<li>Yautja_Blooded</li>
+  	</backstoryCategories>
+    <weaponTags>
+		<li>YautjaGun</li>
+		<li>YautjaEliteMelee</li>
+    </weaponTags>
+  </PawnKindDef>
+  
+    <!-- ============================ Elite ========================== -->
+  <PawnKindDef ParentName="YautjaHunter">
+    <defName>YautjaElite</defName>
+    <label>Yautja Elite</label>
+	<backstoryCategories>
+			<li>Yautja_Elite</li>
+  	</backstoryCategories>
+    <weaponTags>
+		<li>YautjaEliteGun</li>
+		<li>YautjaEliteMelee</li>
+    </weaponTags>
+  </PawnKindDef>
+
+  <!-- ============================ Yautja Boss ========================== -->
+  <PawnKindDef ParentName="YautjaMilBase">
+     <defName>YautjaElder</defName>
+    <label>Yautja Elder</label>
+    <combatPower>250</combatPower>
+    <minGenerationAge>500</minGenerationAge>
+	<backstoryCategories>
+			<li>Yautja_Elder</li>
+  	</backstoryCategories>
+    <gearHealthRange>
+      <min>0.8</min>
+      <max>3.5</max>
+    </gearHealthRange>
+    <apparelMoney>
+      <min>3000</min>
+      <max>9000</max>
+    </apparelMoney>
+    <apparelTags>
+      <li>Yautja</li>
+      <li>YautjaArmour</li>
+      <li>YautjaHead</li>
+    </apparelTags>
+    <weaponMoney>
+      <min>10000</min>
+      <max>15500</max>
+    </weaponMoney>
+    <weaponTags>
+		<li>YautjaGun</li>
+		<li>YautjaMelee</li>
+    </weaponTags>
+    <techHediffsMoney>
+      <min>2000</min>
+      <max>3000</max>
+    </techHediffsMoney>
+    <techHediffsTags>
+      <li>Advanced</li>
+    </techHediffsTags>
+    <techHediffsChance>0.80</techHediffsChance>
+    <combatEnhancingDrugsCount>
+      <min>1</min>
+      <max>2</max>
+    </combatEnhancingDrugsCount>
+    <combatEnhancingDrugsChance>0.1</combatEnhancingDrugsChance>
+    <inventoryOptions>
+      <skipChance>0.8</skipChance>
+      <subOptionsChooseOne>
+        <li>
+          <thingDef>Silver</thingDef>
+          <countRange>
+            <min>120</min>
+            <max>480</max>
+          </countRange>
+        </li>
+        <li>
+          <thingDef>MedicineIndustrial</thingDef>
+          <countRange>
+            <min>1</min>
+            <max>2</max>
+          </countRange>
+        </li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+  </PawnKindDef>
+
+</Defs>

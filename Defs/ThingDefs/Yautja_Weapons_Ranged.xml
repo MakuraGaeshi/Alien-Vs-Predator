@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+<!-- ====================== Plasma Blaster ===================== -->
+ <ThingDef ParentName="BaseBullet">
+	<defName>RRY_Bullet_Plasma</defName>
+    <label>Plasma Bolt</label>
+    <graphicData>
+		<texPath>Things/Projectile/PlamsShotSml</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+		<flyOverhead>false</flyOverhead>
+		<damageDef>RRYPlasma</damageDef>
+		<damageAmountBase>25</damageAmountBase>
+		<armorPenetrationBase>0.68</armorPenetrationBase>
+		<stoppingPower>1.75</stoppingPower>
+		<speed>55</speed>
+	</projectile>
+ </ThingDef>
+
+	<ThingDef ParentName="RRYBaseMakeableGun">
+		<defName>RRY_Gun_YautjaBlaster</defName>
+		<label>Yautja Blaster</label>
+		<description>The Plasmacaster, also known as the Plasma Cannon or Laser Cannon is a Yautja long-range energy projector weapon. Capable of firing armor-penetrating plasma bolts at distant targets, one of the most devastating and technologically advanced offensive tool at the Yautja's disposal. The bolts fired by the weapon explode in a burst of plasma "shrapnel" upon striking a target, causing grievous wounds and potentially damaging other enemies near the point of impact.\n\nYoung Blood Yautja are denied the use of Plasmacasters and must undergo a Rite of Passage, whereby they must Hunt Xenomorphs using only their close-range weapons, in order to obtain the weapons. Despite the enormous power of the Plasmacaster, or rather because of it, it is considered among the least honorable weaponry the Yautja possess. Often, when faced with particularly worthy prey, a Predator will discard his Plasmacaster and rely instead on its more basic weapons.</description>
+		<graphicData>
+			<texPath>Things/Equipment/Ranged/PredatorBlaster</texPath>
+			<graphicClass>Graphic_Single</graphicClass>		
+    </graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>32000</WorkToMake>
+			<MarketValue>750</MarketValue>
+			<Mass>2</Mass>
+			<AccuracyTouch>0.80</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.60</AccuracyMedium>
+			<AccuracyLong>0.50</AccuracyLong>
+			<RangedWeapon_Cooldown>1.35</RangedWeapon_Cooldown>
+		</statBases>
+	<recipeMaker>
+		<!-- <researchPrerequisite>WRMechAdvBallistics</researchPrerequisite> -->
+	</recipeMaker>
+		<equippedStatOffsets>
+			<MoveSpeed>0.5</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>RRY_Bullet_Plasma</defaultProjectile>
+				<warmupTime>1</warmupTime>
+				<range>31</range>
+				<soundCast>Shot_Revolver</soundCast>
+				<!-- <forcedMissRadius>0.1</forcedMissRadius> -->
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			</li>
+		</verbs>
+    <tools>
+      <li>
+        <label>grip</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>12</power>
+        <cooldownTime>1.6</cooldownTime>
+      </li>
+      <li>
+        <label>barrel</label>
+        <capacities>
+          <li>Blunt</li>
+          <li>Poke</li>
+        </capacities>
+        <power>12</power>
+        <cooldownTime>1.6</cooldownTime>
+      </li>
+    </tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>Yautja</li>
+			<li>YautjaGun</li>
+			<li>YautjaBlaster</li>
+		</weaponTags>
+		<thingCategories>
+			<li>RRYRanged</li>
+		</thingCategories>
+		<tradeTags>
+			<li>RRYRanged</li>
+		</tradeTags>
+		<costList>				
+			<Steel>30</Steel>
+			<Plasteel>40</Plasteel>
+			<ComponentIndustrial>10</ComponentIndustrial>
+			<Gold>4</Gold>
+		</costList>
+	</ThingDef>
+</Defs>
