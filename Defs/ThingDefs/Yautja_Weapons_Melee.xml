@@ -149,7 +149,7 @@
     
 	<!--==================== Yautja  - Combistaff =========================-->
   <ThingDef ParentName="RRYBaseMeleeWeapon_Sharp_Quality">
-    <defName>RRY_Melee_CombistaffX125</defName>
+    <defName>RRY_Melee_X125Combistaff</defName>
     <label>Combistaff X1.25</label>
     <description>Combistaff.</description>
     <graphicData>
@@ -219,7 +219,7 @@
     
 	<!--==================== Yautja  - Combistaff =========================-->
   <ThingDef ParentName="RRYBaseMeleeWeapon_Sharp_Quality">
-    <defName>RRY_Melee_CombistaffX15</defName>
+    <defName>RRY_Melee_X15Combistaff</defName>
     <label>Combistaff X1.5</label>
     <description>Combistaff.</description>
     <graphicData>
