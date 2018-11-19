@@ -420,7 +420,7 @@
         </points>
       </ageGenerationCurve>
       <hediffGiverSets>
-        <li>OrganicStandard</li>
+        <li>OrganicAgeless</li>
       </hediffGiverSets>
     </race>
     <recipes>
