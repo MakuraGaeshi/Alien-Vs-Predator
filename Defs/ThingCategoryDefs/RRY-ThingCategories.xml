@@ -39,5 +39,12 @@
 		<label>Armour Addons</label>
 		<parent>Apparel</parent>
 	</ThingCategoryDef>
+	
+	<!-- ========================= Yautja - Corpse Catagories ========================== -->
+    <ThingCategoryDef>
+    <defName>CorpsesYautja</defName>
+    <label>yautja corpses</label>
+      <parent>CorpsesHumanlike</parent>
+    </ThingCategoryDef>
 
 </Defs>

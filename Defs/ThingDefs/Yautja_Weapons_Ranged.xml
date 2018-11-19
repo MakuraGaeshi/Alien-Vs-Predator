@@ -10,7 +10,7 @@
     </graphicData>
     <projectile>
 		<flyOverhead>false</flyOverhead>
-		<damageDef>RRYPlasma</damageDef>
+		<damageDef>Bullet</damageDef>
 		<damageAmountBase>25</damageAmountBase>
 		<armorPenetrationBase>0.68</armorPenetrationBase>
 		<stoppingPower>1.75</stoppingPower>

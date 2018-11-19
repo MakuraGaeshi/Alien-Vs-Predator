@@ -22,11 +22,10 @@
 	<settlementNameMaker>NamerRRYautjaBases</settlementNameMaker>
 	<techLevel>Neolithic</techLevel>
   <backstoryCategories>
-			<li>Yautja</li>
-			<li>Raider</li>
+			<li>Yautja_Standard</li>
   	</backstoryCategories>
 			<hairTags>
-		<li>YautjaHair</li>
+				<li>YaujtaDreds</li>
 			</hairTags>
     <naturalColonyGoodwill>
       <min>-60</min>

@@ -18,7 +18,6 @@
     <settlementNameMaker>NamerRRYautjaBases</settlementNameMaker>
     <techLevel>Ultra</techLevel>
     <backstoryCategories>
-			<li>Raider</li>
 			<li>Yautja_Standard</li>
   	</backstoryCategories>
     <homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
@@ -27,7 +26,7 @@
       <li>ClassicStart</li>
     </startingResearchTags>
     <hairTags>
-		<li>Bald</li>
+		<li>YaujtaDreds</li>
     </hairTags>
     <apparelStuffFilter>
       <thingDefs>

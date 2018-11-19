@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <HairDef>
+    <label>Yaujta Dreds</label>
+    <hairGender>Any</hairGender>
+    <texPath>Things/Pawn/Yautja/Hair/Hair_Yautja</texPath>
+    <defName>YaujtaDreds</defName>
+		<hairTags>
+			<li>YaujtaDreds</li>
+		</hairTags>
+  </HairDef>
+  
+  <HairDef>
+    <label>Yaujta Bald</label>
+    <hairGender>Any</hairGender>
+    <texPath>Things/Pawn/Yautja/Hair/Hairless_Yautja</texPath>
+    <defName>HairlessYautja</defName>
+		<hairTags>
+			<li>HairlessYautja</li>
+		</hairTags>
+  </HairDef>
+</Defs>

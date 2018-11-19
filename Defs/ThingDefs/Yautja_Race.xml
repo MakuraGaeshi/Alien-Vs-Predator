@@ -97,19 +97,13 @@
 <AlienRace.ThingDef_AlienRace ParentName="BaseYautjaPawn">
     <defName>Alien_Yautja</defName>
     <label>Yautja</label>
-    <description>The pinnacle of the Yautjaoid species: A fully grown Yautja.</description>
+    <description>.</description>
     <alienRace>
         <generalSettings>
-			<useOnlyPawnkindBackstories>false</useOnlyPawnkindBackstories>
+			<useOnlyPawnkindBackstories>true</useOnlyPawnkindBackstories>
             <maleGenderProbability>0.75</maleGenderProbability>
-            <immuneToAge>true</immuneToAge>
+            <immuneToAge>false</immuneToAge>
             <forcedRaceTraitEntries>
-			<!--
-                <li>
-                    <defName>Bloodlust</defName>
-                    <degree>0</degree>
-                    <chance>100</chance>
-                </li>
                 <li>
                     <defName>Tough</defName>
                     <chance>25</chance>
@@ -119,80 +113,34 @@
                     <degree>1</degree>
                     <chance>75</chance>
                 </li>
-				-->
+                <li>
+                    <defName>Xenophobia</defName>
+                    <degree>-1</degree>
+                    <chance>0</chance>
+                </li>
             </forcedRaceTraitEntries>
 			<disallowedTraits>
-			<!--
-               <li>Kind</li>
-               <li>Gay</li>
+               <li>PsychicSensitivity</li>
+               <li>Beauty</li>
                <li>Wimp</li>
-               <li>DislikesWomen</li>
-               <li>DislikesMen</li>
-				-->
             </disallowedTraits>
             <alienPartGenerator>
 				<useGenderedHeads>false</useGenderedHeads>
-				<useGenderedBodies>false</useGenderedBodies>
                 <aliencrowntypes>
-                    <li>Average_Yautja</li>
+                    <!-- <li>Average_Yautja</li> -->
+                    <li>Hairless_Yautja</li>
                 </aliencrowntypes>
                 <alienbodytypes>
-					<li>Male</li>
+                <li>Female</li>
+				<li>Male</li>
                 </alienbodytypes>
-			<!--
-				<bodyAddons>
-					<li>
-						<path>Things/Yautjas/HeadsBase/Ears/EarsYautja</path>
-						<bodyPart>Head</bodyPart>
-						<inFrontOfBody>true</inFrontOfBody>
-						<layerOffset>-0.275</layerOffset>
-						<offsets>
-							<south>
-								<bodyTypes>
-									<Male>(-0.42,0.6)</Male>
-									<Fat>(-0.42,0.6)</Fat>
-									<Hulk>(-0.42,0.6)</Hulk>
-								</bodyTypes>
-								<crownTypes>
-									<Average_Yautja>(-0.0,0.0)</Average_Yautja>
-								</crownTypes>
-							</south>
-							<north>
-								<bodyTypes>
-									<Male>(0,0.9)</Male>
-									<Fat>(0,0.9)</Fat>
-									<Hulk>(0,0.9)</Hulk>
-								</bodyTypes>
-								<crownTypes>
-									<Average_Yautja>(0,0.0)</Average_Yautja>
-								</crownTypes>
-							</north>
-							<east>
-								<bodyTypes>
-									<Male>(-0.48,0.6)</Male>
-									<Fat>(-0.48,0.6)</Fat>
-									<Hulk>(-0.48,0.6)</Hulk>
-								</bodyTypes>
-								<crownTypes>
-									<Average_Yautja>(-0.0,0.0)</Average_Yautja>
-								</crownTypes>
-							</east>
-						</offsets>
-						<useSkinColor>true</useSkinColor>
-						<hiddenUnderApparelFor>
-							<li>FullHead</li>
-						</hiddenUnderApparelFor>
-					</li>
-				</bodyAddons>
-				-->
-                <alienskincolorgen Class="ColorGenerator_Options">
-					<options>
+			    <alienskincolorgen Class="ColorGenerator_Options">
+                    <options>
 						<li>
-						<!-- RGB in the photoshop is (R=196  G= 192  B=124) -->
+							<!-- RGB in the photoshop is (R=196  G= 192  B=124) -->
 							<weight>10</weight>
 							<only>RGBA(0.77,0.75,0.49,1)</only>
 						</li>
-						
 						<li>
 							<weight>5</weight>
 							<only>RGBA(0.72,0.70,0.40,1)</only>
@@ -205,18 +153,52 @@
 							<weight>5</weight>
 							<only>RGBA(0.62,0.65,0.34,1)</only>
 						</li>
-						<!-- -->
 					</options>
                 </alienskincolorgen>
-            <useSkincolorForHair>true</useSkincolorForHair>
+            <alienskinsecondcolorgen Class="ColorGenerator_Options">
+                <options>
+                    <li>
+                        <weight>10</weight>
+                        <only>RGBA(0.0,1.0,0.0,1)</only>
+                    </li>
+                    <li>
+                        <weight>5</weight>
+                        <only>RGBA(0.7,0.6,0.6,1)</only>
+                    </li>
+                    <li>
+                        <weight>5</weight>
+                        <only>RGBA(0.5,0.3,0.0,1)</only>
+                    </li>
+                </options>
+            </alienskinsecondcolorgen>
+            <alienhaircolorgen Class="ColorGenerator_Options">
+                <options>
+                    <li>
+                        <weight>10</weight>
+                        <only>RGBA(0.77,0.62,0.18,1)</only>
+                    </li>
+                    <li>
+                        <weight>10</weight>
+                        <only>RGBA(0.61,0.44,0.16,1)</only>
+                    </li>
+                    <li>
+                        <weight>5</weight>
+                        <only>RGBA(0.93,0.78,0.0,1)</only>
+                    </li>
+                    <li>
+                        <weight>5</weight>
+                        <only>RGBA(0.69,0.69,0.69,1)</only>
+                    </li>
+                </options>
+            </alienhaircolorgen>
+            <useSkincolorForHair>false</useSkincolorForHair>
             </alienPartGenerator>
 			<chemicalSettings>	
-			
 		    </chemicalSettings>
             <humanRecipeImport>true</humanRecipeImport>
-			<notXenophobistTowards>
-			
-			</notXenophobistTowards>
+		   <notXenophobistTowards>
+		   
+           </notXenophobistTowards>
         </generalSettings>
         <graphicPaths>
             <li>
@@ -225,86 +207,44 @@
             </li>
         </graphicPaths>
         <hairSettings>
-            <hasHair>false</hasHair>
-            <getsGreyAt>300</getsGreyAt> 
+            <hasHair>true</hasHair>
+            <getsGreyAt>1750</getsGreyAt> 
             <hairTags>
-			
-              <!--   <li>YautjaHair</li> -->
-				 
+                 <li>YaujtaDreds</li> 
             </hairTags>
         </hairSettings>
         <thoughtSettings>
 			<cannotReceiveThoughts>
+                <li>AteHumanlikeMeatDirect</li>
+                <li>AteHumanlikeMeatAsIngredient</li>
                 <li>ButcheredHumanlikeCorpse</li>
 				<li>KnowButcheredHumanlikeCorpse</li>
 				<li>ObservedLayingCorpse</li>
 				<li>SleptInBarracks</li>
-			<!--
-                <li>AteHumanlikeMeatDirect</li>
-                <li>AteHumanlikeMeatAsIngredient</li>
-				<li>ColonistLeftUnburied</li>
 				<li>Naked</li>
-				<li>Pain</li>
-				<li>FeelingRandom</li>
-				<li>ApparelDamaged</li>
-				<li>CabinFever</li>
-				<li>Sick</li>
-				<li>DeadMansApparel</li>
-				<li>KnowGuestExecuted</li>
-				<li>KnowColonistExecuted</li>
-				<li>KnowPrisonerDiedInnocent</li>
-				<li>KnowColonistDied</li>
-				<li>PawnWithGoodOpinionDied</li>
-				<li>MySonDied</li>
-				<li>MyBrotherDied</li>
-				<li>MyFatherDied</li>
-				<li>MyNephewDied</li>
-				<li>NeedOutdoors</li>
-				<li>NeedRoomSize</li>
-				<li>NeedBeauty</li>
 				<li>Disfigured</li>
 				<li>Pretty</li>
 				<li>Ugly</li>
 				<li>SoldPrisoner</li>
+				<li>KnowPrisonerDiedInnocent</li>
 				<li>ExecutedPrisoner</li>
 				<li>AteRawHumanlikeMeat</li>
 				<li>AteWithoutTable</li>
-				<li>SleepDisturbed</li>
 				<li>KnowPrisonerSold</li>
 				<li>KnowGuestOrganHarvested</li>
-				-->
             </cannotReceiveThoughts>
         </thoughtSettings>
         <relationSettings>
             <relationChanceModifierParent>1</relationChanceModifierParent>
             <relationChanceModifierChild>1</relationChanceModifierChild>
-            <relationChanceModifierSibling>3</relationChanceModifierSibling>
+            <relationChanceModifierSibling>1</relationChanceModifierSibling>
 			
-            <relationChanceModifierLover>0</relationChanceModifierLover>
-            <relationChanceModifierExLover>0</relationChanceModifierExLover>
+            <relationChanceModifierLover>1</relationChanceModifierLover>
+            <relationChanceModifierExLover>1</relationChanceModifierExLover>
 			
-            <relationChanceModifierFiance>0</relationChanceModifierFiance>
-            <relationChanceModifierSpouse>0</relationChanceModifierSpouse>
-            <relationChanceModifierExSpouse>0</relationChanceModifierExSpouse>
-			<!--
-			   <renamer>
-               <li>
-                  <relation>Sibling</relation>
-                  <label>Mob mate</label>
-                  <femaleLabel>Mob mate</femaleLabel>
-               </li>
-               <li>
-                  <relation>Parent</relation>
-                  <label>Kult leader</label>
-                  <femaleLabel>Kult leader</femaleLabel>
-               </li>
-               <li>
-                  <relation>Child</relation>
-                  <label>Klan member</label>
-                  <femaleLabel>Klan member</femaleLabel>
-               </li>
-            </renamer>
-			-->
+            <relationChanceModifierFiance>1</relationChanceModifierFiance>
+            <relationChanceModifierSpouse>1</relationChanceModifierSpouse>
+            <relationChanceModifierExSpouse>1</relationChanceModifierExSpouse>
         </relationSettings>
         <raceRestriction>
             <researchList>
@@ -319,12 +259,17 @@
                     </projects>
                 </li>
             </researchList>
-                    <apparelList>
-						<li>RRY_Apparel_HunterArmourChestplate</li>
-						<li>RRY_Apparel_HunterArmourGreaves</li>
-						<li>RRY_Apparel_HunterBioMask</li>
-                    </apparelList>
-					<onlyUseRaceRestrictedApparel>true</onlyUseRaceRestrictedApparel>
+			<apparelList>
+				<li>RRY_Apparel_HunterArmourChestplate</li>
+				<li>RRY_Apparel_HunterArmourGreaves</li>
+				<li>RRY_Apparel_HunterBioMask</li>
+			</apparelList>
+			<onlyUseRaceRestrictedApparel>true</onlyUseRaceRestrictedApparel>
+            <recipeList>
+				<li>RRY_Apparel_HunterArmourChestplate</li>
+				<li>RRY_Apparel_HunterArmourGreaves</li>
+				<li>RRY_Apparel_HunterBioMask</li>
+            </recipeList>
         </raceRestriction>
     </alienRace>
 	<statBases>
@@ -405,16 +350,18 @@
       </li>
     </tools>
     <race>
+	  <fleshType>Yautja</fleshType>
       <thinkTreeMain>Humanlike</thinkTreeMain>
       <thinkTreeConstant>HumanlikeConstant</thinkTreeConstant>
       <intelligence>Humanlike</intelligence>
       <makesFootprints>true</makesFootprints>
-      <lifeExpectancy>600</lifeExpectancy>
+      <lifeExpectancy>2000</lifeExpectancy>
       <leatherDef>Leather_Yautja</leatherDef>
       <nameGenerator>NamerPersonYautja</nameGenerator>
       <body>Human</body>
       <bloodDef>FilthBloodYautja</bloodDef>	
-      <meatColor>(200,135,100)</meatColor>
+	  <!-- RGB in the photoshop is (R=196  G= 192  B=124) -->
+      <meatColor>(34,146,72)</meatColor>
       <baseBodySize>1</baseBodySize>
       <baseHealthScale>1.25</baseHealthScale>
       <foodType>OmnivoreHuman</foodType>
@@ -473,7 +420,7 @@
         </points>
       </ageGenerationCurve>
       <hediffGiverSets>
-        <li>OrganicAgeless</li>
+        <li>OrganicStandard</li>
       </hediffGiverSets>
     </race>
     <recipes>
