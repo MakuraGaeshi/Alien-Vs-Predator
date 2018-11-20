@@ -75,7 +75,13 @@
     <graphicData>
 		<texPath>Things/Equipment/Melee/Yautja_Combistaff</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
+		<drawSize>1.50</drawSize>		
     </graphicData>
+	<comps>     
+		<li>
+			<compClass>CompOversizedWeapon.CompOversizedWeapon</compClass>
+		</li>
+	</comps>
     <soundInteract>Interact_BeatFire</soundInteract>
     <costList>
       <WoodLog>70</WoodLog>
