@@ -127,8 +127,7 @@
             <alienPartGenerator>
 				<useGenderedHeads>false</useGenderedHeads>
                 <aliencrowntypes>
-                    <!-- <li>Average_Yautja</li> -->
-                    <li>Hairless_Yautja</li>
+                     <li>Average_Yautja</li> 
                 </aliencrowntypes>
                 <alienbodytypes>
                 <li>Female</li>
