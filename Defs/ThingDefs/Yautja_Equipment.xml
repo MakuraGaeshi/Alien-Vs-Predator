@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!-- ========================= Yautja - Equipment ========================== -->
+	<!-- ========================= Yautja - Hunter Wristblade ========================== -->
+	<ThingDef ParentName="RRYArmorMakeableBase">
+		<defName>RRY_Equipment_HunterWristblade</defName>
+		<label>Yautja Hunter Wristblade</label>
+		<description>.</description>
+		<graphicData>
+			<texPath>Things/Equipment/Melee/Yautja_HandBlade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<tickerType>Normal</tickerType>
+		<comps>  
+		  <li Class="RRYautja.CompProperties_HediffApparel">
+			<hediffDef>RRYWristbladeHeDiff</hediffDef>
+			<severityBasedOnDurability>false</severityBasedOnDurability>
+			<partsToAffect>
+			  <li>Arm</li>
+			</partsToAffect>
+			<!--
+			<groupsToAffect>
+			  <li>A_BODYPARTGROUPDEF_HERE</li>
+			  <li>A_BODYPARTGROUPDEF_HERE</li>
+			  <li>A_BODYPARTGROUPDEF_HERE</li>
+			</groupsToAffect>
+			-->
+		  </li>
+		</comps>
+		<statBases>
+			<MarketValue>2500</MarketValue>
+			<MaxHitPoints>500</MaxHitPoints>
+			<WorkToMake>60000</WorkToMake>
+			<ArmorRating_Blunt>0.05</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.05</ArmorRating_Heat>
+			<Insulation_Heat>1</Insulation_Heat>
+			<Insulation_Cold>1</Insulation_Cold>
+			<Mass>1</Mass>
+		</statBases>
+		<equippedStatOffsets>
+		<!--
+			<MoveSpeed>-0.03</MoveSpeed>
+			<WorkSpeedGlobal>-0.15</WorkSpeedGlobal>
+			<ShootingAccuracyPawn>0.25</ShootingAccuracyPawn>
+			<PsychicSensitivity>-0.10</PsychicSensitivity>
+			<ToxicSensitivity>-0.5</ToxicSensitivity>
+			-->
+		</equippedStatOffsets>
+		<costList>
+			<Steel>100</Steel>
+			<Plasteel>60</Plasteel>
+			<ComponentIndustrial>10</ComponentIndustrial>
+		</costList>
+		<recipeMaker>
+			
+		</recipeMaker>
+		<apparel>
+			<bodyPartGroups>
+				<li>Arms</li>
+			</bodyPartGroups>
+			<!-- <wornGraphicPath>Things/Apparel/Yautja_Armour/Yautja_HunterArmor</wornGraphicPath> -->
+			<layers>
+				<li>OnSkin</li>
+			</layers>
+			<tags>
+				<li>YautjaWristblade</li>
+				<li>YautjaEquipment</li>
+				<li>Yautja</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+		</apparel>
+		<thingCategories>
+			<li>RRYEquipment</li>
+		</thingCategories>
+		<tradeTags>
+			<li>Apparel</li>
+		</tradeTags>
+	</ThingDef>
+	
+	<!-- ========================= Yautja - Shoulder Cannon ========================== -->
+	<ThingDef ParentName="RRYArmorMakeableBase">
+		<defName>RRY_Equipment_HunterShoulderCannon</defName>
+		<label>Yautja Shoulder Cannon</label>
+		<description>.</description>
+		<graphicData>
+			<texPath>Things/Equipment/Yautja_ShoulderCannon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<tickerType>Normal</tickerType>
+		<comps>  
+	      <li Class="RRYautja.CompProperties_EquippableTurret">
+		  </li>
+		</comps>
+		<statBases>
+			<MarketValue>2500</MarketValue>
+			<MaxHitPoints>500</MaxHitPoints>
+			<WorkToMake>60000</WorkToMake>
+			<ArmorRating_Blunt>0.05</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.05</ArmorRating_Heat>
+			<Insulation_Heat>1</Insulation_Heat>
+			<Insulation_Cold>1</Insulation_Cold>
+			<Mass>1</Mass>
+		</statBases>
+		<equippedStatOffsets>
+		<!--
+			<MoveSpeed>-0.03</MoveSpeed>
+			<WorkSpeedGlobal>-0.15</WorkSpeedGlobal>
+			<ShootingAccuracyPawn>0.25</ShootingAccuracyPawn>
+			<PsychicSensitivity>-0.10</PsychicSensitivity>
+			<ToxicSensitivity>-0.5</ToxicSensitivity>
+			-->
+		</equippedStatOffsets>
+		<costList>
+			<Steel>100</Steel>
+			<Plasteel>60</Plasteel>
+			<ComponentIndustrial>10</ComponentIndustrial>
+		</costList>
+		<recipeMaker>
+			
+		</recipeMaker>
+		<apparel>
+			<bodyPartGroups>
+				<li>Arms</li>
+			</bodyPartGroups>
+			<!-- <wornGraphicPath>Things/Apparel/Yautja_Armour/Yautja_HunterArmor</wornGraphicPath> -->
+			<layers>
+				<li>OnSkin</li>
+			</layers>
+			<tags>
+				<li>YautjaWristblade</li>
+				<li>YautjaEquipment</li>
+				<li>Yautja</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+		</apparel>
+		<thingCategories>
+			<li>RRYEquipment</li>
+		</thingCategories>
+		<tradeTags>
+			<li>Apparel</li>
+		</tradeTags>
+	</ThingDef>
+	
+	<!--
+		<tickerType>Normal</tickerType>
+	<comps>     
+	      <li Class="AdeptusMechanicus.CompProperties_Wargear">
+		</li>  
+	      <li Class="CompProperties_EquippableLight">
+		</li>
+	</comps>
+	-->
+</Defs>

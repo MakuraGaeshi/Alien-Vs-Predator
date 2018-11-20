@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-	<!--==================== Yautja  - Wristblade =========================-->
+	<!-- ==================== Yautja  - Wristblade ========================= 
 	<ThingDef ParentName="RRYBaseMeleeWeapon_Sharp_Quality">
 		<defName>RRY_Melee_HandBlade</defName>
 		<label>Yautja Wristblade</label>
@@ -21,15 +21,6 @@
 		</equippedStatOffsets>
 		<equippedAngleOffset>-25</equippedAngleOffset>
 		<tools>
-			<li>
-				<label>handle</label>
-				<capacities>
-					<li>Blunt</li>
-					<li>Poke</li>
-				</capacities>
-				<power>8</power>
-				<cooldownTime>1.0</cooldownTime>
-			</li>
 			<li>
 				<label>blade</label>
 				<capacities>
@@ -66,8 +57,8 @@
 			<li>RRYMelee</li>
 		</tradeTags>
 	 </ThingDef>
-  
-	<!--==================== Yautja  - Combistaff Base =========================-->
+  -->
+	<!-- ==================== Yautja  - Combistaff Base ========================= -->
   <ThingDef ParentName="RRYBaseMeleeWeapon_Sharp_Quality">
     <defName>RRY_Melee_Combistaff</defName>
     <label>Combistaff</label>
@@ -87,6 +78,7 @@
       <WoodLog>70</WoodLog>
     </costList>
     <statBases>
+	  <MarketValue>300</MarketValue>
       <WorkToMake>7000</WorkToMake>
       <Mass>4</Mass>
       <AccuracyTouch>0.50</AccuracyTouch>
@@ -142,7 +134,7 @@
     <graphicData>
       <texPath>Things/Projectile/Yautja_Combistaff</texPath>
       <graphicClass>Graphic_Single</graphicClass>
-		<drawSize>1.50</drawSize>		
+		<drawSize>2.50</drawSize>		
     </graphicData>
 	<comps>     
 		<li>

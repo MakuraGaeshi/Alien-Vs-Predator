@@ -13,6 +13,7 @@
     <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
     <apparelTags>
       <li>Yautja</li>
+      <li>YautjaWristblade</li>
     </apparelTags>
   </PawnKindDef>
   
@@ -34,7 +35,7 @@
       <max>750</max>
     </weaponMoney>
     <weaponTags>
-		<li>YautjaWristblade</li>
+		<li>YautjaCombistaff</li>
     </weaponTags>
     <techHediffsMoney>
       <min>200</min>
@@ -163,7 +164,7 @@
       <max>1500</max>
     </weaponMoney>
     <weaponTags>
-		<li>YautjaWristblade</li>
+		<li>YautjaCombistaff</li>
     </weaponTags>
     <techHediffsMoney>
       <min>200</min>
@@ -212,7 +213,7 @@
       <max>1500</max>
     </weaponMoney>
     <weaponTags>
-		<li>YautjaWristblade</li>
+		<li>YautjaCombistaff</li>
     </weaponTags>
     <techHediffsMoney>
       <min>1000</min>

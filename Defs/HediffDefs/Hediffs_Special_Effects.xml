@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+<!-- ==================== Base HeDiffs ========================= -->
+	<HediffDef Name="RRYSpecialBadHeDiff" Abstract="True">
+		<hediffClass>HediffWithComps</hediffClass>
+		<defaultLabelColor>(0.8, 0.8, 0.35)</defaultLabelColor>
+    <isBad>true</isBad>
+	<makesAlert>false</makesAlert>
+	<makesSickThought>false</makesSickThought>
+	</HediffDef>
+	
+	<HediffDef Name="RRYSpecialGoodHeDiff" Abstract="True">
+		<hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.5, 0.5, 0.9)</defaultLabelColor>
+    <isBad>false</isBad>
+	<makesAlert>false</makesAlert>
+	<makesSickThought>false</makesSickThought>
+	</HediffDef>
+
+	
+  <HediffDef ParentName="RRYSpecialGoodHeDiff">
+    <defName>RRYWristbladeHeDiff</defName>
+    <label>wristblade</label>
+    <labelNoun>a wristblade</labelNoun>
+    <stages>
+      <li>
+        <label>initial</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_VerbGiver">
+		<tools>
+			<li>
+				<label>wristblade</label>
+				<capacities>
+					<li>Cut</li>
+					<li>Stab</li>
+				</capacities>
+				<power>28</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+		</tools>
+      </li>
+    </comps>
+  </HediffDef>
+
+</Defs>

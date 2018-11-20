@@ -262,12 +262,18 @@
 				<li>RRY_Apparel_HunterArmourChestplate</li>
 				<li>RRY_Apparel_HunterArmourGreaves</li>
 				<li>RRY_Apparel_HunterBioMask</li>
+				<li>RRY_Equipment_HunterWristblade</li>
+				<li>RRY_Equipment_HunterShoulderCannon</li>
 			</apparelList>
 			<onlyUseRaceRestrictedApparel>true</onlyUseRaceRestrictedApparel>
             <recipeList>
 				<li>RRY_Apparel_HunterArmourChestplate</li>
 				<li>RRY_Apparel_HunterArmourGreaves</li>
 				<li>RRY_Apparel_HunterBioMask</li>
+				<li>RRY_Equipment_HunterWristblade</li>
+				<li>RRY_Melee_HandBlade</li>
+				<li>RRY_Melee_Combistaff</li>
+				<li>RRY_Gun_YautjaBlaster</li>
             </recipeList>
         </raceRestriction>
     </alienRace>

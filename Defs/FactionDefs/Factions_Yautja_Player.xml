@@ -12,7 +12,7 @@
     <description>Yautja Colony Start.</description>
     <isPlayer>true</isPlayer>
     <basicMemberKind>Yautja</basicMemberKind>
-    <pawnsPlural>boyz</pawnsPlural>
+    <pawnsPlural>Yautja</pawnsPlural>
     <playerInitialSettlementNameMaker>NamerInitialSettlementColony</playerInitialSettlementNameMaker>
 		<factionNameMaker>NamerRRYautjaFaction</factionNameMaker>
     <settlementNameMaker>NamerRRYautjaBases</settlementNameMaker>
@@ -27,6 +27,8 @@
     </startingResearchTags>
     <hairTags>
 		<li>YaujtaDreds</li>
+		<li>Civil</li>
+		<li>Rural</li>
     </hairTags>
     <apparelStuffFilter>
       <thingDefs>

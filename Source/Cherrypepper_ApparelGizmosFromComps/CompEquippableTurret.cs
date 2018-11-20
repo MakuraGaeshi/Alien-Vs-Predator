@@ -6,18 +6,18 @@ using Verse;
 
 namespace RRYautja
 {
-    public class CompProperties_EquippableLight : CompProperties
+    public class CompProperties_EquippableTurret : CompProperties
     {
-        public CompProperties_EquippableLight()
+        public CompProperties_EquippableTurret()
         {
-            this.compClass = typeof(CompEquippableLight);
+            this.compClass = typeof(CompEquippableTurret);
         }
     }
 
     // Token: 0x02000E58 RID: 3672
-    public class CompEquippableLight : CompWearable
+    public class CompEquippableTurret : CompWearable
     {
-        public CompProperties_EquippableLight Props => (CompProperties_EquippableLight)props;
+        public CompProperties_EquippableTurret Props => (CompProperties_EquippableTurret)props;
 
         // Determine who is wearing this ThingComp. Returns a Pawn or null.
         protected virtual Pawn GetWearer
@@ -47,19 +47,18 @@ namespace RRYautja
         public void ExposeData()
 		{
 			parent.ExposeData();
-            Scribe_References.Look<Thing>(ref this.light, "light", false);
-            Scribe_Values.Look<bool>(ref this.lightIsOn, "lightIsOn", false, false);
-            Scribe_Values.Look<CompEquippableLight.LightMode>(ref this.lightMode, "lightMode", CompEquippableLight.LightMode.Automatic, false);
+            Scribe_References.Look<Thing>(ref this.turret, "Turret", false);
+            Scribe_Values.Look<bool>(ref this.turretIsOn, "TurretIsOn", false, false);
 		}
 
 		// Token: 0x060053DD RID: 21469 RVA: 0x00264E3D File Offset: 0x0026323D
 		public override void CompTick()
 		{
 			base.CompTick();
-            if (this.lightIsOn || Find.TickManager.TicksGame >= this.nextUpdateTick)
+            if (this.turretIsOn || Find.TickManager.TicksGame >= this.nextUpdateTick)
             {
                 this.nextUpdateTick = Find.TickManager.TicksGame + 60;
-                this.RefreshLightState();
+                this.RefreshTurretState();
             }
         }
 
@@ -74,46 +73,46 @@ namespace RRYautja
         }
 
         // Token: 0x06000004 RID: 4 RVA: 0x000020EE File Offset: 0x000002EE
-        public void RefreshLightState()
+        public void RefreshTurretState()
         {
-            if (this.ComputeLightState())
+            if (this.ComputeTurretState())
             {
-                this.SwitchOnLight();
+                this.SwitchOnTurret();
                 return;
             }
-            this.SwitchOffLight();
+            this.SwitchOffTurret();
         }
 
         // Token: 0x06000005 RID: 5 RVA: 0x00002108 File Offset: 0x00000308
-        public bool ComputeLightState()
+        public bool ComputeTurretState()
         {
-            return GetWearer != null && !GetWearer.Dead && !GetWearer.Downed && GetWearer.Awake() && (this.lightMode == CompEquippableLight.LightMode.ForcedOn || (this.lightMode != CompEquippableLight.LightMode.ForcedOff && (GetWearer.Map != null && ((GetWearer.Position.Roofed(GetWearer.Map) && GetWearer.Map.glowGrid.PsychGlowAt(GetWearer.Position) <= PsychGlow.Lit) || (!GetWearer.Position.Roofed(GetWearer.Map) && GetWearer.Map.glowGrid.PsychGlowAt(GetWearer.Position) < PsychGlow.Overlit)))));
+            return GetWearer != null && !GetWearer.Dead && !GetWearer.Downed && GetWearer.Awake() && (this.turretMode == CompEquippableTurret.TurretMode.ForcedOn || (this.turretMode != CompEquippableTurret.TurretMode.ForcedOff && (GetWearer.Map != null && ((GetWearer.Position.Roofed(GetWearer.Map) && GetWearer.Map.glowGrid.PsychGlowAt(GetWearer.Position) <= PsychGlow.Lit) || (!GetWearer.Position.Roofed(GetWearer.Map) && GetWearer.Map.glowGrid.PsychGlowAt(GetWearer.Position) < PsychGlow.Overlit)))));
         }
 
         // Token: 0x06000006 RID: 6 RVA: 0x000021F0 File Offset: 0x000003F0
-        public void SwitchOnLight()
+        public void SwitchOnTurret()
         {
             IntVec3 intVec = GetWearer.DrawPos.ToIntVec3();
-            if (!this.light.DestroyedOrNull() && intVec != this.light.Position)
+            if (!this.turret.DestroyedOrNull() && intVec != this.turret.Position)
             {
-                this.SwitchOffLight();
+                this.SwitchOffTurret();
             }
-            if (this.light.DestroyedOrNull() && intVec.GetFirstThing(GetWearer.Map, Util_CompEquippableLight.EquippableLightDef) == null)
+            if (this.turret.DestroyedOrNull() && intVec.GetFirstThing(GetWearer.Map, Util_CompEquippableTurret.EquippableTurretDef) == null)
             {
-                this.light = GenSpawn.Spawn(Util_CompEquippableLight.EquippableLightDef, intVec, GetWearer.Map, WipeMode.Vanish);
+                this.turret = GenSpawn.Spawn(Util_CompEquippableTurret.EquippableTurretDef, intVec, GetWearer.Map, WipeMode.Vanish);
             }
-            this.lightIsOn = true;
+            this.turretIsOn = true;
         }
 
         // Token: 0x06000007 RID: 7 RVA: 0x0000227D File Offset: 0x0000047D
-        public void SwitchOffLight()
+        public void SwitchOffTurret()
         {
-            if (!this.light.DestroyedOrNull())
+            if (!this.turret.DestroyedOrNull())
             {
-                this.light.Destroy(DestroyMode.Vanish);
-                this.light = null;
+                this.turret.Destroy(DestroyMode.Vanish);
+                this.turret = null;
             }
-            this.lightIsOn = false;
+            this.turretIsOn = false;
         }
 
         // Token: 0x06000008 RID: 8 RVA: 0x000022A8 File Offset: 0x000004A8
@@ -124,24 +123,20 @@ namespace RRYautja
             {
                 int num = 700000101;
                 Command_Action command_Action = new Command_Action();
-                switch (this.lightMode)
+                switch (this.turretMode)
                 {
-                    case CompEquippableLight.LightMode.Automatic:
-                        command_Action.icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_LigthModeAutomatic", true);
-                        command_Action.defaultLabel = "Ligth: automatic.";
-                        break;
-                    case CompEquippableLight.LightMode.ForcedOn:
+                    case CompEquippableTurret.TurretMode.ForcedOn:
                         command_Action.icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_LigthModeForcedOn", true);
-                        command_Action.defaultLabel = "Ligth: on.";
+                        command_Action.defaultLabel = "Turret: on.";
                         break;
-                    case CompEquippableLight.LightMode.ForcedOff:
+                    case CompEquippableTurret.TurretMode.ForcedOff:
                         command_Action.icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_LigthModeForcedOff", true);
-                        command_Action.defaultLabel = "Ligth: off.";
+                        command_Action.defaultLabel = "Turret: off.";
                         break;
                 }
                 command_Action.defaultDesc = "Switch mode.";
                 command_Action.activateSound = SoundDef.Named("Click");
-                command_Action.action = new Action(this.SwitchLigthMode);
+                command_Action.action = new Action(this.SwitchTurretMode);
                 command_Action.groupKey = num + 1;
 
                 yield return command_Action;
@@ -157,24 +152,20 @@ namespace RRYautja
             {
                 int num = 700000101;
                 Command_Action command_Action = new Command_Action();
-                switch (this.lightMode)
+                switch (this.turretMode)
                 {
-                    case CompEquippableLight.LightMode.Automatic:
-                        command_Action.icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_LigthModeAutomatic", true);
-                        command_Action.defaultLabel = "Ligth: automatic.";
-                        break;
-                    case CompEquippableLight.LightMode.ForcedOn:
+                    case CompEquippableTurret.TurretMode.ForcedOn:
                         command_Action.icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_LigthModeForcedOn", true);
-                        command_Action.defaultLabel = "Ligth: on.";
+                        command_Action.defaultLabel = "Turret: on.";
                         break;
-                    case CompEquippableLight.LightMode.ForcedOff:
+                    case CompEquippableTurret.TurretMode.ForcedOff:
                         command_Action.icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_LigthModeForcedOff", true);
-                        command_Action.defaultLabel = "Ligth: off.";
+                        command_Action.defaultLabel = "Turret: off.";
                         break;
                 }
                 command_Action.defaultDesc = "Switch mode.";
                 command_Action.activateSound = SoundDef.Named("Click");
-                command_Action.action = new Action(this.SwitchLigthMode);
+                command_Action.action = new Action(this.SwitchTurretMode);
                 command_Action.groupKey = num + 1;
 
                 yield return command_Action;
@@ -182,21 +173,18 @@ namespace RRYautja
             yield break;
         }
         // Token: 0x0600000A RID: 10 RVA: 0x000023A4 File Offset: 0x000005A4
-        public void SwitchLigthMode()
+        public void SwitchTurretMode()
         {
-            switch (this.lightMode)
+            switch (this.turretMode)
             {
-                case CompEquippableLight.LightMode.Automatic:
-                    this.lightMode = CompEquippableLight.LightMode.ForcedOn;
+                case CompEquippableTurret.TurretMode.ForcedOn:
+                    this.turretMode = CompEquippableTurret.TurretMode.ForcedOff;
                     break;
-                case CompEquippableLight.LightMode.ForcedOn:
-                    this.lightMode = CompEquippableLight.LightMode.ForcedOff;
-                    break;
-                case CompEquippableLight.LightMode.ForcedOff:
-                    this.lightMode = CompEquippableLight.LightMode.Automatic;
+                case CompEquippableTurret.TurretMode.ForcedOff:
+                    this.turretMode = CompEquippableTurret.TurretMode.ForcedOn;
                     break;
             }
-            this.RefreshLightState();
+            this.RefreshTurretState();
         }
 
         // Token: 0x04000001 RID: 1
@@ -206,19 +194,17 @@ namespace RRYautja
         public int nextUpdateTick;
 
         // Token: 0x04000003 RID: 3
-        public Thing light;
+        public Thing turret;
 
         // Token: 0x04000004 RID: 4
-        public bool lightIsOn;
+        public bool turretIsOn;
 
         // Token: 0x04000005 RID: 5
-        public CompEquippableLight.LightMode lightMode;
+        public CompEquippableTurret.TurretMode turretMode;
 
         // Token: 0x02000004 RID: 4
-        public enum LightMode
+        public enum TurretMode
         {
-            // Token: 0x04000007 RID: 7
-            Automatic,
             // Token: 0x04000008 RID: 8
             ForcedOn,
             // Token: 0x04000009 RID: 9

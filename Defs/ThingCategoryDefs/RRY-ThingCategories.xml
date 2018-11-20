@@ -39,6 +39,12 @@
 		<label>Armour Addons</label>
 		<parent>Apparel</parent>
 	</ThingCategoryDef>
+	  	
+	<ThingCategoryDef>
+		<defName>RRYEquipment</defName>
+		<label>Equipment</label>
+		<parent>Apparel</parent>
+	</ThingCategoryDef>
 	
 	<!-- ========================= Yautja - Corpse Catagories ========================== -->
     <ThingCategoryDef>
