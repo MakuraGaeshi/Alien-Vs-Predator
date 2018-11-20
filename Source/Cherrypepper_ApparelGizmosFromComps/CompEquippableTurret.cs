@@ -100,6 +100,7 @@ namespace RRYautja
             if (this.turret.DestroyedOrNull() && intVec.GetFirstThing(GetWearer.Map, Util_CompEquippableTurret.EquippableTurretDef) == null)
             {
                 this.turret = GenSpawn.Spawn(Util_CompEquippableTurret.EquippableTurretDef, intVec, GetWearer.Map, WipeMode.Vanish);
+                this.turret.SetFactionDirect(this.GetWearer.Faction);
             }
             this.turretIsOn = true;
         }
