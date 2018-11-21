@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <ThoughtDef>
+    <defName>RRYThrillOfTheHunt</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>RRYThrillOfTheHunt</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <label>Thrill of the hunt</label>
+        <description>It feels amazing.</description>
+        <baseMoodEffect>10</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+</Defs>

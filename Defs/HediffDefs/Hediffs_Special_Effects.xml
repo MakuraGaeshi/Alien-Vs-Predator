@@ -44,5 +44,29 @@
       </li>
     </comps>
   </HediffDef>
-
+  
+    <HediffDef ParentName="ImplantHediffBase">
+    <defName>RRYThrillOfTheHunt</defName>
+    <label>Thrill of the hunt</label>
+    <labelNoun>The thrill of the hunt</labelNoun>
+    <stages>
+      <li>
+			<!-- <partEfficiencyOffset>-0.2</partEfficiencyOffset> -->
+      </li>
+    </stages>
+    <!-- <spawnThingOnRemoved>Joywire</spawnThingOnRemoved> -->
+  </HediffDef>
+  
+  <!--
+  <HediffDef ParentName="RRYSpecialGoodHeDiff">
+    <defName>Painstopper</defName>
+    <label>painstopper</label>
+    <labelNoun>a painstopper</labelNoun>
+    <stages>
+      <li>
+        <painFactor>0</painFactor>
+      </li>
+    </stages>
+    <spawnThingOnRemoved>Painstopper</spawnThingOnRemoved>
+  </HediffDef> -->
 </Defs>

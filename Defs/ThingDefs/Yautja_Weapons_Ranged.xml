@@ -97,4 +97,104 @@
 			<Gold>4</Gold>
 		</costList>
 	</ThingDef>
+	
+<!-- ====================== Needler Rifle ===================== -->
+ <ThingDef ParentName="BaseBullet">
+	<defName>RRY_Bullet_NeedlerRifle</defName>
+    <label>Needler Bolt</label>
+    <graphicData>
+		<texPath>Things/Projectile/NeedlerShot</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+		<flyOverhead>false</flyOverhead>
+		<damageDef>Bullet</damageDef>
+		<damageAmountBase>5</damageAmountBase>
+		<armorPenetrationBase>0.68</armorPenetrationBase>
+		<stoppingPower>1.75</stoppingPower>
+		<speed>75</speed>
+	</projectile>
+ </ThingDef>
+
+	<ThingDef ParentName="RRYBaseMakeableGun">
+		<defName>RRY_Gun_NeedlerRifle</defName>
+		<label>Needler Rifle</label>
+		<description>Regardless of the exact form of the weapon, all Spearguns serve as projectile weapons firing metal spears. How these projectiles are fired is not clear, as the weapon produces no discernible muzzle flash and often little noise, yet fires spears with tremendous velocity and accuracy. Regardless of physical appearance, the Speargun is long-ranged and very powerful, capable of pinning victims to solid surfaces like a nail gun. Some have been seen with integrated computerized scopes further increasing their range. A common tactic, particularly with young and inexperienced hunters, is to use the Netgun to immobilize prey before finishing it off with the Speargun.\n\nDespite the weapon's name, the projectiles fired by the Speargun are not typically spear-shaped; the most common form seems to be a U-shaped projectile with a weighted tail and two serrated prongs pointing forwards. They are made from an unknown metal that is incredibly lightweight yet able to cut like hardened steel. They spears often have a blood groove down the middle, designed to cause a target to bleed out if they become stuck in the flesh.</description>
+		<graphicData>
+			<texPath>Things/Equipment/Ranged/NeedleRifle</texPath>
+			<graphicClass>Graphic_Single</graphicClass>		
+    </graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>32000</WorkToMake>
+			<MarketValue>750</MarketValue>
+			<Mass>2</Mass>
+			<AccuracyTouch>0.60</AccuracyTouch>
+			<AccuracyShort>0.70</AccuracyShort>
+			<AccuracyMedium>0.75</AccuracyMedium>
+			<AccuracyLong>0.70</AccuracyLong>
+			<RangedWeapon_Cooldown>1.35</RangedWeapon_Cooldown>
+		</statBases>
+	<recipeMaker>
+		<!-- <researchPrerequisite>WRMechAdvBallistics</researchPrerequisite> -->
+	</recipeMaker>
+		<equippedStatOffsets>
+			<MoveSpeed>0.5</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>RRY_Bullet_NeedlerRifle</defaultProjectile>
+				<warmupTime>1</warmupTime>
+				<range>31</range>
+				<burstShotCount>3</burstShotCount>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<soundCast>Shot_Revolver</soundCast>
+				<!-- <forcedMissRadius>0.1</forcedMissRadius> -->
+				<!-- <soundCastTail>GunTail_Light</soundCastTail> -->
+				<muzzleFlashScale>0</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			</li>
+		</verbs>
+    <tools>
+      <li>
+        <label>grip</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>12</power>
+        <cooldownTime>1.6</cooldownTime>
+      </li>
+      <li>
+        <label>barrel</label>
+        <capacities>
+          <li>Blunt</li>
+          <li>Poke</li>
+        </capacities>
+        <power>12</power>
+        <cooldownTime>1.6</cooldownTime>
+      </li>
+    </tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>Yautja</li>
+			<li>YautjaGun</li>
+			<li>YautjaNeedler</li>
+		</weaponTags>
+		<thingCategories>
+			<li>RRYRanged</li>
+		</thingCategories>
+		<tradeTags>
+			<li>RRYRanged</li>
+		</tradeTags>
+		<costList>				
+			<Steel>30</Steel>
+			<Plasteel>40</Plasteel>
+			<ComponentIndustrial>10</ComponentIndustrial>
+			<Gold>4</Gold>
+		</costList>
+	</ThingDef>
 </Defs>

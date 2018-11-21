@@ -264,6 +264,7 @@
 				<li>RRY_Apparel_HunterBioMask</li>
 				<li>RRY_Equipment_HunterWristblade</li>
 				<li>RRY_Equipment_HunterShoulderCannon</li>
+				<li>RRY_Equipment_HunterShoulderCannonB</li>
 			</apparelList>
 			<onlyUseRaceRestrictedApparel>true</onlyUseRaceRestrictedApparel>
             <recipeList>

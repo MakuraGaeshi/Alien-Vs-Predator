@@ -68,7 +68,21 @@
 		<graphicClass>Graphic_Single</graphicClass>
 		<drawSize>1.50</drawSize>		
     </graphicData>
-	<comps>     
+		<tickerType>Normal</tickerType>
+		<comps>  
+			<!--
+		  <li Class="RRYautja.CompProperties_HediffWeapon">
+			<hediffDef>RRYThrillOfTheHunt</hediffDef>
+			<severityBasedOnDurability>false</severityBasedOnDurability>
+			<partsToAffect>
+			  <li>Arm</li>
+			</partsToAffect>
+			<groupsToAffect>
+			  <li>A_BODYPARTGROUPDEF_HERE</li>
+			  <li>A_BODYPARTGROUPDEF_HERE</li>
+			  <li>A_BODYPARTGROUPDEF_HERE</li>
+			</groupsToAffect>
+			-->
 		<li>
 			<compClass>CompOversizedWeapon.CompOversizedWeapon</compClass>
 		</li>
