@@ -61,7 +61,7 @@
 			</bodyPartGroups>
 			<!-- <wornGraphicPath>Things/Apparel/Yautja_Armour/Yautja_HunterArmor</wornGraphicPath> -->
 			<layers>
-				<li>OnSkin</li>
+				<li>OverSkin</li>
 			</layers>
 			<tags>
 				<li>YautjaWristblade</li>
@@ -101,18 +101,11 @@
 			<ArmorRating_Blunt>0.05</ArmorRating_Blunt>
 			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
 			<ArmorRating_Heat>0.05</ArmorRating_Heat>
-			<Insulation_Heat>1</Insulation_Heat>
-			<Insulation_Cold>1</Insulation_Cold>
 			<Mass>1</Mass>
 		</statBases>
 		<equippedStatOffsets>
-		<!--
 			<MoveSpeed>-0.03</MoveSpeed>
 			<WorkSpeedGlobal>-0.15</WorkSpeedGlobal>
-			<ShootingAccuracyPawn>0.25</ShootingAccuracyPawn>
-			<PsychicSensitivity>-0.10</PsychicSensitivity>
-			<ToxicSensitivity>-0.5</ToxicSensitivity>
-			-->
 		</equippedStatOffsets>
 		<costList>
 			<Steel>100</Steel>
@@ -124,14 +117,15 @@
 		</recipeMaker>
 		<apparel>
 			<bodyPartGroups>
-				<li>Arms</li>
+				<li>Shoulders</li>
 			</bodyPartGroups>
-			<!-- <wornGraphicPath>Things/Apparel/Yautja_Armour/Yautja_HunterArmor</wornGraphicPath> -->
+			<wornGraphicPath>Things/Equipment/Yautja_ShoulderCannon</wornGraphicPath>
+			<hatRenderedFrontOfFace>true</hatRenderedFrontOfFace>
 			<layers>
-				<li>OnSkin</li>
+				<li>Overhead</li>
 			</layers>
 			<tags>
-				<li>YautjaWristblade</li>
+				<li>YautjaShoulderCannon</li>
 				<li>YautjaEquipment</li>
 				<li>Yautja</li>
 			</tags>
@@ -147,7 +141,7 @@
 		</tradeTags>
 	</ThingDef>
 		
-	<!-- ========================= Yautja - Shoulder Cannon MKII========================== -->
+	<!-- ========================= Yautja - Shoulder Cannon MKII========================== 
 	<ThingDef ParentName="RRYArmorMakeableBase">
 		<defName>RRY_Equipment_HunterShoulderCannonB</defName>
 		<label>Yautja Shoulder Cannon</label>
@@ -177,13 +171,13 @@
 			<Mass>1</Mass>
 		</statBases>
 		<equippedStatOffsets>
-		<!--
+		
 			<MoveSpeed>-0.03</MoveSpeed>
 			<WorkSpeedGlobal>-0.15</WorkSpeedGlobal>
 			<ShootingAccuracyPawn>0.25</ShootingAccuracyPawn>
 			<PsychicSensitivity>-0.10</PsychicSensitivity>
 			<ToxicSensitivity>-0.5</ToxicSensitivity>
-			-->
+			
 		</equippedStatOffsets>
 		<costList>
 			<Steel>100</Steel>
@@ -197,7 +191,7 @@
 			<bodyPartGroups>
 				<li>Arms</li>
 			</bodyPartGroups>
-			<!-- <wornGraphicPath>Things/Apparel/Yautja_Armour/Yautja_HunterArmor</wornGraphicPath> -->
+			 <wornGraphicPath>Things/Apparel/Yautja_Armour/Yautja_HunterArmor</wornGraphicPath> 
 			<layers>
 				<li>OnSkin</li>
 			</layers>
@@ -217,6 +211,7 @@
 			<li>Apparel</li>
 		</tradeTags>
 	</ThingDef>
+	-->
 	
 	<!--
 		<tickerType>Normal</tickerType>

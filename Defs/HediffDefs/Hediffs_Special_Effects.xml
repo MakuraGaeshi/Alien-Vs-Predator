@@ -46,12 +46,13 @@
   </HediffDef>
   
     <HediffDef ParentName="ImplantHediffBase">
-    <defName>RRYThrillOfTheHunt</defName>
-    <label>Thrill of the hunt</label>
-    <labelNoun>The thrill of the hunt</labelNoun>
+    <defName>RRYShoulderCannon</defName>
+    <label>Shoulder Cannon</label>
+    <labelNoun>The Shoulder Cannon</labelNoun>
     <stages>
       <li>
-			<!-- <partEfficiencyOffset>-0.2</partEfficiencyOffset> -->
+        <label>initial</label>
+        <becomeVisible>false</becomeVisible>
       </li>
     </stages>
     <!-- <spawnThingOnRemoved>Joywire</spawnThingOnRemoved> -->

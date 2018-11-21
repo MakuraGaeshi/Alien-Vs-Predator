@@ -20,7 +20,7 @@
 
 	<ThingDef ParentName="RRYBaseMakeableGun">
 		<defName>RRY_Gun_YautjaBlaster</defName>
-		<label>Yautja Blaster</label>
+		<label>Yautja Plasmacaster</label>
 		<description>The Plasmacaster, also known as the Plasma Cannon or Laser Cannon is a Yautja long-range energy projector weapon. Capable of firing armor-penetrating plasma bolts at distant targets, one of the most devastating and technologically advanced offensive tool at the Yautja's disposal. The bolts fired by the weapon explode in a burst of plasma "shrapnel" upon striking a target, causing grievous wounds and potentially damaging other enemies near the point of impact.\n\nYoung Blood Yautja are denied the use of Plasmacasters and must undergo a Rite of Passage, whereby they must Hunt Xenomorphs using only their close-range weapons, in order to obtain the weapons. Despite the enormous power of the Plasmacaster, or rather because of it, it is considered among the least honorable weaponry the Yautja possess. Often, when faced with particularly worthy prey, a Predator will discard his Plasmacaster and rely instead on its more basic weapons.</description>
 		<graphicData>
 			<texPath>Things/Equipment/Ranged/PredatorBlaster</texPath>
@@ -103,7 +103,7 @@
 	<defName>RRY_Bullet_NeedlerRifle</defName>
     <label>Needler Bolt</label>
     <graphicData>
-		<texPath>Things/Projectile/NeedlerShot</texPath>
+		<texPath>Things/Projectile/NeedlerShotSml</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile>
@@ -150,7 +150,7 @@
 				<range>31</range>
 				<burstShotCount>3</burstShotCount>
 				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-				<soundCast>Shot_Revolver</soundCast>
+				<!-- <soundCast>Shot_Revolver</soundCast> -->
 				<!-- <forcedMissRadius>0.1</forcedMissRadius> -->
 				<!-- <soundCastTail>GunTail_Light</soundCastTail> -->
 				<muzzleFlashScale>0</muzzleFlashScale>

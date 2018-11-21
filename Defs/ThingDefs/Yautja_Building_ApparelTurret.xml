@@ -75,6 +75,20 @@
     </placeWorkers>
   </ThingDef>
 
+  <ThingDef ParentName="BaseBullet">
+    <defName>RRY_Bullet_PlasmaCaster</defName>
+    <label>Plasma Cast</label>
+    <graphicData>
+      <texPath>Things/Projectile/Shoulder_Cannon_Projectile</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>10</damageAmountBase>
+      <speed>70</speed>
+    </projectile>
+  </ThingDef>
+  
   <ThingDef ParentName="BaseHumanGun">
     <defName>Gun_ShoulderCannon</defName>
     <label>mini-turret gun</label>
@@ -105,7 +119,7 @@
       <li>
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
-        <defaultProjectile>RRY_Bullet_Plasma</defaultProjectile>
+        <defaultProjectile>RRY_Bullet_PlasmaCaster</defaultProjectile>
         <warmupTime>0.5</warmupTime>
         <range>24.9</range>
         <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
@@ -119,19 +133,6 @@
   </ThingDef>
 
   <!--
-  <ThingDef ParentName="BaseBullet">
-    <defName>Bullet_MiniTurret</defName>
-    <label>mini-turret bullet</label>
-    <graphicData>
-      <texPath>Things/Projectile/Bullet_Small</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile>
-      <damageDef>Bullet</damageDef>
-      <damageAmountBase>10</damageAmountBase>
-      <speed>70</speed>
-    </projectile>
-  </ThingDef>
 
   <ThingDef ParentName="BaseHumanGun">
     <defName>Gun_MiniTurret</defName>

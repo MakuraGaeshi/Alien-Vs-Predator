@@ -3,7 +3,7 @@
   <ThoughtDef>
     <defName>RRYThrillOfTheHunt</defName>
     <workerClass>ThoughtWorker_Hediff</workerClass>
-    <hediff>RRYThrillOfTheHunt</hediff>
+   <!-- <hediff>RRYThrillOfTheHunt</hediff> -->
     <validWhileDespawned>true</validWhileDespawned>
     <stages>
       <li>
