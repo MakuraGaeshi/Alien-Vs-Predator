@@ -22,22 +22,18 @@ namespace RRYautja
     {
         private float lastDurability;
         private Pawn lastWearer;
-        private List<Hediff> addedHediffs = new List<Hediff>();
 
         public CompProperties_HediffApparel Props => (CompProperties_HediffApparel)base.props;
 
         public void MyRemoveHediffs(Pawn pawn)
         {
-            if (addedHediffs.Any())
+            if (pawn != null)
             {
-                if (pawn != null)
+                List<Hediff> diffs = pawn.health.hediffSet.hediffs.Where(d => d.def.defName == Props.hediffDef.defName).ToList();
+                foreach (Hediff diff in diffs)
                 {
-                    for (int i = 0; i < addedHediffs.Count; i++)
-                    {
-                        pawn.health.RemoveHediff(addedHediffs[i]);
-                    }
+                    pawn.health.RemoveHediff(diff);
                 }
-                addedHediffs.Clear();
             }
         }
 
@@ -49,30 +45,34 @@ namespace RRYautja
             // Special case; if we're not told to apply to anything in particular, apply to the Whole Body.
             if (Props.partsToAffect.NullOrEmpty() && Props.groupsToAffect.NullOrEmpty())
             {
-                return HediffGiverUtility.TryApply(pawn, Props.hediffDef, null, false, 1, addedHediffs);
+                return HediffGiverUtility.TryApply(pawn, Props.hediffDef, null);
             }
 
             IEnumerable<BodyPartRecord> source = pawn.health.hediffSet.GetNotMissingParts();
             List<BodyPartDef> partsToAffect = new List<BodyPartDef>();
             int countToAffect;
 
+            // Add the specified parts, if they exist, to our list of parts to affect.
             if (!Props.partsToAffect.NullOrEmpty())
             {
                 partsToAffect.AddRange(from p in source where Props.partsToAffect.Contains(p.def) select p.def);
             }
 
+            // Now do it for all the parts in the specified groups.
             if (!Props.groupsToAffect.NullOrEmpty())
             {
                 partsToAffect.AddRange(from p in source where Props.groupsToAffect.Intersect(p.groups).Any() select p.def);
             }
 
+            // We need to count of parts to affect ahead of time because we are removing duplicates for performance reasons.
             countToAffect = partsToAffect.Count();
             partsToAffect.RemoveDuplicates();
 
-            return HediffGiverUtility.TryApply(pawn, Props.hediffDef, partsToAffect, false, countToAffect, addedHediffs);
+            // Apply our hediffs!
+            return HediffGiverUtility.TryApply(pawn, Props.hediffDef, partsToAffect, false, countToAffect);
         }
 
-        public void MyUpdateSeverity()
+        public void MyUpdateSeverity(Pawn pawn)
         {
             // Get our current durability as a percentage.
             float currentDurability = (float)parent.HitPoints / parent.MaxHitPoints;
@@ -80,10 +80,12 @@ namespace RRYautja
             // Only update if our durability has changed.
             if (lastDurability != currentDurability)
             {
+                List<Hediff> diffs = pawn.health.hediffSet.hediffs.Where(d => d.def.defName == Props.hediffDef.defName).ToList();
+
                 // Set the severity for each of our hediffs.
-                foreach (Hediff item in addedHediffs)
+                foreach (Hediff diff in diffs)
                 {
-                    item.Severity = currentDurability;
+                    diff.Severity = currentDurability;
                 }
 
                 // Update our durability so we don't run code too often.
@@ -121,7 +123,7 @@ namespace RRYautja
             // Check to see if we should update our severity.
             if (Props.severityBasedOnDurability)
             {
-                MyUpdateSeverity();
+                MyUpdateSeverity(parent.Wearer);
             }
         }
     }
