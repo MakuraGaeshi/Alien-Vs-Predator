@@ -102,7 +102,7 @@ namespace RRYautja
                     hotKey = KeyBindingDefOf.Misc7
                 };
             }
-            yield return new Gizmo_AdvShieldBeltStatus
+            yield return new Gizmo_CloakgenStatus
             {
                 cloak = this
             };

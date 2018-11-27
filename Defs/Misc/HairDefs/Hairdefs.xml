@@ -11,12 +11,22 @@
   </HairDef>
   
   <HairDef>
+    <label>Yaujta Ponytail</label>
+    <hairGender>Any</hairGender>
+    <texPath>Things/Pawn/Yautja/Hair/Hair_Yautja_Ponytail</texPath>
+    <defName>YaujtaPonytail</defName>
+		<hairTags>
+			<li>YaujtaPonytail</li>
+		</hairTags>
+  </HairDef>
+  
+  <HairDef>
     <label>Yaujta Bald</label>
     <hairGender>Any</hairGender>
     <texPath>Things/Pawn/Yautja/Hair/Hairless_Yautja</texPath>
-    <defName>HairlessYautja</defName>
+    <defName>YaujtaBald</defName>
 		<hairTags>
-			<li>HairlessYautja</li>
+			<li>YaujtaBald</li>
 		</hairTags>
   </HairDef>
 </Defs>

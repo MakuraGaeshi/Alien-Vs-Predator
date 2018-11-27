@@ -7,7 +7,7 @@ namespace RRYautja
 {
     // Token: 0x02000011 RID: 17
     [StaticConstructorOnStartup]
-    internal class Gizmo_AdvShieldBeltStatus : Gizmo
+    internal class Gizmo_CloakgenStatus : Gizmo
     {
         // Token: 0x17000008 RID: 8
         // (get) Token: 0x06000043 RID: 67 RVA: 0x00003870 File Offset: 0x00001A70
@@ -30,7 +30,7 @@ namespace RRYautja
                 Rect rect3 = rect;
                 rect3.yMin = overRect.height / 2f;
                 float fillPercent = this.cloak.Energy / Mathf.Max(1f, this.cloak.GetStatValue(StatDefOf.EnergyShieldEnergyMax, true));
-                Widgets.FillableBar(rect3, fillPercent, Gizmo_AdvShieldBeltStatus.FullShieldBarTex, Gizmo_AdvShieldBeltStatus.EmptyShieldBarTex, false);
+                Widgets.FillableBar(rect3, fillPercent, Gizmo_CloakgenStatus.FullShieldBarTex, Gizmo_CloakgenStatus.EmptyShieldBarTex, false);
                 Text.Font = GameFont.Small;
                 Text.Anchor = TextAnchor.MiddleCenter;
                 Widgets.Label(rect3, (this.cloak.Energy * 100f).ToString("F0") + " / " + (this.cloak.GetStatValue(StatDefOf.EnergyShieldEnergyMax, true) * 100f).ToString("F0"));

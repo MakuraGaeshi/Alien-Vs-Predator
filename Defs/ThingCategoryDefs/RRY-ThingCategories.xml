@@ -23,6 +23,12 @@
 			
 	<!-- ========================= Yautja - Armour Catagories ========================== -->
 	<ThingCategoryDef>
+		<defName>RRYApparel</defName>
+		<label>Apparel</label>
+		<parent>Apparel</parent>
+	</ThingCategoryDef>
+	
+		<ThingCategoryDef>
 		<defName>RRYArmour</defName>
 		<label>Armour</label>
 		<parent>Apparel</parent>

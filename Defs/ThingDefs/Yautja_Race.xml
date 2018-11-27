@@ -137,7 +137,7 @@
 						<li>
 							<!-- RGB in the photoshop is (R=196  G= 192  B=124) -->
 							<weight>10</weight>
-							<only>RGBA(1,1,1,1)</only>
+							<only>RGBA(0.769,0.753,0.486,1)</only>
 						</li>
 						<li>
 							<weight>5</weight>
@@ -150,6 +150,10 @@
 						<li>
 							<weight>5</weight>
 							<only>RGBA(0.62,0.65,0.34,1)</only>
+						</li>
+						<li>
+							<weight>1</weight>
+							<only>RGBA(0.25,0.25,0.25,1)</only>
 						</li>
 					</options>
                 </alienskincolorgen>
@@ -272,6 +276,7 @@
 				<li>RRY_Apparel_HunterArmourChestplate</li>
 				<li>RRY_Apparel_HunterArmourGreaves</li>
 				<li>RRY_Apparel_HunterBioMask</li>
+				<li>RRY_Apparel_HunterVest</li>
 				<li>RRY_Equipment_HunterGauntlet</li>
 				<li>RRY_Equipment_HunterShoulderCannon</li>
 				<li>RRY_Equipment_HunterShoulderCannonB</li>
@@ -281,6 +286,7 @@
 				<li>RRY_Apparel_HunterArmourChestplate</li>
 				<li>RRY_Apparel_HunterArmourGreaves</li>
 				<li>RRY_Apparel_HunterBioMask</li>
+				<li>RRY_Apparel_HunterVest</li>
 				<li>RRY_Equipment_HunterGauntlet</li>
 				<li>RRY_Melee_Combistaff</li>
 				<li>RRY_Gun_YautjaBlaster</li>
@@ -377,9 +383,10 @@
       <bloodDef>FilthBloodYautja</bloodDef>	
 	  <!-- RGB in the photoshop is (R=196  G= 192  B=124) -->
       <meatColor>(194,217,124)</meatColor>
-      <baseBodySize>1</baseBodySize>
+      <baseBodySize>1.25</baseBodySize>
+      <baseHungerRate>0.3</baseHungerRate>
       <baseHealthScale>1.25</baseHealthScale>
-      <foodType>OmnivoreHuman</foodType>
+      <foodType>CarnivoreAnimal, OvivoreAnimal</foodType>
       <gestationPeriodDays>45</gestationPeriodDays>
       <litterSizeCurve>
         <points>
