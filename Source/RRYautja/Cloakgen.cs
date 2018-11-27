@@ -295,6 +295,6 @@ namespace RRYautja
         private float ApparelScorePerEnergyMax = 0.25f;
 
         // Token: 0x04000027 RID: 39
-        private static readonly Material BubbleMat = MaterialPool.MatFrom("Other/ShieldBubble", ShaderDatabase.Transparent);
+        private static readonly Material BubbleMat = MaterialPool.MatFrom("Other/CloakActive", ShaderDatabase.Transparent);
     }
 }
