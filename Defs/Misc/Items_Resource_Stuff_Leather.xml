@@ -6,7 +6,7 @@
     <label>Yautja leather</label>
     <description>Tanned, dried, scraped Yautja skin. While quite tough, it is a poor insulator.</description>
     <graphicData>
-      <color>(38,193,72)</color>
+      <color>(114,128,79)</color>
     </graphicData>
     <statBases>
       <MarketValue>4.2</MarketValue>
@@ -15,7 +15,7 @@
       <StuffPower_Insulation_Heat>12</StuffPower_Insulation_Heat>
     </statBases>
     <stuffProps>
-      <color>(211,194,143)</color>
+      <color>(114,128,79)</color>
       <commonality>0.025</commonality>
       <statFactors>
         <MaxHitPoints>1.5</MaxHitPoints>

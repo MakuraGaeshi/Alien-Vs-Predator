@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 	<!-- ========================= Yautja - Equipment ========================== -->
-	<!-- ========================= Yautja - Hunter Wristblade ========================== -->
+	<!-- ========================= Yautja - Hunter Gauntlet ========================== -->
 	<ThingDef ParentName="RRYArmorMakeableBase">
-		<defName>RRY_Equipment_HunterWristblade</defName>
-		<label>Yautja Hunter Wristblade</label>
-		<description>.</description>
+		<defName>RRY_Equipment_HunterGauntlet</defName>
+		<label>Yautja Hunter Gauntlet</label>
+		<description>This is one of the basic bits of equipment All Yautja a variant of carry when hunting, it contains the wristblade and selfdestruct device</description>
 		<graphicData>
 			<texPath>Things/Equipment/Melee/Yautja_HandBlade</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
+    <projectile>
+        <explosionRadius>4.7</explosionRadius>
+        <damageDef>Bomb</damageDef>
+        <damageAmountBase>120</damageAmountBase>
+    </projectile>
 		<tickerType>Normal</tickerType>
-		<comps>  
+		<comps> 
+      <li Class="RRYautja.CompProperties_WearableExplosive">
+        <stability>1</stability>
+      </li> 
 		  <li Class="RRYautja.CompProperties_HediffApparel">
 			<hediffDef>RRYWristbladeHeDiff</hediffDef>
 			<severityBasedOnDurability>false</severityBasedOnDurability>

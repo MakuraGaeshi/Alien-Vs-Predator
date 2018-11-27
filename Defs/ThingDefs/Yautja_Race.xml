@@ -272,7 +272,7 @@
 				<li>RRY_Apparel_HunterArmourChestplate</li>
 				<li>RRY_Apparel_HunterArmourGreaves</li>
 				<li>RRY_Apparel_HunterBioMask</li>
-				<li>RRY_Equipment_HunterWristblade</li>
+				<li>RRY_Equipment_HunterGauntlet</li>
 				<li>RRY_Equipment_HunterShoulderCannon</li>
 				<li>RRY_Equipment_HunterShoulderCannonB</li>
 			</apparelList>
@@ -281,8 +281,7 @@
 				<li>RRY_Apparel_HunterArmourChestplate</li>
 				<li>RRY_Apparel_HunterArmourGreaves</li>
 				<li>RRY_Apparel_HunterBioMask</li>
-				<li>RRY_Equipment_HunterWristblade</li>
-				<li>RRY_Melee_HandBlade</li>
+				<li>RRY_Equipment_HunterGauntlet</li>
 				<li>RRY_Melee_Combistaff</li>
 				<li>RRY_Gun_YautjaBlaster</li>
             </recipeList>
@@ -377,7 +376,7 @@
       <body>Human</body>
       <bloodDef>FilthBloodYautja</bloodDef>	
 	  <!-- RGB in the photoshop is (R=196  G= 192  B=124) -->
-      <meatColor>(34,146,72)</meatColor>
+      <meatColor>(194,217,124)</meatColor>
       <baseBodySize>1</baseBodySize>
       <baseHealthScale>1.25</baseHealthScale>
       <foodType>OmnivoreHuman</foodType>

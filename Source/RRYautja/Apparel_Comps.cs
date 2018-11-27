@@ -160,7 +160,7 @@ namespace RRYautja
                 action = Detonate,
                 defaultLabel = "WearableExplosives_Label".Translate(),
                 defaultDesc = "WearableExplosives_Desc".Translate(),
-                icon = ContentFinder<Texture2D>.Get("UI/Buttons/BlastFlame", true)
+                icon = ContentFinder<Texture2D>.Get("Ui/Buttons/BlastFlame", true)
             };
         }
     }
