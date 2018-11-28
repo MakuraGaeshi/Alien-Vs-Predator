@@ -124,7 +124,7 @@
         <range>24.9</range>
         <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
         <burstShotCount>1</burstShotCount>
-        <soundCast>GunShotA</soundCast>
+        <soundCast>Shot_ShoulderCannon</soundCast>
         <soundCastTail>GunTail_Light</soundCastTail>
         <muzzleFlashScale>9</muzzleFlashScale>
         <consumeFuelPerShot>1</consumeFuelPerShot>

@@ -50,7 +50,7 @@
 				<defaultProjectile>RRY_Bullet_Plasma</defaultProjectile>
 				<warmupTime>1</warmupTime>
 				<range>31</range>
-				<soundCast>Shot_Revolver</soundCast>
+				<soundCast>Shot_ShoulderCannon</soundCast>
 				<!-- <forcedMissRadius>0.1</forcedMissRadius> -->
 				<soundCastTail>GunTail_Light</soundCastTail>
 				<muzzleFlashScale>8</muzzleFlashScale>
@@ -197,4 +197,85 @@
 			<Gold>4</Gold>
 		</costList>
 	</ThingDef>
+	
+<!-- ====================== Smart Disk ===================== -->	 
+  <ThingDef ParentName="BaseWeaponNeolithic">
+    <defName>Yautja_SmartDisk</defName>
+    <label>Yaurja Smart Disk</label>
+    <description>.</description>
+    <graphicData>
+      <texPath>Things/Item/Equipment/Ranged/SmartDisk</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <soundInteract>Interact_BeatFire</soundInteract>
+    <costList>
+      <WoodLog>70</WoodLog>
+    </costList>
+    <statBases>
+      <WorkToMake>7000</WorkToMake>
+      <Mass>1</Mass>
+      <AccuracyTouch>0.50</AccuracyTouch>
+      <AccuracyShort>0.71</AccuracyShort>
+      <AccuracyMedium>0.50</AccuracyMedium>
+      <AccuracyLong>0.32</AccuracyLong>
+      <RangedWeapon_Cooldown>3</RangedWeapon_Cooldown>
+    </statBases>
+    <weaponTags>
+			<li>Yautja</li>
+			<li>YautjaGun</li>
+			<li>YautjaSmartDisk</li>
+    </weaponTags>
+    <recipeMaker>
+      <skillRequirements>
+        <Crafting>3</Crafting>
+      </skillRequirements>
+    </recipeMaker>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>SmartDisk_Thrown</defaultProjectile>
+        <warmupTime>4</warmupTime>
+        <range>24.9</range>
+        <soundCast>Interact_BeatFire</soundCast>
+        <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+      </li>
+    </verbs>
+    <tools>
+      <li>
+        <label>blade</label>
+        <capacities>
+          <li>Cut</li>
+        </capacities>
+        <power>9</power>
+         <cooldownTime>2</cooldownTime>
+      </li>
+      <li>
+        <label>point</label>
+        <capacities>
+          <li>Stab</li>
+        </capacities>
+        <power>9</power>
+         <cooldownTime>2</cooldownTime>
+      </li>
+    </tools>
+  </ThingDef>
+  <ThingDef ParentName="BaseProjectileNeolithic">
+    <defName>SmartDisk_Thrown</defName>
+    <label>SmartDisk</label>
+    <graphicData>
+      <texPath>Things/Projectile/SmartDisk</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <flyOverhead>false</flyOverhead>
+      <damageDef>RangedStab</damageDef>
+      <damageAmountBase>25</damageAmountBase>
+      <stoppingPower>2.5</stoppingPower>
+      <armorPenetrationBase>0.10</armorPenetrationBase>
+      <speed>26</speed>
+    </projectile>
+  </ThingDef>
+	
+	
 </Defs>

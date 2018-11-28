@@ -6,8 +6,9 @@
 		<defName>RRY_Equipment_HunterGauntlet</defName>
 		<label>Yautja Hunter Gauntlet</label>
 		<description>This is one of the basic bits of equipment All Yautja a variant of carry when hunting, it contains the wristblade and selfdestruct device</description>
+		<thingClass>RRYautja.Cloakgen</thingClass>
 		<graphicData>
-			<texPath>Things/Equipment/Melee/Yautja_HandBlade</texPath>
+			<texPath>Things/Apparel/Yautja_Gauntlet/Yautja_Gauntlet</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
     <projectile>
@@ -39,6 +40,8 @@
 			<MarketValue>2500</MarketValue>
 			<MaxHitPoints>500</MaxHitPoints>
 			<WorkToMake>60000</WorkToMake>
+			<EnergyShieldRechargeRate>0.26</EnergyShieldRechargeRate>
+			<EnergyShieldEnergyMax>0.55</EnergyShieldEnergyMax>
 			<ArmorRating_Blunt>0.05</ArmorRating_Blunt>
 			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
 			<ArmorRating_Heat>0.05</ArmorRating_Heat>
@@ -67,7 +70,7 @@
 			<bodyPartGroups>
 				<li>Arms</li>
 			</bodyPartGroups>
-			<!-- <wornGraphicPath>Things/Apparel/Yautja_Armour/Yautja_HunterArmor</wornGraphicPath> -->
+			<!-- <wornGraphicPath>Things/Apparel/Yautja_Gauntlet/Yautja_Gauntlet</wornGraphicPath> -->
 			<layers>
 				<li>OverSkin</li>
 			</layers>

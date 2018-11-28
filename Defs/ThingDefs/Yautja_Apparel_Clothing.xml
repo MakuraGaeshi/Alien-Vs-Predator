@@ -39,7 +39,7 @@
 				<li>OnSkin</li>
 			</layers>
 			<tags>
-				<li>Neolithic</li>
+				<li>Yautja</li>
 			</tags>
 		</apparel>
 		<recipeMaker>
@@ -53,15 +53,15 @@
 			<options>
 				<li>
 					<weight>10</weight>
-					<only>(0.4,0.3,0.15)</only>
+					<only>(0.9,0.9,0.9)</only>
 				</li>
 				<li>
 					<weight>15</weight>
-					<only>(0.6,0.45,0.18)</only>
+					<only>(0.8,0.8,0.8)</only>
 				</li>
 				<li>
 					<weight>20</weight>
-					<only>(0.8,0.6,0.23)</only>
+					<only>(0.95,0.95,0.95)</only>
 				</li>
 			</options>
 		</colorGenerator>
