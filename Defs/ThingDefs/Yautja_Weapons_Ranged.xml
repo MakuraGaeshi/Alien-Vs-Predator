@@ -204,7 +204,7 @@
     <label>Yaurja Smart Disk</label>
     <description>.</description>
     <graphicData>
-      <texPath>Things/Item/Equipment/Ranged/SmartDisk</texPath>
+      <texPath>Things/Equipment/Ranged/SmartDisk</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <soundInteract>Interact_BeatFire</soundInteract>

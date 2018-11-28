@@ -103,11 +103,25 @@
         <cooldownTime>2</cooldownTime>
       </li>
     </tools>
-    <thingCategories>
-		<li>YautjaMelee</li>
-		<li>YautjaBladedMaul</li>
-		<li>Yautja</li>
-    </thingCategories>
+		<costStuffCount>175</costStuffCount>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<recipeMaker>
+			<recipeUsers>
+				<li>ElectricSmithy</li>
+				<li>FueledSmithy</li>
+			</recipeUsers>
+			<researchPrerequisite>YautjaTechBase</researchPrerequisite>
+		</recipeMaker>
+		<weaponTags>
+			<li>YautjaMelee</li>
+			<li>YautjaBladedMaul</li>
+			<li>Yautja</li>
+		</weaponTags>
+		<thingCategories>
+			<li>RRYMelee</li>
+		</thingCategories>
     <tradeTags>
 	
     </tradeTags>
@@ -162,6 +176,9 @@
 		<li>YautjaCombistaff</li>
 		<li>Yautja</li>
     </weaponTags>
+		<thingCategories>
+			<li>RRYMelee</li>
+		</thingCategories>
     <recipeMaker>
       <skillRequirements>
         <Crafting>3</Crafting>
