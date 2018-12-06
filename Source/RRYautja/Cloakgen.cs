@@ -151,7 +151,7 @@ namespace RRYautja
             yield break;
         }
 
-        // Token: 0x06000009 RID: 9 RVA: 0x000022D4 File Offset: 0x000004D4
+        /* Token: 0x06000009 RID: 9 RVA: 0x000022D4 File Offset: 0x000004D4
         public override IEnumerable<Gizmo> GetWornGizmos()
         {
             IList<Gizmo> list = new List<Gizmo>();
@@ -179,7 +179,7 @@ namespace RRYautja
             list.Add(command_Action);
             return list;
         }
-
+        */
         // Token: 0x0600000A RID: 10 RVA: 0x000023A4 File Offset: 0x000005A4
         public void SwitchCloakMode()
         {

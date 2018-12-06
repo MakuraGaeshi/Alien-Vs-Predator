@@ -94,7 +94,7 @@
 	<!-- ========================= Yautja - Shoulder Cannon ========================== -->
 	<ThingDef ParentName="RRYArmorMakeableBase">
 		<defName>RRY_Equipment_HunterShoulderCannon</defName>
-		<label>Yautja Shoulder Cannon</label>
+		<label>Yautja Shoulder Plasmacaster</label>
 		<description>.</description>
 		<graphicData>
 			<texPath>Things/Equipment/Yautja_ShoulderCannon</texPath>

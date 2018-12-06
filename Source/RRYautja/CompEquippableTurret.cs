@@ -110,7 +110,7 @@ namespace RRYautja
         {
             if (!this.turret.DestroyedOrNull())
             {
-                this.turret.Destroy(DestroyMode.Vanish);
+                this.turret.DeSpawn();
                 this.turret = null;
             }
             this.turretIsOn = false;
