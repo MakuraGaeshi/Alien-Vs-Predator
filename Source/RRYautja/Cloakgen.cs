@@ -43,15 +43,19 @@ namespace RRYautja
 
         // Token: 0x1700000D RID: 13
         // (get) Token: 0x06000053 RID: 83 RVA: 0x00003B3C File Offset: 0x00001D3C
-        public ShieldState ShieldState
+        public CloakState cloakState
         {
             get
             {
-                if (this.ticksToReset > 0)
+                if ((this.ticksToReset > 0))// || (this.cloakMode == Cloakgen.CloakMode.ForcedOff))
                 {
-                    return ShieldState.Resetting;
+                    return Cloakgen.CloakState.Resetting;
                 }
-                return ShieldState.Active;
+                else if ((this.cloakMode == Cloakgen.CloakMode.On))
+                {
+                    return Cloakgen.CloakState.Active;
+                }
+                return Cloakgen.CloakState.InActive;
             }
         }
 
@@ -89,7 +93,7 @@ namespace RRYautja
         // Token: 0x06000005 RID: 5 RVA: 0x00002108 File Offset: 0x00000308
         public bool ComputeCloakState()
         {
-            return base.Wearer != null && !base.Wearer.Dead && !base.Wearer.Downed && base.Wearer.Awake() && (this.cloakMode == Cloakgen.CloakMode.ForcedOn || (this.cloakMode != Cloakgen.CloakMode.ForcedOff && (base.Wearer.Map != null && ((base.Wearer.Position.Roofed(base.Wearer.Map) && base.Wearer.Map.glowGrid.PsychGlowAt(base.Wearer.Position) <= PsychGlow.Lit) || (!base.Wearer.Position.Roofed(base.Wearer.Map) && base.Wearer.Map.glowGrid.PsychGlowAt(base.Wearer.Position) < PsychGlow.Overlit)))));
+            return base.Wearer != null && !base.Wearer.Dead && !base.Wearer.Downed && base.Wearer.Awake() && (this.cloakMode == Cloakgen.CloakMode.On || (this.cloakMode != Cloakgen.CloakMode.Off));
         }
 
         // Token: 0x06000006 RID: 6 RVA: 0x000021F0 File Offset: 0x000003F0
@@ -102,7 +106,8 @@ namespace RRYautja
             }
             if (this.cloak.DestroyedOrNull())
             {
-               // this.cloak = GenSpawn.Spawn(Util_MiningLight.MiningLightDef, intVec, base.Wearer.Map, WipeMode.Vanish);
+                this.DrawAt(Wearer.DrawPos, false);
+                this.cloak = GenSpawn.Spawn(Util_Cloakgen.CloakDef, intVec, base.Wearer.Map, WipeMode.Vanish);
             }
             this.cloakIsOn = true;
         }
@@ -117,59 +122,25 @@ namespace RRYautja
             }
             this.cloakIsOn = false;
         }
-        // Token: 0x06000056 RID: 86 RVA: 0x00003C0D File Offset: 0x00001E0D
-        public override IEnumerable<Gizmo> GetWornGizmos()
-        {
-            if (Find.Selector.SingleSelectedThing != base.Wearer)
-            {
-                yield break;
-            }
-            if (this.ShieldState != ShieldState.Active && base.Wearer.Drafted)
-            {
-                yield return new Command_Action
-                {
-                    action = delegate
-                    {
-                        if (this.HitPoints <= 20)
-                        {
-                            Messages.Message("PlrsNoEnoughHitPointsToReset".Translate(), base.Wearer, MessageTypeDefOf.NegativeEvent);
-                            return;
-                        }
-                        this.HitPoints -= 20;
-                        this.Reset();
-                    },
-                    defaultLabel = "PlrsForceResetLabel".Translate(),
-                    defaultDesc = "PlrsForceResetDESC".Translate(),
-                    icon = TexCommand.DesirePower,
-                    hotKey = KeyBindingDefOf.Misc7
-                };
-            }
-            yield return new Gizmo_CloakgenStatus
-            {
-                cloak = this
-            };
-            yield break;
-        }
 
-        /* Token: 0x06000009 RID: 9 RVA: 0x000022D4 File Offset: 0x000004D4
+        // Token: 0x06000009 RID: 9 RVA: 0x000022D4 File Offset: 0x000004D4
         public override IEnumerable<Gizmo> GetWornGizmos()
         {
             IList<Gizmo> list = new List<Gizmo>();
             int num = 700000101;
+            Gizmo_CloakgenStatus cloak = new Gizmo_CloakgenStatus();
+            cloak.cloak = this;
+            list.Add(cloak);
             Command_Action command_Action = new Command_Action();
             switch (this.cloakMode)
             {
-                case Cloakgen.CloakMode.Automatic:
-                    command_Action.icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_LigthModeAutomatic", true);
-                    command_Action.defaultLabel = "Ligth: automatic.";
+                case Cloakgen.CloakMode.Off:
+                    command_Action.icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_CloakMode", true);
+                    command_Action.defaultLabel = "Cloak: off.";
                     break;
-                case Cloakgen.CloakMode.ForcedOn:
-                    command_Action.icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_LigthModeForcedOn", true);
-                    command_Action.defaultLabel = "Ligth: on.";
-                    break;
-                case Cloakgen.CloakMode.ForcedOff:
-                    command_Action.icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_LigthModeForcedOff", true);
-                    command_Action.defaultLabel = "Ligth: off.";
+                case Cloakgen.CloakMode.On:
+                    command_Action.icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_CloakMode", true);
+                    command_Action.defaultLabel = "Cloak: on.";
                     break;
             }
             command_Action.defaultDesc = "Switch mode.";
@@ -179,20 +150,17 @@ namespace RRYautja
             list.Add(command_Action);
             return list;
         }
-        */
+
         // Token: 0x0600000A RID: 10 RVA: 0x000023A4 File Offset: 0x000005A4
         public void SwitchCloakMode()
         {
             switch (this.cloakMode)
             {
-                case Cloakgen.CloakMode.Automatic:
-                    this.cloakMode = Cloakgen.CloakMode.ForcedOn;
+                case Cloakgen.CloakMode.Off:
+                    this.cloakMode = Cloakgen.CloakMode.On;
                     break;
-                case Cloakgen.CloakMode.ForcedOn:
-                    this.cloakMode = Cloakgen.CloakMode.ForcedOff;
-                    break;
-                case Cloakgen.CloakMode.ForcedOff:
-                    this.cloakMode = Cloakgen.CloakMode.Automatic;
+                case Cloakgen.CloakMode.On:
+                    this.cloakMode = Cloakgen.CloakMode.Off;
                     break;
             }
             this.RefreshCloakState();
@@ -208,12 +176,19 @@ namespace RRYautja
         public override void Tick()
         {
             base.Tick();
+
+
+            if (this.cloakIsOn || Find.TickManager.TicksGame >= this.nextUpdateTick)
+            {
+                this.nextUpdateTick = Find.TickManager.TicksGame + 60;
+                this.RefreshCloakState();
+            }
             if (base.Wearer == null)
             {
                 this.energy = 0f;
                 return;
             }
-            if (this.ShieldState == ShieldState.Resetting)
+            if (this.cloakState == Cloakgen.CloakState.Resetting) 
             {
                 this.ticksToReset--;
                 if (this.ticksToReset <= 0)
@@ -222,7 +197,17 @@ namespace RRYautja
                     return;
                 }
             }
-            else if (this.ShieldState == ShieldState.Active)
+            else if (this.cloakState == Cloakgen.CloakState.Active& this.cloakMode == CloakMode.On)
+            {
+                this.energy -= this.EnergyGainPerTick / 10;
+                if (this.energy <= 0)
+                {
+                    this.energy = 0;
+                    this.cloakMode = CloakMode.Off;
+                    this.SwitchOffCloak();
+                }
+            }
+            else if (this.cloakMode == CloakMode.Off)
             {
                 this.energy += this.EnergyGainPerTick;
                 if (this.energy > this.EnergyMax)
@@ -239,7 +224,7 @@ namespace RRYautja
             {
                 return true;
             }
-            if (this.ShieldState == ShieldState.Active && (dinfo.Instigator != null || dinfo.Def.isExplosive))
+            if (this.cloakState == Cloakgen.CloakState.Active && (dinfo.Instigator != null || dinfo.Def.isExplosive))
             {
                 if (dinfo.Instigator != null && dinfo.Instigator.Position.AdjacentTo8WayOrInside(base.Wearer.Position))
                 {
@@ -256,7 +241,7 @@ namespace RRYautja
                 }
                 return true;
             }
-            if (this.ShieldState != ShieldState.Active || dinfo.Instigator != null)
+            if (this.cloakState != Cloakgen.CloakState.Active || dinfo.Instigator != null)
             {
                 return false;
             }
@@ -304,6 +289,7 @@ namespace RRYautja
             }
             this.energy = 0f;
             this.ticksToReset = this.StartingTicksToReset;
+            cloakMode = CloakMode.Off;
         }
 
         // Token: 0x0600005D RID: 93 RVA: 0x00003F90 File Offset: 0x00002190
@@ -321,8 +307,9 @@ namespace RRYautja
         // Token: 0x0600005E RID: 94 RVA: 0x00004008 File Offset: 0x00002208
         public override void DrawWornExtras()
         {
-            if (this.ShieldState == ShieldState.Active && this.ShouldDisplay)
+            if (this.cloakMode == CloakMode.On && this.ShouldDisplay)
             {
+                Wearer.Graphic.color.a = 0.25f;
                 float num = Mathf.Lerp(1.2f, 1.55f, this.energy);
                 Vector3 vector = base.Wearer.Drawer.DrawPos;
                 vector.y = Altitudes.AltitudeFor(AltitudeLayer.MoteOverhead);
@@ -339,11 +326,25 @@ namespace RRYautja
                 matrix.SetTRS(vector, Quaternion.AngleAxis(angle, Vector3.up), s);
                 Graphics.DrawMesh(MeshPool.plane10, matrix, Cloakgen.BubbleMat, 0);
             }
+            else
+
+                Wearer.Graphic.color.a = 1;
         }
 
+        public override void DrawAt(Vector3 drawLoc, bool flip)
+        {
+            Log.Message("test");
+            if (this.cloakMode == CloakMode.On)
+            {
+                return;
+            }
+            Log.Message("test 2");
+            base.DrawAt(drawLoc, flip);
+        }
         // Token: 0x04000003 RID: 3
         public Thing cloak;
 
+        public int nextUpdateTick;
         // Token: 0x04000019 RID: 25
         private float energy;
 
@@ -372,13 +373,13 @@ namespace RRYautja
         private const int JitterDurationTicks = 8;
 
         // Token: 0x04000022 RID: 34
-        private int StartingTicksToReset = 1800;
+        private int StartingTicksToReset = 360;
 
         // Token: 0x04000023 RID: 35
-        private float EnergyOnReset = 0.2f;
+        private float EnergyOnReset = 0.0f;
 
         // Token: 0x04000024 RID: 36
-        private float EnergyLossPerDamage = 0.03f;
+        private float EnergyLossPerDamage = 0.01f;
 
         // Token: 0x04000025 RID: 37
         private int KeepDisplayingTicks = 600;
@@ -395,15 +396,22 @@ namespace RRYautja
         // Token: 0x02000004 RID: 4
         public enum CloakMode
         {
-            // Token: 0x04000007 RID: 7
-            Automatic,
             // Token: 0x04000008 RID: 8
-            ForcedOn,
+            Off,
             // Token: 0x04000009 RID: 9
-            ForcedOff
+            On
         }
 
-        // Token: 0x04000027 RID: 39
+        // Token: 0x04000005 RID: 5
+       // public Cloakgen.CloakState cloakState;
+        public enum CloakState : byte
+        {
+            InActive,
+            Active,
+            Resetting
+        }
+        // Things/Gas/Puff
+        // Other/CloakActive
         private static readonly Material BubbleMat = MaterialPool.MatFrom("Other/CloakActive", ShaderDatabase.Transparent);
     }
 }

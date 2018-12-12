@@ -59,4 +59,9 @@
       <parent>CorpsesHumanlike</parent>
     </ThingCategoryDef>
 
+    <ThingCategoryDef>
+    <defName>CorpsesXenomorph</defName>
+    <label>Xenomorph corpses</label>
+      <parent>Corpses</parent>
+    </ThingCategoryDef>
 </Defs>
