@@ -296,6 +296,7 @@
 				<li>RRY_Equipment_HunterGauntlet</li>
 				<li>RRY_Equipment_HunterShoulderCannon</li>
 				<li>RRY_Equipment_HunterShoulderCannonB</li>
+				<li>Apparel_ShieldBelt</li>
 			</apparelList>
 			<onlyUseRaceRestrictedApparel>true</onlyUseRaceRestrictedApparel>
             <recipeList>

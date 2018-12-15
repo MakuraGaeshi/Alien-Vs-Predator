@@ -45,12 +45,12 @@ namespace RRYautja
             __result = l;
         }
     }
-
+      
     [HarmonyPatch(typeof(Cloakgen), "GetWornGizmos")]
     public static class CherrypepperPatch_RimWorld_Cloakgen_GetWornGizmos
     {
         [HarmonyPostfix]
-        public static void ApparelGizmosFromComps(Apparel __instance, ref IEnumerable<Gizmo> __result)
+        public static void ApparelGizmosFromComps(Cloakgen __instance, ref IEnumerable<Gizmo> __result)
         {
             if (__instance == null)
             {
@@ -64,15 +64,15 @@ namespace RRYautja
             }
 
             // Find all comps on the apparel. If any have gizmos, add them to the result returned from apparel already (typically empty set).
-            List<Gizmo> l = new List<Gizmo>(__result);
+            List<Gizmo> l2 = new List<Gizmo>(__result);
             foreach (CompWearable comp in __instance.GetComps<CompWearable>())
             {
                 foreach (Gizmo gizmo in comp.CompGetGizmosWorn())
                 {
-                    l.Add(gizmo);
+                    l2.Add(gizmo);
                 }
             }
-            __result = l;
+            __result = l2;
         }
     }
 

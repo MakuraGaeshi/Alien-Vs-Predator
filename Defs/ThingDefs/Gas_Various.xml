@@ -7,15 +7,15 @@
     <graphicData>
       <texPath>Things/Gas/Puff</texPath>
       <drawSize>2.2</drawSize>
-      <color>(1.0,1.0,1.0,0.5)</color>
+      <color>(1.0,1.0,1.0,0.65)</color>
     </graphicData>
     <gas>
       <expireSeconds>
         <min>0.25</min>
-        <max>0.5</max>
+        <max>0.75</max>
       </expireSeconds>
       <blockTurretTracking>true</blockTurretTracking>
-      <accuracyPenalty>0.7</accuracyPenalty>
+      <accuracyPenalty>0.1</accuracyPenalty>
       <rotationSpeed>10</rotationSpeed>
     </gas>
   </ThingDef>

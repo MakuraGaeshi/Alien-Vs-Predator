@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <HediffDef ParentName="InfectionBase">
+    <defName>FaceHuggerInfection</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>Facehugger</label>
+    <initialSeverity>0.01</initialSeverity>
+    <makesSickThought>true</makesSickThought>
+    <tendable>true</tendable>
+    <stages>
+      <li>
+        <label>pre impregnation</label>
+        <painOffset>0.2</painOffset>
+		<capMods>
+			  <li>
+				<capacity>Consciousness</capacity>
+				<setMax>0.1</setMax>
+			  </li>
+			  <li>
+				<capacity>Breathing</capacity>
+				<offset>-0.05</offset>
+			  </li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.15</minSeverity>
+        <label>impregnation</label>
+				<partEfficiencyOffset>-0.25</partEfficiencyOffset>
+        <painOffset>0.2</painOffset>
+		<capMods>
+			  <li>
+				<capacity>Consciousness</capacity>
+				<setMax>0.1</setMax>
+			  </li>
+			  <li>
+				<capacity>Breathing</capacity>
+				<offset>-0.05</offset>
+			  </li>
+        </capMods>
+        <hediffGivers>
+          <li Class="HediffGiver_Random">
+            <hediff>XenomorphImpregnation</hediff>
+            <mtbDays>0.75</mtbDays> 
+            <partsToAffect>
+              <li>Torso</li>
+            </partsToAffect>
+          </li>
+        </hediffGivers>
+      </li>
+      <li>
+        <minSeverity>1</minSeverity>
+        <label>post impregnation</label>
+        <painOffset>0.2</painOffset>
+		<capMods>
+			  <li>
+				<capacity>Consciousness</capacity>
+				<setMax>0.1</setMax>
+			  </li>
+			  <li>
+				<capacity>Breathing</capacity>
+				<offset>-0.05</offset>
+			  </li>
+        </capMods>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_Discoverable">
+        <sendLetterWhenDiscovered>true</sendLetterWhenDiscovered>
+        <discoverLetterLabel>Xenomorph Facehugger</discoverLetterLabel>
+        <discoverLetterText>[PAWN_nameDef]'s been attacked by a facehugger Something needs to be done about this...urgently.....</discoverLetterText>
+		<messageType>PawnDeath</messageType>
+		<letterType>NegativeEvent</letterType>
+      </li>
+		<li Class="HediffCompProperties_Disappears">
+			<disappearsAfterTicks>
+			  <min>20000</min>
+			  <max>60000</max>
+			</disappearsAfterTicks>
+		</li>
+		<li Class="RRYautja.HediffCompProperties_XenoFacehugger">
+		<pawnKindDef>Xenomorph_FaceHugger</pawnKindDef>
+		</li>
+		<li Class="HediffCompProperties_SeverityPerDay">
+		<severityPerDay>1</severityPerDay>
+		</li>
+    </comps>
+  </HediffDef>
+
+ 
+  <HediffDef ParentName="DiseaseBase">
+    <defName>XenomorphImpregnation</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>xenomorph impregnation</label>
+    <labelNoun>a xenomorph impregnation</labelNoun>
+    <initialSeverity>0.1</initialSeverity>
+    <lethalSeverity>1</lethalSeverity>
+    <chanceToCauseNoPain>1</chanceToCauseNoPain>
+    <tendable>false</tendable>
+    <stages>
+      <li>
+        <label>post impregnation</label>
+        <partEfficiencyOffset>-0.1</partEfficiencyOffset>
+        <painOffset>0.1</painOffset>
+      </li>
+      <li>
+        <minSeverity>0.15</minSeverity>
+        <label>early gestation</label>
+				<partEfficiencyOffset>-0.25</partEfficiencyOffset>
+        <painOffset>0.2</painOffset>
+      </li>
+      <li>
+        <minSeverity>0.4</minSeverity>
+        <label>major</label>
+				<partEfficiencyOffset>-0.5</partEfficiencyOffset>
+        <painOffset>0.35</painOffset>
+      </li>
+      <li>
+        <minSeverity>0.6</minSeverity>
+        <label>major</label>
+				<partEfficiencyOffset>-0.8</partEfficiencyOffset>
+        <painOffset>0.5</painOffset>
+      </li>
+      <li>
+        <minSeverity>0.8</minSeverity>
+        <label>extreme</label>
+				<partEfficiencyOffset>-0.9</partEfficiencyOffset>
+        <painOffset>0.6</painOffset>
+      </li>
+      <li>
+        <minSeverity>1</minSeverity>
+        <label>extreme</label>
+				<partEfficiencyOffset>-1.0</partEfficiencyOffset>
+        <painOffset>0.7</painOffset>
+        <destroyPart>true</destroyPart>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_Discoverable">
+        <sendLetterWhenDiscovered>true</sendLetterWhenDiscovered>
+        <discoverLetterLabel>Xenomorph impregnation</discoverLetterLabel>
+        <discoverLetterText>[PAWN_nameDef]'s been impregnated by a facehugger Something needs to be done about this...urgently.....</discoverLetterText>
+		<messageType>PawnDeath</messageType>
+		<letterType>NegativeEvent</letterType>
+      </li>
+		<li Class="RRYautja.HediffCompProperties_XenoSpawner">
+		<pawnKindDef>Xenomorph_Drone</pawnKindDef>
+		</li>
+		<li Class="HediffCompProperties_SeverityPerDay">
+		<severityPerDay>1</severityPerDay>
+		</li>
+    </comps>
+  </HediffDef>
+  
+</Defs>

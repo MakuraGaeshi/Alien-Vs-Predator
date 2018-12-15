@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <LifeStageDef>
+    <defName>XFacehuggerFullyFormed</defName>
+    <label>fully-formed</label>
+    <visible>false</visible>
+  </LifeStageDef>
+
+  <LifeStageDef>
+    <defName>XenomorphChestBursterBaby</defName>
+    <label>newborn</label>
+    <bodySizeFactor>0.2</bodySizeFactor>
+		<foodMaxFactor>1.5</foodMaxFactor>
+		<healthScaleFactor>0.2</healthScaleFactor>
+    <hungerRateFactor>0.2</hungerRateFactor>
+    <marketValueFactor>0.5</marketValueFactor>
+    <meleeDamageFactor>0.5</meleeDamageFactor>
+    <statFactors>
+      <MoveSpeed>0.2</MoveSpeed>
+    </statFactors>
+  </LifeStageDef>
+
+  <LifeStageDef>
+    <defName>XenomorphChestBursterBig</defName>
+    <label>shedling</label>
+    <bodySizeFactor>0.32</bodySizeFactor>
+		<foodMaxFactor>1.5</foodMaxFactor>
+		<healthScaleFactor>0.4</healthScaleFactor>
+    <hungerRateFactor>0.4</hungerRateFactor>
+    <marketValueFactor>0.7</marketValueFactor>
+    <meleeDamageFactor>0.6</meleeDamageFactor>
+    <statFactors>
+      <MoveSpeed>0.3</MoveSpeed>
+    </statFactors>
+  </LifeStageDef>
+
+  <LifeStageDef>
+    <defName>XenomorphFormedBaby</defName>
+    <label>young</label>
+    <bodySizeFactor>0.5</bodySizeFactor>
+    <healthScaleFactor>0.5</healthScaleFactor>
+    <hungerRateFactor>0.6</hungerRateFactor>
+    <marketValueFactor>0.9</marketValueFactor>
+    <meleeDamageFactor>0.7</meleeDamageFactor>
+    <statFactors>
+      <MoveSpeed>0.65</MoveSpeed>
+    </statFactors>
+  </LifeStageDef>
+
+  <LifeStageDef>
+    <defName>XenomorphFormedMid</defName>
+    <label>adolecant</label>
+    <adjective>teenage</adjective>
+    <reproductive>true</reproductive>
+    <bodySizeFactor>0.85</bodySizeFactor>
+    <healthScaleFactor>0.90</healthScaleFactor>
+    <meleeDamageFactor>0.75</meleeDamageFactor>
+    <statFactors>
+      <MoveSpeed>0.95</MoveSpeed>
+    </statFactors>
+  </LifeStageDef>
+  
+  <LifeStageDef>
+    <defName>XenomorphFullyFormed</defName>
+    <label>adult</label>
+    <visible>false</visible>
+    <reproductive>true</reproductive>
+  </LifeStageDef>
+
+</Defs>

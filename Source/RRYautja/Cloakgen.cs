@@ -111,7 +111,16 @@ namespace RRYautja
             }
             this.cloakIsOn = true;
         }
-
+        // Token: 0x06005393 RID: 21395 RVA: 0x0010DABF File Offset: 0x0010BEBF
+        public override void Draw()
+        {
+            if (this.cloakMode == CloakMode.On)
+            {
+                Wearer.Graphic.color.a = 0.25f;
+            }
+            Wearer.Draw();
+            this.Comps_PostDraw();
+        }
         // Token: 0x06000007 RID: 7 RVA: 0x0000227D File Offset: 0x0000047D
         public void SwitchOffCloak()
         {
@@ -309,7 +318,8 @@ namespace RRYautja
         {
             if (this.cloakMode == CloakMode.On && this.ShouldDisplay)
             {
-                Wearer.Graphic.color.a = 0.25f;
+                // Wearer.Graphic.color.a = 0.25f;
+                Wearer.Drawer.renderer.graphics.pawn.DefaultGraphic.color.a = 0.25f;
                 float num = Mathf.Lerp(1.2f, 1.55f, this.energy);
                 Vector3 vector = base.Wearer.Drawer.DrawPos;
                 vector.y = Altitudes.AltitudeFor(AltitudeLayer.MoteOverhead);
