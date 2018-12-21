@@ -57,6 +57,67 @@
     </stages>
     <!-- <spawnThingOnRemoved>Joywire</spawnThingOnRemoved> -->
   </HediffDef>
+  	
+  <HediffDef ParentName="RRYSpecialGoodHeDiff">
+    <defName>RRYUnblooded</defName>
+    <label>unblooded</label>
+    <labelNoun>an unblooded Yautja</labelNoun>
+    <stages>
+      <li>
+        <label>initial</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+    <comps> 
+      <li>
+        <compClass>RRYautja.HediffComp_UnbloodedYautja</compClass>
+      </li>
+    </comps>
+  </HediffDef>
+  
+  <HediffDef ParentName="RRYSpecialGoodHeDiff">
+    <defName>RRYBloodedUM</defName>
+    <label>blooded</label>
+    <labelNoun>a blooded Yautja</labelNoun>
+    <stages>
+      <li>
+        <label>unmarked</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+    <comps>
+
+    </comps>
+  </HediffDef>
+
+    <HediffDef ParentName="RRYSpecialGoodHeDiff">
+    <defName>RRYBloodedM</defName>
+    <label>blooded</label>
+    <labelNoun>a blooded Yautja</labelNoun>
+    <stages>
+      <li>
+        <label>marked</label>
+      </li>
+    </stages>
+    <comps>
+
+    </comps>
+  </HediffDef>
+
+    <HediffDef ParentName="RRYSpecialGoodHeDiff">
+    <defName>RRYBloodedMHuman</defName>
+    <label>blooded</label>
+    <labelNoun>a blooded Yautja</labelNoun>
+    <stages>
+      <li>
+        <label>marked</label>
+      </li>
+    </stages>
+    <comps>
+
+    </comps>
+  </HediffDef>
+
   
   <!--
   <HediffDef ParentName="RRYSpecialGoodHeDiff">

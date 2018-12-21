@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
   <ManeuverDef>
-    <defName>FaceGrab</defName>
-    <requiredCapacity>FaceGrab</requiredCapacity>
+    <defName>RRY_FaceHuggerGrab</defName>
+    <requiredCapacity>RRY_FaceHuggerGrab</requiredCapacity>
     <verb>
       <verbClass>RRYautja.Verb_MeleeAttackFacehugger</verbClass>
       <meleeDamageDef>Blunt</meleeDamageDef>

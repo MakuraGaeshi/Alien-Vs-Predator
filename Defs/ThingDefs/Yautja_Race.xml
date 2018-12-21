@@ -125,8 +125,12 @@
                <li>Wimp</li>
             </disallowedTraits>
             <alienPartGenerator>
+				<useGenderedHeads>false</useGenderedHeads>
                 <aliencrowntypes>
                     <li>Average_Normal</li> 
+                    <li>Cmouth_Normal</li> 
+                    <li>Cmouth_NormalA</li> 
+                    <li>Albino_Normal</li> 
                 </aliencrowntypes>
                 <alienbodytypes>
 					<li>Female</li>
@@ -219,6 +223,66 @@
                 </options>
             </alienhaircolorgen>
             <useSkincolorForHair>false</useSkincolorForHair>
+            <bodyAddons>
+				<li>
+					<path>Things/Addons/Blank</path>
+					<bodyPart>Head</bodyPart>
+					<useSkinColor>true</useSkinColor>
+					<inFrontOfBody>true</inFrontOfBody>
+					<layerOffset>-0.0</layerOffset>
+					<offsets>
+					<south>
+										<bodyTypes>
+										<Male>(-0.425,0.55)</Male>
+										<Female>(-0.43,0.55)</Female>
+										</bodyTypes>
+					</south>
+
+					<north>
+										<bodyTypes>
+										<Male>(0,0.0)</Male>
+										<Female>(0,0.0)</Female>
+										</bodyTypes>
+					</north>
+
+					<east>
+										<bodyTypes>
+										<Male>(-0.48,0.55)</Male>
+										<Female>(-0.48,0.55)</Female>
+										</bodyTypes>
+					</east>
+					
+					<west>
+										<bodyTypes>
+										<Male>(-0.48,0.55)</Male>
+										<Female>(-0.48,0.55)</Female>
+										</bodyTypes>
+					</west>
+					</offsets>
+					<hediffGraphics>
+					<RRYBloodedMHuman>Things/Addons/Blood_Marks/Human_Kills/Mark_Humankill</RRYBloodedMHuman>
+					<!--
+					<RRYBloodedMHuman>Things/Addons/Blood_Marks/Male_Normal_Rdigeless</RRYBloodedMHuman>
+					
+					<RRYBloodedMWorthyHuman>Things/Addons/Blood_Marks/Human_Kills/Mark_WorthyHumankill</RRYBloodedMWorthyHuman>
+					<RRYBloodedMHumanlike>Things/Addons/Blood_Marks/Human_Kills/Mark_Humanlikekill</RRYBloodedMHumanlike>
+					<RRYBloodedMWorthyHumanlike>Things/Addons/Blood_Marks/Human_Kills/Mark_WorthyHumanlikekill</RRYBloodedMWorthyHumanlike>
+					
+					<RRYBloodedMBadBlood>Things/Addons/Blood_Marks/Yautja_Kills/Mark_BadBloodkill</RRYBloodedMBadBlood>
+					
+					<RRYBloodedMXenomorph>Things/Addons/Blood_Marks/Xenomorph_Kills/Mark_Xenomorphkill</RRYBloodedMXenomorph>
+					<RRYBloodedMQueenXenomorph>Things/Addons/Blood_Marks/Xenomorph_Kills/Mark_QueenXenomorphkill</RRYBloodedMQueenXenomorph>
+					<RRYBloodedMPredalien>Things/Addons/Blood_Marks/Xenomorph_Kills/Mark_Predalienkill</RRYBloodedMPredalien>
+					
+					<RRYBloodedMHound>Things/Addons/Blood_Marks/Animal_Kills/Mark_Houndkill</RRYBloodedMHound>
+					<RRYBloodedMCrusher>Things/Addons/Blood_Marks/Animal_Kills/Mark_Crusherkill</RRYBloodedMCrusher>
+					<RRYBloodedMGroTye>Things/Addons/Blood_Marks/Animal_Kills/Mark_GroTyekill</RRYBloodedMGroTye>
+					
+					<RRYBloodedM>Things/Addons/Blood_Marks/Animal_Kills/Mark_kill</RRYBloodedM>
+					-->
+					</hediffGraphics>
+                </li>
+            </bodyAddons>
             </alienPartGenerator>
 			<chemicalSettings>	
 		    </chemicalSettings>
@@ -239,7 +303,7 @@
             <hasHair>true</hasHair>
             <getsGreyAt>1750</getsGreyAt> 
             <hairTags>
-                 <li>YaujtaDreds</li> 
+				<li>YaujtaHair</li>
             </hairTags>
         </hairSettings>
         <thoughtSettings>
@@ -289,7 +353,9 @@
                 </li>
             </researchList>
 			<apparelList>
+				<li>RRY_Apparel_HunterLightArmourChestplate</li>
 				<li>RRY_Apparel_HunterArmourChestplate</li>
+				<li>RRY_Apparel_HunterHeavyArmourChestplate</li>
 				<li>RRY_Apparel_HunterArmourGreaves</li>
 				<li>RRY_Apparel_HunterBioMask</li>
 				<li>RRY_Apparel_HunterVest</li>
@@ -300,7 +366,9 @@
 			</apparelList>
 			<onlyUseRaceRestrictedApparel>true</onlyUseRaceRestrictedApparel>
             <recipeList>
+				<li>RRY_Apparel_HunterLightArmourChestplate</li>
 				<li>RRY_Apparel_HunterArmourChestplate</li>
+				<li>RRY_Apparel_HunterHeavyArmourChestplate</li>
 				<li>RRY_Apparel_HunterArmourGreaves</li>
 				<li>RRY_Apparel_HunterBioMask</li>
 				<li>RRY_Apparel_HunterVest</li>

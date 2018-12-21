@@ -13,4 +13,48 @@
       </li>
     </stages>
   </ThoughtDef>
+  
+  
+  <ThoughtDef>
+    <defName>RRYUnBlooded</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>RRYUnblooded</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <label>Unblooded</label>
+        <description>I need to prove myself by hunting and killing a Xenomorph!</description>
+        <baseMoodEffect>-10</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+  <ThoughtDef>
+    <defName>RRYBloodedUM</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>RRYBloodedUM</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <label>unmarked</label>
+        <description>I've proven myself by killing a Xenomorph, all thats left it to mark myself with its blood.</description>
+        <baseMoodEffect>10</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+  <ThoughtDef>
+    <defName>RRYBloodedM</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>RRYBloodedM</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <label>marked</label>
+        <description>I've proven myself by killing a Xenomorph and marked myself with its blood. I feel amazing.</description>
+        <baseMoodEffect>15</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
 </Defs>

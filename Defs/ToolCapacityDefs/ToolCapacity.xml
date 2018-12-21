@@ -3,11 +3,11 @@
 <Defs>
 
   <ToolCapacityDef>
-    <defName>FaceGrab</defName>
+    <defName>RRY_FaceHuggerGrab</defName>
   </ToolCapacityDef>
 <!--  
   <ToolCapacityDef>
-    <defName>ToxicBite</defName>
+    <defName>RRY_AcidSplash</defName>
   </ToolCapacityDef>
 -->
 </Defs>

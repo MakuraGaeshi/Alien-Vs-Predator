@@ -20,7 +20,7 @@
   </ThingDef>  
    
   <ThingDef ParentName="BaseFilth">
-    <defName>FilthBloodXenomorph</defName>
+    <defName>RRY_FilthBloodXenomorph</defName>
     <label>blood</label>
     <statBases>
       <Beauty>-14</Beauty>

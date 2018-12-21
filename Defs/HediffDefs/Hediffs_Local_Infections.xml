@@ -2,7 +2,7 @@
 <Defs>
 
   <HediffDef ParentName="InfectionBase">
-    <defName>FaceHuggerInfection</defName>
+    <defName>RRY_FaceHuggerInfection</defName>
     <hediffClass>HediffWithComps</hediffClass>
     <label>Facehugger</label>
     <initialSeverity>0.01</initialSeverity>
@@ -40,7 +40,7 @@
         </capMods>
         <hediffGivers>
           <li Class="HediffGiver_Random">
-            <hediff>XenomorphImpregnation</hediff>
+            <hediff>RRY_XenomorphImpregnation</hediff>
             <mtbDays>0.75</mtbDays> 
             <partsToAffect>
               <li>Torso</li>
@@ -68,28 +68,28 @@
       <li Class="HediffCompProperties_Discoverable">
         <sendLetterWhenDiscovered>true</sendLetterWhenDiscovered>
         <discoverLetterLabel>Xenomorph Facehugger</discoverLetterLabel>
-        <discoverLetterText>[PAWN_nameDef]'s been attacked by a facehugger Something needs to be done about this...urgently.....</discoverLetterText>
+        <discoverLetterText>[PAWN_nameDef]'s been attacked by a facehugger which has attached itself to [PAWN_possessive] face, paralyzing [PAWN_possessive], but keeping them alive. Something needs to be done about this, but any attempt to remove the creature could kill the host.</discoverLetterText>
 		<messageType>PawnDeath</messageType>
 		<letterType>NegativeEvent</letterType>
       </li>
+	  <!--
 		<li Class="HediffCompProperties_Disappears">
 			<disappearsAfterTicks>
 			  <min>20000</min>
 			  <max>60000</max>
 			</disappearsAfterTicks>
 		</li>
+		-->
 		<li Class="RRYautja.HediffCompProperties_XenoFacehugger">
-		<pawnKindDef>Xenomorph_FaceHugger</pawnKindDef>
-		</li>
-		<li Class="HediffCompProperties_SeverityPerDay">
-		<severityPerDay>1</severityPerDay>
+		<severityPerDay>10</severityPerDay>
+		<pawnKindDef>RRY_Xenomorph_FaceHugger</pawnKindDef>
 		</li>
     </comps>
   </HediffDef>
 
  
   <HediffDef ParentName="DiseaseBase">
-    <defName>XenomorphImpregnation</defName>
+    <defName>RRY_XenomorphImpregnation</defName>
     <hediffClass>HediffWithComps</hediffClass>
     <label>xenomorph impregnation</label>
     <labelNoun>a xenomorph impregnation</labelNoun>
@@ -139,12 +139,97 @@
       <li Class="HediffCompProperties_Discoverable">
         <sendLetterWhenDiscovered>true</sendLetterWhenDiscovered>
         <discoverLetterLabel>Xenomorph impregnation</discoverLetterLabel>
-        <discoverLetterText>[PAWN_nameDef]'s been impregnated by a facehugger Something needs to be done about this...urgently.....</discoverLetterText>
+        <discoverLetterText>[PAWN_nameDef] shudders violently as the facehugger spasms momentairly.....its still attached......something must have happened.....</discoverLetterText>
 		<messageType>PawnDeath</messageType>
 		<letterType>NegativeEvent</letterType>
       </li>
 		<li Class="RRYautja.HediffCompProperties_XenoSpawner">
-		<pawnKindDef>Xenomorph_Drone</pawnKindDef>
+		<pawnKindDefs>
+			<li>RRY_Xenomorph_Queen</li>
+			<li>RRY_Xenomorph_Warrior</li>
+			<li>RRY_Xenomorph_Drone</li>
+			<li>RRY_Xenomorph_Runner</li>
+		</pawnKindDefs>
+		<pawnKindWeights>
+			<li>25</li>
+			<li>35</li>
+			<li>50</li>
+			<li>100</li>
+		</pawnKindWeights>
+		</li>
+		<li Class="HediffCompProperties_SeverityPerDay">
+		<severityPerDay>1</severityPerDay>
+		</li>
+    </comps>
+  </HediffDef>
+   
+  <HediffDef ParentName="DiseaseBase">
+    <defName>RRY_HiddenXenomorphImpregnation</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>xenomorph impregnation</label>
+    <labelNoun>a xenomorph impregnation</labelNoun>
+    <initialSeverity>0.1</initialSeverity>
+    <lethalSeverity>1</lethalSeverity>
+    <chanceToCauseNoPain>1</chanceToCauseNoPain>
+    <tendable>false</tendable>
+    <stages>
+      <li>
+        <label>post impregnation</label>
+        <becomeVisible>false</becomeVisible>
+        <partEfficiencyOffset>-0.1</partEfficiencyOffset>
+        <painOffset>0.1</painOffset>
+      </li>
+      <li>
+        <minSeverity>0.15</minSeverity>
+        <label>early gestation</label>
+        <becomeVisible>false</becomeVisible>
+				<partEfficiencyOffset>-0.25</partEfficiencyOffset>
+        <painOffset>0.2</painOffset>
+      </li>
+      <li>
+        <minSeverity>0.4</minSeverity>
+        <label>major</label>
+        <becomeVisible>false</becomeVisible>
+				<partEfficiencyOffset>-0.5</partEfficiencyOffset>
+        <painOffset>0.35</painOffset>
+      </li>
+      <li>
+        <minSeverity>0.6</minSeverity>
+        <label>major</label>
+        <becomeVisible>false</becomeVisible>
+				<partEfficiencyOffset>-0.8</partEfficiencyOffset>
+        <painOffset>0.5</painOffset>
+      </li>
+      <li>
+        <minSeverity>0.8</minSeverity>
+        <label>extreme</label>
+        <becomeVisible>false</becomeVisible>
+				<partEfficiencyOffset>-0.9</partEfficiencyOffset>
+        <painOffset>0.6</painOffset>
+      </li>
+      <li>
+        <minSeverity>1</minSeverity>
+        <label>extreme</label>
+        <becomeVisible>false</becomeVisible>
+				<partEfficiencyOffset>-1.0</partEfficiencyOffset>
+        <painOffset>0.7</painOffset>
+        <destroyPart>true</destroyPart>
+      </li>
+    </stages>
+    <comps>
+		<li Class="RRYautja.HediffCompProperties_XenoSpawner">
+		<pawnKindDefs>
+			<li>RRY_Xenomorph_Queen</li>
+			<li>RRY_Xenomorph_Warrior</li>
+			<li>RRY_Xenomorph_Drone</li>
+			<li>RRY_Xenomorph_Runner</li>
+		</pawnKindDefs>
+		<pawnKindWeights>
+			<li>25</li>
+			<li>35</li>
+			<li>50</li>
+			<li>100</li>
+		</pawnKindWeights>
 		</li>
 		<li Class="HediffCompProperties_SeverityPerDay">
 		<severityPerDay>1</severityPerDay>

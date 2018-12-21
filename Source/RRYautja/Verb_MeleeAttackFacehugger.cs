@@ -14,7 +14,7 @@ namespace RRYautja
 		private IEnumerable<DamageInfo> DamageInfosToApply(LocalTargetInfo target)
         {
             Pawn hitPawn = (Pawn)target;
-            var effectOnPawn = hitPawn?.health?.hediffSet?.GetFirstHediffOfDef(YautjaDefOf.FaceHuggerInfection);
+            var effectOnPawn = hitPawn?.health?.hediffSet?.GetFirstHediffOfDef(XenomorphDefOf.RRY_FaceHuggerInfection);
             if (Rand.Value * 100 > 50 & effectOnPawn == null)
             {
                 infect = true;
@@ -108,10 +108,9 @@ namespace RRYautja
             {
                 foreach (var part in hitPawn.RaceProps.body.AllParts.Where(x => x.def.defName == "Head"))
                 {
-                    Hediff hediff = HediffMaker.MakeHediff(YautjaDefOf.FaceHuggerInfection, hitPawn, null);
+                    Hediff hediff = HediffMaker.MakeHediff(XenomorphDefOf.RRY_FaceHuggerInfection, hitPawn, null);
                     hitPawn.health.AddHediff(hediff, part, null);
                     //MoteMaker.ThrowText(hitPawn.Position.ToVector3(), hitPawn.Map, "Xeno_Facehugger_Success".Translate(Def.AddHediffChance), 12f);
-                    if (hitPawn.Faction == Faction.OfPlayer) { Messages.Message(text: "Xeno_Facehugger_Success".Translate(hitPawn.Name), def: MessageTypeDefOf.NegativeHealthEvent); }
                     caster.DeSpawn();
                 }
             }

@@ -7,6 +7,7 @@
     <defName>YaujtaDreds</defName>
 		<hairTags>
 			<li>YaujtaDreds</li>
+			<li>YaujtaHair</li>
 		</hairTags>
   </HairDef>
   
@@ -17,6 +18,7 @@
     <defName>YaujtaPonytail</defName>
 		<hairTags>
 			<li>YaujtaPonytail</li>
+			<li>YaujtaHair</li>
 		</hairTags>
   </HairDef>
   

@@ -47,7 +47,7 @@
 
   
     <ThingDef ParentName="LeatherBase">
-    <defName>Leather_Xenomorph</defName>
+    <defName>RRY_Leather_Xenomorph</defName>
     <label>Xenomorph leather</label>
     <description>Tanned, dried, scraped Xenomorph skin. It is exceptionally durable in combat, and provides ample protection from weather.</description>
     <graphicData>

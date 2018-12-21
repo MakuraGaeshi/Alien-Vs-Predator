@@ -50,13 +50,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Apparel_Comps.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="HediffComp_BloodStatus.cs" />
+    <Compile Include="RoomRoleWorker_TrophyRoom.cs" />
+    <Compile Include="ThoughtWorker_HonourableVsBadBlood.cs" />
+    <Compile Include="IncidentWorker_Xenomorph.cs" />
+    <Compile Include="Comp_Xenomorph.cs" />
     <Compile Include="Cloakgen.cs" />
     <Compile Include="Gizmo_CloakgenStatus.cs" />
     <Compile Include="CompEquippableTurret.cs" />
-    <Compile Include="HediffCompProperties_DisappearsXeno.cs" />
-    <Compile Include="HediffComp_DisappearsXeno.cs" />
-    <Compile Include="AVPDefOf.cs" />
+    <Compile Include="HediffComp_Facehugger.cs" />
+    <Compile Include="XenomorphDefOf.cs" />
+    <Compile Include="YautjaDefOf.cs" />
     <Compile Include="HediffWeapon.cs" />
     <Compile Include="HediffApparel.cs" />
     <Compile Include="Patches.cs" />
