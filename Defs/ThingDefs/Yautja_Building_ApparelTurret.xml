@@ -64,7 +64,7 @@
     <building>
 	  <ai_combatDangerous>true</ai_combatDangerous>
       <turretGunDef>Gun_ShoulderCannon</turretGunDef>
-      <turretBurstCooldownTime>1.0</turretBurstCooldownTime>
+      <turretBurstCooldownTime>3.0</turretBurstCooldownTime>
       <turretTopGraphicPath>Things/Buildings/DummyTexture</turretTopGraphicPath>
 	  <isInert>true</isInert>
       <isEdifice>false</isEdifice>
@@ -84,7 +84,7 @@
     </graphicData>
     <projectile>
       <damageDef>Bullet</damageDef>
-      <damageAmountBase>10</damageAmountBase>
+      <damageAmountBase>30</damageAmountBase>
       <speed>70</speed>
     </projectile>
   </ThingDef>

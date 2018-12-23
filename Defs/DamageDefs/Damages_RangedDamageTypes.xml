@@ -7,6 +7,41 @@
 		<isRanged>true</isRanged>
 	</DamageDef>
 	
+	
+  <DamageDef Name="BombBase">
+    <defName>RRYBomb</defName>
+    <label>bomb</label>
+    <workerClass>DamageWorker_AddInjury</workerClass>
+    <externalViolence>true</externalViolence>
+    <isExplosive>true</isExplosive>
+    <deathMessage>{0} has died in an explosion.</deathMessage>
+    <hediff>Shredded</hediff>
+    <hediffSolid>Crack</hediffSolid>
+    <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+    <impactSoundType>Blunt</impactSoundType>
+    <armorCategory>Sharp</armorCategory>
+    <minDamageToFragment>15</minDamageToFragment>
+    <defaultDamage>50</defaultDamage>
+    <defaultStoppingPower>0.5</defaultStoppingPower>
+    <defaultArmorPenetration>0.10</defaultArmorPenetration>
+    <buildingDamageFactor>4</buildingDamageFactor>
+    <plantDamageFactor>4</plantDamageFactor>
+    <explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+    <explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+    <explosionCellMote>Mote_BlastDry</explosionCellMote>
+    <explosionColorCenter>(0.188,0.392,0.604)</explosionColorCenter>
+    <explosionColorEdge>(0.8,0.898,1)</explosionColorEdge>
+    <soundExplosion>Explosion_Bomb</soundExplosion>
+    <combatLogRules>Damage_Bomb</combatLogRules>
+  </DamageDef>
+
+    <DamageDef ParentName="BombBase">
+    <defName>RRYBombSuper</defName>
+    <defaultDamage>550</defaultDamage>
+    <defaultStoppingPower>2.0</defaultStoppingPower>
+    <defaultArmorPenetration>1.30</defaultArmorPenetration>
+  </DamageDef>
+	
 	<DamageDef Name="PlasmaInjury" ParentName="LocalRangedInjuryBase" Abstract="True">
 		<externalViolence>true</externalViolence>
 		<isExplosive>true</isExplosive>

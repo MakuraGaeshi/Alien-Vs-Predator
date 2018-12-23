@@ -72,7 +72,7 @@
       </li>
     </skillGains>
 	<forcedHediffs>
-      <li>RRYUnblooded</li>  
+      <!-- <li>RRY_Hediff_Unblooded</li> --> 
     </forcedHediffs>
     <spawnCategories>
       <li>Yautja_Standard</li>
@@ -101,7 +101,7 @@
 	
     </skillGains>
 	<forcedHediffs>
-      <li>RRYUnblooded</li>  
+     <!-- <li>RRY_Hediff_Unblooded</li> -->
     </forcedHediffs>
     <spawnCategories>
       <li>Yautja_Standard</li>

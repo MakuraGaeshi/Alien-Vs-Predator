@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
   <ThoughtDef>
-    <defName>RRYThrillOfTheHunt</defName>
+    <defName>RRY_Thought_ThrillOfTheHunt</defName>
     <workerClass>ThoughtWorker_Hediff</workerClass>
-   <!-- <hediff>RRYThrillOfTheHunt</hediff> -->
+   <!-- <hediff>RRY_Hediff_ThrillOfTheHunt</hediff> -->
     <validWhileDespawned>true</validWhileDespawned>
     <stages>
       <li>
@@ -16,45 +16,73 @@
   
   
   <ThoughtDef>
-    <defName>RRYUnBlooded</defName>
+    <defName>RRY_Thought_UnBlooded</defName>
     <workerClass>ThoughtWorker_Hediff</workerClass>
-    <hediff>RRYUnblooded</hediff>
+    <hediff>RRY_Hediff_Unblooded</hediff>
     <validWhileDespawned>true</validWhileDespawned>
     <stages>
       <li>
         <label>Unblooded</label>
-        <description>I need to prove myself by hunting and killing a Xenomorph!</description>
+        <description>I need to prove myself by hunting and killing a Worthy foe!</description>
         <baseMoodEffect>-10</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>
   
   <ThoughtDef>
-    <defName>RRYBloodedUM</defName>
+    <defName>RRY_Thought_BloodedUM</defName>
     <workerClass>ThoughtWorker_Hediff</workerClass>
-    <hediff>RRYBloodedUM</hediff>
+    <hediff>RRY_Hediff_BloodedUM</hediff>
     <validWhileDespawned>true</validWhileDespawned>
     <stages>
       <li>
         <label>unmarked</label>
-        <description>I've proven myself by killing a Xenomorph, all thats left it to mark myself with its blood.</description>
-        <baseMoodEffect>10</baseMoodEffect>
+        <description>I've proven myself by killing a Worthy Foe, all thats left it to mark myself with its blood.</description>
+        <baseMoodEffect>5</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>
   
   <ThoughtDef>
-    <defName>RRYBloodedM</defName>
-    <workerClass>ThoughtWorker_Hediff</workerClass>
-    <hediff>RRYBloodedM</hediff>
+    <defName>RRY_Thought_BloodedM</defName>
+    <workerClass>ThoughtWorker_MutliHediff</workerClass>
+    <hediff>RRY_Hediff_BloodedM</hediff>
     <validWhileDespawned>true</validWhileDespawned>
     <stages>
       <li>
         <label>marked</label>
-        <description>I've proven myself by killing a Xenomorph and marked myself with its blood. I feel amazing.</description>
-        <baseMoodEffect>15</baseMoodEffect>
+        <description>I've proven myself by killing Worthy Prey and marked myself with its blood. I feel amazing.</description>
+        <baseMoodEffect>5</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>
-
+  
+  
+<!--
+  <YautjaThoughtDef>
+    <defName>RRY_Thought_BloodedM</defName>
+    <workerClass>ThoughtWorker_MutliHediff</workerClass>
+    <hediffs>
+		<li>RRY_Hediff_BloodedMHuman</li>
+		<li>RRY_Hediff_BloodedMWorthyHuman</li>
+		<li>RRY_Hediff_BloodedMHumanlike</li>
+		<li>RRY_Hediff_BloodedMWorthyHumanlike</li>
+		<li>RRY_Hediff_BloodedMXenomorph</li>
+		<li>RRY_Hediff_BloodedMXenomorphQueen</li>
+		<li>RRY_Hediff_BloodedMPredalien</li>
+		<li>RRY_Hediff_BloodedMBadBlood</li>
+		<li>RRY_Hediff_BloodedMHound</li>
+		<li>RRY_Hediff_BloodedMCrusher</li>
+		<li>RRY_Hediff_BloodedMGroTye</li>
+	</hediffs>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <label>marked</label>
+        <description>I've proven myself by killing Worthy Prey and marked myself with its blood. I feel amazing.</description>
+        <baseMoodEffect>15</baseMoodEffect>
+      </li>
+    </stages>
+  </YautjaThoughtDef>
+-->
 </Defs>

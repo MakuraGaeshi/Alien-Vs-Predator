@@ -52,9 +52,9 @@ namespace RRYautja
 		}
 
 		// Token: 0x060053DD RID: 21469 RVA: 0x00264E3D File Offset: 0x0026323D
-		public override void CompTickRare()
+		public override void CompTick()
         {
-			base.CompTickRare();
+			base.CompTick();
             if (this.turretIsOn || Find.TickManager.TicksGame >= this.nextUpdateTick)
             {
                 this.nextUpdateTick = Find.TickManager.TicksGame + 60;
@@ -86,7 +86,8 @@ namespace RRYautja
         // Token: 0x06000005 RID: 5 RVA: 0x00002108 File Offset: 0x00000308
         public bool ComputeTurretState()
         {
-            return GetWearer != null && !GetWearer.Dead && !GetWearer.Downed && GetWearer.Awake() && (this.turretMode == CompEquippableTurret.TurretMode.ForcedOn || (this.turretMode != CompEquippableTurret.TurretMode.ForcedOff && (GetWearer.Map != null && ((GetWearer.Position.Roofed(GetWearer.Map) && GetWearer.Map.glowGrid.PsychGlowAt(GetWearer.Position) <= PsychGlow.Lit) || (!GetWearer.Position.Roofed(GetWearer.Map) && GetWearer.Map.glowGrid.PsychGlowAt(GetWearer.Position) < PsychGlow.Overlit)))));
+                
+            return GetWearer != null && !GetWearer.Dead && !GetWearer.Downed && GetWearer.Awake() && (this.turretMode == CompEquippableTurret.TurretMode.ForcedOn);
         }
 
         // Token: 0x06000006 RID: 6 RVA: 0x000021F0 File Offset: 0x000003F0
@@ -95,7 +96,7 @@ namespace RRYautja
             IntVec3 intVec = GetWearer.DrawPos.ToIntVec3();
             if (!this.turret.DestroyedOrNull() && intVec != this.turret.Position)
             {
-                this.SwitchOffTurret();
+                this.MoveTurret(intVec);
             }
             if (this.turret.DestroyedOrNull() && intVec.GetFirstThing(GetWearer.Map, Util_CompEquippableTurret.EquippableTurretDef) == null)
             {
@@ -116,6 +117,16 @@ namespace RRYautja
             this.turretIsOn = false;
         }
 
+        // Token: 0x06000007 RID: 7 RVA: 0x0000227D File Offset: 0x0000047D
+        public void MoveTurret(IntVec3 intVec)
+        {
+            if (!this.turret.DestroyedOrNull())
+            {
+                this.turret.Position = intVec;
+            }
+            this.turretIsOn = true;
+        }
+
         // Token: 0x06000008 RID: 8 RVA: 0x000022A8 File Offset: 0x000004A8
         public override IEnumerable<Gizmo> CompGetGizmosWorn()
         {
@@ -123,56 +134,35 @@ namespace RRYautja
             if (flag)
             {
                 int num = 700000101;
-                Command_Action command_Action = new Command_Action();
-                switch (this.turretMode)
+                if (this.turretMode == TurretMode.ForcedOff)
                 {
-                    case CompEquippableTurret.TurretMode.ForcedOff:
-                        command_Action.icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_LigthModeForcedOff", true);
-                        command_Action.defaultLabel = "Turret: off.";
-                        break;
-                    case CompEquippableTurret.TurretMode.ForcedOn:
-                        command_Action.icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_LigthModeForcedOn", true);
-                        command_Action.defaultLabel = "Turret: on.";
-                        break;
+                    yield return new Command_Action
+                    {
+                        icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_TurretModeOff", true),
+                        defaultLabel = "Turret: off.",
+                        defaultDesc = "Switch mode.",
+                        activateSound = SoundDef.Named("Click"),
+                        action = new Action(this.SwitchTurretMode),
+                        groupKey = num + 1,
+                    };
                 }
-                command_Action.defaultDesc = "Switch mode.";
-                command_Action.activateSound = SoundDef.Named("Click");
-                command_Action.action = new Action(this.SwitchTurretMode);
-                command_Action.groupKey = num + 1;
-                yield return command_Action;
-
-
-            }
-        }
-        /*
-        // Token: 0x06000008 RID: 8 RVA: 0x000022A8 File Offset: 0x000004A8
-        public override IEnumerable<Gizmo> CompGetGizmosExtra()
-        {
-            bool flag = Find.Selector.SingleSelectedThing == GetWearer;
-            if (flag)
-            {
-                int num = 700000101;
-                Command_Action command_Action = new Command_Action();
-                switch (this.turretMode)
+                if (this.turretMode == TurretMode.ForcedOn)
                 {
-                    case CompEquippableTurret.TurretMode.ForcedOn:
-                        command_Action.icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_LigthModeForcedOn", true);
-                        command_Action.defaultLabel = "Turret: on.";
-                        break;
-                    case CompEquippableTurret.TurretMode.ForcedOff:
-                        command_Action.icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_LigthModeForcedOff", true);
-                        command_Action.defaultLabel = "Turret: off.";
-                        break;
+                    yield return new Command_Action
+                    {
+                        icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_TurretModeOn", true),
+                        defaultLabel = "Turret: on.",
+                        defaultDesc = "Switch mode.",
+                        activateSound = SoundDef.Named("Click"),
+                        action = new Action(this.SwitchTurretMode),
+                        groupKey = num + 1,
+                    };
                 }
-                command_Action.defaultDesc = "Switch mode.";
-                command_Action.activateSound = SoundDef.Named("Click");
-                command_Action.action = new Action(this.SwitchTurretMode);
-                command_Action.groupKey = num + 1;
-
-                yield return command_Action;
             }
             yield break;
-        }*/
+        }
+
+
         // Token: 0x0600000A RID: 10 RVA: 0x000023A4 File Offset: 0x000005A4
         public void SwitchTurretMode()
         {

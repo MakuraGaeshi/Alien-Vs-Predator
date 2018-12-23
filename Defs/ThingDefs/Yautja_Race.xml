@@ -90,6 +90,27 @@
         <li>
             <compClass>CompAttachBase</compClass>
         </li>
+		<!--
+        <li>
+            <compClass>RRYautja.Comp_Yautja</compClass>
+        </li>
+		-->
+		<li Class="RRYautja.CompProperties_Yautja">
+			<bloodedDefs>
+			<li>RRY_Hediff_BloodedMHuman</li>
+			<li>RRY_Hediff_BloodedMHumanlike</li>
+			<li>RRY_Hediff_BloodedMHound</li>
+			<li>RRY_Hediff_BloodedMCrusher</li>
+			<li>RRY_Hediff_BloodedMGroTye</li>
+			<li>RRY_Hediff_BloodedMWorthyHuman</li>
+			<li>RRY_Hediff_BloodedMWorthyHumanlike</li>
+			<li>RRY_Hediff_BloodedMBadBlood</li>
+			<li>RRY_Hediff_BloodedMXenomorph</li>
+			<li>RRY_Hediff_BloodedMPredalien</li>
+			<li>RRY_Hediff_BloodedMXenomorphQueen</li>
+			</bloodedDefs>
+			
+		</li> 
     </comps>
     <drawGUIOverlay>true</drawGUIOverlay>
 </ThingDef>
@@ -260,26 +281,58 @@
 					</west>
 					</offsets>
 					<hediffGraphics>
-					<RRYBloodedMHuman>Things/Addons/Blood_Marks/Human_Kills/Mark_Humankill</RRYBloodedMHuman>
+					<RRY_Hediff_BloodedMXenomorph>Things/Addons/Blood_Marks/Xenomorph_Kills/Mark_Xenomorphkill</RRY_Hediff_BloodedMXenomorph>
+					<RRY_Hediff_BloodedMXenomorphQueen>Things/Addons/Blood_Marks/Xenomorph_Kills/Mark_QueenXenomorphkill</RRY_Hediff_BloodedMXenomorphQueen>
+
+					<RRY_Hediff_BloodedMBadBlood>Things/Addons/Blood_Marks/Yautja_Kills/Mark_BadBloodkill</RRY_Hediff_BloodedMBadBlood>
+					
+					<RRY_Hediff_BloodedMHuman>Things/Addons/Blood_Marks/Human_Kills/Mark_Humankill</RRY_Hediff_BloodedMHuman>
+					<RRY_Hediff_BloodedMWorthyHuman>Things/Addons/Blood_Marks/Human_Kills/Mark_WorthyHumankill</RRY_Hediff_BloodedMWorthyHuman>
+					<RRY_Hediff_BloodedMHumanlike>Things/Addons/Blood_Marks/Human_Kills/Mark_Humanlikekill</RRY_Hediff_BloodedMHumanlike>
+					<RRY_Hediff_BloodedMWorthyHumanlike>Things/Addons/Blood_Marks/Human_Kills/Mark_WorthyHumanlikekill</RRY_Hediff_BloodedMWorthyHumanlike>
 					<!--
-					<RRYBloodedMHuman>Things/Addons/Blood_Marks/Male_Normal_Rdigeless</RRYBloodedMHuman>
 					
-					<RRYBloodedMWorthyHuman>Things/Addons/Blood_Marks/Human_Kills/Mark_WorthyHumankill</RRYBloodedMWorthyHuman>
-					<RRYBloodedMHumanlike>Things/Addons/Blood_Marks/Human_Kills/Mark_Humanlikekill</RRYBloodedMHumanlike>
-					<RRYBloodedMWorthyHumanlike>Things/Addons/Blood_Marks/Human_Kills/Mark_WorthyHumanlikekill</RRYBloodedMWorthyHumanlike>
 					
-					<RRYBloodedMBadBlood>Things/Addons/Blood_Marks/Yautja_Kills/Mark_BadBloodkill</RRYBloodedMBadBlood>
+					<RRY_Hediff_BloodedMPredalien>Things/Addons/Blood_Marks/Xenomorph_Kills/Mark_Predalienkill</RRY_Hediff_BloodedMPredalien>
 					
-					<RRYBloodedMXenomorph>Things/Addons/Blood_Marks/Xenomorph_Kills/Mark_Xenomorphkill</RRYBloodedMXenomorph>
-					<RRYBloodedMQueenXenomorph>Things/Addons/Blood_Marks/Xenomorph_Kills/Mark_QueenXenomorphkill</RRYBloodedMQueenXenomorph>
-					<RRYBloodedMPredalien>Things/Addons/Blood_Marks/Xenomorph_Kills/Mark_Predalienkill</RRYBloodedMPredalien>
+					<RRY_Hediff_BloodedMHound>Things/Addons/Blood_Marks/Animal_Kills/Mark_Houndkill</RRY_Hediff_BloodedMHound>
+					<RRY_Hediff_BloodedMCrusher>Things/Addons/Blood_Marks/Animal_Kills/Mark_Crusherkill</RRY_Hediff_BloodedMCrusher>
+					<RRY_Hediff_BloodedMGroTye>Things/Addons/Blood_Marks/Animal_Kills/Mark_GroTyekill</RRY_Hediff_BloodedMGroTye>
 					
-					<RRYBloodedMHound>Things/Addons/Blood_Marks/Animal_Kills/Mark_Houndkill</RRYBloodedMHound>
-					<RRYBloodedMCrusher>Things/Addons/Blood_Marks/Animal_Kills/Mark_Crusherkill</RRYBloodedMCrusher>
-					<RRYBloodedMGroTye>Things/Addons/Blood_Marks/Animal_Kills/Mark_GroTyekill</RRYBloodedMGroTye>
-					
-					<RRYBloodedM>Things/Addons/Blood_Marks/Animal_Kills/Mark_kill</RRYBloodedM>
+					<RRY_Hediff_BloodedM>Things/Addons/Blood_Marks/Animal_Kills/Mark_kill</RRY_Hediff_BloodedM>
 					-->
+					</hediffGraphics>
+                </li>
+				<li>
+					<path>Things/Addons/Blank</path>
+					<bodyPart>Torso</bodyPart>
+					<useSkinColor>true</useSkinColor>
+					<inFrontOfBody>true</inFrontOfBody>
+					<layerOffset>-0.0</layerOffset>
+					<offsets>
+					<south>
+										<bodyTypes>
+										<Male>(-0.48,0.55)</Male>
+										<Female>(-0.48,0.55)</Female>
+										</bodyTypes>
+					</south>
+
+					<north>
+										<bodyTypes>
+										<Male>(0.30,0.225)</Male>
+										<Female>(0.30,0.225)</Female>
+										</bodyTypes>
+					</north>
+
+					<east>
+										<bodyTypes>
+										<Male>(0.0,0.55)</Male>
+										<Female>(0.0,0.55)</Female>
+										</bodyTypes>
+					</east>
+					</offsets>
+					<hediffGraphics>
+					<RRY_Hediff_Cloaked>Things/Addons/Cloak/Cloak</RRY_Hediff_Cloaked>
 					</hediffGraphics>
                 </li>
             </bodyAddons>
@@ -354,11 +407,18 @@
             </researchList>
 			<apparelList>
 				<li>RRY_Apparel_HunterLightArmourChestplate</li>
+				<li>RRY_Apparel_HunterLightArmourGreaves</li>
 				<li>RRY_Apparel_HunterArmourChestplate</li>
-				<li>RRY_Apparel_HunterHeavyArmourChestplate</li>
 				<li>RRY_Apparel_HunterArmourGreaves</li>
+				<li>RRY_Apparel_HunterHeavyArmourChestplate</li>
+				<li>RRY_Apparel_HunterHeavyArmourGreaves</li>
 				<li>RRY_Apparel_HunterBioMask</li>
 				<li>RRY_Apparel_HunterVest</li>
+				
+				<li>RRY_Apparel_LeaderArmourChestplate</li>
+				<li>RRY_Apparel_LeaderArmourGreaves</li>
+				<li>RRY_Apparel_LeaderBioMask</li>
+				
 				<li>RRY_Equipment_HunterGauntlet</li>
 				<li>RRY_Equipment_HunterShoulderCannon</li>
 				<li>RRY_Equipment_HunterShoulderCannonB</li>
@@ -367,13 +427,24 @@
 			<onlyUseRaceRestrictedApparel>true</onlyUseRaceRestrictedApparel>
             <recipeList>
 				<li>RRY_Apparel_HunterLightArmourChestplate</li>
+				<li>RRY_Apparel_HunterLightArmourGreaves</li>
 				<li>RRY_Apparel_HunterArmourChestplate</li>
-				<li>RRY_Apparel_HunterHeavyArmourChestplate</li>
 				<li>RRY_Apparel_HunterArmourGreaves</li>
+				<li>RRY_Apparel_HunterHeavyArmourChestplate</li>
+				<li>RRY_Apparel_HunterHeavyArmourGreaves</li>
 				<li>RRY_Apparel_HunterBioMask</li>
 				<li>RRY_Apparel_HunterVest</li>
+				
+				<li>RRY_Apparel_LeaderArmourChestplate</li>
+				<li>RRY_Apparel_LeaderArmourGreaves</li>
+				<li>RRY_Apparel_LeaderBioMask</li>
+				
 				<li>RRY_Equipment_HunterGauntlet</li>
+				<li>RRY_Equipment_HunterShoulderCannon</li>
 				<li>RRY_Melee_Combistaff</li>
+				<li>RRY_Melee_BladedMaul</li>
+				<li>Yautja_SmartDisk</li>
+				<li>RRY_Gun_NeedlerRifle</li>
 				<li>RRY_Gun_YautjaBlaster</li>
             </recipeList>
         </raceRestriction>

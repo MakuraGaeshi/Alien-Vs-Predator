@@ -14,11 +14,20 @@ namespace RimWorld
 		}
 
         // Yautja HefiffDefs
-        public static HediffDef RRYUnblooded;
-        public static HediffDef RRYBloodedUM; 
-        public static HediffDef RRYBloodedM;
-        
+        public static HediffDef RRY_Hediff_Unblooded;
+        public static HediffDef RRY_Hediff_BloodedUM;
+        public static HediffDef RRY_Hediff_BloodedM;
+        public static HediffDef RRY_Hediff_BloodedMHuman;
+        public static HediffDef RRY_Hediff_BloodedMWorthyHuman;
+        public static HediffDef RRY_Hediff_BloodedMXenomorph;
+        public static HediffDef RRY_Hediff_BloodedMXenomorphQueen;
+        public static HediffDef RRY_Hediff_BloodedMPredalien;
+        public static HediffDef RRY_Hediff_BloodedMBadBlood;
+        public static HediffDef RRY_Hediff_BloodedMHound;
+        public static HediffDef RRY_Hediff_BloodedMCrusher;
+        public static HediffDef RRY_Hediff_BloodedMGroTye;
 
+        public static HediffDef RRY_Hediff_Cloaked;
         // Xenomorph PawnKindDefs
         // Yautja ThingDefs = Races
         public static ThingDef Alien_Yautja;

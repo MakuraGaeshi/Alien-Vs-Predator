@@ -106,58 +106,58 @@ namespace RRYautja
             }
             if (this.cloak.DestroyedOrNull())
             {
-                this.DrawAt(Wearer.DrawPos, false);
-                this.cloak = GenSpawn.Spawn(Util_Cloakgen.CloakDef, intVec, base.Wearer.Map, WipeMode.Vanish);
+                Wearer.health.AddHediff(YautjaDefOf.RRY_Hediff_Cloaked);
             }
             this.cloakIsOn = true;
         }
-        // Token: 0x06005393 RID: 21395 RVA: 0x0010DABF File Offset: 0x0010BEBF
-        public override void Draw()
-        {
-            if (this.cloakMode == CloakMode.On)
-            {
-                Wearer.Graphic.color.a = 0.25f;
-            }
-            Wearer.Draw();
-            this.Comps_PostDraw();
-        }
+
         // Token: 0x06000007 RID: 7 RVA: 0x0000227D File Offset: 0x0000047D
         public void SwitchOffCloak()
         {
-            if (!this.cloak.DestroyedOrNull())
+            if (Wearer.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked))
             {
-                this.cloak.Destroy(DestroyMode.Vanish);
-                this.cloak = null;
+               Hediff hediff = Wearer.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_Cloaked);
+               Wearer.health.RemoveHediff(hediff);
             }
             this.cloakIsOn = false;
         }
 
-        // Token: 0x06000009 RID: 9 RVA: 0x000022D4 File Offset: 0x000004D4
+        // Token: 0x06002739 RID: 10041 RVA: 0x0012AA20 File Offset: 0x00128E20
         public override IEnumerable<Gizmo> GetWornGizmos()
         {
-            IList<Gizmo> list = new List<Gizmo>();
-            int num = 700000101;
-            Gizmo_CloakgenStatus cloak = new Gizmo_CloakgenStatus();
-            cloak.cloak = this;
-            list.Add(cloak);
-            Command_Action command_Action = new Command_Action();
-            switch (this.cloakMode)
+            if (Find.Selector.SingleSelectedThing == base.Wearer)
             {
-                case Cloakgen.CloakMode.Off:
-                    command_Action.icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_CloakMode", true);
-                    command_Action.defaultLabel = "Cloak: off.";
-                    break;
-                case Cloakgen.CloakMode.On:
-                    command_Action.icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_CloakMode", true);
-                    command_Action.defaultLabel = "Cloak: on.";
-                    break;
+                int num = 700000102;
+                yield return new Gizmo_CloakgenStatus
+                {
+                    cloak = this
+                };
+                if (this.cloakMode == CloakMode.On)
+                {
+                    yield return new Command_Action
+                    {
+                        icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_CloakMode", true),
+                        defaultLabel = "Cloak: off.",
+                        defaultDesc = "Switch mode.",
+                        activateSound = SoundDef.Named("Click"),
+                        action = new Action(this.SwitchCloakMode),
+                        groupKey = num + 1,
+                    };
+                }
+                if (this.cloakMode == CloakMode.Off)
+                {
+                    yield return new Command_Action
+                    {
+                        icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_CloakMode", true),
+                        defaultLabel = "Cloak: on.",
+                        defaultDesc = "Switch mode.",
+                        activateSound = SoundDef.Named("Click"),
+                        action = new Action(this.SwitchCloakMode),
+                        groupKey = num + 1,
+                    };
+                }
             }
-            command_Action.defaultDesc = "Switch mode.";
-            command_Action.activateSound = SoundDef.Named("Click");
-            command_Action.action = new Action(this.SwitchCloakMode);
-            command_Action.groupKey = num + 1;
-            list.Add(command_Action);
-            return list;
+            yield break;
         }
 
         // Token: 0x0600000A RID: 10 RVA: 0x000023A4 File Offset: 0x000005A4
@@ -319,7 +319,7 @@ namespace RRYautja
             if (this.cloakMode == CloakMode.On && this.ShouldDisplay)
             {
                 // Wearer.Graphic.color.a = 0.25f;
-                Wearer.Drawer.renderer.graphics.pawn.DefaultGraphic.color.a = 0.25f;
+                //Wearer.Drawer.renderer.graphics.pawn.DefaultGraphic.color.a = 0.25f;
                 float num = Mathf.Lerp(1.2f, 1.55f, this.energy);
                 Vector3 vector = base.Wearer.Drawer.DrawPos;
                 vector.y = Altitudes.AltitudeFor(AltitudeLayer.MoteOverhead);
@@ -336,21 +336,9 @@ namespace RRYautja
                 matrix.SetTRS(vector, Quaternion.AngleAxis(angle, Vector3.up), s);
                 Graphics.DrawMesh(MeshPool.plane10, matrix, Cloakgen.BubbleMat, 0);
             }
-            else
 
-                Wearer.Graphic.color.a = 1;
         }
 
-        public override void DrawAt(Vector3 drawLoc, bool flip)
-        {
-            Log.Message("test");
-            if (this.cloakMode == CloakMode.On)
-            {
-                return;
-            }
-            Log.Message("test 2");
-            base.DrawAt(drawLoc, flip);
-        }
         // Token: 0x04000003 RID: 3
         public Thing cloak;
 
@@ -422,6 +410,8 @@ namespace RRYautja
         }
         // Things/Gas/Puff
         // Other/CloakActive
+        private static GraphicData graphicDataback;
+
         private static readonly Material BubbleMat = MaterialPool.MatFrom("Other/CloakActive", ShaderDatabase.Transparent);
     }
 }

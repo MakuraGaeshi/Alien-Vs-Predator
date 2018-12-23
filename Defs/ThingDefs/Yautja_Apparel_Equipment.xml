@@ -13,8 +13,7 @@
 		</graphicData>
     <projectile>
         <explosionRadius>10</explosionRadius>
-        <damageDef>Bomb</damageDef>
-        <damageAmountBase>120</damageAmountBase>
+        <damageDef>RRYBombSuper</damageDef>
     </projectile>
 		<tickerType>Normal</tickerType>
 		<comps> 

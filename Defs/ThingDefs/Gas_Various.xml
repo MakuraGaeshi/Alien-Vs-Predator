@@ -6,8 +6,8 @@
     <label>Cloak</label>
     <graphicData>
       <texPath>Things/Gas/Puff</texPath>
-      <drawSize>2.2</drawSize>
-      <color>(1.0,1.0,1.0,0.65)</color>
+      <drawSize>(1.5)</drawSize>
+      <color>(1.0,1.0,1.0,0.0)</color>
     </graphicData>
     <gas>
       <expireSeconds>

@@ -38,23 +38,44 @@ namespace RRYautja
             Pawn other = dinfo.Instigator as Pawn;
             Pawn pawn = base.parent as Pawn;
 
-            if (other.kindDef.race==YautjaDefOf.Alien_Yautja)
+            base.PostPostApplyDamage(dinfo, totalDamageDealt);
+
+        }
+    }
+    public class CompProperties_Neomorph : CompProperties
+    {
+        public CompProperties_Neomorph()
+        {
+            this.compClass = typeof(Comp_Neomorph);
+        }
+
+    }
+
+    public class Comp_Neomorph : ThingComp
+    {
+        public CompProperties_Neomorph Props
+        {
+            get
             {
-                if (pawn.Dead)
-                {
-                    if (other.health.hediffSet.HasHediff(YautjaDefOf.RRYUnblooded))
-                    {
-                        foreach (var part in other.RaceProps.body.AllParts.Where(x => x.def.defName == "Head"))
-                        {
-                            Hediff unblooded = other.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRYUnblooded);
-                            other.health.RemoveHediff(unblooded);
-                            Hediff blooded = HediffMaker.MakeHediff(YautjaDefOf.RRYBloodedUM, other, null); 
-                            other.health.AddHediff(blooded, part, null);
-                        }
-                    }
-                }
-                
+                return (CompProperties_Neomorph)this.props;
             }
+        }
+
+        public override void CompTickRare()
+        {
+            base.CompTickRare();
+
+
+        }
+
+        public override void PostPostApplyDamage(DamageInfo dinfo, float totalDamageDealt)
+        {
+
+            Pawn other = dinfo.Instigator as Pawn;
+            Pawn pawn = base.parent as Pawn;
+
+
+
             base.PostPostApplyDamage(dinfo, totalDamageDealt);
 
         }

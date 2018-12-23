@@ -57,16 +57,16 @@ namespace RRYautja
                 timer++;
                 if (timer>=600&&!isImpregnated)
                 {
-                    Log.Message("checking Severity");
+                    // Log.Message("checking Severity");
                     if (Rand.Value>this.parent.Severity)
                     {   
-                        Log.Message("adding embryo");
+                        // Log.Message("adding embryo");
                         parent.pawn.health.AddHediff(heDiffDeff, parent.pawn.RaceProps.body.corePart);
                         hasImpregnated = true;
                         if (base.Pawn.health.hediffSet.HasHediff(heDiffDeff) && !isImpregnated)
                         {
                             isImpregnated = true;
-                            Log.Message("is Impregnated", isImpregnated);
+                            // Log.Message("is Impregnated", isImpregnated);
                         }
                     }
                     timer = 0;
@@ -77,10 +77,10 @@ namespace RRYautja
                 timer2++;
                 if (timer2 >= 600)
                 {
-                    Log.Message("checking Severity");
+                    // Log.Message("checking Severity");
                     if (Rand.Value<this.parent.Severity)
                     {
-                        Log.Message("removing Facehugger");
+                        // Log.Message("removing Facehugger");
                         Hediff heDiff = base.Pawn.health.hediffSet.GetFirstHediffOfDef(base.parent.def);
                         base.Pawn.health.hediffSet.hediffs.Remove(heDiff);
                         this.CompPostPostRemoved();
@@ -95,9 +95,9 @@ namespace RRYautja
         {
             base.CompPostPostAdd(dinfo);
             dInfo = (DamageInfo)dinfo;
-            Log.Message("Adding Facehugger");
+            // Log.Message("Adding Facehugger");
             Instigator = (Pawn)dInfo.Instigator;
-            Log.Message(Instigator.LabelCap);
+            // Log.Message(Instigator.LabelCap);
             Instigator.DeSpawn();
         }
         */

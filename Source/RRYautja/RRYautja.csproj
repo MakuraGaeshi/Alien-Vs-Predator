@@ -50,6 +50,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Apparel_Comps.cs" />
+    <Compile Include="ThoughtWorker_MutliHediff.cs" />
+    <Compile Include="YautjaThoughtDef.cs" />
+    <Compile Include="HarmonyPatches.cs" />
+    <Compile Include="Comp_Yautja.cs" />
     <Compile Include="HediffComp_BloodStatus.cs" />
     <Compile Include="RoomRoleWorker_TrophyRoom.cs" />
     <Compile Include="ThoughtWorker_HonourableVsBadBlood.cs" />

@@ -162,6 +162,7 @@ namespace RRYautja
                 defaultDesc = "WearableExplosives_Desc".Translate(),
                 icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_BOOM", true)
             };
+
         }
     }
 }
