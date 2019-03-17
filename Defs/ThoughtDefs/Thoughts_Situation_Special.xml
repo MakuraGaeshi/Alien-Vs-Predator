@@ -51,6 +51,11 @@
     <stages>
       <li>
         <label>marked</label>
+        <description>this description will be replaced</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+      <li>
+        <label>marked</label>
         <description>I've proven myself by killing Worthy Prey and marked myself with its blood. I feel amazing.</description>
         <baseMoodEffect>5</baseMoodEffect>
       </li>

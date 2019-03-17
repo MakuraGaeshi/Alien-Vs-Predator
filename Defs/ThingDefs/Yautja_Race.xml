@@ -97,6 +97,7 @@
 		-->
 		<li Class="RRYautja.CompProperties_Yautja">
 			<bloodedDefs>
+			<li>RRY_Hediff_BloodedM</li>
 			<li>RRY_Hediff_BloodedMHuman</li>
 			<li>RRY_Hediff_BloodedMHumanlike</li>
 			<li>RRY_Hediff_BloodedMHound</li>

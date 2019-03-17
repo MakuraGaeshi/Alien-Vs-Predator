@@ -2,7 +2,9 @@
 <ModMetaData>
 	<name>Yautja(Predator) Race</name>
 	<author>Ogliss + Rebelrot</author>
-	<targetVersion>1.0.2059</targetVersion>
+	<supportedVersions>
+        <li>1.0</li>
+	</supportedVersions>
 	<description>V1.2
 	
 	This mod adds 

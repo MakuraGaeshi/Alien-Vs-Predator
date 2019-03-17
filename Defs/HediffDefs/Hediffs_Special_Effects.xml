@@ -39,6 +39,7 @@
 				</capacities>
 				<power>28</power>
 				<cooldownTime>1.8</cooldownTime>
+				<chanceFactor>0.75</chanceFactor>
 			</li>
 		</tools>
       </li>
@@ -80,13 +81,23 @@
     <defName>RRY_Hediff_BloodedUM</defName>
         <ignoreConfigErrors>true</ignoreConfigErrors>
     <label>blooded unmarked</label>
+    <initialSeverity>0.5</initialSeverity>
     <labelNoun>a blooded Yautja</labelNoun>
     <stages>
       <li>
         <label>unmarked</label>
         <becomeVisible>false</becomeVisible>
+		<partIgnoreMissingHP>false</partIgnoreMissingHP>
+		<vomitMtbDays>0</vomitMtbDays>
+		<deathMtbDays>0</deathMtbDays>
       </li>
       <li>
+        <minSeverity>0.5</minSeverity>
+        <label>unmarked</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+      <li>
+        <minSeverity>1</minSeverity>
         <label>unmarked</label>
         <becomeVisible>false</becomeVisible>
       </li>

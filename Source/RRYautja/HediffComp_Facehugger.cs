@@ -171,9 +171,6 @@ namespace RRYautja
             }
         }
 
-        public virtual void CompPostTick(ref float severityAdjustment)
-        {
-        }
 
         public override void Notify_PawnDied()
         {

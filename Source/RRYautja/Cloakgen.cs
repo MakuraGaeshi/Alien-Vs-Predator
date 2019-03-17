@@ -410,7 +410,6 @@ namespace RRYautja
         }
         // Things/Gas/Puff
         // Other/CloakActive
-        private static GraphicData graphicDataback;
 
         private static readonly Material BubbleMat = MaterialPool.MatFrom("Other/CloakActive", ShaderDatabase.Transparent);
     }
