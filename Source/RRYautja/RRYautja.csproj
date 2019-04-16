@@ -50,6 +50,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Apparel_Comps.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="HediffComp_DrawImplant.cs" />
+    <Compile Include="XenoHediffWithComps.cs" />
+    <Compile Include="CompSpawnerPawnsOnDamaged.cs" />
+    <Compile Include="Hives\CompSpawnerHiveLikes.cs" />
+    <Compile Include="Hives\CompSpawnerLike.cs" />
+    <Compile Include="Hives\HiveLike.cs" />
+    <Compile Include="Hives\HiveLikeDefOf.cs" />
+    <Compile Include="Hives\HiveLikeUtility.cs" />
+    <Compile Include="Hives\IncidentWorker_Hivelike.cs" />
+    <Compile Include="Hives\InfestationLikeCellFinder.cs" />
+    <Compile Include="Hives\JobGiver_HiveLikeDefense.cs" />
+    <Compile Include="Hives\JobGiver_MaintainHiveLikes.cs" />
+    <Compile Include="Hives\JobGiver_WanderHiveLike.cs" />
+    <Compile Include="Hives\LordJob_DefendAndExpandHiveLike.cs" />
+    <Compile Include="Hives\LordToil_DefendAndExpandHiveLike.cs" />
+    <Compile Include="Hives\LordToil_HiveLikeRelated.cs" />
+    <Compile Include="Hives\LordToil_HiveLikeRelatedData.cs" />
+    <Compile Include="Hives\TunnelHiveLikeSpawner.cs" />
+    <Compile Include="IncidentWorker_CrashedShip.cs" />
+    <Compile Include="LordJob_PawnsDefendShip.cs" />
     <Compile Include="ThoughtWorker_MutliHediff.cs" />
     <Compile Include="YautjaThoughtDef.cs" />
     <Compile Include="HarmonyPatches.cs" />

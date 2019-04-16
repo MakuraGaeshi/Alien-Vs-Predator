@@ -3,7 +3,7 @@
 
   <HediffDef ParentName="InfectionBase">
     <defName>RRY_FaceHuggerInfection</defName>
-    <hediffClass>HediffWithComps</hediffClass>
+    <hediffClass>RRYautja.XenoHediffWithComps</hediffClass>
     <label>Facehugger</label>
     <initialSeverity>0.01</initialSeverity>
     <makesSickThought>true</makesSickThought>
@@ -84,6 +84,11 @@
 		<severityPerDay>10</severityPerDay>
 		<pawnKindDef>RRY_Xenomorph_FaceHugger</pawnKindDef>
 		</li>
+		<li Class="RRYautja.HediffCompProperties_DrawImplant">
+        <compClass>RRYautja.HediffComp_DrawImplant</compClass>
+        <implantDrawerType>Head</implantDrawerType>
+		<implantGraphicPath>Things/Pawn/Xenomorph/Xenomorph_FaceHugger_Mask</implantGraphicPath>
+      </li>
     </comps>
   </HediffDef>
 

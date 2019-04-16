@@ -42,6 +42,7 @@ namespace RRYautja
 
         }
     }
+
     public class CompProperties_Neomorph : CompProperties
     {
         public CompProperties_Neomorph()
