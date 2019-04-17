@@ -29,39 +29,8 @@ namespace RRYautja
                 HediffComp_DrawImplant comp = this.TryGetComp<HediffComp_DrawImplant>();
                 if (comp != null)
                 {
-                    /*
-                    // Get the graphic path
-                    string path2 = comp.graphicPath + "_" + ((Wearer == null) ? null : Wearer.story.bodyType.ToString());
-                    Graphic graphic2 = GraphicDatabase.Get<Graphic_Multi>(path2, ShaderDatabase.CutoutComplex, def.graphicData.drawSize, DrawColor);
-                    ApparelGraphicRecord apparelGraphic2 = new ApparelGraphicRecord(graphic2, this);
-
-                    Material mat2 = apparelGraphic2.graphic.MatAt(rotation);
-                    Vector3 s2 = new Vector3(1.5f, 1.5f, 1.5f);
-
-                    //mat.shader = ShaderDatabase.CutoutComplex;
-                    //mat.color = DrawColor;
-                    Matrix4x4 matrix2 = default(Matrix4x4);
-                    matrix.SetTRS(drawVec, Quaternion.AngleAxis(angle, Vector3.up), s2);
-                    Graphics.DrawMesh(rotation == Rot4.West ? MeshPool.plane10Flip : MeshPool.plane10, matrix2, mat2, 0);
-                    */
-
-                    Draw();
-
-                    /*
-                    // Get the graphic path
-                    string path2 = comp.graphicData.texPath + "_" + ((Wearer == null) ? null : Wearer.story.bodyType.ToString());
-                    Graphic graphic2 = GraphicDatabase.Get<Graphic_Multi>(path, ShaderDatabase.CutoutComplex, def.graphicData.drawSize, DrawColor);
-                    ApparelGraphicRecord apparelGraphic2 = new ApparelGraphicRecord(graphic, this);
-
-                    Material mat2 = apparelGraphic.graphic.MatAt(rotation);
-                    Vector3 s2 = new Vector3(1.5f, 1.5f, 1.5f);
-
-                    //mat.shader = ShaderDatabase.CutoutComplex;
-                    //mat.color = DrawColor;
-                    Matrix4x4 matrix2 = default(Matrix4x4);
-                    matrix.SetTRS(drawVec, Quaternion.AngleAxis(angle, Vector3.up), s);
-                    Graphics.DrawMesh(rotation == Rot4.West ? MeshPool.plane10Flip : MeshPool.plane10, matrix, mat, 0);
-                    */
+                //    Draw();
+                    
                 }
             }
         }

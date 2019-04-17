@@ -27,4 +27,85 @@
 		</stages>
 	</ThoughtDef>
 
+<!--
+	<ThoughtDef>
+		<defName>YautjaVsOther</defName>
+		<thoughtClass>Thought_SituationalSocial</thoughtClass>
+		<workerClass>ThoughtWorker_BadBloodVsHonourable</workerClass>
+    <validWhileDespawned>true</validWhileDespawned>
+		<stages>
+			<li>
+				<label>Bad Blood vs Honourable</label>
+				<baseOpinionOffset>-50</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+-->
+	
+	<ThoughtDef>
+		<defName>UnbloodedVs_ThoughtDef</defName>
+		<thoughtClass>Thought_SituationalSocial</thoughtClass>
+		<workerClass>ThoughtWorker_Unblooded</workerClass>
+    <hediff>RRY_Hediff_Unblooded</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+		<stages>
+			<li>
+				<label>Peer</label>
+				<baseOpinionOffset>5</baseOpinionOffset>
+			</li>
+			<li>
+				<label>Respect</label>
+				<baseOpinionOffset>10</baseOpinionOffset>
+			</li>
+			<li>
+				<label>Great respect</label>
+				<baseOpinionOffset>15</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>UnmarkedVs_ThoughtDef</defName>
+		<thoughtClass>Thought_SituationalSocial</thoughtClass>
+		<workerClass>ThoughtWorker_Unmarked</workerClass>
+    <hediff>RRY_Hediff_BloodedUM</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+		<stages>
+			<li>
+				<label>Contempt</label>
+				<baseOpinionOffset>-10</baseOpinionOffset>
+			</li>
+			<li>
+				<label>Peer</label>
+				<baseOpinionOffset>5</baseOpinionOffset>
+			</li>
+			<li>
+				<label>Respect</label>
+				<baseOpinionOffset>10</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>MarkedVs_ThoughtDef</defName>
+		<thoughtClass>Thought_SituationalSocial</thoughtClass>
+		<workerClass>ThoughtWorker_Marked</workerClass>
+    <hediff>RRY_Hediff_BloodedM</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+		<stages>
+			<li>
+				<label>Contempt</label>
+				<baseOpinionOffset>-15</baseOpinionOffset>
+			</li>
+			<li>
+				<label>Minor Contempt</label>
+				<baseOpinionOffset>-5</baseOpinionOffset>
+			</li>
+			<li>
+				<label>Peer</label>
+				<baseOpinionOffset>5</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+
 </Defs>

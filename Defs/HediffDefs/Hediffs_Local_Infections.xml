@@ -3,7 +3,7 @@
 
   <HediffDef ParentName="InfectionBase">
     <defName>RRY_FaceHuggerInfection</defName>
-    <hediffClass>RRYautja.XenoHediffWithComps</hediffClass>
+    <hediffClass>HediffWithComps</hediffClass>
     <label>Facehugger</label>
     <initialSeverity>0.01</initialSeverity>
     <makesSickThought>true</makesSickThought>

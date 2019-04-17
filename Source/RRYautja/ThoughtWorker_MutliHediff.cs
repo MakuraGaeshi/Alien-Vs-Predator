@@ -12,6 +12,10 @@ namespace RimWorld
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
 
+            if (p.kindDef.race!=YautjaDefOf.Alien_Yautja)
+            {
+                return ThoughtState.Inactive;
+            }
             if (p.health.hediffSet.hediffs!=null)
             {
                 List<HediffDef> list = p.GetComp<RRYautja.Comp_Yautja>().Props.bloodedDefs;
@@ -20,7 +24,7 @@ namespace RimWorld
                     if (hediffDef != null && p.health.hediffSet.HasHediff(hediffDef))
                     {
                         this.hediffDef = hediffDef;
-                        def.stages[0].baseMoodEffect = def.stages[1].baseMoodEffect * (1+ list.IndexOf(hediffDef));
+                        def.stages[0].baseMoodEffect = def.stages[1].baseMoodEffect + (1+ list.IndexOf(hediffDef));
                       //  Log.Message(string.Format("{0} * (1+{1})= {2}", def.stages[1].baseMoodEffect, list.IndexOf(hediffDef), def.stages[0].baseMoodEffect));
                         def.stages[0].description = string.Format("{0}{1}{2}", desc1, hediffDef.stages[0].label, desc2);
                         break;

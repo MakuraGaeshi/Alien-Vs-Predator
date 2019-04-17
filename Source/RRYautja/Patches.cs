@@ -3,6 +3,7 @@ using Verse;
 using Harmony;
 using System.Reflection;
 using System.Collections.Generic;
+using System;
 
 namespace RRYautja
 {
@@ -11,13 +12,17 @@ namespace RRYautja
     {
         static Main()
         {
-            var harmony = HarmonyInstance.Create("com.randolphcherrypepper.rimworld.mod.apparelgizmosfromcomps");
+            var harmony = HarmonyInstance.Create("com.ogliss.rimworld.mod.rryatuja");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
+
+
         }
+        
+
     }
 
     [HarmonyPatch(typeof(Apparel), "GetWornGizmos")]
-    public static class CherrypepperPatch_RimWorld_Apparel_GetWornGizmos
+    public static class Ogliss_RimWorld_Apparel_GetWornGizmos
     {
         [HarmonyPostfix]
         public static void ApparelGizmosFromComps(Apparel __instance, ref IEnumerable<Gizmo> __result)
@@ -45,9 +50,11 @@ namespace RRYautja
             __result = l;
         }
     }
-      
+
+
+
     [HarmonyPatch(typeof(Cloakgen), "GetWornGizmos")]
-    public static class CherrypepperPatch_RimWorld_Cloakgen_GetWornGizmos
+    public static class Ogliss_RimWorld_Cloakgen_GetWornGizmos
     {
         [HarmonyPostfix]
         public static void ApparelGizmosFromComps(Cloakgen __instance, ref IEnumerable<Gizmo> __result)

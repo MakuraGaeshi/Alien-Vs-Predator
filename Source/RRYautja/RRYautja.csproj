@@ -50,7 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Apparel_Comps.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="HediffComp_Xenomorph.cs" />
+    <Compile Include="ThoughtWorkers_Blooded.cs" />
+    <Compile Include="YautjaBloodedUtility.cs" />
     <Compile Include="HediffComp_DrawImplant.cs" />
     <Compile Include="XenoHediffWithComps.cs" />
     <Compile Include="CompSpawnerPawnsOnDamaged.cs" />

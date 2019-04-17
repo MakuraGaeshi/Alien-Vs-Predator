@@ -38,7 +38,7 @@
       <li>
         <label>unmarked</label>
         <description>I've proven myself by killing a Worthy Foe, all thats left it to mark myself with its blood.</description>
-        <baseMoodEffect>5</baseMoodEffect>
+        <baseMoodEffect>2</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>
@@ -52,12 +52,12 @@
       <li>
         <label>marked</label>
         <description>this description will be replaced</description>
-        <baseMoodEffect>5</baseMoodEffect>
+        <baseMoodEffect>2</baseMoodEffect>
       </li>
       <li>
         <label>marked</label>
         <description>I've proven myself by killing Worthy Prey and marked myself with its blood. I feel amazing.</description>
-        <baseMoodEffect>5</baseMoodEffect>
+        <baseMoodEffect>2</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>

@@ -40,4 +40,23 @@
     <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
   </PawnKindDef>
   
+
+  <PawnKindDef ParentName="BaseYautjaPawnKind">
+    <defName>Yautja_BadBlood</defName>
+    <label>Yautja bad blood colonist</label>
+    <defaultFactionType>YautjaPlayerColony</defaultFactionType>
+    <backstoryCategories>
+			<li>Yautja_BadBlood</li>
+  	</backstoryCategories>
+    <apparelTags>
+		<li>YautjaGreaves</li>
+		<li>YautjaWebbing</li>
+    </apparelTags>
+    <apparelMoney>
+      <min>1000</min>
+      <max>1000</max>
+    </apparelMoney>
+    <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
+  </PawnKindDef>
+  
 </Defs>

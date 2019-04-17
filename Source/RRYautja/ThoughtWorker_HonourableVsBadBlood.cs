@@ -14,11 +14,15 @@ namespace RimWorld
             {
                 return false;
             }
-            if (p.story.adulthood.title == "Bad Blood")
+            if (!other.RaceProps.Humanlike)
             {
                 return false;
             }
-            if (!other.RaceProps.Humanlike)
+            if (other.kindDef.race != YautjaDefOf.Alien_Yautja)
+            {
+                return false;
+            }
+            if (p.story.adulthood.title == "Bad Blood")
             {
                 return false;
             }
@@ -44,11 +48,15 @@ namespace RimWorld
             {
                 return false;
             }
-            if (other.story.adulthood.title == "Bad Blood")
+            if (!other.RaceProps.Humanlike)
             {
                 return false;
             }
-            if (!other.RaceProps.Humanlike)
+            if (other.kindDef.race != YautjaDefOf.Alien_Yautja)
+            {
+                return false;
+            }
+            if (other.story.adulthood.title == "Bad Blood")
             {
                 return false;
             }
