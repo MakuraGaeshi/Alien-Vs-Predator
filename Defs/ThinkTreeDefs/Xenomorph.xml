@@ -3,6 +3,27 @@
 
 <Defs>
 
+  
+  <ThinkTreeDef>
+    <defName>SatisfyXenomorphNeeds</defName>
+    <thinkRoot Class="ThinkNode_Tagger">
+      <tagToGive>SatisfyingNeeds</tagToGive>
+      <subNodes>
+        <li Class="ThinkNode_PrioritySorter">
+          <subNodes>
+            <li Class="JobGiver_GetFoodXenomorph">
+              <minCategory>Starving</minCategory>
+            </li>
+          </subNodes>
+        </li>
+		<li Class="JobGiver_FacehuggerHunt" />
+		<li Class="JobGiver_WanderAnywhere">
+		  <maxDanger>Deadly</maxDanger>
+		</li>
+      </subNodes>
+    </thinkRoot>
+  </ThinkTreeDef> 
+  
   <ThinkTreeDef>
     <defName>RRY_Xenommorph</defName>
     <thinkRoot Class="ThinkNode_Priority">
@@ -30,8 +51,16 @@
           <treeDef>MentalStateCritical</treeDef>
         </li>
                 
+        <!-- Satisfy very urgent needs 
+        <li Class="ThinkNode_Subtree">
+          <treeDef>SatisfyXenomorphNeeds</treeDef>
+        </li>
+		-->
+		
         <!-- React to close melee threat -->
 				<li Class="JobGiver_ReactToCloseMeleeThreat" />
+        <!-- React to close melee threat -->
+				<li Class="JobGiver_FacehuggerHunt" />
 
         <!-- Do a queued job -->
         <li Class="ThinkNode_QueuedJob" />

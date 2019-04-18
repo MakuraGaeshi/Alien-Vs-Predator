@@ -15,7 +15,15 @@ namespace RRYautja
         {
             Pawn hitPawn = (Pawn)target;
             var effectOnPawn = hitPawn?.health?.hediffSet?.GetFirstHediffOfDef(XenomorphDefOf.RRY_FaceHuggerInfection);
-            if (Rand.Value * 100 > 50 & effectOnPawn == null)
+            if (effectOnPawn == null)
+            {
+                effectOnPawn = hitPawn?.health?.hediffSet?.GetFirstHediffOfDef(XenomorphDefOf.RRY_XenomorphImpregnation);
+            }
+            if (effectOnPawn == null)
+            {
+                effectOnPawn = hitPawn?.health?.hediffSet?.GetFirstHediffOfDef(XenomorphDefOf.RRY_HiddenXenomorphImpregnation);
+            }
+            if (Rand.Value * 100 > 50 & effectOnPawn == null && hitPawn.kindDef.race.race.baseBodySize>0.7f)
             {
                 infect = true;
             }
@@ -109,6 +117,8 @@ namespace RRYautja
                 foreach (var part in hitPawn.RaceProps.body.AllParts.Where(x => x.def.defName == "Head"))
                 {
                     Hediff hediff = HediffMaker.MakeHediff(XenomorphDefOf.RRY_FaceHuggerInfection, hitPawn, null);
+                    HediffComp_XenoFacehugger comp = hediff.TryGetComp<HediffComp_XenoFacehugger>();
+                    comp.Props.Instigator = CasterPawn;
                     hitPawn.health.AddHediff(hediff, part, null);
                     //MoteMaker.ThrowText(hitPawn.Position.ToVector3(), hitPawn.Map, "Xeno_Facehugger_Success".Translate(Def.AddHediffChance), 12f);
                     caster.DeSpawn();

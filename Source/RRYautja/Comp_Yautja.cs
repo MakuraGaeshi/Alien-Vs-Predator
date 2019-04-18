@@ -153,15 +153,16 @@ namespace RRYautja
             {
                 if (pawn.records.GetAsInt(RecordDefOf.Kills) > TotalkillsRecord)
                 {
+                    bool selected = Find.Selector.SingleSelectedThing == pawn;
                     pawnKills = pawn.records.GetAsInt(RecordDefOf.Kills);
                     foreach (var part in pawn.RaceProps.body.AllParts.Where(x => x.def.defName == "Head"))
                     {
                         partRecord = part;
                     }
-                  //  Log.Message("Records mismatch");
+                    if (selected) Log.Message("Records mismatch");
                     if (pawn.LastAttackedTarget != null && pawn.LastAttackedTarget.Thing is Pawn other && !pawn.Dead)
                     {
-                      //  Log.Message("found pawn");
+                        if (selected) Log.Message("found pawn");
                         Corpse otherCorpse = pawn.LastAttackedTarget.Thing as Corpse;
                         markCorpse = otherCorpse;
                         Hediff unblooded = pawn.health.hediffSet.GetFirstHediffOfDef(unbloodedDef);
@@ -170,55 +171,55 @@ namespace RRYautja
                         Hediff blooded = HediffMaker.MakeHediff(YautjaDefOf.RRY_Hediff_BloodedUM, pawn, partRecord);
                         if (other.kindDef.race.defName.StartsWith("RRY_Xenomorph_") && other.kindDef.race.defName.Contains("Queen") && other.Dead)
                         {
-                          //  Log.Message("Xenomorph Queen kill");
+                            if (selected) Log.Message("Xenomorph Queen kill");
                             blooded.def.stages[0].label = "RRY_Hediff_BloodedMXenomorphQueen";
 
                         }
                         else if (other.kindDef.race.defName.StartsWith("RRY_Xenomorph_") && !other.kindDef.race.defName.Contains("Queen") && !other.kindDef.race.defName.Contains("Predalien") && !other.kindDef.race.defName.Contains("FaceHugger") && other.Dead)
                         {
-                          //  Log.Message("Xenomorph kill");
+                              if (selected) Log.Message("Xenomorph kill");
                             blooded.def.stages[0].label = "RRY_Hediff_BloodedMXenomorph";
 
                         }
                         else if (other.kindDef.race.defName.StartsWith("RRY_Xenomorph_") && other.kindDef.race.defName.Contains("Predalien") && other.Dead)
                         {
-                          //  Log.Message("Predalien kill");
+                              if (selected) Log.Message("Predalien kill");
                             blooded.def.stages[0].label = "RRY_Hediff_BloodedMPredalien";
 
                         }
                         else if (other.kindDef.race.defName == "Alien_Yautja" && other.story.adulthood.identifier.StartsWith("Yautja_BadBlood") && other.Dead)
                         {
-                          //  Log.Message("BadBlood kill");
+                              if (selected) Log.Message("BadBlood kill");
                             blooded.def.stages[0].label = "RRY_Hediff_BloodedMBadBlood";
 
                         }
                         else if (other.kindDef.race.defName == "Human" && !other.kindDef.factionLeader && other.Dead)
                         {
-                          //  Log.Message("Human kill");
+                              if (selected) Log.Message("Human kill");
                             blooded.def.stages[0].label = "RRY_Hediff_BloodedMHuman";
 
                         }
                         else if (other.kindDef.race.defName == "Human" && other.kindDef.factionLeader && other.Dead)
                         {
-                          //  Log.Message("Worthy Human kill");
+                              if (selected) Log.Message("Worthy Human kill");
                             blooded.def.stages[0].label = "RRY_Hediff_BloodedMWorthyHuman";
 
                         }
                         else if (other.kindDef.race.defName != "Human" && !other.kindDef.factionLeader && other.RaceProps.Humanlike && other.Dead)
                         {
-                          //  Log.Message("Humanlike kill");
+                              if (selected) Log.Message("Humanlike kill");
                             blooded.def.stages[0].label = "RRY_Hediff_BloodedMHumanlike";
 
                         }
                         else if (other.kindDef.race.defName != "Human" && other.kindDef.factionLeader && other.RaceProps.Humanlike && other.Dead)
                         {
-                          //  Log.Message("Worthy Humanlike kill");
+                              if (selected) Log.Message("Worthy Humanlike kill");
                             blooded.def.stages[0].label = "RRY_Hediff_BloodedMWorthyHumanlike";
 
                         }
                         else if (!other.kindDef.race.defName.StartsWith("RRY_Xenomorph_") && !other.RaceProps.Humanlike && other.Dead)
                         {
-                          //  Log.Message("Other kill");
+                              if (selected) Log.Message("Other kill");
                             blooded.def.stages[0].label = "RRY_Hediff_BloodedM";
 							
 
@@ -227,11 +228,11 @@ namespace RRYautja
                         {
 							unblooded = HediffMaker.MakeHediff(unbloodedDef, pawn, partRecord);
                         }
-                      //  Log.Message(string.Format("pawn.health.hediffSet.HasHediff(unblooded.def) = {0}", pawn.health.hediffSet.HasHediff(unblooded.def)));
-                      //  Log.Message(string.Format("pawn.health.hediffSet.HasHediff(blooded.def) = {0}", pawn.health.hediffSet.HasHediff(blooded.def)));
+                          if (selected) Log.Message(string.Format("pawn.health.hediffSet.HasHediff(unblooded.def) = {0}", pawn.health.hediffSet.HasHediff(unblooded.def)));
+                          if (selected) Log.Message(string.Format("pawn.health.hediffSet.HasHediff(blooded.def) = {0}", pawn.health.hediffSet.HasHediff(blooded.def)));
                         if (pawn.health.hediffSet.HasHediff(unblooded.def) && !pawn.health.hediffSet.HasHediff(blooded.def))
                         {
-                          //  Log.Message("store info");
+                              if (selected) Log.Message("store info");
 
                             blooded.def.stages[1].label = other.KindLabel;
                             blooded.def.stages[0].partIgnoreMissingHP = other.kindDef.RaceProps.predator;
@@ -239,29 +240,29 @@ namespace RRYautja
                             blooded.def.stages[0].deathMtbDays = other.kindDef.combatPower;
 
 
-                          //  Log.Message("removing old unblooded hediff");
+                              if (selected) Log.Message("removing old unblooded hediff");
                             pawn.health.hediffSet.hediffs.Remove(unblooded);
-                          //  Log.Message("adding hediff");
+                              if (selected) Log.Message("adding hediff");
                             pawn.health.AddHediff(blooded, partRecord, null);
                         }
                         else if (!pawn.health.hediffSet.HasHediff(unblooded.def) && pawn.health.hediffSet.HasHediff(blooded.def))
                         {
                             myhediff = pawn.health.hediffSet.GetFirstHediffOfDef(blooded.def);
-                          //  Log.Message(string.Format("old {0} new {1}", myhediff.def.stages[0].deathMtbDays ,other.kindDef.combatPower));
+                              if (selected) Log.Message(string.Format("old {0} new {1}", myhediff.def.stages[0].deathMtbDays ,other.kindDef.combatPower));
                             if (myhediff.def.stages[0].deathMtbDays< other.kindDef.combatPower)
                             {
-                              //  Log.Message("removing old blooded hediff");
+                                  if (selected) Log.Message("removing old blooded hediff");
 
                                 pawn.health.hediffSet.hediffs.Remove(myhediff);
 
-                              //  Log.Message("store info");
+                                  if (selected) Log.Message("store info");
 
                                 blooded.def.stages[1].label = other.def.LabelCap+ " " +other.KindLabel +" " +other.kindDef.combatPower;
                                 blooded.def.stages[0].partIgnoreMissingHP = other.kindDef.RaceProps.predator;
                                 blooded.def.stages[0].vomitMtbDays = other.BodySize;
                                 blooded.def.stages[0].deathMtbDays = other.kindDef.combatPower;
 
-                              //  Log.Message("adding new hediff");
+                                  if (selected) Log.Message("adding new hediff");
 
 							//	otherCorpse.comps.Add(new CompProperties_Necron())
                                 pawn.health.AddHediff(blooded, partRecord, null);
@@ -270,7 +271,7 @@ namespace RRYautja
 						
                          if (other.kindDef.race.defName == "Alien_Yautja" && !other.story.adulthood.identifier.StartsWith("Yautja_BadBlood") && other.Dead && (other.Faction.PlayerGoodwill>0 || other.Faction.IsPlayer))
                         {
-                          //  Log.Message("Honourable Bad blood Yautja kill");
+                              if (selected) Log.Message("Honourable Bad blood Yautja kill");
                             blooded.def.stages[1].label = " Yautja " + other.Faction.Name + other.KindLabel;
                             blooded.def.stages[0].label = "RRY_Hediff_BloodedMYautja";
 

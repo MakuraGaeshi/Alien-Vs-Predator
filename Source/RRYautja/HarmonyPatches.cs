@@ -1,4 +1,5 @@
 ﻿using Harmony;
+using RimWorld;
 using System;
 using System.Reflection;
 using UnityEngine;
@@ -20,6 +21,11 @@ namespace RRYautja
                     typeof(HarmonyPatches),
                     nameof(PathOfNature)), null);
 
+            var type = typeof(HarmonyPatches);
+            harmony.Patch(
+                AccessTools.Method(typeof(PawnGenerator), "GeneratePawn", new[] { typeof(PawnGenerationRequest) }), null,
+                new HarmonyMethod(type, nameof(Post_GeneratePawn_Astartes)));
+
             Type typeFromHandle3 = typeof(PawnRenderer);
             HarmonyPatches.pawnField_PawnRenderer = typeFromHandle3.GetField("pawn", BindingFlags.Instance | BindingFlags.NonPublic);
             MethodInfo method5 = typeFromHandle3.GetMethod("RenderPawnAt", new Type[]
@@ -30,6 +36,13 @@ namespace RRYautja
             });
             MethodInfo method6 = typeof(HarmonyPatches).GetMethod("Patch_PawnRenderer_RenderPawnAt");
             harmony.Patch(method5, null, new HarmonyMethod(method6), null);
+
+            harmony.Patch(AccessTools.Method(typeof(PawnRenderer), "RenderPawnAt", new Type[]
+            {
+                typeof(Vector3),
+                typeof(RotDrawMode),
+                typeof(bool)
+            }, null), new HarmonyMethod(typeof(HarmonyPatches), "PawnRenderer_Blur_Prefix", null), null, null);
         }
 
 
@@ -113,7 +126,53 @@ namespace RRYautja
             }
         }
 
-        private static FieldInfo pawnField_PawnRenderer;
 
+        public static bool PawnRenderer_Blur_Prefix(PawnRenderer __instance, ref Vector3 drawLoc, ref RotDrawMode bodyDrawType, bool headStump)
+        {
+            Pawn value = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
+            bool flag = value.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked, false);
+            if (flag)
+            {
+                int blurTick = HediffUtility.TryGetComp<HediffComp_Blur>(value.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_Cloaked, false)).blurTick;
+                bool flag2 = blurTick > Find.TickManager.TicksGame - 10;
+                if (flag2)
+                {
+                    float num = (float)(10 / (Find.TickManager.TicksGame - blurTick + 1)) + 5f;
+                    Vector3 vector = drawLoc;
+                    vector.x += Rand.Range(-0.03f, 0.03f) * num;
+                    drawLoc = vector;
+                }
+            }
+            return true;
+        }
+
+        public static void Post_GeneratePawn_Astartes(PawnGenerationRequest request, ref Pawn __result)
+        {
+            Backstory pawnStoryA;
+            Backstory pawnStoryC;
+            HediffDef unbloodedDef = YautjaDefOf.RRY_Hediff_Unblooded;
+            HediffDef bloodedbyDef;
+            PawnKindDef pawnKindDef = request.KindDef;
+            if (pawnKindDef.race == YautjaDefOf.Alien_Yautja)
+            {
+                __result.relations.ClearAllRelations();
+            }
+            if (__result == null)
+            {
+                request = new PawnGenerationRequest(request.KindDef, request.Faction, request.Context, -1, true, false, false, false, false, true, 1f);
+                return;
+            }
+            if (__result.kindDef.race == YautjaDefOf.Alien_Yautja)
+            {
+               
+                    request = new PawnGenerationRequest(request.KindDef, request.Faction, request.Context, -1, true, false, false, false, false, true, 1f);
+                    __result = PawnGenerator.GeneratePawn(request);
+
+                
+            }
+            return;
+        }
+
+        private static FieldInfo pawnField_PawnRenderer;
     }
 }

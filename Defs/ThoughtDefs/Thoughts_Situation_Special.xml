@@ -42,7 +42,7 @@
       </li>
     </stages>
   </ThoughtDef>
-  
+  <!-- -->
   <ThoughtDef>
     <defName>RRY_Thought_BloodedM</defName>
     <workerClass>ThoughtWorker_MutliHediff</workerClass>
@@ -50,10 +50,32 @@
     <validWhileDespawned>true</validWhileDespawned>
     <stages>
       <li>
-        <label>marked</label>
+        <label>mark</label>
         <description>this description will be replaced</description>
         <baseMoodEffect>2</baseMoodEffect>
       </li>
+    </stages>
+  </ThoughtDef>
+  
+  
+  <!--
+  <ThoughtDef Name="BloodedMarkedBaseThought" Abstract="true">
+    <defName>RRY_Thought_BloodedM</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <label>marked</label>
+        <description>I've proven myself by killing Worthy Prey and marked myself with its blood. I feel amazing.</description>
+        <baseMoodEffect>1</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+  <ThoughtDef ParentName="BloodedMarkedBaseThought">
+    <defName>RRY_Thought_BloodedMHuman</defName>
+    <hediff>RRY_Hediff_BloodedMHuman</hediff>
+    <stages inherit="false">
       <li>
         <label>marked</label>
         <description>I've proven myself by killing Worthy Prey and marked myself with its blood. I feel amazing.</description>
@@ -62,6 +84,138 @@
     </stages>
   </ThoughtDef>
   
+  <ThoughtDef ParentName="BloodedMarkedBaseThought">
+    <defName>RRY_Thought_BloodedMHuman</defName>
+    <hediff>RRY_Hediff_BloodedMHuman</hediff>
+    <stages inherit="false">
+      <li>
+        <label>marked</label>
+        <description>I've proven myself by killing Worthy Prey and marked myself with its blood. I feel amazing.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+  <ThoughtDef ParentName="BloodedMarkedBaseThought">
+    <defName>RRY_Thought_BloodedMWorthyHuman</defName>
+    <hediff>RRY_Hediff_BloodedMWorthyHuman</hediff>
+    <stages inherit="false">
+      <li>
+        <label>marked</label>
+        <description>I've proven myself by killing Worthy Prey and marked myself with its blood. I feel amazing.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+  <ThoughtDef ParentName="BloodedMarkedBaseThought">
+    <defName>RRY_Thought_BloodedMHumanlike</defName>
+    <hediff>RRY_Hediff_BloodedMHumanlike</hediff>
+    <stages inherit="false">
+      <li>
+        <label>marked</label>
+        <description>I've proven myself by killing Worthy Prey and marked myself with its blood. I feel amazing.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+  <ThoughtDef ParentName="BloodedMarkedBaseThought">
+    <defName>RRY_Thought_BloodedMWorthyHumanlike</defName>
+    <hediff>RRY_Hediff_BloodedMWorthyHumanlike</hediff>
+    <stages inherit="false">
+      <li>
+        <label>marked</label>
+        <description>I've proven myself by killing Worthy Prey and marked myself with its blood. I feel amazing.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+  <ThoughtDef ParentName="BloodedMarkedBaseThought">
+    <defName>RRY_Thought_BloodedMXenomorph</defName>
+    <hediff>RRY_Hediff_BloodedMXenomorph</hediff>
+    <stages inherit="false">
+      <li>
+        <label>marked</label>
+        <description>I've proven myself by killing Worthy Prey and marked myself with its blood. I feel amazing.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+  <ThoughtDef ParentName="BloodedMarkedBaseThought">
+    <defName>RRY_Thought_BloodedMXenomorphQueen</defName>
+    <hediff>RRY_Hediff_BloodedMXenomorphQueen</hediff>
+    <stages inherit="false">
+      <li>
+        <label>marked</label>
+        <description>I've proven myself by killing Worthy Prey and marked myself with its blood. I feel amazing.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+  <ThoughtDef ParentName="BloodedMarkedBaseThought">
+    <defName>RRY_Thought_BloodedMPredalien</defName>
+    <hediff>RRY_Hediff_BloodedMPredalien</hediff>
+    <stages inherit="false">
+      <li>
+        <label>marked</label>
+        <description>I've proven myself by killing Worthy Prey and marked myself with its blood. I feel amazing.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+  <ThoughtDef ParentName="BloodedMarkedBaseThought">
+    <defName>RRY_Thought_BloodedMBadBlood</defName>
+    <hediff>RRY_Hediff_BloodedMBadBlood</hediff>
+    <stages inherit="false">
+      <li>
+        <label>marked</label>
+        <description>I've proven myself by killing Worthy Prey and marked myself with its blood. I feel amazing.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+  <ThoughtDef ParentName="BloodedMarkedBaseThought">
+    <defName>RRY_Thought_BloodedMHound</defName>
+    <hediff>RRY_Hediff_BloodedMHound</hediff>
+    <stages inherit="false">
+      <li>
+        <label>marked</label>
+        <description>I've proven myself by killing Worthy Prey and marked myself with its blood. I feel amazing.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+  <ThoughtDef ParentName="BloodedMarkedBaseThought">
+    <defName>RRY_Thought_BloodedMCrusher</defName>
+    <hediff>RRY_Hediff_BloodedMCrusher</hediff>
+    <stages inherit="false">
+      <li>
+        <label>marked</label>
+        <description>I've proven myself by killing Worthy Prey and marked myself with its blood. I feel amazing.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+  <ThoughtDef ParentName="BloodedMarkedBaseThought">
+    <defName>RRY_Thought_BloodedMGroTye</defName>
+    <hediff>RRY_Hediff_BloodedMGroTye</hediff>
+    <stages inherit="false">
+      <li>
+        <label>marked</label>
+        <description>I've proven myself by killing Worthy Prey and marked myself with its blood. I feel amazing.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  -->
   
 <!--
   <YautjaThoughtDef>

@@ -92,6 +92,8 @@
     <bodyTypeMale>Male</bodyTypeMale>
     <bodyTypeFemale>Female</bodyTypeFemale>
 	<slot>Adulthood</slot>
+    <maleCommonality>150</maleCommonality>
+    <femaleCommonality>150</femaleCommonality>
     <workDisables>
 	
     </workDisables>

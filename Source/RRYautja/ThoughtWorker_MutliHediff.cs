@@ -8,6 +8,7 @@ namespace RimWorld
     // Token: 0x0200021E RID: 542
     public class ThoughtWorker_MutliHediff : ThoughtWorker
     {
+        int stageIndex = 0;
         // Token: 0x06000A30 RID: 2608 RVA: 0x0004FE58 File Offset: 0x0004E258
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
@@ -19,30 +20,30 @@ namespace RimWorld
             if (p.health.hediffSet.hediffs!=null)
             {
                 List<HediffDef> list = p.GetComp<RRYautja.Comp_Yautja>().Props.bloodedDefs;
-                foreach (var hediffDef in list)
+                foreach (var hd in p.health.hediffSet.hediffs)
                 {
-                    if (hediffDef != null && p.health.hediffSet.HasHediff(hediffDef))
+                    if (hd.def.defName.Contains("RRY_Hediff_BloodedM"))
                     {
-                        this.hediffDef = hediffDef;
-                        def.stages[0].baseMoodEffect = def.stages[1].baseMoodEffect + (1+ list.IndexOf(hediffDef));
-                      //  Log.Message(string.Format("{0} * (1+{1})= {2}", def.stages[1].baseMoodEffect, list.IndexOf(hediffDef), def.stages[0].baseMoodEffect));
-                        def.stages[0].description = string.Format("{0}{1}{2}", desc1, hediffDef.stages[0].label, desc2);
-                        break;
+                        hediffDef = hd.def;
                     }
                 }
+                for (int i = 1; i < list.Count; i++)
+                {
+
+                    def.stages.Add(new ThoughtStage
+                    {
+                        baseMoodEffect = def.stages[0].baseMoodEffect + (1 + i),
+                        description = string.Format("{0}{1}{2}", desc1, list[i].stages[0].label, desc2),
+                        label = string.Format("{0} {1}", list[i].stages[0].label, def.stages[0].label)
+                    });
+                }
+                stageIndex = list.IndexOf(hediffDef);
             }
             Hediff firstHediffOfDef = p.health.hediffSet.GetFirstHediffOfDef(hediffDef, false);
             if (firstHediffOfDef == null || firstHediffOfDef.def.stages == null)
             {
                 return ThoughtState.Inactive;
             }
-            int stageIndex = 0;
-            stageIndex = Mathf.Min(new int[]
-            {
-                    firstHediffOfDef.CurStageIndex,
-                    firstHediffOfDef.def.stages.Count - 1,
-                    this.def.stages.Count - 1
-            });
             return ThoughtState.ActiveAtStage(stageIndex);
         }
 

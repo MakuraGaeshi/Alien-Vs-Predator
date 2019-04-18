@@ -34,9 +34,9 @@ namespace RRYautja
 
         public override void PostPostApplyDamage(DamageInfo dinfo, float totalDamageDealt)
         {
-
             Pawn other = dinfo.Instigator as Pawn;
             Pawn pawn = base.parent as Pawn;
+
 
             base.PostPostApplyDamage(dinfo, totalDamageDealt);
 

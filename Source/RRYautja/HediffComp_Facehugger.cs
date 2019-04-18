@@ -19,6 +19,7 @@ namespace RRYautja
         public bool spawnLive = false;
         public bool killHost = false;
         public float severityPerDay;
+        public Pawn Instigator;
     }
     // Token: 0x02000D5B RID: 3419
     public class HediffComp_XenoFacehugger : HediffComp
@@ -33,6 +34,21 @@ namespace RRYautja
         public Pawn Instigator;
         public DamageInfo dInfo;
 
+        public Pawn intigator
+        {
+            get
+            {
+                if (Props.Instigator!=null)
+                {
+                    return Props.Instigator;
+                }
+                return null;
+            }
+            set
+            {
+                intigator = value;
+            }
+        }
         // Token: 0x17000BE6 RID: 3046
         // (get) Token: 0x06004C0F RID: 19471 RVA: 0x002370CE File Offset: 0x002354CE
         public HediffCompProperties_XenoFacehugger Props
@@ -115,6 +131,10 @@ namespace RRYautja
             }
             PawnGenerationRequest pawnGenerationRequest = new PawnGenerationRequest(pawnKindDef, null, PawnGenerationContext.NonPlayer, -1, true, false, true, false, true, true, 20f);
             Pawn pawn = PawnGenerator.GeneratePawn(pawnGenerationRequest);
+            if (Instigator!=null)
+            {
+                pawn = intigator;
+            }
             if (spawnLive == true)
             {
                 pawn.mindState.StartFleeingBecauseOfPawnAction(hostThing);
@@ -180,10 +200,15 @@ namespace RRYautja
             List<float> pawnKindWeights = Props.pawnKindWeights;
             PawnKindDef pawnKindDef = pawnKindDefs[pawnKindDefs.Count-1];
             int ind = 0;
+            
             foreach (var PKDef in pawnKindDefs)
             {
                 float hostSize = base.parent.pawn.BodySize;
                 float spawnRoll = ((Rand.Range(1, 100)) * hostSize);
+                if (PKDef == XenomorphDefOf.RRY_Xenomorph_Queen && SpawnedQueenCount(base.parent.pawn.MapHeld) != 0)
+                {
+                    spawnRoll = 0;
+                }
                 if (spawnRoll > (100-pawnKindWeights[ind]))
                 {
                     pawnKindDef = PKDef;
@@ -198,6 +223,9 @@ namespace RRYautja
             GenSpawn.Spawn(pawn, base.parent.pawn.PositionHeld, base.parent.pawn.MapHeld, 0);
         }
 
-
+        public static int SpawnedQueenCount(Map map)
+        {
+            return map.listerThings.ThingsOfDef(XenomorphRacesDefOf.RRY_Xenomorph_Queen).Count;
+        }
     }
 }

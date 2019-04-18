@@ -5,7 +5,36 @@
   <!--=============================== Eggs ================================-->
   <!--=====================================================================-->
 
-  <ThingDef Abstract="True" Name="EggBaseXeno" ParentName="OrganicProductBase" >
+  <ThingDef Name="EggItemBase" Abstract="True">
+    <label>Eggy</label>
+    <thingClass>ThingWithComps</thingClass>
+    <category>Item</category>
+    <useHitPoints>true</useHitPoints>
+    <selectable>true</selectable>
+    <statBases>
+      <MaxHitPoints>50</MaxHitPoints>
+      <Flammability>0.7</Flammability>
+			<DeteriorationRate>2.0</DeteriorationRate>
+			<Beauty>-4</Beauty>
+		</statBases>
+    <altitudeLayer>Item</altitudeLayer>
+    <tickerType>Never</tickerType>
+    <alwaysHaulable>true</alwaysHaulable>
+    <isTechHediff>true</isTechHediff>
+    <techLevel>Spacer</techLevel>
+    <tradeTags>
+	
+    </tradeTags>
+    <comps>
+      <li Class="CompProperties_Forbiddable"/>
+    </comps>
+    <thingCategories>
+	
+    </thingCategories>
+    <pathCost>10</pathCost>
+  </ThingDef>
+  
+  <ThingDef Abstract="True" Name="EggBaseXeno" ParentName="EggItemBase" >
     <graphicData>
       <texPath>Things/Item/Resource/AnimalProductRaw/EggBirdSmall</texPath>
       <graphicClass>Graphic_Single</graphicClass>

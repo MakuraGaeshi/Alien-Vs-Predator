@@ -50,6 +50,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Apparel_Comps.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="JobGiver_FacehuggerHunt.cs" />
+    <Compile Include="JobGiver_GetFoodXenomorph.cs" />
+    <Compile Include="JobDriver_PredatorHuntXenomorph.cs" />
     <Compile Include="HediffComp_Xenomorph.cs" />
     <Compile Include="ThoughtWorkers_Blooded.cs" />
     <Compile Include="YautjaBloodedUtility.cs" />

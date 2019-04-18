@@ -49,61 +49,36 @@ namespace RRYautja
             PawnRenderer pawnRenderer = this.Pawn.Drawer.renderer;
             Rot4 rot = LayingFacing();
             bool selected = Find.Selector.SingleSelectedThing == Pawn;
-            bool flag3 = rot == Rot4.North;
-            if (flag3)
-            {
-                //offset = NorthOffset;
-                //    drawPos.x -= 0.1f;
-                //    drawPos.z -= (0.2f);
-                direction = "North";
-            }
-            else
-            {
-                bool flag4 = rot == Rot4.South;
-                if (flag4)
-                {
-                    //offset = SouthOffset;
-                    //    drawPos.x += 0.5f;
-                    //    drawPos.z -= (0.2f);
-                    direction = "South";
-                }
-                else
-                {
-                    bool flag5 = rot == Rot4.East;
-                    if (flag5)
-                    {
-                        //offset = EastOffset;
-                            drawPos.z -= (0.2f);
-                        //    angle = 22.5f;
-                        direction = "East";
-                    }
-                    else
-                    {
-                        bool flag6 = rot == Rot4.West;
-                        if (flag6)
-                        {
-                            //offset = WestOffset;
-                                drawPos.z -= (0.2f);
-                            //    angle = 337.5f;
-                            direction = "West";
-                        }
-                    }
-                }
-            }
             if (offset < 0)
             {
                 drawPos.y -= offset;
             }
             else drawPos.y += offset;
-            //Log.Message(string.Format("PauldronGraphic drawPos.y: {1}", PauldronGraphic.path, drawPos.y));
-            angle = pawnRenderer.wiggler.downedAngle;
-            //Material mat = apparelGraphic.graphic.MatAt(rotation);
+            if (Pawn.Downed)
+            {
+                angle = pawnRenderer.wiggler.downedAngle;
+                if (Pawn.kindDef.race == YautjaDefOf.Alien_Yautja)
+                {
+                    s = new Vector3(2f, 1.5f, 2f);
+                    if (rot.ToStringHuman() == "West" || rot == Rot4.West)
+                    {
+                        //drawPos.z -= 0.15f;
+                       // drawPos.x += 0.25f;
+                    }
+                    else
+                    {
+
+                    //    drawPos.x += 0.25f;
+                    }
+                }
+            }
             if (selected)
             {
-                Log.Message(string.Format("{0}'s {1} CompPauldronDrawer, {2} offset: {3}, drawPos.y:{4}", Pawn.Label, this.parent.def.label, direction, offset, drawPos.y));
+                Log.Message(string.Format("{0}'s {1}, Rot:{2}, offset:{3}, x:{4}, z:{5}", Pawn.Label, this.parent.def.label, rot, offset, drawPos.x, drawPos.z));
+                Log.Message(string.Format("Rot ToStringHuman:{1}, FacingCell:{2}, AsVector2:{3}, AsByte:{4}, AsAngle:{5}", rot, rot.ToStringHuman(), rot.FacingCell, rot.AsVector2, rot.AsByte, rot.AsAngle));
             }
-            Material matSingle = comp.ImplantMaterial(Pawn, rot); //.GetColoredVersion(ShaderDatabase.Cutout, this.mainColor, this.secondaryColor).MatAt(rotation);
-            //    Log.Message(string.Format("PauldronGraphic this.mainColor:{0}, this.secondaryColor: {1}", this.mainColor, this.secondaryColor));
+
+            Material matSingle = comp.ImplantMaterial(Pawn, rot);
             Matrix4x4 matrix = default(Matrix4x4);
             matrix.SetTRS(drawPos, Quaternion.AngleAxis(angle, Vector3.up), s);
             Graphics.DrawMesh(rot == Rot4.West ? MeshPool.plane10Flip : MeshPool.plane10, matrix, matSingle, 0);
