@@ -210,9 +210,10 @@ namespace RRYautja
                 float hostSize = base.parent.pawn.BodySize;
                 float spawnRoll = ((Rand.Range(1, 100)) * hostSize);
                 
-                if (PKDef == XenomorphDefOf.RRY_Xenomorph_Queen && !QueenPresent)
+                if (PKDef == XenomorphDefOf.RRY_Xenomorph_Queen && QueenPresent)
                 {
                     spawnRoll = 0;
+                    Log.Message(string.Format("{0} :{1}", PKDef.label, QueenPresent));
                 }
                 
                 if (spawnRoll > (100-pawnKindWeights[ind]))
@@ -224,7 +225,16 @@ namespace RRYautja
                 ind++;
             }
             PawnGenerationRequest pawnGenerationRequest = new PawnGenerationRequest(pawnKindDef, Find.FactionManager.FirstFactionOfDef(pawnKindDef.defaultFactionType), PawnGenerationContext.NonPlayer, -1, true, false, true, false, true, true, 20f);
+
             Pawn pawn = PawnGenerator.GeneratePawn(pawnGenerationRequest);
+            if (pawnKindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
+            {
+                pawn.gender = Gender.Female;
+            }
+            else
+            {
+                pawn.gender = Gender.Male;
+            }
             pawn.ageTracker.AgeBiologicalTicks = 0;
             pawn.ageTracker.AgeChronologicalTicks = 0;
             GenSpawn.Spawn(pawn, base.parent.pawn.PositionHeld, base.parent.pawn.MapHeld, 0);

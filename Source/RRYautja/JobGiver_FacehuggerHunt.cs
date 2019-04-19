@@ -108,7 +108,7 @@ namespace RimWorld
                         }
                         else
                         {
-                            Log.Message(string.Format("{0} cannae hunt {2} XenoInfection:{1} IsXenos:{3}", predator.Label, XenoInfection, ((Pawn)list[j]).Label, IsXenos));
+                        //    Log.Message(string.Format("{0} cannae hunt {2} XenoInfection:{1} IsXenos:{3}", predator.Label, XenoInfection, ((Pawn)list[j]).Label, IsXenos));
                         }
                     }
                     return false;
@@ -214,7 +214,7 @@ namespace RimWorld
                 }
             }
             */
-            Log.Message(string.Format("{0}@{1} can hunt {2}@{3}", predator.Label, predator.Position, prey.Label, prey.Position));
+            //Log.Message(string.Format("{0}@{1} can hunt {2}@{3}", predator.Label, predator.Position, prey.Label, prey.Position));
             return (predator.Faction == null || prey.Faction == null || predator.HostileTo(prey)) && (predator.Faction == null || prey.HostFaction == null || predator.HostileTo(prey)) && (predator.Faction != Faction.OfPlayer || prey.Faction != Faction.OfPlayer) && (!predator.RaceProps.herdAnimal || predator.def != prey.def) && (!prey.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection) && !prey.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation) && !prey.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation));
         }
 
