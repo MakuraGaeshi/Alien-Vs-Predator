@@ -20,12 +20,12 @@ namespace RRYautja
                     new[] { typeof(Pawn), typeof(IntVec3) }), null, new HarmonyMethod(
                     typeof(HarmonyPatches),
                     nameof(PathOfNature)), null);
-
+            /*
             var type = typeof(HarmonyPatches);
             harmony.Patch(
                 AccessTools.Method(typeof(PawnGenerator), "GeneratePawn", new[] { typeof(PawnGenerationRequest) }), null,
                 new HarmonyMethod(type, nameof(Post_GeneratePawn_Astartes)));
-
+            */
             Type typeFromHandle3 = typeof(PawnRenderer);
             HarmonyPatches.pawnField_PawnRenderer = typeFromHandle3.GetField("pawn", BindingFlags.Instance | BindingFlags.NonPublic);
             MethodInfo method5 = typeFromHandle3.GetMethod("RenderPawnAt", new Type[]

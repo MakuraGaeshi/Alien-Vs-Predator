@@ -138,7 +138,7 @@
                 <li>
                     <defName>Xenophobia</defName>
                     <degree>-1</degree>
-                    <chance>0</chance>
+                    <chance>1</chance>
                 </li>
             </forcedRaceTraitEntries>
 			<disallowedTraits>

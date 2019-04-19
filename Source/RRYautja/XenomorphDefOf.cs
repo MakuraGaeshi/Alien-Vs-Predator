@@ -23,8 +23,7 @@ namespace RimWorld
         public static PawnKindDef RRY_Xenomorph_Warrior;
         public static PawnKindDef RRY_Xenomorph_Drone;
         public static PawnKindDef RRY_Xenomorph_Runner;
-
-        public static JobDef PredatorHuntXenomorph;
+        
     }
 
     public static class XenomorphRacesDefOf

@@ -127,6 +127,7 @@ namespace RRYautja
             return result;
 		}
 
+
 		// Token: 0x0400253C RID: 9532
 		private const float MeleeDamageRandomFactorMin = 0.8f;
 

@@ -3,27 +3,105 @@
 
 <Defs>
 
-  
   <ThinkTreeDef>
     <defName>SatisfyXenomorphNeeds</defName>
-    <thinkRoot Class="ThinkNode_Tagger">
-      <tagToGive>SatisfyingNeeds</tagToGive>
+    <thinkRoot Class="ThinkNode_ConditionalFullyGrown">
       <subNodes>
-        <li Class="ThinkNode_PrioritySorter">
-          <subNodes>
-            <li Class="JobGiver_GetFoodXenomorph">
-              <minCategory>Starving</minCategory>
-            </li>
-          </subNodes>
-        </li>
-		<li Class="JobGiver_FacehuggerHunt" />
-		<li Class="JobGiver_WanderAnywhere">
-		  <maxDanger>Deadly</maxDanger>
-		</li>
+				<!-- Face Hugger Hunting -->
+				<li Class="ThinkNode_ConditionalPawnKind">
+				  <pawnKind>RRY_Xenomorph_FaceHugger</pawnKind>
+				  <subNodes>
+					<li Class="ThinkNode_Tagger">
+					  <tagToGive>Idle</tagToGive>
+					  <subNodes>
+						<!-- Hunt -->
+						<li Class="JobGiver_FacehuggerHunt" />
+						<!-- Exit -->
+						<li Class="JobGiver_ExitMapRandom">
+						  <defaultLocomotion>Sprint</defaultLocomotion>
+						</li>
+						<!-- Wander -->
+						<li Class="JobGiver_WanderAnywhere">
+						  <maxDanger>Deadly</maxDanger>
+						  <ticksBetweenWandersRange>
+							<min>120</min>
+							<max>240</max>
+						  </ticksBetweenWandersRange>
+						</li>
+					  </subNodes>
+					</li>
+				  </subNodes>
+				</li>
+				
+				<!-- Face Hugger Hunting -->
+				<li Class="ThinkNode_ConditionalPawnKind">
+				  <pawnKind>RRY_Xenomorph_Queen</pawnKind>
+				  <subNodes>
+					<li Class="ThinkNode_Tagger">
+					  <tagToGive>Idle</tagToGive>
+					  <subNodes>
+						<!-- Hunt 
+						<li Class="JobGiver_FacehuggerHunt" />
+						-->
+						<!-- Exit 
+						<li Class="JobGiver_ExitMapRandom">
+						  <defaultLocomotion>Sprint</defaultLocomotion>
+						</li>
+						-->
+						<!-- Lay eggs you need to -->
+						<li Class="JobGiver_LayEgg" />
+						<!-- Wander -->
+						<li Class="JobGiver_WanderAnywhere">
+						  <maxDanger>Deadly</maxDanger>
+						  <ticksBetweenWandersRange>
+							<min>120</min>
+							<max>240</max>
+						  </ticksBetweenWandersRange>
+						</li>
+					  </subNodes>
+					</li>
+				  </subNodes>
+				</li>
+				
+				<!-- Face Hugger Hunting -->
+				<li Class="ThinkNode_ConditionalPawnKind">
+				  <pawnKind>RRY_Xenomorph_Drone</pawnKind>
+				  <subNodes>
+					<li Class="ThinkNode_Tagger">
+					  <tagToGive>Idle</tagToGive>
+					  <subNodes>
+						<!-- Hunt 
+						<li Class="JobGiver_FacehuggerHunt" />
+						-->
+						<!-- Exit 
+						<li Class="JobGiver_ExitMapRandom">
+						  <defaultLocomotion>Sprint</defaultLocomotion>
+						</li>
+						-->
+						<!-- Lay eggs you need to -->
+						<li Class="JobGiver_AIFightEnemies" />
+						<!-- Wander -->
+						<li Class="JobGiver_WanderAnywhere">
+						  <maxDanger>Deadly</maxDanger>
+						  <ticksBetweenWandersRange>
+							<min>120</min>
+							<max>240</max>
+						  </ticksBetweenWandersRange>
+						</li>
+					  </subNodes>
+					</li>
+				  </subNodes>
+				</li>
+				
+                <li Class="JobGiver_XenomorphManhunter" />
+                <li Class="JobGiver_WanderAnywhere">
+                  <maxDanger>Deadly</maxDanger>
+                </li>
       </subNodes>
     </thinkRoot>
   </ThinkTreeDef> 
   
+ 
   <ThinkTreeDef>
     <defName>RRY_Xenommorph</defName>
     <thinkRoot Class="ThinkNode_Priority">
@@ -50,21 +128,25 @@
         <li Class="ThinkNode_Subtree">
           <treeDef>MentalStateCritical</treeDef>
         </li>
-                
-        <!-- Satisfy very urgent needs 
-        <li Class="ThinkNode_Subtree">
-          <treeDef>SatisfyXenomorphNeeds</treeDef>
-        </li>
-		-->
 		
         <!-- React to close melee threat -->
 				<li Class="JobGiver_ReactToCloseMeleeThreat" />
-        <!-- React to close melee threat -->
-				<li Class="JobGiver_FacehuggerHunt" />
 
+        <!-- Idle -->
+        <li Class="ThinkNode_ConditionalNotGrown">
+          <subNodes>
+			<li Class="JobGiver_XenomorphFlee" />
+          </subNodes>
+        </li>
+		
         <!-- Do a queued job -->
         <li Class="ThinkNode_QueuedJob" />
 
+        <!-- Satisfy very urgent needs -->
+        <li Class="ThinkNode_Subtree">
+          <treeDef>SatisfyXenomorphNeeds</treeDef>
+        </li>
+				
         <!-- Mental state non critical -->
         <li Class="ThinkNode_Subtree">
           <treeDef>MentalStateNonCritical</treeDef>
@@ -86,7 +168,7 @@
         <li Class="ThinkNode_Subtree">
           <treeDef>LordDuty</treeDef>
         </li>
-
+		
         <!-- Idle -->
         <li Class="ThinkNode_Tagger">
           <tagToGive>Idle</tagToGive>
@@ -96,9 +178,6 @@
             </li>
           </subNodes>
         </li>
-		
-        <!-- Lay eggs you need to -->
-        <li Class="JobGiver_LayEgg" />
 
                 <!-- Satisfy basic needs -->
         <li Class="ThinkNode_Subtree">

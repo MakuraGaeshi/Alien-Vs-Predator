@@ -39,20 +39,20 @@
       <texPath>Things/Item/Resource/AnimalProductRaw/EggBirdSmall</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
+	<!--
     <ingestible>
       <foodType>AnimalProduct</foodType>
       <ingestEffect>EatMeat</ingestEffect>
       <ingestSound>RawMeat_Eat</ingestSound>
       <tasteThought>AteRawFood</tasteThought>
     </ingestible>
+	-->
     <socialPropernessMatters>true</socialPropernessMatters>
     <statBases>
       <Mass>0.15</Mass>
 			<MaxHitPoints>20</MaxHitPoints>
-			<DeteriorationRate>2</DeteriorationRate>
+			<DeteriorationRate>0</DeteriorationRate>
       <Flammability>0.7</Flammability>
-      <Nutrition>0.25</Nutrition>
-      <FoodPoisonChanceFixedHuman>0.02</FoodPoisonChanceFixedHuman>
     </statBases>
     <comps>
       <li Class="CompProperties_Rottable">
@@ -65,18 +65,17 @@
 
   <ThingDef Abstract="True" Name="EggFertBaseXeno" ParentName="EggBaseXeno" >
     <tickerType>Normal</tickerType>
-    <ingestible>
-      <preferability>DesperateOnly</preferability>
-    </ingestible>
     <thingCategories>
       <li>EggsFertilized</li>
     </thingCategories>
 		<comps>
+		<!--
 			<li Class="CompProperties_TemperatureRuinable">
 				<minSafeTemperature>0</minSafeTemperature>
 				<maxSafeTemperature>30</maxSafeTemperature>
-				<progressPerDegreePerTick>0.0003</progressPerDegreePerTick>
+				<progressPerDegreePerTick>0.00003</progressPerDegreePerTick>
 			</li>
+			-->
 		</comps>
   </ThingDef>
   
@@ -95,7 +94,7 @@
     </statBases>
     <comps>
       <li Class="CompProperties_Hatcher">
-        <hatcherDaystoHatch>4.5</hatcherDaystoHatch>
+        <hatcherDaystoHatch>0.25</hatcherDaystoHatch>
         <hatcherPawn>RRY_Xenomorph_FaceHugger</hatcherPawn>
       </li>
 		</comps>

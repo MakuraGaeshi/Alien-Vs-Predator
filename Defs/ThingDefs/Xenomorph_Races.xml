@@ -1,7 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <ThingDef ParentName="BasePawn" Name="BaseXenomorph" Abstract="True">
+<ThingDef Name="BaseXenomorphPawn" Abstract="True">
+    <thingClass>Pawn</thingClass>
+    <category>Pawn</category>
+    <selectable>true</selectable>
+    <tickerType>Normal</tickerType>
+    <altitudeLayer>Pawn</altitudeLayer>
+    <useHitPoints>false</useHitPoints>
+    <hasTooltip>true</hasTooltip>
+    <soundImpactDefault>BulletImpact_Flesh</soundImpactDefault>
+    <inspectorTabs>
+        <li>ITab_Pawn_Health</li>
+        <li>ITab_Pawn_Log</li>
+    </inspectorTabs>
+    <comps>
+        <li>
+            <compClass>CompAttachBase</compClass>
+        </li>
+		<!--
+        <li>
+            <compClass>RRYautja.Comp_Yautja</compClass>
+        </li>
+		<li Class="RRYautja.CompProperties_Yautja">
+			<bloodedDefs>
+			<li>RRY_Hediff_BloodedM</li>
+			<li>RRY_Hediff_BloodedMHuman</li>
+			<li>RRY_Hediff_BloodedMHumanlike</li>
+			<li>RRY_Hediff_BloodedMHound</li>
+			<li>RRY_Hediff_BloodedMCrusher</li>
+			<li>RRY_Hediff_BloodedMGroTye</li>
+			<li>RRY_Hediff_BloodedMWorthyHuman</li>
+			<li>RRY_Hediff_BloodedMWorthyHumanlike</li>
+			<li>RRY_Hediff_BloodedMBadBlood</li>
+			<li>RRY_Hediff_BloodedMXenomorph</li>
+			<li>RRY_Hediff_BloodedMPredalien</li>
+			<li>RRY_Hediff_BloodedMXenomorphQueen</li>
+			</bloodedDefs>
+			
+		</li> 
+		-->
+    </comps>
+    <drawGUIOverlay>true</drawGUIOverlay>
+</ThingDef>
+
+  <ThingDef ParentName="BaseXenomorphPawn" Name="BaseXenomorph" Abstract="True">
     <soundImpactDefault>BulletImpact_Flesh</soundImpactDefault>
     <statBases>
       <PsychicSensitivity>0</PsychicSensitivity>
@@ -16,7 +59,7 @@
       <predator>true</predator>
       <maxPreyBodySize>3.0</maxPreyBodySize>
       <baseBodySize>1.4</baseBodySize>
-      <baseHungerRate>0.3</baseHungerRate>
+      <baseHungerRate>0.0</baseHungerRate>
       <baseHealthScale>1.3</baseHealthScale>
       <fleshType>RRY_Xenomorph</fleshType>
       <bloodDef>RRY_FilthBloodXenomorph</bloodDef>	

@@ -108,17 +108,11 @@ namespace RRYautja
             }
         }
 
-        /*
-        public override void CompPostPostAdd(DamageInfo? dinfo)
+        public override void CompExposeData()
         {
-            base.CompPostPostAdd(dinfo);
-            dInfo = (DamageInfo)dinfo;
-            // Log.Message("Adding Facehugger");
-            Instigator = (Pawn)dInfo.Instigator;
-            // Log.Message(Instigator.LabelCap);
-            Instigator.DeSpawn();
+            base.CompExposeData();
+            Scribe_References.Look<Pawn>(ref this.Props.Instigator, "Instigator", false);
         }
-        */
 
         public override void CompPostPostRemoved()
         {
@@ -137,11 +131,13 @@ namespace RRYautja
             }
             if (spawnLive == true)
             {
-                pawn.mindState.StartFleeingBecauseOfPawnAction(hostThing);
-                pawn.mindState.mentalStateHandler.TryStartMentalState(MentalStateDefOf.ManhunterPermanent);
+                GenSpawn.Spawn(pawn, base.parent.pawn.Position, base.parent.pawn.Map, 0);
             }
-            else { pawn.Kill(null); }
-            GenSpawn.Spawn(pawn, base.parent.pawn.Position, base.parent.pawn.Map, 0);
+            else
+            {
+                GenSpawn.Spawn(pawn, base.parent.pawn.Position, base.parent.pawn.Map, 0);
+                pawn.Kill(null);
+            }
         }
 
         // Token: 0x06004C89 RID: 19593 RVA: 0x002379D6 File Offset: 0x00235DD6
@@ -191,24 +187,34 @@ namespace RRYautja
             {
                 return (HediffCompProperties_XenoSpawner)this.props;
             }
-        }
-
+        }   
 
         public override void Notify_PawnDied()
         {
+            ///((Pawn)base.Pawn).def.race.deathActionWorkerClass.
             List<PawnKindDef> pawnKindDefs = Props.pawnKindDefs;
             List<float> pawnKindWeights = Props.pawnKindWeights;
             PawnKindDef pawnKindDef = pawnKindDefs[pawnKindDefs.Count-1];
             int ind = 0;
-            
+            bool QueenPresent = false;
+            foreach (var p in base.parent.pawn.MapHeld.mapPawns.AllPawnsSpawned)
+            {
+                if (p.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
+                {
+                    QueenPresent = true;
+                    break;
+                }
+            }
             foreach (var PKDef in pawnKindDefs)
             {
                 float hostSize = base.parent.pawn.BodySize;
                 float spawnRoll = ((Rand.Range(1, 100)) * hostSize);
-                if (PKDef == XenomorphDefOf.RRY_Xenomorph_Queen && SpawnedQueenCount(base.parent.pawn.MapHeld) != 0)
+                
+                if (PKDef == XenomorphDefOf.RRY_Xenomorph_Queen && !QueenPresent)
                 {
                     spawnRoll = 0;
                 }
+                
                 if (spawnRoll > (100-pawnKindWeights[ind]))
                 {
                     pawnKindDef = PKDef;
@@ -217,15 +223,13 @@ namespace RRYautja
 
                 ind++;
             }
-            PawnGenerationRequest pawnGenerationRequest = new PawnGenerationRequest(pawnKindDef, null, PawnGenerationContext.NonPlayer, -1, true, false, true, false, true, true, 20f);
+            PawnGenerationRequest pawnGenerationRequest = new PawnGenerationRequest(pawnKindDef, Find.FactionManager.FirstFactionOfDef(pawnKindDef.defaultFactionType), PawnGenerationContext.NonPlayer, -1, true, false, true, false, true, true, 20f);
             Pawn pawn = PawnGenerator.GeneratePawn(pawnGenerationRequest);
             pawn.ageTracker.AgeBiologicalTicks = 0;
+            pawn.ageTracker.AgeChronologicalTicks = 0;
             GenSpawn.Spawn(pawn, base.parent.pawn.PositionHeld, base.parent.pawn.MapHeld, 0);
+            base.Pawn.health.RemoveHediff(this.parent);
         }
 
-        public static int SpawnedQueenCount(Map map)
-        {
-            return map.listerThings.ThingsOfDef(XenomorphRacesDefOf.RRY_Xenomorph_Queen).Count;
-        }
     }
 }

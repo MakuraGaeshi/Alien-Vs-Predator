@@ -15,15 +15,11 @@ namespace RimWorld
             {
                 return null;
             }
-            Pawn pawn2 = this.FindPawnTarget(pawn);
+            Pawn pawn2 = BestPawnToHuntForPredator(pawn, forceScanWholeMap);
             if (pawn2 != null && pawn.CanReach(pawn2, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.ByPawn))
             {
+                Log.Message(string.Format("{0}@{1} hunting {2}@{3}", pawn.Label, pawn.Position, pawn2.Label, pawn2.Position));
                 return this.MeleeAttackJob(pawn, pawn2);
-            }
-            Building building = this.FindTurretTarget(pawn);
-            if (building != null)
-            {
-                return this.MeleeAttackJob(pawn, building);
             }
             if (pawn2 != null)
             {
@@ -57,7 +53,7 @@ namespace RimWorld
             {
                 maxNumMeleeAttacks = 1,
                 expiryInterval = Rand.Range(420, 900),
-                attackDoorIfTargetLost = true
+                attackDoorIfTargetLost = false
             };
         }
 
@@ -103,7 +99,17 @@ namespace RimWorld
                     List<Thing> list = x.ListerThings.ThingsInGroup(ThingRequestGroup.Pawn);
                     for (int j = 0; j < list.Count; j++)
                     {
-                        tmpPredatorCandidates.Add((Pawn)list[j]);
+                        bool XenoInfection = (((Pawn)list[j]).health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection) || ((Pawn)list[j]).health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation) || ((Pawn)list[j]).health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation)) ? true : false;
+                        bool IsXenos = (((Pawn)list[j]).kindDef == XenomorphDefOf.RRY_Xenomorph_Drone || ((Pawn)list[j]).kindDef == XenomorphDefOf.RRY_Xenomorph_FaceHugger || ((Pawn)list[j]).kindDef == XenomorphDefOf.RRY_Xenomorph_Queen || ((Pawn)list[j]).kindDef == XenomorphDefOf.RRY_Xenomorph_Runner || ((Pawn)list[j]).kindDef == XenomorphDefOf.RRY_Xenomorph_Warrior) ? true : false;
+
+                        if (!XenoInfection && !IsXenos)
+                        {
+                            tmpPredatorCandidates.Add((Pawn)list[j]);
+                        }
+                        else
+                        {
+                            Log.Message(string.Format("{0} cannae hunt {2} XenoInfection:{1} IsXenos:{3}", predator.Label, XenoInfection, ((Pawn)list[j]).Label, IsXenos));
+                        }
                     }
                     return false;
                 }, 999999, RegionType.Set_Passable);
@@ -124,7 +130,7 @@ namespace RimWorld
                             {
                                 if (predator.CanReach(pawn2, PathEndMode.ClosestTouch, Danger.Deadly, false, TraverseMode.ByPawn))
                                 {
-                                    if (!pawn2.IsForbidden(predator))
+                                    if (!pawn2.IsForbidden(predator) && !(XenoInfection(pawn2)))
                                     {
                                         if (!tutorialMode || pawn2.Faction != Faction.OfPlayer)
                                         {
@@ -146,10 +152,39 @@ namespace RimWorld
             return pawn;
         }
 
+        public static bool XenoInfection(Pawn pawn)
+        {
+            if (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection))
+            {
+                Log.Message(string.Format("{0}@{1} infected: {2}", pawn.Label, pawn.Position, pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection)));
+                return true;
+            }
+            if (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation))
+            {
+                Log.Message(string.Format("{0}@{1} infected: {2}", pawn.Label, pawn.Position, pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation)));
+                return true;
+            }
+            if (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation))
+            {
+                Log.Message(string.Format("{0}@{1} infected: {2}", pawn.Label, pawn.Position, pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation)));
+                return true;
+            }
+            return false;
+        }
         public static bool IsAcceptablePreyFor(Pawn predator, Pawn prey)
         {
-            if (prey.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection) || prey.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation) || prey.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation))
+            bool XenoInfection = (prey.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection) || prey.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation) || prey.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation)) ? true : false;
+            bool IsXenos = (prey.kindDef == XenomorphDefOf.RRY_Xenomorph_Drone || prey.kindDef == XenomorphDefOf.RRY_Xenomorph_FaceHugger || prey.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen || prey.kindDef == XenomorphDefOf.RRY_Xenomorph_Runner || prey.kindDef == XenomorphDefOf.RRY_Xenomorph_Warrior) ? true : false;
+
+        //    Log.Message(string.Format("{0} hunting {1}? XenoInfection:{2} IsXenos:{3}", predator.Label, prey.Label, XenoInfection, IsXenos));
+            if (XenoInfection)
             {
+            //    Log.Message(string.Format("{0} cant hunt {1} cause XenoInfection:{2}", predator.Label, prey.Label, XenoInfection));
+                return false;
+            }
+            if (IsXenos)
+            {
+            //    Log.Message(string.Format("{0} cant hunt {1} cause IsXenos:{2}", predator.Label, prey.Label, IsXenos));
                 return false;
             }
             if (!prey.RaceProps.IsFlesh)
@@ -179,7 +214,8 @@ namespace RimWorld
                 }
             }
             */
-            return (predator.Faction == null || prey.Faction == null || predator.HostileTo(prey)) && (predator.Faction == null || prey.HostFaction == null || predator.HostileTo(prey)) && (predator.Faction != Faction.OfPlayer || prey.Faction != Faction.OfPlayer) && (!predator.RaceProps.herdAnimal || predator.def != prey.def);
+            Log.Message(string.Format("{0}@{1} can hunt {2}@{3}", predator.Label, predator.Position, prey.Label, prey.Position));
+            return (predator.Faction == null || prey.Faction == null || predator.HostileTo(prey)) && (predator.Faction == null || prey.HostFaction == null || predator.HostileTo(prey)) && (predator.Faction != Faction.OfPlayer || prey.Faction != Faction.OfPlayer) && (!predator.RaceProps.herdAnimal || predator.def != prey.def) && (!prey.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection) && !prey.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation) && !prey.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation));
         }
 
         private static int GetMaxRegionsToScan(Pawn getter, bool forceScanWholeMap)
