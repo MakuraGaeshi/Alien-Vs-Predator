@@ -46,6 +46,20 @@
     </comps>
   </HediffDef>
   
+  <HediffDef>
+    <defName>RRY_Hediff_Cloaked</defName>
+    <hediffClass>RRYautja.Hediff_Cloak</hediffClass>
+    <initialSeverity>1</initialSeverity>
+    <label>Stealth</label>
+    <stages>
+      <li>
+        <label>hidden</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+  </HediffDef>
+  
+<!--
     <HediffDef ParentName="RRYSpecialGoodHeDiff">
     <defName>RRY_Hediff_Cloaked</defName>
     <label>cloak</label>
@@ -56,9 +70,15 @@
         <becomeVisible>false</becomeVisible>
       </li>
     </stages>
-    <!-- <spawnThingOnRemoved>Joywire</spawnThingOnRemoved> -->
+    <comps> 
+      <li>
+        <compClass>RRYautja.HediffComp_Blur</compClass>
+      </li>
+    </comps>
+	
   </HediffDef>
-  	
+-->
+
 <!-- ==================== Blood Status HeDiffs ========================= -->
   <HediffDef ParentName="RRYSpecialGoodHeDiff">
     <defName>RRY_Hediff_Unblooded</defName>

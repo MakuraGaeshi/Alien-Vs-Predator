@@ -14,6 +14,10 @@ namespace RimWorld
             {
                 return false;
             }
+            if (p.kindDef.race != YautjaDefOf.Alien_Yautja)
+            {
+                return false;
+            }
             if (!other.RaceProps.Humanlike)
             {
                 return false;
@@ -45,6 +49,10 @@ namespace RimWorld
         protected override ThoughtState CurrentSocialStateInternal(Pawn p, Pawn other)
         {
             if (!p.RaceProps.Humanlike)
+            {
+                return false;
+            }
+            if (p.kindDef.race != YautjaDefOf.Alien_Yautja)
             {
                 return false;
             }

@@ -107,6 +107,8 @@ namespace RRYautja
             if (this.cloak.DestroyedOrNull())
             {
                 Wearer.health.AddHediff(YautjaDefOf.RRY_Hediff_Cloaked);
+                Hediff hediff = Wearer.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_Cloaked);
+               // hediff.TryGetComp<HediffComp_Blur>().blurTick = Find.TickManager.TicksGame;
             }
             this.cloakIsOn = true;
         }
@@ -114,10 +116,13 @@ namespace RRYautja
         // Token: 0x06000007 RID: 7 RVA: 0x0000227D File Offset: 0x0000047D
         public void SwitchOffCloak()
         {
-            if (Wearer.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked))
+            if (Wearer!=null)
             {
-               Hediff hediff = Wearer.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_Cloaked);
-               Wearer.health.RemoveHediff(hediff);
+                if (Wearer.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked))
+                {
+                    Hediff hediff = Wearer.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_Cloaked);
+                    Wearer.health.RemoveHediff(hediff);
+                }
             }
             this.cloakIsOn = false;
         }
@@ -125,6 +130,7 @@ namespace RRYautja
         // Token: 0x06002739 RID: 10041 RVA: 0x0012AA20 File Offset: 0x00128E20
         public override IEnumerable<Gizmo> GetWornGizmos()
         {
+            base.GetWornGizmos();
             if (Find.Selector.SingleSelectedThing == base.Wearer)
             {
                 int num = 700000102;
@@ -317,7 +323,7 @@ namespace RRYautja
         public override void DrawWornExtras()
         {
             if (this.cloakMode == CloakMode.On && this.ShouldDisplay)
-            {
+                {
                 // Wearer.Graphic.color.a = 0.25f;
                 //Wearer.Drawer.renderer.graphics.pawn.DefaultGraphic.color.a = 0.25f;
                 float num = Mathf.Lerp(1.2f, 1.55f, this.energy);
@@ -334,7 +340,7 @@ namespace RRYautja
                 Vector3 s = new Vector3(num, 1f, num);
                 Matrix4x4 matrix = default(Matrix4x4);
                 matrix.SetTRS(vector, Quaternion.AngleAxis(angle, Vector3.up), s);
-                Graphics.DrawMesh(MeshPool.plane10, matrix, Cloakgen.BubbleMat, 0);
+                //Graphics.DrawMesh(MeshPool.plane10, matrix, Cloakgen.BubbleMat, 0);
             }
 
         }

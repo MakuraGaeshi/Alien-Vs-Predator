@@ -20,12 +20,7 @@ namespace RRYautja
                     new[] { typeof(Pawn), typeof(IntVec3) }), null, new HarmonyMethod(
                     typeof(HarmonyPatches),
                     nameof(PathOfNature)), null);
-            /*
-            var type = typeof(HarmonyPatches);
-            harmony.Patch(
-                AccessTools.Method(typeof(PawnGenerator), "GeneratePawn", new[] { typeof(PawnGenerationRequest) }), null,
-                new HarmonyMethod(type, nameof(Post_GeneratePawn_Astartes)));
-            */
+
             Type typeFromHandle3 = typeof(PawnRenderer);
             HarmonyPatches.pawnField_PawnRenderer = typeFromHandle3.GetField("pawn", BindingFlags.Instance | BindingFlags.NonPublic);
             MethodInfo method5 = typeFromHandle3.GetMethod("RenderPawnAt", new Type[]
@@ -43,6 +38,8 @@ namespace RRYautja
                 typeof(RotDrawMode),
                 typeof(bool)
             }, null), new HarmonyMethod(typeof(HarmonyPatches), "PawnRenderer_Blur_Prefix", null), null, null);
+
+            harmony.Patch(AccessTools.Method(typeof(PawnGraphicSet), "ResolveAllGraphics", null, null), new HarmonyMethod(typeof(HarmonyPatches), "ResolveAllGraphicsPostfix", null), null, null);
         }
 
 
@@ -64,6 +61,33 @@ namespace RRYautja
                 }
             }
 
+        }
+
+        // Token: 0x0600000C RID: 12 RVA: 0x0000283C File Offset: 0x00000A3C
+        public static void ResolveAllGraphicsPostfix(PawnGraphicSet __instance)
+        {
+            Pawn pawn = __instance.pawn;
+            Log.Message(string.Format("tet"));
+            Hediff_Cloak hd = (Hediff_Cloak)pawn.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_Cloaked);
+            if (__instance is PawnGraphicSet_Invisible graphics)
+            {
+                Log.Message(string.Format("tet2"));
+                graphics.ClearCache();
+                graphics.nakedGraphic = new Graphic_Invisible();
+                graphics.ResolveAllGraphics();
+                graphics.rottingGraphic = null;
+                graphics.packGraphic = null;
+                graphics.headGraphic = null;
+                graphics.desiccatedHeadGraphic = null;
+                graphics.skullGraphic = null;
+                graphics.headStumpGraphic = null;
+                graphics.desiccatedHeadStumpGraphic = null;
+                graphics.hairGraphic = null;
+                ShadowData shadowData = new ShadowData();
+                shadowData.volume = new Vector3(0, 0, 0);
+                shadowData.offset = new Vector3(0, 0, 0);
+                hd.SetShadowGraphic(pawn.Drawer.renderer, new Graphic_Shadow(shadowData));
+            }
         }
 
         // Verse.AI.Pawn_PathFollower
@@ -130,17 +154,25 @@ namespace RRYautja
         public static bool PawnRenderer_Blur_Prefix(PawnRenderer __instance, ref Vector3 drawLoc, ref RotDrawMode bodyDrawType, bool headStump)
         {
             Pawn value = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
-            bool flag = value.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked, false);
-            if (flag)
+            PawnGraphicSet value2 = Traverse.Create(__instance).Field("graphics").GetValue<PawnGraphicSet>();
+            //graphics
+            //bool flag = value.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked, false);
+            if (false)
             {
                 int blurTick = HediffUtility.TryGetComp<HediffComp_Blur>(value.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_Cloaked, false)).blurTick;
+            //    Hediff_Cloak Cloak = (Hediff_Cloak)value.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_Cloaked, false);
                 bool flag2 = blurTick > Find.TickManager.TicksGame - 10;
-                if (flag2)
+            //    value2 = new PawnGraphicSet_Invisible(value);
+
+                //    Log.Message(string.Format("blur blurtick: {1} > {2} == flag2:{0}", flag2, blurTick, (Find.TickManager.TicksGame - 10)));
+                if (false)
                 {
+                //    Cloak.PostAdd(null);
                     float num = (float)(10 / (Find.TickManager.TicksGame - blurTick + 1)) + 5f;
                     Vector3 vector = drawLoc;
                     vector.x += Rand.Range(-0.03f, 0.03f) * num;
                     drawLoc = vector;
+                //    Log.Message(string.Format("blue drawLoc:{0}", drawLoc));
                 }
             }
             return true;
