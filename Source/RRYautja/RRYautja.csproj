@@ -54,7 +54,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Apparel_Comps.cs" />
+    <Compile Include="JobDriver_TaketoPos.cs" />
+    <Compile Include="JobDriver_XenosKidnap.cs" />
+    <Compile Include="JobDriver_TakeToEggchamber.cs" />
+    <Compile Include="RoomRoleWorker_EggChamber.cs" />
+    <Compile Include="JobGiver_XenosKidnap.cs" />
+    <Compile Include="JobDriver_LayXenoEgg.cs" />
+    <Compile Include="JobGiver_LayXenoEgg.cs" />
+    <Compile Include="CompXenoEggLayer.cs" />
     <Compile Include="Harmony\Building_Door.cs" />
+    <Compile Include="CompXenoHatcher.cs" />
     <Compile Include="Harmony\IncidentWorker_RaidEnemy.cs" />
     <Compile Include="Harmony\Pawn.cs" />
     <Compile Include="Harmony\PawnUIOverlay.cs" />
@@ -68,6 +77,7 @@
     <Compile Include="JobGiver_XenomorphFlee.cs" />
     <Compile Include="HediffComp_Xenomorph.cs" />
     <Compile Include="ThoughtWorkers_Blooded.cs" />
+    <Compile Include="util\XenomorphUtil.cs" />
     <Compile Include="util\Graphic_Invisible.cs" />
     <Compile Include="util\PawnGraphicSet_Invisible.cs" />
     <Compile Include="YautjaBloodedUtility.cs" />

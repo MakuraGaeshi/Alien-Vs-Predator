@@ -14,16 +14,8 @@ namespace RRYautja
 		private IEnumerable<DamageInfo> DamageInfosToApply(LocalTargetInfo target)
         {
             Pawn hitPawn = (Pawn)target;
-            var effectOnPawn = hitPawn?.health?.hediffSet?.GetFirstHediffOfDef(XenomorphDefOf.RRY_FaceHuggerInfection);
-            if (effectOnPawn == null)
-            {
-                effectOnPawn = hitPawn?.health?.hediffSet?.GetFirstHediffOfDef(XenomorphDefOf.RRY_XenomorphImpregnation);
-            }
-            if (effectOnPawn == null)
-            {
-                effectOnPawn = hitPawn?.health?.hediffSet?.GetFirstHediffOfDef(XenomorphDefOf.RRY_HiddenXenomorphImpregnation);
-            }
-            if (Rand.Value * 100 > 50 & effectOnPawn == null && hitPawn.kindDef.race.race.baseBodySize>0.7f)
+            bool flag = XenomorphUtil.isInfectablePawn(hitPawn);
+            if ((Rand.Value * 100 > 50 || hitPawn.Downed) && flag)
             {
                 infect = true;
             }

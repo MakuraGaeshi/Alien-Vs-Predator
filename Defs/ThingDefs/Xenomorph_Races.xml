@@ -253,28 +253,28 @@
         </li>
         <li>
           <def>RRY_XenomorphChestBursterBig</def>
-          <minAge>0.016</minAge>
+          <minAge>0.0041666666666666</minAge>
           <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
           <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
           <soundCall>Pawn_Mech_Scyther_Call</soundCall>
         </li>
         <li>
           <def>RRY_XenomorphFormedBaby</def>
-          <minAge>0.032</minAge>
+          <minAge>0.0083333333333332</minAge>
           <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
           <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
           <soundCall>Pawn_Mech_Scyther_Call</soundCall>
         </li>
         <li>
           <def>RRY_XenomorphFormedMid</def>
-          <minAge>0.064</minAge>
+          <minAge>0.0124999999999998</minAge>
           <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
           <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
           <soundCall>Pawn_Mech_Scyther_Call</soundCall>
         </li>
         <li>
           <def>RRY_XenomorphFullyFormed</def>
-          <minAge>0.128</minAge>
+          <minAge>0.0166666666666667</minAge>
           <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
           <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
           <soundCall>Pawn_Mech_Scyther_Call</soundCall>
@@ -289,11 +289,10 @@
       <soundMeleeMiss>Pawn_Melee_Punch_Miss</soundMeleeMiss>
     </race>
     <comps> 
-      <li Class="CompProperties_EggLayer">
-        <eggFertilizedDef>RRY_EggXenomorphFertilized</eggFertilizedDef>
-        <eggFertilizationCountMax>1</eggFertilizationCountMax>
+      <li Class="RRYautja.CompProperties_XenoEggLayer">
+        <eggDef>RRY_EggXenomorphFertilized</eggDef>
+        <eggCountMax>1</eggCountMax>
         <eggLayIntervalDays>0.1</eggLayIntervalDays>
-        <eggProgressUnfertilizedMax>1</eggProgressUnfertilizedMax>
         <eggCountRange>1</eggCountRange>
       </li> 
     </comps>
@@ -314,7 +313,7 @@
         <bodyGraphicData>
           <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
-          <drawSize>0.25</drawSize>
+          <drawSize>0.5</drawSize>
           <shadowData>
             <volume>(0.6, 0.8, 0.6)</volume>
           </shadowData>
@@ -324,7 +323,7 @@
         <bodyGraphicData>
           <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
-          <drawSize>0.5</drawSize>
+          <drawSize>0.75</drawSize>
           <shadowData>
             <volume>(0.6, 0.8, 0.6)</volume>
           </shadowData>
@@ -387,28 +386,28 @@
         </li>
         <li>
           <def>RRY_XenomorphChestBursterBig</def>
-          <minAge>0.008</minAge>
+          <minAge>0.0041666666666666</minAge>
           <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
           <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
           <soundCall>Pawn_Mech_Scyther_Call</soundCall>
         </li>
         <li>
           <def>RRY_XenomorphFormedBaby</def>
-          <minAge>0.016</minAge>
+          <minAge>0.0083333333333332</minAge>
           <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
           <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
           <soundCall>Pawn_Mech_Scyther_Call</soundCall>
         </li>
         <li>
           <def>RRY_XenomorphFormedMid</def>
-          <minAge>0.032</minAge>
+          <minAge>0.0124999999999998</minAge>
           <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
           <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
           <soundCall>Pawn_Mech_Scyther_Call</soundCall>
         </li>
         <li>
           <def>RRY_XenomorphFullyFormed</def>
-          <minAge>0.64</minAge>
+          <minAge>0.0166666666666667</minAge>
           <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
           <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
           <soundCall>Pawn_Mech_Scyther_Call</soundCall>
@@ -519,7 +518,7 @@
         <bodyGraphicData>
           <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
-          <drawSize>0.25</drawSize>
+          <drawSize>0.5</drawSize>
           <shadowData>
             <volume>(0.6, 0.8, 0.6)</volume>
           </shadowData>
@@ -529,7 +528,7 @@
         <bodyGraphicData>
           <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
-          <drawSize>0.5</drawSize>
+          <drawSize>0.75</drawSize>
           <shadowData>
             <volume>(0.6, 0.8, 0.6)</volume>
           </shadowData>
@@ -663,7 +662,7 @@
         <bodyGraphicData>
           <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
-          <drawSize>0.25</drawSize>
+          <drawSize>0.5</drawSize>
           <shadowData>
             <volume>(0.6, 0.8, 0.6)</volume>
           </shadowData>
@@ -673,7 +672,7 @@
         <bodyGraphicData>
           <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
-          <drawSize>0.5</drawSize>
+          <drawSize>0.75</drawSize>
           <shadowData>
             <volume>(0.6, 0.8, 0.6)</volume>
           </shadowData>
@@ -810,7 +809,7 @@
         <bodyGraphicData>
           <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
-          <drawSize>0.25</drawSize>
+          <drawSize>0.5</drawSize>
           <shadowData>
             <volume>(0.6, 0.8, 0.6)</volume>
           </shadowData>
@@ -820,7 +819,7 @@
         <bodyGraphicData>
           <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
-          <drawSize>0.5</drawSize>
+          <drawSize>0.75</drawSize>
           <shadowData>
             <volume>(0.6, 0.8, 0.6)</volume>
           </shadowData>
@@ -882,28 +881,28 @@
         </li>
         <li>
           <def>RRY_XenomorphChestBursterBig</def>
-          <minAge>0.008</minAge>
+          <minAge>0.0041666666666666</minAge>
           <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
           <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
           <soundCall>Pawn_Mech_Scyther_Call</soundCall>
         </li>
         <li>
           <def>RRY_XenomorphFormedBaby</def>
-          <minAge>0.016</minAge>
+          <minAge>0.0083333333333332</minAge>
           <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
           <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
           <soundCall>Pawn_Mech_Scyther_Call</soundCall>
         </li>
         <li>
           <def>RRY_XenomorphFormedMid</def>
-          <minAge>0.032</minAge>
+          <minAge>0.0124999999999998</minAge>
           <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
           <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
           <soundCall>Pawn_Mech_Scyther_Call</soundCall>
         </li>
         <li>
           <def>RRY_XenomorphFullyFormed</def>
-          <minAge>0.64</minAge>
+          <minAge>0.0166666666666667</minAge>
           <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
           <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
           <soundCall>Pawn_Mech_Scyther_Call</soundCall>
@@ -1005,7 +1004,7 @@
 
   <PawnKindDef ParentName="BaseXenomorphKind">
     <defName>RRY_Xenomorph_Neomorph</defName>
-    <label>Drone</label>
+    <label>Neomorph</label>
     <race>RRY_Xenomorph_Neomorph</race>
     <combatPower>160</combatPower>
     <lifeStages>
@@ -1013,7 +1012,7 @@
         <bodyGraphicData>
           <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
-          <drawSize>0.25</drawSize>
+          <drawSize>0.5</drawSize>
           <color>(180,180,180)</color>
           <shadowData>
             <volume>(0.6, 0.8, 0.6)</volume>
@@ -1025,7 +1024,7 @@
           <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <color>(180,180,180)</color>
-          <drawSize>0.5</drawSize>
+          <drawSize>0.75</drawSize>
           <shadowData>
             <volume>(0.6, 0.8, 0.6)</volume>
           </shadowData>

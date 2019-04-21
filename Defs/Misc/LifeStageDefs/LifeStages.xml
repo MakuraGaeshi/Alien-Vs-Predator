@@ -66,6 +66,7 @@
     <label>adult</label>
     <visible>false</visible>
     <reproductive>true</reproductive>
+    <milkable>true</milkable>
   </LifeStageDef>
 
 </Defs>

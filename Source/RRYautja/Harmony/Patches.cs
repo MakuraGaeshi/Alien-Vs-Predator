@@ -49,33 +49,9 @@ namespace RRYautja
             }
             __result = l;
         }
-        public static void ApparelGizmosFromComps(Cloakgen __instance, ref IEnumerable<Gizmo> __result)
-        {
-            if (__instance == null)
-            {
-                Log.Warning("ApparelGizmosFromComps cannot access Apparel.");
-                return;
-            }
-            if (__result == null)
-            {
-                Log.Warning("ApparelGizmosFromComps creating new list.");
-                return;
-            }
-
-            // Find all comps on the apparel. If any have gizmos, add them to the result returned from apparel already (typically empty set).
-            List<Gizmo> l = new List<Gizmo>(__result);
-            foreach (CompWearable comp in __instance.GetComps<CompWearable>())
-            {
-                foreach (Gizmo gizmo in comp.CompGetGizmosWorn())
-                {
-                    l.Add(gizmo);
-                }
-            }
-            __result = l;
-        }
     }
 
-    /*
+
 
     [HarmonyPatch(typeof(Cloakgen), "GetWornGizmos")]
     public static class Ogliss_RimWorld_Cloakgen_GetWornGizmos
@@ -106,7 +82,7 @@ namespace RRYautja
             __result = l2;
         }
     }
-    */
+
     public abstract class CompWearable : ThingComp
     {
         public virtual IEnumerable<Gizmo> CompGetGizmosWorn() {

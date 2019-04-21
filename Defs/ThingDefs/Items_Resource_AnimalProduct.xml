@@ -14,7 +14,7 @@
     <statBases>
       <MaxHitPoints>50</MaxHitPoints>
       <Flammability>0.7</Flammability>
-			<DeteriorationRate>2.0</DeteriorationRate>
+			<DeteriorationRate>0.0</DeteriorationRate>
 			<Beauty>-4</Beauty>
 		</statBases>
     <altitudeLayer>Item</altitudeLayer>
@@ -55,33 +55,19 @@
       <Flammability>0.7</Flammability>
     </statBases>
     <comps>
+	<!--
       <li Class="CompProperties_Rottable">
         <daysToRotStart>15</daysToRotStart>
         <rotDestroys>true</rotDestroys>
         <disableIfHatcher>true</disableIfHatcher>
       </li>
+	  -->
     </comps>
   </ThingDef>
 
-  <ThingDef Abstract="True" Name="EggFertBaseXeno" ParentName="EggBaseXeno" >
-    <tickerType>Normal</tickerType>
-    <thingCategories>
-      <li>EggsFertilized</li>
-    </thingCategories>
-		<comps>
-		<!--
-			<li Class="CompProperties_TemperatureRuinable">
-				<minSafeTemperature>0</minSafeTemperature>
-				<maxSafeTemperature>30</maxSafeTemperature>
-				<progressPerDegreePerTick>0.00003</progressPerDegreePerTick>
-			</li>
-			-->
-		</comps>
-  </ThingDef>
-  
   <!-- Xenomorph -->
   
-  <ThingDef ParentName="EggFertBaseXeno">
+  <ThingDef ParentName="EggBaseXeno">
     <defName>RRY_EggXenomorphFertilized</defName>
     <label>Xenomorph egg</label>
     <description>A Xenomorph egg. The eggs laid by the queen are ellipsoidal, leathery objects between one-half and one meter (two and three feet) high with a four-lobed opening at the top. The eggs can remain in a stasis mode for years, possibly indefinitely, until nearby movement is detected. As a potential host approaches, the egg's lobes unfold like flower petals, and the parasitic facehugger extracts itself from the egg and attaches itself to the potential host. why anyone would allow one of these to hatch is a mystery.</description>
@@ -89,12 +75,17 @@
       <texPath>Things/Resources/Raw/Xenomorph_Egg</texPath>
       <color>(245,245,245)</color>
     </graphicData>
+    <tickerType>Normal</tickerType>
+    <thingCategories>
+      <li>EggsFertilized</li>
+    </thingCategories>
     <statBases>
       <MarketValue>40.0</MarketValue>
     </statBases>
     <comps>
-      <li Class="CompProperties_Hatcher">
+      <li Class="RRYautja.CompProperties_XenoHatcher">
         <hatcherDaystoHatch>0.25</hatcherDaystoHatch>
+        <triggerRadius>5</triggerRadius>
         <hatcherPawn>RRY_Xenomorph_FaceHugger</hatcherPawn>
       </li>
 		</comps>

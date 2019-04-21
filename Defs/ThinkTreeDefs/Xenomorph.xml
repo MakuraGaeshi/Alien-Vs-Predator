@@ -49,7 +49,7 @@
 						</li>
 						-->
 						<!-- Lay eggs you need to -->
-						<li Class="JobGiver_LayEgg" />
+						<li Class="JobGiver_LayXenoEgg" />
 						<!-- Wander -->
 						<li Class="JobGiver_WanderAnywhere">
 						  <maxDanger>Deadly</maxDanger>

@@ -1,4 +1,5 @@
-﻿using Harmony;
+﻿using AlienRace;
+using Harmony;
 using RimWorld;
 using System;
 using System.Reflection;
@@ -39,7 +40,39 @@ namespace RRYautja
                 typeof(bool)
             }, null), new HarmonyMethod(typeof(HarmonyPatches), "PawnRenderer_Blur_Prefix", null), null, null);
 
-            harmony.Patch(AccessTools.Method(typeof(PawnGraphicSet), "ResolveAllGraphics", null, null), new HarmonyMethod(typeof(HarmonyPatches), "ResolveAllGraphicsPostfix", null), null, null);
+            harmony.Patch(
+                original: AccessTools.Method(type: typeof(AlienPartGenerator.BodyAddon), name: "CanDrawAddon"),
+                prefix: new HarmonyMethod(type: typeof(HarmonyPatches), name: nameof(Pre_CanDrawAddon_Cloak)),
+                postfix: null);
+
+            harmony.Patch(
+                original: AccessTools.Method(type: typeof(PawnRenderer), name: "DrawEquipment"),
+                prefix: new HarmonyMethod(type: typeof(HarmonyPatches), name: nameof(Pre_DrawEquipment_Cloak)),
+                postfix: null);
+
+            //    harmony.Patch(AccessTools.Method(typeof(PawnGraphicSet), "ResolveAllGraphics", null, null), new HarmonyMethod(typeof(HarmonyPatches), "ResolveAllGraphicsPostfix", null), null, null);
+        }
+
+        public static bool Pre_CanDrawAddon_Cloak(Pawn pawn)
+        {
+            bool flag = pawn.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked, false);
+            if (flag)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        //PawnRenderer DrawEquipment
+        public static bool Pre_DrawEquipment_Cloak(Vector3 rootLoc, PawnRenderer __instance)
+        {
+            Pawn pawn = HarmonyPatches.PawnRenderer_GetPawn(__instance);
+            bool flag = pawn.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked, false);
+            if (flag)
+            {
+                return false;
+            }
+            return true;
         }
 
 
@@ -74,7 +107,6 @@ namespace RRYautja
                 Log.Message(string.Format("tet2"));
                 graphics.ClearCache();
                 graphics.nakedGraphic = new Graphic_Invisible();
-                graphics.ResolveAllGraphics();
                 graphics.rottingGraphic = null;
                 graphics.packGraphic = null;
                 graphics.headGraphic = null;
@@ -93,7 +125,7 @@ namespace RRYautja
         // Verse.AI.Pawn_PathFollower
         public static void PathOfNature(Pawn_PathFollower __instance, Pawn pawn, IntVec3 c, ref int __result)
         {
-            if (pawn?.GetComp<Comp_Yautja>() is Comp_Yautja comp_Yautja)
+            if (pawn?.GetComp<Comp_Yautja>() is Comp_Yautja comp_Yautja || pawn?.GetComp<Comp_Xenomorph>() is Comp_Xenomorph comp_Xenomorph)
             {
                 int num;
                 if (c.x == pawn.Position.x || c.z == pawn.Position.z)
@@ -156,24 +188,24 @@ namespace RRYautja
             Pawn value = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
             PawnGraphicSet value2 = Traverse.Create(__instance).Field("graphics").GetValue<PawnGraphicSet>();
             //graphics
-            //bool flag = value.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked, false);
-            if (false)
+            bool flag = value.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked, false);
+            if (flag)
             {
-                int blurTick = HediffUtility.TryGetComp<HediffComp_Blur>(value.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_Cloaked, false)).blurTick;
-            //    Hediff_Cloak Cloak = (Hediff_Cloak)value.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_Cloaked, false);
-                bool flag2 = blurTick > Find.TickManager.TicksGame - 10;
-            //    value2 = new PawnGraphicSet_Invisible(value);
-
-                //    Log.Message(string.Format("blur blurtick: {1} > {2} == flag2:{0}", flag2, blurTick, (Find.TickManager.TicksGame - 10)));
-                if (false)
+                if (value.kindDef.race.GetType() == typeof(AlienRace.ThingDef_AlienRace))
                 {
-                //    Cloak.PostAdd(null);
-                    float num = (float)(10 / (Find.TickManager.TicksGame - blurTick + 1)) + 5f;
-                    Vector3 vector = drawLoc;
-                    vector.x += Rand.Range(-0.03f, 0.03f) * num;
-                    drawLoc = vector;
-                //    Log.Message(string.Format("blue drawLoc:{0}", drawLoc));
+                    bool selected = Find.Selector.SingleSelectedThing == value;
+                    if (selected) Log.Message(string.Format("A Foul Xenos"));
                 }
+                __instance.graphics = new PawnGraphicSet_Invisible(value);
+                __instance.graphics.nakedGraphic = new Graphic_Invisible();
+                __instance.graphics.rottingGraphic = null;
+                __instance.graphics.packGraphic = null;
+                __instance.graphics.headGraphic = null;
+                __instance.graphics.desiccatedHeadGraphic = null;
+                __instance.graphics.skullGraphic = null;
+                __instance.graphics.headStumpGraphic = null;
+                __instance.graphics.desiccatedHeadStumpGraphic = null;
+                __instance.graphics.hairGraphic = null;
             }
             return true;
         }

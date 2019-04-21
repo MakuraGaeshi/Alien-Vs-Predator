@@ -88,7 +88,7 @@ namespace RRYautja
                 shadowData.volume = new Vector3(0, 0, 0);
                 shadowData.offset = new Vector3(0, 0, 0);
                 SetShadowGraphic(pawn.Drawer.renderer, new Graphic_Shadow(shadowData));
-            pawn.Drawer.renderer.graphics.ResolveAllGraphics();
+            //pawn.Drawer.renderer.graphics.ResolveAllGraphics();
 
 
             pawn.stances.CancelBusyStanceHard();

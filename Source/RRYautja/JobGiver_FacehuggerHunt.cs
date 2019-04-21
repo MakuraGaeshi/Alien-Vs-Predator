@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RRYautja;
+using System;
 using System.Collections.Generic;
 using Verse;
 using Verse.AI;
@@ -11,14 +12,19 @@ namespace RimWorld
         // Token: 0x060005B7 RID: 1463 RVA: 0x00037A28 File Offset: 0x00035E28
         protected override Job TryGiveJob(Pawn pawn)
         {
+            bool selected = Find.Selector.SingleSelectedThing == pawn;
             if (pawn.TryGetAttackVerb(null, false) == null)
             {
                 return null;
             }
-            Pawn pawn2 = BestPawnToHuntForPredator(pawn, forceScanWholeMap);
+            Pawn pawn2 = FindPawnTarget(pawn);
+        //    Pawn pawn2 = BestPawnToHuntForPredator(pawn, forceScanWholeMap);
             if (pawn2 != null && pawn.CanReach(pawn2, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.ByPawn))
             {
-                Log.Message(string.Format("{0}@{1} hunting {2}@{3}", pawn.Label, pawn.Position, pawn2.Label, pawn2.Position));
+
+#if DEBUG
+                if (selected) Log.Message(string.Format("{0}@{1} hunting {2}@{3}", pawn.Label, pawn.Position, pawn2.Label, pawn2.Position));
+#endif
                 return this.MeleeAttackJob(pawn, pawn2);
             }
             if (pawn2 != null)
@@ -60,9 +66,13 @@ namespace RimWorld
         // Token: 0x060005B9 RID: 1465 RVA: 0x00037BC0 File Offset: 0x00035FC0
         private Pawn FindPawnTarget(Pawn pawn)
         {
-            Pawn pawn2 = (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn && x.def.race.baseBodySize >= 0.7f && x.def.race.IsFlesh && !x.def.race.IsMechanoid && !((Pawn)x).health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection) && !((Pawn)x).health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation) && !((Pawn)x).health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation), 0f, 9999f, default(IntVec3), float.MaxValue, true, true);
+            Pawn pawn2 = (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn && XenomorphUtil.isInfectablePawn((Pawn)x), 0f, 9999f, default(IntVec3), float.MaxValue, true, true);
             if (pawn2 == null) pawn2 = BestPawnToHuntForPredator(pawn, forceScanWholeMap);
-            if (pawn2 != null) Log.Message(string.Format("{0}@{1} hunting {2}@{3}", pawn.Label, pawn.Position, pawn2.Label, pawn2.Position));
+#if DEBUG
+            bool selected = Find.Selector.SingleSelectedThing == pawn;
+            if (selected)
+            { if (pawn2 != null) Log.Message(string.Format("{0}@{1} hunting {2}@{3}", pawn.Label, pawn.Position, pawn2.Label, pawn2.Position)); }                
+#endif
             return pawn2;
         }
 
@@ -154,19 +164,26 @@ namespace RimWorld
 
         public static bool XenoInfection(Pawn pawn)
         {
+            bool selected = Find.Selector.SingleSelectedThing == pawn;
             if (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection))
             {
-                Log.Message(string.Format("{0}@{1} infected: {2}", pawn.Label, pawn.Position, pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection)));
+#if DEBUG
+                if (selected) Log.Message(string.Format("{0}@{1} infected: {2}", pawn.Label, pawn.Position, pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection)));
+#endif
                 return true;
             }
             if (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation))
             {
-                Log.Message(string.Format("{0}@{1} infected: {2}", pawn.Label, pawn.Position, pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation)));
+#if DEBUG
+                if (selected) Log.Message(string.Format("{0}@{1} infected: {2}", pawn.Label, pawn.Position, pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation)));
+#endif
                 return true;
             }
             if (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation))
             {
-                Log.Message(string.Format("{0}@{1} infected: {2}", pawn.Label, pawn.Position, pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation)));
+#if DEBUG
+                if (selected) Log.Message(string.Format("{0}@{1} infected: {2}", pawn.Label, pawn.Position, pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation)));
+#endif
                 return true;
             }
             return false;

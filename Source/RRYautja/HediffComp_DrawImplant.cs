@@ -72,12 +72,13 @@ namespace RRYautja
                     }
                 }
             }
+#if DEBUG
             if (selected)
             {
                 Log.Message(string.Format("{0}'s {1}, Rot:{2}, offset:{3}, x:{4}, z:{5}", Pawn.Label, this.parent.def.label, rot, offset, drawPos.x, drawPos.z));
                 Log.Message(string.Format("Rot ToStringHuman:{1}, FacingCell:{2}, AsVector2:{3}, AsByte:{4}, AsAngle:{5}", rot, rot.ToStringHuman(), rot.FacingCell, rot.AsVector2, rot.AsByte, rot.AsAngle));
             }
-
+#endif
             Material matSingle = comp.ImplantMaterial(Pawn, rot);
             Matrix4x4 matrix = default(Matrix4x4);
             matrix.SetTRS(drawPos, Quaternion.AngleAxis(angle, Vector3.up), s);

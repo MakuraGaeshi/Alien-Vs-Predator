@@ -241,5 +241,134 @@
 		</li>
     </comps>
   </HediffDef>
-  
+ 
+  <HediffDef ParentName="DiseaseBase">
+    <defName>RRY_NeomorphImpregnation</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>neomorph impregnation</label>
+    <labelNoun>a neomorph impregnation</labelNoun>
+    <initialSeverity>0.1</initialSeverity>
+    <lethalSeverity>1</lethalSeverity>
+    <chanceToCauseNoPain>1</chanceToCauseNoPain>
+    <tendable>false</tendable>
+    <stages>
+      <li>
+        <label>post impregnation</label>
+        <partEfficiencyOffset>-0.1</partEfficiencyOffset>
+        <painOffset>0.1</painOffset>
+      </li>
+      <li>
+        <minSeverity>0.15</minSeverity>
+        <label>early gestation</label>
+				<partEfficiencyOffset>-0.25</partEfficiencyOffset>
+        <painOffset>0.2</painOffset>
+      </li>
+      <li>
+        <minSeverity>0.4</minSeverity>
+        <label>major</label>
+				<partEfficiencyOffset>-0.5</partEfficiencyOffset>
+        <painOffset>0.35</painOffset>
+      </li>
+      <li>
+        <minSeverity>0.6</minSeverity>
+        <label>major</label>
+				<partEfficiencyOffset>-0.8</partEfficiencyOffset>
+        <painOffset>0.5</painOffset>
+      </li>
+      <li>
+        <minSeverity>0.8</minSeverity>
+        <label>extreme</label>
+				<partEfficiencyOffset>-0.9</partEfficiencyOffset>
+        <painOffset>0.6</painOffset>
+      </li>
+      <li>
+        <minSeverity>1</minSeverity>
+        <label>extreme</label>
+				<partEfficiencyOffset>-1.0</partEfficiencyOffset>
+        <painOffset>0.7</painOffset>
+        <destroyPart>true</destroyPart>
+      </li>
+    </stages>
+    <comps>
+		<li Class="RRYautja.HediffCompProperties_XenoSpawner">
+		<pawnKindDefs>
+			<li>RRY_Xenomorph_Neomorph</li>
+		</pawnKindDefs>
+		<pawnKindWeights>
+			<li>100</li>
+		</pawnKindWeights>
+		</li>
+		<li Class="HediffCompProperties_SeverityPerDay">
+		<severityPerDay>1</severityPerDay>
+		</li>
+    </comps>
+  </HediffDef>
+    
+  <HediffDef ParentName="DiseaseBase">
+    <defName>RRY_HiddenNeomorphImpregnation</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>neomorph impregnation</label>
+    <labelNoun>a neomorph impregnation</labelNoun>
+    <initialSeverity>0.1</initialSeverity>
+    <lethalSeverity>1</lethalSeverity>
+    <chanceToCauseNoPain>1</chanceToCauseNoPain>
+    <tendable>false</tendable>
+    <stages>
+      <li>
+        <label>post impregnation</label>
+        <becomeVisible>false</becomeVisible>
+        <partEfficiencyOffset>-0.1</partEfficiencyOffset>
+        <painOffset>0.1</painOffset>
+      </li>
+      <li>
+        <minSeverity>0.15</minSeverity>
+        <label>early gestation</label>
+        <becomeVisible>false</becomeVisible>
+				<partEfficiencyOffset>-0.25</partEfficiencyOffset>
+        <painOffset>0.2</painOffset>
+      </li>
+      <li>
+        <minSeverity>0.4</minSeverity>
+        <label>major</label>
+        <becomeVisible>false</becomeVisible>
+				<partEfficiencyOffset>-0.5</partEfficiencyOffset>
+        <painOffset>0.35</painOffset>
+      </li>
+      <li>
+        <minSeverity>0.6</minSeverity>
+        <label>major</label>
+        <becomeVisible>false</becomeVisible>
+				<partEfficiencyOffset>-0.8</partEfficiencyOffset>
+        <painOffset>0.5</painOffset>
+      </li>
+      <li>
+        <minSeverity>0.8</minSeverity>
+        <label>extreme</label>
+        <becomeVisible>false</becomeVisible>
+				<partEfficiencyOffset>-0.9</partEfficiencyOffset>
+        <painOffset>0.6</painOffset>
+      </li>
+      <li>
+        <minSeverity>1</minSeverity>
+        <label>extreme</label>
+        <becomeVisible>false</becomeVisible>
+				<partEfficiencyOffset>-1.0</partEfficiencyOffset>
+        <painOffset>0.7</painOffset>
+        <destroyPart>true</destroyPart>
+      </li>
+    </stages>
+    <comps>
+		<li Class="RRYautja.HediffCompProperties_XenoSpawner">
+		<pawnKindDefs>
+			<li>RRY_Xenomorph_Neomorph</li>
+		</pawnKindDefs>
+		<pawnKindWeights>
+			<li>100</li>
+		</pawnKindWeights>
+		</li>
+		<li Class="HediffCompProperties_SeverityPerDay">
+		<severityPerDay>1</severityPerDay>
+		</li>
+    </comps>
+  </HediffDef>
 </Defs>

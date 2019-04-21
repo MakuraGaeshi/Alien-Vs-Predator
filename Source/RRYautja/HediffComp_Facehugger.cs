@@ -77,9 +77,11 @@ namespace RRYautja
                 {
                     // Log.Message("checking Severity");
                     if (Rand.Value>this.parent.Severity)
-                    {   
+                    {
                         // Log.Message("adding embryo");
                         parent.pawn.health.AddHediff(heDiffDeff, parent.pawn.RaceProps.body.corePart);
+                        Hediff hediff = parent.pawn.health.hediffSet.GetFirstHediffOfDef(heDiffDeff);
+                        hediff.TryGetComp<HediffComp_XenoSpawner>();
                         hasImpregnated = true;
                         if (base.Pawn.health.hediffSet.HasHediff(heDiffDeff) && !isImpregnated)
                         {
@@ -112,6 +114,7 @@ namespace RRYautja
         {
             base.CompExposeData();
             Scribe_References.Look<Pawn>(ref this.Props.Instigator, "Instigator", false);
+            Scribe_References.Look<Pawn>(ref Instigator, "Instigator", false);
         }
 
         public override void CompPostPostRemoved()
@@ -187,8 +190,13 @@ namespace RRYautja
             {
                 return (HediffCompProperties_XenoSpawner)this.props;
             }
-        }   
-
+        }
+        public override void CompPostPostAdd(DamageInfo? dinfo)
+        {
+            base.CompPostPostAdd(dinfo);
+            DeathActionWorker daw = this.Pawn.def.race.DeathActionWorker;
+            this.Pawn.def.race.deathActionWorkerClass = typeof(DeathActionWorker_Simple);
+        }
         public override void Notify_PawnDied()
         {
             ///((Pawn)base.Pawn).def.race.deathActionWorkerClass.

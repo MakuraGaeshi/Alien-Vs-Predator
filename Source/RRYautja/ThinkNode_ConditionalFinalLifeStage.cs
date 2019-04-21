@@ -11,7 +11,10 @@ namespace RimWorld
         protected override bool Satisfied(Pawn pawn)
         {
             LifeStageDef stage = pawn.ageTracker.CurLifeStage;
-            if (pawn.kindDef!=XenomorphDefOf.RRY_Xenomorph_FaceHugger&&stage == pawn.RaceProps.lifeStageAges[pawn.RaceProps.lifeStageAges.Count - 1].def) Log.Message(string.Format("{0} CurLifeStage:{1} FinalLifeStage:{2}", pawn.Label, stage, pawn.RaceProps.lifeStageAges[pawn.RaceProps.lifeStageAges.Count - 1].def));
+#if DEBUG
+            bool selected = Find.Selector.SingleSelectedThing == pawn;
+            if (selected&&pawn.kindDef!=XenomorphDefOf.RRY_Xenomorph_FaceHugger&&stage == pawn.RaceProps.lifeStageAges[pawn.RaceProps.lifeStageAges.Count - 1].def) Log.Message(string.Format("{0} CurLifeStage:{1} FinalLifeStage:{2}", pawn.Label, stage, pawn.RaceProps.lifeStageAges[pawn.RaceProps.lifeStageAges.Count - 1].def));
+#endif
             return stage == pawn.RaceProps.lifeStageAges[pawn.RaceProps.lifeStageAges.Count - 1].def;
         }
 
@@ -23,7 +26,10 @@ namespace RimWorld
         protected override bool Satisfied(Pawn pawn)
         {
             LifeStageDef stage = pawn.ageTracker.CurLifeStage;
-        //    if (stage != pawn.RaceProps.lifeStageAges[pawn.RaceProps.lifeStageAges.Count - 1].def) Log.Message(string.Format("{0} CurLifeStage:{1} FinalLifeStage:{2}", pawn.Label, stage, pawn.RaceProps.lifeStageAges[pawn.RaceProps.lifeStageAges.Count - 1].def));
+#if DEBUG
+            bool selected = Find.Selector.SingleSelectedThing == pawn;
+            if (selected&&stage != pawn.RaceProps.lifeStageAges[pawn.RaceProps.lifeStageAges.Count - 1].def) Log.Message(string.Format("{0} CurLifeStage:{1} FinalLifeStage:{2}", pawn.Label, stage, pawn.RaceProps.lifeStageAges[pawn.RaceProps.lifeStageAges.Count - 1].def));
+#endif
             return stage != pawn.RaceProps.lifeStageAges[pawn.RaceProps.lifeStageAges.Count - 1].def;
         }
 

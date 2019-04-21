@@ -17,13 +17,28 @@ namespace RimWorld
         public static HediffDef RRY_XenomorphImpregnation;
         public static HediffDef RRY_HiddenXenomorphImpregnation;
 
-        // Xenomorph PawnKindDefs RRY_Xenomorph_Queen
+        // Xenomorph PawnKindDefs
         public static PawnKindDef RRY_Xenomorph_FaceHugger;
         public static PawnKindDef RRY_Xenomorph_Queen;
         public static PawnKindDef RRY_Xenomorph_Warrior;
         public static PawnKindDef RRY_Xenomorph_Drone;
         public static PawnKindDef RRY_Xenomorph_Runner;
-        
+
+        // Xenomorph HefiffDefs
+        public static HediffDef RRY_NeomorphImpregnation;
+        public static HediffDef RRY_HiddenNeomorphImpregnation;
+
+        // Xenomorph PawnKindDefs
+        public static PawnKindDef RRY_Xenomorph_Neomorph;
+
+        // Xenomorph FactionDefs
+        public static FactionDef RRY_Xenomorph;
+
+        // Xenomorph JobDefs
+        public static JobDef LayXenomorphEgg;
+
+        // Xenomorph ThingDefs
+        public static ThingDef RRY_EggXenomorphFertilized;
     }
 
     public static class XenomorphRacesDefOf
