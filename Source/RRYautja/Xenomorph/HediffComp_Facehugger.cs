@@ -219,6 +219,14 @@ namespace RRYautja
                 {
                     Pawn.Drawer.renderer.wiggler.downedAngle -= 0.35f;
                 }
+                else if (num < 180 && num >= 90)
+                {
+                    Pawn.Drawer.renderer.wiggler.downedAngle += 0.35f;
+                }
+                else if (num < 300 && num >= 210)
+                {
+                    Pawn.Drawer.renderer.wiggler.downedAngle -= 0.35f;
+                }
             }
         }
         public override void Notify_PawnDied()
@@ -278,25 +286,12 @@ namespace RRYautja
             pawn.Graphic.color = color;
             for (int i = 0; i < 1001; i++)
             { // Find.TickManager.TicksGame
-
-                int num = Find.TickManager.TicksGame % 300 * 2;
-#if DEBUG
-                if (selected) Log.Message(string.Format("num: {0}", num));
-#endif
-                if (num < 90)
-                {
-                    Pawn.Drawer.renderer.wiggler.downedAngle += 0.35f;
-                }
-                else if (num < 390 && num >= 300)
-                {
-                    Pawn.Drawer.renderer.wiggler.downedAngle -= 0.35f;
-                }
                 if (Rand.MTBEventOccurs(DustMoteSpawnMTB, 1f, 1.TicksToSeconds()))
                 {
                     MoteMaker.ThrowDustPuffThick(new Vector3(vector.x, 0f, vector.z)
                     {
                         y = AltitudeLayer.MoteOverhead.AltitudeFor()
-                    }, base.parent.pawn.MapHeld, Rand.Range(1.5f, 3f), new Color(color.r, color.g, color.b, 1f));
+                    }, base.parent.pawn.MapHeld, Pawn.BodySize, new Color(color.r, color.g, color.b, 1f));
                 }
             }
             GenSpawn.Spawn(pawn, base.parent.pawn.PositionHeld, base.parent.pawn.MapHeld, 0);
