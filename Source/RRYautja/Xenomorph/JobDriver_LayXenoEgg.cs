@@ -23,7 +23,10 @@ namespace RimWorld
             yield return Toils_General.Do(delegate
             {
                 Thing forbiddenIfOutsideHomeArea = GenSpawn.Spawn(this.pawn.GetComp<CompXenoEggLayer>().ProduceEgg(), this.pawn.Position, base.Map, WipeMode.Vanish);
-                forbiddenIfOutsideHomeArea.SetForbiddenIfOutsideHomeArea();
+                if (forbiddenIfOutsideHomeArea.GetType() != typeof(Building))
+                {
+                    forbiddenIfOutsideHomeArea.SetForbidden(true);
+                }
             });
             yield break;
         }

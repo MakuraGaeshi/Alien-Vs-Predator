@@ -73,7 +73,7 @@ namespace RimWorld
         private Job FleeJob(Pawn pawn, Thing danger)
         {
             IntVec3 intVec;
-            if (pawn.CurJob != null && pawn.CurJob.def == JobDefOf.Flee)
+            if (pawn.CurJob != null && pawn.CurJob.def == JobDefOf.FleeAndCower)
             {
                 intVec = pawn.CurJob.targetA.Cell;
             }
@@ -86,7 +86,7 @@ namespace RimWorld
             }
             if (intVec != pawn.Position)
             {
-                return new Job(JobDefOf.Flee, intVec, danger);
+                return new Job(JobDefOf.FleeAndCower, intVec, danger);
             }
             return null;
         }

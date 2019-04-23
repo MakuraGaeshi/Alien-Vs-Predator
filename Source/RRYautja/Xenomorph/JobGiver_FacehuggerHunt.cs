@@ -59,14 +59,16 @@ namespace RimWorld
             {
                 maxNumMeleeAttacks = 1,
                 expiryInterval = Rand.Range(420, 900),
-                attackDoorIfTargetLost = false
+                attackDoorIfTargetLost = false,
+                killIncappedTarget=true
             };
         }
 
         // Token: 0x060005B9 RID: 1465 RVA: 0x00037BC0 File Offset: 0x00035FC0
         private Pawn FindPawnTarget(Pawn pawn)
         {
-            Pawn pawn2 = (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn && XenomorphUtil.isInfectablePawn((Pawn)x), 0f, 9999f, default(IntVec3), float.MaxValue, true, true);
+            Pawn pawn2 = (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn && XenomorphUtil.isInfectablePawn((Pawn)x), 0f, 10f, default(IntVec3), float.MaxValue, true, true);
+            if (pawn2 == null) pawn2 = (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn && XenomorphUtil.isInfectablePawn((Pawn)x), 0f, 9999f, default(IntVec3), float.MaxValue, true, true);
             if (pawn2 == null) pawn2 = BestPawnToHuntForPredator(pawn, forceScanWholeMap);
 #if DEBUG
             bool selected = Find.Selector.SingleSelectedThing == pawn;
@@ -190,8 +192,8 @@ namespace RimWorld
         }
         public static bool IsAcceptablePreyFor(Pawn predator, Pawn prey)
         {
-            bool XenoInfection = (prey.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection) || prey.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation) || prey.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation)) ? true : false;
-            bool IsXenos = (prey.kindDef == XenomorphDefOf.RRY_Xenomorph_Drone || prey.kindDef == XenomorphDefOf.RRY_Xenomorph_FaceHugger || prey.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen || prey.kindDef == XenomorphDefOf.RRY_Xenomorph_Runner || prey.kindDef == XenomorphDefOf.RRY_Xenomorph_Warrior) ? true : false;
+            bool XenoInfection = XenomorphUtil.IsInfectedPawn(prey);
+            bool IsXenos = XenomorphUtil.IsXenomorph(prey);
 
         //    Log.Message(string.Format("{0} hunting {1}? XenoInfection:{2} IsXenos:{3}", predator.Label, prey.Label, XenoInfection, IsXenos));
             if (XenoInfection)

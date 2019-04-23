@@ -50,6 +50,19 @@ namespace RRYautja
                 prefix: new HarmonyMethod(type: typeof(HarmonyPatches), name: nameof(Pre_DrawEquipment_Cloak)),
                 postfix: null);
 
+            //Patch_PawnRenderer_WigglerTick
+            /*
+            harmony.Patch(
+                original: AccessTools.Method(type: typeof(PawnRenderer), name: "WigglerTick"),
+                prefix: null,
+                postfix: new HarmonyMethod(type: typeof(HarmonyPatches), name: nameof(Patch_PawnRenderer_WigglerTick)));
+            */
+            //DeathActionWorker_BigExplosion
+            harmony.Patch(
+                original: AccessTools.Method(type: typeof(DeathActionWorker_BigExplosion), name: "PawnDied"),
+                prefix: new HarmonyMethod(type: typeof(HarmonyPatches), name: nameof(Pre_PawnDied_Facehugger)),
+                postfix: null);
+
             //    harmony.Patch(AccessTools.Method(typeof(PawnGraphicSet), "ResolveAllGraphics", null, null), new HarmonyMethod(typeof(HarmonyPatches), "ResolveAllGraphicsPostfix", null), null, null);
         }
 
@@ -68,6 +81,18 @@ namespace RRYautja
         {
             Pawn pawn = HarmonyPatches.PawnRenderer_GetPawn(__instance);
             bool flag = pawn.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked, false);
+            if (flag)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        //PawnRenderer PawnDied
+        public static bool Pre_PawnDied_Facehugger(Corpse corpse, DeathActionWorker_BigExplosion __instance)
+        {
+            Log.Message(string.Format("{0}", corpse.Label));
+            bool flag = XenomorphUtil.IsInfectedPawn(corpse.InnerPawn);
             if (flag)
             {
                 return false;
@@ -96,6 +121,42 @@ namespace RRYautja
 
         }
 
+        // Patch_PawnRenderer_WigglerTick
+        /*
+        public static void Patch_PawnRenderer_WigglerTick(PawnRenderer __instance)
+        {
+            Pawn pawn = HarmonyPatches.PawnRenderer_GetPawn(__instance);
+            foreach (var hd in pawn.health.hediffSet.hediffs)
+            {
+                HediffComp_XenoSpawner comp = hd.TryGetComp<HediffComp_XenoSpawner>();
+                if (comp != null)
+                {
+                    int num = Find.TickManager.TicksGame % 300 * 2;
+                    if (num < 90)
+                    {
+                        this.downedAngle += 0.35f;
+                    }
+                    else if (num < 390 && num >= 300)
+                    {
+                        this.downedAngle -= 0.35f;
+                    }
+                }
+            }
+
+        }
+        */
+        /*
+        
+					int num = Find.TickManager.TicksGame % 300 * 2;
+					if (num < 90)
+					{
+						this.downedAngle += 0.35f;
+					}
+					else if (num < 390 && num >= 300)
+					{
+						this.downedAngle -= 0.35f;
+					}
+        */
         // Token: 0x0600000C RID: 12 RVA: 0x0000283C File Offset: 0x00000A3C
         public static void ResolveAllGraphicsPostfix(PawnGraphicSet __instance)
         {

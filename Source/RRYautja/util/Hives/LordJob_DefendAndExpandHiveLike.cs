@@ -50,8 +50,8 @@ namespace RimWorld
 			stateGraph.AddToil(lordToil_DefendHiveAggressively);
 			LordToil_AssaultColony lordToil_AssaultColony = new LordToil_AssaultColony(false);
 			stateGraph.AddToil(lordToil_AssaultColony);
-            /*
-			Transition transition = new Transition(lordToil_DefendAndExpandHive, (!this.aggressive) ? lordToil_DefendHiveAggressively : lordToil_AssaultColony, false, true);
+            
+			Transition transition = new Transition(lordToil_DefendAndExpandHive, (!aggressive) ? (LordToil)lordToil_DefendHiveAggressively : (LordToil)lordToil_AssaultColony, false, true);
 			transition.AddTrigger(new Trigger_PawnHarmed(0.5f, true, null));
 			transition.AddTrigger(new Trigger_PawnLostViolently(false));
 			transition.AddTrigger(new Trigger_Memo(HiveLike.MemoAttackedByEnemy));
@@ -60,7 +60,7 @@ namespace RimWorld
 			transition.AddTrigger(new Trigger_Memo(HediffGiver_Heat.MemoPawnBurnedByAir));
 			transition.AddPostAction(new TransitionAction_EndAllJobs());
 			stateGraph.AddTransition(transition, false);
-            */
+            
 			Transition transition2 = new Transition(lordToil_DefendAndExpandHive, lordToil_AssaultColony, false, true);
 			Transition transition3 = transition2;
 			float chance = 0.5f;

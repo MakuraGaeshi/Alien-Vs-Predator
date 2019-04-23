@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
+ <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
   <!-- Buttons -->
   <WearableExplosives_Label>Detonate</WearableExplosives_Label>
   <WearableExplosives_Desc>Detonate this pawn's self destruct device.</WearableExplosives_Desc>
-  <Xeno_Facehugger_Success>a Facehugger attached itself to {0}</Xeno_Facehugger_Success>
+  <Xeno_Facehugger_Success>Facehugger attached itself to {0}</Xeno_Facehugger_Success>
 </LanguageData>

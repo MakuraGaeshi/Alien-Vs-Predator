@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using UnityEngine;
 using Verse;
 
 namespace RRYautja
@@ -197,9 +198,34 @@ namespace RRYautja
             DeathActionWorker daw = this.Pawn.def.race.DeathActionWorker;
             this.Pawn.def.race.deathActionWorkerClass = typeof(DeathActionWorker_Simple);
         }
+        public override void CompPostTick(ref float severityAdjustment)
+        {
+            bool selected = Find.Selector.SingleSelectedThing == parent.pawn;
+            base.CompPostTick(ref severityAdjustment);
+            if (parent.CurStageIndex == parent.def.stages.Count-2)
+            {
+#if DEBUG
+                if (selected) Log.Message(string.Format("Pre Death stage: {0}", parent.CurStage.label));
+#endif
+                int num = Find.TickManager.TicksGame % 300 * 2;
+#if DEBUG
+                if (selected) Log.Message(string.Format("num: {0}", num));
+#endif
+                if (num < 90)
+                {
+                    Pawn.Drawer.renderer.wiggler.downedAngle += 0.35f;
+                }
+                else if (num < 390 && num >= 300)
+                {
+                    Pawn.Drawer.renderer.wiggler.downedAngle -= 0.35f;
+                }
+            }
+        }
         public override void Notify_PawnDied()
         {
+            bool selected = Find.Selector.SingleSelectedThing == parent.pawn;
             ///((Pawn)base.Pawn).def.race.deathActionWorkerClass.
+            this.Pawn.def.race.deathActionWorkerClass = typeof(DeathActionWorker_Simple);
             List<PawnKindDef> pawnKindDefs = Props.pawnKindDefs;
             List<float> pawnKindWeights = Props.pawnKindWeights;
             PawnKindDef pawnKindDef = pawnKindDefs[pawnKindDefs.Count-1];
@@ -221,7 +247,9 @@ namespace RRYautja
                 if (PKDef == XenomorphDefOf.RRY_Xenomorph_Queen && QueenPresent)
                 {
                     spawnRoll = 0;
-                    Log.Message(string.Format("{0} :{1}", PKDef.label, QueenPresent));
+#if DEBUG
+                    if (selected) Log.Message(string.Format("{0} :{1}", PKDef.label, QueenPresent));
+#endif
                 }
                 
                 if (spawnRoll > (100-pawnKindWeights[ind]))
@@ -245,9 +273,37 @@ namespace RRYautja
             }
             pawn.ageTracker.AgeBiologicalTicks = 0;
             pawn.ageTracker.AgeChronologicalTicks = 0;
+            Vector3 vector = base.parent.pawn.PositionHeld.ToVector3Shifted();
+            Color color = base.parent.pawn.def.race.BloodDef.graphic.color;
+            pawn.Graphic.color = color;
+            for (int i = 0; i < 1001; i++)
+            { // Find.TickManager.TicksGame
+
+                int num = Find.TickManager.TicksGame % 300 * 2;
+#if DEBUG
+                if (selected) Log.Message(string.Format("num: {0}", num));
+#endif
+                if (num < 90)
+                {
+                    Pawn.Drawer.renderer.wiggler.downedAngle += 0.35f;
+                }
+                else if (num < 390 && num >= 300)
+                {
+                    Pawn.Drawer.renderer.wiggler.downedAngle -= 0.35f;
+                }
+                if (Rand.MTBEventOccurs(DustMoteSpawnMTB, 1f, 1.TicksToSeconds()))
+                {
+                    MoteMaker.ThrowDustPuffThick(new Vector3(vector.x, 0f, vector.z)
+                    {
+                        y = AltitudeLayer.MoteOverhead.AltitudeFor()
+                    }, base.parent.pawn.MapHeld, Rand.Range(1.5f, 3f), new Color(color.r, color.g, color.b, 1f));
+                }
+            }
             GenSpawn.Spawn(pawn, base.parent.pawn.PositionHeld, base.parent.pawn.MapHeld, 0);
-            base.Pawn.health.RemoveHediff(this.parent);
+            //base.Pawn.health.RemoveHediff(this.parent);
         }
 
+        [TweakValue("Gameplay", 0f, 1f)]
+        private static float DustMoteSpawnMTB = 0.2f;
     }
 }

@@ -91,6 +91,7 @@
       <li>
         <label>Face grab</label>
         <capacities>
+          <!-- <li>RRY_FaceHuggerGrab</li> -->
           <li>RRY_FaceHuggerGrab</li>
         </capacities>
         <power>2</power>
@@ -289,6 +290,9 @@
       <soundMeleeMiss>Pawn_Melee_Punch_Miss</soundMeleeMiss>
     </race>
     <comps> 
+      <li>
+        <compClass>RRYautja.Comp_Xenomorph</compClass>
+      </li>
       <li Class="RRYautja.CompProperties_XenoEggLayer">
         <eggDef>RRY_EggXenomorphFertilized</eggDef>
         <eggCountMax>1</eggCountMax>

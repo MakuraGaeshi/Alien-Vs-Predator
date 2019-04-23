@@ -50,6 +50,7 @@
           <max>15000</max>
         </spawnIntervalRange>
       </li>
+	  <!--
       <li Class="CompProperties_Spawner">
         <thingToSpawn>GlowPod</thingToSpawn>
         <spawnCount>1</spawnCount>
@@ -76,6 +77,7 @@
         <ticksNeedsMaintenance>40000</ticksNeedsMaintenance>
         <damagePerTickRare>10</damagePerTickRare>
       </li>
+	  -->
     </comps>
   </ThingDef>
   

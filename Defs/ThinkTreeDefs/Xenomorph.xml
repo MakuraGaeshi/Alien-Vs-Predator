@@ -17,9 +17,7 @@
 						<!-- Hunt -->
 						<li Class="JobGiver_FacehuggerHunt" />
 						<!-- Exit -->
-						<li Class="JobGiver_ExitMapRandom">
-						  <defaultLocomotion>Sprint</defaultLocomotion>
-						</li>
+						<li Class="JobGiver_XenomorphFlee" />
 						<!-- Wander -->
 						<li Class="JobGiver_WanderAnywhere">
 						  <maxDanger>Deadly</maxDanger>

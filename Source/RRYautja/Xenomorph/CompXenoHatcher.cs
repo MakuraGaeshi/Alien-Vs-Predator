@@ -36,6 +36,7 @@ namespace RRYautja
             }
         }
         public bool canHatch = false;
+        public bool willHatch = false;
 
         // Token: 0x1700062F RID: 1583
         // (get) Token: 0x060028ED RID: 10477 RVA: 0x00136B1F File Offset: 0x00134F1F
@@ -87,9 +88,9 @@ namespace RRYautja
                     {
 #if DEBUG
                         bool selected = Find.Selector.SingleSelectedThing == this.parent;
-                        if (selected) Log.Message(string.Format("{0} @ {1}, Can hatch?: {2}", this.parent.Label, this.parent.Position, canHatch));
+                        if (selected) Log.Message(string.Format("{0} @ {1}, Can hatch?: {2}, Will hatch?: {3}", this.parent.Label, this.parent.Position, canHatch, willHatch));
 #endif
-                        if ( this.canHatch)
+                        if ( this.canHatch && this.willHatch)
                         {
                             this.Hatch();
                         }
@@ -97,7 +98,15 @@ namespace RRYautja
                 }
             }
         }
-
+        public float DistanceBetween(IntVec3 a, IntVec3 b)
+        {
+            double distance = GetDistance(a.x, a.z, b.x, b.z);
+            return (float)distance;
+        }
+        private static double GetDistance(double x1, double y1, double x2, double y2)
+        {
+            return Math.Sqrt(Math.Pow((x2 - x1), 2) + Math.Pow((y2 - y1), 2));
+        }
         // Token: 0x0600295E RID: 10590 RVA: 0x00139BAC File Offset: 0x00137FAC
         public override void CompTickRare()
         {
@@ -107,24 +116,45 @@ namespace RRYautja
             if (thing != null)
             {
                 Pawn pawn = (Pawn)thing;
-                bool flag = XenomorphUtil.isXenomorphInfectedPawn(pawn);
-                bool flag2 = XenomorphUtil.IsXenomorphPawn(pawn);
-                bool flag3 = XenomorphUtil.isNeomorphInfectedPawn(pawn);
-                bool flag4 = XenomorphUtil.IsNeomorphPawn(pawn);
-                bool flag5 = XenomorphUtil.IsXenomorphFaction(pawn);
+                bool flag = XenomorphUtil.isInfectablePawn(pawn);
 #if DEBUG
                 if (selected)
                 {
-                    Log.Message(string.Format("{1} isXenomorphInfectedPawn?: {0}", flag, pawn.Label));
-                    Log.Message(string.Format("{1} IsXenomorphPawn?: {0}", flag2, pawn.Label));
-                    Log.Message(string.Format("{1} isNeomorphInfectedPawn?: {0}", flag3, pawn.Label));
-                    Log.Message(string.Format("{1} IsNeomorphPawn?: {0}", flag4, pawn.Label));
-                    Log.Message(string.Format("{1} IsXenomorphFaction?: {0}", flag5, pawn.Label));
+                    Log.Message(string.Format("{0} isInfectable?: {1}", pawn.Label, flag));
                 }
 #endif
-                if (!flag && !flag2 && !flag3 && !flag4 && !flag5)
+                if (flag)
                 {
                     this.canHatch = true;
+                }
+                if (canHatch)
+                {
+                    float thingdist = DistanceBetween(this.parent.Position, pawn.Position);
+                    float thingsize = pawn.BodySize;
+                    float thingstealth = thing.GetStatValue(StatDefOf.HuntingStealth);
+                    float thingmovespeed = thing.GetStatValue(StatDefOf.MoveSpeed);
+                    Stance thingstance = pawn.stances.curStance;
+#if DEBUG
+                    if (selected)
+                    {
+                        Log.Message(string.Format("distance between {1} @{3} and {2} @ {4}: {0}", DistanceBetween(this.parent.Position, pawn.Position), this.parent.LabelShort, pawn.Label, this.parent.Position, pawn.Position));
+                        Log.Message(string.Format("{0} thingsize: {1}, thingstealth: {2}, thingmovespeed: {3}, thingstance: {4}", pawn.Label, thingsize, thingstealth, thingmovespeed, thingstance));
+
+                    }
+#endif
+                    float hatchon = ((100/thingdist) * thingsize);
+                    if (thingstance.GetType() == typeof(Stance_Mobile)) hatchon = (((100 / thingdist) * thingmovespeed) * thingsize);
+                    float roll = (Rand.RangeInclusive(0, 100)/ thingstealth);
+#if DEBUG
+                    if (selected)
+                    {
+                        Log.Message(string.Format("{0} hatchon: {1}, roll: {2}, moving?: {3}", pawn.Label, hatchon, roll, thingstance.GetType() == typeof(Stance_Mobile)));
+                    }
+#endif
+                    if (roll<hatchon)
+                    {
+                        this.willHatch = true;
+                    }
                 }
             }
 #if DEBUG
