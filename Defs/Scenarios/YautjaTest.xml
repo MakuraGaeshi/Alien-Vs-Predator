@@ -2,14 +2,14 @@
 <Defs>
 
 	<ScenarioDef>
-	<defName>YautjaScenarioTest</defName>
-		<label>Testing Yautja pawns</label>
-		<description>When a sudden explosion crippled your ship, you knew you had to take your chances in the escape pods, or die...</description>
+	<defName>RRYScenarioTest</defName>
+		<label>Testing AVP Mod pawns</label>
+		<description>...</description>
 <scenario>
-<summary>Five escaped Yautja attempt to build a colony. Difficult.</summary>
+<summary>.</summary>
 		<playerFaction>
 			<def>PlayerFaction</def>
-			<factionDef>YautjaPlayerColony</factionDef>
+			<factionDef>YautjaPlayerBlooded</factionDef>
 		</playerFaction>
 		<parts>
 			<li Class="ScenPart_ConfigPage_ConfigureStartingPawns">
@@ -19,6 +19,7 @@
 			<li Class="ScenPart_PlayerPawnsArriveMethod">
 				<def>PlayerPawnsArriveMethod</def>
 			</li>
+			<!--
 			<li Class="ScenPart_ForcedHediff">
 				<def>ForcedHediff</def>
 				<chance>0.5</chance>
@@ -26,6 +27,8 @@
 				<hediff>Malnutrition</hediff>
 				<severityRange>0.09166667~0.297</severityRange>
 			</li>
+			-->
+			<!--
 			<li Class="ScenPart_SetNeedLevel">
 				<def>SetNeedLevel</def>
 				<chance>1</chance>
@@ -33,6 +36,7 @@
 				<need>Food</need>
 				<levelRange>0~0.1</levelRange>
 			</li>
+			-->
 			<li Class="ScenPart_StartingThing_Defined">
 				<def>StartingThing_Defined</def>
 				<thingDef>Silver</thingDef>
@@ -40,14 +44,17 @@
 			</li>
 			<li Class="ScenPart_StartingThing_Defined">
 				<def>StartingThing_Defined</def>
-				<thingDef>Pemmican</thingDef>
+				<thingDef>MealSurvivalPack</thingDef>
+				<!-- <thingDef>Pemmican</thingDef> -->
 				<count>300</count>
 			</li>
 			<li Class="ScenPart_StartingThing_Defined">
 				<def>StartingThing_Defined</def>
 				<thingDef>MedicineIndustrial</thingDef>
+				<!-- <thingDef>MedicineHerbal</thingDef> -->
 				<count>20</count>
 			</li>
+			<!--
 			<li Class="ScenPart_StartingThing_Defined">
 				<def>StartingThing_Defined</def>
 				<thingDef>MeleeWeapon_Club</thingDef>
@@ -58,16 +65,34 @@
 				<thingDef>MeleeWeapon_Spear</thingDef>
 				<stuff>WoodLog</stuff>
 			</li>
+			-->
+			<li Class="ScenPart_StartingThing_Defined">
+				<def>StartingThing_Defined</def>
+				<thingDef>RRY_Gun_NeedlerRifle</thingDef>
+				<count>6</count>
+			</li>
+			<li Class="ScenPart_StartingThing_Defined">
+				<def>StartingThing_Defined</def>
+				<thingDef>RRY_Gun_YautjaBlaster</thingDef>
+				<count>6</count>
+			</li>
+			<li Class="ScenPart_StartingThing_Defined">
+				<def>StartingThing_Defined</def>
+				<thingDef>Yautja_SmartDisk</thingDef>
+				<count>6</count>
+			</li>
 			<li Class="ScenPart_ScatterThingsNearPlayerStart">
 				<def>ScatterThingsNearPlayerStart</def>
 				<thingDef>WoodLog</thingDef>
 				<count>500</count>
 			</li>
+			<!--
 			<li Class="ScenPart_GameStartDialog">
 				<def>GameStartDialog</def>
 				<text>There was no choice, you had to make a break from your cramped hiding place and run for the escape pods. The ship was falling apart - it was either death or try to make it down to the surface.....</text>
 				<closeSound>GameStartSting</closeSound>
 			</li>
+			-->
 			<li Class="ScenPart_DisableIncident">
 				<def>DisableIncident</def>
 				<incident>Infestation</incident>

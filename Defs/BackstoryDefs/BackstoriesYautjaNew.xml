@@ -79,6 +79,7 @@
       <li>Yautja_Child</li>
       <li>Yautja_Unblooded</li>
       <li>Yautja_BadBlood</li>
+      <li>Yautja_Blooded</li>
     </spawnCategories>
   </AlienRace.BackstoryDef>
   
@@ -111,6 +112,7 @@
       <li>Yautja_Adult</li>
       <li>Yautja_Hunter</li>
       <li>Yautja_YoungBlood</li>
+      <li>Yautja_Unblooded</li>
     </spawnCategories>
   </AlienRace.BackstoryDef>
 
@@ -175,6 +177,7 @@
       <li>Yautja_Adult</li>
       <li>Yautja_Hunter</li>
       <li>Yautja_Elite</li>
+      <li>Yautja_Blooded</li>
     </spawnCategories>
   </AlienRace.BackstoryDef>
   
@@ -210,6 +213,7 @@
       <li>Yautja_Adult</li>
       <li>Yautja_Hunter</li>
       <li>Yautja_Elder</li>
+      <li>Yautja_Blooded</li>
     </spawnCategories>
   </AlienRace.BackstoryDef>
   
@@ -240,6 +244,7 @@
       <li>Yautja_Standard</li>
       <li>Yautja_Adult</li>
       <li>Yautja_Ancient</li>
+      <li>Yautja_Blooded</li>
     </spawnCategories>
   </AlienRace.BackstoryDef>
  

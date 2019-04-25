@@ -23,7 +23,7 @@
   </PawnKindDef>
 
   <PawnKindDef ParentName="BaseYautjaPawnKind">
-    <defName>Yautja</defName>
+    <defName>Colonist_Yautja</defName>
     <label>Yautja colonist</label>
     <defaultFactionType>YautjaPlayerColony</defaultFactionType>
     <backstoryCategories>
@@ -34,8 +34,45 @@
 		<li>YautjaWebbing</li>
     </apparelTags>
     <apparelMoney>
+      <min>10000</min>
+      <max>10000</max>
+    </apparelMoney>
+    <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
+  </PawnKindDef>
+  
+  <PawnKindDef ParentName="BaseYautjaPawnKind">
+    <defName>Colonist_YautjaUnblooded</defName>
+    <label>Yautja colonist</label>
+    <defaultFactionType>YautjaPlayerColony</defaultFactionType>
+    <backstoryCategories>
+		<li>Yautja_Unblooded</li>
+  	</backstoryCategories>
+    <apparelTags>
+		<li>YautjaLightArmour</li>
+		<li>YautjaWebbing</li>
+    </apparelTags>
+    <apparelMoney>
       <min>1000</min>
       <max>1000</max>
+    </apparelMoney>
+    <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
+  </PawnKindDef>
+  
+  <PawnKindDef ParentName="BaseYautjaPawnKind">
+    <defName>Colonist_YautjaBlooded</defName>
+    <label>Yautja colonist</label>
+    <defaultFactionType>YautjaPlayerColony</defaultFactionType>
+    <backstoryCategories>
+		<li>Yautja_Blooded</li>
+  	</backstoryCategories>
+    <apparelTags>
+		<li>YautjaLightArmour</li>
+		<li>YautjaArmour</li>
+		<li>YautjaWebbing</li>
+    </apparelTags>
+    <apparelMoney>
+      <min>10000</min>
+      <max>10000</max>
     </apparelMoney>
     <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
   </PawnKindDef>

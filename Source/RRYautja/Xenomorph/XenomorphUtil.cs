@@ -36,6 +36,15 @@ namespace RRYautja
             if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen) return true;
             return false;
         }
+        public static bool IsXenomorphCorpse(Corpse corpse)
+        {
+            if (corpse.InnerPawn.kindDef == XenomorphDefOf.RRY_Xenomorph_FaceHugger) return true;
+            if (corpse.InnerPawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Runner) return true;
+            if (corpse.InnerPawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Drone) return true;
+            if (corpse.InnerPawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Warrior) return true;
+            if (corpse.InnerPawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen) return true;
+            return false;
+        }
         public static bool isNeomorphInfectedPawn(Pawn pawn)
         {
             HediffSet hediffSet = pawn.health.hediffSet;
@@ -49,6 +58,12 @@ namespace RRYautja
             return false;
         }
 
+        public static bool IsNeomorphCorpse(Corpse corpse)
+        {
+            if (corpse.InnerPawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Neomorph) return true;
+            return false;
+        }
+
         public static bool IsInfectedPawn(Pawn pawn)
         {
             if (isXenomorphInfectedPawn(pawn) || isNeomorphInfectedPawn(pawn)) return true;
@@ -56,7 +71,12 @@ namespace RRYautja
         }
         public static bool IsXenomorph(Pawn pawn)
         {
-            if (IsXenomorphPawn(pawn)|| IsNeomorphPawn(pawn)) return true;
+            if (IsXenomorphPawn(pawn) || IsNeomorphPawn(pawn)) return true;
+            return false;
+        }
+        public static bool IsXenoCorpse(Corpse corpse)
+        {
+            if (IsXenomorphCorpse(corpse) || IsNeomorphCorpse(corpse)) return true;
             return false;
         }
         public static bool IsXenomorphFaction(Pawn pawn)

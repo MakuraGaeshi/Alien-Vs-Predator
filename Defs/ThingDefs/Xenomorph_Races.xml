@@ -315,7 +315,7 @@
     <lifeStages>
       <li>
         <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBursterBloody</texPath>
+          <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>0.5</drawSize>
           <shadowData>
@@ -521,7 +521,7 @@
     <lifeStages>
       <li>
         <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBursterBloody</texPath>
+          <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>0.5</drawSize>
           <shadowData>
@@ -666,7 +666,7 @@
     <lifeStages>
       <li>
         <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBursterBloody</texPath>
+          <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>0.5</drawSize>
           <shadowData>
@@ -814,7 +814,7 @@
     <lifeStages>
       <li>
         <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBursterBloody</texPath>
+          <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>0.5</drawSize>
           <shadowData>
@@ -1018,7 +1018,7 @@
     <lifeStages>
       <li>
         <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBursterBloody</texPath>
+          <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>0.5</drawSize>
           <shadowData>
