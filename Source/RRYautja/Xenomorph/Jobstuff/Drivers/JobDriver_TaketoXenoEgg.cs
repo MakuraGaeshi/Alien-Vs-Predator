@@ -18,6 +18,14 @@ namespace RimWorld
             }
         }
 
+        protected IntVec3 position
+        {
+            get
+            {
+                return this.job.GetTarget(TargetIndex.B).Thing.Position;
+            }
+        }
+
         // Token: 0x06000372 RID: 882 RVA: 0x0001EF20 File Offset: 0x0001D320
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
@@ -47,10 +55,9 @@ namespace RimWorld
             {
                 initAction = delegate ()
                 {
-                    if (this.pawn.Position.OnEdge(this.pawn.Map) || this.pawn.Map.exitMapGrid.IsExitCell(this.pawn.Position))
-                    {
-                        this.pawn.ExitMap(true, CellRect.WholeMap(base.Map).GetClosestEdge(this.pawn.Position));
-                    }
+                    IntVec3 position = this.position;
+                    Thing thing;
+                    this.pawn.carryTracker.TryDropCarriedThing(position, ThingPlaceMode.Direct, out thing, null);
                 },
                 defaultCompleteMode = ToilCompleteMode.Instant
             };

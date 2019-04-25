@@ -185,7 +185,7 @@ namespace RRYautja
             }
             base.PostPreApplyDamage(dinfo, out absorbed);
         }
-
+        public PawnKindDef host;
         public int ticksSinceHeal;
     }
     // ---------------------------------------------------------------------------

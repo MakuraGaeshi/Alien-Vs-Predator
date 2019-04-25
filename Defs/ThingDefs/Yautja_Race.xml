@@ -251,7 +251,7 @@
 					<bodyPart>Head</bodyPart>
 					<useSkinColor>true</useSkinColor>
 					<inFrontOfBody>true</inFrontOfBody>
-					<layerOffset>-0.0</layerOffset>
+					<layerOffset>-0.50</layerOffset>
 					<offsets>
 					<south>
 										<bodyTypes>
@@ -420,11 +420,14 @@
 				<li>RRY_Apparel_LeaderArmourGreaves</li>
 				<li>RRY_Apparel_LeaderBioMask</li>
 				
-				<li>RRY_Equipment_HunterGauntlet</li>
+				<!-- <li>RRY_Equipment_HunterGauntlet</li> -->
 				<li>RRY_Equipment_HunterShoulderCannon</li>
 				<li>RRY_Equipment_HunterShoulderCannonB</li>
 				<li>Apparel_ShieldBelt</li>
 			</apparelList>
+            <whiteApparelList>
+                <li>RRY_Equipment_HunterGauntlet</li>
+            </whiteApparelList>
 			<onlyUseRaceRestrictedApparel>true</onlyUseRaceRestrictedApparel>
             <recipeList>
 				<li>RRY_Apparel_HunterLightArmourChestplate</li>

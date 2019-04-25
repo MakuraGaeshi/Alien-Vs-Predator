@@ -219,11 +219,11 @@ namespace RRYautja
                 {
                     Pawn.Drawer.renderer.wiggler.downedAngle -= 0.35f;
                 }
-                else if (num < 180 && num >= 90)
+                else if (num < 270 && num >= 180)
                 {
                     Pawn.Drawer.renderer.wiggler.downedAngle += 0.35f;
                 }
-                else if (num < 300 && num >= 210)
+                else if (num < 570 && num >= 510)
                 {
                     Pawn.Drawer.renderer.wiggler.downedAngle -= 0.35f;
                 }
@@ -268,9 +268,20 @@ namespace RRYautja
 
                 ind++;
             }
+#if DEBUG
+            Log.Message(string.Format("{0} Old pawnKindDef.lifeStages[0].bodyGraphicData.color: {1}", base.parent.pawn.Name, pawnKindDef.lifeStages[0].bodyGraphicData.color));
+            Log.Message(string.Format("{0} base.parent.pawn.def.race.BloodDef.graphic.color: {1}", base.parent.pawn.Name, base.parent.pawn.def.race.BloodDef.graphic.color));
+#endif
+            Color color = base.parent.pawn.def.race.BloodDef.graphic.color;
+            color.a = 1f;
+            pawnKindDef.lifeStages[0].bodyGraphicData.color = color;
+#if DEBUG
+            Log.Message(string.Format("{0} new value.kindDef.lifeStages[0].bodyGraphicData.color: {1}", base.parent.pawn.Name, pawnKindDef.lifeStages[0].bodyGraphicData.color));
+#endif
             PawnGenerationRequest pawnGenerationRequest = new PawnGenerationRequest(pawnKindDef, Find.FactionManager.FirstFactionOfDef(pawnKindDef.defaultFactionType), PawnGenerationContext.NonPlayer, -1, true, false, true, false, true, true, 20f);
-
             Pawn pawn = PawnGenerator.GeneratePawn(pawnGenerationRequest);
+            pawn.ageTracker.CurKindLifeStage.bodyGraphicData.color = color;
+            //this this will error  pawn.Graphic.data.color = color;
             if (pawnKindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
             {
                 pawn.gender = Gender.Female;
@@ -281,20 +292,23 @@ namespace RRYautja
             }
             pawn.ageTracker.AgeBiologicalTicks = 0;
             pawn.ageTracker.AgeChronologicalTicks = 0;
+            Comp_Xenomorph _Xenomorph = pawn.TryGetComp<Comp_Xenomorph>();
+            if (_Xenomorph!=null)
+            {
+                _Xenomorph.host = base.parent.pawn.kindDef;
+            }
             Vector3 vector = base.parent.pawn.PositionHeld.ToVector3Shifted();
-            Color color = base.parent.pawn.def.race.BloodDef.graphic.color;
-            pawn.Graphic.color = color;
+            GenSpawn.Spawn(pawn, base.parent.pawn.PositionHeld, base.parent.pawn.MapHeld, 0);
             for (int i = 0; i < 1001; i++)
             { // Find.TickManager.TicksGame
-                if (Rand.MTBEventOccurs(DustMoteSpawnMTB, 1f, 1.TicksToSeconds()))
+                if (Rand.MTBEventOccurs(DustMoteSpawnMTB, 1f, 2.TicksToSeconds()))
                 {
                     MoteMaker.ThrowDustPuffThick(new Vector3(vector.x, 0f, vector.z)
                     {
                         y = AltitudeLayer.MoteOverhead.AltitudeFor()
-                    }, base.parent.pawn.MapHeld, Pawn.BodySize, new Color(color.r, color.g, color.b, 1f));
+                    }, base.parent.pawn.MapHeld, 1.0f, new Color(color.r, color.g, color.b, 1f));
                 }
             }
-            GenSpawn.Spawn(pawn, base.parent.pawn.PositionHeld, base.parent.pawn.MapHeld, 0);
             //base.Pawn.health.RemoveHediff(this.parent);
         }
 

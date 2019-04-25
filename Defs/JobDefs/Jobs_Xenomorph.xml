@@ -9,4 +9,12 @@
     <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
   </JobDef>
   
+  <JobDef>
+    <defName>XenomorphKidnap</defName>
+    <driverClass>JobDriver_XenosKidnap</driverClass>
+    <reportString>kidnapping TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Never</checkOverrideOnDamage>
+  </JobDef>
+  
 </Defs>

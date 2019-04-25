@@ -39,7 +39,14 @@ namespace RRYautja
                 typeof(RotDrawMode),
                 typeof(bool)
             }, null), new HarmonyMethod(typeof(HarmonyPatches), "PawnRenderer_Blur_Prefix", null), null, null);
-
+            /*
+            harmony.Patch(AccessTools.Method(typeof(PawnRenderer), "RenderPawnAt", new Type[]
+            {
+                typeof(Vector3),
+                typeof(RotDrawMode),
+                typeof(bool)
+            }, null), new HarmonyMethod(typeof(HarmonyPatches), "PawnRenderer_XenosColour_Prefix", null), null, null);
+            */
             harmony.Patch(
                 original: AccessTools.Method(type: typeof(AlienPartGenerator.BodyAddon), name: "CanDrawAddon"),
                 prefix: new HarmonyMethod(type: typeof(HarmonyPatches), name: nameof(Pre_CanDrawAddon_Cloak)),
@@ -157,6 +164,7 @@ namespace RRYautja
 						this.downedAngle -= 0.35f;
 					}
         */
+        /*
         // Token: 0x0600000C RID: 12 RVA: 0x0000283C File Offset: 0x00000A3C
         public static void ResolveAllGraphicsPostfix(PawnGraphicSet __instance)
         {
@@ -182,7 +190,7 @@ namespace RRYautja
                 hd.SetShadowGraphic(pawn.Drawer.renderer, new Graphic_Shadow(shadowData));
             }
         }
-
+        */
         // Verse.AI.Pawn_PathFollower
         public static void PathOfNature(Pawn_PathFollower __instance, Pawn pawn, IntVec3 c, ref int __result)
         {
@@ -268,6 +276,28 @@ namespace RRYautja
                 __instance.graphics.desiccatedHeadStumpGraphic = null;
                 __instance.graphics.hairGraphic = null;
             }
+            return true;
+        }
+
+        public static bool PawnRenderer_XenosColour_Prefix(PawnRenderer __instance, ref Vector3 drawLoc, ref RotDrawMode bodyDrawType, bool headStump)
+        {
+            Pawn value = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
+            bool selected = Find.Selector.SingleSelectedThing == value;
+            PawnGraphicSet value2 = Traverse.Create(__instance).Field("graphics").GetValue<PawnGraphicSet>();
+            Comp_Xenomorph _Xenomorph = value.TryGetComp<Comp_Xenomorph>();
+            if (_Xenomorph!=null)
+            {
+                if (_Xenomorph.host != null)
+                {
+                    if (selected) Log.Message(string.Format("Old value.kindDef.lifeStages[0].bodyGraphicData.color: {0}", value.kindDef.lifeStages[0].bodyGraphicData.color));
+                    if (selected) Log.Message(string.Format("_Xenomorph.host.race.race.BloodDef.graphicData.color: {0}", _Xenomorph.host.race.race.BloodDef.graphicData.color));
+                    value.kindDef.lifeStages[0].bodyGraphicData.color =
+                    _Xenomorph.host.race.race.BloodDef.graphicData.color;
+                    if (selected) Log.Message(string.Format("New value.kindDef.lifeStages[0].bodyGraphicData.color: {0}", value.kindDef.lifeStages[0].bodyGraphicData.color));
+                }
+                else if (selected) Log.Message(string.Format("_Xenomorph.host: null"));
+            }
+            else if (selected) Log.Message(string.Format("_Xenomorph: null"));
             return true;
         }
 

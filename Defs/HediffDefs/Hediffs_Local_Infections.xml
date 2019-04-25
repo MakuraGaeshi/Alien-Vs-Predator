@@ -8,6 +8,7 @@
     <initialSeverity>0.01</initialSeverity>
     <makesSickThought>true</makesSickThought>
     <tendable>false</tendable>
+    <spawnThingOnRemoved>RRY_Xenomorph_FaceHugger</spawnThingOnRemoved>
     <stages>
       <li>
         <label>pre impregnation</label>

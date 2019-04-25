@@ -19,7 +19,7 @@ namespace RimWorld
                     num++;
                 }
             }
-            return 50f * (float)num;
+            return (float)num;
         }
     }
 }

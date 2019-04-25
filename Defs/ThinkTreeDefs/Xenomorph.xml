@@ -46,8 +46,6 @@
 						  <defaultLocomotion>Sprint</defaultLocomotion>
 						</li>
 						-->
-						<!-- Lay eggs you need to -->
-						<li Class="JobGiver_LayXenoEgg" />
 						<!-- Wander -->
 						<li Class="JobGiver_WanderAnywhere">
 						  <maxDanger>Deadly</maxDanger>
@@ -68,9 +66,12 @@
 					<li Class="ThinkNode_Tagger">
 					  <tagToGive>Idle</tagToGive>
 					  <subNodes>
-						<!-- Hunt 
-						<li Class="JobGiver_FacehuggerHunt" />
-						-->
+						<!-- Idle -->
+						<li Class="ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby">
+						  <subNodes>
+							<li Class="JobGiver_KidnapNearby" />
+						  </subNodes>
+						</li>
 						<!-- Exit 
 						<li Class="JobGiver_ExitMapRandom">
 						  <defaultLocomotion>Sprint</defaultLocomotion>
@@ -136,15 +137,13 @@
 			<li Class="JobGiver_XenomorphFlee" />
           </subNodes>
         </li>
+
+		<!-- Lay eggs you need to -->
+		<li Class="JobGiver_LayXenoEgg" />
 		
         <!-- Do a queued job -->
         <li Class="ThinkNode_QueuedJob" />
 
-        <!-- Satisfy very urgent needs -->
-        <li Class="ThinkNode_Subtree">
-          <treeDef>SatisfyXenomorphNeeds</treeDef>
-        </li>
-				
         <!-- Mental state non critical -->
         <li Class="ThinkNode_Subtree">
           <treeDef>MentalStateNonCritical</treeDef>
@@ -162,11 +161,28 @@
           </subNodes>
         </li>
         
+		<!-- Face Hugger Hunting -->
+		<li Class="ThinkNode_ConditionalPawnKind">
+		  <pawnKind>RRY_Xenomorph_Drone</pawnKind>
+		  <subNodes>
+				<li Class="ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby">
+				  <subNodes>
+					<li Class="JobGiver_KidnapNearby" />
+				  </subNodes>
+				</li>
+		  </subNodes>
+		</li>
+				
         <!-- Lord -->
         <li Class="ThinkNode_Subtree">
           <treeDef>LordDuty</treeDef>
         </li>
 		
+        <!-- Satisfy very urgent needs -->
+        <li Class="ThinkNode_Subtree">
+          <treeDef>SatisfyXenomorphNeeds</treeDef>
+        </li>
+				
         <!-- Idle -->
         <li Class="ThinkNode_Tagger">
           <tagToGive>Idle</tagToGive>

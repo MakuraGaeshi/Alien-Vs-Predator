@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <RecipeDef ParentName="SurgeryFlesh">
+    <defName>RRY_FaceHuggerRemoval</defName>
+    <label>Attempt Facehugger removal</label>
+    <description>Facehugger removal</description>
+    <workerClass>Recipe_RemoveHediff</workerClass>
+    <jobString>Attempting to remove xenomorph parasite</jobString>
+    <workAmount>1500</workAmount>
+    <removesHediff>RRY_FaceHuggerInfection</removesHediff>
+    <successfullyRemovedHediffMessage>{0} has successfully harvested Gene-seed from {1}'s Progenoid Gland.</successfullyRemovedHediffMessage>
+    <deathOnFailedSurgeryChance>0.0</deathOnFailedSurgeryChance>
+    <surgerySuccessChanceFactor>100</surgerySuccessChanceFactor>
+    <skillRequirements>
+      <Medicine>4</Medicine>
+    </skillRequirements>
+    <ingredients>
+      <li>
+        <filter>
+          <categories>
+            <li>Medicine</li>
+          </categories>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <categories>
+        <li>Medicine</li>
+      </categories>
+      <disallowedThingDefs>
+        <li>MedicineHerbal</li>
+      </disallowedThingDefs>
+    </fixedIngredientFilter>
+  </RecipeDef>
+
+  <RecipeDef ParentName="SurgeryFlesh">
+    <defName>RRY_XenomorphImpregnationRemoval</defName>
+    <label>Attempt embyro removal</label>
+    <description>Embyro removal</description>
+    <workerClass>Recipe_RemoveHediff</workerClass>
+    <jobString>Attempting to remove xenomorph parasite</jobString>
+    <workAmount>1500</workAmount>
+    <removesHediff>RRY_XenomorphImpregnation</removesHediff>
+    <successfullyRemovedHediffMessage>{0} has successfully harvested Gene-seed from {1}'s Progenoid Gland.</successfullyRemovedHediffMessage>
+    <deathOnFailedSurgeryChance>0.0</deathOnFailedSurgeryChance>
+    <surgerySuccessChanceFactor>100</surgerySuccessChanceFactor>
+    <skillRequirements>
+      <Medicine>4</Medicine>
+    </skillRequirements>
+    <ingredients>
+      <li>
+        <filter>
+          <categories>
+            <li>Medicine</li>
+          </categories>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <categories>
+        <li>Medicine</li>
+      </categories>
+      <disallowedThingDefs>
+        <li>MedicineHerbal</li>
+      </disallowedThingDefs>
+    </fixedIngredientFilter>
+  </RecipeDef>
+
+ </Defs>
+ 
