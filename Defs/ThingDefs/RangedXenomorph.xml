@@ -11,7 +11,7 @@
       <shaderType>TransparentPostLight</shaderType>
     </graphicData>
     <projectile>
-      <damageDef>Bullet</damageDef>
+      <damageDef>RRY_AcidDamage</damageDef>
       <damageAmountBase>15</damageAmountBase>
       <speed>45</speed>
     </projectile>
@@ -67,4 +67,54 @@
     </tools>
   </ThingDef>
 
+    <ThingDef Class="RRYautja.Thing_AddsHediffDef" ParentName="BaseGas">
+    <defName>RRY_Neomorph_Spores</defName>
+    <label>spore gas</label>
+    <graphicData>
+      <texPath>Things/Gas/Puff</texPath>
+      <drawSize>2.5</drawSize>
+      <color>(0.1,0.1,0.1,0.1)</color>
+    </graphicData>
+	<thingClass>RRYautja.Thing_AddsHediff</thingClass>
+	<addHediff>RRY_NeomorphImpregnation</addHediff>
+	<hediffAddChance>1.0</hediffAddChance>
+    <hediffSeverity>0.08</hediffSeverity>
+	<onlyAffectLungs>true</onlyAffectLungs> 
+    <gas>
+      <expireSeconds>
+        <min>35</min>
+        <max>50</max>
+      </expireSeconds>
+      <blockTurretTracking>true</blockTurretTracking>
+      <accuracyPenalty>0.4</accuracyPenalty>
+      <rotationSpeed>10</rotationSpeed>
+	  
+    </gas>
+  </ThingDef>
+  
+    <ThingDef Class="RRYautja.Thing_AddsHediffDef" ParentName="BaseGas">
+    <defName>RRY_Neomorph_Spores_Hidden</defName>
+    <label>strange gas</label>
+    <graphicData>
+      <texPath>Things/Gas/Puff</texPath>
+      <drawSize>2.5</drawSize>
+      <color>(0.1,0.1,0.1,0.1)</color>
+    </graphicData>
+	<thingClass>RRYautja.Thing_AddsHediff</thingClass>
+	<addHediff>RRY_HiddenNeomorphImpregnation</addHediff>
+	<hediffAddChance>1.0</hediffAddChance>
+    <hediffSeverity>0.08</hediffSeverity>
+	<onlyAffectLungs>true</onlyAffectLungs> 
+    <gas>
+      <expireSeconds>
+        <min>35</min>
+        <max>50</max>
+      </expireSeconds>
+      <blockTurretTracking>true</blockTurretTracking>
+      <accuracyPenalty>0.4</accuracyPenalty>
+      <rotationSpeed>10</rotationSpeed>
+	  
+    </gas>
+  </ThingDef>
+  
 </Defs>

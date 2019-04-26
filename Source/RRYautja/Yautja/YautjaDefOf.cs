@@ -29,8 +29,11 @@ namespace RimWorld
 
         public static HediffDef RRY_Hediff_Cloaked;
         // Xenomorph PawnKindDefs
-        // Yautja ThingDefs = Races
+        // Yautja ThingDefs = Races 
         public static ThingDef Alien_Yautja;
-        
+
+        // Yautja ThingDefs = Equipment
+        public static ThingDef RRY_Equipment_HunterGauntlet;
+
     }
 }

@@ -1,8 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
+<!-- ==== Yautja ==== -->
   <BodyDef>
-    <defName>Xenomorph</defName>
-    <label>Xenomorph</label>
+    <defName>RRY_Yautja_Biped</defName>
+	<ignoreConfigErrors>true</ignoreConfigErrors>
+    <label>yautja</label>
     <corePart>
       <def>Torso</def>
       <height>Middle</height>
@@ -118,7 +120,7 @@
               <groups>
                 <li>UpperHead</li>
                 <li>FullHead</li>
-								<li>HeadAttackTool</li>
+				<li>HeadAttackTool</li>
               </groups>
               <parts>
                 <li>
@@ -160,7 +162,7 @@
                 </li>
                 <li>
                   <def>Ear</def>
-                  <customLabel>left ear</customLabel>
+                  <customLabel>left auditory cannal</customLabel>
                   <coverage>0.07</coverage>
                   <groups>
                     <li>UpperHead</li>
@@ -169,7 +171,7 @@
                 </li>
                 <li>
                   <def>Ear</def>
-                  <customLabel>right ear</customLabel>
+                  <customLabel>right auditory cannal</customLabel>
                   <coverage>0.07</coverage>
                   <groups>
                     <li>UpperHead</li>
@@ -184,10 +186,53 @@
                   </groups>
                 </li>
                 <li>
-                  <def>Jaw</def>
-                  <coverage>0.15</coverage>
+					<def>RRY_Yautja_Mouth</def>
+					<coverage>0.10</coverage>
+					<depth>Inside</depth>
+					<parts>
+                    <li>
+                      <def>RRY_Yautja_Mandible</def>
+                      <customLabel>left upper mandible</customLabel>
+                      <coverage>0.07</coverage>
+                      <groups>
+                        <li>Mouth</li>
+                        <li>RRY_Yautja_Mandibles</li>
+						<li>FullHead</li>
+                      </groups>
+                    </li>
+                    <li>
+                      <def>RRY_Yautja_Mandible</def>
+                      <customLabel>left lower mandible</customLabel>
+                      <coverage>0.07</coverage>
+                      <groups>
+                        <li>Mouth</li>
+                        <li>RRY_Yautja_Mandibles</li>
+						<li>FullHead</li>
+                      </groups>
+                    </li>
+                    <li>
+                      <def>RRY_Yautja_Mandible</def>
+                      <customLabel>right upper mandible</customLabel>
+                      <coverage>0.07</coverage>
+                      <groups>
+                        <li>Mouth</li>
+                        <li>RRY_Yautja_Mandibles</li>
+						<li>FullHead</li>
+                      </groups>
+                    </li>
+                    <li>
+                      <def>RRY_Yautja_Mandible</def>
+                      <customLabel>right lower mandible</customLabel>
+                      <coverage>0.07</coverage>
+                      <groups>
+                        <li>Mouth</li>
+                        <li>RRY_Yautja_Mandibles</li>
+						<li>FullHead</li>
+                      </groups>
+                    </li>
+					</parts>
                   <groups>
-                    <li>Teeth</li>
+                    <li>Mouth</li>
                     <li>FullHead</li>
                   </groups>
                 </li>
@@ -572,5 +617,4 @@
       </parts>
     </corePart>
   </BodyDef>
-  
 </Defs>

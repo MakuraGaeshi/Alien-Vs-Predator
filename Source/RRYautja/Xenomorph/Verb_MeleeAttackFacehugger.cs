@@ -15,7 +15,11 @@ namespace RRYautja
         {
             Pawn hitPawn = (Pawn)target;
             bool flag = XenomorphUtil.isInfectablePawn(hitPawn);
-            if ((Rand.Value * 100 > 50 || hitPawn.Downed) && flag)
+            float tgtmelee = 0f;
+            float tgtdodge = 0f;
+            if (hitPawn.RaceProps.Humanlike) tgtmelee = hitPawn.skills.GetSkill(SkillDefOf.Melee).Level;
+            if (hitPawn.RaceProps.Humanlike) tgtdodge = hitPawn.GetStatValue(StatDefOf.MeleeDodgeChance);
+            if (((Rand.Value * 100)*(1-tgtdodge)  > 50+tgtmelee || hitPawn.Downed) && flag)
             {
                 infect = true;
             }

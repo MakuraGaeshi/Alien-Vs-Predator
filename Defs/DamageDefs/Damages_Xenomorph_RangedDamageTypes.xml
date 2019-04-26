@@ -22,7 +22,7 @@
 	<!--==================== Grenade Base Damage Type =========================-->
   <DamageDef Name="Acid">
     <defName>RRY_AcidDamage</defName>
-    <workerClass>DamageWorker_Flame</workerClass>
+    <workerClass>DamageWorker_AddInjury</workerClass>
     <label>acid</label>
     <hasForcefulImpact>false</hasForcefulImpact>
     <makesBlood>false</makesBlood>
@@ -74,24 +74,4 @@
     </additionalHediffs>
   </DamageDef>
   
-  <HediffDef>
-    <hediffClass>HediffWithComps</hediffClass>
-    <defName>RRY_EmergingChestburster</defName>
-    <label>horrified</label>
-    <labelNoun>horrified</labelNoun>
-    <battleStateLabel>blind</battleStateLabel>
-    <maxSeverity>1</maxSeverity>
-    <stages>
-      <li>
-        <partEfficiencyOffset>-0.8</partEfficiencyOffset>
-      </li>
-    </stages>
-    <comps>
-      <li Class="HediffCompProperties_SelfHeal">
-        <healAmount>0.005</healAmount>
-      </li>
-    </comps>
-  </HediffDef>
-
-  <!--==================== End of Grenade Damage Types =========================-->
 </Defs>

@@ -88,7 +88,7 @@ namespace RRYautja
                     //    Log.Message(string.Format("8 !destroyed for {0} flag", i));
                         Pawn pawn = thingList[i] as Pawn;
                     //    Log.Message(string.Format("9 !destroyed for {0} flag", i));
-                        bool flag2 = thing != null && !this.touchingThings.Contains(thing);
+                        bool flag2 = thing != null && !this.touchingThings.Contains(thing) && thing.def != XenomorphDefOf.RRY_FilthBloodXenomorph && thing.GetType() != typeof(Mote) && thing.GetType() != typeof(MoteThrown) && thing.GetType() != typeof(Bullet);
                     //    Log.Message(string.Format("9b !destroyed for {0} flag", i));
                         bool flag2a = !(thing is Corpse corpse && XenomorphUtil.IsXenoCorpse(corpse));
                     //    Log.Message(string.Format("9c !destroyed for {0} flag", i));
@@ -136,7 +136,7 @@ namespace RRYautja
                 //    Log.Message(string.Format("27 !destroyed for {0}", j));
                     Pawn pawn2 = this.touchingPawns[j];
                 //    Log.Message(string.Format("28 !destroyed for {0}", j));
-                    bool flag5 = !pawn2.Spawned || pawn2.Position != base.Position;
+                    bool flag5 = !pawn2.Spawned || pawn2.Position != base.Position || XenomorphUtil.IsXenomorph(pawn2);
                 //    Log.Message(string.Format("29 !destroyed for {0}", j));
                     if (flag5)
                     {
@@ -193,9 +193,18 @@ namespace RRYautja
         // Token: 0x0600001C RID: 28 RVA: 0x00002AD4 File Offset: 0x00000CD4
         public void damageEntities(Thing e, int amt)
         {
+            Log.Message(string.Format("damageEntities: {0}", e.LabelShort));
             DamageInfo damageInfo;
             damageInfo = new DamageInfo(XenomorphDefOf.RRY_AcidBurn, (float)amt, 0f, -1f, null, null, null, 0, null);
             bool flag = e != null;
+            if (e.Stuff!=null)
+            {
+                Log.Message(string.Format("{0} Stuff: {1}",e.LabelShortCap, e.Stuff.defName));
+            }
+            else
+            {
+                Log.Message(string.Format("{0} Stuff: Null, Typeof: {1}", e.LabelShortCap, e.GetType()));
+            }
             if (flag)
             {
                 e.TakeDamage(damageInfo);
@@ -227,12 +236,20 @@ namespace RRYautja
         // Token: 0x0600001E RID: 30 RVA: 0x00002BAC File Offset: 0x00000DAC
         public void addAcidDamage(Pawn p)
         {
+            Log.Message(string.Format("addAcidDamage: {0}", p.LabelShort));
             List<BodyPartRecord> list = new List<BodyPartRecord>();
-            List<Apparel> wornApparel = p.apparel.WornApparel;
+            Log.Message(string.Format("0 "));
+            List<Apparel> wornApparel = new List<Apparel>();
+            if (p.RaceProps.Humanlike) wornApparel = p.apparel.WornApparel;
+            Log.Message(string.Format("1 "));
             int num = Mathf.RoundToInt((float)this.AcidDamage * Rand.Range(0.5f, 1.25f));
+            Log.Message(string.Format("2 "));
             DamageInfo damageInfo = default(DamageInfo);
+            Log.Message(string.Format("3 "));
             MoteMaker.ThrowDustPuff(p.Position, base.Map, 0.2f);
-            foreach (BodyPartRecord bodyPartRecord in p.health.hediffSet.GetNotMissingParts(0, BodyPartDepth.Outside, null, null))
+            Log.Message(string.Format("4 "));
+            BodyPartHeight bodyPartHeight = p.Downed ? BodyPartHeight.Bottom : BodyPartHeight.Undefined;
+            foreach (BodyPartRecord bodyPartRecord in p.health.hediffSet.GetNotMissingParts(bodyPartHeight, BodyPartDepth.Outside, null, null))
             {
                 Log.Message(string.Format("{0}", bodyPartRecord.Label));
                 bool flag = wornApparel.Count > 0;

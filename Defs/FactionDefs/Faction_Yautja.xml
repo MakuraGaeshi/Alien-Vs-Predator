@@ -2,9 +2,9 @@
 <Defs>
 
   <FactionDef>
-		<defName>YautjaFaction</defName>
-		<label>Yautja warband</label>
-    <description>Feral Yautjas or Wildboyz are Yautjas who arise on a world that a spaceborne Yautja WAAAGH! has already assaulted, though they possess only pre-industrial levels of technology and culture. Feral Yautjas appear after a WAAAGH! has already infested a planet and then moved on to seek new battles elsewhere. Usually Feral Yautjas are a new generation of Yautjas grown from the fungal reproductive spores released by spaceborne Yautjas and left behind on the world their spaceborne counterparts have abandoned.\n\nFeral Yautjas can also be derived from an original population of spaceborne Yautjas stranded on a world who effectively devolve back to a feral state, losing their access to more advanced technology. The Feral Yautjas, while less advanced than their fellow Greenskins, do have access to a variety of wargear in their armoury. However, much of it wYautjas due to the strange effects it has on the mind and behaviour of the Yautja, rather than actually producing a physical effect upon the enemy.</description>
+		<defName>RRYJungleClan</defName>
+		<label>Yautja Jungle Clan</label>
+    <description>REBEL WRITE A DESCRIPTION!</description>
 	<pawnSingular>Yautja</pawnSingular>
     <pawnsPlural>Yautji</pawnsPlural>
     <listOrderPriority>20</listOrderPriority>
@@ -13,14 +13,14 @@
     <canMakeRandomly>true</canMakeRandomly>
     <canSiege>false</canSiege>
     <canStageAttacks>true</canStageAttacks>
-    <leaderTitle>Yautji Elder</leaderTitle>
+    <leaderTitle>Jungle Clan Elder</leaderTitle>
     <startingGoodwill>
       <min>-100</min>
       <max>0</max>
     </startingGoodwill>
-	<factionNameMaker>NamerRRYautjaFaction</factionNameMaker>
+	<factionNameMaker>NamerRRYJungleClan</factionNameMaker>
 	<settlementNameMaker>NamerRRYautjaBases</settlementNameMaker>
-	<techLevel>Neolithic</techLevel>
+	<techLevel>Spacer</techLevel>
   <backstoryCategories>
 			<li>Yautja_Standard</li>
   	</backstoryCategories>
@@ -32,15 +32,21 @@
       <max>0</max>
     </naturalColonyGoodwill>
     <visitorTraderKinds>
+	
       <li>Visitor_Yautja_Standard</li>
+	  
     </visitorTraderKinds>
    <caravanTraderKinds>
+   
       <li>Caravan_Outlander_BulkGoods</li>
       <li>Caravan_Outlander_CombatSupplier</li>
       <li>Caravan_Outlander_Exotic</li>
+	  
     </caravanTraderKinds>
     <baseTraderKinds>
+	
       <li>Base_Outlander_Standard</li>
+	  
     </baseTraderKinds>
     <allowedArrivalTemperatureRange>
       <min>-50</min>
@@ -59,7 +65,124 @@
       <li>
         <kindDef>Combat</kindDef>
         <options>
-		
+          <YautjaUnblooded>14</YautjaUnblooded>
+          <YautjaYoungBlood>10</YautjaYoungBlood>
+          <YautjaBlooded>8</YautjaBlooded>
+          <YautjaElite>4</YautjaElite>
+          <YautjaElder>2</YautjaElder>
+        </options>
+      </li>
+        <li>
+        <kindDef>Peaceful</kindDef>
+        <options>
+          <YautjaColonist>10</YautjaColonist>
+          <YautjaUnblooded>13</YautjaUnblooded>
+        </options>
+      </li>
+	  <li>
+      <kindDef>Trader</kindDef>
+        <traders>
+          <YautjaTrader>1</YautjaTrader>
+        </traders>
+        <carriers>
+          <Muffalo>2</Muffalo>
+          <Dromedary>2</Dromedary>
+        </carriers>
+        <guards>
+          <YautjaUnblooded>13</YautjaUnblooded>
+          <YautjaYoungBlood>10</YautjaYoungBlood>
+          <YautjaBlooded>10</YautjaBlooded>
+        </guards>
+      </li>
+	  <li>
+        <kindDef>Settlement</kindDef>
+        <options>
+          <YautjaColonist>5</YautjaColonist>
+          <YautjaUnblooded>14</YautjaUnblooded>
+          <YautjaYoungBlood>10</YautjaYoungBlood>
+          <YautjaBlooded>8</YautjaBlooded>
+          <YautjaElite>4</YautjaElite>
+          <YautjaElder>2</YautjaElder>
+          <YautjaAncient>1</YautjaAncient>
+        </options>
+      </li>
+    </pawnGroupMakers>
+    <homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
+	<expandingIconTexture>Icons/YautjaJungleClanIcon</expandingIconTexture>
+    <colorSpectrum>
+      <li>(1, 1, 1)</li>
+    </colorSpectrum>
+  </FactionDef>
+
+  <FactionDef>
+		<defName>YautjaFaction</defName>
+		<label>Yautja Badbloods</label>
+    <description>A loose confederation of outcast Yautja who've agreed to mostly fight outsiders instead of fighting each other.\n\nBadbloods don't sow, they don't build, and they rarely trade. Driven by a blood-and-honor culture that values personal strength and ruthlessness, they enrich themselves by raiding and robbing their more productive neighbors.</description>
+	<pawnSingular>Badblood yautja</pawnSingular>
+    <pawnsPlural>Badblood yautji</pawnsPlural>
+    <listOrderPriority>20</listOrderPriority>
+    <settlementGenerationWeight>1</settlementGenerationWeight>
+    <requiredCountAtGameStart>1</requiredCountAtGameStart>
+    <canMakeRandomly>true</canMakeRandomly>
+    <canSiege>false</canSiege>
+    <canStageAttacks>true</canStageAttacks>
+    <leaderTitle>Badblood Yautji</leaderTitle>
+    <startingGoodwill>
+      <min>-100</min>
+      <max>0</max>
+    </startingGoodwill>
+	<factionNameMaker>NamerRRYautjaFaction</factionNameMaker>
+	<settlementNameMaker>NamerRRYautjaBases</settlementNameMaker>
+		<techLevel>Spacer</techLevel>
+		<backstoryCategories>
+			<li>Raider</li>
+		</backstoryCategories>
+		<hairTags>
+			<li>Punk</li>
+		</hairTags>
+    <naturalColonyGoodwill>
+      <min>-60</min>
+      <max>0</max>
+    </naturalColonyGoodwill>
+    <visitorTraderKinds>
+	<!--
+      <li>Visitor_Yautja_Standard</li>
+	  -->
+    </visitorTraderKinds>
+   <caravanTraderKinds>
+   <!--
+      <li>Caravan_Outlander_BulkGoods</li>
+      <li>Caravan_Outlander_CombatSupplier</li>
+      <li>Caravan_Outlander_Exotic</li>
+	  -->
+    </caravanTraderKinds>
+    <baseTraderKinds>
+	<!--
+      <li>Base_Outlander_Standard</li>
+	  -->
+    </baseTraderKinds>
+    <allowedArrivalTemperatureRange>
+      <min>-50</min>
+      <max>45</max>
+    </allowedArrivalTemperatureRange>
+    <maxPawnCostPerTotalPointsCurve>
+      <points>
+        <li>(0,35)</li>
+        <li>(70, 50)</li>
+        <li>(700, 100)</li>
+        <li>(1300, 150)</li>
+        <li>(100000, 10000)</li>
+      </points>
+    </maxPawnCostPerTotalPointsCurve>
+    <pawnGroupMakers>
+      <li>
+        <kindDef>Combat</kindDef>
+        <options>
+          <YautjaUnblooded>14</YautjaUnblooded>
+          <YautjaYoungBlood>10</YautjaYoungBlood>
+          <YautjaBlooded>8</YautjaBlooded>
+          <YautjaElite>4</YautjaElite>
+          <YautjaElder>2</YautjaElder>
         </options>
       </li>
         <li>
@@ -79,14 +202,22 @@
           <Dromedary>2</Dromedary>
         </carriers>
         <guards>
-		
+          <YautjaUnblooded>14</YautjaUnblooded>
+          <YautjaYoungBlood>10</YautjaYoungBlood>
+          <YautjaBlooded>8</YautjaBlooded>
+          <YautjaElite>4</YautjaElite>
+          <YautjaElder>2</YautjaElder>
         </guards>
       </li>
 	  <li>
         <kindDef>Settlement</kindDef>
         <options>
           <YautjaColonist>5</YautjaColonist>
-          <YautjaSlave>13</YautjaSlave>
+          <YautjaUnblooded>14</YautjaUnblooded>
+          <YautjaYoungBlood>10</YautjaYoungBlood>
+          <YautjaBlooded>8</YautjaBlooded>
+          <YautjaElite>4</YautjaElite>
+          <YautjaElder>2</YautjaElder>
         </options>
       </li>
     </pawnGroupMakers>

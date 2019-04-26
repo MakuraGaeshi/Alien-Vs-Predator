@@ -2,6 +2,28 @@
 <Defs>
 
   <BodyPartGroupDef>
+    <defName>RRY_Xeno_Tail_SpikeAttackTool</defName>
+    <label>tail spike</label>
+  </BodyPartGroupDef>
+  
+  <BodyPartGroupDef>
+    <defName>RRY_Xeno_Tail_AttackTool</defName>
+    <label>tail</label>
+  </BodyPartGroupDef>
+  
+  <BodyPartGroupDef>
+    <defName>RRY_Xeno_InnerTeeth</defName>
+    <label>inner teeth</label>
+  </BodyPartGroupDef>
+  
+  <BodyPartGroupDef>
+    <defName>RRY_Xeno_Mandibles</defName>
+    <label>mandibles</label>
+    <listOrder>196</listOrder>
+  </BodyPartGroupDef>
+
+<!--
+  <BodyPartGroupDef>
     <defName>Torso</defName>
     <label>torso</label>
     <listOrder>100</listOrder>
@@ -174,5 +196,5 @@
     <defName>Beak</defName>
     <label>beak</label>
   </BodyPartGroupDef>
-
+-->
 </Defs>

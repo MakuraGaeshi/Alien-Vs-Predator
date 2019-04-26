@@ -34,7 +34,8 @@ namespace RimWorld
         public static PawnKindDef RRY_Xenomorph_Warrior;
         public static PawnKindDef RRY_Xenomorph_Drone;
         public static PawnKindDef RRY_Xenomorph_Runner;
-        
+        public static PawnKindDef RRY_Xenomorph_Predalien;
+
         // Neomorph PawnKindDefs
         public static PawnKindDef RRY_Xenomorph_Neomorph;
 
@@ -48,8 +49,12 @@ namespace RimWorld
         // Xenomorph ThingDefs
         public static ThingDef RRY_EggXenomorphFertilized;
 
+        // Xenomorph BloodDefs
+        public static ThingDef RRY_FilthBloodXenomorph;
+
         // Xenomorph LifeStageDefs
-     //   public static LifeStageDef RRY_EggXenomorphFertilized;
+        //   public static LifeStageDef RRY_EggXenomorphFertilized;
+
     }
 
     public static class XenomorphRacesDefOf
@@ -65,6 +70,7 @@ namespace RimWorld
         public static ThingDef RRY_Xenomorph_Warrior;
         public static ThingDef RRY_Xenomorph_Drone;
         public static ThingDef RRY_Xenomorph_Runner;
+        public static ThingDef RRY_Xenomorph_Predalien;
 
         // Neomorph ThingDefs Races
         public static ThingDef RRY_Xenomorph_Neomorph;

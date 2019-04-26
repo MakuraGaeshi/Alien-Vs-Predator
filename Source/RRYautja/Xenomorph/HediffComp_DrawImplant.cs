@@ -43,11 +43,43 @@ namespace RRYautja
             string direction = "";
             float angle = 0f;
             float offset = 0f;
+            float yvalue = Pawn.Drawer.DrawPos.y;
             Vector3 drawPos = Pawn.Drawer.DrawPos;
             drawPos.y = Altitudes.AltitudeFor((AltitudeLayer)17);
             Vector3 s = new Vector3(1.5f, 1.5f, 1.5f);
             PawnRenderer pawnRenderer = this.Pawn.Drawer.renderer;
             Rot4 rot = LayingFacing();
+            if (Pawn.CarriedBy!=null)
+            {
+                Log.Message(string.Format("{0} carried by {1} drawpos {2} modified to {3}", Pawn.Name, Pawn.CarriedBy.Name, drawPos, Pawn.CarriedBy.DrawPos));
+                drawPos.z = Pawn.CarriedBy.DrawPos.z;
+                drawPos.x = Pawn.CarriedBy.DrawPos.x;
+            }
+            if (Pawn.InBed())
+            {
+                if (Pawn.CurrentBed().Rotation == Rot4.South)
+                {
+                    Log.Message(string.Format("{0}", Pawn.CurrentBed().Rotation.ToStringHuman()));
+                    drawPos -= pawnRenderer.BaseHeadOffsetAt(Rot4.South);
+                }
+                else if (Pawn.CurrentBed().Rotation == Rot4.North)
+                {
+                    Log.Message(string.Format("{0}", Pawn.CurrentBed().Rotation.ToStringHuman()));
+                    drawPos -= pawnRenderer.BaseHeadOffsetAt(Rot4.North);
+                }
+                else if (Pawn.CurrentBed().Rotation == Rot4.East)
+                {
+                    Log.Message(string.Format("{0}", Pawn.CurrentBed().Rotation.ToStringHuman()));
+                    drawPos.x += 0.3f;
+                }
+                else if (Pawn.CurrentBed().Rotation == Rot4.West)
+                {
+                    Log.Message(string.Format("{0}", Pawn.CurrentBed().Rotation.ToStringHuman()));
+                    drawPos.x -= 0.3f;
+                }
+                drawPos.y = yvalue;
+                Log.Message(string.Format("{0} in bed {1} drawpos modified to {2}", Pawn.Name, Pawn.InBed(), drawPos));
+            }
             bool selected = Find.Selector.SingleSelectedThing == Pawn;
             if (offset < 0)
             {
@@ -57,6 +89,34 @@ namespace RRYautja
             if (Pawn.Downed)
             {
                 angle = pawnRenderer.wiggler.downedAngle;
+                if (Pawn.CarriedBy != null)
+                {
+                    Log.Message(string.Format("{0} carried by {1} angle {2} modified to {3}", Pawn.Name, Pawn.CarriedBy.Name, angle, Pawn.CarriedBy.carryTracker.CarriedThing.Rotation.AsAngle));
+                    angle = Pawn.CarriedBy.carryTracker.CarriedThing.Rotation.AsAngle;
+
+                }
+                if (Pawn.InBed())
+                {
+
+                    if (Pawn.CurrentBed().Rotation == Rot4.South)
+                    {
+                        angle = 0f;
+                    }
+                    else if (Pawn.CurrentBed().Rotation == Rot4.North)
+                    {
+                        angle = 180f;
+                    }
+                    else if (Pawn.CurrentBed().Rotation == Rot4.East)
+                    {
+                        angle = 270;
+                    }
+                    else if (Pawn.CurrentBed().Rotation == Rot4.West)
+                    {
+                        angle = 90;
+                    }
+
+                   // angle = Pawn.CurrentBed().Rotation.AsAngle;
+                }
                 if (Pawn.kindDef.race == YautjaDefOf.Alien_Yautja)
                 {
                     s = new Vector3(2f, 1.5f, 2f);

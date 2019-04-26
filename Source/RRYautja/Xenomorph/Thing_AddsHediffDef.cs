@@ -7,7 +7,7 @@ using Verse;
 namespace RRYautja
 {
     // Token: 0x02000007 RID: 7
-    public class Thing_AddsHediffFilthDef : ThingDef
+    public class Thing_AddsHediffDef : ThingDef
     {
         // Token: 0x0400001A RID: 26
         public HediffDef addHediff;
@@ -29,7 +29,7 @@ namespace RRYautja
     }
 
     // Token: 0x02000006 RID: 6
-    public class Thing_AddsHediffFilith : Filth
+    public class Thing_AddsHediff : Gas
     {
         // Token: 0x17000004 RID: 4
         // (get) Token: 0x06000021 RID: 33 RVA: 0x00002D9F File Offset: 0x00000F9F
@@ -58,6 +58,7 @@ namespace RRYautja
                 }
                 else
                 {
+                    this.graphicRotation += this.graphicRotationSpeed;
                     this.Ticks--;
                     bool flag2 = this.Ticks <= 0;
                     if (flag2)
@@ -75,8 +76,8 @@ namespace RRYautja
             bool destroyed = base.Destroyed;
             if (!destroyed)
             {
-                Thing_AddsHediffFilthDef thing_AddsHediffFilthDef = this.def as Thing_AddsHediffFilthDef;
-                bool flag = thing_AddsHediffFilthDef.addHediff != null;
+                Thing_AddsHediffDef thing_AddsHediffDef = this.def as Thing_AddsHediffDef;
+                bool flag = thing_AddsHediffDef.addHediff != null;
                 if (flag)
                 {
                     List<Thing> thingList = GridsUtility.GetThingList(base.Position, base.Map);
@@ -87,7 +88,7 @@ namespace RRYautja
                         if (flag2)
                         {
                             this.touchingPawns.Add(pawn);
-                            this.addHediffToPawn(pawn, thing_AddsHediffFilthDef.addHediff, thing_AddsHediffFilthDef.hediffAddChance, thing_AddsHediffFilthDef.hediffSeverity, thing_AddsHediffFilthDef.onlyAffectLungs);
+                            this.addHediffToPawn(pawn, thing_AddsHediffDef.addHediff, thing_AddsHediffDef.hediffAddChance, thing_AddsHediffDef.hediffSeverity, thing_AddsHediffDef.onlyAffectLungs);
                         }
                     }
                     for (int j = 0; j < this.touchingPawns.Count; j++)
@@ -158,7 +159,7 @@ namespace RRYautja
                     }
                     float statValue = StatExtension.GetStatValue(p, StatDefOf.ToxicSensitivity, true);
                     hediff.Severity = _hediffseverity * statValue;
-                    foreach (BodyPartRecord bodyPartRecord in p.health.hediffSet.GetNotMissingParts(0, (BodyPartDepth)1, null, null))
+                    foreach (BodyPartRecord bodyPartRecord in p.health.hediffSet.GetNotMissingParts(0, BodyPartDepth.Inside, null, null))
                     {
                         bool flag4 = bodyPartRecord.def.tags.Contains(BodyPartTagDefOf.BreathingSource);
                         if (flag4)
@@ -239,14 +240,7 @@ namespace RRYautja
                 }
             }
         }
-        // Token: 0x06002662 RID: 9826 RVA: 0x00123EAB File Offset: 0x001222AB
-        public override void ExposeData()
-        {
-            base.ExposeData();
-            Scribe_Values.Look<int>(ref this.destroyTick, "destroyTick", 0, false);
-        }
 
-        public int destroyTick;
         // Token: 0x04000015 RID: 21
         private List<Pawn> touchingPawns = new List<Pawn>();
 

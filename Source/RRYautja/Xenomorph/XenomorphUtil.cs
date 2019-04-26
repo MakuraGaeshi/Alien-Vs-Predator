@@ -30,6 +30,7 @@ namespace RRYautja
         public static bool IsXenomorphPawn(Pawn pawn)
         {
             if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_FaceHugger) return true;
+            if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Predalien) return true;
             if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Runner) return true;
             if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Drone) return true;
             if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Warrior) return true;
@@ -39,6 +40,7 @@ namespace RRYautja
         public static bool IsXenomorphCorpse(Corpse corpse)
         {
             if (corpse.InnerPawn.kindDef == XenomorphDefOf.RRY_Xenomorph_FaceHugger) return true;
+            if (corpse.InnerPawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Predalien) return true;
             if (corpse.InnerPawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Runner) return true;
             if (corpse.InnerPawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Drone) return true;
             if (corpse.InnerPawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Warrior) return true;

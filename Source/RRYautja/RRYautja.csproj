@@ -54,10 +54,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Xenomorph\HediffComp_DamageOverTime.cs" />
     <Compile Include="Xenomorph\Thing_AddAcidDamageFilth.cs" />
     <Compile Include="Xenomorph\XenoGetPawnThing.cs" />
-    <Compile Include="Xenomorph\Thing_AddsHediffFilith.cs" />
-    <Compile Include="Xenomorph\Thing_AddAcidDamageFilthDef.cs" />
+    <Compile Include="Xenomorph\Thing_AddsHediffDef.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_KidnapNearby.cs" />
     <Compile Include="Xenomorph\DamageWorker_Acid.cs" />
     <Compile Include="util\Apparel_Comps.cs" />

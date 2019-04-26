@@ -70,7 +70,7 @@ namespace RRYautja
                 prefix: new HarmonyMethod(type: typeof(HarmonyPatches), name: nameof(Pre_PawnDied_Facehugger)),
                 postfix: null);
 
-            //    harmony.Patch(AccessTools.Method(typeof(PawnGraphicSet), "ResolveAllGraphics", null, null), new HarmonyMethod(typeof(HarmonyPatches), "ResolveAllGraphicsPostfix", null), null, null);
+            //    harmony.Patch(AccessTools.Method(typeof(Corpse), "RareTick", null, null), new HarmonyMethod(typeof(HarmonyPatches), "RareTickPostfix", null), null, null);
         }
 
         public static bool Pre_CanDrawAddon_Cloak(Pawn pawn)
@@ -164,33 +164,46 @@ namespace RRYautja
 						this.downedAngle -= 0.35f;
 					}
         */
-        /*
+
         // Token: 0x0600000C RID: 12 RVA: 0x0000283C File Offset: 0x00000A3C
-        public static void ResolveAllGraphicsPostfix(PawnGraphicSet __instance)
+        public static void RareTickPostfix(Corpse __instance)
         {
-            Pawn pawn = __instance.pawn;
-            Log.Message(string.Format("tet"));
-            Hediff_Cloak hd = (Hediff_Cloak)pawn.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_Cloaked);
-            if (__instance is PawnGraphicSet_Invisible graphics)
+            if (XenomorphUtil.IsInfectedPawn(__instance.InnerPawn))
             {
-                Log.Message(string.Format("tet2"));
-                graphics.ClearCache();
-                graphics.nakedGraphic = new Graphic_Invisible();
-                graphics.rottingGraphic = null;
-                graphics.packGraphic = null;
-                graphics.headGraphic = null;
-                graphics.desiccatedHeadGraphic = null;
-                graphics.skullGraphic = null;
-                graphics.headStumpGraphic = null;
-                graphics.desiccatedHeadStumpGraphic = null;
-                graphics.hairGraphic = null;
-                ShadowData shadowData = new ShadowData();
-                shadowData.volume = new Vector3(0, 0, 0);
-                shadowData.offset = new Vector3(0, 0, 0);
-                hd.SetShadowGraphic(pawn.Drawer.renderer, new Graphic_Shadow(shadowData));
+                HediffWithComps hediff = null;
+                if (__instance.InnerPawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection))
+                {
+                    hediff = (HediffWithComps)__instance.InnerPawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_FaceHuggerInfection);
+                }
+                else if (__instance.InnerPawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation))
+                {
+                    hediff = (HediffWithComps)__instance.InnerPawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_XenomorphImpregnation);
+                }
+                else if (__instance.InnerPawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation))
+                {
+                    hediff = (HediffWithComps)__instance.InnerPawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_HiddenXenomorphImpregnation);
+                }
+                else if (__instance.InnerPawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_NeomorphImpregnation))
+                {
+                    hediff = (HediffWithComps)__instance.InnerPawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_NeomorphImpregnation);
+                }
+                else if (__instance.InnerPawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenNeomorphImpregnation))
+                {
+                    hediff = (HediffWithComps)__instance.InnerPawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_HiddenNeomorphImpregnation);
+                }
+                if (hediff!=null)
+                {
+                    for (int i = 0; i <= 250; i++)
+                    {
+                    //    float sev = 0f;
+                    //    hediff.TryGetComp<HediffComp_XenoSpawner>().CompPostTick(ref sev);
+                        hediff.PostTick();
+                    }
+                }
             }
+
         }
-        */
+
         // Verse.AI.Pawn_PathFollower
         public static void PathOfNature(Pawn_PathFollower __instance, Pawn pawn, IntVec3 c, ref int __result)
         {

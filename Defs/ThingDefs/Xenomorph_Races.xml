@@ -52,7 +52,8 @@
       <Flammability>1</Flammability>
       <ComfyTemperatureMin>-100</ComfyTemperatureMin>
       <ComfyTemperatureMax>250</ComfyTemperatureMax>
-      <MeatAmount>30</MeatAmount>
+      <MeatAmount>15</MeatAmount>
+      <LeatherAmount>15</LeatherAmount>
     </statBases>
     <race>
       <herdAnimal>false</herdAnimal>
@@ -81,7 +82,7 @@
   <ThingDef ParentName="BaseXenomorph">
     <defName>RRY_Xenomorph_FaceHugger</defName>
     <label>Facehugger</label>
-    <description>A facehugger is the second stage in the Xenomorph's life cycle. It has eight long, finger-like legs, which allow it to crawl rapidly, and a long tail adapted for making great leaps. These particular appendages give it an appearance somewhat comparable to chelicerate arthropods such as arachnids and horseshoe crabs./n/nThe facehugger is a parasitoid; its only purpose is to make contact with the host's mouth for the implantation process by gripping its legs around the victim's head and wrapping its tail around the host's neck. Upon making contact, the facehugger administers a cynose-based paralytic in order to render it unconscious and immobile. During a successful attachment, the facehugger will insert a proboscis down the host's throat while simultaneously implanting an embryo. The host is kept alive, and the creature breathes for the host. Attempts to remove facehuggers generally prove fatal, as the parasitoid will respond by tightening its tail around the host's neck, and its acidic blood prevents it from being cut away. In addition, its grip on the host's head is strong enough to tear the host's face off if it is forcibly removed./n/nOnce the embryo is implanted, the facehugger will remain attached until the implant is secure, which can take anywhere from less than a minute to 16 hours. Once this happens, the parasite detaches, crawls away, and dies. The victim awakens with no awareness of the implantation, believing themselves to have been asleep, and appears to have a normal, healthy bodily function.</description>
+    <description>Facehuggers are the second stage in the Xenomorph's life cycle. It has eight long, finger-like legs, which allow it to crawl rapidly, and a long tail adapted for making great leaps. These particular appendages give it an appearance somewhat comparable to chelicerate arthropods such as arachnids and horseshoe crabs./n/nThe facehugger is a parasitoid; its only purpose is to make contact with the host's mouth for the implantation process by gripping its legs around the victim's head and wrapping its tail around the host's neck. Upon making contact, the facehugger administers a cynose-based paralytic in order to render it unconscious and immobile. During a successful attachment, the facehugger will insert a proboscis down the host's throat while simultaneously implanting an embryo. The host is kept alive, and the creature breathes for the host. Attempts to remove facehuggers generally prove fatal, as the parasitoid will respond by tightening its tail around the host's neck, and its acidic blood prevents it from being cut away. In addition, its grip on the host's head is strong enough to tear the host's face off if it is forcibly removed./n/nOnce the embryo is implanted, the facehugger will remain attached until the implant is secure, which can take anywhere from less than a minute to 16 hours. Once this happens, the parasite detaches, crawls away, and dies. The victim awakens with no awareness of the implantation, believing themselves to have been asleep, and appears to have a normal, healthy bodily function.</description>
     <statBases>
       <MoveSpeed>5.9</MoveSpeed>
       <ArmorRating_Blunt>0.20</ArmorRating_Blunt>
@@ -115,7 +116,7 @@
       <maxPreyBodySize>10</maxPreyBodySize>
       <intelligence>ToolUser</intelligence>
       <thinkTreeMain>RRY_Xenommorph</thinkTreeMain>
-      <body>XenomorphFaceHugger</body>
+      <body>RRY_Xenomorph_FaceHugger</body>
       <baseBodySize>0.30</baseBodySize>
       <baseHealthScale>1.32</baseHealthScale>
       <lifeStageAges>
@@ -138,11 +139,13 @@
     <comps> 
 	
     </comps>
+	<!--
     <butcherProducts>
       <Steel>50</Steel>
       <Plasteel>10</Plasteel>
       <ComponentIndustrial>2</ComponentIndustrial>
     </butcherProducts>
+	-->
   </ThingDef>
   
   <PawnKindDef ParentName="BaseXenomorphKind">
@@ -171,7 +174,6 @@
   </PawnKindDef>
 
   <!-- Queen -->
-  
   <ThingDef ParentName="BaseXenomorph">
     <defName>RRY_Xenomorph_Queen</defName>
     <label>Queen</label>
@@ -180,12 +182,15 @@
       <MoveSpeed>2.9</MoveSpeed>
       <ArmorRating_Blunt>0.40</ArmorRating_Blunt>
       <ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+      <MeatAmount>90</MeatAmount>
+      <LeatherAmount>70</LeatherAmount>
     </statBases>
     <tools>
       <li>
-        <label>left fist</label>
+        <label>left claw</label>
         <capacities>
           <li>Blunt</li>
+          <li>Cut</li>
         </capacities>
         <power>8.2</power>
         <cooldownTime>2</cooldownTime>
@@ -200,9 +205,10 @@
         </surpriseAttack>
       </li>
       <li>
-        <label>right fist</label>
+        <label>right claw</label>
         <capacities>
           <li>Blunt</li>
+          <li>Cut</li>
         </capacities>
         <power>8.2</power>
         <cooldownTime>2</cooldownTime>
@@ -227,6 +233,16 @@
         <chanceFactor>0.07</chanceFactor>
       </li>
       <li>
+        <label>inner teeth</label>
+        <capacities>
+          <li>Bite</li>
+        </capacities>
+        <power>8.2</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+        <chanceFactor>0.07</chanceFactor>
+      </li>
+      <li>
         <label>head</label>
         <capacities>
           <li>Blunt</li>
@@ -241,7 +257,7 @@
     <race>
       <intelligence>ToolUser</intelligence>
       <thinkTreeMain>RRY_Xenommorph</thinkTreeMain>
-      <body>Xenomorph</body>
+      <body>RRY_Xenomorph_Biped</body>
       <baseBodySize>3.0</baseBodySize>
       <baseHealthScale>4.32</baseHealthScale>
       <lifeStageAges>
@@ -300,11 +316,13 @@
         <eggCountRange>1</eggCountRange>
       </li> 
     </comps>
+	<!--
     <butcherProducts>
       <Steel>50</Steel>
       <Plasteel>10</Plasteel>
       <ComponentIndustrial>2</ComponentIndustrial>
     </butcherProducts>
+	-->
   </ThingDef>
 
   <PawnKindDef ParentName="BaseXenomorphKind">
@@ -375,7 +393,6 @@
   </PawnKindDef>
 
   <!-- Walker (Warrior/Runner/Drone) base -->
-
   <ThingDef ParentName="BaseXenomorph" Name="BaseXenomorphWalker" Abstract="True">
     <race>
       <intelligence>ToolUser</intelligence>
@@ -427,30 +444,45 @@
       <li>
         <compClass>RRYautja.Comp_Xenomorph</compClass>
       </li>
+	  <!--
+	  <li Class="ExtraButcheringProducts.CompProperties_SpecialButcherChance">
+        <butcherProducts>
+          <li>
+            <thingDef>whateveryouwant</thingDef>
+            <count>#</count>
+            <chance>#</chance>
+          </li>
+        </butcherProducts>
+      </li>
+	  -->
     </comps>
+	<!--
     <butcherProducts>
       <Steel>20</Steel>
       <Plasteel>5</Plasteel>
       <ComponentIndustrial>1</ComponentIndustrial>
     </butcherProducts>
+	-->
   </ThingDef>
 
   <!-- Drone - Basic -->
-  
   <ThingDef ParentName="BaseXenomorphWalker">
     <defName>RRY_Xenomorph_Drone</defName>
     <label>Drone</label>
-    <description>A human-sized Xenomorph Drone with huge optical sensors on its face for aiming weapons at long range. While effective at distance, it is weaker in melee combat. Veterans of mechanoid wars know that often, the safest thing to do against a lancer is to charge.</description>
+    <description>Drones are an adult form of the species Xenomorph XX121, often said to be the most basic adult caste. They are loyal servants of the Queen, but essentially represents the lowliest class of Xenomorph, comparable to a worker ant. Drones construct Xenomorph Hives, using a resin-like secretion that they produce, and collect hosts for impregnation./n/n Drones are easily identified by their smooth head carapaces, among the smoothest of all Xenomorphs, and they are capable of spitting cysts of acidic blood at their enemies. They average around 8 feet tall when standing on hind legs, and about 14–15 feet long, tail included.</description>
     <statBases>
       <MoveSpeed>4.9</MoveSpeed>
       <ArmorRating_Blunt>0.20</ArmorRating_Blunt>
       <ArmorRating_Sharp>0.40</ArmorRating_Sharp>
+      <MeatAmount>30</MeatAmount>
+      <LeatherAmount>30</LeatherAmount>
     </statBases>
     <tools>
       <li>
-        <label>left fist</label>
+        <label>left claw</label>
         <capacities>
           <li>Blunt</li>
+          <li>Cut</li>
         </capacities>
         <power>8.2</power>
         <cooldownTime>2</cooldownTime>
@@ -465,9 +497,10 @@
         </surpriseAttack>
       </li>
       <li>
-        <label>right fist</label>
+        <label>right claw</label>
         <capacities>
           <li>Blunt</li>
+          <li>Cut</li>
         </capacities>
         <power>8.2</power>
         <cooldownTime>2</cooldownTime>
@@ -492,6 +525,16 @@
         <chanceFactor>0.07</chanceFactor>
       </li>
       <li>
+        <label>inner teeth</label>
+        <capacities>
+          <li>Bite</li>
+        </capacities>
+        <power>8.2</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>RRY_Xeno_InnerTeeth</linkedBodyPartsGroup>
+        <chanceFactor>0.07</chanceFactor>
+      </li>
+      <li>
         <label>head</label>
         <capacities>
           <li>Blunt</li>
@@ -502,9 +545,30 @@
         <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
         <chanceFactor>0.2</chanceFactor>
       </li>
+      <li>
+        <label>tail</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>5</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>RRY_Xeno_Tail_AttackTool</linkedBodyPartsGroup>
+        <chanceFactor>0.2</chanceFactor>
+      </li>
+      <li>
+        <label>tail spike</label>
+        <capacities>
+          <li>Stab</li>
+          <li>Cut</li>
+        </capacities>
+        <power>5</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>RRY_Xeno_Tail_SpikeAttackTool</linkedBodyPartsGroup>
+        <chanceFactor>0.2</chanceFactor>
+      </li>
     </tools>
     <race>
-      <body>Human</body>
+      <body>RRY_Xenomorph_Biped</body>
       <baseHealthScale>0.72</baseHealthScale>
       <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
       <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
@@ -580,24 +644,26 @@
     </weaponTags>
   </PawnKindDef>
   
-  <!-- Warrior - Basic -->
-  
+  <!-- Warrior - Melee -->
   <ThingDef ParentName="BaseXenomorphWalker">
     <defName>RRY_Xenomorph_Warrior</defName>
     <label>Warrior</label>
-    <description>A human-sized Xenomorph Warrior with huge optical sensors on its face for aiming weapons at long range. While effective at distance, it is weaker in melee combat. Veterans of mechanoid wars know that often, the safest thing to do against a lancer is to charge.</description>
+    <description>Warriors, also known as Soldiers, are the primary assault caste of the Xenomorph XX121 species and as such is almost certainly the most numerous caste of Xenomorph in existence. They are fast, reasonably tough, and savage combatants./n/nEven in death the Warrior is dangerous, as its pressurized bloodstream will cause it to burst apart, drenching nearby enemies in acid blood. Warriors are identified by their ridged heads, and stand around 7–8 feet tall on their hind legs. They are about 14–16 feet long, including their tail.</description>
     <statBases>
       <MoveSpeed>4.9</MoveSpeed>
       <ArmorRating_Blunt>0.20</ArmorRating_Blunt>
       <ArmorRating_Sharp>0.40</ArmorRating_Sharp>
+      <MeatAmount>45</MeatAmount>
+      <LeatherAmount>45</LeatherAmount>
     </statBases>
     <tools>
       <li>
-        <label>left fist</label>
+        <label>left claw</label>
         <capacities>
           <li>Blunt</li>
+          <li>Cut</li>
         </capacities>
-        <power>8.2</power>
+        <power>10.2</power>
         <cooldownTime>2</cooldownTime>
         <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
         <surpriseAttack>
@@ -610,11 +676,12 @@
         </surpriseAttack>
       </li>
       <li>
-        <label>right fist</label>
+        <label>right claw</label>
         <capacities>
           <li>Blunt</li>
+          <li>Cut</li>
         </capacities>
-        <power>8.2</power>
+        <power>10.2</power>
         <cooldownTime>2</cooldownTime>
         <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
         <surpriseAttack>
@@ -631,7 +698,17 @@
         <capacities>
           <li>Bite</li>
         </capacities>
-        <power>8.2</power>
+        <power>10.2</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+        <chanceFactor>0.07</chanceFactor>
+      </li>
+      <li>
+        <label>inner teeth</label>
+        <capacities>
+          <li>Bite</li>
+        </capacities>
+        <power>10.2</power>
         <cooldownTime>2</cooldownTime>
         <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
         <chanceFactor>0.07</chanceFactor>
@@ -649,7 +726,7 @@
       </li>
     </tools>
     <race>
-      <body>Human</body>
+      <body>RRY_Xenomorph_Biped</body>
       <baseHealthScale>0.72</baseHealthScale>
       <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
       <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
@@ -728,27 +805,28 @@
     </weaponTags>
   </PawnKindDef>
 
-
-  <!-- Runner - fast melee -->
-
+  <!-- Runner - Fast Melee -->
   <ThingDef ParentName="BaseXenomorphWalker">
     <defName>RRY_Xenomorph_Runner</defName>
     <label>Runner</label>
-    <description>Fast, spindly, human-sized xenomorphs specializing in rapid approach and close-range combat. Their bodies are covered in points and blades, but their mostly use two arm blades to lop off limbs or gut their victims alive.</description>
+    <description>Runners, also known as Dog Aliens or Ox Aliens, is an adult form of the species Xenomorph XX121 spawned from a quadrupedal host animal (such as a dog). Runners, as their name implies, are fast and agile, and can spit acid from their mouths./n/n Runners have variously been portrayed as being slightly larger and slightly smaller than typical human-spawned Aliens, differences that no doubt derive from the animal that hosted the creature. However, Runners average around 7 feet 5 inches tall when standing on their hind legs.</description>
     <statBases>
       <MoveSpeed>5.6</MoveSpeed>
       <ArmorRating_Blunt>0.20</ArmorRating_Blunt>
       <ArmorRating_Sharp>0.40</ArmorRating_Sharp>
+      <MeatAmount>25</MeatAmount>
+      <LeatherAmount>25</LeatherAmount>
     </statBases>
     <tools>
       <li>
-        <label>left fist</label>
+        <label>left claw</label>
         <capacities>
           <li>Blunt</li>
+          <li>Cut</li>
         </capacities>
         <power>8.2</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
         <surpriseAttack>
           <extraMeleeDamages>
             <li>
@@ -759,13 +837,14 @@
         </surpriseAttack>
       </li>
       <li>
-        <label>right fist</label>
+        <label>right claw</label>
         <capacities>
           <li>Blunt</li>
+          <li>Cut</li>
         </capacities>
         <power>8.2</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
         <surpriseAttack>
           <extraMeleeDamages>
             <li>
@@ -786,6 +865,16 @@
         <chanceFactor>0.07</chanceFactor>
       </li>
       <li>
+        <label>inner teeth</label>
+        <capacities>
+          <li>Bite</li>
+        </capacities>
+        <power>8.2</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>RRY_Xeno_InnerTeeth</linkedBodyPartsGroup>
+        <chanceFactor>0.07</chanceFactor>
+      </li>
+      <li>
         <label>head</label>
         <capacities>
           <li>Blunt</li>
@@ -796,9 +885,30 @@
         <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
         <chanceFactor>0.2</chanceFactor>
       </li>
+      <li>
+        <label>tail</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>5</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>RRY_Xeno_Tail_AttackTool</linkedBodyPartsGroup>
+        <chanceFactor>0.2</chanceFactor>
+      </li>
+      <li>
+        <label>tail spike</label>
+        <capacities>
+          <li>Stab</li>
+          <li>Cut</li>
+        </capacities>
+        <power>5</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>RRY_Xeno_Tail_SpikeAttackTool</linkedBodyPartsGroup>
+        <chanceFactor>0.2</chanceFactor>
+      </li>
     </tools>
     <race>
-      <body>Human</body>
+      <body>RRY_Xenomorph_Quadruped</body>
       <baseHealthScale>1.32</baseHealthScale>
       <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
       <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
@@ -872,8 +982,184 @@
     </weaponTags>
   </PawnKindDef>
 
- <!-- Walker (Neomorph) base -->
+  <!-- Preadalien - Advanced Melee -->
+  <ThingDef ParentName="BaseXenomorphWalker">
+    <defName>RRY_Xenomorph_Predalien</defName>
+    <label>Predalien</label>
+    <description>Predaliens are Xenomorphs spawned from a Yautja. A more obvious result of the Xenomorph's DNA Reflex, the Predalien takes more clearly after its Yautja host, sharing physical features such as dreadlocks, mandibles and lighter skin coloration./n/n They are lethal combatants, often seen to possess strength far in excess of human-spawned Xenomorphs owing to the greater physical prowess of their hosts, a trait the Predalien subsequently inherits and enhances. They are apparently rare and are regarded by the Yautja as abominations and an insult to their species.</description>
+    <statBases>
+      <MoveSpeed>5.6</MoveSpeed>
+      <ArmorRating_Blunt>0.20</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.40</ArmorRating_Sharp>
+      <MeatAmount>25</MeatAmount>
+      <LeatherAmount>25</LeatherAmount>
+    </statBases>
+    <tools>
+      <li>
+        <label>left claw</label>
+        <capacities>
+          <li>Blunt</li>
+          <li>Cut</li>
+        </capacities>
+        <power>8.2</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+        <surpriseAttack>
+          <extraMeleeDamages>
+            <li>
+              <def>Stun</def>
+              <amount>14</amount>
+            </li>
+          </extraMeleeDamages>
+        </surpriseAttack>
+      </li>
+      <li>
+        <label>right claw</label>
+        <capacities>
+          <li>Blunt</li>
+          <li>Cut</li>
+        </capacities>
+        <power>8.2</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+        <surpriseAttack>
+          <extraMeleeDamages>
+            <li>
+              <def>Stun</def>
+              <amount>14</amount>
+            </li>
+          </extraMeleeDamages>
+        </surpriseAttack>
+      </li>
+      <li>
+        <label>teeth</label>
+        <capacities>
+          <li>Bite</li>
+        </capacities>
+        <power>8.2</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+        <chanceFactor>0.07</chanceFactor>
+      </li>
+      <li>
+        <label>inner teeth</label>
+        <capacities>
+          <li>Bite</li>
+        </capacities>
+        <power>8.2</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+        <chanceFactor>0.07</chanceFactor>
+      </li>
+      <li>
+        <label>head</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>5</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+        <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+        <chanceFactor>0.2</chanceFactor>
+      </li>
+      <li>
+        <label>tail</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>5</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>RRY_Xeno_Tail_AttackTool</linkedBodyPartsGroup>
+        <chanceFactor>0.2</chanceFactor>
+      </li>
+      <li>
+        <label>tail spike</label>
+        <capacities>
+          <li>Stab</li>
+          <li>Cut</li>
+        </capacities>
+        <power>5</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>RRY_Xeno_Tail_SpikeAttackTool</linkedBodyPartsGroup>
+        <chanceFactor>0.2</chanceFactor>
+      </li>
+    </tools>
+    <race>
+      <body>RRY_Xenomorph_Biped_Predalien</body>
+      <baseHealthScale>1.32</baseHealthScale>
+      <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
+      <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
+      <soundMeleeMiss>Pawn_Melee_Punch_Miss</soundMeleeMiss>
+    </race>
+  </ThingDef>
 
+  <PawnKindDef ParentName="BaseXenomorphKind">
+    <defName>RRY_Xenomorph_Predalien</defName>
+    <label>Predalien</label>
+    <race>RRY_Xenomorph_Predalien</race>
+    <combatPower>160</combatPower>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>0.5</drawSize>
+          <shadowData>
+            <volume>(0.6, 0.8, 0.6)</volume>
+          </shadowData>
+          <shaderType>CutoutComplex</shaderType>
+        </bodyGraphicData>
+      </li>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>0.75</drawSize>
+          <shadowData>
+            <volume>(0.6, 0.8, 0.6)</volume>
+          </shadowData>
+        </bodyGraphicData>
+      </li>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Pawn/Xenomorph/Xenomorph_Predalien</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>1.00</drawSize>
+          <shadowData>
+            <volume>(0.4, 0.8, 0.4)</volume>
+          </shadowData>
+        </bodyGraphicData>
+      </li>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Pawn/Xenomorph/Xenomorph_Predalien</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>1.25</drawSize>
+          <shadowData>
+            <volume>(0.4, 0.8, 0.4)</volume>
+          </shadowData>
+        </bodyGraphicData>
+      </li>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Pawn/Xenomorph/Xenomorph_Predalien</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>2.1</drawSize>
+          <shadowData>
+            <volume>(0.4, 0.8, 0.4)</volume>
+          </shadowData>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    <weaponMoney>
+      <min>0</min>
+      <max>0</max>
+    </weaponMoney>
+    <weaponTags>
+    </weaponTags>
+  </PawnKindDef>
+
+ <!-- Walker (Neomorph) base -->
   <ThingDef ParentName="BaseXenomorph" Name="BaseNeomorphWalker" Abstract="True">
     <race>
       <intelligence>ToolUser</intelligence>
@@ -926,29 +1212,33 @@
         <compClass>RRYautja.Comp_Xenomorph</compClass>
       </li>
     </comps>
+	<!--
     <butcherProducts>
       <Steel>20</Steel>
       <Plasteel>5</Plasteel>
       <ComponentIndustrial>1</ComponentIndustrial>
     </butcherProducts>
+	-->
   </ThingDef>
 
   <!-- Neomorph - Basic -->
-  
   <ThingDef ParentName="BaseNeomorphWalker">
     <defName>RRY_Xenomorph_Neomorph</defName>
-    <label>Drone</label>
+    <label>Neomorph</label>
     <description>A human-sized Neomorph with huge optical sensors on its face for aiming weapons at long range. While effective at distance, it is weaker in melee combat. Veterans of mechanoid wars know that often, the safest thing to do against a lancer is to charge.</description>
     <statBases>
       <MoveSpeed>4.9</MoveSpeed>
       <ArmorRating_Blunt>0.20</ArmorRating_Blunt>
       <ArmorRating_Sharp>0.40</ArmorRating_Sharp>
+      <MeatAmount>30</MeatAmount>
+      <LeatherAmount>30</LeatherAmount>
     </statBases>
     <tools>
       <li>
-        <label>left fist</label>
+        <label>left claw</label>
         <capacities>
           <li>Blunt</li>
+          <li>Cut</li>
         </capacities>
         <power>8.2</power>
         <cooldownTime>2</cooldownTime>
@@ -963,9 +1253,10 @@
         </surpriseAttack>
       </li>
       <li>
-        <label>right fist</label>
+        <label>right claw</label>
         <capacities>
           <li>Blunt</li>
+          <li>Cut</li>
         </capacities>
         <power>8.2</power>
         <cooldownTime>2</cooldownTime>
@@ -990,6 +1281,16 @@
         <chanceFactor>0.07</chanceFactor>
       </li>
       <li>
+        <label>inner teeth</label>
+        <capacities>
+          <li>Bite</li>
+        </capacities>
+        <power>8.2</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+        <chanceFactor>0.07</chanceFactor>
+      </li>
+      <li>
         <label>head</label>
         <capacities>
           <li>Blunt</li>
@@ -1002,7 +1303,7 @@
       </li>
     </tools>
     <race>
-      <body>Human</body>
+      <body>RRY_Xenomorph_Biped</body>
       <baseHealthScale>0.72</baseHealthScale>
       <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
       <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>

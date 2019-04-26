@@ -150,7 +150,14 @@
 				<useGenderedHeads>false</useGenderedHeads>
                 <aliencrowntypes>
                     <li>Average_Normal</li> 
+                    <li>Average_Normal_A</li> 
+                    <li>Average_Normal_B</li> 
+                    <li>Average_Normal_C</li> 
                     <li>Cmouth_Normal</li> 
+                    <li>Cmouth_Normal_A</li> 
+                    <li>Cmouth_Normal_B</li> 
+                    <li>Cmouth_Normal_C</li> 
+                    <li>Cmouth_Normal_D</li> 
                     <li>Cmouth_NormalA</li> 
                     <li>Albino_Normal</li> 
                 </aliencrowntypes>
@@ -539,7 +546,7 @@
       <lifeExpectancy>2000</lifeExpectancy>
       <leatherDef>Leather_Yautja</leatherDef>
       <nameGenerator>NamerPersonYautja</nameGenerator>
-      <body>Human</body>
+      <body>RRY_Yautja_Biped</body>
       <bloodDef>FilthBloodYautja</bloodDef>	
 	  <!-- RGB in the photoshop is (R=196  G= 192  B=124) -->
       <meatColor>(194,217,124)</meatColor>

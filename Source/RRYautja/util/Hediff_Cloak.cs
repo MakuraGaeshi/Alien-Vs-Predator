@@ -192,6 +192,19 @@ namespace RRYautja
 
         public override void PostRemoved()
         {
+            if (base.pawn.apparel.WornApparelCount!=0)
+            {
+                foreach (var item in base.pawn.apparel.WornApparel)
+                {
+                    if (item.def==YautjaDefOf.RRY_Equipment_HunterGauntlet)
+                    {
+                        if (((Cloakgen)item).cloakIsOn)
+                        {
+                            ((Cloakgen)item).SwitchOffCloak();
+                        }
+                    }
+                }
+            }
             pawn.Drawer.renderer.graphics = oldGraphics;
             pawn.Drawer.renderer.graphics.ResolveAllGraphics();
             SetShadowGraphic(pawn.Drawer.renderer, oldShadow);

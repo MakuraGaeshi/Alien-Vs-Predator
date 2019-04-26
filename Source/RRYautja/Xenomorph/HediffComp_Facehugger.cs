@@ -114,16 +114,20 @@ namespace RRYautja
         public override void CompExposeData()
         {
             base.CompExposeData();
-            Scribe_References.Look<Pawn>(ref this.Props.Instigator, "Instigator", false);
-            Scribe_References.Look<Pawn>(ref Instigator, "Instigator", false);
+            Scribe_References.Look<Pawn>(ref this.Props.Instigator, "Instigator", true);
+            Scribe_References.Look<Pawn>(ref Instigator, "Instigator", true);
         }
-
+        public override void Notify_PawnDied()
+        {
+            this.CompPostPostRemoved();
+            base.Notify_PawnDied();
+        }
         public override void CompPostPostRemoved()
         {
             Thing hostThing = base.Pawn;
             Pawn hostPawn = base.Pawn;
             bool spawnLive = Props.spawnLive;
-            if (hostPawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation)&&!hasImpregnated)
+            if ((hostPawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation) && !hasImpregnated)||hostPawn.Dead)
             {
                 spawnLive = true;
             }
@@ -238,6 +242,8 @@ namespace RRYautja
             List<float> pawnKindWeights = Props.pawnKindWeights;
             PawnKindDef pawnKindDef = pawnKindDefs[pawnKindDefs.Count-1];
             int ind = 0;
+            bool fullterm = this.parent.CurStageIndex > this.parent.def.stages.Count - 3;
+            if (!fullterm) return;
             bool QueenPresent = false;
             foreach (var p in base.parent.pawn.MapHeld.mapPawns.AllPawnsSpawned)
             {
@@ -272,6 +278,10 @@ namespace RRYautja
             Log.Message(string.Format("{0} Old pawnKindDef.lifeStages[0].bodyGraphicData.color: {1}", base.parent.pawn.Name, pawnKindDef.lifeStages[0].bodyGraphicData.color));
             Log.Message(string.Format("{0} base.parent.pawn.def.race.BloodDef.graphic.color: {1}", base.parent.pawn.Name, base.parent.pawn.def.race.BloodDef.graphic.color));
 #endif
+            if (Pawn.kindDef.race==YautjaDefOf.Alien_Yautja)
+            {
+                pawnKindDef = XenomorphDefOf.RRY_Xenomorph_Predalien;
+            }
             Color color = base.parent.pawn.def.race.BloodDef.graphic.color;
             color.a = 1f;
             pawnKindDef.lifeStages[0].bodyGraphicData.color = color;
@@ -301,7 +311,7 @@ namespace RRYautja
             GenSpawn.Spawn(pawn, base.parent.pawn.PositionHeld, base.parent.pawn.MapHeld, 0);
             for (int i = 0; i < 1001; i++)
             { // Find.TickManager.TicksGame
-                if (Rand.MTBEventOccurs(DustMoteSpawnMTB, 1f, 2.TicksToSeconds()))
+                if (Rand.MTBEventOccurs(DustMoteSpawnMTB, 2f, 3.TicksToSeconds()))
                 {
                     MoteMaker.ThrowDustPuffThick(new Vector3(vector.x, 0f, vector.z)
                     {
