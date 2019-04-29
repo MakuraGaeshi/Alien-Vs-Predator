@@ -31,10 +31,12 @@ namespace RimWorld
             {
                 return false;
             }
+            /*
             if (!RelationsUtility.PawnsKnowEachOther(p, other))
             {
                 return false;
             }
+            */
             if (other.health.hediffSet.HasHediff(unblooded))
             {
                 stageIndex = 0;

@@ -19,7 +19,23 @@
   <BodyPartGroupDef>
     <defName>RRY_Xeno_Mandibles</defName>
     <label>mandibles</label>
-    <listOrder>196</listOrder>
+  </BodyPartGroupDef>
+
+  <BodyPartGroupDef>
+    <defName>RRY_Xeno_Hands</defName>
+    <label>hands</label>
+  </BodyPartGroupDef>
+  
+  <BodyPartGroupDef>
+    <defName>RRY_Xeno_LeftHand</defName>
+    <label>left claws</label>
+    <labelShort>claws</labelShort>
+  </BodyPartGroupDef>
+  
+  <BodyPartGroupDef>
+    <defName>RRY_Xeno_RightHand</defName>
+    <label>right claws</label>
+    <labelShort>claws</labelShort>
   </BodyPartGroupDef>
 
 <!--

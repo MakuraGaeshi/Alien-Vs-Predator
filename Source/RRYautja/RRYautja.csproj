@@ -54,6 +54,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Yautja\Comp_Yautja - Old.cs" />
+    <Compile Include="Yautja\JobDriver_RRYUseCorpse.cs" />
+    <Compile Include="Yautja\CorpseModification.cs" />
     <Compile Include="Xenomorph\HediffComp_DamageOverTime.cs" />
     <Compile Include="Xenomorph\Thing_AddAcidDamageFilth.cs" />
     <Compile Include="Xenomorph\XenoGetPawnThing.cs" />

@@ -19,6 +19,8 @@ namespace RimWorld
         public static HediffDef RRY_Hediff_BloodedM;
         public static HediffDef RRY_Hediff_BloodedMHuman;
         public static HediffDef RRY_Hediff_BloodedMWorthyHuman;
+        public static HediffDef RRY_Hediff_BloodedMHumanlike;
+        public static HediffDef RRY_Hediff_BloodedMWorthyHumanlike;
         public static HediffDef RRY_Hediff_BloodedMXenomorph;
         public static HediffDef RRY_Hediff_BloodedMXenomorphQueen;
         public static HediffDef RRY_Hediff_BloodedMPredalien;
@@ -31,9 +33,13 @@ namespace RimWorld
         // Xenomorph PawnKindDefs
         // Yautja ThingDefs = Races 
         public static ThingDef Alien_Yautja;
+        public static ThingDef RRY_Yautja_Hound;
+        public static ThingDef RRY_Rynath;
 
         // Yautja ThingDefs = Equipment
         public static ThingDef RRY_Equipment_HunterGauntlet;
+
+        public static JobDef RRY_Yautja_MarkSelf;
 
     }
 }

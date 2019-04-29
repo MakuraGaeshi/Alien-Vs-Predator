@@ -3,11 +3,13 @@
 
   <ThingDef ParentName="BaseMeleeWeapon_Sharp_Quality">
     <defName>RRY_MeleeWeapon_XenoSpear</defName>
-    <label>xenomorph spear</label>
+    <label>xenomorph-tail spear</label>
     <description>A polearm tipped with the tail of a xenomorph for stabbing opponents.</description>
     <graphicData>
       <texPath>Things/Equipment/Melee/Xeno_Spear</texPath>
       <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>1.75</drawSize>	
+      <shaderType>CutoutComplex</shaderType>
     </graphicData>
     <techLevel>Neolithic</techLevel>
     <weaponTags>
@@ -54,6 +56,11 @@
         <Crafting>4</Crafting>
       </skillRequirements>
     </recipeMaker>
+	<comps>     
+		<li>
+			<compClass>CompOversizedWeapon.CompOversizedWeapon</compClass>
+		</li>
+	</comps>
   </ThingDef>
 
 </Defs>

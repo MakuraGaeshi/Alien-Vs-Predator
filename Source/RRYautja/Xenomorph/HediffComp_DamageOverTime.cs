@@ -68,8 +68,13 @@ namespace RRYautja
             bool flag2 = timesRepeated < MaxRepeats|| MaxRepeats==0;
             if (flag&& flag2&& Rand.Chance(repeatChance))
             {
+                timesRepeated++;
                 this.ticksUntilDamage = this.Props.cycleInTicks;
                 this.MakeDamage();
+            }
+            if (timesRepeated>=MaxRepeats&&MaxRepeats!=0)
+            {
+                this.parent.comps.Remove(this.parent.TryGetComp<HediffComp_DamageOverTime>());
             }
             this.ticksUntilDamage--;
         }
@@ -84,7 +89,6 @@ namespace RRYautja
         public virtual void MakeDamage()
         {
             base.Pawn.TakeDamage(this.GetDamageInfo());
-            timesRepeated++;
         }
 
         // Token: 0x06000127 RID: 295 RVA: 0x0000AF1C File Offset: 0x0000911C

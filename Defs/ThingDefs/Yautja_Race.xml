@@ -258,7 +258,7 @@
 					<bodyPart>Head</bodyPart>
 					<useSkinColor>true</useSkinColor>
 					<inFrontOfBody>true</inFrontOfBody>
-					<layerOffset>-0.50</layerOffset>
+					<layerOffset>0.5</layerOffset>
 					<offsets>
 					<south>
 										<bodyTypes>
@@ -298,49 +298,17 @@
 					<RRY_Hediff_BloodedMWorthyHuman>Things/Addons/Blood_Marks/Human_Kills/Mark_WorthyHumankill</RRY_Hediff_BloodedMWorthyHuman>
 					<RRY_Hediff_BloodedMHumanlike>Things/Addons/Blood_Marks/Human_Kills/Mark_Humanlikekill</RRY_Hediff_BloodedMHumanlike>
 					<RRY_Hediff_BloodedMWorthyHumanlike>Things/Addons/Blood_Marks/Human_Kills/Mark_WorthyHumanlikekill</RRY_Hediff_BloodedMWorthyHumanlike>
-					<!--
-					
-					
 					<RRY_Hediff_BloodedMPredalien>Things/Addons/Blood_Marks/Xenomorph_Kills/Mark_Predalienkill</RRY_Hediff_BloodedMPredalien>
 					
 					<RRY_Hediff_BloodedMHound>Things/Addons/Blood_Marks/Animal_Kills/Mark_Houndkill</RRY_Hediff_BloodedMHound>
 					<RRY_Hediff_BloodedMCrusher>Things/Addons/Blood_Marks/Animal_Kills/Mark_Crusherkill</RRY_Hediff_BloodedMCrusher>
 					<RRY_Hediff_BloodedMGroTye>Things/Addons/Blood_Marks/Animal_Kills/Mark_GroTyekill</RRY_Hediff_BloodedMGroTye>
+					<!--
+					
+					
 					
 					<RRY_Hediff_BloodedM>Things/Addons/Blood_Marks/Animal_Kills/Mark_kill</RRY_Hediff_BloodedM>
 					-->
-					</hediffGraphics>
-                </li>
-				<li>
-					<path>Things/Addons/Blank</path>
-					<bodyPart>Torso</bodyPart>
-					<useSkinColor>true</useSkinColor>
-					<inFrontOfBody>true</inFrontOfBody>
-					<layerOffset>-0.0</layerOffset>
-					<offsets>
-					<south>
-										<bodyTypes>
-										<Male>(-0.48,0.55)</Male>
-										<Female>(-0.48,0.55)</Female>
-										</bodyTypes>
-					</south>
-
-					<north>
-										<bodyTypes>
-										<Male>(0.30,0.225)</Male>
-										<Female>(0.30,0.225)</Female>
-										</bodyTypes>
-					</north>
-
-					<east>
-										<bodyTypes>
-										<Male>(0.0,0.55)</Male>
-										<Female>(0.0,0.55)</Female>
-										</bodyTypes>
-					</east>
-					</offsets>
-					<hediffGraphics>
-					<RRY_Hediff_Cloaked>Things/Addons/Cloak/Cloak</RRY_Hediff_Cloaked>
 					</hediffGraphics>
                 </li>
             </bodyAddons>

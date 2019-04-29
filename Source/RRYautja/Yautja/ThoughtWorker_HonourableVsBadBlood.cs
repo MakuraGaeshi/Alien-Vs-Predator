@@ -10,6 +10,10 @@ namespace RimWorld
         // Token: 0x06000A02 RID: 2562 RVA: 0x0004F2B0 File Offset: 0x0004D6B0
         protected override ThoughtState CurrentSocialStateInternal(Pawn p, Pawn other)
         {
+            if (p == other)
+            {
+                return false;
+            }
             if (!p.RaceProps.Humanlike)
             {
                 return false;
@@ -30,10 +34,12 @@ namespace RimWorld
             {
                 return false;
             }
+            /*
             if (!RelationsUtility.PawnsKnowEachOther(p, other))
             {
                 return false;
             }
+            */
             if (other.story.adulthood.title == "Bad Blood")
             {
                 return true;
@@ -68,10 +74,12 @@ namespace RimWorld
             {
                 return false;
             }
+            /*
             if (!RelationsUtility.PawnsKnowEachOther(p, other))
             {
                 return false;
             }
+            */
             if (p.story.adulthood.title == "Bad Blood")
             {
                 return true;

@@ -205,6 +205,7 @@ namespace RRYautja
         public override void CompPostTick(ref float severityAdjustment)
         {
             bool selected = Find.Selector.SingleSelectedThing == parent.pawn;
+            if (parent.CurStageIndex >= parent.def.stages.Count - 3 && this.Pawn.Map == null) return;
             base.CompPostTick(ref severityAdjustment);
             if (parent.CurStageIndex == parent.def.stages.Count-2)
             {
@@ -244,6 +245,7 @@ namespace RRYautja
             int ind = 0;
             bool fullterm = this.parent.CurStageIndex > this.parent.def.stages.Count - 3;
             if (!fullterm) return;
+            if (this.Pawn.Map==null) return;
             bool QueenPresent = false;
             foreach (var p in base.parent.pawn.MapHeld.mapPawns.AllPawnsSpawned)
             {

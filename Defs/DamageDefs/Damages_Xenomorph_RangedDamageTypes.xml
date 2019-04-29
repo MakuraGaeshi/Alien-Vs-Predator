@@ -22,7 +22,7 @@
 	<!--==================== Grenade Base Damage Type =========================-->
   <DamageDef Name="Acid">
     <defName>RRY_AcidDamage</defName>
-    <workerClass>DamageWorker_AddInjury</workerClass>
+    <workerClass>DamageWorker_Acid</workerClass>
     <label>acid</label>
     <hasForcefulImpact>false</hasForcefulImpact>
     <makesBlood>false</makesBlood>

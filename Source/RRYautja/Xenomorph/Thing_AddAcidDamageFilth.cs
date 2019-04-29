@@ -193,17 +193,21 @@ namespace RRYautja
         // Token: 0x0600001C RID: 28 RVA: 0x00002AD4 File Offset: 0x00000CD4
         public void damageEntities(Thing e, int amt)
         {
-            Log.Message(string.Format("damageEntities: {0}", e.LabelShort));
+            if (e is Pawn)
+            {
+                return;
+            }
+           // Log.Message(string.Format("damageEntities: {0}", e.LabelShort));
             DamageInfo damageInfo;
             damageInfo = new DamageInfo(XenomorphDefOf.RRY_AcidBurn, (float)amt, 0f, -1f, null, null, null, 0, null);
             bool flag = e != null;
             if (e.Stuff!=null)
             {
-                Log.Message(string.Format("{0} Stuff: {1}",e.LabelShortCap, e.Stuff.defName));
+            //    Log.Message(string.Format("{0} Stuff: {1}",e.LabelShortCap, e.Stuff.defName));
             }
             else
             {
-                Log.Message(string.Format("{0} Stuff: Null, Typeof: {1}", e.LabelShortCap, e.GetType()));
+            //    Log.Message(string.Format("{0} Stuff: Null, Typeof: {1}", e.LabelShortCap, e.GetType()));
             }
             if (flag)
             {
@@ -236,22 +240,23 @@ namespace RRYautja
         // Token: 0x0600001E RID: 30 RVA: 0x00002BAC File Offset: 0x00000DAC
         public void addAcidDamage(Pawn p)
         {
-            Log.Message(string.Format("addAcidDamage: {0}", p.LabelShort));
+        //    Log.Message(string.Format("addAcidDamage: {0}", p.LabelShort));
             List<BodyPartRecord> list = new List<BodyPartRecord>();
-            Log.Message(string.Format("0 "));
+        //    Log.Message(string.Format("0 "));
             List<Apparel> wornApparel = new List<Apparel>();
             if (p.RaceProps.Humanlike) wornApparel = p.apparel.WornApparel;
-            Log.Message(string.Format("1 "));
+        //    Log.Message(string.Format("1 "));
             int num = Mathf.RoundToInt((float)this.AcidDamage * Rand.Range(0.5f, 1.25f));
-            Log.Message(string.Format("2 "));
+        //    Log.Message(string.Format("2 "));
             DamageInfo damageInfo = default(DamageInfo);
-            Log.Message(string.Format("3 "));
+        //    Log.Message(string.Format("3 "));
             MoteMaker.ThrowDustPuff(p.Position, base.Map, 0.2f);
-            Log.Message(string.Format("4 "));
-            BodyPartHeight bodyPartHeight = p.Downed ? BodyPartHeight.Bottom : BodyPartHeight.Undefined;
+        //    Log.Message(string.Format("4 "));
+            BodyPartHeight bodyPartHeight = p.Downed ? BodyPartHeight.Undefined : BodyPartHeight.Bottom;
+        //    Log.Message(string.Format("{0}", bodyPartHeight));
             foreach (BodyPartRecord bodyPartRecord in p.health.hediffSet.GetNotMissingParts(bodyPartHeight, BodyPartDepth.Outside, null, null))
             {
-                Log.Message(string.Format("{0}", bodyPartRecord.Label));
+            //    Log.Message(string.Format("{0}", bodyPartRecord.Label));
                 bool flag = wornApparel.Count > 0;
                 if (flag)
                 {
@@ -262,29 +267,40 @@ namespace RRYautja
                         if (flag3)
                         {
                             flag2 = true;
-                            Log.Message(string.Format("is protected"));
+                        //    Log.Message(string.Format("is protected"));
                             break;
                         }
                     }
                     bool flag4 = !flag2;
                     if (flag4)
                     {
+                    //    Log.Message(string.Format("{0}", bodyPartRecord));
                         list.Add(bodyPartRecord);
                     }
                 }
                 else
                 {
+                //    Log.Message(string.Format("{0}", bodyPartRecord));
                     list.Add(bodyPartRecord);
                 }
             }
-            for (int j = 0; j < wornApparel.Count; j++)
-            {
-                this.damageEntities(wornApparel[j], num);
-            }
             for (int k = 0; k < list.Count; k++)
             {
-                damageInfo = new DamageInfo(XenomorphDefOf.RRY_AcidBurn, (float)Mathf.RoundToInt((float)num * list[k].coverage), 0f, -1f, this, list[k], null, 0, null);
-                p.TakeDamage(damageInfo);
+                damageInfo = new DamageInfo(XenomorphDefOf.RRY_AcidBurn, (float)Mathf.RoundToInt(((float)num * list[k].coverage)*10), 0f, -1f, this, list[k], null, 0, null);
+                //    Log.Message(string.Format("addAcidDamage TakeDamage: {0}, list[k].coverage: {1}, damageInfo: {2}", list[k].customLabel, list[k].coverage, damageInfo));
+                if (Rand.Chance(list[k].coverage))
+                {
+
+                    for (int j = 0; j < wornApparel.Count; j++)
+                    {
+                        bool flag3 = wornApparel[j].def.apparel.CoversBodyPart(list[k]);
+                        if (flag3)
+                        {
+                            this.damageEntities(wornApparel[j], num);
+                        }
+                    }
+                    p.TakeDamage(damageInfo);
+                }
             }
         }
         public override void ExposeData()

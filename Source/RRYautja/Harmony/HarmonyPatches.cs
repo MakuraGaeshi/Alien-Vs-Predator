@@ -33,6 +33,14 @@ namespace RRYautja
             MethodInfo method6 = typeof(HarmonyPatches).GetMethod("Patch_PawnRenderer_RenderPawnAt");
             harmony.Patch(method5, null, new HarmonyMethod(method6), null);
 
+            //Patch_PawnRenderer_WigglerTick
+            /*
+            harmony.Patch(
+                original: AccessTools.Method(type: typeof(PawnRenderer), name: "WigglerTick"),
+                prefix: null,
+                postfix: new HarmonyMethod(type: typeof(HarmonyPatches), name: nameof(Patch_PawnRenderer_WigglerTick)));
+            */
+
             harmony.Patch(AccessTools.Method(typeof(PawnRenderer), "RenderPawnAt", new Type[]
             {
                 typeof(Vector3),
@@ -70,6 +78,10 @@ namespace RRYautja
                 prefix: new HarmonyMethod(type: typeof(HarmonyPatches), name: nameof(Pre_PawnDied_Facehugger)),
                 postfix: null);
 
+            harmony.Patch(
+                AccessTools.Method(typeof(PawnGenerator), "GeneratePawn", new[] { typeof(PawnGenerationRequest) }), null,
+                new HarmonyMethod(typeof(HarmonyPatches), nameof(Post_GeneratePawn_Yautja)));
+            
             //    harmony.Patch(AccessTools.Method(typeof(Corpse), "RareTick", null, null), new HarmonyMethod(typeof(HarmonyPatches), "RareTickPostfix", null), null, null);
         }
 
@@ -78,6 +90,7 @@ namespace RRYautja
             bool flag = pawn.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked, false);
             if (flag)
             {
+                //Log.Message(string.Format("tetet"));
                 return false;
             }
             return true;
@@ -98,7 +111,7 @@ namespace RRYautja
         //PawnRenderer PawnDied
         public static bool Pre_PawnDied_Facehugger(Corpse corpse, DeathActionWorker_BigExplosion __instance)
         {
-            Log.Message(string.Format("{0}", corpse.Label));
+        //    Log.Message(string.Format("{0}", corpse.Label));
             bool flag = XenomorphUtil.IsInfectedPawn(corpse.InnerPawn);
             if (flag)
             {
@@ -270,7 +283,7 @@ namespace RRYautja
             Pawn value = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
             PawnGraphicSet value2 = Traverse.Create(__instance).Field("graphics").GetValue<PawnGraphicSet>();
             //graphics
-            bool flag = value.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked, false);
+            bool flag = value.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked);
             if (flag)
             {
                 if (value.kindDef.race.GetType() == typeof(AlienRace.ThingDef_AlienRace))
@@ -314,31 +327,55 @@ namespace RRYautja
             return true;
         }
 
-        public static void Post_GeneratePawn_Astartes(PawnGenerationRequest request, ref Pawn __result)
+        public static void Post_GeneratePawn_Yautja(PawnGenerationRequest request, ref Pawn __result)
         {
-            Backstory pawnStoryA;
-            Backstory pawnStoryC;
-            HediffDef unbloodedDef = YautjaDefOf.RRY_Hediff_Unblooded;
-            HediffDef bloodedbyDef;
-            PawnKindDef pawnKindDef = request.KindDef;
-            if (pawnKindDef.race == YautjaDefOf.Alien_Yautja)
-            {
-                __result.relations.ClearAllRelations();
-            }
-            if (__result == null)
-            {
-                request = new PawnGenerationRequest(request.KindDef, request.Faction, request.Context, -1, true, false, false, false, false, true, 1f);
-                return;
-            }
             if (__result.kindDef.race == YautjaDefOf.Alien_Yautja)
             {
-               
-                    request = new PawnGenerationRequest(request.KindDef, request.Faction, request.Context, -1, true, false, false, false, false, true, 1f);
-                    __result = PawnGenerator.GeneratePawn(request);
+                Comp_Yautja _Yautja = __result.TryGetComp<Comp_Yautja>();
+                if (_Yautja!=null)
+                {
+                    Backstory pawnStoryC = __result.story.childhood;
+                    Backstory pawnStoryA = __result.story.adulthood != null ? __result.story.adulthood : null;
 
-                
+                    AlienRace.BackstoryDef bsDefUnblooded = DefDatabase<AlienRace.BackstoryDef>.GetNamed("Yautja_YoungBlood");
+                    AlienRace.BackstoryDef bsDefBlooded = DefDatabase<AlienRace.BackstoryDef>.GetNamed("Yautja_Blooded");
+                    AlienRace.BackstoryDef bsDefBadbloodA = DefDatabase<AlienRace.BackstoryDef>.GetNamed("Yautja_BadBloodA");
+                    AlienRace.BackstoryDef bsDefBadblooBd = DefDatabase<AlienRace.BackstoryDef>.GetNamed("Yautja_BadBloodB");
+
+                    HediffDef unbloodedDef = YautjaDefOf.RRY_Hediff_Unblooded;
+                    HediffDef unmarkedDef = YautjaDefOf.RRY_Hediff_BloodedUM;
+                    HediffDef markedDef = YautjaDefOf.RRY_Hediff_BloodedM;
+
+                    bool hasunblooded = __result.health.hediffSet.HasHediff(unbloodedDef);
+                    bool hasbloodedUM = __result.health.hediffSet.HasHediff(unmarkedDef);
+                    bool hasbloodedM = __result.health.hediffSet.hediffs.Any<Hediff>(x => x.def.defName.StartsWith(markedDef.defName));
+
+                    if (!hasunblooded && !hasbloodedUM && !hasbloodedM)
+                    {
+                        HediffDef hediffDef;
+                        if (pawnStoryA != null)
+                        {
+                            if (pawnStoryA != bsDefUnblooded.backstory)
+                            {
+                                hediffDef = _Yautja.Props.bloodedDefs.RandomElement();
+                            }
+                            else
+                            {
+                                hediffDef = unbloodedDef;
+                            }
+                        }
+                        else
+                        {
+                            hediffDef = unbloodedDef;
+                        }
+                        __result.health.AddHediff(hediffDef);
+                    }
+                    else
+                    {
+                        Log.Message(string.Format("new pawn has hasunblooded:{0}, hasbloodedUM:{1}, hasbloodedM:{2}", hasunblooded, hasbloodedUM, hasbloodedM));
+                    }
+                }
             }
-            return;
         }
 
         private static FieldInfo pawnField_PawnRenderer;

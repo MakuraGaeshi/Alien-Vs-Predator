@@ -57,6 +57,7 @@ namespace RimWorld
 
     }
 
+    [DefOf]
     public static class XenomorphRacesDefOf
     {
         // Token: 0x06003781 RID: 14209 RVA: 0x001A8393 File Offset: 0x001A6793

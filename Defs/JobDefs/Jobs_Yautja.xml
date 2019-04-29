@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <JobDef>
+    <defName>RRY_Yautja_MarkSelf</defName>
+    <driverClass>RRYautja.JobDriver_MarkSelf</driverClass>
+    <reportString>marking myself.</reportString>
+    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+  </JobDef>
+
+</Defs>

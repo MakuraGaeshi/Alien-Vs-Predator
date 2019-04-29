@@ -12,20 +12,20 @@
         <labelSolidTendedWell>set</labelSolidTendedWell>
       </li>
       <li Class="HediffCompProperties_Infecter">
-        <infectionChance>0.30</infectionChance>
+        <infectionChance>0.10</infectionChance>
       </li>
       <li Class="HediffCompProperties_GetsPermanent">
         <permanentLabel>acid burn scar</permanentLabel>
       </li>
       <li Class="RRYautja.HediffCompProperties_DamageOverTime">
         <cycleDamage>RRY_AcidBurn</cycleDamage>
-        <maxCycleAmt>10</maxCycleAmt>
+        <maxCycleAmt>5</maxCycleAmt>
         <repeatChance>0.50</repeatChance>
       </li>
     </comps>
     <injuryProps>
-      <painPerSeverity>0.02875</painPerSeverity>
-      <averagePainPerSeverityPermanent>0.00925</averagePainPerSeverityPermanent>
+      <painPerSeverity>0.01475</painPerSeverity>
+      <averagePainPerSeverityPermanent>0.00325</averagePainPerSeverityPermanent>
       <canMerge>true</canMerge>
       <destroyedLabel>Burned off</destroyedLabel>
       <destroyedOutLabel>Burned out</destroyedOutLabel>

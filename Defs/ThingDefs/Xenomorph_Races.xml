@@ -152,7 +152,7 @@
     <defName>RRY_Xenomorph_FaceHugger</defName>
     <label>Face Hugger</label>
     <race>RRY_Xenomorph_FaceHugger</race>
-    <combatPower>160</combatPower>
+    <combatPower>50</combatPower>
     <lifeStages>
       <li>
         <bodyGraphicData>
@@ -194,7 +194,7 @@
         </capacities>
         <power>8.2</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>RRY_Xeno_LeftHand</linkedBodyPartsGroup>
         <surpriseAttack>
           <extraMeleeDamages>
             <li>
@@ -212,7 +212,7 @@
         </capacities>
         <power>8.2</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>RRY_Xeno_RightHand</linkedBodyPartsGroup>
         <surpriseAttack>
           <extraMeleeDamages>
             <li>
@@ -486,7 +486,7 @@
         </capacities>
         <power>8.2</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>RRY_Xeno_LeftHand</linkedBodyPartsGroup>
         <surpriseAttack>
           <extraMeleeDamages>
             <li>
@@ -504,7 +504,7 @@
         </capacities>
         <power>8.2</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>RRY_Xeno_RightHand</linkedBodyPartsGroup>
         <surpriseAttack>
           <extraMeleeDamages>
             <li>
@@ -580,7 +580,7 @@
     <defName>RRY_Xenomorph_Drone</defName>
     <label>Drone</label>
     <race>RRY_Xenomorph_Drone</race>
-    <combatPower>160</combatPower>
+    <combatPower>100</combatPower>
 
     <lifeStages>
       <li>
@@ -665,7 +665,7 @@
         </capacities>
         <power>10.2</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>RRY_Xeno_LeftHand</linkedBodyPartsGroup>
         <surpriseAttack>
           <extraMeleeDamages>
             <li>
@@ -683,7 +683,7 @@
         </capacities>
         <power>10.2</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>RRY_Xeno_RightHand</linkedBodyPartsGroup>
         <surpriseAttack>
           <extraMeleeDamages>
             <li>
@@ -920,7 +920,7 @@
     <defName>RRY_Xenomorph_Runner</defName>
     <label>Runner</label>
     <race>RRY_Xenomorph_Runner</race>
-    <combatPower>160</combatPower>
+    <combatPower>120</combatPower>
     <lifeStages>
       <li>
         <bodyGraphicData>
@@ -1003,7 +1003,7 @@
         </capacities>
         <power>8.2</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>RRY_Xeno_LeftHand</linkedBodyPartsGroup>
         <surpriseAttack>
           <extraMeleeDamages>
             <li>
@@ -1021,7 +1021,7 @@
         </capacities>
         <power>8.2</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>RRY_Xeno_RightHand</linkedBodyPartsGroup>
         <surpriseAttack>
           <extraMeleeDamages>
             <li>
@@ -1097,7 +1097,7 @@
     <defName>RRY_Xenomorph_Predalien</defName>
     <label>Predalien</label>
     <race>RRY_Xenomorph_Predalien</race>
-    <combatPower>160</combatPower>
+    <combatPower>200</combatPower>
     <lifeStages>
       <li>
         <bodyGraphicData>
@@ -1242,7 +1242,7 @@
         </capacities>
         <power>8.2</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>RRY_Xeno_LeftHand</linkedBodyPartsGroup>
         <surpriseAttack>
           <extraMeleeDamages>
             <li>
@@ -1260,7 +1260,7 @@
         </capacities>
         <power>8.2</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>RRY_Xeno_RightHand</linkedBodyPartsGroup>
         <surpriseAttack>
           <extraMeleeDamages>
             <li>
@@ -1281,16 +1281,6 @@
         <chanceFactor>0.07</chanceFactor>
       </li>
       <li>
-        <label>inner teeth</label>
-        <capacities>
-          <li>Bite</li>
-        </capacities>
-        <power>8.2</power>
-        <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-        <chanceFactor>0.07</chanceFactor>
-      </li>
-      <li>
         <label>head</label>
         <capacities>
           <li>Blunt</li>
@@ -1301,9 +1291,19 @@
         <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
         <chanceFactor>0.2</chanceFactor>
       </li>
+      <li>
+        <label>tail</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>5</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>RRY_Xeno_Tail_AttackTool</linkedBodyPartsGroup>
+        <chanceFactor>0.2</chanceFactor>
+      </li>
     </tools>
     <race>
-      <body>RRY_Xenomorph_Biped</body>
+      <body>RRY_Xenomorph_Neomorph</body>
       <baseHealthScale>0.72</baseHealthScale>
       <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
       <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
@@ -1315,7 +1315,7 @@
     <defName>RRY_Xenomorph_Neomorph</defName>
     <label>Neomorph</label>
     <race>RRY_Xenomorph_Neomorph</race>
-    <combatPower>160</combatPower>
+    <combatPower>140</combatPower>
     <lifeStages>
       <li>
         <bodyGraphicData>
