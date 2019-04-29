@@ -158,7 +158,7 @@
 	<ThingDef ParentName="RRYArmorMakeableBase">
 		<defName>RRY_Equipment_HunterShoulderCannonB</defName>
 		<label>Yautja Shoulder Cannon</label>
-		<!-- <description>.</description> -->
+		<description>.</description>
 		<graphicData>
 			<texPath>Things/Equipment/Yautja_ShoulderCannon</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
