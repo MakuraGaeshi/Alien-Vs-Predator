@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RRYautja;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
@@ -8,25 +9,25 @@ namespace RimWorld
     // Token: 0x0200021E RID: 542
     public class ThoughtWorker_MutliHediff : ThoughtWorker
     {
+        Comp_Yautja _Yautja;
         int stageIndex = 0;
         // Token: 0x06000A30 RID: 2608 RVA: 0x0004FE58 File Offset: 0x0004E258
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
-
+            HediffSet hediffSet = p.health.hediffSet;
             if (p.kindDef.race!=YautjaDefOf.Alien_Yautja)
             {
                 return ThoughtState.Inactive;
             }
+            YautjaBloodedUtility.Marked(p, out Hediff hediff);
             if (p.health.hediffSet.hediffs!=null)
             {
-                List<HediffDef> list = p.GetComp<RRYautja.Comp_Yautja>().Props.bloodedDefs;
-                foreach (var hd in p.health.hediffSet.hediffs)
+                Comp_Yautja _Yautja = p.TryGetComp<Comp_Yautja>();
+                if (_Yautja!=null)
                 {
-                    if (hd.def.defName.Contains("RRY_Hediff_BloodedM"))
-                    {
-                        hediffDef = hd.def;
-                    }
+                    this._Yautja = _Yautja;
                 }
+                List<HediffDef> list = _Yautja.Props.bloodedDefs;
                 for (int i = 0; i < list.Count; i++)
                 {
 
@@ -39,14 +40,34 @@ namespace RimWorld
                 }
                 stageIndex = list.IndexOf(hediffDef);
             }
-            Hediff firstHediffOfDef = p.health.hediffSet.GetFirstHediffOfDef(hediffDef, false);
-            if (firstHediffOfDef == null || firstHediffOfDef.def.stages == null)
+            if (hediff == null || hediff.def.stages == null)
             {
                 return ThoughtState.Inactive;
             }
             return ThoughtState.ActiveAtStage(stageIndex);
         }
 
+        public override string ToString()
+        {
+            if (_Yautja!=null)
+            {
+                return "(" + _Yautja.MarkHedifflabel + ")";
+            }
+            return base.ToString();
+        }
+
+        public string Description
+        {
+            get
+            {
+                string description = this.def.description;
+                if (description != null)
+                {
+                    return description;
+                }
+                return this.def.description;
+            }
+        }
 
         public ThoughtState thoughtState;
         // Token: 0x040003FA RID: 1018

@@ -8,9 +8,9 @@ namespace RRYautja
 {
     public static class YautjaBloodedUtility
     {
-        private static HediffDef unbloodedDef = YautjaDefOf.RRY_Hediff_Unblooded;
-        private static HediffDef unmarkedDef = YautjaDefOf.RRY_Hediff_BloodedUM;
-        private static HediffDef markedDef = YautjaDefOf.RRY_Hediff_BloodedM;
+        public static HediffDef unbloodedDef = YautjaDefOf.RRY_Hediff_Unblooded;
+        public static HediffDef unmarkedDef = YautjaDefOf.RRY_Hediff_BloodedUM;
+        public static HediffDef markedDef = YautjaDefOf.RRY_Hediff_BloodedM;
 
         // Token: 0x02000D68 RID: 3432
         public enum BloodStatusMode
@@ -77,13 +77,44 @@ namespace RRYautja
             }
             return result;
         }
+        public static bool BloodStatus(Pawn pawn)
+        {
+            HediffSet hediffSet = pawn.health.hediffSet;
+            bool result = false;
+
+            bool hasbloodedM = hediffSet.hediffs.Any<Hediff>(x => x.def.defName.StartsWith(markedDef.defName));
+            if (hasbloodedM)
+            {
+                foreach (var item in hediffSet.hediffs)
+                {
+                    if (item.def.defName.StartsWith(markedDef.defName))
+                    {
+                        result = true;
+                        break;
+                    }
+                }
+            }
+            bool hasunblooded = hediffSet.HasHediff(unbloodedDef);
+            if (hasunblooded)
+            {
+                result = false;
+
+            }
+            bool hasbloodedUM = hediffSet.HasHediff(unmarkedDef);
+            if (hasbloodedUM)
+            {
+                result = true;
+
+            }
+            return result;
+        }
 
         public static bool Marked(Pawn pawn, out Hediff BloodHD)
         {
             HediffSet hediffSet = pawn.health.hediffSet;
             bool result = false;
             BloodHD = null;
-
+            //  bool hasbloodedM = (hediffSet.hediffs.FindAll(x => x.def.defName.StartsWith(YautjaBloodedUtility.markedDef.defName)).FirstOrFallback());
             bool hasbloodedM = hediffSet.hediffs.Any<Hediff>(x => x.def.defName.StartsWith(markedDef.defName));
             if (hasbloodedM)
             {

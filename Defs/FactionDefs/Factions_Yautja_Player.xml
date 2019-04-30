@@ -1,12 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-  <FactionDef Abstract="True" Name="YautjaFactionBase">
+  <FactionDef Abstract="True" Name="YautjaPlayerFactionBase">
     <colorSpectrum>
       <li>(0, 0.737, 0.847)</li>
     </colorSpectrum>
+    <homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
+    <expandingIconTexture>World/WorldObjects/YautjaIconB</expandingIconTexture>
   </FactionDef>
   
-    <FactionDef Parent="YautjaFactionBase" Name="YautjaPlayerColonyBase">
+    <FactionDef Parent="YautjaPlayerFactionBase">
     <defName>YautjaPlayerColony</defName>
     <label>Yautja Colony</label>
     <description>Yautja Colony Start.</description>
@@ -18,16 +20,17 @@
     <settlementNameMaker>NamerRRYautjaBases</settlementNameMaker>
     <techLevel>Ultra</techLevel>
     <backstoryCategories>
-			<li>Yautja_Standard</li>
+      <li>Raider</li>
+      <li>Tribal</li>
+      <li>Civil</li>
   	</backstoryCategories>
-    <homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
-	<expandingIconTexture>Icons/YautjaIconB</expandingIconTexture>
     <startingResearchTags>
       <li>ClassicStart</li>
     </startingResearchTags>
     <hairTags>
 		<li>Civil</li>
 		<li>Rural</li>
+		<li>Tribal</li>
     </hairTags>
     <apparelStuffFilter>
       <thingDefs>
@@ -55,9 +58,11 @@
         </options>
       </li>
     </pawnGroupMakers>
+    <homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
+    <expandingIconTexture>World/WorldObjects/YautjaIconB</expandingIconTexture>
     </FactionDef>
 	
-    <FactionDef Parent="YautjaPlayerColonyBase">
+    <FactionDef Parent="YautjaPlayerFactionBase">
     <defName>YautjaPlayerUnblooded</defName>
     <label>Yautja Unblooded</label>
     <description>Yautja unblooded hunting party.</description>
@@ -68,15 +73,18 @@
     <isPlayer>true</isPlayer>
     <basicMemberKind>Colonist_YautjaUnblooded</basicMemberKind>
     <pawnsPlural>Yautja</pawnsPlural>
+    <backstoryCategories>
+      <li>Raider</li>
+      <li>Tribal</li>
+      <li>Civil</li>
+  	</backstoryCategories>
     <startingResearchTags>
       <li>ClassicStart</li>
     </startingResearchTags>
-    <backstoryCategories>
-			<li>Yautja_Unblooded</li>
-  	</backstoryCategories>
     <hairTags>
 		<li>Civil</li>
 		<li>Rural</li>
+		<li>Tribal</li>
     </hairTags>
     <apparelStuffFilter>
       <thingDefs>
@@ -104,9 +112,11 @@
         </options>
       </li>
     </pawnGroupMakers>
-	
+    <homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
+    <expandingIconTexture>World/WorldObjects/YautjaIconB</expandingIconTexture>
     </FactionDef>
-    <FactionDef Parent="YautjaPlayerColonyBase">
+	
+    <FactionDef Parent="YautjaPlayerFactionBase">
     <defName>YautjaPlayerBlooded</defName>
     <label>Yautja Blooded</label>
     <description>Yautja blooded hunters.</description>
@@ -117,15 +127,18 @@
     <isPlayer>true</isPlayer>
     <basicMemberKind>Colonist_YautjaBlooded</basicMemberKind>
     <pawnsPlural>Yautja</pawnsPlural>
+    <backstoryCategories>
+      <li>Raider</li>
+      <li>Tribal</li>
+      <li>Civil</li>
+  	</backstoryCategories>
     <startingResearchTags>
       <li>ClassicStart</li>
     </startingResearchTags>
-    <backstoryCategories>
-			<li>Yautja_Blooded</li>
-  	</backstoryCategories>
     <hairTags>
 		<li>Civil</li>
 		<li>Rural</li>
+		<li>Tribal</li>
     </hairTags>
     <apparelStuffFilter>
       <thingDefs>
@@ -153,6 +166,8 @@
         </options>
       </li>
     </pawnGroupMakers>
+    <homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
+    <expandingIconTexture>World/WorldObjects/YautjaIconB</expandingIconTexture>
     </FactionDef>
 	
 </Defs>

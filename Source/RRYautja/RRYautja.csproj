@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Yautja\Class1.cs" />
+    <Compile Include="Yautja\Class2.cs" />
     <Compile Include="Yautja\Comp_Yautja - V3 Not working propoerly.cs" />
     <Compile Include="Yautja\Comp_Yautja - Old.cs" />
     <None Include="Yautja\CorpseModification - Copy.cs.bak" />
@@ -95,6 +96,7 @@
     <Compile Include="Xenomorph\XenomorphUtil.cs" />
     <Compile Include="util\Graphic_Invisible.cs" />
     <Compile Include="util\PawnGraphicSet_Invisible.cs" />
+    <None Include="Yautja\ThoughtWorker_MutliHediff.cs.bak" />
     <Compile Include="Yautja\YautjaBloodedUtility.cs" />
     <Compile Include="Xenomorph\HediffComp_DrawImplant.cs" />
     <Compile Include="Xenomorph\XenoHediffWithComps.cs" />
