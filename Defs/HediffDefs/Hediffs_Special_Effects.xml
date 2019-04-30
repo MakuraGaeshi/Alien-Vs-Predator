@@ -162,7 +162,9 @@
       </li>
     </stages>
     <comps>
-
+      <li>
+        <compClass>RRYautja.HediffComp_BloodedYautja</compClass>
+      </li>
     </comps>
   </HediffDef>
 
@@ -176,7 +178,9 @@
       </li>
     </stages>
     <comps>
-
+      <li>
+        <compClass>RRYautja.HediffComp_BloodedYautja</compClass>
+      </li>
     </comps>
   </HediffDef>
 
@@ -190,7 +194,9 @@
       </li>
     </stages>
     <comps>
-
+      <li>
+        <compClass>RRYautja.HediffComp_BloodedYautja</compClass>
+      </li>
     </comps>
   </HediffDef>
 
@@ -204,7 +210,9 @@
       </li>
     </stages>
     <comps>
-
+      <li>
+        <compClass>RRYautja.HediffComp_BloodedYautja</compClass>
+      </li>
     </comps>
   </HediffDef>
 
@@ -218,7 +226,9 @@
       </li>
     </stages>
     <comps>
-
+      <li>
+        <compClass>RRYautja.HediffComp_BloodedYautja</compClass>
+      </li>
     </comps>
   </HediffDef>
 
@@ -232,7 +242,9 @@
       </li>
     </stages>
     <comps>
-
+      <li>
+        <compClass>RRYautja.HediffComp_BloodedYautja</compClass>
+      </li>
     </comps>
   </HediffDef>
 
@@ -246,7 +258,9 @@
       </li>
     </stages>
     <comps>
-
+      <li>
+        <compClass>RRYautja.HediffComp_BloodedYautja</compClass>
+      </li>
     </comps>
   </HediffDef>
 
@@ -260,7 +274,9 @@
       </li>
     </stages>
     <comps>
-
+      <li>
+        <compClass>RRYautja.HediffComp_BloodedYautja</compClass>
+      </li>
     </comps>
   </HediffDef>
 
@@ -274,7 +290,9 @@
       </li>
     </stages>
     <comps>
-
+      <li>
+        <compClass>RRYautja.HediffComp_BloodedYautja</compClass>
+      </li>
     </comps>
   </HediffDef>
 
@@ -288,7 +306,9 @@
       </li>
     </stages>
     <comps>
-
+      <li>
+        <compClass>RRYautja.HediffComp_BloodedYautja</compClass>
+      </li>
     </comps>
   </HediffDef>
 
@@ -302,7 +322,9 @@
       </li>
     </stages>
     <comps>
-
+      <li>
+        <compClass>RRYautja.HediffComp_BloodedYautja</compClass>
+      </li>
     </comps>
   </HediffDef>
   

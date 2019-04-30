@@ -55,7 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Yautja\Class1.cs" />
-    <Compile Include="Yautja\Class2.cs" />
+    <Compile Include="Yautja\RRY_Thought_Situational.cs" />
     <Compile Include="Yautja\Comp_Yautja - V3 Not working propoerly.cs" />
     <Compile Include="Yautja\Comp_Yautja - Old.cs" />
     <None Include="Yautja\CorpseModification - Copy.cs.bak" />
@@ -118,7 +118,7 @@
     <Compile Include="util\Hives\TunnelHiveLikeSpawner.cs" />
     <Compile Include="Xenomorph\IncidentWorker_CrashedShip.cs" />
     <Compile Include="util\CrashedShip\LordJob_PawnsDefendShip.cs" />
-    <Compile Include="Yautja\ThoughtWorker_MutliHediff.cs" />
+    <Compile Include="Yautja\ThoughtWorker_MarkedMood.cs" />
     <Compile Include="Yautja\YautjaThoughtDef.cs" />
     <Compile Include="Harmony\HarmonyPatches.cs" />
     <Compile Include="Yautja\Comp_Yautja.cs" />

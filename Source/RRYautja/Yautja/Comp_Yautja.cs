@@ -55,37 +55,21 @@ namespace RRYautja
         }
 
         public Pawn other;
-        //    public Pawn Instigator;
 
         public int TotalkillsRecord = 0;
-        //    public int HumanlikekillsRecord = 0;
-        //    public int AnimalkillsRecord = 0;
-        //    public int MechanoidkillsRecord = 0;
 
         public int pawnKills = 0;
-        //    public int pawnKillsAnimals = 0;
-        //    public int pawnKillsHumanlikes = 0;
-        //    public int pawnKillsMechanoids = 0;
+
+        public bool blooded;
 
         public HediffDef unbloodedDef = YautjaDefOf.RRY_Hediff_Unblooded;
         public HediffDef unmarkedDef = YautjaDefOf.RRY_Hediff_BloodedUM;
         public HediffDef GenericmarkedDef = YautjaDefOf.RRY_Hediff_BloodedM;
         public HediffDef markedDef;
-        //public Hediff bloodedby;
-        public Hediff marked;
-        //public Corpse markCorpse;
 
-        public bool blooded;
-        //public bool hasunblooded = false;
-        //public bool hasbloodedUM = false;
-        //public bool hasbloodedM = false;
-        //public HediffDef hediff;
+        public Hediff marked;
         public Hediff BloodStatus;
         public Hediff unmarked;
-        //public float combatpower;
-        //public float bodysize;
-        //public bool preadator;
-        //String log = string.Format("");
 
         public override void PostExposeData()
         {
@@ -128,21 +112,21 @@ namespace RRYautja
                 bool selected = Find.Selector.SelectedObjects.Contains(Pawn);
                 blooded = YautjaBloodedUtility.BloodStatus(Pawn, out BloodStatus);
 #if DEBUG
-                //    if (selected) Log.Message(string.Format("BloodStatus: {0}", BloodStatus));
+                    if (base.parent.IsHashIntervalTick(300) && selected) Log.Message(string.Format("BloodStatus: {0}", BloodStatus));
 #endif
                 if (BloodStatus.def == unmarkedDef)
                 {
 #if DEBUG
-                    //        if (selected) Log.Message(string.Format("unmarkedDef: {0}", unmarkedDef));
+                            if (base.parent.IsHashIntervalTick(300) && selected) Log.Message(string.Format("unmarkedDef: {0}", unmarkedDef));
 #endif
                     unmarked = BloodStatus;
 #if DEBUG
-                    //        if (selected) Log.Message(string.Format("unmarked: {0}", unmarked));
+                            if (base.parent.IsHashIntervalTick(300) && selected) Log.Message(string.Format("unmarked: {0}", unmarked));
 #endif
                     if (this.MarkHedifflabel != null)
                     {
 #if DEBUG
-                        //    if (selected) Log.Message(string.Format("{0}", this.MarkHedifflabel));
+                            if (base.parent.IsHashIntervalTick(300) && selected) Log.Message(string.Format("{0}", this.MarkHedifflabel));
 #endif
                     }
                 }
@@ -163,7 +147,26 @@ namespace RRYautja
 #if DEBUG
                         if (selected) Log.Message("found corpse");
 #endif
-
+                        int omelee = other.RaceProps.Humanlike ? other.skills.GetSkill(SkillDefOf.Melee).Level : 0;
+#if DEBUG
+                        if (selected) Log.Message(string.Format("omelee: {0}", omelee));
+#endif
+                        int oshoot = other.RaceProps.Humanlike ? other.skills.GetSkill(SkillDefOf.Shooting).Level : 0;
+#if DEBUG
+                        if (selected) Log.Message(string.Format("oshoot: {0}", oshoot));
+#endif
+                        float mdps = other.GetStatValue(StatDefOf.MeleeDPS);
+#if DEBUG
+                        if (selected) Log.Message(string.Format("mdps: {0}", mdps));
+#endif
+                        float mhc = other.GetStatValue(StatDefOf.MeleeHitChance);
+#if DEBUG
+                        if (selected) Log.Message(string.Format("mhc: {0}", mhc));
+#endif
+                        float mdc = other.GetStatValue(StatDefOf.MeleeDodgeChance);
+#if DEBUG
+                        if (selected) Log.Message(string.Format("mdc: {0}", mdc));
+#endif
                         if (other.kindDef.race == XenomorphRacesDefOf.RRY_Xenomorph_Queen && other.Dead)
                         {
                             markedDef = YautjaDefOf.RRY_Hediff_BloodedMXenomorphQueen;
@@ -184,7 +187,7 @@ namespace RRYautja
                         {
                             markedDef = YautjaDefOf.RRY_Hediff_BloodedMHuman;
                         }
-                        else if (other.kindDef.race == ThingDefOf.Human && other.kindDef.factionLeader && other.Dead)
+                        else if (other.kindDef.race == ThingDefOf.Human && (other.kindDef.factionLeader || (other.kindDef.isFighter && other.kindDef.combatPower > (100-(omelee + oshoot)))) && other.Dead)
                         {
                             markedDef = YautjaDefOf.RRY_Hediff_BloodedMWorthyHuman;
                         }
@@ -192,19 +195,32 @@ namespace RRYautja
                         {
                             markedDef = YautjaDefOf.RRY_Hediff_BloodedMHumanlike;
                         }
-                        else if (other.kindDef.race != ThingDefOf.Human && other.kindDef.factionLeader && other.RaceProps.Humanlike && other.Dead)
+                        else if (other.kindDef.race != ThingDefOf.Human && (other.kindDef.factionLeader || (other.kindDef.isFighter && other.kindDef.combatPower > (100 - (omelee + oshoot)))) && other.RaceProps.Humanlike && other.Dead)
                         {
                             markedDef = YautjaDefOf.RRY_Hediff_BloodedMWorthyHumanlike;
                         }
-                        if (other.kindDef.race == YautjaDefOf.Alien_Yautja && !other.story.adulthood.identifier.StartsWith("Yautja_BadBlood") && other.Dead && (other.Faction.PlayerGoodwill > 0 || other.Faction.IsPlayer))
+                        else if (other.kindDef.race == YautjaDefOf.Alien_Yautja && !other.story.adulthood.identifier.StartsWith("Yautja_BadBlood") && other.Dead && (other.Faction.PlayerGoodwill > 0 || other.Faction.IsPlayer))
                         {
                             markedDef = YautjaDefOf.RRY_Hediff_BloodedMBadBlood;
                         }
-                        else if (!other.kindDef.race.defName.StartsWith("RRY_Xenomorph_") && !other.RaceProps.Humanlike && other.Dead)
+                        else if (!other.kindDef.race.defName.StartsWith("RRY_Xenomorph_") && !other.RaceProps.Humanlike && other.Dead && (other.kindDef.combatPower>100 || (other.kindDef.RaceProps.predator == true && other.kindDef.combatPower > 50)))
                         {
                             markedDef = YautjaDefOf.RRY_Hediff_BloodedM;
+                        } else
+                        {
+#if DEBUG
+                            if (selected) Log.Message(string.Format("Unworthy kill, ignoring"));
+#endif
+                            TotalkillsRecord = Pawn.records.GetAsInt(RecordDefOf.Kills);
+                            return;
                         }
-                        
+                        if (markedDef == null)
+                        {
+#if DEBUG
+                            if (selected) Log.Message(string.Format("markedDef is null, break failed"));
+#endif
+
+                        }
 #if DEBUG
                         if (selected) Log.Message(string.Format("markedDef: {0}", markedDef));
 #endif
@@ -419,8 +435,7 @@ namespace RRYautja
             }
 
         }
-
-
+       
         public override void PostIngested(Pawn ingester)
         {
             base.PostIngested(ingester);

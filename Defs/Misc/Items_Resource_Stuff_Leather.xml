@@ -2,7 +2,7 @@
 <Defs>
 
   <ThingDef ParentName="LeatherBase">
-    <defName>Leather_Yautja</defName>
+    <defName>RRY_Leather_Yautja</defName>
     <label>Yautja leather</label>
     <description>Tanned, dried, scraped Yautja skin. While quite tough, it is a poor insulator.</description>
     <graphicData>
@@ -24,7 +24,7 @@
   </ThingDef>
   
     <ThingDef ParentName="LeatherBase">
-    <defName>Leather_Rynath</defName>
+    <defName>RRY_Leather_Rynath</defName>
     <label>Rynath leather</label>
     <description>Tanned, dried, scraped rhinocerous skin. It is exceptionally durable in combat, but provides little protection from weather.</description>
     <graphicData>

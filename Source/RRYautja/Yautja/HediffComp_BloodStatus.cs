@@ -229,9 +229,6 @@ namespace RRYautja
                 Comp_Yautja _Yautja = this.Pawn.TryGetComp<Comp_Yautja>();
                 if (_Yautja != null)
                 {
-
-
-                
                     return _Yautja.MarkHedifflabel;
                 }
                 return null;

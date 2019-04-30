@@ -38,21 +38,25 @@
       <li>
         <label>unmarked</label>
         <description>I've proven myself by killing a Worthy Foe, all thats left it to mark myself with its blood.</description>
-        <baseMoodEffect>2</baseMoodEffect>
+        <baseMoodEffect>1</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>
   <!-- -->
   <ThoughtDef>
     <defName>RRY_Thought_BloodedM</defName>
+    <workerClass>ThoughtWorker_MarkedMood</workerClass>
+	<thoughtClass>RRY_Thought_Situational</thoughtClass>
+	<!--
     <workerClass>ThoughtWorker_MutliHediff</workerClass>
+	-->
     <hediff>RRY_Hediff_BloodedM</hediff>
     <validWhileDespawned>true</validWhileDespawned>
     <stages>
       <li>
-        <label>mark</label>
-        <description>this description will be replaced</description>
-        <baseMoodEffect>2</baseMoodEffect>
+        <label>marked</label>
+        <description>I've proven myself by killing a Worthy foe and marked myself with its blood. I feel amazing.</description>
+        <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>

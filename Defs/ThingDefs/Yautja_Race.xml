@@ -512,7 +512,7 @@
       <intelligence>Humanlike</intelligence>
       <makesFootprints>true</makesFootprints>
       <lifeExpectancy>2000</lifeExpectancy>
-      <leatherDef>Leather_Yautja</leatherDef>
+      <leatherDef>RRY_Leather_Yautja</leatherDef>
       <nameGenerator>NamerPersonYautja</nameGenerator>
       <body>RRY_Yautja_Biped</body>
       <bloodDef>FilthBloodYautja</bloodDef>	

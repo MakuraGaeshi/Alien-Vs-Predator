@@ -88,6 +88,7 @@
 				<def>StartingThing_Defined</def>
 				<thingDef>RRY_MeleeWeapon_XenoSpear</thingDef>
 				<count>6</count>
+				<stuff>RRY_Leather_Xenomorph</stuff>
 			</li>
 			<li Class="ScenPart_ScatterThingsNearPlayerStart">
 				<def>ScatterThingsNearPlayerStart</def>
