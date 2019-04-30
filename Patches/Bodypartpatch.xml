@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<!-- Defs\Bodies\Bodies_Humanlike.xml -->
+
+	<!-- Human -->
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName = "Human"]/recipes</xpath>
+				<value>
+					<li>RRY_FaceHuggerRemoval</li>
+					<li>RRY_XenomorphImpregnationRemoval</li>
+				</value>
+			</li>
+		</operations>	
+	</Operation>
+</Patch>

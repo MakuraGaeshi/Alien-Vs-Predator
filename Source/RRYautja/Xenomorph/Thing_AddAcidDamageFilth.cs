@@ -300,6 +300,7 @@ namespace RRYautja
                         }
                     }
                     p.TakeDamage(damageInfo);
+                    break;
                 }
             }
         }

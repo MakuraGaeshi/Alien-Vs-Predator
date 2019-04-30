@@ -48,6 +48,19 @@ namespace RRYautja
             bool result = false;
             BloodHD = null;
 
+            bool hasbloodedM = hediffSet.hediffs.Any<Hediff>(x => x.def.defName.StartsWith(markedDef.defName));
+            if (hasbloodedM)
+            {
+                foreach (var item in hediffSet.hediffs)
+                {
+                    if (item.def.defName.StartsWith(markedDef.defName))
+                    {
+                        BloodHD = item;
+                        result = true;
+                        break;
+                    }
+                }
+            }
             bool hasunblooded = hediffSet.HasHediff(unbloodedDef);
             if (hasunblooded)
             {
@@ -56,12 +69,21 @@ namespace RRYautja
 
             }
             bool hasbloodedUM = hediffSet.HasHediff(unmarkedDef);
-            if (hasbloodedUM) 
+            if (hasbloodedUM)
             {
                 BloodHD = hediffSet.GetFirstHediffOfDef(unmarkedDef);
                 result = true;
 
             }
+            return result;
+        }
+
+        public static bool Marked(Pawn pawn, out Hediff BloodHD)
+        {
+            HediffSet hediffSet = pawn.health.hediffSet;
+            bool result = false;
+            BloodHD = null;
+
             bool hasbloodedM = hediffSet.hediffs.Any<Hediff>(x => x.def.defName.StartsWith(markedDef.defName));
             if (hasbloodedM)
             {
@@ -77,6 +99,7 @@ namespace RRYautja
             }
             return result;
         }
+
         public static bool bloodmatch(HediffDef hediffDef, Corpse corpse)
         {
             foreach (var item in Bloodlist)

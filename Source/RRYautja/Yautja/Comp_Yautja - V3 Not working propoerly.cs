@@ -9,28 +9,28 @@ using Verse;
 namespace RRYautja
 {
 
-    public class CompProperties_Yautja : CompProperties
+    public class CompProperties_Yautja1 : CompProperties
     {
-        public CompProperties_Yautja()
+        public CompProperties_Yautja1()
         {
-            this.compClass = typeof(Comp_Yautja);
+            this.compClass = typeof(Comp_Yautja1);
         }
 
         public Pawn pawn;
         public Pawn other;
         public Pawn Instigator;
         public bool blooded;
-
+        
         public List<HediffDef> bloodedDefs;
     }
 
-    public class Comp_Yautja : ThingComp
+    public class Comp_Yautja1 : ThingComp
     {
-        public CompProperties_Yautja Props
+        public CompProperties_Yautja1 Props
         {
             get
             {
-                return (CompProperties_Yautja)this.props;
+                return (CompProperties_Yautja1)this.props;
             }
         }
 
@@ -53,9 +53,9 @@ namespace RRYautja
                 return (Pawn)parent;
             }
         }
-
+        
         public Pawn other;
-        //    public Pawn Instigator;
+    //    public Pawn Instigator;
 
         public int TotalkillsRecord = 0;
         //    public int HumanlikekillsRecord = 0;
@@ -86,7 +86,7 @@ namespace RRYautja
         //public float bodysize;
         //public bool preadator;
         //String log = string.Format("");
-
+        
         public override void PostExposeData()
         {
             base.PostExposeData();
@@ -118,6 +118,11 @@ namespace RRYautja
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
+            blooded = YautjaBloodedUtility.BloodStatus(Pawn, out BloodStatus);
+            if (BloodStatus.def == unmarkedDef)
+            {
+                unmarked = BloodStatus;
+            }
         }
 
         public override void CompTick()
@@ -128,21 +133,21 @@ namespace RRYautja
                 bool selected = Find.Selector.SelectedObjects.Contains(Pawn);
                 blooded = YautjaBloodedUtility.BloodStatus(Pawn, out BloodStatus);
 #if DEBUG
-                //    if (selected) Log.Message(string.Format("BloodStatus: {0}", BloodStatus));
+            //    if (selected) Log.Message(string.Format("BloodStatus: {0}", BloodStatus));
 #endif
                 if (BloodStatus.def == unmarkedDef)
                 {
 #if DEBUG
-                    //        if (selected) Log.Message(string.Format("unmarkedDef: {0}", unmarkedDef));
+            //        if (selected) Log.Message(string.Format("unmarkedDef: {0}", unmarkedDef));
 #endif
                     unmarked = BloodStatus;
 #if DEBUG
-                    //        if (selected) Log.Message(string.Format("unmarked: {0}", unmarked));
+            //        if (selected) Log.Message(string.Format("unmarked: {0}", unmarked));
 #endif
-                    if (this.MarkHedifflabel != null)
+                    if (this.MarkHedifflabel!=null)
                     {
 #if DEBUG
-                        //    if (selected) Log.Message(string.Format("{0}", this.MarkHedifflabel));
+                    //    if (selected) Log.Message(string.Format("{0}", this.MarkHedifflabel));
 #endif
                     }
                 }
@@ -200,11 +205,13 @@ namespace RRYautja
                         {
                             markedDef = YautjaDefOf.RRY_Hediff_BloodedMBadBlood;
                         }
+                        /*
                         else if (!other.kindDef.race.defName.StartsWith("RRY_Xenomorph_") && !other.RaceProps.Humanlike && other.Dead)
                         {
-                            markedDef = YautjaDefOf.RRY_Hediff_BloodedM;
+                              if (selected) Log.Message("Other kill");
+                            markedDef = "RRY_Hediff_BloodedM";
                         }
-                        
+                        */
 #if DEBUG
                         if (selected) Log.Message(string.Format("markedDef: {0}", markedDef));
 #endif
@@ -355,7 +362,7 @@ namespace RRYautja
                                             if (selected) Log.Message("new combatPower is higher, removing old marked hediff");
 #endif
                                             Hediff oldmarked = item;
-                                            // Pawn.health.hediffSet.hediffs.Remove(oldmarked);
+                                           // Pawn.health.hediffSet.hediffs.Remove(oldmarked);
 
 #if DEBUG
                                             if (selected) Log.Message("store new info");
@@ -411,15 +418,15 @@ namespace RRYautja
                                     }
                                 }
                             }
-
+                            
                         }
                     }
                     TotalkillsRecord = Pawn.records.GetAsInt(RecordDefOf.Kills);
                 }
             }
-
+		
         }
-
+        
 
         public override void PostIngested(Pawn ingester)
         {
@@ -429,7 +436,7 @@ namespace RRYautja
         public override void PostPreApplyDamage(DamageInfo dinfo, out bool absorbed)
         {
             base.PostPreApplyDamage(dinfo, out absorbed);
-
+            
         }
 
         public override void Notify_SignalReceived(Signal signal)

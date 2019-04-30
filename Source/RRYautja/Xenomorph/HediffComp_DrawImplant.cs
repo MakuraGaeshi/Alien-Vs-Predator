@@ -20,6 +20,9 @@ namespace RRYautja
         {
             get
             {
+#if DEBUG
+
+#endif
                 return this.props as HediffCompProperties_DrawImplant;
             }
         }
@@ -38,7 +41,9 @@ namespace RRYautja
             return GraphicDatabase.Get<Graphic_Multi>(path, ShaderDatabase.Cutout, Vector2.one, Color.white).MatAt(bodyFacing);
         }
         public void DrawImplant()
-        {
+        {// this.Pawn
+
+            bool selected = Find.Selector.SelectedObjects.Contains(this.Pawn);
             HediffComp_DrawImplant comp = this;
             string direction = "";
             float angle = 0f;
@@ -51,7 +56,9 @@ namespace RRYautja
             Rot4 rot = LayingFacing();
             if (Pawn.CarriedBy!=null)
             {
-                Log.Message(string.Format("{0} carried by {1} drawpos {2} modified to {3}", Pawn.Name, Pawn.CarriedBy.Name, drawPos, Pawn.CarriedBy.DrawPos));
+#if DEBUG
+                if (selected) Log.Message(string.Format("{0} carried by {1} drawpos {2} modified to {3}", Pawn.Name, Pawn.CarriedBy.Name, drawPos, Pawn.CarriedBy.DrawPos));
+#endif
                 drawPos.z = Pawn.CarriedBy.DrawPos.z;
                 drawPos.x = Pawn.CarriedBy.DrawPos.x;
             }
@@ -59,28 +66,37 @@ namespace RRYautja
             {
                 if (Pawn.CurrentBed().Rotation == Rot4.South)
                 {
-                    Log.Message(string.Format("{0}", Pawn.CurrentBed().Rotation.ToStringHuman()));
+#if DEBUG
+                    if (selected) Log.Message(string.Format("{0}", Pawn.CurrentBed().Rotation.ToStringHuman()));
+#endif
                     drawPos -= pawnRenderer.BaseHeadOffsetAt(Rot4.South);
                 }
                 else if (Pawn.CurrentBed().Rotation == Rot4.North)
                 {
-                    Log.Message(string.Format("{0}", Pawn.CurrentBed().Rotation.ToStringHuman()));
+#if DEBUG
+                    if (selected) Log.Message(string.Format("{0}", Pawn.CurrentBed().Rotation.ToStringHuman()));
+#endif
                     drawPos -= pawnRenderer.BaseHeadOffsetAt(Rot4.North);
                 }
                 else if (Pawn.CurrentBed().Rotation == Rot4.East)
                 {
-                    Log.Message(string.Format("{0}", Pawn.CurrentBed().Rotation.ToStringHuman()));
+#if DEBUG
+                    if (selected) Log.Message(string.Format("{0}", Pawn.CurrentBed().Rotation.ToStringHuman()));
+#endif
                     drawPos.x += 0.3f;
                 }
                 else if (Pawn.CurrentBed().Rotation == Rot4.West)
                 {
-                    Log.Message(string.Format("{0}", Pawn.CurrentBed().Rotation.ToStringHuman()));
+#if DEBUG
+                    if (selected) Log.Message(string.Format("{0}", Pawn.CurrentBed().Rotation.ToStringHuman()));
+#endif
                     drawPos.x -= 0.3f;
                 }
                 drawPos.y = yvalue;
-                Log.Message(string.Format("{0} in bed {1} drawpos modified to {2}", Pawn.Name, Pawn.InBed(), drawPos));
+#if DEBUG
+                if (selected) Log.Message(string.Format("{0} in bed {1} drawpos modified to {2}", Pawn.Name, Pawn.InBed(), drawPos));
+#endif
             }
-            bool selected = Find.Selector.SingleSelectedThing == Pawn;
             if (offset < 0)
             {
                 drawPos.y -= offset;
@@ -91,7 +107,9 @@ namespace RRYautja
                 angle = pawnRenderer.wiggler.downedAngle;
                 if (Pawn.CarriedBy != null)
                 {
-                    Log.Message(string.Format("{0} carried by {1} angle {2} modified to {3}", Pawn.Name, Pawn.CarriedBy.Name, angle, Pawn.CarriedBy.carryTracker.CarriedThing.Rotation.AsAngle));
+#if DEBUG
+                    if (selected) Log.Message(string.Format("{0} carried by {1} angle {2} modified to {3}", Pawn.Name, Pawn.CarriedBy.Name, angle, Pawn.CarriedBy.carryTracker.CarriedThing.Rotation.AsAngle));
+#endif
                     angle = Pawn.CarriedBy.carryTracker.CarriedThing.Rotation.AsAngle;
 
                 }

@@ -52,6 +52,8 @@ namespace RimWorld
         // Xenomorph BloodDefs
         public static ThingDef RRY_FilthBloodXenomorph;
 
+        public static BodyPartDef RRY_Xeno_TailSpike;
+
         // Xenomorph LifeStageDefs
         //   public static LifeStageDef RRY_EggXenomorphFertilized;
 

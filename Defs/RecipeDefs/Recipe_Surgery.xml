@@ -8,9 +8,9 @@
     <jobString>Attempting to remove xenomorph parasite</jobString>
     <workAmount>1500</workAmount>
     <removesHediff>RRY_FaceHuggerInfection</removesHediff>
-    <successfullyRemovedHediffMessage>{0} has successfully harvested Gene-seed from {1}'s Progenoid Gland.</successfullyRemovedHediffMessage>
-    <deathOnFailedSurgeryChance>0.0</deathOnFailedSurgeryChance>
-    <surgerySuccessChanceFactor>100</surgerySuccessChanceFactor>
+    <successfullyRemovedHediffMessage>{0} has successfully removed the parasite from {1}'s head.</successfullyRemovedHediffMessage>
+    <deathOnFailedSurgeryChance>0.50</deathOnFailedSurgeryChance>
+    <surgerySuccessChanceFactor>10</surgerySuccessChanceFactor>
     <skillRequirements>
       <Medicine>4</Medicine>
     </skillRequirements>
@@ -42,9 +42,9 @@
     <jobString>Attempting to remove xenomorph parasite</jobString>
     <workAmount>1500</workAmount>
     <removesHediff>RRY_XenomorphImpregnation</removesHediff>
-    <successfullyRemovedHediffMessage>{0} has successfully harvested Gene-seed from {1}'s Progenoid Gland.</successfullyRemovedHediffMessage>
-    <deathOnFailedSurgeryChance>0.0</deathOnFailedSurgeryChance>
-    <surgerySuccessChanceFactor>100</surgerySuccessChanceFactor>
+    <successfullyRemovedHediffMessage>{0} has successfully removed Embyro {1}.</successfullyRemovedHediffMessage>
+    <deathOnFailedSurgeryChance>0.750</deathOnFailedSurgeryChance>
+    <surgerySuccessChanceFactor>10</surgerySuccessChanceFactor>
     <skillRequirements>
       <Medicine>4</Medicine>
     </skillRequirements>

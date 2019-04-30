@@ -21,10 +21,28 @@ namespace RRYautja
         public bool killHost = false;
         public float severityPerDay;
         public Pawn Instigator;
+        public bool royaleHugger = false;
     }
     // Token: 0x02000D5B RID: 3419
     public class HediffComp_XenoFacehugger : HediffComp
     {
+        public override void CompExposeData()
+        {
+            base.CompExposeData();
+            Scribe_References.Look<Pawn>(ref this.Instigator, "pawnRef", true);
+
+            /*
+            Scribe_Defs.Look<HediffDef>(ref MarkedhediffDef, "MarkedhediffDef");
+            Scribe_References.Look<Corpse>(ref this.corpse, "corpseRef");//, Props.corpse);//
+            Scribe_References.Look<Pawn>(ref this.pawn, "pawnRef");//, Props.pawn);
+            Scribe_Values.Look<String>(ref this.MarkHedifftype, "thisMarktype");//, Props.Marklabel);
+            Scribe_Values.Look<String>(ref this.MarkHedifflabel, "thislabel");//, Props.Marklabel);
+            Scribe_Values.Look<bool>(ref this.predator, "thisPred");
+            Scribe_Values.Look<float>(ref this.combatPower, "thiscombatPower");
+            Scribe_Values.Look<float>(ref this.BodySize, "thisBodySize");
+            */
+        }
+
         // public PawnKindDef pawnKindDef = YautjaDefOf.RRY_Xenomorph_FaceHugger;
         public PawnKindDef pawnKindDef = XenomorphDefOf.RRY_Xenomorph_FaceHugger;
         public HediffDef heDiffDeff = XenomorphDefOf.RRY_XenomorphImpregnation;
@@ -39,6 +57,10 @@ namespace RRYautja
         {
             get
             {
+                if (Instigator!=null)
+                {
+                    return this.Instigator;
+                }
                 if (Props.Instigator!=null)
                 {
                     return Props.Instigator;
@@ -110,13 +132,7 @@ namespace RRYautja
                 }
             }
         }
-
-        public override void CompExposeData()
-        {
-            base.CompExposeData();
-            Scribe_References.Look<Pawn>(ref this.Props.Instigator, "Instigator", true);
-            Scribe_References.Look<Pawn>(ref Instigator, "Instigator", true);
-        }
+        
         public override void Notify_PawnDied()
         {
             this.CompPostPostRemoved();

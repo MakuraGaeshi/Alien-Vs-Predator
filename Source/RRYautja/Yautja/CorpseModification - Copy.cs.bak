@@ -7,7 +7,6 @@ using System.Linq;
 
 namespace RRYautja
 {
-    [StaticConstructorOnStartup]
     public class CorpseModification
     {
         static CorpseModification()
@@ -43,15 +42,10 @@ namespace RRYautja
         {
             bool selected = Find.Selector.SelectedObjects.Contains(user);
             base.DoEffect(user);
-            Hediff hediff;
             Comp_Yautja _Yautja = user.TryGetComp<Comp_Yautja>();
             Hediff blooded = user.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_BloodedUM);
             BodyPartRecord part = user.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_BloodedUM).Part;
             HediffDef marked = _Yautja.MarkedhediffDef;
-            if (YautjaBloodedUtility.Marked(user, out hediff))
-            {
-                user.health.RemoveHediff(hediff);
-            }
             user.health.RemoveHediff(blooded);
             user.health.AddHediff(marked, part);
 
@@ -142,75 +136,13 @@ namespace RRYautja
             }
         }
 
-        // Token: 0x06002A4A RID: 10826 RVA: 0x00138F4C File Offset: 0x0013734C
-        public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn myPawn)
-        {
-            string failReason;
-            HediffSet hediffSet = myPawn.health.hediffSet;
-            if (!hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_BloodedUM, false))
-            {
-                yield break;
-            }
-            if (!this.CanBeUsedBy(myPawn, out failReason))
-            {
-                yield break;
-                yield return new FloatMenuOption(this.FloatMenuOptionLabel + ((failReason == null) ? string.Empty : (" (" + failReason + ")")), null, MenuOptionPriority.Default, null, null, 0f, null, null);
-            }
-            else if (!myPawn.CanReach(this.parent, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.ByPawn))
-            {
-                yield return new FloatMenuOption(this.FloatMenuOptionLabel + " (" + "NoPath".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null);
-            }
-            else if (!myPawn.CanReserve(this.parent, 1, -1, null, false))
-            {
-                yield return new FloatMenuOption(this.FloatMenuOptionLabel + " (" + "Reserved".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null);
-            }
-            else if (!myPawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
-            {
-                yield return new FloatMenuOption(this.FloatMenuOptionLabel + " (" + "Incapable".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null);
-            }
-            else
-            {
-                FloatMenuOption useopt = new FloatMenuOption(this.FloatMenuOptionLabel, delegate ()
-                {
-                    if (myPawn.CanReserveAndReach(this.parent, PathEndMode.Touch, Danger.Deadly, 1, -1, null, false))
-                    {
-                        foreach (CompUseEffect compUseEffect in this.parent.GetComps<CompUseEffect>())
-                        {
-                            if (compUseEffect.SelectedUseOption(myPawn))
-                            {
-                                return;
-                            }
-                        }
-                        this.TryStartUseJob(myPawn);
-                    }
-                }, MenuOptionPriority.Default, null, null, 0f, null, null);
-                yield return useopt;
-            }
-            yield break;
-        }
-
-        // Token: 0x06002A4D RID: 10829 RVA: 0x00139094 File Offset: 0x00137494
-        private bool CanBeUsedBy(Pawn p, out string failReason)
-        {
-            List<ThingComp> allComps = this.parent.AllComps;
-            for (int i = 0; i < allComps.Count; i++)
-            {
-                CompUseEffect compUseEffect = allComps[i] as CompUseEffect;
-                if (compUseEffect != null && !compUseEffect.CanBeUsedBy(p, out failReason))
-                {
-                    return false;
-                }
-            }
-            failReason = null;
-            return true;
-        }
-
         // Token: 0x06002944 RID: 10564 RVA: 0x00139525 File Offset: 0x00137925
         public override void Initialize(CompProperties props)
         {
             base.Initialize(props);
             this.skill = DefDatabase<SkillDef>.GetRandom();
         }
+
         /*
         // Token: 0x06002945 RID: 10565 RVA: 0x00139539 File Offset: 0x00137939
         public override string TransformLabel(string label)
@@ -218,6 +150,7 @@ namespace RRYautja
             return this.skill.LabelCap + " " + label;
         }
         */
+
         // Token: 0x06002946 RID: 10566 RVA: 0x00139554 File Offset: 0x00137954
         public override bool AllowStackWith(Thing other)
         {
@@ -277,6 +210,7 @@ namespace RRYautja
             string failReason;
             if (!this.CanBeUsedBy(myPawn, out failReason))
             {
+            //    yield break;
                 yield return new FloatMenuOption(this.FloatMenuOptionLabel + ((failReason == null) ? string.Empty : (" (" + failReason + ")")), null, MenuOptionPriority.Default, null, null, 0f, null, null);
             }
             else if (!myPawn.CanReach(this.parent, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.ByPawn))
@@ -310,22 +244,6 @@ namespace RRYautja
                 yield return useopt;
             }
             yield break;
-        }
-
-        // Token: 0x06002A4D RID: 10829 RVA: 0x00139094 File Offset: 0x00137494
-        private bool CanBeUsedBy(Pawn p, out string failReason)
-        {
-            List<ThingComp> allComps = this.parent.AllComps;
-            for (int i = 0; i < allComps.Count; i++)
-            {
-                CompUseEffect compUseEffect = allComps[i] as CompUseEffect;
-                if (compUseEffect != null && !compUseEffect.CanBeUsedBy(p, out failReason))
-                {
-                    return false;
-                }
-            }
-            failReason = null;
-            return true;
         }
 
         // Token: 0x06002A4B RID: 10827 RVA: 0x00138F78 File Offset: 0x00137378
@@ -365,6 +283,22 @@ namespace RRYautja
                     Log.Error("Error in CompUseEffect: " + arg, false);
                 }
             }
+        }
+
+        // Token: 0x06002A4D RID: 10829 RVA: 0x00139094 File Offset: 0x00137494
+        public bool CanBeUsedBy(Pawn p, out string failReason)
+        {
+            List<ThingComp> allComps = this.parent.AllComps;
+            for (int i = 0; i < allComps.Count; i++)
+            {
+                CompUseEffect compUseEffect = allComps[i] as CompUseEffect;
+                if (compUseEffect != null && !compUseEffect.CanBeUsedBy(p, out failReason))
+                {
+                    return false;
+                }
+            }
+            failReason = null;
+            return true;
         }
     }
 }

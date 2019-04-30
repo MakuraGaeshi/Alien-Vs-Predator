@@ -179,9 +179,9 @@
     <label>Queen</label>
     <description>Queen Xenomorphs are significantly larger and stronger than the normal adults, being approximately 4.5 metres (15 ft) tall. Their body structure differs also, having two pairs of arms, one large and one small. The queen's head is larger than those of other adult Xenomorphs and is protected by a large, flat crest, like a crown, which varies from queen to queen. Unlike other Xenomorphs, the queen's external mouth is separately segmented from the rest of her head, allowing her to turn her mouth left and right almost to the point where it is facing perpendicular to the direction of the rest of her head./n/nEgg-laying Xenomorph queens possess an immense ovipositor attached to their lower torso, similar to a queen termite's. Unlike insect queens, there appears to be no need for an Xenomorph queen's eggs to be fertilized. When attached to her ovipositor, the queen is supported by a "biomechanical throne" that consists of a lattice of struts resembling massive insect legs.</description>
     <statBases>
-      <MoveSpeed>2.9</MoveSpeed>
-      <ArmorRating_Blunt>0.40</ArmorRating_Blunt>
-      <ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+      <MoveSpeed>3.9</MoveSpeed>
+      <ArmorRating_Blunt>0.50</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.80</ArmorRating_Sharp>
       <MeatAmount>90</MeatAmount>
       <LeatherAmount>70</LeatherAmount>
     </statBases>
@@ -192,7 +192,7 @@
           <li>Blunt</li>
           <li>Cut</li>
         </capacities>
-        <power>8.2</power>
+        <power>12.2</power>
         <cooldownTime>2</cooldownTime>
         <linkedBodyPartsGroup>RRY_Xeno_LeftHand</linkedBodyPartsGroup>
         <surpriseAttack>
@@ -210,7 +210,7 @@
           <li>Blunt</li>
           <li>Cut</li>
         </capacities>
-        <power>8.2</power>
+        <power>12.2</power>
         <cooldownTime>2</cooldownTime>
         <linkedBodyPartsGroup>RRY_Xeno_RightHand</linkedBodyPartsGroup>
         <surpriseAttack>
@@ -227,7 +227,7 @@
         <capacities>
           <li>Bite</li>
         </capacities>
-        <power>8.2</power>
+        <power>18.2</power>
         <cooldownTime>2</cooldownTime>
         <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
         <chanceFactor>0.07</chanceFactor>
@@ -237,7 +237,7 @@
         <capacities>
           <li>Bite</li>
         </capacities>
-        <power>8.2</power>
+        <power>28.2</power>
         <cooldownTime>2</cooldownTime>
         <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
         <chanceFactor>0.07</chanceFactor>
@@ -247,10 +247,31 @@
         <capacities>
           <li>Blunt</li>
         </capacities>
-        <power>5</power>
+        <power>15</power>
         <cooldownTime>2</cooldownTime>
         <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
         <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+        <chanceFactor>0.2</chanceFactor>
+      </li>
+      <li>
+        <label>tail</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>10</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>RRY_Xeno_Tail_AttackTool</linkedBodyPartsGroup>
+        <chanceFactor>0.2</chanceFactor>
+      </li>
+      <li>
+        <label>tail spike</label>
+        <capacities>
+          <li>Stab</li>
+          <li>Cut</li>
+        </capacities>
+        <power>40</power>
+        <cooldownTime>2.5</cooldownTime>
+        <linkedBodyPartsGroup>RRY_Xeno_Tail_SpikeAttackTool</linkedBodyPartsGroup>
         <chanceFactor>0.2</chanceFactor>
       </li>
     </tools>
@@ -484,7 +505,7 @@
           <li>Blunt</li>
           <li>Cut</li>
         </capacities>
-        <power>8.2</power>
+        <power>3.2</power>
         <cooldownTime>2</cooldownTime>
         <linkedBodyPartsGroup>RRY_Xeno_LeftHand</linkedBodyPartsGroup>
         <surpriseAttack>
@@ -502,7 +523,7 @@
           <li>Blunt</li>
           <li>Cut</li>
         </capacities>
-        <power>8.2</power>
+        <power>3.2</power>
         <cooldownTime>2</cooldownTime>
         <linkedBodyPartsGroup>RRY_Xeno_RightHand</linkedBodyPartsGroup>
         <surpriseAttack>
@@ -519,7 +540,7 @@
         <capacities>
           <li>Bite</li>
         </capacities>
-        <power>8.2</power>
+        <power>4.2</power>
         <cooldownTime>2</cooldownTime>
         <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
         <chanceFactor>0.07</chanceFactor>
@@ -529,7 +550,7 @@
         <capacities>
           <li>Bite</li>
         </capacities>
-        <power>8.2</power>
+        <power>10.2</power>
         <cooldownTime>2</cooldownTime>
         <linkedBodyPartsGroup>RRY_Xeno_InnerTeeth</linkedBodyPartsGroup>
         <chanceFactor>0.07</chanceFactor>
@@ -561,7 +582,7 @@
           <li>Stab</li>
           <li>Cut</li>
         </capacities>
-        <power>5</power>
+        <power>10</power>
         <cooldownTime>2</cooldownTime>
         <linkedBodyPartsGroup>RRY_Xeno_Tail_SpikeAttackTool</linkedBodyPartsGroup>
         <chanceFactor>0.2</chanceFactor>
@@ -570,6 +591,7 @@
     <race>
       <body>RRY_Xenomorph_Biped</body>
       <baseHealthScale>0.72</baseHealthScale>
+      <baseBodySize>1.2</baseBodySize>
       <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
       <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
       <soundMeleeMiss>Pawn_Melee_Punch_Miss</soundMeleeMiss>
@@ -650,7 +672,7 @@
     <label>Warrior</label>
     <description>Warriors, also known as Soldiers, are the primary assault caste of the Xenomorph XX121 species and as such is almost certainly the most numerous caste of Xenomorph in existence. They are fast, reasonably tough, and savage combatants./n/nEven in death the Warrior is dangerous, as its pressurized bloodstream will cause it to burst apart, drenching nearby enemies in acid blood. Warriors are identified by their ridged heads, and stand around 7–8 feet tall on their hind legs. They are about 14–16 feet long, including their tail.</description>
     <statBases>
-      <MoveSpeed>4.9</MoveSpeed>
+      <MoveSpeed>5.5</MoveSpeed>
       <ArmorRating_Blunt>0.20</ArmorRating_Blunt>
       <ArmorRating_Sharp>0.40</ArmorRating_Sharp>
       <MeatAmount>45</MeatAmount>
@@ -708,7 +730,7 @@
         <capacities>
           <li>Bite</li>
         </capacities>
-        <power>10.2</power>
+        <power>20.2</power>
         <cooldownTime>2</cooldownTime>
         <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
         <chanceFactor>0.07</chanceFactor>
@@ -724,10 +746,32 @@
         <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
         <chanceFactor>0.2</chanceFactor>
       </li>
+      <li>
+        <label>tail</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>5</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>RRY_Xeno_Tail_AttackTool</linkedBodyPartsGroup>
+        <chanceFactor>0.2</chanceFactor>
+      </li>
+      <li>
+        <label>tail spike</label>
+        <capacities>
+          <li>Stab</li>
+          <li>Cut</li>
+        </capacities>
+        <power>15</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>RRY_Xeno_Tail_SpikeAttackTool</linkedBodyPartsGroup>
+        <chanceFactor>0.2</chanceFactor>
+      </li>
     </tools>
     <race>
       <body>RRY_Xenomorph_Biped</body>
       <baseHealthScale>0.72</baseHealthScale>
+      <baseBodySize>2.0</baseBodySize>
       <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
       <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
       <soundMeleeMiss>Pawn_Melee_Punch_Miss</soundMeleeMiss>
@@ -811,9 +855,9 @@
     <label>Runner</label>
     <description>Runners, also known as Dog Aliens or Ox Aliens, is an adult form of the species Xenomorph XX121 spawned from a quadrupedal host animal (such as a dog). Runners, as their name implies, are fast and agile, and can spit acid from their mouths./n/n Runners have variously been portrayed as being slightly larger and slightly smaller than typical human-spawned Aliens, differences that no doubt derive from the animal that hosted the creature. However, Runners average around 7 feet 5 inches tall when standing on their hind legs.</description>
     <statBases>
-      <MoveSpeed>5.6</MoveSpeed>
-      <ArmorRating_Blunt>0.20</ArmorRating_Blunt>
-      <ArmorRating_Sharp>0.40</ArmorRating_Sharp>
+      <MoveSpeed>7.6</MoveSpeed>
+      <ArmorRating_Blunt>0.10</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.30</ArmorRating_Sharp>
       <MeatAmount>25</MeatAmount>
       <LeatherAmount>25</LeatherAmount>
     </statBases>
@@ -859,7 +903,7 @@
         <capacities>
           <li>Bite</li>
         </capacities>
-        <power>8.2</power>
+        <power>12.2</power>
         <cooldownTime>2</cooldownTime>
         <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
         <chanceFactor>0.07</chanceFactor>
@@ -869,7 +913,7 @@
         <capacities>
           <li>Bite</li>
         </capacities>
-        <power>8.2</power>
+        <power>18.2</power>
         <cooldownTime>2</cooldownTime>
         <linkedBodyPartsGroup>RRY_Xeno_InnerTeeth</linkedBodyPartsGroup>
         <chanceFactor>0.07</chanceFactor>
@@ -901,7 +945,7 @@
           <li>Stab</li>
           <li>Cut</li>
         </capacities>
-        <power>5</power>
+        <power>25</power>
         <cooldownTime>2</cooldownTime>
         <linkedBodyPartsGroup>RRY_Xeno_Tail_SpikeAttackTool</linkedBodyPartsGroup>
         <chanceFactor>0.2</chanceFactor>
@@ -909,6 +953,7 @@
     </tools>
     <race>
       <body>RRY_Xenomorph_Quadruped</body>
+      <baseBodySize>1.4</baseBodySize>
       <baseHealthScale>1.32</baseHealthScale>
       <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
       <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
@@ -989,8 +1034,8 @@
     <description>Predaliens are Xenomorphs spawned from a Yautja. A more obvious result of the Xenomorph's DNA Reflex, the Predalien takes more clearly after its Yautja host, sharing physical features such as dreadlocks, mandibles and lighter skin coloration./n/n They are lethal combatants, often seen to possess strength far in excess of human-spawned Xenomorphs owing to the greater physical prowess of their hosts, a trait the Predalien subsequently inherits and enhances. They are apparently rare and are regarded by the Yautja as abominations and an insult to their species.</description>
     <statBases>
       <MoveSpeed>5.6</MoveSpeed>
-      <ArmorRating_Blunt>0.20</ArmorRating_Blunt>
-      <ArmorRating_Sharp>0.40</ArmorRating_Sharp>
+      <ArmorRating_Blunt>0.40</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.60</ArmorRating_Sharp>
       <MeatAmount>25</MeatAmount>
       <LeatherAmount>25</LeatherAmount>
     </statBases>
@@ -1086,7 +1131,8 @@
     </tools>
     <race>
       <body>RRY_Xenomorph_Biped_Predalien</body>
-      <baseHealthScale>1.32</baseHealthScale>
+      <baseHealthScale>1.72</baseHealthScale>
+      <baseBodySize>2.4</baseBodySize>
       <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
       <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
       <soundMeleeMiss>Pawn_Melee_Punch_Miss</soundMeleeMiss>
@@ -1164,7 +1210,7 @@
     <race>
       <intelligence>ToolUser</intelligence>
       <thinkTreeMain>RRY_Xenommorph</thinkTreeMain>
-      <baseBodySize>1.0</baseBodySize>
+      <baseBodySize>1.2</baseBodySize>
       <lifeStageAges>
         <li>
           <def>RRY_XenomorphChestBursterBaby</def>
@@ -1227,7 +1273,7 @@
     <label>Neomorph</label>
     <description>A human-sized Neomorph with huge optical sensors on its face for aiming weapons at long range. While effective at distance, it is weaker in melee combat. Veterans of mechanoid wars know that often, the safest thing to do against a lancer is to charge.</description>
     <statBases>
-      <MoveSpeed>4.9</MoveSpeed>
+      <MoveSpeed>5.9</MoveSpeed>
       <ArmorRating_Blunt>0.20</ArmorRating_Blunt>
       <ArmorRating_Sharp>0.40</ArmorRating_Sharp>
       <MeatAmount>30</MeatAmount>
@@ -1304,7 +1350,7 @@
     </tools>
     <race>
       <body>RRY_Xenomorph_Neomorph</body>
-      <baseHealthScale>0.72</baseHealthScale>
+      <baseHealthScale>1.72</baseHealthScale>
       <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
       <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
       <soundMeleeMiss>Pawn_Melee_Punch_Miss</soundMeleeMiss>

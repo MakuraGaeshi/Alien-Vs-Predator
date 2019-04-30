@@ -608,6 +608,8 @@
       <li>RemoveBodyPart</li>
       <li>Euthanize</li>
       <li>Anesthetize</li>
+      <li>RRY_FaceHuggerRemoval</li>
+      <li>RRY_XenomorphImpregnationRemoval</li>
     </recipes>
 </AlienRace.ThingDef_AlienRace>
 

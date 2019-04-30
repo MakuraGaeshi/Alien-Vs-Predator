@@ -142,11 +142,13 @@
     <labelNoun>a blooded Yautja</labelNoun>
     <stages>
       <li>
-        <label>generic mark</label>
+        <becomeVisible>true</becomeVisible>
       </li>
     </stages>
     <comps>
-
+      <li>
+        <compClass>RRYautja.HediffComp_BloodedYautja</compClass>
+      </li>
     </comps>
   </HediffDef>
 

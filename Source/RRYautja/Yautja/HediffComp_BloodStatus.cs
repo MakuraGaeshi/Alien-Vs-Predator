@@ -222,6 +222,23 @@ namespace RRYautja
             }
         }
 
+        public override string CompLabelInBracketsExtra
+        {
+            get
+            {
+                Comp_Yautja _Yautja = this.Pawn.TryGetComp<Comp_Yautja>();
+                if (_Yautja != null)
+                {
+
+
+                
+                    return _Yautja.MarkHedifflabel;
+                }
+                return null;
+            }
+        }
+
+
         public override void CompPostPostAdd(DamageInfo? dinfo)
         {
             base.CompPostPostAdd(dinfo);
