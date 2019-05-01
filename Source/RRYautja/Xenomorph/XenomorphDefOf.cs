@@ -46,15 +46,18 @@ namespace RimWorld
         public static JobDef LayXenomorphEgg;
         public static JobDef XenomorphKidnap;
 
-        // Xenomorph ThingDefs
+        // Xenomorph ThingDefs RRY_Xenomorph_TailSpike
         public static ThingDef RRY_EggXenomorphFertilized;
+        public static ThingDef RRY_Xenomorph_TailSpike;
+        public static ThingDef RRY_Xenomorph_HeadShell;
 
         // Xenomorph BloodDefs
         public static ThingDef RRY_FilthBloodXenomorph;
 
         public static BodyPartDef RRY_Xeno_TailSpike;
+        public static BodyPartDef RRY_Xeno_Shell;
 
-        // Xenomorph LifeStageDefs
+        // Xenomorph LifeStageDefs RRY_Xeno_Shell
         //   public static LifeStageDef RRY_EggXenomorphFertilized;
 
     }

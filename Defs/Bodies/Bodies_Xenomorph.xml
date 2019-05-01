@@ -263,6 +263,14 @@
               </groups>
               <parts>
                 <li>
+                  <def>RRY_Xeno_Shell</def>
+                  <coverage>0.8</coverage>
+                  <groups>
+                    <li>UpperHead</li>
+                    <li>FullHead</li>
+                  </groups>
+                </li>
+                <li>
                   <def>RRY_Xeno_Skull</def>
                   <coverage>0.18</coverage>
                   <depth>Inside</depth>
@@ -2030,6 +2038,14 @@
 								<li>HeadAttackTool</li>
 							  </groups>
 							<parts>
+								<li>
+								  <def>RRY_Xeno_Shell</def>
+								  <coverage>0.75</coverage>
+								  <groups>
+									<li>UpperHead</li>
+									<li>FullHead</li>
+								  </groups>
+								</li>
 								<li>
 									<def>RRY_Xeno_Skull</def>
 									<coverage>0.24</coverage>

@@ -42,7 +42,7 @@ namespace RRYautja
         public override void DoEffect(Pawn user)
         {
             bool selected = Find.Selector.SelectedObjects.Contains(user);
-            base.DoEffect(user);
+        //    base.DoEffect(user);
             Hediff hediff;
             Comp_Yautja _Yautja = user.TryGetComp<Comp_Yautja>();
             Hediff blooded = user.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_BloodedUM);
@@ -54,7 +54,25 @@ namespace RRYautja
             }
             user.health.RemoveHediff(blooded);
             user.health.AddHediff(marked, part);
+            ThingDef thingDef = null;
+            foreach (var item in corpse.InnerPawn.health.hediffSet.GetNotMissingParts())
+            {
+                if (Rand.Chance(corpse.InnerPawn.health.hediffSet.GetPartHealth(item)) &&item.def == XenomorphDefOf.RRY_Xeno_TailSpike && !corpse.InnerPawn.health.hediffSet.PartIsMissing(item))
+                {
+                    partRecord = item;
+                    thingDef = XenomorphDefOf.RRY_Xenomorph_TailSpike;
+                    corpse.InnerPawn.health.AddHediff(HediffMaker.MakeHediff(HediffDefOf.MissingBodyPart, corpse.InnerPawn, this.partRecord));
+                    GenSpawn.Spawn(ThingMaker.MakeThing(thingDef), user.Position, user.Map);
 
+                }
+                if (Rand.Chance(corpse.InnerPawn.health.hediffSet.GetPartHealth(item)) && item.def == XenomorphDefOf.RRY_Xeno_Shell && !corpse.InnerPawn.health.hediffSet.PartIsMissing(item))
+                {
+                    partRecord = item;
+                    thingDef = XenomorphDefOf.RRY_Xenomorph_HeadShell;
+                    corpse.InnerPawn.health.AddHediff(HediffMaker.MakeHediff(HediffDefOf.MissingBodyPart, corpse.InnerPawn, this.partRecord));
+                    GenSpawn.Spawn(ThingMaker.MakeThing(thingDef), user.Position, user.Map);
+                }
+            }
             if (user.story.adulthood.identifier == null || user.story.adulthood.identifier == "Yautja_YoungBlood")
             {
                 AlienRace.BackstoryDef backstoryDef = DefDatabase<AlienRace.BackstoryDef>.GetNamed("Yautja_Blooded");
@@ -69,6 +87,10 @@ namespace RRYautja
             }
         }
 
+        BodyPartRecord partRecord;
+        bool hasTail;
+        bool hasShell;
+        Corpse corpse;
         // Token: 0x06002ADD RID: 10973 RVA: 0x00143464 File Offset: 0x00141864
         public override bool CanBeUsedBy(Pawn p, out string failReason)
         {
@@ -92,8 +114,9 @@ namespace RRYautja
                 ThingDef def = _Yautja.corpse.InnerPawn.kindDef.race;
                 if (this.parent is Corpse corpse)
                 {
-                //    Log.Message(string.Format("this.parent is Corpse corpse"));
-                //    Log.Message(string.Format("corpse.InnerPawn.kindDef.race: {0}, def: {1}", corpse.InnerPawn.kindDef.race, def));
+                    this.corpse = corpse;
+                    //    Log.Message(string.Format("this.parent is Corpse corpse"));
+                    //    Log.Message(string.Format("corpse.InnerPawn.kindDef.race: {0}, def: {1}", corpse.InnerPawn.kindDef.race, def));
                     if (corpse.InnerPawn.kindDef.race == def)
                     {
                         failReason = null;
@@ -313,7 +336,7 @@ namespace RRYautja
         }
 
         // Token: 0x06002A4D RID: 10829 RVA: 0x00139094 File Offset: 0x00137494
-        private bool CanBeUsedBy(Pawn p, out string failReason)
+        public bool CanBeUsedBy(Pawn p, out string failReason)
         {
             List<ThingComp> allComps = this.parent.AllComps;
             for (int i = 0; i < allComps.Count; i++)

@@ -40,6 +40,7 @@ namespace RimWorld
         public static ThingDef RRY_Equipment_HunterGauntlet;
 
         public static JobDef RRY_Yautja_MarkSelf;
+        public static JobDef RRY_Yautja_TakeTrophy;
 
     }
 }

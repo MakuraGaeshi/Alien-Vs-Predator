@@ -77,16 +77,6 @@ namespace RRYautja
         public float combatPower;
         public float BodySize;
 
-
-        private HediffDef MarkedhediffDefp;
-        private Corpse corpsep;
-        private Pawn pawnp;
-        private string MarkHedifftypep;
-        private string MarkHedifflabelp;
-        private bool predatorp;
-        private float combatPowerp;
-        private float BodySizep;
-
         //    Scribe_Defs.Look<HediffDef>(ref MarkedhediffDef, "MarkedhediffDef");
         //    Scribe_Deep.Look<TaleReference>(ref this.taleRef, "taleRef", new object[0]);
         //    Scribe_References.Look<Lord>(ref this.lord, "defenseLord", false);
@@ -94,52 +84,15 @@ namespace RRYautja
         public override void CompExposeData()
         {
             base.CompExposeData();
-        //    Scribe_Values.Look<HediffDef>(ref MarkedhediffDef, "MarkedhediffDef", Props.MarkedhediffDef, true);
-            Scribe_Defs.Look<HediffDef>(ref this.HediffProps.MarkedhediffDef, "MarkedhediffDef");
-            Scribe_References.Look<Corpse>(ref this.HediffProps.corpse, "corpseRef", true);
-            Scribe_References.Look<Pawn>(ref this.HediffProps.pawn, "pawnRef", true);
-            Scribe_Values.Look<String>(ref this.HediffProps.MarkHedifftype, "thisMarktype");
-            Scribe_Values.Look<String>(ref this.HediffProps.MarkHedifflabel, "thislabel");
-            Scribe_Values.Look<bool>(ref this.HediffProps.predator, "thisPred");
-            Scribe_Values.Look<float>(ref this.HediffProps.combatPower, "thiscombatPower");
-            Scribe_Values.Look<float>(ref this.HediffProps.BodySize, "thisBodySize");
-
-            /*
-             
-            Scribe_Defs.Look<HediffDef>(ref MarkedhediffDef, "MarkedhediffDef");
-            Scribe_References.Look<Corpse>(ref this.corpse, "corpseRef");//, Props.corpse);//
-            Scribe_References.Look<Pawn>(ref this.pawn, "pawnRef");//, Props.pawn);
-            Scribe_Values.Look<String>(ref this.MarkHedifftype, "thisMarktype");//, Props.Marklabel);
-            Scribe_Values.Look<String>(ref this.MarkHedifflabel, "thislabel");//, Props.Marklabel);
-            Scribe_Values.Look<bool>(ref this.predator, "thisPred");
-            Scribe_Values.Look<float>(ref this.combatPower, "thiscombatPower");
-            Scribe_Values.Look<float>(ref this.BodySize, "thisBodySize");
-            */
         }
 
         public override void CompPostPostAdd(DamageInfo? dinfo)
         {
-            Log.Message(string.Format("CompPostPostAdd: {0} added to {1}", this.parent.LabelCap, this.Pawn.Name.ToStringShort));
-            //Log.Message(string.Format("CompPostPostAdd: this.Props:{0}", this.HediffProps.ToStringSafe()));
-            /*
-            this.MarkedhediffDefp = this.MarkedhediffDef;
-            this.corpsep= this.corpse;
-            this.pawnp= this.pawn;
-            this.MarkHedifftypep= this.MarkHedifftype;
-            this.MarkHedifflabelp= this.MarkHedifflabel;
-            this.predatorp= this.predator;
-            this.combatPowerp= this.combatPower;
-            this.BodySizep= this.BodySize;
-            */
-
-            //this.parent.CurStage.label = this.HediffProps.pawn.KindLabel;
             base.CompPostPostAdd(dinfo);
         }
 
         public override void CompPostMake()
         {
-            Log.Message(string.Format("CompPostMake: {0} added to {1}", this.parent.LabelCap, this.Pawn.Name.ToStringShort));
-
             base.CompPostMake();
         }
         public override string CompLabelInBracketsExtra
@@ -177,25 +130,12 @@ namespace RRYautja
         {
             base.CompPostTick(ref severityAdjustment);
 
-            //  this.parent.CurStage.label = this.HediffProps.pawn.KindLabel;
-            //  this.parent.def.stages[0].label = this. this.MarkHedifftype;
-            //  this.parent.def.stages[1].label = this.MarkHedifflabel;
-            //  MarkedhediffDef = DefDatabase<HediffDef>.GetNamed(MarkHedifftype);
-
         }
+
         public override void CompPostPostRemoved()
         {
-            
             base.CompPostPostRemoved();
-            /*
-            Hediff bloodedUM = Pawn.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_BloodedUM);
-            BodyPartRecord part = Pawn.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_BloodedUM).Part;
-            Pawn.health.RemoveHediff(bloodedUM);
-            Hediff blooded = HediffMaker.MakeHediff(hediffDef, Pawn, null);
-            Pawn.health.AddHediff(blooded, part, null);
-            */
         }
-        public BloodStatusMode bloodStatus;
     }
 
 

@@ -56,8 +56,6 @@
   <ItemGroup>
     <Compile Include="Yautja\Class1.cs" />
     <Compile Include="Yautja\RRY_Thought_Situational.cs" />
-    <Compile Include="Yautja\Comp_Yautja - V3 Not working propoerly.cs" />
-    <Compile Include="Yautja\Comp_Yautja - Old.cs" />
     <None Include="Yautja\CorpseModification - Copy.cs.bak" />
     <Compile Include="Yautja\JobDriver_RRYUseCorpse.cs" />
     <Compile Include="Yautja\CorpseModification.cs" />

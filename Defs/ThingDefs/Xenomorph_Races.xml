@@ -13,6 +13,8 @@
     <inspectorTabs>
         <li>ITab_Pawn_Health</li>
         <li>ITab_Pawn_Log</li>
+        <li>ITab_Pawn_Training</li>
+        <li>ITab_Pawn_Character</li>
     </inspectorTabs>
     <comps>
         <li>
@@ -113,6 +115,7 @@
       </li>
     </tools>
     <race>
+      <meatLabel>xenomorph flesh</meatLabel>
       <maxPreyBodySize>10</maxPreyBodySize>
       <intelligence>ToolUser</intelligence>
       <thinkTreeMain>RRY_Xenommorph</thinkTreeMain>
@@ -279,6 +282,7 @@
       <intelligence>ToolUser</intelligence>
       <thinkTreeMain>RRY_Xenommorph</thinkTreeMain>
       <body>RRY_Xenomorph_Biped</body>
+	  <useMeatFrom>RRY_Xenomorph_FaceHugger</useMeatFrom>
       <baseBodySize>3.0</baseBodySize>
       <baseHealthScale>4.32</baseHealthScale>
       <lifeStageAges>
@@ -590,6 +594,7 @@
     </tools>
     <race>
       <body>RRY_Xenomorph_Biped</body>
+	  <useMeatFrom>RRY_Xenomorph_FaceHugger</useMeatFrom>
       <baseHealthScale>0.72</baseHealthScale>
       <baseBodySize>1.2</baseBodySize>
       <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
@@ -770,6 +775,7 @@
     </tools>
     <race>
       <body>RRY_Xenomorph_Biped</body>
+	  <useMeatFrom>RRY_Xenomorph_FaceHugger</useMeatFrom>
       <baseHealthScale>0.72</baseHealthScale>
       <baseBodySize>2.0</baseBodySize>
       <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
@@ -953,6 +959,7 @@
     </tools>
     <race>
       <body>RRY_Xenomorph_Quadruped</body>
+	  <useMeatFrom>RRY_Xenomorph_FaceHugger</useMeatFrom>
       <baseBodySize>1.4</baseBodySize>
       <baseHealthScale>1.32</baseHealthScale>
       <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
@@ -1131,6 +1138,7 @@
     </tools>
     <race>
       <body>RRY_Xenomorph_Biped_Predalien</body>
+	  <useMeatFrom>RRY_Xenomorph_FaceHugger</useMeatFrom>
       <baseHealthScale>1.72</baseHealthScale>
       <baseBodySize>2.4</baseBodySize>
       <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
@@ -1350,6 +1358,7 @@
     </tools>
     <race>
       <body>RRY_Xenomorph_Neomorph</body>
+	  <useMeatFrom>RRY_Xenomorph_FaceHugger</useMeatFrom>
       <baseHealthScale>1.72</baseHealthScale>
       <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
       <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>

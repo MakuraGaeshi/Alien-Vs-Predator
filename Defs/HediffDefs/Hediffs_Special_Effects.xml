@@ -142,6 +142,7 @@
     <labelNoun>a blooded Yautja</labelNoun>
     <stages>
       <li>
+        <label>Beast</label>
         <becomeVisible>true</becomeVisible>
       </li>
     </stages>
@@ -158,7 +159,7 @@
     <labelNoun>a blooded Yautja</labelNoun>
     <stages>
       <li>
-        <label>human</label>
+        <label>Human</label>
       </li>
     </stages>
     <comps>
@@ -174,7 +175,7 @@
     <labelNoun>a blooded Yautja</labelNoun>
     <stages>
       <li>
-        <label>worthy human</label>
+        <label>worthy Human</label>
       </li>
     </stages>
     <comps>
@@ -190,7 +191,7 @@
     <labelNoun>a blooded Yautja</labelNoun>
     <stages>
       <li>
-        <label>humanlike</label>
+        <label>Alien</label>
       </li>
     </stages>
     <comps>
@@ -206,7 +207,7 @@
     <labelNoun>a blooded Yautja</labelNoun>
     <stages>
       <li>
-        <label>worthy humanlike</label>
+        <label>worthy Alien</label>
       </li>
     </stages>
     <comps>
@@ -222,7 +223,7 @@
     <labelNoun>a blooded Yautja</labelNoun>
     <stages>
       <li>
-        <label>xenomorph</label>
+        <label>Xenomorph</label>
       </li>
     </stages>
     <comps>
@@ -238,7 +239,7 @@
     <labelNoun>a blooded Yautja</labelNoun>
     <stages>
       <li>
-        <label>queen xenomorph</label>
+        <label>Xenomorph</label>
       </li>
     </stages>
     <comps>
@@ -254,7 +255,7 @@
     <labelNoun>a blooded Yautja</labelNoun>
     <stages>
       <li>
-        <label>predalien</label>
+        <label>Xenomorph</label>
       </li>
     </stages>
     <comps>
@@ -270,7 +271,7 @@
     <labelNoun>a blooded Yautja</labelNoun>
     <stages>
       <li>
-        <label>badblood</label>
+        <label>Badblood</label>
       </li>
     </stages>
     <comps>
@@ -286,7 +287,7 @@
     <labelNoun>a blooded Yautja</labelNoun>
     <stages>
       <li>
-        <label>hound</label>
+        <label>Hound</label>
       </li>
     </stages>
     <comps>
@@ -302,7 +303,7 @@
     <labelNoun>a blooded Yautja</labelNoun>
     <stages>
       <li>
-        <label>crusher</label>
+        <label>Crusher</label>
       </li>
     </stages>
     <comps>
@@ -318,7 +319,7 @@
     <labelNoun>a blooded Yautja</labelNoun>
     <stages>
       <li>
-        <label>gro'tye</label>
+        <label>Gro'tye</label>
       </li>
     </stages>
     <comps>

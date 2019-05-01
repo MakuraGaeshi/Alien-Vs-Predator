@@ -57,7 +57,7 @@ namespace RimWorld
         {
             return base.MoodOffset();
         }
-
+        /*
         public new string Description
         {
             get
@@ -83,7 +83,7 @@ namespace RimWorld
                 return this.def.description;
             }
         }
-
+        */
         protected override float BaseMoodOffset => ((_Yautja.combatPower / 10) / base.BaseMoodOffset);
         // Token: 0x04000F33 RID: 3891
         private int curStageIndex = 0;

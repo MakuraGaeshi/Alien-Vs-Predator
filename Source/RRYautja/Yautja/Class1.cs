@@ -1,9 +1,12 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Verse;
+using Verse.AI;
 
-namespace RRYautja.Yautja
+namespace RRYautja
 {
     /*
     [StaticConstructorOnStartup]
@@ -19,13 +22,15 @@ namespace RRYautja.Yautja
                 {
                     td.comps.Add(new CompProperties_UsableCorpse()
                     {
-                        compClass = typeof(CompKillMarker),
-                        useJob = YautjaDefOf.RRY_Yautja_MarkSelf,
-                        useLabel = "Use {0} to mark self as Blooded"
+                        compClass = typeof(CompTakeTrophy),
+                        useJob = YautjaDefOf.RRY_Yautja_TakeTrophy,
+                        useLabel = "Take Trophy from {0}"
                     });
                     td.comps.Add(new CompProperties_UseEffect()
                     {
-                        compClass = typeof(CompUseEffect_MarkSelf)
+                        compClass = typeof(CompUseEffect_TakeTrophy)
+                        
+                        
                         //     chance = 0.25f
                     });
                     //    td.tickerType = TickerType.Normal;
@@ -41,11 +46,30 @@ namespace RRYautja.Yautja
     public class CompUseEffect_TakeTrophy : CompUseEffect
     {
         bool logonce = false;
+        BodyPartRecord partRecord;
+        bool hasTail;
+        bool hasShell;
+        Corpse corpse;
+
         // Token: 0x06002ADC RID: 10972 RVA: 0x001433C0 File Offset: 0x001417C0
         public override void DoEffect(Pawn user)
         {
             bool selected = Find.Selector.SelectedObjects.Contains(user);
-            base.DoEffect(user);
+        //    base.DoEffect(user);
+            corpse.InnerPawn.health.AddHediff(HediffMaker.MakeHediff(HediffDefOf.MissingBodyPart, corpse.InnerPawn, this.partRecord));
+            ThingDef thingDef = null;
+            if (this.partRecord.def == XenomorphDefOf.RRY_Xeno_TailSpike)
+            {
+                thingDef = XenomorphDefOf.RRY_Xenomorph_TailSpike;
+            }
+            if (this.partRecord.def == XenomorphDefOf.RRY_Xeno_Shell)
+            {
+                thingDef = XenomorphDefOf.RRY_Xenomorph_TailSpike;
+            }
+            if (thingDef!=null)
+            {
+                GenSpawn.Spawn(ThingMaker.MakeThing(thingDef), user.Position, user.Map);
+            }
             
         }
 
@@ -56,20 +80,31 @@ namespace RRYautja.Yautja
 
             if (this.parent is Corpse corpse)
             {
-                bool hastail = false;
-                foreach (var item in corpse.InnerPawn.RaceProps.body.GetPartsWithDef(XenomorphDefOf.RRY_Xeno_TailSpike))
+                this.corpse = corpse;
+                Log.Message(string.Format("hastail: {0}", hasTail));
+                if (XenomorphUtil.IsXenoCorpse(corpse))
                 {
-                    hastail = true;
-                }
-                Log.Message(string.Format("hastail: {0}", hastail));
-                if (XenomorphUtil.IsXenoCorpse(corpse)&&(hastail))
-                {
-                    failReason = null;
-                    return true;
+                    foreach (var item in corpse.InnerPawn.RaceProps.body.AllParts)
+                    {
+                        if (item.def == XenomorphDefOf.RRY_Xeno_TailSpike)
+                        {
+                            partRecord = item;
+                            failReason = null;
+                            hasTail = true;
+                            return true;
+                        }
+                        if (item.def == XenomorphDefOf.RRY_Xeno_Shell)
+                        {
+                            partRecord = item;
+                            failReason = null;
+                            hasShell = true;
+                            return true;
+                        }
+                    }
                 }
                 else
                 {
-                    failReason = "Wrong race";
+                    failReason = "Missing Parts";
                     return false;
                 }
             }
@@ -81,8 +116,7 @@ namespace RRYautja.Yautja
             return base.CanBeUsedBy(p, out failReason);
         }
 
-        // Token: 0x04001786 RID: 6022
-        private const float XPGainAmount = 50000f;
+        public override float OrderPriority => 1;
     }
     // Token: 0x0200074F RID: 1871
     public class CompTakeTrophy : Comp_UsableCorpse
