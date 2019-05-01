@@ -45,9 +45,10 @@ namespace RRYautja
 
         // Token: 0x060053DC RID: 21468 RVA: 0x00264E1B File Offset: 0x0026321B
         public void ExposeData()
-		{
-			parent.ExposeData();
+        {// Building_Turret_Shoulder
+            parent.ExposeData();
             Scribe_References.Look<Thing>(ref this.turret, "Turret", false);
+            Scribe_Deep.Look<Building_Turret_Shoulder>(ref this.turret_Shoulder, "Turret", false);
             Scribe_Values.Look<bool>(ref this.turretIsOn, "TurretIsOn", false, false);
 		}
 
@@ -98,10 +99,12 @@ namespace RRYautja
             {
                 this.MoveTurret(intVec);
             }
-            if (this.turret.DestroyedOrNull() && intVec.GetFirstThing(GetWearer.Map, Util_CompEquippableTurret.EquippableTurretDef) == null)
+            if (this.turret.DestroyedOrNull() && intVec.GetFirstThing(GetWearer.Map, Util_CompEquippableTurret.EquippableTurretDef) != this.turret)
             {
                 this.turret = GenSpawn.Spawn(Util_CompEquippableTurret.EquippableTurretDef, intVec, GetWearer.Map, WipeMode.Vanish);
                 this.turret.SetFactionDirect(this.GetWearer.Faction);
+                ((Building_Turret_Shoulder)this.turret).Parental = GetWearer;
+                ((Building_Turret_Shoulder)this.turret).comp = this;
             }
             this.turretIsOn = true;
         }
@@ -183,8 +186,9 @@ namespace RRYautja
         // Token: 0x04000002 RID: 2
         public int nextUpdateTick;
 
-        // Token: 0x04000003 RID: 3
+        // Token: 0x04000003 RID: 3 Building_Turret_Shoulder
         public Thing turret;
+        public Building_Turret_Shoulder turret_Shoulder;
 
         // Token: 0x04000004 RID: 4
         public bool turretIsOn;

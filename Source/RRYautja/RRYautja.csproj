@@ -55,12 +55,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="util\AcidWatcher.cs" />
+    <Compile Include="util\Class1.cs" />
     <Compile Include="Yautja\Class1.cs" />
-    <Compile Include="Yautja\Building_Trap.cs" />
-    <Compile Include="Yautja\Building_TrapRearmable.cs" />
-    <Compile Include="Yautja\JobDriver_RearmTrap.cs" />
-    <Compile Include="Yautja\Designator_Rearm.cs" />
-    <Compile Include="Yautja\WorkGiver_RearmTraps.cs" />
+    <Compile Include="Yautja\Traps\Building_Trap.cs" />
+    <Compile Include="Yautja\Traps\Building_TrapRearmable.cs" />
+    <Compile Include="Yautja\Traps\JobDriver_RearmTrap.cs" />
+    <Compile Include="Yautja\Traps\Designator_Rearm.cs" />
+    <Compile Include="Yautja\Traps\WorkGiver_RearmTraps.cs" />
     <Compile Include="Yautja\RRY_Thought_Situational.cs" />
     <None Include="Yautja\CorpseModification - Copy.cs.bak" />
     <Compile Include="Yautja\JobDriver_RRYUseCorpse.cs" />
