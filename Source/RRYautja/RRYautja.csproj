@@ -54,7 +54,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="util\AcidWatcher.cs" />
     <Compile Include="Yautja\Class1.cs" />
+    <Compile Include="Yautja\Building_Trap.cs" />
+    <Compile Include="Yautja\Building_TrapRearmable.cs" />
+    <Compile Include="Yautja\JobDriver_RearmTrap.cs" />
+    <Compile Include="Yautja\Designator_Rearm.cs" />
+    <Compile Include="Yautja\WorkGiver_RearmTraps.cs" />
     <Compile Include="Yautja\RRY_Thought_Situational.cs" />
     <None Include="Yautja\CorpseModification - Copy.cs.bak" />
     <Compile Include="Yautja\JobDriver_RRYUseCorpse.cs" />
@@ -79,7 +85,6 @@
     <Compile Include="Harmony\Building_Door.cs" />
     <Compile Include="Xenomorph\CompXenoHatcher.cs" />
     <Compile Include="Harmony\IncidentWorker_RaidEnemy.cs" />
-    <Compile Include="Harmony\Pawn.cs" />
     <Compile Include="Harmony\PawnUIOverlay.cs" />
     <Compile Include="Harmony\ThingSelectionUtility.cs" />
     <Compile Include="util\HediffComp_Blur.cs" />

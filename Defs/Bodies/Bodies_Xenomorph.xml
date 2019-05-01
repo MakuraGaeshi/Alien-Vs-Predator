@@ -264,7 +264,7 @@
               <parts>
                 <li>
                   <def>RRY_Xeno_Shell</def>
-                  <coverage>0.8</coverage>
+                  <coverage>0.7</coverage>
                   <groups>
                     <li>UpperHead</li>
                     <li>FullHead</li>
@@ -2040,7 +2040,7 @@
 							<parts>
 								<li>
 								  <def>RRY_Xeno_Shell</def>
-								  <coverage>0.75</coverage>
+								  <coverage>0.65</coverage>
 								  <groups>
 									<li>UpperHead</li>
 									<li>FullHead</li>

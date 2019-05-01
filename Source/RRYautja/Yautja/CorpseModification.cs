@@ -57,7 +57,7 @@ namespace RRYautja
             ThingDef thingDef = null;
             foreach (var item in corpse.InnerPawn.health.hediffSet.GetNotMissingParts())
             {
-                if (Rand.Chance(corpse.InnerPawn.health.hediffSet.GetPartHealth(item)) &&item.def == XenomorphDefOf.RRY_Xeno_TailSpike && !corpse.InnerPawn.health.hediffSet.PartIsMissing(item))
+                if (Rand.Chance(corpse.InnerPawn.health.hediffSet.GetPartHealth(item)/3) &&item.def == XenomorphDefOf.RRY_Xeno_TailSpike && !corpse.InnerPawn.health.hediffSet.PartIsMissing(item))
                 {
                     partRecord = item;
                     thingDef = XenomorphDefOf.RRY_Xenomorph_TailSpike;
@@ -65,7 +65,7 @@ namespace RRYautja
                     GenSpawn.Spawn(ThingMaker.MakeThing(thingDef), user.Position, user.Map);
 
                 }
-                if (Rand.Chance(corpse.InnerPawn.health.hediffSet.GetPartHealth(item)) && item.def == XenomorphDefOf.RRY_Xeno_Shell && !corpse.InnerPawn.health.hediffSet.PartIsMissing(item))
+                if (Rand.Chance(corpse.InnerPawn.health.hediffSet.GetPartHealth(item)/3) && item.def == XenomorphDefOf.RRY_Xeno_Shell && !corpse.InnerPawn.health.hediffSet.PartIsMissing(item))
                 {
                     partRecord = item;
                     thingDef = XenomorphDefOf.RRY_Xenomorph_HeadShell;

@@ -258,7 +258,7 @@
 					<bodyPart>Head</bodyPart>
 					<useSkinColor>true</useSkinColor>
 					<inFrontOfBody>true</inFrontOfBody>
-					<layerOffset>0.5</layerOffset>
+					<layerOffset>0.35</layerOffset>
 					<offsets>
 					<south>
 										<bodyTypes>
@@ -521,7 +521,7 @@
       <leatherDef>RRY_Leather_Yautja</leatherDef>
       <nameGenerator>NamerPersonYautja</nameGenerator>
       <body>RRY_Yautja_Biped</body>
-      <bloodDef>FilthBloodYautja</bloodDef>	
+      <bloodDef>RRY_FilthBloodYautja</bloodDef>	
 	  <!-- RGB in the photoshop is (R=196  G= 192  B=124) -->
       <meatColor>(194,217,124)</meatColor>
       <baseBodySize>1.25</baseBodySize>

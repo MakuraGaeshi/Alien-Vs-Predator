@@ -173,16 +173,90 @@ namespace RRYautja
 
         public override void PostPreApplyDamage(DamageInfo dinfo, out bool absorbed)
         {
-            Pawn other = dinfo.Instigator as Pawn;
-            Pawn pawn = base.parent as Pawn;
-
-            if (other!=null)
+            bool acidburns = true;
+            if (base.parent is Pawn pawn && pawn != null)
             {
-                if (dinfo.Weapon.IsMeleeWeapon)
+                bool selected = Find.Selector.SelectedObjects.Contains(pawn);
+#if DEBUG
+                if (selected) Log.Message(string.Format("CompXeno PPAD pawn: {0}", pawn.LabelShortCap));
+#endif
+                if (dinfo.Instigator is Pawn Instigator && Instigator!=null)
                 {
+                    selected = selected? selected : Find.Selector.SelectedObjects.Contains(Instigator);
+#if DEBUG
+                    if (selected) Log.Message(string.Format("CompXeno PPAD otherpawn: {0}", Instigator.LabelShortCap));
+#endif
+                    if (dinfo.Weapon is ThingDef WeaponDef && WeaponDef != null)
+                    {
+#if DEBUG
+                        if (selected) Log.Message(string.Format("CompXeno PPAD WeaponDef: {0}", WeaponDef.defName));
+#endif
+                        if (WeaponDef.IsWeapon && WeaponDef.IsMeleeWeapon)
+                        {
 
+                            if (WeaponDef == Instigator.equipment.Primary.def && Instigator.equipment.Primary is ThingWithComps Weapon && Instigator.equipment.PrimaryEq is CompEquippable WeaponEQ)
+                            {
+                                WeaponDef = Weapon.def;
+#if DEBUG
+                                if (selected) Log.Message(string.Format("CompXeno PPAD WeaponDef: {0} matches other.equipment.Primary: {1}", WeaponDef.LabelCap, Weapon.LabelCap));
+#endif
+                                if (WeaponDef.IsMeleeWeapon)
+                                {
+#if DEBUG
+                                    if (selected) Log.Message(string.Format("CompXeno PPAD WeaponDef.isMelee: {0}", WeaponDef.IsMeleeWeapon));
+#endif
+                                    if (dinfo.Weapon.MadeFromStuff && Weapon.Stuff is ThingDef WeaponStuff)
+                                    {
+#if DEBUG
+                                        if (selected) Log.Message(string.Format("CompXeno PPAD WeaponDef: {0}, MadeFromStuff: {1}", WeaponDef.LabelCap, WeaponDef.MadeFromStuff));
+#endif
+                                        if (WeaponStuff.defName.Contains("RRY_Xeno"))
+                                        {
+#if DEBUG
+                                            if (selected) Log.Message(string.Format("CompXeno PPAD WeaponDef: {0}, MadeFromStuff: {1}", WeaponDef.LabelCap, WeaponDef.MadeFromStuff));
+#endif
+                                            acidburns = false;
+
+                                        }
+                                    }
+                                    else
+                                    {
+#if DEBUG
+                                        if (selected) Log.Message(string.Format("CompXeno PPAD WeaponDef: {0}, Not MadeFromStuff: {1}", WeaponDef.LabelCap, WeaponDef.MadeFromStuff));
+#endif
+                                        foreach (var item in Weapon.def.costList)
+                                        {
+                                            if (item.thingDef == XenomorphDefOf.RRY_Xenomorph_TailSpike || item.thingDef == XenomorphDefOf.RRY_Xenomorph_HeadShell)
+                                            {
+                                                acidburns = false;
+                                            }
+                                        }
+                                    }
+                                    if (acidburns)
+                                    {
+                                        Weapon.HitPoints -= Rand.Range(0, 5);
+                                        if (Weapon.HitPoints <= 0)
+                                        {
+                                            Weapon.Destroy();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Log.Message("weapon immune to acid");
+                                    }
+                                }
+                                else if (WeaponDef.IsWeapon&& WeaponDef.IsRangedWeapon)
+                                {
+                                    Log.Message("ranged weapon, immune to acid");
+                                }
+                            }
+
+                        }
+                    }
                 }
             }
+#if DEBUG
+#endif
             base.PostPreApplyDamage(dinfo, out absorbed);
         }
         public PawnKindDef host;

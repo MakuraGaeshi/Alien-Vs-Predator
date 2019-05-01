@@ -2,7 +2,7 @@
 <Defs>
 
   <ThingDef ParentName="BaseFilth">
-    <defName>FilthBloodYautja</defName>
+    <defName>RRY_FilthBloodYautja</defName>
     <label>blood</label>
     <statBases>
       <Beauty>-14</Beauty>
@@ -21,7 +21,7 @@
    
   <ThingDef Class="RRYautja.Filth_AddAcidDamageDef" ParentName="BaseFilth">
     <defName>RRY_FilthBloodXenomorph</defName>
-    <label>blood</label>
+    <label>acidic blood</label>
     <statBases>
       <Beauty>-14</Beauty>
       <Cleanliness>-10</Cleanliness>

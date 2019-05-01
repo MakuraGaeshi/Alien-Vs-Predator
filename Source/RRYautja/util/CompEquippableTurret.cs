@@ -129,7 +129,7 @@ namespace RRYautja
         // Token: 0x06000008 RID: 8 RVA: 0x000022A8 File Offset: 0x000004A8
         public override IEnumerable<Gizmo> CompGetGizmosWorn()
         {
-            bool flag = Find.Selector.SingleSelectedThing == GetWearer;
+            bool flag = Find.Selector.SelectedObjects.Contains(GetWearer);
             if (flag)
             {
                 int num = 700000101;

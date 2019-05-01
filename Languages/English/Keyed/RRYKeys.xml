@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+  <!-- Rearmable Traps -->
+  <DesignatorRearmTrap>Rearm trap</DesignatorRearmTrap>
+  <DesignatorRearmTrapDesc>Rearm a sprung trap so it can be triggered again.</DesignatorRearmTrapDesc>
+  <CommandRearm>Rearm Trap</CommandRearm>
+  <CommandRearmDesc>Rearm a sprung trap so it can be triggered again.</CommandRearmDesc>
+  <TrapArmed>Armed</TrapArmed>
+  <TrapNotArmed>Not armed</TrapNotArmed>
+  <!-- Buttons -->
+  <WearableExplosives_Label>Detonate</WearableExplosives_Label>
+  <WearableExplosives_Desc>Detonate this pawn's self destruct device.</WearableExplosives_Desc>
+  <Xeno_Facehugger_Attach>Facehugger attached itself to {0}</Xeno_Facehugger_Attach>
+  <Xeno_Facehugger_Detach>Facehugger detached itself from {0}</Xeno_Facehugger_Detach>
+  <Xeno_Chestburster_Emerge>Facehugger attached itself to {0}</Xeno_Chestburster_Emerge>
+  <BloodStatus_Unblooded>{0}</BloodStatus_Unblooded>
+  <BloodStatus_Unmarked>{0}</BloodStatus_Unmarked>
+  <Xeno_Chestburster_Emerge>{0}</Xeno_Chestburster_Emerge>
+</LanguageData>

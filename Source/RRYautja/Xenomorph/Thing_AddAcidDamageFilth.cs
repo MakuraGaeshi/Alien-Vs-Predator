@@ -22,9 +22,29 @@ namespace RRYautja
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
+            this.RecalcPathsOnAndAroundMe(map);
             this.destroyTick = Find.TickManager.TicksGame + (Rand.Range(29, 121) * 100);
         }
 
+        public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
+        {
+            Map map = base.Map;
+            base.DeSpawn(mode);
+            this.RecalcPathsOnAndAroundMe(map);
+        }
+
+        private void RecalcPathsOnAndAroundMe(Map map)
+        {
+            IntVec3[] adjacentCellsAndInside = GenAdj.AdjacentCellsAndInside;
+            for (int i = 0; i < adjacentCellsAndInside.Length; i++)
+            {
+                IntVec3 c = base.Position + adjacentCellsAndInside[i];
+                if (c.InBounds(map))
+                {
+                    map.pathGrid.RecalculatePerceivedPathCostAt(c);
+                }
+            }
+        }
         // Token: 0x0600001A RID: 26 RVA: 0x000027C0 File Offset: 0x000009C0
         public override void Tick()
         {

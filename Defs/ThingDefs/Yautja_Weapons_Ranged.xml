@@ -201,7 +201,7 @@
 <!-- ====================== Smart Disk ===================== -->	 
   <ThingDef ParentName="BaseWeaponNeolithic">
     <defName>Yautja_SmartDisk</defName>
-    <label>Yaurja Smart Disk</label>
+    <label>Yautja Smart Disk</label>
     <description>.</description>
     <graphicData>
       <texPath>Things/Equipment/Ranged/SmartDisk</texPath>

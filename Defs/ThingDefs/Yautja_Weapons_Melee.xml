@@ -70,6 +70,7 @@
     </graphicData>
     <equippedAngleOffset>-20</equippedAngleOffset>
     <statBases>
+      <WorkToMake>8000</WorkToMake>
       <MarketValue>800</MarketValue>
       <MaxHitPoints>150</MaxHitPoints>
       <Mass>3</Mass>

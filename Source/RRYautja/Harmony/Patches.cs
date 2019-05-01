@@ -4,6 +4,7 @@ using Harmony;
 using System.Reflection;
 using System.Collections.Generic;
 using System;
+using Verse.AI;
 
 namespace RRYautja
 {
@@ -14,11 +15,56 @@ namespace RRYautja
         {
             var harmony = HarmonyInstance.Create("com.ogliss.rimworld.mod.rryatuja");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
-
-
         }
         
 
+    }
+    [HarmonyPatch(typeof(Pawn), "ThreatDisabled")]
+    public static class Pawn_ThreatDisabledPatch
+    {
+        [HarmonyPostfix]
+        public static void IgnoreCloak(Pawn __instance, ref bool __result, IAttackTargetSearcher disabledFor)
+        {
+            bool selected__instance = Find.Selector.SelectedObjects.Contains(__instance);
+            Comp_Xenomorph _Xenomorph = null;
+            if (disabledFor!=null)
+            {
+#if DEBUG
+                if (selected__instance) Log.Message(string.Format("disabledFor.ToString(): {0}", disabledFor.ToString()));
+#endif
+
+                if (disabledFor.Thing!=null)
+                {
+#if DEBUG
+                    if (selected__instance) Log.Message(string.Format("disabledFor.Thing.Label: {0}", disabledFor.Thing.Label));
+#endif
+                    _Xenomorph = disabledFor.Thing.TryGetComp<Comp_Xenomorph>();
+                    if (_Xenomorph != null)
+                    {
+#if DEBUG
+                        if (selected__instance) Log.Message(string.Format("found Comp_Xenomorph For.Thing.Label: {0}", disabledFor.Thing.Label));
+#endif
+                    }
+                }
+            }
+            if (__instance!=null)
+            {
+#if DEBUG
+                if (selected__instance) Log.Message(string.Format("__instance.ToString(): {0}", __instance.ToString()));
+#endif
+                if (__instance != null)
+                {
+#if DEBUG
+                    if (selected__instance) Log.Message(string.Format("__instance.Label: {0}", __instance.Label));
+#endif
+                }
+            }
+            __result = __result || (__instance.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked)&& _Xenomorph==null);
+#if DEBUG
+            if ((__instance.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked) && _Xenomorph != null) || selected__instance) Log.Message(string.Format("__result: {0} = __result: {0} || (HasHediff: {1} && {2})", __result, __instance.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked), _Xenomorph == null));
+#endif
+
+        }
     }
 
     [HarmonyPatch(typeof(Apparel), "GetWornGizmos")]
@@ -90,4 +136,38 @@ namespace RRYautja
             return new List<Gizmo>();
         }
     }
+    /*
+   [HarmonyPatch(typeof(Pawn), "CheckAcceptArrest")]
+   public static class Pawn_AcceptArrestPatch
+   {
+       [HarmonyPrefix]
+       public static bool RevealSaboteur(Pawn __instance, Pawn arrester)
+       {
+           if (__instance.health.hediffSet.HasHediff(HediffDefOfIncidents.Saboteur))
+           {
+               __instance.health.hediffSet.hediffs.RemoveAll(h => h.def == HediffDefOfIncidents.Saboteur);
+               Faction faction = Find.FactionManager.RandomEnemyFaction();
+               __instance.SetFaction(faction);
+               List<Pawn> thisPawn = new List<Pawn>();
+               thisPawn.Add(__instance);
+               IncidentParms parms = new IncidentParms();
+               parms.faction = faction;
+               parms.spawnCenter = __instance.Position;
+               parms.raidStrategy = RaidStrategyDefOf.ImmediateAttack;
+               parms.raidStrategy.Worker.MakeLords(parms, thisPawn);
+               __instance.Map.avoidGrid.Regenerate();
+               LessonAutoActivator.TeachOpportunity(ConceptDefOf.EquippingWeapons, OpportunityType.Critical);
+               if (faction != null)
+               {
+                   Find.LetterStack.ReceiveLetter("LetterLabelSabotage".Translate(), "SaboteurRevealedFaction".Translate(__instance.LabelShort, faction.Name, __instance.Named("PAWN")), LetterDefOf.ThreatBig, __instance, null);
+               }
+               else
+               {
+                   Find.LetterStack.ReceiveLetter("LetterLabelSabotage".Translate(), "SaboteurRevealed".Translate(__instance.LabelShort, __instance.Named("PAWN")), LetterDefOf.ThreatBig, __instance, null);
+               }
+           }
+           return true;
+       }
+   }
+   */
 }

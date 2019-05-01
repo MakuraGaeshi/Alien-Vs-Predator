@@ -122,6 +122,7 @@ namespace RRYautja
                 {
                     Hediff hediff = Wearer.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_Cloaked);
                     Wearer.health.RemoveHediff(hediff);
+                    this.cloakMode = CloakMode.Off;
                 }
             }
             this.cloakIsOn = false;
@@ -131,7 +132,7 @@ namespace RRYautja
         public override IEnumerable<Gizmo> GetWornGizmos()
         {
             base.GetWornGizmos();
-            if (Find.Selector.SingleSelectedThing == base.Wearer)
+            if (Find.Selector.SelectedObjects.Contains(base.Wearer))
             {
                 int num = 700000102;
                 yield return new Gizmo_CloakgenStatus
