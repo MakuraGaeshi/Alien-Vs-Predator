@@ -330,7 +330,7 @@
 
 	<!-- ========================= Yautja - Elite Hunter Armour Chestplate ========================== -->
 	<ThingDef ParentName="RRYYautjaArmourBase">
-		<defName>RRY_Apparel_EliteArmourChestplate</defName>
+		<defName>RRY_Apparel_HunterEliteArmourChestplate</defName>
 		<label>Elite Yautja Hunter Chestplate</label>
 		<!-- <description>.</description> -->
 		<graphicData>
@@ -395,7 +395,7 @@
 	
 	<!-- ========================= Yautja - Elite Bio Mask ========================== -->
 	<ThingDef ParentName="RRYYautjaHeadgearBase">
-		<defName>RRY_Apparel_EliteBioMask</defName>
+		<defName>RRY_Apparel_HunterEliteBioMask</defName>
 		<label>Elite Yautja Bio Mask</label>
 		<!-- <description>.</description> -->
 		<graphicData>
@@ -457,7 +457,7 @@
 
 	<!-- ========================= Yautja - Ornate Hunter Armour Chestplate ========================== -->
 	<ThingDef ParentName="RRYYautjaArmourBase">
-		<defName>RRY_Apparel_LeaderArmourChestplate</defName>
+		<defName>RRY_Apparel_HunterLeaderArmourChestplate</defName>
 		<label>Ornate Yautja Hunter Chestplate</label>
 		<!--<description>.</description>-->
 		<graphicData>
@@ -522,7 +522,7 @@
 	
 	<!-- ========================= Yautja - Ornate Bio Mask ========================== -->
 	<ThingDef ParentName="RRYYautjaHeadgearBase">
-		<defName>RRY_Apparel_LeaderBioMask</defName>
+		<defName>RRY_Apparel_HunterLeaderBioMask</defName>
 		<label>Ornate Yautja Bio Mask</label>
 		<!-- <description>.</description> -->
 		<graphicData>
