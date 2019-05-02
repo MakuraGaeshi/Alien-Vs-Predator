@@ -373,11 +373,12 @@
                 <li>
                     <projects>
 						<li>YautjaTechBase</li>
+						<li>YautjaTechMid</li>
+						<li>YautjaTechHigh</li>
 						<li>YautjaArmour</li>
 						<li>YautjaMeleeWeapons</li>
 						<li>YautjaMeleeWeapons</li>
 						<li>YautjaRangedWeapons</li>
-						<li>YautjaSpecialWeapons</li>
                     </projects>
                 </li>
             </researchList>

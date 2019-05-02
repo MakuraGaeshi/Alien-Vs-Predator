@@ -376,6 +376,10 @@ namespace RRYautja
                     }
                 }
             }
+            if (request.Faction == Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph))
+            {
+                
+            }
         }
 
         private static FieldInfo pawnField_PawnRenderer;

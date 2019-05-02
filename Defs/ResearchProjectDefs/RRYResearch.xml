@@ -86,7 +86,6 @@
 		<description>Allows you to create Special Yautja Melee Weapons</description>
 		<baseCost>2000</baseCost>
 		<prerequisites>
-			<li>YautjaSpecialWeapons</li>
 			<li>YautjaMeleeWeapons</li>
 		</prerequisites>
 		<techLevel>Industrial</techLevel>
