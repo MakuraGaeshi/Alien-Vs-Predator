@@ -55,7 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="util\AcidWatcher.cs" />
-    <Compile Include="util\Class1.cs" />
+    <Compile Include="util\Building_Turret_Shoulder.cs" />
     <Compile Include="Yautja\Class1.cs" />
     <Compile Include="Yautja\Traps\Building_Trap.cs" />
     <Compile Include="Yautja\Traps\Building_TrapRearmable.cs" />

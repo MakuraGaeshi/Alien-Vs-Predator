@@ -15,18 +15,17 @@
     <weaponTags>
       <li>Xeno_Spear</li>
     </weaponTags>
-    <costStuffCount>25</costStuffCount>
+    <costStuffCount>50</costStuffCount>
     <statBases>
       <WorkToMake>12000</WorkToMake>
       <Mass>2</Mass>
     </statBases>
     <equippedAngleOffset>-25</equippedAngleOffset>
     <stuffCategories>
-		<li>Fabric</li>
-		<li>Leathery</li>
+		<li>Woody</li>
+		<li>Metallic</li>
     </stuffCategories>
 		<costList>			
-			<WoodLog>30</WoodLog>
 			<RRY_Xenomorph_TailSpike>1</RRY_Xenomorph_TailSpike>
 		</costList>
     <tools>

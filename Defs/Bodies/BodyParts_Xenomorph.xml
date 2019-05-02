@@ -553,7 +553,7 @@
   <BodyPartDef>
     <defName>RRY_Xeno_Shell</defName>
     <label>shell</label>
-    <hitPoints>30</hitPoints>
+    <hitPoints>100</hitPoints>
     <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
     <skinCovered>false</skinCovered>
     <alive>false</alive>

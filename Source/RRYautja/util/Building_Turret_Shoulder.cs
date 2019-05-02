@@ -13,25 +13,46 @@ namespace RRYautja
 
         public bool turretIsOn;
 
-        public CompEquippableTurret comp;
+        public CompEquippableTurret comp
+        {
+            get
+            {
+                if (Parental!=null)
+                {
+                    return Parental.TryGetComp<CompEquippableTurret>();
+                }
+                return null;
+            }
+        }
 
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
+        //    Log.Message(string.Format("turret spawned"));
         }
 
+        public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
+        {
+            base.DeSpawn(mode);
+        //    Log.Message(string.Format("turret despawned"));
+        }
+
+        public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
+        {
+            base.Destroy(mode);
+        //    Log.Message(string.Format("turret destroyed"));
+        }
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_References.Look<Pawn>(ref this.Parental, "Parental", false);
-            Scribe_Deep.Look<CompEquippableTurret>(ref this.comp, "comp", false);
+        //    Scribe_References.Look<Pawn>(ref this.Parental, "Parental", false);
             Scribe_Values.Look<bool>(ref this.turretIsOn, "TurretIsOn", false, false);
         }
 
         public override void Tick()
         {
             base.Tick();
-            if (this.Parental==null||this.comp==null)
+            if (this.Parental==null)//||this.comp==null)
             {
                 this.Destroy();
             }

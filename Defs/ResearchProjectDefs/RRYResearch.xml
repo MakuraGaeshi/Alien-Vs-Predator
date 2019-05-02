@@ -18,6 +18,36 @@
 	
 	<ResearchProjectDef>
 		<tab>RRY_RTab</tab>
+		<defName>YautjaTechMid</defName>
+		<label>Special Weapons</label>
+		<description>Allows you to Research Special Yautja Weapons</description>
+		<baseCost>2000</baseCost>
+		<prerequisites>
+			<li>YautjaTechBase</li>
+		</prerequisites>
+		<techLevel>Industrial</techLevel>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<researchViewX>1</researchViewX>
+		<researchViewY>0.5</researchViewY>
+	</ResearchProjectDef>
+	
+	<ResearchProjectDef>
+		<tab>RRY_RTab</tab>
+		<defName>YautjaTechHigh</defName>
+		<label>Heavy Weapons</label>
+		<description>Allows you to create basic Heavy Yautja Weapons</description>
+		<baseCost>4000</baseCost>
+		<prerequisites>
+			<li>YautjaTechMid</li>
+		</prerequisites>
+		<techLevel>Industrial</techLevel>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<researchViewX>2.5</researchViewX>
+		<researchViewY>0.5</researchViewY>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef>
+		<tab>RRY_RTab</tab>
 		<defName>YautjaMeleeWeapons</defName>
 		<label>Melee Weapons</label>
 		<description>Allows you to create basic Yautja Weapons</description>
@@ -51,21 +81,6 @@
 
 	<ResearchProjectDef>
 		<tab>RRY_RTab</tab>
-		<defName>YautjaSpecialWeapons</defName>
-		<label>Special Weapons</label>
-		<description>Allows you to Research Special Yautja Weapons</description>
-		<baseCost>2000</baseCost>
-		<prerequisites>
-			<li>YautjaTechBase</li>
-		</prerequisites>
-		<techLevel>Industrial</techLevel>
-		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
-		<researchViewX>1</researchViewX>
-		<researchViewY>0.5</researchViewY>
-	</ResearchProjectDef>
-	
-	<ResearchProjectDef>
-		<tab>RRY_RTab</tab>
 		<defName>YautjaSpecialMeleeWeapons</defName>
 		<label>Special Melee Weapons</label>
 		<description>Allows you to create Special Yautja Melee Weapons</description>
@@ -81,21 +96,6 @@
 	</ResearchProjectDef>
 	
 	<!--OG==================== Rebelrot's Yautja Mod - Research Yautja Heavy Weapons =========================OG-->
-
-	<ResearchProjectDef>
-		<tab>RRY_RTab</tab>
-		<defName>YautjaHeavyWeapons</defName>
-		<label>Heavy Weapons</label>
-		<description>Allows you to create basic Heavy Yautja Weapons</description>
-		<baseCost>4000</baseCost>
-		<prerequisites>
-			<li>YautjaSpecialWeapons</li>
-		</prerequisites>
-		<techLevel>Industrial</techLevel>
-		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
-		<researchViewX>2.5</researchViewX>
-		<researchViewY>0.5</researchViewY>
-	</ResearchProjectDef>
 
 
 </Defs>

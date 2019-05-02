@@ -9,7 +9,7 @@
 <summary>.</summary>
 		<playerFaction>
 			<def>PlayerFaction</def>
-			<factionDef>YautjaPlayerUnblooded</factionDef>
+			<factionDef>YautjaPlayerBlooded</factionDef>
 		</playerFaction>
 		<parts>
 			<li Class="ScenPart_ConfigPage_ConfigureStartingPawns">
@@ -67,7 +67,6 @@
 			</li>
 			-->
 			<!-- Tech stuff -->
-			<!--
 			<li Class="ScenPart_StartingThing_Defined">
 				<def>StartingThing_Defined</def>
 				<thingDef>RRY_Gun_NeedlerRifle</thingDef>
@@ -80,16 +79,22 @@
 			</li>
 			<li Class="ScenPart_StartingThing_Defined">
 				<def>StartingThing_Defined</def>
+				<thingDef>RRY_Equipment_HunterShoulderCannon</thingDef>
+				<count>6</count>
+			</li>
+			<!--
+			<li Class="ScenPart_StartingThing_Defined">
+				<def>StartingThing_Defined</def>
 				<thingDef>Yautja_SmartDisk</thingDef>
 				<count>6</count>
 			</li>
-			-->
 			<li Class="ScenPart_StartingThing_Defined">
 				<def>StartingThing_Defined</def>
 				<thingDef>RRY_MeleeWeapon_XenoSpear</thingDef>
 				<count>6</count>
 				<stuff>RRY_Leather_Xenomorph</stuff>
 			</li>
+			-->
 			<li Class="ScenPart_ScatterThingsNearPlayerStart">
 				<def>ScatterThingsNearPlayerStart</def>
 				<thingDef>WoodLog</thingDef>

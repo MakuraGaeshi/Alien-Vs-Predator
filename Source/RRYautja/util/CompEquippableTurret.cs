@@ -99,12 +99,11 @@ namespace RRYautja
             {
                 this.MoveTurret(intVec);
             }
-            if (this.turret.DestroyedOrNull() && intVec.GetFirstThing(GetWearer.Map, Util_CompEquippableTurret.EquippableTurretDef) != this.turret)
+            if ((this.turret.DestroyedOrNull()|| !this.turret.Spawned) && intVec.GetFirstThing(GetWearer.Map, Util_CompEquippableTurret.EquippableTurretDef) == null)
             {
                 this.turret = GenSpawn.Spawn(Util_CompEquippableTurret.EquippableTurretDef, intVec, GetWearer.Map, WipeMode.Vanish);
                 this.turret.SetFactionDirect(this.GetWearer.Faction);
                 ((Building_Turret_Shoulder)this.turret).Parental = GetWearer;
-                ((Building_Turret_Shoulder)this.turret).comp = this;
             }
             this.turretIsOn = true;
         }
@@ -112,7 +111,7 @@ namespace RRYautja
         // Token: 0x06000007 RID: 7 RVA: 0x0000227D File Offset: 0x0000047D
         public void SwitchOffTurret()
         {
-            if (!this.turret.DestroyedOrNull())
+            if (!this.turret.DestroyedOrNull() && this.turret.Spawned)
             {
                 this.turret.DeSpawn();
             }

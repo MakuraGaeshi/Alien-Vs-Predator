@@ -13,8 +13,10 @@
     <inspectorTabs>
         <li>ITab_Pawn_Health</li>
         <li>ITab_Pawn_Log</li>
+		<!--
         <li>ITab_Pawn_Training</li>
         <li>ITab_Pawn_Character</li>
+		-->
     </inspectorTabs>
     <comps>
         <li>
