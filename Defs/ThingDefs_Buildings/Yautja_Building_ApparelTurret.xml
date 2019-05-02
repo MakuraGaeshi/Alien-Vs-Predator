@@ -18,8 +18,8 @@
 
     <ThingDef ParentName="TurretBase">
     <defName>EquippableTurret</defName>
-    <label>mini-turret</label>
-    <description>A portable automatic turret. Requires steel to refurbish its barrel after heavy use. May explode when damaged. Its dumb AI brain can't be directly controlled, so beware of friendly fire.</description>
+    <label>shoulder-mounted plasma caster</label>
+    <description>A shoulder-mounted automatic plasma caster turret. Its dumb AI brain can't be directly controlled, so beware of friendly fire.</description>
 	
 	<thingClass>RRYautja.Building_Turret_Shoulder</thingClass>
     <!--
