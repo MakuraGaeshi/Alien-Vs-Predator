@@ -45,6 +45,7 @@ namespace RRYautja
                 }
             }
         }
+
         // Token: 0x0600001A RID: 26 RVA: 0x000027C0 File Offset: 0x000009C0
         public override void Tick()
         {
@@ -251,8 +252,8 @@ namespace RRYautja
                 bool flag4 = flag3;
                 if (flag4)
                 {
-                    firstBuilding.TakeDamage(damageInfo);
                     MoteMaker.ThrowDustPuff(firstBuilding.Position, base.Map, 0.2f);
+                    firstBuilding.TakeDamage(damageInfo);
                 }
             }
         }

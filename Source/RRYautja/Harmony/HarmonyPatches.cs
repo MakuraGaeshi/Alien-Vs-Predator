@@ -120,6 +120,10 @@ namespace RRYautja
             return true;
         }
 
+        internal static void PushEffect(Pawn casterPawn, Pawn hitPawn, int v1, bool v2)
+        {
+            throw new NotImplementedException();
+        }
 
         public static Pawn PawnRenderer_GetPawn(object instance)
         {
@@ -378,7 +382,7 @@ namespace RRYautja
             }
             if (request.Faction == Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph))
             {
-                
+                Log.Message(string.Format("Xenomorph spawning"));
             }
         }
 

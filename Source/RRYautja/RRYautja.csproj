@@ -34,6 +34,10 @@
     <Reference Include="0Harmony">
       <HintPath>..\..\..\..\..\..\..\..\..\Users\User\Desktop\admechb19 scourcefile test\Assemblies\0Harmony.dll</HintPath>
     </Reference>
+    <Reference Include="0JecsTools">
+      <HintPath>..\..\..\..\..\..\workshop\content\294100\932008009\Assemblies\0JecsTools.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="AlienRace">
       <HintPath>..\..\..\..\..\..\workshop\content\294100\839005762\Assemblies\AlienRace.dll</HintPath>
       <Private>False</Private>
@@ -54,17 +58,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="util\AcidWatcher.cs" />
     <Compile Include="util\Building_Turret_Shoulder.cs" />
-    <Compile Include="Yautja\Class1.cs" />
+    <None Include="util\Cloakgen - withMedicomp.cs.bak" />
+    <None Include="util\Cloakgen.cs.bak" />
+    <Compile Include="util\Gizmo_ShardStatus.cs" />
+    <Compile Include="Yautja\HealthShard\Class1.cs" />
+    <Compile Include="Yautja\HealthShard\JobDriver_HealthShard.cs" />
+    <Compile Include="Yautja\HealthShard\CompHealthShard.cs" />
+    <Compile Include="Yautja\HealthShard\WorkGiver_TendSelf.cs" />
+    <Compile Include="Yautja\HealthShard\JobDriver_TendSelf.cs" />
+    <Compile Include="Yautja\HealthShard\HealthShardTendUtility.cs" />
+    <Compile Include="Xenomorph\Verb_MeleeAttackKnockback.cs" />
+    <Compile Include="Yautja\XenosCorpseModification.cs" />
     <Compile Include="Yautja\Traps\Building_Trap.cs" />
     <Compile Include="Yautja\Traps\Building_TrapRearmable.cs" />
     <Compile Include="Yautja\Traps\JobDriver_RearmTrap.cs" />
     <Compile Include="Yautja\Traps\Designator_Rearm.cs" />
     <Compile Include="Yautja\Traps\WorkGiver_RearmTraps.cs" />
     <Compile Include="Yautja\RRY_Thought_Situational.cs" />
-    <None Include="Yautja\CorpseModification - Copy.cs.bak" />
-    <Compile Include="Yautja\JobDriver_RRYUseCorpse.cs" />
+    <Compile Include="Yautja\JobDriver_MarkSelf.cs" />
     <Compile Include="Yautja\CorpseModification.cs" />
     <Compile Include="Xenomorph\HediffComp_DamageOverTime.cs" />
     <Compile Include="Xenomorph\Thing_AddAcidDamageFilth.cs" />
@@ -100,7 +112,6 @@
     <Compile Include="Xenomorph\XenomorphUtil.cs" />
     <Compile Include="util\Graphic_Invisible.cs" />
     <Compile Include="util\PawnGraphicSet_Invisible.cs" />
-    <None Include="Yautja\ThoughtWorker_MutliHediff.cs.bak" />
     <Compile Include="Yautja\YautjaBloodedUtility.cs" />
     <Compile Include="Xenomorph\HediffComp_DrawImplant.cs" />
     <Compile Include="Xenomorph\XenoHediffWithComps.cs" />

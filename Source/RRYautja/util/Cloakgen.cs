@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using Verse.AI;
 using Verse.Sound;
 
 namespace RRYautja
@@ -11,6 +12,65 @@ namespace RRYautja
     [StaticConstructorOnStartup]
     public class Cloakgen : Apparel
     {
+        // Token: 0x06000055 RID: 85 RVA: 0x00003BC0 File Offset: 0x00001DC0
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look<float>(ref this.energy, "energy", 0f, false);
+            Scribe_Values.Look<int>(ref this.ticksToReset, "ticksToReset", -1, false);
+            Scribe_Values.Look<int>(ref this.lastKeepDisplayTick, "lastKeepDisplayTick", 0, false);
+            Scribe_Values.Look<int>(ref this.uses, "uses", 0, false);
+        }
+        public int uses = 0;
+        // Token: 0x17000001 RID: 1
+        // (get) Token: 0x06000007 RID: 7 RVA: 0x00002149 File Offset: 0x00000349
+        public CompMedicalInjector kitComp
+        {
+            get
+            {
+                return base.GetComp<CompMedicalInjector>();
+            }
+        }
+
+        // Token: 0x06000008 RID: 8 RVA: 0x00002151 File Offset: 0x00000351
+        public override void PostMake()
+        {
+            base.PostMake();
+            this.uses = base.GetComp<CompMedicalInjector>().Props.Uses;
+        }
+
+        // Token: 0x06000009 RID: 9 RVA: 0x00002174 File Offset: 0x00000374
+        public void UseKit()
+        {
+            bool flag = this.uses >= 1;
+            if (flag)
+            {
+                this.uses--;
+            }
+            else
+            {
+                bool flag2 = !base.Destroyed;
+                if (flag2)
+                {
+                    //    this.Destroy(0);
+                }
+            }
+        }
+        // Token: 0x06000010 RID: 16 RVA: 0x000022D2 File Offset: 0x000004D2
+        public override IEnumerable<Gizmo> GetGizmos()
+        {
+            yield return new Gizmo_InjectorStatus
+            {
+                kit = this
+            };
+            foreach (Gizmo item in base.GetGizmos())
+            {
+                yield return item;
+                //    item = null;
+            }
+            IEnumerator<Gizmo> enumerator = null;
+            yield break;
+        }
         // Token: 0x1700000A RID: 10
         // (get) Token: 0x06000050 RID: 80 RVA: 0x00003B12 File Offset: 0x00001D12
         private float EnergyMax
@@ -70,14 +130,6 @@ namespace RRYautja
             }
         }
 
-        // Token: 0x06000055 RID: 85 RVA: 0x00003BC0 File Offset: 0x00001DC0
-        public override void ExposeData()
-        {
-            base.ExposeData();
-            Scribe_Values.Look<float>(ref this.energy, "energy", 0f, false);
-            Scribe_Values.Look<int>(ref this.ticksToReset, "ticksToReset", -1, false);
-            Scribe_Values.Look<int>(ref this.lastKeepDisplayTick, "lastKeepDisplayTick", 0, false);
-        }
 
         // Token: 0x06000004 RID: 4 RVA: 0x000020EE File Offset: 0x000002EE
         public void RefreshCloakState()
@@ -108,7 +160,7 @@ namespace RRYautja
             {
                 Wearer.health.AddHediff(YautjaDefOf.RRY_Hediff_Cloaked);
                 Hediff hediff = Wearer.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_Cloaked);
-               // hediff.TryGetComp<HediffComp_Blur>().blurTick = Find.TickManager.TicksGame;
+                // hediff.TryGetComp<HediffComp_Blur>().blurTick = Find.TickManager.TicksGame;
             }
             this.cloakIsOn = true;
         }
@@ -116,7 +168,7 @@ namespace RRYautja
         // Token: 0x06000007 RID: 7 RVA: 0x0000227D File Offset: 0x0000047D
         public void SwitchOffCloak()
         {
-            if (Wearer!=null)
+            if (Wearer != null)
             {
                 if (Wearer.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked))
                 {
@@ -128,12 +180,71 @@ namespace RRYautja
             this.cloakIsOn = false;
         }
 
+        // Token: 0x17000002 RID: 2
+        // (get) Token: 0x0600000B RID: 11 RVA: 0x000021D8 File Offset: 0x000003D8
+        public TargetingParameters TargetingParams
+        {
+            get
+            {
+                return new TargetingParameters
+                {
+                    canTargetBuildings = false,
+                    canTargetItems = false,
+                    canTargetSelf = false
+                };
+            }
+        }
+
+        // Token: 0x0600000C RID: 12 RVA: 0x00002204 File Offset: 0x00000404
+
+        public void TendSelf()
+        {
+            SoundStarter.PlayOneShotOnCamera(SoundDefOf.Click, null);
+            Job job = new Job(YautjaDefOf.RRY_Yautja_TendSelf);
+            base.Wearer.jobs.TryTakeOrderedJob(job, 0);
+        }
+
+        public void UseShard()
+        {
+            SoundStarter.PlayOneShotOnCamera(SoundDefOf.Click, null);
+            Job job = new Job(YautjaDefOf.RRY_Yautja_HealthShard);
+            base.Wearer.jobs.TryTakeOrderedJob(job, 0);
+        }
+
         // Token: 0x06002739 RID: 10041 RVA: 0x0012AA20 File Offset: 0x00128E20
         public override IEnumerable<Gizmo> GetWornGizmos()
         {
             base.GetWornGizmos();
-            if (Find.Selector.SelectedObjects.Contains(base.Wearer))
-            {
+            if (Find.Selector.SelectedObjects.Contains(base.Wearer) && base.Wearer.Faction == Faction.OfPlayer)
+            {// this.uses
+                yield return new Command_Action
+                {
+                    action = new Action(this.TendSelf),
+                    defaultLabel = Translator.Translate("MedicompTendSelf"),
+                    defaultDesc = Translator.Translate("MedicompTendSelfDesc"),
+                    hotKey = KeyBindingDefOf.Misc3,
+                    icon = this.def.uiIcon
+                };
+                yield return new Gizmo_InjectorStatus
+                {
+                    kit = this
+                };
+                foreach (Gizmo item in base.GetWornGizmos())
+                {
+                    yield return item;
+                    //    item = null;
+                }
+                if (this.uses > 0)
+                {
+                    yield return new Command_Action
+                    {
+                        action = new Action(this.UseShard),
+                        defaultLabel = Translator.Translate("UseHealthShard"),
+                        defaultDesc = Translator.Translate("UseHealthShardDesc"),
+                        hotKey = KeyBindingDefOf.Misc2,
+                        icon = ContentFinder<Texture2D>.Get("Things/Resources/Manufactured/HealthShard/HealthShard_a", true)
+                    };
+                }
                 int num = 700000102;
                 yield return new Gizmo_CloakgenStatus
                 {
@@ -204,7 +315,7 @@ namespace RRYautja
                 this.energy = 0f;
                 return;
             }
-            if (this.cloakState == Cloakgen.CloakState.Resetting) 
+            if (this.cloakState == Cloakgen.CloakState.Resetting)
             {
                 this.ticksToReset--;
                 if (this.ticksToReset <= 0)
@@ -213,7 +324,7 @@ namespace RRYautja
                     return;
                 }
             }
-            else if (this.cloakState == Cloakgen.CloakState.Active& this.cloakMode == CloakMode.On)
+            else if (this.cloakState == Cloakgen.CloakState.Active & this.cloakMode == CloakMode.On)
             {
                 this.energy -= this.EnergyGainPerTick / 10;
                 if (this.energy <= 0)
@@ -324,7 +435,7 @@ namespace RRYautja
         public override void DrawWornExtras()
         {
             if (this.cloakMode == CloakMode.On && this.ShouldDisplay)
-                {
+            {
                 // Wearer.Graphic.color.a = 0.25f;
                 //Wearer.Drawer.renderer.graphics.pawn.DefaultGraphic.color.a = 0.25f;
                 float num = Mathf.Lerp(1.2f, 1.55f, this.energy);
@@ -341,7 +452,7 @@ namespace RRYautja
                 Vector3 s = new Vector3(num, 1f, num);
                 Matrix4x4 matrix = default(Matrix4x4);
                 matrix.SetTRS(vector, Quaternion.AngleAxis(angle, Vector3.up), s);
-                //Graphics.DrawMesh(MeshPool.plane10, matrix, Cloakgen.BubbleMat, 0);
+                Graphics.DrawMesh(MeshPool.plane10, matrix, Cloakgen.BubbleMat, 0);
             }
 
         }
@@ -408,7 +519,7 @@ namespace RRYautja
         }
 
         // Token: 0x04000005 RID: 5
-       // public Cloakgen.CloakState cloakState;
+        // public Cloakgen.CloakState cloakState;
         public enum CloakState : byte
         {
             InActive,
@@ -418,6 +529,6 @@ namespace RRYautja
         // Things/Gas/Puff
         // Other/CloakActive
 
-        private static readonly Material BubbleMat = MaterialPool.MatFrom("Other/CloakActive", ShaderDatabase.Transparent);
+        private static readonly Material BubbleMat = MaterialPool.MatFrom("Other/smokething_lightV", ShaderDatabase.Transparent);
     }
 }

@@ -30,28 +30,30 @@ namespace RimWorld
         public static HediffDef RRY_Hediff_BloodedMGroTye;
 
         public static HediffDef RRY_Hediff_Cloaked;
-        // Xenomorph PawnKindDefs
-        // Yautja ThingDefs = Races 
+        // Yautja PawnKindDefs
+
+        // Yautja ThingDefs  Races 
         public static ThingDef Alien_Yautja;
         public static ThingDef RRY_Yautja_Hound;
         public static ThingDef RRY_Rynath;
 
-        // Yautja ThingDefs = Equipment
+        // Yautja ThingDefs  Equipment
         public static ThingDef RRY_Equipment_HunterGauntlet;
 
+        // Yautja JobDefs
         public static JobDef RRY_Yautja_MarkSelf;
         public static JobDef RRY_Yautja_TakeTrophy;
+        public static JobDef RRY_Yautja_RearmTrapJob;
+        public static JobDef RRY_Yautja_TendSelf;
+        public static JobDef RRY_Yautja_HealthShard;
 
-        // Token: 0x04000002 RID: 2
+        // Yautja WorkTypeDefs 
         public static WorkTypeDef Rearm;
 
-        // Token: 0x04000003 RID: 3
+        // Yautja DesignationDefs
         public static DesignationDef RearmTrap;
 
-        // Token: 0x04000004 RID: 4
-        public static JobDef RearmTrapJob;
-
-        // Token: 0x04000005 RID: 5
+        // Yautja RecordDefs
         public static RecordDef TrapsRearmed;
     }
 }

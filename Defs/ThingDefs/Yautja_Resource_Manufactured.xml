@@ -1,109 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
+  <!--=============== Health Shards ====================-->
 
-  <!-- =============== Medicine ==================== 
-  <ThingDef ParentName="ResourceBase" Name="HealthShardBase" Abstract="True">
-    <thingClass>Medicine</thingClass>
-    <stackLimit>25</stackLimit>
-    <uiIconForStackCount>1</uiIconForStackCount>
-    <soundInteract>Standard_Drop</soundInteract>
-    <soundDrop>Standard_Drop</soundDrop>
-    <statBases>
-      <MaxHitPoints>60</MaxHitPoints>
-    </statBases>
-    <thingCategories>
-      <li>Medicine</li>
-    </thingCategories>
-  </ThingDef>
-  
-  
-  <ThingDef ParentName="HealthShardBase">
-    <defName>MedicineHerbal</defName>
-    <label>herbal medicine</label>
-    <description>A pack of herbal concoctions extracted from the healroot plant. It is less potent than industrial pharmaceuticals, but much better than nothing.</description>
-    <graphicData>
-      <texPath>Things/Item/Resource/Medicine/MedicineHerbal</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-      <drawSize>0.85</drawSize>
-    </graphicData>
-		<techLevel>Neolithic</techLevel>
-		<statBases>
-      <MarketValue>10</MarketValue>
-      <Mass>0.35</Mass>
-      <Flammability>1.3</Flammability>
-      <MedicalPotency>0.60</MedicalPotency>
-      <MedicalQualityMax>0.70</MedicalQualityMax>
-      <DeteriorationRate>6</DeteriorationRate>
-    </statBases>
-    <tickerType>Rare</tickerType>
-    <comps>
-	
-    </comps>
-  </ThingDef>
-
-  <ThingDef ParentName="HealthShardBase">
-    <defName>MedicineIndustrial</defName>
-    <label>medicine</label>
-    <description>A kit of industrial-era medical equipment. It contains basic drugs, tools for suturing and bone setting, diagnostic devices, and various pads and fluids.</description>
-    <graphicData>
-      <texPath>Things/Item/Resource/Medicine/MedicineIndustrial</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-      <drawSize>0.85</drawSize>
-    </graphicData>
-		<techLevel>Industrial</techLevel>
-		<statBases>
-      <MarketValue>18</MarketValue>
-      <Mass>0.50</Mass>
-      <Flammability>0.7</Flammability>
-      <MedicalPotency>1.00</MedicalPotency>
-      <MedicalQualityMax>1.00</MedicalQualityMax>
-      <DeteriorationRate>2</DeteriorationRate>
-      <WorkToMake>700</WorkToMake>
-    </statBases>
-    <costList>
-      <MedicineHerbal>1</MedicineHerbal>
-      <Neutroamine>1</Neutroamine>
-      <Cloth>3</Cloth>
-    </costList>
-    <recipeMaker>
-      <workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
-      <workSkill>Intellectual</workSkill>
-      <recipeUsers>
-        <li>DrugLab</li>
-      </recipeUsers>
-      <researchPrerequisite>MedicineProduction</researchPrerequisite>
-      <skillRequirements>
-				<Crafting>4</Crafting>
-        <Intellectual>4</Intellectual>
-      </skillRequirements>
-    </recipeMaker>
-  </ThingDef>
-
-  <ThingDef ParentName="HealthShardBase">
-    <defName>MedicineUltratech</defName>
-    <label>glitterworld medicine</label>
-    <description>A kit of advanced ultra-tech medical supplies, probably manufactured on a distant glitterworld. It contains advanced polymorphic drugs, nanite diagnostic and healing assisters, a mini-imager, and various multi-use tools.</description>
-    <graphicData>
-      <texPath>Things/Item/Resource/Medicine/MedicineUltratech</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-      <drawSize>0.85</drawSize>
-    </graphicData>
-		<techLevel>Ultra</techLevel>
-    <statBases>
-      <MarketValue>50</MarketValue>
-      <Mass>0.50</Mass>
-      <Flammability>0.7</Flammability>
-      <MedicalPotency>1.60</MedicalPotency>
-      <MedicalQualityMax>1.30</MedicalQualityMax>
-			<DeteriorationRate>2.0</DeteriorationRate>
-		</statBases>
-    <tradeTags>
-      <li>ExoticMisc</li>
-    </tradeTags>
-  -->
-
-  <!--=============== Health Shards ==================== 
   <ThingDef ParentName="ResourceBase" Name="HealthShardBase" Abstract="True">
     <thingClass>ThingWithComps</thingClass>
     <resourceReadoutPriority>Middle</resourceReadoutPriority>
@@ -122,36 +21,38 @@
       <li>ExoticMisc</li>
     </tradeTags>
   </ThingDef>
-  
+
   <ThingDef ParentName="HealthShardBase">
-    <defName>MechSerumHealer</defName>
-    <label>healer mech serum</label>
+    <defName>RRY_HealthShard</defName>
+    <label>health shard</label>
     <description>A one-use super-dose of mechanites tuned to heal health conditions. The mechanites will target and heal the single worst health condition affecting someone at any given time. Works even on health conditions that would otherwise be incurable. The mechanites can even transmute themselves into organic matter, forming new limbs or organs as needed.</description>
     <graphicData>
-      <texPath>Things/Item/Special/MechSerumHealer</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
+      <texPath>Things/Resources/Manufactured/HealthShard</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
-    <stackLimit>10</stackLimit>
+    <stackLimit>30</stackLimit>
     <statBases>
-      <MarketValue>1300</MarketValue>
+      <MarketValue>750</MarketValue>
     </statBases>
     <tradeability>Sellable</tradeability>
     <comps>
       <li Class="CompProperties_Usable">
+        <compClass>RRYautja.CompUsable_HealthShard</compClass>
         <useJob>UseItem</useJob>
-        <useLabel>Use healer mech serum</useLabel>
-        <useDuration>600</useDuration>
+        <useLabel>Restock Health Shards</useLabel>
+        <useDuration>300</useDuration>
       </li>
       <li Class="CompProperties_UseEffect">
-        <compClass>CompUseEffect_FixWorstHealthCondition</compClass>
+        <compClass>RRYautja.CompUseEffect_HealthShard</compClass>
       </li>
       <li Class="CompProperties_UseEffect">
         <compClass>CompUseEffect_DestroySelf</compClass>
       </li>
     </comps>
     <thingSetMakerTags>
-      <li>RewardSpecial</li>
+      <!-- <li>RewardSpecial</li> -->
     </thingSetMakerTags>
   </ThingDef>
--->
+  
+
 </Defs>

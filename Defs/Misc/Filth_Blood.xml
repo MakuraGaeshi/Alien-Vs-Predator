@@ -32,6 +32,7 @@
     </graphicData>
 	<tickerType>Normal</tickerType> 
 	<thingClass>RRYautja.Filth_AddAcidDamage</thingClass>
+    <pathCost>150</pathCost>
     <filth>
       <rainWashes>true</rainWashes>
       <cleaningWorkToReduceThickness>90</cleaningWorkToReduceThickness>

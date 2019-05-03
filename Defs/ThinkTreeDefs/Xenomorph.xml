@@ -7,29 +7,6 @@
     <defName>SatisfyXenomorphNeeds</defName>
     <thinkRoot Class="ThinkNode_ConditionalFullyGrown">
       <subNodes>
-				<!-- Face Hugger Hunting -->
-				<li Class="ThinkNode_ConditionalPawnKind">
-				  <pawnKind>RRY_Xenomorph_FaceHugger</pawnKind>
-				  <subNodes>
-					<li Class="ThinkNode_Tagger">
-					  <tagToGive>Idle</tagToGive>
-					  <subNodes>
-						<!-- Hunt -->
-						<li Class="JobGiver_FacehuggerHunt" />
-						<!-- Exit -->
-						<li Class="JobGiver_XenomorphFlee" />
-						<!-- Wander -->
-						<li Class="JobGiver_WanderAnywhere">
-						  <maxDanger>Deadly</maxDanger>
-						  <ticksBetweenWandersRange>
-							<min>120</min>
-							<max>240</max>
-						  </ticksBetweenWandersRange>
-						</li>
-					  </subNodes>
-					</li>
-				  </subNodes>
-				</li>
 				
 				<!-- Face Hugger Hunting -->
 				<li Class="ThinkNode_ConditionalPawnKind">
@@ -131,6 +108,30 @@
         <!-- React to close melee threat -->
 				<li Class="JobGiver_ReactToCloseMeleeThreat" />
 
+				<!-- Face Hugger Hunting -->
+				<li Class="ThinkNode_ConditionalPawnKind">
+				  <pawnKind>RRY_Xenomorph_FaceHugger</pawnKind>
+				  <subNodes>
+					<li Class="ThinkNode_Tagger">
+					  <tagToGive>Idle</tagToGive>
+					  <subNodes>
+						<!-- Hunt -->
+						<li Class="JobGiver_FacehuggerHunt" />
+						<!-- Exit -->
+						<li Class="JobGiver_XenomorphFlee" />
+						<!-- Wander -->
+						<li Class="JobGiver_WanderAnywhere">
+						  <maxDanger>Deadly</maxDanger>
+						  <ticksBetweenWandersRange>
+							<min>120</min>
+							<max>240</max>
+						  </ticksBetweenWandersRange>
+						</li>
+					  </subNodes>
+					</li>
+				  </subNodes>
+				</li>
+				
         <!-- Idle -->
         <li Class="ThinkNode_ConditionalNotGrown">
           <subNodes>

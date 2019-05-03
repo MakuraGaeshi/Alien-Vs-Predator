@@ -19,7 +19,7 @@ namespace RRYautja
             float tgtdodge = 0f;
             if (hitPawn.RaceProps.Humanlike) tgtmelee = hitPawn.skills.GetSkill(SkillDefOf.Melee).Level;
             if (hitPawn.RaceProps.Humanlike) tgtdodge = hitPawn.GetStatValue(StatDefOf.MeleeDodgeChance);
-            if (((Rand.Value * 100)*(1-tgtdodge)  > 50+tgtmelee || hitPawn.Downed) && flag)
+            if (((Rand.Value * 100)*(1-tgtdodge)  > 50+tgtmelee || hitPawn.Downed) && flag&&hitPawn is Pawn)
             {
                 infect = true;
             }
@@ -116,9 +116,11 @@ namespace RRYautja
                     HediffComp_XenoFacehugger comp = hediff.TryGetComp<HediffComp_XenoFacehugger>();
                     comp.Props.Instigator = CasterPawn;
                     hitPawn.health.AddHediff(hediff, part, null);
-                    MoteMaker.ThrowText(hitPawn.Position.ToVector3(), hitPawn.Map, Translator.Translate("Xeno_Facehugger_Success", hitPawn.LabelShort), 3f);
                     //string text = TranslatorFormattedStringExtensions.Translate("Xeno_Facehugger_Attach", hitPawn.LabelShort);
-                    //MoteMaker.ThrowText(hitPawn.Position.ToVector3(), hitPawn.Map, text, 5f);
+#pragma warning disable CS0618 // Type or member is obsolete
+                    string text = Translator.Translate("Xeno_Facehugger_Success", hitPawn.LabelShort);
+#pragma warning restore CS0618 // Type or member is obsolete
+                    MoteMaker.ThrowText(hitPawn.Position.ToVector3(), hitPawn.Map, text, 5f);
                     caster.DeSpawn();
                 }
             }

@@ -42,7 +42,7 @@
     <passability>Standable</passability>
     <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
     <building>
-	  <ai_combatDangerous>true</ai_combatDangerous>
+	  <ai_combatDangerous>false</ai_combatDangerous>
       <turretGunDef>Gun_ShoulderCannon</turretGunDef>
       <turretBurstCooldownTime>3.0</turretBurstCooldownTime>
       <turretTopGraphicPath>Things/Buildings/DummyTexture</turretTopGraphicPath>

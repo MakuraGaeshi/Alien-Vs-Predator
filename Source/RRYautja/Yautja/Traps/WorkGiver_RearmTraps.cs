@@ -75,7 +75,7 @@ namespace RRYautja
                     }
                 }
             }
-            return new Job(YautjaDefOf.RearmTrapJob, t);
+            return new Job(YautjaDefOf.RRY_Yautja_RearmTrapJob, t);
         }
     }
 }

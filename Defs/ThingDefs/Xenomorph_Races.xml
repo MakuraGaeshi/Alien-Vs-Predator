@@ -123,7 +123,7 @@
       <thinkTreeMain>RRY_Xenommorph</thinkTreeMain>
       <body>RRY_Xenomorph_FaceHugger</body>
       <baseBodySize>0.30</baseBodySize>
-      <baseHealthScale>1.32</baseHealthScale>
+      <baseHealthScale>0.3</baseHealthScale>
       <lifeStageAges>
         <li>
           <def>RRY_XFacehuggerFullyFormed</def>
@@ -262,6 +262,7 @@
         <label>tail</label>
         <capacities>
           <li>Blunt</li>
+          <li>RRY_TailWhip</li>
         </capacities>
         <power>10</power>
         <cooldownTime>2</cooldownTime>
@@ -576,6 +577,7 @@
         <label>tail</label>
         <capacities>
           <li>Blunt</li>
+          <li>RRY_TailWhip</li>
         </capacities>
         <power>5</power>
         <cooldownTime>2</cooldownTime>
@@ -757,6 +759,7 @@
         <label>tail</label>
         <capacities>
           <li>Blunt</li>
+          <li>RRY_TailWhip</li>
         </capacities>
         <power>5</power>
         <cooldownTime>2</cooldownTime>
@@ -878,7 +881,7 @@
         </capacities>
         <power>8.2</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>RRY_Xeno_LeftHand</linkedBodyPartsGroup>
         <surpriseAttack>
           <extraMeleeDamages>
             <li>
@@ -896,7 +899,7 @@
         </capacities>
         <power>8.2</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>RRY_Xeno_RightHand</linkedBodyPartsGroup>
         <surpriseAttack>
           <extraMeleeDamages>
             <li>
@@ -941,6 +944,7 @@
         <label>tail</label>
         <capacities>
           <li>Blunt</li>
+          <li>RRY_TailWhip</li>
         </capacities>
         <power>5</power>
         <cooldownTime>2</cooldownTime>
@@ -960,7 +964,7 @@
       </li>
     </tools>
     <race>
-      <body>RRY_Xenomorph_Quadruped</body>
+      <body>RRY_Xenomorph_Biped</body>
 	  <useMeatFrom>RRY_Xenomorph_FaceHugger</useMeatFrom>
       <baseBodySize>1.4</baseBodySize>
       <baseHealthScale>1.32</baseHealthScale>
@@ -1120,6 +1124,7 @@
         <label>tail</label>
         <capacities>
           <li>Blunt</li>
+          <li>RRY_TailWhip</li>
         </capacities>
         <power>5</power>
         <cooldownTime>2</cooldownTime>
@@ -1351,6 +1356,7 @@
         <label>tail</label>
         <capacities>
           <li>Blunt</li>
+          <li>RRY_TailWhip</li>
         </capacities>
         <power>5</power>
         <cooldownTime>2</cooldownTime>
@@ -1438,4 +1444,108 @@
     </weaponTags>
   </PawnKindDef>
   
+  <!-- Neomorph - Basic -->
+  <ThingDef ParentName="BaseNeomorphWalker">
+    <defName>RRY_Xenomorph_Neomorphb</defName>
+    <label>Neomorph</label>
+    <description>A human-sized Neomorph with huge optical sensors on its face for aiming weapons at long range. While effective at distance, it is weaker in melee combat. Veterans of mechanoid wars know that often, the safest thing to do against a lancer is to charge.</description>
+    <statBases>
+      <MoveSpeed>5.9</MoveSpeed>
+      <ArmorRating_Blunt>0.20</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.40</ArmorRating_Sharp>
+      <MeatAmount>30</MeatAmount>
+      <LeatherAmount>30</LeatherAmount>
+    </statBases>
+    <tools>
+      <li>
+        <label>tail</label>
+        <capacities>
+          <li>RRY_TailWhip</li>
+        </capacities>
+        <power>5</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>RRY_Xeno_Tail_AttackTool</linkedBodyPartsGroup>
+        <chanceFactor>0.2</chanceFactor>
+      </li>
+    </tools>
+    <race>
+      <body>RRY_Xenomorph_Neomorph</body>
+	  <useMeatFrom>RRY_Xenomorph_FaceHugger</useMeatFrom>
+      <baseHealthScale>1.72</baseHealthScale>
+      <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
+      <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
+      <soundMeleeMiss>Pawn_Melee_Punch_Miss</soundMeleeMiss>
+    </race>
+  </ThingDef>
+
+  <PawnKindDef ParentName="BaseXenomorphKind">
+    <defName>RRY_Xenomorph_Neomorphb</defName>
+    <label>Neomorph</label>
+    <race>RRY_Xenomorph_Neomorphb</race>
+    <combatPower>140</combatPower>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>0.5</drawSize>
+          <shadowData>
+            <volume>(0.6, 0.8, 0.6)</volume>
+          </shadowData>
+          <shaderType>CutoutComplex</shaderType>
+        </bodyGraphicData>
+      </li>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <color>(180,180,180)</color>
+          <drawSize>0.75</drawSize>
+          <shadowData>
+            <volume>(0.6, 0.8, 0.6)</volume>
+          </shadowData>
+        </bodyGraphicData>
+      </li>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Pawn/Xenomorph/Xenomorph_Neomorph</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <color>(180,180,180)</color>
+          <drawSize>1.0</drawSize>
+          <shadowData>
+            <volume>(0.4, 0.8, 0.4)</volume>
+          </shadowData>
+        </bodyGraphicData>
+      </li>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Pawn/Xenomorph/Xenomorph_Neomorph</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <color>(180,180,180)</color>
+          <drawSize>1.25</drawSize>
+          <shadowData>
+            <volume>(0.4, 0.8, 0.4)</volume>
+          </shadowData>
+        </bodyGraphicData>
+      </li>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Pawn/Xenomorph/Xenomorph_Neomorph</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <color>(221,231,237)</color>
+          <drawSize>1.7</drawSize>
+          <shadowData>
+            <volume>(0.4, 0.8, 0.4)</volume>
+          </shadowData>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    <weaponMoney>
+	
+    </weaponMoney>
+    <weaponTags>
+	
+    </weaponTags>
+  </PawnKindDef>
+ 
 </Defs>

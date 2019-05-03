@@ -15,4 +15,27 @@
     <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
   </JobDef>
 
+	<JobDef>
+		<defName>RRY_Yautja_TendSelf</defName>
+		<driverClass>RRYautja.JobDriver_TendSelf</driverClass>
+		<reportString>tending wounds.</reportString>
+	</JobDef>
+	
+  <JobDef>
+    <defName>RRY_Yautja_HealthShard</defName>
+    <driverClass>RRYautja.JobDriver_HealthShard</driverClass>
+    <reportString>using health shard.</reportString>
+  </JobDef>
+  
+  <JobDef>
+    <defName>RRY_Yautja_HealthShardRestock</defName>
+    <driverClass>RRYautja.JobDriver_MarkSelf</driverClass>
+    <reportString>restocking health shards.</reportString>
+  </JobDef>
+  
+   <JobDef>
+    <defName>RRY_Yautja_RearmTrapJob</defName>
+    <driverClass>RRYautja.JobDriver_RearmTrap</driverClass>
+    <reportString>rearming Target.</reportString>
+  </JobDef>
 </Defs>

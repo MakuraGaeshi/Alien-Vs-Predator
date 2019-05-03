@@ -19,6 +19,7 @@ namespace RRYautja
         
 
     }
+
     [HarmonyPatch(typeof(Pawn), "ThreatDisabled")]
     public static class Pawn_ThreatDisabledPatch
     {
@@ -27,13 +28,13 @@ namespace RRYautja
         {
             bool selected__instance = Find.Selector.SelectedObjects.Contains(__instance);
             Comp_Xenomorph _Xenomorph = null;
-            if (disabledFor!=null)
+            if (disabledFor != null)
             {
 #if DEBUG
                 if (selected__instance) Log.Message(string.Format("disabledFor.ToString(): {0}", disabledFor.ToString()));
 #endif
 
-                if (disabledFor.Thing!=null)
+                if (disabledFor.Thing != null)
                 {
 #if DEBUG
                     if (selected__instance) Log.Message(string.Format("disabledFor.Thing.Label: {0}", disabledFor.Thing.Label));
@@ -47,7 +48,7 @@ namespace RRYautja
                     }
                 }
             }
-            if (__instance!=null)
+            if (__instance != null)
             {
 #if DEBUG
                 if (selected__instance) Log.Message(string.Format("__instance.ToString(): {0}", __instance.ToString()));
@@ -59,9 +60,38 @@ namespace RRYautja
 #endif
                 }
             }
-            __result = __result || (__instance.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked)&& _Xenomorph==null);
+            __result = __result || (__instance.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked) && _Xenomorph == null);
 #if DEBUG
             if ((__instance.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked) && _Xenomorph != null) || selected__instance) Log.Message(string.Format("__result: {0} = __result: {0} || (HasHediff: {1} && {2})", __result, __instance.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked), _Xenomorph == null));
+#endif
+
+        }
+    }
+
+    [HarmonyPatch(typeof(Building_Turret_Shoulder), "ThreatDisabled")]
+    public static class Building_Turret_Shoulder_ThreatDisabledPatch
+    {
+        [HarmonyPostfix]
+        public static void IgnoreShoulderTurret(Building_Turret_Shoulder __instance, ref bool __result, IAttackTargetSearcher disabledFor)
+        {
+            bool selected__instance = Find.Selector.SelectedObjects.Contains(__instance);
+            bool shouldturret = false;
+            if (__instance != null)
+            {
+#if DEBUG
+                if (selected__instance) Log.Message(string.Format("__instance.ToString(): {0}", __instance.ToString()));
+#endif
+                if (__instance is Building_Turret_Shoulder)
+                {
+#if DEBUG
+                    if (selected__instance) Log.Message(string.Format("__instance: {0} is Building_Turret_Shoulder", __instance.Label));
+#endif
+                    shouldturret = true;
+                }
+            }
+            __result = (__result || shouldturret);
+#if DEBUG
+            if (__result || selected__instance) Log.Message(string.Format("__result: {0} = __result: {0} || (HasHediff: {1}", __result, shouldturret));
 #endif
 
         }

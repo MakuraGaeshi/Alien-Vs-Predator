@@ -120,12 +120,6 @@
   </DesignationCategoryDef>
 
   
-   <JobDef>
-    <defName>RearmTrapJob</defName>
-    <driverClass>RRYautja.JobDriver_RearmTrap</driverClass>
-    <reportString>rearming Target.</reportString>
-  </JobDef>
-  
   <WorkGiverDef>
     <defName>RearmTraps</defName>
     <label>rearm traps</label>

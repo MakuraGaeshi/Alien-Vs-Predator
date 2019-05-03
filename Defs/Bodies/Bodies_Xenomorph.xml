@@ -2116,7 +2116,7 @@
 							<customLabel>front left leg first claw</customLabel>
 							<coverage>0.05</coverage>
 							<groups>
-								<li>FrontLeftClaws</li>
+								<li>RRY_Xeno_LeftHand</li>
 							</groups>
 						</li>
 						<li>
@@ -2124,7 +2124,7 @@
 							<customLabel>front left leg second claw</customLabel>
 							<coverage>0.05</coverage>
 							<groups>
-								<li>FrontLeftClaws</li>
+								<li>RRY_Xeno_LeftHand</li>
 							</groups>
 						</li>
 						<li>
@@ -2132,7 +2132,7 @@
 							<customLabel>front left leg third claw</customLabel>
 							<coverage>0.05</coverage>
 							<groups>
-								<li>FrontLeftClaws</li>
+								<li>RRY_Xeno_LeftHand</li>
 							</groups>
 						</li>
 						<li>
@@ -2140,7 +2140,7 @@
 							<customLabel>front left leg fourth claw</customLabel>
 							<coverage>0.05</coverage>
 							<groups>
-								<li>FrontLeftClaws</li>
+								<li>RRY_Xeno_LeftHand</li>
 							</groups>
 						</li>
 						<li>
@@ -2148,7 +2148,7 @@
 							<customLabel>front left leg fifth claw</customLabel>
 							<coverage>0.05</coverage>
 							<groups>
-								<li>FrontLeftClaws</li>
+								<li>RRY_Xeno_LeftHand</li>
 							</groups>
 						</li>
 					</parts>
@@ -2164,7 +2164,7 @@
 							<customLabel>front right leg first claw</customLabel>
 							<coverage>0.05</coverage>
 							<groups>
-								<li>FrontRightClaws</li>
+								<li>RRY_Xeno_RightHand</li>
 							</groups>
 						</li>
 						<li>
@@ -2172,7 +2172,7 @@
 							<customLabel>front right leg second claw</customLabel>
 							<coverage>0.05</coverage>
 							<groups>
-								<li>FrontRightClaws</li>
+								<li>RRY_Xeno_RightHand</li>
 							</groups>
 						</li>
 						<li>
@@ -2180,7 +2180,7 @@
 							<customLabel>front right leg third claw</customLabel>
 							<coverage>0.05</coverage>
 							<groups>
-								<li>FrontRightClaws</li>
+								<li>RRY_Xeno_RightHand</li>
 							</groups>
 						</li>
 						<li>
@@ -2188,7 +2188,7 @@
 							<customLabel>front right leg fourth claw</customLabel>
 							<coverage>0.05</coverage>
 							<groups>
-								<li>FrontRightClaws</li>
+								<li>RRY_Xeno_RightHand</li>
 							</groups>
 						</li>
 						<li>
@@ -2196,7 +2196,7 @@
 							<customLabel>front right leg fifth claw</customLabel>
 							<coverage>0.05</coverage>
 							<groups>
-								<li>FrontRightClaws</li>
+								<li>RRY_Xeno_RightHand</li>
 							</groups>
 						</li>
 					</parts>

@@ -37,6 +37,10 @@
 			</groupsToAffect>
 			-->
 		  </li>
+      <li Class="RRYautja.CompProperties_MedicalInjector">
+        <medicine>MedicineHerbal</medicine>
+        <Uses>3</Uses>
+      </li>
 		</comps>
 		<statBases>
 			<MarketValue>2500</MarketValue>

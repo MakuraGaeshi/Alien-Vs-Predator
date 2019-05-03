@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
+  <HealthShardUses>Shards remaining</HealthShardUses>
+  <UseHealthShard>Use Health Shard</UseHealthShard>
+  <UseHealthShardDesc>Use a Health Shard to quickly return to the hunt</UseHealthShardDesc>
+  <MedicompTendSelf>Tend Self</MedicompTendSelf>
+  <MedicompTendSelfDesc>Tend thier own wounds on the spot</MedicompTendSelfDesc>
   <!-- Rearmable Traps -->
   <DesignatorRearmTrap>Rearm trap</DesignatorRearmTrap>
   <DesignatorRearmTrapDesc>Rearm a sprung trap so it can be triggered again.</DesignatorRearmTrapDesc>

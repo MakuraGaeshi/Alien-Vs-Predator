@@ -26,7 +26,7 @@ namespace RRYautja
                 Rect rect = rect2 = overRect.AtZero().ContractedBy(6f);
                 rect2.height = overRect.height / 2f;
                 Text.Font = GameFont.Tiny;
-                Widgets.Label(rect2, this.cloak.LabelCap);
+                Widgets.Label(rect2, this.cloak.LabelShortCap);
                 Rect rect3 = rect;
                 rect3.yMin = overRect.height / 2f;
                 float fillPercent = this.cloak.Energy / Mathf.Max(1f, this.cloak.GetStatValue(StatDefOf.EnergyShieldEnergyMax, true));
