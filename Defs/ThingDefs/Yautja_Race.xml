@@ -372,13 +372,13 @@
             <researchList>
                 <li>
                     <projects>
-						<li>YautjaTechBase</li>
-						<li>YautjaTechMid</li>
-						<li>YautjaTechHigh</li>
+						<li>RRY_YautjaTechBase</li>
+						<li>RRY_YautjaTechMid</li>
+						<li>RRY_YautjaTechHigh</li>
 						<li>YautjaArmour</li>
-						<li>YautjaMeleeWeapons</li>
-						<li>YautjaMeleeWeapons</li>
-						<li>YautjaRangedWeapons</li>
+						<li>RRY_YautjaMelee_Basic</li>
+						<li>RRY_YautjaMelee_Basic</li>
+						<li>RRY_YautjaRanged_Basic</li>
                     </projects>
                 </li>
             </researchList>

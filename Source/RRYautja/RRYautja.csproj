@@ -61,6 +61,7 @@
     <Compile Include="util\Building_Turret_Shoulder.cs" />
     <None Include="util\Cloakgen - withMedicomp.cs.bak" />
     <None Include="util\Cloakgen.cs.bak" />
+    <None Include="util\CompEquippableTurret - New.cs.bak" />
     <Compile Include="util\Gizmo_ShardStatus.cs" />
     <Compile Include="Xenomorph\Recipe_RemoveFacehugger.cs" />
     <Compile Include="Xenomorph\Class2.cs" />

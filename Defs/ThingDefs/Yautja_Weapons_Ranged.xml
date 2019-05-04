@@ -1,5 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
+
+  <ThingDef ParentName="RRYBaseSimpleRanged">
+    <defName>RRY_Yautja_Hunting_Bow</defName>
+    <label>yautja hunting bow</label>
+    <description>A powerful bow. Fires a heavy arrow long distances.</description>
+    <graphicData>
+      <texPath>Things/Equipment/Ranged/Yautja_Hunting_Bow</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+      <drawSize>1.5</drawSize>			
+    </graphicData>
+    <soundInteract>Bow_Large</soundInteract>
+	<costStuffCount>95</costStuffCount>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+		</stuffCategories>
+    <statBases>
+      <WorkToMake>9000</WorkToMake>
+      <Mass>3.0</Mass>
+      <AccuracyTouch>0.65</AccuracyTouch>
+      <AccuracyShort>0.85</AccuracyShort>
+      <AccuracyMedium>0.75</AccuracyMedium>
+      <AccuracyLong>0.50</AccuracyLong>
+      <RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+    </statBases>
+    <weaponTags>
+      <li>NeolithicRangedHeavy</li>
+      <li>NeolithicRangedChief</li>
+    </weaponTags>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>Arrow_Great</defaultProjectile>
+        <warmupTime>2.0</warmupTime>
+        <range>29.9</range>
+        <soundCast>Bow_Large</soundCast>
+      </li>
+    </verbs>
+    <tools>
+      <li>
+        <label>limb</label>
+        <capacities>
+          <li>Blunt</li>
+          <li>Poke</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>2</cooldownTime>
+      </li>
+    </tools>
+    <recipeMaker>
+      <researchPrerequisite>RRY_YautjaRanged_Basic</researchPrerequisite>
+      <skillRequirements>
+        <Crafting>6</Crafting>
+      </skillRequirements>
+    </recipeMaker>
+	<comps>     
+		<li>
+			<compClass>CompOversizedWeapon.CompOversizedWeapon</compClass>
+		</li>
+	</comps>
+  </ThingDef>
+  <ThingDef ParentName="BaseProjectileNeolithic">
+    <defName>Arrow_Great</defName>
+    <label>greatbow arrow</label>
+    <graphicData>
+      <texPath>Things/Projectile/Arrow_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <flyOverhead>false</flyOverhead>
+      <damageDef>Arrow</damageDef>
+      <damageAmountBase>17</damageAmountBase>
+      <stoppingPower>1.5</stoppingPower>
+      <armorPenetrationBase>0.15</armorPenetrationBase>
+      <speed>49</speed>
+    </projectile>
+  </ThingDef>
+  
 <!-- ====================== Plasma Blaster ===================== -->
  <ThingDef ParentName="BaseBullet">
 	<defName>RRY_Bullet_Plasma</defName>
@@ -38,7 +118,7 @@
 			<RangedWeapon_Cooldown>1.35</RangedWeapon_Cooldown>
 		</statBases>
 	<recipeMaker>
-		<!-- <researchPrerequisite>WRMechAdvBallistics</researchPrerequisite> -->
+		<researchPrerequisite>RRY_YautjaRanged_Med</researchPrerequisite>
 	</recipeMaker>
 		<equippedStatOffsets>
 			<MoveSpeed>0.5</MoveSpeed>
@@ -199,7 +279,7 @@
 	</ThingDef>
 	
 <!-- ====================== Smart Disk ===================== -->	 
-  <ThingDef ParentName="BaseWeaponNeolithic">
+  <ThingDef ParentName="RRYBaseSimpleRanged">
     <defName>Yautja_SmartDisk</defName>
     <label>Yautja Smart Disk</label>
     <description>.</description>
@@ -209,7 +289,8 @@
     </graphicData>
     <soundInteract>Interact_BeatFire</soundInteract>
     <costList>
-      <WoodLog>70</WoodLog>
+      <Plasteel>40</Plasteel>
+      <ComponentIndustrial>1</ComponentIndustrial>
     </costList>
     <statBases>
       <WorkToMake>7000</WorkToMake>
@@ -226,6 +307,7 @@
 			<li>YautjaSmartDisk</li>
     </weaponTags>
     <recipeMaker>
+	  <researchPrerequisite>RRY_YautjaTechBase</researchPrerequisite>
       <skillRequirements>
         <Crafting>3</Crafting>
       </skillRequirements>
@@ -269,7 +351,7 @@
     </graphicData>
     <projectile>
       <flyOverhead>false</flyOverhead>
-      <damageDef>RangedStab</damageDef>
+      <damageDef>RangedCut</damageDef>
       <damageAmountBase>25</damageAmountBase>
       <stoppingPower>2.5</stoppingPower>
       <armorPenetrationBase>0.10</armorPenetrationBase>

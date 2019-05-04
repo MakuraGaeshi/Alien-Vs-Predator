@@ -70,7 +70,7 @@
 			<ComponentIndustrial>10</ComponentIndustrial>
 		</costList>
 		<recipeMaker>
-			
+		
 		</recipeMaker>
 		<apparel>
 			<bodyPartGroups>
@@ -130,7 +130,7 @@
 			<ComponentIndustrial>10</ComponentIndustrial>
 		</costList>
 		<recipeMaker>
-			
+			<researchPrerequisite>RRY_YautjaTechHigh</researchPrerequisite>
 		</recipeMaker>
 		<apparel>
 			<bodyPartGroups>

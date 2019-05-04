@@ -30,6 +30,32 @@
 		</graphicData>
 	</ThingDef>
 	
+
+  <ThingDef Name="RRYBaseSimpleRanged" Abstract="True" ParentName="RRYBaseWeapon">
+    <techLevel>Neolithic</techLevel>
+    <weaponTags>
+	
+    </weaponTags>
+    <thingCategories>
+      <li>WeaponsRanged</li>
+    </thingCategories>
+    <comps>
+      <li>
+        <compClass>CompQuality</compClass>
+      </li>
+    </comps>
+    <recipeMaker>
+      <workSpeedStat>SmithingSpeed</workSpeedStat>
+      <workSkill>Crafting</workSkill>
+      <recipeUsers>
+        <li>RRY_TableMachining</li>
+        <li>ElectricSmithy</li>
+        <li>FueledSmithy</li>
+      </recipeUsers>
+      <effectWorking>Smelt</effectWorking>
+      <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+    </recipeMaker>
+  </ThingDef>
 	<!-- ==================== Yautja - Base Gun Weapon Template ========================= -->		
 	<ThingDef Name="RRYBaseGun" Abstract="True" ParentName="RRYBaseWeapon">
 		<techLevel>Industrial</techLevel>
@@ -60,7 +86,7 @@
       <effectWorking>Smith</effectWorking>
       <soundWorking>Recipe_Smith</soundWorking>
       <recipeUsers>
-        <li>TableMachining</li>
+        <li>RRY_TableMachining</li>
       </recipeUsers>
       <unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
       <researchPrerequisite>Gunsmithing</researchPrerequisite>
@@ -81,11 +107,12 @@
       <effectWorking>Smith</effectWorking>
       <soundWorking>Recipe_Smith</soundWorking>
       <recipeUsers>
+        <li>RRY_TableMachining</li>
         <li>ElectricSmithy</li>
         <li>FueledSmithy</li>
       </recipeUsers>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
-      <researchPrerequisite>YautjaTechBase</researchPrerequisite>
+      <researchPrerequisite>RRY_YautjaTechBase</researchPrerequisite>
     </recipeMaker>
     <inspectorTabs>
       <li>ITab_Art</li>

@@ -47,6 +47,11 @@ namespace RimWorld
         public static JobDef RRY_Yautja_TendSelf;
         public static JobDef RRY_Yautja_HealthShard;
 
+        // Yautja ResearchProjectDefs 
+        public static ResearchProjectDef RRY_YautjaMediComp;
+        public static ResearchProjectDef RRY_YautjaHealthShard;
+        public static ResearchProjectDef RRY_YautjaCloakGenerator;
+
         // Yautja WorkTypeDefs 
         public static WorkTypeDef Rearm;
 

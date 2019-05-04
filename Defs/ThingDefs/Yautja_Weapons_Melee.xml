@@ -40,7 +40,7 @@
 				<li>ElectricSmithy</li>
 				<li>FueledSmithy</li>
 			</recipeUsers>
-			<researchPrerequisite>YautjaTechBase</researchPrerequisite>
+			<researchPrerequisite>RRY_YautjaTechBase</researchPrerequisite>
 		</recipeMaker>
 		<costList>
 			<Steel>10</Steel>
@@ -113,7 +113,7 @@
 				<li>ElectricSmithy</li>
 				<li>FueledSmithy</li>
 			</recipeUsers>
-			<researchPrerequisite>YautjaTechBase</researchPrerequisite>
+			<researchPrerequisite>RRY_YautjaTechBase</researchPrerequisite>
 		</recipeMaker>
 		<weaponTags>
 			<li>YautjaMelee</li>

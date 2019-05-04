@@ -36,7 +36,7 @@ namespace RRYautja
         public override void PostMake()
         {
             base.PostMake();
-            this.uses = base.GetComp<CompMedicalInjector>().Props.Uses;
+        //    this.uses = base.GetComp<CompMedicalInjector>().Props.Uses;
         }
 
         // Token: 0x06000009 RID: 9 RVA: 0x00002174 File Offset: 0x00000374
@@ -59,16 +59,21 @@ namespace RRYautja
         // Token: 0x06000010 RID: 16 RVA: 0x000022D2 File Offset: 0x000004D2
         public override IEnumerable<Gizmo> GetGizmos()
         {
-            yield return new Gizmo_InjectorStatus
+            bool HealthshardReseached = (YautjaDefOf.RRY_YautjaHealthShard.IsFinished);
+            if (HealthshardReseached)
             {
-                kit = this
-            };
-            foreach (Gizmo item in base.GetGizmos())
-            {
-                yield return item;
-                //    item = null;
+                yield return new Gizmo_InjectorStatus
+                {
+                    kit = this
+                };
+                foreach (Gizmo item in base.GetGizmos())
+                {
+                    yield return item;
+                    //    item = null;
+                }
+                IEnumerator<Gizmo> enumerator = null;
             }
-            IEnumerator<Gizmo> enumerator = null;
+            base.GetGizmos();
             yield break;
         }
         // Token: 0x1700000A RID: 10
@@ -129,7 +134,6 @@ namespace RRYautja
                 return wearer.Spawned && !wearer.Dead && !wearer.Downed && (wearer.InAggroMentalState || wearer.Drafted || (wearer.Faction.HostileTo(Faction.OfPlayer) && !wearer.IsPrisoner) || Find.TickManager.TicksGame < this.lastKeepDisplayTick + this.KeepDisplayingTicks);
             }
         }
-
 
         // Token: 0x06000004 RID: 4 RVA: 0x000020EE File Offset: 0x000002EE
         public void RefreshCloakState()
@@ -217,62 +221,74 @@ namespace RRYautja
             base.GetWornGizmos();
             if (Find.Selector.SelectedObjects.Contains(base.Wearer) && base.Wearer.Faction == Faction.OfPlayer)
             {// this.uses
-                yield return new Command_Action
-                {
-                    action = new Action(this.TendSelf),
-                    defaultLabel = Translator.Translate("MedicompTendSelf"),
-                    defaultDesc = Translator.Translate("MedicompTendSelfDesc"),
-                    hotKey = KeyBindingDefOf.Misc3,
-                    icon = this.def.uiIcon
-                };
-                yield return new Gizmo_InjectorStatus
-                {
-                    kit = this
-                };
-                foreach (Gizmo item in base.GetWornGizmos())
-                {
-                    yield return item;
-                    //    item = null;
-                }
-                if (this.uses > 0)
+                bool MedicompReseached = (YautjaDefOf.RRY_YautjaMediComp.IsFinished);
+                if (MedicompReseached)
                 {
                     yield return new Command_Action
                     {
-                        action = new Action(this.UseShard),
-                        defaultLabel = Translator.Translate("UseHealthShard"),
-                        defaultDesc = Translator.Translate("UseHealthShardDesc"),
-                        hotKey = KeyBindingDefOf.Misc2,
-                        icon = ContentFinder<Texture2D>.Get("Things/Resources/Manufactured/HealthShard/HealthShard_a", true)
+                        action = new Action(this.TendSelf),
+                        defaultLabel = Translator.Translate("MedicompTendSelf"),
+                        defaultDesc = Translator.Translate("MedicompTendSelfDesc"),
+                        hotKey = KeyBindingDefOf.Misc3,
+                        icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_TendSelfB", true)
                     };
-                }
-                int num = 700000102;
-                yield return new Gizmo_CloakgenStatus
-                {
-                    cloak = this
-                };
-                if (this.cloakMode == CloakMode.On)
-                {
-                    yield return new Command_Action
+                    bool HealthshardReseached = (YautjaDefOf.RRY_YautjaHealthShard.IsFinished);
+                    if (HealthshardReseached)
                     {
-                        icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_CloakMode", true),
-                        defaultLabel = "Cloak: off.",
-                        defaultDesc = "Switch mode.",
-                        activateSound = SoundDef.Named("Click"),
-                        action = new Action(this.SwitchCloakMode),
-                        groupKey = num + 1,
-                    };
+                        yield return new Gizmo_InjectorStatus
+                        {
+                            kit = this
+                        };
+                        foreach (Gizmo item in base.GetWornGizmos())
+                        {
+                            yield return item;
+                            //    item = null;
+                        }
+                        if (this.uses > 0)
+                        {
+                            yield return new Command_Action
+                            {
+                                action = new Action(this.UseShard),
+                                defaultLabel = Translator.Translate("UseHealthShard"),
+                                defaultDesc = Translator.Translate("UseHealthShardDesc"),
+                                hotKey = KeyBindingDefOf.Misc2,
+                                icon = ContentFinder<Texture2D>.Get("Things/Resources/Manufactured/HealthShard/HealthShard_a", true)
+                            };
+                        }
+                    }
                 }
-                if (this.cloakMode == CloakMode.Off)
+                bool CloakReseached = (YautjaDefOf.RRY_YautjaCloakGenerator.IsFinished);
+                if (CloakReseached)
                 {
-                    yield return new Command_Action
+                    int num = 700000102;
+                    yield return new Gizmo_CloakgenStatus
                     {
-                        icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_CloakMode", true),
-                        defaultLabel = "Cloak: on.",
-                        defaultDesc = "Switch mode.",
-                        activateSound = SoundDef.Named("Click"),
-                        action = new Action(this.SwitchCloakMode),
-                        groupKey = num + 1,
+                        cloak = this
                     };
+                    if (this.cloakMode == CloakMode.On)
+                    {
+                        yield return new Command_Action
+                        {
+                            icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_CloakMode", true),
+                            defaultLabel = "Cloak: off.",
+                            defaultDesc = "Switch mode.",
+                            activateSound = SoundDef.Named("Click"),
+                            action = new Action(this.SwitchCloakMode),
+                            groupKey = num + 1,
+                        };
+                    }
+                    if (this.cloakMode == CloakMode.Off)
+                    {
+                        yield return new Command_Action
+                        {
+                            icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_CloakMode", true),
+                            defaultLabel = "Cloak: on.",
+                            defaultDesc = "Switch mode.",
+                            activateSound = SoundDef.Named("Click"),
+                            action = new Action(this.SwitchCloakMode),
+                            groupKey = num + 1,
+                        };
+                    }
                 }
             }
             yield break;

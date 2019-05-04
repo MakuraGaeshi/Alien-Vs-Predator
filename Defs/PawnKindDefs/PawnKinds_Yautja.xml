@@ -244,7 +244,7 @@
   <!-- ============================ Yautja ========================== -->
   <PawnKindDef Name="YautjaHunter" ParentName="YautjaMilBase" Abstract="True">
     <label>yautja hunter</label>
-    <combatPower>170</combatPower>
+    <combatPower>100</combatPower>
 	<backstoryCategories>
 			<li>Yautja_Hunter</li>
   	</backstoryCategories>
@@ -272,6 +272,7 @@
   <PawnKindDef ParentName="YautjaHunter">
     <defName>YautjaBlooded</defName>
     <label>Yautja Blooded</label>
+    <combatPower>120</combatPower>
 	<backstoryCategories>
 			<li>Yautja_Blooded</li>
   	</backstoryCategories>
@@ -285,6 +286,7 @@
   <PawnKindDef ParentName="YautjaHunter">
     <defName>YautjaElite</defName>
     <label>Yautja Elite</label>
+    <combatPower>140</combatPower>
 	<backstoryCategories>
 			<li>Yautja_Elite</li>
   	</backstoryCategories>
@@ -298,7 +300,7 @@
   <PawnKindDef ParentName="YautjaMilBase">
      <defName>YautjaElder</defName>
     <label>Yautja Elder</label>
-    <combatPower>250</combatPower>
+    <combatPower>160</combatPower>
     <minGenerationAge>500</minGenerationAge>
 	<backstoryCategories>
 			<li>Yautja_Elder</li>

@@ -46,11 +46,13 @@ namespace RRYautja
         // Token: 0x060053DC RID: 21468 RVA: 0x00264E1B File Offset: 0x0026321B
         public void ExposeData()
         {// Building_Turret_Shoulder
+            TurrMode = (int)turretMode;
             parent.ExposeData();
             Scribe_References.Look<Thing>(ref this.turret, "Turret", false);
             Scribe_Deep.Look<Building_Turret_Shoulder>(ref this.turret_Shoulder, "Turret", false);
             Scribe_Values.Look<bool>(ref this.turretIsOn, "TurretIsOn", false, false);
-		}
+            Scribe_Values.Look<int>(ref this.TurrMode, "TurrMode", 0, true);
+        }
 
 		// Token: 0x060053DD RID: 21469 RVA: 0x00264E3D File Offset: 0x0026323D
 		public override void CompTick()
@@ -87,7 +89,7 @@ namespace RRYautja
         // Token: 0x06000005 RID: 5 RVA: 0x00002108 File Offset: 0x00000308
         public bool ComputeTurretState()
         {
-                
+            if (TurrMode == 1) turretMode = (TurretMode)TurrMode;
             return GetWearer != null && !GetWearer.Dead && !GetWearer.Downed && GetWearer.Awake() && (this.turretMode == CompEquippableTurret.TurretMode.ForcedOn);
         }
 
@@ -191,17 +193,18 @@ namespace RRYautja
 
         // Token: 0x04000004 RID: 4
         public bool turretIsOn;
+        public int TurrMode;
 
         // Token: 0x04000005 RID: 5
-        public CompEquippableTurret.TurretMode turretMode;
+        public TurretMode turretMode;
 
         // Token: 0x02000004 RID: 4
         public enum TurretMode
         {
             // Token: 0x04000009 RID: 9
-            ForcedOff,
+            ForcedOn,
             // Token: 0x04000008 RID: 8
-            ForcedOn
+            ForcedOff
         }
 	}
 }
