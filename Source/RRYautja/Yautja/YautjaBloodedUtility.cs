@@ -45,9 +45,9 @@ namespace RRYautja
         public static bool BloodStatus(Pawn pawn, out Hediff BloodHD)
         {
             HediffSet hediffSet = pawn.health.hediffSet;
+            BodyPartRecord part;
             bool result = false;
             BloodHD = null;
-
             bool hasbloodedM = hediffSet.hediffs.Any<Hediff>(x => x.def.defName.StartsWith(markedDef.defName));
             if (hasbloodedM)
             {
@@ -74,6 +74,17 @@ namespace RRYautja
                 BloodHD = hediffSet.GetFirstHediffOfDef(unmarkedDef);
                 result = true;
 
+            }
+            if (BloodHD==null)
+            {
+                foreach (var item in pawn.RaceProps.body.AllParts)
+                {
+                    if (item.def == BodyPartDefOf.Head)
+                    {
+                        part = item;
+                        pawn.health.AddHediff(unbloodedDef, part);
+                    }
+                }
             }
             return result;
         }

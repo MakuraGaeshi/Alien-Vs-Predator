@@ -30,40 +30,21 @@ namespace RRYautja
             Comp_Xenomorph _Xenomorph = null;
             if (disabledFor != null)
             {
-#if DEBUG
-                if (selected__instance) Log.Message(string.Format("disabledFor.ToString(): {0}", disabledFor.ToString()));
-#endif
-
                 if (disabledFor.Thing != null)
                 {
-#if DEBUG
-                    if (selected__instance) Log.Message(string.Format("disabledFor.Thing.Label: {0}", disabledFor.Thing.Label));
-#endif
                     _Xenomorph = disabledFor.Thing.TryGetComp<Comp_Xenomorph>();
                     if (_Xenomorph != null)
                     {
-#if DEBUG
-                        if (selected__instance) Log.Message(string.Format("found Comp_Xenomorph For.Thing.Label: {0}", disabledFor.Thing.Label));
-#endif
                     }
                 }
             }
             if (__instance != null)
             {
-#if DEBUG
-                if (selected__instance) Log.Message(string.Format("__instance.ToString(): {0}", __instance.ToString()));
-#endif
                 if (__instance != null)
                 {
-#if DEBUG
-                    if (selected__instance) Log.Message(string.Format("__instance.Label: {0}", __instance.Label));
-#endif
                 }
             }
             __result = __result || (__instance.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked) && _Xenomorph == null);
-#if DEBUG
-            if ((__instance.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked) && _Xenomorph != null) || selected__instance) Log.Message(string.Format("__result: {0} = __result: {0} || (HasHediff: {1} && {2})", __result, __instance.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked), _Xenomorph == null));
-#endif
 
         }
     }
@@ -78,21 +59,12 @@ namespace RRYautja
             bool shouldturret = false;
             if (__instance != null)
             {
-#if DEBUG
-                if (selected__instance) Log.Message(string.Format("__instance.ToString(): {0}", __instance.ToString()));
-#endif
                 if (__instance is Building_Turret_Shoulder)
                 {
-#if DEBUG
-                    if (selected__instance) Log.Message(string.Format("__instance: {0} is Building_Turret_Shoulder", __instance.Label));
-#endif
                     shouldturret = true;
                 }
             }
             __result = (__result || shouldturret);
-#if DEBUG
-            if (__result || selected__instance) Log.Message(string.Format("__result: {0} = __result: {0} || (HasHediff: {1}", __result, shouldturret));
-#endif
 
         }
     }

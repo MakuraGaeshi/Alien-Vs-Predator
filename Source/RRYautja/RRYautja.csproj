@@ -62,6 +62,8 @@
     <None Include="util\Cloakgen - withMedicomp.cs.bak" />
     <None Include="util\Cloakgen.cs.bak" />
     <Compile Include="util\Gizmo_ShardStatus.cs" />
+    <Compile Include="Xenomorph\Recipe_RemoveFacehugger.cs" />
+    <Compile Include="Xenomorph\Class2.cs" />
     <Compile Include="Yautja\HealthShard\Class1.cs" />
     <Compile Include="Yautja\HealthShard\JobDriver_HealthShard.cs" />
     <Compile Include="Yautja\HealthShard\CompHealthShard.cs" />

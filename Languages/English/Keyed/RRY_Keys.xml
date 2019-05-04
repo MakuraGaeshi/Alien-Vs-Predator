@@ -13,12 +13,18 @@
   <TrapArmed>Armed</TrapArmed>
   <TrapNotArmed>Not armed</TrapNotArmed>
   <!-- Buttons -->
+  <RRYMessageMedicalOperationFailureMinorA>{SURGEON_labelShort} has failed in a minor way while operating on {PATIENT_labelShort}.</RRYMessageMedicalOperationFailureMinorA>
+  <RRYMessageMedicalOperationFailureMinorB>{SURGEON_labelShort} has failed in a minor way while operating on {PATIENT_labelShort}.</RRYMessageMedicalOperationFailureMinorB>
+  <RRYMessageMedicalOperationFailureCatastrophic>{SURGEON_labelShort} has failed to remove the parasite attached to {PATIENT_labelShort}, it.</RRYMessageMedicalOperationFailureCatastrophic>
+  <RRYMessageMedicalOperationFailureRidiculous>{SURGEON_labelShort} was trying to remove the parasite attached to {PATIENT_labelShort} and it didnt like it.....</RRYMessageMedicalOperationFailureRidiculous>
+  <RRYMessageMedicalOperationFailureFatal>something went terribly wrong while {SURGEON_labelShort} was attempting to remove the parasite attached to {PATIENT_labelShort}'s face......they didnt make it...: {2}</RRYMessageMedicalOperationFailureFatal>
+  <!-- Buttons -->
   <WearableExplosives_Label>Detonate</WearableExplosives_Label>
   <WearableExplosives_Desc>Detonate this pawn's self destruct device.</WearableExplosives_Desc>
-  <Xeno_Facehugger_Attach>Facehugger attached itself to {0}</Xeno_Facehugger_Attach>
-  <Xeno_Facehugger_Detach>Facehugger detached itself from {0}</Xeno_Facehugger_Detach>
-  <Xeno_Chestburster_Emerge>Facehugger attached itself to {0}</Xeno_Chestburster_Emerge>
+  <Xeno_Facehugger_Attach>A parasite has attached itself to {0}'s {1}</Xeno_Facehugger_Attach>
+  <Xeno_Facehugger_Detach>The parasite has detached itself from {0}...they seem OK...for now...</Xeno_Facehugger_Detach>
+  <Xeno_Chestburster_PreEmerge>{0} has collapsed and is writhing around! something is wrong...</Xeno_Chestburster_PreEmerge>
+  <Xeno_Chestburster_Emerge>{0}'s convulsions stop suddenly and a Chestburster emerges in a gorey mess from {0}'s {1}</Xeno_Chestburster_Emerge>
   <BloodStatus_Unblooded>{0}</BloodStatus_Unblooded>
   <BloodStatus_Unmarked>{0}</BloodStatus_Unmarked>
-  <Xeno_Chestburster_Emerge>{0}</Xeno_Chestburster_Emerge>
 </LanguageData>

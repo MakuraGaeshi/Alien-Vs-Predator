@@ -116,10 +116,7 @@ namespace RRYautja
                     HediffComp_XenoFacehugger comp = hediff.TryGetComp<HediffComp_XenoFacehugger>();
                     comp.Props.Instigator = CasterPawn;
                     hitPawn.health.AddHediff(hediff, part, null);
-                    //string text = TranslatorFormattedStringExtensions.Translate("Xeno_Facehugger_Attach", hitPawn.LabelShort);
-#pragma warning disable CS0618 // Type or member is obsolete
-                    string text = Translator.Translate("Xeno_Facehugger_Success", hitPawn.LabelShort);
-#pragma warning restore CS0618 // Type or member is obsolete
+                    string text = TranslatorFormattedStringExtensions.Translate("Xeno_Facehugger_Attach", hitPawn.LabelShort, part.LabelShortCap);
                     MoteMaker.ThrowText(hitPawn.Position.ToVector3(), hitPawn.Map, text, 5f);
                     caster.DeSpawn();
                 }

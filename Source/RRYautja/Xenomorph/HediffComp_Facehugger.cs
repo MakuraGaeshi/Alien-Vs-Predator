@@ -162,6 +162,8 @@ namespace RRYautja
                 GenSpawn.Spawn(pawn, base.parent.pawn.Position, base.parent.pawn.Map, 0);
                 pawn.Kill(null);
             }
+            string text = TranslatorFormattedStringExtensions.Translate("Xeno_Facehugger_Detach", base.parent.pawn.LabelShort);
+            MoteMaker.ThrowText(base.parent.pawn.Position.ToVector3(), base.parent.pawn.Map, text, 5f);
         }
 
         // Token: 0x06004C89 RID: 19593 RVA: 0x002379D6 File Offset: 0x00235DD6
@@ -203,6 +205,8 @@ namespace RRYautja
     }
     public class HediffComp_XenoSpawner : HediffComp
     {
+
+        bool logonce = false;
         // Token: 0x17000BE6 RID: 3046
         // (get) Token: 0x06004C0F RID: 19471 RVA: 0x002370CE File Offset: 0x002354CE
         public HediffCompProperties_XenoSpawner Props
@@ -225,6 +229,13 @@ namespace RRYautja
             base.CompPostTick(ref severityAdjustment);
             if (parent.CurStageIndex == parent.def.stages.Count-2)
             {
+                if (!this.logonce)
+                {
+                    string text = TranslatorFormattedStringExtensions.Translate("Xeno_Chestburster_PreEmerge", this.Pawn.LabelShort);
+                    Log.Message(text);
+                    MoteMaker.ThrowText(base.parent.pawn.Position.ToVector3(), base.parent.pawn.Map, text, 5f);
+                    this.logonce = true;
+                }
 #if DEBUG
                 if (selected) Log.Message(string.Format("Pre Death stage: {0}", parent.CurStage.label));
 #endif
@@ -261,7 +272,7 @@ namespace RRYautja
             int ind = 0;
             bool fullterm = this.parent.CurStageIndex > this.parent.def.stages.Count - 3;
             if (!fullterm) return;
-            if (this.Pawn.Map==null) return;
+            if (this.Pawn.MapHeld==null) return;
             bool QueenPresent = false;
             foreach (var p in base.parent.pawn.MapHeld.mapPawns.AllPawnsSpawned)
             {
@@ -327,7 +338,7 @@ namespace RRYautja
             }
             Vector3 vector = base.parent.pawn.PositionHeld.ToVector3Shifted();
             GenSpawn.Spawn(pawn, base.parent.pawn.PositionHeld, base.parent.pawn.MapHeld, 0);
-            for (int i = 0; i < 1001; i++)
+            for (int i = 0; i < 101; i++)
             { // Find.TickManager.TicksGame
                 if (Rand.MTBEventOccurs(DustMoteSpawnMTB, 2f, 3.TicksToSeconds()))
                 {
@@ -337,6 +348,8 @@ namespace RRYautja
                     }, base.parent.pawn.MapHeld, 1.0f, new Color(color.r, color.g, color.b, 1f));
                 }
             }
+            string text = TranslatorFormattedStringExtensions.Translate("Xeno_Chestburster_Emerge", base.parent.pawn.LabelShort, this.parent.Part.LabelShort);
+            MoteMaker.ThrowText(base.parent.pawn.PositionHeld.ToVector3(), base.parent.pawn.MapHeld, text, 5f);
             //base.Pawn.health.RemoveHediff(this.parent);
         }
 
