@@ -235,14 +235,17 @@ namespace RRYautja
                     bool HealthshardReseached = (YautjaDefOf.RRY_YautjaHealthShard.IsFinished);
                     if (HealthshardReseached)
                     {
-                        yield return new Gizmo_InjectorStatus
+                        if (Find.Selector.SingleSelectedObject == (base.Wearer))
                         {
-                            kit = this
-                        };
-                        foreach (Gizmo item in base.GetWornGizmos())
-                        {
-                            yield return item;
-                            //    item = null;
+                            yield return new Gizmo_InjectorStatus
+                            {
+                                kit = this
+                            };
+                            foreach (Gizmo item in base.GetWornGizmos())
+                            {
+                                yield return item;
+                                //    item = null;
+                            }
                         }
                         if (this.uses > 0)
                         {
@@ -260,11 +263,14 @@ namespace RRYautja
                 bool CloakReseached = (YautjaDefOf.RRY_YautjaCloakGenerator.IsFinished);
                 if (CloakReseached)
                 {
-                    int num = 700000102;
-                    yield return new Gizmo_CloakgenStatus
+                    if (Find.Selector.SingleSelectedObject == (base.Wearer))
                     {
-                        cloak = this
-                    };
+                        yield return new Gizmo_CloakgenStatus
+                        {
+                            cloak = this
+                        };
+                    }
+                    int num = 700000102;
                     if (this.cloakMode == CloakMode.On)
                     {
                         yield return new Command_Action

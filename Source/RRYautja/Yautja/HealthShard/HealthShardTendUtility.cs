@@ -348,6 +348,145 @@ namespace RRYautja
             }
         }
 
+        // Token: 0x06004BC5 RID: 19397 RVA: 0x0023673A File Offset: 0x00234B3A
+        public static void GiveInjuriesOperationFailureMinor(Pawn p, BodyPartRecord part)
+        {
+            HealthShardTendUtility.GiveRandomSurgeryInjuries(p, 20, part);
+        }
+
+        // Token: 0x06004BC6 RID: 19398 RVA: 0x00236745 File Offset: 0x00234B45
+        public static void GiveInjuriesOperationFailureCatastrophic(Pawn p, BodyPartRecord part)
+        {
+            HealthShardTendUtility.GiveRandomSurgeryInjuries(p, 65, part);
+        }
+
+        // Token: 0x06004BC7 RID: 19399 RVA: 0x00236750 File Offset: 0x00234B50
+        public static void GiveInjuriesOperationFailureRidiculous(Pawn p)
+        {
+            HealthShardTendUtility.GiveRandomSurgeryInjuries(p, 65, null);
+        }
+
+        // Token: 0x06004BC8 RID: 19400 RVA: 0x0023675C File Offset: 0x00234B5C
+        public static void HealNonPermanentInjuriesAndRestoreLegs(Pawn p)
+        {
+            if (p.Dead)
+            {
+                return;
+            }
+            HealthShardTendUtility.tmpHediffs.Clear();
+            HealthShardTendUtility.tmpHediffs.AddRange(p.health.hediffSet.hediffs);
+            for (int i = 0; i < HealthShardTendUtility.tmpHediffs.Count; i++)
+            {
+                Hediff_Injury hediff_Injury = HealthShardTendUtility.tmpHediffs[i] as Hediff_Injury;
+                if (hediff_Injury != null && !hediff_Injury.IsPermanent())
+                {
+                    p.health.RemoveHediff(hediff_Injury);
+                }
+                else
+                {
+                    Hediff_MissingPart hediff_MissingPart = HealthShardTendUtility.tmpHediffs[i] as Hediff_MissingPart;
+                    if (hediff_MissingPart != null && hediff_MissingPart.Part.def.tags.Contains(BodyPartTagDefOf.MovingLimbCore) && (hediff_MissingPart.Part.parent == null || p.health.hediffSet.GetNotMissingParts(BodyPartHeight.Undefined, BodyPartDepth.Undefined, null, null).Contains(hediff_MissingPart.Part.parent)))
+                    {
+                        p.health.RestorePart(hediff_MissingPart.Part, null, true);
+                    }
+                }
+            }
+            HealthShardTendUtility.tmpHediffs.Clear();
+        }
+
+        // Token: 0x06004BC9 RID: 19401 RVA: 0x00236874 File Offset: 0x00234C74
+        private static void GiveRandomSurgeryInjuries(Pawn p, int totalDamage, BodyPartRecord operatedPart)
+        {
+            IEnumerable<BodyPartRecord> source;
+            if (operatedPart == null)
+            {
+                source = from x in p.health.hediffSet.GetNotMissingParts(BodyPartHeight.Undefined, BodyPartDepth.Undefined, null, null)
+                         where !x.def.conceptual
+                         select x;
+            }
+            else
+            {
+                source = from x in p.health.hediffSet.GetNotMissingParts(BodyPartHeight.Undefined, BodyPartDepth.Undefined, null, null)
+                         where !x.def.conceptual
+                         select x into pa
+                         where pa == operatedPart || pa.parent == operatedPart || (operatedPart != null && operatedPart.parent == pa)
+                         select pa;
+            }
+            source = from x in source
+                     where HealthShardTendUtility.GetMinHealthOfPartsWeWantToAvoidDestroying(x, p) >= 2f
+                     select x;
+            BodyPartRecord brain = p.health.hediffSet.GetBrain();
+            if (brain != null)
+            {
+                float maxBrainHealth = brain.def.GetMaxHealth(p);
+                source = from x in source
+                         where x != brain || p.health.hediffSet.GetPartHealth(x) >= maxBrainHealth * 0.5f + 1f
+                         select x;
+            }
+            while (totalDamage > 0 && source.Any<BodyPartRecord>())
+            {
+                BodyPartRecord bodyPartRecord = source.RandomElementByWeight((BodyPartRecord x) => x.coverageAbs);
+                float partHealth = p.health.hediffSet.GetPartHealth(bodyPartRecord);
+                int num = Mathf.Max(3, GenMath.RoundRandom(partHealth * Rand.Range(0.5f, 1f)));
+                float minHealthOfPartsWeWantToAvoidDestroying = HealthShardTendUtility.GetMinHealthOfPartsWeWantToAvoidDestroying(bodyPartRecord, p);
+                if (minHealthOfPartsWeWantToAvoidDestroying - (float)num < 1f)
+                {
+                    num = Mathf.RoundToInt(minHealthOfPartsWeWantToAvoidDestroying - 1f);
+                }
+                if (bodyPartRecord == brain && partHealth - (float)num < brain.def.GetMaxHealth(p) * 0.5f)
+                {
+                    num = Mathf.Max(Mathf.RoundToInt(partHealth - brain.def.GetMaxHealth(p) * 0.5f), 1);
+                }
+                if (num <= 0)
+                {
+                    break;
+                }
+                DamageDef damageDef = XenomorphDefOf.RRY_AcidBurn;
+                Thing p2 = p;
+                DamageDef def = damageDef;
+                float amount = (float)num;
+                BodyPartRecord hitPart = bodyPartRecord;
+                p2.TakeDamage(new DamageInfo(def, amount, 0f, -1f, null, hitPart, null, DamageInfo.SourceCategory.ThingOrUnknown, null));
+                totalDamage -= num;
+            }
+        }
+
+        // Token: 0x06004BCA RID: 19402 RVA: 0x00236B00 File Offset: 0x00234F00
+        private static float GetMinHealthOfPartsWeWantToAvoidDestroying(BodyPartRecord part, Pawn pawn)
+        {
+            float num = 999999f;
+            while (part != null)
+            {
+                if (HealthShardTendUtility.ShouldRandomSurgeryInjuriesAvoidDestroying(part, pawn))
+                {
+                    num = Mathf.Min(num, pawn.health.hediffSet.GetPartHealth(part));
+                }
+                part = part.parent;
+            }
+            return num;
+        }
+
+        // Token: 0x06004BCB RID: 19403 RVA: 0x00236B4C File Offset: 0x00234F4C
+        private static bool ShouldRandomSurgeryInjuriesAvoidDestroying(BodyPartRecord part, Pawn pawn)
+        {
+            if (part == pawn.RaceProps.body.corePart)
+            {
+                return true;
+            }
+            if (part.def.tags.Any((BodyPartTagDef x) => x.vital))
+            {
+                return true;
+            }
+            for (int i = 0; i < part.parts.Count; i++)
+            {
+                if (HealthShardTendUtility.ShouldRandomSurgeryInjuriesAvoidDestroying(part.parts[i], pawn))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         // Token: 0x04000015 RID: 21
         public const float NoMedicinePotency = 0.3f;
 

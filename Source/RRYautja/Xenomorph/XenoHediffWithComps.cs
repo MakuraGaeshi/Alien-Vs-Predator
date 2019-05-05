@@ -41,7 +41,7 @@ namespace RRYautja
             string direction = "";
             float angle = 0f;
             float offset = 0f;
-            Vector3 drawPos = pawn.Drawer.DrawPos;
+            Vector3 drawPos = pawn.Dead ? pawn.PositionHeld.ToVector3() : pawn.Drawer.DrawPos;
             drawPos.y = Altitudes.AltitudeFor((AltitudeLayer)17);
             Vector3 s = new Vector3(1.5f, 1.5f, 1.5f);
             PawnRenderer pawnRenderer = this.pawn.Drawer.renderer;

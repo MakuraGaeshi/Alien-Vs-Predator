@@ -73,7 +73,7 @@
     <projectile>
       <flyOverhead>false</flyOverhead>
       <damageDef>Arrow</damageDef>
-      <damageAmountBase>17</damageAmountBase>
+      <damageAmountBase>25</damageAmountBase>
       <stoppingPower>1.5</stoppingPower>
       <armorPenetrationBase>0.15</armorPenetrationBase>
       <speed>49</speed>

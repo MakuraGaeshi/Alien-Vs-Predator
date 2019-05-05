@@ -63,9 +63,11 @@
     <None Include="util\Cloakgen.cs.bak" />
     <None Include="util\CompEquippableTurret - New.cs.bak" />
     <Compile Include="util\Gizmo_ShardStatus.cs" />
+    <Compile Include="Xenomorph\Class1.cs" />
+    <Compile Include="Xenomorph\HediffComp_XenoSpawner.cs" />
     <Compile Include="Xenomorph\Recipe_RemoveFacehugger.cs" />
-    <Compile Include="Xenomorph\Class2.cs" />
-    <Compile Include="Yautja\HealthShard\Class1.cs" />
+    <Compile Include="Xenomorph\Recipe_Surgery_RRY.cs" />
+    <Compile Include="Yautja\HealthShard\JobGiver_PatientGoToBedTendSelf.cs" />
     <Compile Include="Yautja\HealthShard\JobDriver_HealthShard.cs" />
     <Compile Include="Yautja\HealthShard\CompHealthShard.cs" />
     <Compile Include="Yautja\HealthShard\WorkGiver_TendSelf.cs" />

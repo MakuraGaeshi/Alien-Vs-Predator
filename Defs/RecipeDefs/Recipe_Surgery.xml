@@ -4,15 +4,15 @@
     <defName>RRY_FaceHuggerRemoval</defName>
     <label>Attempt Facehugger removal</label>
     <description>Facehugger removal</description>
-    <workerClass>Recipe_RemoveHediff</workerClass>
+    <workerClass>RRYautja.Recipe_RemoveHugger</workerClass>
     <jobString>Attempting to remove xenomorph parasite</jobString>
     <workAmount>1500</workAmount>
     <removesHediff>RRY_FaceHuggerInfection</removesHediff>
     <successfullyRemovedHediffMessage>{0} has successfully removed the parasite from {1}'s head.</successfullyRemovedHediffMessage>
-    <deathOnFailedSurgeryChance>0.50</deathOnFailedSurgeryChance>
-    <surgerySuccessChanceFactor>10</surgerySuccessChanceFactor>
+    <deathOnFailedSurgeryChance>0.350</deathOnFailedSurgeryChance>
+    <surgerySuccessChanceFactor>1</surgerySuccessChanceFactor>
     <skillRequirements>
-      <Medicine>4</Medicine>
+      <Medicine>10</Medicine>
     </skillRequirements>
     <ingredients>
       <li>

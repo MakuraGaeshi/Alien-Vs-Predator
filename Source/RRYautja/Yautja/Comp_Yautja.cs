@@ -111,8 +111,9 @@ namespace RRYautja
             {
                 bool selected = Find.Selector.SelectedObjects.Contains(Pawn);
                 blooded = YautjaBloodedUtility.BloodStatus(Pawn, out BloodStatus);
+                if (!blooded) pawn.health.AddHediff(unbloodedDef, partRecord);
 #if DEBUG
-                    if (base.parent.IsHashIntervalTick(300) && selected) Log.Message(string.Format("BloodStatus: {0}", BloodStatus));
+                if (base.parent.IsHashIntervalTick(300) && selected) Log.Message(string.Format("BloodStatus: {0}", BloodStatus));
 #endif
                 if (BloodStatus.def == unmarkedDef)
                 {

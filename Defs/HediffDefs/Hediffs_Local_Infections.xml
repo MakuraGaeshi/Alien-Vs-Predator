@@ -42,7 +42,7 @@
         <hediffGivers>
           <li Class="HediffGiver_Random">
             <hediff>RRY_XenomorphImpregnation</hediff>
-            <mtbDays>0.75</mtbDays> 
+            <mtbDays>1</mtbDays> 
             <partsToAffect>
               <li>Torso</li>
             </partsToAffect>
@@ -82,7 +82,7 @@
 		</li>
 		-->
 		<li Class="RRYautja.HediffCompProperties_XenoFacehugger">
-		<severityPerDay>10</severityPerDay>
+		<severityPerDay>1</severityPerDay>
 		<pawnKindDef>RRY_Xenomorph_FaceHugger</pawnKindDef>
 		</li>
 		<li Class="RRYautja.HediffCompProperties_DrawImplant">
@@ -262,7 +262,7 @@
 		</pawnKindWeights>
 		</li>
 		<li Class="HediffCompProperties_SeverityPerDay">
-		<severityPerDay>1</severityPerDay>
+		<severityPerDay>0.3</severityPerDay>
 		</li>
     </comps>
   </HediffDef>
