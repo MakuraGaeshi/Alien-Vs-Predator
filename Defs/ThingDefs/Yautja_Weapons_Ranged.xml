@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-
+<!-- ====================== Hunting Bow ===================== -->
   <ThingDef ParentName="RRYBaseSimpleRanged">
     <defName>RRY_Yautja_Hunting_Bow</defName>
     <label>yautja hunting bow</label>
@@ -34,7 +34,7 @@
       <li>
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
-        <defaultProjectile>Arrow_Great</defaultProjectile>
+        <defaultProjectile>Arrow_Yautja_Hunting_Bow</defaultProjectile>
         <warmupTime>2.0</warmupTime>
         <range>29.9</range>
         <soundCast>Bow_Large</soundCast>
@@ -64,8 +64,8 @@
 	</comps>
   </ThingDef>
   <ThingDef ParentName="BaseProjectileNeolithic">
-    <defName>Arrow_Great</defName>
-    <label>greatbow arrow</label>
+    <defName>Arrow_Yautja_Hunting_Bow</defName>
+    <label>yautja arrow</label>
     <graphicData>
       <texPath>Things/Projectile/Arrow_Small</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -77,6 +77,86 @@
       <stoppingPower>1.5</stoppingPower>
       <armorPenetrationBase>0.15</armorPenetrationBase>
       <speed>49</speed>
+    </projectile>
+  </ThingDef>
+  
+<!-- ====================== Compound Bow ===================== -->
+  <ThingDef ParentName="RRYBaseSimpleRanged">
+    <defName>RRY_Yautja_Compound_Bow</defName>
+    <label>yautja hunting bow</label>
+    <description>A powerful Compound bow. Fires a heavy arrow long distances.</description>
+    <graphicData>
+      <texPath>Things/Equipment/Ranged/Yautja_Compound_Bow</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+      <drawSize>1.5</drawSize>			
+    </graphicData>
+	<comps>     
+		<li>
+			<compClass>CompOversizedWeapon.CompOversizedWeapon</compClass>
+		</li>
+	</comps>
+    <soundInteract>Bow_Large</soundInteract>
+	<costStuffCount>135</costStuffCount>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+		</stuffCategories>
+    <statBases>
+      <WorkToMake>9000</WorkToMake>
+      <Mass>3.0</Mass>
+      <AccuracyTouch>0.65</AccuracyTouch>
+      <AccuracyShort>0.85</AccuracyShort>
+      <AccuracyMedium>0.75</AccuracyMedium>
+      <AccuracyLong>0.50</AccuracyLong>
+      <RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+    </statBases>
+    <weaponTags>
+      <li>NeolithicRangedHeavy</li>
+      <li>NeolithicRangedChief</li>
+    </weaponTags>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>Arrow_Yautja_Compound_Bow</defaultProjectile>
+        <warmupTime>2.0</warmupTime>
+        <range>34.9</range>
+        <soundCast>Bow_Large</soundCast>
+      </li>
+    </verbs>
+    <tools>
+      <li>
+        <label>limb</label>
+        <capacities>
+          <li>Blunt</li>
+          <li>Poke</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>2</cooldownTime>
+      </li>
+    </tools>
+    <recipeMaker>
+      <researchPrerequisite>RRY_YautjaRanged_Med</researchPrerequisite>
+      <skillRequirements>
+        <Crafting>6</Crafting>
+      </skillRequirements>
+    </recipeMaker>
+  </ThingDef>
+  <ThingDef ParentName="BaseProjectileNeolithic">
+    <defName>Arrow_Yautja_Compound_Bow</defName>
+    <label>yautja arrow</label>
+    <graphicData>
+      <texPath>Things/Projectile/Arrow_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <flyOverhead>false</flyOverhead>
+      <damageDef>Arrow</damageDef>
+      <damageAmountBase>30</damageAmountBase>
+      <stoppingPower>1.5</stoppingPower>
+      <armorPenetrationBase>0.35</armorPenetrationBase>
+      <speed>60</speed>
     </projectile>
   </ThingDef>
   
@@ -118,7 +198,7 @@
 			<RangedWeapon_Cooldown>1.35</RangedWeapon_Cooldown>
 		</statBases>
 	<recipeMaker>
-		<researchPrerequisite>RRY_YautjaRanged_Med</researchPrerequisite>
+		<researchPrerequisite>RRY_YautjaRanged_Adv</researchPrerequisite>
 	</recipeMaker>
 		<equippedStatOffsets>
 			<MoveSpeed>0.5</MoveSpeed>
@@ -198,7 +278,7 @@
 
 	<ThingDef ParentName="RRYBaseMakeableGun">
 		<defName>RRY_Gun_NeedlerRifle</defName>
-		<label>Needler Rifle</label>
+		<label>Needler</label>
 		<description>Regardless of the exact form of the weapon, all Spearguns serve as projectile weapons firing metal spears. How these projectiles are fired is not clear, as the weapon produces no discernible muzzle flash and often little noise, yet fires spears with tremendous velocity and accuracy. Regardless of physical appearance, the Speargun is long-ranged and very powerful, capable of pinning victims to solid surfaces like a nail gun. Some have been seen with integrated computerized scopes further increasing their range. A common tactic, particularly with young and inexperienced hunters, is to use the Netgun to immobilize prey before finishing it off with the Speargun.\n\nDespite the weapon's name, the projectiles fired by the Speargun are not typically spear-shaped; the most common form seems to be a U-shaped projectile with a weighted tail and two serrated prongs pointing forwards. They are made from an unknown metal that is incredibly lightweight yet able to cut like hardened steel. They spears often have a blood groove down the middle, designed to cause a target to bleed out if they become stuck in the flesh.</description>
 		<graphicData>
 			<texPath>Things/Equipment/Ranged/NeedleRifle</texPath>
@@ -216,7 +296,7 @@
 			<RangedWeapon_Cooldown>1.35</RangedWeapon_Cooldown>
 		</statBases>
 	<recipeMaker>
-		<!-- <researchPrerequisite>WRMechAdvBallistics</researchPrerequisite> -->
+		<researchPrerequisite>RRY_YautjaRanged_Med</researchPrerequisite>
 	</recipeMaker>
 		<equippedStatOffsets>
 			<MoveSpeed>0.5</MoveSpeed>
@@ -278,6 +358,91 @@
 		</costList>
 	</ThingDef>
 	
+<!-- ====================== Needler Rifle ===================== -->
+  <ThingDef ParentName="BaseHumanMakeableGun">
+    <defName>RRY_Gun_SpearRifle</defName>
+    <label>spear rifle</label>
+    <description>An ancient design of precision sniper rifle. Bolt action. It has an exceptionally long range, great accuracy and good power. Because it's so unwieldy, other weapons outclass it at close range.</description>
+    <graphicData>
+			<texPath>Things/Equipment/Ranged/Yautja_Sniper_Spear_Rifle</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>1.5</drawSize>			
+    </graphicData>
+	<comps>     
+		<li>
+			<compClass>CompOversizedWeapon.CompOversizedWeapon</compClass>
+		</li>
+	</comps>
+    <soundInteract>Interact_Rifle</soundInteract>
+    <recipeMaker>
+      <researchPrerequisite>RRY_YautjaRanged_Adv</researchPrerequisite>
+      <skillRequirements>
+        <Crafting>7</Crafting>
+      </skillRequirements>
+    </recipeMaker>
+    <statBases>
+      <WorkToMake>45000</WorkToMake>
+      <Mass>4</Mass>
+      <AccuracyTouch>0.50</AccuracyTouch>
+      <AccuracyShort>0.70</AccuracyShort>
+      <AccuracyMedium>0.86</AccuracyMedium>
+      <AccuracyLong>0.88</AccuracyLong>
+      <RangedWeapon_Cooldown>2.3</RangedWeapon_Cooldown>
+    </statBases>
+    <costList>
+      <Steel>60</Steel>
+      <ComponentIndustrial>8</ComponentIndustrial>
+    </costList>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>RRY_Bullet_SpearRifle</defaultProjectile>
+        <warmupTime>3.5</warmupTime>
+        <range>44.9</range>
+        <soundCast>Shot_SniperRifle</soundCast>
+        <soundCastTail>GunTail_Heavy</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+      </li>
+    </verbs>
+    <tools>
+      <li>
+        <label>stock</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>2</cooldownTime>
+      </li>
+      <li>
+        <label>barrel</label>
+        <capacities>
+          <li>Blunt</li>
+          <li>Poke</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>2</cooldownTime>
+      </li>
+    </tools>
+    <weaponTags Inherit="False">
+      <li>SniperRifle</li>
+    </weaponTags>
+  </ThingDef>
+  <ThingDef ParentName="BaseBullet">
+    <defName>RRY_Bullet_SpearRifle</defName>
+    <label>spear bolt</label>
+    <graphicData>
+      <texPath>Things/Projectile/NeedlerShotSml</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>25</damageAmountBase>
+      <stoppingPower>1.5</stoppingPower>
+      <speed>100</speed>
+    </projectile>
+  </ThingDef>
+
 <!-- ====================== Smart Disk ===================== -->	 
   <ThingDef ParentName="RRYBaseSimpleRanged">
     <defName>Yautja_SmartDisk</defName>

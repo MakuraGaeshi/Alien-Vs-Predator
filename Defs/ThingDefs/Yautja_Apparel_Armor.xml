@@ -44,7 +44,7 @@
 			<ComponentIndustrial>6</ComponentIndustrial>
 		</costList>
 		<recipeMaker>
-			
+			<researchPrerequisite>RRY_YautjaTechBase</researchPrerequisite>
 		</recipeMaker>
 		<apparel>
 			<bodyPartGroups>
@@ -109,7 +109,7 @@
 			<ComponentIndustrial>10</ComponentIndustrial>
 		</costList>
 		<recipeMaker>
-			
+			<researchPrerequisite>RRY_YautjaTechBase</researchPrerequisite>
 		</recipeMaker>
 		<apparel>
 			<bodyPartGroups>
@@ -174,7 +174,7 @@
 			<ComponentIndustrial>15</ComponentIndustrial>
 		</costList>
 		<recipeMaker>
-			
+			<researchPrerequisite>RRY_YautjaTechMid</researchPrerequisite>
 		</recipeMaker>
 		<apparel>
 			<bodyPartGroups>
@@ -237,7 +237,7 @@
 			<ComponentIndustrial>10</ComponentIndustrial>
 		</costList>
 		<recipeMaker>
-			
+			<researchPrerequisite>RRY_YautjaTechBase</researchPrerequisite>
 		</recipeMaker>
 		<apparel>
 			<bodyPartGroups>
@@ -301,7 +301,7 @@
 			<ComponentIndustrial>5</ComponentIndustrial>
 		</costList>
 		<recipeMaker>
-		
+			<researchPrerequisite>RRY_YautjaTechBase</researchPrerequisite>
 		</recipeMaker>
 		<apparel>
 			<bodyPartGroups>
@@ -363,7 +363,7 @@
 			<ComponentIndustrial>10</ComponentIndustrial>
 		</costList>
 		<recipeMaker>
-			
+			<researchPrerequisite>RRY_YautjaTechMid</researchPrerequisite>
 		</recipeMaker>
 		<apparel>
 			<bodyPartGroups>
@@ -428,7 +428,7 @@
 			<ComponentIndustrial>5</ComponentIndustrial>
 		</costList>
 		<recipeMaker>
-		
+			<researchPrerequisite>RRY_YautjaTechMid</researchPrerequisite>
 		</recipeMaker>
 		<apparel>
 			<bodyPartGroups>
@@ -490,7 +490,7 @@
 			<ComponentIndustrial>10</ComponentIndustrial>
 		</costList>
 		<recipeMaker>
-			
+			<researchPrerequisite>RRY_YautjaTechMid</researchPrerequisite>
 		</recipeMaker>
 		<apparel>
 			<bodyPartGroups>
@@ -555,7 +555,7 @@
 			<ComponentIndustrial>5</ComponentIndustrial>
 		</costList>
 		<recipeMaker>
-		
+			<researchPrerequisite>RRY_YautjaTechMid</researchPrerequisite>
 		</recipeMaker>
 		<apparel>
 			<bodyPartGroups>

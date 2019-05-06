@@ -35,6 +35,24 @@
       <MarketValue>750</MarketValue>
     </statBases>
     <tradeability>Sellable</tradeability>
+		<costList>				
+			<Steel>30</Steel>
+			<Plasteel>40</Plasteel>
+			<ComponentIndustrial>10</ComponentIndustrial>
+			<Gold>4</Gold>
+		</costList>
+    <recipeMaker>
+      <workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+      <workSkill>Intellectual</workSkill>
+      <recipeUsers>
+        <li>RRY_TableMachining</li>
+      </recipeUsers>
+      <researchPrerequisite>RRY_YautjaHealthShard</researchPrerequisite>
+      <skillRequirements>
+				<Crafting>4</Crafting>
+        <Intellectual>4</Intellectual>
+      </skillRequirements>
+    </recipeMaker>
     <comps>
       <li Class="CompProperties_Usable">
         <compClass>RRYautja.CompUsable_HealthShard</compClass>

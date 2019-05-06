@@ -113,7 +113,7 @@
 				<li>ElectricSmithy</li>
 				<li>FueledSmithy</li>
 			</recipeUsers>
-			<researchPrerequisite>RRY_YautjaTechBase</researchPrerequisite>
+			<researchPrerequisite>RRY_YautjaMelee_Basic</researchPrerequisite>
 		</recipeMaker>
 		<weaponTags>
 			<li>YautjaMelee</li>
@@ -181,6 +181,7 @@
 			<li>RRYMelee</li>
 		</thingCategories>
     <recipeMaker>
+			<researchPrerequisite>RRY_YautjaMelee_Basic</researchPrerequisite>
       <skillRequirements>
         <Crafting>3</Crafting>
       </skillRequirements>
@@ -209,6 +210,7 @@
         <label>point</label>
         <capacities>
           <li>Stab</li>
+          <li>Poke</li>
         </capacities>
         <power>9</power>
          <cooldownTime>2</cooldownTime>

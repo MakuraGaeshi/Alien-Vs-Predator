@@ -79,8 +79,8 @@
   
 
   <PawnKindDef ParentName="BaseYautjaPawnKind">
-    <defName>Yautja_BadBlood</defName>
-    <label>Yautja bad blood colonist</label>
+    <defName>Colonist_Yautja_BadBlood</defName>
+    <label>Bad blood colonist</label>
     <defaultFactionType>YautjaPlayerColony</defaultFactionType>
     <backstoryCategories>
 			<li>Yautja_BadBlood</li>

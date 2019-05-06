@@ -6,9 +6,9 @@
             <alienslavekinds>
                 <li>
                     <kindDefs>
-                        <li>Yautja</li>
+                        <li>YautjaSlave</li>
                     </kindDefs>
-                    <chance>40.0</chance>
+                    <chance>100.0</chance>
                 </li>
             </alienslavekinds>
             <alienrefugeekinds>
@@ -16,7 +16,7 @@
                     <kindDefs>
                         <li>Yautja</li>
                     </kindDefs>
-                    <chance>50.0</chance>
+                    <chance>100.0</chance>
                 </li>
             </alienrefugeekinds>
 			<startingColonists>
@@ -37,13 +37,26 @@
 				<pawnKindEntries>
 					<li>
                     <kindDefs>
-                        <li>Yautja</li>
+                        <li>Colonist_YautjaUnblooded</li>
                     </kindDefs>
                     <chance>10.0</chance>
 					</li>
 				</pawnKindEntries>
 					<factionDefs>
-						<li>YautjaPlayerColony</li> 
+						<li>YautjaPlayerUnblooded</li> 
+					</factionDefs>
+				</li>
+				<li>
+				<pawnKindEntries>
+					<li>
+                    <kindDefs>
+                        <li>Colonist_YautjaBlooded</li>
+                    </kindDefs>
+                    <chance>10.0</chance>
+					</li>
+				</pawnKindEntries>
+					<factionDefs>
+						<li>YautjaPlayerBlooded</li> 
 					</factionDefs>
 				</li>
 			</startingColonists>
@@ -53,11 +66,15 @@
                         <li>
                             <kindDefs>
 								<li>Yautja</li>
+								<li>Colonist_YautjaUnblooded</li>
+								<li>Colonist_YautjaBlooded</li>
                             </kindDefs>
                             <chance>50.0</chance>
                         </li>
                     </pawnKindEntries>
                     <factionDefs>
+						<li>YautjaPlayerUnblooded</li> 
+						<li>YautjaPlayerBlooded</li> 
 						<li>YautjaPlayerColony</li> 
                     </factionDefs>
                 </li>
@@ -137,8 +154,8 @@
                 </li>
                 <li>
                     <defName>Xenophobia</defName>
-                    <degree>-1</degree>
-                    <chance>1</chance>
+                    <degree>0</degree>
+                    <chance>50</chance>
                 </li>
             </forcedRaceTraitEntries>
 			<disallowedTraits>
@@ -377,8 +394,13 @@
 						<li>RRY_YautjaTechHigh</li>
 						<li>YautjaArmour</li>
 						<li>RRY_YautjaMelee_Basic</li>
-						<li>RRY_YautjaMelee_Basic</li>
+						<li>RRY_YautjaMelee_Special</li>
 						<li>RRY_YautjaRanged_Basic</li>
+						<li>RRY_YautjaRanged_Med</li>
+						<li>RRY_YautjaRanged_Adv</li>
+						<li>RRY_YautjaMediComp</li>
+						<li>RRY_YautjaHealthShard</li>
+						<li>RRY_YautjaCloakGenerator</li>
                     </projects>
                 </li>
             </researchList>
@@ -513,7 +535,7 @@
       </li>
     </tools>
     <race>
-	  <fleshType>Yautja</fleshType>
+	  <fleshType>RRY_YautjaFlesh</fleshType>
       <thinkTreeMain>Humanlike</thinkTreeMain>
       <thinkTreeConstant>HumanlikeConstant</thinkTreeConstant>
       <intelligence>Humanlike</intelligence>

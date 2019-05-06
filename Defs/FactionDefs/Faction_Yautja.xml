@@ -29,12 +29,12 @@
 	<factionNameMaker>NamerRRYJungleClan</factionNameMaker>
 	<settlementNameMaker>NamerRRYautjaBases</settlementNameMaker>
 	<techLevel>Spacer</techLevel>
-  <backstoryCategories>
-			<li>Yautja_Standard</li>
-  	</backstoryCategories>
-			<hairTags>
-				<li>YaujtaDreds</li>
-			</hairTags>
+	<backstoryCategories>
+		<li>Raider</li>
+	</backstoryCategories>
+	<hairTags>
+		<li>Punk</li>
+	</hairTags>
     <naturalColonyGoodwill>
       <min>-60</min>
       <max>0</max>
@@ -46,14 +46,14 @@
     </visitorTraderKinds>
    <caravanTraderKinds>
    
-      <li>Caravan_Outlander_BulkGoods</li>
-      <li>Caravan_Outlander_CombatSupplier</li>
-      <li>Caravan_Outlander_Exotic</li>
+      <li>Caravan_Yautja_BulkGoods</li>
+      <li>Caravan_Yautja_CombatSupplier</li>
+      <li>Caravan_Yautja_Exotic</li>
 	  
     </caravanTraderKinds>
     <baseTraderKinds>
 	
-      <li>Base_Outlander_Standard</li>
+      <li>Base_Yautja_Standard</li>
 	  
     </baseTraderKinds>
     <allowedArrivalTemperatureRange>

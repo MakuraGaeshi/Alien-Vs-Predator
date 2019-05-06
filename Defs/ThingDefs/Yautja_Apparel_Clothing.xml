@@ -44,10 +44,9 @@
 			</tags>
 		</apparel>
 		<recipeMaker>
+			<researchPrerequisite>RRY_YautjaTechBase</researchPrerequisite>
 			<recipeUsers>
-				<li>ElectricTailoringBench</li>
-				<li>HandTailoringBench</li>
-				<li>CraftingSpot</li>
+				<li>RRY_TableMachining</li>
 			</recipeUsers>
 		</recipeMaker>
 		<colorGenerator Class="ColorGenerator_Options">
