@@ -95,6 +95,51 @@
         </MainVerb>
  </AbilityUser.AbilityDef>
  
+<!-- ======================== Yautja - Throw Smart Disk Ability ================================== -->
+<ThingDef ParentName="RRY_BaseThrownReturningProjectileAbility">
+   <defName>RRY_Projectile_SmartDisk</defName>
+		<graphicData>
+			<texPath>Things/Projectile/SmartDisk</texPath>	
+		</graphicData>
+		<comps>     
+		
+		</comps>
+		<projectile>
+			  <damageDef>RRY_RangedCut</damageDef>
+			  <armorPenetrationBase>1</armorPenetrationBase>
+			  <damageAmountBase>30</damageAmountBase>
+			  <speed>26</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+ </ThingDef>
+
+	<AbilityUser.AbilityDef ParentName="BaseAbility">
+        <defName>RRY_Ability_Throw_SmartDisk</defName>
+        <label>Throw Smart Disk</label>
+        <uiIconPath>Things/Projectile/SmartDisk</uiIconPath>
+        <description>Throw the Smart Disk.</description>
+        <MainVerb Class="AbilityUser.VerbProperties_Ability">
+            <verbClass>AbilityUser.Verb_UseAbility_RRY_Thrown</verbClass>
+            <AlwaysHits>false</AlwaysHits>
+            <tooltipShowProjectileDamage>true</tooltipShowProjectileDamage>
+            <tooltipShowExtraDamages>false</tooltipShowExtraDamages>
+            <tooltipShowHediffsToApply>false</tooltipShowHediffsToApply>
+            <tooltipShowMentalStatesToApply>false</tooltipShowMentalStatesToApply>
+            <hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>RRY_Projectile_SmartDisk</defaultProjectile>
+            <abilityDef>RRY_Ability_Throw_SmartDisk</abilityDef>
+            <warmupTime>2</warmupTime>
+            <SecondsToRecharge>10.0</SecondsToRecharge>
+            <burstShotCount>1</burstShotCount>
+			<range>20</range>
+			<soundCast>Interact_BeatFire</soundCast>
+            <isPrimary>false</isPrimary>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </MainVerb>
+ </AbilityUser.AbilityDef>
+ 
  <!-- ======================== Dark Eldar - Abilities ================================== -->
 <!-- ======================== Dark Eldar - Splinter Rifle Ability ================================== 
 <ThingDef ParentName="BaseProjectileAbility">

@@ -129,7 +129,7 @@ namespace RimWorld
             }
         }
 
-        /*
+        
         // Token: 0x06000E65 RID: 3685 RVA: 0x0006B914 File Offset: 0x00069D14
         private Thing SpawnTunnels(int hivelikeCount, Map map)
 		{
@@ -153,7 +153,7 @@ namespace RimWorld
 			}
 			return thing;
 		}
-        */
+        
 
         // Token: 0x04000939 RID: 2361
         private const float HivePoints = 550f;

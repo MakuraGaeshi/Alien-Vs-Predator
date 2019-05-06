@@ -66,7 +66,8 @@
     <None Include="util\Cloakgen.cs.bak" />
     <None Include="util\CompEquippableTurret - New.cs.bak" />
     <Compile Include="util\Class1.cs" />
-    <Compile Include="util\Class2.cs" />
+    <Compile Include="util\Returning_Projectile.cs" />
+    <Compile Include="util\Projectile_AbilityRRY_ThrownReturning.cs" />
     <Compile Include="util\Gizmo_ShardStatus.cs" />
     <Compile Include="Xenomorph\Class1.cs" />
     <Compile Include="Xenomorph\HediffComp_XenoSpawner.cs" />

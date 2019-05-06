@@ -481,7 +481,7 @@
       <li>
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
-        <defaultProjectile>SmartDisk_Thrown</defaultProjectile>
+        <defaultProjectile>RRY_SmartDisk_Thrown</defaultProjectile>
         <warmupTime>4</warmupTime>
         <range>24.9</range>
         <soundCast>Interact_BeatFire</soundCast>
@@ -507,8 +507,10 @@
       </li>
     </tools>
   </ThingDef>
+  <!-- Returning_Projectile --> 
   <ThingDef ParentName="BaseProjectileNeolithic">
-    <defName>SmartDisk_Thrown</defName>
+    <defName>RRY_SmartDisk_Thrown</defName>
+   <thingClass>Returning_Projectile</thingClass>
     <label>SmartDisk</label>
     <graphicData>
       <texPath>Things/Projectile/SmartDisk</texPath>
@@ -524,5 +526,21 @@
     </projectile>
   </ThingDef>
 	
+  <ThingDef ParentName="BaseProjectileNeolithic">
+    <defName>RRY_SmartDisk_Returning</defName>
+    <label>SmartDisk</label>
+    <graphicData>
+      <texPath>Things/Projectile/SmartDisk</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <flyOverhead>false</flyOverhead>
+      <damageDef>RRY_RangedCut</damageDef>
+      <damageAmountBase>0</damageAmountBase>
+      <stoppingPower>0</stoppingPower>
+      <armorPenetrationBase>0</armorPenetrationBase>
+      <speed>26</speed>
+    </projectile>
+  </ThingDef>
 	
 </Defs>
