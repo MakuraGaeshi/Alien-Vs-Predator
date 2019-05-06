@@ -2,7 +2,7 @@
 <Defs>
 
   <PawnKindDef Abstract="True" Name="BaseYautjaPawnKind">
-    <race>Alien_Yautja</race>
+    <race>RRY_Alien_Yautja</race>
     <combatPower>40</combatPower>
     <baseRecruitDifficulty>1.0</baseRecruitDifficulty>
     <isFighter>true</isFighter>
@@ -23,11 +23,11 @@
   </PawnKindDef>
 
   <PawnKindDef ParentName="BaseYautjaPawnKind">
-    <defName>Colonist_Yautja</defName>
+    <defName>Colonist_Yautja_RRY</defName>
     <label>Yautja colonist</label>
-    <defaultFactionType>YautjaPlayerColony</defaultFactionType>
+    <defaultFactionType>RRY_Yautja_PlayerColony</defaultFactionType>
     <backstoryCategories>
-			<li>Yautja_Standard</li>
+			<li>RRY_Yautja_Standard</li>
   	</backstoryCategories>
     <apparelTags>
 		<li>YautjaGreaves</li>
@@ -41,11 +41,11 @@
   </PawnKindDef>
   
   <PawnKindDef ParentName="BaseYautjaPawnKind">
-    <defName>Colonist_YautjaUnblooded</defName>
+    <defName>Colonist_YautjaUnblooded_RRY</defName>
     <label>Yautja colonist</label>
-    <defaultFactionType>YautjaPlayerColony</defaultFactionType>
+    <defaultFactionType>RRY_Yautja_PlayerColony</defaultFactionType>
     <backstoryCategories>
-		<li>Yautja_Unblooded</li>
+		<li>RRY_Yautja_Unblooded</li>
   	</backstoryCategories>
     <apparelTags>
 		<li>YautjaLightArmour</li>
@@ -59,11 +59,11 @@
   </PawnKindDef>
   
   <PawnKindDef ParentName="BaseYautjaPawnKind">
-    <defName>Colonist_YautjaBlooded</defName>
+    <defName>Colonist_YautjaBlooded_RRY</defName>
     <label>Yautja colonist</label>
-    <defaultFactionType>YautjaPlayerColony</defaultFactionType>
+    <defaultFactionType>RRY_Yautja_PlayerColony</defaultFactionType>
     <backstoryCategories>
-		<li>Yautja_Blooded</li>
+		<li>RRY_Yautja_Blooded</li>
   	</backstoryCategories>
     <apparelTags>
 		<li>YautjaLightArmour</li>
@@ -79,11 +79,11 @@
   
 
   <PawnKindDef ParentName="BaseYautjaPawnKind">
-    <defName>Colonist_Yautja_BadBlood</defName>
+    <defName>Colonist_Yautja_BadBlood_RRY</defName>
     <label>Bad blood colonist</label>
-    <defaultFactionType>YautjaPlayerColony</defaultFactionType>
+    <defaultFactionType>RRY_Yautja_PlayerColony</defaultFactionType>
     <backstoryCategories>
-			<li>Yautja_BadBlood</li>
+			<li>RRY_Yautja_BadBlood</li>
   	</backstoryCategories>
     <apparelTags>
 		<li>YautjaGreaves</li>

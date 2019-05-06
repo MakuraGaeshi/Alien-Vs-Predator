@@ -2,7 +2,7 @@
 <Defs>
 
   <TraitDef>
-    <defName>Berserker</defName>
+    <defName>RRY_Berserker</defName>
         <ignoreConfigErrors>true</ignoreConfigErrors>
 	<!-- 0.08 -->
     <commonality>0.00</commonality>

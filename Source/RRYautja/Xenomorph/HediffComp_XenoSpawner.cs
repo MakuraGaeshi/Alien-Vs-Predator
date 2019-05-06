@@ -128,7 +128,7 @@ namespace RRYautja
             Log.Message(string.Format("{0} Old pawnKindDef.lifeStages[0].bodyGraphicData.color: {1}", base.parent.pawn.Name, pawnKindDef.lifeStages[0].bodyGraphicData.color));
             Log.Message(string.Format("{0} base.parent.pawn.def.race.BloodDef.graphic.color: {1}", base.parent.pawn.Name, base.parent.pawn.def.race.BloodDef.graphic.color));
 #endif
-            if (Pawn.kindDef.race == YautjaDefOf.Alien_Yautja)
+            if (Pawn.kindDef.race == YautjaDefOf.RRY_Alien_Yautja)
             {
                 pawnKindDef = XenomorphDefOf.RRY_Xenomorph_Predalien;
             }

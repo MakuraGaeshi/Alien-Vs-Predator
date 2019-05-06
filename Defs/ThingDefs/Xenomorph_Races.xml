@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-<ThingDef Name="BaseXenomorphPawn" Abstract="True">
+<ThingDef Name="RRY_BaseXenomorphPawn" Abstract="True">
     <thingClass>Pawn</thingClass>
     <category>Pawn</category>
     <selectable>true</selectable>
@@ -48,7 +48,7 @@
     <drawGUIOverlay>true</drawGUIOverlay>
 </ThingDef>
 
-  <ThingDef ParentName="BaseXenomorphPawn" Name="BaseXenomorph" Abstract="True">
+  <ThingDef ParentName="RRY_BaseXenomorphPawn" Name="RRY_BaseXenomorph" Abstract="True">
     <soundImpactDefault>BulletImpact_Flesh</soundImpactDefault>
     <statBases>
       <PsychicSensitivity>0</PsychicSensitivity>
@@ -76,14 +76,14 @@
     </race>
   </ThingDef>
 
-  <PawnKindDef Name="BaseXenomorphKind" Abstract="True">
+  <PawnKindDef Name="RRY_BaseXenomorphKind" Abstract="True">
     <defaultFactionType>RRY_Xenomorph</defaultFactionType>
     <aiAvoidCover>true</aiAvoidCover>
     <destroyGearOnDrop>true</destroyGearOnDrop>
   </PawnKindDef>
 
   <!-- Face Hugger - fast melee -->
-  <ThingDef ParentName="BaseXenomorph">
+  <ThingDef ParentName="RRY_BaseXenomorph">
     <defName>RRY_Xenomorph_FaceHugger</defName>
     <label>Facehugger</label>
     <description>Facehuggers are the second stage in the Xenomorph's life cycle. It has eight long, finger-like legs, which allow it to crawl rapidly, and a long tail adapted for making great leaps. These particular appendages give it an appearance somewhat comparable to chelicerate arthropods such as arachnids and horseshoe crabs./n/nThe facehugger is a parasitoid; its only purpose is to make contact with the host's mouth for the implantation process by gripping its legs around the victim's head and wrapping its tail around the host's neck. Upon making contact, the facehugger administers a cynose-based paralytic in order to render it unconscious and immobile. During a successful attachment, the facehugger will insert a proboscis down the host's throat while simultaneously implanting an embryo. The host is kept alive, and the creature breathes for the host. Attempts to remove facehuggers generally prove fatal, as the parasitoid will respond by tightening its tail around the host's neck, and its acidic blood prevents it from being cut away. In addition, its grip on the host's head is strong enough to tear the host's face off if it is forcibly removed./n/nOnce the embryo is implanted, the facehugger will remain attached until the implant is secure, which can take anywhere from less than a minute to 16 hours. Once this happens, the parasite detaches, crawls away, and dies. The victim awakens with no awareness of the implantation, believing themselves to have been asleep, and appears to have a normal, healthy bodily function.</description>
@@ -128,9 +128,9 @@
         <li>
           <def>RRY_XFacehuggerFullyFormed</def>
           <minAge>0</minAge>
-          <soundWounded>Pawn_Mech_Centipede_Wounded</soundWounded>
-          <soundDeath>Pawn_Mech_Centipede_Death</soundDeath>
-          <soundCall>Pawn_Mech_Centipede_Call</soundCall>
+          <soundWounded>RRY_Pawn_Xenomorph_Queen_Wounded</soundWounded>
+          <soundDeath>RRY_Pawn_Xenomorph_Queen_Death</soundDeath>
+          <soundCall>RRY_Pawn_Xenomorph_Queen_</soundCall>
         </li>
       </lifeStageAges>
       <soundCallIntervalRange>
@@ -153,7 +153,7 @@
 	-->
   </ThingDef>
   
-  <PawnKindDef ParentName="BaseXenomorphKind">
+  <PawnKindDef ParentName="RRY_BaseXenomorphKind">
     <defName>RRY_Xenomorph_FaceHugger</defName>
     <label>Face Hugger</label>
     <race>RRY_Xenomorph_FaceHugger</race>
@@ -179,7 +179,7 @@
   </PawnKindDef>
 
   <!-- Queen -->
-  <ThingDef ParentName="BaseXenomorph">
+  <ThingDef ParentName="RRY_BaseXenomorph">
     <defName>RRY_Xenomorph_Queen</defName>
     <label>Queen</label>
     <description>Queen Xenomorphs are significantly larger and stronger than the normal adults, being approximately 4.5 metres (15 ft) tall. Their body structure differs also, having two pairs of arms, one large and one small. The queen's head is larger than those of other adult Xenomorphs and is protected by a large, flat crest, like a crown, which varies from queen to queen. Unlike other Xenomorphs, the queen's external mouth is separately segmented from the rest of her head, allowing her to turn her mouth left and right almost to the point where it is facing perpendicular to the direction of the rest of her head./n/nEgg-laying Xenomorph queens possess an immense ovipositor attached to their lower torso, similar to a queen termite's. Unlike insect queens, there appears to be no need for an Xenomorph queen's eggs to be fertilized. When attached to her ovipositor, the queen is supported by a "biomechanical throne" that consists of a lattice of struts resembling massive insect legs.</description>
@@ -292,37 +292,37 @@
         <li>
           <def>RRY_XenomorphChestBursterBaby</def>
           <minAge>0</minAge>
-          <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
-          <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
-          <soundCall>Pawn_Mech_Scyther_Call</soundCall>
+          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
         <li>
           <def>RRY_XenomorphChestBursterBig</def>
           <minAge>0.0041666666666666</minAge>
-          <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
-          <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
-          <soundCall>Pawn_Mech_Scyther_Call</soundCall>
+          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
         <li>
           <def>RRY_XenomorphFormedBaby</def>
           <minAge>0.0083333333333332</minAge>
-          <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
-          <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
-          <soundCall>Pawn_Mech_Scyther_Call</soundCall>
+          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
         <li>
           <def>RRY_XenomorphFormedMid</def>
           <minAge>0.0124999999999998</minAge>
-          <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
-          <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
-          <soundCall>Pawn_Mech_Scyther_Call</soundCall>
+          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
         <li>
           <def>RRY_XenomorphFullyFormed</def>
           <minAge>0.0166666666666667</minAge>
-          <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
-          <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
-          <soundCall>Pawn_Mech_Scyther_Call</soundCall>
+          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
       </lifeStageAges>
       <soundCallIntervalRange>
@@ -353,7 +353,7 @@
 	-->
   </ThingDef>
 
-  <PawnKindDef ParentName="BaseXenomorphKind">
+  <PawnKindDef ParentName="RRY_BaseXenomorphKind">
     <defName>RRY_Xenomorph_Queen</defName>
     <label>Queen</label>
     <race>RRY_Xenomorph_Queen</race>
@@ -421,7 +421,7 @@
   </PawnKindDef>
 
   <!-- Walker (Warrior/Runner/Drone) base -->
-  <ThingDef ParentName="BaseXenomorph" Name="BaseXenomorphWalker" Abstract="True">
+  <ThingDef ParentName="RRY_BaseXenomorph" Name="BaseXenomorphWalker" Abstract="True">
     <race>
       <intelligence>ToolUser</intelligence>
       <thinkTreeMain>RRY_Xenommorph</thinkTreeMain>
@@ -430,37 +430,37 @@
         <li>
           <def>RRY_XenomorphChestBursterBaby</def>
           <minAge>0</minAge>
-          <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
-          <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
-          <soundCall>Pawn_Mech_Scyther_Call</soundCall>
+          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
         <li>
           <def>RRY_XenomorphChestBursterBig</def>
           <minAge>0.0041666666666666</minAge>
-          <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
-          <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
-          <soundCall>Pawn_Mech_Scyther_Call</soundCall>
+          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
         <li>
           <def>RRY_XenomorphFormedBaby</def>
           <minAge>0.0083333333333332</minAge>
-          <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
-          <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
-          <soundCall>Pawn_Mech_Scyther_Call</soundCall>
+          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
         <li>
           <def>RRY_XenomorphFormedMid</def>
           <minAge>0.0124999999999998</minAge>
-          <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
-          <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
-          <soundCall>Pawn_Mech_Scyther_Call</soundCall>
+          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
         <li>
           <def>RRY_XenomorphFullyFormed</def>
           <minAge>0.0166666666666667</minAge>
-          <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
-          <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
-          <soundCall>Pawn_Mech_Scyther_Call</soundCall>
+          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
       </lifeStageAges>
       <soundCallIntervalRange>
@@ -607,7 +607,7 @@
     </race>
   </ThingDef>
 
-  <PawnKindDef ParentName="BaseXenomorphKind">
+  <PawnKindDef ParentName="RRY_BaseXenomorphKind">
     <defName>RRY_Xenomorph_Drone</defName>
     <label>Drone</label>
     <race>RRY_Xenomorph_Drone</race>
@@ -789,7 +789,7 @@
     </race>
   </ThingDef>
 
-  <PawnKindDef ParentName="BaseXenomorphKind">
+  <PawnKindDef ParentName="RRY_BaseXenomorphKind">
     <defName>RRY_Xenomorph_Warrior</defName>
     <label>Warrior</label>
     <race>RRY_Xenomorph_Warrior</race>
@@ -974,7 +974,7 @@
     </race>
   </ThingDef>
 
-  <PawnKindDef ParentName="BaseXenomorphKind">
+  <PawnKindDef ParentName="RRY_BaseXenomorphKind">
     <defName>RRY_Xenomorph_Runner</defName>
     <label>Runner</label>
     <race>RRY_Xenomorph_Runner</race>
@@ -1154,7 +1154,7 @@
     </race>
   </ThingDef>
 
-  <PawnKindDef ParentName="BaseXenomorphKind">
+  <PawnKindDef ParentName="RRY_BaseXenomorphKind">
     <defName>RRY_Xenomorph_Predalien</defName>
     <label>Predalien</label>
     <race>RRY_Xenomorph_Predalien</race>
@@ -1221,7 +1221,7 @@
   </PawnKindDef>
 
  <!-- Walker (Neomorph) base -->
-  <ThingDef ParentName="BaseXenomorph" Name="BaseNeomorphWalker" Abstract="True">
+  <ThingDef ParentName="RRY_BaseXenomorph" Name="BaseNeomorphWalker" Abstract="True">
     <race>
       <intelligence>ToolUser</intelligence>
       <thinkTreeMain>RRY_Xenommorph</thinkTreeMain>
@@ -1230,37 +1230,37 @@
         <li>
           <def>RRY_XenomorphChestBursterBaby</def>
           <minAge>0</minAge>
-          <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
-          <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
-          <soundCall>Pawn_Mech_Scyther_Call</soundCall>
+          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
         <li>
           <def>RRY_XenomorphChestBursterBig</def>
           <minAge>0.0041666666666666</minAge>
-          <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
-          <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
-          <soundCall>Pawn_Mech_Scyther_Call</soundCall>
+          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
         <li>
           <def>RRY_XenomorphFormedBaby</def>
           <minAge>0.0083333333333332</minAge>
-          <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
-          <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
-          <soundCall>Pawn_Mech_Scyther_Call</soundCall>
+          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
         <li>
           <def>RRY_XenomorphFormedMid</def>
           <minAge>0.0124999999999998</minAge>
-          <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
-          <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
-          <soundCall>Pawn_Mech_Scyther_Call</soundCall>
+          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
         <li>
           <def>RRY_XenomorphFullyFormed</def>
           <minAge>0.0166666666666667</minAge>
-          <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
-          <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
-          <soundCall>Pawn_Mech_Scyther_Call</soundCall>
+          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
       </lifeStageAges>
       <soundCallIntervalRange>
@@ -1374,7 +1374,7 @@
     </race>
   </ThingDef>
 
-  <PawnKindDef ParentName="BaseXenomorphKind">
+  <PawnKindDef ParentName="RRY_BaseXenomorphKind">
     <defName>RRY_Xenomorph_Neomorph</defName>
     <label>Neomorph</label>
     <race>RRY_Xenomorph_Neomorph</race>
@@ -1444,108 +1444,5 @@
     </weaponTags>
   </PawnKindDef>
   
-  <!-- Neomorph - Basic -->
-  <ThingDef ParentName="BaseNeomorphWalker">
-    <defName>RRY_Xenomorph_Neomorphb</defName>
-    <label>Neomorph</label>
-    <description>A human-sized Neomorph with huge optical sensors on its face for aiming weapons at long range. While effective at distance, it is weaker in melee combat. Veterans of mechanoid wars know that often, the safest thing to do against a lancer is to charge.</description>
-    <statBases>
-      <MoveSpeed>5.9</MoveSpeed>
-      <ArmorRating_Blunt>0.20</ArmorRating_Blunt>
-      <ArmorRating_Sharp>0.40</ArmorRating_Sharp>
-      <MeatAmount>30</MeatAmount>
-      <LeatherAmount>30</LeatherAmount>
-    </statBases>
-    <tools>
-      <li>
-        <label>tail</label>
-        <capacities>
-          <li>RRY_TailWhip</li>
-        </capacities>
-        <power>5</power>
-        <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RRY_Xeno_Tail_AttackTool</linkedBodyPartsGroup>
-        <chanceFactor>0.2</chanceFactor>
-      </li>
-    </tools>
-    <race>
-      <body>RRY_Xenomorph_Neomorph</body>
-	  <useMeatFrom>RRY_Xenomorph_FaceHugger</useMeatFrom>
-      <baseHealthScale>1.72</baseHealthScale>
-      <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
-      <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
-      <soundMeleeMiss>Pawn_Melee_Punch_Miss</soundMeleeMiss>
-    </race>
-  </ThingDef>
 
-  <PawnKindDef ParentName="BaseXenomorphKind">
-    <defName>RRY_Xenomorph_Neomorphb</defName>
-    <label>Neomorph</label>
-    <race>RRY_Xenomorph_Neomorphb</race>
-    <combatPower>140</combatPower>
-    <lifeStages>
-      <li>
-        <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
-          <graphicClass>Graphic_Multi</graphicClass>
-          <drawSize>0.5</drawSize>
-          <shadowData>
-            <volume>(0.6, 0.8, 0.6)</volume>
-          </shadowData>
-          <shaderType>CutoutComplex</shaderType>
-        </bodyGraphicData>
-      </li>
-      <li>
-        <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
-          <graphicClass>Graphic_Multi</graphicClass>
-          <color>(180,180,180)</color>
-          <drawSize>0.75</drawSize>
-          <shadowData>
-            <volume>(0.6, 0.8, 0.6)</volume>
-          </shadowData>
-        </bodyGraphicData>
-      </li>
-      <li>
-        <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_Neomorph</texPath>
-          <graphicClass>Graphic_Multi</graphicClass>
-          <color>(180,180,180)</color>
-          <drawSize>1.0</drawSize>
-          <shadowData>
-            <volume>(0.4, 0.8, 0.4)</volume>
-          </shadowData>
-        </bodyGraphicData>
-      </li>
-      <li>
-        <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_Neomorph</texPath>
-          <graphicClass>Graphic_Multi</graphicClass>
-          <color>(180,180,180)</color>
-          <drawSize>1.25</drawSize>
-          <shadowData>
-            <volume>(0.4, 0.8, 0.4)</volume>
-          </shadowData>
-        </bodyGraphicData>
-      </li>
-      <li>
-        <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_Neomorph</texPath>
-          <graphicClass>Graphic_Multi</graphicClass>
-          <color>(221,231,237)</color>
-          <drawSize>1.7</drawSize>
-          <shadowData>
-            <volume>(0.4, 0.8, 0.4)</volume>
-          </shadowData>
-        </bodyGraphicData>
-      </li>
-    </lifeStages>
-    <weaponMoney>
-	
-    </weaponMoney>
-    <weaponTags>
-	
-    </weaponTags>
-  </PawnKindDef>
- 
 </Defs>

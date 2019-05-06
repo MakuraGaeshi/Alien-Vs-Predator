@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 	<!--==================== Base Damage Type - STD =========================-->
-	<DamageDef Name="LocalRangedInjuryBase" Abstract="True">
+	<DamageDef Name="RRY_LocalRangedInjuryBase" Abstract="True">
 		<workerClass>DamageWorker_AddInjury</workerClass>
 		<harmsHealth>true</harmsHealth>
 		<isRanged>true</isRanged>
@@ -9,7 +9,7 @@
 	
 	
   <DamageDef Name="BombBase">
-    <defName>RRYBomb</defName>
+    <defName>RRY_Bomb</defName>
     <label>bomb</label>
     <workerClass>DamageWorker_AddInjury</workerClass>
     <externalViolence>true</externalViolence>
@@ -36,13 +36,13 @@
   </DamageDef>
 
     <DamageDef ParentName="BombBase">
-    <defName>RRYBombSuper</defName>
+    <defName>RRY_BombSuper</defName>
     <defaultDamage>550</defaultDamage>
     <defaultStoppingPower>2.0</defaultStoppingPower>
     <defaultArmorPenetration>1.30</defaultArmorPenetration>
   </DamageDef>
 	
-	<DamageDef Name="PlasmaInjury" ParentName="LocalRangedInjuryBase" Abstract="True">
+	<DamageDef Name="RRY_PlasmaInjuryBase" ParentName="RRY_LocalRangedInjuryBase" Abstract="True">
 		<externalViolence>true</externalViolence>
 		<isExplosive>true</isExplosive>
 		<hediff>Burn</hediff>
@@ -54,8 +54,8 @@
 	</DamageDef>
 	
 	<!--==================== Plasma Damage Type =========================-->
-	<DamageDef ParentName="PlasmaInjury">
-		<defName>RRYPlasma</defName>
+	<DamageDef ParentName="RRY_PlasmaInjuryBase">
+		<defName>RRY_Plasma</defName>
 		<label>plasma</label>
 		<deathMessage>{0} caught a plasma bolt.</deathMessage>
 		<defaultDamage>10</defaultDamage>
@@ -64,7 +64,7 @@
 	
 	<!--==================== Plasma Damage Type =========================-->
   <DamageDef>
-    <defName>RangedCut</defName>
+    <defName>RRY_RangedCut</defName>
     <label>cut</label>
     <workerClass>DamageWorker_AddInjury</workerClass>
     <externalViolence>true</externalViolence>

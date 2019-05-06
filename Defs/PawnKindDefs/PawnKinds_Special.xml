@@ -1,73 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <PawnKindDef>
-    <defName>Slave</defName>
-    <label>slave</label>
-    <combatPower>30</combatPower>
-    <race>Human</race>
-    <baseRecruitDifficulty>0.30</baseRecruitDifficulty>
-    <backstoryCategories>
-      <li>Slave</li>
-    </backstoryCategories>
-    <defaultFactionType>OutlanderCivil</defaultFactionType>
-    <itemQuality>Poor</itemQuality>
-    <backstoryCryptosleepCommonality>0.10</backstoryCryptosleepCommonality>
-    <isFighter>false</isFighter>
-    <chemicalAddictionChance>0.05</chemicalAddictionChance>
-    <gearHealthRange>
-      <min>0.2</min>
-      <max>0.8</max>
-    </gearHealthRange>
-    <apparelTags>
-      <li>IndustrialBasic</li>
-    </apparelTags>
-    <apparelMoney>
-      <min>0</min>
-      <max>350</max>
-    </apparelMoney>
-    <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
-    <techHediffsChance>0.03</techHediffsChance>
-    <techHediffsMoney>
-      <min>50</min>
-      <max>800</max>
-    </techHediffsMoney>
-    <techHediffsTags>
-      <li>Poor</li>
-    </techHediffsTags>
-    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
-    <invNutrition>1</invNutrition>
-    <invFoodDef>Pemmican</invFoodDef>
-  </PawnKindDef>
-
-  <PawnKindDef>
-    <defName>WildMan</defName>
-    <label>wild man</label>
-    <labelPlural>wild men</labelPlural>
-    <labelFemale>wild woman</labelFemale>
-    <labelFemalePlural>wild women</labelFemalePlural>
-    <combatPower>70</combatPower>
-    <race>Human</race>
-    <backstoryCategories>
-      <li>Tribal</li>
-    </backstoryCategories>
-    <backstoryCryptosleepCommonality>0.1</backstoryCryptosleepCommonality>
-    <baseRecruitDifficulty>0.50</baseRecruitDifficulty>
-    <itemQuality>Poor</itemQuality>
-    <chemicalAddictionChance>0.03</chemicalAddictionChance>
-    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
-    <techHediffsChance>0.03</techHediffsChance>
-    <techHediffsMoney>
-      <min>50</min>
-      <max>50</max>
-    </techHediffsMoney>
-    <techHediffsTags>
-      <li>Poor</li>
-    </techHediffsTags>
-  </PawnKindDef>
-
   <PawnKindDef ParentName="OutlanderBase">
-    <defName>StrangerInBlack</defName>
+    <defName>StrangerInBlackYautja_RRY</defName>
     <label>stranger in black</label>
     <labelMale>man in black</labelMale>
     <labelFemale>woman in black</labelFemale>
@@ -76,7 +11,7 @@
     <minGenerationAge>20</minGenerationAge>
     <maxGenerationAge>50</maxGenerationAge>
     <isFighter>true</isFighter>
-    <race>Human</race>
+    <race>RRY_Alien_Yautja</race>
     <chemicalAddictionChance>0.05</chemicalAddictionChance>
     <backstoryCryptosleepCommonality>0.05</backstoryCryptosleepCommonality>
     <backstoryCategories>

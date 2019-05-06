@@ -2,7 +2,7 @@
 <Defs>
 
   <TraderKindDef>
-    <defName>Base_Yautja_Standard</defName>
+    <defName>RRY_Base_Yautja_Standard</defName>
     <stockGenerators>
       <li Class="StockGenerator_SingleDef">
         <thingDef>Silver</thingDef>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Defs>
+  <!-- ========================BaseDef================================== 
+  <AbilityUser.AbilityDef Name="RRY_BaseAbility" Abstract="True">
+    <uiIconPath>UI/Glow_Corrupt</uiIconPath>
+  </AbilityUser.AbilityDef>
+-->
+  <!-- -->
+ 
+<ThingDef Name="RRY_BaseProjectileAbility" Class="AbilityUser.ProjectileDef_Ability" ParentName="BaseBullet" Abstract="True">
+   <thingClass>AbilityUser.Projectile_AbilityRRY</thingClass>
+   <label>Ability Projectile</label>
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+ </ThingDef>
+ 
+<ThingDef Name="RRY_BaseThrownProjectileAbility" Class="AbilityUser.ProjectileDef_Ability" ParentName="BaseBullet" Abstract="True">
+   <thingClass>AbilityUser.Projectile_AbilityRRY_ThrownWeapon</thingClass>
+   <label>Ability Projectile</label>
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+ </ThingDef>
+ 
+</Defs>

@@ -151,7 +151,7 @@
   </ThingDef>
   
 	<!--==================== Mod - Base Sharp Quality Melee Weapon Template =========================-->
-	<ThingDef Name="RRYBaseMeleeWeapon_Sharp_Quality" Abstract="True" ParentName="RRYBaseMeleeWeapon_Sharp">
+	<ThingDef Name="RRY_BaseMeleeWeapon_Sharp_Quality" Abstract="True" ParentName="RRYBaseMeleeWeapon_Sharp">
 		<comps>
 			<li>
 				<compClass>CompQuality</compClass>

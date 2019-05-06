@@ -2,14 +2,14 @@
 <Defs>
 
 	<ScenarioDef>
-	<defName>RRYScenarioTest</defName>
+	<defName>RRY_ScenarioTest</defName>
 		<label>Testing AVP Mod pawns</label>
 		<description>...</description>
 <scenario>
 <summary>.</summary>
 		<playerFaction>
 			<def>PlayerFaction</def>
-			<factionDef>YautjaPlayerBlooded</factionDef>
+			<factionDef>RRY_Yautja_PlayerBlooded</factionDef>
 		</playerFaction>
 		<parts>
 			<li Class="ScenPart_ConfigPage_ConfigureStartingPawns">
@@ -85,7 +85,7 @@
 			<!--
 			<li Class="ScenPart_StartingThing_Defined">
 				<def>StartingThing_Defined</def>
-				<thingDef>Yautja_SmartDisk</thingDef>
+				<thingDef>RRY_Gun_SmartDisk</thingDef>
 				<count>6</count>
 			</li>
 			<li Class="ScenPart_StartingThing_Defined">

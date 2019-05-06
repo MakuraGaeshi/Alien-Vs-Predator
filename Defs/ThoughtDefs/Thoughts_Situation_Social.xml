@@ -2,7 +2,7 @@
 <Defs>
   <!-- affecting opinion -->
 	<ThoughtDef>
-		<defName>HonourableVsBadBlood</defName>
+		<defName>RRY_HonourableVsBadBlood</defName>
 		<thoughtClass>Thought_SituationalSocial</thoughtClass>
 		<workerClass>ThoughtWorker_HonourableVsBadBlood</workerClass>
     <validWhileDespawned>true</validWhileDespawned>
@@ -15,7 +15,7 @@
 	</ThoughtDef>
 
 	<ThoughtDef>
-		<defName>BadBloodVsHonourable</defName>
+		<defName>RRY_BadBloodVsHonourable</defName>
 		<thoughtClass>Thought_SituationalSocial</thoughtClass>
 		<workerClass>ThoughtWorker_BadBloodVsHonourable</workerClass>
     <validWhileDespawned>true</validWhileDespawned>
@@ -43,7 +43,7 @@
 -->
 	
 	<ThoughtDef>
-		<defName>UnbloodedVs_ThoughtDef</defName>
+		<defName>RRY_UnbloodedVs_ThoughtDef</defName>
 		<thoughtClass>Thought_SituationalSocial</thoughtClass>
 		<workerClass>ThoughtWorker_Unblooded</workerClass>
     <hediff>RRY_Hediff_Unblooded</hediff>
@@ -65,7 +65,7 @@
 	</ThoughtDef>
 
 	<ThoughtDef>
-		<defName>UnmarkedVs_ThoughtDef</defName>
+		<defName>RRY_UnmarkedVs_ThoughtDef</defName>
 		<thoughtClass>Thought_SituationalSocial</thoughtClass>
 		<workerClass>ThoughtWorker_Unmarked</workerClass>
     <hediff>RRY_Hediff_BloodedUM</hediff>
@@ -87,7 +87,7 @@
 	</ThoughtDef>
 
 	<ThoughtDef>
-		<defName>MarkedVs_ThoughtDef</defName>
+		<defName>RRY_MarkedVs_ThoughtDef</defName>
 		<thoughtClass>Thought_SituationalSocial</thoughtClass>
 		<workerClass>ThoughtWorker_Marked</workerClass>
     <hediff>RRY_Hediff_BloodedM</hediff>

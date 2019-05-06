@@ -101,7 +101,12 @@ namespace RRYautja
 
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
+
             base.PostSpawnSetup(respawningAfterLoad);
+            if ((Pawn.story.hairDef != YautjaDefOf.RRY_Yaujta_Dreds && Pawn.story.hairDef != YautjaDefOf.RRY_Yaujta_Ponytail && Pawn.story.hairDef != YautjaDefOf.RRY_Yaujta_Bald))
+            {
+                Pawn.story.hairDef = Rand.Chance(0.5f) ? YautjaDefOf.RRY_Yaujta_Dreds : YautjaDefOf.RRY_Yaujta_Ponytail;
+            }
         }
 
         public override void CompTick()
@@ -180,7 +185,7 @@ namespace RRYautja
                         {
                             markedDef = YautjaDefOf.RRY_Hediff_BloodedMPredalien;
                         }
-                        else if (other.kindDef.race == YautjaDefOf.Alien_Yautja && other.story.adulthood.identifier.StartsWith("Yautja_BadBlood") && other.Dead)
+                        else if (other.kindDef.race == YautjaDefOf.RRY_Alien_Yautja && other.story.adulthood.identifier.StartsWith("Yautja_BadBlood") && other.Dead)
                         {
                             markedDef = YautjaDefOf.RRY_Hediff_BloodedMBadBlood;
                         }
@@ -200,7 +205,7 @@ namespace RRYautja
                         {
                             markedDef = YautjaDefOf.RRY_Hediff_BloodedMWorthyHumanlike;
                         }
-                        else if (other.kindDef.race == YautjaDefOf.Alien_Yautja && !other.story.adulthood.identifier.StartsWith("Yautja_BadBlood") && other.Dead && (other.Faction.PlayerGoodwill > 0 || other.Faction.IsPlayer))
+                        else if (other.kindDef.race == YautjaDefOf.RRY_Alien_Yautja && !other.story.adulthood.identifier.StartsWith("Yautja_BadBlood") && other.Dead && (other.Faction.PlayerGoodwill > 0 || other.Faction.IsPlayer))
                         {
                             markedDef = YautjaDefOf.RRY_Hediff_BloodedMBadBlood;
                         }

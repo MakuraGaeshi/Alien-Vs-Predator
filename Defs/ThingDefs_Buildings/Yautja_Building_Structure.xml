@@ -2,7 +2,7 @@
 <Defs>
 
 
-	<ThingDef Name="NW_sterileWallBuildingBase" Abstract="True">
+	<ThingDef Name="RRY_WallBuildingBase" Abstract="True">
 		<category>Building</category>
 		<thingClass>Building</thingClass>
 		<soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
@@ -14,7 +14,7 @@
 		<filthLeaving>Filth_RubbleBuilding</filthLeaving>
 	</ThingDef>
 
-	<ThingDef ParentName="NW_sterileWallBuildingBase">
+	<ThingDef ParentName="RRY_WallBuildingBase">
     <defName>RRY_YautjaWall</defName>
     <label>Yautja Wall</label>
     <description>A wall worthy of the Yautja.</description>

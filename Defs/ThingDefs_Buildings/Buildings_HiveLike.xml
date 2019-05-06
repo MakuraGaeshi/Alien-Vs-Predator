@@ -82,7 +82,7 @@
   </ThingDef>
   
   <ThingDef Class="ThingDef_Hivelike" ParentName="BuildingHivelikeBase">
-    <defName>XenomorphHive</defName>
+    <defName>RRY_XenomorphHive</defName>
     <label>xenomorph hive</label>
     <description>If activated, it will spawn additional pawns and hive over time.</description>
     <thingClass>HiveLike</thingClass>
@@ -155,7 +155,7 @@
     <defName>TunnelHiveLikeSpawner</defName>
     <label>tunnellike</label>
     <thingClass>TunnelHiveLikeSpawner</thingClass>
-		<HiveDef>XenomorphHive</HiveDef>
+		<HiveDef>RRY_XenomorphHive</HiveDef>
 		<!--
 		<Faction>OGChaosDeamonFaction</Faction>
 		<strikespreexplode>true</strikespreexplode>

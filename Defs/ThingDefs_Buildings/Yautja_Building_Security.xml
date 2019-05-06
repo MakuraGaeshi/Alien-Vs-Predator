@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
   <ThingDef ParentName="BuildingBase">
-    <defName>RRYTrapSpike</defName>
+    <defName>RRY_TrapSpike</defName>
     <label>spike trap</label>
     <description>Five spikes under tension, connected to a touch-activated trigger. When the victim disturbs the trigger, the spikes spring forthm and strike the victim. Since it is hidden in the surrounding terrain, it cannot be placed adjacent to other traps. Animals can sense these when calm.</description>
     <thingClass>RRYautja.Building_TrapRearmable</thingClass>
@@ -37,7 +37,7 @@
       <li>Stony</li>
     </stuffCategories>
     <costStuffCount>90</costStuffCount>
-    <designationCategory>Security</designationCategory>
+    <designationCategory>RRY_Security</designationCategory>
     <designationHotKey>Misc6</designationHotKey>
     <building>
 	  <trapUnarmedGraphicData>
@@ -88,13 +88,13 @@
       <li>Stony</li>
     </stuffCategories>
     <costStuffCount>70</costStuffCount>
-    <designationCategory>Security</designationCategory>
+    <designationCategory>RRY_Security</designationCategory>
     <designationHotKey>Misc6</designationHotKey>
     <building>
       <isTrap>true</isTrap>
       <trapDamageCategory>Sharp</trapDamageCategory>
       <trapUnarmedGraphicData>
-        <texPath>Things/Buildings/Security/DeadfallUnarmed</texPath>
+        <texPath>Things/Buildings/RRY_Security/DeadfallUnarmed</texPath>
         <graphicClass>Graphic_Single</graphicClass>
         <shaderType>Cutout</shaderType>
       </trapUnarmedGraphicData>
@@ -105,13 +105,13 @@
   -->
   
   <DesignationDef>
-		<defName>RearmTrap</defName>
+		<defName>RRY_RearmTrap</defName>
 		<texturePath>UI/Designators/RearmTrap</texturePath>
 		<targetType>Thing</targetType>
 	</DesignationDef>
     
   <DesignationCategoryDef>
-    <defName>Security</defName>
+    <defName>RRY_Security</defName>
     <label>security</label>
     <order>300</order>
     <specialDesignatorClasses>
@@ -121,11 +121,11 @@
 
   
   <WorkGiverDef>
-    <defName>RearmTraps</defName>
-    <label>rearm traps</label>
+    <defName>RRY_RearmTraps</defName>
+    <label>Rearm traps</label>
     <giverClass>RRYautja.WorkGiver_RearmTraps</giverClass>
-    <workType>Rearm</workType>
-    <verb>rearm</verb>
+    <workType>RRY_Rearm</workType>
+    <verb>Rearm</verb>
     <gerund>rearming</gerund>
     <priorityInType>50</priorityInType>
     <requiredCapacities>
@@ -134,7 +134,7 @@
   </WorkGiverDef>
   
   <WorkTypeDef>
-		<defName>Rearm</defName>
+		<defName>RRY_Rearm</defName>
 		<labelShort>Rearm</labelShort>
 		<pawnLabel>Rearmer</pawnLabel>
 		<gerundLabel>Rearming trap</gerundLabel>
@@ -146,8 +146,8 @@
 
   
   <RecordDef>
-    <defName>TrapsRearmed</defName>
-    <label>trapsRearmed</label>
+    <defName>RRY_TrapsRearmed</defName>
+    <label>Traps Rearmed</label>
     <description>The number of traps I have rearmed.</description>
     <type>Int</type>
   </RecordDef>

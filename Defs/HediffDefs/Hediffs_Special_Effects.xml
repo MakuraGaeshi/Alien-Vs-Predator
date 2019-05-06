@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 <!-- ==================== Base HeDiffs ========================= -->
-	<HediffDef Name="RRYSpecialBadHeDiff" Abstract="True">
+	<HediffDef Name="RRY_SpecialBadHeDiff" Abstract="True">
 		<hediffClass>HediffWithComps</hediffClass>
 		<defaultLabelColor>(0.8, 0.8, 0.35)</defaultLabelColor>
     <isBad>true</isBad>
@@ -9,7 +9,7 @@
 	<makesSickThought>false</makesSickThought>
 	</HediffDef>
 	
-	<HediffDef Name="RRYSpecialGoodHeDiff" Abstract="True">
+	<HediffDef Name="RRY_SpecialGoodHeDiff" Abstract="True">
 		<hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(0.5, 0.5, 0.9)</defaultLabelColor>
     <isBad>false</isBad>
@@ -18,8 +18,8 @@
 	</HediffDef>
 
 	
-  <HediffDef ParentName="RRYSpecialGoodHeDiff">
-    <defName>RRYWristbladeHeDiff</defName>
+  <HediffDef ParentName="RRY_SpecialGoodHeDiff">
+    <defName>RRY_WristbladeHeDiff</defName>
     <label>wristblade</label>
     <labelNoun>a wristblade</labelNoun>
     <stages>
@@ -60,7 +60,7 @@
   </HediffDef>
   
 <!--
-    <HediffDef ParentName="RRYSpecialGoodHeDiff">
+    <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_Cloaked</defName>
     <label>cloak</label>
     <labelNoun> </labelNoun>
@@ -80,7 +80,7 @@
 -->
 
 <!-- ==================== Blood Status HeDiffs ========================= -->
-  <HediffDef ParentName="RRYSpecialGoodHeDiff">
+  <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_Unblooded</defName>
     <label>unblooded</label>
     <labelNoun>an unblooded Yautja</labelNoun>
@@ -97,7 +97,7 @@
     </comps>
   </HediffDef>
   
-  <HediffDef ParentName="RRYSpecialGoodHeDiff">
+  <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_BloodedUM</defName>
         <ignoreConfigErrors>true</ignoreConfigErrors>
     <label>blooded unmarked</label>
@@ -136,7 +136,7 @@
     </comps>
   </HediffDef>
 
-    <HediffDef ParentName="RRYSpecialGoodHeDiff">
+    <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_BloodedM</defName>
     <label>blooded marked</label>
     <labelNoun>a blooded Yautja</labelNoun>
@@ -153,7 +153,7 @@
     </comps>
   </HediffDef>
 
-    <HediffDef ParentName="RRYSpecialGoodHeDiff">
+    <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_BloodedMHuman</defName>
     <label>blooded marked</label>
     <labelNoun>a blooded Yautja</labelNoun>
@@ -169,7 +169,7 @@
     </comps>
   </HediffDef>
 
-    <HediffDef ParentName="RRYSpecialGoodHeDiff">
+    <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_BloodedMWorthyHuman</defName>
     <label>blooded marked</label>
     <labelNoun>a blooded Yautja</labelNoun>
@@ -185,7 +185,7 @@
     </comps>
   </HediffDef>
 
-    <HediffDef ParentName="RRYSpecialGoodHeDiff">
+    <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_BloodedMHumanlike</defName>
     <label>blooded marked</label>
     <labelNoun>a blooded Yautja</labelNoun>
@@ -201,7 +201,7 @@
     </comps>
   </HediffDef>
 
-    <HediffDef ParentName="RRYSpecialGoodHeDiff">
+    <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_BloodedMWorthyHumanlike</defName>
     <label>blooded marked</label>
     <labelNoun>a blooded Yautja</labelNoun>
@@ -217,7 +217,7 @@
     </comps>
   </HediffDef>
 
-    <HediffDef ParentName="RRYSpecialGoodHeDiff">
+    <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_BloodedMXenomorph</defName>
     <label>blooded marked</label>
     <labelNoun>a blooded Yautja</labelNoun>
@@ -233,7 +233,7 @@
     </comps>
   </HediffDef>
 
-    <HediffDef ParentName="RRYSpecialGoodHeDiff">
+    <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_BloodedMXenomorphQueen</defName>
     <label>blooded marked</label>
     <labelNoun>a blooded Yautja</labelNoun>
@@ -249,7 +249,7 @@
     </comps>
   </HediffDef>
 
-    <HediffDef ParentName="RRYSpecialGoodHeDiff">
+    <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_BloodedMPredalien</defName>
     <label>blooded marked</label>
     <labelNoun>a blooded Yautja</labelNoun>
@@ -265,7 +265,7 @@
     </comps>
   </HediffDef>
 
-    <HediffDef ParentName="RRYSpecialGoodHeDiff">
+    <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_BloodedMBadBlood</defName>
     <label>blooded marked</label>
     <labelNoun>a blooded Yautja</labelNoun>
@@ -281,7 +281,7 @@
     </comps>
   </HediffDef>
 
-    <HediffDef ParentName="RRYSpecialGoodHeDiff">
+    <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_BloodedMHound</defName>
     <label>blooded marked</label>
     <labelNoun>a blooded Yautja</labelNoun>
@@ -297,7 +297,7 @@
     </comps>
   </HediffDef>
 
-    <HediffDef ParentName="RRYSpecialGoodHeDiff">
+    <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_BloodedMCrusher</defName>
     <label>blooded marked</label>
     <labelNoun>a blooded Yautja</labelNoun>
@@ -313,7 +313,7 @@
     </comps>
   </HediffDef>
 
-    <HediffDef ParentName="RRYSpecialGoodHeDiff">
+    <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_BloodedMGroTye</defName>
     <label>blooded marked</label>
     <labelNoun>a blooded Yautja</labelNoun>
@@ -330,7 +330,7 @@
   </HediffDef>
   
   <!--
-  <HediffDef ParentName="RRYSpecialGoodHeDiff">
+  <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>Painstopper</defName>
     <label>painstopper</label>
     <labelNoun>a painstopper</labelNoun>

@@ -135,7 +135,7 @@ namespace RRYautja
 
                    // angle = Pawn.CurrentBed().Rotation.AsAngle;
                 }
-                if (Pawn.kindDef.race == YautjaDefOf.Alien_Yautja)
+                if (Pawn.kindDef.race == YautjaDefOf.RRY_Alien_Yautja)
                 {
                     s = new Vector3(2f, 1.5f, 2f);
                     if (rot.ToStringHuman() == "West" || rot == Rot4.West)

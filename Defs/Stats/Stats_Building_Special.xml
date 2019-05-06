@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-
+<!--
   <StatDef>
-    <defName>JoyGainFactor</defName>
+    <defName>RRY_JoyGainFactor</defName>
     <label>recreation power</label>
     <description>How effectively this item entertains people and fulfills the need for recreation.</description>
     <category>Building</category>
@@ -22,5 +22,5 @@
       </li>
     </parts>
   </StatDef>
-  
+  -->
 </Defs>

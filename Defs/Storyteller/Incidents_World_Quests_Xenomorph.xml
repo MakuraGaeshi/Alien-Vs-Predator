@@ -2,7 +2,7 @@
 <Defs>
 
 	<IncidentDef>
-		<defName>Quest_DownedRefugeeXenomorph</defName>
+		<defName>RRY_Quest_DownedRefugeeXenomorph</defName>
 		<label>incapacitated refugee quest</label>
 		<category>WorldQuest</category>
     <targetTags>
@@ -17,7 +17,7 @@
 	</IncidentDef>
 	
 	<IncidentDef>
-		<defName>Quest_PrisonerRescueXenomorph</defName>
+		<defName>RRY_Quest_PrisonerRescueXenomorph</defName>
 		<label>prisoner rescue quest</label>
 		<category>WorldQuest</category>
     <targetTags>

@@ -2,7 +2,7 @@
 <Defs>
 <!-- ====================== Hunting Bow ===================== -->
   <ThingDef ParentName="RRYBaseSimpleRanged">
-    <defName>RRY_Yautja_Hunting_Bow</defName>
+    <defName>RRY_Gun_Hunting_Bow</defName>
     <label>yautja hunting bow</label>
     <description>A powerful bow. Fires a heavy arrow long distances.</description>
     <graphicData>
@@ -82,7 +82,7 @@
   
 <!-- ====================== Compound Bow ===================== -->
   <ThingDef ParentName="RRYBaseSimpleRanged">
-    <defName>RRY_Yautja_Compound_Bow</defName>
+    <defName>RRY_Gun_Compound_Bow</defName>
     <label>yautja hunting bow</label>
     <description>A powerful Compound bow. Fires a heavy arrow long distances.</description>
     <graphicData>
@@ -210,7 +210,7 @@
 				<defaultProjectile>RRY_Bullet_Plasma</defaultProjectile>
 				<warmupTime>1</warmupTime>
 				<range>31</range>
-				<soundCast>Shot_ShoulderCannon</soundCast>
+				<soundCast>RRY_Shot_ShoulderCannon</soundCast>
 				<!-- <forcedMissRadius>0.1</forcedMissRadius> -->
 				<soundCastTail>GunTail_Light</soundCastTail>
 				<muzzleFlashScale>8</muzzleFlashScale>
@@ -245,10 +245,10 @@
 			<li>YautjaBlaster</li>
 		</weaponTags>
 		<thingCategories>
-			<li>RRYRanged</li>
+			<li>RRY_RangedWeapons</li>
 		</thingCategories>
 		<tradeTags>
-			<li>RRYRanged</li>
+			<li>RRY_RangedWeapons</li>
 		</tradeTags>
 		<costList>				
 			<Steel>30</Steel>
@@ -345,10 +345,10 @@
 			<li>YautjaNeedler</li>
 		</weaponTags>
 		<thingCategories>
-			<li>RRYRanged</li>
+			<li>RRY_RangedWeapons</li>
 		</thingCategories>
 		<tradeTags>
-			<li>RRYRanged</li>
+			<li>RRY_RangedWeapons</li>
 		</tradeTags>
 		<costList>				
 			<Steel>30</Steel>
@@ -358,7 +358,7 @@
 		</costList>
 	</ThingDef>
 	
-<!-- ====================== Needler Rifle ===================== -->
+<!-- ====================== Spear Rifle ===================== -->
   <ThingDef ParentName="BaseHumanMakeableGun">
     <defName>RRY_Gun_SpearRifle</defName>
     <label>spear rifle</label>
@@ -445,9 +445,9 @@
 
 <!-- ====================== Smart Disk ===================== -->	 
   <ThingDef ParentName="RRYBaseSimpleRanged">
-    <defName>Yautja_SmartDisk</defName>
+    <defName>RRY_Gun_SmartDisk</defName>
     <label>Yautja Smart Disk</label>
-    <description>.</description>
+    <description>A circular shaped, extremely sharp thrown weapon. The smart disk come equipped with a targeting system that makes it deadly accurate but with a long time to setup before throwing. But it is unwieldy in close-combat.</description>
     <graphicData>
       <texPath>Things/Equipment/Ranged/SmartDisk</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -461,10 +461,10 @@
       <WorkToMake>7000</WorkToMake>
       <Mass>1</Mass>
       <AccuracyTouch>0.50</AccuracyTouch>
-      <AccuracyShort>0.71</AccuracyShort>
-      <AccuracyMedium>0.50</AccuracyMedium>
-      <AccuracyLong>0.32</AccuracyLong>
-      <RangedWeapon_Cooldown>3</RangedWeapon_Cooldown>
+      <AccuracyShort>1.2</AccuracyShort>
+      <AccuracyMedium>1</AccuracyMedium>
+      <AccuracyLong>0.9</AccuracyLong>
+      <RangedWeapon_Cooldown>5</RangedWeapon_Cooldown>
     </statBases>
     <weaponTags>
 			<li>Yautja</li>
@@ -516,7 +516,7 @@
     </graphicData>
     <projectile>
       <flyOverhead>false</flyOverhead>
-      <damageDef>RangedCut</damageDef>
+      <damageDef>RRY_RangedCut</damageDef>
       <damageAmountBase>25</damageAmountBase>
       <stoppingPower>2.5</stoppingPower>
       <armorPenetrationBase>0.10</armorPenetrationBase>

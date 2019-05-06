@@ -2,7 +2,7 @@
 <Defs>
 
   <StatDef>
-    <defName>StuffPower_Armor_Acid</defName>
+    <defName>RRY_StuffPower_Armor_Acid</defName>
     <label>Armor - Acid</label>
     <description>Armor against Acid-related damage like burns.</description>
     <category>StuffStatFactors</category>

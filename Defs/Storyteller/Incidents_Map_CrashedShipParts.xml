@@ -3,7 +3,7 @@
 	<!-- ============================== Big threats ============================== -->  
 
   <IncidentDef>
-    <defName>XenomorphCrashedShipPartCrash</defName>
+    <defName>RRY_XenomorphCrashedShipPartCrash</defName>
     <label>Unknown Ship impact</label>
     <targetTags>
       <li>Map_PlayerHome</li>
@@ -23,7 +23,7 @@
     <category>ThreatBig</category>
     <pointsScaleable>true</pointsScaleable>
     <minThreatPoints>450</minThreatPoints>
-    <shipPart>XenomorphCrashedShipPart</shipPart>
+    <shipPart>RRY_XenomorphCrashedShipPart</shipPart>
     <tale>ShipPartCrash</tale>
   </IncidentDef>
   

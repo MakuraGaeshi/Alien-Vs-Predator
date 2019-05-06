@@ -2,11 +2,11 @@
 <Defs>
 
   <!-- ============================ Yautja Base ========================== -->
-  <PawnKindDef Name="YautjaBase" Abstract="True">
-    <defaultFactionType>YautjaFaction</defaultFactionType>
-    <race>Alien_Yautja</race>
+  <PawnKindDef Name="RRY_YautjaBase" Abstract="True">
+    <defaultFactionType>RRY_Yautja_BadBloodFaction</defaultFactionType>
+    <race>RRY_Alien_Yautja</race>
 	<backstoryCategories>
-			<li>Yautja_Standard</li>
+			<li>RRY_Yautja_Standard</li>
   	</backstoryCategories>
     <chemicalAddictionChance>0.035</chemicalAddictionChance>
     <baseRecruitDifficulty>1</baseRecruitDifficulty>
@@ -18,7 +18,7 @@
   </PawnKindDef>
   
   <!-- ============================ Yautja Civilian Base ========================== -->
-  <PawnKindDef Name="YautjaCivBase" ParentName="YautjaBase" Abstract="True">
+  <PawnKindDef Name="RRY_YautjaCivBase" ParentName="RRY_YautjaBase" Abstract="True">
     <combatPower>25</combatPower>
     <itemQuality>Normal</itemQuality>
     <isFighter>false</isFighter>
@@ -70,8 +70,8 @@
   </PawnKindDef>
    
   <!-- ============================ Yautja Civilians ========================== -->
-  <PawnKindDef ParentName="YautjaCivBase">
-    <defName>YautjaAncient</defName>
+  <PawnKindDef ParentName="RRY_YautjaCivBase">
+    <defName>YautjaAncient_RRY</defName>
     <label>Yautja Ancient</label>
     <labelPlural>Yautja Ancients</labelPlural>
     <factionLeader>true</factionLeader>
@@ -105,45 +105,45 @@
       <li>Advanced</li>
     </techHediffsTags>
 	<backstoryCategories>
-			<li>Yautja_Ancient</li>
+			<li>RRY_Yautja_Ancient</li>
   	</backstoryCategories>
 	<minGenerationAge>60</minGenerationAge>
 	<maxGenerationAge>600</maxGenerationAge>
   </PawnKindDef>
   
-  <PawnKindDef ParentName="YautjaCivBase">
-    <defName>YautjaTrader</defName>
+  <PawnKindDef ParentName="RRY_YautjaCivBase">
+    <defName>YautjaTrader_RRY</defName>
     <label>Yautja trader</label>
     <trader>true</trader>
 	<backstoryCategories>
-			<li>Yautja_Standard</li>
+			<li>RRY_Yautja_Standard</li>
   	</backstoryCategories>
   </PawnKindDef>
   
-  <PawnKindDef ParentName="YautjaCivBase">
-    <defName>YautjaColonist</defName>
+  <PawnKindDef ParentName="RRY_YautjaCivBase">
+    <defName>YautjaColonist_RRY</defName>
     <label>Yautja colonist</label>
 	<backstoryCategories>
-			<li>Yautja_Standard</li>
+			<li>RRY_Yautja_Standard</li>
   	</backstoryCategories>
   </PawnKindDef>
   
-  <PawnKindDef ParentName="YautjaCivBase">
-    <defName>YautjaSlave</defName>
+  <PawnKindDef ParentName="RRY_YautjaCivBase">
+    <defName>YautjaSlave_RRY</defName>
     <label>Yautja slave</label>
 	<backstoryCategories>
-			<li>Yautja_Standard</li>
+			<li>RRY_Yautja_Standard</li>
   	</backstoryCategories>
   </PawnKindDef>
  
-  <!-- ============================ Yautja Security ========================== -->
-  <PawnKindDef ParentName="YautjaCivBase">
-    <defName>YautjaUnblooded</defName>
+  <!-- ============================ Yautja RRY_Security ========================== -->
+  <PawnKindDef ParentName="RRY_YautjaCivBase">
+    <defName>YautjaUnblooded_RRY</defName>
     <label>Unblooded Yautja</label>
     <combatPower>100</combatPower>
     <maxGenerationAge>40</maxGenerationAge>
 	<backstoryCategories>
-			<li>Yautja_Unblooded</li>
+			<li>RRY_Yautja_Unblooded</li>
   	</backstoryCategories>
     <gearHealthRange>
       <min>0.5</min>
@@ -186,10 +186,10 @@
   </PawnKindDef>
   
   <!-- ============================ Yautja Military Base ========================== -->
-  <PawnKindDef Name="YautjaMilBase" ParentName="YautjaBase" Abstract="True">
+  <PawnKindDef Name="RRY_YautjaMilBase" ParentName="RRY_YautjaBase" Abstract="True">
     <chemicalAddictionChance>0</chemicalAddictionChance>
     <isFighter>true</isFighter>
-	<race>Alien_Yautja</race>
+	<race>RRY_Alien_Yautja</race>
     <invNutrition>2.55</invNutrition>
     <itemQuality>Normal</itemQuality>
 	<minGenerationAge>10</minGenerationAge>
@@ -242,11 +242,11 @@
   
   <!-- ============================ Yautja Military ========================== -->  
   <!-- ============================ Yautja ========================== -->
-  <PawnKindDef Name="YautjaHunter" ParentName="YautjaMilBase" Abstract="True">
+  <PawnKindDef Name="RRY_YautjaHunter" ParentName="RRY_YautjaMilBase" Abstract="True">
     <label>yautja hunter</label>
     <combatPower>100</combatPower>
 	<backstoryCategories>
-			<li>Yautja_Hunter</li>
+			<li>RRY_Yautja_Hunter</li>
   	</backstoryCategories>
     <apparelTags>
 	  <li>YautjaGreaves</li>
@@ -256,11 +256,11 @@
   </PawnKindDef>
   
   <!-- ============================ Young Blood ========================== -->
-  <PawnKindDef ParentName="YautjaHunter">
-    <defName>YautjaYoungBlood</defName>
+  <PawnKindDef ParentName="RRY_YautjaHunter">
+    <defName>YautjaYoungBlood_RRY</defName>
     <label>Yautja Young Blood</label>
 	<backstoryCategories>
-			<li>Yautja_YoungBlood</li>
+			<li>RRY_Yautja_YoungBlood</li>
   	</backstoryCategories>
     <weaponTags>
 		<li>YautjaGun</li>
@@ -269,12 +269,12 @@
   </PawnKindDef>
   
     <!-- ============================ Blooded ========================== -->
-  <PawnKindDef ParentName="YautjaHunter">
-    <defName>YautjaBlooded</defName>
+  <PawnKindDef ParentName="RRY_YautjaHunter">
+    <defName>YautjaBlooded_RRY</defName>
     <label>Yautja Blooded</label>
     <combatPower>120</combatPower>
 	<backstoryCategories>
-			<li>Yautja_Blooded</li>
+			<li>RRY_Yautja_Blooded</li>
   	</backstoryCategories>
     <weaponTags>
 		<li>YautjaGun</li>
@@ -283,12 +283,12 @@
   </PawnKindDef>
   
     <!-- ============================ Elite ========================== -->
-  <PawnKindDef ParentName="YautjaHunter">
-    <defName>YautjaElite</defName>
+  <PawnKindDef ParentName="RRY_YautjaHunter">
+    <defName>YautjaElite_RRY</defName>
     <label>Yautja Elite</label>
     <combatPower>140</combatPower>
 	<backstoryCategories>
-			<li>Yautja_Elite</li>
+			<li>RRY_Yautja_Elite</li>
   	</backstoryCategories>
     <weaponTags>
 		<li>YautjaEliteGun</li>
@@ -297,13 +297,13 @@
   </PawnKindDef>
 
   <!-- ============================ Yautja Boss ========================== -->
-  <PawnKindDef ParentName="YautjaMilBase">
-     <defName>YautjaElder</defName>
+  <PawnKindDef ParentName="RRY_YautjaMilBase">
+     <defName>YautjaElder_RRY</defName>
     <label>Yautja Elder</label>
     <combatPower>160</combatPower>
     <minGenerationAge>500</minGenerationAge>
 	<backstoryCategories>
-			<li>Yautja_Elder</li>
+			<li>RRY_Yautja_Elder</li>
   	</backstoryCategories>
     <gearHealthRange>
       <min>0.8</min>

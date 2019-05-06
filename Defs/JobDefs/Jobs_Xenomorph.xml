@@ -2,7 +2,7 @@
 <Defs>
 
   <JobDef>
-    <defName>LayXenomorphEgg</defName>
+    <defName>RRY_Job_LayXenomorphEgg</defName>
     <driverClass>JobDriver_LayXenoEgg</driverClass>
     <reportString>laying egg.</reportString>
     <casualInterruptible>false</casualInterruptible>
@@ -10,7 +10,7 @@
   </JobDef>
   
   <JobDef>
-    <defName>XenomorphKidnap</defName>
+    <defName>RRY_Job_XenomorphKidnap</defName>
     <driverClass>JobDriver_XenosKidnap</driverClass>
     <reportString>kidnapping TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>

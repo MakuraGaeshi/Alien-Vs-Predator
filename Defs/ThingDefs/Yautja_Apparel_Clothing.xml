@@ -2,7 +2,7 @@
 <Defs>
 	<!-- ========================= Yautja - Apparel ========================== -->
 	<!-- ========================= Yautja - Hunter Vest ========================== -->
-	<ThingDef ParentName="RRYApparelMakeableBase">
+	<ThingDef ParentName="RRY_Apparel_MakeableBase">
 		<defName>RRY_Apparel_HunterVest</defName>
 		<label>Yautja Vest</label>
 		<description>.</description>
@@ -27,7 +27,7 @@
       <EquipDelay>1.5</EquipDelay>
 		</statBases>
 		<thingCategories>
-			<li>RRYApparel</li>
+			<li>RRY_Apparel</li>
 		</thingCategories>
 		<apparel>
 			<bodyPartGroups>

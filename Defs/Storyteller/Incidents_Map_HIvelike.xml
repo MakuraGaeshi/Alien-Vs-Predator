@@ -3,7 +3,7 @@
 	<!-- ============================== Big threats ============================== -->  
 
   <IncidentDef>
-    <defName>XenomorphInfestation</defName>
+    <defName>RRY_XenomorphInfestation</defName>
     <label>xenomorph infestation</label>
     <targetTags>
       <li>Map_PlayerHome</li>
@@ -18,7 +18,7 @@
     <pointsScaleable>true</pointsScaleable>
     <minThreatPoints>400</minThreatPoints>
     <tale>Infestation</tale>
-    <shipPart>XenomorphHive</shipPart>
+    <shipPart>RRY_XenomorphHive</shipPart>
     <tags><li>TunnelLike</li></tags>
 	<!--
     <Faction>OGChaosDeamonFaction</Faction>

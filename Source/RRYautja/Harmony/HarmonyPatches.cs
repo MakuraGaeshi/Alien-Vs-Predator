@@ -81,7 +81,11 @@ namespace RRYautja
             harmony.Patch(
                 AccessTools.Method(typeof(PawnGenerator), "GeneratePawn", new[] { typeof(PawnGenerationRequest) }), null,
                 new HarmonyMethod(typeof(HarmonyPatches), nameof(Post_GeneratePawn_Yautja)));
-            
+            /*
+            harmony.Patch(
+                AccessTools.Method(typeof(DownedRefugeeQuestUtility), "GenerateRefugee", new[] { typeof(Pawn) }), null,
+                new HarmonyMethod(typeof(HarmonyPatches), nameof(Post_GenerateRefugee_Yautja)));
+            */
             //    harmony.Patch(AccessTools.Method(typeof(Corpse), "RareTick", null, null), new HarmonyMethod(typeof(HarmonyPatches), "RareTickPostfix", null), null, null);
         }
 
@@ -333,18 +337,18 @@ namespace RRYautja
 
         public static void Post_GeneratePawn_Yautja(PawnGenerationRequest request, ref Pawn __result)
         {
-            if (__result.kindDef.race == YautjaDefOf.Alien_Yautja)
+            if (__result.kindDef.race == YautjaDefOf.RRY_Alien_Yautja)
             {
                 Comp_Yautja _Yautja = __result.TryGetComp<Comp_Yautja>();
-                if (_Yautja!=null)
+                if (_Yautja != null)
                 {
                     Backstory pawnStoryC = __result.story.childhood;
                     Backstory pawnStoryA = __result.story.adulthood != null ? __result.story.adulthood : null;
 
-                    AlienRace.BackstoryDef bsDefUnblooded = DefDatabase<AlienRace.BackstoryDef>.GetNamed("Yautja_YoungBlood");
-                    AlienRace.BackstoryDef bsDefBlooded = DefDatabase<AlienRace.BackstoryDef>.GetNamed("Yautja_Blooded");
-                    AlienRace.BackstoryDef bsDefBadbloodA = DefDatabase<AlienRace.BackstoryDef>.GetNamed("Yautja_BadBloodA");
-                    AlienRace.BackstoryDef bsDefBadblooBd = DefDatabase<AlienRace.BackstoryDef>.GetNamed("Yautja_BadBloodB");
+                    AlienRace.BackstoryDef bsDefUnblooded = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_YoungBlood");
+                    AlienRace.BackstoryDef bsDefBlooded = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_Blooded");
+                    AlienRace.BackstoryDef bsDefBadbloodA = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_BadBloodA");
+                    AlienRace.BackstoryDef bsDefBadblooBd = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_BadBloodB");
 
                     HediffDef unbloodedDef = YautjaDefOf.RRY_Hediff_Unblooded;
                     HediffDef unmarkedDef = YautjaDefOf.RRY_Hediff_BloodedUM;
@@ -380,9 +384,23 @@ namespace RRYautja
                     }
                 }
             }
-            if (request.Faction == Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph))
+            else if (request.Faction == Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph))
             {
                 Log.Message(string.Format("Xenomorph spawning"));
+            }
+            else if (__result.kindDef.race != YautjaDefOf.RRY_Alien_Yautja && __result.RaceProps.Humanlike && (__result.story.hairDef == YautjaDefOf.RRY_Yaujta_Dreds || __result.story.hairDef == YautjaDefOf.RRY_Yaujta_Ponytail || __result.story.hairDef == YautjaDefOf.RRY_Yaujta_Bald))
+            {
+                Log.Message(string.Format("Non Yautja with Yautja Hair"));
+                __result.story.hairDef = DefDatabase<HairDef>.GetRandom();
+            }
+        }
+
+        public static void Post_GenerateRefugee_Yautja(Pawn request, ref Pawn __result)
+        {
+            
+            if (Find.FactionManager.OfPlayer.def == YautjaDefOf.RRY_Yautja_PlayerBlooded || Find.FactionManager.OfPlayer.def == YautjaDefOf.RRY_Yautja_PlayerColony || Find.FactionManager.OfPlayer.def == YautjaDefOf.RRY_Yautja_PlayerUnblooded)
+            {
+                Log.Message(string.Format("Refugee Yautja"));
             }
         }
 

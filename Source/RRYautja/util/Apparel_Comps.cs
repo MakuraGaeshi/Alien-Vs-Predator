@@ -15,7 +15,7 @@ namespace RRYautja
          *   stability = 0.5 means there's at least 50/50 chance of exploding on the first hit
          *   stability = 0 could lead to an explosion without taking any damage in theory (but not in practice)
          */
-        public float stability = 1.1f;
+        public float stability = 2f;
 
         // The following are properties defined for the Bomb DamageDef but not ProjectileProperties
 

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <FactionDef Abstract="True" Name="YautjaNPCFactionBase">
+  <FactionDef Abstract="True" Name="RRY_Yautja_NPCFactionBase">
     <colorSpectrum>
       <li>(0, 0.737, 0.847)</li>
     </colorSpectrum>
@@ -9,10 +9,10 @@
     <expandingIconTexture>World/WorldObjects/Expanding/Town</expandingIconTexture>
   </FactionDef>
   
-  <FactionDef ParentName="YautjaNPCFactionBase">
-		<defName>RRYJungleClan</defName>
+  <FactionDef ParentName="RRY_Yautja_NPCFactionBase">
+		<defName>RRY_Yautja_JungleClan</defName>
 		<label>Yautja Jungle Clan</label>
-    <description>REBEL WRITE A DESCRIPTION!</description>
+    <description>The Jungle Clan is perhaps the most common and the most seen of all the Yautja clans. They are ruthless hunters with a strict code of honor. Their quest for glory is endless and inoxerable. Few survive their bloodlust.</description>
 	<pawnSingular>Yautja</pawnSingular>
     <pawnsPlural>Yautji</pawnsPlural>
     <listOrderPriority>20</listOrderPriority>
@@ -26,7 +26,7 @@
       <min>-100</min>
       <max>0</max>
     </startingGoodwill>
-	<factionNameMaker>NamerRRYJungleClan</factionNameMaker>
+	<factionNameMaker>NamerRRYYautjaJungleClan</factionNameMaker>
 	<settlementNameMaker>NamerRRYautjaBases</settlementNameMaker>
 	<techLevel>Spacer</techLevel>
 	<backstoryCategories>
@@ -41,19 +41,19 @@
     </naturalColonyGoodwill>
     <visitorTraderKinds>
 	
-      <li>Visitor_Yautja_Standard</li>
+      <li>RRY_Visitor_Yautja_Standard</li>
 	  
     </visitorTraderKinds>
    <caravanTraderKinds>
    
-      <li>Caravan_Yautja_BulkGoods</li>
-      <li>Caravan_Yautja_CombatSupplier</li>
-      <li>Caravan_Yautja_Exotic</li>
+      <li>RRY_Caravan_Yautja_BulkGoods</li>
+      <li>RRY_Caravan_Yautja_CombatSupplier</li>
+      <li>RRY_Caravan_Yautja_Exotic</li>
 	  
     </caravanTraderKinds>
     <baseTraderKinds>
 	
-      <li>Base_Yautja_Standard</li>
+      <li>RRY_Base_Yautja_Standard</li>
 	  
     </baseTraderKinds>
     <allowedArrivalTemperatureRange>
@@ -73,45 +73,45 @@
       <li>
         <kindDef>Combat</kindDef>
         <options>
-          <YautjaUnblooded>14</YautjaUnblooded>
-          <YautjaYoungBlood>10</YautjaYoungBlood>
-          <YautjaBlooded>8</YautjaBlooded>
-          <YautjaElite>4</YautjaElite>
-          <YautjaElder>2</YautjaElder>
+          <YautjaUnblooded_RRY>14</YautjaUnblooded_RRY>
+          <YautjaYoungBlood_RRY>10</YautjaYoungBlood_RRY>
+          <YautjaBlooded_RRY>8</YautjaBlooded_RRY>
+          <YautjaElite_RRY>4</YautjaElite_RRY>
+          <YautjaElder_RRY>2</YautjaElder_RRY>
         </options>
       </li>
         <li>
         <kindDef>Peaceful</kindDef>
         <options>
-          <YautjaColonist>10</YautjaColonist>
-          <YautjaUnblooded>13</YautjaUnblooded>
+          <YautjaColonist_RRY>10</YautjaColonist_RRY>
+          <YautjaUnblooded_RRY>13</YautjaUnblooded_RRY>
         </options>
       </li>
 	  <li>
       <kindDef>Trader</kindDef>
         <traders>
-          <YautjaTrader>1</YautjaTrader>
+          <YautjaTrader_RRY>1</YautjaTrader_RRY>
         </traders>
         <carriers>
           <Muffalo>2</Muffalo>
           <Dromedary>2</Dromedary>
         </carriers>
         <guards>
-          <YautjaUnblooded>13</YautjaUnblooded>
-          <YautjaYoungBlood>10</YautjaYoungBlood>
-          <YautjaBlooded>10</YautjaBlooded>
+          <YautjaUnblooded_RRY>13</YautjaUnblooded_RRY>
+          <YautjaYoungBlood_RRY>10</YautjaYoungBlood_RRY>
+          <YautjaBlooded_RRY>10</YautjaBlooded_RRY>
         </guards>
       </li>
 	  <li>
         <kindDef>Settlement</kindDef>
         <options>
-          <YautjaColonist>5</YautjaColonist>
-          <YautjaUnblooded>14</YautjaUnblooded>
-          <YautjaYoungBlood>10</YautjaYoungBlood>
-          <YautjaBlooded>8</YautjaBlooded>
-          <YautjaElite>4</YautjaElite>
-          <YautjaElder>2</YautjaElder>
-          <YautjaAncient>1</YautjaAncient>
+          <YautjaColonist_RRY>5</YautjaColonist_RRY>
+          <YautjaUnblooded_RRY>14</YautjaUnblooded_RRY>
+          <YautjaYoungBlood_RRY>10</YautjaYoungBlood_RRY>
+          <YautjaBlooded_RRY>8</YautjaBlooded_RRY>
+          <YautjaElite_RRY>4</YautjaElite_RRY>
+          <YautjaElder_RRY>2</YautjaElder_RRY>
+          <YautjaAncient_RRY>1</YautjaAncient_RRY>
         </options>
       </li>
     </pawnGroupMakers>
@@ -127,9 +127,9 @@
   </FactionDef>
 
   <FactionDef>
-		<defName>YautjaFaction</defName>
+		<defName>RRY_Yautja_BadBloodFaction</defName>
 		<label>Yautja Badbloods</label>
-    <description>A loose confederation of outcast Yautja who've agreed to mostly fight outsiders instead of fighting each other.\n\nBadbloods don't sow, they don't build, and they rarely trade. Driven by a blood-and-honor culture that values personal strength and ruthlessness, they enrich themselves by raiding and robbing their more productive neighbors.</description>
+    <description>The Bad Bloods are traitors, pariah and, worst of all, dishonored members of the Yautja society. They are banned from their parents clan and hunted out of spite. They live in chaos with no rules or lord except the will to live and to hunt. They do not obey to any code of Honor known to yautja society and their existence is considered an insult to the Clans.</description>
 	<pawnSingular>Badblood yautja</pawnSingular>
     <pawnsPlural>Badblood yautji</pawnsPlural>
     <listOrderPriority>20</listOrderPriority>
@@ -158,7 +158,7 @@
     </naturalColonyGoodwill>
     <visitorTraderKinds>
 	<!--
-      <li>Visitor_Yautja_Standard</li>
+      <li>RRY_Visitor_Yautja_Standard</li>
 	  -->
     </visitorTraderKinds>
    <caravanTraderKinds>
@@ -190,46 +190,46 @@
       <li>
         <kindDef>Combat</kindDef>
         <options>
-          <YautjaUnblooded>14</YautjaUnblooded>
-          <YautjaYoungBlood>10</YautjaYoungBlood>
-          <YautjaBlooded>8</YautjaBlooded>
-          <YautjaElite>4</YautjaElite>
-          <YautjaElder>2</YautjaElder>
+          <YautjaUnblooded_RRY>14</YautjaUnblooded_RRY>
+          <YautjaYoungBlood_RRY>10</YautjaYoungBlood_RRY>
+          <YautjaBlooded_RRY>8</YautjaBlooded_RRY>
+          <YautjaElite_RRY>4</YautjaElite_RRY>
+          <YautjaElder_RRY>2</YautjaElder_RRY>
         </options>
       </li>
         <li>
         <kindDef>Peaceful</kindDef>
         <options>
-          <YautjaColonist>10</YautjaColonist>
-          <YautjaSlave>13</YautjaSlave>
+          <YautjaColonist_RRY>10</YautjaColonist_RRY>
+          <YautjaSlave_RRY>13</YautjaSlave_RRY>
         </options>
       </li>
 	  <li>
       <kindDef>Trader</kindDef>
         <traders>
-          <YautjaTrader>1</YautjaTrader>
+          <YautjaTrader_RRY>1</YautjaTrader_RRY>
         </traders>
         <carriers>
           <Muffalo>2</Muffalo>
           <Dromedary>2</Dromedary>
         </carriers>
         <guards>
-          <YautjaUnblooded>14</YautjaUnblooded>
-          <YautjaYoungBlood>10</YautjaYoungBlood>
-          <YautjaBlooded>8</YautjaBlooded>
-          <YautjaElite>4</YautjaElite>
-          <YautjaElder>2</YautjaElder>
+          <YautjaUnblooded_RRY>14</YautjaUnblooded_RRY>
+          <YautjaYoungBlood_RRY>10</YautjaYoungBlood_RRY>
+          <YautjaBlooded_RRY>8</YautjaBlooded_RRY>
+          <YautjaElite_RRY>4</YautjaElite_RRY>
+          <YautjaElder_RRY>2</YautjaElder_RRY>
         </guards>
       </li>
 	  <li>
         <kindDef>Settlement</kindDef>
         <options>
-          <YautjaColonist>5</YautjaColonist>
-          <YautjaUnblooded>14</YautjaUnblooded>
-          <YautjaYoungBlood>10</YautjaYoungBlood>
-          <YautjaBlooded>8</YautjaBlooded>
-          <YautjaElite>4</YautjaElite>
-          <YautjaElder>2</YautjaElder>
+          <YautjaColonist_RRY>5</YautjaColonist_RRY>
+          <YautjaUnblooded_RRY>14</YautjaUnblooded_RRY>
+          <YautjaYoungBlood_RRY>10</YautjaYoungBlood_RRY>
+          <YautjaBlooded_RRY>8</YautjaBlooded_RRY>
+          <YautjaElite_RRY>4</YautjaElite_RRY>
+          <YautjaElder_RRY>2</YautjaElder_RRY>
         </options>
       </li>
     </pawnGroupMakers>

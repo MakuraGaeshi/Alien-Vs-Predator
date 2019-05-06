@@ -4,7 +4,7 @@
 <Defs>
 
   <ThinkTreeDef>
-    <defName>SatisfyXenomorphNeeds</defName>
+    <defName>RRY_SatisfyXenomorphNeeds</defName>
     <thinkRoot Class="ThinkNode_ConditionalFullyGrown">
       <subNodes>
 				
@@ -181,7 +181,7 @@
 		
         <!-- Satisfy very urgent needs -->
         <li Class="ThinkNode_Subtree">
-          <treeDef>SatisfyXenomorphNeeds</treeDef>
+          <treeDef>RRY_SatisfyXenomorphNeeds</treeDef>
         </li>
 				
         <!-- Idle -->

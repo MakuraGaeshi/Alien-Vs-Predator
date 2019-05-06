@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-  <ThingDef Name="TurretBase" Abstract="True">
+  <ThingDef Name="RRY_TurretBase" Abstract="True">
     <tickerType>Normal</tickerType>
     <category>Building</category>
     <thingClass>Building</thingClass>
@@ -16,8 +16,8 @@
 		</statBases>
   </ThingDef>
 
-    <ThingDef ParentName="TurretBase">
-    <defName>EquippableTurret</defName>
+    <ThingDef ParentName="RRY_TurretBase">
+    <defName>RRY_EquippableTurret</defName>
     <label>shoulder-mounted plasma caster</label>
     <description>A shoulder-mounted automatic plasma caster turret. Its dumb AI brain can't be directly controlled, so beware of friendly fire.</description>
 	
@@ -43,7 +43,7 @@
     <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
     <building>
 	  <ai_combatDangerous>false</ai_combatDangerous>
-      <turretGunDef>Gun_ShoulderCannon</turretGunDef>
+      <turretGunDef>RRY_Gun_ShoulderCannon</turretGunDef>
       <turretBurstCooldownTime>3.0</turretBurstCooldownTime>
       <turretTopGraphicPath>Things/Buildings/DummyTexture</turretTopGraphicPath>
 	  <isInert>true</isInert>
@@ -70,8 +70,8 @@
   </ThingDef>
   
   <ThingDef ParentName="BaseHumanGun">
-    <defName>Gun_ShoulderCannon</defName>
-    <label>mini-turret gun</label>
+    <defName>RRY_Gun_ShoulderCannon</defName>
+    <label>mini-plasma gun</label>
     <description>A simple automatic gun made to be mounted on a turret.</description>
     <graphicData>
       <texPath>Things/Item/Equipment/WeaponRanged/ChargeRifle</texPath>
@@ -104,7 +104,7 @@
         <range>24.9</range>
         <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
         <burstShotCount>1</burstShotCount>
-        <soundCast>Shot_ShoulderCannon</soundCast>
+        <soundCast>RRY_Shot_ShoulderCannon</soundCast>
         <soundCastTail>GunTail_Light</soundCastTail>
         <muzzleFlashScale>9</muzzleFlashScale>
         <consumeFuelPerShot>1</consumeFuelPerShot>

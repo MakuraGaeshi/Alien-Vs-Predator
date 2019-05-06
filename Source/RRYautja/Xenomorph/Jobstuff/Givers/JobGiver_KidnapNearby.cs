@@ -50,7 +50,7 @@ namespace RimWorld
                     return null;
                 }
             }
-            return new Job(XenomorphDefOf.XenomorphKidnap, pawn2, thing)
+            return new Job(XenomorphDefOf.RRY_Job_XenomorphKidnap, pawn2, thing)
             {
                 count = 1
             };

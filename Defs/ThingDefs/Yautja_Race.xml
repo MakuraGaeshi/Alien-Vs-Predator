@@ -6,7 +6,7 @@
             <alienslavekinds>
                 <li>
                     <kindDefs>
-                        <li>YautjaSlave</li>
+                        <li>YautjaSlave_RRY</li>
                     </kindDefs>
                     <chance>100.0</chance>
                 </li>
@@ -30,33 +30,33 @@
 					</li>
 				</pawnKindEntries>
 					<factionDefs>
-						<li>YautjaPlayerColony</li> 
+						<li>RRY_Yautja_PlayerColony</li> 
 					</factionDefs>
 				</li>
 				<li>
 				<pawnKindEntries>
 					<li>
                     <kindDefs>
-                        <li>Colonist_YautjaUnblooded</li>
+                        <li>Colonist_YautjaUnblooded_RRY</li>
                     </kindDefs>
                     <chance>10.0</chance>
 					</li>
 				</pawnKindEntries>
 					<factionDefs>
-						<li>YautjaPlayerUnblooded</li> 
+						<li>RRY_Yautja_PlayerUnblooded</li> 
 					</factionDefs>
 				</li>
 				<li>
 				<pawnKindEntries>
 					<li>
                     <kindDefs>
-                        <li>Colonist_YautjaBlooded</li>
+                        <li>Colonist_YautjaBlooded_RRY</li>
                     </kindDefs>
                     <chance>10.0</chance>
 					</li>
 				</pawnKindEntries>
 					<factionDefs>
-						<li>YautjaPlayerBlooded</li> 
+						<li>RRY_Yautja_PlayerBlooded</li> 
 					</factionDefs>
 				</li>
 			</startingColonists>
@@ -66,23 +66,23 @@
                         <li>
                             <kindDefs>
 								<li>Yautja</li>
-								<li>Colonist_YautjaUnblooded</li>
-								<li>Colonist_YautjaBlooded</li>
+								<li>Colonist_YautjaUnblooded_RRY</li>
+								<li>Colonist_YautjaBlooded_RRY</li>
                             </kindDefs>
                             <chance>50.0</chance>
                         </li>
                     </pawnKindEntries>
                     <factionDefs>
-						<li>YautjaPlayerUnblooded</li> 
-						<li>YautjaPlayerBlooded</li> 
-						<li>YautjaPlayerColony</li> 
+						<li>RRY_Yautja_PlayerUnblooded</li> 
+						<li>RRY_Yautja_PlayerBlooded</li> 
+						<li>RRY_Yautja_PlayerColony</li> 
                     </factionDefs>
                 </li>
             </alienwandererkinds>
         </pawnKindSettings>
   </AlienRace.RaceSettings>
 
-<ThingDef Name="BaseYautjaPawn" Abstract="True">
+<ThingDef Name="RRY_BaseYautjaPawn" Abstract="True">
     <thingClass>Pawn</thingClass>
     <category>Pawn</category>
     <selectable>true</selectable>
@@ -133,8 +133,8 @@
     <drawGUIOverlay>true</drawGUIOverlay>
 </ThingDef>
 
-<AlienRace.ThingDef_AlienRace ParentName="BaseYautjaPawn" Name="Alien_YautjaBase">
-    <defName>Alien_Yautja</defName>
+<AlienRace.ThingDef_AlienRace ParentName="RRY_BaseYautjaPawn" Name="RRY_Alien_YautjaBase">
+    <defName>RRY_Alien_Yautja</defName>
     <label>Yautja</label>
     <description>.</description>
     <alienRace>
@@ -151,11 +151,6 @@
                     <defName>Xenophobia</defName>
                     <degree>1</degree>
                     <chance>75</chance>
-                </li>
-                <li>
-                    <defName>Xenophobia</defName>
-                    <degree>0</degree>
-                    <chance>50</chance>
                 </li>
             </forcedRaceTraitEntries>
 			<disallowedTraits>
@@ -336,6 +331,39 @@
 		   <notXenophobistTowards>
 		   
            </notXenophobistTowards>
+		<factionRelations>
+                <li>
+                    <factions>
+                       <li>RRY_Yautja_JungleClan</li>
+                       <li>RRY_Yautja_PlayerUnblooded</li>
+					   <li>RRY_Yautja_PlayerBlooded</li>
+					   <li>RRY_Yautja_PlayerColony</li>
+                    </factions>
+                    <goodwill>
+                       <min>-10</min>
+                       <max>40</max>
+                    </goodwill>
+                </li>
+				<li>
+                    <factions>
+					   <li>PlayerColony</li>
+					   <li>PlayerTribe</li>
+                    </factions>
+                    <goodwill>
+                       <min>-100</min>
+                       <max>10</max>
+                    </goodwill>
+                </li>
+				<li>
+                    <factions>
+                       <li>RRY_Yautja_BadBloodFaction</li>
+                    </factions>
+                    <goodwill>
+                       <min>-100</min>
+                       <max>-50</max>
+                    </goodwill>
+                </li>
+		</factionRelations>
         </generalSettings>
         <graphicPaths>
             <li>
@@ -392,7 +420,7 @@
 						<li>RRY_YautjaTechBase</li>
 						<li>RRY_YautjaTechMid</li>
 						<li>RRY_YautjaTechHigh</li>
-						<li>YautjaArmour</li>
+						<li>RRY_YautjaArmour</li>
 						<li>RRY_YautjaMelee_Basic</li>
 						<li>RRY_YautjaMelee_Special</li>
 						<li>RRY_YautjaRanged_Basic</li>
@@ -413,7 +441,7 @@
 				<li>RRY_Apparel_HunterHeavyArmourGreaves</li>
 				<li>RRY_Apparel_HunterBioMask</li>
 				<li>RRY_Apparel_HunterEliteArmourChestplate</li>
-				<li>RRY_Apparel_HunterHeavyArmourGreaves</li>
+				<li>RRY_Apparel_HunterEliteArmourGreaves</li>
 				<li>RRY_Apparel_HunterEliteBioMask</li>
 				<li>RRY_Apparel_HunterLeaderArmourChestplate</li>
 				<li>RRY_Apparel_HunterLeaderArmourGreaves</li>
@@ -426,11 +454,10 @@
 				
 				<!-- <li>RRY_Equipment_HunterGauntlet</li> -->
 				<li>RRY_Equipment_HunterShoulderCannon</li>
-				<li>RRY_Equipment_HunterShoulderCannonB</li>
-				<li>Apparel_ShieldBelt</li>
 			</apparelList>
             <whiteApparelList>
                 <li>RRY_Equipment_HunterGauntlet</li>
+				<li>Apparel_ShieldBelt</li>
             </whiteApparelList>
 			<onlyUseRaceRestrictedApparel>true</onlyUseRaceRestrictedApparel>
             <recipeList>
@@ -441,6 +468,12 @@
 				<li>RRY_Apparel_HunterHeavyArmourChestplate</li>
 				<li>RRY_Apparel_HunterHeavyArmourGreaves</li>
 				<li>RRY_Apparel_HunterBioMask</li>
+				<li>RRY_Apparel_HunterEliteArmourChestplate</li>
+				<li>RRY_Apparel_HunterEliteArmourGreaves</li>
+				<li>RRY_Apparel_HunterEliteBioMask</li>
+				<li>RRY_Apparel_HunterLeaderArmourChestplate</li>
+				<li>RRY_Apparel_HunterLeaderArmourGreaves</li>
+				<li>RRY_Apparel_HunterLeaderBioMask</li>
 				<li>RRY_Apparel_HunterVest</li>
 				
 				<li>RRY_Apparel_LeaderArmourChestplate</li>
@@ -449,10 +482,14 @@
 				
 				<li>RRY_Equipment_HunterGauntlet</li>
 				<li>RRY_Equipment_HunterShoulderCannon</li>
+				
 				<li>RRY_Melee_Combistaff</li>
 				<li>RRY_Melee_BladedMaul</li>
-				<li>Yautja_SmartDisk</li>
+				<li>RRY_Gun_SmartDisk</li>
+				<li>RRY_Gun_Hunting_Bow</li>
+				<li>RRY_Gun_Compound_Bow</li>
 				<li>RRY_Gun_NeedlerRifle</li>
+				<li>RRY_Gun_SpearRifle</li>
 				<li>RRY_Gun_YautjaBlaster</li>
             </recipeList>
         </raceRestriction>
@@ -542,7 +579,7 @@
       <makesFootprints>true</makesFootprints>
       <lifeExpectancy>2000</lifeExpectancy>
       <leatherDef>RRY_Leather_Yautja</leatherDef>
-      <nameGenerator>NamerPersonYautja</nameGenerator>
+      <nameGenerator>RRY_NamerPersonYautja</nameGenerator>
       <body>RRY_Yautja_Biped</body>
       <bloodDef>RRY_FilthBloodYautja</bloodDef>	
 	  <!-- RGB in the photoshop is (R=196  G= 192  B=124) -->
@@ -606,11 +643,11 @@
         </points>
       </ageGenerationCurve>
       <hediffGiverSets>
-        <li>OrganicAgeless</li>
+        <li>RRY_Organic_Yautja</li>
       </hediffGiverSets>
     </race>
     <recipes>
-       <li>InstallArchotechEye</li>
+      <li>InstallArchotechEye</li>
       <li>InstallArchotechArm</li>
       <li>InstallArchotechLeg</li>
       <li>InstallPowerClaw</li>

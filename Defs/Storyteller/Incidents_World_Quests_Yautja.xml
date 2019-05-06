@@ -24,7 +24,7 @@
 	-->
 	
 	<IncidentDef>
-		<defName>Quest_DownedRefugee</defName>
+		<defName>RRY_Quest_DownedRefugee</defName>
 		<label>incapacitated refugee quest</label>
 		<category>WorldQuest</category>
     <targetTags>

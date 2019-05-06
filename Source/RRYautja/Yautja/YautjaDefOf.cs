@@ -33,12 +33,17 @@ namespace RimWorld
         // Yautja PawnKindDefs
 
         // Yautja ThingDefs  Races 
-        public static ThingDef Alien_Yautja;
+        public static ThingDef RRY_Alien_Yautja;
         public static ThingDef RRY_Yautja_Hound;
         public static ThingDef RRY_Rynath;
 
         // Yautja ThingDefs  Equipment
         public static ThingDef RRY_Equipment_HunterGauntlet;
+
+        // Yautja HairDefs 
+        public static HairDef RRY_Yaujta_Dreds;
+        public static HairDef RRY_Yaujta_Ponytail;
+        public static HairDef RRY_Yaujta_Bald;
 
         // Yautja JobDefs
         public static JobDef RRY_Yautja_MarkSelf;
@@ -47,18 +52,23 @@ namespace RimWorld
         public static JobDef RRY_Yautja_TendSelf;
         public static JobDef RRY_Yautja_HealthShard;
 
+        // Yautja FactionDefs 
+        public static FactionDef RRY_Yautja_PlayerColony;
+        public static FactionDef RRY_Yautja_PlayerUnblooded;
+        public static FactionDef RRY_Yautja_PlayerBlooded;
+
         // Yautja ResearchProjectDefs 
         public static ResearchProjectDef RRY_YautjaMediComp;
         public static ResearchProjectDef RRY_YautjaHealthShard;
         public static ResearchProjectDef RRY_YautjaCloakGenerator;
 
         // Yautja WorkTypeDefs 
-        public static WorkTypeDef Rearm;
+        public static WorkTypeDef RRY_Rearm;
 
         // Yautja DesignationDefs
-        public static DesignationDef RearmTrap;
+        public static DesignationDef RRY_RearmTrap;
 
         // Yautja RecordDefs
-        public static RecordDef TrapsRearmed;
+        public static RecordDef RRY_TrapsRearmed;
     }
 }

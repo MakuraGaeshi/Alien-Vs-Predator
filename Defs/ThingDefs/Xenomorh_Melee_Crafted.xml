@@ -4,7 +4,7 @@
   <ThingDef ParentName="BaseMeleeWeapon_Sharp_Quality">
     <defName>RRY_MeleeWeapon_XenoSpear</defName>
     <label>xenomorph-tail spear</label>
-    <description>A polearm tipped with the tail of a xenomorph for stabbing opponents.</description>
+    <description>A primitive spear made with the tail of a Xenomorph, making its tip immune to acidic effects Xenomorph blood.</description>
     <graphicData>
       <texPath>Things/Equipment/Melee/Xeno_Spear</texPath>
       <graphicClass>Graphic_Single</graphicClass>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <HairDef>
+    <defName>RRY_Yaujta_Dreds</defName>
     <label>Yaujta Dreds</label>
     <hairGender>Any</hairGender>
     <texPath>Things/Pawn/Yautja/Hair/Hair_Yautja</texPath>
-    <defName>YaujtaDreds</defName>
 		<hairTags>
 			<li>YaujtaDreds</li>
 			<li>YaujtaHair</li>
@@ -12,10 +12,10 @@
   </HairDef>
   
   <HairDef>
+    <defName>RRY_Yaujta_Ponytail</defName>
     <label>Yaujta Ponytail</label>
     <hairGender>Any</hairGender>
     <texPath>Things/Pawn/Yautja/Hair/Hair_Yautja_Ponytail</texPath>
-    <defName>YaujtaPonytail</defName>
 		<hairTags>
 			<li>YaujtaPonytail</li>
 			<li>YaujtaHair</li>
@@ -23,10 +23,10 @@
   </HairDef>
   
   <HairDef>
-    <label>Yaujta Bald</label>
+    <defName>RRY_Yaujta_Bald</defName>
+    <label>Bald</label>
     <hairGender>Any</hairGender>
     <texPath>Things/Pawn/Yautja/Hair/Hairless_Yautja</texPath>
-    <defName>YaujtaBald</defName>
 		<hairTags>
 			<li>YaujtaBald</li>
 		</hairTags>

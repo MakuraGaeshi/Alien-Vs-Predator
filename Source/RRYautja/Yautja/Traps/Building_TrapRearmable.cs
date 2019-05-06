@@ -57,7 +57,7 @@ namespace RRYautja
             }
             if (this.autoRearm && this.canBeDesignatedRearm())
             {
-                base.Map.designationManager.AddDesignation(new Designation(this, YautjaDefOf.RearmTrap));
+                base.Map.designationManager.AddDesignation(new Designation(this, YautjaDefOf.RRY_RearmTrap));
             }
         }
 
@@ -67,7 +67,7 @@ namespace RRYautja
             if (!this.armedInt)
             {
                 return (from i in base.Map.designationManager.AllDesignationsOn(this)
-                        where i.def == YautjaDefOf.RearmTrap
+                        where i.def == YautjaDefOf.RRY_RearmTrap
                         select i).FirstOrDefault<Designation>() == null;
             }
             return false;
@@ -131,7 +131,7 @@ namespace RRYautja
                     icon = TexCommand.RearmTrap,
                     action = delegate ()
                     {
-                        base.Map.designationManager.AddDesignation(new Designation(this, YautjaDefOf.RearmTrap));
+                        base.Map.designationManager.AddDesignation(new Designation(this, YautjaDefOf.RRY_RearmTrap));
                     }
                 };
             }

@@ -43,7 +43,7 @@
     <canUseDeflectMetalEffect>false</canUseDeflectMetalEffect>
   </DamageDef>
   
-  <!-- AcidBurn is like AcidDamage, but doesn't ignite anything -->
+  <!-- AcidBurn is like AcidDamage, but doesn't repeat -->
   <DamageDef ParentName="Acid">
     <defName>RRY_AcidBurn</defName>
     <label>acid burn</label>

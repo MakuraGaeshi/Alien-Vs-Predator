@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 	<!-- ========================= Yautja - Equipment base ========================== -->
-	<ThingDef Name="RRYYautjaEquipmentBase" ParentName="RRYArmorMakeableBase" Abstract="true">
+	<ThingDef Name="RRY_Yautja_EquipmentBase" ParentName="RRY_Armor_MakeableBase" Abstract="true">
 	<description>Advanced equipment of the Yautja</description>
 	</ThingDef>
 	<!-- ========================= Yautja - Hunter Gauntlet ========================== -->
-	<ThingDef ParentName="RRYYautjaEquipmentBase">
+	<ThingDef ParentName="RRY_Yautja_EquipmentBase">
 		<defName>RRY_Equipment_HunterGauntlet</defName>
 		<label>Yautja Hunter Gauntlet</label>
-		<description>This is one of the basic bits of equipment All Yautja a variant of carry when hunting, it contains the wristblade and selfdestruct device</description>
+		<description>This wrist mounted gauntlet is the most basic piece of equipement a Hunter carry. They come in infinite variations. At its base it contains extendable claws and a self destruction device. Can be upgraded to store a first aid kit, meds and activate cloaking capabilities.</description>
 		<thingClass>RRYautja.Cloakgen</thingClass>
 		<graphicData>
 			<texPath>Things/Apparel/Yautja_Gauntlet/Yautja_Gauntlet</texPath>
@@ -16,15 +16,15 @@
 		</graphicData>
     <projectile>
         <explosionRadius>10</explosionRadius>
-        <damageDef>RRYBombSuper</damageDef>
+        <damageDef>RRY_BombSuper</damageDef>
     </projectile>
 		<tickerType>Normal</tickerType>
 		<comps> 
       <li Class="RRYautja.CompProperties_WearableExplosive">
-        <stability>1</stability>
+        <stability>2</stability>
       </li> 
 		  <li Class="RRYautja.CompProperties_HediffApparel">
-			<hediffDef>RRYWristbladeHeDiff</hediffDef>
+			<hediffDef>RRY_WristbladeHeDiff</hediffDef>
 			<severityBasedOnDurability>false</severityBasedOnDurability>
 			<partsToAffect>
 			  <li>Arm</li>
@@ -90,7 +90,7 @@
 			</defaultOutfitTags>
 		</apparel>
 		<thingCategories>
-			<li>RRYEquipment</li>
+			<li>RRY_Equipment</li>
 		</thingCategories>
 		<tradeTags>
 			<li>Apparel</li>
@@ -98,10 +98,10 @@
 	</ThingDef>
 	
 	<!-- ========================= Yautja - Shoulder Cannon ========================== -->
-	<ThingDef ParentName="RRYYautjaEquipmentBase">
+	<ThingDef ParentName="RRY_Yautja_EquipmentBase">
 		<defName>RRY_Equipment_HunterShoulderCannon</defName>
 		<label>Yautja Shoulder Plasmacaster</label>
-		<!-- <description>.</description> -->
+		<description>Also known as the Shoulder Canon, this shoulder mounted high-energy weapon unable the Yautja to have long-range capabilities while wielding another weapon of his choice. The canon can be activated and deactivated as seen fit and have it's own targeting system making it completely independent.</description>
 		<graphicData>
 			<texPath>Things/Equipment/Yautja_ShoulderCannon</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -151,92 +151,11 @@
 			</defaultOutfitTags>
 		</apparel>
 		<thingCategories>
-			<li>RRYEquipment</li>
+			<li>RRY_Equipment</li>
 		</thingCategories>
 		<tradeTags>
 			<li>Apparel</li>
 		</tradeTags>
 	</ThingDef>
 		
-	<!-- ========================= Yautja - Shoulder Cannon MKII========================== 
-	<ThingDef ParentName="RRYArmorMakeableBase">
-		<defName>RRY_Equipment_HunterShoulderCannonB</defName>
-		<label>Yautja Shoulder Cannon</label>
-		<description>.</description>
-		<graphicData>
-			<texPath>Things/Equipment/Yautja_ShoulderCannon</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<tickerType>Normal</tickerType>
-		<building>
-			<ai_combatDangerous>true</ai_combatDangerous>
-			<turretGunDef>Gun_ShoulderCannon</turretGunDef>
-			<turretBurstCooldownTime>1.0</turretBurstCooldownTime>
-		</building>
-    <placeWorkers>
-      <li>PlaceWorker_TurretTop</li>
-    </placeWorkers>
-		<statBases>
-			<MarketValue>2500</MarketValue>
-			<MaxHitPoints>500</MaxHitPoints>
-			<WorkToMake>60000</WorkToMake>
-			<ArmorRating_Blunt>0.05</ArmorRating_Blunt>
-			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
-			<ArmorRating_Heat>0.05</ArmorRating_Heat>
-			<Insulation_Heat>1</Insulation_Heat>
-			<Insulation_Cold>1</Insulation_Cold>
-			<Mass>1</Mass>
-		</statBases>
-		<equippedStatOffsets>
-		
-			<MoveSpeed>-0.03</MoveSpeed>
-			<WorkSpeedGlobal>-0.15</WorkSpeedGlobal>
-			<ShootingAccuracyPawn>0.25</ShootingAccuracyPawn>
-			<PsychicSensitivity>-0.10</PsychicSensitivity>
-			<ToxicSensitivity>-0.5</ToxicSensitivity>
-			
-		</equippedStatOffsets>
-		<costList>
-			<Steel>100</Steel>
-			<Plasteel>60</Plasteel>
-			<ComponentIndustrial>10</ComponentIndustrial>
-		</costList>
-		<recipeMaker>
-			
-		</recipeMaker>
-		<apparel>
-			<bodyPartGroups>
-				<li>Arms</li>
-			</bodyPartGroups>
-			 <wornGraphicPath>Things/Apparel/Yautja_Armour/Yautja_HunterArmor</wornGraphicPath> 
-			<layers>
-				<li>OnSkin</li>
-			</layers>
-			<tags>
-				<li>YautjaWristblade</li>
-				<li>YautjaEquipment</li>
-				<li>Yautja</li>
-			</tags>
-			<defaultOutfitTags>
-				<li>Soldier</li>
-			</defaultOutfitTags>
-		</apparel>
-		<thingCategories>
-			<li>RRYEquipment</li>
-		</thingCategories>
-		<tradeTags>
-			<li>Apparel</li>
-		</tradeTags>
-	</ThingDef>
-	-->
-	
-	<!--
-		<tickerType>Normal</tickerType>
-	<comps>     
-	      <li Class="AdeptusMechanicus.CompProperties_Wargear">
-		</li>  
-	      <li Class="CompProperties_EquippableLight">
-		</li>
-	</comps>
-	-->
 </Defs>

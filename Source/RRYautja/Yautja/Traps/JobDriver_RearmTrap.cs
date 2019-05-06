@@ -19,7 +19,7 @@ namespace RRYautja
         protected override IEnumerable<Toil> MakeNewToils()
         {
             ToilFailConditions.FailOnDespawnedOrNull<JobDriver_RearmTrap>(this, TargetIndex.A);
-            ToilFailConditions.FailOnThingMissingDesignation<JobDriver_RearmTrap>(this, TargetIndex.A, YautjaDefOf.RearmTrap);
+            ToilFailConditions.FailOnThingMissingDesignation<JobDriver_RearmTrap>(this, TargetIndex.A, YautjaDefOf.RRY_RearmTrap);
             Toil toil = new Toil();
             toil.initAction = delegate ()
             {
@@ -34,13 +34,13 @@ namespace RRYautja
                 initAction = delegate ()
                 {
                     Thing thing = this.job.targetA.Thing;
-                    Designation designation = base.Map.designationManager.DesignationOn(thing, YautjaDefOf.RearmTrap);
+                    Designation designation = base.Map.designationManager.DesignationOn(thing, YautjaDefOf.RRY_RearmTrap);
                     if (designation != null)
                     {
                         designation.Delete();
                     }
                     (thing as Building_TrapRearmable).Rearm();
-                    this.pawn.records.Increment(YautjaDefOf.TrapsRearmed);
+                    this.pawn.records.Increment(YautjaDefOf.RRY_TrapsRearmed);
                 },
                 defaultCompleteMode = ToilCompleteMode.Instant
             };

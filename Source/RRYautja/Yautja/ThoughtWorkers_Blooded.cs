@@ -27,7 +27,7 @@ namespace RimWorld
             {
                 return false;
             }
-            if (p.kindDef.race != YautjaDefOf.Alien_Yautja)
+            if (p.kindDef.race != YautjaDefOf.RRY_Alien_Yautja)
             {
                 return false;
             }
@@ -99,7 +99,7 @@ namespace RimWorld
             {
                 return false;
             }
-            if (p.kindDef.race != YautjaDefOf.Alien_Yautja)
+            if (p.kindDef.race != YautjaDefOf.RRY_Alien_Yautja)
             {
                 return false;
             }
@@ -164,7 +164,7 @@ namespace RimWorld
             {
                 return false;
             }
-            if (p.kindDef.race != YautjaDefOf.Alien_Yautja)
+            if (p.kindDef.race != YautjaDefOf.RRY_Alien_Yautja)
             {
                 return false;
             }

@@ -2,14 +2,14 @@
 <Defs>
 
 	<ScenarioDef>
-	<defName>YautjaScenarioTest</defName>
+	<defName>RRY_YautjaScenarioTest</defName>
 		<label>Testing Yautja pawns</label>
 		<description>When a sudden explosion crippled your ship, you knew you had to take your chances in the escape pods, or die...</description>
 <scenario>
 <summary>Five escaped Yautja attempt to build a colony. Difficult.</summary>
 		<playerFaction>
 			<def>PlayerFaction</def>
-			<factionDef>YautjaPlayerColony</factionDef>
+			<factionDef>RRY_Yautja_PlayerColony</factionDef>
 		</playerFaction>
 		<parts>
 			<li Class="ScenPart_ConfigPage_ConfigureStartingPawns">
@@ -113,14 +113,14 @@
 	</ScenarioDef>
 	
 	<ScenarioDef>
-	<defName>YautjaScenarioUnblooded</defName>
+	<defName>RRY_YautjaScenarioUnblooded</defName>
 		<label>Unblooded Yautja hunters</label>
 		<description>When a sudden explosion crippled your ship, you knew you had to take your chances in the escape pods, or die...</description>
 <scenario>
 <summary>Five Unblooded Yautja attempt to surivie a hunt to earn their blood status. Difficult.</summary>
 		<playerFaction>
 			<def>PlayerFaction</def>
-			<factionDef>YautjaPlayerUnblooded</factionDef>
+			<factionDef>RRY_Yautja_PlayerUnblooded</factionDef>
 		</playerFaction>
 		<parts>
 			<li Class="ScenPart_ConfigPage_ConfigureStartingPawns">
@@ -223,14 +223,14 @@
 		</scenario>
 	</ScenarioDef>
 	<ScenarioDef>
-	<defName>YautjaScenarioBlooded</defName>
+	<defName>RRY_YautjaScenarioBlooded</defName>
 		<label>Blooded Yautja hunters</label>
 		<description>When a sudden explosion crippled your ship, you knew you had to take your chances in the escape pods, or die...</description>
 <scenario>
 <summary>Five escaped Yautja attempt to build a colony. Difficult.</summary>
 		<playerFaction>
 			<def>PlayerFaction</def>
-			<factionDef>YautjaPlayerBlooded</factionDef>
+			<factionDef>RRY_Yautja_PlayerBlooded</factionDef>
 		</playerFaction>
 		<parts>
 			<li Class="ScenPart_ConfigPage_ConfigureStartingPawns">

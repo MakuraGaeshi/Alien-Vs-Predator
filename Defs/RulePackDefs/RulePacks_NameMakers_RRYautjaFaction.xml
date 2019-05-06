@@ -17,14 +17,14 @@
 	</RulePackDef>
 	
 	<RulePackDef>
-		<defName>NamerRRYJungleClan</defName>
+		<defName>NamerRRYYautjaJungleClan</defName>
 		<rulePack>
 		  <rulesStrings>
-			<li>name->[RRYJungleClan]</li>
+			<li>name->[RRY_Yautja_JungleClan]</li>
 		  </rulesStrings>
 		  <rulesRaw>
 			<li Class="Rule_File">
-				<keyword>RRYJungleClan</keyword>
+				<keyword>RRY_Yautja_JungleClan</keyword>
 				<path>NameBanks/RRYautjaClanJungle</path>
 			</li>
 		  </rulesRaw>
@@ -47,7 +47,7 @@
 	</RulePackDef>
 
 	<RulePackDef>
-		<defName>NamerPersonYautja</defName>
+		<defName>RRY_NamerPersonYautja</defName>
 		<rulePack>
 		  <rulesStrings>
 			<li>name->[RRYautjaMale]</li>

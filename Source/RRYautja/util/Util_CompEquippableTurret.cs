@@ -12,7 +12,7 @@ namespace RRYautja
         {
 			get
 			{
-				return ThingDef.Named("EquippableTurret");
+				return ThingDef.Named("RRY_EquippableTurret");
 			}
 		}
 	}

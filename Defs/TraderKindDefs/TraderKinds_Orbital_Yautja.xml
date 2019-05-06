@@ -2,7 +2,7 @@
 <Defs>
 
   <TraderKindDef>
-    <defName>Orbital_BulkGoodsYautja</defName>
+    <defName>RRY_Orbital_BulkGoodsYautja</defName>
     <label>Yautja goods trader</label>
     <commonality>2</commonality>
     <orbital>true</orbital>
@@ -207,7 +207,7 @@
 
 
   <TraderKindDef>
-    <defName>Orbital_CombatSupplierYautja</defName>
+    <defName>RRY_Orbital_CombatSupplierYautja</defName>
     <label>Yautja supplier</label>
     <commonality>1</commonality>
     <orbital>true</orbital>
@@ -277,7 +277,7 @@
 
 
   <TraderKindDef>
-    <defName>Orbital_ExoticYautja</defName>
+    <defName>RRY_Orbital_ExoticYautja</defName>
     <label>Yautja exotic trader</label>
     <commonality>1</commonality>
     <orbital>true</orbital>
@@ -438,7 +438,7 @@
 
 
   <TraderKindDef>
-    <defName>Orbital_PirateMerchantYautja</defName>
+    <defName>RRY_Orbital_PirateMerchantYautja</defName>
     <label>BadBlood merchant</label>
     <commonality>1</commonality>
     <orbital>true</orbital>

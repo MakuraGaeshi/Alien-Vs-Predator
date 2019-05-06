@@ -12,7 +12,7 @@ namespace RRYautja
         // Token: 0x06000006 RID: 6 RVA: 0x00002106 File Offset: 0x00000306
         public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn)
         {
-            foreach (Designation designation in pawn.Map.designationManager.SpawnedDesignationsOfDef(YautjaDefOf.RearmTrap))
+            foreach (Designation designation in pawn.Map.designationManager.SpawnedDesignationsOfDef(YautjaDefOf.RRY_RearmTrap))
             {
                 yield return designation.target.Thing;
             }
@@ -39,7 +39,7 @@ namespace RRYautja
         // Token: 0x06000009 RID: 9 RVA: 0x0000211C File Offset: 0x0000031C
         public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
-            if (pawn.Map.designationManager.DesignationOn(t, YautjaDefOf.RearmTrap) == null)
+            if (pawn.Map.designationManager.DesignationOn(t, YautjaDefOf.RRY_RearmTrap) == null)
             {
                 return false;
             }

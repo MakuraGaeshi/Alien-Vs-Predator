@@ -38,6 +38,9 @@
       <HintPath>..\..\..\..\..\..\workshop\content\294100\932008009\Assemblies\0JecsTools.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="AbilityUser">
+      <HintPath>..\..\..\..\..\..\workshop\content\294100\932008009\Assemblies\AbilityUser.dll</HintPath>
+    </Reference>
     <Reference Include="AlienRace">
       <HintPath>..\..\..\..\..\..\workshop\content\294100\839005762\Assemblies\AlienRace.dll</HintPath>
       <Private>False</Private>
@@ -62,11 +65,14 @@
     <None Include="util\Cloakgen - withMedicomp.cs.bak" />
     <None Include="util\Cloakgen.cs.bak" />
     <None Include="util\CompEquippableTurret - New.cs.bak" />
+    <Compile Include="util\Class1.cs" />
+    <Compile Include="util\Class2.cs" />
     <Compile Include="util\Gizmo_ShardStatus.cs" />
     <Compile Include="Xenomorph\Class1.cs" />
     <Compile Include="Xenomorph\HediffComp_XenoSpawner.cs" />
     <Compile Include="Xenomorph\Recipe_RemoveFacehugger.cs" />
     <Compile Include="Xenomorph\Recipe_Surgery_RRY.cs" />
+    <Compile Include="util\GenericCompAbilityItem.cs" />
     <Compile Include="Yautja\HealthShard\JobGiver_PatientGoToBedTendSelf.cs" />
     <Compile Include="Yautja\HealthShard\JobDriver_HealthShard.cs" />
     <Compile Include="Yautja\HealthShard\CompHealthShard.cs" />
@@ -74,6 +80,8 @@
     <Compile Include="Yautja\HealthShard\JobDriver_TendSelf.cs" />
     <Compile Include="Yautja\HealthShard\HealthShardTendUtility.cs" />
     <Compile Include="Xenomorph\Verb_MeleeAttackKnockback.cs" />
+    <Compile Include="util\Projectile_AbilityRRY_ThrownWeapon.cs" />
+    <Compile Include="util\Projectile_AbilityRRY.cs" />
     <Compile Include="Yautja\XenosCorpseModification.cs" />
     <Compile Include="Yautja\Traps\Building_Trap.cs" />
     <Compile Include="Yautja\Traps\Building_TrapRearmable.cs" />

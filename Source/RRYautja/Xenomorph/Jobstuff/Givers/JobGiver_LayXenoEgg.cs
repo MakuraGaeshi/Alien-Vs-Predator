@@ -44,7 +44,7 @@ namespace RimWorld
                     }
                 }
             }
-            return new Job(XenomorphDefOf.LayXenomorphEgg, c);
+            return new Job(XenomorphDefOf.RRY_Job_LayXenomorphEgg, c);
         }
 
         // Token: 0x04000275 RID: 629

@@ -25,7 +25,7 @@ namespace RimWorld
             {
                 return base.GetReport();
             }
-            return XenomorphDefOf.XenomorphKidnap.reportString.Replace("TargetA", this.Takee.LabelShort);
+            return XenomorphDefOf.RRY_Job_XenomorphKidnap.reportString.Replace("TargetA", this.Takee.LabelShort);
         }
 
         // Token: 0x06000326 RID: 806 RVA: 0x0001F2B8 File Offset: 0x0001D6B8

@@ -2,7 +2,7 @@
 <Defs>
 
   <TraderKindDef>
-    <defName>Caravan_Yautja_BulkGoods</defName>
+    <defName>RRY_Caravan_Yautja_BulkGoods</defName>
     <label>bulk goods trader</label>
     <commonality>2</commonality>
     <stockGenerators>
@@ -151,7 +151,7 @@
   </TraderKindDef>
 
   <TraderKindDef>
-    <defName>Caravan_Yautja_CombatSupplier</defName>
+    <defName>RRY_Caravan_Yautja_CombatSupplier</defName>
     <label>combat supplier</label>
     <commonality>1</commonality>
     <stockGenerators>
@@ -255,7 +255,7 @@
   </TraderKindDef>
 
   <TraderKindDef>
-    <defName>Caravan_Yautja_PirateMerchant</defName>
+    <defName>RRY_Caravan_Yautja_PirateMerchant</defName>
     <label>pirate merchant</label>
     <commonality>1</commonality>
     <stockGenerators>
@@ -329,7 +329,7 @@
   </TraderKindDef>
 
 	<TraderKindDef>
-		<defName>Caravan_Yautja_Exotic</defName>
+		<defName>RRY_Caravan_Yautja_Exotic</defName>
 		<label>exotic goods trader</label>
     <commonality>1</commonality>
 		<stockGenerators>

@@ -4,7 +4,7 @@
 	<!-- =========================== Good ============================-->
 
 	<IncidentDef>
-		<defName>WandererJoinXenomorph</defName>
+		<defName>RRY_WandererJoinXenomorph</defName>
 		<label>wanderer join</label>
 		<category>Misc</category>
     <targetTags>
@@ -19,7 +19,7 @@
 	</IncidentDef>
 
 	<IncidentDef>
-		<defName>RefugeePodCrashXenomorph</defName>
+		<defName>RRY_RefugeePodCrashXenomorph</defName>
 		<label>transport pod crash</label>
 		<category>Misc</category>
     <targetTags>
@@ -33,7 +33,7 @@
 	<!-- =========================== Neutral ============================-->
 	
   <IncidentDef>
-    <defName>RefugeeChasedXenomorph</defName>
+    <defName>RRY_RefugeeChasedXenomorph</defName>
     <label>chased refugee</label>
 		<category>Misc</category>
     <targetTags>
@@ -47,7 +47,7 @@
   </IncidentDef>
 
 	<IncidentDef>
-		<defName>WildManWandersInXenomorph</defName>
+		<defName>RRY_WildManWandersInXenomorph</defName>
 		<label>wild man wanders in</label>
 		<category>Misc</category>
 		<targetTags>

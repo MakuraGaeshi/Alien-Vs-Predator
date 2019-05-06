@@ -59,13 +59,13 @@ namespace RRYautja
         public override AcceptanceReport CanDesignateThing(Thing t)
         {
             Building_TrapRearmable building_TrapRearmable = t as Building_TrapRearmable;
-            return building_TrapRearmable != null && !building_TrapRearmable.Armed && base.Map.designationManager.DesignationOn(building_TrapRearmable, YautjaDefOf.RearmTrap) == null;
+            return building_TrapRearmable != null && !building_TrapRearmable.Armed && base.Map.designationManager.DesignationOn(building_TrapRearmable, YautjaDefOf.RRY_RearmTrap) == null;
         }
 
         // Token: 0x06000032 RID: 50 RVA: 0x00002B6C File Offset: 0x00000D6C
         public override void DesignateThing(Thing t)
         {
-            base.Map.designationManager.AddDesignation(new Designation(t, YautjaDefOf.RearmTrap));
+            base.Map.designationManager.AddDesignation(new Designation(t, YautjaDefOf.RRY_RearmTrap));
         }
 
         // Token: 0x06000033 RID: 51 RVA: 0x00002B8E File Offset: 0x00000D8E

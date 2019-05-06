@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-  <FactionDef Abstract="True" Name="YautjaPlayerFactionBase">
+  <FactionDef Abstract="True" Name="RRY_YautjaPlayerFactionBase">
     <colorSpectrum>
       <li>(0, 0.737, 0.847)</li>
     </colorSpectrum>
@@ -8,12 +8,12 @@
     <expandingIconTexture>World/WorldObjects/YautjaIconB</expandingIconTexture>
   </FactionDef>
   
-    <FactionDef Parent="YautjaPlayerFactionBase">
-    <defName>YautjaPlayerColony</defName>
+    <FactionDef Parent="RRY_YautjaPlayerFactionBase">
+    <defName>RRY_Yautja_PlayerColony</defName>
     <label>Yautja Colony</label>
     <description>Yautja Colony Start.</description>
     <isPlayer>true</isPlayer>
-    <basicMemberKind>Colonist_Yautja</basicMemberKind>
+    <basicMemberKind>Colonist_Yautja_RRY</basicMemberKind>
     <pawnsPlural>Yautja</pawnsPlural>
     <playerInitialSettlementNameMaker>NamerInitialSettlementColony</playerInitialSettlementNameMaker>
 		<factionNameMaker>NamerRRYautjaFaction</factionNameMaker>
@@ -54,7 +54,7 @@
         <kindDef>Peaceful</kindDef>
         <commonality>100</commonality>
         <options>
-          <Colonist_Yautja>100</Colonist_Yautja>
+          <Colonist_Yautja_RRY>100</Colonist_Yautja_RRY>
         </options>
       </li>
     </pawnGroupMakers>
@@ -62,16 +62,16 @@
     <expandingIconTexture>World/WorldObjects/YautjaIconB</expandingIconTexture>
     </FactionDef>
 	
-    <FactionDef Parent="YautjaPlayerFactionBase">
-    <defName>YautjaPlayerUnblooded</defName>
+    <FactionDef Parent="RRY_YautjaPlayerFactionBase">
+    <defName>RRY_Yautja_PlayerUnblooded</defName>
     <label>Yautja Unblooded</label>
-    <description>Yautja unblooded hunting party.</description>
+    <description>Considered ready for your first autonomous hunt, you are sent on an unknown world to make your first hunts and come back to your clan by your own mean. Death before dishonor.</description>
     <playerInitialSettlementNameMaker>NamerInitialSettlementColony</playerInitialSettlementNameMaker>
 		<factionNameMaker>NamerRRYautjaFaction</factionNameMaker>
     <settlementNameMaker>NamerRRYautjaBases</settlementNameMaker>
     <techLevel>Ultra</techLevel>
     <isPlayer>true</isPlayer>
-    <basicMemberKind>Colonist_YautjaUnblooded</basicMemberKind>
+    <basicMemberKind>Colonist_YautjaUnblooded_RRY</basicMemberKind>
     <pawnsPlural>Yautja</pawnsPlural>
     <backstoryCategories>
       <li>Raider</li>
@@ -108,7 +108,7 @@
         <kindDef>Peaceful</kindDef>
         <commonality>100</commonality>
         <options>
-          <Colonist_YautjaUnblooded>100</Colonist_YautjaUnblooded>
+          <Colonist_YautjaUnblooded_RRY>100</Colonist_YautjaUnblooded_RRY>
         </options>
       </li>
     </pawnGroupMakers>
@@ -116,16 +116,16 @@
     <expandingIconTexture>World/WorldObjects/YautjaIconB</expandingIconTexture>
     </FactionDef>
 	
-    <FactionDef Parent="YautjaPlayerFactionBase">
-    <defName>YautjaPlayerBlooded</defName>
+    <FactionDef Parent="RRY_YautjaPlayerFactionBase">
+    <defName>RRY_Yautja_PlayerBlooded</defName>
     <label>Yautja Blooded</label>
-    <description>Yautja blooded hunters.</description>
+    <description>On a scouting mission to find new hunting grounds, something disastrous happened to your ship and you are possibly the last 5 remaining. Without a choice, you landed in unknown territory and have to face new dangers while you try to make your way back to your Clan.</description>
     <playerInitialSettlementNameMaker>NamerInitialSettlementColony</playerInitialSettlementNameMaker>
 		<factionNameMaker>NamerRRYautjaFaction</factionNameMaker>
     <settlementNameMaker>NamerRRYautjaBases</settlementNameMaker>
     <techLevel>Ultra</techLevel>
     <isPlayer>true</isPlayer>
-    <basicMemberKind>Colonist_YautjaBlooded</basicMemberKind>
+    <basicMemberKind>Colonist_YautjaBlooded_RRY</basicMemberKind>
     <pawnsPlural>Yautja</pawnsPlural>
     <backstoryCategories>
       <li>Raider</li>
@@ -162,7 +162,7 @@
         <kindDef>Peaceful</kindDef>
         <commonality>100</commonality>
         <options>
-          <Colonist_YautjaBlooded>100</Colonist_YautjaBlooded>
+          <Colonist_YautjaBlooded_RRY>100</Colonist_YautjaBlooded_RRY>
         </options>
       </li>
     </pawnGroupMakers>
