@@ -70,6 +70,8 @@
     <Compile Include="util\Projectile_AbilityRRY_ThrownReturning.cs" />
     <Compile Include="util\Gizmo_ShardStatus.cs" />
     <Compile Include="Xenomorph\Class1.cs" />
+    <Compile Include="Xenomorph\Class2.cs" />
+    <Compile Include="Xenomorph\Class3.cs" />
     <Compile Include="Xenomorph\HediffComp_XenoSpawner.cs" />
     <Compile Include="Xenomorph\Recipe_RemoveFacehugger.cs" />
     <Compile Include="Xenomorph\Recipe_Surgery_RRY.cs" />

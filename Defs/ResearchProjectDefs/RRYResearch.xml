@@ -10,10 +10,10 @@
 		<prerequisites>
 			<!-- <li>BasicYautjaConstruction</li> -->
 		</prerequisites>
-		<techLevel>Industrial</techLevel>
-		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<techLevel>Industrial</techLevel> 
+		<!-- <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding> -->
 		<researchViewX>0</researchViewX>
-		<researchViewY>0</researchViewY>
+		<researchViewY>2</researchViewY>
 	</ResearchProjectDef>
 	
 	<ResearchProjectDef>
@@ -28,7 +28,7 @@
 		<techLevel>Industrial</techLevel>
 		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
 		<researchViewX>1</researchViewX>
-		<researchViewY>0.0</researchViewY>
+		<researchViewY>2.0</researchViewY>
 	</ResearchProjectDef>
 	
 	<ResearchProjectDef>
@@ -42,11 +42,15 @@
 		</prerequisites>
 		<techLevel>Industrial</techLevel>
 		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <requiredResearchFacilities>
+      <li>MultiAnalyzer</li>
+    </requiredResearchFacilities>
 		<researchViewX>2</researchViewX>
-		<researchViewY>0.0</researchViewY>
+		<researchViewY>2.0</researchViewY>
 	</ResearchProjectDef>
 
 	<!--OG==================== Rebelrot's Yautja Mod - Research Weapons =========================OG-->
+	<!--OG==================== Rebelrot's Yautja Mod - Melee Weapons =========================OG-->
 	<ResearchProjectDef>
 		<tab>RRY_RTab</tab>
 		<defName>RRY_YautjaMelee_Basic</defName>
@@ -58,8 +62,8 @@
 		</prerequisites>
 		<techLevel>Industrial</techLevel>
 		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
-		<researchViewX>0</researchViewX>
-		<researchViewY>1</researchViewY>
+		<researchViewX>0.75</researchViewX>
+		<researchViewY>2.75</researchViewY>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef>
@@ -74,10 +78,11 @@
 		</prerequisites>
 		<techLevel>Industrial</techLevel>
 		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
-		<researchViewX>1</researchViewX>
-		<researchViewY>1</researchViewY>
+		<researchViewX>1.75</researchViewX>
+		<researchViewY>2.75</researchViewY>
 	</ResearchProjectDef>
 	
+	<!--OG==================== Rebelrot's Yautja Mod - Ranged Weapons =========================OG-->
 	<ResearchProjectDef>
 		<tab>RRY_RTab</tab>
 		<defName>RRY_YautjaRanged_Basic</defName>
@@ -88,9 +93,8 @@
 			<li>RRY_YautjaTechBase</li>
 		</prerequisites>
 		<techLevel>Industrial</techLevel>
-		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
-		<researchViewX>0</researchViewX>
-		<researchViewY>2</researchViewY>
+		<researchViewX>0.75</researchViewX>
+		<researchViewY>1</researchViewY>
 	</ResearchProjectDef>
 	
 	<ResearchProjectDef>
@@ -105,8 +109,8 @@
 		</prerequisites>
 		<techLevel>Industrial</techLevel>
 		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
-		<researchViewX>1</researchViewX>
-		<researchViewY>2</researchViewY>
+		<researchViewX>1.75</researchViewX>
+		<researchViewY>1</researchViewY>
 	</ResearchProjectDef>
 	
 	<ResearchProjectDef>
@@ -121,8 +125,11 @@
 		</prerequisites>
 		<techLevel>Industrial</techLevel>
 		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
-		<researchViewX>2</researchViewX>
-		<researchViewY>2</researchViewY>
+    <requiredResearchFacilities>
+      <li>MultiAnalyzer</li>
+    </requiredResearchFacilities>
+		<researchViewX>2.75</researchViewX>
+		<researchViewY>1</researchViewY>
 	</ResearchProjectDef>
 	
 	<!--OG==================== Rebelrot's Yautja Mod - Research Upgrades =========================OG-->
@@ -134,28 +141,32 @@
 		<baseCost>1000</baseCost>
 		<prerequisites>
 			<li>RRY_YautjaTechMid</li>
-			<li>RRY_YautjaMelee_Special</li>
+			<!-- <li>RRY_YautjaMelee_Special</li> -->
 		</prerequisites>
 		<techLevel>Industrial</techLevel>
 		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
-		<researchViewX>0</researchViewX>
-		<researchViewY>0.5</researchViewY>
+		<researchViewX>1.75</researchViewX>
+		<researchViewY>3.5</researchViewY>
 	</ResearchProjectDef>	
 	
 	<ResearchProjectDef>
 		<tab>RRY_RTab</tab>
 		<defName>RRY_YautjaHealthShard</defName>
 		<label>Shard Injector</label>
-		<description>Adds a Shard Injector to the Wristblade Gauntlet</description>
+		<description>Adds a Shard Injector to the Wristblade Gauntlet's Medicomp</description>
 		<baseCost>2000</baseCost>
 		<prerequisites>
 			<li>RRY_YautjaTechHigh</li>
+			<li>RRY_YautjaMediComp</li>
 			<li>RRY_YautjaMelee_Special</li>
 		</prerequisites>
 		<techLevel>Industrial</techLevel>
 		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
-		<researchViewX>1</researchViewX>
-		<researchViewY>0.5</researchViewY>
+		<requiredResearchFacilities>
+		  <li>MultiAnalyzer</li>
+		</requiredResearchFacilities>
+		<researchViewX>2.75</researchViewX>
+		<researchViewY>3.5</researchViewY>
 	</ResearchProjectDef>	
 	
 	<ResearchProjectDef>
@@ -170,8 +181,11 @@
 		</prerequisites>
 		<techLevel>Industrial</techLevel>
 		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
-		<researchViewX>2</researchViewX>
-		<researchViewY>0.5</researchViewY>
+    <requiredResearchFacilities>
+      <li>MultiAnalyzer</li>
+    </requiredResearchFacilities>
+		<researchViewX>2.75</researchViewX>
+		<researchViewY>2.75</researchViewY>
 	</ResearchProjectDef>	
 	
 </Defs>

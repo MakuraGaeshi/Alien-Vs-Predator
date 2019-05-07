@@ -22,6 +22,8 @@ namespace AbilityUser
             }
             PostPostImpactEffects(hitThing);
         }
+        
+
 
         public virtual void PostImpactEffects(Thing hitThing)
         {

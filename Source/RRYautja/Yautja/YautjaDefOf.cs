@@ -30,7 +30,9 @@ namespace RimWorld
         public static HediffDef RRY_Hediff_BloodedMGroTye;
 
         public static HediffDef RRY_Hediff_Cloaked;
-        // Yautja PawnKindDefs
+        public static HediffDef RRY_Hediff_BouncedProjectile; 
+
+        // Yautja PawnKindDefs 
 
         // Yautja ThingDefs  Races 
         public static ThingDef RRY_Alien_Yautja;

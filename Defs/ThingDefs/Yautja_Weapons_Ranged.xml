@@ -425,19 +425,20 @@
       </li>
     </tools>
     <weaponTags Inherit="False">
-      <li>SniperRifle</li>
+      <li>SpearRifle</li>
     </weaponTags>
   </ThingDef>
+  
   <ThingDef ParentName="BaseBullet">
     <defName>RRY_Bullet_SpearRifle</defName>
     <label>spear bolt</label>
     <graphicData>
-      <texPath>Things/Projectile/NeedlerShotSml</texPath>
+      <texPath>Things/Projectile/NeedlerShot</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile>
       <damageDef>Bullet</damageDef>
-      <damageAmountBase>25</damageAmountBase>
+      <damageAmountBase>35</damageAmountBase>
       <stoppingPower>1.5</stoppingPower>
       <speed>100</speed>
     </projectile>
@@ -472,9 +473,9 @@
 			<li>YautjaSmartDisk</li>
     </weaponTags>
     <recipeMaker>
-	  <researchPrerequisite>RRY_YautjaTechBase</researchPrerequisite>
+	  <researchPrerequisite>RRY_YautjaRanged_Basic</researchPrerequisite>
       <skillRequirements>
-        <Crafting>3</Crafting>
+        <Crafting>6</Crafting>
       </skillRequirements>
     </recipeMaker>
     <verbs>
@@ -482,8 +483,8 @@
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <defaultProjectile>RRY_SmartDisk_Thrown</defaultProjectile>
-        <warmupTime>4</warmupTime>
-        <range>24.9</range>
+        <warmupTime>3</warmupTime>
+        <range>20</range>
         <soundCast>Interact_BeatFire</soundCast>
         <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
       </li>
@@ -510,7 +511,7 @@
   <!-- Returning_Projectile --> 
   <ThingDef ParentName="BaseProjectileNeolithic">
     <defName>RRY_SmartDisk_Thrown</defName>
-   <thingClass>Returning_Projectile</thingClass>
+    <thingClass>Returning_Projectile</thingClass>
     <label>SmartDisk</label>
     <graphicData>
       <texPath>Things/Projectile/SmartDisk</texPath>

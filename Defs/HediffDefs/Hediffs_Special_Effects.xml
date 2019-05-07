@@ -59,6 +59,19 @@
     </stages>
   </HediffDef>
   
+  <HediffDef>
+    <defName>RRY_Hediff_BouncedProjectile</defName>
+    <hediffClass>RRYautja.Hediff_Bouncer</hediffClass>
+    <initialSeverity>1</initialSeverity>
+    <label>Stealth</label>
+    <stages>
+      <li>
+        <label>hidden</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+  </HediffDef>
+  
 <!--
     <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_Cloaked</defName>
