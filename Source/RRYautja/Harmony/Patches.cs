@@ -43,8 +43,8 @@ namespace RRYautja
                 if (__instance != null)
                 {
                 }
-            }
-            __result = __result || (__instance.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked) && _Xenomorph == null);
+            } // XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden
+            __result = __result || ((__instance.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked)|| __instance.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden)) && _Xenomorph == null);
 
         }
     }

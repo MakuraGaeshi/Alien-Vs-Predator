@@ -18,7 +18,7 @@ namespace RRYautja.Harmony
         public static bool ThiefException(PawnUIOverlay __instance)
         {
             Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
-            if (pawn != null && pawn.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked))
+            if (pawn != null && (pawn.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked)|| pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden)))
             {
                 return false;
             }

@@ -66,12 +66,14 @@
     <None Include="util\Cloakgen.cs.bak" />
     <None Include="util\CompEquippableTurret - New.cs.bak" />
     <Compile Include="util\Class1.cs" />
+    <Compile Include="util\Hediff_Hidden_Xeno.cs" />
     <Compile Include="util\Returning_Projectile.cs" />
     <Compile Include="util\Projectile_AbilityRRY_ThrownReturning.cs" />
     <Compile Include="util\Gizmo_ShardStatus.cs" />
-    <Compile Include="Xenomorph\Class1.cs" />
-    <Compile Include="Xenomorph\Class2.cs" />
-    <Compile Include="Xenomorph\Class3.cs" />
+    <Compile Include="Xenomorph\IncidentWorker_NeomorphFungusSprout.cs" />
+    <Compile Include="Xenomorph\Recipe_RemoveHugger.cs" />
+    <Compile Include="Yautja\Hediff_Bouncer.cs" />
+    <Compile Include="Xenomorph\Plant_Neomorph.cs" />
     <Compile Include="Xenomorph\HediffComp_XenoSpawner.cs" />
     <Compile Include="Xenomorph\Recipe_RemoveFacehugger.cs" />
     <Compile Include="Xenomorph\Recipe_Surgery_RRY.cs" />

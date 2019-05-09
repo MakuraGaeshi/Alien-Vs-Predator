@@ -26,13 +26,12 @@ namespace RRYautja
                 {
                     this.Severity += num;
                 }
-                HediffComp_DrawImplant comp = this.TryGetComp<HediffComp_DrawImplant>();
-                if (comp != null)
-                {
-                //    Draw();
-                    
-                }
             }
+        }
+
+        public override void Notify_PawnDied()
+        {
+            base.Notify_PawnDied();
         }
 
         public void Draw()

@@ -141,7 +141,7 @@
       </li>
       <li>
         <minSeverity>1</minSeverity>
-        <label>post burst</label>
+        <label>Gaping chest wound</label>
 				<partEfficiencyOffset>-1.0</partEfficiencyOffset>
         <painOffset>0.7</painOffset>
         <destroyPart>true</destroyPart>
@@ -233,7 +233,7 @@
       </li>
       <li>
         <minSeverity>1</minSeverity>
-        <label>post burst</label>
+        <label>Gaping chest wound</label>
         <becomeVisible>true</becomeVisible>
 				<partEfficiencyOffset>-1.0</partEfficiencyOffset>
         <painOffset>0.7</painOffset>
@@ -281,37 +281,180 @@
         <label>post impregnation</label>
         <partEfficiencyOffset>-0.1</partEfficiencyOffset>
         <painOffset>0.1</painOffset>
+		<capMods>
+			  <li>
+				<capacity>Consciousness</capacity>
+				<offset>-0.01</offset>
+			  </li>
+			  <li>
+				<capacity>Moving</capacity>
+				<offset>-0.01</offset>
+			  </li>
+			  <li>
+				<capacity>Manipulation</capacity>
+				<offset>-0.01</offset>
+			  </li>
+			  <li>
+				<capacity>Eating</capacity>
+				<offset>-0.01</offset>
+			  </li>
+			  <li>
+				<capacity>Breathing</capacity>
+				<offset>-0.05</offset>
+			  </li>
+        </capMods>
       </li>
       <li>
-        <minSeverity>0.15</minSeverity>
+        <minSeverity>0.25</minSeverity>
         <label>early gestation</label>
-				<partEfficiencyOffset>-0.25</partEfficiencyOffset>
+        <vomitMtbDays>0.2</vomitMtbDays>
+		<partEfficiencyOffset>-0.25</partEfficiencyOffset>
         <painOffset>0.2</painOffset>
+		<capMods>
+			  <li>
+				<capacity>Consciousness</capacity>
+				<offset>-0.05</offset>
+			  </li>
+			  <li>
+				<capacity>Moving</capacity>
+				<offset>-0.05</offset>
+			  </li>
+			  <li>
+				<capacity>Manipulation</capacity>
+				<offset>-0.05</offset>
+			  </li>
+			  <li>
+				<capacity>Eating</capacity>
+				<offset>-0.05</offset>
+			  </li>
+			  <li>
+				<capacity>Breathing</capacity>
+				<offset>-0.15</offset>
+			  </li>
+        </capMods>
       </li>
       <li>
-        <minSeverity>0.4</minSeverity>
-        <label>major</label>
+        <minSeverity>0.5</minSeverity>
+        <label>mid gestation</label>
+        <vomitMtbDays>0.4</vomitMtbDays>
 				<partEfficiencyOffset>-0.5</partEfficiencyOffset>
         <painOffset>0.35</painOffset>
+		<capMods>
+			  <li>
+				<capacity>Consciousness</capacity>
+				<offset>-0.1</offset>
+			  </li>
+			  <li>
+				<capacity>Moving</capacity>
+				<offset>-0.1</offset>
+			  </li>
+			  <li>
+				<capacity>Manipulation</capacity>
+				<offset>-0.1</offset>
+			  </li>
+			  <li>
+				<capacity>Eating</capacity>
+				<offset>-0.1</offset>
+			  </li>
+			  <li>
+				<capacity>Hearing</capacity>
+				<offset>-0.1</offset>
+			  </li>
+			  <li>
+				<capacity>Sight</capacity>
+				<offset>-0.1</offset>
+			  </li>
+			  <li>
+				<capacity>Breathing</capacity>
+				<offset>-0.2</offset>
+			  </li>
+        </capMods>
       </li>
       <li>
-        <minSeverity>0.6</minSeverity>
-        <label>major</label>
+        <minSeverity>0.75</minSeverity>
+        <label>late gestation</label>
+        <vomitMtbDays>0.7</vomitMtbDays>
 				<partEfficiencyOffset>-0.8</partEfficiencyOffset>
         <painOffset>0.5</painOffset>
+		<capMods>
+			  <li>
+				<capacity>Consciousness</capacity>
+				<offset>-0.2</offset>
+			  </li>
+			  <li>
+				<capacity>Moving</capacity>
+				<offset>-0.2</offset>
+			  </li>
+			  <li>
+				<capacity>Manipulation</capacity>
+				<offset>-0.2</offset>
+			  </li>
+			  <li>
+				<capacity>Eating</capacity>
+				<offset>-0.2</offset>
+			  </li>
+			  <li>
+				<capacity>Sight</capacity>
+				<offset>-0.2</offset>
+			  </li>
+			  <li>
+				<capacity>Hearing</capacity>
+				<offset>-0.2</offset>
+			  </li>
+			  <li>
+				<capacity>Breathing</capacity>
+				<offset>-0.25</offset>
+			  </li>
+        </capMods>
       </li>
       <li>
-        <minSeverity>0.8</minSeverity>
-        <label>extreme</label>
+        <minSeverity>0.99</minSeverity>
+        <label>pre burst</label>
 				<partEfficiencyOffset>-0.9</partEfficiencyOffset>
         <painOffset>0.6</painOffset>
+		<capMods>
+			  <li>
+				<capacity>Consciousness</capacity>
+				<setMax>0.1</setMax>
+			  </li>
+			  <li>
+				<capacity>Moving</capacity>
+				<offset>-0.75</offset>
+			  </li>
+			  <li>
+				<capacity>Manipulation</capacity>
+				<offset>-0.75</offset>
+			  </li>
+			  <li>
+				<capacity>Eating</capacity>
+				<offset>-0.75</offset>
+			  </li>
+			  <li>
+				<capacity>Sight</capacity>
+				<offset>-0.5</offset>
+			  </li>
+			  <li>
+				<capacity>Hearing</capacity>
+				<offset>-0.5</offset>
+			  </li>
+			  <li>
+				<capacity>Breathing</capacity>
+				<offset>-0.5</offset>
+			  </li>
+        </capMods>
       </li>
       <li>
         <minSeverity>1</minSeverity>
-        <label>extreme</label>
+        <label>Gaping chest wound</label>
 				<partEfficiencyOffset>-1.0</partEfficiencyOffset>
         <painOffset>0.7</painOffset>
         <destroyPart>true</destroyPart>
+		<capMods>
+			  <li>
+				<capacity>Consciousness</capacity>
+				<setMax>0.1</setMax>
+			  </li>
+        </capMods>
       </li>
     </stages>
     <comps>
@@ -344,42 +487,185 @@
         <becomeVisible>false</becomeVisible>
         <partEfficiencyOffset>-0.1</partEfficiencyOffset>
         <painOffset>0.1</painOffset>
+		<capMods>
+			  <li>
+				<capacity>Consciousness</capacity>
+				<offset>-0.01</offset>
+			  </li>
+			  <li>
+				<capacity>Moving</capacity>
+				<offset>-0.01</offset>
+			  </li>
+			  <li>
+				<capacity>Manipulation</capacity>
+				<offset>-0.01</offset>
+			  </li>
+			  <li>
+				<capacity>Eating</capacity>
+				<offset>-0.01</offset>
+			  </li>
+			  <li>
+				<capacity>Breathing</capacity>
+				<offset>-0.05</offset>
+			  </li>
+        </capMods>
       </li>
       <li>
-        <minSeverity>0.15</minSeverity>
+        <minSeverity>0.25</minSeverity>
         <label>early gestation</label>
         <becomeVisible>false</becomeVisible>
-				<partEfficiencyOffset>-0.25</partEfficiencyOffset>
+        <vomitMtbDays>0.2</vomitMtbDays>
+		<partEfficiencyOffset>-0.25</partEfficiencyOffset>
         <painOffset>0.2</painOffset>
+		<capMods>
+			  <li>
+				<capacity>Consciousness</capacity>
+				<offset>-0.05</offset>
+			  </li>
+			  <li>
+				<capacity>Moving</capacity>
+				<offset>-0.05</offset>
+			  </li>
+			  <li>
+				<capacity>Manipulation</capacity>
+				<offset>-0.05</offset>
+			  </li>
+			  <li>
+				<capacity>Eating</capacity>
+				<offset>-0.05</offset>
+			  </li>
+			  <li>
+				<capacity>Breathing</capacity>
+				<offset>-0.15</offset>
+			  </li>
+        </capMods>
       </li>
       <li>
-        <minSeverity>0.4</minSeverity>
-        <label>major</label>
+        <minSeverity>0.5</minSeverity>
+        <label>mid gestation</label>
         <becomeVisible>false</becomeVisible>
-				<partEfficiencyOffset>-0.5</partEfficiencyOffset>
+        <vomitMtbDays>0.4</vomitMtbDays>
+		<partEfficiencyOffset>-0.5</partEfficiencyOffset>
         <painOffset>0.35</painOffset>
+		<capMods>
+			  <li>
+				<capacity>Consciousness</capacity>
+				<offset>-0.1</offset>
+			  </li>
+			  <li>
+				<capacity>Moving</capacity>
+				<offset>-0.1</offset>
+			  </li>
+			  <li>
+				<capacity>Manipulation</capacity>
+				<offset>-0.1</offset>
+			  </li>
+			  <li>
+				<capacity>Eating</capacity>
+				<offset>-0.1</offset>
+			  </li>
+			  <li>
+				<capacity>Hearing</capacity>
+				<offset>-0.1</offset>
+			  </li>
+			  <li>
+				<capacity>Sight</capacity>
+				<offset>-0.1</offset>
+			  </li>
+			  <li>
+				<capacity>Breathing</capacity>
+				<offset>-0.2</offset>
+			  </li>
+        </capMods>
       </li>
       <li>
-        <minSeverity>0.6</minSeverity>
-        <label>major</label>
+        <minSeverity>0.75</minSeverity>
+        <label>late gestation</label>
         <becomeVisible>false</becomeVisible>
-				<partEfficiencyOffset>-0.8</partEfficiencyOffset>
+        <vomitMtbDays>0.7</vomitMtbDays>
+		<partEfficiencyOffset>-0.8</partEfficiencyOffset>
         <painOffset>0.5</painOffset>
+		<capMods>
+			  <li>
+				<capacity>Consciousness</capacity>
+				<offset>-0.2</offset>
+			  </li>
+			  <li>
+				<capacity>Moving</capacity>
+				<offset>-0.2</offset>
+			  </li>
+			  <li>
+				<capacity>Manipulation</capacity>
+				<offset>-0.2</offset>
+			  </li>
+			  <li>
+				<capacity>Eating</capacity>
+				<offset>-0.2</offset>
+			  </li>
+			  <li>
+				<capacity>Sight</capacity>
+				<offset>-0.2</offset>
+			  </li>
+			  <li>
+				<capacity>Hearing</capacity>
+				<offset>-0.2</offset>
+			  </li>
+			  <li>
+				<capacity>Breathing</capacity>
+				<offset>-0.25</offset>
+			  </li>
+        </capMods>
       </li>
       <li>
-        <minSeverity>0.8</minSeverity>
-        <label>extreme</label>
+        <minSeverity>0.99</minSeverity>
+        <label>pre burst</label>
         <becomeVisible>false</becomeVisible>
-				<partEfficiencyOffset>-0.9</partEfficiencyOffset>
+		<partEfficiencyOffset>-0.9</partEfficiencyOffset>
         <painOffset>0.6</painOffset>
+		<capMods>
+			  <li>
+				<capacity>Consciousness</capacity>
+				<setMax>0.1</setMax>
+			  </li>
+			  <li>
+				<capacity>Moving</capacity>
+				<offset>-0.75</offset>
+			  </li>
+			  <li>
+				<capacity>Manipulation</capacity>
+				<offset>-0.75</offset>
+			  </li>
+			  <li>
+				<capacity>Eating</capacity>
+				<offset>-0.75</offset>
+			  </li>
+			  <li>
+				<capacity>Sight</capacity>
+				<offset>-0.5</offset>
+			  </li>
+			  <li>
+				<capacity>Hearing</capacity>
+				<offset>-0.5</offset>
+			  </li>
+			  <li>
+				<capacity>Breathing</capacity>
+				<offset>-0.5</offset>
+			  </li>
+        </capMods>
       </li>
       <li>
         <minSeverity>1</minSeverity>
-        <label>extreme</label>
-        <becomeVisible>false</becomeVisible>
+        <label>Gaping chest wound</label>
+        <becomeVisible>true</becomeVisible>
 				<partEfficiencyOffset>-1.0</partEfficiencyOffset>
         <painOffset>0.7</painOffset>
         <destroyPart>true</destroyPart>
+		<capMods>
+			  <li>
+				<capacity>Consciousness</capacity>
+				<setMax>0.1</setMax>
+			  </li>
+        </capMods>
       </li>
     </stages>
     <comps>
@@ -392,7 +678,7 @@
 		</pawnKindWeights>
 		</li>
 		<li Class="HediffCompProperties_SeverityPerDay">
-		<severityPerDay>1</severityPerDay>
+		<severityPerDay>0.3</severityPerDay>
 		</li>
     </comps>
   </HediffDef>

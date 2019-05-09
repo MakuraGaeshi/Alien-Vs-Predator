@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
-  <HealthShardUses>Shards remaining</HealthShardUses>
-  <UseHealthShard>Use Health Shard</UseHealthShard>
-  <UseHealthShardDesc>Use a Health Shard to quickly return to the hunt</UseHealthShardDesc>
-  <MedicompTendSelf>Tend Self</MedicompTendSelf>
-  <MedicompTendSelfDesc>Tend thier own wounds on the spot</MedicompTendSelfDesc>
   <!-- Rearmable Traps -->
   <DesignatorRearmTrap>Rearm trap</DesignatorRearmTrap>
   <DesignatorRearmTrapDesc>Rearm a sprung trap so it can be triggered again.</DesignatorRearmTrapDesc>
@@ -12,7 +7,7 @@
   <CommandRearmDesc>Rearm a sprung trap so it can be triggered again.</CommandRearmDesc>
   <TrapArmed>Armed</TrapArmed>
   <TrapNotArmed>Not armed</TrapNotArmed>
-  <!-- Buttons -->
+  <!-- Medical Operations -->
   <RRYMessageMedicalOperationFailureMinorA>{SURGEON_labelShort} has failed to remove the parasite on {PATIENT_labelShort}.</RRYMessageMedicalOperationFailureMinorA>
   <RRYMessageMedicalOperationFailureMinorB>{SURGEON_labelShort} has failed to remove the parasite on {PATIENT_labelShort}, its blood splashes onto the floor.</RRYMessageMedicalOperationFailureMinorB>
   <RRYMessageMedicalOperationFailureCatastrophic>{SURGEON_labelShort} has failed to remove the parasite attached to {PATIENT_labelShort}, it.</RRYMessageMedicalOperationFailureCatastrophic>
@@ -21,10 +16,23 @@
   <!-- Buttons -->
   <WearableExplosives_Label>Detonate</WearableExplosives_Label>
   <WearableExplosives_Desc>Detonate this pawn's self destruct device.</WearableExplosives_Desc>
+  <HealthShardUses>Shards remaining</HealthShardUses>
+  <UseHealthShard>Use Health Shard</UseHealthShard>
+  <UseHealthShardDesc>Use a Health Shard to quickly return to the hunt</UseHealthShardDesc>
+  <MedicompTendSelf>Tend Self</MedicompTendSelf>
+  <MedicompTendSelfDesc>Tend thier own wounds on the spot</MedicompTendSelfDesc>
+   <!-- Xenomorph -->
+  <Xeno_Neospores_TriggerB>{0} thinks they hear a soft hiss from the {1}......</Xeno_Neospores_TriggerB>
+  <Xeno_Neospores_Trigger>*softly hisses*</Xeno_Neospores_Trigger>
+  <Xeno_Neospores_Added>{0} notices a slight haze around them and feels a slight pain in their {1}</Xeno_Neospores_Added>
+  <Xeno_Neospores_Cough>{0} coughs {1}</Xeno_Neospores_Cough>
+  <Xeno_Neospores_Cough_Blood>and blood splatters the floor</Xeno_Neospores_Cough_Blood>
   <Xeno_Facehugger_Attach>A parasite has attached itself to {0}'s {1}</Xeno_Facehugger_Attach>
   <Xeno_Facehugger_Detach>The parasite has detached itself from {0}...they seem OK...for now...</Xeno_Facehugger_Detach>
   <Xeno_Chestburster_PreEmerge>{0} has collapsed and is writhing around! something is wrong...</Xeno_Chestburster_PreEmerge>
   <Xeno_Chestburster_Emerge>{0}'s convulsions stop suddenly and a Chestburster emerges in a gorey mess from {0}'s {1}</Xeno_Chestburster_Emerge>
+  <Xeno_Chestburster_Hides>the Chestburster disappears into the surrounding area and hides</Xeno_Chestburster_Hides>
+   <!-- Yautja -->
   <BloodStatus_Unblooded>{0}</BloodStatus_Unblooded>
   <BloodStatus_Unmarked>{0}</BloodStatus_Unmarked>
 </LanguageData>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+<!-- ======================== Ranged Attack Ability Defs ================================== -->
+<!-- ======================== Xenomorphm - Spit Acid Ability ================================== -->
+<ThingDef ParentName="RRY_BaseProjectileAbility">
+   <defName>RRY_Projectile_AcidSpit</defName>
+    <tickerType>Normal</tickerType>
+    <graphicData>
+      <texPath>Things/Projectile/Smoke</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+			<color>(93,195,0)</color>
+      <shaderType>TransparentPostLight</shaderType>
+    </graphicData>
+		<projectile>
+			<damageDef>RRY_AcidDamage</damageDef>
+			<damageAmountBase>3</damageAmountBase>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<explosionRadius>0.50</explosionRadius>
+			<explosionChanceToStartFire>1.0</explosionChanceToStartFire>
+			<postExplosionSpawnThingDef>RRY_FilthBloodXenomorph</postExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+			<stoppingPower>0.75</stoppingPower>
+			<speed>30</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+ </ThingDef>
+
+	<AbilityUser.AbilityDef ParentName="BaseAbility">
+        <defName>RRY_Ability_SpitAcid</defName>
+        <label>Spit Acid</label>
+        <uiIconPath>Things/Projectile/Smoke</uiIconPath>
+        <description>Spits Acid at the target.</description>
+        <MainVerb Class="AbilityUser.VerbProperties_Ability">
+            <verbClass>AbilityUser.Verb_UseAbility</verbClass>
+            <AlwaysHits>false</AlwaysHits>
+            <tooltipShowProjectileDamage>true</tooltipShowProjectileDamage>
+            <tooltipShowExtraDamages>false</tooltipShowExtraDamages>
+            <tooltipShowHediffsToApply>false</tooltipShowHediffsToApply>
+            <tooltipShowMentalStatesToApply>false</tooltipShowMentalStatesToApply>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+			<defaultProjectile>RRY_Projectile_AcidSpit</defaultProjectile>
+            <abilityDef>RRY_Ability_SpitAcid</abilityDef>
+            <warmupTime>0.6</warmupTime>
+            <SecondsToRecharge>30.0</SecondsToRecharge>
+            <burstShotCount>6</burstShotCount>
+            <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+			<range>18</range>
+			<forcedMissRadius>50</forcedMissRadius>
+			<soundCast>FlamerSound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>0</muzzleFlashScale>
+            <isPrimary>false</isPrimary>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </MainVerb>
+ </AbilityUser.AbilityDef>
+ 
+</Defs>

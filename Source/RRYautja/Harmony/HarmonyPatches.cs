@@ -290,8 +290,8 @@ namespace RRYautja
         {
             Pawn value = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
             PawnGraphicSet value2 = Traverse.Create(__instance).Field("graphics").GetValue<PawnGraphicSet>();
-            //graphics
-            bool flag = value.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked);
+            //graphics // (pawn.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked)|| pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden))
+            bool flag = (value.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked) || value.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden));
             if (flag)
             {
                 if (value.kindDef.race.GetType() == typeof(AlienRace.ThingDef_AlienRace))

@@ -20,6 +20,8 @@ namespace RimWorld
         public static DamageDef RRY_EmergingChestbursterDD;
 
         // Xenomorph HefiffDefs
+        public static HediffDef RRY_Hediff_Xenomorph_Hidden;
+        // Xenomorph HefiffDefs
         public static HediffDef RRY_FaceHuggerInfection;
         public static HediffDef RRY_XenomorphImpregnation;
         public static HediffDef RRY_HiddenXenomorphImpregnation;
@@ -46,13 +48,22 @@ namespace RimWorld
         public static JobDef RRY_Job_LayXenomorphEgg;
         public static JobDef RRY_Job_XenomorphKidnap;
 
-        // Xenomorph ThingDefs RRY_Xenomorph_TailSpike
+        // Xenomorph ThingDefs
         public static ThingDef RRY_EggXenomorphFertilized;
         public static ThingDef RRY_Xenomorph_TailSpike;
         public static ThingDef RRY_Xenomorph_HeadShell;
         public static ThingDef RRY_Leather_Xenomorph;
 
-        // Xenomorph BloodDefs
+        public static ThingDef RRY_Neomorph_Spores;
+        public static ThingDef RRY_Neomorph_Spores_Hidden;
+        
+        public static ThingDef RRY_Plant_Neomorph_Fungus;
+        public static ThingDef RRY_Plant_Neomorph_Fungus_Hidden;
+
+        public static IncidentDef RRY_Neomorph_FungusSprout;
+        public static IncidentDef RRY_Neomorph_FungusSprout_Hidden;
+
+        // Xenomorph BloodDefs 
         public static ThingDef RRY_FilthBloodXenomorph;
 
         public static BodyPartDef RRY_Xeno_TailSpike;

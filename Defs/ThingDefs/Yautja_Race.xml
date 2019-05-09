@@ -140,7 +140,7 @@
     <alienRace>
         <generalSettings>
 			<useOnlyPawnkindBackstories>true</useOnlyPawnkindBackstories>
-            <maleGenderProbability>0.75</maleGenderProbability>
+            <maleGenderProbability>0.5</maleGenderProbability>
             <immuneToAge>false</immuneToAge>
             <forcedRaceTraitEntries>
                 <li>

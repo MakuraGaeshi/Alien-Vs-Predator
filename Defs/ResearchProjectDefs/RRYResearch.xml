@@ -3,6 +3,37 @@
 	<!--OG==================== Rebelrot's Yautja Mod - Research Tech =========================OG-->
 	<ResearchProjectDef>
 		<tab>RRY_RTab</tab>
+		<defName>RRY_XenomorphWeapons</defName>
+		<label>Xenomorph Weapons</label>
+		<description>Allows you to create basic Weapons out of parts of Xenomorphs</description>
+		<baseCost>1000</baseCost>
+		<prerequisites>
+			<!-- <li>BasicYautjaConstruction</li> -->
+		</prerequisites>
+		<techLevel>Industrial</techLevel> 
+		<!-- <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding> -->
+		<researchViewX>0</researchViewX>
+		<researchViewY>0</researchViewY>
+	</ResearchProjectDef>
+	
+	<ResearchProjectDef>
+		<tab>RRY_RTab</tab>
+		<defName>RRY_XenomorphArmour</defName>
+		<label>Xenomorph Armour</label>
+		<description>Allows you to create basic Armour out of parts of Xenomorphs</description>
+		<baseCost>1000</baseCost>
+		<prerequisites>
+			<!-- <li>BasicYautjaConstruction</li> -->
+		</prerequisites>
+		<techLevel>Industrial</techLevel> 
+		<!-- <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding> -->
+		<researchViewX>0</researchViewX>
+		<researchViewY>0.5</researchViewY>
+	</ResearchProjectDef>
+	
+	<!--OG==================== Rebelrot's Yautja Mod - Research Tech =========================OG-->
+	<ResearchProjectDef>
+		<tab>RRY_RTab</tab>
 		<defName>RRY_YautjaTechBase</defName>
 		<label>Yautja Basic tech</label>
 		<description>Allows you to create basic level Yautja tech</description>

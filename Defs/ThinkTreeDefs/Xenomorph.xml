@@ -105,6 +105,13 @@
           <treeDef>MentalStateCritical</treeDef>
         </li>
 		
+        <!-- Idle -->
+        <li Class="ThinkNode_ConditionalNotGrown">
+          <subNodes>
+			<li Class="JobGiver_XenomorphFlee" />
+          </subNodes>
+        </li>
+
         <!-- React to close melee threat -->
 				<li Class="JobGiver_ReactToCloseMeleeThreat" />
 
@@ -132,13 +139,6 @@
 				  </subNodes>
 				</li>
 				
-        <!-- Idle -->
-        <li Class="ThinkNode_ConditionalNotGrown">
-          <subNodes>
-			<li Class="JobGiver_XenomorphFlee" />
-          </subNodes>
-        </li>
-
 		<!-- Lay eggs you need to -->
 		<li Class="JobGiver_LayXenoEgg" />
 		

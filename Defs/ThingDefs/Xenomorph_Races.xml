@@ -55,7 +55,7 @@
       <ToxicSensitivity>0</ToxicSensitivity>
       <Flammability>1</Flammability>
       <ComfyTemperatureMin>-100</ComfyTemperatureMin>
-      <ComfyTemperatureMax>250</ComfyTemperatureMax>
+      <ComfyTemperatureMax>150</ComfyTemperatureMax>
       <MeatAmount>15</MeatAmount>
       <LeatherAmount>15</LeatherAmount>
     </statBases>
@@ -184,7 +184,7 @@
     <label>Queen</label>
     <description>Queen Xenomorphs are significantly larger and stronger than the normal adults, being approximately 4.5 metres (15 ft) tall. Their body structure differs also, having two pairs of arms, one large and one small. The queen's head is larger than those of other adult Xenomorphs and is protected by a large, flat crest, like a crown, which varies from queen to queen. Unlike other Xenomorphs, the queen's external mouth is separately segmented from the rest of her head, allowing her to turn her mouth left and right almost to the point where it is facing perpendicular to the direction of the rest of her head./n/nEgg-laying Xenomorph queens possess an immense ovipositor attached to their lower torso, similar to a queen termite's. Unlike insect queens, there appears to be no need for an Xenomorph queen's eggs to be fertilized. When attached to her ovipositor, the queen is supported by a "biomechanical throne" that consists of a lattice of struts resembling massive insect legs.</description>
     <statBases>
-      <MoveSpeed>3.9</MoveSpeed>
+      <MoveSpeed>5</MoveSpeed>
       <ArmorRating_Blunt>0.50</ArmorRating_Blunt>
       <ArmorRating_Sharp>0.80</ArmorRating_Sharp>
       <MeatAmount>90</MeatAmount>
@@ -287,7 +287,7 @@
       <body>RRY_Xenomorph_Biped</body>
 	  <useMeatFrom>RRY_Xenomorph_FaceHugger</useMeatFrom>
       <baseBodySize>3.0</baseBodySize>
-      <baseHealthScale>4.32</baseHealthScale>
+      <baseHealthScale>6.32</baseHealthScale>
       <lifeStageAges>
         <li>
           <def>RRY_XenomorphChestBursterBaby</def>
@@ -600,7 +600,7 @@
       <body>RRY_Xenomorph_Biped</body>
 	  <useMeatFrom>RRY_Xenomorph_FaceHugger</useMeatFrom>
       <baseHealthScale>0.72</baseHealthScale>
-      <baseBodySize>1.2</baseBodySize>
+      <baseBodySize>1.6</baseBodySize>
       <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
       <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
       <soundMeleeMiss>Pawn_Melee_Punch_Miss</soundMeleeMiss>
@@ -781,7 +781,7 @@
     <race>
       <body>RRY_Xenomorph_Biped</body>
 	  <useMeatFrom>RRY_Xenomorph_FaceHugger</useMeatFrom>
-      <baseHealthScale>0.72</baseHealthScale>
+      <baseHealthScale>1.72</baseHealthScale>
       <baseBodySize>2.0</baseBodySize>
       <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
       <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
@@ -1146,7 +1146,7 @@
     <race>
       <body>RRY_Xenomorph_Biped_Predalien</body>
 	  <useMeatFrom>RRY_Xenomorph_FaceHugger</useMeatFrom>
-      <baseHealthScale>1.72</baseHealthScale>
+      <baseHealthScale>2.72</baseHealthScale>
       <baseBodySize>2.4</baseBodySize>
       <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
       <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>

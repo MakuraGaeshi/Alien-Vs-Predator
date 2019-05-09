@@ -101,7 +101,7 @@ namespace RimWorld
 
         public virtual void PostPostImpactEffects(Thing hitThing)
         {
-            if (hitThing is Pawn hitPawn)
+            if (hitThing is Pawn hitPawn && !hitPawn.Dead && !hitPawn.Downed)
             {
                 Hediff hediff = HediffMaker.MakeHediff(YautjaDefOf.RRY_Hediff_BouncedProjectile, hitPawn);
                 Hediff_Bouncer bouncer = (Hediff_Bouncer)hediff;
@@ -116,8 +116,15 @@ namespace RimWorld
                 bouncer.OriginalProjectile = this.OriginalProjectile;
                 bouncer.TimesBounced = this.timesBounced;
                 if (hitPawn!=OriginalPawn) hitPawn.health.AddHediff(bouncer);
+                else
+                {
+                    Projectile projectile2 = (Projectile)ThingMaker.MakeThing(DefDatabase<ThingDef>.GetNamed("RRY_SmartDisk_Returning"), null);
+                    GenSpawn.Spawn(projectile2, base.PositionHeld, launcher.Map, 0);
+                    projectile2.Launch(this, base.PositionHeld.ToVector3(), launcher, launcher, ProjectileHitFlags.IntendedTarget, launcher);
+                }
             }
-            else if (timesBounced<ExtraTargets)
+            /*
+            else if (timesBounced < ExtraTargets)
             {
                 Thing thing = GenClosest.ClosestThingReachable(this.ExactPosition.ToIntVec3(), OriginalPawn.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), Verse.AI.PathEndMode.Touch, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 10f, x => (x.Faction.HostileTo(this.OriginalPawn.Faction)), null, 0, -1, false, RegionType.Set_Passable, false);
 
@@ -126,7 +133,14 @@ namespace RimWorld
                     timesBounced++;
                     this.Launch(launcher, this.ExactPosition, thing, thing, ProjectileHitFlags.IntendedTarget, launcher);
                 }
+                else
+                {
+                    Projectile projectile2 = (Projectile)ThingMaker.MakeThing(DefDatabase<ThingDef>.GetNamed("RRY_SmartDisk_Returning"), null);
+                    GenSpawn.Spawn(projectile2, base.PositionHeld, launcher.Map, 0);
+                    projectile2.Launch(this, base.PositionHeld.ToVector3(), launcher, launcher, ProjectileHitFlags.IntendedTarget, launcher);
+                }
             }
+            */
             else
             {
                 Projectile projectile2 = (Projectile)ThingMaker.MakeThing(DefDatabase<ThingDef>.GetNamed("RRY_SmartDisk_Returning"), null);

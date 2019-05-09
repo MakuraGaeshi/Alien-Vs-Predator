@@ -37,7 +37,7 @@
       <li>Stony</li>
     </stuffCategories>
     <costStuffCount>90</costStuffCount>
-    <designationCategory>RRY_Security</designationCategory>
+    <designationCategory>Security</designationCategory>
     <designationHotKey>Misc6</designationHotKey>
     <building>
 	  <trapUnarmedGraphicData>
@@ -110,15 +110,16 @@
 		<targetType>Thing</targetType>
 	</DesignationDef>
     
+	<!--
   <DesignationCategoryDef>
-    <defName>RRY_Security</defName>
+    <defName>Security</defName>
     <label>security</label>
     <order>300</order>
     <specialDesignatorClasses>
       <li>RRYautja.Designator_Rearm</li>
     </specialDesignatorClasses>
   </DesignationCategoryDef>
-
+	-->
   
   <WorkGiverDef>
     <defName>RRY_RearmTraps</defName>

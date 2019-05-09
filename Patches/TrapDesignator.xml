@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<!-- Defs\Bodies\Bodies_Humanlike.xml -->
+
+	<!-- Human -->
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/DesignationCategoryDef[defName = "Security"]/specialDesignatorClasses</xpath>
+				<value>
+					<li>RRYautja.Designator_Rearm</li>
+				</value>
+			</li>
+		</operations>	
+	</Operation>
+</Patch>

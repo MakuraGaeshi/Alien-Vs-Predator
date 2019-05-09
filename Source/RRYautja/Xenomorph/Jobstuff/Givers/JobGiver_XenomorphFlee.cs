@@ -49,7 +49,7 @@ namespace RimWorld
                 for (int j = 0; j < potentialTargetsFor.Count; j++)
                 {
                     Thing thing = potentialTargetsFor[j].Thing;
-                    if (pawn.Position.InHorDistOf(thing.Position, 18f))
+                    if (pawn.Position.InHorDistOf(thing.Position, 30f))
                     {
                         if (SelfDefenseUtility.ShouldFleeFrom(thing, pawn, false, true))
                         {
@@ -81,7 +81,7 @@ namespace RimWorld
             {
                 JobGiver_XenomorphFlee.tmpThings.Clear();
                 JobGiver_XenomorphFlee.tmpThings.Add(danger);
-                intVec = CellFinderLoose.GetFleeDest(pawn, JobGiver_XenomorphFlee.tmpThings, 24f);
+                intVec = CellFinderLoose.GetFleeDest(pawn, JobGiver_XenomorphFlee.tmpThings, 30f);
                 JobGiver_XenomorphFlee.tmpThings.Clear();
             }
             if (intVec != pawn.Position)

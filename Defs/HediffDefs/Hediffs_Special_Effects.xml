@@ -60,6 +60,18 @@
   </HediffDef>
   
   <HediffDef>
+    <defName>RRY_Hediff_Xenomorph_Hidden</defName>
+    <hediffClass>RRYautja.Hediff_Hidden_Xeno</hediffClass>
+    <initialSeverity>1</initialSeverity>
+    <label>hidden</label>
+    <stages>
+      <li>
+        <becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+  </HediffDef>
+  
+  <HediffDef>
     <defName>RRY_Hediff_BouncedProjectile</defName>
     <hediffClass>RRYautja.Hediff_Bouncer</hediffClass>
     <initialSeverity>1</initialSeverity>

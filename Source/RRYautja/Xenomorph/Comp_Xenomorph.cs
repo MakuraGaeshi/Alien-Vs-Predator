@@ -41,7 +41,6 @@ namespace RRYautja
                 LifeStageDef stage = pawn.ageTracker.CurLifeStage;
                 if (stage == pawn.RaceProps.lifeStageAges[pawn.RaceProps.lifeStageAges.Count - 1].def)
                 {
-
                     if (lord == null)
                     {
 #if DEBUG
@@ -107,6 +106,17 @@ namespace RRYautja
 
                     }
                 }
+                else
+                {
+                    Thing thing = GenClosest.ClosestThingReachable(this.parent.Position, this.parent.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.Touch, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 6f, x => ((Pawn)this.parent).HostileTo((Pawn)x), null, 0, -1, false, RegionType.Set_Passable, false);
+                    if (!((Pawn)this.parent).health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden) && thing==null)
+                    {
+                        string text = TranslatorFormattedStringExtensions.Translate("Xeno_Chestburster_Hides");
+                    //    Log.Message(text);
+                        MoteMaker.ThrowText(base.parent.Position.ToVector3(), base.parent.Map, text, 3f);
+                        ((Pawn)this.parent).health.AddHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden);
+                    }
+                }
                 /*
                   for (int i = 0; i < num2; i++)
                   {
@@ -168,6 +178,11 @@ namespace RRYautja
             Pawn pawn = base.parent as Pawn;
 
             base.PostPostApplyDamage(dinfo, totalDamageDealt);
+            if (((Pawn)this.parent).health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked))
+            {
+                ((Pawn)this.parent).health.RemoveHediff(((Pawn)this.parent).health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_Cloaked));
+            }
+
 
         }
 
