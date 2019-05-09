@@ -83,7 +83,7 @@
 <!-- ====================== Compound Bow ===================== -->
   <ThingDef ParentName="RRYBaseSimpleRanged">
     <defName>RRY_Gun_Compound_Bow</defName>
-    <label>yautja hunting bow</label>
+    <label>yautja compound bow</label>
     <description>A powerful Compound bow. Fires a heavy arrow long distances.</description>
     <graphicData>
       <texPath>Things/Equipment/Ranged/Yautja_Compound_Bow</texPath>

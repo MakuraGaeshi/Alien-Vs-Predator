@@ -50,7 +50,7 @@
       </li>
     </tools>
     <recipeMaker>
-      <researchPrerequisite>LongBlades</researchPrerequisite>
+      <researchPrerequisite>RRY_XenomorphWeapons</researchPrerequisite>
       <skillRequirements>
         <Crafting>4</Crafting>
       </skillRequirements>

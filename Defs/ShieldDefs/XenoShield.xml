@@ -57,6 +57,7 @@
 			<RRY_Xenomorph_HeadShell>1</RRY_Xenomorph_HeadShell>
  		</costList>
 		<recipeMaker>
+      <researchPrerequisite>RRY_XenomorphArmour</researchPrerequisite>
 			<recipeUsers>
 				<li>CraftingSpot</li>
 			</recipeUsers>
