@@ -52,7 +52,14 @@
 			<graphicClass>Graphic_Random</graphicClass>
 		</graphicData>
 		<hideAtSnowDepth>0.5</hideAtSnowDepth>
-    <ingestible />
+    <ingestible>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>RRY_NeomorphImpregnation</hediffDef>
+          <severity>0.001</severity>
+		</li>
+      </outcomeDoers>
+    </ingestible>
     <comps>
 	
     </comps>
@@ -65,8 +72,8 @@
       <dieIfLeafless>false</dieIfLeafless>
       <neverBlightable>true</neverBlightable>
 			<visualSizeRange>
-				<min>0.7</min>
-				<max>1.0</max>
+				<min>0.3</min>
+				<max>0.6</max>
 			</visualSizeRange>
 			<topWindExposure>0.4</topWindExposure>
 			<wildOrder>1</wildOrder>
@@ -114,7 +121,14 @@
 			<graphicClass>Graphic_Random</graphicClass>
 		</graphicData>
 		<hideAtSnowDepth>0.5</hideAtSnowDepth>
-    <ingestible />
+    <ingestible>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>RRY_HiddenNeomorphImpregnation</hediffDef>
+          <severity>0.001</severity>
+		</li>
+      </outcomeDoers>
+	</ingestible>
     <comps>
 	
     </comps>

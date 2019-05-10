@@ -69,6 +69,9 @@ namespace RimWorld
         public static BodyPartDef RRY_Xeno_TailSpike;
         public static BodyPartDef RRY_Xeno_Shell;
 
+        // Xenomorph AbilityDefs
+        public static AbilityUser.AbilityDef RRY_Ability_SpitAcid;
+
         // Xenomorph LifeStageDefs RRY_Xeno_Shell
         //   public static LifeStageDef RRY_EggXenomorphFertilized;
 

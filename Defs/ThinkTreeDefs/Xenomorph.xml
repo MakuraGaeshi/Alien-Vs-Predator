@@ -36,7 +36,7 @@
 				  </subNodes>
 				</li>
 				
-				<!-- Face Hugger Hunting -->
+				<!-- Drone Hunting -->
 				<li Class="ThinkNode_ConditionalPawnKind">
 				  <pawnKind>RRY_Xenomorph_Drone</pawnKind>
 				  <subNodes>
@@ -46,15 +46,10 @@
 						<!-- Idle -->
 						<li Class="ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby">
 						  <subNodes>
-							<li Class="JobGiver_KidnapNearby" />
+							<li Class="JobGiver_XenosKidnap" />
 						  </subNodes>
 						</li>
-						<!-- Exit 
-						<li Class="JobGiver_ExitMapRandom">
-						  <defaultLocomotion>Sprint</defaultLocomotion>
-						</li>
-						-->
-						<!-- Lay eggs you need to -->
+						<li Class="AbilityUserAI.JobGiver_AIAbilityUser"/>
 						<li Class="JobGiver_AIFightEnemies" />
 						<!-- Wander -->
 						<li Class="JobGiver_WanderAnywhere">
@@ -168,7 +163,7 @@
 		  <subNodes>
 				<li Class="ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby">
 				  <subNodes>
-					<li Class="JobGiver_KidnapNearby" />
+					<li Class="JobGiver_XenosKidnap" />
 				  </subNodes>
 				</li>
 		  </subNodes>

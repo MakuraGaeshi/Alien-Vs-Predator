@@ -605,6 +605,12 @@
       <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
       <soundMeleeMiss>Pawn_Melee_Punch_Miss</soundMeleeMiss>
     </race>
+    <comps> 
+	<!---
+      <li Class="AbilityUser.CompProperties_AbilityUser">
+        <compClass>RRYautja.RRY_Xenomorph_AbilityUser</compClass>
+	  -->
+    </comps>
   </ThingDef>
 
   <PawnKindDef ParentName="RRY_BaseXenomorphKind">
@@ -666,6 +672,15 @@
         </bodyGraphicData>
       </li>
     </lifeStages>
+	<!--
+    <weaponMoney>
+      <min>9999</min>
+      <max>9999</max>
+    </weaponMoney>
+    <weaponTags>
+      <li>DroneAcidSpit</li>
+    </weaponTags>
+	-->
     <weaponMoney>
       <min>9999</min>
       <max>9999</max>

@@ -6,7 +6,7 @@ using Verse.AI;
 namespace RimWorld
 {
     // Token: 0x02000072 RID: 114
-    public class JobDriver_XenosKidnap : JobDriver_TaketoXenoEgg
+    public class JobDriver_XenosKidnap : JobDriver_TakeAndExitMap
     {
         // Token: 0x170000A4 RID: 164
         // (get) Token: 0x06000324 RID: 804 RVA: 0x0001F257 File Offset: 0x0001D657
@@ -25,7 +25,7 @@ namespace RimWorld
             {
                 return base.GetReport();
             }
-            return XenomorphDefOf.RRY_Job_XenomorphKidnap.reportString.Replace("TargetA", this.Takee.LabelShort);
+            return JobDefOf.Rescue.reportString.Replace("TargetA", this.Takee.LabelShort);
         }
 
         // Token: 0x06000326 RID: 806 RVA: 0x0001F2B8 File Offset: 0x0001D6B8

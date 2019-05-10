@@ -49,8 +49,6 @@
       <workSkill>Crafting</workSkill>
       <recipeUsers>
         <li>RRY_TableMachining</li>
-        <li>ElectricSmithy</li>
-        <li>FueledSmithy</li>
       </recipeUsers>
       <effectWorking>Smelt</effectWorking>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
@@ -108,8 +106,6 @@
       <soundWorking>Recipe_Smith</soundWorking>
       <recipeUsers>
         <li>RRY_TableMachining</li>
-        <li>ElectricSmithy</li>
-        <li>FueledSmithy</li>
       </recipeUsers>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
       <researchPrerequisite>RRY_YautjaTechBase</researchPrerequisite>

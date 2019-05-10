@@ -27,8 +27,9 @@
       <RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
     </statBases>
     <weaponTags>
-      <li>NeolithicRangedHeavy</li>
-      <li>NeolithicRangedChief</li>
+			<li>Yautja</li>
+			<li>YautjaBow</li>
+			<li>YautjaHuntingBow</li>
     </weaponTags>
     <verbs>
       <li>
@@ -76,7 +77,7 @@
       <damageAmountBase>25</damageAmountBase>
       <stoppingPower>1.5</stoppingPower>
       <armorPenetrationBase>0.15</armorPenetrationBase>
-      <speed>49</speed>
+      <speed>60</speed>
     </projectile>
   </ThingDef>
   
@@ -112,8 +113,9 @@
       <RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
     </statBases>
     <weaponTags>
-      <li>NeolithicRangedHeavy</li>
-      <li>NeolithicRangedChief</li>
+			<li>Yautja</li>
+			<li>YautjaBow</li>
+			<li>YautjaCompoundBow</li>
     </weaponTags>
     <verbs>
       <li>
@@ -154,9 +156,9 @@
       <flyOverhead>false</flyOverhead>
       <damageDef>Arrow</damageDef>
       <damageAmountBase>30</damageAmountBase>
-      <stoppingPower>1.5</stoppingPower>
+      <stoppingPower>2.5</stoppingPower>
       <armorPenetrationBase>0.35</armorPenetrationBase>
-      <speed>60</speed>
+      <speed>70</speed>
     </projectile>
   </ThingDef>
   
@@ -359,7 +361,7 @@
 	</ThingDef>
 	
 <!-- ====================== Spear Rifle ===================== -->
-  <ThingDef ParentName="BaseHumanMakeableGun">
+  <ThingDef ParentName="RRYBaseMakeableGun">
     <defName>RRY_Gun_SpearRifle</defName>
     <label>spear rifle</label>
     <description>An ancient design of precision sniper rifle. Bolt action. It has an exceptionally long range, great accuracy and good power. Because it's so unwieldy, other weapons outclass it at close range.</description>

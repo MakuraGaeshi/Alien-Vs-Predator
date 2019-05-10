@@ -61,6 +61,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Harmony\ExtraButcheringProducts.cs" />
+    <Compile Include="util\RRY_Xenomorph_AbilityUser.cs" />
     <Compile Include="util\Building_Turret_Shoulder.cs" />
     <None Include="util\Cloakgen - withMedicomp.cs.bak" />
     <None Include="util\Cloakgen.cs.bak" />
@@ -70,6 +72,10 @@
     <Compile Include="util\Returning_Projectile.cs" />
     <Compile Include="util\Projectile_AbilityRRY_ThrownReturning.cs" />
     <Compile Include="util\Gizmo_ShardStatus.cs" />
+    <Compile Include="Xenomorph\Building_XenoEgg.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_XenosKidnap.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenosKidnap.cs" />
+    <Compile Include="Xenomorph\MinifiedXenoEgg.cs" />
     <Compile Include="Xenomorph\IncidentWorker_NeomorphFungusSprout.cs" />
     <Compile Include="Xenomorph\Recipe_RemoveHugger.cs" />
     <Compile Include="Yautja\Hediff_Bouncer.cs" />
@@ -100,16 +106,10 @@
     <Compile Include="Xenomorph\Thing_AddAcidDamageFilth.cs" />
     <Compile Include="Xenomorph\XenoGetPawnThing.cs" />
     <Compile Include="Xenomorph\Thing_AddsHediffDef.cs" />
-    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_KidnapNearby.cs" />
     <Compile Include="Xenomorph\DamageWorker_Acid.cs" />
     <Compile Include="util\Apparel_Comps.cs" />
-    <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_TaketoXenoEgg.cs" />
-    <Compile Include="Xenomorph\Jobstuff\Lords\LordJob_XenoKidnap.cs" />
     <Compile Include="Xenomorph\ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby.cs" />
-    <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_XenosKidnap.cs" />
-    <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_TakeToEggchamber.cs" />
     <Compile Include="Xenomorph\RoomRoleWorker_EggChamber.cs" />
-    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenosKidnap.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_LayXenoEgg.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_LayXenoEgg.cs" />
     <Compile Include="Xenomorph\CompXenoEggLayer.cs" />
@@ -175,6 +175,7 @@
     <Compile Include="Xenomorph\Verb_MeleeAttackFacehugger.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Xenomorph\Jobstuff\Lords\" />
     <Folder Include="Xenomorph\Jobstuff\Workers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

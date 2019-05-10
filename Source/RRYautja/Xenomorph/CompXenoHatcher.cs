@@ -69,6 +69,36 @@ namespace RRYautja
             Scribe_References.Look<Faction>(ref this.hatcheeFaction, "hatcheeFaction", false);
         }
 
+        public Map MyMap
+        {
+            get
+            {
+                if (this.parent.Map!=null)
+                {
+                    return this.parent.Map;
+                }
+                else
+                {
+                    return this.parent.MapHeld;
+                }
+            }
+        }
+
+        public IntVec3 MyPos
+        {
+            get
+            {
+                if (this.parent.Position != null)
+                {
+                    return this.parent.Position;
+                }
+                else
+                {
+                    return this.parent.PositionHeld;
+                }
+            }
+        }
+
         // Token: 0x060028F0 RID: 10480 RVA: 0x00136BB0 File Offset: 0x00134FB0
         public override void CompTick()
         {
@@ -88,9 +118,9 @@ namespace RRYautja
                     {
 #if DEBUG
                         bool selected = Find.Selector.SingleSelectedThing == this.parent;
-                        if (selected) Log.Message(string.Format("{0} @ {1}, Can hatch?: {2}, Will hatch?: {3}", this.parent.Label, this.parent.Position, canHatch, willHatch));
+                        if (selected) Log.Message(string.Format("{0} @ {1}, Can hatch?: {2}, Will hatch?: {3}", this.parent.Label, MyPos, canHatch, willHatch));
 #endif
-                        if ( this.canHatch && this.willHatch)
+                        if (this.canHatch && this.willHatch)
                         {
                             this.Hatch();
                         }
@@ -111,8 +141,9 @@ namespace RRYautja
         public override void CompTickRare()
         {
 
-            bool selected = Find.Selector.SingleSelectedThing == this.parent;
-            Thing thing = GenClosest.ClosestThingReachable(this.parent.Position, this.parent.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), Props.triggerRadius, x => XenomorphUtil.isInfectablePawn(((Pawn)x)), null, 0, -1, false, RegionType.Set_Passable, false);
+            bool selected = Find.Selector.SelectedObjects.Contains(this.parent);
+            Thing thing = null;
+            if (MyMap !=null && MyPos.InBounds(MyMap)) thing = GenClosest.ClosestThingReachable(MyPos, MyMap, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), Props.triggerRadius, x => XenomorphUtil.isInfectablePawn(((Pawn)x)), null, 0, -1, false, RegionType.Set_Passable, false);
             if (thing != null)
             {
                 Pawn pawn = (Pawn)thing;
@@ -129,7 +160,7 @@ namespace RRYautja
                 }
                 if (canHatch)
                 {
-                    float thingdist = DistanceBetween(this.parent.Position, pawn.Position);
+                    float thingdist = DistanceBetween(MyPos, pawn.Position);
                     float thingsize = pawn.BodySize;
                     float thingstealth = thing.GetStatValue(StatDefOf.HuntingStealth);
                     float thingmovespeed = thing.GetStatValue(StatDefOf.MoveSpeed);
@@ -137,7 +168,7 @@ namespace RRYautja
 #if DEBUG
                     if (selected)
                     {
-                        Log.Message(string.Format("distance between {1} @{3} and {2} @ {4}: {0}", DistanceBetween(this.parent.Position, pawn.Position), this.parent.LabelShort, pawn.Label, this.parent.Position, pawn.Position));
+                        Log.Message(string.Format("distance between {1} @{3} and {2} @ {4}: {0}", DistanceBetween(MyPos, pawn.Position), this.parent.LabelShort, pawn.Label, MyPos, pawn.Position));
                         Log.Message(string.Format("{0} thingsize: {1}, thingstealth: {2}, thingmovespeed: {3}, thingstance: {4}", pawn.Label, thingsize, thingstealth, thingmovespeed, thingstance));
 
                     }
@@ -160,7 +191,7 @@ namespace RRYautja
 #if DEBUG
             if (thing == null)
             {
-                if (selected) Log.Message(string.Format("{0} @ {1}, Cant hatch No suitable Host Found", this.parent.Label, this.parent.Position, canHatch));
+                if (selected) Log.Message(string.Format("{0} @ {1}, Cant hatch No suitable Host Found", this.parent.Label, MyPos, canHatch));
             }
 #endif
         }
@@ -195,7 +226,7 @@ namespace RRYautja
                         }
                         if (this.parent.Spawned)
                         {
-                            FilthMaker.MakeFilth(this.parent.Position, this.parent.Map, ThingDefOf.Filth_AmnioticFluid, 1);
+                            FilthMaker.MakeFilth(MyPos, MyMap, ThingDefOf.Filth_AmnioticFluid, 1);
                         }
                     }
                     else

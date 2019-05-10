@@ -91,12 +91,13 @@
 		</comps>
   </ThingDef>
 -->
+
   <ThingDef ParentName="BuildingNaturalBase">
     <defName>RRY_EggXenomorphFertilized</defName>
     <label>Xenomorph egg</label>
     <description>A Xenomorph egg. The eggs laid by the queen are ellipsoidal, leathery objects between one-half and one meter (two and three feet) high with a four-lobed opening at the top. The eggs can remain in a stasis mode for years, possibly indefinitely, until nearby movement is detected. As a potential host approaches, the egg's lobes unfold like flower petals, and the parasitic facehugger extracts itself from the egg and attaches itself to the potential host. why anyone would allow one of these to hatch is a mystery.</description>
-     <thingClass>Building</thingClass>
-    <!-- <minifiedDef>MinifiedThing</minifiedDef> -->
+     <thingClass>RRYautja.Building_XenoEgg</thingClass>
+    <minifiedDef>MinifiedXenoEgg</minifiedDef>
     <altitudeLayer>Building</altitudeLayer>
     <passability>PassThroughOnly</passability>
     <selectable>true</selectable>
@@ -105,15 +106,14 @@
     <rotatable>false</rotatable>
     <tickerType>Normal</tickerType>
     <building>
+      <claimable>false</claimable>
       <isInert>true</isInert>
       <canBuildNonEdificesUnder>false</canBuildNonEdificesUnder>
       <deconstructible>false</deconstructible>
     </building>
-	<!--
     <thingCategories>
       <li>BuildingsSpecial</li>
     </thingCategories>
-	-->
     <statBases>
       <MaxHitPoints>10</MaxHitPoints>
       <Mass>4</Mass>
@@ -139,6 +139,32 @@
         <rect>(0.2,0.2,0.6,0.6)</rect>
       </damageData>
     </graphicData>
+  </ThingDef>
+
+  <!-- ======================= Minified things ========================= -->
+
+  <ThingDef>
+    <defName>MinifiedXenoEgg</defName>
+	<ignoreConfigErrors>true</ignoreConfigErrors>
+    <label>minified xenomorph egg</label>
+    <thingClass>RRYautja.MinifiedXenoEgg</thingClass>
+    <category>Item</category>
+    <useHitPoints>true</useHitPoints>
+    <selectable>true</selectable>
+    <altitudeLayer>Item</altitudeLayer>
+    <scatterableOnMapGen>false</scatterableOnMapGen>
+    <tickerType>Normal</tickerType>
+    <!-- for CompForbiddable -->
+    <drawerType>RealtimeOnly</drawerType>
+    <comps>
+      <li Class="CompProperties_Forbiddable"/>
+    </comps>
+    <inspectorTabs>
+      <!-- <li>ITab_Art</li> -->
+    </inspectorTabs>
+    <alwaysHaulable>true</alwaysHaulable>
+    <rotatable>false</rotatable>
+    <pathCost>15</pathCost>
   </ThingDef>
 
   <ThingDef ParentName="ResourceVerbBase">

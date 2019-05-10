@@ -106,7 +106,14 @@ namespace RRYautja
         public static Thing ClosestReachableEgg(Pawn pawn)
         {
             Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_EggXenomorphFertilized), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, null, null, 0, -1, false, RegionType.Set_Passable, false);
-            return null;
+            return thing;
+        }
+        public static Thing ClosestReachableEggNeedsHost(Pawn pawn)
+        {
+            List<Thing> list = SpawnedEggsNeedHosts(pawn.Map);
+            Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_EggXenomorphFertilized), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, (x => list.Contains(x)), null, 0, -1, false, RegionType.Set_Passable, false);
+
+            return thing;
         }
         public static int TotalSpawnedEggCount(Map map)
         {
@@ -115,6 +122,19 @@ namespace RRYautja
         public static List<Thing> SpawnedEggs(Map map)
         {
             return map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_EggXenomorphFertilized);
+        }
+        public static List<Thing> SpawnedEggsNeedHosts(Map map)
+        {
+            List<Thing> list = new List<Thing>();
+            foreach (var item in SpawnedEggs(map))
+            {
+                Pawn host = (Pawn)GenClosest.ClosestThingReachable(item.Position, item.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 1, x => XenomorphUtil.isInfectablePawn(((Pawn)x)), null, 0, -1, false, RegionType.Set_Passable, false);
+                if (host==null)
+                {
+                    list.Add(item);
+                }
+            }
+            return list;
         }
 
         public static float DistanceBetween(IntVec3 a, IntVec3 b)
