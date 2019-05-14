@@ -133,7 +133,7 @@
   <ThingDef ParentName="RRY_BaseMeleeWeapon_Sharp_Quality">
     <defName>RRY_Melee_Combistaff</defName>
     <label>Combistaff</label>
-    <description>A collapsible and very light weapon. The Combistick can be used both in close-quarter and ranged combat. It can be thrown like a spear.</description>
+    <description>A collapsible and very light weapon. it was supposed to be both ranged and melee, but it isn't anymore. so go get fucked.</description>
     <graphicData>
 		<texPath>Things/Equipment/Melee/Yautja_Combistaff_New</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
