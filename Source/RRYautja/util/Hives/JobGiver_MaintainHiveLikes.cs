@@ -20,7 +20,7 @@ namespace RimWorld
 		protected override Job TryGiveJob(Pawn pawn)
         {
             ThingDef hiveDef = null;
-            List<ThingDef_HiveLike> hivedefs = DefDatabase<ThingDef_HiveLike>.AllDefsListForReading.FindAll(x => x.thingClass.GetType() == typeof(HiveLike));
+            List<ThingDef_HiveLike> hivedefs = DefDatabase<ThingDef_HiveLike>.AllDefsListForReading.FindAll(x => x.Faction == pawn.Faction.def);
             foreach (ThingDef_HiveLike hivedef in hivedefs)
             {
                 Log.Message(string.Format("JobGiver_MaintainHiveLikes found hiveDef: {0} for {1}", hiveDef, pawn));

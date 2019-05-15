@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -45,6 +46,11 @@ namespace RRYautja
                         {
                             Pawn.health.RemoveHediff(this.parent);
                         }
+                        DamageInfo dinfo2 = new DamageInfo() { };
+                        float stundur = 1f;
+                        dinfo2.Def = DamageDefOf.Stun;
+                        dinfo2.SetAmount((float)stundur.SecondsToTicks() / 30f);
+                        Pawn.TakeDamage(dinfo2);
                     }
                 }
             }

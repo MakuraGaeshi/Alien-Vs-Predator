@@ -459,7 +459,14 @@ namespace RRYautja
                         {
                             hediffDef = unbloodedDef;
                         }
-                        __result.health.AddHediff(hediffDef);
+                        foreach (var item in __result.RaceProps.body.AllParts)
+                        {
+                            if (item.def==BodyPartDefOf.Head)
+                            {
+
+                                __result.health.AddHediff(hediffDef, item);
+                            }
+                        }
                     }
                     else
                     {

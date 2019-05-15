@@ -51,7 +51,7 @@ namespace RimWorld
 		private HiveLike FindClosestHiveLike(Pawn pawn)
 		{
             ThingDef hiveDef = null;
-            List<ThingDef_HiveLike> hivedefs = DefDatabase<ThingDef_HiveLike>.AllDefsListForReading.FindAll(x => x.thingClass.GetType() == typeof(HiveLike));
+            List<ThingDef_HiveLike> hivedefs = DefDatabase<ThingDef_HiveLike>.AllDefsListForReading.FindAll(x => x.Faction == pawn.Faction.def);
             foreach (ThingDef_HiveLike hivedef in hivedefs)
             {
                 Log.Message(string.Format("LordToil_HiveLikeRelated found hiveDef: {0} for {1}", hiveDef, pawn));

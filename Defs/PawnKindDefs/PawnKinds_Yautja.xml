@@ -8,7 +8,7 @@
 	<backstoryCategories>
 			<li>RRY_Yautja_Standard</li>
   	</backstoryCategories>
-    <chemicalAddictionChance>0.035</chemicalAddictionChance>
+    <chemicalAddictionChance>0.0</chemicalAddictionChance>
     <baseRecruitDifficulty>1</baseRecruitDifficulty>
     <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
     <apparelTags>
@@ -107,8 +107,8 @@
 	<backstoryCategories>
 			<li>RRY_Yautja_Ancient</li>
   	</backstoryCategories>
-	<minGenerationAge>60</minGenerationAge>
-	<maxGenerationAge>600</maxGenerationAge>
+	<minGenerationAge>1000</minGenerationAge>
+	<maxGenerationAge>2000</maxGenerationAge>
   </PawnKindDef>
   
   <PawnKindDef ParentName="RRY_YautjaCivBase">
@@ -273,6 +273,7 @@
     <defName>YautjaBlooded_RRY</defName>
     <label>Yautja Blooded</label>
     <combatPower>120</combatPower>
+    <minGenerationAge>20</minGenerationAge>
 	<backstoryCategories>
 			<li>RRY_Yautja_Blooded</li>
   	</backstoryCategories>
@@ -287,6 +288,7 @@
     <defName>YautjaElite_RRY</defName>
     <label>Yautja Elite</label>
     <combatPower>140</combatPower>
+    <minGenerationAge>60</minGenerationAge>
 	<backstoryCategories>
 			<li>RRY_Yautja_Elite</li>
   	</backstoryCategories>
@@ -301,7 +303,7 @@
      <defName>YautjaElder_RRY</defName>
     <label>Yautja Elder</label>
     <combatPower>160</combatPower>
-    <minGenerationAge>500</minGenerationAge>
+    <minGenerationAge>300</minGenerationAge>
 	<backstoryCategories>
 			<li>RRY_Yautja_Elder</li>
   	</backstoryCategories>

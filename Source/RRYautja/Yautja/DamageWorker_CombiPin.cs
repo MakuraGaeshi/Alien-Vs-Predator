@@ -208,9 +208,9 @@ namespace RRYautja
             this.FinalizeAndAddInjury(pawn, totalDamage, dinfo, result);
             this.CheckDuplicateDamageToOuterParts(dinfo, pawn, totalDamage, result);
             DamageInfo dinfo2 = dinfo;
-            float stundur = 30f;
+            float stundur = 10f;
             dinfo2.Def = DamageDefOf.Stun;
-            dinfo2.SetAmount((float)stundur.SecondsToTicks());
+            dinfo2.SetAmount((float)stundur.SecondsToTicks()/30f);
             pawn.TakeDamage(dinfo2);
         }
 

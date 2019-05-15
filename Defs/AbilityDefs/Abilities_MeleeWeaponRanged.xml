@@ -14,9 +14,9 @@
 			</li>
 		</comps>
 		<projectile>
-			  <damageDef>RRY_RangedStab_Combi</damageDef>
-			  <armorPenetrationBase>1</armorPenetrationBase>
-			  <damageAmountBase>30</damageAmountBase>
+			  <damageDef>RRY_RangedStab</damageDef>
+			  <armorPenetrationBase>0.5</armorPenetrationBase>
+			  <damageAmountBase>15</damageAmountBase>
 			  <speed>30</speed>
 			<flyOverhead>false</flyOverhead>
 		</projectile>

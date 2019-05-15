@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 
@@ -14,10 +15,32 @@ namespace RimWorld
 			this.ticksBetweenWandersRange = new IntRange(125, 200);
 		}
 
-		// Token: 0x06000420 RID: 1056 RVA: 0x0002CD30 File Offset: 0x0002B130
-		protected override IntVec3 GetWanderRoot(Pawn pawn)
+        private HiveLike FindClosestHiveLike(Pawn pawn)
+        {
+            ThingDef hiveDef = null;
+            List<ThingDef_HiveLike> hivedefs = DefDatabase<ThingDef_HiveLike>.AllDefsListForReading.FindAll(x => x.Faction == pawn.Faction.def);
+            Log.Message(string.Format("hivedefs found: {0}", hivedefs.Count));
+            foreach (ThingDef_HiveLike hivedef in hivedefs)
+            {
+                Log.Message(string.Format("LordToil_HiveLikeRelated found hiveDef: {0} for {1}", hiveDef, pawn));
+                if (hivedef.Faction == pawn.Faction.def)
+                {
+                    hiveDef = hivedef;
+                    Log.Message(string.Format("LordToil_HiveLikeRelated set hiveDef: {0} for {1}", hiveDef, pawn));
+                    return (HiveLike)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(hiveDef), PathEndMode.Touch, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn, false), 30f, (Thing x) => x.Faction == pawn.Faction, null, 0, 30, false, RegionType.Set_Passable, false);
+                }
+            }
+            return null;
+        }
+
+        // Token: 0x06000420 RID: 1056 RVA: 0x0002CD30 File Offset: 0x0002B130
+        protected override IntVec3 GetWanderRoot(Pawn pawn)
 		{
 			HiveLike hivelike = pawn.mindState.duty.focus.Thing as HiveLike;
+            if (hivelike==null)
+            {
+                hivelike = FindClosestHiveLike(pawn);
+            }
 			if (hivelike == null || !hivelike.Spawned)
             {
                 Log.Message(string.Format("JobGiver_WanderHiveLike pawn.Position: {0}", pawn.Position));

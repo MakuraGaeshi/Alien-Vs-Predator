@@ -31,16 +31,11 @@ namespace RRYautja
             base.CompExposeData();
             Scribe_References.Look<Pawn>(ref this.Instigator, "pawnRef", true);
 
-            /*
-            Scribe_Defs.Look<HediffDef>(ref MarkedhediffDef, "MarkedhediffDef");
-            Scribe_References.Look<Corpse>(ref this.corpse, "corpseRef");//, Props.corpse);//
-            Scribe_References.Look<Pawn>(ref this.pawn, "pawnRef");//, Props.pawn);
-            Scribe_Values.Look<String>(ref this.MarkHedifftype, "thisMarktype");//, Props.Marklabel);
-            Scribe_Values.Look<String>(ref this.MarkHedifflabel, "thislabel");//, Props.Marklabel);
-            Scribe_Values.Look<bool>(ref this.predator, "thisPred");
-            Scribe_Values.Look<float>(ref this.combatPower, "thiscombatPower");
-            Scribe_Values.Look<float>(ref this.BodySize, "thisBodySize");
-            */
+
+            Scribe_Defs.Look<PawnKindDef>(ref this.pawnKindDef, "pawnKindDef");
+            Scribe_Defs.Look<HediffDef>(ref this.heDiffDeff, "heDiffDeff");
+            Scribe_References.Look<Pawn>(ref this.Instigator, "pawnRef");//, Props.pawn);
+            
         }
 
         // public PawnKindDef pawnKindDef = YautjaDefOf.RRY_Xenomorph_FaceHugger;
@@ -166,7 +161,7 @@ namespace RRYautja
                 pawn.Kill(null);
             }
             string text = TranslatorFormattedStringExtensions.Translate("Xeno_Facehugger_Detach", base.parent.pawn.LabelShort);
-            MoteMaker.ThrowText(spawnLoc.ToVector3(), spawnMap, text, 5f);
+            if (!base.Pawn.Dead) MoteMaker.ThrowText(spawnLoc.ToVector3(), spawnMap, text, 5f);
         }
 
         // Token: 0x06004C89 RID: 19593 RVA: 0x002379D6 File Offset: 0x00235DD6
