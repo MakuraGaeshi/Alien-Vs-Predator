@@ -77,4 +77,51 @@
     <isRanged>true</isRanged>
     <makesAnimalsFlee>true</makesAnimalsFlee>
   </DamageDef>
+  
+  <DamageDef>
+    <defName>RRY_RangedStab</defName>
+    <label>stab</label>
+    <workerClass>DamageWorker_AddInjury</workerClass>
+    <externalViolence>true</externalViolence>
+    <deathMessage>{0} has been stabbed to death.</deathMessage>
+    <hediff>Stab</hediff>
+    <hediffSolid>Crack</hediffSolid>
+    <impactSoundType>Slice</impactSoundType>
+    <armorCategory>Sharp</armorCategory>
+    <overkillPctToDestroyPart>0~0.7</overkillPctToDestroyPart>
+    <isRanged>true</isRanged>
+    <makesAnimalsFlee>true</makesAnimalsFlee>
+    <additionalHediffs>
+      <li>
+        <hediff>RRY_Hediff_Pinned</hediff>
+        <severityPerDamageDealt>1</severityPerDamageDealt>
+        <victimSeverityScaling>PainShockThreshold</victimSeverityScaling>
+      </li>
+    </additionalHediffs>
+  </DamageDef>
+
+  <DamageDef>
+    <defName>RRY_RangedStab_Combi</defName>
+    <label>stab</label>
+    <workerClass>RRYautja.DamageWorker_CombiPin</workerClass>
+    <externalViolence>true</externalViolence>
+    <deathMessage>{0} has been stabbed to death.</deathMessage>
+    <hediff>Stab</hediff>
+    <hediffSolid>Crack</hediffSolid>
+    <impactSoundType>Slice</impactSoundType>
+    <armorCategory>Sharp</armorCategory>
+    <overkillPctToDestroyPart>0~0.7</overkillPctToDestroyPart>
+    <isRanged>true</isRanged>
+    <makesAnimalsFlee>true</makesAnimalsFlee>
+	<!--
+    <additionalHediffs>
+      <li>
+        <hediff>RRY_Hediff_Pinned</hediff>
+        <severityPerDamageDealt>1</severityPerDamageDealt>
+        <victimSeverityScaling>PainShockThreshold</victimSeverityScaling>
+      </li>
+    </additionalHediffs>
+	-->
+  </DamageDef>
+
 </Defs>

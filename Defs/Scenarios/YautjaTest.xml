@@ -54,44 +54,61 @@
 				<!-- <thingDef>MedicineHerbal</thingDef> -->
 				<count>20</count>
 			</li>
-			<!--
-			<li Class="ScenPart_StartingThing_Defined">
-				<def>StartingThing_Defined</def>
-				<thingDef>MeleeWeapon_Club</thingDef>
-				<stuff>WoodLog</stuff>
-			</li>
-			<li Class="ScenPart_StartingThing_Defined">
-				<def>StartingThing_Defined</def>
-				<thingDef>MeleeWeapon_Spear</thingDef>
-				<stuff>WoodLog</stuff>
-			</li>
-			-->
+			
 			<!-- Tech stuff -->
 			<li Class="ScenPart_StartingThing_Defined">
 				<def>StartingThing_Defined</def>
+				<thingDef>RRY_Gun_SpearRifle</thingDef>
+				<count>5</count>
+			</li>
+			<li Class="ScenPart_StartingThing_Defined">
+				<def>StartingThing_Defined</def>
 				<thingDef>RRY_Gun_NeedlerRifle</thingDef>
-				<count>6</count>
+				<count>5</count>
 			</li>
 			<li Class="ScenPart_StartingThing_Defined">
 				<def>StartingThing_Defined</def>
 				<thingDef>RRY_Gun_YautjaBlaster</thingDef>
-				<count>6</count>
+				<count>5</count>
+			</li>
+			<li Class="ScenPart_StartingThing_Defined">
+				<def>StartingThing_Defined</def>
+				<thingDef>RRY_Gun_Hunting_Bow</thingDef>
+				<count>5</count>
+				<stuff>WoodLog</stuff>
+			</li>
+			<li Class="ScenPart_StartingThing_Defined">
+				<def>StartingThing_Defined</def>
+				<thingDef>RRY_Gun_Compound_Bow</thingDef>
+				<count>5</count>
+				<stuff>Steel</stuff>
+			</li>
+			<li Class="ScenPart_StartingThing_Defined">
+				<def>StartingThing_Defined</def>
+				<thingDef>RRY_Gun_SmartDisk</thingDef>
+				<count>5</count>
 			</li>
 			<li Class="ScenPart_StartingThing_Defined">
 				<def>StartingThing_Defined</def>
 				<thingDef>RRY_Equipment_HunterShoulderCannon</thingDef>
-				<count>6</count>
+				<count>5</count>
+			</li>
+			<li Class="ScenPart_StartingThing_Defined">
+				<def>StartingThing_Defined</def>
+				<thingDef>RRY_Melee_BladedMaul</thingDef>
+				<count>5</count>
+				<stuff>Steel</stuff>
+			</li>
+			<li Class="ScenPart_StartingThing_Defined">
+				<def>StartingThing_Defined</def>
+				<thingDef>RRY_Melee_Combistaff</thingDef>
+				<count>5</count>
 			</li>
 			<!--
 			<li Class="ScenPart_StartingThing_Defined">
 				<def>StartingThing_Defined</def>
-				<thingDef>RRY_Gun_SmartDisk</thingDef>
-				<count>6</count>
-			</li>
-			<li Class="ScenPart_StartingThing_Defined">
-				<def>StartingThing_Defined</def>
 				<thingDef>RRY_MeleeWeapon_XenoSpear</thingDef>
-				<count>6</count>
+				<count>5</count>
 				<stuff>RRY_Leather_Xenomorph</stuff>
 			</li>
 			-->

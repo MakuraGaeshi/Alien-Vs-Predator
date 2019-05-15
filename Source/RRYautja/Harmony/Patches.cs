@@ -20,6 +20,18 @@ namespace RRYautja
 
     }
 
+    /*
+    [HarmonyPatch(typeof(HealthUtility), "AdjustSeverity")]
+    public static class HealthUtility_AdjustSeverityPatch
+    {
+        [HarmonyPostfix]
+        public static void postPostAdjustSeverity(Pawn __instance, ref HediffDef ___hdDef, ref float ___sevOffset)
+        {
+            Log.Message(string.Format("Patch_HealthUtility_AdjustSeverity {0},", __instance));
+        }
+    }
+    */
+
     [HarmonyPatch(typeof(Pawn), "ThreatDisabled")]
     public static class Pawn_ThreatDisabledPatch
     {
@@ -44,7 +56,7 @@ namespace RRYautja
                 {
                 }
             } // XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden
-            __result = __result || ((__instance.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked)|| __instance.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden)) && _Xenomorph == null);
+            __result = __result || ((__instance.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked) || __instance.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden)) && _Xenomorph == null);
 
         }
     }

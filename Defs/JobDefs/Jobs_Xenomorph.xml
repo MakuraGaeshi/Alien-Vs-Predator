@@ -17,4 +17,12 @@
     <checkOverrideOnDamage>Never</checkOverrideOnDamage>
   </JobDef>
   
+  <JobDef>
+    <defName>RRY_Job_MaintainLike</defName>
+    <driverClass>JobDriver_MaintainLike</driverClass>
+    <reportString>maintaining TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+  </JobDef>
+  
 </Defs>

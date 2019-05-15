@@ -47,13 +47,32 @@ namespace RRYautja
             Comp_Yautja _Yautja = user.TryGetComp<Comp_Yautja>();
             Hediff blooded = user.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_BloodedUM);
             BodyPartRecord part = user.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_BloodedUM).Part;
-            HediffDef marked = _Yautja.MarkedhediffDef;
+            HediffDef markedDef = _Yautja.MarkedhediffDef;
             if (YautjaBloodedUtility.Marked(user, out hediff))
             {
                 user.health.RemoveHediff(hediff);
             }
             user.health.RemoveHediff(blooded);
-            user.health.AddHediff(marked, part);
+            user.health.AddHediff(markedDef, part);
+            Hediff marked = user.health.hediffSet.GetFirstHediffOfDef(markedDef);
+            HediffComp_MarkedYautja marked_Yautja = marked.TryGetComp<HediffComp_MarkedYautja>();
+            marked_Yautja.BodySize = corpse.InnerPawn.BodySize;
+            marked_Yautja.combatPower = corpse.InnerPawn.kindDef.combatPower;
+            marked_Yautja.corpse = corpse;
+            marked_Yautja.MarkHedifflabel = corpse.InnerPawn.KindLabel;
+            marked_Yautja.pawn = corpse.InnerPawn;
+            marked_Yautja.pawnKindDef = corpse.InnerPawn.kindDef;
+            marked_Yautja.predator = corpse.InnerPawn.kindDef.RaceProps.predator;
+            marked_Yautja.props = new HediffCompProperties_MarkedYautja
+            {
+                pawn = corpse.InnerPawn,
+                corpse = corpse,
+                MarkedhediffDef = markedDef,
+                MarkHedifflabel = corpse.InnerPawn.KindLabel,
+                predator = corpse.InnerPawn.kindDef.RaceProps.predator,
+                BodySize = corpse.InnerPawn.BodySize,
+                combatPower = corpse.InnerPawn.kindDef.combatPower
+            };
             ThingDef thingDef = null;
             foreach (var item in corpse.InnerPawn.health.hediffSet.GetNotMissingParts())
             {

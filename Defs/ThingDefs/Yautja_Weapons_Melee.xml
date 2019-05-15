@@ -110,8 +110,10 @@
 		</stuffCategories>
 		<recipeMaker>
 			<recipeUsers>
+				<!--
 				<li>ElectricSmithy</li>
 				<li>FueledSmithy</li>
+				-->
 			</recipeUsers>
 			<researchPrerequisite>RRY_YautjaMelee_Basic</researchPrerequisite>
 		</recipeMaker>
@@ -141,6 +143,9 @@
     </graphicData>
 		<tickerType>Normal</tickerType>
 		<comps>  
+      <li>
+        <compClass>RRYautja.Comp_PinningWeapon</compClass>
+      </li>
 			<!--
 		  <li Class="RRYautja.CompProperties_HediffWeapon">
 			<hediffDef>RRYThrillOfTheHunt</hediffDef>

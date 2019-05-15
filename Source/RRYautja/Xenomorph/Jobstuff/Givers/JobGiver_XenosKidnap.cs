@@ -18,7 +18,14 @@ namespace RimWorld
             }
             if (XenomorphUtil.EggsPresent(pawn.Map)&& XenomorphUtil.ClosestReachableEgg(pawn) != null)
             {
-                c = XenomorphUtil.ClosestReachableEggNeedsHost(pawn).Position.RandomAdjacentCell8Way();
+                if (true)
+                {
+                    
+                }
+                else
+                {
+                    c = XenomorphUtil.ClosestReachableEggNeedsHost(pawn).Position.RandomAdjacentCell8Way();
+                }
             }
             Pawn t;
             if (KidnapAIUtility.TryFindGoodKidnapVictim(pawn, 18f, out t, null) && !GenAI.InDangerousCombat(pawn))

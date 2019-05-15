@@ -50,7 +50,19 @@ namespace RimWorld
 		// Token: 0x06000880 RID: 2176 RVA: 0x000475D8 File Offset: 0x000459D8
 		private HiveLike FindClosestHiveLike(Pawn pawn)
 		{
-			return (HiveLike)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(OGHiveLikeDefOf.HiveLike), PathEndMode.Touch, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn, false), 30f, (Thing x) => x.Faction == pawn.Faction, null, 0, 30, false, RegionType.Set_Passable, false);
+            ThingDef hiveDef = null;
+            List<ThingDef_HiveLike> hivedefs = DefDatabase<ThingDef_HiveLike>.AllDefsListForReading.FindAll(x => x.thingClass.GetType() == typeof(HiveLike));
+            foreach (ThingDef_HiveLike hivedef in hivedefs)
+            {
+                Log.Message(string.Format("LordToil_HiveLikeRelated found hiveDef: {0} for {1}", hiveDef, pawn));
+                if (hivedef.Faction == pawn.Faction.def)
+                {
+                    hiveDef = hivedef;
+                    Log.Message(string.Format("LordToil_HiveLikeRelated set hiveDef: {0} for {1}", hiveDef, pawn));
+                    break;
+                }
+            }
+			return (HiveLike)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(hiveDef), PathEndMode.Touch, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn, false), 30f, (Thing x) => x.Faction == pawn.Faction, null, 0, 30, false, RegionType.Set_Passable, false);
 		}
 	}
 }

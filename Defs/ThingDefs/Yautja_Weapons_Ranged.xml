@@ -53,6 +53,11 @@
       </li>
     </tools>
     <recipeMaker>
+		<recipeUsers>
+			<li>ElectricSmithy</li>
+			<li>FueledSmithy</li>
+			<li>CraftingSpot</li>
+		</recipeUsers>
       <researchPrerequisite>RRY_YautjaRanged_Basic</researchPrerequisite>
       <skillRequirements>
         <Crafting>6</Crafting>
@@ -277,11 +282,10 @@
 		<speed>75</speed>
 	</projectile>
  </ThingDef>
-
 	<ThingDef ParentName="RRYBaseMakeableGun">
 		<defName>RRY_Gun_NeedlerRifle</defName>
 		<label>Needler</label>
-		<description>Regardless of the exact form of the weapon, all Spearguns serve as projectile weapons firing metal spears. How these projectiles are fired is not clear, as the weapon produces no discernible muzzle flash and often little noise, yet fires spears with tremendous velocity and accuracy. Regardless of physical appearance, the Speargun is long-ranged and very powerful, capable of pinning victims to solid surfaces like a nail gun. Some have been seen with integrated computerized scopes further increasing their range. A common tactic, particularly with young and inexperienced hunters, is to use the Netgun to immobilize prey before finishing it off with the Speargun.\n\nDespite the weapon's name, the projectiles fired by the Speargun are not typically spear-shaped; the most common form seems to be a U-shaped projectile with a weighted tail and two serrated prongs pointing forwards. They are made from an unknown metal that is incredibly lightweight yet able to cut like hardened steel. They spears often have a blood groove down the middle, designed to cause a target to bleed out if they become stuck in the flesh.</description>
+		<description>Regardless of the exact form of the weapon, all Needlers serve as projectile weapons firing metal spears. How these projectiles are fired is not clear, as the weapon produces no discernible muzzle flash and often little noise, yet fires spears with tremendous velocity and accuracy. Regardless of physical appearance, the Needler is mid-ranged and very powerful, capable of pinning victims to solid surfaces like a nail gun.\n\nDespite the weapon's name, the projectiles fired by the Speargun are not typically spear-shaped; the most common form seems to be a U-shaped projectile with a weighted tail and two serrated prongs pointing forwards. They are made from an unknown metal that is incredibly lightweight yet able to cut like hardened steel. They spears often have a blood groove down the middle, designed to cause a target to bleed out if they become stuck in the flesh.</description>
 		<graphicData>
 			<texPath>Things/Equipment/Ranged/NeedleRifle</texPath>
 			<graphicClass>Graphic_Single</graphicClass>		
@@ -364,7 +368,7 @@
   <ThingDef ParentName="RRYBaseMakeableGun">
     <defName>RRY_Gun_SpearRifle</defName>
     <label>spear rifle</label>
-    <description>An ancient design of precision sniper rifle. Bolt action. It has an exceptionally long range, great accuracy and good power. Because it's so unwieldy, other weapons outclass it at close range.</description>
+		<description>Regardless of the exact form of the weapon, all Spearguns serve as projectile weapons firing metal spears. How these projectiles are fired is not clear, as the weapon produces no discernible muzzle flash and often little noise, yet fires spears with tremendous velocity and accuracy. Regardless of physical appearance, the Speargun is long-ranged and very powerful, capable of pinning victims to solid surfaces like a nail gun. Some have been seen with integrated computerized scopes further increasing their range. A common tactic, particularly with young and inexperienced hunters, is to use the Netgun to immobilize prey before finishing it off with the Speargun.\n\nDespite the weapon's name, the projectiles fired by the Speargun are not typically spear-shaped; the most common form seems to be a U-shaped projectile with a weighted tail and two serrated prongs pointing forwards. They are made from an unknown metal that is incredibly lightweight yet able to cut like hardened steel. They spears often have a blood groove down the middle, designed to cause a target to bleed out if they become stuck in the flesh.</description>
     <graphicData>
 			<texPath>Things/Equipment/Ranged/Yautja_Sniper_Spear_Rifle</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -429,8 +433,7 @@
     <weaponTags Inherit="False">
       <li>SpearRifle</li>
     </weaponTags>
-  </ThingDef>
-  
+  </ThingDef> 
   <ThingDef ParentName="BaseBullet">
     <defName>RRY_Bullet_SpearRifle</defName>
     <label>spear bolt</label>

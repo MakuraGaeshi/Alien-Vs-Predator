@@ -19,10 +19,12 @@ namespace RimWorld
 		{
 			HiveLike hivelike = pawn.mindState.duty.focus.Thing as HiveLike;
 			if (hivelike == null || !hivelike.Spawned)
-			{
-				return pawn.Position;
-			}
-			return hivelike.Position;
+            {
+                Log.Message(string.Format("JobGiver_WanderHiveLike pawn.Position: {0}", pawn.Position));
+                return pawn.Position;
+            }
+            Log.Message(string.Format("JobGiver_WanderHiveLike hivelike.Position: {0}", hivelike.Position));
+            return hivelike.Position;
 		}
 	}
 }

@@ -13,7 +13,7 @@ namespace RimWorld
 			for (int i = 0; i < this.lord.ownedPawns.Count; i++)
 			{
 				HiveLike hiveFor = (HiveLike)base.GetHiveLikeFor(this.lord.ownedPawns[i]);
-				PawnDuty duty = new PawnDuty(DutyDefOf.DefendAndExpandHive, hiveFor, this.distToHiveToAttack);
+				PawnDuty duty = new PawnDuty(OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike, hiveFor, this.distToHiveToAttack);
 				this.lord.ownedPawns[i].mindState.duty = duty;
 			}
 		}

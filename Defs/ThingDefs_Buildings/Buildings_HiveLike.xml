@@ -9,7 +9,7 @@
 		<scatterableOnMapGen>false</scatterableOnMapGen>
 	</ThingDef>
 
-  <ThingDef Class="ThingDef_Hivelike" ParentName="BuildingHivelikeBase">
+  <ThingDef Class="ThingDef_HiveLike" ParentName="BuildingHivelikeBase">
     <defName>HiveLike</defName>
     <label>hivelike</label>
     <description>If activated, it will spawn additional pawns and hivelikes over time.</description>
@@ -19,7 +19,7 @@
     <graphicData>
       <texPath>Things/Special/TunnelExit</texPath>
       <graphicClass>Graphic_Single</graphicClass>
-      <shaderType>TransparentPostLight</shaderType>
+      <shaderType>CutoutComplex</shaderType>
       <drawSize>2.6</drawSize>
     </graphicData>
     <altitudeLayer>Building</altitudeLayer>
@@ -72,7 +72,7 @@
         <spawnMtbHours>4</spawnMtbHours>
         <spawnRadius>5</spawnRadius>
       </li>
-      <li Class="CompProperties_Maintainable">
+      <li Class="CompProperties_MaintainableLike">
         <ticksHealthy>60000</ticksHealthy>
         <ticksNeedsMaintenance>40000</ticksNeedsMaintenance>
         <damagePerTickRare>10</damagePerTickRare>
@@ -81,7 +81,7 @@
     </comps>
   </ThingDef>
   
-  <ThingDef Class="ThingDef_Hivelike" ParentName="BuildingHivelikeBase">
+  <ThingDef Class="ThingDef_HiveLike" ParentName="BuildingHivelikeBase">
     <defName>RRY_XenomorphHive</defName>
     <label>xenomorph hive</label>
     <description>If activated, it will spawn additional pawns and hive over time.</description>
@@ -91,7 +91,7 @@
     <graphicData>
       <texPath>Things/Special/TunnelExit</texPath>
       <graphicClass>Graphic_Single</graphicClass>
-      <shaderType>TransparentPostLight</shaderType>
+      <shaderType>CutoutComplex</shaderType>
       <drawSize>2.6</drawSize>
     </graphicData>
     <altitudeLayer>Building</altitudeLayer>
@@ -122,6 +122,7 @@
           <max>15000</max>
         </spawnIntervalRange>
       </li>
+	  <!--
       <li Class="CompProperties_Spawner">
         <thingToSpawn>GlowPod</thingToSpawn>
         <spawnCount>1</spawnCount>
@@ -137,16 +138,17 @@
         <heatPerSecond>6</heatPerSecond>
         <heatPushMaxTemperature>38</heatPushMaxTemperature>
       </li>
+      <li Class="CompProperties_MaintainableLike">
+        <ticksHealthy>60000</ticksHealthy>
+        <ticksNeedsMaintenance>40000</ticksNeedsMaintenance>
+        <damagePerTickRare>10</damagePerTickRare>
+      </li>
+	  -->
       <li Class="CompProperties_SpawnerFilth">
         <filthDef>Filth_Slime</filthDef>
         <spawnCountOnSpawn>10</spawnCountOnSpawn>
         <spawnMtbHours>4</spawnMtbHours>
         <spawnRadius>5</spawnRadius>
-      </li>
-      <li Class="CompProperties_Maintainable">
-        <ticksHealthy>60000</ticksHealthy>
-        <ticksNeedsMaintenance>40000</ticksNeedsMaintenance>
-        <damagePerTickRare>10</damagePerTickRare>
       </li>
     </comps>
   </ThingDef>

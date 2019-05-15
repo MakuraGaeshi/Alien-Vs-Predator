@@ -17,6 +17,10 @@ namespace RimWorld
             {
                 result = pawn.Map.mapPawns.AllPawns.Any((Pawn x) => x.Downed && XenomorphUtil.isInfectablePawn(x));
             }
+            else if(pawn.Spawned && XenomorphUtil.IsXenomorph(pawn) && XenomorphUtil.EggsPresent(pawn.Map))
+            {
+                result = pawn.Map.mapPawns.AllPawns.Any((Pawn x) => x.Downed && XenomorphUtil.isInfectablePawn(x) && XenomorphUtil.DistanceBetween(XenomorphUtil.ClosestReachableEgg(x).Position, x.Position) > 3f);
+            }
             else
             {
                 result = false;

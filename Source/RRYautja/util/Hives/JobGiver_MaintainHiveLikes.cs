@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 
@@ -17,8 +18,20 @@ namespace RimWorld
 
 		// Token: 0x0600041B RID: 1051 RVA: 0x0002C940 File Offset: 0x0002AD40
 		protected override Job TryGiveJob(Pawn pawn)
-		{
-			Room room = pawn.GetRoom(RegionType.Set_Passable);
+        {
+            ThingDef hiveDef = null;
+            List<ThingDef_HiveLike> hivedefs = DefDatabase<ThingDef_HiveLike>.AllDefsListForReading.FindAll(x => x.thingClass.GetType() == typeof(HiveLike));
+            foreach (ThingDef_HiveLike hivedef in hivedefs)
+            {
+                Log.Message(string.Format("JobGiver_MaintainHiveLikes found hiveDef: {0} for {1}", hiveDef, pawn));
+                if (hivedef.Faction == pawn.Faction.def)
+                {
+                    hiveDef = hivedef;
+                    Log.Message(string.Format("JobGiver_MaintainHiveLikes set hiveDef: {0} for {1}", hiveDef, pawn));
+                    break;
+                }
+            }
+            Room room = pawn.GetRoom(RegionType.Set_Passable);
 			int num = 0;
 			while ((float)num < JobGiver_MaintainHiveLikes.CellsInScanRadius)
 			{
@@ -27,15 +40,15 @@ namespace RimWorld
 				{
 					if (intVec.GetRoom(pawn.Map, RegionType.Set_Passable) == room)
 					{
-						HiveLike hivelike = (HiveLike)pawn.Map.thingGrid.ThingAt(intVec, ThingDefOf.Hive);
+						HiveLike hivelike = (HiveLike)pawn.Map.thingGrid.ThingAt(intVec, hiveDef);
 						if (hivelike != null && pawn.CanReserve(hivelike, 1, -1, null, false))
 						{
-							CompMaintainable compMaintainable = hivelike.TryGetComp<CompMaintainable>();
+							CompMaintainableLike compMaintainable = hivelike.TryGetComp<CompMaintainableLike>();
 							if (compMaintainable.CurStage != MaintainableStage.Healthy)
 							{
 								if (!this.onlyIfDamagingState || compMaintainable.CurStage == MaintainableStage.Damaging)
 								{
-									return new Job(JobDefOf.Maintain, hivelike);
+									return new Job(XenomorphDefOf.RRY_Job_MaintainLike, hivelike);
 								}
 							}
 						}

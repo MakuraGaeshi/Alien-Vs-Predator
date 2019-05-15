@@ -59,6 +59,9 @@ namespace RimWorld
         public static FactionDef RRY_Yautja_PlayerUnblooded;
         public static FactionDef RRY_Yautja_PlayerBlooded;
 
+        public static FactionDef RRY_Yautja_BadBloodFaction;
+        public static FactionDef RRY_Yautja_JungleClan;
+
         // Yautja ResearchProjectDefs 
         public static ResearchProjectDef RRY_YautjaMediComp;
         public static ResearchProjectDef RRY_YautjaHealthShard;

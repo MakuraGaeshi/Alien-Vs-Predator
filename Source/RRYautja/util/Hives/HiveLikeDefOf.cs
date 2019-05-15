@@ -1,5 +1,6 @@
 ﻿using System;
 using Verse;
+using Verse.AI;
 
 namespace RimWorld
 {
@@ -16,8 +17,11 @@ namespace RimWorld
         //    public static HediffDef RRY_FaceHuggerInfection;
         //    public static HediffDef RRY_XenomorphImpregnation;
         public static ThingDef HiveLike;
-        public static ThingDef TunnelHiveLikeSpawner; 
+        public static ThingDef RRY_XenomorphHive;
+        public static ThingDef TunnelHiveLikeSpawner;
 
+        public static DutyDef RRY_DefendAndExpandHiveLike;
+        public static DutyDef RRY_DefendHiveLikeAggressively;
         //   public static FactionDef OGChaosDeamonFaction;
 
         //   public static DamageDef OGCDWarpfire;

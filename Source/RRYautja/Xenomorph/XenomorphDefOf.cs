@@ -44,9 +44,10 @@ namespace RimWorld
         // Xenomorph FactionDefs
         public static FactionDef RRY_Xenomorph;
 
-        // Xenomorph JobDefs
+        // Xenomorph JobDefs RRY_Job_Maintain
         public static JobDef RRY_Job_LayXenomorphEgg;
         public static JobDef RRY_Job_XenomorphKidnap;
+        public static JobDef RRY_Job_MaintainLike;
 
         // Xenomorph ThingDefs
         public static ThingDef RRY_EggXenomorphFertilized;

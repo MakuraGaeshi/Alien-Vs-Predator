@@ -1,4 +1,5 @@
-﻿using AlienRace;
+﻿using AbilityUser;
+using AlienRace;
 using Harmony;
 using RimWorld;
 using System;
@@ -65,6 +66,19 @@ namespace RRYautja
                 prefix: new HarmonyMethod(type: typeof(HarmonyPatches), name: nameof(Pre_DrawEquipment_Cloak)),
                 postfix: null);
 
+            // Verse.HealthUtility
+            //Patch_HealthUtility_AdjustSeverity
+            /*
+            harmony.Patch(
+                original: AccessTools.Method(type: typeof(HealthUtility), name: "AdjustSeverity"),
+                prefix: new HarmonyMethod(type: typeof(HarmonyPatches), name: nameof(Patch_HealthUtility_AdjustSeverity), parameters: new Type[]
+                {
+                    typeof(HediffDef),
+                    typeof(float)
+                }),
+                postfix: null);
+            */
+
             //Patch_PawnRenderer_WigglerTick
             /*
             harmony.Patch(
@@ -124,10 +138,71 @@ namespace RRYautja
             return true;
         }
 
-        internal static void PushEffect(Pawn casterPawn, Pawn hitPawn, int v1, bool v2)
+
+        // Token: 0x060000EB RID: 235 RVA: 0x00008E6C File Offset: 0x0000706C
+        public static Vector3 PushResult(Thing Caster, Thing thingToPush, int pushDist, out bool collision)
         {
-            throw new NotImplementedException();
+            Vector3 vector = GenThing.TrueCenter(thingToPush);
+            Vector3 result = vector;
+            bool flag = false;
+            for (int i = 1; i <= pushDist; i++)
+            {
+                int num = i;
+                int num2 = i;
+                bool flag2 = vector.x < GenThing.TrueCenter(Caster).x;
+                if (flag2)
+                {
+                    num = -num;
+                }
+                bool flag3 = vector.z < GenThing.TrueCenter(Caster).z;
+                if (flag3)
+                {
+                    num2 = -num2;
+                }
+                Vector3 vector2 = new Vector3(vector.x + (float)num, 0f, vector.z + (float)num2);
+                bool flag4 = GenGrid.Standable(IntVec3Utility.ToIntVec3(vector2), Caster.Map);
+                if (flag4)
+                {
+                    result = vector2;
+                }
+                else
+                {
+                    bool flag5 = thingToPush is Pawn;
+                    if (flag5)
+                    {
+                        flag = true;
+                        break;
+                    }
+                }
+            }
+            collision = flag;
+            return result;
         }
+
+        // Token: 0x060000EC RID: 236 RVA: 0x00008F44 File Offset: 0x00007144
+        public static void PushEffect(Thing Caster, Thing target, int distance, bool damageOnCollision = false)
+        {
+            LongEventHandler.QueueLongEvent(delegate ()
+            {
+                Pawn pawn;
+                if (target != null && (pawn = (target as Pawn)) != null && pawn.Spawned && !pawn.Downed && !pawn.Dead && ((pawn != null) ? pawn.MapHeld : null) != null)
+                {
+                    bool flag2;
+                    Vector3 vector = HarmonyPatches.PushResult(Caster, target, distance, out flag2);
+                    FlyingObject flyingObject = (FlyingObject)GenSpawn.Spawn(ThingDef.Named("JT_FlyingObject"), pawn.PositionHeld, pawn.MapHeld, 0);
+                    bool flag3 = flag2 & damageOnCollision;
+                    if (flag3)
+                    {
+                        flyingObject.Launch(Caster, new LocalTargetInfo(IntVec3Utility.ToIntVec3(vector)), target, new DamageInfo?(new DamageInfo(DamageDefOf.Blunt, (float)Rand.Range(8, 10), 0f, -1f, null, null, null, 0, null)));
+                    }
+                    else
+                    {
+                        flyingObject.Launch(Caster, new LocalTargetInfo(IntVec3Utility.ToIntVec3(vector)), target);
+                    }
+                }
+            }, "PushingCharacter", false, null);
+        }
+
 
         public static Pawn PawnRenderer_GetPawn(object instance)
         {
@@ -185,6 +260,14 @@ namespace RRYautja
 						this.downedAngle -= 0.35f;
 					}
         */
+
+        // Patch_HealthUtility_AdjustSeverity
+
+        public static bool Patch_HealthUtility_AdjustSeverity(Pawn __instance, ref HediffDef ___hdDef, ref float ___sevOffset)
+        {
+            Log.Message(string.Format("Patch_HealthUtility_AdjustSeverity {0},", __instance));
+            return true;
+        }
 
         // Token: 0x0600000C RID: 12 RVA: 0x0000283C File Offset: 0x00000A3C
         public static void RareTickPostfix(Corpse __instance)
@@ -392,6 +475,11 @@ namespace RRYautja
             {
                 Log.Message(string.Format("Non Yautja with Yautja Hair"));
                 __result.story.hairDef = DefDatabase<HairDef>.GetRandom();
+            }
+            if (Rand.Chance(0.005f)&&XenomorphUtil.isInfectablePawn(__result))
+            {
+                HediffDef def = Rand.Chance(0.75f) ? XenomorphDefOf.RRY_HiddenXenomorphImpregnation : XenomorphDefOf.RRY_HiddenNeomorphImpregnation;
+                __result.health.AddHediff(def);
             }
         }
 

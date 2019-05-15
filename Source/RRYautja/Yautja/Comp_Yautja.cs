@@ -86,6 +86,7 @@ namespace RRYautja
             Scribe_Values.Look<bool>(ref this.predator, "thisPred");
             Scribe_Values.Look<float>(ref this.combatPower, "thiscombatPower");
             Scribe_Values.Look<float>(ref this.BodySize, "thisBodySize");
+            Scribe_Values.Look<bool>(ref this.TurretIsOn, "thisTurretIsOn");
         }
 
         public HediffDef MarkedhediffDef;
@@ -96,6 +97,7 @@ namespace RRYautja
         public bool predator;
         public float combatPower;
         public float BodySize;
+        public bool TurretIsOn;
 
 
 
@@ -107,6 +109,18 @@ namespace RRYautja
             {
                 Pawn.story.hairDef = Rand.Chance(0.5f) ? YautjaDefOf.RRY_Yaujta_Dreds : YautjaDefOf.RRY_Yaujta_Ponytail;
             }
+            if (Pawn.apparel.WornApparelCount > 0)
+            {
+                foreach (var app in Pawn.apparel.WornApparel)
+                {
+                    CompEquippableTurret turretcomp = this.Pawn.TryGetComp<CompEquippableTurret>();
+                    if (turretcomp != null)
+                    {
+                        turretcomp.turretIsOn = this.TurretIsOn;
+                    }
+                }
+            }
+
         }
 
         public override void CompTick()
