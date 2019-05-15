@@ -4,7 +4,7 @@
   <ThingDef ParentName="RRYBaseSimpleRanged">
     <defName>RRY_Gun_Hunting_Bow</defName>
     <label>yautja hunting bow</label>
-    <description>A powerful bow. Fires a heavy arrow long distances.</description>
+    <description>A powerful traditional Yautja bow.</description>
     <graphicData>
       <texPath>Things/Equipment/Ranged/Yautja_Hunting_Bow</texPath>
       <graphicClass>Graphic_Single</graphicClass>

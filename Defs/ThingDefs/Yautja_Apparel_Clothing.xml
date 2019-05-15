@@ -5,7 +5,7 @@
 	<ThingDef ParentName="RRY_Apparel_MakeableBase">
 		<defName>RRY_Apparel_HunterVest</defName>
 		<label>Yautja Vest</label>
-		<description>.</description>
+		<description>It's a vest godarnit! XD</description>
 		<graphicData>
 			<texPath>Things/Apparel/Yautja_Vest/Yautja_Vest</texPath>
 			<graphicClass>Graphic_Single</graphicClass>

@@ -78,7 +78,7 @@
 	<ThingDef ParentName="RRY_Yautja_ArmourBase">
 		<defName>RRY_Apparel_HunterArmourChestplate</defName>
 		<label>Yautja Hunter Chestplate</label>
-		<description>The standard armor worn by most of the hunters of the Yautja society. Proven design that offer good defense without limiting movements.</description>
+		<description>The standard armor worn by the hunters of the Yautja society. Proven design that offer good defense without limiting movements.</description>
 		<graphicData>
 			<texPath>Things/Apparel/Yautja_Armour/Yautja_HunterArmor</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
