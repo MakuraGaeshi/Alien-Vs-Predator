@@ -25,6 +25,9 @@ namespace RRYautja
                 return this.props as HediffCompProperties_PinnedByWeapon;
             }
         }
+        bool present;
+        float breakoutChance;
+        Thing pinnerThing;
 
         public override void CompPostTick(ref float severityAdjustment)
         {
@@ -41,16 +44,34 @@ namespace RRYautja
                         foreach (var item in thingList.Where(x => x.TryGetComp<Comp_PinningWeapon>()!=null))
                         {
                             present = true;
+                            pinnerThing = item;
                         }
-                        if (!present)
+                        this.present = present;
+                        if (this.present)
+                        {
+                            float breakoutResistRoll = Rand.RangeInclusive(((int)this.parent.Severity*2), (100 * (int)this.parent.Severity));
+                            float breakoutResist = breakoutResistRoll + this.parent.Severity;
+                            float breakoutChanceRoll = Rand.RangeInclusive(1, 100);
+                            float breakoutChance = (breakoutChanceRoll * parent.pawn.health.summaryHealth.SummaryHealthPercent) + (parent.pawn.BodySize * 10);
+                            if (breakoutResist< breakoutChance)
+                            {
+                            //    Log.Message(string.Format("breakoutResist rolled: {0}  ", breakoutResist));
+                            //    Log.Message(string.Format("breakoutChance rolled: {0}  ", breakoutChance));
+                                pinnerThing.Position = parent.pawn.Position.RandomAdjacentCell8Way();
+                            }
+                        }
+                        if (!this.present)
                         {
                             Pawn.health.RemoveHediff(this.parent);
                         }
-                        DamageInfo dinfo2 = new DamageInfo() { };
-                        float stundur = 1f;
-                        dinfo2.Def = DamageDefOf.Stun;
-                        dinfo2.SetAmount((float)stundur.SecondsToTicks() / 30f);
-                        Pawn.TakeDamage(dinfo2);
+                        else
+                        {
+                            DamageInfo dinfo2 = new DamageInfo() { };
+                            float stundur = 1f;
+                            dinfo2.Def = DamageDefOf.Stun;
+                            dinfo2.SetAmount((float)stundur.SecondsToTicks() / 30f);
+                            Pawn.TakeDamage(dinfo2);
+                        }
                     }
                 }
             }

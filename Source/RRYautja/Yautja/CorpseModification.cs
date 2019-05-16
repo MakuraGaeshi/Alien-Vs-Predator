@@ -96,12 +96,12 @@ namespace RRYautja
             {
                 AlienRace.BackstoryDef backstoryDef = DefDatabase<AlienRace.BackstoryDef>.GetNamed("Yautja_Blooded");
 #if DEBUG
-                if (selected) Log.Message(string.Format("changing {0}", user.story.adulthood.identifier));
+            //    if (selected) Log.Message(string.Format("changing {0}", user.story.adulthood.identifier));
 #endif
 
                 user.story.adulthood = backstoryDef.backstory;
 #if DEBUG
-                if (selected) Log.Message(string.Format("to {0}", user.story.adulthood.identifier));
+            //    if (selected) Log.Message(string.Format("to {0}", user.story.adulthood.identifier));
 #endif
             }
         }
@@ -121,13 +121,13 @@ namespace RRYautja
                 Comp_Yautja _Yautja = p.TryGetComp<Comp_Yautja>();
                 HediffWithComps hediff = (HediffWithComps)blooded;
 #if DEBUG
-                if (selected) Log.Message(string.Format("has {0} comp", hediff.comps.Count));
+            //    if (selected) Log.Message(string.Format("has {0} comp", hediff.comps.Count));
 #endif
                 HediffComp_BloodedYautja comp = blooded.TryGetComp<HediffComp_BloodedYautja>();
 #if DEBUG
-                if (selected) Log.Message(string.Format("{0}", _Yautja.corpse));
-                if (selected) Log.Message(string.Format("{0}", _Yautja.pawn));
-                if (selected) Log.Message(string.Format("{0}", _Yautja.MarkedhediffDef));
+            //    if (selected) Log.Message(string.Format("{0}", _Yautja.corpse));
+            //    if (selected) Log.Message(string.Format("{0}", _Yautja.pawn));
+            //    if (selected) Log.Message(string.Format("{0}", _Yautja.MarkedhediffDef));
 #endif
                 logonce = true;
                 ThingDef def = _Yautja.corpse.InnerPawn.kindDef.race;
@@ -404,7 +404,7 @@ namespace RRYautja
                 }
                 catch (Exception arg)
                 {
-                    Log.Error("Error in CompUseEffect: " + arg, false);
+                //    Log.Error("Error in CompUseEffect: " + arg, false);
                 }
             }
         }

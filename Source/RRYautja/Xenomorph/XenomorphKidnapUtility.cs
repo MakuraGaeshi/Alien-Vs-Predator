@@ -21,7 +21,7 @@ namespace RRYautja
             {
                 Pawn pawn = t as Pawn;
                 Thing egg = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_EggXenomorphFertilized), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, null, null, 0, -1, false, RegionType.Set_Passable, false);
-                return XenomorphUtil.DistanceBetween(pawn.Position, egg.Position)>3 && XenomorphUtil.isInfectablePawn(pawn) && pawn.Downed && (pawn.Faction == null || pawn.Faction.HostileTo(kidnapper.Faction)) && kidnapper.CanReserve(pawn, 1, -1, null, false) && (disallowed == null || !disallowed.Contains(pawn));
+                return ((egg != null && XenomorphUtil.DistanceBetween(pawn.Position, egg.Position) > 3)||egg == null) && XenomorphUtil.isInfectablePawn(pawn) && pawn.Downed && (pawn.Faction == null || pawn.Faction.HostileTo(kidnapper.Faction)) && kidnapper.CanReserve(pawn, 1, -1, null, false) && (disallowed == null || !disallowed.Contains(pawn));
             };
             victim = (Pawn)GenClosest.ClosestThingReachable(kidnapper.Position, kidnapper.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Some, false), maxDist, validator, null, 0, -1, false, RegionType.Set_Passable, false);
             return victim != null;

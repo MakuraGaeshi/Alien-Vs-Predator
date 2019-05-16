@@ -18,7 +18,7 @@ namespace RimWorld
 
 #if DEBUG
             bool selected = Find.Selector.SingleSelectedThing == pawn;
-            if (selected) Log.Message(string.Format("{0} hunting {1}", pawn, pawn2));
+        //    if (selected) Log.Message(string.Format("{0} hunting {1}", pawn, pawn2));
 #endif
             if (pawn2 != null && pawn.CanReach(pawn2, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.ByPawn))
             {
@@ -40,7 +40,7 @@ namespace RimWorld
                     IntVec3 loc;
                     if (!pawnPath.TryFindLastCellBeforeBlockingDoor(pawn, out loc))
                     {
-                        Log.Error(pawn + " did TryFindLastCellBeforeDoor but found none when it should have been one. Target: " + pawn2.LabelCap, false);
+                    //    Log.Error(pawn + " did TryFindLastCellBeforeDoor but found none when it should have been one. Target: " + pawn2.LabelCap, false);
                         return null;
                     }
                     IntVec3 randomCell = CellFinder.RandomRegionNear(loc.GetRegion(pawn.Map, RegionType.Set_Passable), 9, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn, false), null, null, RegionType.Set_Passable).RandomCell;

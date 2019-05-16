@@ -79,7 +79,7 @@ namespace RRYautja
         // Token: 0x06000004 RID: 4 RVA: 0x000020EE File Offset: 0x000002EE
         public void RefreshTurretState()
         {
-            Log.Message(string.Format("ComputeTurretState: {0}, turretIsOn: {1}", ComputeTurretState(), turretIsOn));
+        //    Log.Message(string.Format("ComputeTurretState: {0}, turretIsOn: {1}", ComputeTurretState(), turretIsOn));
             if (this.ComputeTurretState())
             {
                 this.SwitchOnTurret();
@@ -92,7 +92,7 @@ namespace RRYautja
         public bool ComputeTurretState()
         {
 
-            Log.Message(string.Format("GetWearer: {0}, !GetWearer.Dead: {1}, !GetWearer.Downed: {2}, GetWearer.Awake(): {3}, (this.turretIsOn): {4}", GetWearer != null , !GetWearer.Dead , !GetWearer.Downed , GetWearer.Awake(), (this.turretIsOn)));
+        //    Log.Message(string.Format("GetWearer: {0}, !GetWearer.Dead: {1}, !GetWearer.Downed: {2}, GetWearer.Awake(): {3}, (this.turretIsOn): {4}", GetWearer != null , !GetWearer.Dead , !GetWearer.Downed , GetWearer.Awake(), (this.turretIsOn)));
             return GetWearer != null && !GetWearer.Dead && !GetWearer.Downed && GetWearer.Awake() && (this.turretIsOn); // (this.turretMode == CompEquippableTurret.TurretMode.ForcedOn);
         }
 

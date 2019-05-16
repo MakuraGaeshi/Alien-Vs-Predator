@@ -23,7 +23,7 @@ namespace RimWorld
             {
 
 #if DEBUG
-                if (selected) Log.Message(string.Format("{0}@{1} hunting {2}@{3}", pawn.Label, pawn.Position, pawn2.Label, pawn2.Position));
+            //    if (selected) Log.Message(string.Format("{0}@{1} hunting {2}@{3}", pawn.Label, pawn.Position, pawn2.Label, pawn2.Position));
 #endif
                 return this.MeleeAttackJob(pawn, pawn2);
             }
@@ -38,7 +38,7 @@ namespace RimWorld
                     IntVec3 loc;
                     if (!pawnPath.TryFindLastCellBeforeBlockingDoor(pawn, out loc))
                     {
-                        Log.Error(pawn + " did TryFindLastCellBeforeDoor but found none when it should have been one. Target: " + pawn2.LabelCap, false);
+                    //    Log.Error(pawn + " did TryFindLastCellBeforeDoor but found none when it should have been one. Target: " + pawn2.LabelCap, false);
                         return null;
                     }
                     IntVec3 randomCell = CellFinder.RandomRegionNear(loc.GetRegion(pawn.Map, RegionType.Set_Passable), 9, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn, false), null, null, RegionType.Set_Passable).RandomCell;
@@ -174,21 +174,21 @@ namespace RimWorld
             if (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection))
             {
 #if DEBUG
-                if (selected) Log.Message(string.Format("{0}@{1} infected: {2}", pawn.Label, pawn.Position, pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection)));
+            //    if (selected) Log.Message(string.Format("{0}@{1} infected: {2}", pawn.Label, pawn.Position, pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection)));
 #endif
                 return true;
             }
             if (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation))
             {
 #if DEBUG
-                if (selected) Log.Message(string.Format("{0}@{1} infected: {2}", pawn.Label, pawn.Position, pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation)));
+            //    if (selected) Log.Message(string.Format("{0}@{1} infected: {2}", pawn.Label, pawn.Position, pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation)));
 #endif
                 return true;
             }
             if (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation))
             {
 #if DEBUG
-                if (selected) Log.Message(string.Format("{0}@{1} infected: {2}", pawn.Label, pawn.Position, pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation)));
+            //    if (selected) Log.Message(string.Format("{0}@{1} infected: {2}", pawn.Label, pawn.Position, pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation)));
 #endif
                 return true;
             }

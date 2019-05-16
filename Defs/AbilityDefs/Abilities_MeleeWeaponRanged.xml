@@ -14,7 +14,7 @@
 			</li>
 		</comps>
 		<projectile>
-			  <damageDef>RRY_RangedStab</damageDef>
+			  <damageDef>RRY_RangedStab_Combi</damageDef>
 			  <armorPenetrationBase>0.5</armorPenetrationBase>
 			  <damageAmountBase>15</damageAmountBase>
 			  <speed>30</speed>

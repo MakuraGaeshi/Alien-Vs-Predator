@@ -207,11 +207,6 @@ namespace RRYautja
             totalDamage = this.ReduceDamageToPreserveOutsideParts(totalDamage, dinfo, pawn);
             this.FinalizeAndAddInjury(pawn, totalDamage, dinfo, result);
             this.CheckDuplicateDamageToOuterParts(dinfo, pawn, totalDamage, result);
-            DamageInfo dinfo2 = dinfo;
-            float stundur = 10f;
-            dinfo2.Def = DamageDefOf.Stun;
-            dinfo2.SetAmount((float)stundur.SecondsToTicks()/30f);
-            pawn.TakeDamage(dinfo2);
         }
 
         // Token: 0x06004B89 RID: 19337 RVA: 0x002347B4 File Offset: 0x00232BB4
@@ -318,7 +313,7 @@ namespace RRYautja
             BodyPartRecord bodyPartRecord = this.ChooseHitPart(dinfo, pawn);
             if (bodyPartRecord == null)
             {
-                Log.Warning("ChooseHitPart returned null (any part).", false);
+            //    Log.Warning("ChooseHitPart returned null (any part).", false);
             }
             return bodyPartRecord;
         }

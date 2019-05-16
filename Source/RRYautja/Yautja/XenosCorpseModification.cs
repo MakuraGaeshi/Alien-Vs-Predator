@@ -81,7 +81,7 @@ namespace RRYautja
             if (this.parent is Corpse corpse)
             {
                 this.corpse = corpse;
-                Log.Message(string.Format("hastail: {0}", hasTail));
+            //    Log.Message(string.Format("hastail: {0}", hasTail));
                 if (XenomorphUtil.IsXenoCorpse(corpse))
                 {
                     foreach (var item in corpse.InnerPawn.RaceProps.body.AllParts)

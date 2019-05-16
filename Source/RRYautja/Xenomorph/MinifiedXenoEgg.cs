@@ -65,7 +65,7 @@ namespace RRYautja
         {
             if (this.InnerThing == null)
             {
-                Log.Error("MinifiedThing with null InnerThing. Destroying.", false);
+            //    Log.Error("MinifiedThing with null InnerThing. Destroying.", false);
                 this.Destroy(DestroyMode.Vanish);
                 return;
             }

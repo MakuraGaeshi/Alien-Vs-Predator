@@ -21,7 +21,7 @@ namespace AbilityUser
             }
             if (launcher is Pawn launcherPawn)
             {
-                Log.Message(string.Format("launcherPawn: {0}", launcherPawn.LabelShortCap));
+            //    Log.Message(string.Format("launcherPawn: {0}", launcherPawn.LabelShortCap));
                 PostPostImpactEffects();
             }
         }

@@ -97,7 +97,7 @@ namespace RRYautja
             //Material mat = apparelGraphic.graphic.MatAt(rotation);
             if (selected)
             {
-                Log.Message(string.Format("{0}'s {1} CompPauldronDrawer, {2} offset: {3}, drawPos.y:{4}", pawn.Label, this.def.label, direction, offset, drawPos.y));
+            //    Log.Message(string.Format("{0}'s {1} CompPauldronDrawer, {2} offset: {3}, drawPos.y:{4}", pawn.Label, this.def.label, direction, offset, drawPos.y));
             }
             Material matSingle = comp.ImplantMaterial(pawn, rot); //.GetColoredVersion(ShaderDatabase.Cutout, this.mainColor, this.secondaryColor).MatAt(rotation);
             //    Log.Message(string.Format("PauldronGraphic this.mainColor:{0}, this.secondaryColor: {1}", this.mainColor, this.secondaryColor));

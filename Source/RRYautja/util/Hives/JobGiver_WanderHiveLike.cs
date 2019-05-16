@@ -19,14 +19,14 @@ namespace RimWorld
         {
             ThingDef hiveDef = null;
             List<ThingDef_HiveLike> hivedefs = DefDatabase<ThingDef_HiveLike>.AllDefsListForReading.FindAll(x => x.Faction == pawn.Faction.def);
-            Log.Message(string.Format("hivedefs found: {0}", hivedefs.Count));
+        //    Log.Message(string.Format("hivedefs found: {0}", hivedefs.Count));
             foreach (ThingDef_HiveLike hivedef in hivedefs)
             {
-                Log.Message(string.Format("LordToil_HiveLikeRelated found hiveDef: {0} for {1}", hiveDef, pawn));
+            //    Log.Message(string.Format("LordToil_HiveLikeRelated found hiveDef: {0} for {1}", hiveDef, pawn));
                 if (hivedef.Faction == pawn.Faction.def)
                 {
                     hiveDef = hivedef;
-                    Log.Message(string.Format("LordToil_HiveLikeRelated set hiveDef: {0} for {1}", hiveDef, pawn));
+                //    Log.Message(string.Format("LordToil_HiveLikeRelated set hiveDef: {0} for {1}", hiveDef, pawn));
                     return (HiveLike)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(hiveDef), PathEndMode.Touch, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn, false), 30f, (Thing x) => x.Faction == pawn.Faction, null, 0, 30, false, RegionType.Set_Passable, false);
                 }
             }
@@ -43,10 +43,10 @@ namespace RimWorld
             }
 			if (hivelike == null || !hivelike.Spawned)
             {
-                Log.Message(string.Format("JobGiver_WanderHiveLike pawn.Position: {0}", pawn.Position));
+            //    Log.Message(string.Format("JobGiver_WanderHiveLike pawn.Position: {0}", pawn.Position));
                 return pawn.Position;
             }
-            Log.Message(string.Format("JobGiver_WanderHiveLike hivelike.Position: {0}", hivelike.Position));
+        //    Log.Message(string.Format("JobGiver_WanderHiveLike hivelike.Position: {0}", hivelike.Position));
             return hivelike.Position;
 		}
 	}

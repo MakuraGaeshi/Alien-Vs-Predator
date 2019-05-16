@@ -265,7 +265,7 @@ namespace RRYautja
 
         public static bool Patch_HealthUtility_AdjustSeverity(Pawn __instance, ref HediffDef ___hdDef, ref float ___sevOffset)
         {
-            Log.Message(string.Format("Patch_HealthUtility_AdjustSeverity {0},", __instance));
+        //    Log.Message(string.Format("Patch_HealthUtility_AdjustSeverity {0},", __instance));
             return true;
         }
 
@@ -380,7 +380,7 @@ namespace RRYautja
                 if (value.kindDef.race.GetType() == typeof(AlienRace.ThingDef_AlienRace))
                 {
                     bool selected = Find.Selector.SingleSelectedThing == value;
-                    if (selected) Log.Message(string.Format("A Foul Xenos"));
+                //    if (selected) Log.Message(string.Format("A Foul Xenos"));
                 }
                 __instance.graphics = new PawnGraphicSet_Invisible(value);
                 __instance.graphics.nakedGraphic = new Graphic_Invisible();
@@ -406,11 +406,11 @@ namespace RRYautja
             {
                 if (_Xenomorph.host != null)
                 {
-                    if (selected) Log.Message(string.Format("Old value.kindDef.lifeStages[0].bodyGraphicData.color: {0}", value.kindDef.lifeStages[0].bodyGraphicData.color));
-                    if (selected) Log.Message(string.Format("_Xenomorph.host.race.race.BloodDef.graphicData.color: {0}", _Xenomorph.host.race.race.BloodDef.graphicData.color));
+                //    if (selected) Log.Message(string.Format("Old value.kindDef.lifeStages[0].bodyGraphicData.color: {0}", value.kindDef.lifeStages[0].bodyGraphicData.color));
+                //    if (selected) Log.Message(string.Format("_Xenomorph.host.race.race.BloodDef.graphicData.color: {0}", _Xenomorph.host.race.race.BloodDef.graphicData.color));
                     value.kindDef.lifeStages[0].bodyGraphicData.color =
                     _Xenomorph.host.race.race.BloodDef.graphicData.color;
-                    if (selected) Log.Message(string.Format("New value.kindDef.lifeStages[0].bodyGraphicData.color: {0}", value.kindDef.lifeStages[0].bodyGraphicData.color));
+                //    if (selected) Log.Message(string.Format("New value.kindDef.lifeStages[0].bodyGraphicData.color: {0}", value.kindDef.lifeStages[0].bodyGraphicData.color));
                 }
                 else if (selected) Log.Message(string.Format("_Xenomorph.host: null"));
             }
@@ -470,21 +470,25 @@ namespace RRYautja
                     }
                     else
                     {
-                        Log.Message(string.Format("new pawn has hasunblooded:{0}, hasbloodedUM:{1}, hasbloodedM:{2}", hasunblooded, hasbloodedUM, hasbloodedM));
+                    //    Log.Message(string.Format("new pawn has hasunblooded:{0}, hasbloodedUM:{1}, hasbloodedM:{2}", hasunblooded, hasbloodedUM, hasbloodedM));
                     }
                 }
             }
             else if (request.Faction == Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph))
             {
-                Log.Message(string.Format("Xenomorph spawning"));
+            //    Log.Message(string.Format("Xenomorph spawning"));
                 if (__result.kindDef==XenomorphDefOf.RRY_Xenomorph_Queen)
                 {
                     __result.gender = Gender.Female;
                 }
+                else
+                {
+                    __result.gender = Gender.None;
+                }
             }
             else if (__result.kindDef.race != YautjaDefOf.RRY_Alien_Yautja && __result.RaceProps.Humanlike && (__result.story.hairDef == YautjaDefOf.RRY_Yaujta_Dreds || __result.story.hairDef == YautjaDefOf.RRY_Yaujta_Ponytail || __result.story.hairDef == YautjaDefOf.RRY_Yaujta_Bald))
             {
-                Log.Message(string.Format("Non Yautja with Yautja Hair"));
+            //    Log.Message(string.Format("Non Yautja with Yautja Hair"));
                 __result.story.hairDef = DefDatabase<HairDef>.GetRandom();
             }
             if (Rand.Chance(0.005f)&&XenomorphUtil.isInfectablePawn(__result))
@@ -499,7 +503,7 @@ namespace RRYautja
             
             if (Find.FactionManager.OfPlayer.def == YautjaDefOf.RRY_Yautja_PlayerBlooded || Find.FactionManager.OfPlayer.def == YautjaDefOf.RRY_Yautja_PlayerColony || Find.FactionManager.OfPlayer.def == YautjaDefOf.RRY_Yautja_PlayerUnblooded)
             {
-                Log.Message(string.Format("Refugee Yautja"));
+            //    Log.Message(string.Format("Refugee Yautja"));
             }
         }
 

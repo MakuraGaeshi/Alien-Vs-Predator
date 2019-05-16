@@ -33,15 +33,15 @@ namespace RimWorld
                     List<ThingDef_HiveLike> hivedefs = DefDatabase<ThingDef_HiveLike>.AllDefsListForReading.FindAll(x => x.Faction == pawn.Faction.def);
                     foreach (ThingDef_HiveLike hivedef in hivedefs)
                     {
-                        Log.Message(string.Format("JobGiver_MaintainHiveLikes found hiveDef: {0} for {1}", hiveDef, pawn));
+                    //    Log.Message(string.Format("JobGiver_MaintainHiveLikes found hiveDef: {0} for {1}", hiveDef, pawn));
                         if (hivedef.Faction == pawn.Faction.def)
                         {
                             hiveDef = hivedef;
-                            Log.Message(string.Format("JobGiver_MaintainHiveLikes set hiveDef: {0} for {1}", hiveDef, pawn));
+                        //    Log.Message(string.Format("JobGiver_MaintainHiveLikes set hiveDef: {0} for {1}", hiveDef, pawn));
                             break;
                         }
                     }
-                    if (hiveDef != null)
+                    if (XenomorphUtil.TotalSpawnedThingCount(hiveDef, pawn.Map)>0 && hiveDef != null)
                     {
                         c = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(hiveDef), PathEndMode.Touch, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn, false), 30f, (Thing x) => x.Faction == pawn.Faction, null, 0, 30, false, RegionType.Set_Passable, false).Position;
                     }

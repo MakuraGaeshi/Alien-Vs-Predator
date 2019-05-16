@@ -27,7 +27,7 @@ namespace RRYautja
         [HarmonyPostfix]
         public static void postPostAdjustSeverity(Pawn __instance, ref HediffDef ___hdDef, ref float ___sevOffset)
         {
-            Log.Message(string.Format("Patch_HealthUtility_AdjustSeverity {0},", __instance));
+        //    Log.Message(string.Format("Patch_HealthUtility_AdjustSeverity {0},", __instance));
         }
     }
     */
@@ -89,12 +89,12 @@ namespace RRYautja
         {
             if (__instance == null)
             {
-                Log.Warning("ApparelGizmosFromComps cannot access Apparel.");
+            //    Log.Warning("ApparelGizmosFromComps cannot access Apparel.");
                 return;
             }
             if (__result == null)
             {
-                Log.Warning("ApparelGizmosFromComps creating new list.");
+            //    Log.Warning("ApparelGizmosFromComps creating new list.");
                 return;
             }
 
@@ -121,12 +121,12 @@ namespace RRYautja
         {
             if (__instance == null)
             {
-                Log.Warning("ApparelGizmosFromComps cannot access Apparel.");
+            //    Log.Warning("ApparelGizmosFromComps cannot access Apparel.");
                 return;
             }
             if (__result == null)
             {
-                Log.Warning("ApparelGizmosFromComps creating new list.");
+            //    Log.Warning("ApparelGizmosFromComps creating new list.");
                 return;
             }
 

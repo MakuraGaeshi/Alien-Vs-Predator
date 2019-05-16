@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using RimWorld;
+using UnityEngine;
 
 namespace Verse
 {
@@ -33,10 +34,20 @@ namespace Verse
                     DeadPlant deadPlant = (DeadPlant)GenSpawn.Spawn(ThingDefOf.BurnedTree, victim.Position, map, WipeMode.Vanish);
                     deadPlant.Growth = plant.Growth;
                 }
+                
             }
             return damageResult;
         }
 
+        // Token: 0x06004B85 RID: 19333 RVA: 0x002344F0 File Offset: 0x002328F0
+        private void CheckApplySpreadDamage(DamageInfo dinfo, Thing t)
+        {
+            if (Rand.Chance(0.5f))
+            {
+                dinfo.SetAmount((float)Mathf.CeilToInt(dinfo.Amount * Rand.Range(0.35f, 0.7f)));
+                t.TakeDamage(dinfo);
+            }
+        }
         // Token: 0x06004BA8 RID: 19368 RVA: 0x00235924 File Offset: 0x00233D24
         public override void ExplosionAffectCell(Explosion explosion, IntVec3 c, List<Thing> damagedThings, bool canThrowMotes)
         {

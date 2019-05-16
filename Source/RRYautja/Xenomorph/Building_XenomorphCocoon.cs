@@ -71,7 +71,7 @@ namespace RimWorld
                 {
                     if (p.health.hediffSet.hediffs!=null)
                     {
-                        Log.Message(string.Format("{0}", p.health.hediffSet.hediffs.ToString()));
+                    //    Log.Message(string.Format("{0}", p.health.hediffSet.hediffs.ToString()));
                     }
                 }
             }
@@ -113,7 +113,7 @@ namespace RimWorld
                     return i;
                 }
             }
-            Log.Error("Could not find pawn " + curOccupant + " on any of sleeping slots.", false);
+        //    Log.Error("Could not find pawn " + curOccupant + " on any of sleeping slots.", false);
             return 0;
         }
 
@@ -131,7 +131,7 @@ namespace RimWorld
 
         public new IntVec3 GetSleepingSlotPos(int index)
         {
-            Log.Message(string.Format("{0}", XenomorphCocoonUtility.GetSleepingSlotPos(index, base.Position, base.Rotation, this.def.size)));
+        //    Log.Message(string.Format("{0}", XenomorphCocoonUtility.GetSleepingSlotPos(index, base.Position, base.Rotation, this.def.size)));
             return XenomorphCocoonUtility.GetSleepingSlotPos(index, base.Position, base.Rotation, this.def.size);
         }
 

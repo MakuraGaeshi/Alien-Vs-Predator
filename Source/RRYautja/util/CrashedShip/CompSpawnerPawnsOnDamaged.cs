@@ -52,7 +52,7 @@ namespace RimWorld
                 }
                 foreach (var i in factions)
                 {
-                    Log.Message(string.Format("{0}", i.Name));
+                //    Log.Message(string.Format("{0}", i.Name));
                 }
                 return factions;
             }

@@ -95,11 +95,12 @@ namespace RimWorld
         public override void Tick()
         {
             base.Tick();
-
+            /*
             if (this.usedTarget.Thing.Position != this.intendedTarget.Thing.Position)
             {
                 this.Launch(launcher, this.ExactPosition, usedTarget, intendedTarget, ProjectileHitFlags.IntendedTarget, launcher);
             }
+            */
         }
 
         public virtual void PostPostImpactEffects(Thing hitThing)

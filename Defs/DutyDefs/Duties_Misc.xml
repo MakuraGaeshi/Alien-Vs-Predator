@@ -30,7 +30,7 @@
     <thinkNode Class="ThinkNode_Priority">
       <subNodes>
         <li Class="JobGiver_TakeCombatEnhancingDrug" />
-        <li Class="JobGiver_AIFightEnemies">
+        <li Class="JobGiver_XenomorphFightEnemies">
           <targetAcquireRadius>65</targetAcquireRadius>
           <targetKeepRadius>72</targetKeepRadius>
         </li>
@@ -44,7 +44,7 @@
     <defName>Kidnap</defName>
     <thinkNode Class="ThinkNode_Priority">
       <subNodes>
-        <li Class="JobGiver_Kidnap" />
+        <li Class="JobGiver_XenosKidnap" />
         <li Class="JobGiver_ExitMapBest">
           <defaultLocomotion>Jog</defaultLocomotion>
           <jobMaxDuration>200</jobMaxDuration>

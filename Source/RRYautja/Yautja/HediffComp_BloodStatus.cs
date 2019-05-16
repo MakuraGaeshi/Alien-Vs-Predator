@@ -229,7 +229,7 @@ namespace RRYautja
                 corpse = null;
                 pawn = null;
                 pawnKindDef = YautjaBloodedUtility.RandomMarked(MarkedhediffDef);
-                Log.Message(string.Format("{0}: {1}", MarkedhediffDef, pawnKindDef));
+            //    Log.Message(string.Format("{0}: {1}", MarkedhediffDef, pawnKindDef));
                 MarkHedifftype = null;
                 MarkHedifflabel = pawnKindDef.LabelCap;
                 predator = pawnKindDef.RaceProps.predator;

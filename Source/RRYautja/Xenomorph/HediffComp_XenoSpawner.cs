@@ -79,7 +79,7 @@ namespace RRYautja
             if (parent.def == XenomorphDefOf.RRY_HiddenNeomorphImpregnation|| parent.def == XenomorphDefOf.RRY_NeomorphImpregnation&& this.parent.pawn.Faction == Faction.OfPlayer)
             {
                 string text = TranslatorFormattedStringExtensions.Translate("Xeno_Neospores_Added", base.parent.pawn.LabelShortCap, parent.Part.LabelShort);
-                Log.Message(text);
+            //    Log.Message(text);
                 MoteMaker.ThrowText(base.parent.pawn.Position.ToVector3(), base.parent.pawn.Map, text, 3f);
             }
         }
@@ -96,7 +96,7 @@ namespace RRYautja
                 string text = TranslatorFormattedStringExtensions.Translate("Xeno_Neospores_Cough", base.parent.pawn.LabelShortCap, Coughlist[timesCoughed+timesCoughedBlood]);
                 if (this.parent.pawn.Faction == Faction.OfPlayer)
                 {
-                    Log.Message(text);
+                //    Log.Message(text);
                     MoteMaker.ThrowText(base.parent.pawn.Position.ToVector3(), base.parent.pawn.Map, text, 3f);
                 }
                 if (Rand.Chance(chance))
@@ -104,7 +104,7 @@ namespace RRYautja
                     text = TranslatorFormattedStringExtensions.Translate("Xeno_Neospores_Cough_Blood");
                     if (this.parent.pawn.Faction == Faction.OfPlayer)
                     {
-                        Log.Message(text);
+                    //    Log.Message(text);
                         MoteMaker.ThrowText(base.parent.pawn.Position.ToVector3(), base.parent.pawn.Map, text, 3f);
                     }
                     parent.pawn.health.DropBloodFilth();
@@ -135,7 +135,7 @@ namespace RRYautja
                 if (!this.logonce && this.parent.pawn.Downed)
                 {
                     string text = TranslatorFormattedStringExtensions.Translate("Xeno_Chestburster_PreEmerge", this.Pawn.LabelShort);
-                    Log.Message(text);
+                //    Log.Message(text);
                     MoteMaker.ThrowText(base.parent.pawn.Position.ToVector3(), base.parent.pawn.Map, text, 5f);
                     this.logonce = true;
 
@@ -210,8 +210,8 @@ namespace RRYautja
                 ind++;
             }
 #if DEBUG
-            Log.Message(string.Format("{0} Old pawnKindDef.lifeStages[0].bodyGraphicData.color: {1}", base.parent.pawn.Name, pawnKindDef.lifeStages[0].bodyGraphicData.color));
-            Log.Message(string.Format("{0} base.parent.pawn.def.race.BloodDef.graphic.color: {1}", base.parent.pawn.Name, base.parent.pawn.def.race.BloodDef.graphic.color));
+        //    Log.Message(string.Format("{0} Old pawnKindDef.lifeStages[0].bodyGraphicData.color: {1}", base.parent.pawn.Name, pawnKindDef.lifeStages[0].bodyGraphicData.color));
+        //    Log.Message(string.Format("{0} base.parent.pawn.def.race.BloodDef.graphic.color: {1}", base.parent.pawn.Name, base.parent.pawn.def.race.BloodDef.graphic.color));
 #endif
             if (Pawn.kindDef.race == YautjaDefOf.RRY_Alien_Yautja)
             {
@@ -221,7 +221,7 @@ namespace RRYautja
             color.a = 1f;
             pawnKindDef.lifeStages[0].bodyGraphicData.color = color;
 #if DEBUG
-            Log.Message(string.Format("{0} new value.kindDef.lifeStages[0].bodyGraphicData.color: {1}", base.parent.pawn.Name, pawnKindDef.lifeStages[0].bodyGraphicData.color));
+        //    Log.Message(string.Format("{0} new value.kindDef.lifeStages[0].bodyGraphicData.color: {1}", base.parent.pawn.Name, pawnKindDef.lifeStages[0].bodyGraphicData.color));
 #endif
             PawnGenerationRequest pawnGenerationRequest = new PawnGenerationRequest(pawnKindDef, Find.FactionManager.FirstFactionOfDef(pawnKindDef.defaultFactionType), PawnGenerationContext.NonPlayer, -1, true, false, true, false, true, true, 20f);
             Pawn pawn = PawnGenerator.GeneratePawn(pawnGenerationRequest);

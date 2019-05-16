@@ -109,6 +109,7 @@ namespace RRYautja
             {
                 Pawn.story.hairDef = Rand.Chance(0.5f) ? YautjaDefOf.RRY_Yaujta_Dreds : YautjaDefOf.RRY_Yaujta_Ponytail;
             }
+            /*
             if (Pawn.apparel.WornApparelCount > 0)
             {
                 foreach (var app in Pawn.apparel.WornApparel)
@@ -120,7 +121,7 @@ namespace RRYautja
                     }
                 }
             }
-
+            */
         }
 
         public override void CompTick()
@@ -132,21 +133,21 @@ namespace RRYautja
                 blooded = YautjaBloodedUtility.BloodStatus(Pawn, out BloodStatus);
                 if (!blooded) pawn.health.AddHediff(unbloodedDef, partRecord);
 #if DEBUG
-                if (base.parent.IsHashIntervalTick(300) && selected) Log.Message(string.Format("BloodStatus: {0}", BloodStatus));
+            //    if (base.parent.IsHashIntervalTick(300) && selected) Log.Message(string.Format("BloodStatus: {0}", BloodStatus));
 #endif
                 if (BloodStatus.def == unmarkedDef)
                 {
 #if DEBUG
-                            if (base.parent.IsHashIntervalTick(300) && selected) Log.Message(string.Format("unmarkedDef: {0}", unmarkedDef));
+                        //    if (base.parent.IsHashIntervalTick(300) && selected) Log.Message(string.Format("unmarkedDef: {0}", unmarkedDef));
 #endif
                     unmarked = BloodStatus;
 #if DEBUG
-                            if (base.parent.IsHashIntervalTick(300) && selected) Log.Message(string.Format("unmarked: {0}", unmarked));
+                        //    if (base.parent.IsHashIntervalTick(300) && selected) Log.Message(string.Format("unmarked: {0}", unmarked));
 #endif
                     if (this.MarkHedifflabel != null)
                     {
 #if DEBUG
-                            if (base.parent.IsHashIntervalTick(300) && selected) Log.Message(string.Format("{0}", this.MarkHedifflabel));
+                        //    if (base.parent.IsHashIntervalTick(300) && selected) Log.Message(string.Format("{0}", this.MarkHedifflabel));
 #endif
                     }
                 }
@@ -154,38 +155,38 @@ namespace RRYautja
                 {
                     pawnKills = Pawn.records.GetAsInt(RecordDefOf.Kills);
 #if DEBUG
-                    if (selected) Log.Message("Records mismatch");
+                //    if (selected) Log.Message("Records mismatch");
                     if (Pawn.LastAttackedTarget.Thing is Pawn p) Log.Message(string.Format("pawn: {0}, {1} ", p.Label, Pawn.LastAttackedTarget.Thing.Label));
                     if (Pawn.LastAttackedTarget.Thing is Corpse c) Log.Message(string.Format("corpse: {0}", c.Label));
 #endif
                     if (Pawn.LastAttackedTarget != null && (Pawn.LastAttackedTarget.Thing is Pawn other && !Pawn.Dead))
                     {
 #if DEBUG
-                        if (selected) Log.Message("found pawn");
+                    //    if (selected) Log.Message("found pawn");
 #endif
                         Corpse otherCorpse = other.Corpse;
 #if DEBUG
-                        if (selected) Log.Message("found corpse");
+                    //    if (selected) Log.Message("found corpse");
 #endif
                         int omelee = other.RaceProps.Humanlike ? other.skills.GetSkill(SkillDefOf.Melee).Level : 0;
 #if DEBUG
-                        if (selected) Log.Message(string.Format("omelee: {0}", omelee));
+                    //    if (selected) Log.Message(string.Format("omelee: {0}", omelee));
 #endif
                         int oshoot = other.RaceProps.Humanlike ? other.skills.GetSkill(SkillDefOf.Shooting).Level : 0;
 #if DEBUG
-                        if (selected) Log.Message(string.Format("oshoot: {0}", oshoot));
+                    //    if (selected) Log.Message(string.Format("oshoot: {0}", oshoot));
 #endif
                         float mdps = other.GetStatValue(StatDefOf.MeleeDPS);
 #if DEBUG
-                        if (selected) Log.Message(string.Format("mdps: {0}", mdps));
+                    //    if (selected) Log.Message(string.Format("mdps: {0}", mdps));
 #endif
                         float mhc = other.GetStatValue(StatDefOf.MeleeHitChance);
 #if DEBUG
-                        if (selected) Log.Message(string.Format("mhc: {0}", mhc));
+                    //    if (selected) Log.Message(string.Format("mhc: {0}", mhc));
 #endif
                         float mdc = other.GetStatValue(StatDefOf.MeleeDodgeChance);
 #if DEBUG
-                        if (selected) Log.Message(string.Format("mdc: {0}", mdc));
+                    //    if (selected) Log.Message(string.Format("mdc: {0}", mdc));
 #endif
                         if (other.kindDef.race == XenomorphRacesDefOf.RRY_Xenomorph_Queen && other.Dead)
                         {
@@ -229,7 +230,7 @@ namespace RRYautja
                         } else
                         {
 #if DEBUG
-                            if (selected) Log.Message(string.Format("Unworthy kill, ignoring"));
+                        //    if (selected) Log.Message(string.Format("Unworthy kill, ignoring"));
 #endif
                             TotalkillsRecord = Pawn.records.GetAsInt(RecordDefOf.Kills);
                             return;
@@ -237,25 +238,25 @@ namespace RRYautja
                         if (markedDef == null)
                         {
 #if DEBUG
-                            if (selected) Log.Message(string.Format("markedDef is null, break failed"));
+                        //    if (selected) Log.Message(string.Format("markedDef is null, break failed"));
 #endif
 
                         }
 #if DEBUG
-                        if (selected) Log.Message(string.Format("markedDef: {0}", markedDef));
+                    //    if (selected) Log.Message(string.Format("markedDef: {0}", markedDef));
 #endif
                         if (Pawn.health.hediffSet.HasHediff(unbloodedDef))
                         {
                             Hediff unblooded = Pawn.health.hediffSet.GetFirstHediffOfDef(this.unbloodedDef);
 #if DEBUG
-                            if (selected) Log.Message("found unblooded");
+                        //    if (selected) Log.Message("found unblooded");
 #endif
 #if DEBUG
-                            if (selected) Log.Message("removing old unblooded hediff");
+                        //    if (selected) Log.Message("removing old unblooded hediff");
 #endif
                             Pawn.health.hediffSet.hediffs.Remove(unblooded);
 #if DEBUG
-                            if (selected) Log.Message("store info");
+                        //    if (selected) Log.Message("store info");
                             if (selected) Log.Message(string.Format(
                                 "{6} is storing other:{0}, corpse:{1}, MarkedhediffDef:{2}, predator:{3}, BodySize:{4}, combatPower:{5}",
                             other.Label,
@@ -275,12 +276,12 @@ namespace RRYautja
                             this.BodySize = other.BodySize;
                             this.combatPower = other.kindDef.combatPower;
 #if DEBUG
-                            if (selected) Log.Message("adding hediff");
+                        //    if (selected) Log.Message("adding hediff");
 #endif
                             Pawn.health.AddHediff(HediffMaker.MakeHediff(YautjaDefOf.RRY_Hediff_BloodedUM, Pawn, partRecord), partRecord, null);
                             HediffWithComps blooded = (HediffWithComps)Pawn.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_BloodedUM);
 #if DEBUG
-                            if (selected) Log.Message("adding comp to hediff");
+                        //    if (selected) Log.Message("adding comp to hediff");
 #endif
                             blooded.source = Pawn.LastAttackedTarget.Thing.def;
                             blooded.comps[0].props = new HediffCompProperties_BloodedYautja
@@ -294,7 +295,7 @@ namespace RRYautja
                             };
                             HediffComp_BloodedYautja bloodedYautja = blooded.TryGetComp<HediffComp_BloodedYautja>();
 #if DEBUG
-                            if (selected) Log.Message("info Stored");
+                        //    if (selected) Log.Message("info Stored");
                             if (selected) Log.Message(string.Format(
                                 "{6} stored other:{0}, corpse:{1}, MarkedhediffDef:{2}, predator:{3}, BodySize:{4}, combatPower:{5}",
                             bloodedYautja.HediffProps.pawn,
@@ -312,18 +313,18 @@ namespace RRYautja
                         else if (Pawn.health.hediffSet.HasHediff(unmarkedDef))
                         {
 #if DEBUG
-                            if (selected) Log.Message("old unmarked hediff found, checking combatPower");
+                        //    if (selected) Log.Message("old unmarked hediff found, checking combatPower");
 #endif
                             if (this.combatPower < other.kindDef.combatPower)
                             {
 #if DEBUG
-                                if (selected) Log.Message("new combatPower is higher, removing old unmarked hediff");
+                            //    if (selected) Log.Message("new combatPower is higher, removing old unmarked hediff");
 #endif
                                 Hediff oldunmarked = Pawn.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_BloodedUM);
                                 Pawn.health.hediffSet.hediffs.Remove(oldunmarked);
 
 #if DEBUG
-                                if (selected) Log.Message("store new info");
+                            //    if (selected) Log.Message("store new info");
                                 if (selected) Log.Message(string.Format(
                                     "{6} is storing other:{0}, corpse:{1}, MarkedhediffDef:{2}, predator:{3}, BodySize:{4}, combatPower:{5}",
                                 other.Label,
@@ -345,7 +346,7 @@ namespace RRYautja
                                 Pawn.health.AddHediff(HediffMaker.MakeHediff(YautjaDefOf.RRY_Hediff_BloodedUM, Pawn, partRecord), partRecord, null);
                                 HediffWithComps blooded = (HediffWithComps)Pawn.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_BloodedUM);
 #if DEBUG
-                                if (selected) Log.Message("adding comp to hediff");
+                            //    if (selected) Log.Message("adding comp to hediff");
 #endif
                                 blooded.source = Pawn.LastAttackedTarget.Thing.def;
                                 blooded.comps[0].props = new HediffCompProperties_BloodedYautja
@@ -359,7 +360,7 @@ namespace RRYautja
                                 };
                                 HediffComp_BloodedYautja bloodedYautja = blooded.TryGetComp<HediffComp_BloodedYautja>();
 #if DEBUG
-                                if (selected) Log.Message("info Stored");
+                            //    if (selected) Log.Message("info Stored");
                                 if (selected) Log.Message(string.Format(
                                     "{6} stored other:{0}, corpse:{1}, MarkedhediffDef:{2}, predator:{3}, BodySize:{4}, combatPower:{5}",
                                 bloodedYautja.HediffProps.pawn,
@@ -383,18 +384,18 @@ namespace RRYautja
                                     if (item.def.defName.StartsWith(GenericmarkedDef.defName))
                                     {
 #if DEBUG
-                                        if (selected) Log.Message("old marked hediff found, checking combatPower");
+                                    //    if (selected) Log.Message("old marked hediff found, checking combatPower");
 #endif
                                         if (this.combatPower < other.kindDef.combatPower)
                                         {
 #if DEBUG
-                                            if (selected) Log.Message("new combatPower is higher, removing old marked hediff");
+                                        //    if (selected) Log.Message("new combatPower is higher, removing old marked hediff");
 #endif
                                             Hediff oldmarked = item;
                                             // Pawn.health.hediffSet.hediffs.Remove(oldmarked);
 
 #if DEBUG
-                                            if (selected) Log.Message("store new info");
+                                        //    if (selected) Log.Message("store new info");
                                             if (selected) Log.Message(string.Format(
                                                 "{6} is storing other:{0}, corpse:{1}, MarkedhediffDef:{2}, predator:{3}, BodySize:{4}, combatPower:{5}",
                                             other.Label,
@@ -416,7 +417,7 @@ namespace RRYautja
                                             Pawn.health.AddHediff(HediffMaker.MakeHediff(YautjaDefOf.RRY_Hediff_BloodedUM, Pawn, partRecord), partRecord, null);
                                             HediffWithComps blooded = (HediffWithComps)Pawn.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_BloodedUM);
 #if DEBUG
-                                            if (selected) Log.Message("adding comp to hediff");
+                                        //    if (selected) Log.Message("adding comp to hediff");
 #endif
                                             blooded.source = Pawn.LastAttackedTarget.Thing.def;
                                             blooded.comps[0].props = new HediffCompProperties_BloodedYautja
@@ -430,7 +431,7 @@ namespace RRYautja
                                             };
                                             HediffComp_BloodedYautja bloodedYautja = blooded.TryGetComp<HediffComp_BloodedYautja>();
 #if DEBUG
-                                            if (selected) Log.Message("info Stored");
+                                        //    if (selected) Log.Message("info Stored");
                                             if (selected) Log.Message(string.Format(
                                                 "{6} stored other:{0}, corpse:{1}, MarkedhediffDef:{2}, predator:{3}, BodySize:{4}, combatPower:{5}",
                                             bloodedYautja.HediffProps.pawn,

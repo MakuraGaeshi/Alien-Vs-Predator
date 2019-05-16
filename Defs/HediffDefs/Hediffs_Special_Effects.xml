@@ -46,6 +46,20 @@
     </comps>
   </HediffDef>
   
+  <HediffDef ParentName="RRY_SpecialGoodHeDiff">
+    <defName>RRY_HeDiff_TurretIsOn</defName>
+    <label>Shoulder Cannon status</label>
+    <labelNoun>a Shoulder Cannon</labelNoun>
+    <stages>
+      <li>
+        <becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+    <comps>
+	
+    </comps>
+  </HediffDef>
+  
   <HediffDef>
     <defName>RRY_Hediff_Cloaked</defName>
     <hediffClass>RRYautja.Hediff_Cloak</hediffClass>

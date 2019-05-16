@@ -65,10 +65,10 @@ namespace RimWorld
                 string description = this.CurStage.description;
                 if (pawn != null)
                 { // if (selected) Log.Message("found corpse");
-                      Log.Message("Description found pawn");
+                  //    Log.Message("Description found pawn");
                     if (_Yautja != null)
                     {
-                            Log.Message("Description found Comp_Yautja");
+                        //    Log.Message("Description found Comp_Yautja");
                         if (!_Yautja.MarkHedifflabel.NullOrEmpty())
                         {
                             description = desc1.CapitalizeFirst() + " (" + _Yautja.MarkHedifflabel.CapitalizeFirst() + ") "+ desc2;
