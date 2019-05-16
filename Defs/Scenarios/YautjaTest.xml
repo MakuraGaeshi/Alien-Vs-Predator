@@ -81,6 +81,12 @@
 				<def>StartingThing_Defined</def>
 				<thingDef>RRY_Gun_Compound_Bow</thingDef>
 				<count>5</count>
+				<stuff>WoodLog</stuff>
+			</li>
+			<li Class="ScenPart_StartingThing_Defined">
+				<def>StartingThing_Defined</def>
+				<thingDef>RRY_Gun_Compound_Bow</thingDef>
+				<count>5</count>
 				<stuff>Steel</stuff>
 			</li>
 			<li Class="ScenPart_StartingThing_Defined">

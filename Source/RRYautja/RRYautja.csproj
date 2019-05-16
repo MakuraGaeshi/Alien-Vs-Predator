@@ -62,6 +62,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Harmony\ExtraButcheringProducts.cs" />
+    <Compile Include="util\Building_XenomorphCryptosleepCasket.cs" />
+    <Compile Include="util\Building_CrashedShipPart_CryptosleepCasket_Xenomorph.cs" />
+    <Compile Include="util\Hives\CompMaintainableLike - Copy.cs" />
     <Compile Include="util\Hives\JobDriver_MaintainLike.cs" />
     <Compile Include="util\Hives\CompMaintainableLike.cs" />
     <Compile Include="util\RRY_Xenomorph_AbilityUser.cs" />
@@ -79,6 +82,7 @@
     <Compile Include="Xenomorph\Building_XenomorphCocoon.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphFightEnemies.cs" />
     <Compile Include="Xenomorph\HediffGiver_StartWithXenomorphHediff.cs" />
+    <Compile Include="util\MinifiedThingNoBox.cs" />
     <Compile Include="Xenomorph\XenomorphKidnapUtility.cs" />
     <Compile Include="Xenomorph\XenomorphCocoonUtility.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_XenosKidnap.cs" />

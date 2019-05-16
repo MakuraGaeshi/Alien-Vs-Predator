@@ -61,12 +61,16 @@ namespace RimWorld
         public static ThingDef RRY_Plant_Neomorph_Fungus;
         public static ThingDef RRY_Plant_Neomorph_Fungus_Hidden;
 
-        public static IncidentDef RRY_Neomorph_FungusSprout;
-        public static IncidentDef RRY_Neomorph_FungusSprout_Hidden;
+        public static ThingDef RRY_XenomorphCryptosleepCasket;
 
         // Xenomorph BloodDefs 
         public static ThingDef RRY_FilthBloodXenomorph;
 
+        // Xenomorph IncidentDefs
+        public static IncidentDef RRY_Neomorph_FungusSprout;
+        public static IncidentDef RRY_Neomorph_FungusSprout_Hidden;
+
+        // Xenomorph BodyPartDefs
         public static BodyPartDef RRY_Xeno_TailSpike;
         public static BodyPartDef RRY_Xeno_Shell;
 
