@@ -1,5 +1,6 @@
 ﻿using RRYautja;
 using System;
+using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 
@@ -18,17 +19,36 @@ namespace RimWorld
             }
             if (XenomorphUtil.EggsPresent(pawn.Map)&& XenomorphUtil.ClosestReachableEgg(pawn) != null)
             {
-                if (true)
+                if (XenomorphUtil.SpawnedEggsNeedHosts(pawn.Map).Count > 1)
                 {
-                    
+                    c = XenomorphUtil.SpawnedEggsNeedHosts(pawn.Map).RandomElement().Position;
                 }
-                else
+                else if (XenomorphUtil.SpawnedEggsNeedHosts(pawn.Map).Count == 1)
                 {
                     c = XenomorphUtil.ClosestReachableEggNeedsHost(pawn).Position.RandomAdjacentCell8Way();
                 }
+                else
+                {
+                    ThingDef hiveDef = null;
+                    List<ThingDef_HiveLike> hivedefs = DefDatabase<ThingDef_HiveLike>.AllDefsListForReading.FindAll(x => x.Faction == pawn.Faction.def);
+                    foreach (ThingDef_HiveLike hivedef in hivedefs)
+                    {
+                        Log.Message(string.Format("JobGiver_MaintainHiveLikes found hiveDef: {0} for {1}", hiveDef, pawn));
+                        if (hivedef.Faction == pawn.Faction.def)
+                        {
+                            hiveDef = hivedef;
+                            Log.Message(string.Format("JobGiver_MaintainHiveLikes set hiveDef: {0} for {1}", hiveDef, pawn));
+                            break;
+                        }
+                    }
+                    if (hiveDef != null)
+                    {
+                        c = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(hiveDef), PathEndMode.Touch, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn, false), 30f, (Thing x) => x.Faction == pawn.Faction, null, 0, 30, false, RegionType.Set_Passable, false).Position;
+                    }
+                }
             }
             Pawn t;
-            if (KidnapAIUtility.TryFindGoodKidnapVictim(pawn, 18f, out t, null) && !GenAI.InDangerousCombat(pawn))
+            if (XenomorphKidnapUtility.TryFindGoodKidnapVictim(pawn, 18f, out t, null) && !GenAI.InDangerousCombat(pawn))
             {
                 return new Job(XenomorphDefOf.RRY_Job_XenomorphKidnap)
                 {

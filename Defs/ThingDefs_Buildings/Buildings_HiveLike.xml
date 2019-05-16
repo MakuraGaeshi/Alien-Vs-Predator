@@ -83,11 +83,17 @@
   
   <ThingDef Class="ThingDef_HiveLike" ParentName="BuildingHivelikeBase">
     <defName>RRY_XenomorphHive</defName>
-    <label>xenomorph hive</label>
+    <label>xenomorph tunnel</label>
     <description>If activated, it will spawn additional pawns and hive over time.</description>
     <thingClass>HiveLike</thingClass>
 		<Faction>RRY_Xenomorph</Faction>
 		<TunnelDef>TunnelHiveLikeSpawner</TunnelDef>
+		<PawnKinds>
+		  <li>RRY_Xenomorph_FaceHugger</li>
+		  <li>RRY_Xenomorph_Warrior</li>
+		  <li>RRY_Xenomorph_Drone</li>
+		  <li>RRY_Xenomorph_Runner</li>
+		</PawnKinds>
     <graphicData>
       <texPath>Things/Special/TunnelExit</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -98,7 +104,7 @@
     <rotatable>false</rotatable>
     <fillPercent>0.5</fillPercent>
     <statBases>
-      <MaxHitPoints>130</MaxHitPoints>
+      <MaxHitPoints>500</MaxHitPoints>
       <Flammability>0.0</Flammability>
     </statBases>
     <pathCost>50</pathCost>

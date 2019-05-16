@@ -477,6 +477,10 @@ namespace RRYautja
             else if (request.Faction == Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph))
             {
                 Log.Message(string.Format("Xenomorph spawning"));
+                if (__result.kindDef==XenomorphDefOf.RRY_Xenomorph_Queen)
+                {
+                    __result.gender = Gender.Female;
+                }
             }
             else if (__result.kindDef.race != YautjaDefOf.RRY_Alien_Yautja && __result.RaceProps.Humanlike && (__result.story.hairDef == YautjaDefOf.RRY_Yaujta_Dreds || __result.story.hairDef == YautjaDefOf.RRY_Yaujta_Ponytail || __result.story.hairDef == YautjaDefOf.RRY_Yaujta_Bald))
             {

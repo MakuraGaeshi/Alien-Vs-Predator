@@ -78,6 +78,7 @@
     <None Include="Xenomorph\Building_XenomorphCocoon - Copy.cs.bak" />
     <Compile Include="Xenomorph\Building_XenomorphCocoon.cs" />
     <Compile Include="Xenomorph\HediffGiver_StartWithXenomorphHediff.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Givers\Class1.cs" />
     <Compile Include="Xenomorph\XenomorphCocoonUtility.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_XenosKidnap.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_XenoTakeAndCocoon.cs" />
