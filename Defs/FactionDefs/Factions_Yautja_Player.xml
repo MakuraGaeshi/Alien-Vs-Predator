@@ -119,7 +119,7 @@
     <FactionDef Parent="RRY_YautjaPlayerFactionBase">
     <defName>RRY_Yautja_PlayerBlooded</defName>
     <label>Yautja Blooded</label>
-    <description>On a scouting mission to find new hunting grounds, something disastrous happened to your ship and you are possibly the last 5 remaining. Without a choice, you landed in unknown territory and have to face new dangers while you try to make your way back to your Clan.</description>
+    <description>On a scouting mission to find new hunting grounds, something disastrous happened to your ship and you are possibly the only 5 survivors. Without a choice, you landed in unknown territory and have to face new dangers while you try to make your way back to your Clan.</description>
     <playerInitialSettlementNameMaker>NamerInitialSettlementColony</playerInitialSettlementNameMaker>
 		<factionNameMaker>NamerRRYautjaFaction</factionNameMaker>
     <settlementNameMaker>NamerRRYautjaBases</settlementNameMaker>
