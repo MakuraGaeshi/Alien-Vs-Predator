@@ -28,7 +28,7 @@
     </statBases>
     <graphicData>
       <texPath>Things/Filth/Spatter</texPath>
-      <color>(0, 225, 140, 180)</color>
+      <color>(250, 225, 0, 180)</color>
     </graphicData>
 	<tickerType>Normal</tickerType> 
 	<thingClass>RRYautja.Filth_AddAcidDamage</thingClass>

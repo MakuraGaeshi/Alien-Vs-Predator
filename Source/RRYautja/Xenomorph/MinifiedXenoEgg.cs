@@ -80,7 +80,7 @@ namespace RRYautja
                 else
                 {
                     this.InnerThing.SetFaction(null);
-                    GenPlace.TryPlaceThing(this.InnerThing, this.Position, this.Map, ThingPlaceMode.Direct);
+                    GenPlace.TryPlaceThing(this.InnerThing, this.Position, this.Map, ThingPlaceMode.Near);
                     this.DeSpawn();
                 //    Log.Message("MinifiedThing on the ground.", false);
                 }

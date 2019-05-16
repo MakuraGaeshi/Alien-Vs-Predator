@@ -8,9 +8,75 @@ using Verse.AI.Group;
 
 namespace RRYautja
 {
+    public class ThingDef_CryptosleepCasket : ThingDef
+    {
+        public FactionDef Faction;
+        public List<PawnKindDef> PawnKinds = new List<PawnKindDef>();
+        public HediffDef infectionDef;
+        public ThingDef spawnThing;
+        public BodyPartRecord part;
+    }
     // Token: 0x020006BF RID: 1727
     public class Building_XenomorphCryptosleepCasket : Building_CryptosleepCasket
     {
+        public ThingDef_CryptosleepCasket Def
+        {
+            get
+            {
+                return this.def as ThingDef_CryptosleepCasket;
+            }
+        }
+
+        public Faction OfFaction
+        {
+            get
+            {
+                if (Def.Faction!=null)
+                {
+                    return Find.FactionManager.FirstFactionOfDef(Def.Faction);
+                }
+                return null;
+            }
+        }
+
+        public FactionDef OfFactionDef
+        {
+            get
+            {
+                if (Def.Faction != null)
+                {
+                    return Def.Faction;
+                }
+                return null;
+            }
+        }
+
+        public List<PawnKindDef> OfPawnKinds
+        {
+            get
+            {
+                if (Def.PawnKinds.Count > 0)
+                {
+                    PawnKinds = Def.PawnKinds;
+                }
+                else if (Def.Faction != null)
+                {
+                    var list = (from def in DefDatabase<PawnKindDef>.AllDefs
+                                where ((def.defaultFactionType == OfFaction.def && def.defaultFactionType != null) || (def.defaultFactionType == null && OfFaction.def.pawnGroupMakers.Any(pgm => pgm.options.Any(opt => opt.kind == def) && pgm.kindDef != PawnGroupKindDefOf.Trader && pgm.kindDef != PawnGroupKindDefOf.Peaceful))) && def.isFighter
+                                select def).ToList();
+                    if (list.Count > 0)
+                    {
+                        PawnKinds = list;
+                    }
+                }
+                //Log.Message(string.Format("PawnKinds: {0}", PawnKinds.ToString()));
+                //Log.Message(string.Format("PawnKinds.Count: {0}", PawnKinds.Count));
+                return PawnKinds;
+            }
+        }
+
+        public List<PawnKindDef> PawnKinds = new List<PawnKindDef>();
+
         // Token: 0x060024B7 RID: 9399 RVA: 0x00117923 File Offset: 0x00115D23
         public override void ExposeData()
         {
@@ -132,45 +198,52 @@ namespace RRYautja
         public bool beenfilled;
 
         // Token: 0x0600000E RID: 14 RVA: 0x00002F10 File Offset: 0x00001110
-        private static void MakeCasketContents(Building_XenomorphCryptosleepCasket casket)
+        private void MakeCasketContents(Building_XenomorphCryptosleepCasket casket)
         {
-            int num = Rand.RangeInclusive(0, 100);
-            bool flag = num < 10;
-            if (flag)
+            if (OfPawnKinds.Count > 0)
             {
-                Building_XenomorphCryptosleepCasket.GenerateFriendlyAnimal(casket);
+                GenerateFromPawnkindList(casket);
             }
             else
             {
-                bool flag2 = num < 20;
-                if (flag2)
+                int num = Rand.RangeInclusive(0, 100);
+                bool flag = num < 10;
+                if (flag)
                 {
-                    Building_XenomorphCryptosleepCasket.GenerateFriendlySpacer(casket);
+                    Building_XenomorphCryptosleepCasket.GenerateFriendlyAnimal(casket);
                 }
                 else
                 {
-                    bool flag3 = num < 35;
-                    if (flag3)
+                    bool flag2 = num < 20;
+                    if (flag2)
                     {
-                        Building_XenomorphCryptosleepCasket.GenerateIncappedSpacer(casket);
+                        Building_XenomorphCryptosleepCasket.GenerateFriendlySpacer(casket);
                     }
                     else
                     {
-                        bool flag4 = num < 50;
-                        if (flag4)
+                        bool flag3 = num < 35;
+                        if (flag3)
                         {
-                            Building_XenomorphCryptosleepCasket.GenerateSlave(casket);
+                            Building_XenomorphCryptosleepCasket.GenerateIncappedSpacer(casket);
                         }
                         else
                         {
-                            bool flag5 = num < 65;
-                            if (flag5)
+                            bool flag4 = num < 50;
+                            if (flag4)
                             {
-                                Building_XenomorphCryptosleepCasket.GenerateHalfEatenAncient(casket);
+                                Building_XenomorphCryptosleepCasket.GenerateSlave(casket);
                             }
                             else
                             {
-                                Building_XenomorphCryptosleepCasket.GenerateAngryAncient(casket);
+                                bool flag5 = num < 65;
+                                if (flag5)
+                                {
+                                    Building_XenomorphCryptosleepCasket.GenerateHalfEatenAncient(casket);
+                                }
+                                else
+                                {
+                                    Building_XenomorphCryptosleepCasket.GenerateAngryAncient(casket);
+                                }
                             }
                         }
                     }
@@ -399,6 +472,40 @@ namespace RRYautja
                     break;
                 }
                 //pawn2.mindState.mentalStateHandler.TryStartMentalState(MentalStateDefOf.Manhunter, null, false, false, null, false);
+            }
+        }
+
+        // Token: 0x06000010 RID: 16 RVA: 0x00003024 File Offset: 0x00001224
+        private void GenerateFromPawnkindList(Building_XenomorphCryptosleepCasket pod)
+        {
+            PawnGenerationRequest pawnGenerationRequest;
+            pawnGenerationRequest = new PawnGenerationRequest(OfPawnKinds.RandomElement(), OfFaction, (PawnGenerationContext)2, -1, false, false, false, false, true, false, 1f, false, true, true, false, true, false, false, null, null, null, null, null, null, null, null);
+            Pawn pawn = PawnGenerator.GeneratePawn(pawnGenerationRequest);
+            if (Def.infectionDef!=null)
+            {
+                BodyPartRecord part = null;
+                if (Def.infectionDef == XenomorphDefOf.RRY_FaceHuggerInfection)
+                {
+                    part = pawn.RaceProps.body.AllParts.Find(x => x.def == BodyPartDefOf.Head);
+                }
+                else if (Def.infectionDef != null && (Def.infectionDef == XenomorphDefOf.RRY_HiddenNeomorphImpregnation || Def.infectionDef == XenomorphDefOf.RRY_HiddenXenomorphImpregnation|| Def.infectionDef == XenomorphDefOf.RRY_XenomorphImpregnation))
+                {
+                    part = pawn.RaceProps.body.AllParts.Find(x => x.def == BodyPartDefOf.Torso);
+                }
+                pawn.health.AddHediff(Def.infectionDef, part);
+            }
+            bool flag = Def.spawnThing!=null;
+            if (flag)
+            {
+                ThingDef namedSilentFail = Def.spawnThing;
+                Building_XenomorphCryptosleepCasket.MakeIntoContainer(this.innerContainer, namedSilentFail, 1);
+            }
+
+            //    Building_XenomorphCryptosleepCasket.GiveRandomLootInventoryForTombPawn(pawn);
+            bool flag2 = !pod.TryAcceptThing(pawn, false);
+            if (flag2)
+            {
+                Find.WorldPawns.PassToWorld(pawn, (PawnDiscardDecideMode)2);
             }
         }
 

@@ -222,6 +222,7 @@
 		</parts>
 		</scenario>
 	</ScenarioDef>
+	
 	<ScenarioDef>
 	<defName>RRY_YautjaScenarioBlooded</defName>
 		<label>Blooded Yautja hunters</label>
