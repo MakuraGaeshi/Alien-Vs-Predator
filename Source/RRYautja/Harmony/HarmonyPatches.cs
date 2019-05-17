@@ -479,6 +479,24 @@ namespace RRYautja
             //    Log.Message(string.Format("Xenomorph spawning"));
                 if (__result.kindDef==XenomorphDefOf.RRY_Xenomorph_Queen)
                 {
+                    if (__result.Map!=null)
+                    {
+                        bool QueenPresent = false;
+                        foreach (var p in __result.Map.mapPawns.AllPawnsSpawned)
+                        {
+                            if (p.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
+                            {
+                                QueenPresent = true;
+                                break;
+                            }
+                        }
+                        if (QueenPresent)
+                        {
+                            __result.kindDef = XenomorphDefOf.RRY_Xenomorph_Warrior;
+                            __result.gender = Gender.None;
+                            return;
+                        }
+                    }
                     __result.gender = Gender.Female;
                 }
                 else

@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Collections.Generic;
 using System;
 using Verse.AI;
+using System.Text;
 
 namespace RRYautja
 {
@@ -184,4 +185,81 @@ namespace RRYautja
        }
    }
    */
+
+    // Token: 0x020000A1 RID: 161
+    [HarmonyPatch(typeof(StatWorker), "GetExplanationUnfinalized")]
+    public static class StatWorker_GetExplanationUnfinalized
+    {
+        [HarmonyPostfix]
+        public static void GetExplanationUnfinalized(StatWorker __instance, StatRequest req, ToStringNumberSense numberSense, ref string __result)
+        {
+            if (__instance != null)
+            {
+                StatDef value = Traverse.Create(__instance).Field("stat").GetValue<StatDef>();
+                if (req != null && req.Thing != null && req.Def != null && (req.Def == YautjaDefOf.RRY_Gun_Hunting_Bow || req.Def == YautjaDefOf.RRY_Gun_Compound_Bow) && value == StatDefOf.RangedWeapon_DamageMultiplier)
+                {
+                    DamageArmorCategoryDef CategoryOfDamage = ((ThingDef)req.Def).Verbs[0].defaultProjectile.projectile.damageDef.armorCategory;
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.Append(__instance.GetExplanationUnfinalized(req, numberSense));
+                    stringBuilder.AppendLine();
+                    ThingDef def = (ThingDef)req.Def;
+                    if (req.StuffDef != null)
+                    {
+                        StatDef statDef = null;
+                        if (CategoryOfDamage != null)
+                        {
+                            statDef = CategoryOfDamage.multStat;
+                        }
+                        if (statDef != null)
+                        {
+                            stringBuilder.AppendLine(req.StuffDef.LabelCap + ": x" + req.StuffDef.GetStatValueAbstract(statDef, null).ToStringPercent());
+                        }
+                    }
+                    __result = stringBuilder.ToString();
+                }
+            }
+            return;
+        }
+
+    }
+
+    // Token: 0x020000A2 RID: 162
+    [HarmonyPatch(typeof(StatWorker), "GetValueUnfinalized")]
+    public static class StatWorker_GetValueUnfinalized
+    {
+        [HarmonyPostfix]
+        public static void GetValueUnfinalized(StatWorker __instance, StatRequest req, ref float __result)
+        {
+            if (__instance != null)
+            {
+                StatDef value = Traverse.Create(__instance).Field("stat").GetValue<StatDef>();
+                if (req != null && req.Thing != null && req.Def != null && (req.Def == YautjaDefOf.RRY_Gun_Hunting_Bow || req.Def == YautjaDefOf.RRY_Gun_Compound_Bow) && value == StatDefOf.RangedWeapon_DamageMultiplier)
+                {
+                    Log.Message(string.Format("GetValueUnfinalized value: {0}, Def: {1}, Empty: {2}, HasThing: {3}, QualityCategory: {4}, StuffDef: {5}, Thing: {6}", value, req.Def, req.Empty, req.HasThing, req.QualityCategory, req.StuffDef, req.Thing));
+                    Log.Message(string.Format("GetValueUnfinalized Original __result: {0}", __result));
+
+                    DamageArmorCategoryDef CategoryOfDamage = ((ThingDef)req.Def).Verbs[0].defaultProjectile.projectile.damageDef.armorCategory;
+
+                    float num = __result;
+                    ThingDef def = (ThingDef)req.Def;
+                    if (req.StuffDef != null)
+                    {
+                        StatDef statDef = null;
+                        if (CategoryOfDamage != null)
+                        {
+                            statDef = CategoryOfDamage.multStat;
+                        }
+                        if (statDef != null)
+                        {
+                            num *= req.StuffDef.GetStatValueAbstract(statDef, null);
+                        }
+                        __result = num;
+                    }
+
+                    Log.Message(string.Format("GetValueUnfinalized Modified __result: {0}", __result));
+                }
+            }
+            return;
+        }
+    }
 }

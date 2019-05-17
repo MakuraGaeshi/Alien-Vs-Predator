@@ -43,6 +43,10 @@ namespace RimWorld
         // Yautja ThingDefs  Equipment
         public static ThingDef RRY_Equipment_HunterGauntlet;
 
+        // Yautja ThingDefs  Weapons
+        public static ThingDef RRY_Gun_Hunting_Bow;
+        public static ThingDef RRY_Gun_Compound_Bow;
+
         // Yautja HairDefs 
         public static HairDef RRY_Yaujta_Dreds;
         public static HairDef RRY_Yaujta_Ponytail;

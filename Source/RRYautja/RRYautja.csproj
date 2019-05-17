@@ -91,6 +91,10 @@
     <Compile Include="Xenomorph\MinifiedXenoEgg.cs" />
     <Compile Include="Xenomorph\IncidentWorker_NeomorphFungusSprout.cs" />
     <Compile Include="Xenomorph\Recipe_RemoveHugger.cs" />
+    <Compile Include="Yautja\Class1.cs" />
+    <Compile Include="Yautja\Class2.cs" />
+    <Compile Include="Yautja\Stuffable_Bullet.cs" />
+    <Compile Include="Yautja\Stuffable_Projectile.cs" />
     <Compile Include="Yautja\DamageWorker_CombiPin.cs" />
     <Compile Include="Yautja\HediffComp_PinnedByWeapon.cs" />
     <Compile Include="Yautja\Hediff_Bouncer.cs" />

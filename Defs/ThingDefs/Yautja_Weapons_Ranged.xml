@@ -33,7 +33,7 @@
     </weaponTags>
     <verbs>
       <li>
-        <verbClass>Verb_Shoot</verbClass>
+        <verbClass>Verb_Shoot_Stuffable</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <defaultProjectile>Arrow_Yautja_Hunting_Bow</defaultProjectile>
         <warmupTime>2.0</warmupTime>
@@ -72,6 +72,7 @@
   <ThingDef ParentName="BaseProjectileNeolithic">
     <defName>Arrow_Yautja_Hunting_Bow</defName>
     <label>yautja arrow</label>
+    <thingClass>RRYautja.Stuffable_Bullet</thingClass>
     <graphicData>
       <texPath>Things/Projectile/Arrow_Small</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -81,7 +82,7 @@
       <damageDef>Arrow</damageDef>
       <damageAmountBase>25</damageAmountBase>
       <stoppingPower>1.5</stoppingPower>
-      <armorPenetrationBase>0.15</armorPenetrationBase>
+      <armorPenetrationBase>0.25</armorPenetrationBase>
       <speed>60</speed>
     </projectile>
   </ThingDef>
@@ -124,7 +125,7 @@
     </weaponTags>
     <verbs>
       <li>
-        <verbClass>Verb_Shoot</verbClass>
+        <verbClass>Verb_Shoot_Stuffable</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <defaultProjectile>Arrow_Yautja_Compound_Bow</defaultProjectile>
         <warmupTime>2.0</warmupTime>
@@ -152,6 +153,7 @@
   </ThingDef>
   <ThingDef ParentName="BaseProjectileNeolithic">
     <defName>Arrow_Yautja_Compound_Bow</defName>
+    <thingClass>RRYautja.Stuffable_Bullet</thingClass>
     <label>yautja arrow</label>
     <graphicData>
       <texPath>Things/Projectile/Arrow_Small</texPath>
@@ -162,7 +164,7 @@
       <damageDef>Arrow</damageDef>
       <damageAmountBase>30</damageAmountBase>
       <stoppingPower>2.5</stoppingPower>
-      <armorPenetrationBase>0.35</armorPenetrationBase>
+      <armorPenetrationBase>0.5</armorPenetrationBase>
       <speed>70</speed>
     </projectile>
   </ThingDef>
