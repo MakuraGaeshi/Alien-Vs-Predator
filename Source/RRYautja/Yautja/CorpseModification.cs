@@ -47,13 +47,32 @@ namespace RRYautja
             Comp_Yautja _Yautja = user.TryGetComp<Comp_Yautja>();
             Hediff blooded = user.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_BloodedUM);
             BodyPartRecord part = user.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_BloodedUM).Part;
-            HediffDef marked = _Yautja.MarkedhediffDef;
+            HediffDef markedDef = _Yautja.MarkedhediffDef;
             if (YautjaBloodedUtility.Marked(user, out hediff))
             {
                 user.health.RemoveHediff(hediff);
             }
             user.health.RemoveHediff(blooded);
-            user.health.AddHediff(marked, part);
+            user.health.AddHediff(markedDef, part);
+            Hediff marked = user.health.hediffSet.GetFirstHediffOfDef(markedDef);
+            HediffComp_MarkedYautja marked_Yautja = marked.TryGetComp<HediffComp_MarkedYautja>();
+            marked_Yautja.BodySize = corpse.InnerPawn.BodySize;
+            marked_Yautja.combatPower = corpse.InnerPawn.kindDef.combatPower;
+            marked_Yautja.corpse = corpse;
+            marked_Yautja.MarkHedifflabel = corpse.InnerPawn.KindLabel;
+            marked_Yautja.pawn = corpse.InnerPawn;
+            marked_Yautja.pawnKindDef = corpse.InnerPawn.kindDef;
+            marked_Yautja.predator = corpse.InnerPawn.kindDef.RaceProps.predator;
+            marked_Yautja.props = new HediffCompProperties_MarkedYautja
+            {
+                pawn = corpse.InnerPawn,
+                corpse = corpse,
+                MarkedhediffDef = markedDef,
+                MarkHedifflabel = corpse.InnerPawn.KindLabel,
+                predator = corpse.InnerPawn.kindDef.RaceProps.predator,
+                BodySize = corpse.InnerPawn.BodySize,
+                combatPower = corpse.InnerPawn.kindDef.combatPower
+            };
             ThingDef thingDef = null;
             foreach (var item in corpse.InnerPawn.health.hediffSet.GetNotMissingParts())
             {
@@ -77,12 +96,12 @@ namespace RRYautja
             {
                 AlienRace.BackstoryDef backstoryDef = DefDatabase<AlienRace.BackstoryDef>.GetNamed("Yautja_Blooded");
 #if DEBUG
-                if (selected) Log.Message(string.Format("changing {0}", user.story.adulthood.identifier));
+            //    if (selected) Log.Message(string.Format("changing {0}", user.story.adulthood.identifier));
 #endif
 
                 user.story.adulthood = backstoryDef.backstory;
 #if DEBUG
-                if (selected) Log.Message(string.Format("to {0}", user.story.adulthood.identifier));
+            //    if (selected) Log.Message(string.Format("to {0}", user.story.adulthood.identifier));
 #endif
             }
         }
@@ -102,13 +121,13 @@ namespace RRYautja
                 Comp_Yautja _Yautja = p.TryGetComp<Comp_Yautja>();
                 HediffWithComps hediff = (HediffWithComps)blooded;
 #if DEBUG
-                if (selected) Log.Message(string.Format("has {0} comp", hediff.comps.Count));
+            //    if (selected) Log.Message(string.Format("has {0} comp", hediff.comps.Count));
 #endif
                 HediffComp_BloodedYautja comp = blooded.TryGetComp<HediffComp_BloodedYautja>();
 #if DEBUG
-                if (selected) Log.Message(string.Format("{0}", _Yautja.corpse));
-                if (selected) Log.Message(string.Format("{0}", _Yautja.pawn));
-                if (selected) Log.Message(string.Format("{0}", _Yautja.MarkedhediffDef));
+            //    if (selected) Log.Message(string.Format("{0}", _Yautja.corpse));
+            //    if (selected) Log.Message(string.Format("{0}", _Yautja.pawn));
+            //    if (selected) Log.Message(string.Format("{0}", _Yautja.MarkedhediffDef));
 #endif
                 logonce = true;
                 ThingDef def = _Yautja.corpse.InnerPawn.kindDef.race;
@@ -385,7 +404,7 @@ namespace RRYautja
                 }
                 catch (Exception arg)
                 {
-                    Log.Error("Error in CompUseEffect: " + arg, false);
+                //    Log.Error("Error in CompUseEffect: " + arg, false);
                 }
             }
         }

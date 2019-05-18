@@ -1,6 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-
-
 <Defs>
 
   <ThinkTreeDef>
@@ -50,7 +48,7 @@
 						  </subNodes>
 						</li>
 						<li Class="AbilityUserAI.JobGiver_AIAbilityUser"/>
-						<li Class="JobGiver_AIFightEnemies" />
+						<li Class="JobGiver_XenomorphFightEnemies" />
 						<!-- Wander -->
 						<li Class="JobGiver_WanderAnywhere">
 						  <maxDanger>Deadly</maxDanger>

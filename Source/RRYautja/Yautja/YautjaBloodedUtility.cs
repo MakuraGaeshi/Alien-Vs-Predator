@@ -235,5 +235,66 @@ namespace RRYautja
             new Pair<HediffDef, ThingDef>(YautjaDefOf.RRY_Hediff_BloodedMGroTye, ThingDefOf.Thrumbo),
             new Pair<HediffDef, ThingDef>(YautjaDefOf.RRY_Hediff_BloodedM, XenomorphDefOf.RRY_Xenomorph_Drone.race)
         };
+
+        public static PawnKindDef RandomMarked(HediffDef markedDef)
+        {
+            if (markedDef == YautjaDefOf.RRY_Hediff_BloodedMXenomorphQueen)
+            {
+                return XenomorphDefOf.RRY_Xenomorph_Queen;
+            }
+            if (markedDef == YautjaDefOf.RRY_Hediff_BloodedMXenomorph)
+            {
+                return DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(x=> x.race.defName.Contains("RRY_Xenomorph_") && !x.race.defName.Contains("FaceHugger") && !x.race.defName.Contains("Predalien") && !x.race.defName.Contains("Queen")).RandomElement();
+            }
+            if (markedDef == YautjaDefOf.RRY_Hediff_BloodedMPredalien)
+            {
+                return XenomorphDefOf.RRY_Xenomorph_Predalien;
+            }
+            if (markedDef == YautjaDefOf.RRY_Hediff_BloodedMBadBlood)
+            {
+                return DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(x => x.race == YautjaDefOf.RRY_Alien_Yautja && x.defaultFactionType==YautjaDefOf.RRY_Yautja_BadBloodFaction).RandomElement();
+            }
+            if (markedDef == YautjaDefOf.RRY_Hediff_BloodedMHuman)
+            {
+                return DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(x => x.race == ThingDefOf.Human && !x.factionLeader).RandomElement();
+            }
+            if (markedDef == YautjaDefOf.RRY_Hediff_BloodedMWorthyHuman)
+            {
+                return DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(x => x.race == ThingDefOf.Human && (x.factionLeader || (x.isFighter && x.combatPower > (100)))).RandomElement();
+            }
+            if (markedDef == YautjaDefOf.RRY_Hediff_BloodedMHumanlike)
+            {
+                return DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(x => x.race != ThingDefOf.Human && x.RaceProps.Humanlike && !x.factionLeader).RandomElement();
+            }
+            if (markedDef == YautjaDefOf.RRY_Hediff_BloodedMWorthyHumanlike)
+            {
+                return DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(x => x.race != ThingDefOf.Human && x.RaceProps.Humanlike && (x.factionLeader || (x.isFighter && x.combatPower > (100)))).RandomElement();
+            }
+            /*
+            else if (other.kindDef.race == YautjaDefOf.RRY_Alien_Yautja && !other.story.adulthood.identifier.StartsWith("Yautja_BadBlood") && other.Dead && (other.Faction.PlayerGoodwill > 0 || other.Faction.IsPlayer))
+            {
+                markedDef == YautjaDefOf.RRY_Hediff_BloodedMBadBlood; RRY_Hediff_BloodedMHound RRY_Hediff_BloodedMGroTye RRY_Hediff_BloodedMCrusher
+            }
+            */
+            if (markedDef == YautjaDefOf.RRY_Hediff_BloodedMGroTye)
+            {
+                return DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(x => !x.race.defName.StartsWith("RRY_Xenomorph_") && x.defName.Contains("Thrumbo")).RandomElement();
+            }
+            if (markedDef == YautjaDefOf.RRY_Hediff_BloodedMCrusher)
+            {
+                return DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(x => !x.race.defName.StartsWith("RRY_Xenomorph_") && (x.defName.Contains("Rhinoceros")|| x.defName.Contains("Elephant") || x.defName.Contains("Megasloth"))).RandomElement();
+            }
+            if (markedDef == YautjaDefOf.RRY_Hediff_BloodedMHound)
+            {
+                List<PawnKindDef> list = DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(x => !x.race.defName.StartsWith("RRY_Xenomorph_") && !x.RaceProps.Humanlike && ((x.defName.Contains("Wolf") || x.race.description.Contains("Wolf") || x.race.description.Contains("wolf") || x.race.description.Contains("wolves")) || (x.defName.Contains("Hound") || x.defName.Contains("hound") || x.race.description.Contains("Hound") || x.race.description.Contains("hound") || x.race.description.Contains("hounds")) || (x.race.defName.Contains("Dog") || x.race.description.Contains("Dog") || x.race.description.Contains("dog") || x.race.description.Contains("dogs"))) && ((x.RaceProps.predator == true && x.combatPower > 50) || (x.RaceProps.predator == false && x.combatPower > 100)));
+                PawnKindDef kindDef = list.RandomElement();
+                return kindDef;
+            }
+            if (markedDef == YautjaDefOf.RRY_Hediff_BloodedM)
+            {
+                return DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(x => !x.race.defName.StartsWith("RRY_Xenomorph_") && !x.RaceProps.Humanlike && (x.combatPower > 100 || (x.RaceProps.predator == true && x.combatPower > 50))).RandomElement();
+            }
+            return null;
+        }
     }
 }

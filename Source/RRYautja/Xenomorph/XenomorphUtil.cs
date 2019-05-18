@@ -123,6 +123,14 @@ namespace RRYautja
         {
             return map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_EggXenomorphFertilized);
         }
+        public static int TotalSpawnedThingCount(ThingDef thing, Map map)
+        {
+            return map.listerThings.ThingsOfDef(thing).Count;
+        }
+        public static List<Thing> SpawnedThings(ThingDef thing, Map map)
+        {
+            return map.listerThings.ThingsOfDef(thing);
+        }
         public static List<Thing> SpawnedEggsNeedHosts(Map map)
         {
             List<Thing> list = new List<Thing>();

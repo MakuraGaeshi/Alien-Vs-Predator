@@ -25,7 +25,7 @@ namespace RRYautja
                 _shadowGraphic = typeof(PawnRenderer).GetField("shadowGraphic", BindingFlags.Instance | BindingFlags.NonPublic);
                 if (_shadowGraphic == null)
                 {
-                    Log.ErrorOnce("Unable to reflect PawnRenderer.shadowGraphic!", 0x12348765);
+                //    Log.ErrorOnce("Unable to reflect PawnRenderer.shadowGraphic!", 0x12348765);
                 }
             }
             _shadowGraphic.SetValue(_this, newValue);
@@ -38,7 +38,7 @@ namespace RRYautja
                 _shadowGraphic = typeof(PawnRenderer).GetField("shadowGraphic", BindingFlags.Instance | BindingFlags.NonPublic);
                 if (_shadowGraphic == null)
                 {
-                    Log.ErrorOnce("Unable to reflect PawnRenderer.shadowGraphic!", 0x12348765);
+                //    Log.ErrorOnce("Unable to reflect PawnRenderer.shadowGraphic!", 0x12348765);
                 }
             }
             return (Graphic_Shadow)_shadowGraphic.GetValue(_this);
@@ -51,7 +51,7 @@ namespace RRYautja
                 _graphicInt = typeof(Thing).GetField("graphicInt", BindingFlags.Instance | BindingFlags.NonPublic);
                 if (_graphicInt == null)
                 {
-                    Log.ErrorOnce("Unable to reflect Thing.graphicInt!", 0x12348765);
+                //    Log.ErrorOnce("Unable to reflect Thing.graphicInt!", 0x12348765);
                 }
             }
             _graphicInt.SetValue(_this, newValue);
@@ -64,7 +64,7 @@ namespace RRYautja
                 _lastCell = typeof(Pawn_PathFollower).GetField("lastCell", BindingFlags.Instance | BindingFlags.NonPublic);
                 if (_lastCell == null)
                 {
-                    Log.ErrorOnce("Unable to reflect Pawn_PathFollower.lastCell!", 0x12348765);
+                //    Log.ErrorOnce("Unable to reflect Pawn_PathFollower.lastCell!", 0x12348765);
                 }
             }
             return (IntVec3)_lastCell.GetValue(_this);

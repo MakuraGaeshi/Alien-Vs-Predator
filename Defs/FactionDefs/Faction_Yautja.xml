@@ -80,11 +80,16 @@
           <YautjaElder_RRY>2</YautjaElder_RRY>
         </options>
       </li>
-        <li>
+      <li>
         <kindDef>Peaceful</kindDef>
         <options>
           <YautjaColonist_RRY>10</YautjaColonist_RRY>
           <YautjaUnblooded_RRY>13</YautjaUnblooded_RRY>
+          <YautjaYoungBlood_RRY>10</YautjaYoungBlood_RRY>
+          <YautjaBlooded_RRY>8</YautjaBlooded_RRY>
+          <YautjaElite_RRY>4</YautjaElite_RRY>
+          <YautjaElder_RRY>2</YautjaElder_RRY>
+          <YautjaAncient_RRY>1</YautjaAncient_RRY>
         </options>
       </li>
 	  <li>

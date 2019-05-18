@@ -13,9 +13,13 @@ namespace RimWorld
         protected override bool Satisfied(Pawn pawn)
         {
             bool result;
-            if (pawn.Spawned && XenomorphUtil.IsXenomorph(pawn))
+            if (pawn.Spawned && XenomorphUtil.IsXenomorph(pawn) && !XenomorphUtil.EggsPresent(pawn.Map))
             {
                 result = pawn.Map.mapPawns.AllPawns.Any((Pawn x) => x.Downed && XenomorphUtil.isInfectablePawn(x));
+            }
+            else if(pawn.Spawned && XenomorphUtil.IsXenomorph(pawn) && XenomorphUtil.EggsPresent(pawn.Map))
+            {
+                result = pawn.Map.mapPawns.AllPawns.Any((Pawn x) => x.Downed && XenomorphUtil.isInfectablePawn(x) && XenomorphUtil.DistanceBetween(XenomorphUtil.ClosestReachableEgg(x).Position, x.Position) > 3f);
             }
             else
             {

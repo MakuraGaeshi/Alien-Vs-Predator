@@ -19,13 +19,13 @@ namespace RRYautja
         // Token: 0x06000002 RID: 2 RVA: 0x00002090 File Offset: 0x00000290
         private static void MakeButcherProducts_PostFix(Thing __instance, ref IEnumerable<Thing> __result, Pawn butcher, float efficiency)
         {
-            Log.Message(string.Format("{0}", __instance));
+        //    Log.Message(string.Format("{0}", __instance));
             if (__instance is Pawn pawn)
             {
-                Log.Message(string.Format("{0} is Pawn pawn", __instance));
+            //    Log.Message(string.Format("{0} is Pawn pawn", __instance));
                 if (XenomorphUtil.IsXenomorph(pawn))
                 {
-                    Log.Message(string.Format("{0} Pawn pawn is Xenomorph", __instance));
+                //    Log.Message(string.Format("{0} Pawn pawn is Xenomorph", __instance));
                     foreach (var item in pawn.health.hediffSet.GetNotMissingParts())
                     {
                         if (item.def == XenomorphDefOf.RRY_Xeno_TailSpike)

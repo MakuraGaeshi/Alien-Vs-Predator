@@ -46,16 +46,36 @@ namespace RRYautja
         {
             base.ExposeData();
         //    Scribe_References.Look<Pawn>(ref this.Parental, "Parental", false);
-            Scribe_Values.Look<bool>(ref this.turretIsOn, "TurretIsOn", false, false);
+            Scribe_Values.Look<bool>(ref this.turretIsOn, "TurretIsOn");
         }
 
         public override void Tick()
         {
             base.Tick();
-            if (this.Parental==null)//||this.comp==null)
+            if (this.Parental==null||(this.Parental is Pawn pawn && (pawn.Dead || pawn.Downed)))//||this.comp==null)
             {
                 this.Destroy();
             }
+            /*
+            else
+            {
+                if (Parental.apparel.WornApparelCount>0)
+                {
+                    foreach (var app in Parental.apparel.WornApparel)
+                    {
+                        CompEquippableTurret turretcomp = this.Parental.TryGetComp<CompEquippableTurret>();
+                        if (turretcomp!=null)
+                        {
+                            if (this!= turretcomp.turret)
+                            {
+                                this.Destroy();
+                            }
+                        }
+                    }
+                }
+                
+            }
+            */
         }
     }
 }

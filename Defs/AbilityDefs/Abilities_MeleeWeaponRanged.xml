@@ -1,52 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 <!-- ======================== Melee Weapon Ranged Ability Defs ================================== -->
-<!-- ======================== Eldar - Shuriken Catapult Ability ================================== 
-	<ThingDef ParentName="BaseProjectileAbility">
-		<defName>Projectile_OGEShuriken</defName>
-		<graphicData>
-			<texPath>Things/Projectile/ShurikenSml</texPath>
-		</graphicData>
-		<projectile>
-			<damageDef>OGEShuriken</damageDef>
-			<damageAmountBase>5</damageAmountBase>
-			<armorPenetrationBase>0.16</armorPenetrationBase>
-			<speed>100</speed>
-			<flyOverhead>false</flyOverhead>
-		</projectile>
-	</ThingDef>
-
-	<AbilityUser.AbilityDef ParentName="BaseAbility">
-        <defName>OGE_Ability_FireShuriken</defName>
-        <label>Fire Shuriken Catapult</label>
-        <uiIconPath>Things/Projectile/ShurikenSml</uiIconPath>
-        <description>Fire built in Shuriken Catapult.</description>
-        <MainVerb Class="AbilityUser.VerbProperties_Ability">
-            <verbClass>AbilityUser.Verb_UseAbility</verbClass>
-            <AlwaysHits>false</AlwaysHits>
-            <tooltipShowProjectileDamage>true</tooltipShowProjectileDamage>
-            <tooltipShowExtraDamages>false</tooltipShowExtraDamages>
-            <tooltipShowHediffsToApply>false</tooltipShowHediffsToApply>
-            <tooltipShowMentalStatesToApply>false</tooltipShowMentalStatesToApply>
-            <hasStandardCommand>true</hasStandardCommand>
-			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
-			<defaultProjectile>Projectile_OGEShuriken</defaultProjectile>
-            <abilityDef>OGE_Ability_FireShuriken</abilityDef>
-            <warmupTime>0.7</warmupTime>
-            <SecondsToRecharge>10.0</SecondsToRecharge>
-            <burstShotCount>14</burstShotCount>
-            <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
-			<range>28</range>
-			<soundCast>ShurikenSound</soundCast>
-			<soundCastTail>GunTail_Light</soundCastTail>
-			<muzzleFlashScale>8</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-        </MainVerb>
-	</AbilityUser.AbilityDef>
- -->
- 
 <!-- ======================== Yautja - Throw Spear Ability ================================== -->
 <ThingDef ParentName="RRY_BaseThrownProjectileAbility">
    <defName>RRY_Projectile_CombiStick</defName>
@@ -60,10 +14,10 @@
 			</li>
 		</comps>
 		<projectile>
-			  <damageDef>RangedStab</damageDef>
-			  <armorPenetrationBase>1</armorPenetrationBase>
-			  <damageAmountBase>30</damageAmountBase>
-			  <speed>26</speed>
+			  <damageDef>RRY_RangedStab_Combi</damageDef>
+			  <armorPenetrationBase>0.5</armorPenetrationBase>
+			  <damageAmountBase>15</damageAmountBase>
+			  <speed>30</speed>
 			<flyOverhead>false</flyOverhead>
 		</projectile>
  </ThingDef>
@@ -71,7 +25,7 @@
 	<AbilityUser.AbilityDef ParentName="BaseAbility">
         <defName>RRY_Ability_Throw_CombiStick</defName>
         <label>Throw Combistick</label>
-        <uiIconPath>Things/Projectile/Yautja_Combistaff_New</uiIconPath>
+        <uiIconPath>Things/Equipment/Melee/Yautja_Combistaff_New</uiIconPath>
         <description>Throw the Combistick.</description>
         <MainVerb Class="AbilityUser.VerbProperties_Ability">
             <verbClass>AbilityUser.Verb_UseAbility_RRY_Thrown</verbClass>

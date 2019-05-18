@@ -36,7 +36,7 @@ namespace RRYautja
             bool selected = Find.Selector.SingleSelectedThing == pawn;
             Lord lord = pawn.GetLord();
             Faction xenos = Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph);
-            if (pawn!=null && !pawn.Dead && pawn.kindDef!=XenomorphDefOf.RRY_Xenomorph_FaceHugger)
+            if (pawn != null && pawn.Map != null && !pawn.Dead && pawn.kindDef!=XenomorphDefOf.RRY_Xenomorph_FaceHugger)
             { //Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph).
                 LifeStageDef stage = pawn.ageTracker.CurLifeStage;
                 if (stage == pawn.RaceProps.lifeStageAges[pawn.RaceProps.lifeStageAges.Count - 1].def)
@@ -46,7 +46,7 @@ namespace RRYautja
 #if DEBUG
                         if (selected)
                         {
-                            Log.Message(string.Format("{0} has no lord, looking for lord from {1}", pawn.LabelShort, xenos.Name));
+                        //    Log.Message(string.Format("{0} has no lord, looking for lord from {1}", pawn.LabelShort, xenos.Name));
                         }
 #endif
                         IEnumerable<Lord> lords = pawn.Map.lordManager.lords.Where(x => x.faction.def == xenos.def);
@@ -59,7 +59,7 @@ namespace RRYautja
 #if DEBUG
                                     if (selected)
                                     {
-                                        Log.Message(string.Format("no lord of faction {0} for {1}", xenos.Name, pawn.LabelShort));
+                                    //    Log.Message(string.Format("no lord of faction {0} for {1}", xenos.Name, pawn.LabelShort));
                                     }
 
 #endif
@@ -70,7 +70,7 @@ namespace RRYautja
 #if DEBUG
                                     if (selected)
                                     {
-                                        Log.Message(string.Format("{0}: added to Lord: {1}, Cur Duty: {2}", pawn.LabelShort, l, l.LordJob));
+                                    //    Log.Message(string.Format("{0}: added to Lord: {1}, Cur Duty: {2}", pawn.LabelShort, l, l.LordJob));
                                     }
 
 #endif
@@ -85,7 +85,7 @@ namespace RRYautja
 #if DEBUG
                             if (selected)
                             {
-                                Log.Message(string.Format("{2} lords of {0} for {1}", xenos.Name, pawn.LabelShort, lords.Count()));
+                            //    Log.Message(string.Format("{2} lords of {0} for {1}", xenos.Name, pawn.LabelShort, lords.Count()));
                             }
 #endif
                             if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
@@ -99,7 +99,7 @@ namespace RRYautja
 #if DEBUG
                         if (selected)
                         {
-                            Log.Message(string.Format("{0} has Lord: {1}, Cur Duty: {2}", pawn.LabelShort, lord, lord.LordJob));
+                        //    Log.Message(string.Format("{0} has Lord: {1}, Cur Duty: {2}", pawn.LabelShort, lord, lord.LordJob));
                         }
 
 #endif
@@ -257,12 +257,12 @@ namespace RRYautja
                                     }
                                     else
                                     {
-                                        Log.Message("weapon immune to acid");
+                                    //    Log.Message("weapon immune to acid");
                                     }
                                 }
                                 else if (WeaponDef.IsWeapon&& WeaponDef.IsRangedWeapon)
                                 {
-                                    Log.Message("ranged weapon, immune to acid");
+                                //    Log.Message("ranged weapon, immune to acid");
                                 }
                             }
 

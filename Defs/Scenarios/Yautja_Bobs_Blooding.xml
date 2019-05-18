@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ScenarioDef>
+	<defName>RRY_YautjaScenarioBobsBlooding</defName>
+		<label>Yautja Blooding Ritual</label>
+		<description>When a sudden explosion crippled your ship, you knew you had to take your chances in the escape pods, or die...</description>
+<scenario>
+<summary>Five Unblooded Yautja attempt to surivie a hunt to earn their blood status. Difficult.</summary>
+		<playerFaction>
+			<def>PlayerFaction</def>
+			<factionDef>RRY_Yautja_PlayerUnblooded</factionDef>
+		</playerFaction>
+		<parts>
+			<li Class="ScenPart_ConfigPage_ConfigureStartingPawns">
+				<def>ConfigPage_ConfigureStartingPawns</def>
+				<pawnCount>5</pawnCount>
+			</li>
+			<li Class="ScenPart_PlayerPawnsArriveMethod">
+				<def>PlayerPawnsArriveMethod</def>
+			</li>
+			<li Class="ScenPart_StartingThing_Defined">
+				<def>StartingThing_Defined</def>
+				<thingDef>Silver</thingDef>
+				<count>200</count>
+			</li>
+			<li Class="ScenPart_StartingThing_Defined">
+				<def>StartingThing_Defined</def>
+				<thingDef>MealSurvivalPack</thingDef>
+				<count>50</count>
+			</li>
+			<li Class="ScenPart_StartingThing_Defined">
+				<def>StartingThing_Defined</def>
+				<thingDef>MedicineIndustrial</thingDef>
+				<count>20</count>
+			</li>
+			<li Class="ScenPart_ScatterThingsNearPlayerStart">
+				<def>ScatterThingsNearPlayerStart</def>
+				<thingDef>WoodLog</thingDef>
+				<count>500</count>
+			</li>
+			<li Class="ScenPart_StartingThing_Defined">
+				<def>StartingThing_Defined</def>
+				<thingDef>RRY_Melee_Combistaff</thingDef>
+				<count>2</count>
+			</li>
+			<li Class="ScenPart_StartingThing_Defined">
+				<def>StartingThing_Defined</def>
+				<thingDef>RRY_Gun_Hunting_Bow</thingDef>
+				<count>2</count>
+				<stuff>WoodLog</stuff>
+			</li>
+			<li Class="ScenPart_ScatterThingsNearPlayerStart">
+				<def>ScatterThingsNearPlayerStart</def>
+				<thingDef>RRY_Yautja_CryptosleepCasket_Tribute_XenoEgg</thingDef>
+				<count>5</count>
+			</li>
+			<li Class="ScenPart_GameStartDialog">
+				<def>GameStartDialog</def>
+				<text>There was no choice, you had to make a break from your cramped hiding place and run for the escape pods. The ship was falling apart - it was either death or try to make it down to the surface.....</text>
+				<closeSound>GameStartSting</closeSound>
+			</li>
+			<li Class="ScenPart_ScatterThingsAnywhere">
+				<def>ScatterThingsAnywhere</def>
+				<thingDef>ShipChunk</thingDef>
+				<count>10</count>
+			</li>
+			<li Class="ScenPart_ScatterThingsAnywhere">
+				<def>ScatterThingsAnywhere</def>
+				<thingDef>Steel</thingDef>
+				<count>720</count>
+			</li>
+		</parts>
+		</scenario>
+	</ScenarioDef>
+	
+</Defs>

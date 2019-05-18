@@ -16,10 +16,10 @@
     <tickerType>Normal</tickerType>
 		<leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
     <killedLeavings>
-      <Steel>100</Steel>
-      <Plasteel>35</Plasteel>
-      <ChunkSlagSteel>8</ChunkSlagSteel>
-      <ComponentIndustrial>4</ComponentIndustrial>
+      <Steel>10</Steel>
+      <Plasteel>25</Plasteel>
+      <ChunkSlagSteel>4</ChunkSlagSteel>
+      <ComponentIndustrial>2</ComponentIndustrial>
       <ComponentSpacer>1</ComponentSpacer>
     </killedLeavings>
     <rotatable>true</rotatable>
@@ -42,6 +42,7 @@
   
   <ThingDef ParentName="RRY_ShipPartBase">
     <defName>RRY_XenomorphCrashedShipPart</defName>
+	<thingClass>Building_CrashedShipPart_CryptosleepCasket_Xenomorph</thingClass>
     <label>Unknown Crashed Ship</label>
     <description>A mysterious crashed piece of a spaceship. It may contain any manner of deadly defenders and exotic materials.</description>
     <size>(6,6)</size>

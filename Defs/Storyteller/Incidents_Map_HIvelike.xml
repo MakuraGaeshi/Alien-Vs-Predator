@@ -9,8 +9,8 @@
       <li>Map_PlayerHome</li>
     </targetTags>
     <workerClass>IncidentWorker_Hivelike</workerClass>
-    <letterLabel>Xenomorph Infestation</letterLabel>
-    <letterText>Xenomorph Forces are clawing their way out of the Warp! They will break through in a few seconds and open Warp Rifts.\n\nThe warp rifts will spawn more Daemons and more rifts.\n\nIf you don't want the daemons to infest the whole area, destroy the rifts. But beware - the daemons will defend their home.</letterText>
+    <letterLabel>Infestation</letterLabel>
+    <letterText>Something is tunneling towards you! They will break through in a few seconds.</letterText>
     <letterDef>ThreatBig</letterDef>
     <baseChance>2.7</baseChance>
     <minRefireDays>20</minRefireDays>

@@ -33,17 +33,20 @@ namespace RimWorld
             get
             {
                 int count = 0;
-                if (YautjaDefOf.RRY_YautjaRanged_Basic.IsFinished)
+                if (OriginalPawn.Faction == Faction.OfPlayer)
                 {
-                    count++;
-                }
-                if (YautjaDefOf.RRY_YautjaRanged_Med.IsFinished)
-                {
-                    count++;
-                }
-                if (YautjaDefOf.RRY_YautjaRanged_Adv.IsFinished)
-                {
-                    count++;
+                    if (YautjaDefOf.RRY_YautjaRanged_Basic.IsFinished)
+                    {
+                        count++;
+                    }
+                    if (YautjaDefOf.RRY_YautjaRanged_Med.IsFinished)
+                    {
+                        count++;
+                    }
+                    if (YautjaDefOf.RRY_YautjaRanged_Adv.IsFinished)
+                    {
+                        count++;
+                    }
                 }
                 return count;
             }
@@ -92,11 +95,12 @@ namespace RimWorld
         public override void Tick()
         {
             base.Tick();
-
+            /*
             if (this.usedTarget.Thing.Position != this.intendedTarget.Thing.Position)
             {
                 this.Launch(launcher, this.ExactPosition, usedTarget, intendedTarget, ProjectileHitFlags.IntendedTarget, launcher);
             }
+            */
         }
 
         public virtual void PostPostImpactEffects(Thing hitThing)

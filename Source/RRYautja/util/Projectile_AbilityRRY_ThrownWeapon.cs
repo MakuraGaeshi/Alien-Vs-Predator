@@ -4,7 +4,7 @@ using Verse;
 
 namespace AbilityUser
 {
-    public class Projectile_AbilityRRY_ThrownWeapon : Projectile_Ability
+    public class Projectile_AbilityRRY_ThrownWeapon : Projectile_AbilityRRY
     {
 
         protected override void Impact(Thing hitThing)
@@ -21,7 +21,7 @@ namespace AbilityUser
             }
             if (launcher is Pawn launcherPawn)
             {
-                Log.Message(string.Format("launcherPawn: {0}", launcherPawn.LabelShortCap));
+            //    Log.Message(string.Format("launcherPawn: {0}", launcherPawn.LabelShortCap));
                 PostPostImpactEffects();
             }
         }

@@ -153,10 +153,10 @@ namespace RimWorld
                 }
                 else
                 {
-                    Log.Error(string.Format("COuldnt find any pawnkinds of the {0} faction to spawn for {1}", OfFaction, OfTunnel.defName));
+                //    Log.Error(string.Format("COuldnt find any pawnkinds of the {0} faction to spawn for {1}", OfFaction, OfTunnel.defName));
                 }
             }
-            Log.Error(string.Format("COuldnt find any pawnkinds of the {0} faction to spawn for {1}", OfFaction, OfTunnel.defName));
+        //    Log.Error(string.Format("COuldnt find any pawnkinds of the {0} faction to spawn for {1}", OfFaction, OfTunnel.defName));
         }
 
 		// Token: 0x06002673 RID: 9843 RVA: 0x001240D8 File Offset: 0x001224D8

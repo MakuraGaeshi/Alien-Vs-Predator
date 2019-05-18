@@ -30,6 +30,7 @@ namespace RimWorld
         public static HediffDef RRY_Hediff_BloodedMGroTye;
 
         public static HediffDef RRY_Hediff_Cloaked;
+        public static HediffDef RRY_HeDiff_TurretIsOn;
         public static HediffDef RRY_Hediff_BouncedProjectile; 
 
         // Yautja PawnKindDefs 
@@ -41,6 +42,10 @@ namespace RimWorld
 
         // Yautja ThingDefs  Equipment
         public static ThingDef RRY_Equipment_HunterGauntlet;
+
+        // Yautja ThingDefs  Weapons
+        public static ThingDef RRY_Gun_Hunting_Bow;
+        public static ThingDef RRY_Gun_Compound_Bow;
 
         // Yautja HairDefs 
         public static HairDef RRY_Yaujta_Dreds;
@@ -58,6 +63,9 @@ namespace RimWorld
         public static FactionDef RRY_Yautja_PlayerColony;
         public static FactionDef RRY_Yautja_PlayerUnblooded;
         public static FactionDef RRY_Yautja_PlayerBlooded;
+
+        public static FactionDef RRY_Yautja_BadBloodFaction;
+        public static FactionDef RRY_Yautja_JungleClan;
 
         // Yautja ResearchProjectDefs 
         public static ResearchProjectDef RRY_YautjaMediComp;

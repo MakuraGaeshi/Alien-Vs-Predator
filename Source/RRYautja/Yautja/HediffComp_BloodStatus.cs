@@ -71,6 +71,7 @@ namespace RRYautja
         public HediffDef MarkedhediffDef;
         public Corpse corpse;
         public Pawn pawn;
+        public PawnKindDef pawnKindDef;
         public string MarkHedifftype;
         public string MarkHedifflabel;
         public bool predator;
@@ -85,6 +86,8 @@ namespace RRYautja
         {
             base.CompExposeData();
         }
+
+
 
         public override void CompPostPostAdd(DamageInfo? dinfo)
         {
@@ -147,7 +150,15 @@ namespace RRYautja
         {
             this.compClass = typeof(HediffComp_MarkedYautja);
         }
-
+        public HediffDef MarkedhediffDef;
+        public Corpse corpse;
+        public Pawn pawn;
+        public PawnKindDef pawnKindDef;
+        public string MarkHedifftype;
+        public string MarkHedifflabel;
+        public bool predator;
+        public float combatPower;
+        public float BodySize;
 
     }
     public class HediffComp_MarkedYautja : HediffComp
@@ -158,8 +169,37 @@ namespace RRYautja
         {
             get
             {
-                return (HediffCompProperties_MarkedYautja)this.props;
+                try
+                {
+                    return (HediffCompProperties_MarkedYautja)this.props;
+                }
+                catch
+                {
+                    return new HediffCompProperties_MarkedYautja();
+                }
             }
+        }
+        public HediffDef MarkedhediffDef;
+        public Corpse corpse;
+        public Pawn pawn;
+        public PawnKindDef pawnKindDef;
+        public string MarkHedifftype;
+        public string MarkHedifflabel;
+        public bool predator;
+        public float combatPower;
+        public float BodySize;
+
+        public override void CompExposeData()
+        {
+            base.CompExposeData();
+            Scribe_Defs.Look<HediffDef>(ref this.MarkedhediffDef, "MarkedhediffDef");
+            Scribe_References.Look<Corpse>(ref this.corpse, "corpseRef", true);
+            Scribe_References.Look<Pawn>(ref this.pawn, "pawnRef", true);
+            Scribe_Values.Look<String>(ref this.MarkHedifftype, "thisMarktype");
+            Scribe_Values.Look<String>(ref this.MarkHedifflabel, "thislabel");
+            Scribe_Values.Look<bool>(ref this.predator, "thisPred");
+            Scribe_Values.Look<float>(ref this.combatPower, "thiscombatPower");
+            Scribe_Values.Look<float>(ref this.BodySize, "thisBodySize");
         }
 
         public override string CompLabelInBracketsExtra
@@ -171,6 +211,10 @@ namespace RRYautja
                 {
                     return _Yautja.MarkHedifflabel;
                 }
+                if (MarkHedifflabel!=null)
+                {
+                    return MarkHedifflabel;
+                }
                 return null;
             }
         }
@@ -179,6 +223,31 @@ namespace RRYautja
         public override void CompPostPostAdd(DamageInfo? dinfo)
         {
             base.CompPostPostAdd(dinfo);
+            if (MarkedhediffDef == null)
+            {
+                MarkedhediffDef = this.Def;
+                corpse = null;
+                pawn = null;
+                pawnKindDef = YautjaBloodedUtility.RandomMarked(MarkedhediffDef);
+            //    Log.Message(string.Format("{0}: {1}", MarkedhediffDef, pawnKindDef));
+                MarkHedifftype = null;
+                MarkHedifflabel = pawnKindDef.LabelCap;
+                predator = pawnKindDef.RaceProps.predator;
+                combatPower = pawnKindDef.combatPower;
+                BodySize = pawnKindDef.race.race.baseBodySize;
+                Comp_Yautja _Yautja = this.Pawn.TryGetComp<Comp_Yautja>();
+                if (_Yautja != null)
+                {
+                    _Yautja.MarkHedifflabel = MarkHedifflabel;
+                    _Yautja.pawn = pawn;
+                    _Yautja.corpse = corpse;
+                    _Yautja.MarkedhediffDef = MarkedhediffDef;
+                    _Yautja.MarkHedifflabel = MarkHedifflabel;
+                    _Yautja.predator = predator;
+                    _Yautja.BodySize = BodySize;
+                    _Yautja.combatPower = combatPower;
+                }
+            }
 
         }
 

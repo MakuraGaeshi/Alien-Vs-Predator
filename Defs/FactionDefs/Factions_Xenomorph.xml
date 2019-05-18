@@ -51,8 +51,9 @@
         <kindDef>Combat</kindDef>
         <commonality>80</commonality>
         <options>
-          <RRY_Xenomorph_Drone>5</RRY_Xenomorph_Drone>
-          <RRY_Xenomorph_FaceHugger>10</RRY_Xenomorph_FaceHugger>
+          <RRY_Xenomorph_Queen>1</RRY_Xenomorph_Queen>
+          <RRY_Xenomorph_Drone>100</RRY_Xenomorph_Drone>
+          <RRY_Xenomorph_FaceHugger>25</RRY_Xenomorph_FaceHugger>
         </options>
 				<disallowedStrategies>
 					<li>Siege</li>
@@ -64,20 +65,9 @@
         <kindDef>Combat</kindDef>
         <commonality>70</commonality>
         <options>
-          <RRY_Xenomorph_Runner>7</RRY_Xenomorph_Runner>
-          <RRY_Xenomorph_FaceHugger>10</RRY_Xenomorph_FaceHugger>
-        </options>
-				<disallowedStrategies>
-					<li>Siege</li>
-					<li>ImmediateAttackSappers</li>
-				</disallowedStrategies>
-      </li>
-      <li>
-        <!-- Queen> only -->
-        <kindDef>Combat</kindDef>
-        <commonality>30</commonality>
-        <options>
-          <RRY_Xenomorph_Queen>10</RRY_Xenomorph_Queen>
+          <RRY_Xenomorph_Queen>1</RRY_Xenomorph_Queen>
+          <RRY_Xenomorph_Runner>100</RRY_Xenomorph_Runner>
+          <RRY_Xenomorph_FaceHugger>25</RRY_Xenomorph_FaceHugger>
         </options>
 				<disallowedStrategies>
 					<li>Siege</li>

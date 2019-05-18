@@ -10,7 +10,7 @@
     </targetTags>
     <workerClass>IncidentWorker_CrashedShip</workerClass>
     <letterLabel>Unknown Ship part Impact</letterLabel>
-    <letterText>A large piece of an ancient Ship has crashed nearby.\n\nCryptocaskets are attached to it.\n\nMaybe you can find survivors.</letterText>
+    <letterText>A large piece of an ancient Ship tumbles through the atmosphere and has crashed nearby. you wonder what it could contain</letterText>
     <letterDef>ThreatSmall</letterDef>
     <baseChance>2.0</baseChance>
     <minRefireDays>15</minRefireDays>

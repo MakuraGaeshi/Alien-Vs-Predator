@@ -32,7 +32,7 @@
       <AccuracyShort>0.26</AccuracyShort>
       <AccuracyMedium>0.26</AccuracyMedium>
       <AccuracyLong>0.18</AccuracyLong>
-      <RangedWeapon_Cooldown>7.4</RangedWeapon_Cooldown>
+      <RangedWeapon_Cooldown>3.4</RangedWeapon_Cooldown>
     </statBases>
     <techLevel>Spacer</techLevel>
     <menuHidden>True</menuHidden>
@@ -47,23 +47,13 @@
         <hasStandardCommand>true</hasStandardCommand>
         <defaultProjectile>RRY_Bullet_DroneAcidSpit</defaultProjectile>
         <warmupTime>1.25</warmupTime>
-        <range>26.9</range>
-        <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+        <range>12</range>
+        <ticksBetweenBurstShots>1</ticksBetweenBurstShots>
         <burstShotCount>4</burstShotCount>
-        <soundCast>Shot_ChargeBlaster</soundCast>
-        <soundCastTail>GunTail_Heavy</soundCastTail>
-        <muzzleFlashScale>9</muzzleFlashScale>
+        <muzzleFlashScale>0</muzzleFlashScale>
       </li>
     </verbs>
     <tools>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>11.7</power>
-        <cooldownTime>2.6</cooldownTime>
-      </li>
     </tools>
   </ThingDef>
 

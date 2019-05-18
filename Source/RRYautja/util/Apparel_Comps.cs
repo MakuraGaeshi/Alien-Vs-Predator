@@ -105,12 +105,12 @@ namespace RRYautja
 
             if (map == null)
             {
-                Log.Warning("Tried to detonate CompWearableExplosive in a null map.");
+            //    Log.Warning("Tried to detonate CompWearableExplosive in a null map.");
                 return;
             }
             if (loc == null)
             {
-                Log.Warning("Tried to detonate CompWearableExplosive at a null position.");
+            //    Log.Warning("Tried to detonate CompWearableExplosive at a null position.");
                 return;
             }
 
@@ -119,7 +119,7 @@ namespace RRYautja
 
             if (proj == null)
             {
-                Log.Error("ThingDef with CompWearable is missing Projectile tag set. Cannot detonate.");
+            //    Log.Error("ThingDef with CompWearable is missing Projectile tag set. Cannot detonate.");
                 return;
             }
 

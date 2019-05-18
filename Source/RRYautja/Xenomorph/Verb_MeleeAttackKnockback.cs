@@ -84,7 +84,7 @@ namespace RRYautja
                     yield return extraDinfo;
                 }
             }
-            HarmonyPatches.PushEffect(CasterPawn, hitPawn, (int)((Rand.Range(1, 3) * CasterPawn.BodySize) / hitPawn.BodySize), true);
+            HarmonyPatches.PushEffect(CasterPawn, hitPawn, (int)((Rand.Range(2, 3) + CasterPawn.BodySize) - hitPawn.BodySize), true);
             yield break;
         }
 

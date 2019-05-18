@@ -57,7 +57,7 @@ namespace RRYautja
             if (Pawn.CarriedBy!=null)
             {
 #if DEBUG
-                if (selected) Log.Message(string.Format("{0} carried by {1} drawpos {2} modified to {3}", Pawn.Name, Pawn.CarriedBy.Name, drawPos, Pawn.CarriedBy.DrawPos));
+            //    if (selected) Log.Message(string.Format("{0} carried by {1} drawpos {2} modified to {3}", Pawn.Name, Pawn.CarriedBy.Name, drawPos, Pawn.CarriedBy.DrawPos));
 #endif
                 drawPos.z = Pawn.CarriedBy.DrawPos.z;
                 drawPos.x = Pawn.CarriedBy.DrawPos.x;
@@ -67,34 +67,34 @@ namespace RRYautja
                 if (Pawn.CurrentBed().Rotation == Rot4.South)
                 {
 #if DEBUG
-                    if (selected) Log.Message(string.Format("{0}", Pawn.CurrentBed().Rotation.ToStringHuman()));
+                //    if (selected) Log.Message(string.Format("{0}", Pawn.CurrentBed().Rotation.ToStringHuman()));
 #endif
                     drawPos -= pawnRenderer.BaseHeadOffsetAt(Rot4.South);
                 }
                 else if (Pawn.CurrentBed().Rotation == Rot4.North)
                 {
 #if DEBUG
-                    if (selected) Log.Message(string.Format("{0}", Pawn.CurrentBed().Rotation.ToStringHuman()));
+                //    if (selected) Log.Message(string.Format("{0}", Pawn.CurrentBed().Rotation.ToStringHuman()));
 #endif
                     drawPos -= pawnRenderer.BaseHeadOffsetAt(Rot4.North);
                 }
                 else if (Pawn.CurrentBed().Rotation == Rot4.East)
                 {
 #if DEBUG
-                    if (selected) Log.Message(string.Format("{0}", Pawn.CurrentBed().Rotation.ToStringHuman()));
+                //    if (selected) Log.Message(string.Format("{0}", Pawn.CurrentBed().Rotation.ToStringHuman()));
 #endif
                     drawPos.x += 0.3f;
                 }
                 else if (Pawn.CurrentBed().Rotation == Rot4.West)
                 {
 #if DEBUG
-                    if (selected) Log.Message(string.Format("{0}", Pawn.CurrentBed().Rotation.ToStringHuman()));
+                //    if (selected) Log.Message(string.Format("{0}", Pawn.CurrentBed().Rotation.ToStringHuman()));
 #endif
                     drawPos.x -= 0.3f;
                 }
                 drawPos.y = yvalue;
 #if DEBUG
-                if (selected) Log.Message(string.Format("{0} in bed {1} drawpos modified to {2}", Pawn.Name, Pawn.InBed(), drawPos));
+            //    if (selected) Log.Message(string.Format("{0} in bed {1} drawpos modified to {2}", Pawn.Name, Pawn.InBed(), drawPos));
 #endif
             }
             if (offset < 0)
@@ -108,7 +108,7 @@ namespace RRYautja
                 if (Pawn.CarriedBy != null)
                 {
 #if DEBUG
-                    if (selected) Log.Message(string.Format("{0} carried by {1} angle {2} modified to {3}", Pawn.Name, Pawn.CarriedBy.Name, angle, Pawn.CarriedBy.carryTracker.CarriedThing.Rotation.AsAngle));
+                //    if (selected) Log.Message(string.Format("{0} carried by {1} angle {2} modified to {3}", Pawn.Name, Pawn.CarriedBy.Name, angle, Pawn.CarriedBy.carryTracker.CarriedThing.Rotation.AsAngle));
 #endif
                     angle = Pawn.CarriedBy.carryTracker.CarriedThing.Rotation.AsAngle;
 
@@ -153,8 +153,8 @@ namespace RRYautja
 #if DEBUG
             if (selected)
             {
-                Log.Message(string.Format("{0}'s {1}, Rot:{2}, offset:{3}, x:{4}, z:{5}", Pawn.Label, this.parent.def.label, rot, offset, drawPos.x, drawPos.z));
-                Log.Message(string.Format("Rot ToStringHuman:{1}, FacingCell:{2}, AsVector2:{3}, AsByte:{4}, AsAngle:{5}", rot, rot.ToStringHuman(), rot.FacingCell, rot.AsVector2, rot.AsByte, rot.AsAngle));
+            //    Log.Message(string.Format("{0}'s {1}, Rot:{2}, offset:{3}, x:{4}, z:{5}", Pawn.Label, this.parent.def.label, rot, offset, drawPos.x, drawPos.z));
+            //    Log.Message(string.Format("Rot ToStringHuman:{1}, FacingCell:{2}, AsVector2:{3}, AsByte:{4}, AsAngle:{5}", rot, rot.ToStringHuman(), rot.FacingCell, rot.AsVector2, rot.AsByte, rot.AsAngle));
             }
 #endif
             Material matSingle = comp.ImplantMaterial(Pawn, rot);

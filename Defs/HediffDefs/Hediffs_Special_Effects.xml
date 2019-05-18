@@ -46,6 +46,20 @@
     </comps>
   </HediffDef>
   
+  <HediffDef ParentName="RRY_SpecialGoodHeDiff">
+    <defName>RRY_HeDiff_TurretIsOn</defName>
+    <label>Shoulder Cannon status</label>
+    <labelNoun>a Shoulder Cannon</labelNoun>
+    <stages>
+      <li>
+        <becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+    <comps>
+	
+    </comps>
+  </HediffDef>
+  
   <HediffDef>
     <defName>RRY_Hediff_Cloaked</defName>
     <hediffClass>RRYautja.Hediff_Cloak</hediffClass>
@@ -84,25 +98,44 @@
     </stages>
   </HediffDef>
   
-<!--
-    <HediffDef ParentName="RRY_SpecialGoodHeDiff">
-    <defName>RRY_Hediff_Cloaked</defName>
-    <label>cloak</label>
-    <labelNoun> </labelNoun>
+    <HediffDef ParentName="RRY_SpecialBadHeDiff">
+    <defName>RRY_Hediff_Pinned</defName>
+    <label>Pinned</label>
+    <labelNoun>Pinned in place </labelNoun>
     <stages>
       <li>
-        <label>cloaked</label>
-        <becomeVisible>false</becomeVisible>
+		<statOffsets>
+			<MoveSpeed>-10</MoveSpeed>
+		</statOffsets>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <setMax>0.2</setMax>
+          </li>
+        </capMods>
       </li>
     </stages>
     <comps> 
+		  <li Class="RRYautja.HediffCompProperties_PinnedByWeapon">
+      </li>
+<!--
       <li>
         <compClass>RRYautja.HediffComp_Blur</compClass>
       </li>
+      <li Class="JecsTools.HediffCompProperties_Knockback">
+        <knockbackChance>0.8</knockbackChance>
+		<stunChance>0.2</stunChance>
+		<stunTicks>60</stunTicks>
+		<knockDistance>
+		  <min>2</min>
+		  <max>3</max>
+		</knockDistance>
+		<explosiveKnockback>false</explosiveKnockback>
+      </li>
+-->
     </comps>
 	
   </HediffDef>
--->
 
 <!-- ==================== Blood Status HeDiffs ========================= -->
   <HediffDef ParentName="RRY_SpecialGoodHeDiff">
@@ -173,7 +206,7 @@
     </stages>
     <comps>
       <li>
-        <compClass>RRYautja.HediffComp_BloodedYautja</compClass>
+        <compClass>RRYautja.HediffComp_MarkedYautja</compClass>
       </li>
     </comps>
   </HediffDef>
@@ -189,7 +222,7 @@
     </stages>
     <comps>
       <li>
-        <compClass>RRYautja.HediffComp_BloodedYautja</compClass>
+        <compClass>RRYautja.HediffComp_MarkedYautja</compClass>
       </li>
     </comps>
   </HediffDef>
@@ -205,7 +238,7 @@
     </stages>
     <comps>
       <li>
-        <compClass>RRYautja.HediffComp_BloodedYautja</compClass>
+        <compClass>RRYautja.HediffComp_MarkedYautja</compClass>
       </li>
     </comps>
   </HediffDef>
@@ -221,7 +254,7 @@
     </stages>
     <comps>
       <li>
-        <compClass>RRYautja.HediffComp_BloodedYautja</compClass>
+        <compClass>RRYautja.HediffComp_MarkedYautja</compClass>
       </li>
     </comps>
   </HediffDef>
@@ -237,7 +270,7 @@
     </stages>
     <comps>
       <li>
-        <compClass>RRYautja.HediffComp_BloodedYautja</compClass>
+        <compClass>RRYautja.HediffComp_MarkedYautja</compClass>
       </li>
     </comps>
   </HediffDef>
@@ -253,7 +286,7 @@
     </stages>
     <comps>
       <li>
-        <compClass>RRYautja.HediffComp_BloodedYautja</compClass>
+        <compClass>RRYautja.HediffComp_MarkedYautja</compClass>
       </li>
     </comps>
   </HediffDef>
@@ -269,7 +302,7 @@
     </stages>
     <comps>
       <li>
-        <compClass>RRYautja.HediffComp_BloodedYautja</compClass>
+        <compClass>RRYautja.HediffComp_MarkedYautja</compClass>
       </li>
     </comps>
   </HediffDef>
@@ -285,7 +318,7 @@
     </stages>
     <comps>
       <li>
-        <compClass>RRYautja.HediffComp_BloodedYautja</compClass>
+        <compClass>RRYautja.HediffComp_MarkedYautja</compClass>
       </li>
     </comps>
   </HediffDef>
@@ -301,7 +334,7 @@
     </stages>
     <comps>
       <li>
-        <compClass>RRYautja.HediffComp_BloodedYautja</compClass>
+        <compClass>RRYautja.HediffComp_MarkedYautja</compClass>
       </li>
     </comps>
   </HediffDef>
@@ -317,7 +350,7 @@
     </stages>
     <comps>
       <li>
-        <compClass>RRYautja.HediffComp_BloodedYautja</compClass>
+        <compClass>RRYautja.HediffComp_MarkedYautja</compClass>
       </li>
     </comps>
   </HediffDef>
@@ -333,7 +366,7 @@
     </stages>
     <comps>
       <li>
-        <compClass>RRYautja.HediffComp_BloodedYautja</compClass>
+        <compClass>RRYautja.HediffComp_MarkedYautja</compClass>
       </li>
     </comps>
   </HediffDef>
@@ -349,7 +382,7 @@
     </stages>
     <comps>
       <li>
-        <compClass>RRYautja.HediffComp_BloodedYautja</compClass>
+        <compClass>RRYautja.HediffComp_MarkedYautja</compClass>
       </li>
     </comps>
   </HediffDef>
@@ -373,6 +406,24 @@
     <label>horrified</label>
     <labelNoun>horrified</labelNoun>
     <battleStateLabel>blind</battleStateLabel>
+    <maxSeverity>1</maxSeverity>
+    <stages>
+      <li>
+        <partEfficiencyOffset>-0.8</partEfficiencyOffset>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_SelfHeal">
+        <healAmount>0.005</healAmount>
+      </li>
+    </comps>
+  </HediffDef>
+  
+  <HediffDef>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defName>RRY_Hediff_PinnedCombistaff</defName>
+    <label>pinned</label>
+    <labelNoun>horrified</labelNoun>
     <maxSeverity>1</maxSeverity>
     <stages>
       <li>

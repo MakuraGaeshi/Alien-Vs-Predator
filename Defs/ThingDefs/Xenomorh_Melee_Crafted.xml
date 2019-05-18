@@ -50,6 +50,11 @@
       </li>
     </tools>
     <recipeMaker>
+		<recipeUsers>
+			<li>ElectricSmithy</li>
+			<li>FueledSmithy</li>
+			<li>CraftingSpot</li>
+		</recipeUsers>
       <researchPrerequisite>RRY_XenomorphWeapons</researchPrerequisite>
       <skillRequirements>
         <Crafting>4</Crafting>

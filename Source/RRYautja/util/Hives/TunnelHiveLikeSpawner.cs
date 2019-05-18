@@ -261,7 +261,7 @@ namespace RimWorld
                             num++;
                             if (num > 1000)
                             {
-                                Log.Error("Too many iterations.", false);
+                            //    Log.Error("Too many iterations.", false);
                                 break;
                             }
                             IEnumerable<PawnKindDef> source = from x in pawnKinds

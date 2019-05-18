@@ -4,15 +4,16 @@
     <tickerType>Normal</tickerType>
     <category>Building</category>
     <thingClass>Building</thingClass>
+    <useHitPoints>false</useHitPoints>
     <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
-    <selectable>true</selectable>
+    <selectable>false</selectable>
     <drawerType>MapMeshAndRealTime</drawerType>
     <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
     <repairEffect>Repair</repairEffect>
-    <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+    <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
     <filthLeaving>Filth_RubbleBuilding</filthLeaving>
 		<statBases>
-			<SellPriceFactor>0.70</SellPriceFactor>
+			<SellPriceFactor>0.00</SellPriceFactor>
 		</statBases>
   </ThingDef>
 

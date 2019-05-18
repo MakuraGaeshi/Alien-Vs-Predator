@@ -118,7 +118,7 @@ namespace RRYautja
                     {
 #if DEBUG
                         bool selected = Find.Selector.SingleSelectedThing == this.parent;
-                        if (selected) Log.Message(string.Format("{0} @ {1}, Can hatch?: {2}, Will hatch?: {3}", this.parent.Label, MyPos, canHatch, willHatch));
+                    //    if (selected) Log.Message(string.Format("{0} @ {1}, Can hatch?: {2}, Will hatch?: {3}", this.parent.Label, MyPos, canHatch, willHatch));
 #endif
                         if (this.canHatch && this.willHatch)
                         {
@@ -151,7 +151,7 @@ namespace RRYautja
 #if DEBUG
                 if (selected)
                 {
-                    Log.Message(string.Format("{0} isInfectable?: {1}", pawn.Label, flag));
+                //    Log.Message(string.Format("{0} isInfectable?: {1}", pawn.Label, flag));
                 }
 #endif
                 if (flag)
@@ -168,8 +168,8 @@ namespace RRYautja
 #if DEBUG
                     if (selected)
                     {
-                        Log.Message(string.Format("distance between {1} @{3} and {2} @ {4}: {0}", DistanceBetween(MyPos, pawn.Position), this.parent.LabelShort, pawn.Label, MyPos, pawn.Position));
-                        Log.Message(string.Format("{0} thingsize: {1}, thingstealth: {2}, thingmovespeed: {3}, thingstance: {4}", pawn.Label, thingsize, thingstealth, thingmovespeed, thingstance));
+                    //    Log.Message(string.Format("distance between {1} @{3} and {2} @ {4}: {0}", DistanceBetween(MyPos, pawn.Position), this.parent.LabelShort, pawn.Label, MyPos, pawn.Position));
+                    //    Log.Message(string.Format("{0} thingsize: {1}, thingstealth: {2}, thingmovespeed: {3}, thingstance: {4}", pawn.Label, thingsize, thingstealth, thingmovespeed, thingstance));
 
                     }
 #endif
@@ -179,7 +179,7 @@ namespace RRYautja
 #if DEBUG
                     if (selected)
                     {
-                        Log.Message(string.Format("{0} hatchon: {1}, roll: {2}, moving?: {3}", pawn.Label, hatchon, roll, thingstance.GetType() == typeof(Stance_Mobile)));
+                    //    Log.Message(string.Format("{0} hatchon: {1}, roll: {2}, moving?: {3}", pawn.Label, hatchon, roll, thingstance.GetType() == typeof(Stance_Mobile)));
                     }
 #endif
                     if (roll<hatchon)
@@ -191,7 +191,7 @@ namespace RRYautja
 #if DEBUG
             if (thing == null)
             {
-                if (selected) Log.Message(string.Format("{0} @ {1}, Cant hatch No suitable Host Found", this.parent.Label, MyPos, canHatch));
+            //    if (selected) Log.Message(string.Format("{0} @ {1}, Cant hatch No suitable Host Found", this.parent.Label, MyPos, canHatch));
             }
 #endif
         }

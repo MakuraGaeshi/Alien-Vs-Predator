@@ -20,7 +20,7 @@ namespace RRYautja
                 bool flag2 = medkit != null && medkit.Destroyed;
                 if (flag2)
                 {
-                    Log.Warning("Tried to use destroyed medkit.", false);
+                //    Log.Warning("Tried to use destroyed medkit.", false);
                     medkit = null;
                 }
                 float num = HealthShardTendUtility.CalculateBaseTendQuality(doctor, patient, medkit.kitComp.Props.medicine ?? null);
@@ -83,24 +83,24 @@ namespace RRYautja
         public static void UseShard(Pawn doctor, Pawn patient, Cloakgen medkit)
         {
             bool flag = patient.health.HasHediffsNeedingTend(false);
-            Log.Message(string.Format("UseShard flag: {0}, doctor: {1}, patient: {2}", flag, doctor ,patient));
+        //    Log.Message(string.Format("UseShard flag: {0}, doctor: {1}, patient: {2}", flag, doctor ,patient));
             if (flag)
             {
                 Hediff hediff = HealthShardTendUtility.FindLifeThreateningHediff(patient);
                 if (hediff != null)
                 {
-                    Log.Message(string.Format("hediff: {0}", hediff));
+                //    Log.Message(string.Format("hediff: {0}", hediff));
                     medkit.UseKit();
                     HealthShardTendUtility.Cure(hediff);
                     return;
                 }
                 if (HealthUtility.TicksUntilDeathDueToBloodLoss(patient) < 2500)
                 {
-                    Log.Message(string.Format("TicksUntilDeathDueToBloodLoss: {0}", HealthUtility.TicksUntilDeathDueToBloodLoss(patient)));
+                //    Log.Message(string.Format("TicksUntilDeathDueToBloodLoss: {0}", HealthUtility.TicksUntilDeathDueToBloodLoss(patient)));
                     Hediff hediff2 = HealthShardTendUtility.FindMostBleedingHediff(patient);
                     if (hediff2 != null)
                     {
-                        Log.Message(string.Format("hediff2: {0}", hediff2));
+                    //    Log.Message(string.Format("hediff2: {0}", hediff2));
                         medkit.UseKit();
                         HealthShardTendUtility.Cure(hediff2);
                         return;
@@ -109,7 +109,7 @@ namespace RRYautja
                 Hediff_Injury hediff_Injury3 = HealthShardTendUtility.FindInjury(patient, null);
                 if (hediff_Injury3 != null)
                 {
-                    Log.Message(string.Format("hediff2: {0}", hediff_Injury3));
+                //    Log.Message(string.Format("hediff2: {0}", hediff_Injury3));
                     medkit.UseKit();
                     HealthShardTendUtility.Cure(hediff_Injury3);
                     return;
@@ -125,23 +125,23 @@ namespace RRYautja
             List<Hediff> hediffs = pawn.health.hediffSet.hediffs;
             for (int i = 0; i < hediffs.Count; i++)
             {
-                Log.Message(string.Format("name: {0}, {1} of {2}", hediffs[i], i, hediffs.Count));
+            //    Log.Message(string.Format("name: {0}, {1} of {2}", hediffs[i], i, hediffs.Count));
                 if (hediffs[i].Visible && hediffs[i].def.everCurableByItem)
                 {
-                    Log.Message(string.Format("name: {0}, {1} of {2} (hediffs[i].Visible && hediffs[i].def.everCurableByItem)", hediffs[i], i, hediffs.Count));
+                //    Log.Message(string.Format("name: {0}, {1} of {2} (hediffs[i].Visible && hediffs[i].def.everCurableByItem)", hediffs[i], i, hediffs.Count));
                     if (!hediffs[i].FullyImmune())
                     {
-                        Log.Message(string.Format("name: {0}, {1} of {2} !hediffs[i].FullyImmune()", hediffs[i], i, hediffs.Count));
+                    //    Log.Message(string.Format("name: {0}, {1} of {2} !hediffs[i].FullyImmune()", hediffs[i], i, hediffs.Count));
                         HediffStage curStage = hediffs[i].CurStage;
                         bool flag = curStage != null && curStage.lifeThreatening;
                         bool flag2 = hediffs[i].def.lethalSeverity >= 0f && hediffs[i].Severity / hediffs[i].def.lethalSeverity >= 0.8f;
                         if (flag || flag2)
                         {
-                            Log.Message(string.Format("name: {0}, {1} of {2} flag || flag2", hediffs[i], i, hediffs.Count));
+                        //    Log.Message(string.Format("name: {0}, {1} of {2} flag || flag2", hediffs[i], i, hediffs.Count));
                             float num2 = (hediffs[i].Part == null) ? 999f : hediffs[i].Part.coverageAbsWithChildren;
                             if (hediff == null || num2 > num)
                             {
-                                Log.Message(string.Format("name: {0}, {1} of {2} hediff == null || num2 > num", hediffs[i], i, hediffs.Count));
+                            //    Log.Message(string.Format("name: {0}, {1} of {2} hediff == null || num2 > num", hediffs[i], i, hediffs.Count));
                                 hediff = hediffs[i];
                                 num = num2;
                             }
@@ -214,7 +214,7 @@ namespace RRYautja
                     }
                     pawn.health.RemoveHediff(firstHediffOfDef);
                 }
-                Log.Error("Too many iterations.", false);
+            //    Log.Error("Too many iterations.", false);
                 Block_3:;
             }
             Messages.Message("MessageHediffCuredByItem".Translate(hediff.LabelBase.CapitalizeFirst()), pawn, MessageTypeDefOf.PositiveEvent, true);

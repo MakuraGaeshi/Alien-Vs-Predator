@@ -110,8 +110,10 @@
 		</stuffCategories>
 		<recipeMaker>
 			<recipeUsers>
+				<!--
 				<li>ElectricSmithy</li>
 				<li>FueledSmithy</li>
+				-->
 			</recipeUsers>
 			<researchPrerequisite>RRY_YautjaMelee_Basic</researchPrerequisite>
 		</recipeMaker>
@@ -141,6 +143,9 @@
     </graphicData>
 		<tickerType>Normal</tickerType>
 		<comps>  
+      <li>
+        <compClass>RRYautja.Comp_PinningWeapon</compClass>
+      </li>
 			<!--
 		  <li Class="RRYautja.CompProperties_HediffWeapon">
 			<hediffDef>RRYThrillOfTheHunt</hediffDef>
@@ -223,6 +228,18 @@
         <power>9</power>
          <cooldownTime>2</cooldownTime>
       </li>
+	  <!--
+	  
+      <li>
+        <label>Knockback</label>
+        <capacities>
+          <li>RRY_TailWhip</li>
+        </capacities>
+        <power>9</power>
+         <cooldownTime>2</cooldownTime>
+      </li>
+	  
+	  -->
     </tools>
   </ThingDef>
   
