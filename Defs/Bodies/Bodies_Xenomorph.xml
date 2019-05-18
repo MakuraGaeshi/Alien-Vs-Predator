@@ -10,7 +10,8 @@
       <height>Middle</height>
       <depth>Outside</depth>
       <parts>
-        <li>
+        <!--
+		<li>
           <def>RRY_Xeno_Elytra</def>
           <customLabel>left elytra</customLabel>
           <coverage>0.05</coverage>
@@ -20,12 +21,13 @@
           <customLabel>right elytra</customLabel>
           <coverage>0.05</coverage>
         </li>
+		-->
         <li>
           <def>RRY_Xeno_Stomach</def>
           <coverage>0.05</coverage>
           <depth>Inside</depth>
         </li>
-        <li>
+		<li>
           <def>RRY_Xeno_InsectHeart</def>
           <coverage>0.03</coverage>
           <depth>Inside</depth>
@@ -410,7 +412,7 @@
                   <parts>
                     <li>
                       <def>RRY_Xeno_Finger</def>
-                      <customLabel>left pinky</customLabel>
+                      <customLabel>left 1st finger</customLabel>
                       <coverage>0.06</coverage>
                       <groups>
                         <li>RRY_Xeno_Hands</li>
@@ -419,7 +421,7 @@
                     </li>
                     <li>
                       <def>RRY_Xeno_Finger</def>
-                      <customLabel>left ring finger</customLabel>
+                      <customLabel>left 2nd finger</customLabel>
                       <coverage>0.07</coverage>
                       <groups>
                         <li>RRY_Xeno_Hands</li>
@@ -428,7 +430,7 @@
                     </li>
                     <li>
                       <def>RRY_Xeno_Finger</def>
-                      <customLabel>left middle finger</customLabel>
+                      <customLabel>left 3rd finger</customLabel>
                       <coverage>0.08</coverage>
                       <groups>
                         <li>RRY_Xeno_Hands</li>
@@ -437,7 +439,7 @@
                     </li>
                     <li>
                       <def>RRY_Xeno_Finger</def>
-                      <customLabel>left index finger</customLabel>
+                      <customLabel>left 4th finger</customLabel>
                       <coverage>0.07</coverage>
                       <groups>
                         <li>RRY_Xeno_Hands</li>
@@ -446,7 +448,16 @@
                     </li>
                     <li>
                       <def>RRY_Xeno_Finger</def>
-                      <customLabel>left thumb</customLabel>
+                      <customLabel>left 1st thumb</customLabel>
+                      <coverage>0.08</coverage>
+                      <groups>
+                        <li>RRY_Xeno_Hands</li>
+                        <li>RRY_Xeno_LeftHand</li>
+                      </groups>
+                    </li>
+					<li>
+                      <def>RRY_Xeno_Finger</def>
+                      <customLabel>left 2nd thumb</customLabel>
                       <coverage>0.08</coverage>
                       <groups>
                         <li>RRY_Xeno_Hands</li>
@@ -514,7 +525,7 @@
                   <parts>
                     <li>
                       <def>RRY_Xeno_Finger</def>
-                      <customLabel>right pinky</customLabel>
+                      <customLabel>right 1st finger</customLabel>
                       <coverage>0.06</coverage>
                       <groups>
                         <li>RRY_Xeno_Hands</li>
@@ -523,7 +534,7 @@
                     </li>
                     <li>
                       <def>RRY_Xeno_Finger</def>
-                      <customLabel>right ring finger</customLabel>
+                      <customLabel>right 2nd finger</customLabel>
                       <coverage>0.07</coverage>
                       <groups>
                         <li>RRY_Xeno_Hands</li>
@@ -532,7 +543,7 @@
                     </li>
                     <li>
                       <def>RRY_Xeno_Finger</def>
-                      <customLabel>right middle finger</customLabel>
+                      <customLabel>right 3rd finger</customLabel>
                       <coverage>0.08</coverage>
                       <groups>
                         <li>RRY_Xeno_Hands</li>
@@ -541,7 +552,7 @@
                     </li>
                     <li>
                       <def>RRY_Xeno_Finger</def>
-                      <customLabel>right index finger</customLabel>
+                      <customLabel>right 4th finger</customLabel>
                       <coverage>0.07</coverage>
                       <groups>
                         <li>RRY_Xeno_Hands</li>
@@ -550,7 +561,16 @@
                     </li>
                     <li>
                       <def>RRY_Xeno_Finger</def>
-                      <customLabel>right thumb</customLabel>
+                      <customLabel>right 1st thumb</customLabel>
+                      <coverage>0.08</coverage>
+                      <groups>
+                        <li>RRY_Xeno_Hands</li>
+                        <li>RRY_Xeno_RightHand</li>
+                      </groups>
+                    </li>
+					<li>
+                      <def>RRY_Xeno_Finger</def>
+                      <customLabel>right 2nd thumb</customLabel>
                       <coverage>0.08</coverage>
                       <groups>
                         <li>RRY_Xeno_Hands</li>
@@ -608,15 +628,7 @@
               <parts>
                 <li>
                   <def>RRY_Xeno_Toe</def>
-                  <customLabel>left little toe</customLabel>
-                  <coverage>0.06</coverage>
-                  <groups>
-                    <li>Feet</li>
-                  </groups>
-                </li>
-                <li>
-                  <def>RRY_Xeno_Toe</def>
-                  <customLabel>left fourth toe</customLabel>
+                  <customLabel>left 1st toe</customLabel>
                   <coverage>0.07</coverage>
                   <groups>
                     <li>Feet</li>
@@ -624,7 +636,7 @@
                 </li>
                 <li>
                   <def>RRY_Xeno_Toe</def>
-                  <customLabel>left middle toe</customLabel>
+                  <customLabel>left 2nd toe</customLabel>
                   <coverage>0.08</coverage>
                   <groups>
                     <li>Feet</li>
@@ -632,7 +644,7 @@
                 </li>
                 <li>
                   <def>RRY_Xeno_Toe</def>
-                  <customLabel>left second toe</customLabel>
+                  <customLabel>left 3rd toe</customLabel>
                   <coverage>0.09</coverage>
                   <groups>
                     <li>Feet</li>
@@ -640,8 +652,8 @@
                 </li>
                 <li>
                   <def>RRY_Xeno_Toe</def>
-                  <customLabel>left big toe</customLabel>
-                  <coverage>0.09</coverage>
+                  <customLabel>left 4th toe</customLabel>
+                  <coverage>0.07</coverage>
                   <groups>
                     <li>Feet</li>
                   </groups>
@@ -687,15 +699,7 @@
               <parts>
                 <li>
                   <def>RRY_Xeno_Toe</def>
-                  <customLabel>right little toe</customLabel>
-                  <coverage>0.06</coverage>
-                  <groups>
-                    <li>Feet</li>
-                  </groups>
-                </li>
-                <li>
-                  <def>RRY_Xeno_Toe</def>
-                  <customLabel>right fourth toe</customLabel>
+                  <customLabel>right 1nd toe</customLabel>
                   <coverage>0.07</coverage>
                   <groups>
                     <li>Feet</li>
@@ -703,7 +707,7 @@
                 </li>
                 <li>
                   <def>RRY_Xeno_Toe</def>
-                  <customLabel>right middle toe</customLabel>
+                  <customLabel>right 2rd toe</customLabel>
                   <coverage>0.08</coverage>
                   <groups>
                     <li>Feet</li>
@@ -711,7 +715,7 @@
                 </li>
                 <li>
                   <def>RRY_Xeno_Toe</def>
-                  <customLabel>right second toe</customLabel>
+                  <customLabel>right 3rd toe</customLabel>
                   <coverage>0.09</coverage>
                   <groups>
                     <li>Feet</li>
@@ -719,8 +723,8 @@
                 </li>
                 <li>
                   <def>RRY_Xeno_Toe</def>
-                  <customLabel>right big toe</customLabel>
-                  <coverage>0.09</coverage>
+                  <customLabel>right 4th toe</customLabel>
+                  <coverage>0.07</coverage>
                   <groups>
                     <li>Feet</li>
                   </groups>
@@ -861,7 +865,7 @@
               <groups>
                 <li>UpperHead</li>
                 <li>FullHead</li>
-								<li>HeadAttackTool</li>
+				<li>HeadAttackTool</li>
               </groups>
               <parts>
                 <li>
@@ -994,7 +998,7 @@
                   <parts>
                     <li>
                       <def>RRY_Xeno_Finger</def>
-                      <customLabel>left pinky</customLabel>
+                      <customLabel>left 1st finger</customLabel>
                       <coverage>0.06</coverage>
                       <groups>
                         <li>RRY_Xeno_Hands</li>
@@ -1003,16 +1007,7 @@
                     </li>
                     <li>
                       <def>RRY_Xeno_Finger</def>
-                      <customLabel>left ring finger</customLabel>
-                      <coverage>0.07</coverage>
-                      <groups>
-                        <li>RRY_Xeno_Hands</li>
-                        <li>RRY_Xeno_LeftHand</li>
-                      </groups>
-                    </li>
-                    <li>
-                      <def>RRY_Xeno_Finger</def>
-                      <customLabel>left middle finger</customLabel>
+                      <customLabel>left 2nd finger</customLabel>
                       <coverage>0.08</coverage>
                       <groups>
                         <li>RRY_Xeno_Hands</li>
@@ -1021,8 +1016,8 @@
                     </li>
                     <li>
                       <def>RRY_Xeno_Finger</def>
-                      <customLabel>left index finger</customLabel>
-                      <coverage>0.07</coverage>
+                      <customLabel>left 3rd finger</customLabel>
+                      <coverage>0.08</coverage>
                       <groups>
                         <li>RRY_Xeno_Hands</li>
                         <li>RRY_Xeno_LeftHand</li>
@@ -1030,13 +1025,14 @@
                     </li>
                     <li>
                       <def>RRY_Xeno_Finger</def>
-                      <customLabel>left thumb</customLabel>
-                      <coverage>0.08</coverage>
+                      <customLabel>left 4th finger</customLabel>
+                      <coverage>0.06</coverage>
                       <groups>
                         <li>RRY_Xeno_Hands</li>
                         <li>RRY_Xeno_LeftHand</li>
                       </groups>
                     </li>
+                    
                   </parts>
                 </li>
               </parts>
@@ -1098,7 +1094,7 @@
                   <parts>
                     <li>
                       <def>RRY_Xeno_Finger</def>
-                      <customLabel>right pinky</customLabel>
+                      <customLabel>right 1st finger</customLabel>
                       <coverage>0.06</coverage>
                       <groups>
                         <li>RRY_Xeno_Hands</li>
@@ -1107,16 +1103,7 @@
                     </li>
                     <li>
                       <def>RRY_Xeno_Finger</def>
-                      <customLabel>right ring finger</customLabel>
-                      <coverage>0.07</coverage>
-                      <groups>
-                        <li>RRY_Xeno_Hands</li>
-                        <li>RRY_Xeno_RightHand</li>
-                      </groups>
-                    </li>
-                    <li>
-                      <def>RRY_Xeno_Finger</def>
-                      <customLabel>right middle finger</customLabel>
+                      <customLabel>right 2nd finger</customLabel>
                       <coverage>0.08</coverage>
                       <groups>
                         <li>RRY_Xeno_Hands</li>
@@ -1125,8 +1112,8 @@
                     </li>
                     <li>
                       <def>RRY_Xeno_Finger</def>
-                      <customLabel>right index finger</customLabel>
-                      <coverage>0.07</coverage>
+                      <customLabel>right 3rd finger</customLabel>
+                      <coverage>0.08</coverage>
                       <groups>
                         <li>RRY_Xeno_Hands</li>
                         <li>RRY_Xeno_RightHand</li>
@@ -1134,13 +1121,14 @@
                     </li>
                     <li>
                       <def>RRY_Xeno_Finger</def>
-                      <customLabel>right thumb</customLabel>
-                      <coverage>0.08</coverage>
+                      <customLabel>right 4th finger</customLabel>
+                      <coverage>0.06</coverage>
                       <groups>
                         <li>RRY_Xeno_Hands</li>
                         <li>RRY_Xeno_RightHand</li>
                       </groups>
                     </li>
+                   
                   </parts>
                 </li>
               </parts>
@@ -1192,15 +1180,7 @@
               <parts>
                 <li>
                   <def>RRY_Xeno_Toe</def>
-                  <customLabel>left little toe</customLabel>
-                  <coverage>0.06</coverage>
-                  <groups>
-                    <li>Feet</li>
-                  </groups>
-                </li>
-                <li>
-                  <def>RRY_Xeno_Toe</def>
-                  <customLabel>left fourth toe</customLabel>
+                  <customLabel>left 1st toe</customLabel>
                   <coverage>0.07</coverage>
                   <groups>
                     <li>Feet</li>
@@ -1208,15 +1188,7 @@
                 </li>
                 <li>
                   <def>RRY_Xeno_Toe</def>
-                  <customLabel>left middle toe</customLabel>
-                  <coverage>0.08</coverage>
-                  <groups>
-                    <li>Feet</li>
-                  </groups>
-                </li>
-                <li>
-                  <def>RRY_Xeno_Toe</def>
-                  <customLabel>left second toe</customLabel>
+                  <customLabel>left 2nd toe</customLabel>
                   <coverage>0.09</coverage>
                   <groups>
                     <li>Feet</li>
@@ -1224,12 +1196,21 @@
                 </li>
                 <li>
                   <def>RRY_Xeno_Toe</def>
-                  <customLabel>left big toe</customLabel>
+                  <customLabel>left 3rd toe</customLabel>
                   <coverage>0.09</coverage>
                   <groups>
                     <li>Feet</li>
                   </groups>
                 </li>
+                <li>
+                  <def>RRY_Xeno_Toe</def>
+                  <customLabel>left 4th toe</customLabel>
+                  <coverage>0.07</coverage>
+                  <groups>
+                    <li>Feet</li>
+                  </groups>
+                </li>
+                
               </parts>
             </li>
           </parts>
@@ -1271,15 +1252,7 @@
               <parts>
                 <li>
                   <def>RRY_Xeno_Toe</def>
-                  <customLabel>right little toe</customLabel>
-                  <coverage>0.06</coverage>
-                  <groups>
-                    <li>Feet</li>
-                  </groups>
-                </li>
-                <li>
-                  <def>RRY_Xeno_Toe</def>
-                  <customLabel>right fourth toe</customLabel>
+                  <customLabel>right 1st toe</customLabel>
                   <coverage>0.07</coverage>
                   <groups>
                     <li>Feet</li>
@@ -1287,15 +1260,7 @@
                 </li>
                 <li>
                   <def>RRY_Xeno_Toe</def>
-                  <customLabel>right middle toe</customLabel>
-                  <coverage>0.08</coverage>
-                  <groups>
-                    <li>Feet</li>
-                  </groups>
-                </li>
-                <li>
-                  <def>RRY_Xeno_Toe</def>
-                  <customLabel>right second toe</customLabel>
+                  <customLabel>right 2nd toe</customLabel>
                   <coverage>0.09</coverage>
                   <groups>
                     <li>Feet</li>
@@ -1303,12 +1268,21 @@
                 </li>
                 <li>
                   <def>RRY_Xeno_Toe</def>
-                  <customLabel>right big toe</customLabel>
+                  <customLabel>right 3rd toe</customLabel>
                   <coverage>0.09</coverage>
                   <groups>
                     <li>Feet</li>
                   </groups>
                 </li>
+                <li>
+                  <def>RRY_Xeno_Toe</def>
+                  <customLabel>right 4th toe</customLabel>
+                  <coverage>0.07</coverage>
+                  <groups>
+                    <li>Feet</li>
+                  </groups>
+                </li>
+                
               </parts>
             </li>
           </parts>
@@ -1454,7 +1428,7 @@
               <groups>
                 <li>UpperHead</li>
                 <li>FullHead</li>
-								<li>HeadAttackTool</li>
+				<li>HeadAttackTool</li>
               </groups>
               <parts>
                 <li>
@@ -1631,18 +1605,10 @@
                     <li>RRY_Xeno_Hands</li>
                   </groups>
                   <parts>
+                    
                     <li>
                       <def>RRY_Xeno_Finger</def>
-                      <customLabel>left pinky</customLabel>
-                      <coverage>0.06</coverage>
-                      <groups>
-                        <li>RRY_Xeno_Hands</li>
-                        <li>RRY_Xeno_LeftHand</li>
-                      </groups>
-                    </li>
-                    <li>
-                      <def>RRY_Xeno_Finger</def>
-                      <customLabel>left ring finger</customLabel>
+                      <customLabel>left 1st finger</customLabel>
                       <coverage>0.07</coverage>
                       <groups>
                         <li>RRY_Xeno_Hands</li>
@@ -1651,8 +1617,8 @@
                     </li>
                     <li>
                       <def>RRY_Xeno_Finger</def>
-                      <customLabel>left middle finger</customLabel>
-                      <coverage>0.08</coverage>
+                      <customLabel>left 2nd finger</customLabel>
+                      <coverage>0.09</coverage>
                       <groups>
                         <li>RRY_Xeno_Hands</li>
                         <li>RRY_Xeno_LeftHand</li>
@@ -1660,8 +1626,8 @@
                     </li>
                     <li>
                       <def>RRY_Xeno_Finger</def>
-                      <customLabel>left index finger</customLabel>
-                      <coverage>0.07</coverage>
+                      <customLabel>left 3rd finger</customLabel>
+                      <coverage>0.09</coverage>
                       <groups>
                         <li>RRY_Xeno_Hands</li>
                         <li>RRY_Xeno_LeftHand</li>
@@ -1669,7 +1635,7 @@
                     </li>
                     <li>
                       <def>RRY_Xeno_Finger</def>
-                      <customLabel>left thumb</customLabel>
+                      <customLabel>left 4th finger</customLabel>
                       <coverage>0.08</coverage>
                       <groups>
                         <li>RRY_Xeno_Hands</li>
@@ -1735,18 +1701,10 @@
                     <li>RRY_Xeno_Hands</li>
                   </groups>
                   <parts>
+                    
                     <li>
                       <def>RRY_Xeno_Finger</def>
-                      <customLabel>right pinky</customLabel>
-                      <coverage>0.06</coverage>
-                      <groups>
-                        <li>RRY_Xeno_Hands</li>
-                        <li>RRY_Xeno_RightHand</li>
-                      </groups>
-                    </li>
-                    <li>
-                      <def>RRY_Xeno_Finger</def>
-                      <customLabel>right ring finger</customLabel>
+                      <customLabel>right 1st finger</customLabel>
                       <coverage>0.07</coverage>
                       <groups>
                         <li>RRY_Xeno_Hands</li>
@@ -1755,8 +1713,8 @@
                     </li>
                     <li>
                       <def>RRY_Xeno_Finger</def>
-                      <customLabel>right middle finger</customLabel>
-                      <coverage>0.08</coverage>
+                      <customLabel>right 2nd finger</customLabel>
+                      <coverage>0.09</coverage>
                       <groups>
                         <li>RRY_Xeno_Hands</li>
                         <li>RRY_Xeno_RightHand</li>
@@ -1764,8 +1722,8 @@
                     </li>
                     <li>
                       <def>RRY_Xeno_Finger</def>
-                      <customLabel>right index finger</customLabel>
-                      <coverage>0.07</coverage>
+                      <customLabel>right 3rd finger</customLabel>
+                      <coverage>0.09</coverage>
                       <groups>
                         <li>RRY_Xeno_Hands</li>
                         <li>RRY_Xeno_RightHand</li>
@@ -1773,7 +1731,7 @@
                     </li>
                     <li>
                       <def>RRY_Xeno_Finger</def>
-                      <customLabel>right thumb</customLabel>
+                      <customLabel>right 4th finger</customLabel>
                       <coverage>0.08</coverage>
                       <groups>
                         <li>RRY_Xeno_Hands</li>
@@ -1831,44 +1789,21 @@
               <parts>
                 <li>
                   <def>RRY_Xeno_Toe</def>
-                  <customLabel>left little toe</customLabel>
-                  <coverage>0.06</coverage>
+                  <customLabel>left 1st toe</customLabel>
+                  <coverage>0.12</coverage>
                   <groups>
                     <li>Feet</li>
                   </groups>
                 </li>
                 <li>
                   <def>RRY_Xeno_Toe</def>
-                  <customLabel>left fourth toe</customLabel>
-                  <coverage>0.07</coverage>
+                  <customLabel>left 2nd toe</customLabel>
+                  <coverage>0.12</coverage>
                   <groups>
                     <li>Feet</li>
                   </groups>
                 </li>
-                <li>
-                  <def>RRY_Xeno_Toe</def>
-                  <customLabel>left middle toe</customLabel>
-                  <coverage>0.08</coverage>
-                  <groups>
-                    <li>Feet</li>
-                  </groups>
-                </li>
-                <li>
-                  <def>RRY_Xeno_Toe</def>
-                  <customLabel>left second toe</customLabel>
-                  <coverage>0.09</coverage>
-                  <groups>
-                    <li>Feet</li>
-                  </groups>
-                </li>
-                <li>
-                  <def>RRY_Xeno_Toe</def>
-                  <customLabel>left big toe</customLabel>
-                  <coverage>0.09</coverage>
-                  <groups>
-                    <li>Feet</li>
-                  </groups>
-                </li>
+                
               </parts>
             </li>
           </parts>
@@ -1910,40 +1845,16 @@
               <parts>
                 <li>
                   <def>RRY_Xeno_Toe</def>
-                  <customLabel>right little toe</customLabel>
-                  <coverage>0.06</coverage>
+                  <customLabel>right 1st toe</customLabel>
+                  <coverage>0.12</coverage>
                   <groups>
                     <li>Feet</li>
                   </groups>
                 </li>
                 <li>
                   <def>RRY_Xeno_Toe</def>
-                  <customLabel>right fourth toe</customLabel>
-                  <coverage>0.07</coverage>
-                  <groups>
-                    <li>Feet</li>
-                  </groups>
-                </li>
-                <li>
-                  <def>RRY_Xeno_Toe</def>
-                  <customLabel>right middle toe</customLabel>
-                  <coverage>0.08</coverage>
-                  <groups>
-                    <li>Feet</li>
-                  </groups>
-                </li>
-                <li>
-                  <def>RRY_Xeno_Toe</def>
-                  <customLabel>right second toe</customLabel>
-                  <coverage>0.09</coverage>
-                  <groups>
-                    <li>Feet</li>
-                  </groups>
-                </li>
-                <li>
-                  <def>RRY_Xeno_Toe</def>
-                  <customLabel>right big toe</customLabel>
-                  <coverage>0.09</coverage>
+                  <customLabel>right 2nd toe</customLabel>
+                  <coverage>0.12</coverage>
                   <groups>
                     <li>Feet</li>
                   </groups>
