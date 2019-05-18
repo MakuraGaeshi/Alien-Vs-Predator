@@ -12,11 +12,6 @@
       <drawSize>1.5</drawSize>			
     </graphicData>
     <soundInteract>Bow_Large</soundInteract>
-	<costStuffCount>95</costStuffCount>
-		<stuffCategories>
-			<li>Metallic</li>
-			<li>Woody</li>
-		</stuffCategories>
     <statBases>
       <WorkToMake>9000</WorkToMake>
       <Mass>3.0</Mass>
@@ -52,6 +47,10 @@
         <cooldownTime>2</cooldownTime>
       </li>
     </tools>
+	<costStuffCount>95</costStuffCount>
+		<stuffCategories>
+			<li>Woody</li>
+		</stuffCategories>
     <recipeMaker>
 		<recipeUsers>
 			<li>ElectricSmithy</li>
@@ -104,11 +103,6 @@
 		</li>
 	</comps>
     <soundInteract>Bow_Large</soundInteract>
-	<costStuffCount>135</costStuffCount>
-		<stuffCategories>
-			<li>Metallic</li>
-			<li>Woody</li>
-		</stuffCategories>
     <statBases>
       <WorkToMake>9000</WorkToMake>
       <Mass>3.0</Mass>
@@ -144,6 +138,10 @@
         <cooldownTime>2</cooldownTime>
       </li>
     </tools>
+	<costStuffCount>135</costStuffCount>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
     <recipeMaker>
       <researchPrerequisite>RRY_YautjaRanged_Med</researchPrerequisite>
       <skillRequirements>
