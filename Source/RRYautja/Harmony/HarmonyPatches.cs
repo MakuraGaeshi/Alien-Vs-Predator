@@ -3,6 +3,7 @@ using AlienRace;
 using Harmony;
 using RimWorld;
 using System;
+using System.Linq;
 using System.Reflection;
 using UnityEngine;
 using Verse;
@@ -509,6 +510,29 @@ namespace RRYautja
             //    Log.Message(string.Format("Non Yautja with Yautja Hair"));
                 __result.story.hairDef = DefDatabase<HairDef>.GetRandom();
             }
+            /*
+            if (request.KindDef.race != ThingDefOf.Human && request.KindDef.RaceProps.Humanlike && request.KindDef.defName.Contains("StrangerInBlack") && request.Faction == Faction.OfPlayer)
+            {
+                PawnKindDef pawnKind = request.KindDef;
+                Faction ofPlayer = Faction.OfPlayer;
+
+                Log.Message(string.Format("{0}", ofPlayer.def.defName));
+                var list = (from def in DefDatabase<PawnKindDef>.AllDefs
+                            where ((def.race == ofPlayer.def.basicMemberKind.race) && (def.defName.Contains("StrangerInBlack")))
+                            select def).ToList();
+                if (list.Count > 0)
+                {
+                    pawnKind = list.RandomElement<PawnKindDef>();
+                    pawnKind.defaultFactionType = ofPlayer.def;
+                    __result.kindDef = pawnKind;
+                }
+                Log.Message(string.Format("{0}", pawnKind.defName));
+                bool pawnMustBeCapableOfViolence = true;
+                Gender? fixedGender = Gender.Male;
+                request = new PawnGenerationRequest(pawnKind, ofPlayer, PawnGenerationContext.NonPlayer, -1, true, false, false, false, true, pawnMustBeCapableOfViolence, 20f, false, true, true, false, false, false, false, null, null, null, null, null, fixedGender, null, null);
+                __result = PawnGenerator.GeneratePawn(request);
+            }
+            */
             if (Rand.Chance(0.005f)&&XenomorphUtil.isInfectablePawn(__result))
             {
                 HediffDef def = Rand.Chance(0.75f) ? XenomorphDefOf.RRY_HiddenXenomorphImpregnation : XenomorphDefOf.RRY_HiddenNeomorphImpregnation;

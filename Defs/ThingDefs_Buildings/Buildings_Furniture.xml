@@ -54,7 +54,7 @@
       <texPath>Things/Buildings/Xenomorph/Cocoons/Xeno_Humanoid_Cocoon</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
       <shaderType>CutoutComplex</shaderType>
-      <drawSize>(1,1)</drawSize>
+      <drawSize>(2,3)</drawSize>
     </graphicData>
     <castEdgeShadows>false</castEdgeShadows>
     <statBases>

@@ -262,4 +262,60 @@ namespace RRYautja
             return;
         }
     }
+
+    // Token: 0x02000086 RID: 134
+    [HarmonyPatch(typeof(Building_Bed), "GetSleepingSlotPos")]
+    internal static class Building_Bed_GetSleepingSlotPos
+    {
+        // Token: 0x060001EF RID: 495 RVA: 0x0000E0A8 File Offset: 0x0000C2A8
+        private static void Postfix(Building_Bed __instance, ref IntVec3 __result)
+        {
+            bool flag = __instance is Building_XenomorphCocoon;
+            if (flag)
+            {
+                
+
+                IntVec3 bedCenter = __instance.Position;
+                Rot4 bedRot = __instance.Rotation;
+                IntVec2 bedSize = __instance.def.size;
+                CellRect cellRect = GenAdj.OccupiedRect(bedCenter, bedRot, bedSize);
+                if (bedRot == Rot4.North)
+                {
+                    __result = new IntVec3(cellRect.minX, bedCenter.y, cellRect.minZ);
+                }
+                else if (bedRot == Rot4.East)
+                {
+                    __result = new IntVec3(cellRect.minX, bedCenter.y, cellRect.maxZ);
+                }
+                else if (bedRot == Rot4.South)
+                {
+                    __result = new IntVec3(cellRect.minX, bedCenter.y, cellRect.maxZ);
+                }
+                else __result = new IntVec3(cellRect.maxX, bedCenter.y, cellRect.maxZ);
+
+                /*
+                
+
+                if (__instance.Rotation == Rot4.North)
+                {
+                    __result = __instance.Position;
+                }
+                else if (__instance.Rotation == Rot4.North)
+                {
+                    __result = __instance.Position;
+                }
+                else if (__instance.Rotation == Rot4.North)
+                {
+                    __result = __instance.Position;
+                }
+                else if (__instance.Rotation == Rot4.North)
+                {
+                    __result = __instance.Position;
+                }
+                else __result = __instance.Position;
+
+                */
+            }
+        }
+    }
 }

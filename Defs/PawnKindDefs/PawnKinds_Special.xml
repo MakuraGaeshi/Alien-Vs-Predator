@@ -33,19 +33,20 @@
     </gearHealthRange>
     <itemQuality>Good</itemQuality>
     <weaponMoney>
-      <min>500</min>
-      <max>500</max>
+      <min>1000</min>
+      <max>5050</max>
     </weaponMoney>
     <weaponTags>
-      <li>Revolver</li>
+      <li>YautjaGun</li>
     </weaponTags>
+	
     <apparelRequired>
-      <li>Apparel_CollarShirt</li>
-      <li>Apparel_Pants</li>
-      <li>Apparel_Duster</li>
-      <li>Apparel_FlakVest</li>
-      <li>Apparel_CowboyHat</li>
+      <li>RRY_Apparel_HunterLightArmourChestplate</li>
+      <li>RRY_Apparel_HunterArmourGreaves</li>
+      <li>RRY_Apparel_HunterVest</li>
+      <li>RRY_Equipment_HunterGauntlet</li>
     </apparelRequired>
+	
     <apparelColor>(58,58,58)</apparelColor>
   </PawnKindDef>
 
