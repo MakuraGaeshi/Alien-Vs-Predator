@@ -135,7 +135,7 @@
   <ThingDef ParentName="RRY_BaseMeleeWeapon_Sharp_Quality">
     <defName>RRY_Melee_Combistaff</defName>
     <label>Combistaff</label>
-    <description>A collapsible and very light weapon. it was supposed to be both ranged and melee, but it isn't anymore. so go get fucked.</description>
+    <description>A collapsible combat staff. It can be thrown to pin a target.</description>
     <graphicData>
 		<texPath>Things/Equipment/Melee/Yautja_Combistaff_New</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
@@ -146,19 +146,7 @@
       <li>
         <compClass>RRYautja.Comp_PinningWeapon</compClass>
       </li>
-			<!--
-		  <li Class="RRYautja.CompProperties_HediffWeapon">
-			<hediffDef>RRYThrillOfTheHunt</hediffDef>
-			<severityBasedOnDurability>false</severityBasedOnDurability>
-			<partsToAffect>
-			  <li>Arm</li>
-			</partsToAffect>
-			<groupsToAffect>
-			  <li>A_BODYPARTGROUPDEF_HERE</li>
-			  <li>A_BODYPARTGROUPDEF_HERE</li>
-			  <li>A_BODYPARTGROUPDEF_HERE</li>
-			</groupsToAffect>
-			-->
+	
 		<li Class="AbilityUser.CompProperties_AbilityItem">
 			<AbilityUserClass>RRYautja.GenericCompAbilityItem</AbilityUserClass>
 			<Abilities>
@@ -197,20 +185,7 @@
         <Crafting>3</Crafting>
       </skillRequirements>
     </recipeMaker>
-	<!--
-    <verbs>
-      <li>
-        <verbClass>Verb_Shoot</verbClass>
-        <hasStandardCommand>true</hasStandardCommand>
-        <defaultProjectile>Combistaff_Thrown</defaultProjectile>
-        <warmupTime>4</warmupTime>
-        <range>18.9</range>
-        <soundCast>Interact_BeatFire</soundCast>
-        <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
-      </li>
-    </verbs>
-	-->
-    <tools>
+	<tools>
       <li>
         <label>shaft</label>
         <capacities>
@@ -228,19 +203,7 @@
         <power>9</power>
          <cooldownTime>2</cooldownTime>
       </li>
-	  <!--
-	  
-      <li>
-        <label>Knockback</label>
-        <capacities>
-          <li>RRY_TailWhip</li>
-        </capacities>
-        <power>9</power>
-         <cooldownTime>2</cooldownTime>
-      </li>
-	  
-	  -->
-    </tools>
+	  </tools>
   </ThingDef>
   
   <ThingDef ParentName="BaseProjectileNeolithic">

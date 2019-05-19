@@ -49,6 +49,7 @@
       <workSkill>Crafting</workSkill>
       <recipeUsers>
         <li>RRY_TableMachining</li>
+		<li>CraftingSpot</li>
       </recipeUsers>
       <effectWorking>Smelt</effectWorking>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
@@ -85,6 +86,9 @@
         <minQualityForArtistic>Excellent</minQualityForArtistic>
       </li>
     </comps>
+	<weaponTags>
+        <li>YautjaGun</li>
+    </weaponTags>
 	</ThingDef>
 	
 	<!-- ==================== Yautja - Base Makeable Gun Weapon Template ========================= -->
@@ -124,6 +128,22 @@
     <inspectorTabs>
       <li>ITab_Art</li>
     </inspectorTabs>
+	<comps>
+		<li>
+        <compClass>CompQuality</compClass>
+		</li>
+			<li Class="CompProperties_Art">
+				<nameMaker>NamerArtWeaponMelee</nameMaker>
+				<descriptionMaker>ArtDescription_WeaponMelee</descriptionMaker>
+				<minQualityForArtistic>Excellent</minQualityForArtistic>
+			</li>
+		
+	</comps>
+	
+	<weaponTags>
+        <li>YautjaMelee</li>
+    </weaponTags>
+  
   </ThingDef>
   
 	<!--==================== Mod - Base Sharp Melee Weapon Template =========================-->
