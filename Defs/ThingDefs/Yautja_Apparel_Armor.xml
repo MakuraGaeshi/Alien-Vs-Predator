@@ -58,9 +58,9 @@
 				<li>Shell</li>
 			</layers>
 			<tags>
-				<li>YautjaLightChestplate</li>
+				<li>YautjaChestplate</li>
+				<li>YautjaArmour</li>
 				<li>YautjaLightArmour</li>
-				<li>Yautja</li>
 			</tags>
 			<defaultOutfitTags>
 				<li>Soldier</li>
@@ -125,7 +125,7 @@
 			<tags>
 				<li>YautjaChestplate</li>
 				<li>YautjaArmour</li>
-				<li>Yautja</li>
+				<li>YautjaHunterArmour</li>
 			</tags>
 			<defaultOutfitTags>
 				<li>Soldier</li>
@@ -190,7 +190,8 @@
 			<tags>
 				<li>YautjaChestplate</li>
 				<li>YautjaArmour</li>
-				<li>Yautja</li>
+				<li>YautjaHeavyArmour</li>
+				
 			</tags>
 			<defaultOutfitTags>
 				<li>Soldier</li>
@@ -315,7 +316,7 @@
 			</layers>
 			<tags>
 				<li>YautjaBioMask</li>
-				<li>Yautja</li>
+				<li>YautjaHelmet</li>
 			</tags>
 			<defaultOutfitTags>
 				<li>Soldier</li>
@@ -380,7 +381,7 @@
 			<tags>
 				<li>YautjaChestplate</li>
 				<li>YautjaArmour</li>
-				<li>Yautja</li>
+				<li>YautjaEliteArmour</li>
 			</tags>
 			<defaultOutfitTags>
 				<li>Soldier</li>
@@ -441,8 +442,8 @@
 				<li>Overhead</li>
 			</layers>
 			<tags>
-				<li>YautjaBioMask</li>
-				<li>Yautja</li>
+				<li>YautjaHelmet</li>
+				<li>YautjaEliteBioMask</li>
 			</tags>
 			<defaultOutfitTags>
 				<li>Soldier</li>
@@ -511,7 +512,7 @@
 			<tags>
 				<li>YautjaChestplate</li>
 				<li>YautjaArmour</li>
-				<li>Yautja</li>
+				<li>YautjaOrnateArmour</li>
 			</tags>
 			<defaultOutfitTags>
 				<li>Soldier</li>
@@ -573,8 +574,8 @@
 				<li>Overhead</li>
 			</layers>
 			<tags>
-				<li>YautjaBioMask</li>
-				<li>Yautja</li>
+				<li>YautjaHelmet</li>
+				<li>YautjaOrnateBioMask</li>
 			</tags>
 			<defaultOutfitTags>
 				<li>Soldier</li>

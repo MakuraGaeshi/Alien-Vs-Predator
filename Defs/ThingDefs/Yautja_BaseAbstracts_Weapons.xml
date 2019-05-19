@@ -75,6 +75,9 @@
         <minQualityForArtistic>Excellent</minQualityForArtistic>
       </li>
     </comps>
+	<weaponTags>
+        <li>YautjaGun</li>
+    </weaponTags>
 	</ThingDef>
 	
 	<!-- ==================== Yautja - Base Makeable Gun Weapon Template ========================= -->
@@ -125,6 +128,11 @@
 			</li>
 		
 	</comps>
+	
+	<weaponTags>
+        <li>YautjaMelee</li>
+    </weaponTags>
+  
   </ThingDef>
   
 	<!--==================== Mod - Base Sharp Melee Weapon Template =========================-->

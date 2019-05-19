@@ -60,6 +60,11 @@
 			</recipeUsers>
 			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
 		</recipeMaker>
+		<apparel>
+			<tags>
+				<li>YautjaArmour</li>
+			</tags>
+		</apparel>
 	</ThingDef>
 	
 </Defs>
