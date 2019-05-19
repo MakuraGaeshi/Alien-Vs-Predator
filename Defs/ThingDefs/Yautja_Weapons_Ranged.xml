@@ -25,6 +25,7 @@
 			<li>Yautja</li>
 			<li>YautjaBow</li>
 			<li>YautjaHuntingBow</li>
+			<li>YautjaRanged</li>
     </weaponTags>
     <verbs>
       <li>
@@ -56,10 +57,11 @@
 			<li>ElectricSmithy</li>
 			<li>FueledSmithy</li>
 			<li>CraftingSpot</li>
+			
 		</recipeUsers>
       <researchPrerequisite>RRY_YautjaRanged_Basic</researchPrerequisite>
       <skillRequirements>
-        <Crafting>6</Crafting>
+        <Crafting>4</Crafting>
       </skillRequirements>
     </recipeMaker>
 	<comps>     
@@ -116,6 +118,7 @@
 			<li>Yautja</li>
 			<li>YautjaBow</li>
 			<li>YautjaCompoundBow</li>
+			<li>YautjaRanged</li>
     </weaponTags>
     <verbs>
       <li>
@@ -250,6 +253,7 @@
 			<li>Yautja</li>
 			<li>YautjaGun</li>
 			<li>YautjaBlaster</li>
+			<li>YautjaRanged</li>
 		</weaponTags>
 		<thingCategories>
 			<li>RRY_RangedWeapons</li>
@@ -349,6 +353,7 @@
 			<li>Yautja</li>
 			<li>YautjaGun</li>
 			<li>YautjaNeedler</li>
+			<li>YautjaRanged</li>
 		</weaponTags>
 		<thingCategories>
 			<li>RRY_RangedWeapons</li>
@@ -432,7 +437,9 @@
     </tools>
     <weaponTags Inherit="False">
       <li>SpearRifle</li>
-    </weaponTags>
+	  <li>YautjaGun</li>
+	  <li>YautjaRanged</li>
+	</weaponTags>
   </ThingDef> 
   <ThingDef ParentName="BaseBullet">
     <defName>RRY_Bullet_SpearRifle</defName>
@@ -470,12 +477,13 @@
       <AccuracyShort>1.2</AccuracyShort>
       <AccuracyMedium>1</AccuracyMedium>
       <AccuracyLong>0.9</AccuracyLong>
-      <RangedWeapon_Cooldown>5</RangedWeapon_Cooldown>
+      <RangedWeapon_Cooldown>3</RangedWeapon_Cooldown>
     </statBases>
     <weaponTags>
 			<li>Yautja</li>
 			<li>YautjaGun</li>
 			<li>YautjaSmartDisk</li>
+			<li>YautjaRanged</li>
     </weaponTags>
     <recipeMaker>
 	  <researchPrerequisite>RRY_YautjaRanged_Basic</researchPrerequisite>
@@ -488,7 +496,7 @@
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <defaultProjectile>RRY_SmartDisk_Thrown</defaultProjectile>
-        <warmupTime>3</warmupTime>
+        <warmupTime>4</warmupTime>
         <range>20</range>
         <soundCast>Interact_BeatFire</soundCast>
         <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>

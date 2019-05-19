@@ -8,9 +8,9 @@
 	<backstoryCategories>
 			<li>RRY_Yautja_Standard</li>
   	</backstoryCategories>
-    <chemicalAddictionChance>0.0</chemicalAddictionChance>
+    <chemicalAddictionChance>0.05</chemicalAddictionChance>
     <baseRecruitDifficulty>1</baseRecruitDifficulty>
-    <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
+    <apparelAllowHeadgearChance>0.85</apparelAllowHeadgearChance>
     <apparelTags>
       <li>Yautja</li>
       <li>YautjaWristblade</li>
@@ -19,7 +19,7 @@
   
   <!-- ============================ Yautja Civilian Base ========================== -->
   <PawnKindDef Name="RRY_YautjaCivBase" ParentName="RRY_YautjaBase" Abstract="True">
-    <combatPower>25</combatPower>
+    <combatPower>50</combatPower>
     <itemQuality>Normal</itemQuality>
     <isFighter>false</isFighter>
     <gearHealthRange>
@@ -36,6 +36,7 @@
     </weaponMoney>
     <weaponTags>
 		<li>YautjaCombistaff</li>
+		<li>YautjaHuntingBow</li>
     </weaponTags>
     <techHediffsMoney>
       <min>200</min>
@@ -76,7 +77,8 @@
     <labelPlural>Yautja Ancients</labelPlural>
     <factionLeader>true</factionLeader>
     <isFighter>true</isFighter>
-    <gearHealthRange>
+	<itemQuality>Excellent</itemQuality>
+   <gearHealthRange>
       <min>0.5</min>
       <max>2.0</max>
     </gearHealthRange>
@@ -84,18 +86,22 @@
       <min>3000</min>
       <max>9000</max>
     </apparelMoney>
-    <apparelTags>
-      <li>Yautja</li>
-      <li>YautjaArmour</li>
-      <li>YautjaHead</li>
+    <apparelTags Inherit="False">
+      <li>YautjaGreaves</li>
+      <li>YautjaOrnateArmour</li>
+      <li>YautjaOrnateBioMask</li>
+	  <li>YautjaEliteBioMask</li>
+	  <li>YautjaEliteArmour</li>
+	  <li>YautjaWristblade</li>
+	  <li>YautjaShoulderCannon</li>
     </apparelTags>
     <weaponMoney>
       <min>10000</min>
       <max>15500</max>
     </weaponMoney>
     <weaponTags>
-		<li>YautjaGun</li>
 		<li>YautjaMelee</li>
+		<li>YautjaRanged</li>
     </weaponTags>
     <techHediffsMoney>
       <min>200</min>
@@ -155,9 +161,11 @@
     </apparelMoney>
     <apparelTags>
       <li>Yautja</li>
-      <li>YautjaArmour</li>
+      <li>YautjaLightArmour</li>
+	  <li>YautjaHunterArmour</li>
+	  <li>YautjaHeavyArmour</li>
 	  <li>YautjaGreaves</li>
-      <li>YautjaHead</li>
+      <li>YautjaBioMask</li>
     </apparelTags>
     <weaponMoney>
       <min>300</min>
