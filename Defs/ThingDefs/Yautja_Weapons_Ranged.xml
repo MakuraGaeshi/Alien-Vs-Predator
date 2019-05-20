@@ -27,7 +27,6 @@
       <RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
     </statBases>
     <weaponTags>
-			<li>Yautja</li>
 			<li>YautjaBow</li>
 			<li>YautjaHuntingBow</li>
 			<li>YautjaRanged</li>
@@ -121,7 +120,6 @@
       <RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
     </statBases>
     <weaponTags>
-			<li>Yautja</li>
 			<li>YautjaBow</li>
 			<li>YautjaCompoundBow</li>
 			<li>YautjaRanged</li>

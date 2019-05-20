@@ -12,8 +12,9 @@
     <baseRecruitDifficulty>1</baseRecruitDifficulty>
     <apparelAllowHeadgearChance>0.85</apparelAllowHeadgearChance>
     <apparelTags>
-      <li>Yautja</li>
+      <li>YautjaArmour</li>
       <li>YautjaWristblade</li>
+	  <li>YautjaHelmet</li>
     </apparelTags>
   </PawnKindDef>
   
@@ -37,6 +38,12 @@
     <weaponTags>
 		<li>YautjaCombistaff</li>
 		<li>YautjaHuntingBow</li>
+		<li>YautjaSmartDisk</li>
+		<li>YautjaNeedler</li>
+		<li>NeolithicMeleeBasic</li>
+		<li>NeolithicMeleeDecent</li>
+		<li>NeolithicMeleeAdvanced</li>
+		<li>NeolithicRangedHeavy</li>
     </weaponTags>
     <techHediffsMoney>
       <min>200</min>
@@ -140,6 +147,8 @@
 	<backstoryCategories>
 			<li>RRY_Yautja_Standard</li>
   	</backstoryCategories>
+	<apparelTags Inherit="False">
+		<li>YautjaWebbing</li>
   </PawnKindDef>
  
   <!-- ============================ Yautja RRY_Security ========================== -->
@@ -172,7 +181,8 @@
       <max>1500</max>
     </weaponMoney>
     <weaponTags>
-		<li>YautjaCombistaff</li>
+		<li>YautjaRanged</li>
+		<li>YautjaMelee</li>	
     </weaponTags>
     <techHediffsMoney>
       <min>200</min>
@@ -210,7 +220,7 @@
       <li>Yautja</li>
       <li>YautjaArmour</li>
 	  <li>YautjaGreaves</li>
-      <li>YautjaHead</li>
+      <li>YautjaHelmet</li>
     </apparelTags>
     <apparelMoney>
       <min>1500</min>
@@ -221,7 +231,8 @@
       <max>1500</max>
     </weaponMoney>
     <weaponTags>
-		<li>YautjaCombistaff</li>
+		<li>YautjaRanged</li>
+		<li>YautjaMelee</li>
     </weaponTags>
     <techHediffsMoney>
       <min>1000</min>
@@ -287,7 +298,7 @@
   	</backstoryCategories>
     <weaponTags>
 		<li>YautjaGun</li>
-		<li>YautjaEliteMelee</li>
+		<li>YautjaMelee</li>
     </weaponTags>
   </PawnKindDef>
   
@@ -295,14 +306,21 @@
   <PawnKindDef ParentName="RRY_YautjaHunter">
     <defName>YautjaElite_RRY</defName>
     <label>Yautja Elite</label>
-    <combatPower>140</combatPower>
+    <combatPower>160</combatPower>
     <minGenerationAge>60</minGenerationAge>
+	<itemQuality>Excellent</itemQuality>
 	<backstoryCategories>
 			<li>RRY_Yautja_Elite</li>
   	</backstoryCategories>
-    <weaponTags>
-		<li>YautjaEliteGun</li>
-		<li>YautjaEliteMelee</li>
+    <apparelTags Inherit="false">
+		<li>YautjaEliteArmour</li>
+		<li>YautjaEliteBioMask</li>
+		<li>YautjaGreaves</li>
+		<li>YautjaWristblade</li>
+		<li>YautjaShoulderCannon<li>
+	<weaponTags>
+		<li>YautjaGun</li>
+		<li>YautjaMelee</li>
     </weaponTags>
   </PawnKindDef>
 
@@ -310,7 +328,7 @@
   <PawnKindDef ParentName="RRY_YautjaMilBase">
      <defName>YautjaElder_RRY</defName>
     <label>Yautja Elder</label>
-    <combatPower>160</combatPower>
+    <combatPower>200</combatPower>
     <minGenerationAge>300</minGenerationAge>
 	<backstoryCategories>
 			<li>RRY_Yautja_Elder</li>
@@ -326,14 +344,15 @@
     <apparelTags>
       <li>Yautja</li>
       <li>YautjaArmour</li>
-      <li>YautjaHead</li>
+      <li>YautjaHelmet</li>
+	  <li>YautjaEquipment</li>
     </apparelTags>
     <weaponMoney>
       <min>10000</min>
       <max>15500</max>
     </weaponMoney>
     <weaponTags>
-		<li>YautjaGun</li>
+		<li>YautjaRanged</li>
 		<li>YautjaMelee</li>
     </weaponTags>
     <techHediffsMoney>

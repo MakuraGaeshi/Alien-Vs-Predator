@@ -120,7 +120,7 @@
 		<weaponTags>
 			<li>YautjaMelee</li>
 			<li>YautjaBladedMaul</li>
-			<li>Yautja</li>
+			
 		</weaponTags>
 		<thingCategories>
 			<li>RRY_MeleeWeapons</li>
@@ -174,7 +174,7 @@
     <weaponTags>
 		<li>YautjaMelee</li>
 		<li>YautjaCombistaff</li>
-		<li>Yautja</li>
+		
     </weaponTags>
 		<thingCategories>
 			<li>RRY_MeleeWeapons</li>
