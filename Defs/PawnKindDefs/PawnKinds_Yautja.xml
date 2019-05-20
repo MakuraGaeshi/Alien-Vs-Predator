@@ -40,10 +40,10 @@
 		<li>YautjaHuntingBow</li>
 		<li>YautjaSmartDisk</li>
 		<li>YautjaNeedler</li>
-		<li>NeolithicMeleeBasic</li>
+		<!--<li>NeolithicMeleeBasic</li>
 		<li>NeolithicMeleeDecent</li>
 		<li>NeolithicMeleeAdvanced</li>
-		<li>NeolithicRangedHeavy</li>
+		<li>NeolithicRangedHeavy</li>-->
     </weaponTags>
     <techHediffsMoney>
       <min>200</min>
@@ -149,6 +149,7 @@
   	</backstoryCategories>
 	<apparelTags Inherit="False">
 		<li>YautjaWebbing</li>
+	</apparelTags>	
   </PawnKindDef>
  
   <!-- ============================ Yautja RRY_Security ========================== -->
@@ -317,7 +318,8 @@
 		<li>YautjaEliteBioMask</li>
 		<li>YautjaGreaves</li>
 		<li>YautjaWristblade</li>
-		<li>YautjaShoulderCannon<li>
+		<li>YautjaShoulderCannon</li>
+	</apparelTags>
 	<weaponTags>
 		<li>YautjaGun</li>
 		<li>YautjaMelee</li>
