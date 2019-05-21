@@ -35,6 +35,13 @@ namespace RRYautja
             MethodInfo method6 = typeof(HarmonyPatches).GetMethod("Patch_PawnRenderer_RenderPawnAt");
             harmony.Patch(method5, null, new HarmonyMethod(method6), null);
 
+            /*
+            MethodInfo method7 = typeof(HarmonyPatches).GetMethod("Patch_PawnRenderer_RenderPawnAt_XenomorphCocoon");
+            harmony.Patch(method5, null, new HarmonyMethod(method7), null);
+
+            harmony.Patch(AccessTools.Method(typeof(Pawn_DrawTracker), "DrawAt", null, null), null, new HarmonyMethod(typeof(HarmonyPatches), "DrawAt_PostFix", null), null);
+            */
+
             //Patch_PawnRenderer_WigglerTick
             /*
             harmony.Patch(
@@ -49,6 +56,7 @@ namespace RRYautja
                 typeof(RotDrawMode),
                 typeof(bool)
             }, null), new HarmonyMethod(typeof(HarmonyPatches), "PawnRenderer_Blur_Prefix", null), null, null);
+            
             /*
             harmony.Patch(AccessTools.Method(typeof(PawnRenderer), "RenderPawnAt", new Type[]
             {
@@ -222,6 +230,62 @@ namespace RRYautja
                     comp.DrawImplant();
                 }
             }
+
+        }
+
+        public static void DrawAt_PostFix(Pawn_DrawTracker __instance, Vector3 loc)
+        {
+            Pawn pawn = (Pawn)AccessTools.Field(typeof(Pawn_DrawTracker), "pawn").GetValue(__instance);
+            
+            bool flag = pawn.CurrentBed()!=null && pawn.Spawned;
+            if (flag)
+            {
+                bool flag2 = pawn.CurrentBed() is Building_XenomorphCocoon;
+                if (flag2)
+                {
+                    loc = new Vector3(loc.x+0.5f, loc.y, loc.z);
+                }
+
+            }
+        }
+
+        // Token: 0x0600000C RID: 12 RVA: 0x0000283C File Offset: 0x00000A3C
+        public static void Patch_PawnRenderer_RenderPawnAt_XenomorphCocoon(PawnRenderer __instance, ref Vector3 drawLoc, ref RotDrawMode bodyDrawType, ref bool headStump)
+        {
+            Pawn pawn = HarmonyPatches.PawnRenderer_GetPawn(__instance);
+            bool selected = Find.Selector.SelectedObjects.Contains(pawn);
+            if (pawn.GetPosture() != PawnPosture.Standing)
+            {
+                Rot4 rot = pawn.Rotation;
+                Building_Bed building_Bed = pawn.CurrentBed();
+                bool flag = building_Bed is Building_XenomorphCocoon;
+                bool renderBody;
+                float angle;
+                Vector3 rootLoc;
+                if (building_Bed != null && pawn.RaceProps.Humanlike && flag)
+                {
+                    renderBody = building_Bed.def.building.bed_showSleeperBody;
+                    Rot4 rotation = building_Bed.Rotation;
+                    rotation.AsInt += 2;
+                    angle = rotation.AsAngle;
+                    AltitudeLayer altLayer = (AltitudeLayer)Mathf.Max((int)building_Bed.def.altitudeLayer, 15);
+                    Vector3 vector2 = pawn.Position.ToVector3ShiftedWithAltitude(altLayer);
+                    Vector3 vector3 = vector2;
+                    vector3.y += 0.02734375f;
+                    float d = -__instance.BaseHeadOffsetAt(Rot4.South).z;
+                    d = -__instance.BaseHeadOffsetAt(Rot4.South).z;
+                    Vector3 a = rotation.FacingCell.ToVector3();
+                    rootLoc = vector2 + a * d;
+                    rootLoc.y += 0.0078125f;
+                    rootLoc.x += 0.5f;
+                    if (selected) Log.Message(string.Format("Patch_PawnRenderer_RenderPawnAt_XenomorphCocoon 4 Old Drawloc {0}", drawLoc));
+                    if (selected) Log.Message(string.Format("Patch_PawnRenderer_RenderPawnAt_XenomorphCocoon 5 Old pawn.DrawPos {0}", pawn.DrawPos));
+                    drawLoc = rootLoc;
+                    if (selected) Log.Message(string.Format("Patch_PawnRenderer_RenderPawnAt_XenomorphCocoon 6 new Drawloc {0}", drawLoc));
+                    if (selected) Log.Message(string.Format("Patch_PawnRenderer_RenderPawnAt_XenomorphCocoon 7 new pawn.DrawPos {0}", pawn.DrawPos));
+                }
+            }
+
 
         }
 
@@ -478,7 +542,7 @@ namespace RRYautja
             else if (request.Faction == Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph))
             {
             //    Log.Message(string.Format("Xenomorph spawning"));
-                if (__result.kindDef==XenomorphDefOf.RRY_Xenomorph_Queen)
+                if (request.KindDef==XenomorphDefOf.RRY_Xenomorph_Queen)
                 {
                     if (__result.Map!=null)
                     {
@@ -487,18 +551,23 @@ namespace RRYautja
                         {
                             if (p.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
                             {
+                                Log.Message(string.Format("Queen Found"));
                                 QueenPresent = true;
                                 break;
                             }
                         }
                         if (QueenPresent)
                         {
-                            __result.kindDef = XenomorphDefOf.RRY_Xenomorph_Warrior;
-                            __result.gender = Gender.None;
+                            Log.Message(string.Format("Queen Present: {0}", QueenPresent));
+                            request = new PawnGenerationRequest(XenomorphDefOf.RRY_Xenomorph_Warrior, request.Faction, request.Context, -1, true, false, false, false, false, true, 0f, fixedGender: Gender.None, allowGay: false);
+                            __result = PawnGenerator.GeneratePawn(request);
                             return;
                         }
                     }
-                    __result.gender = Gender.Female;
+                    else
+                    {
+                        __result.gender = Gender.Female;
+                    }
                 }
                 else
                 {

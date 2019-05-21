@@ -83,7 +83,6 @@ namespace RimWorld
         HediffDef unmarked = YautjaDefOf.RRY_Hediff_BloodedUM;
         HediffDef marked = YautjaDefOf.RRY_Hediff_BloodedM;
         HediffDef othermarked = YautjaDefOf.RRY_Hediff_BloodedM;
-        Hediff Marked;
         Hediff otherMarked;
         int stageIndex;
         // Token: 0x06000A02 RID: 2562 RVA: 0x0004F2B0 File Offset: 0x0004D6B0
@@ -148,7 +147,6 @@ namespace RimWorld
         HediffDef unmarked = YautjaDefOf.RRY_Hediff_BloodedUM;
         HediffDef marked = YautjaDefOf.RRY_Hediff_BloodedM;
         HediffDef othermarked = YautjaDefOf.RRY_Hediff_BloodedM;
-        Hediff Marked;
         Hediff otherMarked;
         int stageIndex;
         // Token: 0x06000A02 RID: 2562 RVA: 0x0004F2B0 File Offset: 0x0004D6B0

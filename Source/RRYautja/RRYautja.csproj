@@ -80,6 +80,10 @@
     <Compile Include="Xenomorph\Building_XenoEgg.cs" />
     <None Include="Xenomorph\Building_XenomorphCocoon - Copy.cs.bak" />
     <Compile Include="Xenomorph\Building_XenomorphCocoon.cs" />
+    <Compile Include="Xenomorph\JobDriver_CocoonHost.cs" />
+    <Compile Include="Xenomorph\MapComponent_XenomorphCocoonTracker.cs" />
+    <Compile Include="Xenomorph\HediffComp_XenomorphCocoon.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_XenoTakeToCocoon.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphFightEnemies.cs" />
     <Compile Include="Xenomorph\HediffGiver_StartWithXenomorphHediff.cs" />
     <Compile Include="util\MinifiedThingNoBox.cs" />

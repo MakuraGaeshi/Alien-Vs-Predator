@@ -146,9 +146,6 @@ namespace RRYautja
         // Token: 0x0400144B RID: 5195
         private const float CrateToGraphicScale = 1.16f;
 
-        // Token: 0x0400144C RID: 5196
-        private ThingOwner innerContainer;
-
         // Token: 0x0400144D RID: 5197
         private Graphic cachedGraphic;
 

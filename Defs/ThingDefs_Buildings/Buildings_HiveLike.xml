@@ -89,7 +89,10 @@
 		<Faction>RRY_Xenomorph</Faction>
 		<TunnelDef>TunnelHiveLikeSpawner</TunnelDef>
 		<PawnKinds>
-		  <li>RRY_Xenomorph_FaceHugger</li>
+		  <!-- <li>RRY_Xenomorph_FaceHugger</li> -->
+		  <!-- <li>RRY_Xenomorph_Queen</li> -->
+		  <!-- <li>RRY_Xenomorph_Predalien</li> -->
+		  <!-- <li>RRY_Xenomorph_Neomorph</li> -->
 		  <li>RRY_Xenomorph_Warrior</li>
 		  <li>RRY_Xenomorph_Drone</li>
 		  <li>RRY_Xenomorph_Runner</li>

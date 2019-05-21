@@ -99,6 +99,29 @@
   </HediffDef>
   
     <HediffDef ParentName="RRY_SpecialBadHeDiff">
+    <defName>RRY_Hediff_Cocooned</defName>
+    <label>Cocooned</label>
+    <labelNoun>Cocooned by a Xenomorph</labelNoun>
+    <stages>
+      <li>
+		<statOffsets>
+			<MoveSpeed>-10</MoveSpeed>
+		</statOffsets>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <setMax>0</setMax>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+    <comps> 
+		  <li Class="RRYautja.HediffCompProperties_XenomorphCocoon">
+      </li>
+    </comps>
+  </HediffDef>
+
+    <HediffDef ParentName="RRY_SpecialBadHeDiff">
     <defName>RRY_Hediff_Pinned</defName>
     <label>Pinned</label>
     <labelNoun>Pinned in place </labelNoun>

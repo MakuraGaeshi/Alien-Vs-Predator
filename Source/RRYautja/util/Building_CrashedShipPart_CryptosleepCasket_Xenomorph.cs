@@ -25,7 +25,7 @@ namespace RimWorld
             IntVec3 position = this.Position;
             ThingDef named = XenomorphDefOf.RRY_XenomorphCryptosleepCasket;
             int num = (named.Size.x > named.Size.z) ? named.Size.x : named.Size.z;
-            int num2 = 0;
+        //    int num2 = 0;
             base.Destroy(mode);
             int count = Rand.RangeInclusive(0, 3);
             if (count>0)

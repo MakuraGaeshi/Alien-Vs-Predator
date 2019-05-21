@@ -25,4 +25,21 @@
     <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
   </JobDef>
   
+  <!--
+  <JobDef>
+    <defName>RRY_Job_PlaceCocoon</defName>
+    <driverClass>RRYautja.JobDriver_SpinWeb</driverClass>
+    <reportString>spinning web.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+  -->
+
+  <JobDef>
+    <defName>RRY_Job_CocoonHost</defName>
+    <driverClass>RRYautja.JobDriver_CocoonHost</driverClass>
+    <reportString>trapping TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <suspendable>false</suspendable>
+    <checkOverrideOnDamage>OnlyIfInstigatorNotJobTarget</checkOverrideOnDamage>
+  </JobDef>
 </Defs>

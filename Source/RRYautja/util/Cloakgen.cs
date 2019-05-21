@@ -71,7 +71,7 @@ namespace RRYautja
                     yield return item;
                     //    item = null;
                 }
-                IEnumerator<Gizmo> enumerator = null;
+            //    IEnumerator<Gizmo> enumerator = null;
             }
             base.GetGizmos();
             yield break;

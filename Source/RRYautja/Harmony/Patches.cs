@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System;
 using Verse.AI;
 using System.Text;
+using System.Linq;
 
 namespace RRYautja
 {
@@ -21,17 +22,6 @@ namespace RRYautja
 
     }
 
-    /*
-    [HarmonyPatch(typeof(HealthUtility), "AdjustSeverity")]
-    public static class HealthUtility_AdjustSeverityPatch
-    {
-        [HarmonyPostfix]
-        public static void postPostAdjustSeverity(Pawn __instance, ref HediffDef ___hdDef, ref float ___sevOffset)
-        {
-        //    Log.Message(string.Format("Patch_HealthUtility_AdjustSeverity {0},", __instance));
-        }
-    }
-    */
 
     [HarmonyPatch(typeof(Pawn), "ThreatDisabled")]
     public static class Pawn_ThreatDisabledPatch
@@ -263,6 +253,23 @@ namespace RRYautja
         }
     }
 
+    // Token: 0x02000088 RID: 136
+    [HarmonyPatch(typeof(RestUtility), "IsValidBedFor")]
+    internal static class RestUtility_Bed_IsValidBedFor
+    {
+        [HarmonyPostfix]
+        public static void Postfix(Thing bedThing, Pawn sleeper, Pawn traveler, ref bool __result)
+        {
+            bool flag = bedThing is Building_XenomorphCocoon;
+            bool flag2 = traveler != null ? traveler.kindDef.race.defName.Contains("RRY_Xenomorph") : false ;
+            bool flag3 = XenomorphUtil.isInfectablePawn(sleeper);
+            __result = __result&&!flag || (__result && flag && flag2);
+            Log.Message(string.Format("RestUtility_Bed_IsValidBedFor sleeper: {0} traveler: {1} result: {2} = !flag: {3} && flag2: {4}", sleeper, traveler, __result, !flag , flag2));
+            return;
+        }
+    }
+
+    /*
     // Token: 0x02000086 RID: 134
     [HarmonyPatch(typeof(Building_Bed), "GetSleepingSlotPos")]
     internal static class Building_Bed_GetSleepingSlotPos
@@ -271,10 +278,13 @@ namespace RRYautja
         private static void Postfix(Building_Bed __instance, ref IntVec3 __result)
         {
             bool flag = __instance is Building_XenomorphCocoon;
+            bool selected = Find.Selector.SelectedObjects.Contains(__instance);
+            if (selected) Log.Message(string.Format("Building_Bed_GetSleepingSlotPos 1 Old Drawloc {0}", __result));
             if (flag)
             {
-                
 
+
+                if (selected) Log.Message(string.Format("Building_Bed_GetSleepingSlotPos 2 Old Drawloc {0}", __result));
                 IntVec3 bedCenter = __instance.Position;
                 Rot4 bedRot = __instance.Rotation;
                 IntVec2 bedSize = __instance.def.size;
@@ -292,8 +302,9 @@ namespace RRYautja
                     __result = new IntVec3(cellRect.minX, bedCenter.y, cellRect.maxZ);
                 }
                 else __result = new IntVec3(cellRect.maxX, bedCenter.y, cellRect.maxZ);
+                if (selected) Log.Message(string.Format("Building_Bed_GetSleepingSlotPos 3 new Drawloc {0}", __result));
 
-                /*
+                
                 
 
                 if (__instance.Rotation == Rot4.North)
@@ -314,8 +325,9 @@ namespace RRYautja
                 }
                 else __result = __instance.Position;
 
-                */
+                
             }
         }
     }
+    */
 }

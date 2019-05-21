@@ -76,6 +76,7 @@ namespace RRYautja
             bool destroyed = base.Destroyed;
             if (!destroyed)
             {
+                MoteMaker.ThrowDustPuff(this.Position, base.Map, 0.2f);
                 List<Thing> thingList = GridsUtility.GetThingList(base.Position, base.Map);
                 for (int i = 0; i < thingList.Count; i++)
                 {

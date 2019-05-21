@@ -13,7 +13,7 @@ namespace RimWorld
         protected override Job TryGiveJob(Pawn pawn)
         {
             IntVec3 c;
-            if (!RCellFinder.TryFindBestExitSpot(pawn, out c, TraverseMode.ByPawn)&&(!XenomorphUtil.EggsPresent(pawn.Map)|| XenomorphUtil.ClosestReachableEgg(pawn)==null))
+            if (!RCellFinder.TryFindBestExitSpot(pawn, out c, TraverseMode.ByPawn)&&(!XenomorphUtil.EggsPresent(pawn.Map)|| (XenomorphUtil.EggsPresent(pawn.Map) && XenomorphUtil.ClosestReachableEgg(pawn) == null)))
             {
                 return null;
             }
@@ -21,11 +21,25 @@ namespace RimWorld
             {
                 if (XenomorphUtil.SpawnedEggsNeedHosts(pawn.Map).Count > 1)
                 {
-                    c = XenomorphUtil.SpawnedEggsNeedHosts(pawn.Map).RandomElement().Position;
+                    Thing eggThing = XenomorphUtil.SpawnedEggsNeedHosts(pawn.Map).RandomElement();
+                    Thing cocoonThing = null;
+                    if (XenomorphUtil.CocoonsPresent(pawn.Map))
+                    {
+                        cocoonThing = GenClosest.ClosestThingReachable(eggThing.Position, eggThing.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 3f, null, null, 0, -1, false, RegionType.Set_Passable, false);
+
+                    }
+                    c = cocoonThing!=null ? cocoonThing.Position : eggThing.Position;
                 }
                 else if (XenomorphUtil.SpawnedEggsNeedHosts(pawn.Map).Count == 1)
                 {
-                    c = XenomorphUtil.ClosestReachableEggNeedsHost(pawn).Position.RandomAdjacentCell8Way();
+                    Thing eggThing = XenomorphUtil.ClosestReachableEggNeedsHost(pawn);
+                    Thing cocoonThing = null;
+                    if (XenomorphUtil.CocoonsPresent(pawn.Map))
+                    {
+                        cocoonThing = GenClosest.ClosestThingReachable(eggThing.Position, eggThing.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 3f, null, null, 0, -1, false, RegionType.Set_Passable, false);
+
+                    }
+                    c = cocoonThing != null ? cocoonThing.Position : eggThing.Position;
                 }
                 else
                 {
@@ -33,11 +47,12 @@ namespace RimWorld
                     List<ThingDef_HiveLike> hivedefs = DefDatabase<ThingDef_HiveLike>.AllDefsListForReading.FindAll(x => x.Faction == pawn.Faction.def);
                     foreach (ThingDef_HiveLike hivedef in hivedefs)
                     {
-                    //    Log.Message(string.Format("JobGiver_MaintainHiveLikes found hiveDef: {0} for {1}", hiveDef, pawn));
+                        Log.Message(string.Format("JobGiver_MaintainHiveLikes found hiveDef: {0} for {1}", hiveDef, pawn));
                         if (hivedef.Faction == pawn.Faction.def)
                         {
                             hiveDef = hivedef;
-                        //    Log.Message(string.Format("JobGiver_MaintainHiveLikes set hiveDef: {0} for {1}", hiveDef, pawn));
+                                Log.Message(string.Format("JobGiver_MaintainHiveLikes set hiveDef: {0} for {1}", hiveDef, pawn));
+
                             break;
                         }
                     }
@@ -48,7 +63,7 @@ namespace RimWorld
                 }
             }
             Pawn t;
-            if (XenomorphKidnapUtility.TryFindGoodKidnapVictim(pawn, 18f, out t, null) && !GenAI.InDangerousCombat(pawn))
+            if (XenomorphKidnapUtility.TryFindGoodKidnapVictim(pawn, 60f, out t, null) && !GenAI.InDangerousCombat(pawn))
             {
                 return new Job(XenomorphDefOf.RRY_Job_XenomorphKidnap)
                 {

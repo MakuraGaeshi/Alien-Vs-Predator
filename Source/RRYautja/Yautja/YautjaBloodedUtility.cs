@@ -30,13 +30,13 @@ namespace RRYautja
             {
                 case BloodStatusMode.Unblooded:
                     return "BloodStatus_Unblooded".Translate();
-                    return "HediffGrowthMode_Growing".Translate();
+                    //return "HediffGrowthMode_Growing".Translate();
                 case BloodStatusMode.Unmarked:
                     return "BloodStatus_Unmarked".Translate(pawn.LabelShortCap);
-                    return "HediffGrowthMode_Stable".Translate();
+                    //return "HediffGrowthMode_Stable".Translate();
                 case BloodStatusMode.Marked:
                     return "BloodStatus_Marked".Translate();
-                    return "HediffGrowthMode_Remission".Translate();
+                    //return "HediffGrowthMode_Remission".Translate();
                 default:
                     throw new ArgumentException();
             }

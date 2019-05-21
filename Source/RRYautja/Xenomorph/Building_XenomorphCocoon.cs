@@ -69,9 +69,22 @@ namespace RimWorld
             {
                 foreach (Pawn p in this.CurOccupants)
                 {
+                    bool flag = p.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned);
                     if (p.health.hediffSet.hediffs!=null)
                     {
-                    //    Log.Message(string.Format("{0}", p.health.hediffSet.hediffs.ToString()));
+                        //    Log.Message(string.Format("{0}", p.health.hediffSet.hediffs.ToString()));
+                        if (!flag)
+                        {
+                            p.health.AddHediff(XenomorphDefOf.RRY_Hediff_Cocooned);
+                        }
+                    }
+                    else
+                    {
+                        if (!flag)
+                        {
+                            p.health.AddHediff(XenomorphDefOf.RRY_Hediff_Cocooned);
+                        }
+
                     }
                 }
             }
@@ -154,12 +167,12 @@ namespace RimWorld
         
 		// Token: 0x060024DB RID: 9435 RVA: 0x001184F8 File Offset: 0x001168F8
 		public override IEnumerable<Gizmo> GetGizmos()
-		{
+        {
+            /*
 			foreach (Gizmo g in base.GetGizmos())
 			{
 				yield return g;
 			}
-            /*
 			if (this.def.building.bed_humanlike && base.Faction == Faction.OfPlayer)
 			{
 				Command_Toggle pris = new Command_Toggle();
@@ -207,7 +220,7 @@ namespace RimWorld
 				}
 			}
             */
-			yield break;
+            yield break;
 		}
         /*
 		// Token: 0x060024DC RID: 9436 RVA: 0x0011851C File Offset: 0x0011691C
@@ -308,10 +321,103 @@ namespace RimWorld
 		}
         */
 
+        private IntVec3 nextValidPlacementSpot;
+        public IntVec3 NextValidPlacementSpot
+        {
+            get
+            {
+                bool flag = this.nextValidPlacementSpot == default(IntVec3) || this.nextValidPlacementSpot == IntVec3.Invalid;
+                if (flag)
+                {
+                    HashSet<Building_XenomorphCocoon> hashSet = new HashSet<Building_XenomorphCocoon>();
+                    IEnumerable<IntVec3> enumerable = GenAdj.CellsAdjacent8Way(new TargetInfo(base.PositionHeld, base.MapHeld, false));
+                    foreach (IntVec3 intVec in enumerable)
+                    {
+                        bool flag2 = GenGrid.Walkable(intVec, base.MapHeld);
+                        if (flag2)
+                        {
+                            Building_XenomorphCocoon item;
+                            bool flag3 = (item = (GridsUtility.GetThingList(intVec, base.Map).FirstOrDefault((Thing x) => x is Building_XenomorphCocoon) as Building_XenomorphCocoon)) != null;
+                            if (flag3)
+                            {
+                                hashSet.Add(item);
+                            }
+                            else
+                            {
+                                bool flag4 = GridsUtility.GetThingList(intVec, base.Map).FirstOrDefault((Thing x) => x is Building_XenomorphCocoon) == null;
+                                if (flag4)
+                                {
+                                    bool accepted = GenConstruct.CanPlaceBlueprintAt(this.def, intVec, Rot4.North, base.Map, false, null).Accepted;
+                                    if (accepted)
+                                    {
+                                        this.nextValidPlacementSpot = intVec;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    foreach (Building_XenomorphCocoon building_Cocoon in hashSet)
+                    {
+                        bool flag5 = !building_Cocoon.resolvingCurrently;
+                        if (flag5)
+                        {
+                            building_Cocoon.ResolvedNeighborPos();
+                        }
+                    }
+                }
+                return this.nextValidPlacementSpot;
+            }
+        }
+        private bool resolvingCurrently = false;
+        private Pawn spinner;
+        public Pawn Spinner
+        {
+            get
+            {
+                return this.spinner;
+            }
+            set
+            {
+                this.spinner = value;
+            }
+        }
+        // Token: 0x06000009 RID: 9 RVA: 0x00002510 File Offset: 0x00000710
+        public IntVec3 ResolvedNeighborPos()
+        {
+            this.resolvingCurrently = true;
+            IntVec3 intVec = this.NextValidPlacementSpot;
+            bool flag = !GenGrid.Walkable(intVec, base.MapHeld);
+            if (flag)
+            {
+                this.nextValidPlacementSpot = default(IntVec3);
+                intVec = this.NextValidPlacementSpot;
+                for (int i = 0; i < 9; i++)
+                {
+                    bool flag2 = GridsUtility.GetThingList(intVec, base.Map).FirstOrDefault((Thing x) => x is Building_XenomorphCocoon) != null;
+                    if (!flag2)
+                    {
+                        break;
+                    }
+                    this.nextValidPlacementSpot = default(IntVec3);
+                    intVec = this.NextValidPlacementSpot;
+                    bool flag3 = !GenConstruct.CanPlaceBlueprintAt(this.def, intVec, Rot4.North, base.Map, false, null).Accepted;
+                    if (!flag3)
+                    {
+                        break;
+                    }
+                    this.nextValidPlacementSpot = default(IntVec3);
+                    intVec = this.NextValidPlacementSpot;
+                }
+            }
+            this.resolvingCurrently = false;
+            return intVec;
+        }
+
         // Token: 0x060024DD RID: 9437 RVA: 0x00118808 File Offset: 0x00116C08
         public override string GetInspectString()
         {
-            return base.GetInspectString();
+            return "";
         }
 
         // Token: 0x060024DF RID: 9439 RVA: 0x00118A08 File Offset: 0x00116E08

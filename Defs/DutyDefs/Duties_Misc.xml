@@ -88,6 +88,17 @@
         <li Class="JobGiver_MaintainHiveLikes">
           <onlyIfDamagingState>true</onlyIfDamagingState>
         </li>
+		<!-- Drone Gather Infectable Hunting -->
+		<li Class="ThinkNode_ConditionalPawnKind">
+		  <pawnKind>RRY_Xenomorph_Drone</pawnKind>
+		  <subNodes>
+				<li Class="ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby">
+				  <subNodes>
+					<li Class="JobGiver_XenosKidnap" />
+				  </subNodes>
+				</li>
+		  </subNodes>
+		</li>
         <li Class="ThinkNode_ConditionalBodySize">
           <min>0.7</min>
           <subNodes>
@@ -129,6 +140,17 @@
           <targetAcquireRadius>50</targetAcquireRadius>
           <chaseTarget>false</chaseTarget>
         </li>
+		<!-- Drone Gather Infectable Hunting -->
+		<li Class="ThinkNode_ConditionalPawnKind">
+		  <pawnKind>RRY_Xenomorph_Drone</pawnKind>
+		  <subNodes>
+				<li Class="ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby">
+				  <subNodes>
+					<li Class="JobGiver_XenosKidnap" />
+				  </subNodes>
+				</li>
+		  </subNodes>
+		</li>
         <li Class="JobGiver_WanderHiveLike">
           <maxDanger>Deadly</maxDanger>
         </li>
