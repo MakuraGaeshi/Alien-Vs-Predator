@@ -3,6 +3,9 @@
 	<!-- ========================= Yautja - Armour base ========================== -->
 	<ThingDef Name="RRY_Yautja_ArmourBase" ParentName="RRY_Armor_MakeableBase" Abstract="true">
 	<description>Advanced battle armour of the Yautja</description>
+		<statBases>
+			<Flammability>0.4</Flammability>
+		</statBases>
 	</ThingDef>
 	<!-- ========================= Yautja - Headgear base ========================== -->
 	<ThingDef Name="RRY_Yautja_HeadgearBase" ParentName="RRY_Armor_MakeableBase" Abstract="true">
@@ -13,7 +16,7 @@
 	<ThingDef ParentName="RRY_Yautja_ArmourBase">
 		<defName>RRY_Apparel_HunterLightArmourChestplate</defName>
 		<label>Yautja Light Chestplate</label>
-		<description>A durable and lightweight chesplate. While it doesn't protect as effectively as the heavier sets, this piece of armour was made with freedom of movement in mind, so can help the best runner be a little faster.</description>
+		<description>A light chesplate designed with freedom of movements in mind.</description>
 		<graphicData>
 			<texPath>Things/Apparel/Yautja_Light_Armour/Yautja_LightArmour</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -21,7 +24,7 @@
 		<statBases>
 			<MarketValue>1500</MarketValue>
 			<MaxHitPoints>300</MaxHitPoints>
-			<WorkToMake>40000</WorkToMake>
+			<WorkToMake>30000</WorkToMake>
 			<ArmorRating_Blunt>0.45</ArmorRating_Blunt>
 			<ArmorRating_Sharp>0.30</ArmorRating_Sharp>
 			<ArmorRating_Heat>0.30</ArmorRating_Heat>
@@ -30,8 +33,8 @@
 			<Mass>3</Mass>
 		</statBases>
 		<equippedStatOffsets>
-			<MoveSpeed>+0.1</MoveSpeed>
-			<WorkSpeedGlobal>-0.05</WorkSpeedGlobal>
+			<MoveSpeed>+0.2</MoveSpeed>
+			
 		<!--
 			<ShootingAccuracyPawn>0.25</ShootingAccuracyPawn>
 			<PsychicSensitivity>-0.10</PsychicSensitivity>
@@ -39,12 +42,15 @@
 			-->
 		</equippedStatOffsets>
 		<costList>
-			<Steel>80</Steel>
-			<Plasteel>40</Plasteel>
-			<ComponentIndustrial>6</ComponentIndustrial>
+			<Steel>40</Steel>
+			<Plasteel>30</Plasteel>
+			<ComponentIndustrial>2</ComponentIndustrial>
 		</costList>
 		<recipeMaker>
 			<researchPrerequisite>RRY_YautjaTechBase</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>5</Crafting>
+			</skillRequirements>
 		</recipeMaker>
 		<apparel>
 			<bodyPartGroups>
@@ -78,7 +84,7 @@
 	<ThingDef ParentName="RRY_Yautja_ArmourBase">
 		<defName>RRY_Apparel_HunterArmourChestplate</defName>
 		<label>Yautja Hunter Chestplate</label>
-		<description>The standard armor worn by the hunters of the Yautja society. Proven design that offer good defense without limiting movements.</description>
+		<description>The standard armor worn by the hunters of the Yautja society.</description>
 		<graphicData>
 			<texPath>Things/Apparel/Yautja_Armour/Yautja_HunterArmor</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -86,15 +92,17 @@
 		<statBases>
 			<MarketValue>1750</MarketValue>
 			<MaxHitPoints>350</MaxHitPoints>
-			<WorkToMake>22000</WorkToMake>
-			<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
-			<ArmorRating_Sharp>0.40</ArmorRating_Sharp>
+			<WorkToMake>40000</WorkToMake>
+			<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.50</ArmorRating_Sharp>
 			<ArmorRating_Heat>0.40</ArmorRating_Heat>
 			<Insulation_Heat>7</Insulation_Heat>
 			<Insulation_Cold>7</Insulation_Cold>
 			<Mass>4</Mass>
 		</statBases>
 		<equippedStatOffsets>
+			<MoveSpeed>-0.2</MoveSpeed>
+			<WorkSpeedGlobal>-0.15</WorkSpeedGlobal>
 		<!--
 			<MoveSpeed>-0.03</MoveSpeed>
 			<WorkSpeedGlobal>-0.15</WorkSpeedGlobal>
@@ -104,18 +112,22 @@
 			-->
 		</equippedStatOffsets>
 		<costList>
-			<Steel>100</Steel>
+			<Steel>80</Steel>
 			<Plasteel>60</Plasteel>
-			<ComponentIndustrial>10</ComponentIndustrial>
+			<ComponentIndustrial>3</ComponentIndustrial>
 		</costList>
 		<recipeMaker>
 			<researchPrerequisite>RRY_YautjaTechBase</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>4</Crafting>
+			</skillRequirements>
 		</recipeMaker>
 		<apparel>
 			<bodyPartGroups>
 				<li>Torso</li>
 				<li>Shoulders</li>
 				<li>Arms</li>
+				
 			</bodyPartGroups>
 			<wornGraphicPath>Things/Apparel/Yautja_Armour/Yautja_HunterArmor</wornGraphicPath>
 			<layers>
@@ -143,7 +155,7 @@
 	<ThingDef ParentName="RRY_Yautja_ArmourBase">
 		<defName>RRY_Apparel_HunterHeavyArmourChestplate</defName>
 		<label>Yautja Heavy Chestplate</label>
-		<description>A heavy armor chestplate made to endure the most punishing treatment an avid hunter could conceivably go through. That piece is heavy and difficult to move in, but will make the hunter an unstoppable force.</description>
+		<description>A heavy armor chestplate made to endure the most punishing treatment a hunter could conceivably go through. That piece is heavy and difficult to move in, but will make the hunter an unstoppable force.</description>
 		<graphicData>
 			<texPath>Things/Apparel/Yautja_Heavy_Armour/Heavy_Armour</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -151,12 +163,12 @@
 		<statBases>
 			<MarketValue>2000</MarketValue>
 			<MaxHitPoints>500</MaxHitPoints>
-			<WorkToMake>26000</WorkToMake>
+			<WorkToMake>65000</WorkToMake>
 			<ArmorRating_Blunt>1.15</ArmorRating_Blunt>
-			<ArmorRating_Sharp>1.0</ArmorRating_Sharp>
+			<ArmorRating_Sharp>1.1</ArmorRating_Sharp>
 			<ArmorRating_Heat>0.8</ArmorRating_Heat>
-			<Insulation_Heat>14</Insulation_Heat>
-			<Insulation_Cold>14</Insulation_Cold>
+			<Insulation_Heat>10</Insulation_Heat>
+			<Insulation_Cold>10</Insulation_Cold>
 			<Mass>6</Mass>
 		</statBases>
 		<equippedStatOffsets>
@@ -169,18 +181,23 @@
 			-->
 		</equippedStatOffsets>
 		<costList>
-			<Steel>200</Steel>
-			<Plasteel>120</Plasteel>
-			<ComponentIndustrial>15</ComponentIndustrial>
+			<Steel>80</Steel>
+			<Plasteel>40</Plasteel>
+			<Uranium>20</Uranium>
+			<ComponentIndustrial>4</ComponentIndustrial>
 		</costList>
 		<recipeMaker>
 			<researchPrerequisite>RRY_YautjaTechMid</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>6</Crafting>
+			</skillRequirements>
 		</recipeMaker>
 		<apparel>
 			<bodyPartGroups>
 				<li>Torso</li>
 				<li>Shoulders</li>
 				<li>Arms</li>
+				<li>Neck</li>
 			</bodyPartGroups>
 			<wornGraphicPath>Things/Apparel/Yautja_Heavy_Armour/Heavy_Armour</wornGraphicPath>
 			<layers>
@@ -209,20 +226,21 @@
 	<ThingDef ParentName="RRY_Yautja_ArmourBase">
 		<defName>RRY_Apparel_HunterArmourGreaves</defName>
 		<label>Yautja Hunter Greaves</label>
-		<description>Standard legs protection.</description>
+		<description>Yautja legs protection.</description>
 		<graphicData>
 			<texPath>Things/Apparel/Yautja_Undersuit/Yautja_HunterArmorUndersuit</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<statBases>
 			<MarketValue>1000</MarketValue>
-			<MaxHitPoints>500</MaxHitPoints>
-			<WorkToMake>60000</WorkToMake>
+			<MaxHitPoints>275</MaxHitPoints>
+			<WorkToMake>10000</WorkToMake>
+			
 			<ArmorRating_Blunt>0.15</ArmorRating_Blunt>
-			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
-			<ArmorRating_Heat>0.225</ArmorRating_Heat>
-			<Insulation_Heat>30</Insulation_Heat>
-			<Insulation_Cold>30</Insulation_Cold>
+			<ArmorRating_Sharp>0.50</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.25</ArmorRating_Heat>
+			<Insulation_Heat>4</Insulation_Heat>
+			<Insulation_Cold>2</Insulation_Cold>
 			<Mass>4</Mass>
 		</statBases>
 		<equippedStatOffsets>
@@ -235,12 +253,15 @@
 			-->
 		</equippedStatOffsets>
 		<costList>
-			<Steel>100</Steel>
-			<Plasteel>60</Plasteel>
-			<ComponentIndustrial>10</ComponentIndustrial>
+			<Steel>60</Steel>
+			<Plasteel>20</Plasteel>
+			<ComponentIndustrial>1</ComponentIndustrial>
 		</costList>
 		<recipeMaker>
 			<researchPrerequisite>RRY_YautjaTechBase</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>4</Crafting>
+			</skillRequirements>
 		</recipeMaker>
 		<apparel>
 			<bodyPartGroups>
@@ -282,28 +303,28 @@
 			<Mass>0.25</Mass>
 			<MarketValue>500</MarketValue>
 			<MaxHitPoints>150</MaxHitPoints>
-			<WorkToMake>20000</WorkToMake>
-			<ArmorRating_Sharp>0.20</ArmorRating_Sharp>
-			<ArmorRating_Blunt>0.36</ArmorRating_Blunt>
-			<ArmorRating_Heat>0.27</ArmorRating_Heat>
+			<WorkToMake>25000</WorkToMake>
+			<ArmorRating_Sharp>1.1</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.40</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.8</ArmorRating_Heat>
 			<Insulation_Heat>3</Insulation_Heat>
 			<Insulation_Cold>5</Insulation_Cold>
 		</statBases>
 		<equippedStatOffsets>
 			<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
 			<PsychicSensitivity>-0.10</PsychicSensitivity>
-		<!--
-			<MoveSpeed>-0.01</MoveSpeed>
-			<WorkSpeedGlobal>-0.05</WorkSpeedGlobal>
-			-->
+			<ToxicSensitivity>-0.4</ToxicSensitivity>
 		</equippedStatOffsets>
 		<costList>
-			<Steel>50</Steel>
 			<Plasteel>30</Plasteel>
-			<ComponentIndustrial>5</ComponentIndustrial>
+			<Uranium>15</Uranium>
+			<ComponentSpacer>1</ComponentSpacer>
 		</costList>
 		<recipeMaker>
 			<researchPrerequisite>RRY_YautjaTechBase</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>6</Crafting>
+			</skillRequirements>
 		</recipeMaker>
 		<apparel>
 			<bodyPartGroups>
@@ -341,16 +362,18 @@
 		</graphicData>
 		<statBases>
 			<MarketValue>2500</MarketValue>
-			<MaxHitPoints>500</MaxHitPoints>
-			<WorkToMake>40000</WorkToMake>
-			<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
-			<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+			<MaxHitPoints>450</MaxHitPoints>
+			<WorkToMake>50000</WorkToMake>
+			<ArmorRating_Blunt>0.75</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.95</ArmorRating_Sharp>
 			<ArmorRating_Heat>0.50</ArmorRating_Heat>
-			<Insulation_Heat>10</Insulation_Heat>
-			<Insulation_Cold>12</Insulation_Cold>
+			<Insulation_Heat>4</Insulation_Heat>
+			<Insulation_Cold>13</Insulation_Cold>
 			<Mass>4</Mass>
 		</statBases>
 		<equippedStatOffsets>
+			<SocialImpact>0.05</SocialImpact>
+            
 		<!--
 			<MoveSpeed>-0.03</MoveSpeed>
 			<WorkSpeedGlobal>-0.15</WorkSpeedGlobal>
@@ -360,12 +383,16 @@
 			-->
 		</equippedStatOffsets>
 		<costList>
-			<Steel>100</Steel>
-			<Plasteel>60</Plasteel>
-			<ComponentIndustrial>10</ComponentIndustrial>
+			<Plasteel>80</Plasteel>
+			<Uranium>30</Uranium>
+			<ComponentIndustrial>5</ComponentIndustrial>
+			<ComponentSpacer>2</ComponentSpacer>
 		</costList>
 		<recipeMaker>
 			<researchPrerequisite>RRY_YautjaTechMid</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>8</Crafting>
+			</skillRequirements>
 		</recipeMaker>
 		<apparel>
 			<bodyPartGroups>
@@ -408,29 +435,31 @@
 			<Mass>1</Mass>
 			<MarketValue>500</MarketValue>
 			<MaxHitPoints>150</MaxHitPoints>
-			<WorkToMake>30000</WorkToMake>
-			<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
-			<ArmorRating_Blunt>0.41</ArmorRating_Blunt>
-			<ArmorRating_Heat>0.32</ArmorRating_Heat>
-			<Insulation_Heat>4</Insulation_Heat>
-			<Insulation_Cold>6</Insulation_Cold>
-			<ToxicSensitivity>-0.6</ToxicSensitivity>
+			<WorkToMake>27500</WorkToMake>
+			<ArmorRating_Sharp>1.1</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.75</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.9</ArmorRating_Heat>
+			<Insulation_Heat>7</Insulation_Heat>
+			<Insulation_Cold>7</Insulation_Cold>
+			
 		</statBases>
 		<equippedStatOffsets>
 			<ShootingAccuracyPawn>0.25</ShootingAccuracyPawn>
-		<!--
-			<MoveSpeed>-0.01</MoveSpeed>
-			<WorkSpeedGlobal>-0.05</WorkSpeedGlobal>
-			<PsychicSensitivity>-0.10</PsychicSensitivity>
-			-->
+			<PsychicSensitivity>-0.15</PsychicSensitivity>
+			<ToxicSensitivity>-0.6</ToxicSensitivity>
+			<SocialImpact>0.05</SocialImpact>
+            
 		</equippedStatOffsets>
 		<costList>
-			<Steel>50</Steel>
-			<Plasteel>30</Plasteel>
-			<ComponentIndustrial>5</ComponentIndustrial>
+			<Plasteel>40</Plasteel>
+			<Uranium>10</Uranium>
+			<ComponentSpacer>2</ComponentSpacer>
 		</costList>
 		<recipeMaker>
 			<researchPrerequisite>RRY_YautjaTechMid</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>9</Crafting>
+			</skillRequirements>
 		</recipeMaker>
 		<apparel>
 			<bodyPartGroups>
@@ -473,8 +502,8 @@
 			<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
 			<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
 			<ArmorRating_Heat>0.50</ArmorRating_Heat>
-			<Insulation_Heat>10</Insulation_Heat>
-			<Insulation_Cold>10</Insulation_Cold>
+			<Insulation_Heat>6</Insulation_Heat>
+			<Insulation_Cold>5</Insulation_Cold>
 			<Mass>4</Mass>
 		</statBases>
 		<equippedStatOffsets>
@@ -491,12 +520,17 @@
 			-->
 		</equippedStatOffsets>
 		<costList>
-			<Steel>100</Steel>
+			<Steel>20</Steel>
 			<Plasteel>60</Plasteel>
-			<ComponentIndustrial>10</ComponentIndustrial>
+			<Gold>10</Gold>
+			<ComponentIndustrial>3</ComponentIndustrial>
+			<ComponentSpacer>1</ComponentSpacer>
 		</costList>
 		<recipeMaker>
 			<researchPrerequisite>RRY_YautjaTechMid</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>7</Crafting>
+			</skillRequirements>
 		</recipeMaker>
 		<apparel>
 			<bodyPartGroups>
@@ -545,24 +579,29 @@
 			<ArmorRating_Heat>0.27</ArmorRating_Heat>
 			<Insulation_Heat>3</Insulation_Heat>
 			<Insulation_Cold>5</Insulation_Cold>
-			<ToxicSensitivity>-0.6</ToxicSensitivity>
 		</statBases>
 		<equippedStatOffsets>
-			<SocialImpact>0.05</SocialImpact>
-			<NegotiationAbility>0.05</NegotiationAbility>
-			<TradePriceImprovement>0.05</TradePriceImprovement>
+			<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
+			<PsychicSensitivity>-0.10</PsychicSensitivity>
+			<ToxicSensitivity>-0.5</ToxicSensitivity>
+			<SocialImpact>0.15</SocialImpact>
+			<NegotiationAbility>0.15</NegotiationAbility>
+			<TradePriceImprovement>0.15</TradePriceImprovement>
 		<!--
 			<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
 			<PsychicSensitivity>-0.10</PsychicSensitivity>
 			-->
 		</equippedStatOffsets>
 		<costList>
-			<Steel>50</Steel>
-			<Plasteel>30</Plasteel>
-			<ComponentIndustrial>5</ComponentIndustrial>
+			<Plasteel>40</Plasteel>
+			<Gold>5</Gold>
+			<ComponentSpacer>1</ComponentSpacer>
 		</costList>
 		<recipeMaker>
 			<researchPrerequisite>RRY_YautjaTechMid</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>8</Crafting>
+			</skillRequirements>
 		</recipeMaker>
 		<apparel>
 			<bodyPartGroups>
