@@ -1501,7 +1501,7 @@
                     <li>
                       <def>RRY_Xeno_Mandible</def>
                       <customLabel>left upper mandible</customLabel>
-                      <coverage>0.07</coverage>
+                      <coverage>0.06</coverage>
                       <groups>
                         <li>Mouth</li>
                         <li>RRY_Xeno_Mandibles</li>
@@ -1510,7 +1510,7 @@
                     <li>
                       <def>RRY_Xeno_Mandible</def>
                       <customLabel>left lower mandible</customLabel>
-                      <coverage>0.07</coverage>
+                      <coverage>0.06</coverage>
                       <groups>
                         <li>Mouth</li>
                         <li>RRY_Xeno_Mandibles</li>
@@ -1519,7 +1519,7 @@
                     <li>
                       <def>RRY_Xeno_Mandible</def>
                       <customLabel>right upper mandible</customLabel>
-                      <coverage>0.07</coverage>
+                      <coverage>0.06</coverage>
                       <groups>
                         <li>Mouth</li>
                         <li>RRY_Xeno_Mandibles</li>
@@ -1528,7 +1528,7 @@
                     <li>
                       <def>RRY_Xeno_Mandible</def>
                       <customLabel>right lower mandible</customLabel>
-                      <coverage>0.07</coverage>
+                      <coverage>0.06</coverage>
                       <groups>
                         <li>Mouth</li>
                         <li>RRY_Xeno_Mandibles</li>

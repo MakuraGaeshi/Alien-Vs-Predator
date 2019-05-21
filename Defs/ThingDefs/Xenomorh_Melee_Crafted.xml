@@ -55,7 +55,7 @@
 			<li>FueledSmithy</li>
 			<li>CraftingSpot</li>
 		</recipeUsers>
-      <researchPrerequisite>RRY_XenomorphWeapons</researchPrerequisite>
+      <researchPrerequisite>RRY_XenomorphCrafting</researchPrerequisite>
       <skillRequirements>
         <Crafting>4</Crafting>
       </skillRequirements>
