@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Verse;
 using Verse.AI.Group;
+using Verse.Sound;
 
 namespace RRYautja
 {
@@ -142,16 +143,37 @@ namespace RRYautja
                 list.AddRange(this.UnopenedCasketsInGroup().SelectMany((Building_XenomorphCryptosleepCasket c) => c.innerContainer));
             }
             bool contentsKnown = this.contentsKnown;
-            base.EjectContents();
+            ThingDef filth_Slime = ThingDefOf.Filth_Slime;
+            foreach (Thing thing in ((IEnumerable<Thing>)this.innerContainer))
+            {
+                Pawn pawn = thing as Pawn;
+                if (pawn != null)
+                {
+                    PawnComponentsUtility.AddComponentsForSpawn(pawn);
+                    pawn.filth.GainFilth(filth_Slime);
+                    if (pawn.RaceProps.IsFlesh)
+                    {
+                        pawn.health.AddHediff(HediffDefOf.CryptosleepSickness, null, null, null);
+                    }
+                }
+            }
+            if (!base.Destroyed)
+            {
+                SoundDefOf.CryptosleepCasket_Eject.PlayOneShot(SoundInfo.InMap(new TargetInfo(base.Position, base.Map, false), MaintenanceType.None));
+            }
+            this.innerContainer.TryDropAll(this.InteractionCell, base.Map, ThingPlaceMode.Near, null, (x => GridsUtility.GetFirstBuilding(x, this.Map) == null));
+            this.contentsKnown = true;
             if (!contentsKnown)
             {
-                ThingDef filth_Slime = ThingDefOf.Filth_Slime;
+            //    ThingDef filth_Slime = ThingDefOf.Filth_Slime;
                 FilthMaker.MakeFilth(base.Position, base.Map, filth_Slime, Rand.Range(8, 12));
                 this.SetFaction(null, null);
+                /*
                 foreach (Building_XenomorphCryptosleepCasket building_AncientCryptosleepCasket in this.UnopenedCasketsInGroup())
                 {
                     building_AncientCryptosleepCasket.EjectContents();
                 }
+                */
                 List<Pawn> source = list.OfType<Pawn>().ToList<Pawn>();
                 IEnumerable<Pawn> enumerable = from p in source
                                                where p.RaceProps.Humanlike && p.GetLord() == null && p.Faction == Faction.OfAncientsHostile

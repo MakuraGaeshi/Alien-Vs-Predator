@@ -80,8 +80,9 @@ namespace RRYautja
                 else
                 {
                     this.InnerThing.SetFaction(null);
-                    GenPlace.TryPlaceThing(this.InnerThing, this.Position, this.Map, ThingPlaceMode.Near);
-                    this.DeSpawn();
+                //    CellFinder.TryFindRandomCellNear(this.Position, this.Map, 2, (x => GridsUtility.GetFirstBuilding(x, this.Map)==null), out IntVec3 c);
+                //    GenPlace.TryPlaceThing(this.InnerThing, c, this.Map, ThingPlaceMode.Direct);
+                //    if (this.Spawned) this.DeSpawn();
                 //    Log.Message("MinifiedThing on the ground.", false);
                 }
             }

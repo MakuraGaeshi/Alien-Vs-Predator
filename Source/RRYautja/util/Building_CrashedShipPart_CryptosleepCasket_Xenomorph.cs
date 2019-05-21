@@ -33,7 +33,7 @@ namespace RimWorld
                 for (int i = 0; i < count; i++)
                 {
                     CellRect mapRect;
-                    IntVec3 intVec = CellFinder.RandomClosewalkCellNear(position, map, 5, null);
+                    IntVec3 intVec = CellFinder.RandomClosewalkCellNear(this.InteractionCell, map, 5, null);
                     mapRect = new CellRect(intVec.x, intVec.z, num, num);
                     GenPlace.TryPlaceThing(TryMakeCasket(mapRect, map, named), intVec, map, ThingPlaceMode.Near);
                 }
