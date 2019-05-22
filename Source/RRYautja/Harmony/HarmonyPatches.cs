@@ -514,6 +514,20 @@ namespace RRYautja
                             if (pawnStoryA != bsDefUnblooded.backstory)
                             {
                                 hediffDef = _Yautja.Props.bloodedDefs.RandomElement();
+
+                                if (hediffDef != null)
+                                {
+                                    PawnKindDef pawnKindDef = YautjaBloodedUtility.RandomMarked(hediffDef);
+                                    if (_Yautja != null)
+                                    {
+                                        _Yautja.MarkHedifflabel = pawnKindDef.LabelCap;
+                                        _Yautja.MarkedhediffDef = hediffDef;
+                                        _Yautja.predator = pawnKindDef.RaceProps.predator;
+                                        _Yautja.BodySize = pawnKindDef.RaceProps.baseBodySize;
+                                        _Yautja.combatPower = pawnKindDef.combatPower;
+                                    }
+                                }
+
                             }
                             else
                             {

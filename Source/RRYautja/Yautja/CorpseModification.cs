@@ -52,8 +52,7 @@ namespace RRYautja
                 user.health.RemoveHediff(hediff);
             }
             user.health.RemoveHediff(blooded);
-            user.health.AddHediff(markedDef, part);
-            Hediff marked = user.health.hediffSet.GetFirstHediffOfDef(markedDef);
+            Hediff marked = HediffMaker.MakeHediff(markedDef, user, part);// user.health.hediffSet.GetFirstHediffOfDef(markedDef);
             HediffComp_MarkedYautja marked_Yautja = marked.TryGetComp<HediffComp_MarkedYautja>();
             marked_Yautja.BodySize = corpse.InnerPawn.BodySize;
             marked_Yautja.combatPower = corpse.InnerPawn.kindDef.combatPower;
@@ -72,6 +71,7 @@ namespace RRYautja
                 BodySize = corpse.InnerPawn.BodySize,
                 combatPower = corpse.InnerPawn.kindDef.combatPower
             };
+            user.health.AddHediff(markedDef, part);
             ThingDef thingDef = null;
             foreach (var item in corpse.InnerPawn.health.hediffSet.GetNotMissingParts())
             {
