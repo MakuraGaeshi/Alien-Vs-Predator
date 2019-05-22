@@ -493,6 +493,48 @@ namespace RRYautja
         {
             if (__result.kindDef.race == YautjaDefOf.RRY_Alien_Yautja)
             {
+                if (request.Faction.leader == null && request.Faction != Faction.OfPlayerSilentFail && request.KindDef.race == YautjaDefOf.RRY_Alien_Yautja)
+                {
+                    QualityCategory weaponQuality;
+                    QualityCategory gearQuality;
+                    bool upgradeWeapon = Rand.Chance(0.5f);
+                    if (__result.equipment.Primary != null && upgradeWeapon)
+                    {
+                        __result.equipment.Primary.TryGetQuality(out weaponQuality);
+                        if (weaponQuality != QualityCategory.Legendary)
+                        {
+                            Thing Weapon = __result.equipment.Primary;
+                            CompQuality Weapon_Quality = Weapon.TryGetComp<CompQuality>();
+                            if (Weapon_Quality != null)
+                            {
+                                Weapon_Quality.SetQuality(QualityCategory.Legendary, ArtGenerationContext.Outsider);
+                            }
+                        }
+
+                    }
+                    else if (__result.apparel.WornApparelCount > 0 && !upgradeWeapon)
+                    {
+                        foreach (var item in __result.apparel.WornApparel)
+                        {
+                            item.TryGetQuality(out gearQuality);
+                            float upgradeChance = 0.5f;
+                            bool upgradeGear = Rand.Chance(0.5f);
+                            if (gearQuality != QualityCategory.Legendary)
+                            {
+                                CompQuality Gear_Quality = item.TryGetComp<CompQuality>();
+                                if (Gear_Quality != null)
+                                {
+                                    if (upgradeGear)
+                                    {
+                                        Gear_Quality.SetQuality(QualityCategory.Legendary, ArtGenerationContext.Outsider);
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
                 Comp_Yautja _Yautja = __result.TryGetComp<Comp_Yautja>();
                 if (_Yautja != null)
                 {
@@ -627,6 +669,50 @@ namespace RRYautja
                 HediffDef def = Rand.Chance(0.75f) ? XenomorphDefOf.RRY_HiddenXenomorphImpregnation : XenomorphDefOf.RRY_HiddenNeomorphImpregnation;
                 __result.health.AddHediff(def);
             }
+            /*
+            if (request.Faction.leader == null && request.Faction != Faction.OfPlayer && request.KindDef.race == YautjaDefOf.RRY_Alien_Yautja)
+            {
+                QualityCategory weaponQuality;
+                QualityCategory gearQuality;
+                bool upgradeWeapon = Rand.Chance(0.5f);
+                if (__result.equipment.Primary!=null&&upgradeWeapon)
+                {
+                    __result.equipment.Primary.TryGetQuality(out weaponQuality);
+                    if (weaponQuality != QualityCategory.Legendary)
+                    {
+                        Thing Weapon = __result.equipment.Primary;
+                        CompQuality Weapon_Quality = Weapon.TryGetComp<CompQuality>();
+                        if (Weapon_Quality!=null)
+                        {
+                            Weapon_Quality.SetQuality(QualityCategory.Legendary, ArtGenerationContext.Outsider);
+                        }
+                    }
+
+                }
+                else if (__result.apparel.WornApparelCount > 0 && !upgradeWeapon)
+                {
+                    foreach (var item in __result.apparel.WornApparel)
+                    {
+                        item.TryGetQuality(out gearQuality);
+                        float upgradeChance = 0.5f;
+                        bool upgradeGear = Rand.Chance(0.5f);
+                        if (gearQuality != QualityCategory.Legendary)
+                        {
+                            CompQuality Gear_Quality = item.TryGetComp<CompQuality>();
+                            if (Gear_Quality != null)
+                            {
+                                if (upgradeGear)
+                                {
+                                    Gear_Quality.SetQuality(QualityCategory.Legendary, ArtGenerationContext.Outsider);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+            */
         }
 
         public static void Post_GenerateRefugee_Yautja(Pawn request, ref Pawn __result)

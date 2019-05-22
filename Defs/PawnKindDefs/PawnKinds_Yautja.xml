@@ -90,7 +90,7 @@
       <max>2.0</max>
     </gearHealthRange>
     <apparelMoney>
-      <min>3000</min>
+      <min>5000</min>
       <max>9000</max>
     </apparelMoney>
     <apparelTags Inherit="False">

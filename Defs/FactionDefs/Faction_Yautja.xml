@@ -78,6 +78,7 @@
           <YautjaBlooded_RRY>8</YautjaBlooded_RRY>
           <YautjaElite_RRY>4</YautjaElite_RRY>
           <YautjaElder_RRY>2</YautjaElder_RRY>
+          <YautjaAncient_RRY>1</YautjaAncient_RRY>
         </options>
       </li>
       <li>
@@ -105,6 +106,7 @@
           <YautjaUnblooded_RRY>13</YautjaUnblooded_RRY>
           <YautjaYoungBlood_RRY>10</YautjaYoungBlood_RRY>
           <YautjaBlooded_RRY>10</YautjaBlooded_RRY>
+          <YautjaAncient_RRY>1</YautjaAncient_RRY>
         </guards>
       </li>
 	  <li>
@@ -116,7 +118,7 @@
           <YautjaBlooded_RRY>8</YautjaBlooded_RRY>
           <YautjaElite_RRY>4</YautjaElite_RRY>
           <YautjaElder_RRY>2</YautjaElder_RRY>
-          <YautjaAncient_RRY>1</YautjaAncient_RRY>
+          <YautjaAncient_RRY>10</YautjaAncient_RRY>
         </options>
       </li>
     </pawnGroupMakers>
