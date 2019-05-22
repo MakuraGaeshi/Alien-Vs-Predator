@@ -222,4 +222,18 @@
 		<researchViewY>2.75</researchViewY>
 	</ResearchProjectDef>	
 	
+	<!--OG==================== Rebelrot's Yautja Mod - Rearmable Traps =========================OG-->
+	<ResearchProjectDef>
+		<tab>RRY_RTab</tab>
+		<defName>RRY_Yautja_Traps</defName>
+		<label>Basic Yautja Traps</label>
+		<description>Allows you to create basic (Rearmable) Yautja Traps</description>
+		<baseCost>1500</baseCost>
+		<prerequisites>
+			<li>RRY_YautjaTechMid</li>
+		</prerequisites>
+		<techLevel>Industrial</techLevel>
+		<researchViewX>1.75</researchViewX>
+		<researchViewY>4.25</researchViewY>
+	</ResearchProjectDef>
 </Defs>
