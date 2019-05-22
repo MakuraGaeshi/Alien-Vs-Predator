@@ -11,6 +11,7 @@ namespace RRYautja
         {
             base.ExposeData();
             Scribe_Values.Look<int>(ref this.TimesBounced, "TimesBounced");
+            Scribe_Values.Look<bool>(ref this.canBounce, "canBounce");
             Scribe_References.Look<Pawn>(ref this.OriginalPawn, "OriginalPawnRef");//, Props.pawn);
             Scribe_References.Look<Thing>(ref this.OriginalWeapon, "OriginalWeaponRef");//, Props.pawn);
             Scribe_References.Look<Projectile>(ref this.OriginalProjectile, "OriginalProjectileRef");//, Props.pawn);
@@ -37,26 +38,49 @@ namespace RRYautja
         public Thing OriginalWeapon;
         public Projectile OriginalProjectile;
 
+        public bool canBounce = false;
         public int ExtraTargets
         {
             get
             {
                 int count = 0;
-                if (YautjaDefOf.RRY_YautjaRanged_Basic.IsFinished)
+                bool enablebounce = false;
+                if (OriginalPawn.Faction == Faction.OfPlayer)
                 {
-                    count++;
+                    if (YautjaDefOf.RRY_YautjaRanged_Basic.IsFinished)
+                    {
+                        count++;
+                    }
+                    if (YautjaDefOf.RRY_YautjaRanged_Med.IsFinished)
+                    {
+                        count++;
+                    }
+                    if (YautjaDefOf.RRY_YautjaRanged_Adv.IsFinished)
+                    {
+                        count++;
+                    }
                 }
-                if (YautjaDefOf.RRY_YautjaRanged_Med.IsFinished)
+
+                if (OriginalPawn.apparel.WornApparelCount > 0)
                 {
-                    count++;
+                    foreach (var item in OriginalPawn.apparel.WornApparel)
+                    {
+                        if (item.def.defName.Contains("RRY_Apparel_") && item.def.defName.Contains("BioMask"))
+                        {
+                            enablebounce = true;
+                            this.canBounce = enablebounce;
+                        }
+                    }
                 }
-                if (YautjaDefOf.RRY_YautjaRanged_Adv.IsFinished)
+
+                if (!enablebounce)
                 {
-                    count++;
+                    count = 0;
                 }
                 return count;
             }
         }
+
         public override void Tick()
         {
             base.Tick();

@@ -13,6 +13,7 @@ namespace RimWorld
         {
             base.ExposeData();
             Scribe_Values.Look<int>(ref this.timesBounced, "timesBounced");
+            Scribe_Values.Look<bool>(ref this.canBounce, "canBounce");
             Scribe_References.Look<Pawn>(ref this.OriginalPawn, "OriginalPawnRef");//, Props.pawn);
             Scribe_References.Look<Thing>(ref this.OriginalWeapon, "OriginalWeaponRef");//, Props.pawn);
             Scribe_References.Look<Projectile>(ref this.OriginalProjectile, "OriginalProjectileRef");//, Props.pawn);
@@ -28,11 +29,14 @@ namespace RimWorld
             Scribe_Values.Look<float>(ref this.BodySize, "thisBodySize");
             */
         }
+        public bool canBounce = false;
+
         public int ExtraTargets
         {
             get
             {
                 int count = 0;
+                bool enablebounce = false;
                 if (OriginalPawn.Faction == Faction.OfPlayer)
                 {
                     if (YautjaDefOf.RRY_YautjaRanged_Basic.IsFinished)
@@ -47,6 +51,23 @@ namespace RimWorld
                     {
                         count++;
                     }
+                }
+
+                if (OriginalPawn.apparel.WornApparelCount>0)
+                {
+                    foreach (var item in OriginalPawn.apparel.WornApparel)
+                    {
+                        if (item.def.defName.Contains("RRY_Apparel_") && item.def.defName.Contains("BioMask"))
+                        {
+                            enablebounce = true;
+                            this.canBounce = enablebounce;
+                        }
+                    }
+                }
+
+                if (!enablebounce)
+                {
+                    count = 0;
                 }
                 return count;
             }
@@ -123,6 +144,10 @@ namespace RimWorld
                 else
                 {
                     Projectile projectile2 = (Projectile)ThingMaker.MakeThing(DefDatabase<ThingDef>.GetNamed("RRY_SmartDisk_Returning"), null);
+                    if (OriginalPawn.kindDef.race != YautjaDefOf.RRY_Alien_Yautja)
+                    {
+                        projectile2 = (Projectile)ThingMaker.MakeThing(DefDatabase<ThingDef>.GetNamed("RRY_SmartDisk_Returning"), null);
+                    }
                     GenSpawn.Spawn(projectile2, base.PositionHeld, launcher.Map, 0);
                     projectile2.Launch(this, base.PositionHeld.ToVector3(), launcher, launcher, ProjectileHitFlags.IntendedTarget, launcher);
                 }
@@ -148,6 +173,10 @@ namespace RimWorld
             else
             {
                 Projectile projectile2 = (Projectile)ThingMaker.MakeThing(DefDatabase<ThingDef>.GetNamed("RRY_SmartDisk_Returning"), null);
+                if (OriginalPawn.kindDef.race != YautjaDefOf.RRY_Alien_Yautja)
+                {
+                    projectile2 = (Projectile)ThingMaker.MakeThing(DefDatabase<ThingDef>.GetNamed("RRY_SmartDisk_Returning"), null);
+                }
                 GenSpawn.Spawn(projectile2, base.PositionHeld, launcher.Map, 0);
                 projectile2.Launch(this, base.PositionHeld.ToVector3(), launcher, launcher, ProjectileHitFlags.IntendedTarget, launcher);
             }

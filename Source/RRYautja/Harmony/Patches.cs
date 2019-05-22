@@ -330,4 +330,21 @@ namespace RRYautja
         }
     }
     */
+    // Token: 0x02000007 RID: 7
+    [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "TryExecute")]
+    public static class IncidentWorker_RaidEnemyPatch
+    {
+        // Token: 0x06000017 RID: 23 RVA: 0x00002CD0 File Offset: 0x00000ED0
+        [HarmonyPostfix]
+        public static void PopSaboteurs(bool __result, IncidentParms parms)
+        {
+            if (__result && parms.target is Map && (parms.target as Map).IsPlayerHome)
+            {
+                if (parms.faction.def.basicMemberKind.race == YautjaDefOf.RRY_Alien_Yautja)
+                {
+                    Log.Message(string.Format("Yautja raid spawning"));
+                }
+            }
+        }
+    }
 }
