@@ -100,8 +100,8 @@ namespace RRYautja
             Map map = owner.MapHeld;
             IntVec3 loc = owner.PositionHeld;
 
-            if (!parent.Destroyed)
-                parent.Kill();
+            if (GetWearer.Spawned)
+                GetWearer.Kill(null);
 
             if (map == null)
             {

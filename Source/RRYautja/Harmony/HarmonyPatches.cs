@@ -191,14 +191,19 @@ namespace RRYautja
         // Token: 0x060000EC RID: 236 RVA: 0x00008F44 File Offset: 0x00007144
         public static void PushEffect(Thing Caster, Thing target, int distance, bool damageOnCollision = false)
         {
+            if (target is Building)
+            {
+                return;
+            }
             LongEventHandler.QueueLongEvent(delegate ()
             {
                 Pawn pawn;
                 if (target != null && (pawn = (target as Pawn)) != null && pawn.Spawned && !pawn.Downed && !pawn.Dead && ((pawn != null) ? pawn.MapHeld : null) != null)
                 {
+                    bool drafted = pawn.Drafted;
                     bool flag2;
                     Vector3 vector = HarmonyPatches.PushResult(Caster, target, distance, out flag2);
-                    FlyingObject flyingObject = (FlyingObject)GenSpawn.Spawn(ThingDef.Named("JT_FlyingObject"), pawn.PositionHeld, pawn.MapHeld, 0);
+                    RRY_FlyingObject flyingObject = (RRY_FlyingObject)GenSpawn.Spawn(ThingDef.Named("JT_FlyingObject"), pawn.PositionHeld, pawn.MapHeld, 0);
                     bool flag3 = flag2 & damageOnCollision;
                     if (flag3)
                     {
@@ -208,6 +213,7 @@ namespace RRYautja
                     {
                         flyingObject.Launch(Caster, new LocalTargetInfo(IntVec3Utility.ToIntVec3(vector)), target);
                     }
+
                 }
             }, "PushingCharacter", false, null);
         }

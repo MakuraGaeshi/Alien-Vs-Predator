@@ -14,7 +14,6 @@ namespace RRYautja
         // Token: 0x060039E1 RID: 14817 RVA: 0x001B83B8 File Offset: 0x001B67B8
         private IEnumerable<DamageInfo> DamageInfosToApply(LocalTargetInfo target)
         {
-            Pawn hitPawn = (Pawn)target;
             float damAmount = this.verbProps.AdjustedMeleeDamageAmount(this, base.CasterPawn);
             float armorPenetration = this.verbProps.AdjustedArmorPenetration(this, base.CasterPawn);
             DamageDef damDef = this.verbProps.meleeDamageDef;
@@ -84,19 +83,18 @@ namespace RRYautja
                     yield return extraDinfo;
                 }
             }
-            if (target.Thing is Building)
+            if (target.GetType() == typeof(Pawn))
             {
-
-                yield break;
+                Pawn hitPawn = (Pawn)target;
+                HarmonyPatches.PushEffect(CasterPawn, hitPawn, (int)((Rand.Range(2, 3) + CasterPawn.BodySize) - hitPawn.BodySize), true);
             }
-            //HarmonyPatches.PushEffect(CasterPawn, hitPawn, (int)((Rand.Range(2, 3) + CasterPawn.BodySize) - hitPawn.BodySize), true);
+            
             yield break;
         }
 
         // Token: 0x060039E2 RID: 14818 RVA: 0x001B83E4 File Offset: 0x001B67E4
         protected override DamageWorker.DamageResult ApplyMeleeDamageToTarget(LocalTargetInfo target)
         {
-            Pawn hitPawn = (Pawn)target;
             DamageWorker.DamageResult result = new DamageWorker.DamageResult();
             foreach (DamageInfo dinfo in this.DamageInfosToApply(target))
             {
