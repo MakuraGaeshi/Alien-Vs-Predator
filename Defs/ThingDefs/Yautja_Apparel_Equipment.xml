@@ -129,7 +129,7 @@
 			<ComponentIndustrial>10</ComponentIndustrial>
 		</costList>
 		<recipeMaker>
-			<researchPrerequisite>RRY_YautjaTechHigh</researchPrerequisite>
+			<researchPrerequisite>RRY_YautjaRanged_Adv</researchPrerequisite>
 		</recipeMaker>
 		<apparel>
 			<bodyPartGroups>

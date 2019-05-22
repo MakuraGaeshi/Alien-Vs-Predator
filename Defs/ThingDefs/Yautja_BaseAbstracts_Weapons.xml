@@ -49,7 +49,7 @@
       <workSkill>Crafting</workSkill>
       <recipeUsers>
         <li>RRY_TableMachining</li>
-		<li>CraftingSpot</li>
+		
       </recipeUsers>
       <effectWorking>Smelt</effectWorking>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>

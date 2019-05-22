@@ -47,7 +47,7 @@
 			<ComponentIndustrial>2</ComponentIndustrial>
 		</costList>
 		<recipeMaker>
-			<researchPrerequisite>RRY_YautjaTechBase</researchPrerequisite>
+			<researchPrerequisite>RRY_YautjaTechMid</researchPrerequisite>
 			<skillRequirements>
 				<Crafting>5</Crafting>
 			</skillRequirements>
@@ -321,7 +321,7 @@
 			<ComponentSpacer>1</ComponentSpacer>
 		</costList>
 		<recipeMaker>
-			<researchPrerequisite>RRY_YautjaTechBase</researchPrerequisite>
+			<researchPrerequisite>RRY_YautjaTechMid</researchPrerequisite>
 			<skillRequirements>
 				<Crafting>6</Crafting>
 			</skillRequirements>
@@ -389,7 +389,7 @@
 			<ComponentSpacer>2</ComponentSpacer>
 		</costList>
 		<recipeMaker>
-			<researchPrerequisite>RRY_YautjaTechMid</researchPrerequisite>
+			<researchPrerequisite>RRY_YautjaTechHigh</researchPrerequisite>
 			<skillRequirements>
 				<Crafting>8</Crafting>
 			</skillRequirements>
@@ -456,7 +456,7 @@
 			<ComponentSpacer>2</ComponentSpacer>
 		</costList>
 		<recipeMaker>
-			<researchPrerequisite>RRY_YautjaTechMid</researchPrerequisite>
+			<researchPrerequisite>RRY_YautjaTechHigh</researchPrerequisite>
 			<skillRequirements>
 				<Crafting>9</Crafting>
 			</skillRequirements>
@@ -527,7 +527,7 @@
 			<ComponentSpacer>1</ComponentSpacer>
 		</costList>
 		<recipeMaker>
-			<researchPrerequisite>RRY_YautjaTechMid</researchPrerequisite>
+			<researchPrerequisite>RRY_YautjaTechHigh</researchPrerequisite>
 			<skillRequirements>
 				<Crafting>7</Crafting>
 			</skillRequirements>
@@ -598,7 +598,7 @@
 			<ComponentSpacer>1</ComponentSpacer>
 		</costList>
 		<recipeMaker>
-			<researchPrerequisite>RRY_YautjaTechMid</researchPrerequisite>
+			<researchPrerequisite>RRY_YautjaTechHigh</researchPrerequisite>
 			<skillRequirements>
 				<Crafting>8</Crafting>
 			</skillRequirements>

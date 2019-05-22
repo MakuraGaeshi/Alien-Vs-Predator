@@ -180,7 +180,7 @@
 			<li>RRY_MeleeWeapons</li>
 		</thingCategories>
     <recipeMaker>
-			<researchPrerequisite>RRY_YautjaMelee_Basic</researchPrerequisite>
+			<researchPrerequisite>RRY_YautjaMelee_Special</researchPrerequisite>
       <skillRequirements>
         <Crafting>3</Crafting>
       </skillRequirements>
