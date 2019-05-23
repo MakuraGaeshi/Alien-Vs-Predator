@@ -172,7 +172,7 @@ namespace RimWorld
                     Log.Message(string.Format("Target OriginalPawn {0}", OriginalPawn));
                     GenSpawn.Spawn(projectile, base.Position, launcher.Map, 0);
                     Log.Message(string.Format("Launch projectile2 {0} at {1}", projectile, OriginalPawn));
-                    projectile.Launch(this, base.Position.ToVector3(), OriginalPawn, OriginalPawn, ProjectileHitFlags.IntendedTarget, launcher);
+                    projectile.Launch(OriginalWeapon, base.Position.ToVector3ShiftedWithAltitude(AltitudeLayer.Projectile), OriginalPawn, OriginalPawn, ProjectileHitFlags.IntendedTarget, OriginalWeapon);
                 }
             }
             else
@@ -223,7 +223,7 @@ namespace RimWorld
                 Log.Message(string.Format("Target OriginalPawn {0}", OriginalPawn));
                 GenSpawn.Spawn(projectile, base.Position, launcher.Map, 0);
                 Log.Message(string.Format("Launch projectile2 {0} at {1}", Rprojectile, OriginalPawn));
-                projectile.Launch(this, base.Position.ToVector3(), OriginalPawn, OriginalPawn, ProjectileHitFlags.IntendedTarget, launcher);
+                projectile.Launch(OriginalWeapon, base.Position.ToVector3ShiftedWithAltitude(AltitudeLayer.Projectile), OriginalPawn, OriginalPawn, ProjectileHitFlags.IntendedTarget, OriginalWeapon);
             }
         }
 

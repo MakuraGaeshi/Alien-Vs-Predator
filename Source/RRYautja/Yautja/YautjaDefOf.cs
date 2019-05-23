@@ -54,6 +54,9 @@ namespace RimWorld
         // Yautja ThingDefs  Motes
         public static ThingDef RRY_SmartDisk_Mote;
 
+        // Yautja ThingDefs  Motes
+        public static PawnsArrivalModeDef EdgeWalkInGroups;
+
         // Yautja HairDefs 
         public static HairDef RRY_Yaujta_Dreds;
         public static HairDef RRY_Yaujta_Ponytail;

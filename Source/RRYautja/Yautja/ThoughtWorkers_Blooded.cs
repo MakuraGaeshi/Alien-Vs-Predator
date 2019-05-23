@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using RRYautja;
 using System.Collections.Generic;
 using Verse;
 
@@ -17,7 +18,6 @@ namespace RimWorld
         // Token: 0x06000A02 RID: 2562 RVA: 0x0004F2B0 File Offset: 0x0004D6B0
         protected override ThoughtState CurrentSocialStateInternal(Pawn p, Pawn other)
         {
-            bool selected = Find.Selector.SingleSelectedThing == p;
         //    if (selected) Log.Message(string.Format("{0} vs {1}", p.Label, other.Label));
             if (!p.RaceProps.Humanlike)
             {
@@ -34,41 +34,36 @@ namespace RimWorld
             /*
             if (!RelationsUtility.PawnsKnowEachOther(p, other))
             {
-                return false;
+                return ThoughtState.Inactive;
             }
             */
-            if (other.health.hediffSet.HasHediff(unblooded))
+            bool Pblooded = YautjaBloodedUtility.Marked(p, out Hediff Marked);
+            bool Oblooded = YautjaBloodedUtility.Marked(other, out Hediff otherMarked);
+            if (Oblooded)
             {
-                stageIndex = 0;
-            //    if (selected) Log.Message(string.Format("{0} CurrentStateInternal stageIndex:{4} {1} {2}: {3}", this.GetType(), other.Label, other.health.hediffSet.GetFirstHediffOfDef(unblooded).Label, other.health.hediffSet.HasHediff(unblooded), stageIndex));
-            }
-            else if (other.health.hediffSet.HasHediff(unmarked))
-            {
-                stageIndex = 1;
-            //    if (selected) Log.Message(string.Format("{0} CurrentStateInternal stageIndex:{4} {1} {2}: {3}", this.GetType(), other.Label, other.health.hediffSet.GetFirstHediffOfDef(othermarked).Label, other.health.hediffSet.HasHediff(othermarked), stageIndex));
-            }
-            else
-                foreach (var hd in other.health.hediffSet.hediffs)
+                if (otherMarked.def == (unblooded))
                 {
-                    if (hd.def.defName.Contains("RRY_Hediff_BloodedM"))
-                    {
-                        otherMarked = hd;
-                        othermarked = hd.def;
-                        stageIndex = 2;
-
-                    //    if (selected) Log.Message(string.Format("{0} CurrentSocialStateInternal {1} {2}: {3}", this.GetType(), other.Label, otherMarked.Label, other.health.hediffSet.HasHediff(othermarked)));
-                        break;
-                    }
-                 }
-            foreach (var hd in p.health.hediffSet.hediffs)
-            {
-                if (hd.def.defName.Contains("RRY_Hediff_BloodedM"))
+                    stageIndex = 0;
+                    Log.Message(string.Format("{0} CurrentStateInternal stageIndex:{4} {1} {2}: {3}", this.GetType(), other.Label, other.health.hediffSet.GetFirstHediffOfDef(unblooded).Label, other.health.hediffSet.HasHediff(unblooded), stageIndex));
+                }
+                else if (otherMarked.def == (unmarked))
                 {
-                    Marked = hd;
-                    marked = hd.def;
-                //    if (selected) Log.Message(string.Format("{0} CurrentSocialStateInternal {1} {2}: {3}", this.GetType(), p.Label, Marked.Label, p.health.hediffSet.HasHediff(marked)));
+                    stageIndex = 1;
+                    Log.Message(string.Format("{0} CurrentStateInternal stageIndex:{4} {1} {2}: {3}", this.GetType(), other.Label, other.health.hediffSet.GetFirstHediffOfDef(othermarked).Label, other.health.hediffSet.HasHediff(othermarked), stageIndex));
+                }
+                else if (otherMarked.def.defName.Contains(marked.defName))
+                {
+                    stageIndex = 2;
+                    Log.Message(string.Format("{0} CurrentSocialStateInternal {1} {2}: {3}", this.GetType(), other.Label, otherMarked.Label, other.health.hediffSet.HasHediff(othermarked)));
+                }
+            }
+            if (Pblooded)
+            {
+                if (Marked.def.defName.Contains(marked.defName))
+                {
+                    //    if (selected) Log.Message(string.Format("{0} CurrentSocialStateInternal {1} {2}: {3}", this.GetType(), p.Label, Marked.Label, p.health.hediffSet.HasHediff(marked)));
                     //Log.Message(string.Format("{0} CurrentSocialStateInternal p marked: {1}", this.GetType(), p.health.hediffSet.HasHediff(marked)));
-                //    if (selected) Log.Message(string.Format("{0} CurrentSocialStateInternal {1} {2}: {3}", this.GetType(), p.Label, Marked.Label, p.health.hediffSet.HasHediff(marked)));
+                    //    if (selected) Log.Message(string.Format("{0} CurrentSocialStateInternal {1} {2}: {3}", this.GetType(), p.Label, Marked.Label, p.health.hediffSet.HasHediff(marked)));
                     return ThoughtState.ActiveAtStage(stageIndex);
                 }
             }
@@ -88,7 +83,6 @@ namespace RimWorld
         // Token: 0x06000A02 RID: 2562 RVA: 0x0004F2B0 File Offset: 0x0004D6B0
         protected override ThoughtState CurrentSocialStateInternal(Pawn p, Pawn other)
         {
-            bool selected = Find.Selector.SingleSelectedThing == p;
         //    if (selected) Log.Message(string.Format("{0} vs {1}", p.Label, other.Label));
             if (!p.RaceProps.Humanlike)
             {
@@ -152,7 +146,6 @@ namespace RimWorld
         // Token: 0x06000A02 RID: 2562 RVA: 0x0004F2B0 File Offset: 0x0004D6B0
         protected override ThoughtState CurrentSocialStateInternal(Pawn p, Pawn other)
         {
-            bool selected = Find.Selector.SingleSelectedThing == p;
         //    if (selected) Log.Message(string.Format("{0} vs {1}", p.Label, other.Label));
             if (!p.RaceProps.Humanlike)
             {

@@ -493,6 +493,10 @@ namespace RRYautja
         {
             if (__result.kindDef.race == YautjaDefOf.RRY_Alien_Yautja)
             {
+                if (__result.gender==Gender.Female && __result.story.bodyType != BodyTypeDefOf.Female)
+                {
+                    __result.story.bodyType = BodyTypeDefOf.Female;
+                }
                 if (request.Faction.leader == null && request.Faction != Faction.OfPlayerSilentFail && request.KindDef.race == YautjaDefOf.RRY_Alien_Yautja)
                 {
                     QualityCategory weaponQuality;
@@ -623,6 +627,7 @@ namespace RRYautja
                             Log.Message(string.Format("Queen Present: {0}", QueenPresent));
                             request = new PawnGenerationRequest(XenomorphDefOf.RRY_Xenomorph_Warrior, request.Faction, request.Context, -1, true, false, false, false, false, true, 0f, fixedGender: Gender.None, allowGay: false);
                             __result = PawnGenerator.GeneratePawn(request);
+                            __result.gender = Gender.None;
                             return;
                         }
                     }

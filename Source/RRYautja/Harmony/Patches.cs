@@ -334,7 +334,7 @@ namespace RRYautja
 
     // Token: 0x02000007 RID: 7
     [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "TryExecute")]
-    public static class IncidentWorker_RaidEnemyPatch
+    public static class IncidentWorker_RaidEnemyPatch_TryExecute
     {
         // Token: 0x06000017 RID: 23 RVA: 0x00002CD0 File Offset: 0x00000ED0
         [HarmonyPrefix]
@@ -342,7 +342,7 @@ namespace RRYautja
         {
             if (parms.target is Map && (parms.target as Map).IsPlayerHome)
             {
-                if (parms.faction != null && ((parms.faction.leader != null && parms.faction.leader.kindDef.race == YautjaDefOf.RRY_Alien_Yautja)|| (parms.faction.def.basicMemberKind != null && parms.faction.def.basicMemberKind.race == YautjaDefOf.RRY_Alien_Yautja)))
+                if (parms.faction != null && ((parms.faction.leader != null && parms.faction.leader.kindDef.race == YautjaDefOf.RRY_Alien_Yautja) || (parms.faction.def.basicMemberKind != null && parms.faction.def.basicMemberKind.race == YautjaDefOf.RRY_Alien_Yautja)))
                 {
                     Log.Message(string.Format("PreExecute Yautja Raid"));
 
@@ -350,6 +350,8 @@ namespace RRYautja
                     {
                         Log.Message(string.Format("PreExecute During Heatwave, originally {0} points", parms.points));
                         parms.points *= 2;
+                        parms.raidArrivalMode = YautjaDefOf.EdgeWalkInGroups;
+
                         Log.Message(string.Format("PreExecute During Heatwave, modified {0} points", parms.points));
                     }
                 }
@@ -374,5 +376,29 @@ namespace RRYautja
             }
         }
         */
+    }
+    // Token: 0x02000007 RID: 7
+    [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "GetLetterText")]
+    public static class IncidentWorker_RaidEnemyPatch_GetLetterText
+    {
+        [HarmonyPostfix]
+        public static void PostExecute(ref string __result, ref IncidentParms parms)
+        {
+            if (parms.target is Map && (parms.target as Map).IsPlayerHome)
+            {
+                if (parms.faction != null && ((parms.faction.leader != null && parms.faction.leader.kindDef.race == YautjaDefOf.RRY_Alien_Yautja) || (parms.faction.def.basicMemberKind != null && parms.faction.def.basicMemberKind.race == YautjaDefOf.RRY_Alien_Yautja)))
+                {
+                    Log.Message(string.Format("PostGetLetterText Yautja Raid"));
+
+                    if ((parms.target as Map).GameConditionManager.ConditionIsActive(GameConditionDefOf.HeatWave))
+                    {
+                        string text = "El Diablo, cazador de hombre. Only in the hottest years this happens. And this year it grows hot.";
+                        text += "\n\n";
+                        text += __result;
+                        __result = text;
+                    }
+                }
+            }
+        }
     }
 }
