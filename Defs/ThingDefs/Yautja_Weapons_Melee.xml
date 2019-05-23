@@ -164,7 +164,7 @@
     <statBases>
 	  <MarketValue>300</MarketValue>
       <WorkToMake>7000</WorkToMake>
-      <Mass>4</Mass>
+      <Mass>1</Mass>
       <AccuracyTouch>0.50</AccuracyTouch>
       <AccuracyShort>0.71</AccuracyShort>
       <AccuracyMedium>0.50</AccuracyMedium>

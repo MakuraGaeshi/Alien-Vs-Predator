@@ -45,7 +45,7 @@
 		<statBases>
 			<MarketValue>2500</MarketValue>
 			<MaxHitPoints>500</MaxHitPoints>
-			<WorkToMake>60000</WorkToMake>
+			<WorkToMake>25000</WorkToMake>
 			<EnergyShieldRechargeRate>0.26</EnergyShieldRechargeRate>
 			<EnergyShieldEnergyMax>0.55</EnergyShieldEnergyMax>
 			<ArmorRating_Blunt>0.05</ArmorRating_Blunt>
@@ -53,7 +53,7 @@
 			<ArmorRating_Heat>0.05</ArmorRating_Heat>
 			<Insulation_Heat>1</Insulation_Heat>
 			<Insulation_Cold>1</Insulation_Cold>
-			<Mass>1</Mass>
+			<Mass>0.5</Mass>
 		</statBases>
 		<equippedStatOffsets>
 		<!--
@@ -65,9 +65,9 @@
 			-->
 		</equippedStatOffsets>
 		<costList>
-			<Steel>100</Steel>
-			<Plasteel>60</Plasteel>
-			<ComponentIndustrial>10</ComponentIndustrial>
+			<Steel>30</Steel>
+			<Plasteel>10</Plasteel>
+			<ComponentIndustrial>2</ComponentIndustrial>
 		</costList>
 		<recipeMaker>
 			<researchPrerequisite>RRY_YautjaMelee_Basic</researchPrerequisite>
@@ -111,9 +111,9 @@
 		  </li>
 		</comps>
 		<statBases>
-			<MarketValue>2500</MarketValue>
+			<MarketValue>3500</MarketValue>
 			<MaxHitPoints>500</MaxHitPoints>
-			<WorkToMake>60000</WorkToMake>
+			<WorkToMake>50000</WorkToMake>
 			<ArmorRating_Blunt>0.05</ArmorRating_Blunt>
 			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
 			<ArmorRating_Heat>0.05</ArmorRating_Heat>
@@ -124,9 +124,10 @@
 			<WorkSpeedGlobal>-0.15</WorkSpeedGlobal>
 		</equippedStatOffsets>
 		<costList>
-			<Steel>100</Steel>
-			<Plasteel>60</Plasteel>
-			<ComponentIndustrial>10</ComponentIndustrial>
+			<Plasteel>40</Plasteel>
+			<Uranium>15</Uranium>
+			<ComponentIndustrial>2</ComponentIndustrial>
+			<ComponentSpacer>1</ComponentSpacer>
 		</costList>
 		<recipeMaker>
 			<researchPrerequisite>RRY_YautjaTechHigh</researchPrerequisite>
