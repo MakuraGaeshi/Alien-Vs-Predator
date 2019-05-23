@@ -400,6 +400,43 @@
 				<li>KnowPrisonerSold</li>
 				<li>KnowGuestOrganHarvested</li>
             </cannotReceiveThoughts>
+			<!--<replacerList>
+                <li>
+                    <original>AteHumanlikeMeatDirect</original>
+                    <replacer>RRY_AteYautjaMeatDirect</replacer> 
+                </li>
+				<li>
+                    <original>AteHumanlikeMeatAsIngredient</original>
+                    <replacer>RRY_AteYautjaMeatAsIngredient</replacer> 
+                </li>
+				<li>
+                    <original>AteHumanlikeMeatDirectCannibal</original>
+                    <replacer>RRY_AteYautjaMeatDirectCannibal</replacer> 
+                </li>
+				<li>
+                    <original>AteHumanlikeMeatAsIngredientCannibal</original>
+                    <replacer>RRY_AteYautjaMeatAsIngredientCannibal</replacer> 
+                </li>
+				</replacerList>-->
+			<ateThoughtSpecific>
+                <li>
+                    <raceList>
+                        <li>RRY_Alien_Yautja</li>
+                    </raceList>
+                    <thought>RRY_AteYautjaMeatDirect</thought>
+                    <ingredientThought>RRY_AteYautjaMeatAsIngredient</ingredientThought>
+                </li>
+            </ateThoughtSpecific>
+			 <butcherThoughtSpecific>
+                <li>
+                    <raceList>
+                        <li>RRY_Alien_Yautja</li>
+                    </raceList>
+                    <thought>RRY_ButcheredYautjaCorpse</thought>
+                    <knowThought>RRY_KnowButcheredYautjaCorpse</knowThought>
+                </li>
+            </butcherThoughtSpecific>
+            
         </thoughtSettings>
         <relationSettings>
             <relationChanceModifierParent>1</relationChanceModifierParent>
@@ -477,6 +514,7 @@
 				<li>RRY_Apparel_HunterLeaderArmourGreaves</li>
 				<li>RRY_Apparel_HunterLeaderBioMask</li>
 				<li>RRY_Apparel_HunterVest</li>
+				<li>RRY_Apparel_Mesh</li>
 				
 				<li>RRY_Apparel_LeaderArmourChestplate</li>
 				<li>RRY_Apparel_LeaderArmourGreaves</li>

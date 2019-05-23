@@ -31,6 +31,7 @@
 	<ThingDef ParentName="RRY_ShieldBase">
 		<defName>RRY_Shield_Xenomorph_Drone</defName>
 		<label>Simple Xenomorph Shield (Drone)</label>
+		<description>Shield made from a Xenomorph head. It protects the wearer from both melee and ranged attacks, and is immune to the acidic effect of the Xenomorph's blood.</description>
 		<graphicData>
 			<texPath>Things/Shields/Xenomorph/Xenomorph_Head_Shield/Xenomorph_Drone</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
