@@ -77,5 +77,6 @@ namespace RRYautja
             }
             */
         }
+        public override LocalTargetInfo CurrentTarget => Parental.TargetCurrentlyAimingAt != null ? Parental.TargetCurrentlyAimingAt : base.CurrentTarget;
     }
 }

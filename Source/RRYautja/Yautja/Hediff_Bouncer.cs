@@ -32,7 +32,17 @@ namespace RRYautja
         public int disaapearsIn = 5;
 
         public ThingDef BounceDef = (DefDatabase<ThingDef>.GetNamed("RRY_SmartDisk_Thrown"));
-        public ThingDef ReturnDef = (DefDatabase<ThingDef>.GetNamed("RRY_SmartDisk_Returning"));
+        public ThingDef ReturnDef
+        {
+            get
+            {
+                if (OriginalPawn.kindDef.race!=YautjaDefOf.RRY_Alien_Yautja)
+                {
+                    return (DefDatabase<ThingDef>.GetNamed("RRY_SmartDisk_Thrown"));
+                }
+                return (DefDatabase<ThingDef>.GetNamed("RRY_SmartDisk_Returning"));
+            }
+        }
 
         public Pawn OriginalPawn;
         public Thing OriginalWeapon;
@@ -90,6 +100,12 @@ namespace RRYautja
             }
         }
 
+        public override void Notify_PawnDied()
+        {
+            this.pawn.health.RemoveHediff(this);
+            base.Notify_PawnDied();
+        }
+
         public override void PostRemoved()
         {
             base.PostRemoved();
@@ -100,11 +116,7 @@ namespace RRYautja
             IntVec3 hitpos = !this.pawn.Dead ? this.pawn.Position : this.pawn.PositionHeld;
             Map hitmap = !this.pawn.Dead ? this.pawn.Map : this.pawn.MapHeld;
             Thing launcher = this.pawn;
-        //    Log.Message(string.Format("shouldBounce: {0} 2", shouldBounce));
             Projectile projectile = shouldBounce ? this.OriginalProjectile : (Projectile)ThingMaker.MakeThing(ReturnDef, null);
-        //    Log.Message(string.Format("projectile: {0} 3", projectile));
-            //    Thing launcher = this.OriginalWeapon != null ? this.OriginalWeapon : null;
-            //    Thing launcher = this.OriginalWeapon != null ? this.OriginalWeapon : null;
             string msg = shouldBounce ? "bouncing" : "returning";
         //    Log.Message(string.Format("shouldBounce: {0} 4", msg));
             Thing targetthing;

@@ -644,7 +644,7 @@ namespace RRYautja
             if (Rand.Chance(0.005f)&&XenomorphUtil.isInfectablePawn(__result))
             {
                 HediffDef def = Rand.Chance(0.75f) ? XenomorphDefOf.RRY_HiddenXenomorphImpregnation : XenomorphDefOf.RRY_HiddenNeomorphImpregnation;
-                __result.health.AddHediff(def);
+                __result.health.AddHediff(def, __result.RaceProps.body.corePart, null);
             }
         }
 

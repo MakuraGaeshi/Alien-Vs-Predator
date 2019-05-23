@@ -491,6 +491,9 @@
         <range>20</range>
         <soundCast>Interact_BeatFire</soundCast>
         <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
       </li>
     </verbs>
     <tools>
@@ -548,4 +551,20 @@
     </projectile>
   </ThingDef>
 	
+  <ThingDef ParentName="MoteBase">
+    <defName>RRY_SmartDisk_Mote</defName>
+    <thingClass>RRYautja.GetReturningProjectile</thingClass>
+    <graphicData>
+      <texPath>DummyTexture</texPath>
+      <shaderType>MoteGlow</shaderType>
+    </graphicData>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <drawOffscreen>true</drawOffscreen>
+    <mote>
+      <fadeInTime>0.01</fadeInTime>
+      <solidTime>0.01</solidTime>
+      <fadeOutTime>0.01</fadeOutTime>
+    </mote>
+  </ThingDef>
+
 </Defs>

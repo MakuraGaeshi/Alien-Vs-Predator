@@ -23,7 +23,7 @@ namespace RRYautja
         {
             base.SpawnSetup(map, respawningAfterLoad);
             this.RecalcPathsOnAndAroundMe(map);
-            this.destroyTick = Find.TickManager.TicksGame + (Rand.Range(29, 121) * 100);
+            this.destroyTick = (Rand.Range(29, 121) * 100);
         }
 
         public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
@@ -52,13 +52,14 @@ namespace RRYautja
             bool destroyed = base.Destroyed;
             if (!destroyed && this.active)
             {
-                bool flag = this.destroyTick <= Find.TickManager.TicksGame && !base.Destroyed;
+                bool flag = this.destroyTick < 0 && !base.Destroyed;
                 if (flag)
                 {
                     this.active = false;
                 }
                 else
                 {
+                    this.destroyTick--;
                     this.Ticks--;
                     bool flag2 = this.Ticks <= 0;
                     if (flag2)
@@ -280,6 +281,6 @@ namespace RRYautja
 
         private int TickRate = 100;
 
-        private int AcidDamage = 3;
+        private int AcidDamage = 1;
     }
 }

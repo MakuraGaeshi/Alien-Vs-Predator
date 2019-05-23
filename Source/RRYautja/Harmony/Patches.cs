@@ -7,6 +7,7 @@ using System;
 using Verse.AI;
 using System.Text;
 using System.Linq;
+using Verse.AI.Group;
 
 namespace RRYautja
 {
@@ -225,8 +226,8 @@ namespace RRYautja
                 StatDef value = Traverse.Create(__instance).Field("stat").GetValue<StatDef>();
                 if (req != null && req.Thing != null && req.Def != null && (req.Def == YautjaDefOf.RRY_Gun_Hunting_Bow || req.Def == YautjaDefOf.RRY_Gun_Compound_Bow) && value == StatDefOf.RangedWeapon_DamageMultiplier)
                 {
-                    Log.Message(string.Format("GetValueUnfinalized value: {0}, Def: {1}, Empty: {2}, HasThing: {3}, QualityCategory: {4}, StuffDef: {5}, Thing: {6}", value, req.Def, req.Empty, req.HasThing, req.QualityCategory, req.StuffDef, req.Thing));
-                    Log.Message(string.Format("GetValueUnfinalized Original __result: {0}", __result));
+                //    Log.Message(string.Format("GetValueUnfinalized value: {0}, Def: {1}, Empty: {2}, HasThing: {3}, QualityCategory: {4}, StuffDef: {5}, Thing: {6}", value, req.Def, req.Empty, req.HasThing, req.QualityCategory, req.StuffDef, req.Thing));
+                //    Log.Message(string.Format("GetValueUnfinalized Original __result: {0}", __result));
 
                     DamageArmorCategoryDef CategoryOfDamage = ((ThingDef)req.Def).Verbs[0].defaultProjectile.projectile.damageDef.armorCategory;
 
@@ -246,7 +247,7 @@ namespace RRYautja
                         __result = num;
                     }
 
-                    Log.Message(string.Format("GetValueUnfinalized Modified __result: {0}", __result));
+                //    Log.Message(string.Format("GetValueUnfinalized Modified __result: {0}", __result));
                 }
             }
             return;
@@ -264,7 +265,7 @@ namespace RRYautja
             bool flag2 = traveler != null ? traveler.kindDef.race.defName.Contains("RRY_Xenomorph") : false ;
             bool flag3 = XenomorphUtil.isInfectablePawn(sleeper);
             __result = __result&&!flag || (__result && flag && flag2);
-            Log.Message(string.Format("RestUtility_Bed_IsValidBedFor sleeper: {0} traveler: {1} result: {2} = !flag: {3} && flag2: {4}", sleeper, traveler, __result, !flag , flag2));
+        //    Log.Message(string.Format("RestUtility_Bed_IsValidBedFor sleeper: {0} traveler: {1} result: {2} = !flag: {3} && flag2: {4}", sleeper, traveler, __result, !flag , flag2));
             return;
         }
     }
@@ -330,21 +331,48 @@ namespace RRYautja
         }
     }
     */
+
     // Token: 0x02000007 RID: 7
     [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "TryExecute")]
     public static class IncidentWorker_RaidEnemyPatch
     {
         // Token: 0x06000017 RID: 23 RVA: 0x00002CD0 File Offset: 0x00000ED0
+        [HarmonyPrefix]
+        public static bool PreExecute(ref IncidentParms parms)
+        {
+            if (parms.target is Map && (parms.target as Map).IsPlayerHome)
+            {
+                if (parms.faction != null && ((parms.faction.leader != null && parms.faction.leader.kindDef.race == YautjaDefOf.RRY_Alien_Yautja)|| (parms.faction.def.basicMemberKind != null && parms.faction.def.basicMemberKind.race == YautjaDefOf.RRY_Alien_Yautja)))
+                {
+                    Log.Message(string.Format("PreExecute Yautja Raid"));
+
+                    if ((parms.target as Map).GameConditionManager.ConditionIsActive(GameConditionDefOf.HeatWave))
+                    {
+                        Log.Message(string.Format("PreExecute During Heatwave, originally {0} points", parms.points));
+                        parms.points *= 2;
+                        Log.Message(string.Format("PreExecute During Heatwave, modified {0} points", parms.points));
+                    }
+                }
+            }
+            return true;
+        }
+
+        /*
         [HarmonyPostfix]
-        public static void PopSaboteurs(bool __result, IncidentParms parms)
+        public static void PostExecute(bool __result, ref IncidentParms parms)
         {
             if (__result && parms.target is Map && (parms.target as Map).IsPlayerHome)
             {
-                if (parms.faction.def.basicMemberKind.race == YautjaDefOf.RRY_Alien_Yautja)
+                if (parms.faction != null && parms.faction.leader.kindDef.race == YautjaDefOf.RRY_Alien_Yautja)
                 {
-                    Log.Message(string.Format("Yautja raid spawning"));
+
+                    if ((parms.target as Map).GameConditionManager.ConditionIsActive(GameConditionDefOf.HeatWave))
+                    {
+
+                    }
                 }
             }
         }
+        */
     }
 }

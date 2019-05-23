@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-<!--
 <AlienRace.PawnBioDef>
     <defName>RRY_DutchGroup_Dutch</defName>
-    <childhoodDef>yourChildhoodBackstoryDefname</childhoodDef>
-    <adulthoodDef>yourAdulthoodBackstoryDefname</adulthoodDef>
+    <childhoodDef>RRY_DutchGroup_Dutch_Child</childhoodDef>
+    <adulthoodDef>RRY_DutchGroup_Dutch_Adult</adulthoodDef>
     <gender>Male</gender> 
     <name>
       <first>Alan</first>
@@ -17,6 +16,7 @@
     </validRaces>
 </AlienRace.PawnBioDef>
   
+<!--
 <AlienRace.PawnBioDef>
     <defName>RRY_DutchGroup_Al</defName>
     <childhoodDef>yourChildhoodBackstoryDefname</childhoodDef>

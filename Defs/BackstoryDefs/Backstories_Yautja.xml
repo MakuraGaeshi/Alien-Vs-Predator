@@ -192,6 +192,10 @@
     <bodyTypeMale>Male</bodyTypeMale>
     <bodyTypeFemale>Female</bodyTypeFemale>
     <slot>Adulthood</slot>
+    <bioAgeRange>
+        <min>300</min>
+        <max>1000</max>
+    </bioAgeRange>
     <workDisables>
     </workDisables>
     <skillGains>

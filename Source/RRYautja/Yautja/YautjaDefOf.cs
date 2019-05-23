@@ -47,6 +47,13 @@ namespace RimWorld
         public static ThingDef RRY_Gun_Hunting_Bow;
         public static ThingDef RRY_Gun_Compound_Bow;
 
+        // Yautja ThingDefs  Projectiles
+        public static ThingDef RRY_SmartDisk_Thrown;
+        public static ThingDef RRY_SmartDisk_Returning;
+
+        // Yautja ThingDefs  Motes
+        public static ThingDef RRY_SmartDisk_Mote;
+
         // Yautja HairDefs 
         public static HairDef RRY_Yaujta_Dreds;
         public static HairDef RRY_Yaujta_Ponytail;
