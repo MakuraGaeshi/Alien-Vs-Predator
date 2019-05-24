@@ -8,6 +8,7 @@ using Verse.AI;
 using System.Text;
 using System.Linq;
 using Verse.AI.Group;
+using RimWorld.Planet;
 
 namespace RRYautja
 {
@@ -50,6 +51,87 @@ namespace RRYautja
             } // XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden
             __result = __result || ((__instance.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked) || __instance.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden)) && _Xenomorph == null);
 
+        }
+    }
+
+    [HarmonyPatch(typeof(Pawn), "AnythingToStrip")]
+    public static class Pawn_AnythingToStripPatch
+    {
+        [HarmonyPostfix]
+        public static void IgnoreWristblade(Pawn __instance, ref bool __result)
+        {
+            __result = !(__instance.apparel != null && __instance.apparel.WornApparelCount == 1 && __instance.apparel.WornApparel.Any(x => x.def == YautjaDefOf.RRY_Equipment_HunterGauntlet) && __instance.Faction!=Faction.OfPlayerSilentFail);
+
+        }
+    }
+
+    [HarmonyPatch(typeof(Pawn), "Strip")]
+    public static class Pawn_StripPatch
+    {
+        [HarmonyPrefix]
+        public static bool IgnoreWristblade(Pawn __instance)
+        {
+            bool result = !(__instance.apparel.WornApparel.Any(x => x.def == YautjaDefOf.RRY_Equipment_HunterGauntlet) && __instance.Faction != Faction.OfPlayerSilentFail);
+
+            Log.Message(string.Format("Pawn_StripPatch IgnoreWristblade: {0}", result));
+            if (!result)
+            {
+
+                Caravan caravan = __instance.GetCaravan();
+                if (caravan != null)
+                {
+                    CaravanInventoryUtility.MoveAllInventoryToSomeoneElse(__instance, caravan.PawnsListForReading, null);
+                    if (__instance.apparel != null)
+                    {
+                        CaravanInventoryUtility.MoveAllApparelToSomeonesInventory(__instance, caravan.PawnsListForReading);
+                    }
+                    if (__instance.equipment != null)
+                    {
+                        CaravanInventoryUtility.MoveAllEquipmentToSomeonesInventory(__instance, caravan.PawnsListForReading);
+                    }
+                }
+                else
+                {
+                    IntVec3 pos = (__instance.Corpse == null) ? __instance.PositionHeld : __instance.Corpse.PositionHeld;
+                    if (__instance.equipment != null)
+                    {
+                        __instance.equipment.DropAllEquipment(pos, false);
+                    }
+                    if (__instance.apparel != null)
+                    {
+                        DropAll(__instance, pos, false);
+                    }
+                    if (__instance.inventory != null)
+                    {
+                        __instance.inventory.DropAllNearPawn(pos, false, false);
+                    }
+                }
+            }
+            return result;
+        }
+        
+		// Token: 0x04000E58 RID: 3672
+		private static List<Apparel> tmpApparelList = new List<Apparel>();
+        
+        public static void DropAll(Pawn __instance, IntVec3 pos, bool forbid = true)
+        {
+            tmpApparelList.Clear();
+            for (int i = 0; i < __instance.apparel.WornApparel.Count; i++)
+            {
+                if (__instance.apparel.WornApparel[i].def != YautjaDefOf.RRY_Equipment_HunterGauntlet)
+                {
+                    tmpApparelList.Add(__instance.apparel.WornApparel[i]);
+                }
+                else
+                {
+                    Log.Message(string.Format("Ignoring Wristblade"));
+                }
+            }
+            for (int j = 0; j < tmpApparelList.Count; j++)
+            {
+                Apparel apparel;
+                __instance.apparel.TryDrop(tmpApparelList[j], out apparel, pos, forbid);
+            }
         }
     }
 

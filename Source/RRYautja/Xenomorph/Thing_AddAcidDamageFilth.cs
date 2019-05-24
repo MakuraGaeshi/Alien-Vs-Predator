@@ -66,6 +66,7 @@ namespace RRYautja
                     {
                         this.TickTack();
                         this.Ticks = this.TickRate;
+                        
                     }
                 }
             }

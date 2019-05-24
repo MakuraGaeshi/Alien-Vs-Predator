@@ -382,8 +382,11 @@
         </hairSettings>
         <thoughtSettings>
 			<cannotReceiveThoughts>
+				<!--
                 <li>AteHumanlikeMeatDirect</li>
                 <li>AteHumanlikeMeatAsIngredient</li>
+				<li>AteRawHumanlikeMeat</li>
+				-->
                 <li>ButcheredHumanlikeCorpse</li>
 				<li>KnowButcheredHumanlikeCorpse</li>
 				<li>ObservedLayingCorpse</li>
@@ -395,12 +398,11 @@
 				<li>SoldPrisoner</li>
 				<li>KnowPrisonerDiedInnocent</li>
 				<li>ExecutedPrisoner</li>
-				<li>AteRawHumanlikeMeat</li>
 				<li>AteWithoutTable</li>
 				<li>KnowPrisonerSold</li>
 				<li>KnowGuestOrganHarvested</li>
             </cannotReceiveThoughts>
-			<!--<replacerList>
+			<replacerList>
                 <li>
                     <original>AteHumanlikeMeatDirect</original>
                     <replacer>RRY_AteYautjaMeatDirect</replacer> 
@@ -417,7 +419,7 @@
                     <original>AteHumanlikeMeatAsIngredientCannibal</original>
                     <replacer>RRY_AteYautjaMeatAsIngredientCannibal</replacer> 
                 </li>
-				</replacerList>-->
+				</replacerList>
 			<ateThoughtSpecific>
                 <li>
                     <raceList>

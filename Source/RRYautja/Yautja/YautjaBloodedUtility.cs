@@ -11,6 +11,10 @@ namespace RRYautja
         public static HediffDef unbloodedDef = YautjaDefOf.RRY_Hediff_Unblooded;
         public static HediffDef unmarkedDef = YautjaDefOf.RRY_Hediff_BloodedUM;
         public static HediffDef markedDef = YautjaDefOf.RRY_Hediff_BloodedM;
+        public static AlienRace.BackstoryDef bsDefUnblooded = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_YoungBlood");
+        public static AlienRace.BackstoryDef bsDefBlooded = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_Blooded");
+        public static AlienRace.BackstoryDef bsDefBadbloodA = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_BadBloodA");
+        public static AlienRace.BackstoryDef bsDefBadblooBd = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_BadBloodB");
 
         // Token: 0x02000D68 RID: 3432
         public enum BloodStatusMode
@@ -45,47 +49,107 @@ namespace RRYautja
         public static bool BloodStatus(Pawn pawn, out Hediff BloodHD)
         {
             HediffSet hediffSet = pawn.health.hediffSet;
-            BodyPartRecord part;
+            BodyPartRecord part = pawn.RaceProps.body.AllParts.Find(x => x.def == BodyPartDefOf.Head);
+            HediffDef hediffDef;
             bool result = false;
             BloodHD = null;
             bool hasbloodedM = hediffSet.hediffs.Any<Hediff>(x => x.def.defName.StartsWith(markedDef.defName));
             if (hasbloodedM)
             {
-                foreach (var item in hediffSet.hediffs)
-                {
-                    if (item.def.defName.StartsWith(markedDef.defName))
-                    {
-                        BloodHD = item;
-                        result = true;
-                        break;
-                    }
-                }
+                BloodHD = hediffSet.hediffs.Find(x => x.def.defName.Contains(markedDef.defName));
+            //    Log.Message(string.Format("hasbloodedM: {0}", BloodHD));
+                result = true;
             }
             bool hasunblooded = hediffSet.HasHediff(unbloodedDef);
             if (hasunblooded)
             {
                 BloodHD = hediffSet.GetFirstHediffOfDef(unbloodedDef);
+            //    Log.Message(string.Format("hasunblooded: {0}", BloodHD));
                 result = false;
-
             }
             bool hasbloodedUM = hediffSet.HasHediff(unmarkedDef);
             if (hasbloodedUM)
             {
                 BloodHD = hediffSet.GetFirstHediffOfDef(unmarkedDef);
+            //    Log.Message(string.Format("hasbloodedUM: {0}", BloodHD));
                 result = true;
-
             }
             if (BloodHD==null)
             {
-                foreach (var item in pawn.RaceProps.body.AllParts)
+            //    Log.Message(string.Format("1"));
+                Backstory pawnStoryC = pawn.story.childhood;
+                Backstory pawnStoryA = pawn.story.adulthood != null ? pawn.story.adulthood : null;
+
+                if (pawnStoryA != null)
                 {
-                    if (item.def == BodyPartDefOf.Head)
+                //    Log.Message(string.Format("2"));
+                    if (pawnStoryA != bsDefUnblooded.backstory)
                     {
-                        part = item;
-                        pawn.health.AddHediff(unbloodedDef, part);
+                    //    Log.Message(string.Format("3"));
+                        Comp_Yautja _Yautja = pawn.TryGetComp<Comp_Yautja>();
+                        hediffDef = _Yautja.Props.bloodedDefs.RandomElement();
+
+                        if (hediffDef != null)
+                        {
+                        //    Log.Message(string.Format("4"));
+                            PawnKindDef pawnKindDef = YautjaBloodedUtility.RandomMarked(hediffDef);
+                            if (_Yautja != null)
+                            {
+                            //    Log.Message(string.Format("5"));
+                                _Yautja.MarkHedifflabel = pawnKindDef.LabelCap;
+                                _Yautja.MarkedhediffDef = hediffDef;
+                                _Yautja.predator = pawnKindDef.RaceProps.predator;
+                                _Yautja.BodySize = pawnKindDef.RaceProps.baseBodySize;
+                                _Yautja.combatPower = pawnKindDef.combatPower;
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                    //    Log.Message(string.Format("6"));
+                        hediffDef = unbloodedDef;
+                    }
+                }
+                else
+                {
+                //    Log.Message(string.Format("7"));
+                    hediffDef = unbloodedDef;
+                }
+            //    Log.Message(string.Format("8"));
+                pawn.health.AddHediff(hediffDef, part);
+            //    Log.Message(string.Format("9"));
+                BloodHD = hediffSet.GetFirstHediffOfDef(hediffDef);
+            //    Log.Message(string.Format("10"));
+                result = true;
+            //    Log.Message(string.Format("11"));
+            }
+            else
+            {
+            //    Log.Message(string.Format("12"));
+                Comp_Yautja _Yautja = pawn.TryGetComp<Comp_Yautja>();
+            //    Log.Message(string.Format("12 a {0}", BloodHD.def));
+                if (hasbloodedM)
+                {
+                    PawnKindDef pawnKindDef = YautjaBloodedUtility.RandomMarked(BloodHD.def);
+                //    Log.Message(string.Format("12 B {0}", pawnKindDef));
+                    if (_Yautja != null && _Yautja.MarkHedifflabel.NullOrEmpty())
+                    {
+                    //    Log.Message(string.Format("13 "));
+                        _Yautja.MarkHedifflabel = pawnKindDef.LabelCap;
+                    //    Log.Message(string.Format("13 a"));
+                        _Yautja.MarkedhediffDef = BloodHD.def;
+                    //    Log.Message(string.Format("13 b"));
+                        _Yautja.predator = pawnKindDef.RaceProps.predator;
+                    //    Log.Message(string.Format("13 c"));
+                        _Yautja.BodySize = pawnKindDef.RaceProps.baseBodySize;
+                    //    Log.Message(string.Format("13 d"));
+                        _Yautja.combatPower = pawnKindDef.combatPower;
+                    //    Log.Message(string.Format("13 f"));
                     }
                 }
             }
+        //    Log.Message(string.Format("14"));
             return result;
         }
         public static bool BloodStatus(Pawn pawn)
@@ -278,11 +342,11 @@ namespace RRYautja
             */
             if (markedDef == YautjaDefOf.RRY_Hediff_BloodedMGroTye)
             {
-                return DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(x => !x.race.defName.StartsWith("RRY_Xenomorph_") && x.defName.Contains("Thrumbo")).RandomElement();
+                return DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(x => !x.race.defName.StartsWith("RRY_Xenomorph_") && x.defName.Contains("Megasloth")).RandomElement();
             }
             if (markedDef == YautjaDefOf.RRY_Hediff_BloodedMCrusher)
             {
-                return DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(x => !x.race.defName.StartsWith("RRY_Xenomorph_") && (x.defName.Contains("Rhinoceros")|| x.defName.Contains("Elephant") || x.defName.Contains("Megasloth"))).RandomElement();
+                return DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(x => !x.race.defName.StartsWith("RRY_Xenomorph_") && (x.defName.Contains("Rhinoceros")|| x.defName.Contains("Elephant") || x.defName.Contains("Thrumbo"))).RandomElement();
             }
             if (markedDef == YautjaDefOf.RRY_Hediff_BloodedMHound)
             {
