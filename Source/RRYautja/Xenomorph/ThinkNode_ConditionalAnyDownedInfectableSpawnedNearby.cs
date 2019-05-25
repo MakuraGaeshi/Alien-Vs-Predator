@@ -1,5 +1,6 @@
 ﻿using RRYautja;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Verse;
 using Verse.AI;
@@ -13,19 +14,29 @@ namespace RimWorld
         protected override bool Satisfied(Pawn pawn)
         {
             bool result;
-            if (pawn.Spawned && XenomorphUtil.IsXenomorph(pawn) && !XenomorphUtil.EggsPresent(pawn.Map))
+            if (pawn.Spawned && XenomorphUtil.IsXenomorph(pawn))
             {
-                result = pawn.Map.mapPawns.AllPawns.Any((Pawn x) => x.Downed && XenomorphUtil.isInfectablePawn(x));
-            }
-            else if(pawn.Spawned && XenomorphUtil.IsXenomorph(pawn) && XenomorphUtil.EggsPresent(pawn.Map))
-            {
-                result = pawn.Map.mapPawns.AllPawns.Any((Pawn x) => x.Downed && XenomorphUtil.isInfectablePawn(x) && XenomorphUtil.DistanceBetween(XenomorphUtil.ClosestReachableEgg(x).Position, x.Position) > 3f);
+                if (!XenomorphUtil.EggsPresent(pawn.Map))
+                {
+                    Log.Message(string.Format("pawn.Spawned && XenomorphUtil.IsXenomorph(pawn) && !XenomorphUtil.EggsPresent(pawn.Map)"));
+                    List<Pawn> list = pawn.Map.mapPawns.AllPawns.Where((Pawn x) => x.Downed && XenomorphUtil.isInfectablePawn(x) && pawn.CanReach(x, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.NoPassClosedDoors)).ToList();
+                    result = list.Any<Pawn>(x => x.Spawned);
+                }
+                else
+                {
+                    Log.Message(string.Format("pawn.Spawned && XenomorphUtil.IsXenomorph(pawn) && XenomorphUtil.EggsPresent(pawn.Map)"));
+                    List<Pawn> list = pawn.Map.mapPawns.AllPawns.Where((Pawn x) => x.Downed && XenomorphUtil.isInfectablePawn(x) && pawn.CanReach(x, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.NoPassClosedDoors)).ToList();
+                    result = list.Any<Pawn>(x => x.Spawned && XenomorphUtil.DistanceBetween(XenomorphUtil.ClosestReachableEgg(x).Position, x.Position) > 3f);
+                }
             }
             else
             {
+                Log.Message(string.Format("false"));
                 result = false;
             }
+            Log.Message(string.Format("result: {0}", result));
             return result;
         }
+
     }
 }

@@ -16,7 +16,7 @@ namespace RRYautja
             {
                 yield return designation.target.Thing;
             }
-            IEnumerator<Designation> enumerator = null;
+        //    IEnumerator<Designation> enumerator = null;
             yield break;
         }
 

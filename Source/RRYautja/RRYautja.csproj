@@ -80,9 +80,17 @@
     <Compile Include="Xenomorph\Building_XenoEgg.cs" />
     <None Include="Xenomorph\Building_XenomorphCocoon - Copy.cs.bak" />
     <Compile Include="Xenomorph\Building_XenomorphCocoon.cs" />
+    <Compile Include="Xenomorph\Class1.cs" />
+    <Compile Include="Xenomorph\JobDriver_CocoonHost.cs" />
+    <Compile Include="Xenomorph\MapComponent_XenomorphCocoonTracker.cs" />
+    <Compile Include="Xenomorph\HediffComp_XenomorphCocoon.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_XenoTakeToCocoon.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphFightEnemies.cs" />
     <Compile Include="Xenomorph\HediffGiver_StartWithXenomorphHediff.cs" />
     <Compile Include="util\MinifiedThingNoBox.cs" />
+    <Compile Include="Yautja\Recipe_Remove_Gauntlet.cs" />
+    <Compile Include="Yautja\RRY_Thought_SituationalSocial.cs" />
+    <Compile Include="Yautja\GetReturningProjectile.cs" />
     <Compile Include="Xenomorph\XenomorphKidnapUtility.cs" />
     <Compile Include="Xenomorph\XenomorphCocoonUtility.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_XenosKidnap.cs" />
@@ -91,8 +99,7 @@
     <Compile Include="Xenomorph\MinifiedXenoEgg.cs" />
     <Compile Include="Xenomorph\IncidentWorker_NeomorphFungusSprout.cs" />
     <Compile Include="Xenomorph\Recipe_RemoveHugger.cs" />
-    <Compile Include="Yautja\Class1.cs" />
-    <Compile Include="Yautja\Class2.cs" />
+    <Compile Include="Yautja\IncidentWorker_WandererJoin.cs" />
     <Compile Include="Yautja\Stuffable_Bullet.cs" />
     <Compile Include="Yautja\Stuffable_Projectile.cs" />
     <Compile Include="Yautja\DamageWorker_CombiPin.cs" />
@@ -112,6 +119,8 @@
     <Compile Include="Xenomorph\Verb_MeleeAttackKnockback.cs" />
     <Compile Include="util\Projectile_AbilityRRY_ThrownWeapon.cs" />
     <Compile Include="util\Projectile_AbilityRRY.cs" />
+    <Compile Include="Yautja\Verb_Launch_Stuffable_Projectile.cs" />
+    <Compile Include="Yautja\Verb_Shoot_Stuffable.cs" />
     <Compile Include="Yautja\XenosCorpseModification.cs" />
     <Compile Include="Yautja\Traps\Building_Trap.cs" />
     <Compile Include="Yautja\Traps\Building_TrapRearmable.cs" />

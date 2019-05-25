@@ -178,9 +178,9 @@ namespace RRYautja
             Pawn pawn = base.parent as Pawn;
 
             base.PostPostApplyDamage(dinfo, totalDamageDealt);
-            if (((Pawn)this.parent).health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked))
+            if (((Pawn)this.parent).health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden))
             {
-                ((Pawn)this.parent).health.RemoveHediff(((Pawn)this.parent).health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_Cloaked));
+                ((Pawn)this.parent).health.RemoveHediff(((Pawn)this.parent).health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden));
             }
 
 

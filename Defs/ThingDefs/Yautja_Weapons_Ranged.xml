@@ -4,7 +4,7 @@
   <ThingDef ParentName="RRYBaseSimpleRanged">
     <defName>RRY_Gun_Hunting_Bow</defName>
     <label>yautja hunting bow</label>
-    <description>A powerful traditional Yautja bow.</description>
+    <description>The traditional Yautja Hunting is a large powerful bow taht can be made out of almost any materials.</description>
     <graphicData>
       <texPath>Things/Equipment/Ranged/Yautja_Hunting_Bow</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -12,14 +12,9 @@
       <drawSize>1.5</drawSize>			
     </graphicData>
     <soundInteract>Bow_Large</soundInteract>
-	<costStuffCount>95</costStuffCount>
-		<stuffCategories>
-			<li>Metallic</li>
-			<li>Woody</li>
-		</stuffCategories>
     <statBases>
-      <WorkToMake>9000</WorkToMake>
-      <Mass>3.0</Mass>
+      <WorkToMake>3000</WorkToMake>
+      <Mass>1.0</Mass>
       <AccuracyTouch>0.65</AccuracyTouch>
       <AccuracyShort>0.85</AccuracyShort>
       <AccuracyMedium>0.75</AccuracyMedium>
@@ -52,16 +47,19 @@
         <cooldownTime>2</cooldownTime>
       </li>
     </tools>
+	<costStuffCount>60</costStuffCount>
+		<stuffCategories>
+			<li>Woody</li>
+		</stuffCategories>
     <recipeMaker>
 		<recipeUsers>
 			<li>ElectricSmithy</li>
 			<li>FueledSmithy</li>
 			<li>CraftingSpot</li>
-			
 		</recipeUsers>
       <researchPrerequisite>RRY_YautjaRanged_Basic</researchPrerequisite>
       <skillRequirements>
-        <Crafting>4</Crafting>
+        <Crafting>3</Crafting>
       </skillRequirements>
     </recipeMaker>
 	<comps>     
@@ -105,18 +103,13 @@
 		</li>
 	</comps>
     <soundInteract>Bow_Large</soundInteract>
-	<costStuffCount>135</costStuffCount>
-		<stuffCategories>
-			<li>Metallic</li>
-			<li>Woody</li>
-		</stuffCategories>
     <statBases>
-      <WorkToMake>9000</WorkToMake>
+      <WorkToMake>4500</WorkToMake>
       <Mass>3.0</Mass>
       <AccuracyTouch>0.65</AccuracyTouch>
       <AccuracyShort>0.85</AccuracyShort>
       <AccuracyMedium>0.75</AccuracyMedium>
-      <AccuracyLong>0.50</AccuracyLong>
+      <AccuracyLong>0.65</AccuracyLong>
       <RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
     </statBases>
     <weaponTags>
@@ -145,6 +138,10 @@
         <cooldownTime>2</cooldownTime>
       </li>
     </tools>
+	<costStuffCount>100</costStuffCount>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
     <recipeMaker>
       <researchPrerequisite>RRY_YautjaRanged_Med</researchPrerequisite>
       <skillRequirements>
@@ -190,43 +187,42 @@
 
 	<ThingDef ParentName="RRYBaseMakeableGun">
 		<defName>RRY_Gun_YautjaBlaster</defName>
-		<label>Yautja Plasmacaster</label>
-		<description>The Plasmacaster, also known as the Plasma Cannon or Laser Cannon is a Yautja long-range energy projector weapon. Capable of firing armor-penetrating plasma bolts at distant targets, one of the most devastating and technologically advanced offensive tool at the Yautja's disposal. The bolts fired by the weapon explode in a burst of plasma "shrapnel" upon striking a target, causing grievous wounds and potentially damaging other enemies near the point of impact.\n\nYoung Blood Yautja are denied the use of Plasmacasters and must undergo a Rite of Passage, whereby they must Hunt Xenomorphs using only their close-range weapons, in order to obtain the weapons. Despite the enormous power of the Plasmacaster, or rather because of it, it is considered among the least honorable weaponry the Yautja possess. Often, when faced with particularly worthy prey, a Predator will discard his Plasmacaster and rely instead on its more basic weapons.</description>
+		<label>Plasma Pistol</label>
+		<description>The Plasma Pistol, also known as the Plasma Handgun, is a handheld version of the Yautja Plasmacaster.</description>
 		<graphicData>
 			<texPath>Things/Equipment/Ranged/PredatorBlaster</texPath>
 			<graphicClass>Graphic_Single</graphicClass>		
     </graphicData>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
-			<WorkToMake>32000</WorkToMake>
+			<WorkToMake>20000</WorkToMake>
 			<MarketValue>750</MarketValue>
 			<Mass>2</Mass>
 			<AccuracyTouch>0.80</AccuracyTouch>
-			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyShort>0.85</AccuracyShort>
 			<AccuracyMedium>0.60</AccuracyMedium>
-			<AccuracyLong>0.50</AccuracyLong>
+			<AccuracyLong>0.35</AccuracyLong>
 			<RangedWeapon_Cooldown>1.35</RangedWeapon_Cooldown>
 		</statBases>
 	<recipeMaker>
-		<researchPrerequisite>RRY_YautjaRanged_Adv</researchPrerequisite>
+		<researchPrerequisite>RRY_YautjaRanged_Med</researchPrerequisite>
+		<skillRequirements>
+			<Crafting>6</Crafting>
+		</skillRequirements>
 	</recipeMaker>
-		<equippedStatOffsets>
-			<MoveSpeed>0.5</MoveSpeed>
-		</equippedStatOffsets>
+		
 		<verbs>
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>RRY_Bullet_Plasma</defaultProjectile>
 				<warmupTime>1</warmupTime>
-				<range>31</range>
+				<range>23</range>
 				<soundCast>RRY_Shot_ShoulderCannon</soundCast>
 				<!-- <forcedMissRadius>0.1</forcedMissRadius> -->
 				<soundCastTail>GunTail_Light</soundCastTail>
 				<muzzleFlashScale>8</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
+			
 			</li>
 		</verbs>
     <tools>
@@ -264,7 +260,7 @@
 		<costList>				
 			<Steel>30</Steel>
 			<Plasteel>40</Plasteel>
-			<ComponentIndustrial>10</ComponentIndustrial>
+			<ComponentIndustrial>3</ComponentIndustrial>
 			<Gold>4</Gold>
 		</costList>
 	</ThingDef>
@@ -282,7 +278,6 @@
 		<damageDef>Bullet</damageDef>
 		<damageAmountBase>5</damageAmountBase>
 		<armorPenetrationBase>0.68</armorPenetrationBase>
-		<stoppingPower>1.75</stoppingPower>
 		<speed>75</speed>
 	</projectile>
  </ThingDef>
@@ -296,37 +291,31 @@
     </graphicData>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
-			<WorkToMake>32000</WorkToMake>
+			<WorkToMake>20000</WorkToMake>
 			<MarketValue>750</MarketValue>
-			<Mass>2</Mass>
-			<AccuracyTouch>0.60</AccuracyTouch>
-			<AccuracyShort>0.70</AccuracyShort>
-			<AccuracyMedium>0.75</AccuracyMedium>
-			<AccuracyLong>0.70</AccuracyLong>
+			<Mass>3</Mass>
+			<AccuracyTouch>0.75</AccuracyTouch>
+			<AccuracyShort>0.85</AccuracyShort>
+			<AccuracyMedium>0.50</AccuracyMedium>
+			<AccuracyLong>0.35</AccuracyLong>
 			<RangedWeapon_Cooldown>1.35</RangedWeapon_Cooldown>
 		</statBases>
 	<recipeMaker>
 		<researchPrerequisite>RRY_YautjaRanged_Med</researchPrerequisite>
 	</recipeMaker>
-		<equippedStatOffsets>
-			<MoveSpeed>0.5</MoveSpeed>
-		</equippedStatOffsets>
 		<verbs>
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>RRY_Bullet_NeedlerRifle</defaultProjectile>
 				<warmupTime>1</warmupTime>
-				<range>31</range>
+				<range>30</range>
 				<burstShotCount>3</burstShotCount>
 				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
 				<!-- <soundCast>Shot_Revolver</soundCast> -->
 				<!-- <forcedMissRadius>0.1</forcedMissRadius> -->
 				<!-- <soundCastTail>GunTail_Light</soundCastTail> -->
 				<muzzleFlashScale>0</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
 			</li>
 		</verbs>
     <tools>
@@ -362,9 +351,9 @@
 			<li>RRY_RangedWeapons</li>
 		</tradeTags>
 		<costList>				
-			<Steel>30</Steel>
-			<Plasteel>40</Plasteel>
-			<ComponentIndustrial>10</ComponentIndustrial>
+			<Steel>20</Steel>
+			<Plasteel>55</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
 			<Gold>4</Gold>
 		</costList>
 	</ThingDef>
@@ -392,7 +381,7 @@
       </skillRequirements>
     </recipeMaker>
     <statBases>
-      <WorkToMake>45000</WorkToMake>
+      <WorkToMake>50000</WorkToMake>
       <Mass>4</Mass>
       <AccuracyTouch>0.50</AccuracyTouch>
       <AccuracyShort>0.70</AccuracyShort>
@@ -401,8 +390,9 @@
       <RangedWeapon_Cooldown>2.3</RangedWeapon_Cooldown>
     </statBases>
     <costList>
-      <Steel>60</Steel>
-      <ComponentIndustrial>8</ComponentIndustrial>
+      <Uranium>10</Uranium>
+	  <Plasteel>50</Plasteel>
+      <ComponentIndustrial>6</ComponentIndustrial>
     </costList>
     <verbs>
       <li>
@@ -410,10 +400,10 @@
         <hasStandardCommand>true</hasStandardCommand>
         <defaultProjectile>RRY_Bullet_SpearRifle</defaultProjectile>
         <warmupTime>3.5</warmupTime>
-        <range>44.9</range>
+        <range>55</range>
         <soundCast>Shot_SniperRifle</soundCast>
         <soundCastTail>GunTail_Heavy</soundCastTail>
-        <muzzleFlashScale>9</muzzleFlashScale>
+        <muzzleFlashScale>0</muzzleFlashScale>
       </li>
     </verbs>
     <tools>
@@ -451,8 +441,8 @@
     <projectile>
       <damageDef>Bullet</damageDef>
       <damageAmountBase>35</damageAmountBase>
-      <stoppingPower>1.5</stoppingPower>
-      <speed>100</speed>
+      <stoppingPower>2.0</stoppingPower>
+      <speed>120</speed>
     </projectile>
   </ThingDef>
 
@@ -490,6 +480,7 @@
       <skillRequirements>
         <Crafting>6</Crafting>
       </skillRequirements>
+	  
     </recipeMaker>
     <verbs>
       <li>
@@ -500,6 +491,9 @@
         <range>20</range>
         <soundCast>Interact_BeatFire</soundCast>
         <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
       </li>
     </verbs>
     <tools>
@@ -557,4 +551,20 @@
     </projectile>
   </ThingDef>
 	
+  <ThingDef ParentName="MoteBase">
+    <defName>RRY_SmartDisk_Mote</defName>
+    <thingClass>RRYautja.GetReturningProjectile</thingClass>
+    <graphicData>
+      <texPath>DummyTexture</texPath>
+      <shaderType>MoteGlow</shaderType>
+    </graphicData>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <drawOffscreen>true</drawOffscreen>
+    <mote>
+      <fadeInTime>0.01</fadeInTime>
+      <solidTime>0.01</solidTime>
+      <fadeOutTime>0.01</fadeOutTime>
+    </mote>
+  </ThingDef>
+
 </Defs>

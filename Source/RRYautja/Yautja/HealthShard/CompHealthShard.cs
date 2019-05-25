@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using Verse;
 using Verse.AI;
-using Verse.AI;
 using System.Linq;
 
 namespace RRYautja
@@ -40,7 +39,6 @@ namespace RRYautja
     // Token: 0x02000791 RID: 1937
     public class CompUseEffect_HealthShard : CompUseEffect
     {
-        bool logonce = false;
         // Token: 0x06002ADC RID: 10972 RVA: 0x001433C0 File Offset: 0x001417C0
         public override void DoEffect(Pawn user)
         {
@@ -101,7 +99,7 @@ namespace RRYautja
                 failReason = "Not wearing Injector";
                 return false;
             }
-            return base.CanBeUsedBy(p, out failReason);
+        //    return base.CanBeUsedBy(p, out failReason);
         }
 
         // Token: 0x04001786 RID: 6022

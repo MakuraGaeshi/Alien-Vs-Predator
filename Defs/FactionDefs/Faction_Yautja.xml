@@ -18,6 +18,7 @@
     <listOrderPriority>20</listOrderPriority>
     <settlementGenerationWeight>1</settlementGenerationWeight>
     <requiredCountAtGameStart>1</requiredCountAtGameStart>
+    <basicMemberKind>YautjaUnblooded_RRY</basicMemberKind>
     <canMakeRandomly>true</canMakeRandomly>
     <canSiege>false</canSiege>
     <canStageAttacks>true</canStageAttacks>
@@ -78,6 +79,7 @@
           <YautjaBlooded_RRY>8</YautjaBlooded_RRY>
           <YautjaElite_RRY>4</YautjaElite_RRY>
           <YautjaElder_RRY>2</YautjaElder_RRY>
+          <YautjaAncient_RRY>1</YautjaAncient_RRY>
         </options>
       </li>
       <li>
@@ -105,6 +107,7 @@
           <YautjaUnblooded_RRY>13</YautjaUnblooded_RRY>
           <YautjaYoungBlood_RRY>10</YautjaYoungBlood_RRY>
           <YautjaBlooded_RRY>10</YautjaBlooded_RRY>
+          <YautjaAncient_RRY>1</YautjaAncient_RRY>
         </guards>
       </li>
 	  <li>
@@ -116,7 +119,7 @@
           <YautjaBlooded_RRY>8</YautjaBlooded_RRY>
           <YautjaElite_RRY>4</YautjaElite_RRY>
           <YautjaElder_RRY>2</YautjaElder_RRY>
-          <YautjaAncient_RRY>1</YautjaAncient_RRY>
+          <YautjaAncient_RRY>10</YautjaAncient_RRY>
         </options>
       </li>
     </pawnGroupMakers>
@@ -137,6 +140,7 @@
     <description>The Bad Bloods are traitors, pariah and, worst of all, dishonored members of the Yautja society. They are banned from their parents clan and hunted out of spite. They live in chaos with no rules or lord except the will to live and to hunt. They do not obey to any code of Honor known to yautja society and their existence is considered an insult to the Clans.</description>
 	<pawnSingular>Badblood yautja</pawnSingular>
     <pawnsPlural>Badblood yautji</pawnsPlural>
+    <basicMemberKind>YautjaUnblooded_RRY</basicMemberKind>
     <listOrderPriority>20</listOrderPriority>
     <settlementGenerationWeight>1</settlementGenerationWeight>
     <requiredCountAtGameStart>1</requiredCountAtGameStart>
@@ -200,6 +204,7 @@
           <YautjaBlooded_RRY>8</YautjaBlooded_RRY>
           <YautjaElite_RRY>4</YautjaElite_RRY>
           <YautjaElder_RRY>2</YautjaElder_RRY>
+          <YautjaAncient_RRY>1</YautjaAncient_RRY>
         </options>
       </li>
         <li>
@@ -207,6 +212,7 @@
         <options>
           <YautjaColonist_RRY>10</YautjaColonist_RRY>
           <YautjaSlave_RRY>13</YautjaSlave_RRY>
+          <YautjaAncient_RRY>1</YautjaAncient_RRY>
         </options>
       </li>
 	  <li>
@@ -224,6 +230,7 @@
           <YautjaBlooded_RRY>8</YautjaBlooded_RRY>
           <YautjaElite_RRY>4</YautjaElite_RRY>
           <YautjaElder_RRY>2</YautjaElder_RRY>
+          <YautjaAncient_RRY>1</YautjaAncient_RRY>
         </guards>
       </li>
 	  <li>
@@ -235,6 +242,7 @@
           <YautjaBlooded_RRY>8</YautjaBlooded_RRY>
           <YautjaElite_RRY>4</YautjaElite_RRY>
           <YautjaElder_RRY>2</YautjaElder_RRY>
+          <YautjaAncient_RRY>10</YautjaAncient_RRY>
         </options>
       </li>
     </pawnGroupMakers>

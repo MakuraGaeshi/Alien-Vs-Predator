@@ -108,7 +108,6 @@ namespace RRYautja
             {
                 yield return gizmo;
             }
-            IEnumerator<Gizmo> enumerator = null;
             yield return new Command_Toggle
             {
                 defaultLabel = Translator.Translate("CommandAutoRearm"),
@@ -135,7 +134,6 @@ namespace RRYautja
                     }
                 };
             }
-            yield break;
             yield break;
         }
 

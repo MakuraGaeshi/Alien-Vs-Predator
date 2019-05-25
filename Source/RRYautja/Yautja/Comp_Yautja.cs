@@ -54,23 +54,32 @@ namespace RRYautja
             }
         }
 
+        public Pawn pawn;
         public Pawn other;
-
-        public int TotalkillsRecord = 0;
-
-        public int pawnKills = 0;
-
-        public bool blooded;
-
         public HediffDef unbloodedDef = YautjaDefOf.RRY_Hediff_Unblooded;
         public HediffDef unmarkedDef = YautjaDefOf.RRY_Hediff_BloodedUM;
         public HediffDef GenericmarkedDef = YautjaDefOf.RRY_Hediff_BloodedM;
         public HediffDef markedDef;
-
+        public HediffDef MarkedhediffDef;
         public Hediff marked;
         public Hediff BloodStatus;
         public Hediff unmarked;
+        public Corpse corpse;
+        public string MarkHedifftype;
+        public string MarkHedifflabel;
+        public float combatPower;
+        public float BodySize;
+        public int TotalkillsRecord = 0;
+        public int pawnKills = 0;
+        public bool TurretIsOn;
+        public bool predator;
+        public bool blooded;
 
+        AlienRace.BackstoryDef bsDefUnblooded = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_YoungBlood");
+        AlienRace.BackstoryDef bsDefBlooded = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_Blooded");
+        AlienRace.BackstoryDef bsDefBadbloodA = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_BadBloodA");
+        AlienRace.BackstoryDef bsDefBadblooBd = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_BadBloodB");
+        
         public override void PostExposeData()
         {
             base.PostExposeData();
@@ -87,19 +96,8 @@ namespace RRYautja
             Scribe_Values.Look<float>(ref this.combatPower, "thiscombatPower");
             Scribe_Values.Look<float>(ref this.BodySize, "thisBodySize");
             Scribe_Values.Look<bool>(ref this.TurretIsOn, "thisTurretIsOn");
+            Scribe_Values.Look<bool>(ref this.blooded, "thisblooded");
         }
-
-        public HediffDef MarkedhediffDef;
-        public Corpse corpse;
-        public Pawn pawn;
-        public string MarkHedifftype;
-        public string MarkHedifflabel;
-        public bool predator;
-        public float combatPower;
-        public float BodySize;
-        public bool TurretIsOn;
-
-
 
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
@@ -127,11 +125,11 @@ namespace RRYautja
         public override void CompTick()
         {
             base.CompTick();
-            if (base.parent.IsHashIntervalTick(30) && base.parent != null && base.parent is Pawn pawn)
+            if (base.parent.IsHashIntervalTick(30) && base.parent != null && base.parent is Pawn pawn && pawn.Map !=null)
             {
                 bool selected = Find.Selector.SelectedObjects.Contains(Pawn);
                 blooded = YautjaBloodedUtility.BloodStatus(Pawn, out BloodStatus);
-                if (!blooded) pawn.health.AddHediff(unbloodedDef, partRecord);
+
 #if DEBUG
             //    if (base.parent.IsHashIntervalTick(300) && selected) Log.Message(string.Format("BloodStatus: {0}", BloodStatus));
 #endif

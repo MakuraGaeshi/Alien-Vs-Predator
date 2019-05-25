@@ -11,6 +11,7 @@ namespace RRYautja
         public List<BodyPartDef> partsToAffect;
         public List<BodyPartGroupDef> groupsToAffect;
         public bool severityBasedOnDurability = false;
+        public bool dropOnPartLost = false;
 
         public CompProperties_HediffApparel()
         {
@@ -24,6 +25,24 @@ namespace RRYautja
         private Pawn lastWearer;
 
         public CompProperties_HediffApparel Props => (CompProperties_HediffApparel)base.props;
+
+        // Determine who is wearing this ThingComp. Returns a Pawn or null.
+        protected virtual Pawn GetWearer
+        {
+            get
+            {
+                if (ParentHolder != null && ParentHolder is Pawn_ApparelTracker)
+                {
+                    return (Pawn)ParentHolder.ParentHolder;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+        // Determine if this ThingComp is being worn presently. Returns True/False
+        protected virtual bool IsWorn => (GetWearer != null);
 
         public void MyRemoveHediffs(Pawn pawn)
         {
@@ -61,7 +80,16 @@ namespace RRYautja
             // Now do it for all the parts in the specified groups.
             if (!Props.groupsToAffect.NullOrEmpty())
             {
-                partsToAffect.AddRange(from p in source where Props.groupsToAffect.Intersect(p.groups).Any() select p.def);
+                foreach (var item in source)
+                {
+                    if (Props.groupsToAffect.Count ==1 && item.groups.Any(x => x == Props.groupsToAffect[0]))
+                    {
+                        Log.Message(string.Format("{0}", item.customLabel));
+                        GetWearer.health.AddHediff(Props.hediffDef, item);
+                        partsToAffect.AddRange(from p in source where Props.groupsToAffect.Intersect(p.groups).Any() select p.def);
+                        return true;
+                    }
+                }
             }
 
             // We need to count of parts to affect ahead of time because we are removing duplicates for performance reasons.
@@ -69,7 +97,8 @@ namespace RRYautja
             partsToAffect.RemoveDuplicates();
 
             // Apply our hediffs!
-            return HediffGiverUtility.TryApply(pawn, Props.hediffDef, partsToAffect, false, countToAffect);
+            return false;
+            // return HediffGiverUtility.TryApply(pawn, Props.hediffDef, partsToAffect, false, countToAffect);
         }
 
         public void MyUpdateSeverity(Pawn pawn)
@@ -101,13 +130,25 @@ namespace RRYautja
             MyRemoveHediffs(lastWearer);
         }
 
+        
+
         public override void CompTick()
         {
             base.CompTick();
 
             // We know our parent is an Apparel; cast it as such so we can access its Wearer member.
             Apparel parent = base.parent as Apparel;
-
+            if (IsWorn)
+            {
+                if (parent.Wearer.health.hediffSet.HasHediff(Props.hediffDef))
+                {
+                    (parent.Wearer.health.hediffSet.hediffs.Find(x => x.def == Props.hediffDef)).Part.def.canSuggestAmputation = true;
+                    if (Props.dropOnPartLost && !parent.Wearer.health.hediffSet.GetNotMissingParts().Contains(parent.Wearer.health.hediffSet.hediffs.Find(x => x.def == Props.hediffDef).Part))
+                    {
+                    //    parent.Wearer.apparel.Notify_ApparelRemoved(parent);
+                    }
+                }
+            }
             // We only need to do something if our wearer has changed.
             if (parent.Wearer != lastWearer)
             {

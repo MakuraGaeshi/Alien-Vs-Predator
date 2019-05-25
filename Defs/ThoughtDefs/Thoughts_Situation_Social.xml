@@ -44,10 +44,9 @@
 	
 	<ThoughtDef>
 		<defName>RRY_UnbloodedVs_ThoughtDef</defName>
-		<thoughtClass>Thought_SituationalSocial</thoughtClass>
+		<thoughtClass>RRY_Thought_SituationalSocial</thoughtClass>
 		<workerClass>ThoughtWorker_Unblooded</workerClass>
-    <hediff>RRY_Hediff_Unblooded</hediff>
-    <validWhileDespawned>true</validWhileDespawned>
+		<validWhileDespawned>true</validWhileDespawned>
 		<stages>
 			<li>
 				<label>Peer</label>
@@ -66,10 +65,9 @@
 
 	<ThoughtDef>
 		<defName>RRY_UnmarkedVs_ThoughtDef</defName>
-		<thoughtClass>Thought_SituationalSocial</thoughtClass>
+		<thoughtClass>RRY_Thought_SituationalSocial</thoughtClass>
 		<workerClass>ThoughtWorker_Unmarked</workerClass>
-    <hediff>RRY_Hediff_BloodedUM</hediff>
-    <validWhileDespawned>true</validWhileDespawned>
+		<validWhileDespawned>true</validWhileDespawned>
 		<stages>
 			<li>
 				<label>Contempt</label>
@@ -88,10 +86,9 @@
 
 	<ThoughtDef>
 		<defName>RRY_MarkedVs_ThoughtDef</defName>
-		<thoughtClass>Thought_SituationalSocial</thoughtClass>
+		<thoughtClass>RRY_Thought_SituationalSocial</thoughtClass>
 		<workerClass>ThoughtWorker_Marked</workerClass>
-    <hediff>RRY_Hediff_BloodedM</hediff>
-    <validWhileDespawned>true</validWhileDespawned>
+		<validWhileDespawned>true</validWhileDespawned>
 		<stages>
 			<li>
 				<label>Contempt</label>

@@ -146,12 +146,12 @@ namespace RRYautja
                 this.equipmentDef = equipment.def;
                 this.weaponDamageMultiplier = equipment.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier, true);
 
-                Log.Message(string.Format("Original weaponDamageMultiplier: {0}", weaponDamageMultiplier));
+            //    Log.Message(string.Format("Original weaponDamageMultiplier: {0}", weaponDamageMultiplier));
                 if (equipment.Stuff != null)
                 {
-                    Log.Message(string.Format("equipment.Stuff: {0}", equipment.Stuff));
+                //    Log.Message(string.Format("equipment.Stuff: {0}", equipment.Stuff));
                 //    weaponDamageMultiplier *= equipment.Stuff.GetStatValueAbstract(equipmentDef.Verbs[0].defaultProjectile.projectile.damageDef.armorCategory.multStat, null);
-                    Log.Message(string.Format("Stuffable weaponDamageMultiplier: {0}", weaponDamageMultiplier));
+                //    Log.Message(string.Format("Stuffable weaponDamageMultiplier: {0}", weaponDamageMultiplier));
                 }
             }
             else

@@ -45,16 +45,17 @@
 			</li>
 			-->
 			
-  <ThingDef ParentName="FurnitureBase">
+  <ThingDef ParentName="BuildingBase">
     <defName>RRY_Xenomorph_Humanoid_Cocoon</defName>
     <label>humanoid cocoon</label>
     <description>Designates a spot on the ground where people should sleep. Not comfortable.</description>
     <thingClass>Building_XenomorphCocoon</thingClass>
+    <tickerType>Normal</tickerType>
     <graphicData>
       <texPath>Things/Buildings/Xenomorph/Cocoons/Xeno_Humanoid_Cocoon</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
       <shaderType>CutoutComplex</shaderType>
-      <drawSize>(1,1)</drawSize>
+      <drawSize>(3,4)</drawSize>
     </graphicData>
     <castEdgeShadows>false</castEdgeShadows>
     <statBases>
@@ -74,8 +75,9 @@
 			</li>
 			-->
     </comps>
-    <size>(1,1)</size>
+    <size>(1,2)</size>
     <building>
+      <claimable>false</claimable>
       <bed_showSleeperBody>false</bed_showSleeperBody>
       <bed_healPerDay>0</bed_healPerDay>
       <bed_caravansCanUse>false</bed_caravansCanUse>

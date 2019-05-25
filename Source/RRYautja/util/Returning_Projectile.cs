@@ -28,11 +28,13 @@ namespace RimWorld
             Scribe_Values.Look<float>(ref this.BodySize, "thisBodySize");
             */
         }
+        public bool canBounce = false;
         public int ExtraTargets
         {
             get
             {
                 int count = 0;
+                bool enablebounce = false;
                 if (OriginalPawn.Faction == Faction.OfPlayer)
                 {
                     if (YautjaDefOf.RRY_YautjaRanged_Basic.IsFinished)
@@ -48,9 +50,29 @@ namespace RimWorld
                         count++;
                     }
                 }
+
+                if (OriginalPawn.apparel.WornApparelCount > 0)
+                {
+                    foreach (var item in OriginalPawn.apparel.WornApparel)
+                    {
+                        if (item.def.defName.Contains("RRY_Apparel_") && item.def.defName.Contains("BioMask"))
+                        {
+                            enablebounce = true;
+                            this.canBounce = enablebounce;
+                        }
+                    }
+                }
+
+                if (!enablebounce)
+                {
+                    count = 0;
+                }
                 return count;
             }
         }
+
+        public ThingDef BounceDef = (DefDatabase<ThingDef>.GetNamed("RRY_SmartDisk_Thrown"));
+        public ThingDef ReturnDef;
 
         public Pawn OriginalPawn;
         public Thing OriginalWeapon;
@@ -63,6 +85,12 @@ namespace RimWorld
             Map map = base.Map;
             BattleLogEntry_RangedImpact battleLogEntry_RangedImpact = new BattleLogEntry_RangedImpact(this.launcher, hitThing, this.intendedTarget.Thing, this.equipmentDef, this.def, this.targetCoverDef);
             Find.BattleLog.Add(battleLogEntry_RangedImpact);
+            if (this.timesBounced == 0)
+            {
+                this.OriginalPawn = (Pawn)launcher;
+                this.OriginalWeapon = launcher;
+                this.OriginalProjectile = this;
+            }
             if (hitThing != null)
             {
                 DamageDef damageDef = this.def.projectile.damageDef;
@@ -88,6 +116,18 @@ namespace RimWorld
                     MoteMaker.MakeWaterSplash(this.ExactPosition, map, Mathf.Sqrt((float)base.DamageAmount) * 1f, 4f);
                 }
             }
+            if (OriginalPawn!=null)
+            {
+
+                if (OriginalPawn.kindDef.race != YautjaDefOf.RRY_Alien_Yautja && Rand.Chance(0.5f))
+                {
+                    ReturnDef = YautjaDefOf.RRY_SmartDisk_Thrown;
+                }
+                else
+                {
+                    ReturnDef = YautjaDefOf.RRY_SmartDisk_Returning;
+                }
+            }
             PostPostImpactEffects(hitThing);
             this.DeSpawn();
         }
@@ -105,16 +145,19 @@ namespace RimWorld
 
         public virtual void PostPostImpactEffects(Thing hitThing)
         {
-            if (hitThing is Pawn hitPawn && !hitPawn.Dead && !hitPawn.Downed)
+            if (hitThing!= null && hitThing is Pawn hitPawn && !hitPawn.Dead && !hitPawn.Downed)
             {
+            //    Log.Message(string.Format("hit {0}", hitThing));
+                if (OriginalPawn != null)
+                {
+                //    Log.Message(string.Format("OriginalPawn {0}", OriginalPawn));
+                }
+                else
+                {
+                //    Log.Message(string.Format("OriginalPawn null {0}", OriginalPawn));
+                }
                 Hediff hediff = HediffMaker.MakeHediff(YautjaDefOf.RRY_Hediff_BouncedProjectile, hitPawn);
                 Hediff_Bouncer bouncer = (Hediff_Bouncer)hediff;
-                if (this.timesBounced==0)
-                {
-                    this.OriginalPawn = (Pawn)launcher;
-                    this.OriginalWeapon = launcher;
-                    this.OriginalProjectile = this;
-                }
                 bouncer.OriginalPawn = this.OriginalPawn;
                 bouncer.OriginalWeapon = this.OriginalWeapon;
                 bouncer.OriginalProjectile = this.OriginalProjectile;
@@ -122,34 +165,65 @@ namespace RimWorld
                 if (hitPawn!=OriginalPawn) hitPawn.health.AddHediff(bouncer);
                 else
                 {
-                    Projectile projectile2 = (Projectile)ThingMaker.MakeThing(DefDatabase<ThingDef>.GetNamed("RRY_SmartDisk_Returning"), null);
-                    GenSpawn.Spawn(projectile2, base.PositionHeld, launcher.Map, 0);
-                    projectile2.Launch(this, base.PositionHeld.ToVector3(), launcher, launcher, ProjectileHitFlags.IntendedTarget, launcher);
+                    Log.Message(string.Format("hitPawn:{0} != OriginalPawn: {1}", hitThing, OriginalPawn));
+                    Log.Message(string.Format("Making Projectile projectile"));
+                    Projectile projectile = (Projectile)ThingMaker.MakeThing(ReturnDef, null);
+                    
+                    Log.Message(string.Format("Target OriginalPawn {0}", OriginalPawn));
+                    GenSpawn.Spawn(projectile, base.Position, launcher.Map, 0);
+                    Log.Message(string.Format("Launch projectile2 {0} at {1}", projectile, OriginalPawn));
+                    projectile.Launch(OriginalWeapon, base.Position.ToVector3ShiftedWithAltitude(AltitudeLayer.Projectile), OriginalPawn, OriginalPawn, ProjectileHitFlags.IntendedTarget, OriginalWeapon);
                 }
             }
-            /*
-            else if (timesBounced < ExtraTargets)
+            else
             {
-                Thing thing = GenClosest.ClosestThingReachable(this.ExactPosition.ToIntVec3(), OriginalPawn.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), Verse.AI.PathEndMode.Touch, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 10f, x => (x.Faction.HostileTo(this.OriginalPawn.Faction)), null, 0, -1, false, RegionType.Set_Passable, false);
-
-                if (thing!=null)
+                if (hitThing!=null)
                 {
-                    timesBounced++;
-                    this.Launch(launcher, this.ExactPosition, thing, thing, ProjectileHitFlags.IntendedTarget, launcher);
+                    Log.Message(string.Format("hit non Pawn {0}", hitThing));
                 }
                 else
                 {
-                    Projectile projectile2 = (Projectile)ThingMaker.MakeThing(DefDatabase<ThingDef>.GetNamed("RRY_SmartDisk_Returning"), null);
-                    GenSpawn.Spawn(projectile2, base.PositionHeld, launcher.Map, 0);
-                    projectile2.Launch(this, base.PositionHeld.ToVector3(), launcher, launcher, ProjectileHitFlags.IntendedTarget, launcher);
+                    Log.Message(string.Format("hit null {0}", hitThing));
                 }
-            }
-            */
-            else
-            {
-                Projectile projectile2 = (Projectile)ThingMaker.MakeThing(DefDatabase<ThingDef>.GetNamed("RRY_SmartDisk_Returning"), null);
-                GenSpawn.Spawn(projectile2, base.PositionHeld, launcher.Map, 0);
-                projectile2.Launch(this, base.PositionHeld.ToVector3(), launcher, launcher, ProjectileHitFlags.IntendedTarget, launcher);
+                if (OriginalPawn != null)
+                {
+                    Log.Message(string.Format("OriginalPawn {0}", OriginalPawn, OriginalPawn.kindDef.race));
+                    if (OriginalPawn.kindDef.race != YautjaDefOf.RRY_Alien_Yautja && Rand.Chance(0.5f))
+                    {
+                        ReturnDef = YautjaDefOf.RRY_SmartDisk_Thrown;
+                    }
+                    else
+                    {
+                        ReturnDef = YautjaDefOf.RRY_SmartDisk_Returning;
+                    }
+                    Log.Message(string.Format("hit ReturnDef: {0}", ReturnDef));
+                }
+                else
+                {
+                    Log.Message(string.Format("OriginalPawn null {0}", OriginalPawn));
+                }
+                Log.Message(string.Format("Making Projectile projectile"));
+                Projectile projectile = (Projectile)ThingMaker.MakeThing(ReturnDef, null);
+
+                Log.Message(string.Format("ConvertingReturning_Projectile projectile2"));
+                Returning_Projectile Rprojectile = new Returning_Projectile()
+                {
+                    def = ReturnDef
+                };
+                /*
+                Log.Message(string.Format("projectile2: {0}", Rprojectile));
+                Rprojectile.OriginalPawn = this.OriginalPawn;
+                Log.Message(string.Format("projectile2.OriginalPawn: {0}", Rprojectile.OriginalPawn));
+                Rprojectile.OriginalWeapon = this.OriginalWeapon;
+                Log.Message(string.Format("projectile2.OriginalWeapon: {0}", Rprojectile.OriginalWeapon));
+                //    projectile2.OriginalProjectile = this.OriginalProjectile;
+                Rprojectile.timesBounced = this.timesBounced;
+                Log.Message(string.Format("projectile2.timesBounced: {0}", Rprojectile.timesBounced));
+                */
+                Log.Message(string.Format("Target OriginalPawn {0}", OriginalPawn));
+                GenSpawn.Spawn(projectile, base.Position, launcher.Map, 0);
+                Log.Message(string.Format("Launch projectile2 {0} at {1}", Rprojectile, OriginalPawn));
+                projectile.Launch(OriginalWeapon, base.Position.ToVector3ShiftedWithAltitude(AltitudeLayer.Projectile), OriginalPawn, OriginalPawn, ProjectileHitFlags.IntendedTarget, OriginalWeapon);
             }
         }
 

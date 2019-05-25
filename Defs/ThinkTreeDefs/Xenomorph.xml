@@ -155,7 +155,7 @@
           </subNodes>
         </li>
         
-		<!-- Face Hugger Hunting -->
+		<!-- Drone Gather Infectable Hunting -->
 		<li Class="ThinkNode_ConditionalPawnKind">
 		  <pawnKind>RRY_Xenomorph_Drone</pawnKind>
 		  <subNodes>

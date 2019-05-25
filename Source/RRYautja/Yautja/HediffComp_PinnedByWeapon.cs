@@ -26,7 +26,6 @@ namespace RRYautja
             }
         }
         bool present;
-        float breakoutChance;
         Thing pinnerThing;
 
         public override void CompPostTick(ref float severityAdjustment)

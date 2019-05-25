@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using RRYautja;
 using System.Collections.Generic;
 using Verse;
 
@@ -17,8 +18,16 @@ namespace RimWorld
         // Token: 0x06000A02 RID: 2562 RVA: 0x0004F2B0 File Offset: 0x0004D6B0
         protected override ThoughtState CurrentSocialStateInternal(Pawn p, Pawn other)
         {
-            bool selected = Find.Selector.SingleSelectedThing == p;
-        //    if (selected) Log.Message(string.Format("{0} vs {1}", p.Label, other.Label));
+            bool selected = false;
+            if (p.Map!=null)
+            {
+                selected = Find.Selector.SelectedObjects.Contains(p);
+            }
+            if (!p.health.hediffSet.hediffs.Any(x=> x.def.defName.Contains(marked.defName)))
+            {
+                return false;
+            }
+            if (selected) Log.Message(string.Format("{0} ThoughtWorker_Marked vs {1}", p.Label, other.Label));
             if (!p.RaceProps.Humanlike)
             {
                 return false;
@@ -31,44 +40,45 @@ namespace RimWorld
             {
                 return false;
             }
-            /*
-            if (!RelationsUtility.PawnsKnowEachOther(p, other))
+            if (other.kindDef.race != YautjaDefOf.RRY_Alien_Yautja)
             {
                 return false;
             }
+            /*
+            if (!RelationsUtility.PawnsKnowEachOther(p, other))
+            {
+                return ThoughtState.Inactive;
+            }
             */
-            if (other.health.hediffSet.HasHediff(unblooded))
+            bool Pblooded = YautjaBloodedUtility.Marked(p, out this.Marked);
+            if (Pblooded)
             {
-                stageIndex = 0;
-            //    if (selected) Log.Message(string.Format("{0} CurrentStateInternal stageIndex:{4} {1} {2}: {3}", this.GetType(), other.Label, other.health.hediffSet.GetFirstHediffOfDef(unblooded).Label, other.health.hediffSet.HasHediff(unblooded), stageIndex));
-            }
-            else if (other.health.hediffSet.HasHediff(unmarked))
-            {
-                stageIndex = 1;
-            //    if (selected) Log.Message(string.Format("{0} CurrentStateInternal stageIndex:{4} {1} {2}: {3}", this.GetType(), other.Label, other.health.hediffSet.GetFirstHediffOfDef(othermarked).Label, other.health.hediffSet.HasHediff(othermarked), stageIndex));
-            }
-            else
-                foreach (var hd in other.health.hediffSet.hediffs)
+                bool Oblooded = YautjaBloodedUtility.Marked(other, out Hediff otherMarked);
+                if (Oblooded)
                 {
-                    if (hd.def.defName.Contains("RRY_Hediff_BloodedM"))
+                    if (otherMarked.def == (unblooded))
                     {
-                        otherMarked = hd;
-                        othermarked = hd.def;
-                        stageIndex = 2;
-
-                    //    if (selected) Log.Message(string.Format("{0} CurrentSocialStateInternal {1} {2}: {3}", this.GetType(), other.Label, otherMarked.Label, other.health.hediffSet.HasHediff(othermarked)));
-                        break;
+                        stageIndex = 0;
+                        if (selected) Log.Message(string.Format("{0} CurrentStateInternal stageIndex:{4} {1} {2}: {3}", this.GetType(), other.Label, other.health.hediffSet.GetFirstHediffOfDef(unblooded).Label, other.health.hediffSet.HasHediff(unblooded), stageIndex));
                     }
-                 }
-            foreach (var hd in p.health.hediffSet.hediffs)
-            {
-                if (hd.def.defName.Contains("RRY_Hediff_BloodedM"))
+                    else if (otherMarked.def == (unmarked))
+                    {
+                        stageIndex = 1;
+                        if (selected) Log.Message(string.Format("{0} CurrentStateInternal stageIndex:{4} {1} {2}: {3}", this.GetType(), other.Label, other.health.hediffSet.GetFirstHediffOfDef(unmarked).Label, other.health.hediffSet.HasHediff(unmarked), stageIndex));
+                    }
+                    else if (otherMarked.def.defName.Contains(marked.defName))
+                    {
+                        stageIndex = 2;
+                        if (selected) Log.Message(string.Format("{0} CurrentSocialStateInternal {1} {2}: {3}", this.GetType(), other.Label, otherMarked.Label, other.health.hediffSet.HasHediff(othermarked)));
+                    }
+                }
+                else
                 {
-                    Marked = hd;
-                    marked = hd.def;
-                //    if (selected) Log.Message(string.Format("{0} CurrentSocialStateInternal {1} {2}: {3}", this.GetType(), p.Label, Marked.Label, p.health.hediffSet.HasHediff(marked)));
-                    //Log.Message(string.Format("{0} CurrentSocialStateInternal p marked: {1}", this.GetType(), p.health.hediffSet.HasHediff(marked)));
-                //    if (selected) Log.Message(string.Format("{0} CurrentSocialStateInternal {1} {2}: {3}", this.GetType(), p.Label, Marked.Label, p.health.hediffSet.HasHediff(marked)));
+                    return false;
+                }
+                if (Marked.def.defName.Contains(marked.defName))
+                {
+                        if (selected) Log.Message(string.Format("{0} CurrentSocialStateInternal {1} {2}: {3}", this.GetType(), p.Label, Marked.Label, p.health.hediffSet.HasHediff(marked)));
                     return ThoughtState.ActiveAtStage(stageIndex);
                 }
             }
@@ -83,14 +93,21 @@ namespace RimWorld
         HediffDef unmarked = YautjaDefOf.RRY_Hediff_BloodedUM;
         HediffDef marked = YautjaDefOf.RRY_Hediff_BloodedM;
         HediffDef othermarked = YautjaDefOf.RRY_Hediff_BloodedM;
-        Hediff Marked;
         Hediff otherMarked;
         int stageIndex;
         // Token: 0x06000A02 RID: 2562 RVA: 0x0004F2B0 File Offset: 0x0004D6B0
         protected override ThoughtState CurrentSocialStateInternal(Pawn p, Pawn other)
         {
-            bool selected = Find.Selector.SingleSelectedThing == p;
-        //    if (selected) Log.Message(string.Format("{0} vs {1}", p.Label, other.Label));
+            bool selected = false;
+            if (p.Map != null)
+            {
+                selected = Find.Selector.SelectedObjects.Contains(p);
+            }
+            if (!p.health.hediffSet.HasHediff(unmarked))
+            {
+                return false;
+            }
+            if (selected) Log.Message(string.Format("{0} ThoughtWorker_Unmarked vs {1}", p.Label, other.Label));
             if (!p.RaceProps.Humanlike)
             {
                 return false;
@@ -103,19 +120,25 @@ namespace RimWorld
             {
                 return false;
             }
-            if (!RelationsUtility.PawnsKnowEachOther(p, other))
+            if (other.kindDef.race != YautjaDefOf.RRY_Alien_Yautja)
             {
                 return false;
             }
+            /*
+            if (!RelationsUtility.PawnsKnowEachOther(p, other))
+            {
+                return ThoughtState.Inactive;
+            }
+            */
             if (other.health.hediffSet.HasHediff(unblooded))
             {
                 stageIndex = 0;
-            //    if (selected) Log.Message(string.Format("{0} CurrentStateInternal stageIndex:{4} {1} {2}: {3}", this.GetType(), other.Label, other.health.hediffSet.GetFirstHediffOfDef(unblooded).Label, other.health.hediffSet.HasHediff(unblooded), stageIndex));
+                if (selected) Log.Message(string.Format("{0} CurrentStateInternal stageIndex:{4} {1} {2}: {3}", this.GetType(), other.Label, other.health.hediffSet.GetFirstHediffOfDef(unblooded).Label, other.health.hediffSet.HasHediff(unblooded), stageIndex));
             }
             else if (other.health.hediffSet.HasHediff(unmarked))
             {
                 stageIndex = 1;
-            //    if (selected) Log.Message(string.Format("{0} CurrentStateInternal stageIndex:{4} {1} {2}: {3}", this.GetType(), other.Label, other.health.hediffSet.GetFirstHediffOfDef(othermarked).Label, other.health.hediffSet.HasHediff(othermarked), stageIndex));
+                if (selected) Log.Message(string.Format("{0} CurrentStateInternal stageIndex:{4} {1} {2}: {3}", this.GetType(), other.Label, other.health.hediffSet.GetFirstHediffOfDef(othermarked).Label, other.health.hediffSet.HasHediff(othermarked), stageIndex));
             }
             else
                 foreach (var hd in other.health.hediffSet.hediffs)
@@ -126,15 +149,13 @@ namespace RimWorld
                         othermarked = hd.def;
                         stageIndex = 2;
 
-                    //    if (selected) Log.Message(string.Format("{0} CurrentSocialStateInternal {1} {2}: {3}", this.GetType(), other.Label, otherMarked.Label, other.health.hediffSet.HasHediff(othermarked)));
+                        if (selected) Log.Message(string.Format("{0} CurrentSocialStateInternal {1} {2}: {3}", this.GetType(), other.Label, otherMarked.Label, other.health.hediffSet.HasHediff(othermarked)));
                         break;
                     }
                 }
-            if (p.health.hediffSet.HasHediff(unblooded))
+            if (p.health.hediffSet.HasHediff(unmarked))
             {
-            //    if (selected) Log.Message(string.Format("{0} CurrentSocialStateInternal {1} {2}: {3}", this.GetType(), p.Label, Marked.Label, p.health.hediffSet.HasHediff(marked)));
-                //Log.Message(string.Format("{0} CurrentSocialStateInternal p marked: {1}", this.GetType(), p.health.hediffSet.HasHediff(marked)));
-            //    if (selected) Log.Message(string.Format("{0} CurrentSocialStateInternal {1} {2}: {3}", this.GetType(), p.Label, Marked.Label, p.health.hediffSet.HasHediff(marked)));
+                if (selected) Log.Message(string.Format("{0} CurrentSocialStateInternal {1} {2}: {3}", this.GetType(), p.Label, unblooded.label, p.health.hediffSet.HasHediff(unblooded)));
                 return ThoughtState.ActiveAtStage(stageIndex);
             }
             return false;
@@ -148,14 +169,21 @@ namespace RimWorld
         HediffDef unmarked = YautjaDefOf.RRY_Hediff_BloodedUM;
         HediffDef marked = YautjaDefOf.RRY_Hediff_BloodedM;
         HediffDef othermarked = YautjaDefOf.RRY_Hediff_BloodedM;
-        Hediff Marked;
         Hediff otherMarked;
         int stageIndex;
         // Token: 0x06000A02 RID: 2562 RVA: 0x0004F2B0 File Offset: 0x0004D6B0
         protected override ThoughtState CurrentSocialStateInternal(Pawn p, Pawn other)
         {
-            bool selected = Find.Selector.SingleSelectedThing == p;
-        //    if (selected) Log.Message(string.Format("{0} vs {1}", p.Label, other.Label));
+            bool selected = false;
+            if (p.Map != null)
+            {
+                selected = Find.Selector.SelectedObjects.Contains(p);
+            }
+            if (!p.health.hediffSet.HasHediff(unblooded))
+            {
+                return false;
+            }
+            if (selected) Log.Message(string.Format("{0} ThoughtWorker_Unblooded vs {1}", p.Label, other.Label));
             if (!p.RaceProps.Humanlike)
             {
                 return false;
@@ -168,38 +196,42 @@ namespace RimWorld
             {
                 return false;
             }
-            if (!RelationsUtility.PawnsKnowEachOther(p, other))
+            if (other.kindDef.race != YautjaDefOf.RRY_Alien_Yautja)
             {
                 return false;
             }
+            /*
+            if (!RelationsUtility.PawnsKnowEachOther(p, other))
+            {
+                return ThoughtState.Inactive;
+            }
+            */
             if (other.health.hediffSet.HasHediff(unblooded))
             {
                 stageIndex = 0;
-            //    if (selected) Log.Message(string.Format("{0} CurrentStateInternal stageIndex:{4} {1} {2}: {3}", this.GetType(), other.Label, other.health.hediffSet.GetFirstHediffOfDef(unblooded).Label, other.health.hediffSet.HasHediff(unblooded), stageIndex));
+                if (selected) Log.Message(string.Format("{0} CurrentStateInternal stageIndex:{4} {1} {2}: {3}", this.GetType(), other.Label, other.health.hediffSet.GetFirstHediffOfDef(unblooded).Label, other.health.hediffSet.HasHediff(unblooded), stageIndex));
             }
             else if (other.health.hediffSet.HasHediff(unmarked))
             {
                 stageIndex = 1;
-            //    if (selected) Log.Message(string.Format("{0} CurrentStateInternal stageIndex:{4} {1} {2}: {3}", this.GetType(), other.Label, other.health.hediffSet.GetFirstHediffOfDef(othermarked).Label, other.health.hediffSet.HasHediff(othermarked), stageIndex));
+                if (selected) Log.Message(string.Format("{0} CurrentStateInternal stageIndex:{4} {1} {2}: {3}", this.GetType(), other.Label, other.health.hediffSet.GetFirstHediffOfDef(unblooded).Label, other.health.hediffSet.HasHediff(othermarked), stageIndex));
             }
             else
                 foreach (var hd in other.health.hediffSet.hediffs)
                 {
                     if (hd.def.defName.Contains("RRY_Hediff_BloodedM"))
                     {
+                        List<Thought> list = new List<Thought>();
                         otherMarked = hd;
                         othermarked = hd.def;
                         stageIndex = 2;
-
-                    //    if (selected) Log.Message(string.Format("{0} CurrentSocialStateInternal {1} {2}: {3}", this.GetType(), other.Label, otherMarked.Label, other.health.hediffSet.HasHediff(othermarked)));
+                        if (selected) Log.Message(string.Format("{0} CurrentSocialStateInternal {1} {2}: {3}", this.GetType(), other.Label, otherMarked.Label, other.health.hediffSet.HasHediff(othermarked)));
                         break;
                     }
                 }
-                if (p.health.hediffSet.HasHediff(unmarked))
+                if (p.health.hediffSet.HasHediff(unblooded))
                 {
-                //    if (selected) Log.Message(string.Format("{0} CurrentSocialStateInternal {1} {2}: {3}", this.GetType(), p.Label, Marked.Label, p.health.hediffSet.HasHediff(marked)));
-                    //Log.Message(string.Format("{0} CurrentSocialStateInternal p marked: {1}", this.GetType(), p.health.hediffSet.HasHediff(marked)));
-                //    if (selected) Log.Message(string.Format("{0} CurrentSocialStateInternal {1} {2}: {3}", this.GetType(), p.Label, Marked.Label, p.health.hediffSet.HasHediff(marked)));
+                    if (selected) Log.Message(string.Format("{0} CurrentSocialStateInternal {1} {2}: {3}", this.GetType(), p.Label, unmarked.label, p.health.hediffSet.HasHediff(marked)));
                     return ThoughtState.ActiveAtStage(stageIndex);
                 }
             return false;

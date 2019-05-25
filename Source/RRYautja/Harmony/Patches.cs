@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System;
 using Verse.AI;
 using System.Text;
+using System.Linq;
+using Verse.AI.Group;
+using RimWorld.Planet;
 
 namespace RRYautja
 {
@@ -21,17 +24,6 @@ namespace RRYautja
 
     }
 
-    /*
-    [HarmonyPatch(typeof(HealthUtility), "AdjustSeverity")]
-    public static class HealthUtility_AdjustSeverityPatch
-    {
-        [HarmonyPostfix]
-        public static void postPostAdjustSeverity(Pawn __instance, ref HediffDef ___hdDef, ref float ___sevOffset)
-        {
-        //    Log.Message(string.Format("Patch_HealthUtility_AdjustSeverity {0},", __instance));
-        }
-    }
-    */
 
     [HarmonyPatch(typeof(Pawn), "ThreatDisabled")]
     public static class Pawn_ThreatDisabledPatch
@@ -59,6 +51,87 @@ namespace RRYautja
             } // XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden
             __result = __result || ((__instance.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked) || __instance.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden)) && _Xenomorph == null);
 
+        }
+    }
+
+    [HarmonyPatch(typeof(Pawn), "AnythingToStrip")]
+    public static class Pawn_AnythingToStripPatch
+    {
+        [HarmonyPostfix]
+        public static void IgnoreWristblade(Pawn __instance, ref bool __result)
+        {
+            __result = !(__instance.apparel != null && __instance.apparel.WornApparelCount == 1 && __instance.apparel.WornApparel.Any(x => x.def == YautjaDefOf.RRY_Equipment_HunterGauntlet)&& __instance.Faction!=Faction.OfPlayerSilentFail);
+
+        }
+    }
+
+    [HarmonyPatch(typeof(Pawn), "Strip")]
+    public static class Pawn_StripPatch
+    {
+        [HarmonyPrefix]
+        public static bool IgnoreWristblade(Pawn __instance)
+        {
+            bool result = !(__instance.apparel.WornApparel.Any(x => x.def == YautjaDefOf.RRY_Equipment_HunterGauntlet));
+
+            Log.Message(string.Format("Pawn_StripPatch IgnoreWristblade: {0}", result));
+            if (!result)
+            {
+
+                Caravan caravan = __instance.GetCaravan();
+                if (caravan != null)
+                {
+                    CaravanInventoryUtility.MoveAllInventoryToSomeoneElse(__instance, caravan.PawnsListForReading, null);
+                    if (__instance.apparel != null)
+                    {
+                        CaravanInventoryUtility.MoveAllApparelToSomeonesInventory(__instance, caravan.PawnsListForReading);
+                    }
+                    if (__instance.equipment != null)
+                    {
+                        CaravanInventoryUtility.MoveAllEquipmentToSomeonesInventory(__instance, caravan.PawnsListForReading);
+                    }
+                }
+                else
+                {
+                    IntVec3 pos = (__instance.Corpse == null) ? __instance.PositionHeld : __instance.Corpse.PositionHeld;
+                    if (__instance.equipment != null)
+                    {
+                        __instance.equipment.DropAllEquipment(pos, false);
+                    }
+                    if (__instance.apparel != null)
+                    {
+                        DropAll(__instance, pos, false);
+                    }
+                    if (__instance.inventory != null)
+                    {
+                        __instance.inventory.DropAllNearPawn(pos, false, false);
+                    }
+                }
+            }
+            return result;
+        }
+        
+		// Token: 0x04000E58 RID: 3672
+		private static List<Apparel> tmpApparelList = new List<Apparel>();
+        
+        public static void DropAll(Pawn __instance, IntVec3 pos, bool forbid = true)
+        {
+            tmpApparelList.Clear();
+            for (int i = 0; i < __instance.apparel.WornApparel.Count; i++)
+            {
+                if (__instance.apparel.WornApparel[i].def != YautjaDefOf.RRY_Equipment_HunterGauntlet)
+                {
+                    tmpApparelList.Add(__instance.apparel.WornApparel[i]);
+                }
+                else
+                {
+                    Log.Message(string.Format("Ignoring Wristblade"));
+                }
+            }
+            for (int j = 0; j < tmpApparelList.Count; j++)
+            {
+                Apparel apparel;
+                __instance.apparel.TryDrop(tmpApparelList[j], out apparel, pos, forbid);
+            }
         }
     }
 
@@ -235,8 +308,8 @@ namespace RRYautja
                 StatDef value = Traverse.Create(__instance).Field("stat").GetValue<StatDef>();
                 if (req != null && req.Thing != null && req.Def != null && (req.Def == YautjaDefOf.RRY_Gun_Hunting_Bow || req.Def == YautjaDefOf.RRY_Gun_Compound_Bow) && value == StatDefOf.RangedWeapon_DamageMultiplier)
                 {
-                    Log.Message(string.Format("GetValueUnfinalized value: {0}, Def: {1}, Empty: {2}, HasThing: {3}, QualityCategory: {4}, StuffDef: {5}, Thing: {6}", value, req.Def, req.Empty, req.HasThing, req.QualityCategory, req.StuffDef, req.Thing));
-                    Log.Message(string.Format("GetValueUnfinalized Original __result: {0}", __result));
+                //    Log.Message(string.Format("GetValueUnfinalized value: {0}, Def: {1}, Empty: {2}, HasThing: {3}, QualityCategory: {4}, StuffDef: {5}, Thing: {6}", value, req.Def, req.Empty, req.HasThing, req.QualityCategory, req.StuffDef, req.Thing));
+                //    Log.Message(string.Format("GetValueUnfinalized Original __result: {0}", __result));
 
                     DamageArmorCategoryDef CategoryOfDamage = ((ThingDef)req.Def).Verbs[0].defaultProjectile.projectile.damageDef.armorCategory;
 
@@ -256,10 +329,186 @@ namespace RRYautja
                         __result = num;
                     }
 
-                    Log.Message(string.Format("GetValueUnfinalized Modified __result: {0}", __result));
+                //    Log.Message(string.Format("GetValueUnfinalized Modified __result: {0}", __result));
                 }
             }
             return;
         }
     }
+
+    // Token: 0x02000088 RID: 136
+    [HarmonyPatch(typeof(RestUtility), "IsValidBedFor")]
+    internal static class RestUtility_Bed_IsValidBedFor
+    {
+        [HarmonyPostfix]
+        public static void Postfix(Thing bedThing, Pawn sleeper, Pawn traveler, ref bool __result)
+        {
+            bool flag = bedThing is Building_XenomorphCocoon;
+            bool flag2 = traveler != null ? traveler.kindDef.race.defName.Contains("RRY_Xenomorph") : false ;
+            bool flag3 = XenomorphUtil.isInfectablePawn(sleeper);
+            __result = __result&&!flag || (__result && flag && flag2);
+        //    Log.Message(string.Format("RestUtility_Bed_IsValidBedFor sleeper: {0} traveler: {1} result: {2} = !flag: {3} && flag2: {4}", sleeper, traveler, __result, !flag , flag2));
+            return;
+        }
+    }
+
+    /*
+    // Token: 0x02000086 RID: 134
+    [HarmonyPatch(typeof(Building_Bed), "GetSleepingSlotPos")]
+    internal static class Building_Bed_GetSleepingSlotPos
+    {
+        // Token: 0x060001EF RID: 495 RVA: 0x0000E0A8 File Offset: 0x0000C2A8
+        private static void Postfix(Building_Bed __instance, ref IntVec3 __result)
+        {
+            bool flag = __instance is Building_XenomorphCocoon;
+            bool selected = Find.Selector.SelectedObjects.Contains(__instance);
+            if (selected) Log.Message(string.Format("Building_Bed_GetSleepingSlotPos 1 Old Drawloc {0}", __result));
+            if (flag)
+            {
+
+
+                if (selected) Log.Message(string.Format("Building_Bed_GetSleepingSlotPos 2 Old Drawloc {0}", __result));
+                IntVec3 bedCenter = __instance.Position;
+                Rot4 bedRot = __instance.Rotation;
+                IntVec2 bedSize = __instance.def.size;
+                CellRect cellRect = GenAdj.OccupiedRect(bedCenter, bedRot, bedSize);
+                if (bedRot == Rot4.North)
+                {
+                    __result = new IntVec3(cellRect.minX, bedCenter.y, cellRect.minZ);
+                }
+                else if (bedRot == Rot4.East)
+                {
+                    __result = new IntVec3(cellRect.minX, bedCenter.y, cellRect.maxZ);
+                }
+                else if (bedRot == Rot4.South)
+                {
+                    __result = new IntVec3(cellRect.minX, bedCenter.y, cellRect.maxZ);
+                }
+                else __result = new IntVec3(cellRect.maxX, bedCenter.y, cellRect.maxZ);
+                if (selected) Log.Message(string.Format("Building_Bed_GetSleepingSlotPos 3 new Drawloc {0}", __result));
+
+                
+                
+
+                if (__instance.Rotation == Rot4.North)
+                {
+                    __result = __instance.Position;
+                }
+                else if (__instance.Rotation == Rot4.North)
+                {
+                    __result = __instance.Position;
+                }
+                else if (__instance.Rotation == Rot4.North)
+                {
+                    __result = __instance.Position;
+                }
+                else if (__instance.Rotation == Rot4.North)
+                {
+                    __result = __instance.Position;
+                }
+                else __result = __instance.Position;
+
+                
+            }
+        }
+    }
+    */
+
+    // Token: 0x02000007 RID: 7
+    [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "TryExecute")]
+    public static class IncidentWorker_RaidEnemyPatch_TryExecute
+    {
+        // Token: 0x06000017 RID: 23 RVA: 0x00002CD0 File Offset: 0x00000ED0
+        [HarmonyPrefix]
+        public static bool PreExecute(ref IncidentParms parms)
+        {
+            if (parms.target is Map && (parms.target as Map).IsPlayerHome)
+            {
+                if (parms.faction != null && ((parms.faction.leader != null && parms.faction.leader.kindDef.race == YautjaDefOf.RRY_Alien_Yautja) || (parms.faction.def.basicMemberKind != null && parms.faction.def.basicMemberKind.race == YautjaDefOf.RRY_Alien_Yautja)))
+                {
+                    Log.Message(string.Format("PreExecute Yautja Raid"));
+
+                    if ((parms.target as Map).GameConditionManager.ConditionIsActive(GameConditionDefOf.HeatWave))
+                    {
+                        Log.Message(string.Format("PreExecute During Heatwave, originally {0} points", parms.points));
+                        parms.points *= 2;
+                        parms.raidArrivalMode = YautjaDefOf.EdgeWalkInGroups;
+
+                        Log.Message(string.Format("PreExecute During Heatwave, modified {0} points", parms.points));
+                    }
+                }
+            }
+            return true;
+        }
+
+        /*
+        [HarmonyPostfix]
+        public static void PostExecute(bool __result, ref IncidentParms parms)
+        {
+            if (__result && parms.target is Map && (parms.target as Map).IsPlayerHome)
+            {
+                if (parms.faction != null && parms.faction.leader.kindDef.race == YautjaDefOf.RRY_Alien_Yautja)
+                {
+
+                    if ((parms.target as Map).GameConditionManager.ConditionIsActive(GameConditionDefOf.HeatWave))
+                    {
+
+                    }
+                }
+            }
+        }
+        */
+    }
+
+
+    /*
+    [HarmonyPatch(typeof(Pawn), "Tick")]
+    public static class Pawn_TickPatch
+    {
+        [HarmonyPostfix]
+        public static void ApparelCompTick(Pawn __instance)
+        {
+            if (__instance.apparel.WornApparelCount>0)
+            {
+                List<Apparel> list = __instance.apparel.WornApparel;
+                if (list.Any(x => x.TryGetComp<CompWearable>()!=null))
+                {
+                    foreach (var item in list.All(x => x.TryGetComp<CompWearable>() != null))
+                    {
+
+                    }
+                }
+            }
+
+        }
+        
+    }
+    */
+
+    // Token: 0x02000007 RID: 7
+    [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "GetLetterText")]
+    public static class IncidentWorker_RaidEnemyPatch_GetLetterText
+    {
+        [HarmonyPostfix]
+        public static void PostExecute(ref string __result, ref IncidentParms parms)
+        {
+            if (parms.target is Map && (parms.target as Map).IsPlayerHome)
+            {
+                if (parms.faction != null && ((parms.faction.leader != null && parms.faction.leader.kindDef.race == YautjaDefOf.RRY_Alien_Yautja) || (parms.faction.def.basicMemberKind != null && parms.faction.def.basicMemberKind.race == YautjaDefOf.RRY_Alien_Yautja)))
+                {
+                    Log.Message(string.Format("PostGetLetterText Yautja Raid"));
+
+                    if ((parms.target as Map).GameConditionManager.ConditionIsActive(GameConditionDefOf.HeatWave))
+                    {
+                        string text = "El Diablo, cazador de hombre. Only in the hottest years this happens. And this year it grows hot.";
+                        text += "\n\n";
+                        text += __result;
+                        __result = text;
+                    }
+                }
+            }
+        }
+    }
+
+
 }

@@ -14,8 +14,11 @@
   <RRYMessageMedicalOperationFailureRidiculous>{SURGEON_labelShort} was trying to remove the parasite attached to {PATIENT_labelShort} and it didnt like it.....</RRYMessageMedicalOperationFailureRidiculous>
   <RRYMessageMedicalOperationFailureFatal>something went terribly wrong while {SURGEON_labelShort} was attempting to remove the parasite attached to {PATIENT_labelShort}'s face......they didnt make it...: {2}</RRYMessageMedicalOperationFailureFatal>
   <!-- Buttons -->
-  <WearableExplosives_Label>Detonate</WearableExplosives_Label>
-  <WearableExplosives_Desc>Detonate this pawn's self destruct device.</WearableExplosives_Desc>
+  <WearableExplosives_Detonate_Label>Detonate</WearableExplosives_Detonate_Label>
+  <WearableExplosives_Timer_Start_Label>Start Countdown</WearableExplosives_Timer_Start_Label>
+  <WearableExplosives_Timer_Stop_Label>Stop Countdown</WearableExplosives_Timer_Stop_Label>
+  <WearableExplosives_Detonate_Desc>Detonate this pawn's self destruct device.</WearableExplosives_Detonate_Desc>
+  <WearableExplosives_Timer_Desc>Start this pawn's 10 second self destruct countdown. clicking a second time will stop the countdown</WearableExplosives_Timer_Desc>
   <HealthShardUses>Shards remaining</HealthShardUses>
   <UseHealthShard>Use Health Shard</UseHealthShard>
   <UseHealthShardDesc>Use a Health Shard to quickly return to the hunt</UseHealthShardDesc>
@@ -33,6 +36,7 @@
   <Xeno_Chestburster_Emerge>{0}'s convulsions stop suddenly and a Chestburster emerges in a gorey mess from {0}'s {1}</Xeno_Chestburster_Emerge>
   <Xeno_Chestburster_Hides>the Chestburster disappears into the surrounding area and hides</Xeno_Chestburster_Hides>
    <!-- Yautja -->
+  <RRY_Remove_Gauntlet>Surgically Remove Gauntlet</RRY_Remove_Gauntlet>
   <BloodStatus_Unblooded>{0}</BloodStatus_Unblooded>
   <BloodStatus_Unmarked>{0}</BloodStatus_Unmarked>
 </LanguageData>

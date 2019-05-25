@@ -219,17 +219,25 @@ namespace RRYautja
             }
         }
 
-
-        public override void CompPostPostAdd(DamageInfo? dinfo)
+        public override void CompPostTick(ref float severityAdjustment)
         {
-            base.CompPostPostAdd(dinfo);
+            base.CompPostTick(ref severityAdjustment);
+            if (lastTockTick+50< Find.TickManager.TicksGame)
+            {
+                CompPostTock();
+            }
+        }
+
+        public void CompPostTock()
+        {
+            lastTockTick = Find.TickManager.TicksGame;
             if (MarkedhediffDef == null)
             {
                 MarkedhediffDef = this.Def;
                 corpse = null;
                 pawn = null;
                 pawnKindDef = YautjaBloodedUtility.RandomMarked(MarkedhediffDef);
-            //    Log.Message(string.Format("{0}: {1}", MarkedhediffDef, pawnKindDef));
+                //    Log.Message(string.Format("{0}: {1}", MarkedhediffDef, pawnKindDef));
                 MarkHedifftype = null;
                 MarkHedifflabel = pawnKindDef.LabelCap;
                 predator = pawnKindDef.RaceProps.predator;
@@ -248,6 +256,13 @@ namespace RRYautja
                     _Yautja.combatPower = combatPower;
                 }
             }
+        }
+
+        public int lastTockTick = 999999999;
+
+        public override void CompPostPostAdd(DamageInfo? dinfo)
+        {
+            base.CompPostPostAdd(dinfo);
 
         }
 

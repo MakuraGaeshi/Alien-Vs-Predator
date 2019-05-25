@@ -19,8 +19,9 @@ namespace RimWorld
         // Xenomorph DamageDefs Special
         public static DamageDef RRY_EmergingChestbursterDD;
 
-        // Xenomorph HefiffDefs
+        // Xenomorph HefiffDefs RRY_Hediff_Cocooned
         public static HediffDef RRY_Hediff_Xenomorph_Hidden;
+        public static HediffDef RRY_Hediff_Cocooned;
         // Xenomorph HefiffDefs
         public static HediffDef RRY_FaceHuggerInfection;
         public static HediffDef RRY_XenomorphImpregnation;
@@ -49,7 +50,8 @@ namespace RimWorld
         public static JobDef RRY_Job_XenomorphKidnap;
         public static JobDef RRY_Job_MaintainLike;
 
-        // Xenomorph ThingDefs
+        // Xenomorph ThingDefs 
+        public static ThingDef RRY_Xenomorph_Humanoid_Cocoon;
         public static ThingDef RRY_EggXenomorphFertilized;
         public static ThingDef RRY_Xenomorph_TailSpike;
         public static ThingDef RRY_Xenomorph_HeadShell;
@@ -62,6 +64,7 @@ namespace RimWorld
         public static ThingDef RRY_Plant_Neomorph_Fungus_Hidden;
 
         public static ThingDef RRY_XenomorphCryptosleepCasket;
+        public static ThingDef RRY_XenomorphHive;
 
         // Xenomorph BloodDefs 
         public static ThingDef RRY_FilthBloodXenomorph;

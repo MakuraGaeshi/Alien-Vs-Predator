@@ -1,6 +1,7 @@
 ﻿using RimWorld;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Verse;
 using Verse.AI;
 
@@ -8,6 +9,33 @@ namespace RRYautja
 {
     class XenomorphUtil
     {
+        // Token: 0x060000A8 RID: 168 RVA: 0x00007234 File Offset: 0x00005434
+        public static HashSet<Thing> XenomorphCocoonsFor(Map map, Thing t)
+        {
+            HashSet<Thing> wildCocoons = map.GetComponent<MapComponent_XenomorphCocoonTracker>().WildCocoons;
+            bool flag = (wildCocoons != null || wildCocoons.Count > 0) && t.Faction != Faction.OfPlayerSilentFail;
+            HashSet<Thing> result;
+            if (flag)
+            {
+                result = wildCocoons;
+            }
+            else
+            {
+                HashSet<Thing> domesticCocoons = map.GetComponent<MapComponent_XenomorphCocoonTracker>().DomesticCocoons;
+                bool flag2 = (domesticCocoons != null || domesticCocoons.Count > 0) && t.Faction == Faction.OfPlayerSilentFail;
+                if (flag2)
+                {
+                    result = new HashSet<Thing>(from x in domesticCocoons
+                                                where ForbidUtility.InAllowedArea(x.PositionHeld, t as Pawn)
+                                                select x);
+                }
+                else
+                {
+                    result = null;
+                }
+            }
+            return result;
+        }
         public static bool isInfectablePawn(Pawn pawn)
         {
             if (pawn.Dead) return false;
@@ -99,9 +127,11 @@ namespace RRYautja
             Queen = null;
             return false;
         }
+
+        // Egg stuff
         public static bool EggsPresent(Map map)
         {
-            return TotalSpawnedEggCount(map)>0;
+            return TotalSpawnedEggCount(map) > 0;
         }
         public static Thing ClosestReachableEgg(Pawn pawn)
         {
@@ -145,6 +175,60 @@ namespace RRYautja
             return list;
         }
 
+        // Cocoon stuff
+        public static bool CocoonsPresent(Map map)
+        {
+            return TotalSpawnedCocoonCount(map) > 0;
+        }
+        public static Thing ClosestReachableCocoon(Pawn pawn)
+        {
+            Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, null, null, 0, -1, false, RegionType.Set_Passable, false);
+            return thing;
+        }
+        public static Thing ClosestReachableCocoonThatEggNeedsHost(Pawn pawn)
+        {
+            List<Thing> list = SpawnedEggsNeedHosts(pawn.Map);
+            Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_EggXenomorphFertilized), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, (x => list.Contains(x)), null, 0, -1, false, RegionType.Set_Passable, false);
+
+            return thing;
+        }
+        public static int TotalSpawnedCocoonCount(Map map)
+        {
+            return map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon).Count;
+        }
+        public static List<Thing> SpawnedCocoons(Map map)
+        {
+            return map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon);
+        }
+
+
+        // Hivelike stuff
+        public static bool HivelikesPresent(Map map)
+        {
+            return TotalSpawnedHivelikeCount(map) > 0;
+        }
+        public static Thing ClosestReachableHivelike(Pawn pawn)
+        {
+            Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_XenomorphHive), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, null, null, 0, -1, false, RegionType.Set_Passable, false);
+            return thing;
+        }
+        public static Thing ClosestReachableHivelikeThatEggNeedsHost(Pawn pawn)
+        {
+            List<Thing> list = SpawnedEggsNeedHosts(pawn.Map);
+            Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_EggXenomorphFertilized), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, (x => list.Contains(x)), null, 0, -1, false, RegionType.Set_Passable, false);
+
+            return thing;
+        }
+        public static int TotalSpawnedHivelikeCount(Map map)
+        {
+            return map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_XenomorphHive).Count;
+        }
+        public static List<Thing> SpawnedHivelikes(Map map)
+        {
+            return map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_XenomorphHive);
+        }
+
+        // space between / distance between
         public static float DistanceBetween(IntVec3 a, IntVec3 b)
         {
             double distance = GetDistance(a.x, a.z, b.x, b.z);

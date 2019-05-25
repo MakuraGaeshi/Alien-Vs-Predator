@@ -25,7 +25,7 @@ namespace RimWorld
             IntVec3 position = this.Position;
             ThingDef named = XenomorphDefOf.RRY_XenomorphCryptosleepCasket;
             int num = (named.Size.x > named.Size.z) ? named.Size.x : named.Size.z;
-            int num2 = 0;
+        //    int num2 = 0;
             base.Destroy(mode);
             int count = Rand.RangeInclusive(0, 3);
             if (count>0)
@@ -33,7 +33,7 @@ namespace RimWorld
                 for (int i = 0; i < count; i++)
                 {
                     CellRect mapRect;
-                    IntVec3 intVec = CellFinder.RandomClosewalkCellNear(position, map, 5, null);
+                    IntVec3 intVec = CellFinder.RandomClosewalkCellNear(this.InteractionCell, map, 5, null);
                     mapRect = new CellRect(intVec.x, intVec.z, num, num);
                     GenPlace.TryPlaceThing(TryMakeCasket(mapRect, map, named), intVec, map, ThingPlaceMode.Near);
                 }

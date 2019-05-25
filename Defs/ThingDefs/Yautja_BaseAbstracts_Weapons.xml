@@ -49,12 +49,23 @@
       <workSkill>Crafting</workSkill>
       <recipeUsers>
         <li>RRY_TableMachining</li>
-		<li>CraftingSpot</li>
+		
       </recipeUsers>
       <effectWorking>Smelt</effectWorking>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+    <defaultIngredientFilter>
+      <categories>
+        <li>Root</li>
+      </categories>
+      <disallowedThingDefs>
+        <li>Silver</li>
+        <li>Gold</li>
+      </disallowedThingDefs>
+    </defaultIngredientFilter>
     </recipeMaker>
   </ThingDef>
+  
+
 	<!-- ==================== Yautja - Base Gun Weapon Template ========================= -->		
 	<ThingDef Name="RRYBaseGun" Abstract="True" ParentName="RRYBaseWeapon">
 		<techLevel>Industrial</techLevel>

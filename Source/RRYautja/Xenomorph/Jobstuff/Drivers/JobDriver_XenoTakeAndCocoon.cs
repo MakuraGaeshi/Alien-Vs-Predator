@@ -18,6 +18,24 @@ namespace RimWorld
             }
         }
 
+        protected IntVec3 loc
+        {
+            get
+            {
+                return this.job.GetTarget(TargetIndex.B).Cell;
+            }
+        }
+
+        protected Building_XenomorphCocoon DropBed
+        {
+            get
+            {
+
+                return (Building_XenomorphCocoon)this.job.GetTarget(TargetIndex.B).Thing;
+            }
+        }
+
+
         // Token: 0x06000372 RID: 882 RVA: 0x0001EF20 File Offset: 0x0001D320
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
@@ -54,7 +72,10 @@ namespace RimWorld
                 {
                     if (Item is Pawn takee)
                     {
-                        this.pawn.ExitMap(true, CellRect.WholeMap(base.Map).GetClosestEdge(this.pawn.Position));
+                        Thing thing = ThingMaker.MakeThing(XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon);
+                        GenPlace.TryPlaceThing(thing, Item.Position, base.Map,ThingPlaceMode.Near);
+
+                        takee.jobs.Notify_TuckedIntoBed((Building_XenomorphCocoon)thing);
                     }
                 },
                 defaultCompleteMode = ToilCompleteMode.Instant

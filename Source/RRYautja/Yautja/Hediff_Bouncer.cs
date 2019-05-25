@@ -11,6 +11,7 @@ namespace RRYautja
         {
             base.ExposeData();
             Scribe_Values.Look<int>(ref this.TimesBounced, "TimesBounced");
+            Scribe_Values.Look<bool>(ref this.canBounce, "canBounce");
             Scribe_References.Look<Pawn>(ref this.OriginalPawn, "OriginalPawnRef");//, Props.pawn);
             Scribe_References.Look<Thing>(ref this.OriginalWeapon, "OriginalWeaponRef");//, Props.pawn);
             Scribe_References.Look<Projectile>(ref this.OriginalProjectile, "OriginalProjectileRef");//, Props.pawn);
@@ -31,32 +32,65 @@ namespace RRYautja
         public int disaapearsIn = 5;
 
         public ThingDef BounceDef = (DefDatabase<ThingDef>.GetNamed("RRY_SmartDisk_Thrown"));
-        public ThingDef ReturnDef = (DefDatabase<ThingDef>.GetNamed("RRY_SmartDisk_Returning"));
+        public ThingDef ReturnDef
+        {
+            get
+            {
+                if (OriginalPawn.kindDef.race!=YautjaDefOf.RRY_Alien_Yautja)
+                {
+                    return (DefDatabase<ThingDef>.GetNamed("RRY_SmartDisk_Thrown"));
+                }
+                return (DefDatabase<ThingDef>.GetNamed("RRY_SmartDisk_Returning"));
+            }
+        }
 
         public Pawn OriginalPawn;
         public Thing OriginalWeapon;
         public Projectile OriginalProjectile;
 
+        public bool canBounce = false;
         public int ExtraTargets
         {
             get
             {
                 int count = 0;
-                if (YautjaDefOf.RRY_YautjaRanged_Basic.IsFinished)
+                bool enablebounce = false;
+                if (OriginalPawn.Faction == Faction.OfPlayer)
                 {
-                    count++;
+                    if (YautjaDefOf.RRY_YautjaRanged_Basic.IsFinished)
+                    {
+                        count++;
+                    }
+                    if (YautjaDefOf.RRY_YautjaRanged_Med.IsFinished)
+                    {
+                        count++;
+                    }
+                    if (YautjaDefOf.RRY_YautjaRanged_Adv.IsFinished)
+                    {
+                        count++;
+                    }
                 }
-                if (YautjaDefOf.RRY_YautjaRanged_Med.IsFinished)
+
+                if (OriginalPawn.apparel.WornApparelCount > 0)
                 {
-                    count++;
+                    foreach (var item in OriginalPawn.apparel.WornApparel)
+                    {
+                        if (item.def.defName.Contains("RRY_Apparel_") && item.def.defName.Contains("BioMask"))
+                        {
+                            enablebounce = true;
+                            this.canBounce = enablebounce;
+                        }
+                    }
                 }
-                if (YautjaDefOf.RRY_YautjaRanged_Adv.IsFinished)
+
+                if (!enablebounce)
                 {
-                    count++;
+                    count = 0;
                 }
                 return count;
             }
         }
+
         public override void Tick()
         {
             base.Tick();
@@ -64,6 +98,12 @@ namespace RRYautja
             {
                 this.pawn.health.RemoveHediff(this);
             }
+        }
+
+        public override void Notify_PawnDied()
+        {
+            this.pawn.health.RemoveHediff(this);
+            base.Notify_PawnDied();
         }
 
         public override void PostRemoved()
@@ -76,11 +116,7 @@ namespace RRYautja
             IntVec3 hitpos = !this.pawn.Dead ? this.pawn.Position : this.pawn.PositionHeld;
             Map hitmap = !this.pawn.Dead ? this.pawn.Map : this.pawn.MapHeld;
             Thing launcher = this.pawn;
-        //    Log.Message(string.Format("shouldBounce: {0} 2", shouldBounce));
             Projectile projectile = shouldBounce ? this.OriginalProjectile : (Projectile)ThingMaker.MakeThing(ReturnDef, null);
-        //    Log.Message(string.Format("projectile: {0} 3", projectile));
-            //    Thing launcher = this.OriginalWeapon != null ? this.OriginalWeapon : null;
-            //    Thing launcher = this.OriginalWeapon != null ? this.OriginalWeapon : null;
             string msg = shouldBounce ? "bouncing" : "returning";
         //    Log.Message(string.Format("shouldBounce: {0} 4", msg));
             Thing targetthing;
@@ -121,7 +157,7 @@ namespace RRYautja
             //    Log.Message(string.Format("TimesBounced: {0}, OriginalPawn: {1}, OriginalWeapon: {2}, OriginalProjectile: {3}, ", this.TimesBounced, this.OriginalPawn, this.OriginalWeapon, this.OriginalProjectile));
                 GenSpawn.Spawn(Rprojectile, hitpos, hitmap, 0);
             //    Log.Message(string.Format("GenSpawn"));
-                Rprojectile.Launch(this.pawn, hitpos.ToVector3(), targetthing, targetthing, ProjectileHitFlags.IntendedTarget, OriginalPawn.equipment.Primary);
+                Rprojectile.Launch(OriginalWeapon, hitpos.ToVector3ShiftedWithAltitude(AltitudeLayer.Projectile), targetthing, targetthing, ProjectileHitFlags.IntendedTarget, OriginalPawn.equipment.Primary);
             //    Log.Message(string.Format("Launch: ") + msg);
             //    Log.Message(msg);
             }
@@ -129,7 +165,7 @@ namespace RRYautja
             {
                 GenSpawn.Spawn(projectile, hitpos, hitmap, 0);
             //    Log.Message(string.Format("GenSpawn"));
-                projectile.Launch(this.pawn, hitpos.ToVector3(), targetthing, targetthing, ProjectileHitFlags.IntendedTarget, launcher);
+                projectile.Launch(OriginalWeapon, hitpos.ToVector3ShiftedWithAltitude(AltitudeLayer.Projectile), targetthing, targetthing, ProjectileHitFlags.IntendedTarget, OriginalPawn.equipment.Primary);
             //    Log.Message(string.Format("Launch: ") + msg);
             //    Log.Message(msg);
             }

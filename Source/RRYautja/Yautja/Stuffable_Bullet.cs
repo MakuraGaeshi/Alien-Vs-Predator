@@ -20,9 +20,9 @@ namespace RRYautja
             {
                 DamageDef damageDef = this.def.projectile.damageDef;
                 float amount = (float)base.DamageAmount;
-                Log.Message(string.Format("Stuffable_Bullet Impact DamageAmount: {0}", amount));
+            //    Log.Message(string.Format("Stuffable_Bullet Impact DamageAmount: {0}", amount));
                 float armorPenetration = base.ArmorPenetration;
-                Log.Message(string.Format("Stuffable_Bullet Impact armorPenetration: {0}", armorPenetration));
+            //    Log.Message(string.Format("Stuffable_Bullet Impact armorPenetration: {0}", armorPenetration));
                 float y = this.ExactRotation.eulerAngles.y;
                 Thing launcher = this.launcher;
                 ThingDef equipmentDef = this.equipmentDef;

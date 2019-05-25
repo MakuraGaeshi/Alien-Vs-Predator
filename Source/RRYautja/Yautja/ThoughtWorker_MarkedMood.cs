@@ -13,7 +13,6 @@ namespace RimWorld
         {
             bool selected = Find.Selector.SelectedObjects.Contains(p);
             int stageIndex = 0;
-            bool hasstage = false;
             Comp_Yautja _Yautja = p.TryGetComp<Comp_Yautja>();
 #if DEBUG
         //    if (selected) Log.Message(string.Format("ThoughtWorker_MarkedMood CurrentStateInternal def.thoughtClass: {0}, def.ThoughtClass: {1}", def.thoughtClass, def.ThoughtClass));

@@ -3,6 +3,7 @@ using AlienRace;
 using Harmony;
 using RimWorld;
 using System;
+using System.Linq;
 using System.Reflection;
 using UnityEngine;
 using Verse;
@@ -34,6 +35,13 @@ namespace RRYautja
             MethodInfo method6 = typeof(HarmonyPatches).GetMethod("Patch_PawnRenderer_RenderPawnAt");
             harmony.Patch(method5, null, new HarmonyMethod(method6), null);
 
+            /*
+            MethodInfo method7 = typeof(HarmonyPatches).GetMethod("Patch_PawnRenderer_RenderPawnAt_XenomorphCocoon");
+            harmony.Patch(method5, null, new HarmonyMethod(method7), null);
+
+            harmony.Patch(AccessTools.Method(typeof(Pawn_DrawTracker), "DrawAt", null, null), null, new HarmonyMethod(typeof(HarmonyPatches), "DrawAt_PostFix", null), null);
+            */
+
             //Patch_PawnRenderer_WigglerTick
             /*
             harmony.Patch(
@@ -48,6 +56,7 @@ namespace RRYautja
                 typeof(RotDrawMode),
                 typeof(bool)
             }, null), new HarmonyMethod(typeof(HarmonyPatches), "PawnRenderer_Blur_Prefix", null), null, null);
+            
             /*
             harmony.Patch(AccessTools.Method(typeof(PawnRenderer), "RenderPawnAt", new Type[]
             {
@@ -182,14 +191,19 @@ namespace RRYautja
         // Token: 0x060000EC RID: 236 RVA: 0x00008F44 File Offset: 0x00007144
         public static void PushEffect(Thing Caster, Thing target, int distance, bool damageOnCollision = false)
         {
+            if (target is Building)
+            {
+                return;
+            }
             LongEventHandler.QueueLongEvent(delegate ()
             {
                 Pawn pawn;
                 if (target != null && (pawn = (target as Pawn)) != null && pawn.Spawned && !pawn.Downed && !pawn.Dead && ((pawn != null) ? pawn.MapHeld : null) != null)
                 {
+                    bool drafted = pawn.Drafted;
                     bool flag2;
                     Vector3 vector = HarmonyPatches.PushResult(Caster, target, distance, out flag2);
-                    FlyingObject flyingObject = (FlyingObject)GenSpawn.Spawn(ThingDef.Named("JT_FlyingObject"), pawn.PositionHeld, pawn.MapHeld, 0);
+                    RRY_FlyingObject flyingObject = (RRY_FlyingObject)GenSpawn.Spawn(ThingDef.Named("JT_FlyingObject"), pawn.PositionHeld, pawn.MapHeld, 0);
                     bool flag3 = flag2 & damageOnCollision;
                     if (flag3)
                     {
@@ -199,6 +213,7 @@ namespace RRYautja
                     {
                         flyingObject.Launch(Caster, new LocalTargetInfo(IntVec3Utility.ToIntVec3(vector)), target);
                     }
+
                 }
             }, "PushingCharacter", false, null);
         }
@@ -221,6 +236,62 @@ namespace RRYautja
                     comp.DrawImplant();
                 }
             }
+
+        }
+
+        public static void DrawAt_PostFix(Pawn_DrawTracker __instance, Vector3 loc)
+        {
+            Pawn pawn = (Pawn)AccessTools.Field(typeof(Pawn_DrawTracker), "pawn").GetValue(__instance);
+            
+            bool flag = pawn.CurrentBed()!=null && pawn.Spawned;
+            if (flag)
+            {
+                bool flag2 = pawn.CurrentBed() is Building_XenomorphCocoon;
+                if (flag2)
+                {
+                    loc = new Vector3(loc.x+0.5f, loc.y, loc.z);
+                }
+
+            }
+        }
+
+        // Token: 0x0600000C RID: 12 RVA: 0x0000283C File Offset: 0x00000A3C
+        public static void Patch_PawnRenderer_RenderPawnAt_XenomorphCocoon(PawnRenderer __instance, ref Vector3 drawLoc, ref RotDrawMode bodyDrawType, ref bool headStump)
+        {
+            Pawn pawn = HarmonyPatches.PawnRenderer_GetPawn(__instance);
+            bool selected = Find.Selector.SelectedObjects.Contains(pawn);
+            if (pawn.GetPosture() != PawnPosture.Standing)
+            {
+                Rot4 rot = pawn.Rotation;
+                Building_Bed building_Bed = pawn.CurrentBed();
+                bool flag = building_Bed is Building_XenomorphCocoon;
+                bool renderBody;
+                float angle;
+                Vector3 rootLoc;
+                if (building_Bed != null && pawn.RaceProps.Humanlike && flag)
+                {
+                    renderBody = building_Bed.def.building.bed_showSleeperBody;
+                    Rot4 rotation = building_Bed.Rotation;
+                    rotation.AsInt += 2;
+                    angle = rotation.AsAngle;
+                    AltitudeLayer altLayer = (AltitudeLayer)Mathf.Max((int)building_Bed.def.altitudeLayer, 15);
+                    Vector3 vector2 = pawn.Position.ToVector3ShiftedWithAltitude(altLayer);
+                    Vector3 vector3 = vector2;
+                    vector3.y += 0.02734375f;
+                    float d = -__instance.BaseHeadOffsetAt(Rot4.South).z;
+                    d = -__instance.BaseHeadOffsetAt(Rot4.South).z;
+                    Vector3 a = rotation.FacingCell.ToVector3();
+                    rootLoc = vector2 + a * d;
+                    rootLoc.y += 0.0078125f;
+                    rootLoc.x += 0.5f;
+                    if (selected) Log.Message(string.Format("Patch_PawnRenderer_RenderPawnAt_XenomorphCocoon 4 Old Drawloc {0}", drawLoc));
+                    if (selected) Log.Message(string.Format("Patch_PawnRenderer_RenderPawnAt_XenomorphCocoon 5 Old pawn.DrawPos {0}", pawn.DrawPos));
+                    drawLoc = rootLoc;
+                    if (selected) Log.Message(string.Format("Patch_PawnRenderer_RenderPawnAt_XenomorphCocoon 6 new Drawloc {0}", drawLoc));
+                    if (selected) Log.Message(string.Format("Patch_PawnRenderer_RenderPawnAt_XenomorphCocoon 7 new pawn.DrawPos {0}", pawn.DrawPos));
+                }
+            }
+
 
         }
 
@@ -422,6 +493,52 @@ namespace RRYautja
         {
             if (__result.kindDef.race == YautjaDefOf.RRY_Alien_Yautja)
             {
+                if (__result.gender==Gender.Female && __result.story.bodyType != BodyTypeDefOf.Female)
+                {
+                    __result.story.bodyType = BodyTypeDefOf.Female;
+                }
+                if (request.Faction.leader == null && request.Faction != Faction.OfPlayerSilentFail && request.KindDef.race == YautjaDefOf.RRY_Alien_Yautja)
+                {
+                    QualityCategory weaponQuality;
+                    QualityCategory gearQuality;
+                    bool upgradeWeapon = Rand.Chance(0.5f);
+                    if (__result.equipment.Primary != null && upgradeWeapon)
+                    {
+                        __result.equipment.Primary.TryGetQuality(out weaponQuality);
+                        if (weaponQuality != QualityCategory.Legendary)
+                        {
+                            Thing Weapon = __result.equipment.Primary;
+                            CompQuality Weapon_Quality = Weapon.TryGetComp<CompQuality>();
+                            if (Weapon_Quality != null)
+                            {
+                                Weapon_Quality.SetQuality(QualityCategory.Legendary, ArtGenerationContext.Outsider);
+                            }
+                        }
+
+                    }
+                    else if (__result.apparel.WornApparelCount > 0 && !upgradeWeapon)
+                    {
+                        foreach (var item in __result.apparel.WornApparel)
+                        {
+                            item.TryGetQuality(out gearQuality);
+                            float upgradeChance = 0.5f;
+                            bool upgradeGear = Rand.Chance(0.5f);
+                            if (gearQuality != QualityCategory.Legendary)
+                            {
+                                CompQuality Gear_Quality = item.TryGetComp<CompQuality>();
+                                if (Gear_Quality != null)
+                                {
+                                    if (upgradeGear)
+                                    {
+                                        Gear_Quality.SetQuality(QualityCategory.Legendary, ArtGenerationContext.Outsider);
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
                 Comp_Yautja _Yautja = __result.TryGetComp<Comp_Yautja>();
                 if (_Yautja != null)
                 {
@@ -449,6 +566,20 @@ namespace RRYautja
                             if (pawnStoryA != bsDefUnblooded.backstory)
                             {
                                 hediffDef = _Yautja.Props.bloodedDefs.RandomElement();
+
+                                if (hediffDef != null)
+                                {
+                                    PawnKindDef pawnKindDef = YautjaBloodedUtility.RandomMarked(hediffDef);
+                                    if (_Yautja != null)
+                                    {
+                                        _Yautja.MarkHedifflabel = pawnKindDef.LabelCap;
+                                        _Yautja.MarkedhediffDef = hediffDef;
+                                        _Yautja.predator = pawnKindDef.RaceProps.predator;
+                                        _Yautja.BodySize = pawnKindDef.RaceProps.baseBodySize;
+                                        _Yautja.combatPower = pawnKindDef.combatPower;
+                                    }
+                                }
+
                             }
                             else
                             {
@@ -477,7 +608,7 @@ namespace RRYautja
             else if (request.Faction == Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph))
             {
             //    Log.Message(string.Format("Xenomorph spawning"));
-                if (__result.kindDef==XenomorphDefOf.RRY_Xenomorph_Queen)
+                if (request.KindDef==XenomorphDefOf.RRY_Xenomorph_Queen)
                 {
                     if (__result.Map!=null)
                     {
@@ -486,18 +617,24 @@ namespace RRYautja
                         {
                             if (p.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
                             {
+                                Log.Message(string.Format("Queen Found"));
                                 QueenPresent = true;
                                 break;
                             }
                         }
                         if (QueenPresent)
                         {
-                            __result.kindDef = XenomorphDefOf.RRY_Xenomorph_Warrior;
+                            Log.Message(string.Format("Queen Present: {0}", QueenPresent));
+                            request = new PawnGenerationRequest(XenomorphDefOf.RRY_Xenomorph_Warrior, request.Faction, request.Context, -1, true, false, false, false, false, true, 0f, fixedGender: Gender.None, allowGay: false);
+                            __result = PawnGenerator.GeneratePawn(request);
                             __result.gender = Gender.None;
                             return;
                         }
                     }
-                    __result.gender = Gender.Female;
+                    else
+                    {
+                        __result.gender = Gender.Female;
+                    }
                 }
                 else
                 {
@@ -512,7 +649,7 @@ namespace RRYautja
             if (Rand.Chance(0.005f)&&XenomorphUtil.isInfectablePawn(__result))
             {
                 HediffDef def = Rand.Chance(0.75f) ? XenomorphDefOf.RRY_HiddenXenomorphImpregnation : XenomorphDefOf.RRY_HiddenNeomorphImpregnation;
-                __result.health.AddHediff(def);
+                __result.health.AddHediff(def, __result.RaceProps.body.corePart, null);
             }
         }
 

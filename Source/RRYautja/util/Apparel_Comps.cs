@@ -60,8 +60,102 @@ namespace RRYautja
             }
         }
 
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            Scribe_Values.Look<bool>(ref this.Armed, "ThisArmed");
+            Scribe_Values.Look<int>(ref this.ticksTillDetonation, "ThisticksTillDetonation");
+        }
+
+        public int ticksTillDetonation;
+        public bool Armed;
+
         // Determine if this ThingComp is being worn presently. Returns True/False
         protected virtual bool IsWorn => (GetWearer != null);
+
+        public int nextUpdateTick;
+        // Token: 0x060053DD RID: 21469 RVA: 0x00264E3D File Offset: 0x0026323D
+        public override void CompTick()
+        {
+            base.CompTick();
+            if (IsWorn)
+            {
+                if ((GetWearer.Downed && GetWearer.Awake() && !GetWearer.InBed()) || (GetWearer.IsPrisonerOfColony))
+                {
+                    if (Find.TickManager.TicksGame >= this.nextUpdateTick && !Armed)
+                    {
+                        this.nextUpdateTick = Find.TickManager.TicksGame + 100;
+                        float chanceBase = 0.01f;
+                        chanceBase *= (this.parent.MaxHitPoints / this.parent.HitPoints); 
+                        bool chance = Rand.Chance(chanceBase);
+                        Log.Message(string.Format("chance: {0}, {1} = {2} / {3}", chance, chanceBase, this.parent.MaxHitPoints,this.parent.HitPoints));
+                        if (chance && !Armed)
+                        {
+                            StartFuse();
+                        }
+                    }
+                }
+                if (Armed)
+                {
+                    string stringbit = null;
+                    if (ticksTillDetonation > 0)
+                    {
+                        if (ticksTillDetonation == 1000)
+                        {
+                            stringbit = string.Format("{0} seconds remaining", (ticksTillDetonation / 100));
+                        }
+                        if (ticksTillDetonation == 900)
+                        {
+                            stringbit = string.Format("{0} seconds remaining", (ticksTillDetonation / 100));
+                        }
+                        if (ticksTillDetonation == 800)
+                        {
+                            stringbit = string.Format("{0} seconds remaining", (ticksTillDetonation / 100));
+                        }
+                        if (ticksTillDetonation == 700)
+                        {
+                            stringbit = string.Format("{0} seconds remaining", (ticksTillDetonation / 100));
+                        }
+                        if (ticksTillDetonation == 600)
+                        {
+                            stringbit = string.Format("{0} seconds remaining", (ticksTillDetonation / 100));
+                        }
+                        if (ticksTillDetonation == 500)
+                        {
+                            stringbit = string.Format("{0} seconds remaining", (ticksTillDetonation / 100));
+                        }
+                        if (ticksTillDetonation == 400)
+                        {
+                            stringbit = string.Format("{0} seconds remaining", (ticksTillDetonation / 100));
+                        }
+                        if (ticksTillDetonation == 300)
+                        {
+                            stringbit = string.Format("{0} seconds remaining", (ticksTillDetonation / 100));
+                        }
+                        if (ticksTillDetonation == 200)
+                        {
+                            stringbit = string.Format("{0} seconds remaining", (ticksTillDetonation / 100));
+                        }
+                        if (ticksTillDetonation == 100)
+                        {
+                            stringbit = string.Format("{0} seconds remaining", (ticksTillDetonation / 100));
+                        }
+                        if (!stringbit.NullOrEmpty())
+                        {
+                            IntVec3 vec3 = GetWearer.Position;
+                            vec3.x -= 1;
+                            vec3.z += 1;
+                            MoteMaker.ThrowText(vec3.ToVector3ShiftedWithAltitude(AltitudeLayer.MoteOverhead), GetWearer.Map, stringbit, 5f);
+                        }
+                        ticksTillDetonation--;
+                    }
+                    else
+                    {
+                        Detonate();
+                    }
+                }
+            }
+        }
 
         // heavily based on Rimworld.CompExplosive.PostPreApplyDamage()
         public override void PostPreApplyDamage(DamageInfo dinfo, out bool absorbed)
@@ -89,6 +183,26 @@ namespace RRYautja
             // Currently ignores dinfo.Instigator
         }
 
+        public void StartFuse()
+        {
+            Armed = true;
+            ticksTillDetonation = 1000;
+            IntVec3 vec3 = GetWearer.Position;
+            vec3.x -= 1;
+            vec3.z += 1;
+            MoteMaker.ThrowText(vec3.ToVector3ShiftedWithAltitude(AltitudeLayer.MoteOverhead), GetWearer.Map, "Countdown Started", 5f);
+        }
+
+        public void StopFuse()
+        {
+            Armed = false;
+            ticksTillDetonation = 1000;
+            IntVec3 vec3 = GetWearer.Position;
+            vec3.x -= 1;
+            vec3.z += 1;
+            MoteMaker.ThrowText(vec3.ToVector3ShiftedWithAltitude(AltitudeLayer.MoteOverhead), GetWearer.Map, "Countdown Stopped", 5f);
+        }
+
         // heavily based on Rimwold.CompExplosive.Detonate()
         protected virtual void Detonate()
         {
@@ -100,8 +214,8 @@ namespace RRYautja
             Map map = owner.MapHeld;
             IntVec3 loc = owner.PositionHeld;
 
-            if (!parent.Destroyed)
-                parent.Kill();
+            if (GetWearer.Spawned)
+                GetWearer.Kill(null);
 
             if (map == null)
             {
@@ -134,35 +248,66 @@ namespace RRYautja
                 effect.Trigger(new TargetInfo(parent.PositionHeld, map), new TargetInfo(parent.PositionHeld, map));
                 effect.Cleanup();
             }
+            for (int i = 0; i <= 3; i++)
+            {
+                    GenExplosion.DoExplosion
+                    (
+                        loc,
+                        map,
+                        radius,
+                        proj.damageDef,
+                        parent,
+                        projectile: parent.def,
+                        postExplosionSpawnThingDef: proj.postExplosionSpawnThingDef,
+                        postExplosionSpawnChance: props.postExplosionSpawnChance,
+                        postExplosionSpawnThingCount: props.postExplosionSpawnThingCount,
+                        applyDamageToExplosionCellsNeighbors: props.applyDamageToExplosionCellsNeighbors,
+                        preExplosionSpawnThingDef: proj.preExplosionSpawnThingDef,
+                        preExplosionSpawnChance: props.preExplosionSpawnChance,
+                        preExplosionSpawnThingCount: props.preExplosionSpawnThingCount
+                    );
+                
+            }
 
-            GenExplosion.DoExplosion
-            (
-                loc,
-                map,
-                radius,
-                proj.damageDef,
-                parent,
-                projectile: parent.def,
-                postExplosionSpawnThingDef: proj.postExplosionSpawnThingDef,
-                postExplosionSpawnChance: props.postExplosionSpawnChance,
-                postExplosionSpawnThingCount: props.postExplosionSpawnThingCount,
-                applyDamageToExplosionCellsNeighbors: props.applyDamageToExplosionCellsNeighbors,
-                preExplosionSpawnThingDef: proj.preExplosionSpawnThingDef,
-                preExplosionSpawnChance: props.preExplosionSpawnChance,
-                preExplosionSpawnThingCount: props.preExplosionSpawnThingCount
-            );
         }
 
         public override IEnumerable<Gizmo> CompGetGizmosWorn()
         {
+            int num = 700000108;
             yield return new Command_Action
             {
                 action = Detonate,
-                defaultLabel = "WearableExplosives_Label".Translate(),
-                defaultDesc = "WearableExplosives_Desc".Translate(),
-                icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_BOOM", true)
+                defaultLabel = "WearableExplosives_Detonate_Label".Translate(),
+                defaultDesc = "WearableExplosives_Detonate_Desc".Translate(),
+                icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_BOOM", true),
+                activateSound = SoundDef.Named("Click"),
+                groupKey = num + 1
             };
-
+            if (Armed)
+            {
+                yield return new Command_Action
+                {
+                    action = StopFuse,
+                    defaultLabel = "WearableExplosives_Timer_Stop_Label".Translate(),
+                    defaultDesc = "WearableExplosives_Timer_Desc".Translate(),
+                    icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_BOOM", true),
+                    activateSound = SoundDef.Named("Click"),
+                    groupKey = num + 2
+                };
+            }
+            else
+            {
+                yield return new Command_Action
+                {
+                    action = StartFuse,
+                    defaultLabel = "WearableExplosives_Timer_Start_Label".Translate(),
+                    defaultDesc = "WearableExplosives_Timer_Desc".Translate(),
+                    icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_BOOM", true),
+                    activateSound = SoundDef.Named("Click"),
+                    groupKey = num + 2
+                };
+            }
+            yield break;
         }
     }
 }

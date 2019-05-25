@@ -37,7 +37,6 @@ namespace RRYautja
     // Token: 0x02000791 RID: 1937
     public class CompUseEffect_MarkSelf : CompUseEffect
     {
-        bool logonce = false;
         // Token: 0x06002ADC RID: 10972 RVA: 0x001433C0 File Offset: 0x001417C0
         public override void DoEffect(Pawn user)
         {
@@ -53,8 +52,7 @@ namespace RRYautja
                 user.health.RemoveHediff(hediff);
             }
             user.health.RemoveHediff(blooded);
-            user.health.AddHediff(markedDef, part);
-            Hediff marked = user.health.hediffSet.GetFirstHediffOfDef(markedDef);
+            Hediff marked = HediffMaker.MakeHediff(markedDef, user, part);// user.health.hediffSet.GetFirstHediffOfDef(markedDef);
             HediffComp_MarkedYautja marked_Yautja = marked.TryGetComp<HediffComp_MarkedYautja>();
             marked_Yautja.BodySize = corpse.InnerPawn.BodySize;
             marked_Yautja.combatPower = corpse.InnerPawn.kindDef.combatPower;
@@ -73,6 +71,7 @@ namespace RRYautja
                 BodySize = corpse.InnerPawn.BodySize,
                 combatPower = corpse.InnerPawn.kindDef.combatPower
             };
+            user.health.AddHediff(markedDef, part);
             ThingDef thingDef = null;
             foreach (var item in corpse.InnerPawn.health.hediffSet.GetNotMissingParts())
             {
@@ -107,8 +106,6 @@ namespace RRYautja
         }
 
         BodyPartRecord partRecord;
-        bool hasTail;
-        bool hasShell;
         Corpse corpse;
         // Token: 0x06002ADD RID: 10973 RVA: 0x00143464 File Offset: 0x00141864
         public override bool CanBeUsedBy(Pawn p, out string failReason)
@@ -129,7 +126,6 @@ namespace RRYautja
             //    if (selected) Log.Message(string.Format("{0}", _Yautja.pawn));
             //    if (selected) Log.Message(string.Format("{0}", _Yautja.MarkedhediffDef));
 #endif
-                logonce = true;
                 ThingDef def = _Yautja.corpse.InnerPawn.kindDef.race;
                 if (this.parent is Corpse corpse)
                 {
@@ -165,7 +161,6 @@ namespace RRYautja
                 failReason = "Doesnt need marking";
                 return false;
             }
-            return base.CanBeUsedBy(p, out failReason);
         }
 
         // Token: 0x04001786 RID: 6022
@@ -196,7 +191,7 @@ namespace RRYautja
             if (!this.CanBeUsedBy(myPawn, out failReason))
             {
                 yield break;
-                yield return new FloatMenuOption(this.FloatMenuOptionLabel + ((failReason == null) ? string.Empty : (" (" + failReason + ")")), null, MenuOptionPriority.Default, null, null, 0f, null, null);
+            //    yield return new FloatMenuOption(this.FloatMenuOptionLabel + ((failReason == null) ? string.Empty : (" (" + failReason + ")")), null, MenuOptionPriority.Default, null, null, 0f, null, null);
             }
             else if (!myPawn.CanReach(this.parent, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.ByPawn))
             {
@@ -232,7 +227,7 @@ namespace RRYautja
         }
 
         // Token: 0x06002A4D RID: 10829 RVA: 0x00139094 File Offset: 0x00137494
-        private bool CanBeUsedBy(Pawn p, out string failReason)
+        private new bool CanBeUsedBy(Pawn p, out string failReason)
         {
             List<ThingComp> allComps = this.parent.AllComps;
             for (int i = 0; i < allComps.Count; i++)
@@ -402,7 +397,7 @@ namespace RRYautja
                 {
                     compUseEffect.DoEffect(p);
                 }
-                catch (Exception arg)
+                catch
                 {
                 //    Log.Error("Error in CompUseEffect: " + arg, false);
                 }

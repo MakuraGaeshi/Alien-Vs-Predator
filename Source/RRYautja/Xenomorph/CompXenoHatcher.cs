@@ -191,7 +191,7 @@ namespace RRYautja
 #if DEBUG
             if (thing == null)
             {
-            //    if (selected) Log.Message(string.Format("{0} @ {1}, Cant hatch No suitable Host Found", this.parent.Label, MyPos, canHatch));
+                if (selected) Log.Message(string.Format("{0} @ {1}, Cant hatch No suitable Host Found", this.parent.Label, MyPos, canHatch));
             }
 #endif
         }
