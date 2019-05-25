@@ -67,7 +67,7 @@
 		<stages>
 		  <li>
 			<label>cooked cannibalism</label>
-			<description>I ate a meal made from the meat of another Yautja. .</description>
+			<description>I ate a meal made from the flesh of another Yautja. .</description>
 			<baseMoodEffect>15</baseMoodEffect>
 		  </li>
 		</stages>
@@ -88,7 +88,7 @@
 		<stages>
 			<li>
 				<label>I butchered a Yautja</label>
-				<description>I butchered a fellow Hunter up like an animal. They deserved better.</description>
+				<description>I butchered a fellow Hunter like an animal. They deserved better.</description>
 				<baseMoodEffect>-6</baseMoodEffect>
 			</li>
 		</stages>
