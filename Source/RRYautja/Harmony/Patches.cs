@@ -72,8 +72,12 @@ namespace RRYautja
         [HarmonyPrefix]
         public static bool IgnoreWristblade(Pawn __instance)
         {
-            bool result = !(__instance.apparel.WornApparel.Any(x => x.def == YautjaDefOf.RRY_Equipment_HunterGauntlet));
 
+            bool result = true;
+            if (__instance.RaceProps.Humanlike)
+            {
+                result = !(__instance.apparel.WornApparel.Any(x => x.def == YautjaDefOf.RRY_Equipment_HunterGauntlet));
+            }
             Log.Message(string.Format("Pawn_StripPatch IgnoreWristblade: {0}", result));
             if (!result)
             {
