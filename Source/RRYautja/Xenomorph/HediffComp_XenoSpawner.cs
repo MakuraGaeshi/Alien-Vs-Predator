@@ -131,7 +131,7 @@ namespace RRYautja
             bool selected = Find.Selector.SingleSelectedThing == parent.pawn;
             if (parent.CurStageIndex >= parent.def.stages.Count - 3 && this.Pawn.Map == null) return;
             base.CompPostTick(ref severityAdjustment);
-            if (parent.ageTicks> nextCoughTick && (this.Def == XenomorphDefOf.RRY_HiddenNeomorphImpregnation || this.Def == XenomorphDefOf.RRY_NeomorphImpregnation))
+            if (parent.ageTicks> nextCoughTick && (this.Def == XenomorphDefOf.RRY_HiddenNeomorphImpregnation || this.Def == XenomorphDefOf.RRY_NeomorphImpregnation) && Pawn.Map.IsPlayerHome!=null)
             {
                 DoNeoCough();
 

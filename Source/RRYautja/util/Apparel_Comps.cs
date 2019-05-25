@@ -142,7 +142,10 @@ namespace RRYautja
                         }
                         if (!stringbit.NullOrEmpty())
                         {
-                            Log.Message(stringbit);
+                            IntVec3 vec3 = GetWearer.Position;
+                            vec3.x -= 1;
+                            vec3.z += 1;
+                            MoteMaker.ThrowText(vec3.ToVector3ShiftedWithAltitude(AltitudeLayer.MoteOverhead), GetWearer.Map, stringbit, 5f);
                         }
                         ticksTillDetonation--;
                     }
@@ -184,12 +187,20 @@ namespace RRYautja
         {
             Armed = true;
             ticksTillDetonation = 1000;
+            IntVec3 vec3 = GetWearer.Position;
+            vec3.x -= 1;
+            vec3.z += 1;
+            MoteMaker.ThrowText(vec3.ToVector3ShiftedWithAltitude(AltitudeLayer.MoteOverhead), GetWearer.Map, "Countdown Started", 5f);
         }
 
         public void StopFuse()
         {
             Armed = false;
             ticksTillDetonation = 1000;
+            IntVec3 vec3 = GetWearer.Position;
+            vec3.x -= 1;
+            vec3.z += 1;
+            MoteMaker.ThrowText(vec3.ToVector3ShiftedWithAltitude(AltitudeLayer.MoteOverhead), GetWearer.Map, "Countdown Stopped", 5f);
         }
 
         // heavily based on Rimwold.CompExplosive.Detonate()
