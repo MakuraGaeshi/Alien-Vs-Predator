@@ -33,105 +33,150 @@ namespace RimWorld
         // Token: 0x0600037C RID: 892 RVA: 0x00022F80 File Offset: 0x00021380
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
+        //    Log.Message(string.Format("JobDriver_XenoTakeToCocoon TryMakePreToilReservations 1"));
             Pawn pawn = this.pawn;
+        //    Log.Message(string.Format("JobDriver_XenoTakeToCocoon TryMakePreToilReservations 2"));
             LocalTargetInfo target = this.Takee;
+        //    Log.Message(string.Format("JobDriver_XenoTakeToCocoon TryMakePreToilReservations 3"));
             Job job = this.job;
+        //    Log.Message(string.Format("JobDriver_XenoTakeToCocoon TryMakePreToilReservations 4"));
             bool result;
-            if (pawn.Reserve(target, job, 1, -1, null, errorOnFailed))
+        //    Log.Message(string.Format("JobDriver_XenoTakeToCocoon TryMakePreToilReservations 5"));
+            if (this.DropBed!=null && pawn.Reserve(target, job, 1, -1, null, errorOnFailed))
             {
+            //    Log.Message(string.Format("JobDriver_XenoTakeToCocoon TryMakePreToilReservations 6"));
                 pawn = this.pawn;
+            //    Log.Message(string.Format("JobDriver_XenoTakeToCocoon TryMakePreToilReservations 7"));
                 target = this.DropBed;
+            //    Log.Message(string.Format("JobDriver_XenoTakeToCocoon TryMakePreToilReservations 8"));
                 job = this.job;
+                Log.Message(string.Format("JobDriver_XenoTakeToCocoon TryMakePreToilReservations 9 this.DropBed: {0}", this.DropBed));
                 int sleepingSlotsCount = this.DropBed.SleepingSlotsCount;
+                Log.Message(string.Format("JobDriver_XenoTakeToCocoon TryMakePreToilReservations 10"));
                 int stackCount = 0;
+                Log.Message(string.Format("JobDriver_XenoTakeToCocoon TryMakePreToilReservations 11"));
                 result = pawn.Reserve(target, job, sleepingSlotsCount, stackCount, null, errorOnFailed);
+                Log.Message(string.Format("JobDriver_XenoTakeToCocoon TryMakePreToilReservations 12"));
             }
             else
             {
-                result = false;
+                return pawn.Reserve(target, job, 1, -1, null, errorOnFailed);
             }
+            Log.Message(string.Format("JobDriver_XenoTakeToCocoon TryMakePreToilReservations 14"));
             return result;
         }
 
         // Token: 0x0600037D RID: 893 RVA: 0x00022FF8 File Offset: 0x000213F8
         protected override IEnumerable<Toil> MakeNewToils()
         {
-            this.FailOnDestroyedOrNull(TargetIndex.A);
-            this.FailOnDestroyedOrNull(TargetIndex.B);
-            this.FailOnAggroMentalStateAndHostile(TargetIndex.A);
-            this.FailOn(delegate ()
+            if (this.DropBed!=null)
             {
-                return false;
-            });
-            yield return Toils_Bed.ClaimBedIfNonMedical(TargetIndex.B, TargetIndex.A);
-            base.AddFinishAction(delegate
-            {
-                if (this.job.def.makeTargetPrisoner && this.Takee.ownership.OwnedBed == this.DropBed && this.Takee.Position != RestUtility.GetBedSleepingSlotPosFor(this.Takee, this.DropBed))
+                this.FailOnDestroyedOrNull(TargetIndex.A);
+                this.FailOnDestroyedOrNull(TargetIndex.B);
+                this.FailOnAggroMentalStateAndHostile(TargetIndex.A);
+                this.FailOn(delegate ()
                 {
-                    this.Takee.ownership.UnclaimBed();
-                }
-            });
-            yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.ClosestTouch).FailOnDespawnedNullOrForbidden(TargetIndex.A).FailOnDespawnedNullOrForbidden(TargetIndex.B).FailOn(() => this.job.def == JobDefOf.Arrest && !this.Takee.CanBeArrestedBy(this.pawn)).FailOn(() => !this.pawn.CanReach(this.DropBed, PathEndMode.OnCell, Danger.Deadly, false, TraverseMode.ByPawn)).FailOn(() => this.job.def == JobDefOf.Rescue && !this.Takee.Downed).FailOnSomeonePhysicallyInteracting(TargetIndex.A);
-            yield return new Toil
-            {
-                initAction = delegate ()
+                    return false;
+                });
+                yield return Toils_Bed.ClaimBedIfNonMedical(TargetIndex.B, TargetIndex.A);
+                base.AddFinishAction(delegate
                 {
-                    if (this.job.def.makeTargetPrisoner)
+                    if (this.job.def.makeTargetPrisoner && this.Takee.ownership.OwnedBed == this.DropBed && this.Takee.Position != RestUtility.GetBedSleepingSlotPosFor(this.Takee, this.DropBed))
                     {
-                        Pawn pawn = (Pawn)this.job.targetA.Thing;
-                        Lord lord = pawn.GetLord();
-                        if (lord != null)
+                        this.Takee.ownership.UnclaimBed();
+                    }
+                });
+                yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.ClosestTouch).FailOnDespawnedNullOrForbidden(TargetIndex.A).FailOnDespawnedNullOrForbidden(TargetIndex.B).FailOn(() => this.job.def == JobDefOf.Arrest && !this.Takee.CanBeArrestedBy(this.pawn)).FailOn(() => !this.pawn.CanReach(this.DropBed, PathEndMode.OnCell, Danger.Deadly, false, TraverseMode.ByPawn)).FailOn(() => this.job.def == JobDefOf.Rescue && !this.Takee.Downed).FailOnSomeonePhysicallyInteracting(TargetIndex.A);
+                yield return new Toil
+                {
+                    initAction = delegate ()
+                    {
+                        if (this.job.def.makeTargetPrisoner)
                         {
-                            lord.Notify_PawnAttemptArrested(pawn);
-                        }
-                        GenClamor.DoClamor(pawn, 10f, ClamorDefOf.Harm);
-                        if (this.job.def == JobDefOf.Arrest && !pawn.CheckAcceptArrest(this.pawn))
-                        {
-                            this.pawn.jobs.EndCurrentJob(JobCondition.Incompletable, true);
+                            Pawn pawn = (Pawn)this.job.targetA.Thing;
+                            Lord lord = pawn.GetLord();
+                            if (lord != null)
+                            {
+                                lord.Notify_PawnAttemptArrested(pawn);
+                            }
+                            GenClamor.DoClamor(pawn, 10f, ClamorDefOf.Harm);
+                            if (this.job.def == JobDefOf.Arrest && !pawn.CheckAcceptArrest(this.pawn))
+                            {
+                                this.pawn.jobs.EndCurrentJob(JobCondition.Incompletable, true);
+                            }
                         }
                     }
-                }
-            };
-            Toil startCarrying = Toils_Haul.StartCarryThing(TargetIndex.A, false, false, false).FailOnNonMedicalBedNotOwned(TargetIndex.B, TargetIndex.A);
-            startCarrying.AddPreInitAction(new Action(this.CheckMakeTakeeGuest));
-            yield return startCarrying;
-            yield return Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.Touch);
-            yield return new Toil
-            {
-                initAction = delegate ()
+                };
+                Toil startCarrying = Toils_Haul.StartCarryThing(TargetIndex.A, false, false, false).FailOnNonMedicalBedNotOwned(TargetIndex.B, TargetIndex.A);
+                startCarrying.AddPreInitAction(new Action(this.CheckMakeTakeeGuest));
+                yield return startCarrying;
+                yield return Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.Touch);
+                yield return new Toil
                 {
-                    this.CheckMakeTakeePrisoner();
-                    if (this.Takee.playerSettings == null)
+                    initAction = delegate ()
                     {
-                        this.Takee.playerSettings = new Pawn_PlayerSettings(this.Takee);
-                    }
-                }
-            };
-            yield return Toils_Reserve.Release(TargetIndex.B);
-            yield return new Toil
-            {
-                initAction = delegate ()
-                {
-                    IntVec3 position = this.DropBed.Position;
-                    Thing thing;
-                    this.pawn.carryTracker.TryDropCarriedThing(position, ThingPlaceMode.Direct, out thing, null);
-                    if (!this.DropBed.Destroyed && (this.DropBed.owners.Contains(this.Takee) || (this.DropBed.Medical && this.DropBed.AnyUnoccupiedSleepingSlot) || this.Takee.ownership == null))
-                    {
-                        this.Takee.jobs.Notify_TuckedIntoBed(this.DropBed);
-                        if (this.Takee.RaceProps.Humanlike && this.job.def != JobDefOf.Arrest && !this.Takee.IsPrisonerOfColony)
+                        this.CheckMakeTakeePrisoner();
+                        if (this.Takee.playerSettings == null)
                         {
-                            this.Takee.relations.Notify_RescuedBy(this.pawn);
+                            this.Takee.playerSettings = new Pawn_PlayerSettings(this.Takee);
                         }
-                        this.Takee.mindState.Notify_TuckedIntoBed();
                     }
-                    if (this.Takee.IsPrisonerOfColony)
+                };
+                yield return Toils_Reserve.Release(TargetIndex.B);
+                yield return new Toil
+                {
+                    initAction = delegate ()
                     {
-                        LessonAutoActivator.TeachOpportunity(ConceptDefOf.PrisonerTab, this.Takee, OpportunityType.GoodToKnow);
+                        IntVec3 position = this.DropBed.Position;
+                        Thing thing;
+                        this.pawn.carryTracker.TryDropCarriedThing(position, ThingPlaceMode.Direct, out thing, null);
+                        if (!this.DropBed.Destroyed && (this.DropBed.owners.Contains(this.Takee) || (this.DropBed.Medical && this.DropBed.AnyUnoccupiedSleepingSlot) || this.Takee.ownership == null))
+                        {
+                            this.Takee.jobs.Notify_TuckedIntoBed(this.DropBed);
+                            if (this.Takee.RaceProps.Humanlike && this.job.def != JobDefOf.Arrest && !this.Takee.IsPrisonerOfColony)
+                            {
+                                this.Takee.relations.Notify_RescuedBy(this.pawn);
+                            }
+                            this.Takee.mindState.Notify_TuckedIntoBed();
+                        }
+                        if (this.Takee.IsPrisonerOfColony)
+                        {
+                            LessonAutoActivator.TeachOpportunity(ConceptDefOf.PrisonerTab, this.Takee, OpportunityType.GoodToKnow);
+                        }
+                    },
+                    defaultCompleteMode = ToilCompleteMode.Instant
+                };
+                yield break;
+            }
+            else
+            {
+
+                this.FailOnDestroyedOrNull(TargetIndex.A);
+                yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.ClosestTouch).FailOnSomeonePhysicallyInteracting(TargetIndex.A);
+                yield return Toils_Construct.UninstallIfMinifiable(TargetIndex.A).FailOnSomeonePhysicallyInteracting(TargetIndex.A);
+                yield return Toils_Haul.StartCarryThing(TargetIndex.A, false, false, false);
+                Toil gotoCell = Toils_Goto.GotoCell(TargetIndex.B, PathEndMode.OnCell);
+                gotoCell.AddPreTickAction(delegate
+                {
+                    if (base.Map.exitMapGrid.IsExitCell(this.pawn.Position))
+                    {
+                        this.pawn.ExitMap(true, CellRect.WholeMap(base.Map).GetClosestEdge(this.pawn.Position));
                     }
-                },
-                defaultCompleteMode = ToilCompleteMode.Instant
-            };
-            yield break;
+                });
+                yield return gotoCell;
+                yield return new Toil
+                {
+                    initAction = delegate ()
+                    {
+                        if (this.pawn.Position.OnEdge(this.pawn.Map) || this.pawn.Map.exitMapGrid.IsExitCell(this.pawn.Position))
+                        {
+                            this.pawn.ExitMap(true, CellRect.WholeMap(base.Map).GetClosestEdge(this.pawn.Position));
+                        }
+                    },
+                    defaultCompleteMode = ToilCompleteMode.Instant
+                };
+                yield break;
+            }
         }
 
         // Token: 0x0600037E RID: 894 RVA: 0x0002301C File Offset: 0x0002141C

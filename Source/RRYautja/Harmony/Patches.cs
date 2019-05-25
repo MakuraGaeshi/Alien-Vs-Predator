@@ -9,6 +9,7 @@ using System.Text;
 using System.Linq;
 using Verse.AI.Group;
 using RimWorld.Planet;
+using UnityEngine;
 
 namespace RRYautja
 {
@@ -413,6 +414,49 @@ namespace RRYautja
         }
     }
     */
+
+    [HarmonyPatch(typeof(Pawn), "DrawAt")]
+    public static class Pawn_DrawAt_Patch
+    {
+        [HarmonyPrefix]
+        public static bool RevealSaboteur(Pawn __instance,ref Vector3 drawLoc)
+        {
+            if (__instance.InBed())
+            {
+                if (__instance.CurrentBed() is Building_XenomorphCocoon)
+                {
+
+                    if (__instance.Rotation == Rot4.North)
+                    {
+                        drawLoc = __instance.Drawer.DrawPos;
+                        drawLoc.x += 1;
+                        drawLoc.z += 1;
+                    }
+                    else if (__instance.Rotation == Rot4.North)
+                    {
+                        drawLoc = __instance.Drawer.DrawPos;
+                        drawLoc.x += 1;
+                        drawLoc.z += 1;
+                    }
+                    else if (__instance.Rotation == Rot4.North)
+                    {
+                        drawLoc = __instance.Drawer.DrawPos;
+                        drawLoc.x += 1;
+                        drawLoc.z += 1;
+                    }
+                    else if (__instance.Rotation == Rot4.North)
+                    {
+                        drawLoc = __instance.Drawer.DrawPos;
+                        drawLoc.x += 1;
+                        drawLoc.z += 1;
+                    }
+                    else drawLoc = __instance.Drawer.DrawPos;
+                }
+
+            }
+            return true;
+        }
+    }
 
     // Token: 0x02000007 RID: 7
     [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "TryExecute")]
