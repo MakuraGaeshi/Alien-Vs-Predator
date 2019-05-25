@@ -396,6 +396,7 @@
 				<li>KnowPrisonerDiedInnocent</li>
 				<li>ExecutedPrisoner</li>
 				<li>AteRawHumanlikeMeat</li>
+				<li>AteRawFood</li>
 				<li>AteWithoutTable</li>
 				<li>KnowPrisonerSold</li>
 				<li>KnowGuestOrganHarvested</li>
@@ -438,7 +439,8 @@
             </butcherThoughtSpecific>
             
         </thoughtSettings>
-        <relationSettings>
+       
+	   <relationSettings>
             <relationChanceModifierParent>1</relationChanceModifierParent>
             <relationChanceModifierChild>1</relationChanceModifierChild>
             <relationChanceModifierSibling>1</relationChanceModifierSibling>
