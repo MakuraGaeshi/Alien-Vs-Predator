@@ -44,7 +44,7 @@
 	
 	<ThoughtDef>
 		<defName>RRY_UnbloodedVs_ThoughtDef</defName>
-		<thoughtClass>Thought_SituationalSocial</thoughtClass>
+		<thoughtClass>RRY_Thought_SituationalSocial</thoughtClass>
 		<workerClass>ThoughtWorker_Unblooded</workerClass>
 		<validWhileDespawned>true</validWhileDespawned>
 		<stages>
@@ -65,7 +65,7 @@
 
 	<ThoughtDef>
 		<defName>RRY_UnmarkedVs_ThoughtDef</defName>
-		<thoughtClass>Thought_SituationalSocial</thoughtClass>
+		<thoughtClass>RRY_Thought_SituationalSocial</thoughtClass>
 		<workerClass>ThoughtWorker_Unmarked</workerClass>
 		<validWhileDespawned>true</validWhileDespawned>
 		<stages>
@@ -86,7 +86,7 @@
 
 	<ThoughtDef>
 		<defName>RRY_MarkedVs_ThoughtDef</defName>
-		<thoughtClass>Thought_SituationalSocial</thoughtClass>
+		<thoughtClass>RRY_Thought_SituationalSocial</thoughtClass>
 		<workerClass>ThoughtWorker_Marked</workerClass>
 		<validWhileDespawned>true</validWhileDespawned>
 		<stages>

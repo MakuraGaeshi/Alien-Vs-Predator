@@ -299,6 +299,22 @@
   </HediffDef>
 
     <HediffDef ParentName="RRY_SpecialGoodHeDiff">
+    <defName>RRY_Hediff_BloodedMMechanoid</defName>
+    <label>blooded marked</label>
+    <labelNoun>a blooded Yautja</labelNoun>
+    <stages>
+      <li>
+        <label>Mechanoid</label>
+      </li>
+    </stages>
+    <comps>
+      <li>
+        <compClass>RRYautja.HediffComp_MarkedYautja</compClass>
+      </li>
+    </comps>
+  </HediffDef>
+
+    <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_BloodedMXenomorph</defName>
     <label>blooded marked</label>
     <labelNoun>a blooded Yautja</labelNoun>

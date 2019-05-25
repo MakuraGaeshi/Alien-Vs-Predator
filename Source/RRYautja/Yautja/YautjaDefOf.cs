@@ -21,6 +21,7 @@ namespace RimWorld
         public static HediffDef RRY_Hediff_BloodedMWorthyHuman;
         public static HediffDef RRY_Hediff_BloodedMHumanlike;
         public static HediffDef RRY_Hediff_BloodedMWorthyHumanlike;
+        public static HediffDef RRY_Hediff_BloodedMMechanoid;
         public static HediffDef RRY_Hediff_BloodedMXenomorph;
         public static HediffDef RRY_Hediff_BloodedMXenomorphQueen;
         public static HediffDef RRY_Hediff_BloodedMPredalien;
@@ -54,8 +55,23 @@ namespace RimWorld
         // Yautja ThingDefs  Motes
         public static ThingDef RRY_SmartDisk_Mote;
 
-        // Yautja ThingDefs  Motes
+        // Yautja PawnsArrivalModeDefs 
         public static PawnsArrivalModeDef EdgeWalkInGroups;
+
+        // Yautja ThoughtDefs
+        public static ThoughtDef RRY_Thought_UnBlooded;
+        public static ThoughtDef RRY_Thought_BloodedUM;
+        public static ThoughtDef RRY_Thought_BloodedM;
+
+        // Yautja ThoughtDefs Thought_SituationalSocial
+        public static ThoughtDef RRY_HonourableVsBadBlood;
+        public static ThoughtDef RRY_BadBloodVsHonourable;
+        public static ThoughtDef RRY_UnbloodedVs_ThoughtDef;
+        public static ThoughtDef RRY_UnmarkedVs_ThoughtDef;
+        public static ThoughtDef RRY_MarkedVs_ThoughtDef;
+
+        // Yautja ThoughtDefs Memories
+        public static ThoughtDef RRY_Thought_ThrillOfTheHunt;
 
         // Yautja HairDefs 
         public static HairDef RRY_Yaujta_Dreds;

@@ -60,7 +60,7 @@ namespace RRYautja
         [HarmonyPostfix]
         public static void IgnoreWristblade(Pawn __instance, ref bool __result)
         {
-            __result = !(__instance.apparel != null && __instance.apparel.WornApparelCount == 1 && __instance.apparel.WornApparel.Any(x => x.def == YautjaDefOf.RRY_Equipment_HunterGauntlet) && __instance.Faction!=Faction.OfPlayerSilentFail);
+            __result = !(__instance.apparel != null && __instance.apparel.WornApparelCount == 1 && __instance.apparel.WornApparel.Any(x => x.def == YautjaDefOf.RRY_Equipment_HunterGauntlet)&& __instance.Faction!=Faction.OfPlayerSilentFail);
 
         }
     }
@@ -71,7 +71,7 @@ namespace RRYautja
         [HarmonyPrefix]
         public static bool IgnoreWristblade(Pawn __instance)
         {
-            bool result = !(__instance.apparel.WornApparel.Any(x => x.def == YautjaDefOf.RRY_Equipment_HunterGauntlet) && __instance.Faction != Faction.OfPlayerSilentFail);
+            bool result = !(__instance.apparel.WornApparel.Any(x => x.def == YautjaDefOf.RRY_Equipment_HunterGauntlet));
 
             Log.Message(string.Format("Pawn_StripPatch IgnoreWristblade: {0}", result));
             if (!result)
@@ -459,6 +459,32 @@ namespace RRYautja
         }
         */
     }
+
+
+    /*
+    [HarmonyPatch(typeof(Pawn), "Tick")]
+    public static class Pawn_TickPatch
+    {
+        [HarmonyPostfix]
+        public static void ApparelCompTick(Pawn __instance)
+        {
+            if (__instance.apparel.WornApparelCount>0)
+            {
+                List<Apparel> list = __instance.apparel.WornApparel;
+                if (list.Any(x => x.TryGetComp<CompWearable>()!=null))
+                {
+                    foreach (var item in list.All(x => x.TryGetComp<CompWearable>() != null))
+                    {
+
+                    }
+                }
+            }
+
+        }
+        
+    }
+    */
+
     // Token: 0x02000007 RID: 7
     [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "GetLetterText")]
     public static class IncidentWorker_RaidEnemyPatch_GetLetterText
@@ -483,4 +509,6 @@ namespace RRYautja
             }
         }
     }
+
+
 }

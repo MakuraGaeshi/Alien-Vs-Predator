@@ -264,6 +264,7 @@
               <coverage>0.77</coverage>
               <groups>
                 <li>Arms</li>
+                <li>RRY_Yautja_LeftArm</li>
               </groups>
               <parts>
                 <li>
@@ -368,6 +369,7 @@
               <coverage>0.77</coverage>
               <groups>
                 <li>Arms</li>
+                <li>RRY_Yautja_RightArm</li>
               </groups>
               <parts>
                 <li>

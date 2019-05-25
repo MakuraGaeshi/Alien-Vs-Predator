@@ -7,6 +7,18 @@
     <listOrder>196</listOrder>
   </BodyPartGroupDef>
 
+  <BodyPartGroupDef>
+    <defName>RRY_Yautja_LeftArm</defName>
+    <label>left arm </label>
+    <listOrder>91</listOrder>
+  </BodyPartGroupDef>
+  
+  <BodyPartGroupDef>
+    <defName>RRY_Yautja_RightArm</defName>
+    <label>right arm</label>
+    <listOrder>92</listOrder>
+  </BodyPartGroupDef>
+
 <!--
   <BodyPartGroupDef>
     <defName>Torso</defName>
