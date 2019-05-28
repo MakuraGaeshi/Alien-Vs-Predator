@@ -44,7 +44,7 @@
     <removesHediff>RRY_FaceHuggerInfection</removesHediff>
     <successfullyRemovedHediffMessage>{0} has successfully removed the parasite from {1}'s head.</successfullyRemovedHediffMessage>
     <deathOnFailedSurgeryChance>0.350</deathOnFailedSurgeryChance>
-    <surgerySuccessChanceFactor>1</surgerySuccessChanceFactor>
+    <surgerySuccessChanceFactor>0.35</surgerySuccessChanceFactor>
     <skillRequirements>
       <Medicine>10</Medicine>
     </skillRequirements>
@@ -78,7 +78,7 @@
     <removesHediff>RRY_XenomorphImpregnation</removesHediff>
     <successfullyRemovedHediffMessage>{0} has successfully removed Embyro {1}.</successfullyRemovedHediffMessage>
     <deathOnFailedSurgeryChance>0.750</deathOnFailedSurgeryChance>
-    <surgerySuccessChanceFactor>10</surgerySuccessChanceFactor>
+    <surgerySuccessChanceFactor>0.35</surgerySuccessChanceFactor>
     <skillRequirements>
       <Medicine>4</Medicine>
     </skillRequirements>

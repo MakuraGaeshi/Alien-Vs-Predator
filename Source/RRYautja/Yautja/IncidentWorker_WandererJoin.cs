@@ -16,16 +16,14 @@ namespace RRYautja
                 return false;
             }
             Map map = (Map)parms.target;
-            IntVec3 intVec;
-            return this.TryFindEntryCell(map, out intVec);
+            return this.TryFindEntryCell(map, out IntVec3 intVec);
         }
 
         // Token: 0x06000EB5 RID: 3765 RVA: 0x0006D808 File Offset: 0x0006BC08
         protected override bool TryExecuteWorker(IncidentParms parms)
         {
             Map map = (Map)parms.target;
-            IntVec3 loc;
-            if (!this.TryFindEntryCell(map, out loc))
+            if (!this.TryFindEntryCell(map, out IntVec3 loc))
             {
                 return false;
             }

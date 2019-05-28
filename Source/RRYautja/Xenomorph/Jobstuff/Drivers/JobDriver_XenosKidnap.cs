@@ -14,7 +14,7 @@ namespace RimWorld
         {
             get
             {
-                return (Pawn)base.Takee;
+                return (Pawn)this.job.GetTarget(TargetIndex.A).Thing;
             }
         }
 

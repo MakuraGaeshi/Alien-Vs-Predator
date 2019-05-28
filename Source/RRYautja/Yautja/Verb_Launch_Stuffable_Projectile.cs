@@ -30,7 +30,7 @@ namespace Verse
         public override void WarmupComplete()
         {
             base.WarmupComplete();
-            Find.BattleLog.Add(new BattleLogEntry_RangedFire(this.caster, (!this.currentTarget.HasThing) ? null : this.currentTarget.Thing, (base.EquipmentSource == null) ? null : base.EquipmentSource.def, this.Projectile, this.ShotsPerBurst > 1));
+            Find.BattleLog.Add(new BattleLogEntry_RangedFire(this.caster, (!this.currentTarget.HasThing) ? null : this.currentTarget.Thing, base.EquipmentSource?.def, this.Projectile, this.ShotsPerBurst > 1));
         }
 
         // Token: 0x060064F4 RID: 25844 RVA: 0x001B8C14 File Offset: 0x001B7014
@@ -45,8 +45,7 @@ namespace Verse
             {
                 return false;
             }
-            ShootLine shootLine;
-            bool flag = base.TryFindShootLineFromTo(this.caster.Position, this.currentTarget, out shootLine);
+            bool flag = base.TryFindShootLineFromTo(this.caster.Position, this.currentTarget, out ShootLine shootLine);
             if (this.verbProps.stopBurstWithoutLos && !flag)
             {
                 return false;
@@ -97,7 +96,7 @@ namespace Verse
             }
             ShotReport shotReport = ShotReport.HitReportFor(this.caster, this, this.currentTarget);
             Thing randomCoverToMissInto = shotReport.GetRandomCoverToMissInto();
-            ThingDef targetCoverDef = (randomCoverToMissInto == null) ? null : randomCoverToMissInto.def;
+            ThingDef targetCoverDef = randomCoverToMissInto?.def;
             if (!Rand.Chance(shotReport.AimOnTargetChance_IgnoringPosture))
             {
                 shootLine.ChangeDestToMissWild(shotReport.AimOnTargetChance_StandardTarget);

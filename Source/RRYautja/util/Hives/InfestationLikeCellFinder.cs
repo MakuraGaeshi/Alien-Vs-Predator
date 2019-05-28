@@ -13,8 +13,7 @@ namespace RimWorld
         {
             //Log.Message(string.Format("Tick: 1"));
             InfestationLikeCellFinder.CalculateLocationCandidates(map);
-            InfestationLikeCellFinder.LocationCandidate locationCandidate;
-            if (!InfestationLikeCellFinder.locationCandidates.TryRandomElementByWeight((InfestationLikeCellFinder.LocationCandidate x) => x.score, out locationCandidate))
+            if (!InfestationLikeCellFinder.locationCandidates.TryRandomElementByWeight((InfestationLikeCellFinder.LocationCandidate x) => x.score, out LocationCandidate locationCandidate))
             {
                 cell = IntVec3.Invalid;
                 //Log.Message(string.Format("TryFindCell: {0} From !InfestationLikeCellFinder.TryFindCell(out loc, map)", cell));
@@ -67,8 +66,7 @@ namespace RimWorld
                 return 0f;
             }
             int num = InfestationLikeCellFinder.StraightLineDistToUnroofed(cell, map);
-            float num2;
-            if (!InfestationLikeCellFinder.regionsDistanceToUnroofed.TryGetValue(region, out num2))
+            if (!InfestationLikeCellFinder.regionsDistanceToUnroofed.TryGetValue(region, out float num2))
             {
                 num2 = (float)num * 1.15f;
             }

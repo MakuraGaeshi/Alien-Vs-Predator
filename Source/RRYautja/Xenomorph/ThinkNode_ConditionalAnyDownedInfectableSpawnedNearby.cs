@@ -16,25 +16,24 @@ namespace RimWorld
             bool result;
             if (pawn.Spawned && XenomorphUtil.IsXenomorph(pawn))
             {
+                bool selected = pawn.Map != null ? Find.Selector.SelectedObjects.Contains(pawn) : false;
                 if (!XenomorphUtil.EggsPresent(pawn.Map))
                 {
-                    Log.Message(string.Format("pawn.Spawned && XenomorphUtil.IsXenomorph(pawn) && !XenomorphUtil.EggsPresent(pawn.Map)"));
-                    List<Pawn> list = pawn.Map.mapPawns.AllPawns.Where((Pawn x) => x.Downed && XenomorphUtil.isInfectablePawn(x) && pawn.CanReach(x, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.NoPassClosedDoors)).ToList();
+                    if (selected) Log.Message(string.Format("pawn.Spawned && XenomorphUtil.IsXenomorph(pawn) && !XenomorphUtil.EggsPresent(pawn.Map)"));
+                    List<Pawn> list = pawn.Map.mapPawns.AllPawns.Where((Pawn x) => !x.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned) && x.Downed && XenomorphUtil.isInfectablePawn(x) && (!x.InBed() || (x.InBed() && !(x.CurrentBed() is Building_XenomorphCocoon))) && pawn.CanReach(x, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.NoPassClosedDoors)).ToList();
                     result = list.Any<Pawn>(x => x.Spawned);
                 }
                 else
                 {
-                    Log.Message(string.Format("pawn.Spawned && XenomorphUtil.IsXenomorph(pawn) && XenomorphUtil.EggsPresent(pawn.Map)"));
-                    List<Pawn> list = pawn.Map.mapPawns.AllPawns.Where((Pawn x) => x.Downed && XenomorphUtil.isInfectablePawn(x) && pawn.CanReach(x, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.NoPassClosedDoors)).ToList();
+                    if (selected) Log.Message(string.Format("pawn.Spawned && XenomorphUtil.IsXenomorph(pawn) && XenomorphUtil.EggsPresent(pawn.Map)"));
+                    List<Pawn> list = pawn.Map.mapPawns.AllPawns.Where((Pawn x) => !x.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned) && x.Downed && XenomorphUtil.isInfectablePawn(x) && (!x.InBed() || (x.InBed() && !(x.CurrentBed() is Building_XenomorphCocoon))) && pawn.CanReach(x, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.NoPassClosedDoors)).ToList();
                     result = list.Any<Pawn>(x => x.Spawned && XenomorphUtil.DistanceBetween(XenomorphUtil.ClosestReachableEgg(x).Position, x.Position) > 3f);
                 }
             }
             else
             {
-                Log.Message(string.Format("false"));
                 result = false;
             }
-            Log.Message(string.Format("result: {0}", result));
             return result;
         }
 

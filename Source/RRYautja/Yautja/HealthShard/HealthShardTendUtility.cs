@@ -179,8 +179,7 @@ namespace RRYautja
             List<Hediff> hediffs = pawn.health.hediffSet.hediffs;
             for (int i = 0; i < hediffs.Count; i++)
             {
-                Hediff_Injury hediff_Injury2 = hediffs[i] as Hediff_Injury;
-                if (hediff_Injury2 != null && hediff_Injury2.Visible && hediff_Injury2.def.everCurableByItem)
+                if (hediffs[i] is Hediff_Injury hediff_Injury2 && hediff_Injury2.Visible && hediff_Injury2.def.everCurableByItem)
                 {
                     if (allowedBodyParts == null || allowedBodyParts.Contains(hediff_Injury2.Part))
                     {
@@ -377,15 +376,13 @@ namespace RRYautja
             HealthShardTendUtility.tmpHediffs.AddRange(p.health.hediffSet.hediffs);
             for (int i = 0; i < HealthShardTendUtility.tmpHediffs.Count; i++)
             {
-                Hediff_Injury hediff_Injury = HealthShardTendUtility.tmpHediffs[i] as Hediff_Injury;
-                if (hediff_Injury != null && !hediff_Injury.IsPermanent())
+                if (HealthShardTendUtility.tmpHediffs[i] is Hediff_Injury hediff_Injury && !hediff_Injury.IsPermanent())
                 {
                     p.health.RemoveHediff(hediff_Injury);
                 }
                 else
                 {
-                    Hediff_MissingPart hediff_MissingPart = HealthShardTendUtility.tmpHediffs[i] as Hediff_MissingPart;
-                    if (hediff_MissingPart != null && hediff_MissingPart.Part.def.tags.Contains(BodyPartTagDefOf.MovingLimbCore) && (hediff_MissingPart.Part.parent == null || p.health.hediffSet.GetNotMissingParts(BodyPartHeight.Undefined, BodyPartDepth.Undefined, null, null).Contains(hediff_MissingPart.Part.parent)))
+                    if (HealthShardTendUtility.tmpHediffs[i] is Hediff_MissingPart hediff_MissingPart && hediff_MissingPart.Part.def.tags.Contains(BodyPartTagDefOf.MovingLimbCore) && (hediff_MissingPart.Part.parent == null || p.health.hediffSet.GetNotMissingParts(BodyPartHeight.Undefined, BodyPartDepth.Undefined, null, null).Contains(hediff_MissingPart.Part.parent)))
                     {
                         p.health.RestorePart(hediff_MissingPart.Part, null, true);
                     }

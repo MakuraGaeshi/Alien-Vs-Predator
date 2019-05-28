@@ -100,8 +100,7 @@ namespace RRYautja
             if (this.Active)
             {
                 float num = 1f / (this.Props.eggLayIntervalDays * 60000f);
-                Pawn pawn = this.parent as Pawn;
-                if (pawn != null)
+                if (this.parent is Pawn pawn)
                 {
                     num *= PawnUtility.BodyResourceGrowthSpeed(pawn);
                 }
@@ -143,8 +142,7 @@ namespace RRYautja
             if (compHatcher != null)
             {
                 compHatcher.hatcheeFaction = this.parent.Faction;
-                Pawn pawn = this.parent as Pawn;
-                if (pawn != null)
+                if (this.parent is Pawn pawn)
                 {
                     compHatcher.hatcheeParent = pawn;
                 }

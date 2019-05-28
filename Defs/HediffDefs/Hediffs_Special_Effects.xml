@@ -46,6 +46,43 @@
     </comps>
   </HediffDef>
   
+  <HediffDef>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defName>RRY_EmergingChestburster</defName>
+    <label>horrified</label>
+    <labelNoun>horrified</labelNoun>
+    <battleStateLabel>blind</battleStateLabel>
+    <maxSeverity>1</maxSeverity>
+    <stages>
+      <li>
+        <partEfficiencyOffset>-0.8</partEfficiencyOffset>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_SelfHeal">
+        <healAmount>0.005</healAmount>
+      </li>
+    </comps>
+  </HediffDef>
+  
+  <HediffDef>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defName>RRY_Hediff_PinnedCombistaff</defName>
+    <label>pinned</label>
+    <labelNoun>horrified</labelNoun>
+    <maxSeverity>1</maxSeverity>
+    <stages>
+      <li>
+        <partEfficiencyOffset>-0.8</partEfficiencyOffset>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_SelfHeal">
+        <healAmount>0.005</healAmount>
+      </li>
+    </comps>
+  </HediffDef>
+  
   <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_HeDiff_TurretIsOn</defName>
     <label>Shoulder Cannon status</label>
@@ -393,6 +430,22 @@
       </li>
     </comps>
   </HediffDef>
+  
+    <HediffDef ParentName="RRY_SpecialGoodHeDiff">
+    <defName>RRY_Hediff_BloodedMThrumbo</defName>
+    <label>blooded marked</label>
+    <labelNoun>a blooded Yautja</labelNoun>
+    <stages>
+      <li>
+        <label>Thrumbo</label>
+      </li>
+    </stages>
+    <comps>
+      <li>
+        <compClass>RRYautja.HediffComp_MarkedYautja</compClass>
+      </li>
+    </comps>
+  </HediffDef>
 
     <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_BloodedMCrusher</defName>
@@ -438,42 +491,4 @@
     </stages>
     <spawnThingOnRemoved>Painstopper</spawnThingOnRemoved>
   </HediffDef> -->
-  
-  <HediffDef>
-    <hediffClass>HediffWithComps</hediffClass>
-    <defName>RRY_EmergingChestburster</defName>
-    <label>horrified</label>
-    <labelNoun>horrified</labelNoun>
-    <battleStateLabel>blind</battleStateLabel>
-    <maxSeverity>1</maxSeverity>
-    <stages>
-      <li>
-        <partEfficiencyOffset>-0.8</partEfficiencyOffset>
-      </li>
-    </stages>
-    <comps>
-      <li Class="HediffCompProperties_SelfHeal">
-        <healAmount>0.005</healAmount>
-      </li>
-    </comps>
-  </HediffDef>
-  
-  <HediffDef>
-    <hediffClass>HediffWithComps</hediffClass>
-    <defName>RRY_Hediff_PinnedCombistaff</defName>
-    <label>pinned</label>
-    <labelNoun>horrified</labelNoun>
-    <maxSeverity>1</maxSeverity>
-    <stages>
-      <li>
-        <partEfficiencyOffset>-0.8</partEfficiencyOffset>
-      </li>
-    </stages>
-    <comps>
-      <li Class="HediffCompProperties_SelfHeal">
-        <healAmount>0.005</healAmount>
-      </li>
-    </comps>
-  </HediffDef>
-  
 </Defs>

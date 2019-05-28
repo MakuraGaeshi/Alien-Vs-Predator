@@ -34,12 +34,11 @@ namespace RimWorld
 		// Token: 0x0600087F RID: 2175 RVA: 0x00047590 File Offset: 0x00045990
 		protected HiveLike GetHiveLikeFor(Pawn pawn)
 		{
-            HiveLike hive;
-			if (this.Data.assignedHiveLikes.TryGetValue(pawn, out hive))
-			{
-				return hive;
-			}
-			hive = this.FindClosestHiveLike(pawn);
+            if (this.Data.assignedHiveLikes.TryGetValue(pawn, out HiveLike hive))
+            {
+                return hive;
+            }
+            hive = this.FindClosestHiveLike(pawn);
 			if (hive != null)
 			{
 				this.Data.assignedHiveLikes.Add(pawn, hive);

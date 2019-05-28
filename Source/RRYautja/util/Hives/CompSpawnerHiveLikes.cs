@@ -75,21 +75,19 @@ namespace RimWorld
 			
 			if (this.parent is HiveLike hivelike && (hivelike == null || hivelike.active) && Find.TickManager.TicksGame >= this.nextHiveSpawnTick)
 			{
-				HiveLike t;
-				if (this.TrySpawnChildHiveLike(false, out t))
-				{
-					Messages.Message("MessageHiveReproduced".Translate(), t, MessageTypeDefOf.NegativeEvent, true);
-				}
-				else
-				{
-					this.CalculateNextHiveLikeSpawnTick();
-				}
-			}
+                if (this.TrySpawnChildHiveLike(false, out HiveLike t))
+                {
+                    Messages.Message("MessageHiveReproduced".Translate(), t, MessageTypeDefOf.NegativeEvent, true);
+                }
+                else
+                {
+                    this.CalculateNextHiveLikeSpawnTick();
+                }
+            }
             else
             if (this.parent is TunnelHiveLikeSpawner tunnellike && (tunnellike == null || tunnellike.active) && Find.TickManager.TicksGame >= this.nextHiveSpawnTick)
             {
-                TunnelHiveLikeSpawner t;
-                if (this.TrySpawnChildHiveLike(false, out t))
+                if (this.TrySpawnChildHiveLike(false, out TunnelHiveLikeSpawner t))
                 {
                     Messages.Message("MessageHiveReproduced".Translate(), t, MessageTypeDefOf.NegativeEvent, true);
                 }
@@ -157,8 +155,7 @@ namespace RimWorld
             {
                 newHiveLike.SetFaction(this.parent.Faction, null);
             }
-            HiveLike hivelike = this.parent as HiveLike;
-            if (hivelike != null)
+            if (this.parent is HiveLike hivelike)
             {
                 newHiveLike.active = hivelike.active;
             }
@@ -185,8 +182,7 @@ namespace RimWorld
             {
                 newTunnelLike.SetFaction(this.parent.Faction, null);
             }
-            TunnelHiveLikeSpawner hivelike = this.parent as TunnelHiveLikeSpawner;
-            if (hivelike != null)
+            if (this.parent is TunnelHiveLikeSpawner hivelike)
             {
                 newTunnelLike.active = hivelike.active;
             }
@@ -270,9 +266,8 @@ namespace RimWorld
 					icon = TexCommand.GatherSpotActive,
 					action = delegate()
 					{
-						HiveLike hivelike;
-						this.TrySpawnChildHiveLike(false, out hivelike);
-					}
+                        this.TrySpawnChildHiveLike(false, out HiveLike hivelike);
+                    }
 				};
 			}
 			yield break;

@@ -32,7 +32,6 @@
     <reportString>spinning web.</reportString>
     <casualInterruptible>false</casualInterruptible>
   </JobDef>
-  -->
 
   <JobDef>
     <defName>RRY_Job_CocoonHost</defName>
@@ -42,4 +41,5 @@
     <suspendable>false</suspendable>
     <checkOverrideOnDamage>OnlyIfInstigatorNotJobTarget</checkOverrideOnDamage>
   </JobDef>
+  -->
 </Defs>

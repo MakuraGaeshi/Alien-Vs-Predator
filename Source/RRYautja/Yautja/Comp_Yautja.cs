@@ -194,6 +194,10 @@ namespace RRYautja
                         {
                             markedDef = YautjaDefOf.RRY_Hediff_BloodedMXenomorph;
                         }
+                        else if (other.kindDef.race == ThingDefOf.Thrumbo && other.Dead)
+                        {
+                            markedDef = YautjaDefOf.RRY_Hediff_BloodedMXenomorph;
+                        }
                         else if (other.kindDef.race == XenomorphRacesDefOf.RRY_Xenomorph_Predalien && other.Dead)
                         {
                             markedDef = YautjaDefOf.RRY_Hediff_BloodedMPredalien;

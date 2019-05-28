@@ -59,8 +59,7 @@ namespace RRYautja
                 MoteMaker.ThrowText(new Vector3((float)pawn.Position.x + 1f, (float)pawn.Position.y, (float)pawn.Position.z + 1f), pawn.Map, "Headshot".Translate(), Color.white, -1f);
                 if (dinfo.Instigator != null)
                 {
-                    Pawn pawn2 = dinfo.Instigator as Pawn;
-                    if (pawn2 != null)
+                    if (dinfo.Instigator is Pawn pawn2)
                     {
                         pawn2.records.Increment(RecordDefOf.Headshots);
                     }
@@ -165,8 +164,7 @@ namespace RRYautja
             if (flag)
             {
                 DamageDef def = dinfo.Def;
-                bool diminishedByMetalArmor;
-                num = ArmorUtility.GetPostArmorDamage(pawn, num, dinfo.ArmorPenetrationInt, dinfo.HitPart, ref def, out deflectedByMetalArmor, out diminishedByMetalArmor);
+                num = ArmorUtility.GetPostArmorDamage(pawn, num, dinfo.ArmorPenetrationInt, dinfo.HitPart, ref def, out deflectedByMetalArmor, out bool diminishedByMetalArmor);
                 dinfo.Def = def;
                 if (num < dinfo.Amount)
                 {

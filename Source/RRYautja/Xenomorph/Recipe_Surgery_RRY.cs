@@ -113,9 +113,8 @@ namespace RRYautja
         // Token: 0x06001467 RID: 5223 RVA: 0x0009C970 File Offset: 0x0009AD70
         private float GetAverageMedicalPotency(List<Thing> ingredients, Bill bill)
         {
-            Bill_Medical bill_Medical = bill as Bill_Medical;
             ThingDef thingDef;
-            if (bill_Medical != null)
+            if (bill is Bill_Medical bill_Medical)
             {
                 thingDef = bill_Medical.consumedInitialMedicineDef;
             }
@@ -132,8 +131,7 @@ namespace RRYautja
             }
             for (int i = 0; i < ingredients.Count; i++)
             {
-                Medicine medicine = ingredients[i] as Medicine;
-                if (medicine != null)
+                if (ingredients[i] is Medicine medicine)
                 {
                     num += medicine.stackCount;
                     num2 += medicine.GetStatValue(StatDefOf.MedicalPotency, true) * (float)medicine.stackCount;

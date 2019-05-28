@@ -78,10 +78,12 @@ namespace RRYautja
                 oldGraphics = pawn.Drawer.renderer.graphics;
                 oldShadow = GetShadowGraphic(pawn.Drawer.renderer);
                 pawn.Drawer.renderer.graphics = new PawnGraphicSet_Invisible(pawn);
-                ShadowData shadowData = new ShadowData();
-                shadowData.volume = new Vector3(0, 0, 0);
-                shadowData.offset = new Vector3(0, 0, 0);
-                SetShadowGraphic(pawn.Drawer.renderer, new Graphic_Shadow(shadowData));
+            ShadowData shadowData = new ShadowData
+            {
+                volume = new Vector3(0, 0, 0),
+                offset = new Vector3(0, 0, 0)
+            };
+            SetShadowGraphic(pawn.Drawer.renderer, new Graphic_Shadow(shadowData));
             //pawn.Drawer.renderer.graphics.ResolveAllGraphics();
 
 
@@ -151,8 +153,7 @@ namespace RRYautja
                                 }
                                 else if (observer == null)
                                 {
-                                    Building_Turret turret = thing as Building_Turret;
-                                    if (turret != null && turret.Faction != null && turret.Faction.IsPlayer)
+                                    if (thing is Building_Turret turret && turret.Faction != null && turret.Faction.IsPlayer)
                                     {
                                         float thiefMoving = pawn.health.capacities.GetLevel(PawnCapacityDefOf.Moving);
                                         float spotChance = 0.99f * thiefMoving;

@@ -42,12 +42,16 @@ namespace RimWorld
 		public override StateGraph CreateGraph()
 		{
 			StateGraph stateGraph = new StateGraph();
-			LordToil_DefendAndExpandHiveLike lordToil_DefendAndExpandHive = new LordToil_DefendAndExpandHiveLike();
-			lordToil_DefendAndExpandHive.distToHiveToAttack = 10f;
-			stateGraph.StartingToil = lordToil_DefendAndExpandHive;
-			LordToil_DefendHiveAggressively lordToil_DefendHiveAggressively = new LordToil_DefendHiveAggressively();
-			lordToil_DefendHiveAggressively.distToHiveToAttack = 40f;
-			stateGraph.AddToil(lordToil_DefendHiveAggressively);
+            LordToil_DefendAndExpandHiveLike lordToil_DefendAndExpandHive = new LordToil_DefendAndExpandHiveLike
+            {
+                distToHiveToAttack = 40f
+            };
+            stateGraph.StartingToil = lordToil_DefendAndExpandHive;
+            LordToil_DefendHiveAggressively lordToil_DefendHiveAggressively = new LordToil_DefendHiveAggressively
+            {
+                distToHiveToAttack = 80f
+            };
+            stateGraph.AddToil(lordToil_DefendHiveAggressively);
 			LordToil_AssaultColony lordToil_AssaultColony = new LordToil_AssaultColony(false);
 			stateGraph.AddToil(lordToil_AssaultColony);
             

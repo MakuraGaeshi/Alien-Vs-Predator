@@ -27,6 +27,7 @@ namespace RimWorld
         public static HediffDef RRY_Hediff_BloodedMPredalien;
         public static HediffDef RRY_Hediff_BloodedMBadBlood;
         public static HediffDef RRY_Hediff_BloodedMHound;
+        public static HediffDef RRY_Hediff_BloodedMThrumbo;
         public static HediffDef RRY_Hediff_BloodedMCrusher;
         public static HediffDef RRY_Hediff_BloodedMGroTye;
 

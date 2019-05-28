@@ -67,9 +67,8 @@ namespace RimWorld
             IncidentWorker_Hivelike.SpawnItemInstantly(hivelike);
             for (int i = 0; i < hiveCount - 1; i++)
             {
-                HiveLike hivelike2;
                 CompSpawnerHiveLikes c = hivelike.GetComp<CompSpawnerHiveLikes>();
-                if (hivelike.Spawned && hivelike.GetComp<CompSpawnerHiveLikes>().TrySpawnChildHiveLike(true, out hivelike2))
+                if (hivelike.Spawned && hivelike.GetComp<CompSpawnerHiveLikes>().TrySpawnChildHiveLike(true, out HiveLike hivelike2))
                 {
                     IncidentWorker_Hivelike.SpawnItemInstantly(hivelike2);
                     hivelike = hivelike2;
@@ -89,9 +88,8 @@ namespace RimWorld
             IncidentWorker_Hivelike.SpawnItemInstantly(hivelike);
             for (int i = 0; i < hiveCount - 1; i++)
             {
-                TunnelHiveLikeSpawner hivelike2;
                 CompSpawnerHiveLikes c = hivelike.GetComp<CompSpawnerHiveLikes>();
-                if (hivelike.Spawned && hivelike.GetComp<CompSpawnerHiveLikes>().TrySpawnChildHiveLike(true, out hivelike2))
+                if (hivelike.Spawned && hivelike.GetComp<CompSpawnerHiveLikes>().TrySpawnChildHiveLike(true, out TunnelHiveLikeSpawner hivelike2))
                 {
                     IncidentWorker_Hivelike.SpawnItemInstantly(hivelike2);
                     hivelike = hivelike2;
@@ -133,12 +131,11 @@ namespace RimWorld
         // Token: 0x06000E65 RID: 3685 RVA: 0x0006B914 File Offset: 0x00069D14
         private Thing SpawnTunnels(int hivelikeCount, Map map)
 		{
-			IntVec3 loc;
-			if (!InfestationLikeCellFinder.TryFindCell(out loc, map))
+            if (!InfestationLikeCellFinder.TryFindCell(out IntVec3 loc, map))
             {
-            //    Log.Message(string.Format("TryFindCell: {0} From !InfestationLikeCellFinder.TryFindCell(out loc, map)", !InfestationLikeCellFinder.TryFindCell(out loc, map)));
+                //    Log.Message(string.Format("TryFindCell: {0} From !InfestationLikeCellFinder.TryFindCell(out loc, map)", !InfestationLikeCellFinder.TryFindCell(out loc, map)));
                 return null;
-			}
+            }
             ThingDef_HiveLike thingDef = (ThingDef_HiveLike)this.def.shipPart;
             Thing thing = GenSpawn.Spawn(ThingMaker.MakeThing(thingDef.TunnelDef, null), loc, map, WipeMode.FullRefund);
 			for (int i = 0; i < hivelikeCount - 1; i++)

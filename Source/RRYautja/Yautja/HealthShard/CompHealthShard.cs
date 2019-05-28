@@ -122,10 +122,9 @@ namespace RRYautja
         // Token: 0x06002A4A RID: 10826 RVA: 0x00138F4C File Offset: 0x0013734C
         public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn myPawn)
         {
-            string failReason;
-            if (!this.CanBeUsedBy(myPawn, out failReason))
+            if (!this.CanBeUsedBy(myPawn, out string failReason))
             {
-            //    yield break;
+                //    yield break;
                 yield return new FloatMenuOption(this.FloatMenuOptionLabel + ((failReason == null) ? string.Empty : (" (" + failReason + ")")), null, MenuOptionPriority.Default, null, null, 0f, null, null);
             }
             else if (!myPawn.CanReach(this.parent, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.ByPawn))
@@ -167,8 +166,7 @@ namespace RRYautja
             List<ThingComp> allComps = this.parent.AllComps;
             for (int i = 0; i < allComps.Count; i++)
             {
-                CompUseEffect compUseEffect = allComps[i] as CompUseEffect;
-                if (compUseEffect != null && !compUseEffect.CanBeUsedBy(p, out failReason))
+                if (allComps[i] is CompUseEffect compUseEffect && !compUseEffect.CanBeUsedBy(p, out failReason))
                 {
                     return false;
                 }

@@ -41,13 +41,12 @@ namespace RRYautja
         public override void DoEffect(Pawn user)
         {
             bool selected = Find.Selector.SelectedObjects.Contains(user);
-        //    base.DoEffect(user);
-            Hediff hediff;
+            //    base.DoEffect(user);
             Comp_Yautja _Yautja = user.TryGetComp<Comp_Yautja>();
             Hediff blooded = user.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_BloodedUM);
             BodyPartRecord part = user.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_BloodedUM).Part;
             HediffDef markedDef = _Yautja.MarkedhediffDef;
-            if (YautjaBloodedUtility.Marked(user, out hediff))
+            if (YautjaBloodedUtility.Marked(user, out Hediff hediff))
             {
                 user.health.RemoveHediff(hediff);
             }
@@ -182,13 +181,12 @@ namespace RRYautja
         // Token: 0x06002A4A RID: 10826 RVA: 0x00138F4C File Offset: 0x0013734C
         public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn myPawn)
         {
-            string failReason;
             HediffSet hediffSet = myPawn.health.hediffSet;
             if (!hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_BloodedUM, false))
             {
                 yield break;
             }
-            if (!this.CanBeUsedBy(myPawn, out failReason))
+            if (!this.CanBeUsedBy(myPawn, out string failReason))
             {
                 yield break;
             //    yield return new FloatMenuOption(this.FloatMenuOptionLabel + ((failReason == null) ? string.Empty : (" (" + failReason + ")")), null, MenuOptionPriority.Default, null, null, 0f, null, null);
@@ -232,8 +230,7 @@ namespace RRYautja
             List<ThingComp> allComps = this.parent.AllComps;
             for (int i = 0; i < allComps.Count; i++)
             {
-                CompUseEffect compUseEffect = allComps[i] as CompUseEffect;
-                if (compUseEffect != null && !compUseEffect.CanBeUsedBy(p, out failReason))
+                if (allComps[i] is CompUseEffect compUseEffect && !compUseEffect.CanBeUsedBy(p, out failReason))
                 {
                     return false;
                 }
@@ -311,8 +308,7 @@ namespace RRYautja
         // Token: 0x06002A4A RID: 10826 RVA: 0x00138F4C File Offset: 0x0013734C
         public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn myPawn)
         {
-            string failReason;
-            if (!this.CanBeUsedBy(myPawn, out failReason))
+            if (!this.CanBeUsedBy(myPawn, out string failReason))
             {
                 yield return new FloatMenuOption(this.FloatMenuOptionLabel + ((failReason == null) ? string.Empty : (" (" + failReason + ")")), null, MenuOptionPriority.Default, null, null, 0f, null, null);
             }
@@ -355,8 +351,7 @@ namespace RRYautja
             List<ThingComp> allComps = this.parent.AllComps;
             for (int i = 0; i < allComps.Count; i++)
             {
-                CompUseEffect compUseEffect = allComps[i] as CompUseEffect;
-                if (compUseEffect != null && !compUseEffect.CanBeUsedBy(p, out failReason))
+                if (allComps[i] is CompUseEffect compUseEffect && !compUseEffect.CanBeUsedBy(p, out failReason))
                 {
                     return false;
                 }
@@ -372,8 +367,7 @@ namespace RRYautja
             {
                 return;
             }
-            string text;
-            if (!this.CanBeUsedBy(user, out text))
+            if (!this.CanBeUsedBy(user, out string text))
             {
                 return;
             }
@@ -384,8 +378,7 @@ namespace RRYautja
         // Token: 0x06002A4C RID: 10828 RVA: 0x00138FDC File Offset: 0x001373DC
         public void UsedBy(Pawn p)
         {
-            string text;
-            if (!this.CanBeUsedBy(p, out text))
+            if (!this.CanBeUsedBy(p, out string text))
             {
                 return;
             }

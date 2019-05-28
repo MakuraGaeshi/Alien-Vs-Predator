@@ -20,8 +20,7 @@ namespace Verse
         public override void WarmupComplete()
         {
             base.WarmupComplete();
-            Pawn pawn = this.currentTarget.Thing as Pawn;
-            if (pawn != null && !pawn.Downed && base.CasterIsPawn && base.CasterPawn.skills != null)
+            if (this.currentTarget.Thing is Pawn pawn && !pawn.Downed && base.CasterIsPawn && base.CasterPawn.skills != null)
             {
                 float num = (!pawn.HostileTo(this.caster)) ? 20f : 170f;
                 float num2 = this.verbProps.AdjustedFullCycleTime(this, base.CasterPawn);

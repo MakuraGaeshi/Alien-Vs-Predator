@@ -205,7 +205,7 @@ namespace RRYautja
         }
         public static Thing ClosestReachableEmptyCocoonToEgg(Thing egg)
         {
-            Thing thing = GenClosest.ClosestThingReachable(egg.Position, egg.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 10f, (x => (x is Building_XenomorphCocoon XC && XC.AnyUnoccupiedSleepingSlot)), null, 0, -1, false, RegionType.Set_Passable, false);
+            Thing thing = GenClosest.ClosestThingReachable(egg.Position, egg.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 10f, (x => (x is Building_XenomorphCocoon XC && XC.AnyUnoccupiedSleepingSlot && XC.owners.NullOrEmpty())), null, 0, -1, false, RegionType.Set_Passable, false);
             return thing;
         }
         public static Thing ClosestReachableCocoonThatEggNeedsHost(Pawn pawn)
@@ -256,6 +256,11 @@ namespace RRYautja
             Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_XenomorphHive), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, null, null, 0, -1, false, RegionType.Set_Passable, false);
             return thing;
         }
+        public static Thing ClosestReachableHivelike(ThingDef hiveDef, Pawn pawn)
+        {
+            Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(hiveDef), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, null, null, 0, -1, false, RegionType.Set_Passable, false);
+            return thing;
+        }
         public static Thing ClosestReachableHivelikeThatEggNeedsHost(Pawn pawn)
         {
             List<Thing> list = SpawnedEggsNeedHosts(pawn.Map);
@@ -270,6 +275,10 @@ namespace RRYautja
         public static List<Thing> SpawnedHivelikes(Map map)
         {
             return map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_XenomorphHive);
+        }
+        public static List<Thing> SpawnedHivelikes(ThingDef hiveDef, Map map)
+        {
+            return map.listerThings.ThingsOfDef(hiveDef);
         }
 
         // space between / distance between

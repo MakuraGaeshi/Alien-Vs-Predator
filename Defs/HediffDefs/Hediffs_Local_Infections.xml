@@ -106,32 +106,22 @@
     <stages>
       <li>
         <label>post impregnation</label>
-        <partEfficiencyOffset>-0.1</partEfficiencyOffset>
-        <painOffset>0.1</painOffset>
       </li>
       <li>
         <minSeverity>0.25</minSeverity>
         <label>early gestation</label>
-				<partEfficiencyOffset>-0.25</partEfficiencyOffset>
-        <painOffset>0.2</painOffset>
       </li>
       <li>
         <minSeverity>0.5</minSeverity>
         <label>mid gestation</label>
-				<partEfficiencyOffset>-0.5</partEfficiencyOffset>
-        <painOffset>0.35</painOffset>
       </li>
       <li>
         <minSeverity>0.75</minSeverity>
         <label>late gestation</label>
-				<partEfficiencyOffset>-0.8</partEfficiencyOffset>
-        <painOffset>0.5</painOffset>
       </li>
       <li>
         <minSeverity>0.99</minSeverity>
         <label>pre burst</label>
-				<partEfficiencyOffset>-0.9</partEfficiencyOffset>
-        <painOffset>0.6</painOffset>
 		<capMods>
 			  <li>
 				<capacity>Consciousness</capacity>
@@ -142,9 +132,6 @@
       <li>
         <minSeverity>1</minSeverity>
         <label>Gaping chest wound</label>
-				<partEfficiencyOffset>-1.0</partEfficiencyOffset>
-        <painOffset>0.7</painOffset>
-        <destroyPart>true</destroyPart>
 		<capMods>
 			  <li>
 				<capacity>Consciousness</capacity>
@@ -194,36 +181,26 @@
       <li>
         <label>post impregnation</label>
         <becomeVisible>false</becomeVisible>
-        <partEfficiencyOffset>-0.1</partEfficiencyOffset>
-        <painOffset>0.1</painOffset>
       </li>
       <li>
         <minSeverity>0.25</minSeverity>
         <label>early gestation</label>
         <becomeVisible>false</becomeVisible>
-				<partEfficiencyOffset>-0.25</partEfficiencyOffset>
-        <painOffset>0.2</painOffset>
       </li>
       <li>
         <minSeverity>0.5</minSeverity>
         <label>mid gestation</label>
         <becomeVisible>false</becomeVisible>
-				<partEfficiencyOffset>-0.5</partEfficiencyOffset>
-        <painOffset>0.35</painOffset>
       </li>
       <li>
         <minSeverity>0.75</minSeverity>
         <label>late gestation</label>
         <becomeVisible>false</becomeVisible>
-				<partEfficiencyOffset>-0.8</partEfficiencyOffset>
-        <painOffset>0.5</painOffset>
       </li>
       <li>
         <minSeverity>0.99</minSeverity>
         <label>pre burst</label>
         <becomeVisible>false</becomeVisible>
-				<partEfficiencyOffset>-0.9</partEfficiencyOffset>
-        <painOffset>0.6</painOffset>
 		<capMods>
 			  <li>
 				<capacity>Consciousness</capacity>
@@ -279,8 +256,6 @@
     <stages>
       <li>
         <label>post impregnation</label>
-        <partEfficiencyOffset>-0.1</partEfficiencyOffset>
-        <painOffset>0.1</painOffset>
 		<capMods>
 			  <li>
 				<capacity>Consciousness</capacity>
@@ -308,8 +283,6 @@
         <minSeverity>0.25</minSeverity>
         <label>early gestation</label>
         <vomitMtbDays>0.2</vomitMtbDays>
-		<partEfficiencyOffset>-0.25</partEfficiencyOffset>
-        <painOffset>0.2</painOffset>
 		<capMods>
 			  <li>
 				<capacity>Consciousness</capacity>
@@ -337,8 +310,6 @@
         <minSeverity>0.5</minSeverity>
         <label>mid gestation</label>
         <vomitMtbDays>0.4</vomitMtbDays>
-				<partEfficiencyOffset>-0.5</partEfficiencyOffset>
-        <painOffset>0.35</painOffset>
 		<capMods>
 			  <li>
 				<capacity>Consciousness</capacity>
@@ -374,8 +345,6 @@
         <minSeverity>0.75</minSeverity>
         <label>late gestation</label>
         <vomitMtbDays>0.7</vomitMtbDays>
-				<partEfficiencyOffset>-0.8</partEfficiencyOffset>
-        <painOffset>0.5</painOffset>
 		<capMods>
 			  <li>
 				<capacity>Consciousness</capacity>
@@ -410,8 +379,6 @@
       <li>
         <minSeverity>0.99</minSeverity>
         <label>pre burst</label>
-				<partEfficiencyOffset>-0.9</partEfficiencyOffset>
-        <painOffset>0.6</painOffset>
 		<capMods>
 			  <li>
 				<capacity>Consciousness</capacity>
@@ -446,9 +413,6 @@
       <li>
         <minSeverity>1</minSeverity>
         <label>Gaping chest wound</label>
-				<partEfficiencyOffset>-1.0</partEfficiencyOffset>
-        <painOffset>0.7</painOffset>
-        <destroyPart>true</destroyPart>
 		<capMods>
 			  <li>
 				<capacity>Consciousness</capacity>
@@ -485,8 +449,6 @@
       <li>
         <label>post impregnation</label>
         <becomeVisible>false</becomeVisible>
-        <partEfficiencyOffset>-0.1</partEfficiencyOffset>
-        <painOffset>0.1</painOffset>
 		<capMods>
 			  <li>
 				<capacity>Consciousness</capacity>
@@ -515,8 +477,6 @@
         <label>early gestation</label>
         <becomeVisible>false</becomeVisible>
         <vomitMtbDays>0.2</vomitMtbDays>
-		<partEfficiencyOffset>-0.25</partEfficiencyOffset>
-        <painOffset>0.2</painOffset>
 		<capMods>
 			  <li>
 				<capacity>Consciousness</capacity>
@@ -545,8 +505,6 @@
         <label>mid gestation</label>
         <becomeVisible>false</becomeVisible>
         <vomitMtbDays>0.4</vomitMtbDays>
-		<partEfficiencyOffset>-0.5</partEfficiencyOffset>
-        <painOffset>0.35</painOffset>
 		<capMods>
 			  <li>
 				<capacity>Consciousness</capacity>
@@ -583,8 +541,6 @@
         <label>late gestation</label>
         <becomeVisible>false</becomeVisible>
         <vomitMtbDays>0.7</vomitMtbDays>
-		<partEfficiencyOffset>-0.8</partEfficiencyOffset>
-        <painOffset>0.5</painOffset>
 		<capMods>
 			  <li>
 				<capacity>Consciousness</capacity>
@@ -620,8 +576,6 @@
         <minSeverity>0.99</minSeverity>
         <label>pre burst</label>
         <becomeVisible>false</becomeVisible>
-		<partEfficiencyOffset>-0.9</partEfficiencyOffset>
-        <painOffset>0.6</painOffset>
 		<capMods>
 			  <li>
 				<capacity>Consciousness</capacity>
@@ -657,9 +611,6 @@
         <minSeverity>1</minSeverity>
         <label>Gaping chest wound</label>
         <becomeVisible>true</becomeVisible>
-				<partEfficiencyOffset>-1.0</partEfficiencyOffset>
-        <painOffset>0.7</painOffset>
-        <destroyPart>true</destroyPart>
 		<capMods>
 			  <li>
 				<capacity>Consciousness</capacity>

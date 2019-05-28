@@ -193,10 +193,9 @@ namespace RimWorld
             }
             if (this.lord == null)
             {
-                IntVec3 invalid;
-                if (!CellFinder.TryFindRandomCellNear(this.parent.Position, this.parent.Map, 5, (IntVec3 c) => c.Standable(this.parent.Map) && this.parent.Map.reachability.CanReach(c, this.parent, PathEndMode.Touch, TraverseParms.For(TraverseMode.PassDoors, Danger.Deadly, false)), out invalid, -1))
+                if (!CellFinder.TryFindRandomCellNear(this.parent.Position, this.parent.Map, 5, (IntVec3 c) => c.Standable(this.parent.Map) && this.parent.Map.reachability.CanReach(c, this.parent, PathEndMode.Touch, TraverseParms.For(TraverseMode.PassDoors, Danger.Deadly, false)), out IntVec3 invalid, -1))
                 {
-                //    Log.Error("Found no place for Pawns to defend " + this, false);
+                    //    Log.Error("Found no place for Pawns to defend " + this, false);
                     invalid = IntVec3.Invalid;
                 }
                 LordJob_PawnsDefendShip lordJob = new LordJob_PawnsDefendShip(this.parent, this.parent.Faction, 21f, invalid);
@@ -206,23 +205,21 @@ namespace RimWorld
             {
                 while (this.pointsLeft > 0f)
                 {
-                    PawnKindDef kind;
                     if (!(from def in DefDatabase<PawnKindDef>.AllDefs
                           where ((def.defaultFactionType == faction.def && def.defaultFactionType != null) || (def.defaultFactionType == null && faction.def.pawnGroupMakers.Any(pgm => pgm.options.Any(opt => opt.kind == def) && pgm.kindDef != PawnGroupKindDefOf.Trader && pgm.kindDef != PawnGroupKindDefOf.Peaceful))) && def.isFighter && def.combatPower <= this.pointsLeft
                           //where ((def.defaultFactionType == faction.def && def.defaultFactionType != null) || (!faction.def.pawnGroupMakers.All(pgm => pgm.options.Any(opt => opt.kind == def)) && def.defaultFactionType == null)) && def.isFighter && def.combatPower <= this.pointsLeft
-                          select def).TryRandomElement(out kind))
+                          select def).TryRandomElement(out PawnKindDef kind))
                     {
-                    //    Log.Message(string.Format("kindDef: {0}", kind));
+                        //    Log.Message(string.Format("kindDef: {0}", kind));
                         break;
                     }
-                    IntVec3 center;
                     if (!(from cell in GenAdj.CellsAdjacent8Way(this.parent)
                           where this.CanSpawnPawnAt(cell)
-                          select cell).TryRandomElement(out center))
+                          select cell).TryRandomElement(out IntVec3 center))
                     {
                         break;
                     }
-                //    Log.Message(string.Format("kindDef: {0}", kind));
+                    //    Log.Message(string.Format("kindDef: {0}", kind));
                     PawnGenerationRequest request = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1, true, false, false, false, true, false, 1f, false, true, true, false, false, false, false, null, null, null, null, null, null, null, null);
                     Pawn pawn = PawnGenerator.GeneratePawn(request);
                     if (!GenPlace.TryPlaceThing(pawn, center, this.parent.Map, ThingPlaceMode.Near, null, null))

@@ -42,26 +42,55 @@ namespace RimWorld
 				return false;
 			}
 		}
-        
-		// Token: 0x060024D6 RID: 9430 RVA: 0x001183A8 File Offset: 0x001167A8
-		public override void SpawnSetup(Map map, bool respawningAfterLoad)
+
+        public bool Occupied
+        {
+            get
+            {
+                return this.CurOccupants.Count() > 0 ? true : false;
+            }
+        }
+
+        public override Graphic Graphic
+        {
+            get
+            {
+                Log.Message(string.Format("Occupied: {0}", Occupied));
+                if (Occupied)
+                {
+                    return base.Graphic;
+                }
+                else
+                {
+                    return new Graphic_Invisible();
+                }
+            }
+
+        }
+        public Pawn LastOccupant;
+        public int ticksSinceHeal;
+        public int healIntervalTicks = 60;
+        public int ticksSinceOccupied;
+        public int occupiedIntervalTicks = 100;
+        private float BloodlossSev = 0f;
+        private float MalnutritionSev = 0f;
+        private float NutritionNeed = 0f;
+
+        // Token: 0x060024D6 RID: 9430 RVA: 0x001183A8 File Offset: 0x001167A8
+        public override void SpawnSetup(Map map, bool respawningAfterLoad)
 		{
 			base.SpawnSetup(map, respawningAfterLoad);
 			Region validRegionAt_NoRebuild = map.regionGrid.GetValidRegionAt_NoRebuild(base.Position);
-			if (validRegionAt_NoRebuild != null && validRegionAt_NoRebuild.Room.isPrisonCell)
-			{
-				this.ForPrisoners = true;
-			}
-			if (!this.alreadySetDefaultMed)
-			{
-				this.alreadySetDefaultMed = true;
-				if (this.def.building.bed_defaultMedical)
-				{
-					this.Medical = true;
-				}
-			}
-		}
+			this.Medical = true;
+            this.def.graphicData.texPath = "DummyTexture";
+        }
 
+        public override void Tick()
+        {
+            base.Tick();
+        }
+
+        /*
         public override void Tick()
         {
             base.Tick();
@@ -69,7 +98,13 @@ namespace RimWorld
             {
                 foreach (Pawn p in this.CurOccupants)
                 {
-                    bool flag = p.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned);
+                    if (p != LastOccupant && !p.def.defName.Contains("Xenomorph"))
+                    {
+                        LastOccupant = p;
+                        Occupied = true;
+                        NutritionNeed = p.needs.food.ShowOnNeedList ? p.needs.food.CurLevel: 0f;
+                    }
+                    bool flag = p.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned) && !p.def.defName.Contains("Xenomorph");
                     if (p.health.hediffSet.hediffs!=null)
                     {
                         //    Log.Message(string.Format("{0}", p.health.hediffSet.hediffs.ToString()));
@@ -77,6 +112,14 @@ namespace RimWorld
                         {
                             p.health.AddHediff(XenomorphDefOf.RRY_Hediff_Cocooned);
                         }
+                        else
+                        {
+                            foreach (var item in p.health.hediffSet.hediffs)
+                            {
+
+                            }
+                        }
+
                     }
                     else
                     {
@@ -88,8 +131,24 @@ namespace RimWorld
                     }
                 }
             }
-        }
+            else
+            {
+                if (ticksSinceOccupied > occupiedIntervalTicks)
+                {
+                    ticksSinceOccupied = 0;
+                    Occupied = false;
+                    this.RemoveAllOwners();
+                }
+                ticksSinceOccupied++;
+                if (this.Position.GetFirstPawn(this.Map)!=null && this.Position.GetFirstPawn(this.Map) is Pawn pawn && !pawn.def.defName.Contains("Xenomorph") && pawn.Downed)
+                {
+                    Log.Message(string.Format("{0} found", pawn.LabelShortCap));
+                    pawn.jobs.Notify_TuckedIntoBed(this);
 
+                }
+            }
+        }
+        */
         // Token: 0x060024E0 RID: 9440 RVA: 0x00118B58 File Offset: 0x00116F58
         public new Pawn GetCurOccupant(int slotIndex)
         {
@@ -101,8 +160,7 @@ namespace RimWorld
             List<Thing> list = base.Map.thingGrid.ThingsListAt(sleepingSlotPos);
             for (int i = 0; i < list.Count; i++)
             {
-                Pawn pawn = list[i] as Pawn;
-                if (pawn != null)
+                if (list[i] is Pawn pawn)
                 {
                     if (pawn.CurJob != null)
                     {

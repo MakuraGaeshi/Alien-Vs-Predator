@@ -73,23 +73,20 @@ namespace RRYautja
 
         public override void CompPostPostAdd(DamageInfo? dinfo)
         {
-            Log.Message(string.Format("HediffComp_XenoSpawner CompPostPostAdd 1"));
             base.CompPostPostAdd(dinfo);
-            Log.Message(string.Format("HediffComp_XenoSpawner CompPostPostAdd 2"));
             DeathActionWorker daw = this.Pawn.def.race.DeathActionWorker;
-            Log.Message(string.Format("HediffComp_XenoSpawner CompPostPostAdd 3"));
             this.Pawn.def.race.deathActionWorkerClass = typeof(DeathActionWorker_Simple);
-            Log.Message(string.Format("HediffComp_XenoSpawner CompPostPostAdd 4"));
-            if (parent.def == XenomorphDefOf.RRY_HiddenNeomorphImpregnation|| parent.def == XenomorphDefOf.RRY_NeomorphImpregnation&& this.parent.pawn.Faction == Faction.OfPlayer && base.parent.pawn.Map!=null)
+            if (parent.pawn.Spawned)
             {
-                Log.Message(string.Format("HediffComp_XenoSpawner CompPostPostAdd 5"));
-                string text = TranslatorFormattedStringExtensions.Translate("Xeno_Neospores_Added", base.parent.pawn.LabelShortCap, parent.Part.LabelShort);
-                //    Log.Message(text);
-                Log.Message(string.Format("HediffComp_XenoSpawner CompPostPostAdd 6"));
-                MoteMaker.ThrowText(base.parent.pawn.Position.ToVector3(), base.parent.pawn.Map, text, 3f);
-                Log.Message(string.Format("HediffComp_XenoSpawner CompPostPostAdd 7"));
+                if (parent.pawn.Map != null)
+                {
+                    if (parent.def == XenomorphDefOf.RRY_HiddenNeomorphImpregnation || parent.def == XenomorphDefOf.RRY_NeomorphImpregnation && this.parent.pawn.Faction == Faction.OfPlayer)
+                    {
+                        string text = TranslatorFormattedStringExtensions.Translate("Xeno_Neospores_Added", base.parent.pawn.LabelShortCap, parent.Part.LabelShort);
+                        MoteMaker.ThrowText(base.parent.pawn.Position.ToVector3(), base.parent.pawn.Map, text, 3f);
+                    }
+                }
             }
-            Log.Message(string.Format("HediffComp_XenoSpawner CompPostPostAdd 8"));
         }
 
         public void DoNeoCough()
@@ -131,7 +128,7 @@ namespace RRYautja
             bool selected = Find.Selector.SingleSelectedThing == parent.pawn;
             if (parent.CurStageIndex >= parent.def.stages.Count - 3 && this.Pawn.Map == null) return;
             base.CompPostTick(ref severityAdjustment);
-            if (parent.ageTicks> nextCoughTick && (this.Def == XenomorphDefOf.RRY_HiddenNeomorphImpregnation || this.Def == XenomorphDefOf.RRY_NeomorphImpregnation) && Pawn.Map.IsPlayerHome!=null)
+            if (parent.ageTicks> nextCoughTick && (this.Def == XenomorphDefOf.RRY_HiddenNeomorphImpregnation || this.Def == XenomorphDefOf.RRY_NeomorphImpregnation) && Pawn.Map != null && Pawn.Spawned)
             {
                 DoNeoCough();
 

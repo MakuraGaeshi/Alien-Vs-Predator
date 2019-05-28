@@ -18,23 +18,13 @@ namespace RimWorld
             }
         }
 
-        protected IntVec3 loc
+        protected Pawn Takee
         {
             get
             {
-                return this.job.GetTarget(TargetIndex.B).Cell;
+                return (Pawn)this.job.GetTarget(TargetIndex.A).Thing;
             }
         }
-
-        protected Building_XenomorphCocoon DropBed
-        {
-            get
-            {
-
-                return (Building_XenomorphCocoon)this.job.GetTarget(TargetIndex.B).Thing;
-            }
-        }
-
 
         // Token: 0x06000372 RID: 882 RVA: 0x0001EF20 File Offset: 0x0001D320
         public override bool TryMakePreToilReservations(bool errorOnFailed)
@@ -52,36 +42,26 @@ namespace RimWorld
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.ClosestTouch).FailOnSomeonePhysicallyInteracting(TargetIndex.A);
             yield return Toils_Construct.UninstallIfMinifiable(TargetIndex.A).FailOnSomeonePhysicallyInteracting(TargetIndex.A);
             yield return Toils_Haul.StartCarryThing(TargetIndex.A, false, false, false);
-            Toil gotoCell = Toils_Goto.GotoCell(TargetIndex.B, PathEndMode.OnCell);
-            gotoCell.AddPreTickAction(delegate
-            {
-                if (base.Map.exitMapGrid.IsExitCell(this.pawn.Position))
-                {
-                    this.pawn.ExitMap(true, CellRect.WholeMap(base.Map).GetClosestEdge(this.pawn.Position));
-                }
-            });
-            yield return gotoCell;
+            yield return Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.Touch);
             Toil prepare = Toils_General.Wait(300, TargetIndex.None);
             prepare.WithProgressBarToilDelay(TargetIndex.A, false, -0.5f);
             prepare.FailOnDespawnedNullOrForbidden(TargetIndex.A);
             prepare.FailOnCannotTouch(TargetIndex.A, PathEndMode.Touch);
             yield return prepare;
-            yield return new Toil
+            Toil use = new Toil();
+            use.initAction = delegate ()
             {
-                initAction = delegate ()
-                {
-                    if (Item is Pawn takee)
-                    {
-                        Thing thing = ThingMaker.MakeThing(XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon);
-                        GenPlace.TryPlaceThing(thing, Item.Position, base.Map,ThingPlaceMode.Near);
-
-                        takee.jobs.Notify_TuckedIntoBed((Building_XenomorphCocoon)thing);
-                    }
-                },
-                defaultCompleteMode = ToilCompleteMode.Instant
+                Pawn actor = use.actor;
+                this.Takee.health.AddHediff(XenomorphDefOf.RRY_Hediff_Cocooned);
+                this.Takee.mindState.Notify_TuckedIntoBed();
             };
+            use.defaultCompleteMode = ToilCompleteMode.Instant;
+            yield return use;
             yield break;
         }
+
+
+        private int ticksLeft;
 
         // Token: 0x0400023D RID: 573
         private const TargetIndex ItemInd = TargetIndex.A;

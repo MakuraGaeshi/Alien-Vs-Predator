@@ -294,8 +294,7 @@ namespace RRYautja
                         flag2 = true;
                     }
                     float num2 = 0f;
-                    Pawn pawn = thing as Pawn;
-                    if (pawn != null)
+                    if (thing is Pawn pawn)
                     {
                         num2 = 0.4f * Mathf.Clamp(pawn.BodySize, 0.1f, 2f);
                         if (pawn.GetPosture() != PawnPosture.Standing)
@@ -455,9 +454,8 @@ namespace RRYautja
                 for (int j = 0; j < Stuffable_Projectile.cellThingsFiltered.Count; j++)
                 {
                     Thing thing2 = Stuffable_Projectile.cellThingsFiltered[j];
-                    Pawn pawn = thing2 as Pawn;
                     float num;
-                    if (pawn != null)
+                    if (thing2 is Pawn pawn)
                     {
                         num = 0.5f * Mathf.Clamp(pawn.BodySize, 0.1f, 2f);
                         if (pawn.GetPosture() != PawnPosture.Standing && (this.origin - this.destination).MagnitudeHorizontalSquared() >= 20.25f)
@@ -484,8 +482,7 @@ namespace RRYautja
                 this.Impact(null);
                 return;
             }
-            Pawn pawn2 = this.usedTarget.Thing as Pawn;
-            if (pawn2 != null && pawn2.GetPosture() != PawnPosture.Standing && (this.origin - this.destination).MagnitudeHorizontalSquared() >= 20.25f && !Rand.Chance(0.2f))
+            if (this.usedTarget.Thing is Pawn pawn2 && pawn2.GetPosture() != PawnPosture.Standing && (this.origin - this.destination).MagnitudeHorizontalSquared() >= 20.25f && !Rand.Chance(0.2f))
             {
                 this.ThrowDebugText("miss-laying", base.Position);
                 this.Impact(null);

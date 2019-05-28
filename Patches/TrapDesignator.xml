@@ -14,4 +14,16 @@
 			</li>
 		</operations>	
 	</Operation>
+	
+	<!-- Base_Player -->
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/MapGeneratorDef[defName = "Base_Player"]/genSteps</xpath>
+				<value>
+					<li>RRY_Xenomorph_CaveHives</li>
+				</value>
+			</li>
+		</operations>	
+	</Operation>
 </Patch>

@@ -51,8 +51,7 @@ namespace RRYautja
             List<Thing> thingList = GridsUtility.GetThingList(t.Position, t.Map);
             for (int i = 0; i < thingList.Count; i++)
             {
-                IntVec3 intVec;
-                if (thingList[i] != t && thingList[i].def.category == ThingCategory.Item && (ForbidUtility.IsForbidden(thingList[i], pawn) || StoreUtility.IsInValidStorage(thingList[i]) || !HaulAIUtility.CanHaulAside(pawn, thingList[i], out intVec)))
+                if (thingList[i] != t && thingList[i].def.category == ThingCategory.Item && (ForbidUtility.IsForbidden(thingList[i], pawn) || StoreUtility.IsInValidStorage(thingList[i]) || !HaulAIUtility.CanHaulAside(pawn, thingList[i], out IntVec3 intVec)))
                 {
                     return false;
                 }

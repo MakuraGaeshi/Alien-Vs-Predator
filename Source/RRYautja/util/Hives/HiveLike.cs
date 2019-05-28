@@ -194,12 +194,11 @@ namespace RimWorld
 					Log.Error("Too many iterations.", false);
 					break;
 				}
-				Pawn pawn;
-				if (!this.TrySpawnPawn(out pawn))
-				{
-					break;
-				}
-			}
+                if (!this.TrySpawnPawn(out Pawn pawn))
+                {
+                    break;
+                }
+            }
 			this.CalculateNextPawnSpawnTick();
 		}
 
@@ -218,9 +217,8 @@ namespace RimWorld
 				{
 					if (this.SpawnedPawnsPoints < 500f)
 					{
-						Pawn pawn;
-						bool flag = this.TrySpawnPawn(out pawn);
-						if (flag && pawn.caller != null)
+                        bool flag = this.TrySpawnPawn(out Pawn pawn);
+                        if (flag && pawn.caller != null)
 						{
 							pawn.caller.DoCall();
 						}
@@ -338,13 +336,12 @@ namespace RimWorld
 			IEnumerable<PawnKindDef> source = from x in spawnablePawnKinds
 			where curPoints + x.combatPower <= 500f
 			select x;
-			PawnKindDef kindDef;
-			if (!source.TryRandomElement(out kindDef))
-			{
-				pawn = null;
-				return false;
-			}
-			pawn = PawnGenerator.GeneratePawn(kindDef, base.Faction);
+            if (!source.TryRandomElement(out PawnKindDef kindDef))
+            {
+                pawn = null;
+                return false;
+            }
+            pawn = PawnGenerator.GeneratePawn(kindDef, base.Faction);
 			this.spawnedPawns.Add(pawn);
 			GenSpawn.Spawn(pawn, CellFinder.RandomClosewalkCellNear(base.Position, base.Map, 2, null), base.Map, WipeMode.Vanish);
 			Lord lord = this.Lord;
@@ -372,9 +369,8 @@ namespace RimWorld
 					icon = TexCommand.ReleaseAnimals,
 					action = delegate()
 					{
-						Pawn pawn;
-						this.TrySpawnPawn(out pawn);
-					}
+                        this.TrySpawnPawn(out Pawn pawn);
+                    }
 				};
 			}
 			yield break;

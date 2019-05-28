@@ -55,7 +55,7 @@
       <texPath>Things/Buildings/Xenomorph/Cocoons/Xeno_Humanoid_Cocoon</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
       <shaderType>CutoutComplex</shaderType>
-      <drawSize>(3,4)</drawSize>
+      <drawSize>(1,2)</drawSize>
     </graphicData>
     <castEdgeShadows>false</castEdgeShadows>
     <statBases>
@@ -81,9 +81,12 @@
       <bed_showSleeperBody>false</bed_showSleeperBody>
       <bed_healPerDay>0</bed_healPerDay>
       <bed_caravansCanUse>false</bed_caravansCanUse>
+      <ai_chillDestination>false</ai_chillDestination>
     </building>
     <pathCost>5</pathCost>
     <passability>Standable</passability>
+    <rotatable>true</rotatable>
+    <defaultPlacingRot>South</defaultPlacingRot>
     <designationHotKey>Misc2</designationHotKey>
   </ThingDef>
 

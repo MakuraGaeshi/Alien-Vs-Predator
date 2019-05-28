@@ -64,10 +64,9 @@ namespace RimWorld
                 }
                 else
                 {
-                    ThingDef_HiveLike var;
                     if (!(from def in DefDatabase<ThingDef_HiveLike>.AllDefs
                           where ((def.Faction == faction.def && def.Faction != null))
-                          select def).TryRandomElement(out var))
+                          select def).TryRandomElement(out ThingDef_HiveLike var))
                     {
                         thing = var;
                     }
@@ -208,9 +207,8 @@ namespace RimWorld
                 HiveLike hive = (HiveLike)ThingMaker.MakeThing(hiveDef, null);
                 this.sustainer.Maintain();
                 Vector3 vector = base.Position.ToVector3Shifted();
-                IntVec3 c;
                 ResetStaticData();
-                if (Rand.MTBEventOccurs(FilthSpawnMTB, 1f, 1.TicksToSeconds()) && CellFinder.TryFindRandomReachableCellNear(base.Position, base.Map, TunnelHiveLikeSpawner.FilthSpawnRadius, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), null, null, out c, 999999))
+                if (Rand.MTBEventOccurs(FilthSpawnMTB, 1f, 1.TicksToSeconds()) && CellFinder.TryFindRandomReachableCellNear(base.Position, base.Map, TunnelHiveLikeSpawner.FilthSpawnRadius, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), null, null, out IntVec3 c, 999999))
                 {
                     FilthMaker.MakeFilth(c, base.Map, filthTypes.RandomElement<ThingDef>(), 1);
                 }
@@ -267,8 +265,7 @@ namespace RimWorld
                             IEnumerable<PawnKindDef> source = from x in pawnKinds
                                                               where x.combatPower <= pointsLeft
                                                               select x;
-                            PawnKindDef pawnKindDef;
-                            if (!source.TryRandomElement(out pawnKindDef))
+                            if (!source.TryRandomElement(out PawnKindDef pawnKindDef))
                             {
                                 break;
                             }

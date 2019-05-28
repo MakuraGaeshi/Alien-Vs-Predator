@@ -142,8 +142,7 @@ namespace RRYautja
             CompQuality Weapon_Quality = gun.TryGetComp<CompQuality>();
             if (Weapon_Quality != null)
             {
-                QualityCategory Q;
-                this.comp.parent.TryGetQuality(out Q);
+                this.comp.parent.TryGetQuality(out QualityCategory Q);
                 Weapon_Quality.SetQuality(Q, ArtGenerationContext.Outsider);
             }
             this.UpdateGunVerbs();
@@ -164,12 +163,14 @@ namespace RRYautja
         {
             if (this.CanSetForcedTarget)
             {
-                Command_VerbTarget attack = new Command_VerbTarget();
-                attack.defaultLabel = "CommandSetForceAttackTarget".Translate();
-                attack.defaultDesc = "CommandSetForceAttackTargetDesc".Translate();
-                attack.icon = ContentFinder<Texture2D>.Get("UI/Commands/Attack", true);
-                attack.verb = this.AttackVerb;
-                attack.hotKey = KeyBindingDefOf.Misc4;
+                Command_VerbTarget attack = new Command_VerbTarget
+                {
+                    defaultLabel = "CommandSetForceAttackTarget".Translate(),
+                    defaultDesc = "CommandSetForceAttackTargetDesc".Translate(),
+                    icon = ContentFinder<Texture2D>.Get("UI/Commands/Attack", true),
+                    verb = this.AttackVerb,
+                    hotKey = KeyBindingDefOf.Misc4
+                };
                 if (base.Spawned && this.IsMortarOrProjectileFliesOverhead && base.Position.Roofed(base.Map))
                 {
                     attack.Disable("CannotFire".Translate() + ": " + "Roofed".Translate().CapitalizeFirst());
@@ -178,14 +179,16 @@ namespace RRYautja
             }
             if (this.forcedTarget.IsValid)
             {
-                Command_Action stop = new Command_Action();
-                stop.defaultLabel = "CommandStopForceAttack".Translate();
-                stop.defaultDesc = "CommandStopForceAttackDesc".Translate();
-                stop.icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt", true);
-                stop.action = delegate ()
+                Command_Action stop = new Command_Action
                 {
-                    this.ResetForcedTarget();
-                    SoundDefOf.Tick_Low.PlayOneShotOnCamera(null);
+                    defaultLabel = "CommandStopForceAttack".Translate(),
+                    defaultDesc = "CommandStopForceAttackDesc".Translate(),
+                    icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt", true),
+                    action = delegate ()
+                    {
+                        this.ResetForcedTarget();
+                        SoundDefOf.Tick_Low.PlayOneShotOnCamera(null);
+                    }
                 };
                 if (!this.forcedTarget.IsValid)
                 {

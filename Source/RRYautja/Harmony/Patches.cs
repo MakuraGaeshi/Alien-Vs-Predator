@@ -55,16 +55,53 @@ namespace RRYautja
         }
     }
 
+    [HarmonyPatch(typeof(FeedPatientUtility), "ShouldBeFed")]
+    public static class FeedPatientUtility_ShouldBeFedPatch
+    {
+        [HarmonyPostfix]
+        public static void IgnoreCocooned(Pawn p, ref bool __result)
+        {
+            Log.Message(string.Format("{0}", p));
+            __result = __result && !(p.InBed() && p.CurrentBed() is Building_XenomorphCocoon);
+        }
+    }
+
+    [HarmonyPatch(typeof(JobGiver_WanderColony), "GetWanderRoot")]
+    public static class JobGiver_WanderColony_GetWanderRootPatch
+    {
+        [HarmonyPostfix]
+        public static void GetWanderRoot(Pawn pawn, ref IntVec3 __result)
+        {
+            if (!__result.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon).DestroyedOrNull())
+            {
+                __result = pawn.Position;
+            }
+        }
+    }
+
     [HarmonyPatch(typeof(Pawn), "AnythingToStrip")]
     public static class Pawn_AnythingToStripPatch
     {
         [HarmonyPostfix]
         public static void IgnoreWristblade(Pawn __instance, ref bool __result)
         {
-            __result = !(__instance.apparel != null && __instance.apparel.WornApparelCount == 1 && __instance.apparel.WornApparel.Any(x => x.def == YautjaDefOf.RRY_Equipment_HunterGauntlet)&& __instance.Faction!=Faction.OfPlayerSilentFail);
+            __result = !(__instance.apparel != null && __instance.apparel.WornApparelCount == 1 && __instance.apparel.WornApparel.Any(x => x.def == YautjaDefOf.RRY_Equipment_HunterGauntlet) && __instance.Faction != Faction.OfPlayerSilentFail);
 
         }
     }
+
+    [HarmonyPatch(typeof(WorkGiver_Tend), "GoodLayingStatusForTend")]
+    public static class WorkGiver_Tend_GoodLayingStatusForTend_Patch
+    {
+        [HarmonyPostfix]
+        public static void PawnInCocoon(WorkGiver_Tend __instance, Pawn patient, Pawn doctor, ref bool __result)
+        {
+            __result = __result && (patient.InBed() && !(patient.CurrentBed() is Building_XenomorphCocoon));
+
+        }
+    }
+    
+
 
     [HarmonyPatch(typeof(Pawn), "Strip")]
     public static class Pawn_StripPatch
@@ -134,8 +171,7 @@ namespace RRYautja
             }
             for (int j = 0; j < tmpApparelList.Count; j++)
             {
-                Apparel apparel;
-                __instance.apparel.TryDrop(tmpApparelList[j], out apparel, pos, forbid);
+                __instance.apparel.TryDrop(tmpApparelList[j], out Apparel apparel, pos, forbid);
             }
         }
     }
@@ -425,6 +461,7 @@ namespace RRYautja
         [HarmonyPrefix]
         public static bool RevealSaboteur(Pawn __instance,ref Vector3 drawLoc)
         {
+            /*
             if (__instance.InBed())
             {
                 if (__instance.CurrentBed() is Building_XenomorphCocoon)
@@ -458,6 +495,7 @@ namespace RRYautja
                 }
 
             }
+            */
             return true;
         }
     }

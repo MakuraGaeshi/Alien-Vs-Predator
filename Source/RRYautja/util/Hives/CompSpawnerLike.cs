@@ -95,8 +95,7 @@ namespace RimWorld
             {
                 return;
             }
-            HiveLike hive = this.parent as HiveLike;
-            if (hive != null)
+            if (this.parent is HiveLike hive)
             {
                 if (!hive.active)
                 {
@@ -155,8 +154,7 @@ namespace RimWorld
                     }
                 }
             }
-            IntVec3 center;
-            if (this.TryFindSpawnCell(out center))
+            if (this.TryFindSpawnCell(out IntVec3 center))
             {
                 Thing thing = ThingMaker.MakeThing(this.PropsSpawner.thingToSpawn, null);
                 thing.stackCount = this.PropsSpawner.spawnCount;
@@ -164,8 +162,7 @@ namespace RimWorld
                 {
                     thing.SetFaction(this.parent.Faction, null);
                 }
-                Thing t;
-                GenPlace.TryPlaceThing(thing, center, this.parent.Map, ThingPlaceMode.Direct, out t, null, null);
+                GenPlace.TryPlaceThing(thing, center, this.parent.Map, ThingPlaceMode.Direct, out Thing t, null, null);
                 if (this.PropsSpawner.spawnForbidden)
                 {
                     t.SetForbidden(true, true);

@@ -69,28 +69,28 @@ namespace RRYautja
 #if DEBUG
                 //    if (selected) Log.Message(string.Format("{0}", Pawn.CurrentBed().Rotation.ToStringHuman()));
 #endif
-                    drawPos -= pawnRenderer.BaseHeadOffsetAt(Rot4.South);
+                //    drawPos -= pawnRenderer.BaseHeadOffsetAt(Rot4.South);
                 }
                 else if (Pawn.CurrentBed().Rotation == Rot4.North)
                 {
 #if DEBUG
                 //    if (selected) Log.Message(string.Format("{0}", Pawn.CurrentBed().Rotation.ToStringHuman()));
 #endif
-                    drawPos -= pawnRenderer.BaseHeadOffsetAt(Rot4.North);
+                //    drawPos -= pawnRenderer.BaseHeadOffsetAt(Rot4.North);
                 }
                 else if (Pawn.CurrentBed().Rotation == Rot4.East)
                 {
 #if DEBUG
                 //    if (selected) Log.Message(string.Format("{0}", Pawn.CurrentBed().Rotation.ToStringHuman()));
 #endif
-                    drawPos.x += 0.3f;
+                //    drawPos.x += 0.3f;
                 }
                 else if (Pawn.CurrentBed().Rotation == Rot4.West)
                 {
 #if DEBUG
                 //    if (selected) Log.Message(string.Format("{0}", Pawn.CurrentBed().Rotation.ToStringHuman()));
 #endif
-                    drawPos.x -= 0.3f;
+                //    drawPos.x -= 0.3f;
                 }
                 drawPos.y = yvalue;
 #if DEBUG

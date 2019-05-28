@@ -78,7 +78,7 @@ namespace RRYautja
             {
             //    Log.Message(string.Format("1"));
                 Backstory pawnStoryC = pawn.story.childhood;
-                Backstory pawnStoryA = pawn.story.adulthood != null ? pawn.story.adulthood : null;
+                Backstory pawnStoryA = pawn.story.adulthood ?? null;
 
                 if (pawnStoryA != null)
                 {
@@ -350,7 +350,11 @@ namespace RRYautja
             }
             else if (markedDef == YautjaDefOf.RRY_Hediff_BloodedMCrusher)
             {
-                return DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(x => !x.race.defName.StartsWith("RRY_Xenomorph_") && (x.defName.Contains("Rhinoceros")|| x.defName.Contains("Elephant") || x.defName.Contains("Thrumbo"))).RandomElement();
+                return DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(x => !x.race.defName.StartsWith("RRY_Xenomorph_") && (x.defName.Contains("Rhinoceros") || x.defName.Contains("Elephant"))).RandomElement();
+            }
+            else if (markedDef == YautjaDefOf.RRY_Hediff_BloodedMThrumbo)
+            {
+                return DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(x => x.defName.Contains("Thrumbo")).RandomElement();
             }
             else if (markedDef == YautjaDefOf.RRY_Hediff_BloodedMHound)
             {

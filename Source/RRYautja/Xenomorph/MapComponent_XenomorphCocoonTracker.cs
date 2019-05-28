@@ -24,7 +24,7 @@ namespace RRYautja
                 else
                 {
                     IEnumerable<Thing> enumerable2 = hashSet.Concat(this.DomesticCocoons);
-                    enumerable = ((enumerable2 != null) ? enumerable2.ToList<Thing>() : null);
+                    enumerable = (enumerable2?.ToList<Thing>());
                 }
                 return new HashSet<Thing>(enumerable ?? null);
             }

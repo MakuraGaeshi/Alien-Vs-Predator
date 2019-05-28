@@ -118,8 +118,7 @@ namespace RRYautja
                 bool flag = false;
                 foreach (Thing thing in ((IEnumerable<Thing>)this.innerContainer))
                 {
-                    Pawn pawn = thing as Pawn;
-                    if (pawn != null)
+                    if (thing is Pawn pawn)
                     {
                         flag = true;
                         break;
@@ -146,8 +145,7 @@ namespace RRYautja
             ThingDef filth_Slime = ThingDefOf.Filth_Slime;
             foreach (Thing thing in ((IEnumerable<Thing>)this.innerContainer))
             {
-                Pawn pawn = thing as Pawn;
-                if (pawn != null)
+                if (thing is Pawn pawn)
                 {
                     PawnComponentsUtility.AddComponentsForSpawn(pawn);
                     pawn.filth.GainFilth(filth_Slime);
@@ -594,40 +592,36 @@ namespace RRYautja
         // Token: 0x06000018 RID: 24 RVA: 0x00003654 File Offset: 0x00001854
         private static PawnKindDef FindRandomSpacerPawnForSpawn()
         {
-            PawnKindDef result = null;
             GenCollection.TryRandomElement<PawnKindDef>(from td in DefDatabase<PawnKindDef>.AllDefs
-                                                        where td.RaceProps.Humanlike && (td.defaultFactionType !=null && td.defaultFactionType.techLevel > (TechLevel)4) && td.combatPower < 200f
-                                                        select td, out result);
+                                                        where td.RaceProps.Humanlike && (td.defaultFactionType != null && td.defaultFactionType.techLevel > (TechLevel)4) && td.combatPower < 200f
+                                                        select td, out PawnKindDef result);
             return result;
         }
 
         // Token: 0x06000018 RID: 24 RVA: 0x00003654 File Offset: 0x00001854
         private static PawnKindDef FindRandomPreSpacerPawnForSpawn()
         {
-            PawnKindDef result = null;
             GenCollection.TryRandomElement<PawnKindDef>(from td in DefDatabase<PawnKindDef>.AllDefs
                                                         where td.RaceProps.Humanlike && (td.defaultFactionType != null && td.defaultFactionType.techLevel < (TechLevel)5) && td.combatPower < 200f
-                                                        select td, out result);
+                                                        select td, out PawnKindDef result);
             return result;
         }
 
         // Token: 0x06000018 RID: 24 RVA: 0x00003654 File Offset: 0x00001854
         private static PawnKindDef FindRandomAnimalForSpawn()
         {
-            PawnKindDef result = null;
             GenCollection.TryRandomElement<PawnKindDef>(from td in DefDatabase<PawnKindDef>.AllDefs
                                                         where td.RaceProps.Animal && td.combatPower < 200f
-                                                        select td, out result);
+                                                        select td, out PawnKindDef result);
             return result;
         }
 
         // Token: 0x06000018 RID: 24 RVA: 0x00003654 File Offset: 0x00001854
         private static PawnKindDef FindRandomXenomorphForSpawn()
         {
-            PawnKindDef result = null;
             GenCollection.TryRandomElement<PawnKindDef>(from td in DefDatabase<PawnKindDef>.AllDefs
                                                         where td.race.defName.Contains("RRY_Xenomorph") && td.combatPower < 200f
-                                                        select td, out result);
+                                                        select td, out PawnKindDef result);
             return result;
         }
     }

@@ -10,12 +10,11 @@ namespace RimWorld
 		// Token: 0x06000416 RID: 1046 RVA: 0x0002C898 File Offset: 0x0002AC98
 		protected override IntVec3 GetFlagPosition(Pawn pawn)
 		{
-			HiveLike hivelike = pawn.mindState.duty.focus.Thing as HiveLike;
-			if (hivelike != null && hivelike.Spawned)
-			{
-				return hivelike.Position;
-			}
-			return pawn.Position;
+            if (pawn.mindState.duty.focus.Thing is HiveLike hivelike && hivelike.Spawned)
+            {
+                return hivelike.Position;
+            }
+            return pawn.Position;
 		}
 
 		// Token: 0x06000417 RID: 1047 RVA: 0x0002C8DE File Offset: 0x0002ACDE
