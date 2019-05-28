@@ -28,18 +28,10 @@
     <skillGains>
       <li>
         <defName>Shooting</defName>
-        <amount>1</amount>
-      </li>
-      <li>
-        <defName>Melee</defName>
         <amount>2</amount>
       </li>
       <li>
-        <defName>Construction</defName>
-        <amount>1</amount>
-      </li>
-      <li>
-        <defName>Mining</defName>
+        <defName>Melee</defName>
         <amount>2</amount>
       </li>
       <li>
@@ -55,21 +47,10 @@
         <amount>1</amount>
       </li>
       <li>
-        <defName>Crafting</defName>
-        <amount>2</amount>
-      </li>
-      <li>
         <defName>Medicine</defName>
         <amount>1</amount>
       </li>
-      <li>
-        <defName>Social</defName>
-        <amount>1</amount>
-      </li>
-      <li>
-        <defName>Intellectual</defName>
-        <amount>1</amount>
-      </li>
+      
     </skillGains>
 	<forcedHediffs>
       <!-- <li>RRY_Hediff_Unblooded</li> --> 
@@ -99,10 +80,17 @@
 	
     </workDisables>
 	<disallowedTraits>
-	
+		
     </disallowedTraits>
     <skillGains>
-	
+		<li>
+			<defName>Melee</defName>
+			<amount>2</amount>
+		</li>
+		<li>
+			<defName>Crafting</defName>
+			<amount>2</amount>
+		</li>
     </skillGains>
 	<forcedHediffs>
      <!-- <li>RRY_Hediff_Unblooded</li> -->
@@ -133,9 +121,13 @@
         <defName>Shooting</defName>
         <amount>4</amount>
       </li>
+	  <li>
+        <defName>Melee</defName>
+        <amount>4</amount>
+      </li>
       <li>
         <defName>Social</defName>
-        <amount>-2</amount>
+        <amount>-1</amount>
       </li>
     </skillGains>
     <spawnCategories>
@@ -161,7 +153,7 @@
     <skillGains>
       <li>
         <defName>Shooting</defName>
-        <amount>6</amount>
+        <amount>7</amount>
       </li>
       <li>
         <defName>Melee</defName>
@@ -201,15 +193,15 @@
     <skillGains>
       <li>
         <defName>Shooting</defName>
-        <amount>6</amount>
+        <amount>5</amount>
       </li>
       <li>
         <defName>Melee</defName>
-        <amount>6</amount>
+        <amount>4</amount>
       </li>
       <li>
         <defName>Social</defName>
-        <amount>-2</amount>
+        <amount>3</amount>
       </li>
     </skillGains>
     <spawnCategories>
@@ -240,8 +232,12 @@
         <amount>6</amount>
       </li>
       <li>
+        <defName>Melee</defName>
+        <amount>5</amount>
+      </li>
+	  <li>
         <defName>Social</defName>
-        <amount>-4</amount>
+        <amount>1</amount>
       </li>
     </skillGains>
     <spawnCategories>
@@ -251,8 +247,156 @@
       <li>RRY_Yautja_Blooded</li>
     </spawnCategories>
   </AlienRace.BackstoryDef>
- 
- <!-- ================================ Yautja - Bad Blood ================================ -->
+  
+  <!-- ================================ Yautja - Houndmaster ================================ -->
+  <AlienRace.BackstoryDef>
+    <defName>RRY_Yautja_Houndmaster</defName>
+    <title>Houndmaster</title>
+    <titleShort>Houndmaster</titleShort>
+	<linkedBackstory>RRY_Yautja_Unblooded</linkedBackstory>
+    <baseDescription>[PAWN_nameDef] spent is Blooded life hounding animals and learning how to control them. Instead of outright hunt his targets, [PAWN_nameDef] will prefer to flush them using animals.</baseDescription>
+    <bodyTypeGlobal>Male</bodyTypeGlobal>
+    <bodyTypeMale>Male</bodyTypeMale>
+    <bodyTypeFemale>Female</bodyTypeFemale>
+    <slot>Adulthood</slot>
+    <bioAgeRange>
+        <min>300</min>
+        <max>1000</max>
+    </bioAgeRange>
+    <workDisables>
+    </workDisables>
+    <skillGains>
+    <li>
+        <defName>Shooting</defName>
+        <amount>4</amount>
+    </li>
+   <li>
+        <defName>Animals</defName>
+        <amount>6</amount>
+    </li>
+	<li>
+		<defName>Plants</defName>
+		<amount>2</amount>
+	</li>
+    </skillGains>
+    <spawnCategories>
+      <li>RRY_Yautja_Standard</li>
+      <li>RRY_Yautja_Adult</li>
+      <li>RRY_Yautja_Hunter</li>
+      <li>RRY_Yautja_Elder</li>
+      <li>RRY_Yautja_Blooded</li>
+    </spawnCategories>
+  </AlienRace.BackstoryDef>
+  
+    <!-- ================================ Yautja - Pit Fighter ================================ -->
+  
+  <AlienRace.BackstoryDef>
+    <defName>RRY_Yautja_PitChampion</defName>
+    <title>Pit Fighter</title>
+    <titleShort>Fighter</titleShort>
+	<linkedBackstory>RRY_Yautja_Unblooded</linkedBackstory>
+    <baseDescription>In Yautja culture, you can either be chosen to go hunt or challenge someone for his place on a hunt in a pit fight. [PAWN_nameDef] always fought [PAWN_possessive] way to the hunts. [PAWN_pronoun] may not have been the smartest, but [PAWN_pronoun] never lost in the pit.</baseDescription>
+    <bodyTypeMale>Male</bodyTypeMale>
+    <bodyTypeFemale>Female</bodyTypeFemale>
+    <slot>Adulthood</slot>
+    <workDisables>
+		<li>Intellectual</li>
+	</workDisables>
+	<forcedTraits>
+		<li>
+			<defName>Bloodlust</defName>
+			<chance>30</chance>
+		</li>
+		<li>
+			<defName>Tough</defName>
+			<chance>50</chance>
+		</li>
+		<li>
+			<defName>Brawler</defName>
+			<chance>50</chance>
+		</li>
+	</forcedTraits>	
+    <skillGains>
+    <li>
+        <defName>Melee</defName>
+        <amount>9</amount>
+    </li>
+      
+    </skillGains>
+    <spawnCategories>
+      <li>RRY_Yautja_Standard</li>
+      <li>RRY_Yautja_Adult</li>
+      <li>RRY_Yautja_Hunter</li>
+      <li>RRY_Yautja_Elder</li>
+      <li>RRY_Yautja_Blooded</li>
+    </spawnCategories>
+  </AlienRace.BackstoryDef>
+  
+      <!-- ================================ Yautja - Smith ================================ -->
+  
+  <AlienRace.BackstoryDef>
+    <defName>RRY_Yautja_BlackSmith</defName>
+    <title>Black Smith</title>
+    <titleShort>Smith</titleShort>
+	<linkedBackstory>RRY_Yautja_Unblooded</linkedBackstory>
+    <baseDescription>Hunters are nothing without their tools. [PAWN_nameDef] is one of those rare Yautja whom create those tools. [PAWN_pronoun] takes pride in [PAWN_possessive] work and the other Hunters gave [PAWN_possessive] respect for it.</baseDescription>
+    <bodyTypeMale>Male</bodyTypeMale>
+    <bodyTypeFemale>Female</bodyTypeFemale>
+    <slot>Adulthood</slot>
+    <workDisables>
+		
+	</workDisables>
+	<forcedTraits>
+		<li>
+			<defName>Industriousness</defName>
+			<degree>1</degree>
+			<chance>30</chance>
+		</li>
+		<li>
+			<defName>Industriousness</defName>
+			<degree>2</degree>
+			<chance>15</chance>
+		</li>
+		<li>
+			<defName>Neurotic</defName>
+			<degree>1</degree>
+			<chance>45</chance>
+		</li>
+		<li>
+			<defName>Neurotic</defName>
+			<degree>2</degree>
+			<chance>20</chance>
+		</li>
+	</forcedTraits>
+    <skillGains>
+    <li>
+        <defName>Shooting</defName>
+        <amount>3</amount>
+    </li>
+    <li>
+        <defName>Crafting</defName>
+        <amount>5</amount>
+    </li>
+	<li>
+        <defName>Intellectual</defName>
+        <amount>3</amount>
+    </li>
+	<li>
+        <defName>Artistic</defName>
+        <amount>1</amount>
+    </li>
+    </skillGains>
+    <spawnCategories>
+      <li>RRY_Yautja_Standard</li>
+      <li>RRY_Yautja_Adult</li>
+      <li>RRY_Yautja_Hunter</li>
+      <li>RRY_Yautja_Elder</li>
+      <li>RRY_Yautja_Blooded</li>
+    </spawnCategories>
+  </AlienRace.BackstoryDef>
+  
+  <!-- ================================ Yautja - Bad Blood ================================ -->
+  
   <AlienRace.BackstoryDef>
     <defName>RRY_Yautja_BadBloodA</defName>
     <title>Bad Blood</title>
@@ -264,14 +408,48 @@
     <slot>Adulthood</slot>
     <workDisables>
     </workDisables>
+	<forcedTraits>
+		<li>
+			<defName>Bloodlust</defName>
+			<chance>70</chance>
+		</li>
+		<li>
+			<defName>Neurotic</defName>
+			<degree>1</degree>
+			<chance>50</chance>
+		</li>
+		<li>
+			<defName>Neurotic</defName>
+			<degree>2</degree>
+			<chance>30</chance>
+		</li>
+		<li>
+			<defName>Cannibal</defName>
+			<chance>35</chance>
+		</li>
+		<li>
+			<defName>Nerves</defName>
+			<degree>-2</degree>
+			<chance>30</chance>
+		</li>
+		<li>
+			<defName>Nerves</defName>
+			<degree>-1</degree>
+			<chance>50</chance>
+		</li>
+	</forcedTraits>	
     <skillGains>
       <li>
         <defName>Shooting</defName>
         <amount>4</amount>
       </li>
+	  <li>
+        <defName>Melee</defName>
+        <amount>6</amount>
+      </li>
       <li>
         <defName>Social</defName>
-        <amount>-2</amount>
+        <amount>-5</amount>
       </li>
     </skillGains>
     <spawnCategories>
@@ -291,12 +469,54 @@
     <slot>Adulthood</slot>
     <workDisables>
     </workDisables>
+	<forcedTraits>
+		<li>
+			<defName>Neurotic</defName>
+			<degree>1</degree>
+			<chance>30</chance>
+		</li>
+		<li>
+			<defName>Neurotic</defName>
+			<degree>2</degree>
+			<chance>10</chance>
+		</li>
+		<li>
+			<defName>Nerves</defName>
+			<degree>-1</degree>
+			<chance>25</chance>
+		</li>
+		<li>
+			<defName>Nerves</defName>
+			<degree>-2</degree>
+			<chance>10</chance>
+		</li>
+		<li>
+			<defName>Cannibal</defName>
+			<chance>40</chance>
+		</li>
+		<li>
+			<defName>Bloodlust</defName>
+			<chance>40</chance>
+		</li>
+	</forcedTraits>
     <skillGains>
       <li>
         <defName>Shooting</defName>
         <amount>4</amount>
       </li>
       <li>
+        <defName>Melee</defName>
+        <amount>4</amount>
+      </li>
+	  <li>
+        <defName>Cooking</defName>
+        <amount>1</amount>
+      </li>
+	  <li>
+        <defName>Crafting</defName>
+        <amount>1</amount>
+      </li>
+	  <li>
         <defName>Social</defName>
         <amount>-2</amount>
       </li>

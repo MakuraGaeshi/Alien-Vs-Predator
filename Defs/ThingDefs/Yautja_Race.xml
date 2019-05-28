@@ -384,44 +384,23 @@
         <thoughtSettings>
 			<cannotReceiveThoughts>
 				<li>AteHumanlikeMeatDirect</li>
-        <li>AteHumanlikeMeatAsIngredient</li>
+				<li>AteHumanlikeMeatAsIngredient</li>
 				<li>AteRawHumanlikeMeat</li>
+				<li>AteHumanlikeMeatDirectCannibal</li>
+				<li>AteHumanlikeMeatAsIngredientCannibal</li>
 				<li>ButcheredHumanlikeCorpse</li>
 				<li>KnowButcheredHumanlikeCorpse</li>
 				<li>ObservedLayingCorpse</li>
-				<li>SleptInBarracks</li>
-				<li>Naked</li>
-				<li>Disfigured</li>
-				<li>Pretty</li>
-				<li>Ugly</li>
 				<li>SoldPrisoner</li>
 				<li>KnowPrisonerDiedInnocent</li>
 				<li>ExecutedPrisoner</li>
 
 				<li>AteRawFood</li>
 
-				<li>AteWithoutTable</li>
 				<li>KnowPrisonerSold</li>
 				<li>KnowGuestOrganHarvested</li>
             </cannotReceiveThoughts>
-			<replacerList>
-                <li>
-                    <original>AteHumanlikeMeatDirect</original>
-                    <replacer>RRY_AteYautjaMeatDirect</replacer> 
-                </li>
-				<li>
-                    <original>AteHumanlikeMeatAsIngredient</original>
-                    <replacer>RRY_AteYautjaMeatAsIngredient</replacer> 
-                </li>
-				<li>
-                    <original>AteHumanlikeMeatDirectCannibal</original>
-                    <replacer>RRY_AteYautjaMeatDirectCannibal</replacer> 
-                </li>
-				<li>
-                    <original>AteHumanlikeMeatAsIngredientCannibal</original>
-                    <replacer>RRY_AteYautjaMeatAsIngredientCannibal</replacer> 
-                </li>
-				</replacerList>
+			
 			<ateThoughtSpecific>
                 <li>
                     <raceList>
@@ -429,6 +408,8 @@
                     </raceList>
                     <thought>RRY_AteYautjaMeatDirect</thought>
                     <ingredientThought>RRY_AteYautjaMeatAsIngredient</ingredientThought>
+					<thoughtCannibal>RRY_AteYautjaMeatDirectCannibal</thoughtCannibal>
+					<ingredientThoughtCannibal>RRY_AteYautjaMeatAsIngredientCannibal</ingredientThoughtCannibal>
                 </li>
             </ateThoughtSpecific>
 			 <butcherThoughtSpecific>
