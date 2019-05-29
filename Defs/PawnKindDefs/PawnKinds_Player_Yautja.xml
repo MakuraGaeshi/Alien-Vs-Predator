@@ -96,4 +96,25 @@
     <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
   </PawnKindDef>
   
+  <PawnKindDef ParentName="BaseYautjaPawnKind">
+    <defName>Colonist_Yautja_Blooding_RRY</defName>
+    <label>Yautja colonist</label>
+    <defaultFactionType>RRY_Yautja_PlayerColony</defaultFactionType>
+    <backstoryCategories>
+			<li>RRY_Yautja_Unblooded</li>
+  	</backstoryCategories>
+    <apparelTags>
+		<li>YautjaGreaves</li>
+		<li>YautjaWebbing</li>
+		<li>YautjaApparel</li>
+		<li>YautjaNormalArmour</li>
+		<li>YautjaWristblade</li>
+	</apparelTags>
+    <apparelMoney>
+      <min>1000</min>
+      <max>10000</max>
+    </apparelMoney>
+    <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
+  </PawnKindDef>
+  
 </Defs>
