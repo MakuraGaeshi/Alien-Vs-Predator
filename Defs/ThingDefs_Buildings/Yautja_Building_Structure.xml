@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+
 <Defs>
 
 
@@ -13,7 +14,7 @@
 		<leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
 		<filthLeaving>Filth_RubbleBuilding</filthLeaving>
 	</ThingDef>
-
+<!-- Commented out until we find a use for those and have a texture worth using, Also removed from research. - acide_bob - 2019/05/29
 	<ThingDef ParentName="RRY_WallBuildingBase">
     <defName>RRY_YautjaWall</defName>
     <label>Yautja Wall</label>
@@ -88,7 +89,7 @@
       </li>
     </damageMultipliers>
     <designationHotKey>Misc3</designationHotKey>
-  </ThingDef>
+  </ThingDef>-->
 	
 	
 

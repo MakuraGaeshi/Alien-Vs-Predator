@@ -8,6 +8,7 @@
     <tickerType>Normal</tickerType>
     <altitudeLayer>Pawn</altitudeLayer>
     <useHitPoints>false</useHitPoints>
+	
     <hasTooltip>true</hasTooltip>
     <soundImpactDefault>BulletImpact_Flesh</soundImpactDefault>
     <inspectorTabs>
@@ -73,6 +74,7 @@
       <foodType>CarnivoreAnimalStrict</foodType>
       <leatherDef>RRY_Leather_Xenomorph</leatherDef>
       <lifeExpectancy>2500</lifeExpectancy>
+	  <manhunterOnDamageChance>0.50</manhunterOnDamageChance>
     </race>
   </ThingDef>
 
