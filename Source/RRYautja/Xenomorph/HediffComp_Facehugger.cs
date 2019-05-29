@@ -34,8 +34,8 @@ namespace RRYautja
 
             Scribe_Defs.Look<PawnKindDef>(ref this.pawnKindDef, "pawnKindDef");
             Scribe_Defs.Look<HediffDef>(ref this.heDiffDeff, "heDiffDeff");
-            Scribe_References.Look<Pawn>(ref this.Instigator, "pawnRef");//, Props.pawn);
-            Scribe_Deep.Look<Pawn>(ref this.Instigator, "pawnRef");//, Props.pawn);
+            Scribe_References.Look<Pawn>(ref this.Instigator, "pawnRef", true);//, Props.pawn);
+            Scribe_Deep.Look<Pawn>(ref this.Instigator, "pawnRefDeep");//, Props.pawn);
 
         }
 

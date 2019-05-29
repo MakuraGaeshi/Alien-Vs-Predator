@@ -106,7 +106,7 @@ namespace RRYautja
             {
                 float ambientTemperature = this.parent.AmbientTemperature;
                 float num = 1f / (this.Props.hatcherDaystoHatch * 60000f);
-                if (this.gestateProgress<1f&& ambientTemperature>0)
+                if (this.gestateProgress<1f&& ambientTemperature> -20 && (this.parent.Spawned || this.ParentHolder is Pawn))
                 {
                     this.gestateProgress += num;
                 }

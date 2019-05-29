@@ -19,10 +19,12 @@ namespace RimWorld
         // Xenomorph DamageDefs Special
         public static DamageDef RRY_EmergingChestbursterDD;
 
-        // Xenomorph HefiffDefs RRY_Hediff_Cocooned
+        // Xenomorph HefiffDefs 
         public static HediffDef RRY_Hediff_Xenomorph_Hidden;
         public static HediffDef RRY_Hediff_Cocooned;
-        // Xenomorph HefiffDefs
+        public static HediffDef HypothermicSlowdown;
+
+        // Xenomorph HefiffDefs HypothermicSlowdown
         public static HediffDef RRY_FaceHuggerInfection;
         public static HediffDef RRY_XenomorphImpregnation;
         public static HediffDef RRY_HiddenXenomorphImpregnation;
@@ -103,5 +105,8 @@ namespace RimWorld
 
         // Neomorph ThingDefs Races
         public static ThingDef RRY_Xenomorph_Neomorph;
+
+        // Xenomorph FleshTypeDefs
+        public static FleshTypeDef RRY_Xenomorph;
     }
 }

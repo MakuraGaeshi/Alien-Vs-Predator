@@ -78,7 +78,12 @@ namespace RRYautja
         {
             return (Pawn)HarmonyPatches.int_Pawn_HealthTracker_GetPawn.GetValue(instance);
         }
-        
+
+        public static Pawn PawnRenderer_GetPawn(object instance)
+        {
+            return (Pawn)HarmonyPatches.pawnField_PawnRenderer.GetValue(instance);
+        }
+
         public static bool Patch_HealthUtility_AdjustSeverity(Pawn pawn, HediffDef hdDef, float sevOffset)
         {
             bool preflag = hdDef != XenomorphDefOf.RRY_FaceHuggerInfection || hdDef != XenomorphDefOf.RRY_XenomorphImpregnation || hdDef != XenomorphDefOf.RRY_HiddenXenomorphImpregnation || hdDef != XenomorphDefOf.RRY_NeomorphImpregnation || hdDef != XenomorphDefOf.RRY_HiddenNeomorphImpregnation;
@@ -216,24 +221,21 @@ namespace RRYautja
                 }
             }, "PushingCharacter", false, null);
         }
-        
-        public static Pawn PawnRenderer_GetPawn(object instance)
-        {
-            return (Pawn)HarmonyPatches.pawnField_PawnRenderer.GetValue(instance);
-        }
-        
+                
         public static void Patch_PawnRenderer_RenderPawnAt(PawnRenderer __instance, ref Vector3 drawLoc, ref RotDrawMode bodyDrawType, ref bool headStump)
         {
             Pawn pawn = HarmonyPatches.PawnRenderer_GetPawn(__instance);
-            foreach (var hd in pawn.health.hediffSet.hediffs)
+            if (pawn.RaceProps.Humanlike)
             {
-                HediffComp_DrawImplant comp = hd.TryGetComp<HediffComp_DrawImplant>();
-                if (comp != null)
+                foreach (var hd in pawn.health.hediffSet.hediffs)
                 {
-                    comp.DrawImplant();
+                    HediffComp_DrawImplant comp = hd.TryGetComp<HediffComp_DrawImplant>();
+                    if (comp != null)
+                    {
+                        comp.DrawImplant();
+                    }
                 }
             }
-
         }
         
         public static void PathOfNature(Pawn_PathFollower __instance, Pawn pawn, IntVec3 c, ref int __result)

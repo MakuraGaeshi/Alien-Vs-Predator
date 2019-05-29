@@ -70,28 +70,32 @@ namespace RRYautja
 #if DEBUG
                     if (selected) Log.Message(string.Format("{0}", Pawn.CurrentBed().Rotation.ToStringHuman()));
 #endif
-                //    drawPos -= pawnRenderer.BaseHeadOffsetAt(Rot4.South);
+                    drawPos.x -= pawnRenderer.BaseHeadOffsetAt(Rot4.South).x;
+                    drawPos.z -= pawnRenderer.BaseHeadOffsetAt(Rot4.South).z;
                 }
                 else if (Pawn.CurrentBed().Rotation == Rot4.North)
                 {
 #if DEBUG
                     if (selected) Log.Message(string.Format("{0}", Pawn.CurrentBed().Rotation.ToStringHuman()));
 #endif
-                //    drawPos -= pawnRenderer.BaseHeadOffsetAt(Rot4.North);
+                    drawPos.x += pawnRenderer.BaseHeadOffsetAt(Rot4.North).x;
+                    drawPos.z += pawnRenderer.BaseHeadOffsetAt(Rot4.North).z;
                 }
                 else if (Pawn.CurrentBed().Rotation == Rot4.East)
                 {
 #if DEBUG
                     if (selected) Log.Message(string.Format("{0}", Pawn.CurrentBed().Rotation.ToStringHuman()));
 #endif
-                //    drawPos.x += 0.3f;
+                    drawPos.x -= pawnRenderer.BaseHeadOffsetAt(Rot4.East).x;
+                    drawPos.z -= pawnRenderer.BaseHeadOffsetAt(Rot4.East).z;
                 }
                 else if (Pawn.CurrentBed().Rotation == Rot4.West)
                 {
 #if DEBUG
                     if (selected) Log.Message(string.Format("{0}", Pawn.CurrentBed().Rotation.ToStringHuman()));
 #endif
-                //    drawPos.x -= 0.3f;
+                    drawPos.x -= pawnRenderer.BaseHeadOffsetAt(Rot4.West).x;
+                    drawPos.z -= pawnRenderer.BaseHeadOffsetAt(Rot4.West).z;
                 }
                 drawPos.y = yvalue;
 #if DEBUG

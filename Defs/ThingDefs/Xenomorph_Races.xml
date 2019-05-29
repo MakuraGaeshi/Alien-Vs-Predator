@@ -73,6 +73,9 @@
       <foodType>CarnivoreAnimalStrict</foodType>
       <leatherDef>RRY_Leather_Xenomorph</leatherDef>
       <lifeExpectancy>2500</lifeExpectancy>
+      <hediffGiverSets>
+        <li>OrganicStandard</li>
+      </hediffGiverSets>
     </race>
   </ThingDef>
 

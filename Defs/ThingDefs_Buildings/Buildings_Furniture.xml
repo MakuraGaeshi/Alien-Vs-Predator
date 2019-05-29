@@ -89,5 +89,47 @@
     <defaultPlacingRot>South</defaultPlacingRot>
     <designationHotKey>Misc2</designationHotKey>
   </ThingDef>
-
+  
+	<!--
+  <ThingDef ParentName="BuildingBase">
+    <defName>RRY_Xenomorph_Cocoon</defName>
+    <label>cocoon</label>
+    <description>Designates a spot on the ground where people should sleep. Not comfortable.</description>
+    <thingClass>Building_XenomorphCocoon</thingClass>
+    <tickerType>Normal</tickerType>
+    <graphicData>
+      <texPath>Things/Buildings/Xenomorph/Cocoons/Xeno_Humanoid_Cocoon</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+      <drawSize>(1,1)</drawSize>
+    </graphicData>
+    <castEdgeShadows>false</castEdgeShadows>
+    <statBases>
+      <MaxHitPoints>75</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+      <Mass>2.5</Mass>
+      <BedRestEffectiveness>0.5</BedRestEffectiveness>
+      <ImmunityGainSpeedFactor>1.00</ImmunityGainSpeedFactor>
+      <Comfort>0.0</Comfort>
+      <WorkToBuild>600</WorkToBuild>
+    </statBases>
+    <comps>
+	
+    </comps>
+    <size>(1,1)</size>
+    <building>
+      <claimable>false</claimable>
+	  <bed_humanlike>false</bed_humanlike>
+      <bed_showSleeperBody>true</bed_showSleeperBody>
+      <bed_healPerDay>0</bed_healPerDay>
+      <bed_caravansCanUse>false</bed_caravansCanUse>
+      <ai_chillDestination>false</ai_chillDestination>
+    </building>
+    <pathCost>5</pathCost>
+    <passability>Standable</passability>
+    <rotatable>true</rotatable>
+    <defaultPlacingRot>South</defaultPlacingRot>
+    <designationHotKey>Misc2</designationHotKey>
+  </ThingDef>
+-->
  </Defs>

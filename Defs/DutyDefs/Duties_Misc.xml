@@ -83,13 +83,6 @@
           <mtbHours>1</mtbHours>
           <subNodes>
             <li Class="JobGiver_MaintainHiveLikes" />
-			<!-- Warrior Infectable Hunting -->
-			<li Class="ThinkNode_ConditionalPawnKind">
-			  <pawnKind>RRY_Xenomorph_Warrior</pawnKind>
-			  <subNodes>
-					<li Class="JobGiver_XenomorphManhunter" />
-			  </subNodes>
-			</li>
           </subNodes>
         </li>
         <li Class="JobGiver_MaintainHiveLikes">
@@ -147,13 +140,6 @@
           <targetAcquireRadius>50</targetAcquireRadius>
           <chaseTarget>false</chaseTarget>
         </li>
-			<!-- Warrior Infectable Hunting -->
-			<li Class="ThinkNode_ConditionalPawnKind">
-			  <pawnKind>RRY_Xenomorph_Warrior</pawnKind>
-			  <subNodes>
-					<li Class="JobGiver_XenomorphManhunter" />
-			  </subNodes>
-			</li>
 		<!-- Drone Gather Infectable Hunting -->
 		<li Class="ThinkNode_ConditionalPawnKind">
 		  <pawnKind>RRY_Xenomorph_Drone</pawnKind>
