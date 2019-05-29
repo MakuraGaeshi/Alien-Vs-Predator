@@ -25,6 +25,9 @@
   <MedicompTendSelf>Tend Self</MedicompTendSelf>
   <MedicompTendSelfDesc>Tend thier own wounds on the spot</MedicompTendSelfDesc>
    <!-- Xenomorph -->
+  <ColonistNeedsRescueFromCocoon>Colonist needs rescue from cocoon</ColonistNeedsRescueFromCocoon>
+  <ColonistsNeedRescueFromCocoon>Colonists need rescue from cocoon</ColonistsNeedRescueFromCocoon>
+  <ColonistsNeedRescueFromCocoonDesc>These colonists are incapacitated in a cocoon:\n\n{0}\nSend another colonist to rescue them and carry them back to bed.\n\n(To rescue, select another colonist, then right click on the victim and select Rescue. But beware.....</ColonistsNeedRescueFromCocoonDesc>
   <Xeno_Neospores_TriggerB>{0} thinks they hear a soft hiss from the {1}......</Xeno_Neospores_TriggerB>
   <Xeno_Neospores_Trigger>*softly hisses*</Xeno_Neospores_Trigger>
   <Xeno_Neospores_Added>{0} notices a slight haze around them and feels a slight pain in their {1}</Xeno_Neospores_Added>

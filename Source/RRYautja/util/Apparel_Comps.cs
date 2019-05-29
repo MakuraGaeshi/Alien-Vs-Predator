@@ -88,7 +88,7 @@ namespace RRYautja
                         float chanceBase = 0.01f;
                         chanceBase *= (this.parent.MaxHitPoints / this.parent.HitPoints); 
                         bool chance = Rand.Chance(chanceBase);
-                        Log.Message(string.Format("chance: {0}, {1} = {2} / {3}", chance, chanceBase, this.parent.MaxHitPoints,this.parent.HitPoints));
+                    //    Log.Message(string.Format("chance: {0}, {1} = {2} / {3}", chance, chanceBase, this.parent.MaxHitPoints,this.parent.HitPoints));
                         if (chance && !Armed)
                         {
                             StartFuse();

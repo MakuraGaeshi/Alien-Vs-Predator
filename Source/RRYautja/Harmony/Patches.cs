@@ -61,7 +61,6 @@ namespace RRYautja
         [HarmonyPostfix]
         public static void IgnoreCocooned(Pawn p, ref bool __result)
         {
-            Log.Message(string.Format("{0}", p));
             __result = __result && !(p.InBed() && p.CurrentBed() is Building_XenomorphCocoon);
         }
     }
@@ -100,7 +99,30 @@ namespace RRYautja
 
         }
     }
-    
+
+    [HarmonyPatch(typeof(Pawn_NeedsTracker), "NeedsTrackerTick", null)]
+    public static class Pawn_NeedsTracker_Patch
+    {
+        // Token: 0x06000F66 RID: 3942 RVA: 0x000CB228 File Offset: 0x000C9428
+        public static bool Prefix(Pawn_NeedsTracker __instance)
+        {
+            Traverse traverse = Traverse.Create(__instance);
+            Pawn pawn = (Pawn)Pawn_NeedsTracker_Patch.pawn.GetValue(__instance);
+            bool flag = pawn != null;
+            if (flag)
+            {
+                bool flag2 = pawn.InBed() && pawn.CurrentBed() is Building_XenomorphCocoon;
+                if (flag2)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        // Token: 0x04001015 RID: 4117
+        public static FieldInfo pawn = typeof(Pawn_NeedsTracker).GetField("pawn", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.GetField);
+    }
 
 
     [HarmonyPatch(typeof(Pawn), "Strip")]

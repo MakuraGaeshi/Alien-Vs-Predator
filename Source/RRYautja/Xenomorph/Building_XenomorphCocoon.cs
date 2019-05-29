@@ -47,7 +47,7 @@ namespace RimWorld
         {
             get
             {
-                return this.CurOccupants.Count() > 0 ? true : false;
+                return this.CurOccupants.Count() > 0;
             }
         }
 
@@ -65,7 +65,6 @@ namespace RimWorld
                     return new Graphic_Invisible();
                 }
             }
-
         }
         public Pawn LastOccupant;
         public int ticksSinceHeal;
@@ -82,12 +81,29 @@ namespace RimWorld
 			base.SpawnSetup(map, respawningAfterLoad);
 			Region validRegionAt_NoRebuild = map.regionGrid.GetValidRegionAt_NoRebuild(base.Position);
 			this.Medical = true;
-            this.def.graphicData.texPath = "DummyTexture";
+            //this.def.graphicData.texPath = "DummyTexture";
         }
 
         public override void Tick()
         {
             base.Tick();
+            if (Occupied)
+            {
+                if (CurOccupants.Count()>0)
+                {
+                    foreach (Pawn p in CurOccupants)
+                    {
+                        if (p.RaceProps.Humanlike)
+                        {
+                            this.def.building.bed_showSleeperBody = false;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                this.def.building.bed_showSleeperBody = true;
+            }
         }
 
         /*

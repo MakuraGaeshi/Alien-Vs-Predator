@@ -34,26 +34,7 @@ namespace RRYautja
             });
             MethodInfo method6 = typeof(HarmonyPatches).GetMethod("Patch_PawnRenderer_RenderPawnAt");
             harmony.Patch(method5, new HarmonyMethod(method6), null, null);
-
-            /*
-            MethodInfo method7 = typeof(HarmonyPatches).GetMethod("Patch_PawnRenderer_RenderPawnAt_XenomorphCocoon");
-            harmony.Patch(method5, null, new HarmonyMethod(method7), null);
-            */
-
-        //    harmony.Patch(AccessTools.Method(typeof(Pawn_DrawTracker), "DrawAt", null, null), null, new HarmonyMethod(typeof(HarmonyPatches), "DrawAt_PostFix", null), null);
             
-
-            //Patch_PawnRenderer_WigglerTick
-            /*
-            harmony.Patch(
-                original: AccessTools.Method(type: typeof(PawnRenderer), name: "WigglerTick"),
-                prefix: null,
-                postfix: new HarmonyMethod(type: typeof(HarmonyPatches), name: nameof(Patch_PawnRenderer_WigglerTick)));
-            */
-            /*
-            harmony.Patch(original: AccessTools.Method(type: typeof(PawnRenderer), name: nameof(PawnRenderer.BaseHeadOffsetAt)), prefix: null,
-                postfix: new HarmonyMethod(type: typeof(HarmonyPatches), name: nameof(BaseHeadOffsetAtPostfix)));
-*/
             harmony.Patch(AccessTools.Method(typeof(PawnRenderer), "RenderPawnAt", new Type[]
             {
                 typeof(Vector3),
@@ -61,14 +42,6 @@ namespace RRYautja
                 typeof(bool)
             }, null), new HarmonyMethod(typeof(HarmonyPatches), "PawnRenderer_Blur_Prefix", null), null, null);
             
-            /*
-            harmony.Patch(AccessTools.Method(typeof(PawnRenderer), "RenderPawnAt", new Type[]
-            {
-                typeof(Vector3),
-                typeof(RotDrawMode),
-                typeof(bool)
-            }, null), new HarmonyMethod(typeof(HarmonyPatches), "PawnRenderer_XenosColour_Prefix", null), null, null);
-            */
             harmony.Patch(
                 original: AccessTools.Method(type: typeof(AlienPartGenerator.BodyAddon), name: "CanDrawAddon"),
                 prefix: new HarmonyMethod(type: typeof(HarmonyPatches), name: nameof(Pre_CanDrawAddon_Cloak)),
@@ -79,22 +52,6 @@ namespace RRYautja
                 prefix: new HarmonyMethod(type: typeof(HarmonyPatches), name: nameof(Pre_DrawEquipment_Cloak)),
                 postfix: null);
 
-            // Verse.HealthUtility
-            //Patch_HealthUtility_AdjustSeverity
-            /*
-            harmony.Patch(
-                original: AccessTools.Method(type: typeof(Hediff), name: "Tick"),
-                prefix: new HarmonyMethod(type: typeof(HarmonyPatches), name: nameof(Patch_Prefix_Hediff_Tick)),
-                postfix: new HarmonyMethod(type: typeof(HarmonyPatches), name: nameof(Patch_Postix_Hediff_Tick)));
-            */
-
-            //Patch_PawnRenderer_WigglerTick
-            /*
-            harmony.Patch(
-                original: AccessTools.Method(type: typeof(PawnRenderer), name: "WigglerTick"),
-                prefix: null,
-                postfix: new HarmonyMethod(type: typeof(HarmonyPatches), name: nameof(Patch_PawnRenderer_WigglerTick)));
-            */
             //DeathActionWorker_BigExplosion
             harmony.Patch(
                 original: AccessTools.Method(type: typeof(DeathActionWorker_BigExplosion), name: "PawnDied"),
@@ -104,13 +61,6 @@ namespace RRYautja
             harmony.Patch(
                 AccessTools.Method(typeof(PawnGenerator), "GeneratePawn", new[] { typeof(PawnGenerationRequest) }), null,
                 new HarmonyMethod(typeof(HarmonyPatches), nameof(Post_GeneratePawn_Yautja)));
-            /*
-            harmony.Patch(
-                AccessTools.Method(typeof(DownedRefugeeQuestUtility), "GenerateRefugee", new[] { typeof(Pawn) }), null,
-                new HarmonyMethod(typeof(HarmonyPatches), nameof(Post_GenerateRefugee_Yautja)));
-            */
-            //    harmony.Patch(AccessTools.Method(typeof(Corpse), "RareTick", null, null), new HarmonyMethod(typeof(HarmonyPatches), "RareTickPostfix", null), null, null);
-
 
             Type typeFromHandle22 = typeof(Pawn_HealthTracker);
             HarmonyPatches.int_Pawn_HealthTracker_GetPawn = typeFromHandle22.GetField("pawn", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.GetField);
@@ -123,13 +73,12 @@ namespace RRYautja
         }
 
         public static FieldInfo int_Pawn_HealthTracker_GetPawn;
-        // Token: 0x060000BB RID: 187 RVA: 0x000072B4 File Offset: 0x000054B4
+
         public static Pawn Pawn_HealthTracker_GetPawn(Pawn_HealthTracker instance)
         {
             return (Pawn)HarmonyPatches.int_Pawn_HealthTracker_GetPawn.GetValue(instance);
         }
-
-        // Token: 0x060000C2 RID: 194 RVA: 0x000073C8 File Offset: 0x000055C8
+        
         public static bool Patch_HealthUtility_AdjustSeverity(Pawn pawn, HediffDef hdDef, float sevOffset)
         {
             bool preflag = hdDef != XenomorphDefOf.RRY_FaceHuggerInfection || hdDef != XenomorphDefOf.RRY_XenomorphImpregnation || hdDef != XenomorphDefOf.RRY_HiddenXenomorphImpregnation || hdDef != XenomorphDefOf.RRY_NeomorphImpregnation || hdDef != XenomorphDefOf.RRY_HiddenNeomorphImpregnation;
@@ -152,6 +101,7 @@ namespace RRYautja
             }
             return result;
         }
+
         public static void BaseHeadOffsetAtPostfix(PawnRenderer __instance, ref Vector3 __result)
         {
             Pawn pawn = Traverse.Create(root: __instance).Field(name: "pawn").GetValue<Pawn>();
@@ -166,8 +116,7 @@ namespace RRYautja
             __result.x += offset.x;
             __result.z += offset.y;
         }
-
-
+        
         public static bool Pre_CanDrawAddon_Cloak(Pawn pawn)
         {
             bool flag = pawn.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked, false);
@@ -178,8 +127,7 @@ namespace RRYautja
             }
             return true;
         }
-
-        //PawnRenderer DrawEquipment
+        
         public static bool Pre_DrawEquipment_Cloak(Vector3 rootLoc, PawnRenderer __instance)
         {
             Pawn pawn = HarmonyPatches.PawnRenderer_GetPawn(__instance);
@@ -190,8 +138,7 @@ namespace RRYautja
             }
             return true;
         }
-
-        //PawnRenderer PawnDied
+        
         public static bool Pre_PawnDied_Facehugger(Corpse corpse, DeathActionWorker_BigExplosion __instance)
         {
         //    Log.Message(string.Format("{0}", corpse.Label));
@@ -202,9 +149,7 @@ namespace RRYautja
             }
             return true;
         }
-
-
-        // Token: 0x060000EB RID: 235 RVA: 0x00008E6C File Offset: 0x0000706C
+        
         public static Vector3 PushResult(Thing Caster, Thing thingToPush, int pushDist, out bool collision)
         {
             Vector3 vector = GenThing.TrueCenter(thingToPush);
@@ -243,8 +188,7 @@ namespace RRYautja
             collision = flag;
             return result;
         }
-
-        // Token: 0x060000EC RID: 236 RVA: 0x00008F44 File Offset: 0x00007144
+        
         public static void PushEffect(Thing Caster, Thing target, int distance, bool damageOnCollision = false)
         {
             if (target is Building)
@@ -272,14 +216,12 @@ namespace RRYautja
                 }
             }, "PushingCharacter", false, null);
         }
-
-
+        
         public static Pawn PawnRenderer_GetPawn(object instance)
         {
             return (Pawn)HarmonyPatches.pawnField_PawnRenderer.GetValue(instance);
         }
-
-        // Token: 0x0600000C RID: 12 RVA: 0x0000283C File Offset: 0x00000A3C
+        
         public static void Patch_PawnRenderer_RenderPawnAt(PawnRenderer __instance, ref Vector3 drawLoc, ref RotDrawMode bodyDrawType, ref bool headStump)
         {
             Pawn pawn = HarmonyPatches.PawnRenderer_GetPawn(__instance);
@@ -293,208 +235,7 @@ namespace RRYautja
             }
 
         }
-
-        public static void DrawAt_PostFix(Pawn_DrawTracker __instance, Vector3 loc)
-        {
-            Pawn pawn = (Pawn)AccessTools.Field(typeof(Pawn_DrawTracker), "pawn").GetValue(__instance);
-            
-            bool flag = pawn.CurrentBed()!=null && pawn.Spawned;
-            if (flag)
-            {
-                bool flag2 = pawn.CurrentBed() is Building_XenomorphCocoon;
-                if (flag2)
-                {
-                    loc = new Vector3(loc.x+0.5f, loc.y, loc.z);
-                }
-
-            }
-        }
-
-        /*
-        // Token: 0x0600000C RID: 12 RVA: 0x0000283C File Offset: 0x00000A3C
-        public static void Patch_PawnRenderer_RenderPawnAt_XenomorphCocoon(PawnRenderer __instance, ref Vector3 drawLoc, ref RotDrawMode bodyDrawType, ref bool headStump)
-        {
-            Pawn pawn = HarmonyPatches.PawnRenderer_GetPawn(__instance);
-            bool selected = Find.Selector.SelectedObjects.Contains(pawn);
-            if (pawn.InBed() && pawn.CurrentBed() is Building_XenomorphCocoon)
-            {
-                Rot4 rot = pawn.Rotation;
-                Building_Bed building_Bed = pawn.CurrentBed();
-                bool flag = building_Bed is Building_XenomorphCocoon;
-                bool renderBody;
-                float angle;
-                Vector3 rootLoc;
-                if (building_Bed != null && pawn.RaceProps.Humanlike && flag)
-                {
-                    
-                    renderBody = building_Bed.def.building.bed_showSleeperBody;
-                    Rot4 rotation = building_Bed.Rotation;
-                    rotation.AsInt += 2;
-                    angle = rotation.AsAngle;
-                    AltitudeLayer altLayer = (AltitudeLayer)Mathf.Max((int)building_Bed.def.altitudeLayer, 15);
-                    Vector3 vector2 = pawn.Position.ToVector3ShiftedWithAltitude(altLayer);
-                    Vector3 vector3 = vector2;
-                    vector3.y += 0.02734375f;
-                    float d = -__instance.BaseHeadOffsetAt(Rot4.South).z;
-                    d = -__instance.BaseHeadOffsetAt(Rot4.South).z;
-                    Vector3 a = rotation.FacingCell.ToVector3();
-                    rootLoc = vector2 + a * d;
-                    rootLoc.y += 0.0078125f;
-                    rootLoc.x += 0.5f;
-                    if (selected) Log.Message(string.Format("Patch_PawnRenderer_RenderPawnAt_XenomorphCocoon 4 Old Drawloc {0}", drawLoc));
-                    if (selected) Log.Message(string.Format("Patch_PawnRenderer_RenderPawnAt_XenomorphCocoon 5 Old pawn.DrawPos {0}", pawn.DrawPos));
-                    drawLoc = rootLoc;
-                    if (selected) Log.Message(string.Format("Patch_PawnRenderer_RenderPawnAt_XenomorphCocoon 6 new Drawloc {0}", drawLoc));
-                    if (selected) Log.Message(string.Format("Patch_PawnRenderer_RenderPawnAt_XenomorphCocoon 7 new pawn.DrawPos {0}", pawn.DrawPos));
-                    
-                    if (building_Bed.Rotation == Rot4.North)
-                    {
-                        drawLoc.z -= 0.5f;
-                    }
-                    if (building_Bed.Rotation == Rot4.South)
-                    {
-                        drawLoc.z += 0.5f;
-                    }
-                    if (building_Bed.Rotation == Rot4.East)
-                    {
-                        drawLoc.x += 0.5f;
-                    }
-                    if (building_Bed.Rotation == Rot4.West)
-                    {
-                        drawLoc.x += 0.5f;
-                    }
-                }
-            }
-
-
-        }
-    */
-        // Patch_PawnRenderer_WigglerTick
-        /*
-        public static void Patch_PawnRenderer_WigglerTick(PawnRenderer __instance)
-        {
-            Pawn pawn = HarmonyPatches.PawnRenderer_GetPawn(__instance);
-            foreach (var hd in pawn.health.hediffSet.hediffs)
-            {
-                HediffComp_XenoSpawner comp = hd.TryGetComp<HediffComp_XenoSpawner>();
-                if (comp != null)
-                {
-                    int num = Find.TickManager.TicksGame % 300 * 2;
-                    if (num < 90)
-                    {
-                        this.downedAngle += 0.35f;
-                    }
-                    else if (num < 390 && num >= 300)
-                    {
-                        this.downedAngle -= 0.35f;
-                    }
-                }
-            }
-
-        }
-        */
-        /*
         
-					int num = Find.TickManager.TicksGame % 300 * 2;
-					if (num < 90)
-					{
-						this.downedAngle += 0.35f;
-					}
-					else if (num < 390 && num >= 300)
-					{
-						this.downedAngle -= 0.35f;
-					}
-        */
-
-        // Patch_HealthUtility_AdjustSeverity
-
-        public static bool Patch_Prefix_Hediff_Tick(Hediff __instance)
-        {
-            //    Log.Message(string.Format("Patch_Hediff_Tick {0} on {1}", __instance, __instance.pawn));
-            bool selected = __instance.pawn.Map != null ? Find.Selector.SelectedObjects.Contains(__instance.pawn) : false;
-            bool result = true;
-            if (__instance.pawn.InBed() && __instance.pawn.CurrentBed() is Building_XenomorphCocoon)
-            {
-                result = false;
-
-                if (__instance.pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned))
-                {
-                    result = __instance.def == XenomorphDefOf.RRY_FaceHuggerInfection || __instance.def == XenomorphDefOf.RRY_HiddenNeomorphImpregnation || __instance.def == XenomorphDefOf.RRY_HiddenXenomorphImpregnation || __instance.def == XenomorphDefOf.RRY_NeomorphImpregnation || __instance.def == XenomorphDefOf.RRY_XenomorphImpregnation || __instance.def == XenomorphDefOf.RRY_Hediff_Cocooned || !__instance.def.isBad;
-                    if (selected && result == false) Log.Message(string.Format("Hediff {0}", __instance.def));
-                    if (result == false)
-                    {
-                        if (selected) Log.Message(string.Format("Prefix Tick Hediff: {0}, Severity: {1}", __instance.def, __instance.Severity));
-                        
-                    }
-                }
-            }
-            if (selected && result == false) Log.Message(string.Format("{0} Hediff allowed: {1}, suspending: {2}", __instance.def, result, !result));
-            return result;
-        }
-
-        public static void Patch_Postix_Hediff_Tick(Hediff __instance)
-        {
-            //    Log.Message(string.Format("Patch_Hediff_Tick {0} on {1}", __instance, __instance.pawn));
-            bool selected = __instance.pawn.Map != null ? Find.Selector.SelectedObjects.Contains(__instance.pawn) : false;
-            bool result = false;
-            if (__instance.pawn.InBed() && __instance.pawn.CurrentBed() is Building_XenomorphCocoon)
-            {
-                result = false;
-
-                if (__instance.pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned))
-                {
-                    result = __instance.def == XenomorphDefOf.RRY_FaceHuggerInfection || __instance.def == XenomorphDefOf.RRY_HiddenNeomorphImpregnation || __instance.def == XenomorphDefOf.RRY_HiddenXenomorphImpregnation || __instance.def == XenomorphDefOf.RRY_NeomorphImpregnation || __instance.def == XenomorphDefOf.RRY_XenomorphImpregnation || __instance.def == XenomorphDefOf.RRY_Hediff_Cocooned || !__instance.def.isBad;
-                    if (selected && result == false) Log.Message(string.Format("Hediff {0}", __instance.def));
-                    if (result == false && __instance.Bleeding)
-                    {
-                        if (selected) Log.Message(string.Format("Postix Tick Hediff: {0}, Severity: {1}", __instance.def, __instance.Severity));
-
-                    }
-                }
-            }
-         //   if (selected) Log.Message(string.Format("Patch_Postix_Hediff_Tick {0} Hediff, suspending: {1}", __instance.def, !result));
-        }
-
-        // Token: 0x0600000C RID: 12 RVA: 0x0000283C File Offset: 0x00000A3C
-        public static void RareTickPostfix(Corpse __instance)
-        {
-            if (XenomorphUtil.IsInfectedPawn(__instance.InnerPawn))
-            {
-                HediffWithComps hediff = null;
-                if (__instance.InnerPawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection))
-                {
-                    hediff = (HediffWithComps)__instance.InnerPawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_FaceHuggerInfection);
-                }
-                else if (__instance.InnerPawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation))
-                {
-                    hediff = (HediffWithComps)__instance.InnerPawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_XenomorphImpregnation);
-                }
-                else if (__instance.InnerPawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation))
-                {
-                    hediff = (HediffWithComps)__instance.InnerPawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_HiddenXenomorphImpregnation);
-                }
-                else if (__instance.InnerPawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_NeomorphImpregnation))
-                {
-                    hediff = (HediffWithComps)__instance.InnerPawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_NeomorphImpregnation);
-                }
-                else if (__instance.InnerPawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenNeomorphImpregnation))
-                {
-                    hediff = (HediffWithComps)__instance.InnerPawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_HiddenNeomorphImpregnation);
-                }
-                if (hediff!=null)
-                {
-                    for (int i = 0; i <= 250; i++)
-                    {
-                    //    float sev = 0f;
-                    //    hediff.TryGetComp<HediffComp_XenoSpawner>().CompPostTick(ref sev);
-                        hediff.PostTick();
-                    }
-                }
-            }
-
-        }
-
-        // Verse.AI.Pawn_PathFollower
         public static void PathOfNature(Pawn_PathFollower __instance, Pawn pawn, IntVec3 c, ref int __result)
         {
             if (pawn?.GetComp<Comp_Yautja>() is Comp_Yautja comp_Yautja || pawn?.GetComp<Comp_Xenomorph>() is Comp_Xenomorph comp_Xenomorph)
@@ -553,20 +294,17 @@ namespace RRYautja
                 __result = Mathf.Max(num, 1);
             }
         }
-
-
+        
         public static bool PawnRenderer_Blur_Prefix(PawnRenderer __instance, ref Vector3 drawLoc, ref RotDrawMode bodyDrawType, bool headStump)
         {
             Pawn value = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
             PawnGraphicSet value2 = Traverse.Create(__instance).Field("graphics").GetValue<PawnGraphicSet>();
-            //graphics // (pawn.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked)|| pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden))
             bool flag = (value.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked) || value.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden));
             if (flag)
             {
                 if (value.kindDef.race.GetType() == typeof(AlienRace.ThingDef_AlienRace))
                 {
                     bool selected = Find.Selector.SingleSelectedThing == value;
-                //    if (selected) Log.Message(string.Format("A Foul Xenos"));
                 }
                 __instance.graphics = new PawnGraphicSet_Invisible(value)
                 {
@@ -583,29 +321,7 @@ namespace RRYautja
             }
             return true;
         }
-
-        public static bool PawnRenderer_XenosColour_Prefix(PawnRenderer __instance, ref Vector3 drawLoc, ref RotDrawMode bodyDrawType, bool headStump)
-        {
-            Pawn value = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
-            bool selected = Find.Selector.SingleSelectedThing == value;
-            PawnGraphicSet value2 = Traverse.Create(__instance).Field("graphics").GetValue<PawnGraphicSet>();
-            Comp_Xenomorph _Xenomorph = value.TryGetComp<Comp_Xenomorph>();
-            if (_Xenomorph!=null)
-            {
-                if (_Xenomorph.host != null)
-                {
-                //    if (selected) Log.Message(string.Format("Old value.kindDef.lifeStages[0].bodyGraphicData.color: {0}", value.kindDef.lifeStages[0].bodyGraphicData.color));
-                //    if (selected) Log.Message(string.Format("_Xenomorph.host.race.race.BloodDef.graphicData.color: {0}", _Xenomorph.host.race.race.BloodDef.graphicData.color));
-                    value.kindDef.lifeStages[0].bodyGraphicData.color =
-                    _Xenomorph.host.race.race.BloodDef.graphicData.color;
-                //    if (selected) Log.Message(string.Format("New value.kindDef.lifeStages[0].bodyGraphicData.color: {0}", value.kindDef.lifeStages[0].bodyGraphicData.color));
-                }
-                else if (selected) Log.Message(string.Format("_Xenomorph.host: null"));
-            }
-            else if (selected) Log.Message(string.Format("_Xenomorph: null"));
-            return true;
-        }
-
+        
         public static void Post_GeneratePawn_Yautja(PawnGenerationRequest request, ref Pawn __result)
         {
             if (__result.kindDef.race == YautjaDefOf.RRY_Alien_Yautja)
@@ -767,16 +483,7 @@ namespace RRYautja
                 __result.health.AddHediff(def, __result.RaceProps.body.corePart, null);
             }
         }
-
-        public static void Post_GenerateRefugee_Yautja(Pawn request, ref Pawn __result)
-        {
-            
-            if (Find.FactionManager.OfPlayer.def == YautjaDefOf.RRY_Yautja_PlayerBlooded || Find.FactionManager.OfPlayer.def == YautjaDefOf.RRY_Yautja_PlayerColony || Find.FactionManager.OfPlayer.def == YautjaDefOf.RRY_Yautja_PlayerUnblooded)
-            {
-            //    Log.Message(string.Format("Refugee Yautja"));
-            }
-        }
-
+        
         private static FieldInfo pawnField_PawnRenderer;
     }
 }

@@ -29,6 +29,14 @@ namespace RimWorld
         public Thing eggThing;
         public Thing hiveThing;
 
+        private List<Rot4> Rotlist = new List<Rot4>
+        {
+            Rot4.North,
+            Rot4.South,
+            Rot4.East,
+            Rot4.West
+        };
+
         // Token: 0x060004D1 RID: 1233 RVA: 0x0003100C File Offset: 0x0002F40C
         protected override Job TryGiveJob(Pawn pawn)
         {
@@ -78,6 +86,8 @@ namespace RimWorld
                         c = cocoonThing != null && !cocoonOccupied ? cocoonThing.Position : hiveThing.Position;
                         if (c == hiveThing.Position)
                         {
+                            /*
+                            Rot4 rot = Rotlist.RandomElement();
                             int radius = 2;
                             ThingDef named = XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon;
                             int num = (named.Size.x > named.Size.z) ? named.Size.x : named.Size.z;
@@ -94,6 +104,25 @@ namespace RimWorld
                             if (intVec != null)
                             {
                                 GenPlace.TryPlaceThing(TryMakeCocoon(mapRect, pawn.Map, named), intVec, pawn.Map, ThingPlaceMode.Near);
+                            }
+                            c = intVec;
+                            */
+                            Rot4 rot = Rotlist.RandomElement();
+                            int radius = 3;
+                            ThingDef named = XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon;
+                            Thing thing = ThingMaker.MakeThing(named);
+                            IntVec3 intVec = CellFinder.RandomClosewalkCellNear(c, pawn.Map, radius, (x => (x.Roofed(pawn.Map) && hiveThing.Position.Roofed(pawn.Map) || (!x.Roofed(pawn.Map) && !hiveThing.Position.Roofed(pawn.Map)))));
+                            CellRect mapRect = new CellRect(intVec.x-1, intVec.z-1, 3, 3);
+                            while (!IsMapRectClear(mapRect, pawn.Map))
+                            {
+                                intVec = CellFinder.RandomClosewalkCellNear(c, pawn.Map, radius, (x => (x.Roofed(pawn.Map) && hiveThing.Position.Roofed(pawn.Map) || (!x.Roofed(pawn.Map) && !hiveThing.Position.Roofed(pawn.Map)))));
+                                mapRect = new CellRect(intVec.x - 1, intVec.z - 1, 3, 3);
+                                radius++;
+
+                            }
+                            if (intVec != null)
+                            {
+                                GenSpawn.Spawn(thing, intVec, pawn.Map, rot, WipeMode.Vanish, false);
                             }
                             c = intVec;
                         }
@@ -219,7 +248,7 @@ namespace RimWorld
         {
             mapRect.ClipInsideMap(map);
             CellRect cellRect;
-            cellRect = new CellRect(mapRect.BottomLeft.x + 1, mapRect.BottomLeft.z + 1, 2, 1);
+            cellRect = new CellRect(mapRect.BottomLeft.x + 1, mapRect.TopRight.z + 1, 2, 1);
             cellRect.ClipInsideMap(map);
             IsMapRectClear(cellRect, map);
             foreach (IntVec3 intVec in cellRect)
@@ -235,7 +264,7 @@ namespace RimWorld
                 }
             }
             Building_XenomorphCocoon building_XenomorphCocoon = (Building_XenomorphCocoon)ThingMaker.MakeThing(thingDef, null);
-            building_XenomorphCocoon.SetPositionDirect(cellRect.CenterCell);
+            building_XenomorphCocoon.SetPositionDirect(cellRect.RandomCell);
             bool flag2 = Rand.Value < 0.5f;
             if (flag2)
             {
