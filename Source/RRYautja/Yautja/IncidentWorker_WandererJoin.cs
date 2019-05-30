@@ -35,7 +35,7 @@ namespace RRYautja
             PawnKindDef pawnKind = this.def.pawnKind;
             Faction ofPlayer = Faction.OfPlayer;
 
-            Log.Message(string.Format("{0}", ofPlayer.def.defName));
+            //Log.Message(string.Format("{0}", ofPlayer.def.defName));
             var list = (from def in DefDatabase<PawnKindDef>.AllDefs
                         where ((def.race == ofPlayer.def.basicMemberKind.race) && (def.defName.Contains("StrangerInBlack")))
                         select def).ToList();
@@ -53,7 +53,7 @@ namespace RRYautja
             }
 
             pawnKind.defaultFactionType = ofPlayer.def;
-            Log.Message(string.Format("{0}", pawnKind.defName));
+            //Log.Message(string.Format("{0}", pawnKind.defName));
             bool pawnMustBeCapableOfViolence = this.def.pawnMustBeCapableOfViolence;
             Gender? fixedGender = gender;
             PawnGenerationRequest request = new PawnGenerationRequest(pawnKind, ofPlayer, PawnGenerationContext.NonPlayer, -1, true, false, false, false, true, pawnMustBeCapableOfViolence, 20f, false, true, true, false, false, false, false, null, null, null, null, null, fixedGender, null, null);

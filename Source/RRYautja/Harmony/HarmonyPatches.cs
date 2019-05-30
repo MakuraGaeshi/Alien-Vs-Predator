@@ -26,6 +26,7 @@ namespace RRYautja
 
             Type typeFromHandle3 = typeof(PawnRenderer);
             HarmonyPatches.pawnField_PawnRenderer = typeFromHandle3.GetField("pawn", BindingFlags.Instance | BindingFlags.NonPublic);
+            /*
             MethodInfo method5 = typeFromHandle3.GetMethod("RenderPawnAt", new Type[]
             {
                 typeof(Vector3),
@@ -34,7 +35,7 @@ namespace RRYautja
             });
             MethodInfo method6 = typeof(HarmonyPatches).GetMethod("Patch_PawnRenderer_RenderPawnAt");
             harmony.Patch(method5, new HarmonyMethod(method6), null, null);
-            
+            */
             harmony.Patch(AccessTools.Method(typeof(PawnRenderer), "RenderPawnAt", new Type[]
             {
                 typeof(Vector3),
@@ -65,7 +66,8 @@ namespace RRYautja
             Type typeFromHandle22 = typeof(Pawn_HealthTracker);
             HarmonyPatches.int_Pawn_HealthTracker_GetPawn = typeFromHandle22.GetField("pawn", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.GetField);
 
-            harmony.Patch(AccessTools.Method(typeof(PawnRenderer), "BaseHeadOffsetAt", null, null), null, new HarmonyMethod(typeof(HarmonyPatches), "BaseHeadOffsetAtPostfix", null), null);
+         //   harmony.Patch(AccessTools.Method(typeof(PawnRenderer), "BaseHeadOffsetAt", null, null), null, new HarmonyMethod(typeof(HarmonyPatches), "BaseHeadOffsetAtPostfix", null), null);
+
             Type typeFromHandle6 = typeof(Pawn_HealthTracker);
             harmony.Patch(typeFromHandle6.GetMethod("DropBloodFilth"), new HarmonyMethod(typeof(HarmonyPatches).GetMethod("Patch_Pawn_HealthTracker_DropBloodFilth")), null, null);
 
@@ -114,7 +116,7 @@ namespace RRYautja
             Vector2 offset = Vector2.zero;
             if (pawn.InBed() && pawn.CurrentBed() is Building_XenomorphCocoon cocoonthing)
             {
-                Log.Message(string.Format("true"));
+             //   Log.Message(string.Format("true"));
                 if (cocoonthing.Rotation == Rot4.North)
                 {
                     __result.z -= 0.5f;
@@ -122,7 +124,7 @@ namespace RRYautja
             }
             else
             {
-                Log.Message(string.Format("false"));
+             //   Log.Message(string.Format("false"));
             }
             __result.x += offset.x;
             __result.z += offset.y;
@@ -238,7 +240,7 @@ namespace RRYautja
                     HediffComp_DrawImplant comp = hd.TryGetComp<HediffComp_DrawImplant>();
                     if (comp != null)
                     {
-                        comp.DrawImplant();
+                        comp.DrawImplant(drawLoc);
                     }
                 }
             } // DrawWornExtras()

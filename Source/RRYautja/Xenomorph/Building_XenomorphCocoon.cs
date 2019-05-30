@@ -71,9 +71,6 @@ namespace RimWorld
         public int healIntervalTicks = 60;
         public int ticksSinceOccupied;
         public int occupiedIntervalTicks = 100;
-        private float BloodlossSev = 0f;
-        private float MalnutritionSev = 0f;
-        private float NutritionNeed = 0f;
 
         // Token: 0x060024D6 RID: 9430 RVA: 0x001183A8 File Offset: 0x001167A8
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
@@ -102,6 +99,27 @@ namespace RimWorld
             }
             else
             {
+                List<IntVec3> celllist = this.CellsAdjacent8WayAndInside().ToList();
+                if (!celllist.NullOrEmpty())
+                {
+                    foreach (var cell in celllist)
+                    {
+                        if (cell.GetFirstPawn(this.Map) != null && cell.GetFirstPawn(this.Map) is Pawn p)
+                        {
+                        //    Log.Message(string.Format("{0}", cell.GetFirstPawn(this.Map)));
+                            if (p.Downed && !p.InBed() && !(p.kindDef.race.defName.Contains("RRY_Xenomorph_")))
+                            {
+                                Log.Message(string.Format("{0} tucking", p));
+                                p.jobs.Notify_TuckedIntoBed(this);
+                                p.mindState.Notify_TuckedIntoBed();
+                            }
+                        }
+                    }
+                }
+                else if (this.owners.NullOrEmpty())
+                {
+                    this.Destroy();
+                }
                 this.def.building.bed_showSleeperBody = true;
             }
         }

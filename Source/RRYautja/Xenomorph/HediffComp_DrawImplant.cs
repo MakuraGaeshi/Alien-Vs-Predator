@@ -51,7 +51,117 @@ namespace RRYautja
             return GraphicDatabase.Get<Graphic_Multi>(path, ShaderDatabase.Cutout, Vector2.one, Color.white).MatAt(bodyFacing);
         }
 
-        public void DrawImplant()
+        protected void GetAltitudeOffset(Rot4 rotation, out float OffsetX, out float OffsetY, out float OffsetZ, out float DrawSizeX, out float DrawSizeZ)
+        {
+            FacehuggerOffsetDefExtension myDef = Pawn.kindDef.race.GetModExtension<FacehuggerOffsetDefExtension>() ?? new FacehuggerOffsetDefExtension();
+            
+            string direction;
+            if (Pawn.RaceProps.Humanlike)
+            {
+                if (rotation == Rot4.North)
+                {
+                    OffsetX = myDef.NorthXOffset;
+                    OffsetY = myDef.NorthYOffset;
+                    OffsetZ = myDef.NorthZOffset;
+                    DrawSizeX = myDef.NorthXDrawSize;
+                    DrawSizeZ = myDef.NorthZDrawSize;
+                    direction = "North";
+                }
+                else if (rotation == Rot4.West)
+                {
+                    OffsetX = myDef.WestXOffset;
+                    OffsetY = myDef.WestYOffset;
+                    OffsetZ = myDef.WestZOffset;
+                    DrawSizeX = myDef.WestXDrawSize;
+                    DrawSizeZ = myDef.WestZDrawSize;
+                    direction = "West";
+                }
+                else if (rotation == Rot4.East)
+                {
+                    OffsetX = myDef.EastXOffset;
+                    OffsetY = myDef.EastYOffset;
+                    OffsetZ = myDef.EastZOffset;
+                    DrawSizeX = myDef.EastXDrawSize;
+                    DrawSizeZ = myDef.EastZDrawSize;
+                    direction = "East";
+                }
+                else if (rotation == Rot4.South)
+                {
+                    OffsetX = myDef.SouthXOffset;
+                    OffsetY = myDef.SouthYOffset;
+                    OffsetZ = myDef.SouthZOffset;
+                    DrawSizeX = myDef.SouthXDrawSize;
+                    DrawSizeZ = myDef.SouthZDrawSize;
+                    direction = "South";
+                }
+                else
+                {
+                    OffsetX = 0f;
+                    OffsetY = 0f;
+                    OffsetZ = 0f;
+                    DrawSizeX = 1f;
+                    DrawSizeZ = 1f;
+                    direction = "Unknown";
+                }
+                if (myDef.ApplyBaseHeadOffset)
+                {
+                    OffsetX = myDef.SouthXOffset + Pawn.Drawer.renderer.BaseHeadOffsetAt(rotation).x;
+                    OffsetY = myDef.SouthYOffset + Pawn.Drawer.renderer.BaseHeadOffsetAt(rotation).y;
+                    OffsetZ = myDef.SouthZOffset + Pawn.Drawer.renderer.BaseHeadOffsetAt(rotation).z;
+                }
+            }
+            else
+            {
+                if (rotation == Rot4.North)
+                {
+                    OffsetX = myDef.NorthXOffset;
+                    OffsetY = myDef.NorthYOffset;
+                    OffsetZ = myDef.NorthZOffset;
+                    DrawSizeX = myDef.NorthXDrawSize;
+                    DrawSizeZ = myDef.NorthZDrawSize;
+                    direction = "North";
+                }
+                else if (rotation == Rot4.West)
+                {
+                    OffsetX = myDef.WestXOffset;
+                    OffsetY = myDef.WestYOffset;
+                    OffsetZ = myDef.WestZOffset;
+                    DrawSizeX = myDef.WestXDrawSize;
+                    DrawSizeZ = myDef.WestZDrawSize;
+                    direction = "West";
+                }
+                else if (rotation == Rot4.East)
+                {
+                    OffsetX = myDef.EastXOffset;
+                    OffsetY = myDef.EastYOffset;
+                    OffsetZ = myDef.EastZOffset;
+                    DrawSizeX = myDef.EastXDrawSize;
+                    DrawSizeZ = myDef.EastZDrawSize;
+                    direction = "East";
+                }
+                else if (rotation == Rot4.South)
+                {
+                    OffsetX = myDef.SouthXOffset;
+                    OffsetY = myDef.SouthYOffset;
+                    OffsetZ = myDef.SouthZOffset;
+                    DrawSizeX = myDef.SouthXDrawSize;
+                    DrawSizeZ = myDef.SouthZDrawSize;
+                    direction = "South";
+                }
+                else
+                {
+                    OffsetX = 0f;
+                    OffsetY = 0f;
+                    OffsetZ = 0f;
+                    DrawSizeX = 1f;
+                    DrawSizeZ = 1f;
+                    direction = "Unknown";
+                }
+            }
+            
+        }
+
+        public void DrawImplant(Vector3 rootLoc)
         {// this.Pawn
 
             bool selected = Find.Selector.SelectedObjects.Contains(this.Pawn);
@@ -59,8 +169,8 @@ namespace RRYautja
             string direction = "";
             float angle = 0f;
             float offset = 0f;
-            float yvalue = Pawn.Drawer.DrawPos.y;
-            Vector3 drawPos = Pawn.Drawer.DrawPos;
+            float yvalue = rootLoc.y;
+            Vector3 drawPos = rootLoc;
             drawPos.y = Altitudes.AltitudeFor((AltitudeLayer)17);
             Vector3 s = new Vector3(1.5f, 1.5f, 1.5f);
             PawnRenderer pawnRenderer = this.Pawn.Drawer.renderer;
@@ -73,6 +183,7 @@ namespace RRYautja
                 drawPos.z = Pawn.CarriedBy.DrawPos.z;
                 drawPos.x = Pawn.CarriedBy.DrawPos.x;
             }
+            /*
             if (Pawn.InBed())
             {
                 if (Pawn.CurrentBed().Rotation == Rot4.South)
@@ -107,11 +218,12 @@ namespace RRYautja
                     drawPos.x -= pawnRenderer.BaseHeadOffsetAt(Rot4.West).x;
                     drawPos.z -= pawnRenderer.BaseHeadOffsetAt(Rot4.West).z;
                 }
-                drawPos.y = yvalue;
+                //drawPos.y = yvalue;
 #if DEBUG
                 if (selected) Log.Message(string.Format("{0} in bed {1} drawpos modified to {2}", Pawn.Name, Pawn.InBed(), drawPos));
 #endif
             }
+            */
             if (offset < 0)
             {
                 drawPos.y -= offset;
@@ -172,6 +284,15 @@ namespace RRYautja
             //    Log.Message(string.Format("Rot ToStringHuman:{1}, FacingCell:{2}, AsVector2:{3}, AsByte:{4}, AsAngle:{5}", rot, rot.ToStringHuman(), rot.FacingCell, rot.AsVector2, rot.AsByte, rot.AsAngle));
             }
 #endif
+            if (Pawn.kindDef.race.GetModExtension<FacehuggerOffsetDefExtension>()!=null)
+            {
+                GetAltitudeOffset(rot, out float X, out float Y, out float Z, out float DsX, out float DsZ);
+                drawPos.x += X;
+                drawPos.y += Y;
+                drawPos.z += Z;
+                s.x = DsX;
+                s.z = DsZ;
+            }
             Material matSingle = comp.ImplantMaterial(Pawn, rot);
             Matrix4x4 matrix = default(Matrix4x4);
             matrix.SetTRS(drawPos, Quaternion.AngleAxis(angle, Vector3.up), s);
@@ -223,11 +344,11 @@ namespace RRYautja
         // Token: 0x0600005E RID: 94 RVA: 0x00004008 File Offset: 0x00002208
         public virtual void DrawWornExtras()
         {
-            if (Find.Selector.SelectedObjects.Contains(base.Pawn) && this.ShouldDisplay && !base.Pawn.RaceProps.Humanlike)
+            if (this.ShouldDisplay && !base.Pawn.RaceProps.Humanlike)
             {
                 float num = Mathf.Lerp(1.2f, 1.55f, base.Pawn.BodySize);
                 Vector3 vector = base.Pawn.Drawer.DrawPos;
-                vector.y = Altitudes.AltitudeFor(AltitudeLayer.MoteOverhead);
+                vector.y = Altitudes.AltitudeFor(AltitudeLayer.VisEffects);
                 float angle = 0f;// (float)Rand.Range(0, 360);
                 Vector3 s = new Vector3(num, 1f, num);
                 Matrix4x4 matrix = default(Matrix4x4);

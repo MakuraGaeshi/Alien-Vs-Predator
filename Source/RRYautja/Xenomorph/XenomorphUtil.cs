@@ -44,7 +44,18 @@ namespace RRYautja
             if (IsInfectedPawn(pawn)) return false;
             if (IsXenomorph(pawn)) return false;
             if (IsXenomorphFaction(pawn)) return false;
-            if (pawn.BodySize<0.7f) return false;
+            if (pawn.BodySize < 0.7f) return false;
+            return true;
+        }
+        public static bool isInfectablePawn(Pawn pawn, bool allowinfected = false)
+        {
+            if (pawn.Dead) return false;
+            if (pawn.RaceProps.IsMechanoid) return false;
+            if (!pawn.RaceProps.IsFlesh) return false;
+            if (!allowinfected && IsInfectedPawn(pawn)) return false;
+            if (IsXenomorph(pawn)) return false;
+            if (IsXenomorphFaction(pawn)) return false;
+            if (pawn.BodySize < 0.7f) return false;
             return true;
         }
         public static bool isXenomorphInfectedPawn(Pawn pawn)

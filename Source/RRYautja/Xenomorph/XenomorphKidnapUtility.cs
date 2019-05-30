@@ -20,12 +20,12 @@ namespace RRYautja
             Predicate<Thing> validator = delegate (Thing t)
             {
                 Pawn pawn = t as Pawn;
-                bool pawnFlag = XenomorphUtil.isInfectablePawn(pawn) && pawn.Downed && (pawn.Faction == null || pawn.Faction.HostileTo(kidnapper.Faction));
                 bool cocoonFlag = !pawn.InBed() || (pawn.InBed() && !(pawn.CurrentBed() is Building_XenomorphCocoon));
                 Thing egg = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_EggXenomorphFertilized), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, null, null, 0, -1, false, RegionType.Set_Passable, false);
                 bool eggFlag = (egg != null) || egg == null;
-                Thing hive = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_EggXenomorphFertilized), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, null, null, 0, -1, false, RegionType.Set_Passable, false);
+                Thing hive = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_XenomorphHive), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, null, null, 0, -1, false, RegionType.Set_Passable, false);
                 bool hiveFlag = (hive != null) || hive == null;
+                bool pawnFlag = ((XenomorphUtil.isInfectablePawn(pawn) && hive == null) || (XenomorphUtil.isInfectablePawn(pawn, true) && hive != null)) && pawn.Downed && (pawn.Faction == null || pawn.Faction.HostileTo(kidnapper.Faction));
 
                 return (eggFlag || hiveFlag) && cocoonFlag && pawnFlag && kidnapper.CanReserve(pawn, 1, -1, null, false) && (disallowed == null || !disallowed.Contains(pawn));
             };

@@ -81,7 +81,7 @@ namespace RimWorld
                             cocoonOccupied = cocoonThing != null ? !(((Building_Bed)cocoonThing).AnyUnoccupiedSleepingSlot) : true;
 
 
-                            if (selected) Log.Message(string.Format("JobGiver_XenosKidnap {0} set cocoonThing: {1} cocoonOccupied: {2} for hiveThing: {3}", pawn, cocoonThing.Position, cocoonOccupied, hiveThing.Position));
+                            if (selected && cocoonThing != null) Log.Message(string.Format("JobGiver_XenosKidnap {0} set cocoonThing: {1} cocoonOccupied: {2} for hiveThing: {3}", pawn, cocoonThing.Position, cocoonOccupied, hiveThing.Position));
                         }
                         c = cocoonThing != null && !cocoonOccupied ? cocoonThing.Position : hiveThing.Position;
                         if (c == hiveThing.Position)
@@ -117,8 +117,15 @@ namespace RimWorld
                             {
                                 intVec = CellFinder.RandomClosewalkCellNear(c, pawn.Map, radius, (x => (x.Roofed(pawn.Map) && hiveThing.Position.Roofed(pawn.Map) || (!x.Roofed(pawn.Map) && !hiveThing.Position.Roofed(pawn.Map)))));
                                 mapRect = new CellRect(intVec.x - 1, intVec.z - 1, 3, 3);
-                                radius++;
-
+                                if (!IsMapRectClear(mapRect, pawn.Map)) radius++;
+                                else
+                                {
+                                    if (selected) Log.Message(string.Format("spot for cocoon found @ {0} which is {1} away from {2} @ {3}", intVec, radius, hiveThing, hiveThing.Position));
+                                }
+                                if (radius > 30)
+                                {
+                                    break;
+                                }
                             }
                             if (intVec != null)
                             {
@@ -162,8 +169,15 @@ namespace RimWorld
                             {
                                 intVec = CellFinder.RandomClosewalkCellNear(c, pawn.Map, radius, (x => (x.Roofed(pawn.Map) && eggThing.Position.Roofed(pawn.Map) || (!x.Roofed(pawn.Map) && !eggThing.Position.Roofed(pawn.Map)))));
                                 mapRect = new CellRect(intVec.x, intVec.z, num, num);
-                                radius++;
-
+                                if (!IsMapRectClear(mapRect, pawn.Map)) radius++;
+                                else
+                                {
+                                    if (selected) Log.Message(string.Format("spot for cocoon found @ {0} which is {1} away from {2} @ {3}", intVec, radius, eggThing, eggThing.Position));
+                                }
+                                if (radius>30)
+                                {
+                                    break;
+                                }
                             }
                             if (intVec != null)
                             {

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<!-- Adds Draw Data for Facehugger Hediff to animals or fine tunes it for humanlikes -->
+
+	<!-- Megasloth -->
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName = "Megasloth"]</xpath>
+				<value>
+				<modExtensions>
+				  <li Class="RRYautja.FacehuggerOffsetDefExtension">
+					<ApplyBaseHeadOffset>false</ApplyBaseHeadOffset>
+					<NorthXOffset>0.0</NorthXOffset>
+					<NorthYOffset>0.0</NorthYOffset>
+					<NorthZOffset>0.0</NorthZOffset>
+					<NorthXDrawSize>2</NorthXDrawSize>
+					<NorthZDrawSize>1</NorthZDrawSize>
+					<SouthXOffset>0.0001</SouthXOffset>
+					<SouthYOffset>0.0001</SouthYOffset>
+					<SouthZOffset>0.0001</SouthZOffset>
+					<SouthXDrawSize>1</SouthXDrawSize>
+					<SouthZDrawSize>2</SouthZDrawSize>
+					<EastXOffset>0.0</EastXOffset>
+					<EastYOffset>0.0</EastYOffset>
+					<EastZOffset>0.0</EastZOffset>
+					<EastXDrawSize>2</EastXDrawSize>
+					<EastZDrawSize>5</EastZDrawSize>
+					<WestXOffset>0.0</WestXOffset>
+					<WestYOffset>0.0</WestYOffset>
+					<WestZOffset>0.0</WestZOffset>
+					<WestXDrawSize>3</WestXDrawSize>
+					<WestZDrawSize>6</WestZDrawSize>
+				  </li>
+				</modExtensions>
+				</value>
+			</li>
+		</operations>	
+	</Operation>
+</Patch>

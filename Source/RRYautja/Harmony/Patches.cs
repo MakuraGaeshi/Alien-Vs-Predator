@@ -539,52 +539,73 @@ namespace RRYautja
         }
     }
     */
-
-    [HarmonyPatch(typeof(Pawn), "DrawAt")]
-    public static class Pawn_DrawAt_Patch
+    [HarmonyPatch(typeof(PawnRenderer), "RenderPawnInternal")]
+    [HarmonyPatch(new Type[] { typeof(Vector3), typeof(float), typeof(bool), typeof(Rot4), typeof(Rot4), typeof(RotDrawMode), typeof(bool), typeof(bool) })]
+    static class Pawn_DrawTracker_get_DrawPos
     {
-        [HarmonyPrefix]
-        public static bool RevealSaboteur(Pawn __instance,ref Vector3 drawLoc)
+        static void Prefix(PawnRenderer __instance, ref Vector3 rootLoc, ref bool portrait)
         {
-            /*
-            if (__instance.InBed())
+            Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
+            if (!portrait)
             {
-                if (__instance.CurrentBed() is Building_XenomorphCocoon)
+                if (pawn.CurrentBed() != null && pawn.CurrentBed() is Building_XenomorphCocoon)
                 {
-
-                    if (__instance.Rotation == Rot4.North)
+                    //rootLoc.z += 1f;
+                    //rootLoc.x += 1f;
+                    if (pawn.CurrentBed().Rotation == Rot4.North)
                     {
-                        drawLoc = __instance.Drawer.DrawPos;
-                        drawLoc.x += 1;
-                        drawLoc.z += 1;
+                        //rootLoc.x += 0.5f;
+                        rootLoc.z -= 0.5f;
                     }
-                    else if (__instance.Rotation == Rot4.North)
+                    else if (pawn.CurrentBed().Rotation == Rot4.South)
                     {
-                        drawLoc = __instance.Drawer.DrawPos;
-                        drawLoc.x += 1;
-                        drawLoc.z += 1;
+                        //rootLoc.x += 0.5f;
+                        rootLoc.z += 0.5f;
                     }
-                    else if (__instance.Rotation == Rot4.North)
+                    else if (pawn.CurrentBed().Rotation == Rot4.East)
                     {
-                        drawLoc = __instance.Drawer.DrawPos;
-                        drawLoc.x += 1;
-                        drawLoc.z += 1;
+                        rootLoc.x -= 0.5f;
+                        //rootLoc.z += 0.5f;
                     }
-                    else if (__instance.Rotation == Rot4.North)
+                    else if (pawn.CurrentBed().Rotation == Rot4.West)
                     {
-                        drawLoc = __instance.Drawer.DrawPos;
-                        drawLoc.x += 1;
-                        drawLoc.z += 1;
+                        rootLoc.x += 0.5f;
+                        //rootLoc.z += 0.5f;
                     }
-                    else drawLoc = __instance.Drawer.DrawPos;
+                    else rootLoc = pawn.CurrentBed().DrawPos;
                 }
-
             }
-            */
-            return true;
         }
-    }
 
+        static void Postfix(PawnRenderer __instance, ref Vector3 rootLoc)
+        {
+            Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
+            if (pawn.RaceProps.Humanlike || pawn.kindDef.race.GetModExtension<FacehuggerOffsetDefExtension>()!=null)
+            {
+                foreach (var hd in pawn.health.hediffSet.hediffs)
+                {
+                    HediffComp_DrawImplant comp = hd.TryGetComp<HediffComp_DrawImplant>();
+                    if (comp != null)
+                    {
+                        comp.DrawImplant(rootLoc);
+                    }
+                }
+            } // DrawWornExtras()
+            else
+            {
+                foreach (var hd in pawn.health.hediffSet.hediffs)
+                {
+                    HediffComp_DrawImplant comp = hd.TryGetComp<HediffComp_DrawImplant>();
+                    if (comp != null)
+                    {
+                        comp.DrawWornExtras();
+                    }
+                }
+            }
+        }
+
+    }
+    
     // Token: 0x02000007 RID: 7
     [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "TryExecute")]
     public static class IncidentWorker_RaidEnemyPatch_TryExecute
@@ -738,7 +759,7 @@ namespace RRYautja
         public static bool preCheckMakeInfection(HediffComp_Infecter __instance)
         {
             Log.Message(string.Format("trying to add an infection to {0}'s wounded {1}", __instance.Pawn, __instance.parent.Part));
-            if (__instance.Pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned))
+            if (__instance.Pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned)|| (__instance.Pawn.InBed() && __instance.Pawn.CurrentBed() is Building_XenomorphCocoon))
             {
                 Log.Message(string.Format("{0} protected from infection", __instance.Pawn));
                 return false;
