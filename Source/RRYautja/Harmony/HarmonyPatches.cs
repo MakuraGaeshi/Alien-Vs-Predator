@@ -440,29 +440,28 @@ namespace RRYautja
             }
             else if (request.Faction == Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph))
             {
-            //    Log.Message(string.Format("Xenomorph spawning"));
+                Log.Message(string.Format("Xenomorph spawning"));
                 if (request.KindDef==XenomorphDefOf.RRY_Xenomorph_Queen)
                 {
-                    if (__result.Map!=null)
+                    Log.Message(string.Format("trying to spawn Xenomorph Queen, checking {0} pawns", Find.AnyPlayerHomeMap.mapPawns.AllPawns.Count()));
+                    bool QueenPresent = false;
+                    
+                    foreach (var p in Find.AnyPlayerHomeMap.mapPawns.AllPawns)
                     {
-                        bool QueenPresent = false;
-                        foreach (var p in __result.Map.mapPawns.AllPawnsSpawned)
+                        if (p.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
                         {
-                            if (p.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
-                            {
-                                Log.Message(string.Format("Queen Found"));
-                                QueenPresent = true;
-                                break;
-                            }
+                            Log.Message(string.Format("Queen Found"));
+                            QueenPresent = true;
+                            break;
                         }
-                        if (QueenPresent)
-                        {
-                            Log.Message(string.Format("Queen Present: {0}", QueenPresent));
-                            request = new PawnGenerationRequest(XenomorphDefOf.RRY_Xenomorph_Warrior, request.Faction, request.Context, -1, true, false, false, false, false, true, 0f, fixedGender: Gender.None, allowGay: false);
-                            __result = PawnGenerator.GeneratePawn(request);
-                            __result.gender = Gender.None;
-                            return;
-                        }
+                    }
+                    if (QueenPresent)
+                    {
+                        Log.Message(string.Format("Queen Present: {0}", QueenPresent));
+                        request = new PawnGenerationRequest(XenomorphDefOf.RRY_Xenomorph_Warrior, request.Faction, request.Context, -1, true, false, false, false, false, true, 0f, fixedGender: Gender.None, allowGay: false);
+                        __result = PawnGenerator.GeneratePawn(request);
+                        __result.gender = Gender.None;
+                        return;
                     }
                     else
                     {

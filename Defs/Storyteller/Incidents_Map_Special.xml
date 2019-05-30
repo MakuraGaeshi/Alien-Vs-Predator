@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-	<!-- =========================== Good - special ============================-->
+	<!-- =========================== Good - special ============================ 
 
 	<IncidentDef>
 		<defName>StrangerInBlackJoin</defName>
@@ -20,5 +20,5 @@
 		<pawnFixedGender>Male</pawnFixedGender>
 		<pawnMustBeCapableOfViolence>true</pawnMustBeCapableOfViolence>
 	</IncidentDef>
-
+-->
 </Defs>

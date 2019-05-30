@@ -42,9 +42,17 @@ namespace RRYautja
             if (list.Count > 0)
             {
                 pawnKind = list.RandomElement<PawnKindDef>();
-                pawnKind.defaultFactionType = ofPlayer.def;
+            }
+            else
+            {
+                list = (from def in DefDatabase<PawnKindDef>.AllDefs
+                        where ((def.defName.Contains("StrangerInBlack")))
+                        select def).ToList();
+                pawnKind = list.RandomElement<PawnKindDef>();
+                //pawnKind = DefDatabase<PawnKindDef>.GetNamedSilentFail("StrangerInBlack");
             }
 
+            pawnKind.defaultFactionType = ofPlayer.def;
             Log.Message(string.Format("{0}", pawnKind.defName));
             bool pawnMustBeCapableOfViolence = this.def.pawnMustBeCapableOfViolence;
             Gender? fixedGender = gender;

@@ -73,7 +73,6 @@ namespace RRYautja
         {
             if (pawn.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Xenomorph)
             {
-                Log.Message(string.Format("Hypothermia_Prefix for Xenomorph: {0}", pawn));
                 float ambientTemperature = pawn.AmbientTemperature;
                 FloatRange floatRange = pawn.ComfortableTemperatureRange();
                 FloatRange floatRange2 = pawn.SafeTemperatureRange();
@@ -88,7 +87,6 @@ namespace RRYautja
                     HealthUtility.AdjustSeverity(pawn, hediffDef, num2);
                     if (pawn.Dead)
                     {
-                        Log.Message(string.Format("HediffGiver_Hypothermia_OnIntervalPassed_Patch Prefix returning to original"));
                         return true;
                     }
                 }
@@ -120,12 +118,10 @@ namespace RRYautja
                         }
                     }
                 }
-                Log.Message(string.Format("HediffGiver_Hypothermia_OnIntervalPassed_Patch Prefix intercepted"));
                 return false;
             }
             else
             {
-                Log.Message(string.Format("HediffGiver_Hypothermia_OnIntervalPassed_Patch Prefix returning to original"));
                 return true;
             }
         }
@@ -161,7 +157,8 @@ namespace RRYautja
         [HarmonyPostfix]
         public static void PawnInCocoon(WorkGiver_Tend __instance, Pawn patient, Pawn doctor, ref bool __result)
         {
-            __result = __result && (!patient.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned));
+            __result = __result && (!patient.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned)&&!(patient.CurrentBed() is Building_XenomorphCocoon));
+        //    Log.Message(string.Format("WorkGiver_Tend_GoodLayingStatusForTend_Patch patient: {0}, doctor: {1}, __Result: {2}", patient, doctor, __result));
 
         }
     }
@@ -203,7 +200,7 @@ namespace RRYautja
             {
                 result = !(__instance.apparel.WornApparel.Any(x => x.def == YautjaDefOf.RRY_Equipment_HunterGauntlet));
             }
-            Log.Message(string.Format("Pawn_StripPatch IgnoreWristblade: {0}", result));
+        //    Log.Message(string.Format("Pawn_StripPatch IgnoreWristblade: {0}", result));
             if (!result)
             {
 
@@ -254,7 +251,7 @@ namespace RRYautja
                 }
                 else
                 {
-                    Log.Message(string.Format("Ignoring Wristblade"));
+                //    Log.Message(string.Format("Ignoring Wristblade"));
                 }
             }
             for (int j = 0; j < tmpApparelList.Count; j++)
@@ -611,6 +608,19 @@ namespace RRYautja
                         Log.Message(string.Format("PreExecute During Heatwave, modified {0} points", parms.points));
                     }
                 }
+                if (parms.faction != null && (parms.faction.def == XenomorphDefOf.RRY_Xenomorph))
+                {
+                    Log.Message(string.Format("PreExecute Xenomorph Raid CurSkyGlow: {0}", (parms.target as Map).skyManager.CurSkyGlow));
+
+                    if ((parms.target as Map).skyManager.CurSkyGlow <= 0.5f)
+                    {
+                        Log.Message(string.Format("PreExecute During Nighttime, originally {0} points", parms.points));
+                        parms.points *= 2;
+                        parms.raidArrivalMode = YautjaDefOf.EdgeWalkInGroups;
+
+                        Log.Message(string.Format("PreExecute During Nighttime, modified {0} points", parms.points));
+                    }
+                }
             }
             return true;
         }
@@ -680,7 +690,59 @@ namespace RRYautja
                         __result = text;
                     }
                 }
+                if (parms.faction != null && (parms.faction.def == XenomorphDefOf.RRY_Xenomorph))
+                {
+                    Log.Message(string.Format("PostGetLetterText Xenomorph Raid CurSkyGlow: {0}", (parms.target as Map).skyManager.CurSkyGlow));
+
+                    if ((parms.target as Map).skyManager.CurSkyGlow <= 0.5f)
+                    {
+                        string text = "They mostly come at night......mostly.....";
+                        text += "\n\n";
+                        text += __result;
+                        __result = text;
+                    }
+                }
             }
+        }
+    }
+
+    /*
+    // Token: 0x02000007 RID: 7
+    [HarmonyPatch(typeof(IncidentWorker_WandererJoin), "TryExecute")]
+    public static class IncidentWorker_WandererJoinPatch_TryExecute
+    {
+        public static string stranger = "StrangerInBlack";
+        [HarmonyPrefix]
+        public static bool PreExecute(IncidentWorker_WandererJoin __instance, ref IncidentParms parms ,bool __result)
+        { // request parms.faction.def
+
+            Log.Message(string.Format("Original race: {0}", __instance.def.pawnKind.race));
+            Log.Message(string.Format("Original faction: {0}", parms.faction.def));
+
+
+
+
+
+
+            return true;
+        }
+    }
+    */
+
+    // Token: 0x02000007 RID: 7
+    [HarmonyPatch(typeof(HediffComp_Infecter), "CheckMakeInfection")]
+    public static class HediffComp_Infecter_Patch_CheckMakeInfection
+    {
+        [HarmonyPrefix]
+        public static bool preCheckMakeInfection(HediffComp_Infecter __instance)
+        {
+            Log.Message(string.Format("trying to add an infection to {0}'s wounded {1}", __instance.Pawn, __instance.parent.Part));
+            if (__instance.Pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned))
+            {
+                Log.Message(string.Format("{0} protected from infection", __instance.Pawn));
+                return false;
+            }
+            return true;
         }
     }
 

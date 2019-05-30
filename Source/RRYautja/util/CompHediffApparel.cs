@@ -84,7 +84,7 @@ namespace RRYautja
                 {
                     if (Props.groupsToAffect.Count ==1 && item.groups.Any(x => x == Props.groupsToAffect[0]))
                     {
-                        Log.Message(string.Format("{0}", item.customLabel));
+                    //    Log.Message(string.Format("{0}", item.customLabel));
                         GetWearer.health.AddHediff(Props.hediffDef, item);
                         partsToAffect.AddRange(from p in source where Props.groupsToAffect.Intersect(p.groups).Any() select p.def);
                         return true;

@@ -117,7 +117,7 @@ namespace RRYautja
                 if (timer2 >= 600)
                 {
                     // Log.Message("checking Severity");
-                    if (Rand.Value<this.parent.Severity)
+                    if (Rand.Value<this.parent.Severity*1.15f)
                     {
                         // Log.Message("removing Facehugger");
                         Hediff heDiff = base.Pawn.health.hediffSet.GetFirstHediffOfDef(base.parent.def);

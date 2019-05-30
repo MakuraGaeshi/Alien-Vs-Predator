@@ -7,15 +7,15 @@
     <labelMale>man in black</labelMale>
     <labelFemale>woman in black</labelFemale>
     <labelPlural>strangers in black</labelPlural>
-    <combatPower>100</combatPower>
+    <combatPower>140</combatPower>
     <minGenerationAge>20</minGenerationAge>
-    <maxGenerationAge>50</maxGenerationAge>
+    <maxGenerationAge>300</maxGenerationAge>
     <isFighter>true</isFighter>
     <race>RRY_Alien_Yautja</race>
     <chemicalAddictionChance>0.05</chemicalAddictionChance>
     <backstoryCryptosleepCommonality>0.05</backstoryCryptosleepCommonality>
-    <backstoryCategories>
-      <li>Traveler</li>
+    <backstoryCategories Inherit="false">
+      <li>RRY_Yautja_Standard</li>
     </backstoryCategories>
     <invNutrition>10.0</invNutrition>
     <inventoryOptions>

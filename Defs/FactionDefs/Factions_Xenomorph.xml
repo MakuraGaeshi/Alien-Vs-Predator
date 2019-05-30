@@ -46,34 +46,6 @@
 					<li>ImmediateAttackSappers</li>
 				</disallowedStrategies>
       </li>
-      <li>
-        <!-- Ranged & FaceHuggers only -->
-        <kindDef>Combat</kindDef>
-        <commonality>80</commonality>
-        <options>
-          <RRY_Xenomorph_Queen>1</RRY_Xenomorph_Queen>
-          <RRY_Xenomorph_Drone>100</RRY_Xenomorph_Drone>
-          <RRY_Xenomorph_FaceHugger>25</RRY_Xenomorph_FaceHugger>
-        </options>
-				<disallowedStrategies>
-					<li>Siege</li>
-					<li>ImmediateAttackSappers</li>
-				</disallowedStrategies>
-      </li>
-      <li>
-        <!-- Fast Melee only-->
-        <kindDef>Combat</kindDef>
-        <commonality>70</commonality>
-        <options>
-          <RRY_Xenomorph_Queen>1</RRY_Xenomorph_Queen>
-          <RRY_Xenomorph_Runner>100</RRY_Xenomorph_Runner>
-          <RRY_Xenomorph_FaceHugger>25</RRY_Xenomorph_FaceHugger>
-        </options>
-				<disallowedStrategies>
-					<li>Siege</li>
-					<li>ImmediateAttackSappers</li>
-				</disallowedStrategies>
-      </li>
     </pawnGroupMakers>
     <homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
     <allowedArrivalTemperatureRange>
