@@ -2,6 +2,8 @@
 <Patch>
 
 	<!-- Adds Draw Data for Facehugger Hediff to animals or fine tunes it for humanlikes -->
+	<!-- Humanlikes without this DefExtension will have the facehugger default to their head location -->
+	<!-- Non-Humanlikes without this DefExtension will have the a Facehugger icon overlaid on them -->
 
 	<!-- Megasloth -->
 	<Operation Class="PatchOperationSequence">
