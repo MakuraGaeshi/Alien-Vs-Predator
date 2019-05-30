@@ -1,6 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
+  <RulePackDef>
+    <defName>RRY_NamerYautjaUtility</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>WordYautji(p=3)->[SylG]'[SylE]-[SylG]</li>
+        <li>WordYautji(p=2)->[SylG]'[SylG][SylE]-[SylG]</li>
+      </rulesStrings>
+      <rulesFiles>
+        <li>RRY_NameYautjaMale->NameBanks/RRYautjaMale</li>
+        <li>RRY_NameYautjaMaleA->NameBanks/RRYautjaMaleA</li>
+        <li>RRY_NameYautjaMaleB->NameBanks/RRYautjaMaleB</li>
+		
+        <li>RRY_NameYautjaFemale->NameBanks/RRYautjaFemale</li>
+        <li>RRY_NameYautjaFemaleA->NameBanks/RRYautjaFemaleA</li>
+        <li>RRY_NameYautjaFemaleB->NameBanks/RRYautjaFemaleB</li>
+		
+        <li>RRY_NameYautjaUnisexNick->NameBanks/RRYautjaNick</li>
+		
+        <li>SylE->WordParts/Syllables_English</li>
+        <li>SylG->WordParts/Syllables_Galician</li>
+      </rulesFiles>
+    </rulePack>
+  </RulePackDef>
+
 	<RulePackDef>
 		<defName>NamerRRYautjaFaction</defName>
 		<rulePack>
@@ -67,6 +91,36 @@
 				<path>NameBanks/RRYautjaNick</path>
 			</li>
 		  </rulesRaw>
+		</rulePack>
+	</RulePackDef>
+	
+	<RulePackDef>
+		<defName>RRY_NamerPersonYautji</defName>
+		<include>
+		  <li>RRY_NamerYautjaUtility</li>
+		  <li>TribalWordUtility</li>
+		</include>
+		<rulePack>
+		  <rulesStrings>
+			<li>name->[RRY_Malefirstname] [RRY_Unisexlastname]</li>
+			<!-- <li>name->[RRY_Malefirstname] '[nicktname]' [RRY_Unisexlastname]</li> -->
+			
+			<li>name->[RRY_Femalefirstname] [RRY_Unisexlastname]</li>
+			<!-- <li>name->[RRY_Femalefirstname] [nicktname] [RRY_Unisexlastname]</li> -->
+
+			<li>RRY_Malefirstname(p=3)->[RRY_NameYautjaMaleA][RRY_NameYautjaMaleB]</li>
+			<li>RRY_Malefirstname(p=2)->[RRY_NameYautjaMale]</li>
+			<li>RRY_Femalefirstname(p=3)->[RRY_NameYautjaFemaleA][RRY_NameYautjaFemaleB]</li>
+			<li>RRY_Femalefirstname(p=2)->[RRY_NameYautjaFemale]</li>
+			
+			<li>RRY_Unisexlastname(p=3)->[WordYautji]</li>
+			<li>RRY_Unisexlastname(p=2)->[WordYautji]</li>
+			
+			<li>nicktname(p=3)->[RRYautjaNick]</li>
+			<li>nicktname(p=3)->[ConceptBadass]</li>
+			<li>nicktname(p=2)->[PersonBadass]</li>
+			<li>nicktname(p=2)->[AnimalBadass]</li>
+		  </rulesStrings>
 		</rulePack>
 	</RulePackDef>
 

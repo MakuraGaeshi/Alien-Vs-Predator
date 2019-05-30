@@ -65,6 +65,7 @@ namespace RRYautja
             Type typeFromHandle22 = typeof(Pawn_HealthTracker);
             HarmonyPatches.int_Pawn_HealthTracker_GetPawn = typeFromHandle22.GetField("pawn", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.GetField);
 
+            harmony.Patch(AccessTools.Method(typeof(PawnRenderer), "BaseHeadOffsetAt", null, null), null, new HarmonyMethod(typeof(HarmonyPatches), "BaseHeadOffsetAtPostfix", null), null);
             Type typeFromHandle6 = typeof(Pawn_HealthTracker);
             harmony.Patch(typeFromHandle6.GetMethod("DropBloodFilth"), new HarmonyMethod(typeof(HarmonyPatches).GetMethod("Patch_Pawn_HealthTracker_DropBloodFilth")), null, null);
 
@@ -113,10 +114,15 @@ namespace RRYautja
             Vector2 offset = Vector2.zero;
             if (pawn.InBed() && pawn.CurrentBed() is Building_XenomorphCocoon cocoonthing)
             {
+                Log.Message(string.Format("true"));
                 if (cocoonthing.Rotation == Rot4.North)
                 {
                     __result.z -= 0.5f;
                 }
+            }
+            else
+            {
+                Log.Message(string.Format("false"));
             }
             __result.x += offset.x;
             __result.z += offset.y;
@@ -233,6 +239,17 @@ namespace RRYautja
                     if (comp != null)
                     {
                         comp.DrawImplant();
+                    }
+                }
+            } // DrawWornExtras()
+            else
+            {
+                foreach (var hd in pawn.health.hediffSet.hediffs)
+                {
+                    HediffComp_DrawImplant comp = hd.TryGetComp<HediffComp_DrawImplant>();
+                    if (comp != null)
+                    {
+                        comp.DrawWornExtras();
                     }
                 }
             }

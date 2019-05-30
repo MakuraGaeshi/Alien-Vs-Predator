@@ -729,6 +729,7 @@ namespace RRYautja
     }
     */
 
+
     // Token: 0x02000007 RID: 7
     [HarmonyPatch(typeof(HediffComp_Infecter), "CheckMakeInfection")]
     public static class HediffComp_Infecter_Patch_CheckMakeInfection

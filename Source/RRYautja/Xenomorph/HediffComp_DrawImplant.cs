@@ -14,6 +14,7 @@ namespace RRYautja
 
         public string implantGraphicPath;
     }
+    [StaticConstructorOnStartup]
     public class HediffComp_DrawImplant : HediffComp
     {
         public HediffCompProperties_DrawImplant implantDrawProps
@@ -24,6 +25,15 @@ namespace RRYautja
 
 #endif
                 return this.props as HediffCompProperties_DrawImplant;
+            }
+        }
+
+        private bool ShouldDisplay
+        {
+            get
+            {
+                Pawn wearer = base.Pawn;
+                return wearer.Spawned && !wearer.Dead && wearer.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection);
             }
         }
 
@@ -210,11 +220,32 @@ namespace RRYautja
             return Rot4.Random;
         }
 
+        // Token: 0x0600005E RID: 94 RVA: 0x00004008 File Offset: 0x00002208
+        public virtual void DrawWornExtras()
+        {
+            if (Find.Selector.SelectedObjects.Contains(base.Pawn) && this.ShouldDisplay && !base.Pawn.RaceProps.Humanlike)
+            {
+                float num = Mathf.Lerp(1.2f, 1.55f, base.Pawn.BodySize);
+                Vector3 vector = base.Pawn.Drawer.DrawPos;
+                vector.y = Altitudes.AltitudeFor(AltitudeLayer.MoteOverhead);
+                float angle = 0f;// (float)Rand.Range(0, 360);
+                Vector3 s = new Vector3(num, 1f, num);
+                Matrix4x4 matrix = default(Matrix4x4);
+                matrix.SetTRS(vector, Quaternion.AngleAxis(angle, Vector3.up), s);
+                Graphics.DrawMesh(MeshPool.plane10, matrix, BubbleMat, 0);
+            }
+
+        }
+        private static readonly Material BubbleMat = MaterialPool.MatFrom("Ui/FacehuggerInfectionOverlay", ShaderDatabase.Transparent);
+
     }
+
+
     public enum ImplantDrawerType
     {
         Undefined,
         Backpack,
         Head
     }
+
 }

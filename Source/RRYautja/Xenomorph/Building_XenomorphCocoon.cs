@@ -47,7 +47,7 @@ namespace RimWorld
         {
             get
             {
-                return this.CurOccupants.Count() > 0;
+                return !this.AnyUnoccupiedSleepingSlot;//this.CurOccupants.Count() > 0;
             }
         }
 
@@ -55,7 +55,7 @@ namespace RimWorld
         {
             get
             {
-                Log.Message(string.Format("Occupied: {0}", Occupied));
+            //    Log.Message(string.Format("Occupied: {0}", Occupied));
                 if (Occupied)
                 {
                     return base.Graphic;
