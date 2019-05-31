@@ -74,11 +74,6 @@
 				<roomStat>Impressiveness</roomStat>
 			</li>
 			-->
-      <li Class="CompProperties_MaintainableLike">
-        <ticksHealthy>60000</ticksHealthy>
-        <ticksNeedsMaintenance>40000</ticksNeedsMaintenance>
-        <damagePerTickRare>10</damagePerTickRare>
-      </li>
       <li Class="CompProperties_SpawnerFilth">
         <filthDef>Filth_Slime</filthDef>
         <spawnCountOnSpawn>10</spawnCountOnSpawn>
@@ -101,17 +96,16 @@
     <designationHotKey>Misc2</designationHotKey>
   </ThingDef>
   
-	<!--
+
   <ThingDef ParentName="BuildingBase">
-    <defName>RRY_Xenomorph_Cocoon</defName>
+    <defName>RRY_Xenomorph_Animal_Cocoon</defName>
     <label>cocoon</label>
     <description>Designates a spot on the ground where people should sleep. Not comfortable.</description>
     <thingClass>Building_XenomorphCocoon</thingClass>
     <tickerType>Normal</tickerType>
     <graphicData>
-      <texPath>Things/Buildings/Xenomorph/Cocoons/Xeno_Humanoid_Cocoon</texPath>
-      <graphicClass>Graphic_Multi</graphicClass>
-      <shaderType>CutoutComplex</shaderType>
+      <texPath>DummyTexture</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
       <drawSize>(1,1)</drawSize>
     </graphicData>
     <castEdgeShadows>false</castEdgeShadows>

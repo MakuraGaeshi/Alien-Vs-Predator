@@ -44,7 +44,7 @@ namespace RRYautja
             if (IsInfectedPawn(pawn)) return false;
             if (IsXenomorph(pawn)) return false;
             if (IsXenomorphFaction(pawn)) return false;
-            if (pawn.BodySize < 0.7f) return false;
+            if (pawn.BodySize < 0.65f) return false;
             return true;
         }
         public static bool isInfectablePawn(Pawn pawn, bool allowinfected = false)
@@ -55,7 +55,15 @@ namespace RRYautja
             if (!allowinfected && IsInfectedPawn(pawn)) return false;
             if (IsXenomorph(pawn)) return false;
             if (IsXenomorphFaction(pawn)) return false;
-            if (pawn.BodySize < 0.7f) return false;
+            if (pawn.BodySize < 0.65f) return false;
+            return true;
+        }
+        public static bool isInfectablePawnKind(PawnKindDef pawn)
+        {
+            if (pawn.RaceProps.IsMechanoid) return false;
+            if (!pawn.RaceProps.IsFlesh) return false;
+            if (pawn.race.defName.Contains("RRY_Xenomorph_")) return false;
+            if (pawn.RaceProps.baseBodySize < 0.65f) return false;
             return true;
         }
         public static bool isXenomorphInfectedPawn(Pawn pawn)
@@ -191,35 +199,35 @@ namespace RRYautja
         }
 
         // Cocoon stuff
-        public static bool CocoonsPresent(Map map)
+        public static bool CocoonsPresent(Map map, ThingDef t)
         {
-            return TotalSpawnedCocoonCount(map) > 0;
+            return TotalSpawnedCocoonCount(map, t) > 0;
         }
-        public static bool EmptyCocoonsPresent(Map map)
+        public static bool EmptyCocoonsPresent(Map map, ThingDef t)
         {
-            return TotalSpawnedEmptyCocoonCount(map) > 0;
+            return TotalSpawnedEmptyCocoonCount(map, t) > 0;
         }
-        public static Thing ClosestReachableCocoon(Pawn pawn)
+        public static Thing ClosestReachableCocoon(Pawn pawn, ThingDef t)
         {
             Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, null, null, 0, -1, false, RegionType.Set_Passable, false);
             return thing;
         }
-        public static Thing ClosestReachableEmptyCocoon(Pawn pawn)
+        public static Thing ClosestReachableEmptyCocoon(Pawn pawn, ThingDef t)
         {
             Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, (x => (x is Building_XenomorphCocoon XC && XC.AnyUnoccupiedSleepingSlot)), null, 0, -1, false, RegionType.Set_Passable, false);
             return thing;
         }
-        public static Thing ClosestReachableCocoonToEgg(Thing egg)
+        public static Thing ClosestReachableCocoonToEgg(Thing egg, ThingDef t)
         {
             Thing thing = GenClosest.ClosestThingReachable(egg.Position, egg.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 10f, null, null, 0, -1, false, RegionType.Set_Passable, false);
             return thing;
         }
-        public static Thing ClosestReachableEmptyCocoonToEgg(Thing egg)
+        public static Thing ClosestReachableEmptyCocoonToEgg(Thing egg, ThingDef t)
         {
             Thing thing = GenClosest.ClosestThingReachable(egg.Position, egg.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 10f, (x => (x is Building_XenomorphCocoon XC && XC.AnyUnoccupiedSleepingSlot && XC.owners.NullOrEmpty())), null, 0, -1, false, RegionType.Set_Passable, false);
             return thing;
         }
-        public static Thing ClosestReachableCocoonThatEggNeedsHost(Pawn pawn)
+        public static Thing ClosestReachableCocoonThatEggNeedsHost(Pawn pawn, ThingDef t)
         {
             Thing thing;
             List<Thing> list = SpawnedEggsNeedHosts(pawn.Map);
@@ -227,11 +235,11 @@ namespace RRYautja
             thing = GenClosest.ClosestThingReachable(thing.Position, thing.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 10f, (x => (x is Building_XenomorphCocoon XC)), null, 0, -1, false, RegionType.Set_Passable, false);
             return thing;
         }
-        public static Thing ClosestReachableEmptyCocoonThatEggNeedsHost(Pawn pawn)
+        public static Thing ClosestReachableEmptyCocoonThatEggNeedsHost(Pawn pawn, ThingDef t)
         {
             Thing thing;
             List<Thing> list = SpawnedEggsNeedHosts(pawn.Map);
-            List<Thing> cocoonlist = SpawnedEmptyCocoons(pawn.Map);
+            List<Thing> cocoonlist = SpawnedEmptyCocoons(pawn.Map, t);
 
             thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_EggXenomorphFertilized), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, (x => list.Contains(x)), null, 0, -1, false, RegionType.Set_Passable, false);
             thing = GenClosest.ClosestThingReachable(thing.Position, thing.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 10f, (x => cocoonlist.Contains(x) && (x is Building_XenomorphCocoon XC && XC.AnyUnoccupiedSleepingSlot)), null, 0, -1, false, RegionType.Set_Passable, false);
@@ -239,21 +247,21 @@ namespace RRYautja
             return thing;
         }
 
-        public static int TotalSpawnedCocoonCount(Map map)
+        public static int TotalSpawnedCocoonCount(Map map, ThingDef t)
         {
             return map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon).Count;
         }
-        public static List<Thing> SpawnedCocoons(Map map)
+        public static List<Thing> SpawnedCocoons(Map map, ThingDef t)
         {
             return map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon);
         }
-        public static int TotalSpawnedEmptyCocoonCount(Map map)
+        public static int TotalSpawnedEmptyCocoonCount(Map map, ThingDef t)
         {
-            return SpawnedEmptyCocoons(map).Count;
+            return SpawnedEmptyCocoons(map, t).Count;
         }
-        public static List<Thing> SpawnedEmptyCocoons(Map map)
+        public static List<Thing> SpawnedEmptyCocoons(Map map, ThingDef t)
         {
-            return SpawnedCocoons(map).FindAll(x => (x is Building_XenomorphCocoon XC && XC.AnyUnoccupiedSleepingSlot));
+            return SpawnedCocoons(map, t).FindAll(x => (x is Building_XenomorphCocoon XC && XC.AnyUnoccupiedSleepingSlot));
         }
 
 
@@ -301,6 +309,20 @@ namespace RRYautja
         private static double GetDistance(double x1, double y1, double x2, double y2)
         {
             return Math.Sqrt(Math.Pow((x2 - x1), 2) + Math.Pow((y2 - y1), 2));
+        }
+    }
+    [StaticConstructorOnStartup]
+    class XenomorphStaticUtil
+    {
+        static void Main()
+        {
+            foreach (var item in DefDatabase<PawnKindDef>.AllDefsListForReading)
+            {
+                if (XenomorphUtil.isInfectablePawnKind(item))
+                {
+                    Log.Message(string.Format("Xenomorph Host: {0}", item.LabelCap));
+                }
+            }
         }
     }
 }

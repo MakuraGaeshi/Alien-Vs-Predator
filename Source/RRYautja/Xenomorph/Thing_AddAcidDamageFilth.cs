@@ -154,6 +154,10 @@ namespace RRYautja
             {
                 return;
             }
+            if (e is Plant)
+            {
+                amt *= 10;
+            }
             DamageInfo damageInfo;
             damageInfo = new DamageInfo(XenomorphDefOf.RRY_AcidBurn, (float)amt, 0f, -1f, null, null, null, 0, null);
             bool flag = e != null;

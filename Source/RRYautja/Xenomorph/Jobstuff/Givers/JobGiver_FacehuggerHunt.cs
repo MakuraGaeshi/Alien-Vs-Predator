@@ -66,12 +66,12 @@ namespace RimWorld
         // Token: 0x060005B9 RID: 1465 RVA: 0x00037BC0 File Offset: 0x00035FC0
         private Pawn FindPawnTarget(Pawn pawn)
         {
-            Pawn pawn2 = (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn && XenomorphUtil.isInfectablePawn((Pawn)x), 0f, 10f, default(IntVec3), float.MaxValue, true, true);
-            if (pawn2 == null) pawn2 = (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn && XenomorphUtil.isInfectablePawn((Pawn)x), 0f, 20f, default(IntVec3), float.MaxValue, true, true);
-            if (pawn2 == null) pawn2 = (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn && XenomorphUtil.isInfectablePawn((Pawn)x), 0f, 30f, default(IntVec3), float.MaxValue, true, true);
-            if (pawn2 == null) pawn2 = (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn && XenomorphUtil.isInfectablePawn((Pawn)x), 0f, 40f, default(IntVec3), float.MaxValue, true, true);
-            if (pawn2 == null) pawn2 = (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn && XenomorphUtil.isInfectablePawn((Pawn)x), 0f, 50f, default(IntVec3), float.MaxValue, true, true);
-            if (pawn2 == null) pawn2 = (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn && XenomorphUtil.isInfectablePawn((Pawn)x), 0f, 9999f, default(IntVec3), float.MaxValue, true, true);
+            Pawn pawn2 = (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn p && XenomorphUtil.isInfectablePawn(p) && !p.Dead, 0f, 10f, default(IntVec3), float.MaxValue, true, true);
+            if (pawn2 == null) pawn2 = (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn p && XenomorphUtil.isInfectablePawn(p) && !p.Dead, 0f, 20f, default(IntVec3), float.MaxValue, true, true);
+            if (pawn2 == null) pawn2 = (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn p && XenomorphUtil.isInfectablePawn(p) && !p.Dead, 0f, 30f, default(IntVec3), float.MaxValue, true, true);
+            if (pawn2 == null) pawn2 = (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn p && XenomorphUtil.isInfectablePawn(p) && !p.Dead, 0f, 40f, default(IntVec3), float.MaxValue, true, true);
+            if (pawn2 == null) pawn2 = (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn p && XenomorphUtil.isInfectablePawn(p) && !p.Dead, 0f, 50f, default(IntVec3), float.MaxValue, true, true);
+            if (pawn2 == null) pawn2 = (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn p && XenomorphUtil.isInfectablePawn(p) && !p.Dead, 0f, 9999f, default(IntVec3), float.MaxValue, true, true);
             if (pawn2 == null) pawn2 = BestPawnToHuntForPredator(pawn, forceScanWholeMap);
 #if DEBUG
             bool selected = Find.Selector.SingleSelectedThing == pawn;

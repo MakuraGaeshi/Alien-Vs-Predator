@@ -21,9 +21,6 @@ namespace RRYautja
         {
             get
             {
-#if DEBUG
-
-#endif
                 return this.props as HediffCompProperties_DrawImplant;
             }
         }
@@ -231,7 +228,6 @@ namespace RRYautja
             else drawPos.y += offset;
             if (Pawn.Downed)
             {
-                angle = pawnRenderer.wiggler.downedAngle;
                 if (Pawn.CarriedBy != null)
                 {
 #if DEBUG
@@ -240,7 +236,7 @@ namespace RRYautja
                     angle = Pawn.CarriedBy.carryTracker.CarriedThing.Rotation.AsAngle;
 
                 }
-                if (Pawn.InBed())
+                if (Pawn.RaceProps.Humanlike && Pawn.InBed())
                 {
 
                     if (Pawn.CurrentBed().Rotation == Rot4.South)

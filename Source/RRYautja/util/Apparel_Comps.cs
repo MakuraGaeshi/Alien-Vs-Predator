@@ -102,7 +102,8 @@ namespace RRYautja
                     {
                         if (ticksTillDetonation == 1000)
                         {
-                            stringbit = string.Format("{0} seconds remaining", (ticksTillDetonation / 100));
+                            stringbit = string.Format("Countdown Started {0} seconds remaining", (ticksTillDetonation / 100));
+                            
                         }
                         if (ticksTillDetonation == 900)
                         {
@@ -142,10 +143,11 @@ namespace RRYautja
                         }
                         if (!stringbit.NullOrEmpty())
                         {
-                            IntVec3 vec3 = GetWearer.Position;
+                            IntVec3 vec3 = GetWearer.Position != null ? GetWearer.Position : GetWearer.PositionHeld;
+                            Map map = GetWearer.Map ?? GetWearer.MapHeld;
                             vec3.x -= 1;
                             vec3.z += 1;
-                            MoteMaker.ThrowText(vec3.ToVector3ShiftedWithAltitude(AltitudeLayer.MoteOverhead), GetWearer.Map, stringbit, 5f);
+                            MoteMaker.ThrowText(vec3.ToVector3ShiftedWithAltitude(AltitudeLayer.MoteOverhead), map, stringbit, 5f);
                         }
                         ticksTillDetonation--;
                     }

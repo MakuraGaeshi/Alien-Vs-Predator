@@ -80,8 +80,9 @@
     <Compile Include="Xenomorph\Building_XenoEgg.cs" />
     <None Include="Xenomorph\Building_XenomorphCocoon - Copy.cs.bak" />
     <Compile Include="Xenomorph\Building_XenomorphCocoon.cs" />
-    <Compile Include="Xenomorph\Class1.cs" />
+    <Compile Include="Xenomorph\FacehuggerOffsetDefExtension.cs" />
     <Compile Include="Xenomorph\GenStep_XenomorphCaveHives.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphHosthunter.cs" />
     <Compile Include="Xenomorph\RRY_FlyingObject.cs" />
     <Compile Include="Xenomorph\MapComponent_XenomorphCocoonTracker.cs" />
     <Compile Include="Xenomorph\HediffComp_XenomorphCocoon.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphFightEnemies.cs" />
     <Compile Include="Xenomorph\HediffGiver_StartWithXenomorphHediff.cs" />
     <Compile Include="util\MinifiedThingNoBox.cs" />
+    <Compile Include="Xenomorph\ThinkNode_ConditionalAnyInfectableSpawnedNearby.cs" />
     <Compile Include="Yautja\Alert_ColonistNeedsRescuingFromCocoon.cs" />
     <Compile Include="Yautja\Recipe_Remove_Gauntlet.cs" />
     <Compile Include="Yautja\RRY_Thought_SituationalSocial.cs" />

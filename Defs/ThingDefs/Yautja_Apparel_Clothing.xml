@@ -103,7 +103,6 @@
 			<bodyPartGroups>
 				<li>Torso</li>
 				<li>Legs</li>
-				<li>Arms</li>
 			</bodyPartGroups>
 			<wornGraphicPath>Things/Apparel/Yautja_Vest/Yautja_Vest</wornGraphicPath>
 			<layers>

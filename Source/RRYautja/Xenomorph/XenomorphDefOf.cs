@@ -54,6 +54,7 @@ namespace RimWorld
 
         // Xenomorph ThingDefs 
         public static ThingDef RRY_Xenomorph_Humanoid_Cocoon;
+        public static ThingDef RRY_Xenomorph_Animal_Cocoon;
         public static ThingDef RRY_EggXenomorphFertilized;
         public static ThingDef RRY_Xenomorph_TailSpike;
         public static ThingDef RRY_Xenomorph_HeadShell;

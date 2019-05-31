@@ -56,7 +56,7 @@ namespace RimWorld
             get
             {
             //    Log.Message(string.Format("Occupied: {0}", Occupied));
-                if (Occupied)
+                if (Occupied && GetCurOccupant(0).RaceProps.Humanlike)
                 {
                     return base.Graphic;
                 }
@@ -93,6 +93,10 @@ namespace RimWorld
                         if (p.RaceProps.Humanlike)
                         {
                             this.def.building.bed_showSleeperBody = false;
+                        }
+                        if (!p.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned))
+                        {
+                            p.health.AddHediff(XenomorphDefOf.RRY_Hediff_Cocooned);
                         }
                     }
                 }

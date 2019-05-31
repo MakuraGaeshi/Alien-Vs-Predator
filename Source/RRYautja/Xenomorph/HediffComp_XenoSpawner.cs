@@ -170,20 +170,15 @@ namespace RRYautja
                 }
             }
         }
-        public override void Notify_PawnDied()
+
+        public Pawn XenomorphSpawnRequest()
         {
-            IntVec3 spawnLoc = !base.Pawn.Dead ? base.parent.pawn.Position : base.parent.pawn.PositionHeld;
-            Map spawnMap = !base.Pawn.Dead ? base.parent.pawn.Map : base.parent.pawn.MapHeld;
-            bool selected = Find.Selector.SingleSelectedThing == parent.pawn;
-            ///((Pawn)base.Pawn).def.race.deathActionWorkerClass.
-            this.Pawn.def.race.deathActionWorkerClass = typeof(DeathActionWorker_Simple);
+            bool selected = Find.Selector.SingleSelectedThing == parent.pawn && Prefs.DevMode;
             List<PawnKindDef> pawnKindDefs = Props.pawnKindDefs;
             List<float> pawnKindWeights = Props.pawnKindWeights;
             PawnKindDef pawnKindDef = pawnKindDefs[pawnKindDefs.Count - 1];
             int ind = 0;
-            bool fullterm = this.parent.CurStageIndex > this.parent.def.stages.Count - 3;
-            if (!fullterm) return;
-            if (this.Pawn.MapHeld == null) return;
+            
             bool QueenPresent = false;
             foreach (var p in base.parent.pawn.MapHeld.mapPawns.AllPawnsSpawned)
             {
@@ -214,32 +209,45 @@ namespace RRYautja
 
                 ind++;
             }
-#if DEBUG
-        //    Log.Message(string.Format("{0} Old pawnKindDef.lifeStages[0].bodyGraphicData.color: {1}", base.parent.pawn.Name, pawnKindDef.lifeStages[0].bodyGraphicData.color));
-        //    Log.Message(string.Format("{0} base.parent.pawn.def.race.BloodDef.graphic.color: {1}", base.parent.pawn.Name, base.parent.pawn.def.race.BloodDef.graphic.color));
-#endif
+
             if (Pawn.kindDef.race == YautjaDefOf.RRY_Alien_Yautja)
             {
                 pawnKindDef = XenomorphDefOf.RRY_Xenomorph_Predalien;
             }
-            Color color = base.parent.pawn.def.race.BloodDef.graphic.color;
-            color.a = 1f;
-            pawnKindDef.lifeStages[0].bodyGraphicData.color = color;
-#if DEBUG
-        //    Log.Message(string.Format("{0} new value.kindDef.lifeStages[0].bodyGraphicData.color: {1}", base.parent.pawn.Name, pawnKindDef.lifeStages[0].bodyGraphicData.color));
-#endif
-            PawnGenerationRequest pawnGenerationRequest = new PawnGenerationRequest(pawnKindDef, Find.FactionManager.FirstFactionOfDef(pawnKindDef.defaultFactionType), PawnGenerationContext.NonPlayer, -1, true, false, true, false, true, true, 20f);
-            Pawn pawn = PawnGenerator.GeneratePawn(pawnGenerationRequest);
-            pawn.ageTracker.CurKindLifeStage.bodyGraphicData.color = color;
-            //this this will error  pawn.Graphic.data.color = color;
+            Gender gender;
             if (pawnKindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
             {
-                pawn.gender = Gender.Female;
+                gender = Gender.Female;
             }
             else
             {
-                pawn.gender = Gender.Male;
+                gender = Gender.None;
             }
+
+            return PawnGenerator.GeneratePawn(new PawnGenerationRequest(pawnKindDef, Find.FactionManager.FirstFactionOfDef(pawnKindDef.defaultFactionType), PawnGenerationContext.NonPlayer, -1, true, true, false, false, true, true, 20f, fixedGender: gender));
+        }
+        public Color HostBloodColour
+        {
+            get
+            {
+                Color color = base.parent.pawn.def.race.BloodDef.graphic.color;
+                color.a = 1f;
+                return color;
+            }
+        }
+
+        public override void Notify_PawnDied()
+        {
+            IntVec3 spawnLoc = !base.Pawn.Dead ? base.parent.pawn.Position : base.parent.pawn.PositionHeld;
+            Map spawnMap = !base.Pawn.Dead ? base.parent.pawn.Map : base.parent.pawn.MapHeld;
+            bool selected = Find.Selector.SingleSelectedThing == parent.pawn;
+            this.Pawn.def.race.deathActionWorkerClass = typeof(DeathActionWorker_Simple);
+            bool fullterm = this.parent.CurStageIndex > this.parent.def.stages.Count - 3;
+            if (!fullterm) return;
+            if (spawnMap == null || spawnLoc == null) return;
+            Pawn pawn = XenomorphSpawnRequest();
+            pawn.ageTracker.CurKindLifeStage.bodyGraphicData.color = HostBloodColour;
+            pawn.Notify_ColorChanged();
             pawn.ageTracker.AgeBiologicalTicks = 0;
             pawn.ageTracker.AgeChronologicalTicks = 0;
             Comp_Xenomorph _Xenomorph = pawn.TryGetComp<Comp_Xenomorph>();
@@ -250,18 +258,18 @@ namespace RRYautja
             Vector3 vector = spawnLoc.ToVector3Shifted();
             GenSpawn.Spawn(pawn, spawnLoc, spawnMap, 0);
             for (int i = 0; i < 101; i++)
-            { // Find.TickManager.TicksGame
+            {
                 if (Rand.MTBEventOccurs(DustMoteSpawnMTB, 2f, 3.TicksToSeconds()))
                 {
                     MoteMaker.ThrowDustPuffThick(new Vector3(vector.x, 0f, vector.z)
                     {
                         y = AltitudeLayer.MoteOverhead.AltitudeFor()
-                    }, spawnMap, 1.0f, new Color(color.r, color.g, color.b, 1f));
+                    }, spawnMap, 1.0f, new Color(HostBloodColour.r, HostBloodColour.g, HostBloodColour.b, HostBloodColour.a));
                 }
             }
             string text = TranslatorFormattedStringExtensions.Translate("Xeno_Chestburster_Emerge", base.parent.pawn.LabelShort, this.parent.Part.LabelShort);
             MoteMaker.ThrowText(spawnLoc.ToVector3(), spawnMap, text, 5f);
-            //base.Pawn.health.RemoveHediff(this.parent);
+
         }
 
         [TweakValue("Gameplay", 0f, 1f)]

@@ -12,6 +12,8 @@ namespace RimWorld
         public FactionDef Faction;
         public ThingDef TunnelDef;
         public List<PawnKindDef> PawnKinds = new List<PawnKindDef>();
+        public float maxSpawnPointsPerHive = 2550f;
+        public float initalSpawnPointsPerHive = 250f;
     }
     // Token: 0x020006EC RID: 1772
     public class HiveLike : ThingWithComps
@@ -75,6 +77,27 @@ namespace RimWorld
             }
         }
 
+        // Token: 0x040015B0 RID: 5552
+        public float MaxSpawnedPawnsPoints
+        {
+            get
+            {
+                return Def.maxSpawnPointsPerHive;
+            }
+            set
+            {
+                return;
+            }
+        }
+
+        // Token: 0x040015B1 RID: 5553
+        public float InitialPawnsPoints
+        {
+            get
+            {
+                return Def.initalSpawnPointsPerHive;
+            }
+        }
         public List<PawnKindDef> PawnKinds = new List<PawnKindDef>();
         // Token: 0x170005CD RID: 1485
         // (get) Token: 0x06002670 RID: 9840 RVA: 0x00123F94 File Offset: 0x00122394
@@ -172,12 +195,16 @@ namespace RimWorld
             {
                 this.SpawnInitialPawns();
             }
+            else
+            {
+                spawnablePawnKinds = OfPawnKinds;
+            }
 		}
 
 		// Token: 0x06002674 RID: 9844 RVA: 0x00124110 File Offset: 0x00122510
 		private void SpawnInitialPawns()
 		{
-			this.SpawnPawnsUntilPoints(200f);
+			this.SpawnPawnsUntilPoints(InitialPawnsPoints);
 			this.CalculateNextPawnSpawnTick();
 		}
 
@@ -215,7 +242,7 @@ namespace RimWorld
 				}
 				if (this.active && Find.TickManager.TicksGame >= this.nextPawnSpawnTick)
 				{
-					if (this.SpawnedPawnsPoints < 500f)
+					if (this.SpawnedPawnsPoints < MaxSpawnedPawnsPoints)
 					{
                         bool flag = this.TrySpawnPawn(out Pawn pawn);
                         if (flag && pawn.caller != null)
@@ -334,7 +361,7 @@ namespace RimWorld
 			}
 			float curPoints = this.SpawnedPawnsPoints;
 			IEnumerable<PawnKindDef> source = from x in spawnablePawnKinds
-			where curPoints + x.combatPower <= 500f
+			where curPoints + x.combatPower <= MaxSpawnedPawnsPoints
 			select x;
             if (!source.TryRandomElement(out PawnKindDef kindDef))
             {
@@ -362,11 +389,34 @@ namespace RimWorld
 				yield return g;
 			}
 			if (Prefs.DevMode)
-			{
-				yield return new Command_Action
+            {
+                float curPoints = this.SpawnedPawnsPoints;
+                string Desc = "All Possible Spawns: "+ OfPawnKinds.Count;
+                Desc += "\n";
+                Desc += "points remaining: " + (MaxSpawnedPawnsPoints - curPoints);
+                Desc += "\n\n";
+                foreach (PawnKindDef PKD in OfPawnKinds)
+                {
+                    Desc += PKD.LabelCap+", Points: "+PKD.combatPower;
+                    Desc += "\n";
+                }
+                IEnumerable<PawnKindDef> source = from x in OfPawnKinds
+                                                  where curPoints + x.combatPower <= MaxSpawnedPawnsPoints
+                                                  select x;
+
+                Desc += "\n";
+                Desc += "Affordable Types: " + source.Count();
+                Desc += "\n\n";
+                foreach (PawnKindDef PKD in source)
+                {
+                    Desc += PKD.LabelCap + ", Points: " + PKD.combatPower;
+                    Desc += "\n";
+                }
+                yield return new Command_Action
 				{
 					defaultLabel = "DEBUG: Spawn pawn",
 					icon = TexCommand.ReleaseAnimals,
+                    defaultDesc = Desc,
 					action = delegate()
 					{
                         this.TrySpawnPawn(out Pawn pawn);
@@ -415,20 +465,14 @@ namespace RimWorld
 		// Token: 0x040015AF RID: 5551
 		public const int PawnSpawnRadius = 2;
 
-		// Token: 0x040015B0 RID: 5552
-		public const float MaxSpawnedPawnsPoints = 500f;
-
-		// Token: 0x040015B1 RID: 5553
-		public const float InitialPawnsPoints = 200f;
-
 		// Token: 0x040015B2 RID: 5554
 		private static readonly FloatRange PawnSpawnIntervalDays = new FloatRange(0.85f, 1.15f);
 
-		// Token: 0x040015B3 RID: 5555
-		public List<PawnKindDef> spawnablePawnKinds = new List<PawnKindDef>();
+        // Token: 0x040015B3 RID: 5555
+        public List<PawnKindDef> spawnablePawnKinds = new List<PawnKindDef>();
 
-		// Token: 0x040015B4 RID: 5556
-		public static readonly string MemoAttackedByEnemy = "HiveAttacked";
+        // Token: 0x040015B4 RID: 5556
+        public static readonly string MemoAttackedByEnemy = "HiveAttacked";
 
 		// Token: 0x040015B5 RID: 5557
 		public static readonly string MemoDeSpawned = "HiveDeSpawned";

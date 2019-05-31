@@ -116,7 +116,7 @@
     <passability>PassThroughOnly</passability>
     <drawerType>RealtimeOnly</drawerType>
     <killedLeavings>
-      <InsectJelly>30</InsectJelly>
+      <!-- <InsectJelly>30</InsectJelly> -->
     </killedLeavings>
     <placeWorkers>
       <li>PlaceWorker_Heater</li>

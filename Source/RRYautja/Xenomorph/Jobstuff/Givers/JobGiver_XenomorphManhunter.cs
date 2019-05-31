@@ -18,7 +18,7 @@ namespace RimWorld
 
 #if DEBUG
             bool selected = Find.Selector.SingleSelectedThing == pawn;
-        //    if (selected) Log.Message(string.Format("{0} hunting {1}", pawn, pawn2));
+            if (selected) Log.Message(string.Format("{0} hunting {1}", pawn, pawn2));
 #endif
             if (pawn2 != null && pawn.CanReach(pawn2, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.ByPawn))
             {

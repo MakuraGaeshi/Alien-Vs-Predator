@@ -214,7 +214,9 @@ namespace RimWorld
                                 radius++;
                             }
                             Log.Message(string.Format("mapRect: {0}", mapRect));
-                        //    GenPlace.TryPlaceThing(TryMakeCocoon(mapRect, this.Map, named), intVec, this.Map, ThingPlaceMode.Near);
+                            //    GenPlace.TryPlaceThing(TryMakeCocoon(mapRect, this.Map, named), intVec, this.Map, ThingPlaceMode.Near);
+                           // this.pawn.carryTracker.TryDropCarriedThing(position, ThingPlaceMode.Direct, out Thing thing, null);
+                           // this.Takee.jobs.Notify_TuckedIntoBed(this.DropBed);
                             this.Takee.mindState.Notify_TuckedIntoBed();
                         }
                     },
