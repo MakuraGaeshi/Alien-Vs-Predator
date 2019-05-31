@@ -39,7 +39,7 @@
 					<EastZOffset>-1.0</EastZOffset>
 					<!-- East Draw size overrides, will default to 1 if not set -->
 					<EastXDrawSize>3</EastXDrawSize>
-					<EastZDrawSize>3</EastZDrawSize>
+					<EastZDrawSize>4</EastZDrawSize>
 					<!-- East Angle overrides, will default to 0 if not set -->
 					<EastAngle>0</EastAngle>
 					<!-- West offsets Y is the layer height, usually you can leave this at 0, all values default to 0 if not set-->
