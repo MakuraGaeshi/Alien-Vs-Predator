@@ -19,28 +19,28 @@
 					<NorthXOffset>0.0</NorthXOffset>
 					<NorthYOffset>0.0</NorthYOffset>
 					<NorthZOffset>0.0</NorthZOffset>
-					<!-- North Draw size overrides, will default ro 1 if not set -->
+					<!-- North Draw size overrides, will default to 1 if not set -->
 					<NorthXDrawSize>2</NorthXDrawSize>
 					<NorthZDrawSize>1</NorthZDrawSize>
 					<!-- South offsets Y is the layer height, usually you can leave this at 0, all values default to 0 if not set-->
 					<SouthXOffset>0.0001</SouthXOffset>
 					<SouthYOffset>0.0001</SouthYOffset>
 					<SouthZOffset>0.0001</SouthZOffset>
-					<!-- South Draw size overrides, will default ro 1 if not set -->
+					<!-- South Draw size overrides, will default to 1 if not set -->
 					<SouthXDrawSize>1</SouthXDrawSize>
 					<SouthZDrawSize>2</SouthZDrawSize>
 					<!-- East offsets Y is the layer height, usually you can leave this at 0, all values default to 0 if not set-->
 					<EastXOffset>0.0</EastXOffset>
 					<EastYOffset>0.0</EastYOffset>
 					<EastZOffset>0.0</EastZOffset>
-					<!-- East Draw size overrides, will default ro 1 if not set -->
+					<!-- East Draw size overrides, will default to 1 if not set -->
 					<EastXDrawSize>2</EastXDrawSize>
 					<EastZDrawSize>5</EastZDrawSize>
 					<!-- West offsets Y is the layer height, usually you can leave this at 0, all values default to 0 if not set-->
 					<WestXOffset>0.0</WestXOffset>
 					<WestYOffset>0.0</WestYOffset>
 					<WestZOffset>0.0</WestZOffset>
-					<!-- West Draw size overrides, will default ro 1 if not set -->
+					<!-- West Draw size overrides, will default to 1 if not set -->
 					<WestXDrawSize>3</WestXDrawSize>
 					<WestZDrawSize>6</WestZDrawSize>
 				  </li>
