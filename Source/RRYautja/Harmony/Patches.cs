@@ -607,16 +607,8 @@ namespace RRYautja
             string direction = "";
             float offset = 0f;
             Rot4 rot = bodyFacing;
-#if DEBUG
-            if (selected)
-            {
-                Log.Message(string.Format("{0}'s rootLoc: {1}, angle: {2}, renderBody: {3}, bodyFacing: {4}, headFacing: {5}, bodyDrawType: {6}, portrait: {7}", pawn.Label, rootLoc, angle, renderBody, bodyFacing.ToStringHuman(), headFacing.ToStringHuman(), bodyDrawType, portrait));
-            }
-#endif
-
-
-            Vector3 vector3 = new Vector3();
-            Vector3 s = new Vector3();
+            Vector3 vector3 = pawn.RaceProps.Humanlike ? __instance.BaseHeadOffsetAt(headFacing) : new Vector3();
+            Vector3 s = new Vector3(pawn.BodySize*1.75f,pawn.BodySize*1.75f,pawn.BodySize*1.75f);
             if (pawn.kindDef.race.GetModExtension<FacehuggerOffsetDefExtension>() != null)
             {
                 GetAltitudeOffset(pawn, rot, out float X, out float Y, out float Z, out float DsX, out float DsZ, out float ang);
@@ -627,6 +619,11 @@ namespace RRYautja
                 s.x = DsX;
                 s.z = DsZ;
                 
+            }
+            if (pawn.RaceProps.Humanlike)
+            {
+                vector3.x += 0.01f;
+                vector3.z += -0.35f;
             }
 
             Quaternion quaternion = Quaternion.AngleAxis(angle, Vector3.up);
@@ -652,7 +649,7 @@ namespace RRYautja
             }
             */
             Vector3 loc2 = rootLoc + b;
-            loc2.y += 0.03005f;
+            loc2.y += 0.03105f;
             bool flag = false;
             /*
             if (!portrait || !Prefs.HatsOnlyOnMap)
@@ -684,19 +681,20 @@ namespace RRYautja
             */
             if (!flag && bodyDrawType != RotDrawMode.Dessicated)
             {
-            //    Mesh mesh4 = __instance.graphics.HairMeshSet.MeshAt(headFacing);
-                Material mat = comp.ImplantMaterial(pawn, headFacing);
+#if DEBUG
+                if (selected)
+                {
+                    Log.Message(string.Format("{0}'s rootLoc: {1}, angle: {2}, renderBody: {3}, bodyFacing: {4}, headFacing: {5}, bodyDrawType: {6}, portrait: {7}", pawn.Label, rootLoc, angle, renderBody, bodyFacing.ToStringHuman(), headFacing.ToStringHuman(), bodyDrawType, portrait));
+                }
+#endif
+                //    Mesh mesh4 = __instance.graphics.HairMeshSet.MeshAt(headFacing);
+                Material mat = comp.ImplantMaterial(pawn, pawn.RaceProps.Humanlike ? headFacing : bodyFacing);
             //    GenDraw.DrawMeshNowOrLater(headFacing == Rot4.West ? MeshPool.plane10Flip : MeshPool.plane10, loc2, quaternion, mat, true);
                 Matrix4x4 matrix = default(Matrix4x4);
                 matrix.SetTRS(loc2, quaternion, s);
-                Graphics.DrawMesh(headFacing == Rot4.West ? MeshPool.plane10Flip : MeshPool.plane10, matrix, mat, 0);
+                Graphics.DrawMesh((pawn.RaceProps.Humanlike ? headFacing : bodyFacing) == Rot4.West ? MeshPool.plane10Flip : MeshPool.plane10, matrix, mat, 0);
             }
-#if DEBUG
-            if (selected)
-            {
-             //   Log.Message(string.Format("{0}'s rootLoc: {1}, angle: {2}, renderBody: {3}, bodyFacing: {4}, headFacing: {5}, bodyDrawType: {6}, portrait: {7}", pawn.Label, rootLoc, angle, renderBody, bodyFacing, headFacing, bodyDrawType, portrait));
-            }
-#endif
+
             /*
             Material matSingle = comp.ImplantMaterial(pawn, rot);
             Matrix4x4 matrix = default(Matrix4x4);
