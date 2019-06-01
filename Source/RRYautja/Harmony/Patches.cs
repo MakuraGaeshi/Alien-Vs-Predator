@@ -824,37 +824,36 @@ namespace RRYautja
 
         }
 
-        static void Postfix(PawnRenderer __instance, ref Vector3 rootLoc)
+        /*
+    static void Postfix(PawnRenderer __instance, ref Vector3 rootLoc)
+    {
+        Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
+        if (pawn.RaceProps.Humanlike || pawn.kindDef.race.GetModExtension<FacehuggerOffsetDefExtension>()!=null)
         {
-            /*
-            Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
-            if (pawn.RaceProps.Humanlike || pawn.kindDef.race.GetModExtension<FacehuggerOffsetDefExtension>()!=null)
+            foreach (var hd in pawn.health.hediffSet.hediffs)
             {
-                foreach (var hd in pawn.health.hediffSet.hediffs)
+                HediffComp_DrawImplant comp = hd.TryGetComp<HediffComp_DrawImplant>();
+                if (comp != null)
                 {
-                    HediffComp_DrawImplant comp = hd.TryGetComp<HediffComp_DrawImplant>();
-                    if (comp != null)
-                    {
-                        comp.DrawImplant(rootLoc);
-                    }
-                }
-            } // DrawWornExtras()
-            else
-            {
-                foreach (var hd in pawn.health.hediffSet.hediffs)
-                {
-                    HediffComp_DrawImplant comp = hd.TryGetComp<HediffComp_DrawImplant>();
-                    if (comp != null)
-                    {
-                        comp.DrawWornExtras();
-                    }
+                    comp.DrawImplant(rootLoc);
                 }
             }
-            */
+        } // DrawWornExtras()
+        else
+        {
+            foreach (var hd in pawn.health.hediffSet.hediffs)
+            {
+                HediffComp_DrawImplant comp = hd.TryGetComp<HediffComp_DrawImplant>();
+                if (comp != null)
+                {
+                    comp.DrawWornExtras();
+                }
+            }
         }
-
     }
-    
+        */
+    }
+
     // Token: 0x02000007 RID: 7
     [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "TryExecute")]
     public static class IncidentWorker_RaidEnemyPatch_TryExecute
@@ -1039,6 +1038,40 @@ namespace RRYautja
             return !absorbed;
         }
         
+    }
+
+    /*
+    // Token: 0x02000007 RID: 7
+    [HarmonyPatch(typeof(PowerNet), "PowerNetTick")]
+    public static class PowerNet_PowerNetTick_Patch
+    {
+        [HarmonyPrefix]
+        public static bool prePowerNetTick(PowerNet __instance)
+        {
+            float num = __instance.CurrentEnergyGainRate();
+            float num2 = __instance.CurrentStoredEnergy();
+            bool active = !__instance.Map.gameConditionManager.ConditionIsActive(GameConditionDefOf.SolarFlare);
+            Log.Message(string.Format("PowerNetTick CurrentEnergyGainRate: {0}, CurrentStoredEnergy: {1}", num, num2));
+            
+            return true;
+        }
+    }
+    */
+
+    // Token: 0x02000088 RID: 136
+    [HarmonyPatch(typeof(GameConditionManager), "ConditionIsActive")]
+    internal static class GameConditionManager_ConditionIsActive_Patch
+    {
+        [HarmonyPostfix]
+        public static void Postfix(GameConditionManager __instance, ref GameConditionDef def, ref bool __result)
+        {
+            if (def == GameConditionDefOf.SolarFlare)
+            {
+            //    Log.Message(string.Format("GameConditionManager_ConditionIsActive_Patch SolarFlare: {0}", __result));
+                __result = __result || __instance.ConditionIsActive(XenomorphDefOf.RRY_Xenomorph_PowerCut);
+                Log.Message(string.Format("GameConditionManager_ConditionIsActive_Patch Xenomorph_PowerCut: {0}", __result));
+            }
+        }
     }
 
 }

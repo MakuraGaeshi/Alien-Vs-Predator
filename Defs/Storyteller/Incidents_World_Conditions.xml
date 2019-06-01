@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <IncidentDef>
+    <defName>RRY_PowerCut_Xenomorph</defName>
+    <label>power cut</label>
+		<category>Misc</category>
+    <targetTags>
+      <li>Map_PlayerHome</li>
+    </targetTags>
+    <workerClass>IncidentWorker_PowerCut</workerClass>
+    <gameCondition>RRY_Xenomorph_PowerCut</gameCondition>
+    <letterLabel>Power Cut</letterLabel>
+    <letterText>They cut the power.\n\nWhat do you mean "THEY cut the power"? How could they cut the power, man? They're animals!\n\nAn attack is imminent.</letterText>
+    <letterDef>NegativeEvent</letterDef>
+    <baseChance>2</baseChance>
+    <populationEffect>IncreaseHard</populationEffect>
+    <minRefireDays>8</minRefireDays>
+	<earliestDay>22</earliestDay>
+    <durationDays>
+      <min>0.15</min>
+      <max>0.5</max>
+    </durationDays>
+  </IncidentDef>
+
+</Defs>

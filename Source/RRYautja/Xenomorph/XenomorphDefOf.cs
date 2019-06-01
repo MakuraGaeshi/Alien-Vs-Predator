@@ -83,7 +83,10 @@ namespace RimWorld
         // Xenomorph AbilityDefs
         public static AbilityUser.AbilityDef RRY_Ability_SpitAcid;
 
-        // Xenomorph LifeStageDefs RRY_Xeno_Shell
+        // Xenomorph GameCOnditionDefs
+        public static GameConditionDef RRY_Xenomorph_PowerCut;
+
+        // Xenomorph LifeStageDefs RRY_Xeno_Shell 
         //   public static LifeStageDef RRY_EggXenomorphFertilized;
 
     }
