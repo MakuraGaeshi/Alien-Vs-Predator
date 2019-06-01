@@ -7,14 +7,69 @@
 	</supportedVersions>
 	<description>V1.2
 	
-	This mod adds 
-	Yautja(Predator) Race from the Predator film franchise to the game as a playale race.
-	Xenomorph race from the Alien film franchise to the game as a enemy race.
+	Requirments
+	JecsTools
+	Humanoid Alien Races 2.0
 	
-	textures by 
-	Rebelrot
-	Temmy
-	Deon
-	Serpy Derpy
+	This mod adds 
+	
+	Yautja(Predator) Race from the Predator film franchise to the game as a playale race.
+	Pawns:
+	Yautja Race (Male &amp; Female)
+	
+	Mechanics:
+	Blooding and Marking: the Yautja value phyiscal prowess above all else, the stronger the creature they kill, the higher their social status is.
+	
+	Apparel:
+	Yautja Thermal Webbing
+	Yautja Bio Mask (Standard, Elite, Ornate Variants)
+	Yautja Hunter Armour (Standard, Light, Heavy, Elite, Ornate Variants)
+
+	Equipment:
+	Yautja Gauntlet: This contains the Self Destruct Device, this item also gives the wearer a Wristblade melee attack (Thanks to LoonyLadle's Hediff Apparel Resource)
+	and can also be upgraded with a Medicomp to treat the wearers wounds in the field, a Shard injector to quickly bring the wearer back to combat rediness, and a cloaking device.
+	Yautja Shoulder Cannon: This item gives the wearer an automated ranged attack when active (Based on Rikki's Mining Helmet)
+
+	Weapons: Melee
+	Yautja Combistaff: can be thrown to pin enemies in place
+	Bladed Maul: Simple melee weapon
+
+	Weapons: Ranged
+	Yautja Smart Disk - Research allows this to hit multiple targets while wearing a Bio Mask
+	Yautja Blaster
+	Yautja Needler
+	Yautja Speargun - Sniper rifle equivillent
+	
+	incidents:
+	Man in Black: using the yautja starts enables Yautji Man in Black replacer.(it will also work for other races, if they have a pawnkind with StrangerinBlack in its name)
+	El Diablo: Yautji raids during Heatwaves are larger than normal.
+	
+	Xenomorph race from the Alien film franchise to the game as a enemy race.
+	Full Xenomorph lifeycle, facehuggers can impregnate pawns, the resulting xenomorph is mostly random, however if the host is a yautja then it will always result in a predalien.
+	
+	Pawns:
+	Queen, Drone(Spitter), Warrior, Runner, Facehugger. Chestburster, Predalien, Neomorph
+	
+	Mechanics:
+	Acidic Blood: 
+	Hidden Infections:
+	
+	incidents:
+	They Mostly Come at Night: Xenomorph raids during the night are larger than normal
+	Neomorph Spores: 
+	Crashed Ship part: 
+	Xenomorph Infestation: 
+	
+	
+	
+	Credits:
+	C# and Xml by Ogliss
+	Most Textures by Rebelrot
+	Xenomorph Textures by Deon
+	Xml, Balancing by Acide_Bob
+	Bladed Mauled, Combistaff and Needler Textures by Temmy
+	Rynath Textures by Serpy Derpy
+	
+	also a big Thank you to Jecrell, Erdelf, Menhi, Roolo and the many others who assited with the c#
 		</description>
 </ModMetaData>

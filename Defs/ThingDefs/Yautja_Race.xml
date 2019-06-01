@@ -120,6 +120,7 @@
 			<li>RRY_Hediff_BloodedMHound</li>
 			<li>RRY_Hediff_BloodedMCrusher</li>
 			<li>RRY_Hediff_BloodedMGroTye</li>
+			<li>RRY_Hediff_BloodedMThrumbo</li>
 			<li>RRY_Hediff_BloodedMWorthyHuman</li>
 			<li>RRY_Hediff_BloodedMWorthyHumanlike</li>
 			<li>RRY_Hediff_BloodedMMechanoid</li>
@@ -472,6 +473,7 @@
 				<li>RRY_Apparel_HunterLeaderBioMask</li>
 				<li>RRY_Apparel_HunterVest</li>
 				<li>RRY_Apparel_Mesh</li>
+				<li>RRY_Apparel_Apparel_TribalA</li>
 				
 				<li>RRY_Apparel_LeaderArmourChestplate</li>
 				<li>RRY_Apparel_LeaderArmourGreaves</li>
@@ -501,6 +503,7 @@
 				<li>RRY_Apparel_HunterLeaderBioMask</li>
 				<li>RRY_Apparel_HunterVest</li>
 				<li>RRY_Apparel_Mesh</li>
+				<li>RRY_Apparel_Apparel_TribalA</li>
 				
 				<li>RRY_Apparel_LeaderArmourChestplate</li>
 				<li>RRY_Apparel_LeaderArmourGreaves</li>

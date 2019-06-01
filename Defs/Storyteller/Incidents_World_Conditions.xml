@@ -15,11 +15,11 @@
     <letterDef>NegativeEvent</letterDef>
     <baseChance>2</baseChance>
     <populationEffect>IncreaseHard</populationEffect>
-    <minRefireDays>8</minRefireDays>
-	<earliestDay>22</earliestDay>
+    <minRefireDays>15</minRefireDays>
+	<earliestDay>90</earliestDay>
     <durationDays>
-      <min>0.15</min>
-      <max>0.5</max>
+      <min>0.25</min>
+      <max>0.75</max>
     </durationDays>
   </IncidentDef>
 
