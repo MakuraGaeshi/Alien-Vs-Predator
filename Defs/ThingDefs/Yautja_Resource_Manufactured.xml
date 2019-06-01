@@ -36,10 +36,10 @@
     </statBases>
     <tradeability>Sellable</tradeability>
 		<costList>				
-			<Steel>30</Steel>
-			<Plasteel>40</Plasteel>
-			<ComponentIndustrial>10</ComponentIndustrial>
-			<Gold>4</Gold>
+			<MedicineHerbal>1</MedicineHerbal>
+			<Neutroamine>1</Neutroamine>
+			<Steel>3</Steel>
+			<Gold>2</Gold>
 		</costList>
     <recipeMaker>
       <workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
