@@ -14,6 +14,7 @@ namespace RRYautja
 
         public string implantGraphicPath;
     }
+
     [StaticConstructorOnStartup]
     public class HediffComp_DrawImplant : HediffComp
     {
@@ -37,13 +38,29 @@ namespace RRYautja
         public Material ImplantMaterial(Pawn pawn, Rot4 bodyFacing)
         {
             string path;
-            if (this.implantDrawProps.implantDrawerType == ImplantDrawerType.Head)
+            HediffComp_XenoFacehugger _XenoFacehugger = parent.TryGetComp<HediffComp_XenoFacehugger>();
+            if (_XenoFacehugger!=null)
             {
-                path = implantDrawProps.implantGraphicPath;
+                
+                if (this.implantDrawProps.implantDrawerType == ImplantDrawerType.Head)
+                {
+                    path = _XenoFacehugger.TexPath;
+                }
+                else
+                {
+                    path = _XenoFacehugger.TexPath + "_" + pawn.story.bodyType.ToString();
+                }
             }
-            else
+            else // if (!implantDrawProps.implantGraphicPath.NullOrEmpty())
             {
-                path = implantDrawProps.implantGraphicPath + "_" + pawn.story.bodyType.ToString();
+                if (this.implantDrawProps.implantDrawerType == ImplantDrawerType.Head)
+                {
+                    path = implantDrawProps.implantGraphicPath;
+                }
+                else
+                {
+                    path = implantDrawProps.implantGraphicPath + "_" + pawn.story.bodyType.ToString();
+                }
             }
             return GraphicDatabase.Get<Graphic_Multi>(path, ShaderDatabase.Cutout, Vector2.one, Color.white).MatAt(bodyFacing);
         }

@@ -20,7 +20,6 @@ namespace RRYautja
         public PawnKindDef pawnKindDef;
         public List<PawnKindDef> pawnKindDefs;
         public List<float> pawnKindWeights;
-
     }
     public class HediffComp_XenoSpawner : HediffComp
     {
@@ -34,33 +33,6 @@ namespace RRYautja
         Scribe_Values.Look<float>(ref this.combatPower, "thiscombatPower");
         Scribe_Values.Look<float>(ref this.BodySize, "thisBodySize");
         */
-        public override void CompExposeData()
-        {
-            base.CompExposeData();
-            Scribe_Values.Look<int>(ref this.lastCoughTick, "thislastCoughTick");
-            Scribe_Values.Look<int>(ref this.lastCoughStage, "thislastCoughStage");
-            Scribe_Values.Look<int>(ref this.timesCoughed, "thistimesCoughed");
-            Scribe_Values.Look<int>(ref this.timesCoughedBlood, "thistimesCoughedBlood");
-            Scribe_Values.Look<float>(ref this.lastCoughSeverity, "thislastCoughSeverity");
-        }
-
-        bool logonce = false;
-        int lastCoughTick = 0;
-        int nextCoughTick = 0; 
-        int lastCoughStage=0;
-        int timesCoughed = 0;
-        int timesCoughedBlood = 0;
-        float lastCoughSeverity=0;
-
-        List<string> Coughlist = new List<string>
-        {
-            "quietly",
-            "abruptly",
-            "loudly",
-            "painfully",
-            "violently"
-        };
-
         // Token: 0x17000BE6 RID: 3046
         // (get) Token: 0x06004C0F RID: 19471 RVA: 0x002370CE File Offset: 0x002354CE
         public HediffCompProperties_XenoSpawner Props
@@ -70,6 +42,58 @@ namespace RRYautja
                 return (HediffCompProperties_XenoSpawner)this.props;
             }
         }
+        public override void CompExposeData()
+        {
+            base.CompExposeData();
+            Scribe_Values.Look<int>(ref this.lastCoughTick, "thislastCoughTick");
+            Scribe_Values.Look<int>(ref this.lastCoughStage, "thislastCoughStage");
+            Scribe_Values.Look<int>(ref this.timesCoughed, "thistimesCoughed");
+            Scribe_Values.Look<int>(ref this.timesCoughedBlood, "thistimesCoughedBlood");
+            Scribe_Values.Look<float>(ref this.lastCoughSeverity, "thislastCoughSeverity");
+            Scribe_Values.Look<int>(ref this.Impregnations, "Impregnations", 0);
+            Scribe_Values.Look<int>(ref this.countToSpawn, "countToSpawn", 1);
+            Scribe_Values.Look<bool>(ref this.royaleHugger, "royaleHugger");
+        }
+
+        bool logonce = false;
+        public int countToSpawn;
+        int lastCoughTick = 0;
+        int nextCoughTick = 0; 
+        int lastCoughStage=0;
+        int timesCoughed = 0;
+        int timesCoughedBlood = 0;
+        float lastCoughSeverity=0;
+        public bool royaleHugger;
+        public int Impregnations;
+
+        public bool RoyaleHugger
+        {
+            get
+            {
+                return royaleHugger;
+            }
+        }
+
+        public int maxImpregnations
+        {
+            get
+            {
+                if (RoyaleHugger)
+                {
+                    return 2;
+                }
+                return 1;
+            }
+        }
+        List<string> Coughlist = new List<string>
+        {
+            "quietly",
+            "abruptly",
+            "loudly",
+            "painfully",
+            "violently"
+        };
+        
 
         public override void CompPostPostAdd(DamageInfo? dinfo)
         {
@@ -180,39 +204,53 @@ namespace RRYautja
             int ind = 0;
             
             bool QueenPresent = false;
-            foreach (var p in base.parent.pawn.MapHeld.mapPawns.AllPawnsSpawned)
+            if (RoyaleHugger && Impregnations == 0)
             {
-                if (p.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
-                {
-                    QueenPresent = true;
-                    break;
-                }
+                pawnKindDef = XenomorphDefOf.RRY_Xenomorph_Queen;
             }
-            foreach (var PKDef in pawnKindDefs)
+            else
             {
-                float hostSize = base.parent.pawn.BodySize;
-                float spawnRoll = ((Rand.Range(1, 100)) * hostSize);
-
-                if (PKDef == XenomorphDefOf.RRY_Xenomorph_Queen && QueenPresent)
+                foreach (var p in base.parent.pawn.MapHeld.mapPawns.AllPawnsSpawned)
                 {
-                    spawnRoll = 0;
+                    if (p.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
+                    {
+                        QueenPresent = true;
+                        break;
+                    }
+                }
+                foreach (var PKDef in pawnKindDefs)
+                {
+                    float hostSize = base.parent.pawn.BodySize;
+                    float spawnRoll = ((Rand.Range(1, 100)) * hostSize);
+
+                    if (PKDef == XenomorphDefOf.RRY_Xenomorph_Queen && QueenPresent)
+                    {
+                        spawnRoll = 0;
 #if DEBUG
-                    if (selected) Log.Message(string.Format("{0} :{1}", PKDef.label, QueenPresent));
+                        if (selected) Log.Message(string.Format("{0} :{1}", PKDef.label, QueenPresent));
 #endif
+                    }
+                    else if (!QueenPresent)
+                    {
+                        if (PKDef == XenomorphDefOf.RRY_Xenomorph_Queen)
+                        {
+                            spawnRoll *= 2;
+                        }
+                    }
+
+                    if (spawnRoll > (100 - pawnKindWeights[ind]))
+                    {
+                        pawnKindDef = PKDef;
+                        break;
+                    }
+
+                    ind++;
                 }
 
-                if (spawnRoll > (100 - pawnKindWeights[ind]))
+                if (Pawn.kindDef.race == YautjaDefOf.RRY_Alien_Yautja)
                 {
-                    pawnKindDef = PKDef;
-                    break;
+                    pawnKindDef = XenomorphDefOf.RRY_Xenomorph_Predalien;
                 }
-
-                ind++;
-            }
-
-            if (Pawn.kindDef.race == YautjaDefOf.RRY_Alien_Yautja)
-            {
-                pawnKindDef = XenomorphDefOf.RRY_Xenomorph_Predalien;
             }
             Gender gender;
             if (pawnKindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
@@ -245,18 +283,21 @@ namespace RRYautja
             bool fullterm = this.parent.CurStageIndex > this.parent.def.stages.Count - 3;
             if (!fullterm) return;
             if (spawnMap == null || spawnLoc == null) return;
-            Pawn pawn = XenomorphSpawnRequest();
-            pawn.ageTracker.CurKindLifeStage.bodyGraphicData.color = HostBloodColour;
-            pawn.Notify_ColorChanged();
-            pawn.ageTracker.AgeBiologicalTicks = 0;
-            pawn.ageTracker.AgeChronologicalTicks = 0;
-            Comp_Xenomorph _Xenomorph = pawn.TryGetComp<Comp_Xenomorph>();
-            if (_Xenomorph != null)
+            for (int i = 0; i < countToSpawn; i++)
             {
-                _Xenomorph.host = base.parent.pawn.kindDef;
+                Pawn pawn = XenomorphSpawnRequest();
+                pawn.ageTracker.CurKindLifeStage.bodyGraphicData.color = HostBloodColour;
+                pawn.Notify_ColorChanged();
+                pawn.ageTracker.AgeBiologicalTicks = 0;
+                pawn.ageTracker.AgeChronologicalTicks = 0;
+                Comp_Xenomorph _Xenomorph = pawn.TryGetComp<Comp_Xenomorph>();
+                if (_Xenomorph != null)
+                {
+                    _Xenomorph.host = base.parent.pawn.kindDef;
+                }
+                GenSpawn.Spawn(pawn, spawnLoc, spawnMap, 0);
             }
             Vector3 vector = spawnLoc.ToVector3Shifted();
-            GenSpawn.Spawn(pawn, spawnLoc, spawnMap, 0);
             for (int i = 0; i < 101; i++)
             {
                 if (Rand.MTBEventOccurs(DustMoteSpawnMTB, 2f, 3.TicksToSeconds()))

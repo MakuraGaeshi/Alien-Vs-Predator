@@ -35,6 +35,7 @@ namespace RimWorld
 
         // Xenomorph PawnKindDefs
         public static PawnKindDef RRY_Xenomorph_FaceHugger;
+        public static PawnKindDef RRY_Xenomorph_RoyaleHugger;
         public static PawnKindDef RRY_Xenomorph_Queen;
         public static PawnKindDef RRY_Xenomorph_Warrior;
         public static PawnKindDef RRY_Xenomorph_Drone;
@@ -47,9 +48,10 @@ namespace RimWorld
         // Xenomorph FactionDefs
         public static FactionDef RRY_Xenomorph;
 
-        // Xenomorph JobDefs RRY_Job_Maintain
+        // Xenomorph JobDefs RRY_Job_Maintain 
         public static JobDef RRY_Job_LayXenomorphEgg;
         public static JobDef RRY_Job_XenomorphKidnap;
+        public static JobDef RRY_Job_PredalienImpregnate;
         public static JobDef RRY_Job_MaintainLike;
 
         // Xenomorph ThingDefs 
@@ -89,6 +91,9 @@ namespace RimWorld
         // Xenomorph LifeStageDefs RRY_Xeno_Shell 
         //   public static LifeStageDef RRY_EggXenomorphFertilized;
 
+#if DEBUG
+
+#endif
     }
 
     [DefOf]

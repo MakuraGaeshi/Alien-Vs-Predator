@@ -17,71 +17,175 @@ namespace RRYautja
 
         // Token: 0x040033C3 RID: 13251
         public PawnKindDef pawnKindDef;
-        public bool spawnLive = false;
         public bool killHost = false;
         public float severityPerDay;
         public Pawn Instigator;
-        public bool royaleHugger = false;
     }
     // Token: 0x02000D5B RID: 3419
-    public class HediffComp_XenoFacehugger : HediffComp
+    public class HediffComp_XenoFacehugger : HediffComp, IThingHolder
     {
-        public override void CompExposeData()
-        {
-            base.CompExposeData();
-            Scribe_References.Look<Pawn>(ref this.Instigator, "pawnRef", true);
-
-
-            Scribe_Defs.Look<PawnKindDef>(ref this.pawnKindDef, "pawnKindDef");
-            Scribe_Defs.Look<HediffDef>(ref this.heDiffDeff, "heDiffDeff");
-            Scribe_References.Look<Pawn>(ref this.Instigator, "pawnRef", true);//, Props.pawn);
-            Scribe_Deep.Look<Pawn>(ref this.Instigator, "pawnRefDeep");//, Props.pawn);
-
-        }
-
-        // public PawnKindDef pawnKindDef = YautjaDefOf.RRY_Xenomorph_FaceHugger;
-        public PawnKindDef pawnKindDef = XenomorphDefOf.RRY_Xenomorph_FaceHugger;
-        public HediffDef heDiffDeff = XenomorphDefOf.RRY_XenomorphImpregnation;
-        public int timer = 0;
-        public int timer2 = 0;
-        public bool isImpregnated = false;
-        public bool hasImpregnated = false;
-        public Pawn Instigator;
-        public DamageInfo dInfo;
-
-        public Pawn intigator
-        {
-            get
-            {
-                if (Instigator!=null)
-                {
-                    return this.Instigator;
-                }
-                if (Props.Instigator!=null)
-                {
-                    return Props.Instigator;
-                }
-                return null;
-            }
-            set
-            {
-                intigator = value;
-            }
-        }
         // Token: 0x17000BE6 RID: 3046
         // (get) Token: 0x06004C0F RID: 19471 RVA: 0x002370CE File Offset: 0x002354CE
         public HediffCompProperties_XenoFacehugger Props
-		{
-			get
-			{
-				return (HediffCompProperties_XenoFacehugger)this.props;
-			}
-		}
+        {
+            get
+            {
+                return (HediffCompProperties_XenoFacehugger)this.props;
+            }
+        }
+
+        public override void CompExposeData()
+        {
+            base.CompExposeData();
+            Scribe_Values.Look<bool>(ref this.royaleHugger, "royaleHugger", false);
+            Scribe_Values.Look<int>(ref this.previousImpregnations, "previousImpregnations", 0);
+            Scribe_Defs.Look<PawnKindDef>(ref this.instigatorKindDef, "InstigatorKindDef");
+            Scribe_Defs.Look<HediffDef>(ref this.heDiffDeff, "heDiffDeff");
+            Scribe_References.Look<Pawn>(ref this.instigator, "pawnRef", true);//, Props.pawn);
+            Scribe_Deep.Look<Pawn>(ref this.instigator, "pawnRefDeep");//, Props.pawn);
+        }
+
+        private string FacehuggerTexpath = "Things/Pawn/Xenomorph/Xenomorph_FaceHugger_Mask";
+        private string RoyalhuggerTexpath = "Things/Pawn/Xenomorph/Xenomorph_FaceHuggerRoyal_Mask";
+
+        public PawnKindDef HuggerKindDef = XenomorphDefOf.RRY_Xenomorph_FaceHugger;
+        public PawnKindDef RoyaleKindDef = XenomorphDefOf.RRY_Xenomorph_RoyaleHugger;
+
+        public PawnKindDef instigatorKindDef;
+        public HediffDef heDiffDeff = XenomorphDefOf.RRY_XenomorphImpregnation;
+        public int timer = 0;
+        public int timer2 = 0;
+        public int previousImpregnations;
+        public bool isImpregnated = false;
+        public bool hasImpregnated = false;
+        public DamageInfo dInfo;
+        private ThingOwner innerContainer;
+        protected bool contentsKnown;
+        public bool killHost = false;
+        public float severityPerDay;
+        public bool royaleHugger;
+        public Pawn instigator;
+
+        public HediffComp_XenoFacehugger()
+        {
+            this.innerContainer = new ThingOwner<Thing>(this, false, LookMode.Deep);
+        }
+
+        // Token: 0x060024F3 RID: 9459 RVA: 0x00116D17 File Offset: 0x00115117
+        public ThingOwner GetDirectlyHeldThings()
+        {
+            return this.innerContainer;
+        }
+
+        // Token: 0x060024F4 RID: 9460 RVA: 0x00116D1F File Offset: 0x0011511F
+        public void GetChildHolders(List<IThingHolder> outChildren)
+        {
+            ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, this.GetDirectlyHeldThings());
+        }
+
+        public Pawn Instigator
+        {
+            get
+            {
+                return instigator;
+            }
+        }
+        public PawnKindDef InstigatorKindDef
+        {
+            get
+            {
+                return instigatorKindDef;
+            }
+        }
+
+        public bool RoyaleHugger
+        {
+            get
+            {
+                return royaleHugger;
+            }
+        }
+
+        public bool spawnLive
+        {
+            get
+            {
+                return RoyaleHugger && (previousImpregnations < maxImpregnations);
+            }
+        }
+
+        public string TexPath
+        {
+            get
+            {
+                return RoyaleHugger ? RoyalhuggerTexpath : FacehuggerTexpath;
+            }
+        }
+
+        public int maxImpregnations
+        {
+            get
+            {
+                if (RoyaleHugger)
+                {
+                    return 2;
+                }
+                return 1;
+            }
+        }
+
+        public PawnKindDef pawnKindDef
+        {
+            get
+            {
+                return RoyaleHugger ? RoyaleKindDef : HuggerKindDef;
+            }
+        }
+
+        public Thing ContainedThing
+        {
+            get
+            {
+                return (this.innerContainer.Count != 0) ? this.innerContainer[0] : null;
+            }
+        }
 
 
+        public IThingHolder ParentHolder => this.Pawn;
 
+        public virtual bool Accepts(Thing thing)
+        {
+            return this.innerContainer.CanAcceptAnyOf(thing, true);
+        }
+        public virtual bool TryAcceptThing(Thing thing, bool allowSpecialEffects = true)
+        {
+            if (!this.Accepts(thing))
+            {
+                return false;
+            }
+            bool flag;
+            if (thing.holdingOwner != null)
+            {
+                thing.holdingOwner.TryTransferToContainer(thing, this.innerContainer, thing.stackCount, true);
+                flag = true;
+            }
+            else
+            {
+                flag = this.innerContainer.TryAdd(thing, true);
+            }
+            if (flag)
+            {
+                if (thing.Faction != null && thing.Faction.IsPlayer)
+                {
+                    this.contentsKnown = true;
+                }
+                return true;
+            }
+            return false;
+        }
         public override void CompPostTick(ref float severityAdjustment)
         {
+            string tex = TexPath;
             base.CompPostTick(ref severityAdjustment);
             if (base.Pawn.IsHashIntervalTick(200))
             {
@@ -89,23 +193,33 @@ namespace RRYautja
                 num *= 0.00333333341f;
                 severityAdjustment += num;
             }
-            if ((this.parent.CurStageIndex == 1 || this.parent.CurStage.label == "impregnation")&&!this.parent.pawn.health.hediffSet.HasHediff(heDiffDeff))
+            if ((this.parent.CurStageIndex == 1 || this.parent.CurStage.label == "impregnation") && !this.parent.pawn.health.hediffSet.HasHediff(heDiffDeff))
             {
                 timer++;
-                if (timer>=600&&!isImpregnated)
+                if (timer >= 600 && !isImpregnated)
                 {
-                    // Log.Message("checking Severity");
-                    if (Rand.Value>this.parent.Severity)
+#if DEBUG
+                    Log.Message("pre impreg checking Severity");
+#endif
+                    if (Rand.Chance(this.parent.Severity))
                     {
-                        // Log.Message("adding embryo");
+#if DEBUG
+                        Log.Message("adding embryo");
+#endif
                         parent.pawn.health.AddHediff(heDiffDeff, parent.pawn.RaceProps.body.corePart);
                         Hediff hediff = parent.pawn.health.hediffSet.GetFirstHediffOfDef(heDiffDeff);
-                        hediff.TryGetComp<HediffComp_XenoSpawner>();
+                        HediffComp_XenoSpawner _XenoSpawner = hediff.TryGetComp<HediffComp_XenoSpawner>();
+                        _XenoSpawner.royaleHugger = RoyaleHugger;
+                        _XenoSpawner.Impregnations = previousImpregnations;
                         hasImpregnated = true;
                         if (base.Pawn.health.hediffSet.HasHediff(heDiffDeff) && !isImpregnated)
                         {
                             isImpregnated = true;
-                            // Log.Message("is Impregnated", isImpregnated);
+                            previousImpregnations++;
+#if DEBUG
+                            Log.Message("is Impregnated", isImpregnated);
+#endif
+
                         }
                     }
                     timer = 0;
@@ -116,19 +230,23 @@ namespace RRYautja
                 timer2++;
                 if (timer2 >= 600)
                 {
-                    // Log.Message("checking Severity");
-                    if (Rand.Value<this.parent.Severity*1.15f)
+#if DEBUG
+                    Log.Message("post impreg checking Severity");
+#endif
+                    if (Rand.Chance(this.parent.Severity))
                     {
-                        // Log.Message("removing Facehugger");
-                        Hediff heDiff = base.Pawn.health.hediffSet.GetFirstHediffOfDef(base.parent.def);
-                        base.Pawn.health.hediffSet.hediffs.Remove(heDiff);
+#if DEBUG
+                        Log.Message("removing Facehugger");
+#endif
+                        base.Pawn.health.hediffSet.hediffs.Remove(this.parent);
                         this.CompPostPostRemoved();
+
                     }
                     timer2 = 0;
                 }
             }
         }
-        
+
         public override void Notify_PawnDied()
         {
             this.CompPostPostRemoved();
@@ -137,27 +255,72 @@ namespace RRYautja
 
         public override void CompPostPostRemoved()
         {
+#if DEBUG
+            Log.Message("Facehugger CompPostPostRemoved ");
+#endif
             Thing hostThing = base.Pawn;
             Pawn hostPawn = base.Pawn;
             IntVec3 spawnLoc = !base.Pawn.Dead ? base.parent.pawn.Position : base.parent.pawn.PositionHeld;
             Map spawnMap = !base.Pawn.Dead ? base.parent.pawn.Map : base.parent.pawn.MapHeld;
-            bool spawnLive = Props.spawnLive;
-            if ((hostPawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation) && !hasImpregnated)||hostPawn.Dead)
+            bool spawnLive = this.spawnLive;
+#if DEBUG
+            Log.Message("Facehugger CompPostPostRemoved stuff set");
+#endif
+            if ((hostPawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation) && !hasImpregnated))
             {
                 spawnLive = true;
             }
+#if DEBUG
+            Log.Message("Facehugger CompPostPostRemoved pawngen start");
+#endif
             PawnGenerationRequest pawnGenerationRequest = new PawnGenerationRequest(pawnKindDef, null, PawnGenerationContext.NonPlayer, -1, true, false, true, false, true, true, 20f);
+#if DEBUG
+            Log.Message("Facehugger CompPostPostRemoved pgr done");
+#endif
             Pawn pawn = PawnGenerator.GeneratePawn(pawnGenerationRequest);
-            if (Instigator!=null)
+#if DEBUG
+            Log.Message("Facehugger CompPostPostRemoved pawn gened");
+#endif
+            if (Instigator != null)
             {
-                pawn = intigator;
+                pawn = instigator;
             }
             if (spawnLive == true)
             {
+#if DEBUG
+                Log.Message("Facehugger CompPostPostRemoved spawning live");
+#endif
+                Comp_Facehugger _Facehugger = pawn.TryGetComp<Comp_Facehugger>();
+#if DEBUG
+                Log.Message("Facehugger CompPostPostRemoved trygetcomp ");
+#endif
+                if (_Facehugger!=null)
+                {
+#if DEBUG
+                    Log.Message("Facehugger CompPostPostRemoved _Facehugger found ");
+#endif
+                    _Facehugger.Impregnations = previousImpregnations;
+#if DEBUG
+                    Log.Message("Facehugger CompPostPostRemoved _Facehugger set prior impreg count ");
+#endif
+                }
+#if DEBUG
+                Log.Message("Facehugger CompPostPostRemoved _Facehugger pre spawn live ");
+#endif
                 GenSpawn.Spawn(pawn, spawnLoc, spawnMap, 0);
+#if DEBUG
+                Log.Message("Facehugger CompPostPostRemoved _Facehugger post spawn live ");
+#endif
+                pawn.jobs.curJob = null;
+#if DEBUG
+                Log.Message("Facehugger CompPostPostRemoved _Facehugger set prior job to null ");
+#endif
             }
             else
             {
+#if DEBUG
+                Log.Message("Facehugger CompPostPostRemoved spawning dead");
+#endif
                 GenSpawn.Spawn(pawn, spawnLoc, spawnMap, 0);
                 pawn.Kill(null);
             }
@@ -186,5 +349,5 @@ namespace RRYautja
         // Token: 0x04003401 RID: 13313
         protected const int SeverityUpdateInterval = 200;
     }
-    
+
 }

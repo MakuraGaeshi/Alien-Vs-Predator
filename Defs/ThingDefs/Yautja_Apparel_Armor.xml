@@ -270,10 +270,8 @@
 			<bodyPartGroups>
 				<li>Legs</li>
 			</bodyPartGroups>
-			<wornGraphicPath>Things/Apparel/Yautja_Undersuit/Yautja_HunterArmorUndersuit</wornGraphicPath>
 			<layers>
-				<li>Middle</li>
-				<li>Shell</li>
+				<li>OnSkin</li>
 			</layers>
 			<tags>
 				<li>YautjaGreaves</li>
@@ -283,6 +281,7 @@
 			<defaultOutfitTags>
 				<li>Soldier</li>
 			</defaultOutfitTags>
+			<wornGraphicPath>Things/Apparel/Yautja_Undersuit/Yautja_HunterArmorUndersuit</wornGraphicPath>
 		</apparel>
 		<thingCategories>
 			<li>RRY_Armour</li>

@@ -21,6 +21,8 @@ namespace RRYautja
 
     public class Comp_Xenomorph : ThingComp
     {
+        public PawnKindDef HuggerKindDef = XenomorphDefOf.RRY_Xenomorph_FaceHugger;
+        public PawnKindDef RoyaleKindDef = XenomorphDefOf.RRY_Xenomorph_RoyaleHugger;
         public CompProperties_Xenomorph Props
         {
             get
@@ -29,6 +31,25 @@ namespace RRYautja
             }
         }
 
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            Scribe_Values.Look<int>(ref this.ticksSinceHeal, "ticksSinceHeal");
+            /*
+            Scribe_Values.Look<int>(ref this.pawnKills, "pawnKills");
+            Scribe_Deep.Look<Hediff>(ref this.unmarked, "bloodedUnmarked");
+            Scribe_Defs.Look<HediffDef>(ref this.MarkedhediffDef, "MarkedhediffDef");
+            Scribe_References.Look<Corpse>(ref this.corpse, "corpseRef", true);
+            Scribe_References.Look<Pawn>(ref this.pawn, "pawnRef", true);
+            Scribe_Values.Look<String>(ref this.MarkHedifftype, "thisMarktype");
+            Scribe_Values.Look<String>(ref this.MarkHedifflabel, "thislabel");
+            Scribe_Values.Look<bool>(ref this.predator, "thisPred");
+            Scribe_Values.Look<float>(ref this.combatPower, "thiscombatPower");
+            Scribe_Values.Look<float>(ref this.BodySize, "thisBodySize");
+            Scribe_Values.Look<bool>(ref this.TurretIsOn, "thisTurretIsOn");
+            Scribe_Values.Look<bool>(ref this.blooded, "thisblooded");
+            */
+        }
         public override void CompTickRare()
         {
             base.CompTickRare();
@@ -277,6 +298,115 @@ namespace RRYautja
         public PawnKindDef host;
         public int ticksSinceHeal;
     }
+
+    // --------------------------------------------------------------------------- //
+    public class CompProperties_Facehugger : CompProperties
+    {
+        public CompProperties_Facehugger()
+        {
+            this.compClass = typeof(Comp_Facehugger);
+        }
+    }
+
+    public class Comp_Facehugger : ThingComp
+    {
+        public CompProperties_Facehugger Props
+        {
+            get
+            {
+                return (CompProperties_Facehugger)this.props;
+            }
+        }
+
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            Scribe_Values.Look<int>(ref this.Impregnations, "Impregnations", 0, true);
+            Scribe_Values.Look<int>(ref this.ticksSinceHeal, "ticksSinceHeal");
+            /*
+            Scribe_Values.Look<int>(ref this.pawnKills, "pawnKills");
+            Scribe_Deep.Look<Hediff>(ref this.unmarked, "bloodedUnmarked");
+            Scribe_Defs.Look<HediffDef>(ref this.MarkedhediffDef, "MarkedhediffDef");
+            Scribe_References.Look<Corpse>(ref this.corpse, "corpseRef", true);
+            Scribe_References.Look<Pawn>(ref this.pawn, "pawnRef", true);
+            Scribe_Values.Look<String>(ref this.MarkHedifftype, "thisMarktype");
+            Scribe_Values.Look<String>(ref this.MarkHedifflabel, "thislabel");
+            Scribe_Values.Look<bool>(ref this.predator, "thisPred");
+            Scribe_Values.Look<float>(ref this.combatPower, "thiscombatPower");
+            Scribe_Values.Look<float>(ref this.BodySize, "thisBodySize");
+            Scribe_Values.Look<bool>(ref this.TurretIsOn, "thisTurretIsOn");
+            Scribe_Values.Look<bool>(ref this.blooded, "thisblooded");
+            */
+        }
+
+        public bool RoyaleHugger
+        {
+            get
+            {
+                return ((Pawn)this.parent).kindDef == RoyaleKindDef;
+            }
+        }
+
+        public int maxImpregnations
+        {
+            get
+            {
+                if (RoyaleHugger)
+                {
+                    return 2;
+                }
+                return 1;
+            }
+        }
+
+        public PawnKindDef pawnKindDef
+        {
+            get
+            {
+                return RoyaleHugger ? RoyaleKindDef : HuggerKindDef;
+            }
+        }
+        public int Impregnations;
+
+        public PawnKindDef HuggerKindDef = XenomorphDefOf.RRY_Xenomorph_FaceHugger;
+        public PawnKindDef RoyaleKindDef = XenomorphDefOf.RRY_Xenomorph_RoyaleHugger;
+
+        public int healIntervalTicks = 60;
+        public override void CompTick()
+        {
+            base.CompTick();
+            this.ticksSinceHeal++;
+            bool flag = this.ticksSinceHeal > this.healIntervalTicks;
+            if (flag)
+            {
+                bool flag2 = ((Pawn)base.parent).health.hediffSet.HasNaturallyHealingInjury();
+                if (flag2)
+                {
+                    this.ticksSinceHeal = 0;
+                    float num = 8f;
+                    Hediff_Injury hediff_Injury = GenCollection.RandomElement<Hediff_Injury>(from x in ((Pawn)base.parent).health.hediffSet.GetHediffs<Hediff_Injury>()
+                                                                                             where HediffUtility.CanHealNaturally(x)
+                                                                                             select x);
+                    hediff_Injury.Heal(num * ((Pawn)base.parent).HealthScale * 0.05f);
+                    string text = string.Format("{0} healed.", ((Pawn)base.parent).LabelCap);
+                }
+            }
+        }
+
+        public override void PostPostApplyDamage(DamageInfo dinfo, float totalDamageDealt)
+        {
+
+            Pawn other = dinfo.Instigator as Pawn;
+            Pawn pawn = base.parent as Pawn;
+
+
+
+            base.PostPostApplyDamage(dinfo, totalDamageDealt);
+
+        }
+        public PawnKindDef host;
+        public int ticksSinceHeal;
+    }
     // ---------------------------------------------------------------------------
     public class CompProperties_Neomorph : CompProperties
     {
@@ -297,11 +427,53 @@ namespace RRYautja
             }
         }
 
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            Scribe_Values.Look<int>(ref this.ticksSinceHeal, "ticksSinceHeal");
+            /*
+            Scribe_Values.Look<int>(ref this.pawnKills, "pawnKills");
+            Scribe_Deep.Look<Hediff>(ref this.unmarked, "bloodedUnmarked");
+            Scribe_Defs.Look<HediffDef>(ref this.MarkedhediffDef, "MarkedhediffDef");
+            Scribe_References.Look<Corpse>(ref this.corpse, "corpseRef", true);
+            Scribe_References.Look<Pawn>(ref this.pawn, "pawnRef", true);
+            Scribe_Values.Look<String>(ref this.MarkHedifftype, "thisMarktype");
+            Scribe_Values.Look<String>(ref this.MarkHedifflabel, "thislabel");
+            Scribe_Values.Look<bool>(ref this.predator, "thisPred");
+            Scribe_Values.Look<float>(ref this.combatPower, "thiscombatPower");
+            Scribe_Values.Look<float>(ref this.BodySize, "thisBodySize");
+            Scribe_Values.Look<bool>(ref this.TurretIsOn, "thisTurretIsOn");
+            Scribe_Values.Look<bool>(ref this.blooded, "thisblooded");
+            */
+        }
+
         public override void CompTickRare()
         {
             base.CompTickRare();
 
 
+        }
+
+        public int healIntervalTicks = 60;
+        public override void CompTick()
+        {
+            base.CompTick();
+            this.ticksSinceHeal++;
+            bool flag = this.ticksSinceHeal > this.healIntervalTicks;
+            if (flag)
+            {
+                bool flag2 = ((Pawn)base.parent).health.hediffSet.HasNaturallyHealingInjury();
+                if (flag2)
+                {
+                    this.ticksSinceHeal = 0;
+                    float num = 8f;
+                    Hediff_Injury hediff_Injury = GenCollection.RandomElement<Hediff_Injury>(from x in ((Pawn)base.parent).health.hediffSet.GetHediffs<Hediff_Injury>()
+                                                                                             where HediffUtility.CanHealNaturally(x)
+                                                                                             select x);
+                    hediff_Injury.Heal(num * ((Pawn)base.parent).HealthScale * 0.01f);
+                    string text = string.Format("{0} healed.", ((Pawn)base.parent).LabelCap);
+                }
+            }
         }
 
         public override void PostPostApplyDamage(DamageInfo dinfo, float totalDamageDealt)
@@ -315,5 +487,8 @@ namespace RRYautja
             base.PostPostApplyDamage(dinfo, totalDamageDealt);
 
         }
+
+        public PawnKindDef host;
+        public int ticksSinceHeal;
     }
 }

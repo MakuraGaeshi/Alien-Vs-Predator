@@ -34,6 +34,7 @@ namespace RimWorld
             {
                 result = false;
             }
+            Log.Message(string.Format("{0}", result));
             return result;
         }
 

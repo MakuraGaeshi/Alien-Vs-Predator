@@ -146,15 +146,10 @@
       <soundMeleeMiss>Pawn_Melee_Punch_Miss</soundMeleeMiss>
     </race>
     <comps> 
-	
+      <li>
+        <compClass>RRYautja.Comp_Facehugger</compClass>
+      </li>
     </comps>
-	<!--
-    <butcherProducts>
-      <Steel>50</Steel>
-      <Plasteel>10</Plasteel>
-      <ComponentIndustrial>2</ComponentIndustrial>
-    </butcherProducts>
-	-->
   </ThingDef>
   
   <PawnKindDef ParentName="RRY_BaseXenomorphKind">
@@ -168,6 +163,31 @@
           <texPath>Things/Pawn/Xenomorph/Xenomorph_FaceHugger</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>2.30</drawSize>
+          <shadowData>
+            <volume>(0.2, 0.4, 0.2)</volume>
+          </shadowData>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    <weaponMoney>
+      <min>0</min>
+      <max>0</max>
+    </weaponMoney>
+    <weaponTags>
+    </weaponTags>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="RRY_BaseXenomorphKind">
+    <defName>RRY_Xenomorph_RoyaleHugger</defName>
+    <label>Face Hugger</label>
+    <race>RRY_Xenomorph_FaceHugger</race>
+    <combatPower>70</combatPower>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Pawn/Xenomorph/Xenomorph_FaceHuggerRoyal</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>1.30</drawSize>
           <shadowData>
             <volume>(0.2, 0.4, 0.2)</volume>
           </shadowData>

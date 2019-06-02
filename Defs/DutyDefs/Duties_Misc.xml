@@ -76,8 +76,8 @@
       <subNodes>
         <li Class="JobGiver_HiveLikeDefense">
           <needLOSToAcquireNonPawnTargets>true</needLOSToAcquireNonPawnTargets>
-          <targetAcquireRadius>30</targetAcquireRadius>
-          <chaseTarget>false</chaseTarget>
+          <targetAcquireRadius>90</targetAcquireRadius>
+          <chaseTarget>true</chaseTarget>
         </li>
         <li Class="ThinkNode_ChancePerHour_Constant">
           <mtbHours>1</mtbHours>
@@ -88,32 +88,54 @@
         <li Class="JobGiver_MaintainHiveLikes">
           <onlyIfDamagingState>true</onlyIfDamagingState>
         </li>
-		<!-- Drone Gather Infectable Hunting -->
-		<li Class="ThinkNode_ConditionalPawnKind">
-		  <pawnKind>RRY_Xenomorph_Drone</pawnKind>
-		  <subNodes>
-				<li Class="ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby">
-				  <subNodes>
-					<li Class="JobGiver_XenosKidnap" />
-				  </subNodes>
-				</li>
-		  </subNodes>
-		</li>
-		<li Class="ThinkNode_ConditionalPawnKind">
-		  <pawnKind>RRY_Xenomorph_Warrior</pawnKind>
-		  <subNodes>
-				<li Class="ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby">
-				  <subNodes>
-					<li Class="JobGiver_XenosKidnap" />
-				  </subNodes>
-				</li>
-				<li Class="ThinkNode_ConditionalAnyInfectableSpawnedNearby">
-				  <subNodes>
-					<li Class="JobGiver_XenomorphHosthunter" />
-				  </subNodes>
-				</li>
-		  </subNodes>
-		</li>
+        <li Class="ThinkNode_ConditionalFullyGrown">
+          <subNodes>
+			<!-- Drone Gather Infectable Hunting -->
+			<li Class="ThinkNode_ConditionalPawnKind">
+			  <pawnKind>RRY_Xenomorph_Drone</pawnKind>
+			  <subNodes>
+					<li Class="ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby">
+					  <subNodes>
+						<li Class="JobGiver_XenosKidnap" />
+					  </subNodes>
+					</li>
+			  </subNodes>
+			</li>
+			<!-- Drone Gather Infectable Hunting -->
+			<li Class="ThinkNode_ConditionalPawnKind">
+			  <pawnKind>RRY_Xenomorph_Predalien</pawnKind>
+			  <subNodes>
+					<li Class="ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby">
+					  <subNodes>
+						<li Class="JobGiver_XenosKidnap" />
+						<li Class="JobGiver_PredalienImpregnate" />
+					  </subNodes>
+					</li>
+					<li Class="ThinkNode_ConditionalAnyInfectableSpawnedNearby">
+					  <subNodes>
+						<li Class="JobGiver_XenomorphHosthunter" />
+					  </subNodes>
+					</li>
+			  </subNodes>
+			</li>
+			<li Class="ThinkNode_ConditionalPawnKind">
+			  <pawnKind>RRY_Xenomorph_Warrior</pawnKind>
+			  <subNodes>
+					<li Class="ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby">
+					  <subNodes>
+						<li Class="JobGiver_XenosKidnap" />
+					  </subNodes>
+					</li>
+					<li Class="ThinkNode_ConditionalAnyInfectableSpawnedNearby">
+					  <subNodes>
+						<li Class="JobGiver_XenomorphHosthunter" />
+					  </subNodes>
+					</li>
+			  </subNodes>
+			</li>
+          </subNodes>
+        </li>
+		
         <li Class="ThinkNode_ConditionalBodySize">
           <min>0.7</min>
           <subNodes>
@@ -157,17 +179,21 @@
           <targetAcquireRadius>50</targetAcquireRadius>
           <chaseTarget>false</chaseTarget>
         </li>
-		<!-- Drone Gather Infectable Hunting -->
-		<li Class="ThinkNode_ConditionalPawnKind">
-		  <pawnKind>RRY_Xenomorph_Drone</pawnKind>
-		  <subNodes>
-				<li Class="ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby">
+        <li Class="ThinkNode_ConditionalFullyGrown">
+          <subNodes>
+				<!-- Drone Gather Infectable Hunting -->
+				<li Class="ThinkNode_ConditionalPawnKind">
+				  <pawnKind>RRY_Xenomorph_Drone</pawnKind>
 				  <subNodes>
-					<li Class="JobGiver_XenosKidnap" />
+						<li Class="ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby">
+						  <subNodes>
+							<li Class="JobGiver_XenosKidnap" />
+						  </subNodes>
+						</li>
 				  </subNodes>
 				</li>
-		  </subNodes>
-		</li>
+          </subNodes>
+        </li>
         <li Class="JobGiver_WanderHiveLike">
           <maxDanger>Deadly</maxDanger>
         </li>

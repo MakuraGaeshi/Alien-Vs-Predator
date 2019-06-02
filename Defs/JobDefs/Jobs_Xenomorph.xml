@@ -18,6 +18,14 @@
   </JobDef>
   
   <JobDef>
+    <defName>RRY_Job_PredalienImpregnate</defName>
+    <driverClass>JobDriver_PredalienImpregnate</driverClass>
+    <reportString>Impregnating TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Never</checkOverrideOnDamage>
+  </JobDef>
+  
+  <JobDef>
     <defName>RRY_Job_MaintainLike</defName>
     <driverClass>JobDriver_MaintainLike</driverClass>
     <reportString>maintaining TargetA.</reportString>

@@ -25,7 +25,7 @@
         </capMods>
       </li>
       <li>
-        <minSeverity>0.15</minSeverity>
+        <minSeverity>0.25</minSeverity>
         <label>impregnation</label>
 				<partEfficiencyOffset>-0.25</partEfficiencyOffset>
         <painOffset>0.2</painOffset>
@@ -39,6 +39,7 @@
 				<offset>-0.05</offset>
 			  </li>
         </capMods>
+		<!--
         <hediffGivers>
           <li Class="HediffGiver_Random">
             <hediff>RRY_XenomorphImpregnation</hediff>
@@ -48,9 +49,10 @@
             </partsToAffect>
           </li>
         </hediffGivers>
+		-->
       </li>
       <li>
-        <minSeverity>1</minSeverity>
+        <minSeverity>0.45</minSeverity>
         <label>post impregnation</label>
         <painOffset>0.2</painOffset>
 		<capMods>
@@ -88,7 +90,9 @@
 		<li Class="RRYautja.HediffCompProperties_DrawImplant">
         <compClass>RRYautja.HediffComp_DrawImplant</compClass>
         <implantDrawerType>Head</implantDrawerType>
+		<!--
 		<implantGraphicPath>Things/Pawn/Xenomorph/Xenomorph_FaceHugger_Mask</implantGraphicPath>
+		-->
       </li>
     </comps>
   </HediffDef>
@@ -96,8 +100,8 @@
  
   <HediffDef ParentName="DiseaseBase">
     <defName>RRY_XenomorphImpregnation</defName>
-    <hediffClass>HediffWithComps</hediffClass>
-    <label>xenomorph impregnation</label>
+    <hediffClass>RRYautja.XenoHediffWithComps</hediffClass>
+    <label>xenomorph embryo</label>
     <labelNoun>a xenomorph impregnation</labelNoun>
     <initialSeverity>0.1</initialSeverity>
     <lethalSeverity>1</lethalSeverity>

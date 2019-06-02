@@ -113,11 +113,16 @@ namespace RRYautja
                 foreach (var part in hitPawn.RaceProps.body.AllParts.Where(x => x.def.defName == "Head"))
                 {
                     Hediff hediff = HediffMaker.MakeHediff(XenomorphDefOf.RRY_FaceHuggerInfection, hitPawn, null);
+                    Comp_Facehugger _Facehugger = CasterPawn.TryGetComp<Comp_Facehugger>();
                     HediffComp_XenoFacehugger comp = hediff.TryGetComp<HediffComp_XenoFacehugger>();
-                    comp.Props.Instigator = CasterPawn;
+                    comp.instigator = CasterPawn;
+                    comp.instigatorKindDef = CasterPawn.kindDef;
+                    comp.royaleHugger = _Facehugger.RoyaleHugger;
+                    comp.previousImpregnations = _Facehugger.Impregnations;
                     hitPawn.health.AddHediff(hediff, part, null);
                     string text = TranslatorFormattedStringExtensions.Translate("Xeno_Facehugger_Attach", hitPawn.LabelShort, part.LabelShortCap);
                     MoteMaker.ThrowText(hitPawn.Position.ToVector3(), hitPawn.Map, text, 5f);
+                    comp.GetDirectlyHeldThings();
                     caster.DeSpawn();
                 }
             }
@@ -125,8 +130,10 @@ namespace RRYautja
 		}
 
 
-		// Token: 0x0400253C RID: 9532
-		private const float MeleeDamageRandomFactorMin = 0.8f;
+        public PawnKindDef HuggerKindDef = XenomorphDefOf.RRY_Xenomorph_FaceHugger;
+        public PawnKindDef RoyaleKindDef = XenomorphDefOf.RRY_Xenomorph_RoyaleHugger;
+        // Token: 0x0400253C RID: 9532
+        private const float MeleeDamageRandomFactorMin = 0.8f;
 
 		// Token: 0x0400253D RID: 9533
 		private const float MeleeDamageRandomFactorMax = 1.2f;

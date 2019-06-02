@@ -32,7 +32,6 @@
 		<apparel>
 			<bodyPartGroups>
 				<li>Torso</li>
-				<li>Legs</li>
 			</bodyPartGroups>
 			<wornGraphicPath>Things/Apparel/Yautja_Vest/Yautja_Vest</wornGraphicPath>
 			<layers>
@@ -98,7 +97,6 @@
 		<apparel>
 			<bodyPartGroups>
 				<li>Torso</li>
-				<li>Legs</li>
 			</bodyPartGroups>
 			<wornGraphicPath>Things/Apparel/Yautja_Tribalwear/Yautja_Tribalwear</wornGraphicPath>
 			<layers>
@@ -168,7 +166,6 @@
 		<apparel>
 			<bodyPartGroups>
 				<li>Torso</li>
-				<li>Legs</li>
 			</bodyPartGroups>
 			<wornGraphicPath>Things/Apparel/Yautja_Vest/Yautja_Vest</wornGraphicPath>
 			<layers>
