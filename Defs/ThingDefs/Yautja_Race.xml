@@ -147,7 +147,7 @@
             <forcedRaceTraitEntries>
                 <li>
                     <defName>Tough</defName>
-                    <chance>25</chance>
+                    <chance>35</chance>
                 </li>
                 <li>
                     <defName>Xenophobia</defName>
@@ -156,9 +156,7 @@
                 </li>
             </forcedRaceTraitEntries>
 			<disallowedTraits>
-               <li>PsychicSensitivity</li>
-               <li>Beauty</li>
-               <li>Wimp</li>
+               
             </disallowedTraits>
             <alienPartGenerator>
 				<useGenderedHeads>false</useGenderedHeads>
@@ -543,6 +541,7 @@
         <TradePriceImprovement>0.50</TradePriceImprovement>
 		<ButcheryFleshSpeed>1.3</ButcheryFleshSpeed>
 		<ButcheryFleshEfficiency>1.3</ButcheryFleshEfficiency>
+		<ForagedNutritionPerDay>1.2</ForagedNutritionPerDay>
 		<!--
 		<PsychicSensitivity>1</PsychicSensitivity>
 		<MiningSpeed>1.0</MiningSpeed>
