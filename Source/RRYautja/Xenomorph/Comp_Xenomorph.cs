@@ -165,7 +165,7 @@ namespace RRYautja
 #if DEBUG
                     if (Prefs.DevMode)
                     {
-                        ThingDef td = pawn.RaceProps.BloodDef;
+                        ThingDef td = XenomorphDefOf.RRY_Filth_Slime;
                         GenSpawn.Spawn(td, c, pawn.Map);
                         Find.LetterStack.ReceiveLetter(string.Format("Lord Created"), string.Format("@: {0} ", c), LetterDefOf.NegativeEvent, c.GetFirstThing(pawn.Map, td), null, null);
                     }

@@ -374,10 +374,6 @@ namespace RRYautja
         {
             if (__result.kindDef.race == YautjaDefOf.RRY_Alien_Yautja)
             {
-                if (__result.gender==Gender.Female && __result.story.bodyType != BodyTypeDefOf.Female)
-                {
-                    __result.story.bodyType = BodyTypeDefOf.Female;
-                }
                 if (request.Faction.leader == null && request.Faction != Faction.OfPlayerSilentFail && request.KindDef.race == YautjaDefOf.RRY_Alien_Yautja)
                 {
                     bool upgradeWeapon = Rand.Chance(0.5f);

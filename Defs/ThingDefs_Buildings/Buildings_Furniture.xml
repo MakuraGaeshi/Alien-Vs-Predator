@@ -106,7 +106,7 @@
     <graphicData>
       <texPath>DummyTexture</texPath>
       <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>(0.5,1)</drawSize>
+      <drawSize>(0.25,1)</drawSize>
     </graphicData>
     <castEdgeShadows>false</castEdgeShadows>
     <statBases>

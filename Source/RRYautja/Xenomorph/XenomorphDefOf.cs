@@ -74,6 +74,8 @@ namespace RimWorld
 
         public static ThingDef RRY_XenomorphCryptosleepCasket;
         public static ThingDef RRY_XenomorphHive;
+ 
+        public static ThingDef RRY_Filth_Slime;
 
         // Xenomorph BloodDefs 
         public static ThingDef RRY_FilthBloodXenomorph;

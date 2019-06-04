@@ -111,5 +111,10 @@ namespace RimWorld
 
         // Yautja RecordDefs
         public static RecordDef RRY_TrapsRearmed;
+
+        // Yautja BodyTypeDefs
+        public static BodyTypeDef RRYYautjaFemale;
+        public static BodyTypeDef RRYYautjaMale;
+
     }
 }

@@ -88,6 +88,7 @@ namespace RRYautja
                 return 1;
             }
         }
+
         List<string> Coughlist = new List<string>
         {
             "quietly",
@@ -96,7 +97,39 @@ namespace RRYautja
             "painfully",
             "violently"
         };
-        
+
+        public IntVec3 MyPos
+        {
+            get
+            {
+                return Pawn.Position != null ? Pawn.Position : Pawn.Position;
+            }
+        }
+
+        public Map MyMap
+        {
+            get
+            {
+                return Pawn.Map ?? Pawn.MapHeld;
+            }
+        }
+
+        public bool RoyalPresent
+        {
+            get
+            {
+                bool selected = Find.Selector.SelectedObjects.Contains(Pawn) && Prefs.DevMode;
+                Predicate<Pawn> validator = delegate (Pawn t)
+                {
+                    bool SelfFlag = t != Pawn;
+                    bool RoyalHuggerInfection = (t.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_FaceHuggerInfection).TryGetComp<HediffComp_XenoFacehugger>().RoyaleHugger);
+                    bool RoyalImpregnation = (t.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_XenomorphImpregnation).TryGetComp<HediffComp_XenoSpawner>().RoyaleHugger);
+                    bool RoyalHiddenImpregnation = (t.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_HiddenXenomorphImpregnation).TryGetComp<HediffComp_XenoSpawner>().RoyaleHugger);
+                    return SelfFlag || RoyalHuggerInfection || RoyalImpregnation || RoyalHiddenImpregnation;
+                };
+                return MyMap.mapPawns.AllPawnsSpawned.Any(validator);
+            }
+        }
 
         public override void CompPostPostAdd(DamageInfo? dinfo)
         {
@@ -232,14 +265,14 @@ namespace RRYautja
                     float hostSize = base.parent.pawn.BodySize;
                     float spawnRoll = ((Rand.Range(1, 100)) * hostSize);
 
-                    if (PKDef == XenomorphDefOf.RRY_Xenomorph_Queen && (QueenPresent || predalienImpregnation))
+                    if (PKDef == XenomorphDefOf.RRY_Xenomorph_Queen && (QueenPresent || predalienImpregnation || RoyalPresent))
                     {
                         spawnRoll = 0;
 #if DEBUG
                         Log.Message(string.Format("{0} :{1}", PKDef.label, QueenPresent));
 #endif
                     }
-                    else if (PKDef == XenomorphDefOf.RRY_Xenomorph_Queen && !QueenPresent && !predalienImpregnation)
+                    else if (PKDef == XenomorphDefOf.RRY_Xenomorph_Queen && !QueenPresent && !predalienImpregnation&&!RoyalPresent)
                     {
                         if (PKDef == XenomorphDefOf.RRY_Xenomorph_Queen)
                         {

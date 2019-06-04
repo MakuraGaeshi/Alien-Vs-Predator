@@ -311,6 +311,7 @@ namespace RRYautja
 #if DEBUG
                 Log.Message("Facehugger CompPostPostRemoved _Facehugger post spawn live ");
 #endif
+                pawn.jobs.ClearQueuedJobs();
                 pawn.jobs.curJob = null;
 #if DEBUG
                 Log.Message("Facehugger CompPostPostRemoved _Facehugger set prior job to null ");

@@ -1152,4 +1152,18 @@ namespace RRYautja
         }
     }
 
+    [HarmonyPatch(typeof(PawnGenerator), "GenerateBodyType")]
+    public static class YautjaGenerateBodyTypePatch
+    {
+        // Token: 0x0600004C RID: 76 RVA: 0x00003680 File Offset: 0x00001880
+        [HarmonyPostfix]
+        public static void Yautja_GenerateBodyTypePatch(ref Pawn pawn)
+        {
+            bool flag = pawn.def==YautjaDefOf.RRY_Alien_Yautja;
+            if (flag)
+            {
+                pawn.story.bodyType = (pawn.gender != Gender.Female) ? YautjaDefOf.RRYYautjaMale : YautjaDefOf.RRYYautjaFemale;
+            }
+        }
+    }
 }
