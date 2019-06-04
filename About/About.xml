@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-	<name>Yautja(Predator) Race</name>
-	<author>Ogliss + Rebelrot</author>
+	<name>Alien Vs Predator</name>
+	<author>Ogliss &amp; Rebelrot</author>
 	<supportedVersions>
         <li>1.0</li>
 	</supportedVersions>
-	<description>V1.2
+	<description>V1.0
 	
 	Requirments
 	JecsTools
@@ -13,7 +13,7 @@
 	
 	This mod adds 
 	
-	Yautja(Predator) Race from the Predator film franchise to the game as a playale race.
+	Yautja(Predator) Race from the Predator film franchise to the game as a playable race.
 	Pawns:
 	Yautja Race (Male &amp; Female)
 	
@@ -59,8 +59,6 @@
 	Neomorph Spores: 
 	Crashed Ship part: 
 	Xenomorph Infestation: 
-	
-	
 	
 	Credits:
 	C# and Xml by Ogliss
