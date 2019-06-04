@@ -71,6 +71,35 @@
   
 -->
   <DutyDef>
+    <defName>RRY_DefendHiveLoc</defName>
+    <alwaysShowWeapon>true</alwaysShowWeapon>
+    <thinkNode Class="ThinkNode_Priority">
+      <!-- Todo here - if outside of duty radius, go to within duty radius-->
+      <!-- Currently this is handled by a hack in JobGiver_AIFightBase-->
+      <subNodes>
+        <li Class="JobGiver_TakeCombatEnhancingDrug">
+          <onlyIfInDanger>true</onlyIfInDanger>
+        </li>
+        <li Class="JobGiver_AIDefendPoint">
+          <targetAcquireRadius>65</targetAcquireRadius>
+          <targetKeepRadius>72</targetKeepRadius>
+        </li>
+        <li Class="ThinkNode_ForbidOutsideFlagRadius">
+          <maxDistToSquadFlag>16</maxDistToSquadFlag>
+          <subNodes>
+            <li Class="ThinkNode_Subtree">
+              <treeDef>SatisfyBasicNeedsAndWork</treeDef>
+            </li>
+          </subNodes>
+        </li>
+        <li Class="JobGiver_WanderNearDutyLocation">
+          <wanderRadius>8</wanderRadius>
+        </li>
+      </subNodes>
+    </thinkNode>
+  </DutyDef>
+
+  <DutyDef>
     <defName>RRY_DefendAndExpandHiveLike</defName>
     <thinkNode Class="ThinkNode_Priority">
       <subNodes>
@@ -88,6 +117,7 @@
         <li Class="JobGiver_MaintainHiveLikes">
           <onlyIfDamagingState>true</onlyIfDamagingState>
         </li>
+		
         <li Class="ThinkNode_ConditionalFullyGrown">
           <subNodes>
 			<!-- Drone Gather Infectable Hunting -->
@@ -120,6 +150,21 @@
 			</li>
 			<li Class="ThinkNode_ConditionalPawnKind">
 			  <pawnKind>RRY_Xenomorph_Warrior</pawnKind>
+			  <subNodes>
+					<li Class="ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby">
+					  <subNodes>
+						<li Class="JobGiver_XenosKidnap" />
+					  </subNodes>
+					</li>
+					<li Class="ThinkNode_ConditionalAnyInfectableSpawnedNearby">
+					  <subNodes>
+						<li Class="JobGiver_XenomorphHosthunter" />
+					  </subNodes>
+					</li>
+			  </subNodes>
+			</li>
+			<li Class="ThinkNode_ConditionalPawnKind">
+			  <pawnKind>RRY_Xenomorph_Runner</pawnKind>
 			  <subNodes>
 					<li Class="ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby">
 					  <subNodes>

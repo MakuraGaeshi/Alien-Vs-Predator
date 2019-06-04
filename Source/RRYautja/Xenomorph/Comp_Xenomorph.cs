@@ -65,9 +65,9 @@ namespace RRYautja
                     if (lord == null)
                     {
 #if DEBUG
-                        if (selected)
+                        if (Prefs.DevMode)
                         {
-                        //    Log.Message(string.Format("{0} has no lord, looking for lord from {1}", pawn.LabelShort, xenos.Name));
+                            Log.Message(string.Format("{0} has no lord, looking for lord from {1}", pawn.LabelShort, xenos.Name));
                         }
 #endif
                         IEnumerable<Lord> lords = pawn.Map.lordManager.lords.Where(x => x.faction.def == xenos.def);
@@ -78,9 +78,9 @@ namespace RRYautja
                                 if (l == null)
                                 {
 #if DEBUG
-                                    if (selected)
+                                    if (Prefs.DevMode)
                                     {
-                                    //    Log.Message(string.Format("no lord of faction {0} for {1}", xenos.Name, pawn.LabelShort));
+                                        Log.Message(string.Format("no lord of faction {0} for {1}", xenos.Name, pawn.LabelShort));
                                     }
 
 #endif
@@ -89,9 +89,9 @@ namespace RRYautja
                                 else
                                 {
 #if DEBUG
-                                    if (selected)
+                                    if (Prefs.DevMode)
                                     {
-                                    //    Log.Message(string.Format("{0}: added to Lord: {1}, Cur Duty: {2}", pawn.LabelShort, l, l.LordJob));
+                                        Log.Message(string.Format("{0}: added to Lord: {1}, Cur Duty: {2}", pawn.LabelShort, l, l.LordJob));
                                     }
 
 #endif
@@ -104,9 +104,9 @@ namespace RRYautja
                         else
                         {
 #if DEBUG
-                            if (selected)
+                            if (Prefs.DevMode)
                             {
-                            //    Log.Message(string.Format("{2} lords of {0} for {1}", xenos.Name, pawn.LabelShort, lords.Count()));
+                                Log.Message(string.Format("{2} lords of {0} for {1}", xenos.Name, pawn.LabelShort, lords.Count()));
                             }
 #endif
                             if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
@@ -118,13 +118,15 @@ namespace RRYautja
                     else
                     {
 #if DEBUG
-                        if (selected)
+                        if (Prefs.DevMode)
                         {
-                        //    Log.Message(string.Format("{0} has Lord: {1}, Cur Duty: {2}", pawn.LabelShort, lord, lord.LordJob));
+                            Log.Message(string.Format("Comp_Xenomorph CompTickRare \n{0} has Lord: {1}, Cur Duty: {2}", pawn.LabelShort, lord.CurLordToil, lord.LordJob));
                         }
-
 #endif
-
+                        if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen && !(pawn.GetLord().LordJob is LordJob_DefendHiveLoc lordjob))
+                        {
+                            CreateNewLord(pawn);
+                        }
                     }
                 }
                 else
@@ -152,14 +154,24 @@ namespace RRYautja
         {
             IntVec3 c;
             Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_EggXenomorphFertilized), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, null, null, 0, -1, false, RegionType.Set_Passable, false);
-            if (thing == null)
+            if (thing != null)
             {
-                c = RCellFinder.RandomWanderDestFor(pawn, pawn.Position, 5f, null, Danger.Some);
+                c = RCellFinder.RandomWanderDestFor(pawn, thing.Position, 5f, null, Danger.Some);
             }
             else
             {
-                InfestationCellFinder.TryFindCell(out c, pawn.Map);
-                if (pawn.CanReach(c, PathEndMode.OnCell, Danger.Deadly))
+                if (InfestationLikeCellFinder.TryFindCell(out c, pawn.Map))
+                {
+#if DEBUG
+                    if (Prefs.DevMode)
+                    {
+                        ThingDef td = pawn.RaceProps.BloodDef;
+                        GenSpawn.Spawn(td, c, pawn.Map);
+                        Find.LetterStack.ReceiveLetter(string.Format("Lord Created"), string.Format("@: {0} ", c), LetterDefOf.NegativeEvent, c.GetFirstThing(pawn.Map, td), null, null);
+                    }
+#endif
+                }
+                if (pawn.CanReach(c, PathEndMode.OnCell, Danger.Deadly, true))
                 {
                     c = RCellFinder.RandomWanderDestFor(pawn, c, 3f, null, Danger.Some);
                 }
@@ -167,8 +179,21 @@ namespace RRYautja
                 {
                     c = RCellFinder.RandomWanderDestFor(pawn, thing.Position, 3f, null, Danger.Some);
                 }
+            } // 
+            if (pawn.GetLord() != null && pawn.GetLord() is Lord l)
+            {
+                if (l.ownedPawns.Count > 0)
+                {
+                    l.ownedPawns.Remove(pawn);
+                }
+                if (l.ownedPawns.Count == 0)
+                {
+                    
+                }
             }
-            return LordMaker.MakeNewLord(parent.Faction, new LordJob_DefendBase(parent.Faction, c), parent.Map, null);
+            Lord lord = LordMaker.MakeNewLord(parent.Faction, new LordJob_DefendHiveLoc(parent.Faction, c), parent.Map, null);
+            lord.AddPawn(pawn);
+            return lord;
         }
 
         public int healIntervalTicks = 60;

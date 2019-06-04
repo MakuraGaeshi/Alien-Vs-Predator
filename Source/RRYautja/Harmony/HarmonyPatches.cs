@@ -44,13 +44,13 @@ namespace RRYautja
             }, null), new HarmonyMethod(typeof(HarmonyPatches), "PawnRenderer_Blur_Prefix", null), null, null);
             
             harmony.Patch(
-                original: AccessTools.Method(type: typeof(AlienPartGenerator.BodyAddon), name: "CanDrawAddon"),
-                prefix: new HarmonyMethod(type: typeof(HarmonyPatches), name: nameof(Pre_CanDrawAddon_Cloak)),
+                original: AccessTools.Method(type: typeof(PawnRenderer), name: "DrawEquipment"),
+                prefix: new HarmonyMethod(type: typeof(HarmonyPatches), name: nameof(Pre_DrawEquipment_Cloak)),
                 postfix: null);
 
             harmony.Patch(
-                original: AccessTools.Method(type: typeof(PawnRenderer), name: "DrawEquipment"),
-                prefix: new HarmonyMethod(type: typeof(HarmonyPatches), name: nameof(Pre_DrawEquipment_Cloak)),
+                original: AccessTools.Method(type: typeof(AlienPartGenerator.BodyAddon), name: "CanDrawAddon"),
+                prefix: new HarmonyMethod(type: typeof(HarmonyPatches), name: nameof(Pre_CanDrawAddon_Cloak)),
                 postfix: null);
 
             //DeathActionWorker_BigExplosion
@@ -129,7 +129,7 @@ namespace RRYautja
             __result.x += offset.x;
             __result.z += offset.y;
         }
-        
+
         public static bool Pre_CanDrawAddon_Cloak(Pawn pawn)
         {
             bool flag = pawn.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked, false);
@@ -140,8 +140,20 @@ namespace RRYautja
             }
             return true;
         }
-        
-        public static bool Pre_DrawEquipment_Cloak(Vector3 rootLoc, PawnRenderer __instance)
+
+        public static bool Pre_DrawWound_Cloak(PawnWoundDrawer __instance)
+        {
+            Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
+            bool flag = pawn.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked, false);
+            if (flag)
+            {
+                //Log.Message(string.Format("tetet"));
+                return false;
+            }
+            return true;
+        }
+
+        public static bool Pre_DrawEquipment_Cloak(PawnRenderer __instance)
         {
             Pawn pawn = HarmonyPatches.PawnRenderer_GetPawn(__instance);
             bool flag = pawn.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked, false);
@@ -315,7 +327,8 @@ namespace RRYautja
                 __result = Mathf.Max(num, 1);
             }
         }
-        
+
+        private static readonly Material BubbleMat = MaterialPool.MatFrom("Other/CloakActive", ShaderDatabase.Transparent);
         public static bool PawnRenderer_Blur_Prefix(PawnRenderer __instance, ref Vector3 drawLoc, ref RotDrawMode bodyDrawType, bool headStump)
         {
             Pawn value = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
@@ -327,6 +340,7 @@ namespace RRYautja
                 {
                     bool selected = Find.Selector.SingleSelectedThing == value;
                 }
+                
                 __instance.graphics = new PawnGraphicSet_Invisible(value)
                 {
                     nakedGraphic = new Graphic_Invisible(),
@@ -339,6 +353,19 @@ namespace RRYautja
                     desiccatedHeadStumpGraphic = null,
                     hairGraphic = null
                 };
+#if DEBUG
+                if (Prefs.DevMode)
+                {
+                    float num = Mathf.Lerp(1.2f, 1.55f, value.BodySize);
+                    Vector3 vector = value.Drawer.DrawPos;
+                    vector.y = Altitudes.AltitudeFor(AltitudeLayer.VisEffects);
+                    float angle = 0f;// (float)Rand.Range(0, 360);
+                    Vector3 s = new Vector3(num, 1f, num);
+                    Matrix4x4 matrix = default(Matrix4x4);
+                    matrix.SetTRS(vector, Quaternion.AngleAxis(angle, Vector3.up), s);
+                    Graphics.DrawMesh(MeshPool.plane10, matrix, BubbleMat, 0);
+                }
+#endif
             }
             return true;
         }
@@ -459,10 +486,20 @@ namespace RRYautja
             }
             else if (request.Faction == Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph))
             {
-                Log.Message(string.Format("Xenomorph spawning"));
+#if DEBUG
+                if (Prefs.DevMode)
+                {
+                    Log.Message(string.Format("Xenomorph spawning"));
+                }
+#endif
                 if (request.KindDef==XenomorphDefOf.RRY_Xenomorph_Queen)
                 {
-                    Log.Message(string.Format("trying to spawn Xenomorph Queen, checking {0} pawns", Find.AnyPlayerHomeMap.mapPawns.AllPawns.Count()));
+#if DEBUG
+                    if (Prefs.DevMode)
+                    {
+                        Log.Message(string.Format("trying to spawn Xenomorph Queen, checking {0} pawns", Find.AnyPlayerHomeMap.mapPawns.AllPawns.Count()));
+                    }
+#endif
                     bool QueenPresent = false;
                     
                     foreach (var p in Find.AnyPlayerHomeMap.mapPawns.AllPawns)
@@ -476,7 +513,12 @@ namespace RRYautja
                     }
                     if (QueenPresent)
                     {
-                        Log.Message(string.Format("Queen Present: {0}", QueenPresent));
+#if DEBUG
+                        if (Prefs.DevMode)
+                        {
+                            Log.Message(string.Format("Queen Present: {0}", QueenPresent));
+                        }
+#endif
                         request = new PawnGenerationRequest(XenomorphDefOf.RRY_Xenomorph_Warrior, request.Faction, request.Context, -1, true, false, false, false, false, true, 0f, fixedGender: Gender.None, allowGay: false);
                         __result = PawnGenerator.GeneratePawn(request);
                         __result.gender = Gender.None;

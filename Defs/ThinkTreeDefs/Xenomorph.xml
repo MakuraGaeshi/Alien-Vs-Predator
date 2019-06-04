@@ -204,6 +204,11 @@
 						<li Class="JobGiver_XenosKidnap" />
 					  </subNodes>
 					</li>
+					<li Class="ThinkNode_ConditionalAnyInfectableSpawnedNearby">
+					  <subNodes>
+						<li Class="JobGiver_XenomorphHosthunter" />
+					  </subNodes>
+					</li>
 			  </subNodes>
 			</li>
 					
@@ -232,7 +237,7 @@
 
                 <!-- Satisfy basic needs -->
         <li Class="ThinkNode_Subtree">
-          <treeDef>SatisfyBasicNeeds</treeDef>
+          <treeDef>RRY_SatisfyXenomorphNeeds</treeDef>
         </li>
         <!-- Idle error -->
         <li Class="JobGiver_IdleError"/>

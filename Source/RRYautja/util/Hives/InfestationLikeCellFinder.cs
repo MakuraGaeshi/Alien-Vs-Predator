@@ -19,14 +19,23 @@ namespace RimWorld
                 //Log.Message(string.Format("TryFindCell: {0} From !InfestationLikeCellFinder.TryFindCell(out loc, map)", cell));
                 return false;
             }
-            cell = CellFinder.FindNoWipeSpawnLocNear(locationCandidate.cell, map, OGHiveLikeDefOf.HiveLike, Rot4.North, 2, (IntVec3 x) => InfestationLikeCellFinder.GetScoreAt(x, map) > 0f && x.GetFirstThing(map, OGHiveLikeDefOf.HiveLike) == null && x.GetFirstThing(map, ThingDefOf.TunnelHiveSpawner) == null);
+#if DEBUG
+            if (Prefs.DevMode)
+            {
+                ThingDef td = ThingDefOf.Filth_Slime;
+                GenSpawn.Spawn(td, locationCandidate.cell, map);
+                Find.LetterStack.ReceiveLetter(string.Format("InfestationLike Cell Finder"), string.Format("locationCandidate: {0} ", locationCandidate.cell), LetterDefOf.NegativeEvent, locationCandidate.cell.GetFirstThing(map, td), null, null);
+            }
+#endif
+            cell = CellFinder.FindNoWipeSpawnLocNear(locationCandidate.cell, map, OGHiveLikeDefOf.HiveLike, Rot4.North, 5, (IntVec3 x) => InfestationLikeCellFinder.GetScoreAt(x, map) > 0f && x.GetFirstThing(map, OGHiveLikeDefOf.HiveLike) == null && x.GetFirstThing(map, OGHiveLikeDefOf.TunnelHiveLikeSpawner) == null);
+            // 
             return true;
         }
 
         // Token: 0x0600368C RID: 13964 RVA: 0x001A0EAC File Offset: 0x0019F2AC
         private static float GetScoreAt(IntVec3 cell, Map map)
         {
-            if ((float)InfestationLikeCellFinder.distToColonyBuilding[cell] > 30f)
+            if ((float)InfestationLikeCellFinder.distToColonyBuilding[cell] < 20f)
             {
                 return 0f;
             }
@@ -34,10 +43,12 @@ namespace RimWorld
             {
                 return 0f;
             }
+            /*
             if (cell.Fogged(map))
             {
                 return 0f;
             }
+            */
             if (InfestationLikeCellFinder.CellHasBlockingThings(cell, map))
             {
                 return 0f;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RRYautja;
+using System;
 using System.Collections.Generic;
 using Verse;
 using Verse.AI;
@@ -26,11 +27,20 @@ namespace RimWorld
             }
         }
 
+        public HediffDef heCocDeff = XenomorphDefOf.RRY_Hediff_Cocooned;
+
+        // Token: 0x06000391 RID: 913 RVA: 0x00024554 File Offset: 0x00022954
+        public override void Notify_Starting()
+        {
+            base.Notify_Starting();
+            this.useDuration = 300;
+        }
+
         // Token: 0x06000372 RID: 882 RVA: 0x0001EF20 File Offset: 0x0001D320
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
             Pawn pawn = this.pawn;
-            LocalTargetInfo target = this.Item;
+            LocalTargetInfo target = this.job.targetA;
             Job job = this.job;
             return pawn.Reserve(target, job, 1, -1, null, errorOnFailed);
         }
@@ -38,12 +48,13 @@ namespace RimWorld
         // Token: 0x06000373 RID: 883 RVA: 0x0001EF58 File Offset: 0x0001D358
         protected override IEnumerable<Toil> MakeNewToils()
         {
-            this.FailOnDestroyedOrNull(TargetIndex.A);
-            yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.ClosestTouch).FailOnSomeonePhysicallyInteracting(TargetIndex.A);
-            yield return Toils_Construct.UninstallIfMinifiable(TargetIndex.A).FailOnSomeonePhysicallyInteracting(TargetIndex.A);
-            yield return Toils_Haul.StartCarryThing(TargetIndex.A, false, false, false);
-            yield return Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.Touch);
-            Toil prepare = Toils_General.Wait(300, TargetIndex.None);
+            this.FailOnIncapable(PawnCapacityDefOf.Manipulation);
+            yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
+            yield return Toils_Haul.StartCarryThing(TargetIndex.A, false, true, false);
+            Toil carryToCell = Toils_Haul.CarryHauledThingToCell(TargetIndex.B);
+            yield return carryToCell;
+            yield return Toils_Haul.PlaceHauledThingInCell(TargetIndex.B, carryToCell, false);
+            Toil prepare = Toils_General.Wait(this.useDuration, TargetIndex.None);
             prepare.WithProgressBarToilDelay(TargetIndex.A, false, -0.5f);
             prepare.FailOnDespawnedNullOrForbidden(TargetIndex.A);
             prepare.FailOnCannotTouch(TargetIndex.A, PathEndMode.Touch);
@@ -52,21 +63,15 @@ namespace RimWorld
             use.initAction = delegate ()
             {
                 Pawn actor = use.actor;
-                this.Takee.health.AddHediff(XenomorphDefOf.RRY_Hediff_Cocooned);
-                this.Takee.mindState.Notify_TuckedIntoBed();
+                Pawn Infectable = (Pawn)actor.CurJob.targetA.Thing;
+                Infectable.health.AddHediff(heCocDeff);
+
             };
             use.defaultCompleteMode = ToilCompleteMode.Instant;
             yield return use;
             yield break;
         }
-
-
-        private int ticksLeft;
-
-        // Token: 0x0400023D RID: 573
-        private const TargetIndex ItemInd = TargetIndex.A;
-
-        // Token: 0x0400023E RID: 574
-        private const TargetIndex ExitCellInd = TargetIndex.B;
+        
+        private int useDuration = -1;
     }
 }

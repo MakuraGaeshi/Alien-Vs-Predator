@@ -153,6 +153,7 @@
 		<letterType>NegativeEvent</letterType>
       </li>
 		<li Class="RRYautja.HediffCompProperties_XenoSpawner">
+		<severityPerDay>1</severityPerDay>
 		<pawnKindDefs>
 			<li>RRY_Xenomorph_Queen</li>
 			<li>RRY_Xenomorph_Warrior</li>
@@ -165,9 +166,6 @@
 			<li>50</li>
 			<li>100</li>
 		</pawnKindWeights>
-		</li>
-		<li Class="HediffCompProperties_SeverityPerDay">
-		<severityPerDay>1</severityPerDay>
 		</li>
     </comps>
   </HediffDef>

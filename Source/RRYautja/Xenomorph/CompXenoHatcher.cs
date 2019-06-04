@@ -64,6 +64,7 @@ namespace RRYautja
         {
             base.PostExposeData();
             Scribe_Values.Look<float>(ref this.gestateProgress, "gestateProgress", 0f, false);
+            Scribe_Values.Look<float>(ref this.royalProgress, "royalProgress", 0f, false);
             Scribe_References.Look<Pawn>(ref this.hatcheeParent, "hatcheeParent", false);
             Scribe_References.Look<Pawn>(ref this.otherParent, "otherParent", false);
             Scribe_References.Look<Faction>(ref this.hatcheeFaction, "hatcheeFaction", false);
@@ -99,6 +100,26 @@ namespace RRYautja
             }
         }
 
+        public bool QueenPresent
+        {
+            get
+            {
+                bool queenPresent = false;
+                foreach (var p in MyMap.mapPawns.AllPawnsSpawned)
+                {
+                    if (p.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
+                    {
+#if DEBUG
+                        Log.Message(string.Format("Queen found"));
+#endif
+                        queenPresent = true;
+                        break;
+                    }
+                }
+                return queenPresent;
+            }
+        }
+
         // Token: 0x060028F0 RID: 10480 RVA: 0x00136BB0 File Offset: 0x00134FB0
         public override void CompTick()
         {
@@ -106,9 +127,16 @@ namespace RRYautja
             {
                 float ambientTemperature = this.parent.AmbientTemperature;
                 float num = 1f / (this.Props.hatcherDaystoHatch * 60000f);
-                if (this.gestateProgress<1f&& ambientTemperature> -20 && (this.parent.Spawned || this.ParentHolder is Pawn))
+                if (ambientTemperature > -20 && (this.parent.Spawned || this.ParentHolder is Pawn))
                 {
-                    this.gestateProgress += num;
+                    if (this.gestateProgress < 1f)
+                    {
+                        this.gestateProgress += num;
+                    }
+                    else if (this.royalProgress < 1f)
+                    {
+                        this.royalProgress += num;
+                    }
                 }
                 if (Find.TickManager.TicksGame % 250 == 0)
                 {
@@ -140,7 +168,7 @@ namespace RRYautja
         // Token: 0x0600295E RID: 10590 RVA: 0x00139BAC File Offset: 0x00137FAC
         public override void CompTickRare()
         {
-
+            
             bool selected = Find.Selector.SelectedObjects.Contains(this.parent);
             Thing thing = null;
             if (MyMap !=null && MyPos.InBounds(MyMap)) thing = GenClosest.ClosestThingReachable(MyPos, MyMap, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), Props.triggerRadius, x => XenomorphUtil.isInfectablePawn(((Pawn)x)), null, 0, -1, false, RegionType.Set_Passable, false);
@@ -194,12 +222,18 @@ namespace RRYautja
             }
 #endif
         }
+
+
         // Token: 0x060028F1 RID: 10481 RVA: 0x00136C04 File Offset: 0x00135004
         public void Hatch()
         {
             try
             {
-                PawnGenerationRequest request = new PawnGenerationRequest(this.Props.hatcherPawn, this.hatcheeFaction, PawnGenerationContext.NonPlayer, -1, false, true, false, false, true, false, 1f, false, true, true, false, false, false, false, null, null, null, null, null, null, null, null);
+                PawnKindDef hatchKindDef = Rand.Chance(royalProgress) && !QueenPresent ? XenomorphDefOf.RRY_Xenomorph_RoyaleHugger : this.Props.hatcherPawn;
+#if DEBUG
+                Log.Message(string.Format("hatchKindDef: {0}", hatchKindDef));
+#endif
+                PawnGenerationRequest request = new PawnGenerationRequest(hatchKindDef, this.hatcheeFaction, PawnGenerationContext.NonPlayer, -1, false, true, false, false, true, false, 1f, false, true, true, false, false, false, false, null, null, null, null, null, null, null, null);
                 for (int i = 0; i < this.parent.stackCount; i++)
                 {
                     Pawn pawn = PawnGenerator.GeneratePawn(request);
@@ -285,13 +319,23 @@ namespace RRYautja
         {
             if (!this.TemperatureDamaged)
             {
+                if (this.royalProgress > 0f && !QueenPresent && Prefs.DevMode)
+                {
+                    return "EggProgress".Translate() + ": " + this.gestateProgress.ToStringPercent() + "\n" + "RoyalProgress".Translate() + ": " + this.royalProgress.ToStringPercent();
+                }
                 return "EggProgress".Translate() + ": " + this.gestateProgress.ToStringPercent();
             }
             return null;
         }
 
+        public override void PostDraw()
+        {
+            base.PostDraw();
+        }
+
         // Token: 0x040016C5 RID: 5829
         private float gestateProgress;
+        public float royalProgress;
 
         // Token: 0x040016C6 RID: 5830
         public Pawn hatcheeParent;

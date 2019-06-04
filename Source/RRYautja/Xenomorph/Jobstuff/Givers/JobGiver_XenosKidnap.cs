@@ -16,9 +16,13 @@ namespace RimWorld
         public Thing closestReachableEgg;
         public Thing closestReachableCocoontoEgg;
 
+        public bool emptycocoonsPresent;
+        public bool emptycocoonsReachable;
+        public bool cocoonOccupied;
+        public Thing emptyclosestReachableCocoon;
+
         public bool cocoonsPresent;
         public bool cocoonsReachable;
-        public bool cocoonOccupied;
         public Thing closestReachableCocoon;
 
         public bool hivelikesPresent;
@@ -65,11 +69,15 @@ namespace RimWorld
                 hivelikesReachable = !XenomorphUtil.ClosestReachableHivelike(pawn).DestroyedOrNull();
                 closestReachableHivelike = XenomorphUtil.ClosestReachableHivelike(pawn);
 
-                cocoonsPresent = XenomorphUtil.EmptyCocoonsPresent(pawn.Map, named);
-                cocoonsReachable = !XenomorphUtil.ClosestReachableEmptyCocoon(pawn, named).DestroyedOrNull();
-                closestReachableCocoon = XenomorphUtil.ClosestReachableEmptyCocoon(pawn, named);
+                cocoonsPresent = XenomorphUtil.CocoonsPresent(pawn.Map, named);
+                cocoonsReachable = !XenomorphUtil.ClosestReachableCocoon(pawn, named).DestroyedOrNull();
+                closestReachableCocoon = XenomorphUtil.ClosestReachableCocoon(pawn, named);
 
-                if (selected) Log.Message(string.Format("JobGiver_XenosKidnap EggsPresent: {0}, ReachableEgg: {1} for {2}, closestReachableCocoon: {3}", XenomorphUtil.EggsPresent(pawn.Map), XenomorphUtil.ClosestReachableEgg(pawn) != null, pawn, closestReachableCocoon));
+                emptycocoonsPresent = XenomorphUtil.EmptyCocoonsPresent(pawn.Map, named);
+                emptycocoonsReachable = !XenomorphUtil.ClosestReachableEmptyCocoon(pawn, named).DestroyedOrNull();
+                emptyclosestReachableCocoon = XenomorphUtil.ClosestReachableEmptyCocoon(pawn, named);
+
+                if (selected) Log.Message(string.Format("JobGiver_XenosKidnap EggsPresent: {0}, ReachableEgg: {1} for {2}, closestReachableCocoon: {3}", XenomorphUtil.EggsPresent(pawn.Map), XenomorphUtil.ClosestReachableEgg(pawn) != null, pawn, emptyclosestReachableCocoon));
                 if ((hivelikesPresent && hivelikesReachable))
                 {
                     ThingDef hiveDef = null;
@@ -88,7 +96,7 @@ namespace RimWorld
                     if (XenomorphUtil.TotalSpawnedThingCount(hiveDef, pawn.Map) > 0 && hiveDef != null)
                     {
                         hiveThing = XenomorphUtil.TotalSpawnedThingCount(hiveDef, pawn.Map) > 1 ? XenomorphUtil.SpawnedHivelikes(hiveDef, pawn.Map).RandomElement() : XenomorphUtil.ClosestReachableHivelike(hiveDef, pawn);
-                        if (cocoonsPresent && cocoonsReachable)
+                        if (emptycocoonsPresent && emptycocoonsReachable)
                         {
                             if (selected) Log.Message(string.Format("JobGiver_XenosKidnap {0} searching for cocoonThing for hiveThing: {1}", pawn, hiveThing.Position));
                             cocoonThing = XenomorphUtil.ClosestReachableEmptyCocoonToEgg(closestReachableHivelike, named);
@@ -100,30 +108,8 @@ namespace RimWorld
                         c = cocoonThing != null && !cocoonOccupied ? cocoonThing.Position : hiveThing.Position;
                         if (c == hiveThing.Position)
                         {
-                            /*
-                            Rot4 rot = Rotlist.RandomElement();
-                            int radius = 2;
-                            ThingDef named = XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon;
-                            int num = (named.Size.x > named.Size.z) ? named.Size.x : named.Size.z;
-                            CellRect mapRect;
-                            IntVec3 intVec = CellFinder.RandomClosewalkCellNear(c, pawn.Map, radius, (x => (x.Roofed(pawn.Map) && hiveThing.Position.Roofed(pawn.Map) || (!x.Roofed(pawn.Map) && !hiveThing.Position.Roofed(pawn.Map)))));
-                            mapRect = new CellRect(intVec.x, intVec.z, num, num);
-                            while (!IsMapRectClear(mapRect, pawn.Map))
-                            {
-                                intVec = CellFinder.RandomClosewalkCellNear(c, pawn.Map, radius, (x => (x.Roofed(pawn.Map) && hiveThing.Position.Roofed(pawn.Map) || (!x.Roofed(pawn.Map) && !hiveThing.Position.Roofed(pawn.Map)))));
-                                mapRect = new CellRect(intVec.x, intVec.z, num, num);
-                                radius++;
-
-                            }
-                            if (intVec != null)
-                            {
-                                GenPlace.TryPlaceThing(TryMakeCocoon(mapRect, pawn.Map, named), intVec, pawn.Map, ThingPlaceMode.Near);
-                            }
-                            c = intVec;
-                            */
                             Rot4 rot = Rotlist.RandomElement();
                             int radius = 3;
-                            Thing thing = ThingMaker.MakeThing(named);
                             IntVec3 intVec = CellFinder.RandomClosewalkCellNear(c, pawn.Map, radius, (x => (x.Roofed(pawn.Map) && hiveThing.Position.Roofed(pawn.Map) || (!x.Roofed(pawn.Map) && !hiveThing.Position.Roofed(pawn.Map)))));
                             CellRect mapRect = new CellRect(intVec.x-1, intVec.z-1, 3, 3);
                             while (!IsMapRectClear(mapRect, pawn.Map))
@@ -142,7 +128,7 @@ namespace RimWorld
                             }
                             if (intVec != null)
                             {
-                                GenSpawn.Spawn(thing, intVec, pawn.Map, rot, WipeMode.Vanish, false);
+                            //    GenSpawn.Spawn(thing, intVec, pawn.Map, rot, WipeMode.Vanish, false);
                             }
                             c = intVec;
                         }
@@ -157,7 +143,7 @@ namespace RimWorld
                         eggThing = XenomorphUtil.SpawnedEggsNeedHosts(pawn.Map).Count > 1 ? XenomorphUtil.SpawnedEggsNeedHosts(pawn.Map).RandomElement() : XenomorphUtil.ClosestReachableEggNeedsHost(pawn);
 
                         if (selected) Log.Message(string.Format("JobGiver_XenosKidnap eggThing: {0}, EggCount: {1} for {2}", eggThing, XenomorphUtil.SpawnedEggsNeedHosts(pawn.Map).Count, pawn));
-                        if (cocoonsPresent && cocoonsReachable)
+                        if (emptycocoonsPresent && emptycocoonsReachable)
                         {
 
                             if (selected) Log.Message(string.Format("JobGiver_XenosKidnap {0} searching for cocoonThing for eggThing: {1}", pawn, eggThing.Position));
@@ -193,7 +179,7 @@ namespace RimWorld
                             }
                             if (intVec != null)
                             {
-                                GenPlace.TryPlaceThing(TryMakeCocoon(mapRect, pawn.Map, named), intVec, pawn.Map, ThingPlaceMode.Near);
+                            //    GenPlace.TryPlaceThing(TryMakeCocoon(mapRect, pawn.Map, named), intVec, pawn.Map, ThingPlaceMode.Near);
                             }
                             c = intVec;
                         }
@@ -201,28 +187,40 @@ namespace RimWorld
 
                     }
                 }
-                else
+                else if (cocoonsPresent)
                 {
-                    if (!RCellFinder.TryFindBestExitSpot(pawn, out c, TraverseMode.ByPawn) && (!XenomorphUtil.EggsPresent(pawn.Map) || (XenomorphUtil.EggsPresent(pawn.Map) && XenomorphUtil.ClosestReachableEgg(pawn) == null)))
+                    if (cocoonsPresent)
                     {
-                        return null;
+                        Log.Message(string.Format("cocoonsPresent: {0}", cocoonsPresent));
+                        if (emptycocoonsReachable)
+                        {
+                            Log.Message(string.Format("emptycocoonsReachable: {0}", emptycocoonsReachable));
+                            c = emptyclosestReachableCocoon.Position;
+                            Log.Message(string.Format("emptyclosestReachableCocoon.Position: {0}", c));
+                        }
+                        else if (cocoonsReachable)
+                        {
+                            Log.Message(string.Format("cocoonsReachable: {0}", cocoonsReachable));
+                            c = RCellFinder.RandomWanderDestFor(pawn, closestReachableCocoon.Position, 5f, null, Danger.Some);
+                            Log.Message(string.Format("RCellFinder.RandomWanderDestFor(pawn, c, 5f, null, Danger.Some): {0}", c));
+                        }
                     }
                 }
-                Building_XenomorphCocoon b;
-                if (selected) Log.Message(string.Format("TargetB == {0}", c));
-                b = (Building_XenomorphCocoon)c.GetFirstThing(t.Map, XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon);
-                if (b!=null && b.AnyUnoccupiedSleepingSlot && b.owners.NullOrEmpty())
-                {
-
-                    b.owners.Add(t);
-                    return new Job(XenomorphDefOf.RRY_Job_XenomorphKidnap)
-                    {
-                        targetA = t,
-                        targetB = b,
-                        count = 1
-                    };
-                }
                 else
+                {
+                    if (!InfestationLikeCellFinder.TryFindCell(out c, pawn.Map) && pawn.CanReach(c, PathEndMode.OnCell, Danger.Deadly))
+                    {
+                        if (!RCellFinder.TryFindBestExitSpot(pawn, out c, TraverseMode.ByPawn) && (!XenomorphUtil.EggsPresent(pawn.Map) || (XenomorphUtil.EggsPresent(pawn.Map) && XenomorphUtil.ClosestReachableEgg(pawn) == null)))
+                        {
+                            return null;
+                        }
+                    }
+                    else
+                    {
+                        Log.Message(string.Format("found infestation cell @ : {0}", c));
+                    } 
+                }
+                if (selected) Log.Message(string.Format("TargetB == {0}", c));
                 return new Job(XenomorphDefOf.RRY_Job_XenomorphKidnap)
                 {
                     targetA = t,

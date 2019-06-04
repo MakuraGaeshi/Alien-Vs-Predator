@@ -33,15 +33,15 @@
     <wounds>
       <li>
         <texture>Things/Pawn/Wounds/WoundA</texture>
-        <color>0.0,0.45,0.0</color>
+        <color>0.98,1,0</color>
       </li>
       <li>
         <texture>Things/Pawn/Wounds/WoundB</texture>
-        <color>0.0,0.45,0.0</color>
+        <color>0.98,1,0</color>
       </li>
       <li>
         <texture>Things/Pawn/Wounds/WoundC</texture>
-        <color>0.0,0.45,0.0</color>
+        <color>0.98,1,0</color>
       </li>
     </wounds>
   </FleshTypeDef>

@@ -20,6 +20,7 @@ namespace RRYautja
         public PawnKindDef pawnKindDef;
         public List<PawnKindDef> pawnKindDefs;
         public List<float> pawnKindWeights;
+        public float severityPerDay;
     }
     public class HediffComp_XenoSpawner : HediffComp
     {
@@ -53,10 +54,11 @@ namespace RRYautja
             Scribe_Values.Look<int>(ref this.Impregnations, "Impregnations", 0);
             Scribe_Values.Look<int>(ref this.countToSpawn, "countToSpawn", 1);
             Scribe_Values.Look<bool>(ref this.royaleHugger, "royaleHugger");
+            Scribe_Values.Look<bool>(ref this.predalienImpregnation, "predalienImpregnation",false);
         }
 
         bool logonce = false;
-        public int countToSpawn;
+        public int countToSpawn = 1;
         int lastCoughTick = 0;
         int nextCoughTick = 0; 
         int lastCoughStage=0;
@@ -64,6 +66,7 @@ namespace RRYautja
         int timesCoughedBlood = 0;
         float lastCoughSeverity=0;
         public bool royaleHugger;
+        public bool predalienImpregnation;
         public int Impregnations;
 
         public bool RoyaleHugger
@@ -152,6 +155,12 @@ namespace RRYautja
             bool selected = Find.Selector.SingleSelectedThing == parent.pawn;
             if (parent.CurStageIndex >= parent.def.stages.Count - 3 && this.Pawn.Map == null) return;
             base.CompPostTick(ref severityAdjustment);
+            if (base.Pawn.IsHashIntervalTick(200))
+            {
+                float num = this.SeverityChangePerDay();
+                num *= 0.00333333341f;
+                severityAdjustment += num;
+            }
             if (parent.ageTicks> nextCoughTick && (this.Def == XenomorphDefOf.RRY_HiddenNeomorphImpregnation || this.Def == XenomorphDefOf.RRY_NeomorphImpregnation) && Pawn.Map != null && Pawn.Spawned)
             {
                 DoNeoCough();
@@ -170,11 +179,11 @@ namespace RRYautja
 
                 }
 #if DEBUG
-                if (selected) Log.Message(string.Format("Pre Death stage: {0}", parent.CurStage.label));
+            //    if (selected) Log.Message(string.Format("Pre Death stage: {0}", parent.CurStage.label));
 #endif
                 int num = Find.TickManager.TicksGame % 300 * 2;
 #if DEBUG
-                if (selected) Log.Message(string.Format("num: {0}", num));
+            //    if (selected) Log.Message(string.Format("num: {0}", num));
 #endif
                 if (num < 90)
                 {
@@ -223,31 +232,40 @@ namespace RRYautja
                     float hostSize = base.parent.pawn.BodySize;
                     float spawnRoll = ((Rand.Range(1, 100)) * hostSize);
 
-                    if (PKDef == XenomorphDefOf.RRY_Xenomorph_Queen && QueenPresent)
+                    if (PKDef == XenomorphDefOf.RRY_Xenomorph_Queen && (QueenPresent || predalienImpregnation))
                     {
                         spawnRoll = 0;
 #if DEBUG
-                        if (selected) Log.Message(string.Format("{0} :{1}", PKDef.label, QueenPresent));
+                        Log.Message(string.Format("{0} :{1}", PKDef.label, QueenPresent));
 #endif
                     }
-                    else if (!QueenPresent)
+                    else if (PKDef == XenomorphDefOf.RRY_Xenomorph_Queen && !QueenPresent && !predalienImpregnation)
                     {
                         if (PKDef == XenomorphDefOf.RRY_Xenomorph_Queen)
                         {
                             spawnRoll *= 2;
                         }
                     }
-
+                    else if (predalienImpregnation)
+                    {
+                        if (PKDef == XenomorphDefOf.RRY_Xenomorph_Runner)
+                        {
+                            spawnRoll *= 2;
+                        }
+                        else if (PKDef == XenomorphDefOf.RRY_Xenomorph_Drone)
+                        {
+                            spawnRoll *= 2;
+                        }
+                    }
                     if (spawnRoll > (100 - pawnKindWeights[ind]))
                     {
                         pawnKindDef = PKDef;
                         break;
                     }
-
                     ind++;
                 }
 
-                if (Pawn.kindDef.race == YautjaDefOf.RRY_Alien_Yautja)
+                if (Pawn.kindDef.race == YautjaDefOf.RRY_Alien_Yautja && !predalienImpregnation)
                 {
                     pawnKindDef = XenomorphDefOf.RRY_Xenomorph_Predalien;
                 }
@@ -261,7 +279,12 @@ namespace RRYautja
             {
                 gender = Gender.None;
             }
-
+#if DEBUG
+            if (Prefs.DevMode)
+            {
+                 Log.Message(string.Format("spawning: {0}", pawnKindDef.label));
+            }
+#endif
             return PawnGenerator.GeneratePawn(new PawnGenerationRequest(pawnKindDef, Find.FactionManager.FirstFactionOfDef(pawnKindDef.defaultFactionType), PawnGenerationContext.NonPlayer, -1, true, true, false, false, true, true, 20f, fixedGender: gender));
         }
         public Color HostBloodColour
@@ -281,8 +304,51 @@ namespace RRYautja
             bool selected = Find.Selector.SingleSelectedThing == parent.pawn;
             this.Pawn.def.race.deathActionWorkerClass = typeof(DeathActionWorker_Simple);
             bool fullterm = this.parent.CurStageIndex > this.parent.def.stages.Count - 3;
-            if (!fullterm) return;
-            if (spawnMap == null || spawnLoc == null) return;
+            if (!fullterm)
+            {
+#if DEBUG
+                if (Prefs.DevMode)
+                {
+                    Log.Message(string.Format("fullterm on death: {0}", fullterm));
+                }
+#endif
+                return;
+            }
+            else
+            {
+#if DEBUG
+                if (Prefs.DevMode)
+                {
+                    Log.Message(string.Format("fullterm on death: {0}", fullterm));
+                }
+#endif
+            }
+            if (spawnMap == null || spawnLoc == null)
+            {
+#if DEBUG
+                if (Prefs.DevMode)
+                {
+                    Log.Message(string.Format("spawnMap == null {0} || spawnLoc == null {1}", spawnMap == null, spawnLoc == null));
+                }
+#endif
+                return;
+            }
+            else
+            {
+#if DEBUG
+                if (Prefs.DevMode)
+                {
+                    Log.Message(string.Format("spawnMap == {0} spawnLoc == {1}", spawnMap, spawnLoc));
+                }
+#endif
+            }
+#if DEBUG
+            if (Prefs.DevMode)
+            {
+                Log.Message(string.Format("countToSpawn == {0}", countToSpawn));
+            }
+#endif
+            if (countToSpawn == 0) countToSpawn++;
             for (int i = 0; i < countToSpawn; i++)
             {
                 Pawn pawn = XenomorphSpawnRequest();
@@ -295,6 +361,12 @@ namespace RRYautja
                 {
                     _Xenomorph.host = base.parent.pawn.kindDef;
                 }
+#if DEBUG
+                if (Prefs.DevMode)
+                {
+                    Log.Message(string.Format("spawning: {0}, spawnLoc: {1}, spawnMap: {2}", pawn.LabelCap, spawnLoc, spawnMap));
+                }
+#endif
                 GenSpawn.Spawn(pawn, spawnLoc, spawnMap, 0);
             }
             Vector3 vector = spawnLoc.ToVector3Shifted();
@@ -312,6 +384,31 @@ namespace RRYautja
             MoteMaker.ThrowText(spawnLoc.ToVector3(), spawnMap, text, 5f);
 
         }
+
+        // Token: 0x06004C89 RID: 19593 RVA: 0x002379D6 File Offset: 0x00235DD6
+        protected virtual float SeverityChangePerDay()
+        {
+            if (RoyaleHugger)
+            {
+                return this.Props.severityPerDay/5;
+            }
+            return this.Props.severityPerDay;
+        }
+
+        // Token: 0x06004C8A RID: 19594 RVA: 0x002379E4 File Offset: 0x00235DE4
+        public override string CompDebugString()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append(base.CompDebugString());
+            if (!base.Pawn.Dead)
+            {
+                stringBuilder.AppendLine("severity/day: " + this.SeverityChangePerDay().ToString("F3"));
+            }
+            return stringBuilder.ToString().TrimEndNewlines();
+        }
+
+        // Token: 0x04003401 RID: 13313
+        protected const int SeverityUpdateInterval = 200;
 
         [TweakValue("Gameplay", 0f, 1f)]
         private static float DustMoteSpawnMTB = 0.2f;

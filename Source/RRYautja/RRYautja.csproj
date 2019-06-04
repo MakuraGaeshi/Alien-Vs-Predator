@@ -81,6 +81,10 @@
     <None Include="Xenomorph\Building_XenomorphCocoon - Copy.cs.bak" />
     <Compile Include="Xenomorph\Building_XenomorphCocoon.cs" />
     <None Include="Xenomorph\HediffComp_Facehugger - Copy.cs.bak" />
+    <None Include="Xenomorph\Jobstuff\Givers\JobGiver_XenosKidnap.cs.bak" />
+    <Compile Include="Xenomorph\ThinkNode_ConditionalNotPawnKind.cs" />
+    <Compile Include="Xenomorph\LordJob_DefendHiveLoc.cs" />
+    <Compile Include="Xenomorph\LordToil_DefendHiveLoc.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_PredalienImpregnate.cs" />
     <Compile Include="Xenomorph\IncidentWorker_PowerCut.cs" />
     <Compile Include="Xenomorph\FacehuggerOffsetDefExtension.cs" />
@@ -95,6 +99,7 @@
     <Compile Include="Xenomorph\HediffGiver_StartWithXenomorphHediff.cs" />
     <Compile Include="util\MinifiedThingNoBox.cs" />
     <Compile Include="Xenomorph\ThinkNode_ConditionalAnyInfectableSpawnedNearby.cs" />
+    <Compile Include="Xenomorph\ThinkNode_ConditionalQueenPresent.cs" />
     <Compile Include="Yautja\Alert_ColonistNeedsRescuingFromCocoon.cs" />
     <Compile Include="Yautja\Recipe_Remove_Gauntlet.cs" />
     <Compile Include="Yautja\RRY_Thought_SituationalSocial.cs" />

@@ -48,7 +48,7 @@ namespace RRYautja
                 bool cocoonFlag = !pawn.InBed() || (pawn.InBed() && (pawn.CurrentBed() is Building_XenomorphCocoon));
                 bool pawnFlag = ((XenomorphUtil.isInfectablePawn(pawn)) || (XenomorphUtil.isInfectablePawn(pawn, false))) && pawn.Downed && (pawn.Faction == null || pawn.Faction.HostileTo(kidnapper.Faction) || kidnapper.Faction == null);
                 Log.Message(string.Format(" cocoonFlag; {0} \n pawnFlag: {1}", cocoonFlag, pawnFlag));
-                return (cocoonFlag || pawnFlag) && (kidnapper.CanReserve(pawn, 1, -1, null, false) && (disallowed == null || !disallowed.Contains(pawn))) && pawn != kidnapper && pawn.gender == Gender.Female;
+                return (cocoonFlag && pawnFlag) && (kidnapper.CanReserve(pawn, 1, -1, null, false) && (disallowed == null || !disallowed.Contains(pawn))) && pawn != kidnapper && pawn.gender == Gender.Female;
             };
             Log.Message(string.Format("TryFindGoodImpregnateVictim \nvalidator {0}", validator));
             victim = (Pawn)GenClosest.ClosestThingReachable(kidnapper.Position, kidnapper.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Some, false), maxDist, validator, null, 0, -1, false, RegionType.Set_Passable, false);

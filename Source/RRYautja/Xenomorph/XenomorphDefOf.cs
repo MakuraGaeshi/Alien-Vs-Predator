@@ -1,5 +1,6 @@
 ﻿using System;
 using Verse;
+using Verse.AI;
 
 namespace RimWorld
 {
@@ -48,11 +49,14 @@ namespace RimWorld
         // Xenomorph FactionDefs
         public static FactionDef RRY_Xenomorph;
 
-        // Xenomorph JobDefs RRY_Job_Maintain 
+        // Xenomorph JobDefs  
         public static JobDef RRY_Job_LayXenomorphEgg;
         public static JobDef RRY_Job_XenomorphKidnap;
         public static JobDef RRY_Job_PredalienImpregnate;
         public static JobDef RRY_Job_MaintainLike;
+
+        // Xenomorph DutyDefs  
+        public static DutyDef RRY_DefendHiveLoc;
 
         // Xenomorph ThingDefs 
         public static ThingDef RRY_Xenomorph_Humanoid_Cocoon;
@@ -90,11 +94,15 @@ namespace RimWorld
 
         // Xenomorph LifeStageDefs RRY_Xeno_Shell 
         //   public static LifeStageDef RRY_EggXenomorphFertilized;
-
+/*
 #if DEBUG
+            if (Prefs.DevMode)
+            {
 
+            }
 #endif
-    }
+*/
+}
 
     [DefOf]
     public static class XenomorphRacesDefOf

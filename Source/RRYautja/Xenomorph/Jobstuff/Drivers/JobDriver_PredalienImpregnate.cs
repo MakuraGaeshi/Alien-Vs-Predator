@@ -57,6 +57,7 @@ namespace RimWorld
                 Hediff hediff = Infectable.health.hediffSet.GetFirstHediffOfDef(heDiffDeff);
                 HediffComp_XenoSpawner _XenoSpawner = hediff.TryGetComp<HediffComp_XenoSpawner>();
                 _XenoSpawner.countToSpawn = Rand.RangeInclusive(1, 4);
+                _XenoSpawner.predalienImpregnation = true;
                 Infectable.jobs.Notify_TuckedIntoBed((Building_XenomorphCocoon)XenomorphUtil.ClosestReachableEmptyCocoon(Infectable, named));
                 Infectable.mindState.Notify_TuckedIntoBed();
 

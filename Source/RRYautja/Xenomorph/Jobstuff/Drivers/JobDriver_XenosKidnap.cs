@@ -6,7 +6,7 @@ using Verse.AI;
 namespace RimWorld
 {
     // Token: 0x02000072 RID: 114
-    public class JobDriver_XenosKidnap : JobDriver_XenoTakeToCocoon
+    public class JobDriver_XenosKidnap : JobDriver_XenoTakeAndCocoon
     {
         // Token: 0x170000A4 RID: 164
         // (get) Token: 0x06000324 RID: 804 RVA: 0x0001F257 File Offset: 0x0001D657

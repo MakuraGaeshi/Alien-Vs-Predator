@@ -65,6 +65,40 @@ namespace RRYautja
         }
     }
 
+    /*
+    [HarmonyPatch(typeof(Building_XenoEgg), "get_DefaultGraphic")]
+    public static class Building_XenoEgg_get_DefaultGraphic_Patch
+    {
+        
+        [HarmonyPostfix]
+        public static void RoyalEggSize(Thing __instance, ref Graphic __result)
+        {
+            Graphic value = Traverse.Create(__instance).Field("graphicInt").GetValue<Graphic>();
+            bool flag = value != null;
+            if (flag)
+            {
+                if (__instance is Building_XenoEgg)
+                {
+                    Log.Message(string.Format("Building_XenoEgg_get_DefaultGraphic_Patch\nis Xeno Egg"));
+                    CompXenoHatcher xenoHatcher = __instance.TryGetComp<CompXenoHatcher>();
+                    if (xenoHatcher!=null && xenoHatcher.royalProgress>0f)
+                    {
+                        Log.Message(string.Format("Building_XenoEgg_get_DefaultGraphic_Patch\nFound CompXenoHatcher"));
+                        float num = (0.7f * xenoHatcher.royalProgress);
+                        Log.Message(string.Format("Building_XenoEgg_get_DefaultGraphic_Patch\nnum : {0}", num));
+                        num += __instance.def.graphicData.drawSize.x;
+                        Log.Message(string.Format("Building_XenoEgg_get_DefaultGraphic_Patch\nnum : {0}", num));
+                        value = __result.GetCopy(new Vector2((num), (num)));
+                        Log.Message(string.Format("Building_XenoEgg_get_DefaultGraphic_Patch\value.drawSize : {0}", value.drawSize));
+                        __result = value;
+                        
+                    }
+                }
+            }
+        }
+    }
+    */
+
     [HarmonyPatch(typeof(HediffGiver_Hypothermia), "OnIntervalPassed")]
     public static class HediffGiver_Hypothermia_OnIntervalPassed_Patch
     {
@@ -174,8 +208,9 @@ namespace RRYautja
             bool flag = pawn != null;
             if (flag)
             {
-                bool flag2 = pawn.InBed() && pawn.CurrentBed() is Building_XenomorphCocoon;
-                if (flag2)
+                bool flag2 = (pawn.InBed() && pawn.CurrentBed() is Building_XenomorphCocoon);
+                bool flag3 = (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection) && Find.TickManager.TicksGame % 2 == 0);
+                if (flag2 || flag3)
                 {
                     return false;
                 }
@@ -923,6 +958,25 @@ namespace RRYautja
             }
         }
         */
+    }
+
+    // Token: 0x02000007 RID: 7
+    [HarmonyPatch(typeof(PawnWoundDrawer), "RenderOverBody")]
+    public static class PawnWoundDrawerPatch_TryExecute
+    {
+        // Token: 0x06000017 RID: 23 RVA: 0x00002CD0 File Offset: 0x00000ED0
+        [HarmonyPrefix]
+        public static bool PreExecute(PawnWoundDrawer __instance)
+        {
+            Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
+            bool flag_Cloaked = pawn.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked, false);
+            bool flag_HiddenXeno = pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden, false);
+            if (flag_Cloaked || flag_HiddenXeno)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 
 

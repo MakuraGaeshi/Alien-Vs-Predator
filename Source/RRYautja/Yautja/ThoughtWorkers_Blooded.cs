@@ -27,7 +27,12 @@ namespace RimWorld
             {
                 return false;
             }
-            if (selected) Log.Message(string.Format("{0} ThoughtWorker_Marked vs {1}", p.Label, other.Label));
+#if DEBUG
+            if (Prefs.DevMode)
+            {
+                if (selected) Log.Message(string.Format("{0} ThoughtWorker_Marked vs {1}", p.Label, other.Label));
+            }
+#endif
             if (!p.RaceProps.Humanlike)
             {
                 return false;
@@ -59,17 +64,32 @@ namespace RimWorld
                     if (otherMarked.def == (unblooded))
                     {
                         stageIndex = 0;
-                        if (selected) Log.Message(string.Format("{0} CurrentStateInternal stageIndex:{4} {1} {2}: {3}", this.GetType(), other.Label, other.health.hediffSet.GetFirstHediffOfDef(unblooded).Label, other.health.hediffSet.HasHediff(unblooded), stageIndex));
+#if DEBUG
+                        if (Prefs.DevMode)
+                        {
+                            if (selected) Log.Message(string.Format("{0} CurrentStateInternal stageIndex:{4} {1} {2}: {3}", this.GetType(), other.Label, other.health.hediffSet.GetFirstHediffOfDef(unblooded).Label, other.health.hediffSet.HasHediff(unblooded), stageIndex));
+                        }
+#endif
                     }
                     else if (otherMarked.def == (unmarked))
                     {
                         stageIndex = 1;
-                        if (selected) Log.Message(string.Format("{0} CurrentStateInternal stageIndex:{4} {1} {2}: {3}", this.GetType(), other.Label, other.health.hediffSet.GetFirstHediffOfDef(unmarked).Label, other.health.hediffSet.HasHediff(unmarked), stageIndex));
+#if DEBUG
+                        if (Prefs.DevMode)
+                        {
+                            if (selected) Log.Message(string.Format("{0} CurrentStateInternal stageIndex:{4} {1} {2}: {3}", this.GetType(), other.Label, other.health.hediffSet.GetFirstHediffOfDef(unmarked).Label, other.health.hediffSet.HasHediff(unmarked), stageIndex));
+                        }
+#endif
                     }
                     else if (otherMarked.def.defName.Contains(marked.defName))
                     {
                         stageIndex = 2;
-                        if (selected) Log.Message(string.Format("{0} CurrentSocialStateInternal {1} {2}: {3}", this.GetType(), other.Label, otherMarked.Label, other.health.hediffSet.HasHediff(othermarked)));
+#if DEBUG
+                        if (Prefs.DevMode)
+                        {
+                            if (selected) Log.Message(string.Format("{0} CurrentSocialStateInternal {1} {2}: {3}", this.GetType(), other.Label, otherMarked.Label, other.health.hediffSet.HasHediff(othermarked)));
+                        }
+#endif
                     }
                 }
                 else
@@ -78,7 +98,12 @@ namespace RimWorld
                 }
                 if (Marked.def.defName.Contains(marked.defName))
                 {
+#if DEBUG
+                    if (Prefs.DevMode)
+                    {
                         if (selected) Log.Message(string.Format("{0} CurrentSocialStateInternal {1} {2}: {3}", this.GetType(), p.Label, Marked.Label, p.health.hediffSet.HasHediff(marked)));
+                    }
+#endif
                     return ThoughtState.ActiveAtStage(stageIndex);
                 }
             }
@@ -107,7 +132,12 @@ namespace RimWorld
             {
                 return false;
             }
-            if (selected) Log.Message(string.Format("{0} ThoughtWorker_Unmarked vs {1}", p.Label, other.Label));
+#if DEBUG
+            if (Prefs.DevMode)
+            {
+                if (selected) Log.Message(string.Format("{0} ThoughtWorker_Unmarked vs {1}", p.Label, other.Label));
+            }
+#endif
             if (!p.RaceProps.Humanlike)
             {
                 return false;
@@ -133,12 +163,22 @@ namespace RimWorld
             if (other.health.hediffSet.HasHediff(unblooded))
             {
                 stageIndex = 0;
-                if (selected) Log.Message(string.Format("{0} CurrentStateInternal stageIndex:{4} {1} {2}: {3}", this.GetType(), other.Label, other.health.hediffSet.GetFirstHediffOfDef(unblooded).Label, other.health.hediffSet.HasHediff(unblooded), stageIndex));
+#if DEBUG
+                if (Prefs.DevMode)
+                {
+                    if (selected) Log.Message(string.Format("{0} CurrentStateInternal stageIndex:{4} {1} {2}: {3}", this.GetType(), other.Label, other.health.hediffSet.GetFirstHediffOfDef(unblooded).Label, other.health.hediffSet.HasHediff(unblooded), stageIndex));
+                }
+#endif
             }
             else if (other.health.hediffSet.HasHediff(unmarked))
             {
                 stageIndex = 1;
-                if (selected) Log.Message(string.Format("{0} CurrentStateInternal stageIndex:{4} {1} {2}: {3}", this.GetType(), other.Label, other.health.hediffSet.GetFirstHediffOfDef(othermarked).Label, other.health.hediffSet.HasHediff(othermarked), stageIndex));
+#if DEBUG
+                if (Prefs.DevMode)
+                {
+                    if (selected) Log.Message(string.Format("{0} CurrentStateInternal stageIndex:{4} {1} {2}: {3}", this.GetType(), other.Label, other.health.hediffSet.GetFirstHediffOfDef(othermarked).Label, other.health.hediffSet.HasHediff(othermarked), stageIndex));
+                }
+#endif
             }
             else
                 foreach (var hd in other.health.hediffSet.hediffs)
@@ -149,13 +189,23 @@ namespace RimWorld
                         othermarked = hd.def;
                         stageIndex = 2;
 
-                        if (selected) Log.Message(string.Format("{0} CurrentSocialStateInternal {1} {2}: {3}", this.GetType(), other.Label, otherMarked.Label, other.health.hediffSet.HasHediff(othermarked)));
+#if DEBUG
+                        if (Prefs.DevMode)
+                        {
+                            if (selected) Log.Message(string.Format("{0} CurrentSocialStateInternal {1} {2}: {3}", this.GetType(), other.Label, otherMarked.Label, other.health.hediffSet.HasHediff(othermarked)));
+                        }
+#endif
                         break;
                     }
                 }
             if (p.health.hediffSet.HasHediff(unmarked))
             {
-                if (selected) Log.Message(string.Format("{0} CurrentSocialStateInternal {1} {2}: {3}", this.GetType(), p.Label, unblooded.label, p.health.hediffSet.HasHediff(unblooded)));
+#if DEBUG
+                if (Prefs.DevMode)
+                {
+                    if (selected) Log.Message(string.Format("{0} CurrentSocialStateInternal {1} {2}: {3}", this.GetType(), p.Label, unblooded.label, p.health.hediffSet.HasHediff(unblooded)));
+                }
+#endif
                 return ThoughtState.ActiveAtStage(stageIndex);
             }
             return false;
@@ -183,7 +233,12 @@ namespace RimWorld
             {
                 return false;
             }
-            if (selected) Log.Message(string.Format("{0} ThoughtWorker_Unblooded vs {1}", p.Label, other.Label));
+#if DEBUG
+            if (Prefs.DevMode)
+            {
+                if (selected) Log.Message(string.Format("{0} ThoughtWorker_Unblooded vs {1}", p.Label, other.Label));
+            }
+#endif
             if (!p.RaceProps.Humanlike)
             {
                 return false;
@@ -209,12 +264,22 @@ namespace RimWorld
             if (other.health.hediffSet.HasHediff(unblooded))
             {
                 stageIndex = 0;
-                if (selected) Log.Message(string.Format("{0} CurrentStateInternal stageIndex:{4} {1} {2}: {3}", this.GetType(), other.Label, other.health.hediffSet.GetFirstHediffOfDef(unblooded).Label, other.health.hediffSet.HasHediff(unblooded), stageIndex));
+#if DEBUG
+                if (Prefs.DevMode)
+                {
+                    if (selected) Log.Message(string.Format("{0} CurrentStateInternal stageIndex:{4} {1} {2}: {3}", this.GetType(), other.Label, other.health.hediffSet.GetFirstHediffOfDef(unblooded).Label, other.health.hediffSet.HasHediff(unblooded), stageIndex));
+                }
+#endif
             }
             else if (other.health.hediffSet.HasHediff(unmarked))
             {
                 stageIndex = 1;
-                if (selected) Log.Message(string.Format("{0} CurrentStateInternal stageIndex:{4} {1} {2}: {3}", this.GetType(), other.Label, other.health.hediffSet.GetFirstHediffOfDef(unblooded).Label, other.health.hediffSet.HasHediff(othermarked), stageIndex));
+#if DEBUG
+                if (Prefs.DevMode)
+                {
+                    if (selected) Log.Message(string.Format("{0} CurrentStateInternal stageIndex:{4} {1} {2}: {3}", this.GetType(), other.Label, other.health.hediffSet.GetFirstHediffOfDef(unblooded).Label, other.health.hediffSet.HasHediff(othermarked), stageIndex));
+                }
+#endif
             }
             else
                 foreach (var hd in other.health.hediffSet.hediffs)
@@ -225,13 +290,23 @@ namespace RimWorld
                         otherMarked = hd;
                         othermarked = hd.def;
                         stageIndex = 2;
-                        if (selected) Log.Message(string.Format("{0} CurrentSocialStateInternal {1} {2}: {3}", this.GetType(), other.Label, otherMarked.Label, other.health.hediffSet.HasHediff(othermarked)));
+#if DEBUG
+                        if (Prefs.DevMode)
+                        {
+                            if (selected) Log.Message(string.Format("{0} CurrentSocialStateInternal {1} {2}: {3}", this.GetType(), other.Label, otherMarked.Label, other.health.hediffSet.HasHediff(othermarked)));
+                        }
+#endif
                         break;
                     }
                 }
                 if (p.health.hediffSet.HasHediff(unblooded))
                 {
+#if DEBUG
+                    if (Prefs.DevMode)
+                {
                     if (selected) Log.Message(string.Format("{0} CurrentSocialStateInternal {1} {2}: {3}", this.GetType(), p.Label, unmarked.label, p.health.hediffSet.HasHediff(marked)));
+                }
+#endif
                     return ThoughtState.ActiveAtStage(stageIndex);
                 }
             return false;

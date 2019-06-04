@@ -8,12 +8,12 @@ namespace RimWorld
     // Token: 0x02000340 RID: 832
     public class IncidentWorker_Hivelike : IncidentWorker
     {
+        public IntVec3 intVec;
         // Token: 0x06000E63 RID: 3683 RVA: 0x0006B874 File Offset: 0x00069C74
         protected override bool CanFireNowSub(IncidentParms parms)
 		{
             
 			Map map = (Map)parms.target;
-			IntVec3 intVec;
 			return base.CanFireNowSub(parms) && HiveLikeUtility.TotalSpawnedHiveLikesCount(map) < 30 && InfestationLikeCellFinder.TryFindCell(out intVec, map);
             
             /*
@@ -32,35 +32,33 @@ namespace RimWorld
             {
                 //Log.Message(string.Format("TunnelLike"));
 
-                TunnelHiveLikeSpawner t = null;
-                int num;
-                for (int i = Mathf.Max(GenMath.RoundRandom(parms.points / 220f), 1); i > 0; i -= num)
-                {
-                    num = Mathf.Min(3, i);
-                    t = this.SpawnTunnelLikeCluster(num, map);
-                }
+                Thing t = this.SpawnTunnelLikeCluster(hivelikeCount, map);
                 base.SendStandardLetter(t, null, new string[0]);
+                /*
+                Map map = (Map)parms.target;
+                int hiveCount = Mathf.Max(GenMath.RoundRandom(parms.points / 220f), 1);
+                Thing t = this.SpawnTunnels(hiveCount, map);
+                base.SendStandardLetter(t, null, new string[0]);
+                Find.TickManager.slower.SignalForceNormalSpeedShort();
+                return true;
+                */
             }
             else
             {
                 //Log.Message(string.Format("HiveLike"));
 
-                HiveLike t = null;
-                int num;
-                for (int i = Mathf.Max(GenMath.RoundRandom(parms.points / 400f), 1); i > 0; i -= num)
-                {
-                    num = Mathf.Min(3, i);
-                    t = this.SpawnHiveLikeCluster(num, map);
-                }
+                Thing t = this.SpawnHiveLikeCluster(hivelikeCount, map);
                 base.SendStandardLetter(t, null, new string[0]);
             }
 			Find.TickManager.slower.SignalForceNormalSpeedShort();
 			return true;
-		}
+
+
+        }
 
         private HiveLike SpawnHiveLikeCluster(int hiveCount, Map map)
         {;
-            IntVec3 loc = DropCellFinder.RandomDropSpot(map);
+            IntVec3 loc = intVec;
             ThingDef_HiveLike thingDef = (ThingDef_HiveLike)this.def.shipPart;
             HiveLike hivelike = (HiveLike)ThingMaker.MakeThing(thingDef, null);
             GenSpawn.Spawn(ThingMaker.MakeThing(hivelike.OfTunnel, null), loc, map);
@@ -80,7 +78,7 @@ namespace RimWorld
 
         private TunnelHiveLikeSpawner SpawnTunnelLikeCluster(int hiveCount, Map map)
         {
-            IntVec3 loc = DropCellFinder.RandomDropSpot(map);
+            IntVec3 loc = intVec;
             ThingDef_HiveLike tD = (ThingDef_HiveLike)this.def.shipPart;
             ThingDef_TunnelHiveLikeSpawner thingDef = (ThingDef_TunnelHiveLikeSpawner)tD.TunnelDef;
             TunnelHiveLikeSpawner hivelike = (TunnelHiveLikeSpawner)ThingMaker.MakeThing(thingDef, null);
