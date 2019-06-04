@@ -635,7 +635,8 @@
       <makesFootprints>true</makesFootprints>
       <lifeExpectancy>2000</lifeExpectancy>
       <leatherDef>RRY_Leather_Yautja</leatherDef>
-      <nameGenerator>RRY_NamerPersonYautji</nameGenerator>
+      <nameGenerator>RRY_NamerPersonYautji_Male</nameGenerator>
+      <nameGeneratorFemale>RRY_NamerPersonYautji_Female</nameGeneratorFemale>
       <body>RRY_Yautja_Biped</body>
       <bloodDef>RRY_FilthBloodYautja</bloodDef>	
 	  <!-- RGB in the photoshop is (R=196  G= 192  B=124) -->

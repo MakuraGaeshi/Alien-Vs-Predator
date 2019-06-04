@@ -18,6 +18,7 @@
         <li>RRY_NameYautjaFemaleB->NameBanks/RRYautjaFemaleB</li>
 		
         <li>RRY_NameYautjaUnisexNick->NameBanks/RRYautjaNick</li>
+        <li>RRY_NameYautjaFemaleNick->NameBanks/RRYautjaNickFemale</li>
 		
         <li>SylE->WordParts/Syllables_English</li>
         <li>SylG->WordParts/Syllables_Galician</li>
@@ -71,31 +72,7 @@
 	</RulePackDef>
 
 	<RulePackDef>
-		<defName>RRY_NamerPersonYautja</defName>
-		<rulePack>
-		  <rulesStrings>
-			<li>name->[RRYautjaMale]</li>
-			<li>name->[RRYautjaFemale]</li>
-		  </rulesStrings>
-			<rulesRaw>
-			<li Class="Rule_File">
-				<keyword>RRYautjaMale</keyword>
-				<path>NameBanks/RRYautjaMale</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>RRYautjaFemale</keyword>
-				<path>NameBanks/RRYautjaFemale</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>RRYautjaNick</keyword>
-				<path>NameBanks/RRYautjaNick</path>
-			</li>
-		  </rulesRaw>
-		</rulePack>
-	</RulePackDef>
-	
-	<RulePackDef>
-		<defName>RRY_NamerPersonYautji</defName>
+		<defName>RRY_NamerPersonYautji_Male</defName>
 		<include>
 		  <li>RRY_NamerYautjaUtility</li>
 		  <li>TribalWordUtility</li>
@@ -103,23 +80,49 @@
 		<rulePack>
 		  <rulesStrings>
 			<li>name->[RRY_Malefirstname] [RRY_Unisexlastname]</li>
-			<!-- <li>name->[RRY_Malefirstname] '[nicktname]' [RRY_Unisexlastname]</li> -->
+			<li>name->[RRY_Malefirstname] '[nickname]' [RRY_Unisexlastname]</li>
 			
-			<li>name->[RRY_Femalefirstname] [RRY_Unisexlastname]</li>
-			<!-- <li>name->[RRY_Femalefirstname] [nicktname] [RRY_Unisexlastname]</li> -->
-
 			<li>RRY_Malefirstname(p=3)->[RRY_NameYautjaMaleA][RRY_NameYautjaMaleB]</li>
 			<li>RRY_Malefirstname(p=2)->[RRY_NameYautjaMale]</li>
+			
+			<li>RRY_Unisexlastname(p=3)->[WordYautji]</li>
+			<li>RRY_Unisexlastname(p=2)->[WordYautji]</li>
+			
+			<li>nickname(p=3)->[RRY_NameYautjaUnisexNick]</li>
+			<!--
+			<li>nicktname(p=3)->[ConceptBadass]</li>
+			<li>nicktname(p=2)->[PersonBadass]</li>
+			<li>nicktname(p=2)->[AnimalBadass]</li>
+			-->
+		  </rulesStrings>
+		</rulePack>
+	</RulePackDef>
+
+	<RulePackDef>
+		<defName>RRY_NamerPersonYautji_Female</defName>
+		<include>
+		  <li>RRY_NamerYautjaUtility</li>
+		  <li>TribalWordUtility</li>
+		</include>
+		<rulePack>
+		  <rulesStrings>
+			
+			<li>name->[RRY_Femalefirstname] [RRY_Unisexlastname]</li>
+			<li>name->[RRY_Femalefirstname] '[nickname]' [RRY_Unisexlastname]</li>
+
 			<li>RRY_Femalefirstname(p=3)->[RRY_NameYautjaFemaleA][RRY_NameYautjaFemaleB]</li>
 			<li>RRY_Femalefirstname(p=2)->[RRY_NameYautjaFemale]</li>
 			
 			<li>RRY_Unisexlastname(p=3)->[WordYautji]</li>
 			<li>RRY_Unisexlastname(p=2)->[WordYautji]</li>
 			
-			<li>nicktname(p=3)->[RRYautjaNick]</li>
+			<li>nickname(p=8)->[RRY_NameYautjaUnisexNick]</li>
+			<li>nickname(p=2)->[RRY_NameYautjaFemaleNick]</li>
+			<!--
 			<li>nicktname(p=3)->[ConceptBadass]</li>
 			<li>nicktname(p=2)->[PersonBadass]</li>
 			<li>nicktname(p=2)->[AnimalBadass]</li>
+			-->
 		  </rulesStrings>
 		</rulePack>
 	</RulePackDef>

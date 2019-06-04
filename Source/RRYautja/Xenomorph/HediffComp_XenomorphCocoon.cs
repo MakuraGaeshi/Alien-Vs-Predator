@@ -169,7 +169,7 @@ namespace RRYautja
                 {
                     if (this.conversionProgress >= 1f&& XenomorphUtil.TotalSpawnedEggCount(MyMap)<(cocoonedCount / 2) && !XenomorphUtil.IsInfectedPawn(Pawn))
                     {
-                        if (Rand.Chance(0.1f))
+                        if (Rand.Chance(0.05f))
                         {
                             Thing thing = ThingMaker.MakeThing(eggDef, null);
                             Building_XenoEgg _XenoEgg = (Building_XenoEgg)thing;
