@@ -19,7 +19,7 @@ namespace RimWorld
             }
             Pawn pawn2 = FindPawnTarget(pawn);
         //    Pawn pawn2 = BestPawnToHuntForPredator(pawn, forceScanWholeMap);
-            if (pawn2 != null && pawn.CanReach(pawn2, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.ByPawn))
+            if (pawn2 != null && XenomorphUtil.isInfectablePawn(pawn2) && pawn.CanReach(pawn2, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.ByPawn))
             {
 
 #if DEBUG
@@ -27,7 +27,7 @@ namespace RimWorld
 #endif
                 return this.MeleeAttackJob(pawn, pawn2);
             }
-            if (pawn2 != null)
+            if (pawn2 != null && XenomorphUtil.isInfectablePawn(pawn2))
             {
                 using (PawnPath pawnPath = pawn.Map.pathFinder.FindPath(pawn.Position, pawn2.Position, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.PassDoors, false), PathEndMode.OnCell))
                 {

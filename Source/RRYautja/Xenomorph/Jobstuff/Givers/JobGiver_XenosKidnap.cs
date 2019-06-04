@@ -59,7 +59,7 @@ namespace RimWorld
             }
             if (XenomorphKidnapUtility.TryFindGoodKidnapVictim(pawn, Searchradius, out Pawn t, null) && !GenAI.InDangerousCombat(pawn))
             {
-                bool selected = pawn.Map != null ? Find.Selector.SelectedObjects.Contains(pawn) : false;
+                bool selected = pawn.Map != null ? Find.Selector.SelectedObjects.Contains(pawn) && (Prefs.DevMode) : false;
                 ThingDef named = t.RaceProps.Humanlike ? XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon : XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon;
                 eggsPresent = XenomorphUtil.EggsPresent(pawn.Map);
                 eggsReachable = !XenomorphUtil.ClosestReachableEgg(pawn).DestroyedOrNull();
@@ -189,26 +189,23 @@ namespace RimWorld
                 }
                 else if (cocoonsPresent)
                 {
-                    if (cocoonsPresent)
+                    if (selected) Log.Message(string.Format("cocoonsPresent: {0}", cocoonsPresent));
+                    if (emptycocoonsReachable)
                     {
-                        Log.Message(string.Format("cocoonsPresent: {0}", cocoonsPresent));
-                        if (emptycocoonsReachable)
-                        {
-                            Log.Message(string.Format("emptycocoonsReachable: {0}", emptycocoonsReachable));
-                            c = emptyclosestReachableCocoon.Position;
-                            Log.Message(string.Format("emptyclosestReachableCocoon.Position: {0}", c));
-                        }
-                        else if (cocoonsReachable)
-                        {
-                            Log.Message(string.Format("cocoonsReachable: {0}", cocoonsReachable));
-                            c = RCellFinder.RandomWanderDestFor(pawn, closestReachableCocoon.Position, 5f, null, Danger.Some);
-                            Log.Message(string.Format("RCellFinder.RandomWanderDestFor(pawn, c, 5f, null, Danger.Some): {0}", c));
-                        }
+                        if (selected) Log.Message(string.Format("emptycocoonsReachable: {0}", emptycocoonsReachable));
+                        c = emptyclosestReachableCocoon.Position;
+                        if (selected) Log.Message(string.Format("emptyclosestReachableCocoon.Position: {0}", c));
+                    }
+                    else if (cocoonsReachable)
+                    {
+                        if (selected) Log.Message(string.Format("cocoonsReachable: {0}", cocoonsReachable));
+                        c = RCellFinder.RandomWanderDestFor(pawn, closestReachableCocoon.Position, 5f, null, Danger.Some);
+                        if (selected) Log.Message(string.Format("RCellFinder.RandomWanderDestFor(pawn, c, 5f, null, Danger.Some): {0}", c));
                     }
                 }
                 else
                 {
-                    if (!InfestationLikeCellFinder.TryFindCell(out c, pawn.Map) && pawn.CanReach(c, PathEndMode.OnCell, Danger.Deadly))
+                    if (!InfestationLikeCellFinder.TryFindCell(out c, pawn.Map) || !pawn.CanReach(c, PathEndMode.OnCell, Danger.Deadly))
                     {
                         if (!RCellFinder.TryFindBestExitSpot(pawn, out c, TraverseMode.ByPawn) && (!XenomorphUtil.EggsPresent(pawn.Map) || (XenomorphUtil.EggsPresent(pawn.Map) && XenomorphUtil.ClosestReachableEgg(pawn) == null)))
                         {
@@ -217,7 +214,7 @@ namespace RimWorld
                     }
                     else
                     {
-                        Log.Message(string.Format("found infestation cell @ : {0}", c));
+                        if (selected) Log.Message(string.Format("found infestation cell @ : {0}\nfor {1} @ {2}", c, pawn, pawn.Position));
                     } 
                 }
                 if (selected) Log.Message(string.Format("TargetB == {0}", c));

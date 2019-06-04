@@ -161,21 +161,32 @@
             <alienPartGenerator>
 				<useGenderedHeads>false</useGenderedHeads>
                 <aliencrowntypes>
+                    <li>Average_Albino</li>
+                    <li>Average_Speckled</li>
+                    <li>Average_Striped</li>
+                    <li>Average_Decorated</li>
+                    <li>Narrow_Albino</li>
+                    <li>Narrow_Speckled</li>
+                    <li>Narrow_Striped</li>
+                    <li>Narrow_Decorated</li>
+					
+					<!--
+                    <li>Albino_Normal</li> 
                     <li>Average_Normal</li> 
-                    <li>Average_Normal_A</li> 
-                    <li>Average_Normal_B</li> 
-                    <li>Average_Normal_C</li> 
+                    <li>Average_NormalA</li> 
+                    <li>Average_NormalB</li> 
+                    <li>Average_NormalC</li> 
                     <li>Cmouth_Normal</li> 
                     <li>Cmouth_Normal_A</li> 
                     <li>Cmouth_Normal_B</li> 
                     <li>Cmouth_Normal_C</li> 
                     <li>Cmouth_Normal_D</li> 
                     <li>Cmouth_NormalA</li> 
-                    <li>Albino_Normal</li> 
+					-->
                 </aliencrowntypes>
                 <alienbodytypes>
-					<li>Female</li>
-					<li>Male</li>
+					<li>RRYYautjaFemale</li>
+					<li>RRYYautjaMale</li>
                 </alienbodytypes>
 			    <alienskincolorgen Class="ColorGenerator_Options">
                     <options>
@@ -274,29 +285,29 @@
 					<offsets>
 					<south>
 										<bodyTypes>
-										<Male>(-0.425,0.55)</Male>
-										<Female>(-0.43,0.55)</Female>
+										<RRYYautjaMale>(-0.425,0.55)</RRYYautjaMale>
+										<RRYYautjaFemale>(-0.43,0.55)</RRYYautjaFemale>
 										</bodyTypes>
 					</south>
 
 					<north>
 										<bodyTypes>
-										<Male>(0,0.0)</Male>
-										<Female>(0,0.0)</Female>
+										<RRYYautjaMale>(0,0.0)</RRYYautjaMale>
+										<RRYYautjaFemale>(0,0.0)</RRYYautjaFemale>
 										</bodyTypes>
 					</north>
 
 					<east>
 										<bodyTypes>
-										<Male>(-0.48,0.55)</Male>
-										<Female>(-0.48,0.55)</Female>
+										<RRYYautjaMale>(-0.48,0.55)</RRYYautjaMale>
+										<RRYYautjaFemale>(-0.48,0.55)</RRYYautjaFemale>
 										</bodyTypes>
 					</east>
 					
 					<west>
 										<bodyTypes>
-										<Male>(-0.48,0.55)</Male>
-										<Female>(-0.48,0.55)</Female>
+										<RRYYautjaMale>(-0.48,0.55)</RRYYautjaMale>
+										<RRYYautjaFemale>(-0.48,0.55)</RRYYautjaFemale>
 										</bodyTypes>
 					</west>
 					</offsets>
@@ -471,7 +482,7 @@
 				<li>RRY_Apparel_HunterLeaderBioMask</li>
 				<li>RRY_Apparel_HunterVest</li>
 				<li>RRY_Apparel_Mesh</li>
-				<li>RRY_Apparel_Apparel_TribalA</li>
+				<!-- <li>RRY_Apparel_Apparel_TribalA</li> -->
 				
 				<li>RRY_Apparel_LeaderArmourChestplate</li>
 				<li>RRY_Apparel_LeaderArmourGreaves</li>
@@ -482,6 +493,10 @@
 			</apparelList>
             <whiteApparelList>
                 <li>RRY_Equipment_HunterGauntlet</li>
+                <li>Apparel_TribalA</li>
+                <li>Apparel_Pants</li>
+                <li>Apparel_FlakPants</li>
+				<li>Apparel_ShieldBelt</li>
 				<li>Apparel_ShieldBelt</li>
             </whiteApparelList>
 			<onlyUseRaceRestrictedApparel>true</onlyUseRaceRestrictedApparel>

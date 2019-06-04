@@ -53,6 +53,17 @@ namespace RimWorld
             yield return Toils_Haul.StartCarryThing(TargetIndex.A, false, true, false);
             Toil carryToCell = Toils_Haul.CarryHauledThingToCell(TargetIndex.B);
             yield return carryToCell;
+            yield return new Toil
+            {
+                initAction = delegate ()
+                {
+                    if (this.pawn.Position.OnEdge(this.pawn.Map) || this.pawn.Map.exitMapGrid.IsExitCell(this.pawn.Position))
+                    {
+                        this.pawn.ExitMap(true, CellRect.WholeMap(base.Map).GetClosestEdge(this.pawn.Position));
+                    }
+                },
+                defaultCompleteMode = ToilCompleteMode.Instant
+            };
             yield return Toils_Haul.PlaceHauledThingInCell(TargetIndex.B, carryToCell, false);
             Toil prepare = Toils_General.Wait(this.useDuration, TargetIndex.None);
             prepare.WithProgressBarToilDelay(TargetIndex.A, false, -0.5f);

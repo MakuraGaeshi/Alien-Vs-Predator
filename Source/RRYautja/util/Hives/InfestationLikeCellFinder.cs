@@ -22,7 +22,7 @@ namespace RimWorld
 #if DEBUG
             if (Prefs.DevMode)
             {
-                ThingDef td = ThingDefOf.Filth_Slime;
+                ThingDef td = XenomorphDefOf.RRY_Filth_Slime;
                 GenSpawn.Spawn(td, locationCandidate.cell, map);
                 Find.LetterStack.ReceiveLetter(string.Format("InfestationLike Cell Finder"), string.Format("locationCandidate: {0} ", locationCandidate.cell), LetterDefOf.NegativeEvent, locationCandidate.cell.GetFirstThing(map, td), null, null);
             }
