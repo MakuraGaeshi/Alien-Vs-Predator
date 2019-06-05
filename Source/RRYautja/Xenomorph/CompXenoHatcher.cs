@@ -70,6 +70,24 @@ namespace RRYautja
             Scribe_References.Look<Faction>(ref this.hatcheeFaction, "hatcheeFaction", false);
         }
 
+        PawnKindDef RoyalKindDef = XenomorphDefOf.RRY_Xenomorph_RoyaleHugger;
+        public bool RoyalPresent
+        {
+            get
+            {
+                bool selected = Find.Selector.SelectedObjects.Contains(this.parent) && Prefs.DevMode;
+                Predicate<Pawn> validator = delegate (Pawn t)
+                {
+                    bool RoyalHugger = t.kindDef == RoyalKindDef;
+                    bool RoyalHuggerInfection = (t.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_FaceHuggerInfection).TryGetComp<HediffComp_XenoFacehugger>().RoyaleHugger);
+                    bool RoyalImpregnation = (t.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_XenomorphImpregnation).TryGetComp<HediffComp_XenoSpawner>().RoyaleHugger);
+                    bool RoyalHiddenImpregnation = (t.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_HiddenXenomorphImpregnation).TryGetComp<HediffComp_XenoSpawner>().RoyaleHugger);
+                    return RoyalHugger || RoyalHuggerInfection || RoyalImpregnation || RoyalHiddenImpregnation;
+                };
+                return MyMap.mapPawns.AllPawnsSpawned.Any(validator);
+            }
+        }
+
         public Map MyMap
         {
             get
@@ -133,12 +151,13 @@ namespace RRYautja
                     {
                         this.gestateProgress += num;
                     }
-                    else if (this.royalProgress < 1f)
+                    else if (this.royalProgress < 1f && !QueenPresent && !XenomorphUtil.HivelikesPresent(MyMap) && !RoyalPresent)
                     {
                         this.royalProgress += num;
                     }
                 }
-                if (Find.TickManager.TicksGame % 250 == 0)
+
+                if (Find.TickManager.TicksGame % 250+(Rand.RangeInclusive(0,10)*10) == 0)
                 {
                     this.CompTickRare();
                    
@@ -171,6 +190,7 @@ namespace RRYautja
             
             bool selected = Find.Selector.SelectedObjects.Contains(this.parent);
             Thing thing = null;
+            bool shouldHatch = XenomorphUtil.TotalSpawnedFacehuggerPawnCount(MyMap, 10, this.MyPos) < XenomorphUtil.TotalSpawnedInfectablePawnCount(MyMap, 10, this.MyPos);
             if (MyMap !=null && MyPos.InBounds(MyMap)) thing = GenClosest.ClosestThingReachable(MyPos, MyMap, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), Props.triggerRadius, x => XenomorphUtil.isInfectablePawn(((Pawn)x)), null, 0, -1, false, RegionType.Set_Passable, false);
             if (thing != null)
             {
@@ -186,7 +206,7 @@ namespace RRYautja
                 {
                     this.canHatch = true;
                 }
-                if (canHatch)
+                if (canHatch && shouldHatch)// && DistanceBetween(MyPos, pawn.Position)<10f)
                 {
                     float thingdist = DistanceBetween(MyPos, pawn.Position);
                     float thingsize = pawn.BodySize;
@@ -201,15 +221,15 @@ namespace RRYautja
 
                     }
 #endif
-                    float hatchon = ((100/thingdist) * thingsize);
-                    float roll = thingstealth > 0 ? (Rand.RangeInclusive(0, 100)/ thingstealth): (Rand.RangeInclusive(0, 100));
+                    float hatchon = ((10*thingdist) / thingsize);
+                    float roll = thingstealth > 0 ? (Rand.RangeInclusive(0, 100)* thingstealth): (Rand.RangeInclusive(0, 100));
 #if DEBUG
                     if (selected)
                     {
                         Log.Message(string.Format("{0} hatchon: {1}, roll: {2}", pawn.Label, hatchon, roll));
                     }
 #endif
-                    if (roll<hatchon)
+                    if (roll>hatchon)
                     {
                         this.willHatch = true;
                     }
@@ -229,7 +249,7 @@ namespace RRYautja
         {
             try
             {
-                PawnKindDef hatchKindDef = Rand.Chance(royalProgress) && !QueenPresent ? XenomorphDefOf.RRY_Xenomorph_RoyaleHugger : this.Props.hatcherPawn;
+                PawnKindDef hatchKindDef = Rand.Chance(royalProgress) && !QueenPresent && !XenomorphUtil.HivelikesPresent(MyMap) && !RoyalPresent ? XenomorphDefOf.RRY_Xenomorph_RoyaleHugger : this.Props.hatcherPawn;
 #if DEBUG
                 Log.Message(string.Format("hatchKindDef: {0}", hatchKindDef));
 #endif

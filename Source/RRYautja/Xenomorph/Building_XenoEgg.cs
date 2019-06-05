@@ -45,7 +45,7 @@ namespace RRYautja
             get
             {
                 float num = (float)Math.Round((0.7 * (double)xenoHatcher.royalProgress), 1);
-                if (xenoHatcher.royalProgress>0f)
+                if (false)// (xenoHatcher.royalProgress>0f)
                 {
                     Graphic graphic = base.Graphic;
                     graphic.drawSize = new Vector2(1f + (num), 1f + (num));

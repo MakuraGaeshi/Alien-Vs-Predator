@@ -50,6 +50,24 @@ namespace RRYautja
             Scribe_Values.Look<bool>(ref this.blooded, "thisblooded");
             */
         }
+
+        public Pawn pawn
+        {
+            get
+            {
+                return (Pawn)parent;
+            }
+        }
+
+        public float MinHideDist
+        {
+            get
+            {
+                return (10 * pawn.BodySize) * pawn.Map.glowGrid.GameGlowAt(pawn.Position, false);
+            }
+        }
+
+
         public override void CompTickRare()
         {
             base.CompTickRare();
@@ -131,7 +149,7 @@ namespace RRYautja
                 }
                 else
                 {
-                    Thing thing = GenClosest.ClosestThingReachable(this.parent.Position, this.parent.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.Touch, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 6f, x => ((Pawn)this.parent).HostileTo((Pawn)x), null, 0, -1, false, RegionType.Set_Passable, false);
+                    Thing thing = GenClosest.ClosestThingReachable(this.parent.Position, this.parent.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.Touch, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 6f, x => ((Pawn)this.parent).HostileTo((Pawn)x)&&!((Pawn)x).health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned), null, 0, -1, false, RegionType.Set_Passable, false);
                     if (!((Pawn)this.parent).health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden) && thing==null)
                     {
                         string text = TranslatorFormattedStringExtensions.Translate("Xeno_Chestburster_Hides");

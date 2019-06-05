@@ -10,9 +10,40 @@ namespace RimWorld
     // Token: 0x02000113 RID: 275
     public class JobGiver_XenomorphHosthunter : ThinkNode_JobGiver
     {
+        // Token: 0x0600041A RID: 1050 RVA: 0x0002C918 File Offset: 0x0002AD18
+        public override ThinkNode DeepCopy(bool resolve = true)
+        {
+            JobGiver_XenomorphHosthunter jobGiver_XenomorphHosthunter = (JobGiver_XenomorphHosthunter)base.DeepCopy(resolve);
+            jobGiver_XenomorphHosthunter.HuntingRange = this.HuntingRange;
+            jobGiver_XenomorphHosthunter.MinMeleeChaseTicks = this.MinMeleeChaseTicks;
+            jobGiver_XenomorphHosthunter.MaxMeleeChaseTicks = this.MaxMeleeChaseTicks;
+            return jobGiver_XenomorphHosthunter;
+        }
+
+        // Token: 0x040002FF RID: 767
+        private int MinMeleeChaseTicks = 420;
+
+        // Token: 0x04000300 RID: 768
+        private int MaxMeleeChaseTicks = 900;
+
+        private float HuntingRange = 9999f;
+
+        // Token: 0x040002FD RID: 765
+        private const float WaitChance = 0.75f;
+
+        // Token: 0x040002FE RID: 766
+        private const int WaitTicks = 90;
+
+        // Token: 0x04000301 RID: 769
+        private const int WanderOutsideDoorRegions = 9;
+
         // Token: 0x060005B7 RID: 1463 RVA: 0x00037A28 File Offset: 0x00035E28
         protected override Job TryGiveJob(Pawn pawn)
         {
+            if (pawn.mindState.duty.def == OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike && HuntingRange==9999f)
+            {
+                HuntingRange = pawn.mindState.duty.radius;
+            }
             if (pawn.TryGetAttackVerb(null, false) == null)
             {
                 return null;
@@ -29,7 +60,7 @@ namespace RimWorld
             }
             if (pawn2 != null)
             {
-                using (PawnPath pawnPath = pawn.Map.pathFinder.FindPath(pawn.Position, pawn2.Position, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.PassDoors, false), PathEndMode.OnCell))
+                using (PawnPath pawnPath = pawn.Map.pathFinder.FindPath(pawn.Position, pawn2.Position, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.PassDoors, true), PathEndMode.OnCell))
                 {
                     if (!pawnPath.Found)
                     {
@@ -40,7 +71,7 @@ namespace RimWorld
                         //    Log.Error(pawn + " did TryFindLastCellBeforeDoor but found none when it should have been one. Target: " + pawn2.LabelCap, false);
                         return null;
                     }
-                    IntVec3 randomCell = CellFinder.RandomRegionNear(loc.GetRegion(pawn.Map, RegionType.Set_Passable), 9, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn, false), null, null, RegionType.Set_Passable).RandomCell;
+                    IntVec3 randomCell = CellFinder.RandomRegionNear(loc.GetRegion(pawn.Map, RegionType.Set_Passable), 9, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn, true), null, null, RegionType.Set_Passable).RandomCell;
                     if (randomCell == pawn.Position)
                     {
                         return new Job(JobDefOf.Wait, 30, false);
@@ -57,7 +88,8 @@ namespace RimWorld
             return new Job(JobDefOf.AttackMelee, target)
             {
                 maxNumMeleeAttacks = 1,
-                expiryInterval = Rand.Range(420, 900),
+                expiryInterval = Rand.Range(MinMeleeChaseTicks, MaxMeleeChaseTicks),
+                killIncappedTarget = false,
                 attackDoorIfTargetLost = true
             };
         }
@@ -67,23 +99,11 @@ namespace RimWorld
         {
             bool selected = Find.Selector.SingleSelectedThing == pawn;
             List<Pawn> list = pawn.Map.mapPawns.AllPawns.Where((Pawn x) => !x.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned) && !x.Downed && XenomorphUtil.isInfectablePawn(x) && (!x.InBed() || (x.InBed() && !(x.CurrentBed() is Building_XenomorphCocoon))) && pawn.CanReach(x, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.NoPassClosedDoors)).ToList();
+#if DEBUG
             if (selected) Log.Message(string.Format("found {0}", list.Count));
-            return (Pawn)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.ClosestTouch, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, (x => x is Pawn p && list.Contains(p) && XenomorphUtil.isInfectablePawn(p)));//(Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn p && XenomorphUtil.isInfectablePawn(p) && !p.Downed, 0f, 9999f, default(IntVec3), float.MaxValue, true, true);
+#endif
+            return (Pawn)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.ClosestTouch, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), HuntingRange, (x => x is Pawn p && list.Contains(p) && XenomorphUtil.isInfectablePawn(p)));//(Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn p && XenomorphUtil.isInfectablePawn(p) && !p.Downed, 0f, 9999f, default(IntVec3), float.MaxValue, true, true);
         }
         
-        // Token: 0x040002FD RID: 765
-        private const float WaitChance = 0.75f;
-
-        // Token: 0x040002FE RID: 766
-        private const int WaitTicks = 90;
-
-        // Token: 0x040002FF RID: 767
-        private const int MinMeleeChaseTicks = 420;
-
-        // Token: 0x04000300 RID: 768
-        private const int MaxMeleeChaseTicks = 900;
-
-        // Token: 0x04000301 RID: 769
-        private const int WanderOutsideDoorRegions = 9;
     }
 }

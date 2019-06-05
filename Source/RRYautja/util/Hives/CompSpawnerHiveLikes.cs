@@ -77,7 +77,7 @@ namespace RimWorld
 			{
                 if (this.TrySpawnChildHiveLike(false, out HiveLike t))
                 {
-                    Messages.Message("MessageHiveReproduced".Translate(), t, MessageTypeDefOf.NegativeEvent, true);
+                    Messages.Message("RRY_MessageHiveReproduced".Translate(), t, MessageTypeDefOf.NegativeEvent, true);
                 }
                 else
                 {
@@ -89,7 +89,7 @@ namespace RimWorld
             {
                 if (this.TrySpawnChildHiveLike(false, out TunnelHiveLikeSpawner t))
                 {
-                    Messages.Message("MessageHiveReproduced".Translate(), t, MessageTypeDefOf.NegativeEvent, true);
+                    Messages.Message("RRY_MessageHiveReproduced".Translate(), t, MessageTypeDefOf.NegativeEvent, true);
                 }
                 else
                 {
@@ -103,11 +103,11 @@ namespace RimWorld
 		{
 			if (!this.canSpawnHiveLikes)
 			{
-				return "DormantHiveNotReproducing".Translate();
+				return "RRY_DormantHiveNotReproducing".Translate();
 			}
 			if (this.CanSpawnChildHiveLike)
 			{
-				return "HiveReproducesIn".Translate() + ": " + (this.nextHiveSpawnTick - Find.TickManager.TicksGame).ToStringTicksToPeriod();
+				return "RRY_HiveReproducesIn".Translate() + ": " + (this.nextHiveSpawnTick - Find.TickManager.TicksGame).ToStringTicksToPeriod();
 			}
 			return null;
 		}

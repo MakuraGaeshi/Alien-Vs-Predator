@@ -41,22 +41,21 @@ namespace RimWorld
             Rot4.West
         };
 
+        // Token: 0x0600041A RID: 1050 RVA: 0x0002C918 File Offset: 0x0002AD18
+        public override ThinkNode DeepCopy(bool resolve = true)
+        {
+            JobGiver_XenosKidnap jobGiver_XenosKidnap = (JobGiver_XenosKidnap)base.DeepCopy(resolve);
+            jobGiver_XenosKidnap.HuntingRange = this.HuntingRange;
+            return jobGiver_XenosKidnap;
+        }
+
+
+        private float HuntingRange = 9999f;
+
         // Token: 0x060004D1 RID: 1233 RVA: 0x0003100C File Offset: 0x0002F40C
         protected override Job TryGiveJob(Pawn pawn)
         {
-            float Searchradius;
-            if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Warrior)
-            {
-                Searchradius = 3f;
-            }
-            else if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Runner)
-            {
-                Searchradius = 30f;
-            }
-            else
-            {
-                Searchradius = 9999f;
-            }
+            float Searchradius = HuntingRange;
             if (XenomorphKidnapUtility.TryFindGoodKidnapVictim(pawn, Searchradius, out Pawn t, null) && !GenAI.InDangerousCombat(pawn))
             {
                 bool selected = pawn.Map != null ? Find.Selector.SelectedObjects.Contains(pawn) && (Prefs.DevMode) : false;

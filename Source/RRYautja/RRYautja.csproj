@@ -82,6 +82,8 @@
     <Compile Include="Xenomorph\Building_XenomorphCocoon.cs" />
     <None Include="Xenomorph\HediffComp_Facehugger - Copy.cs.bak" />
     <None Include="Xenomorph\Jobstuff\Givers\JobGiver_XenosKidnap.cs.bak" />
+    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_MineRandom.cs" />
+    <Compile Include="Xenomorph\ThinkNode_ChancePerHour_XenomorphDigChance.cs" />
     <Compile Include="Xenomorph\ThinkNode_ConditionalNotPawnKind.cs" />
     <Compile Include="Xenomorph\LordJob_DefendHiveLoc.cs" />
     <Compile Include="Xenomorph\LordToil_DefendHiveLoc.cs" />

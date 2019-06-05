@@ -90,7 +90,9 @@ namespace RRYautja
                     bool RoyalHuggerInfection = (t.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_FaceHuggerInfection).TryGetComp<HediffComp_XenoFacehugger>().RoyaleHugger);
                     bool RoyalImpregnation = (t.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_XenomorphImpregnation).TryGetComp<HediffComp_XenoSpawner>().RoyaleHugger);
                     bool RoyalHiddenImpregnation = (t.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_HiddenXenomorphImpregnation).TryGetComp<HediffComp_XenoSpawner>().RoyaleHugger);
-                    if (this.conversionProgress >= 1f && selected) Log.Message(string.Format("RoyalHugger: {0}, RoyalHuggerInfection: {1}, RoyalImpregnation: {2}, RoyalHiddenImpregnation: {3}", RoyalHugger , RoyalHuggerInfection , RoyalImpregnation , RoyalHiddenImpregnation));
+#if DEBUG
+                    if (this.conversionProgress >= 1f && selected && Prefs.DevMode) Log.Message(string.Format("RoyalHugger: {0}, RoyalHuggerInfection: {1}, RoyalImpregnation: {2}, RoyalHiddenImpregnation: {3}", RoyalHugger , RoyalHuggerInfection , RoyalImpregnation , RoyalHiddenImpregnation));
+#endif
                     return RoyalHugger || RoyalHuggerInfection || RoyalImpregnation || RoyalHiddenImpregnation;
                 };
                 return MyMap.mapPawns.AllPawnsSpawned.Any(validator);
@@ -164,7 +166,9 @@ namespace RRYautja
                 {
                     Pawn.health.RemoveHediff(this.parent);
                 }
+#if DEBUG
                 if (this.conversionProgress >= 1f && selected) Log.Message(string.Format("QueenPresent: {0}, PredalienPresent: {1}, RoyalEggPresent: {2}, RoyalPresent: {3}", QueenPresent, PredalienPresent, RoyalEggPresent, RoyalPresent));
+#endif
                 if (!QueenPresent && !PredalienPresent)
                 {
                     if (this.conversionProgress >= 1f&& XenomorphUtil.TotalSpawnedEggCount(MyMap)<(cocoonedCount / 2) && !XenomorphUtil.IsInfectedPawn(Pawn))

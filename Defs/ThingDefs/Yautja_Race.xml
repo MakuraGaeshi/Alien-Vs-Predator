@@ -281,7 +281,7 @@
 					<bodyPart>Head</bodyPart>
 					<useSkinColor>true</useSkinColor>
 					<inFrontOfBody>true</inFrontOfBody>
-					<layerOffset>0.0</layerOffset>
+					<layerOffset>-0.2636656</layerOffset>
 					<offsets>
 					<south>
 										<bodyTypes>

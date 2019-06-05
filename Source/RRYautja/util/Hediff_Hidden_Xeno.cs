@@ -134,7 +134,7 @@ namespace RRYautja
                             foreach (Thing thing in thingList)
                             {
                                 Pawn observer = thing as Pawn;
-                                if (observer != null && observer != pawn && observer.Faction != null && (observer.Faction.IsPlayer || observer.Faction.HostileTo(pawn.Faction)))
+                                if (observer != null && !observer.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned) && !observer.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection) && observer != pawn && observer.Faction != null && (observer.Faction.IsPlayer || observer.Faction.HostileTo(pawn.Faction)))
                                 {
                                     float observerSight = observer.health.capacities.GetLevel(PawnCapacityDefOf.Sight);
                                     observerSight *= 0.805f + (pawn.Map.glowGrid.GameGlowAt(pawn.Position) / 4);

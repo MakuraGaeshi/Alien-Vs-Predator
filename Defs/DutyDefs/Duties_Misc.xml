@@ -103,98 +103,148 @@
     <defName>RRY_DefendAndExpandHiveLike</defName>
     <thinkNode Class="ThinkNode_Priority">
       <subNodes>
-        <li Class="JobGiver_HiveLikeDefense">
-          <needLOSToAcquireNonPawnTargets>true</needLOSToAcquireNonPawnTargets>
-          <targetAcquireRadius>90</targetAcquireRadius>
-          <chaseTarget>true</chaseTarget>
-        </li>
-        <li Class="ThinkNode_ChancePerHour_Constant">
-          <mtbHours>1</mtbHours>
-          <subNodes>
-            <li Class="JobGiver_MaintainHiveLikes" />
-          </subNodes>
-        </li>
-        <li Class="JobGiver_MaintainHiveLikes">
-          <onlyIfDamagingState>true</onlyIfDamagingState>
-        </li>
-		
         <li Class="ThinkNode_ConditionalFullyGrown">
           <subNodes>
-			<!-- Drone Gather Infectable Hunting -->
+			<li Class="JobGiver_HiveLikeDefense">
+			  <needLOSToAcquireNonPawnTargets>true</needLOSToAcquireNonPawnTargets>
+			  <targetAcquireRadius>40</targetAcquireRadius>
+			  <chaseTarget>false</chaseTarget>
+			</li>
+			<li Class="JobGiver_MineRandomNearHive"> 
+			  <MiningRange>1</MiningRange>
+			</li>
+			<li Class="JobGiver_ClearNearHive"> 
+			  <minClearingRange>1</minClearingRange>
+			  <maxClearingRange>2</maxClearingRange>
+			</li>
+			<li Class="JobGiver_MineRandomNearHive"> 
+			  <MiningRange>2</MiningRange>
+			</li>
+			<li Class="ThinkNode_ChancePerHour_Constant">
+			  <mtbHours>1</mtbHours>
+			  <subNodes>
+				<li Class="JobGiver_MaintainHiveLikes" />
+				<li Class="JobGiver_ClearNearHive"> 
+				  <minClearingRange>2</minClearingRange>
+				  <maxClearingRange>4</maxClearingRange>
+				</li>
+			  </subNodes>
+			</li>
+			<li Class="JobGiver_MaintainHiveLikes">
+			  <onlyIfDamagingState>true</onlyIfDamagingState>
+			</li>
+			
+			<!-- Drone -->
 			<li Class="ThinkNode_ConditionalPawnKind">
 			  <pawnKind>RRY_Xenomorph_Drone</pawnKind>
 			  <subNodes>
-					<li Class="ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby">
-					  <subNodes>
-						<li Class="JobGiver_XenosKidnap" />
-					  </subNodes>
-					</li>
+				<li Class="JobGiver_MineRandomNearHive"> 
+				  <MiningRange>6</MiningRange>
+				</li>
 			  </subNodes>
 			</li>
-			<!-- Drone Gather Infectable Hunting -->
-			<li Class="ThinkNode_ConditionalPawnKind">
-			  <pawnKind>RRY_Xenomorph_Predalien</pawnKind>
+			<li Class="ThinkNode_ConditionalBodySize">
+			  <min>0.7</min>
 			  <subNodes>
-					<li Class="ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby">
+				<li Class="ThinkNode_ConditionalHiveCanReproduce">
+				  <subNodes>
+					<li Class="ThinkNode_ChancePerHour_XenomorphDigChance">
 					  <subNodes>
-						<li Class="JobGiver_XenosKidnap" />
-						<li Class="JobGiver_PredalienImpregnate" />
+						<li Class="JobGiver_MineRandom" />
 					  </subNodes>
 					</li>
-					<li Class="ThinkNode_ConditionalAnyInfectableSpawnedNearby">
-					  <subNodes>
-						<li Class="JobGiver_XenomorphHosthunter" />
-					  </subNodes>
-					</li>
+				  </subNodes>
+				</li>
 			  </subNodes>
 			</li>
-			<li Class="ThinkNode_ConditionalPawnKind">
-			  <pawnKind>RRY_Xenomorph_Warrior</pawnKind>
+			<!-- Infectable Spawned -->
+			<li Class="ThinkNode_ConditionalAnyInfectableSpawnedNearby">
 			  <subNodes>
-					<li Class="ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby">
-					  <subNodes>
-						<li Class="JobGiver_XenosKidnap" />
-					  </subNodes>
-					</li>
-					<li Class="ThinkNode_ConditionalAnyInfectableSpawnedNearby">
-					  <subNodes>
-						<li Class="JobGiver_XenomorphHosthunter" />
-					  </subNodes>
-					</li>
+				
+				<li Class="JobGiver_XenomorphHosthunter"> 
+				  <HuntingRange>20</HuntingRange>
+				</li>
+				
 			  </subNodes>
 			</li>
-			<li Class="ThinkNode_ConditionalPawnKind">
-			  <pawnKind>RRY_Xenomorph_Runner</pawnKind>
+			<!-- Gather Downed Infectable -->
+			<li Class="ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby">
 			  <subNodes>
-					<li Class="ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby">
+				<!-- Drone -->
+				<li Class="ThinkNode_ConditionalPawnKind">
+				  <pawnKind>RRY_Xenomorph_Drone</pawnKind>
+				  <subNodes>
+							<li Class="JobGiver_XenosKidnap" />
+				  </subNodes>
+				</li>
+				<!-- Predalien -->
+				<li Class="ThinkNode_ConditionalPawnKind">
+				  <pawnKind>RRY_Xenomorph_Predalien</pawnKind>
+				  <subNodes>
+							<li Class="JobGiver_XenosKidnap" />
+							<!-- <li Class="JobGiver_PredalienImpregnate" /> -->
+				  </subNodes>
+				</li>
+				<!-- Warrior -->
+				<li Class="ThinkNode_ConditionalPawnKind">
+				  <pawnKind>RRY_Xenomorph_Warrior</pawnKind>
+				  <subNodes>
+							<li Class="JobGiver_XenosKidnap" />
+				  </subNodes>
+				</li>
+				<!-- Runner -->
+				<li Class="ThinkNode_ConditionalPawnKind">
+				  <pawnKind>RRY_Xenomorph_Runner</pawnKind>
+				  <subNodes>
+							<li Class="JobGiver_XenosKidnap" />
+				  </subNodes>
+				</li>
+			  </subNodes>
+			</li>
+			<!-- Hunt Infectables -->
+			<li Class="ThinkNode_ChancePerHour_Constant">
+			  <mtbHours>6</mtbHours>
+			  <subNodes>
+				<li Class="ThinkNode_ConditionalAnyInfectableSpawnedNearby">
+				  <subNodes>
+					
+					<!-- Drone Gather Infectable Hunting -->
+					<li Class="ThinkNode_ConditionalPawnKind">
+					  <pawnKind>RRY_Xenomorph_Predalien</pawnKind>
 					  <subNodes>
-						<li Class="JobGiver_XenosKidnap" />
+								<li Class="JobGiver_XenomorphHosthunter" />
 					  </subNodes>
 					</li>
-					<li Class="ThinkNode_ConditionalAnyInfectableSpawnedNearby">
+					<!-- Warrior -->
+					<li Class="ThinkNode_ConditionalPawnKind">
+					  <pawnKind>RRY_Xenomorph_Warrior</pawnKind>
 					  <subNodes>
-						<li Class="JobGiver_XenomorphHosthunter" />
+								<li Class="JobGiver_XenomorphHosthunter" />
 					  </subNodes>
 					</li>
+					<!-- Runner -->
+					<li Class="ThinkNode_ConditionalPawnKind">
+					  <pawnKind>RRY_Xenomorph_Runner</pawnKind>
+					  <subNodes>
+								<li Class="JobGiver_XenomorphHosthunter" />
+					  </subNodes>
+					</li>
+				  </subNodes>
+				</li>
+			  </subNodes>
+			</li>
+			
+			<li Class="ThinkNode_ChancePerHour_Constant">
+			  <mtbHours>1</mtbHours>
+			  <subNodes>
+				<li Class="JobGiver_MineRandomNearHive"> 
+				  <MiningRange>5</MiningRange>
+				</li>
 			  </subNodes>
 			</li>
           </subNodes>
         </li>
 		
-        <li Class="ThinkNode_ConditionalBodySize">
-          <min>0.7</min>
-          <subNodes>
-            <li Class="ThinkNode_ConditionalHiveCanReproduce">
-              <subNodes>
-                <li Class="ThinkNode_ChancePerHour_InsectDigChance">
-                  <subNodes>
-                    <li Class="JobGiver_MineRandom" />
-                  </subNodes>
-                </li>
-              </subNodes>
-            </li>
-          </subNodes>
-        </li>
         <li Class="ThinkNode_Tagger">
           <tagToGive>SatisfyingNeeds</tagToGive>
           <subNodes>

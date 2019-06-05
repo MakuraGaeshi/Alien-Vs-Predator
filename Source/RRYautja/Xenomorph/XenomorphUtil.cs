@@ -9,6 +9,130 @@ namespace RRYautja
 {
     class XenomorphUtil
     {
+        // Token: 0x060005D7 RID: 1495 RVA: 0x00039248 File Offset: 0x00037648
+        public static bool CanHaulAside(Pawn p, Thing t, IntVec3 center, int radius, out IntVec3 storeCell)
+        {
+            storeCell = IntVec3.Invalid;
+            return t.def.EverHaulable && !t.IsBurning() && p.CanReserveAndReach(t, PathEndMode.ClosestTouch, p.NormalMaxDanger(), 1, -1, null, false) && XenomorphUtil.TryFindSpotToPlaceHaulableCloseTo(t, p, t.PositionHeld, center, radius, out storeCell);
+        }
+
+        // Token: 0x060005D8 RID: 1496 RVA: 0x000392B4 File Offset: 0x000376B4
+        public static Job HaulAsideJobFor(Pawn p, Thing t, IntVec3 center, int radius)
+        {
+            IntVec3 c;
+            if (!XenomorphUtil.CanHaulAside(p, t, center, radius, out c))
+            {
+                return null;
+            }
+            return new Job(JobDefOf.HaulToCell, t, c)
+            {
+                count = 99999,
+                haulOpportunisticDuplicates = false,
+                haulMode = HaulMode.ToCellNonStorage,
+                ignoreDesignations = true
+            };
+        }
+
+        // Token: 0x060005D9 RID: 1497 RVA: 0x0003930C File Offset: 0x0003770C
+        private static bool TryFindSpotToPlaceHaulableCloseTo(Thing haulable, Pawn worker, IntVec3 center, IntVec3 center2, int radius, out IntVec3 spot)
+        {
+            Region region = center.GetRegion(worker.Map, RegionType.Set_Passable);
+            if (region == null)
+            {
+                spot = center;
+                return false;
+            }
+            TraverseParms traverseParms = TraverseParms.For(worker, Danger.Deadly, TraverseMode.ByPawn, false);
+            IntVec3 foundCell = IntVec3.Invalid;
+            RegionTraverser.BreadthFirstTraverse(region, (Region from, Region r) => r.Allows(traverseParms, false), delegate (Region r)
+            {
+                XenomorphUtil.candidates.Clear();
+                XenomorphUtil.candidates.AddRange(r.Cells);
+                XenomorphUtil.candidates.Sort((IntVec3 a, IntVec3 b) => a.DistanceToSquared(center).CompareTo(b.DistanceToSquared(center)));
+                for (int i = 0; i < XenomorphUtil.candidates.Count; i++)
+                {
+                    IntVec3 intVec = XenomorphUtil.candidates[i];
+                    if (XenomorphUtil.HaulablePlaceValidator(haulable, worker, intVec, center2, radius))
+                    {
+                        foundCell = intVec;
+                        return true;
+                    }
+                }
+                return false;
+            }, 100, RegionType.Set_Passable);
+            if (foundCell.IsValid)
+            {
+                spot = foundCell;
+                return true;
+            }
+            spot = center;
+            return false;
+        }
+
+        // Token: 0x060005DA RID: 1498 RVA: 0x000393CC File Offset: 0x000377CC
+        private static bool HaulablePlaceValidator(Thing haulable, Pawn worker, IntVec3 c, IntVec3 center, int radius)
+        {
+            if (!worker.CanReserveAndReach(c, PathEndMode.OnCell, worker.NormalMaxDanger(), 1, -1, null, false))
+            {
+                return false;
+            }
+            if (GenPlace.HaulPlaceBlockerIn(haulable, c, worker.Map, true) != null)
+            {
+                return false;
+            }
+            if (!c.Standable(worker.Map))
+            {
+                return false;
+            }
+            if (c == haulable.Position && haulable.Spawned)
+            {
+                return false;
+            }
+            if (c.ContainsStaticFire(worker.Map))
+            {
+                return false;
+            }
+            if (XenomorphUtil.DistanceBetween(c, center) < radius)
+            {
+                return false;
+            }
+            if (XenomorphUtil.DistanceBetween(c, center) > radius*2)
+            {
+                return false;
+            }
+            if (haulable != null && haulable.def.BlockPlanting)
+            {
+                Zone zone = worker.Map.zoneManager.ZoneAt(c);
+                if (zone is Zone_Growing)
+                {
+                    return false;
+                }
+            }
+            if (haulable.def.passability != Traversability.Standable)
+            {
+                for (int i = 0; i < 8; i++)
+                {
+                    IntVec3 c2 = c + GenAdj.AdjacentCells[i];
+                    if (worker.Map.designationManager.DesignationAt(c2, DesignationDefOf.Mine) != null)
+                    {
+                        return false;
+                    }
+                }
+            }
+            Building edifice = c.GetEdifice(worker.Map);
+            if (edifice != null)
+            {
+                Building_Trap building_Trap = edifice as Building_Trap;
+                if (building_Trap != null)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        // Token: 0x0400030C RID: 780
+        private static List<IntVec3> candidates = new List<IntVec3>();
         // Token: 0x060000A8 RID: 168 RVA: 0x00007234 File Offset: 0x00005434
         public static HashSet<Thing> XenomorphCocoonsFor(Map map, Thing t)
         {
@@ -47,6 +171,7 @@ namespace RRYautja
             if (pawn.BodySize < 0.65f) return false;
             return true;
         }
+
         public static bool isInfectablePawn(Pawn pawn, bool allowinfected = false)
         {
             if (pawn.Dead) return false;
@@ -58,6 +183,7 @@ namespace RRYautja
             if (pawn.BodySize < 0.65f) return false;
             return true;
         }
+
         public static bool isInfectablePawnKind(PawnKindDef pawn)
         {
             if (pawn.RaceProps.IsMechanoid) return false;
@@ -66,32 +192,39 @@ namespace RRYautja
             if (pawn.RaceProps.baseBodySize < 0.65f) return false;
             return true;
         }
+
+        public static List<Pawn> SpawnedInfectablePawns(Map map)
+        {
+            return map.mapPawns.AllPawnsSpawned.FindAll(x => XenomorphUtil.isInfectablePawn(x));
+        }
+        public static int TotalSpawnedInfectablePawnCount(Map map)
+        {
+            return SpawnedInfectablePawns(map).Count;
+        }
+        public static List<Pawn> SpawnedInfectablePawns(Map map, int radius, IntVec3 position)
+        {
+            return map.mapPawns.AllPawnsSpawned.FindAll(x => XenomorphUtil.isInfectablePawn(x) && XenomorphUtil.DistanceBetween(x.Position, position) < radius);
+        }
+        public static int TotalSpawnedInfectablePawnCount(Map map, int radius, IntVec3 position)
+        {
+            Log.Message(string.Format("TotalSpawnedInfectablePawnCount: {0}", SpawnedInfectablePawns(map, radius, position).Count));
+            return SpawnedInfectablePawns(map, radius, position).Count;
+        }
+        public static List<Pawn> SpawnedInfectablePawns(Map map, int radius, IntVec3 position, IntVec3 otherposition)
+        {
+            return map.mapPawns.AllPawnsSpawned.FindAll(x => XenomorphUtil.isInfectablePawn(x) && XenomorphUtil.DistanceBetween(otherposition, position) < radius);
+        }
+        public static int TotalSpawnedInfectablePawnCount(Map map, int radius, IntVec3 position, IntVec3 otherposition)
+        {
+            return SpawnedInfectablePawns(map, radius, position, otherposition).Count;
+        }
+
         public static bool isXenomorphInfectedPawn(Pawn pawn)
         {
             HediffSet hediffSet = pawn.health.hediffSet;
             if (hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection, false)) return true;
             if (hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation, false)) return true;
             if (hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation, false)) return true;
-            return false;
-        }
-        public static bool IsXenomorphPawn(Pawn pawn)
-        {
-            if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_FaceHugger) return true;
-            if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Predalien) return true;
-            if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Runner) return true;
-            if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Drone) return true;
-            if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Warrior) return true;
-            if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen) return true;
-            return false;
-        }
-        public static bool IsXenomorphCorpse(Corpse corpse)
-        {
-            if (corpse.InnerPawn.kindDef == XenomorphDefOf.RRY_Xenomorph_FaceHugger) return true;
-            if (corpse.InnerPawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Predalien) return true;
-            if (corpse.InnerPawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Runner) return true;
-            if (corpse.InnerPawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Drone) return true;
-            if (corpse.InnerPawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Warrior) return true;
-            if (corpse.InnerPawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen) return true;
             return false;
         }
         public static bool isNeomorphInfectedPawn(Pawn pawn)
@@ -101,9 +234,96 @@ namespace RRYautja
             if (hediffSet.HasHediff(XenomorphDefOf.RRY_NeomorphImpregnation, false)) return true;
             return false;
         }
+
+        public static bool IsInfectedPawn(Pawn pawn)
+        {
+            if (isXenomorphInfectedPawn(pawn) || isNeomorphInfectedPawn(pawn)) return true;
+            return false;
+        }
+
+        public static List<Pawn> SpawnedInfectedPawns(Map map)
+        {
+            return map.mapPawns.AllPawnsSpawned.FindAll(x => XenomorphUtil.IsInfectedPawn(x));
+        }
+        public static int TotalSpawnedInfectedPawnCount(Map map)
+        {
+            return SpawnedInfectedPawns(map).Count;
+        }
+
+        public static bool IsXenomorphPawn(Pawn pawn)
+        {
+            if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_FaceHugger) return true;
+            if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_RoyaleHugger) return true;
+            if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Predalien) return true;
+            if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Runner) return true;
+            if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Drone) return true;
+            if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Warrior) return true;
+            if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen) return true;
+            return false;
+        }
+
+        public static bool IsXenomorphFacehugger(Pawn pawn)
+        {
+            if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_FaceHugger) return true;
+            if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_RoyaleHugger) return true;
+            return false;
+        }
+
         public static bool IsNeomorphPawn(Pawn pawn)
         {
             if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Neomorph) return true;
+            return false;
+        }
+
+        public static bool IsXenomorph(Pawn pawn)
+        {
+            if (IsXenomorphPawn(pawn) || IsNeomorphPawn(pawn)) return true;
+            return false;
+        }
+
+        public static List<Pawn> SpawnedXenomorphPawns(Map map)
+        {
+            return map.mapPawns.AllPawnsSpawned.FindAll(x => XenomorphUtil.IsXenomorph(x));
+        }
+        public static int TotalSpawnedXenomorphPawnCount(Map map)
+        {
+            return SpawnedXenomorphPawns(map).Count;
+        }
+
+        public static List<Pawn> SpawnedFacehuggerPawns(Map map)
+        {
+            return map.mapPawns.AllPawnsSpawned.FindAll(x => XenomorphUtil.IsXenomorphFacehugger(x));
+        }
+        public static List<Pawn> SpawnedFacehuggerPawns(Map map, int radius, IntVec3 position)
+        {
+            return map.mapPawns.AllPawnsSpawned.FindAll(x => XenomorphUtil.IsXenomorphFacehugger(x) && XenomorphUtil.DistanceBetween(x.Position, position) < radius);
+        }
+        public static List<Pawn> SpawnedFacehuggerPawns(Map map, int radius, IntVec3 position, IntVec3 otherposition)
+        {
+            return map.mapPawns.AllPawnsSpawned.FindAll(x => XenomorphUtil.IsXenomorphFacehugger(x) && XenomorphUtil.DistanceBetween(otherposition, position) < radius);
+        }
+        public static int TotalSpawnedFacehuggerPawnCount(Map map)
+        {
+            return SpawnedFacehuggerPawns(map).Count;
+        }
+        public static int TotalSpawnedFacehuggerPawnCount(Map map, int radius, IntVec3 position)
+        {
+            return SpawnedFacehuggerPawns(map, radius, position).Count;
+        }
+        public static int TotalSpawnedFacehuggerPawnCount(Map map, int radius, IntVec3 position, IntVec3 otherposition)
+        {
+            return SpawnedFacehuggerPawns(map, radius, position, otherposition).Count;
+        }
+
+        public static bool IsXenomorphCorpse(Corpse corpse)
+        {
+            if (corpse.InnerPawn.kindDef == XenomorphDefOf.RRY_Xenomorph_FaceHugger) return true;
+            if (corpse.InnerPawn.kindDef == XenomorphDefOf.RRY_Xenomorph_RoyaleHugger) return true;
+            if (corpse.InnerPawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Predalien) return true;
+            if (corpse.InnerPawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Runner) return true;
+            if (corpse.InnerPawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Drone) return true;
+            if (corpse.InnerPawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Warrior) return true;
+            if (corpse.InnerPawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen) return true;
             return false;
         }
 
@@ -113,16 +333,6 @@ namespace RRYautja
             return false;
         }
 
-        public static bool IsInfectedPawn(Pawn pawn)
-        {
-            if (isXenomorphInfectedPawn(pawn) || isNeomorphInfectedPawn(pawn)) return true;
-            return false;
-        }
-        public static bool IsXenomorph(Pawn pawn)
-        {
-            if (IsXenomorphPawn(pawn) || IsNeomorphPawn(pawn)) return true;
-            return false;
-        }
         public static bool IsXenoCorpse(Corpse corpse)
         {
             if (IsXenomorphCorpse(corpse) || IsNeomorphCorpse(corpse)) return true;

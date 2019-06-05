@@ -114,12 +114,10 @@ namespace RimWorld
                     List<Thing> list = x.ListerThings.ThingsInGroup(ThingRequestGroup.Pawn);
                     for (int j = 0; j < list.Count; j++)
                     {
-                        bool XenoInfection = (((Pawn)list[j]).health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection) || ((Pawn)list[j]).health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation) || ((Pawn)list[j]).health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation)) ? true : false;
-                        bool IsXenos = (((Pawn)list[j]).kindDef == XenomorphDefOf.RRY_Xenomorph_Drone || ((Pawn)list[j]).kindDef == XenomorphDefOf.RRY_Xenomorph_FaceHugger || ((Pawn)list[j]).kindDef == XenomorphDefOf.RRY_Xenomorph_Queen || ((Pawn)list[j]).kindDef == XenomorphDefOf.RRY_Xenomorph_Runner || ((Pawn)list[j]).kindDef == XenomorphDefOf.RRY_Xenomorph_Warrior) ? true : false;
-
-                        if (!XenoInfection && !IsXenos)
+                        Pawn p = ((Pawn)list[j]);
+                        if (XenomorphUtil.isInfectablePawn(p))
                         {
-                            tmpPredatorCandidates.Add((Pawn)list[j]);
+                            tmpPredatorCandidates.Add(p);
                         }
                         else
                         {
@@ -145,7 +143,7 @@ namespace RimWorld
                             {
                                 if (predator.CanReach(pawn2, PathEndMode.ClosestTouch, Danger.Deadly, false, TraverseMode.ByPawn))
                                 {
-                                    if (!pawn2.IsForbidden(predator) && !(XenoInfection(pawn2)))
+                                    if (!pawn2.IsForbidden(predator))
                                     {
                                         if (!tutorialMode || pawn2.Faction != Faction.OfPlayer)
                                         {
@@ -166,45 +164,17 @@ namespace RimWorld
             tmpPredatorCandidates.Clear();
             return pawn;
         }
-
-        public static bool XenoInfection(Pawn pawn)
-        {
-            bool selected = Find.Selector.SingleSelectedThing == pawn;
-            if (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection))
-            {
-#if DEBUG
-            //    if (selected) Log.Message(string.Format("{0}@{1} infected: {2}", pawn.Label, pawn.Position, pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection)));
-#endif
-                return true;
-            }
-            if (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation))
-            {
-#if DEBUG
-            //    if (selected) Log.Message(string.Format("{0}@{1} infected: {2}", pawn.Label, pawn.Position, pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation)));
-#endif
-                return true;
-            }
-            if (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation))
-            {
-#if DEBUG
-            //    if (selected) Log.Message(string.Format("{0}@{1} infected: {2}", pawn.Label, pawn.Position, pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation)));
-#endif
-                return true;
-            }
-            return false;
-        }
+        
         public static bool IsAcceptablePreyFor(Pawn predator, Pawn prey)
         {
-            bool XenoInfection = XenomorphUtil.IsInfectedPawn(prey);
-            bool IsXenos = XenomorphUtil.IsXenomorph(prey);
 
         //    Log.Message(string.Format("{0} hunting {1}? XenoInfection:{2} IsXenos:{3}", predator.Label, prey.Label, XenoInfection, IsXenos));
-            if (XenoInfection)
+            if (XenomorphUtil.IsInfectedPawn(prey))
             {
             //    Log.Message(string.Format("{0} cant hunt {1} cause XenoInfection:{2}", predator.Label, prey.Label, XenoInfection));
                 return false;
             }
-            if (IsXenos)
+            if (XenomorphUtil.IsXenomorph(prey))
             {
             //    Log.Message(string.Format("{0} cant hunt {1} cause IsXenos:{2}", predator.Label, prey.Label, IsXenos));
                 return false;

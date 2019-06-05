@@ -108,7 +108,7 @@ namespace RRYautja
 				}
 				result = target.Thing.TakeDamage(dinfo);
             }
-            if (infect)
+            if (infect && !XenomorphUtil.IsInfectedPawn(hitPawn))
             {
                 foreach (var part in hitPawn.RaceProps.body.AllParts.Where(x => x.def.defName == "Head"))
                 {
