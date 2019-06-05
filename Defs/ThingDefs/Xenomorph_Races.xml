@@ -127,7 +127,7 @@
       <thinkTreeMain>RRY_Xenommorph</thinkTreeMain>
       <body>RRY_Xenomorph_FaceHugger</body>
       <baseBodySize>0.30</baseBodySize>
-      <baseHealthScale>0.1</baseHealthScale>
+      <baseHealthScale>0.3</baseHealthScale>
       <lifeStageAges>
         <li>
           <def>RRY_XFacehuggerFullyFormed</def>
@@ -389,7 +389,7 @@
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>0.5</drawSize>
           <shadowData>
-            <volume>(0.6, 0.8, 0.6)</volume>
+            <volume><!--(0.6, 0.8, 0.6)-->(0.0, 0.0, 0.0)</volume>
           </shadowData>
           <shaderType>CutoutComplex</shaderType>
         </bodyGraphicData>
@@ -400,7 +400,7 @@
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>0.75</drawSize>
           <shadowData>
-            <volume>(0.6, 0.8, 0.6)</volume>
+            <volume><!--(0.6, 0.8, 0.6)-->(0.0, 0.0, 0.0)</volume>
           </shadowData>
         </bodyGraphicData>
       </li>
@@ -650,7 +650,7 @@
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>0.5</drawSize>
           <shadowData>
-            <volume>(0.6, 0.8, 0.6)</volume>
+            <volume><!--(0.6, 0.8, 0.6)-->(0.0, 0.0, 0.0)</volume>
           </shadowData>
           <shaderType>CutoutComplex</shaderType>
         </bodyGraphicData>
@@ -661,7 +661,7 @@
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>0.75</drawSize>
           <shadowData>
-            <volume>(0.6, 0.8, 0.6)</volume>
+            <volume><!--(0.6, 0.8, 0.6)-->(0.0, 0.0, 0.0)</volume>
           </shadowData>
         </bodyGraphicData>
       </li>
@@ -841,7 +841,7 @@
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>0.5</drawSize>
           <shadowData>
-            <volume>(0.6, 0.8, 0.6)</volume>
+            <volume><!--(0.6, 0.8, 0.6)-->(0.0, 0.0, 0.0)</volume>
           </shadowData>
           <shaderType>CutoutComplex</shaderType>
         </bodyGraphicData>
@@ -852,7 +852,7 @@
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>0.75</drawSize>
           <shadowData>
-            <volume>(0.6, 0.8, 0.6)</volume>
+            <volume><!--(0.6, 0.8, 0.6)-->(0.0, 0.0, 0.0)</volume>
           </shadowData>
         </bodyGraphicData>
       </li>
@@ -1025,7 +1025,7 @@
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>0.5</drawSize>
           <shadowData>
-            <volume>(0.6, 0.8, 0.6)</volume>
+            <volume><!--(0.6, 0.8, 0.6)-->(0.0, 0.0, 0.0)</volume>
           </shadowData>
           <shaderType>CutoutComplex</shaderType>
         </bodyGraphicData>
@@ -1036,7 +1036,7 @@
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>0.75</drawSize>
           <shadowData>
-            <volume>(0.6, 0.8, 0.6)</volume>
+            <volume><!--(0.6, 0.8, 0.6)-->(0.0, 0.0, 0.0)</volume>
           </shadowData>
         </bodyGraphicData>
       </li>
@@ -1205,7 +1205,7 @@
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>0.5</drawSize>
           <shadowData>
-            <volume>(0.6, 0.8, 0.6)</volume>
+            <volume><!--(0.6, 0.8, 0.6)-->(0.0, 0.0, 0.0)</volume>
           </shadowData>
           <shaderType>CutoutComplex</shaderType>
         </bodyGraphicData>
@@ -1216,7 +1216,7 @@
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>0.75</drawSize>
           <shadowData>
-            <volume>(0.6, 0.8, 0.6)</volume>
+            <volume><!--(0.6, 0.8, 0.6)-->(0.0, 0.0, 0.0)</volume>
           </shadowData>
         </bodyGraphicData>
       </li>
@@ -1437,7 +1437,7 @@
           <color>(180,180,180)</color>
           <drawSize>0.75</drawSize>
           <shadowData>
-            <volume>(0.6, 0.8, 0.6)</volume>
+            <volume><!--(0.6, 0.8, 0.6)-->(0.0, 0.0, 0.0)</volume>
           </shadowData>
         </bodyGraphicData>
       </li>
@@ -1448,7 +1448,7 @@
           <color>(180,180,180)</color>
           <drawSize>1.0</drawSize>
           <shadowData>
-            <volume>(0.4, 0.8, 0.4)</volume>
+            <volume><!--(0.6, 0.8, 0.6)-->(0.0, 0.0, 0.0)</volume>
           </shadowData>
         </bodyGraphicData>
       </li>
