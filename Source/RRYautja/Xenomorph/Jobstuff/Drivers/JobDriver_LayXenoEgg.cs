@@ -19,7 +19,7 @@ namespace RimWorld
         protected override IEnumerable<Toil> MakeNewToils()
         {
             yield return Toils_Goto.GotoCell(TargetIndex.A, PathEndMode.OnCell);
-            yield return Toils_General.Wait(500, TargetIndex.None);
+            yield return Toils_General.WaitWith(TargetIndex.A, LayEgg, true);
             yield return Toils_General.Do(delegate
             {
                 Thing forbiddenIfOutsideHomeArea = GenSpawn.Spawn(this.pawn.GetComp<CompXenoEggLayer>().ProduceEgg(), this.pawn.Position, base.Map, WipeMode.Vanish);

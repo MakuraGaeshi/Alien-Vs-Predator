@@ -159,7 +159,7 @@
         <damagePerTickRare>10</damagePerTickRare>
       </li>
       <li Class="CompProperties_SpawnerFilth">
-        <filthDef>Filth_Slime</filthDef>
+        <filthDef>RRY_Filth_Slime</filthDef>
         <spawnCountOnSpawn>10</spawnCountOnSpawn>
         <spawnMtbHours>4</spawnMtbHours>
         <spawnRadius>5</spawnRadius>

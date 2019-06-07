@@ -27,7 +27,7 @@ namespace RimWorld
             stateGraph.StartingToil = lordToil_DefendBase;
             LordToil_DefendHiveLoc lordToil_DefendBase2 = new LordToil_DefendHiveLoc(this.baseCenter);
             stateGraph.AddToil(lordToil_DefendBase2);
-            LordToil_AssaultColony lordToil_AssaultColony = new LordToil_AssaultColony(true);
+            LordToil_XenomrophAssaultColony lordToil_AssaultColony = new LordToil_XenomrophAssaultColony(true);
             lordToil_AssaultColony.useAvoidGrid = true;
             stateGraph.AddToil(lordToil_AssaultColony);
             Transition transition = new Transition(lordToil_DefendBase, lordToil_DefendBase2, false, true);

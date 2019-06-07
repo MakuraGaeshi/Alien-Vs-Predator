@@ -169,11 +169,11 @@ namespace RRYautja
 #if DEBUG
                 if (this.conversionProgress >= 1f && selected) Log.Message(string.Format("QueenPresent: {0}, PredalienPresent: {1}, RoyalEggPresent: {2}, RoyalPresent: {3}", QueenPresent, PredalienPresent, RoyalEggPresent, RoyalPresent));
 #endif
-                if (!QueenPresent && !PredalienPresent)
+                if (!QueenPresent)
                 {
                     if (this.conversionProgress >= 1f&& XenomorphUtil.TotalSpawnedEggCount(MyMap)<(cocoonedCount / 2) && !XenomorphUtil.IsInfectedPawn(Pawn))
                     {
-                        if (Rand.Chance(0.05f))
+                        if (Pawn.RaceProps.Humanlike ? Rand.Chance(0.001f): Rand.Chance(0.05f))
                         {
                             Thing thing = ThingMaker.MakeThing(eggDef, null);
                             Building_XenoEgg _XenoEgg = (Building_XenoEgg)thing;
@@ -187,12 +187,18 @@ namespace RRYautja
                         else
                         {
 #if DEBUG
-                            Log.Message(string.Format("{0}, failed convert chance", conversionProgress));
+                        //    Log.Message(string.Format("{0}, failed convert chance", conversionProgress));
 #endif
                         }
                     }
                 }
             }
+        }
+
+        public override void Notify_PawnDied()
+        {
+            base.Notify_PawnDied();
+            Pawn.health.RemoveHediff(this.parent);
         }
 
         public float conversionProgress;

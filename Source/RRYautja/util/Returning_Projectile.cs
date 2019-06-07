@@ -164,13 +164,13 @@ namespace RimWorld
                 if (hitPawn!=OriginalPawn) hitPawn.health.AddHediff(bouncer);
                 else
                 {
-                    Log.Message(string.Format("hitPawn:{0} != OriginalPawn: {1}", hitThing, OriginalPawn));
-                    Log.Message(string.Format("Making Projectile projectile"));
+                //    Log.Message(string.Format("hitPawn:{0} != OriginalPawn: {1}", hitThing, OriginalPawn));
+                //    Log.Message(string.Format("Making Projectile projectile"));
                     Projectile projectile = (Projectile)ThingMaker.MakeThing(ReturnDef, null);
                     
-                    Log.Message(string.Format("Target OriginalPawn {0}", OriginalPawn));
+                //    Log.Message(string.Format("Target OriginalPawn {0}", OriginalPawn));
                     GenSpawn.Spawn(projectile, base.Position, launcher.Map, 0);
-                    Log.Message(string.Format("Launch projectile2 {0} at {1}", projectile, OriginalPawn));
+                //    Log.Message(string.Format("Launch projectile2 {0} at {1}", projectile, OriginalPawn));
                     projectile.Launch(OriginalWeapon, base.Position.ToVector3ShiftedWithAltitude(AltitudeLayer.Projectile), OriginalPawn, OriginalPawn, ProjectileHitFlags.IntendedTarget, OriginalWeapon);
                 }
             }
@@ -178,15 +178,15 @@ namespace RimWorld
             {
                 if (hitThing!=null)
                 {
-                    Log.Message(string.Format("hit non Pawn {0}", hitThing));
+                //    Log.Message(string.Format("hit non Pawn {0}", hitThing));
                 }
                 else
                 {
-                    Log.Message(string.Format("hit null {0}", hitThing));
+                //    Log.Message(string.Format("hit null {0}", hitThing));
                 }
                 if (OriginalPawn != null)
                 {
-                    Log.Message(string.Format("OriginalPawn {0}", OriginalPawn, OriginalPawn.kindDef.race));
+                //    Log.Message(string.Format("OriginalPawn {0}", OriginalPawn, OriginalPawn.kindDef.race));
                     if (OriginalPawn.kindDef.race != YautjaDefOf.RRY_Alien_Yautja && Rand.Chance(0.5f))
                     {
                         ReturnDef = YautjaDefOf.RRY_SmartDisk_Thrown;
@@ -195,33 +195,33 @@ namespace RimWorld
                     {
                         ReturnDef = YautjaDefOf.RRY_SmartDisk_Returning;
                     }
-                    Log.Message(string.Format("hit ReturnDef: {0}", ReturnDef));
+                //    Log.Message(string.Format("hit ReturnDef: {0}", ReturnDef));
                 }
                 else
                 {
-                    Log.Message(string.Format("OriginalPawn null {0}", OriginalPawn));
+                //    Log.Message(string.Format("OriginalPawn null {0}", OriginalPawn));
                 }
-                Log.Message(string.Format("Making Projectile projectile"));
+            //    Log.Message(string.Format("Making Projectile projectile"));
                 Projectile projectile = (Projectile)ThingMaker.MakeThing(ReturnDef, null);
 
-                Log.Message(string.Format("ConvertingReturning_Projectile projectile2"));
+            //    Log.Message(string.Format("ConvertingReturning_Projectile projectile2"));
                 Returning_Projectile Rprojectile = new Returning_Projectile()
                 {
                     def = ReturnDef
                 };
                 /*
-                Log.Message(string.Format("projectile2: {0}", Rprojectile));
+            //    Log.Message(string.Format("projectile2: {0}", Rprojectile));
                 Rprojectile.OriginalPawn = this.OriginalPawn;
-                Log.Message(string.Format("projectile2.OriginalPawn: {0}", Rprojectile.OriginalPawn));
+            //    Log.Message(string.Format("projectile2.OriginalPawn: {0}", Rprojectile.OriginalPawn));
                 Rprojectile.OriginalWeapon = this.OriginalWeapon;
-                Log.Message(string.Format("projectile2.OriginalWeapon: {0}", Rprojectile.OriginalWeapon));
+            //    Log.Message(string.Format("projectile2.OriginalWeapon: {0}", Rprojectile.OriginalWeapon));
                 //    projectile2.OriginalProjectile = this.OriginalProjectile;
                 Rprojectile.timesBounced = this.timesBounced;
-                Log.Message(string.Format("projectile2.timesBounced: {0}", Rprojectile.timesBounced));
+            //    Log.Message(string.Format("projectile2.timesBounced: {0}", Rprojectile.timesBounced));
                 */
-                Log.Message(string.Format("Target OriginalPawn {0}", OriginalPawn));
+            //    Log.Message(string.Format("Target OriginalPawn {0}", OriginalPawn));
                 GenSpawn.Spawn(projectile, base.Position, launcher.Map, 0);
-                Log.Message(string.Format("Launch projectile2 {0} at {1}", Rprojectile, OriginalPawn));
+            //    Log.Message(string.Format("Launch projectile2 {0} at {1}", Rprojectile, OriginalPawn));
                 projectile.Launch(OriginalWeapon, base.Position.ToVector3ShiftedWithAltitude(AltitudeLayer.Projectile), OriginalPawn, OriginalPawn, ProjectileHitFlags.IntendedTarget, OriginalWeapon);
             }
         }

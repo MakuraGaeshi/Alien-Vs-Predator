@@ -13,17 +13,24 @@ namespace RimWorld
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look<int>(ref this.useDuration, "useDuration", 0, false);
+            Scribe_Values.Look<int>(ref this.useDuration, "useDuration", 300, false);
+        }
+
+        public Pawn Victim
+        {
+            get
+            {
+                return (Pawn)this.job.GetTarget(TargetIndex.A).Thing;
+            }
         }
 
         public HediffDef heDiffDeff = XenomorphDefOf.RRY_XenomorphImpregnation;
-        public HediffDef heCocDeff = XenomorphDefOf.RRY_Hediff_Cocooned;
 
         // Token: 0x06000391 RID: 913 RVA: 0x00024554 File Offset: 0x00022954
         public override void Notify_Starting()
         {
             base.Notify_Starting();
-            this.useDuration = 300;
+            this.useDuration = (int)(300 * Victim.BodySize);
         }
 
         // Token: 0x06000392 RID: 914 RVA: 0x00024590 File Offset: 0x00022990
@@ -40,8 +47,8 @@ namespace RimWorld
         {
             this.FailOnIncapable(PawnCapacityDefOf.Manipulation);
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
-            Toil prepare = Toils_General.Wait(this.useDuration, TargetIndex.None);
-            prepare.WithProgressBarToilDelay(TargetIndex.A, false, -0.5f);
+            Toil prepare = Toils_General.Wait(this.useDuration, TargetIndex.A);
+            prepare.NPCWithProgressBarToilDelay(TargetIndex.A, false, -0.5f);
             prepare.FailOnDespawnedNullOrForbidden(TargetIndex.A);
             prepare.FailOnCannotTouch(TargetIndex.A, PathEndMode.Touch);
             yield return prepare;
@@ -49,17 +56,11 @@ namespace RimWorld
             use.initAction = delegate ()
             {
                 Pawn actor = use.actor;
-                Pawn Infectable = (Pawn)actor.CurJob.targetA.Thing;
-                ThingDef named = Infectable.RaceProps.Humanlike ? XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon : XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon;
-                GenPlace.TryPlaceThing(XenomorphKidnapUtility.TryMakeCocoon(new CellRect(Infectable.Position.x, Infectable.Position.z, 1, 1), Infectable.Map, named), Infectable.Position, Infectable.Map, ThingPlaceMode.Direct);
-                Infectable.health.AddHediff(heCocDeff);
-                Infectable.health.AddHediff(heDiffDeff, Infectable.RaceProps.body.corePart);
-                Hediff hediff = Infectable.health.hediffSet.GetFirstHediffOfDef(heDiffDeff);
+                Victim.health.AddHediff(heDiffDeff, Victim.RaceProps.body.corePart);
+                Hediff hediff = Victim.health.hediffSet.GetFirstHediffOfDef(heDiffDeff);
                 HediffComp_XenoSpawner _XenoSpawner = hediff.TryGetComp<HediffComp_XenoSpawner>();
                 _XenoSpawner.countToSpawn = Rand.RangeInclusive(1, 4);
                 _XenoSpawner.predalienImpregnation = true;
-                Infectable.jobs.Notify_TuckedIntoBed((Building_XenomorphCocoon)XenomorphUtil.ClosestReachableEmptyCocoon(Infectable, named));
-                Infectable.mindState.Notify_TuckedIntoBed();
 
             };
             use.defaultCompleteMode = ToilCompleteMode.Instant;

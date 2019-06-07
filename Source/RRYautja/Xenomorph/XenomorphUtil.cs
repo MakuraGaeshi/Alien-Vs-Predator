@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using Verse;
 using Verse.AI;
 
@@ -92,11 +93,15 @@ namespace RRYautja
             {
                 return false;
             }
-            if (XenomorphUtil.DistanceBetween(c, center) < radius)
+            if (XenomorphUtil.DistanceBetween(c, center) <= radius)
             {
                 return false;
             }
             if (XenomorphUtil.DistanceBetween(c, center) > radius*2)
+            {
+                return false;
+            }
+            if (c.AdjacentTo8Way(center))
             {
                 return false;
             }
@@ -165,10 +170,11 @@ namespace RRYautja
             if (pawn.Dead) return false;
             if (pawn.RaceProps.IsMechanoid) return false;
             if (!pawn.RaceProps.IsFlesh) return false;
-            if (IsInfectedPawn(pawn)) return false;
             if (IsXenomorph(pawn)) return false;
+            if (IsInfectedPawn(pawn)) return false;
             if (IsXenomorphFaction(pawn)) return false;
             if (pawn.BodySize < 0.65f) return false;
+            if (pawn.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Xenomorph) return false;
             return true;
         }
 
@@ -177,6 +183,7 @@ namespace RRYautja
             if (pawn.Dead) return false;
             if (pawn.RaceProps.IsMechanoid) return false;
             if (!pawn.RaceProps.IsFlesh) return false;
+            if (pawn.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Xenomorph) return false;
             if (!allowinfected && IsInfectedPawn(pawn)) return false;
             if (IsXenomorph(pawn)) return false;
             if (IsXenomorphFaction(pawn)) return false;
@@ -207,7 +214,7 @@ namespace RRYautja
         }
         public static int TotalSpawnedInfectablePawnCount(Map map, int radius, IntVec3 position)
         {
-            Log.Message(string.Format("TotalSpawnedInfectablePawnCount: {0}", SpawnedInfectablePawns(map, radius, position).Count));
+        //    Log.Message(string.Format("TotalSpawnedInfectablePawnCount: {0}", SpawnedInfectablePawns(map, radius, position).Count));
             return SpawnedInfectablePawns(map, radius, position).Count;
         }
         public static List<Pawn> SpawnedInfectablePawns(Map map, int radius, IntVec3 position, IntVec3 otherposition)
@@ -252,6 +259,8 @@ namespace RRYautja
 
         public static bool IsXenomorphPawn(Pawn pawn)
         {
+            if (pawn.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Xenomorph) return true;
+            /*
             if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_FaceHugger) return true;
             if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_RoyaleHugger) return true;
             if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Predalien) return true;
@@ -259,11 +268,27 @@ namespace RRYautja
             if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Drone) return true;
             if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Warrior) return true;
             if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen) return true;
+            */
+            return false;
+        }
+        public static bool IsXenomorphPawn(PawnKindDef pawn)
+        {
+            if (pawn.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Xenomorph) return true;
+            /*
+            if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_FaceHugger) return true;
+            if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_RoyaleHugger) return true;
+            if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Predalien) return true;
+            if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Runner) return true;
+            if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Drone) return true;
+            if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Warrior) return true;
+            if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen) return true;
+            */
             return false;
         }
 
         public static bool IsXenomorphFacehugger(Pawn pawn)
         {
+            if (pawn.kindDef.race == XenomorphRacesDefOf.RRY_Xenomorph_FaceHugger) return true;
             if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_FaceHugger) return true;
             if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_RoyaleHugger) return true;
             return false;
@@ -272,6 +297,7 @@ namespace RRYautja
         public static bool IsNeomorphPawn(Pawn pawn)
         {
             if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Neomorph) return true;
+            if (pawn.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Neomorph) return true;
             return false;
         }
 
@@ -324,6 +350,7 @@ namespace RRYautja
             if (corpse.InnerPawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Drone) return true;
             if (corpse.InnerPawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Warrior) return true;
             if (corpse.InnerPawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen) return true;
+            if (corpse.InnerPawn.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Xenomorph) return true;
             return false;
         }
 
@@ -521,8 +548,9 @@ namespace RRYautja
             return Math.Sqrt(Math.Pow((x2 - x1), 2) + Math.Pow((y2 - y1), 2));
         }
     }
+
     [StaticConstructorOnStartup]
-    class XenomorphStaticUtil
+    public static class XenomorphStaticUtil
     {
         static void Main()
         {
@@ -530,9 +558,73 @@ namespace RRYautja
             {
                 if (XenomorphUtil.isInfectablePawnKind(item))
                 {
-                    Log.Message(string.Format("Xenomorph Host: {0}", item.LabelCap));
+                //    Log.Message(string.Format("Xenomorph Host: {0}", item.LabelCap));
                 }
             }
         }
+        
+        // Token: 0x06003BF5 RID: 15349 RVA: 0x001C4174 File Offset: 0x001C2574
+        public static Toil NPCWithProgressBar(this Toil toil, TargetIndex ind, Func<float> progressGetter, bool interpolateBetweenActorAndTarget = false, float offsetZ = -0.5f)
+        {
+            Effecter effecter = null;
+            toil.AddPreTickAction(delegate
+            {
+                /*
+                if (toil.actor.Faction != Faction.OfPlayer)
+                {
+                    return;
+                }
+                */
+                if (effecter == null)
+                {
+                    EffecterDef progressBar = EffecterDefOf.ProgressBar;
+                    effecter = progressBar.Spawn();
+                }
+                else
+                {
+                    LocalTargetInfo target = toil.actor.CurJob.GetTarget(ind);
+                    if (!target.IsValid || (target.HasThing && !target.Thing.Spawned))
+                    {
+                        effecter.EffectTick(toil.actor, TargetInfo.Invalid);
+                    }
+                    else if (interpolateBetweenActorAndTarget)
+                    {
+                        effecter.EffectTick(toil.actor.CurJob.GetTarget(ind).ToTargetInfo(toil.actor.Map), toil.actor);
+                    }
+                    else
+                    {
+                        effecter.EffectTick(toil.actor.CurJob.GetTarget(ind).ToTargetInfo(toil.actor.Map), TargetInfo.Invalid);
+                    }
+                    MoteProgressBar mote = ((SubEffecter_ProgressBar)effecter.children[0]).mote;
+                    if (mote != null)
+                    {
+                        mote.progress = Mathf.Clamp01(progressGetter());
+                        mote.offsetZ = offsetZ;
+                    }
+                }
+            });
+            toil.AddFinishAction(delegate
+            {
+                if (effecter != null)
+                {
+                    effecter.Cleanup();
+                    effecter = null;
+                }
+            });
+            return toil;
+        }
+
+        // Token: 0x06003BF6 RID: 15350 RVA: 0x001C41E8 File Offset: 0x001C25E8
+        public static Toil NPCWithProgressBarToilDelay(this Toil toil, TargetIndex ind, bool interpolateBetweenActorAndTarget = false, float offsetZ = -0.5f)
+        {
+            return toil.NPCWithProgressBar(ind, () => 1f - (float)toil.actor.jobs.curDriver.ticksLeftThisToil / (float)toil.defaultDuration, interpolateBetweenActorAndTarget, offsetZ);
+        }
+
+        // Token: 0x06003BF7 RID: 15351 RVA: 0x001C421C File Offset: 0x001C261C
+        public static Toil NPCWithProgressBarToilDelay(this Toil toil, TargetIndex ind, int toilDuration, bool interpolateBetweenActorAndTarget = false, float offsetZ = -0.5f)
+        {
+            return toil.NPCWithProgressBar(ind, () => 1f - (float)toil.actor.jobs.curDriver.ticksLeftThisToil / (float)toilDuration, interpolateBetweenActorAndTarget, offsetZ);
+        }
+
     }
 }

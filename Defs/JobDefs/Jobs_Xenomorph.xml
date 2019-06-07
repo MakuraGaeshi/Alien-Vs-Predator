@@ -21,8 +21,7 @@
     <defName>RRY_Job_PredalienImpregnate</defName>
     <driverClass>JobDriver_PredalienImpregnate</driverClass>
     <reportString>Impregnating TargetA.</reportString>
-    <casualInterruptible>false</casualInterruptible>
-    <checkOverrideOnDamage>Never</checkOverrideOnDamage>
+    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
   </JobDef>
   
   <JobDef>

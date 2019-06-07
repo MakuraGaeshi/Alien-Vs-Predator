@@ -269,7 +269,7 @@ namespace RRYautja
                     {
                         spawnRoll = 0;
 #if DEBUG
-                        Log.Message(string.Format("{0} :{1}", PKDef.label, QueenPresent));
+                    //    Log.Message(string.Format("{0} :{1}", PKDef.label, QueenPresent));
 #endif
                     }
                     else if (PKDef == XenomorphDefOf.RRY_Xenomorph_Queen && !QueenPresent && !predalienImpregnation&&!RoyalPresent)
@@ -315,7 +315,7 @@ namespace RRYautja
 #if DEBUG
             if (Prefs.DevMode)
             {
-                 Log.Message(string.Format("spawning: {0}", pawnKindDef.label));
+             //    Log.Message(string.Format("spawning: {0}", pawnKindDef.label));
             }
 #endif
             return PawnGenerator.GeneratePawn(new PawnGenerationRequest(pawnKindDef, Find.FactionManager.FirstFactionOfDef(pawnKindDef.defaultFactionType), PawnGenerationContext.NonPlayer, -1, true, true, false, false, true, true, 20f, fixedGender: gender));
@@ -342,7 +342,7 @@ namespace RRYautja
 #if DEBUG
                 if (Prefs.DevMode)
                 {
-                    Log.Message(string.Format("fullterm on death: {0}", fullterm));
+                //    Log.Message(string.Format("fullterm on death: {0}", fullterm));
                 }
 #endif
                 return;
@@ -352,7 +352,7 @@ namespace RRYautja
 #if DEBUG
                 if (Prefs.DevMode)
                 {
-                    Log.Message(string.Format("fullterm on death: {0}", fullterm));
+                //    Log.Message(string.Format("fullterm on death: {0}", fullterm));
                 }
 #endif
             }
@@ -361,7 +361,7 @@ namespace RRYautja
 #if DEBUG
                 if (Prefs.DevMode)
                 {
-                    Log.Message(string.Format("spawnMap == null {0} || spawnLoc == null {1}", spawnMap == null, spawnLoc == null));
+                //    Log.Message(string.Format("spawnMap == null {0} || spawnLoc == null {1}", spawnMap == null, spawnLoc == null));
                 }
 #endif
                 return;
@@ -371,14 +371,14 @@ namespace RRYautja
 #if DEBUG
                 if (Prefs.DevMode)
                 {
-                    Log.Message(string.Format("spawnMap == {0} spawnLoc == {1}", spawnMap, spawnLoc));
+                //    Log.Message(string.Format("spawnMap == {0} spawnLoc == {1}", spawnMap, spawnLoc));
                 }
 #endif
             }
 #if DEBUG
             if (Prefs.DevMode)
             {
-                Log.Message(string.Format("countToSpawn == {0}", countToSpawn));
+            //    Log.Message(string.Format("countToSpawn == {0}", countToSpawn));
             }
 #endif
             if (countToSpawn == 0) countToSpawn++;
@@ -397,7 +397,7 @@ namespace RRYautja
 #if DEBUG
                 if (Prefs.DevMode)
                 {
-                    Log.Message(string.Format("spawning: {0}, spawnLoc: {1}, spawnMap: {2}", pawn.LabelCap, spawnLoc, spawnMap));
+                //    Log.Message(string.Format("spawning: {0}, spawnLoc: {1}, spawnMap: {2}", pawn.LabelCap, spawnLoc, spawnMap));
                 }
 #endif
                 GenSpawn.Spawn(pawn, spawnLoc, spawnMap, 0);

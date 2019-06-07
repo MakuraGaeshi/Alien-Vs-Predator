@@ -57,6 +57,8 @@ namespace RimWorld
 
         // Xenomorph DutyDefs  
         public static DutyDef RRY_DefendHiveLoc;
+        public static DutyDef RRY_XenomorphAssaultColony;
+        public static DutyDef RRY_DefendHiveLikeAggressively;
 
         // Xenomorph ThingDefs 
         public static ThingDef RRY_Xenomorph_Humanoid_Cocoon;
@@ -127,5 +129,6 @@ namespace RimWorld
 
         // Xenomorph FleshTypeDefs
         public static FleshTypeDef RRY_Xenomorph;
+        public static FleshTypeDef RRY_Neomorph;
     }
 }

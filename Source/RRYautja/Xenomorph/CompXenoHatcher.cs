@@ -128,7 +128,7 @@ namespace RRYautja
                     if (p.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
                     {
 #if DEBUG
-                        Log.Message(string.Format("Queen found"));
+                    //    Log.Message(string.Format("Queen found"));
 #endif
                         queenPresent = true;
                         break;
@@ -199,7 +199,7 @@ namespace RRYautja
 #if DEBUG
                 if (selected)
                 {
-                    Log.Message(string.Format("{0} isInfectable?: {1}", pawn.Label, flag));
+                //    Log.Message(string.Format("{0} isInfectable?: {1}", pawn.Label, flag));
                 }
 #endif
                 if (flag)
@@ -216,8 +216,8 @@ namespace RRYautja
 #if DEBUG
                     if (selected)
                     {
-                        Log.Message(string.Format("distance between {1} @{3} and {2} @ {4}: {0}", DistanceBetween(MyPos, pawn.Position), this.parent.LabelShort, pawn.Label, MyPos, pawn.Position));
-                        Log.Message(string.Format("{0} thingsize: {1}, thingstealth: {2}, thingmovespeed: {3}", pawn.Label, thingsize, thingstealth, thingmovespeed));
+                    //    Log.Message(string.Format("distance between {1} @{3} and {2} @ {4}: {0}", DistanceBetween(MyPos, pawn.Position), this.parent.LabelShort, pawn.Label, MyPos, pawn.Position));
+                    //    Log.Message(string.Format("{0} thingsize: {1}, thingstealth: {2}, thingmovespeed: {3}", pawn.Label, thingsize, thingstealth, thingmovespeed));
 
                     }
 #endif
@@ -226,7 +226,7 @@ namespace RRYautja
 #if DEBUG
                     if (selected)
                     {
-                        Log.Message(string.Format("{0} hatchon: {1}, roll: {2}", pawn.Label, hatchon, roll));
+                    //    Log.Message(string.Format("{0} hatchon: {1}, roll: {2}", pawn.Label, hatchon, roll));
                     }
 #endif
                     if (roll>hatchon)
@@ -251,7 +251,7 @@ namespace RRYautja
             {
                 PawnKindDef hatchKindDef = Rand.Chance(royalProgress) && !QueenPresent && !XenomorphUtil.HivelikesPresent(MyMap) && !RoyalPresent ? XenomorphDefOf.RRY_Xenomorph_RoyaleHugger : this.Props.hatcherPawn;
 #if DEBUG
-                Log.Message(string.Format("hatchKindDef: {0}", hatchKindDef));
+            //    Log.Message(string.Format("hatchKindDef: {0}", hatchKindDef));
 #endif
                 PawnGenerationRequest request = new PawnGenerationRequest(hatchKindDef, this.hatcheeFaction, PawnGenerationContext.NonPlayer, -1, false, true, false, false, true, false, 1f, false, true, true, false, false, false, false, null, null, null, null, null, null, null, null);
                 for (int i = 0; i < this.parent.stackCount; i++)

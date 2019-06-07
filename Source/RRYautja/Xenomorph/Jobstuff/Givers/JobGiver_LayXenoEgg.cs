@@ -23,7 +23,7 @@ namespace RimWorld
 #if DEBUG
                 if (Prefs.DevMode)
                 {
-                    Log.Message(string.Format("JobGiver_LayXenoEgg TryGiveJob \n{0} has location: {1}", pawn.LabelShort, c));
+                //    Log.Message(string.Format("JobGiver_LayXenoEgg TryGiveJob \n{0} has location: {1}", pawn.LabelShort, c));
                 }
 #endif
                 if (pawn.GetLord() != null && pawn.GetLord().LordJob is LordJob_DefendHiveLoc lordjob)
@@ -54,7 +54,7 @@ namespace RimWorld
 #if DEBUG
             if (Prefs.DevMode)
             {
-                Log.Message(string.Format("JobGiver_LayXenoEgg TryGiveJob \n{0} has location: {1}", pawn.LabelShort, c));
+            //    Log.Message(string.Format("JobGiver_LayXenoEgg TryGiveJob \n{0} has location: {1}", pawn.LabelShort, c));
             }
 #endif
             return new Job(XenomorphDefOf.RRY_Job_LayXenomorphEgg, c);

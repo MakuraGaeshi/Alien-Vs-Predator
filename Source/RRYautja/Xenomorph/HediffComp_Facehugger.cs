@@ -199,12 +199,12 @@ namespace RRYautja
                 if (timer >= 600 && !isImpregnated)
                 {
 #if DEBUG
-                    Log.Message("pre impreg checking Severity");
+                //    Log.Message("pre impreg checking Severity");
 #endif
                     if (Rand.Chance(this.parent.Severity))
                     {
 #if DEBUG
-                        Log.Message("adding embryo");
+                    //    Log.Message("adding embryo");
 #endif
                         parent.pawn.health.AddHediff(heDiffDeff, parent.pawn.RaceProps.body.corePart);
                         Hediff hediff = parent.pawn.health.hediffSet.GetFirstHediffOfDef(heDiffDeff);
@@ -217,7 +217,7 @@ namespace RRYautja
                             isImpregnated = true;
                             previousImpregnations++;
 #if DEBUG
-                            Log.Message("is Impregnated", isImpregnated);
+                        //    Log.Message("is Impregnated", isImpregnated);
 #endif
 
                         }
@@ -231,12 +231,12 @@ namespace RRYautja
                 if (timer2 >= 600)
                 {
 #if DEBUG
-                    Log.Message("post impreg checking Severity");
+                //    Log.Message("post impreg checking Severity");
 #endif
                     if (Rand.Chance(this.parent.Severity))
                     {
 #if DEBUG
-                        Log.Message("removing Facehugger");
+                    //    Log.Message("removing Facehugger");
 #endif
                         base.Pawn.health.hediffSet.hediffs.Remove(this.parent);
                         this.CompPostPostRemoved();
@@ -249,81 +249,44 @@ namespace RRYautja
 
         public override void Notify_PawnDied()
         {
-            this.CompPostPostRemoved();
             base.Notify_PawnDied();
+            Pawn.health.RemoveHediff(this.parent);
         }
 
         public override void CompPostPostRemoved()
         {
-#if DEBUG
-            Log.Message("Facehugger CompPostPostRemoved ");
-#endif
             Thing hostThing = base.Pawn;
             Pawn hostPawn = base.Pawn;
             IntVec3 spawnLoc = !base.Pawn.Dead ? base.parent.pawn.Position : base.parent.pawn.PositionHeld;
             Map spawnMap = !base.Pawn.Dead ? base.parent.pawn.Map : base.parent.pawn.MapHeld;
             bool spawnLive = this.spawnLive;
-#if DEBUG
-            Log.Message("Facehugger CompPostPostRemoved stuff set");
-#endif
             if ((hostPawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation) && !hasImpregnated))
             {
                 spawnLive = true;
             }
-#if DEBUG
-            Log.Message("Facehugger CompPostPostRemoved pawngen start");
-#endif
             PawnGenerationRequest pawnGenerationRequest = new PawnGenerationRequest(pawnKindDef, null, PawnGenerationContext.NonPlayer, -1, true, false, true, false, true, true, 20f);
-#if DEBUG
-            Log.Message("Facehugger CompPostPostRemoved pgr done");
-#endif
             Pawn pawn = PawnGenerator.GeneratePawn(pawnGenerationRequest);
-#if DEBUG
-            Log.Message("Facehugger CompPostPostRemoved pawn gened");
-#endif
             if (Instigator != null)
             {
                 pawn = instigator;
             }
             if (spawnLive == true)
             {
-#if DEBUG
-                Log.Message("Facehugger CompPostPostRemoved spawning live");
-#endif
                 Comp_Facehugger _Facehugger = pawn.TryGetComp<Comp_Facehugger>();
-#if DEBUG
-                Log.Message("Facehugger CompPostPostRemoved trygetcomp ");
-#endif
                 if (_Facehugger!=null)
                 {
-#if DEBUG
-                    Log.Message("Facehugger CompPostPostRemoved _Facehugger found ");
-#endif
                     _Facehugger.Impregnations = previousImpregnations;
-#if DEBUG
-                    Log.Message("Facehugger CompPostPostRemoved _Facehugger set prior impreg count ");
-#endif
                 }
-#if DEBUG
-                Log.Message("Facehugger CompPostPostRemoved _Facehugger pre spawn live ");
-#endif
                 GenSpawn.Spawn(pawn, spawnLoc, spawnMap, 0);
-#if DEBUG
-                Log.Message("Facehugger CompPostPostRemoved _Facehugger post spawn live ");
-#endif
                 pawn.jobs.ClearQueuedJobs();
                 pawn.jobs.curJob = null;
-#if DEBUG
-                Log.Message("Facehugger CompPostPostRemoved _Facehugger set prior job to null ");
-#endif
             }
             else
             {
-#if DEBUG
-                Log.Message("Facehugger CompPostPostRemoved spawning dead");
-#endif
                 GenSpawn.Spawn(pawn, spawnLoc, spawnMap, 0);
-                pawn.Kill(null);
+                Comp_Facehugger _Facehugger = pawn.TryGetComp<Comp_Facehugger>();
+                _Facehugger.Impregnations = previousImpregnations;
+                // pawn.Kill(null);
             }
             string text = TranslatorFormattedStringExtensions.Translate("Xeno_Facehugger_Detach", base.parent.pawn.LabelShort);
             if (!base.Pawn.Dead) MoteMaker.ThrowText(spawnLoc.ToVector3(), spawnMap, text, 5f);

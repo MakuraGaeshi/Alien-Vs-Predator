@@ -10,6 +10,7 @@ namespace RimWorld
 		// Token: 0x06000791 RID: 1937 RVA: 0x00042F24 File Offset: 0x00041324
 		public LordJob_DefendAndExpandHiveLike()
 		{
+
 		}
 
 		// Token: 0x06000792 RID: 1938 RVA: 0x00042F2C File Offset: 0x0004132C
@@ -38,24 +39,33 @@ namespace RimWorld
 			}
 		}
 
-		// Token: 0x06000795 RID: 1941 RVA: 0x00042F44 File Offset: 0x00041344
-		public override StateGraph CreateGraph()
+        public override void LordJobTick()
+        {
+            base.LordJobTick();
+
+        }
+
+        // Token: 0x06000795 RID: 1941 RVA: 0x00042F44 File Offset: 0x00041344
+        public override StateGraph CreateGraph()
 		{
+            
 			StateGraph stateGraph = new StateGraph();
-            LordToil_DefendAndExpandHiveLike lordToil_DefendAndExpandHive = new LordToil_DefendAndExpandHiveLike
+            LordToil_DefendAndExpandHiveLike lordToil_DefendAndExpandHiveLike = new LordToil_DefendAndExpandHiveLike
             {
                 distToHiveToAttack = 40f
             };
-            stateGraph.StartingToil = lordToil_DefendAndExpandHive;
-            LordToil_DefendHiveAggressively lordToil_DefendHiveAggressively = new LordToil_DefendHiveAggressively
+            stateGraph.StartingToil = lordToil_DefendAndExpandHiveLike;
+
+            LordToil_DefendHiveLikeAggressively lordToil_DefendHiveAggressively = new LordToil_DefendHiveLikeAggressively
             {
                 distToHiveToAttack = 80f
             };
             stateGraph.AddToil(lordToil_DefendHiveAggressively);
-			LordToil_AssaultColony lordToil_AssaultColony = new LordToil_AssaultColony(false);
-			stateGraph.AddToil(lordToil_AssaultColony);
+
+			LordToil_XenomrophAssaultColony lordToil_XenomrophAssaultColony = new LordToil_XenomrophAssaultColony(false);
+			stateGraph.AddToil(lordToil_XenomrophAssaultColony);
             
-			Transition transition = new Transition(lordToil_DefendAndExpandHive, (!aggressive) ? (LordToil)lordToil_DefendHiveAggressively : (LordToil)lordToil_AssaultColony, false, true);
+			Transition transition = new Transition(lordToil_DefendAndExpandHiveLike, (!aggressive) ? (LordToil)lordToil_DefendHiveAggressively : (LordToil)lordToil_XenomrophAssaultColony, false, true);
 			transition.AddTrigger(new Trigger_PawnHarmed(0.5f, true, null));
 			transition.AddTrigger(new Trigger_PawnLostViolently(false));
 			transition.AddTrigger(new Trigger_Memo(HiveLike.MemoAttackedByEnemy));
@@ -65,27 +75,31 @@ namespace RimWorld
 			transition.AddPostAction(new TransitionAction_EndAllJobs());
 			stateGraph.AddTransition(transition, false);
             
-			Transition transition2 = new Transition(lordToil_DefendAndExpandHive, lordToil_AssaultColony, false, true);
+			Transition transition2 = new Transition(lordToil_DefendAndExpandHiveLike, lordToil_XenomrophAssaultColony, false, true);
 			Transition transition3 = transition2;
-			float chance = 0.5f;
+			float chance = 0.05f;
 			Faction parentFaction = base.Map.ParentFaction;
 			transition3.AddTrigger(new Trigger_PawnHarmed(chance, false, parentFaction));
 			transition2.AddPostAction(new TransitionAction_EndAllJobs());
 			stateGraph.AddTransition(transition2, false);
-			Transition transition4 = new Transition(lordToil_DefendHiveAggressively, lordToil_AssaultColony, false, true);
+
+			Transition transition4 = new Transition(lordToil_DefendHiveAggressively, lordToil_XenomrophAssaultColony, false, true);
 			Transition transition5 = transition4;
 			chance = 0.5f;
 			parentFaction = base.Map.ParentFaction;
 			transition5.AddTrigger(new Trigger_PawnHarmed(chance, false, parentFaction));
 			transition4.AddPostAction(new TransitionAction_EndAllJobs());
 			stateGraph.AddTransition(transition4, false);
-			Transition transition6 = new Transition(lordToil_DefendAndExpandHive, lordToil_DefendAndExpandHive, true, true);
+
+			Transition transition6 = new Transition(lordToil_DefendAndExpandHiveLike, lordToil_DefendAndExpandHiveLike, true, true);
 			transition6.AddTrigger(new Trigger_Memo(HiveLike.MemoDeSpawned));
 			stateGraph.AddTransition(transition6, false);
+
 			Transition transition7 = new Transition(lordToil_DefendHiveAggressively, lordToil_DefendHiveAggressively, true, true);
 			transition7.AddTrigger(new Trigger_Memo(HiveLike.MemoDeSpawned));
 			stateGraph.AddTransition(transition7, false);
-			Transition transition8 = new Transition(lordToil_AssaultColony, lordToil_DefendAndExpandHive, false, true);
+
+			Transition transition8 = new Transition(lordToil_XenomrophAssaultColony, lordToil_DefendAndExpandHiveLike, false, true);
 			transition8.AddSource(lordToil_DefendHiveAggressively);
 			transition8.AddTrigger(new Trigger_TicksPassedWithoutHarmOrMemos(1200, new string[]
 			{

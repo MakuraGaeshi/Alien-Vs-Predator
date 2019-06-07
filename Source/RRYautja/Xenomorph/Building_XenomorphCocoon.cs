@@ -98,6 +98,10 @@ namespace RimWorld
                         {
                             p.health.AddHediff(XenomorphDefOf.RRY_Hediff_Cocooned);
                         }
+                        if (p.Dead)
+                        {
+                            this.Destroy();
+                        }
                     }
                 }
             }
@@ -113,7 +117,7 @@ namespace RimWorld
                         //    Log.Message(string.Format("{0}", cell.GetFirstPawn(this.Map)));
                             if (p.Downed && !p.InBed() && !(p.kindDef.race.defName.Contains("RRY_Xenomorph_")))
                             {
-                                Log.Message(string.Format("{0} tucking", p));
+                            //    Log.Message(string.Format("{0} tucking", p));
                                 p.jobs.Notify_TuckedIntoBed(this);
                                 p.mindState.Notify_TuckedIntoBed();
                             }
@@ -180,7 +184,7 @@ namespace RimWorld
                 ticksSinceOccupied++;
                 if (this.Position.GetFirstPawn(this.Map)!=null && this.Position.GetFirstPawn(this.Map) is Pawn pawn && !pawn.def.defName.Contains("Xenomorph") && pawn.Downed)
                 {
-                    Log.Message(string.Format("{0} found", pawn.LabelShortCap));
+                //    Log.Message(string.Format("{0} found", pawn.LabelShortCap));
                     pawn.jobs.Notify_TuckedIntoBed(this);
 
                 }

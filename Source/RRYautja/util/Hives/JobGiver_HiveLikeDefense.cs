@@ -28,6 +28,8 @@ namespace RimWorld
 		{
 			Job job = base.MeleeAttackJob(enemyTarget);
 			job.attackDoorIfTargetLost = true;
+            job.canBash = true;
+            
 			return job;
 		}
 	}

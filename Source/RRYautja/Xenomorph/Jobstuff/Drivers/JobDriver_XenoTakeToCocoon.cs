@@ -197,23 +197,23 @@ namespace RimWorld
                             }
 
 
-                            Log.Message(string.Format("position: {0}", position));
+                        //    Log.Message(string.Format("position: {0}", position));
                             ThingDef named = XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon;
-                            Log.Message(string.Format("named: {0}", named));
+                        //    Log.Message(string.Format("named: {0}", named));
                             int num = (named.Size.x > named.Size.z) ? named.Size.x : named.Size.z;
-                            Log.Message(string.Format("num: {0}", num));
+                        //    Log.Message(string.Format("num: {0}", num));
                             CellRect mapRect;
                             IntVec3 intVec = CellFinder.RandomClosewalkCellNear(position, this.Map, radius, null);
-                            Log.Message(string.Format("intVec: {0}", intVec));
+                        //    Log.Message(string.Format("intVec: {0}", intVec));
                             mapRect = new CellRect(intVec.x, intVec.z, num, num);
                             while (!IsMapRectClear(mapRect, this.Map))
                             {
                                 intVec = CellFinder.RandomClosewalkCellNear(position, this.Map, radius, null);
-                                Log.Message(string.Format("intVec: {0}", intVec));
+                            //    Log.Message(string.Format("intVec: {0}", intVec));
                                 mapRect = new CellRect(intVec.x, intVec.z, num, num);
                                 radius++;
                             }
-                            Log.Message(string.Format("mapRect: {0}", mapRect));
+                        //    Log.Message(string.Format("mapRect: {0}", mapRect));
                             //    GenPlace.TryPlaceThing(TryMakeCocoon(mapRect, this.Map, named), intVec, this.Map, ThingPlaceMode.Near);
                            // this.pawn.carryTracker.TryDropCarriedThing(position, ThingPlaceMode.Direct, out Thing thing, null);
                            // this.Takee.jobs.Notify_TuckedIntoBed(this.DropBed);

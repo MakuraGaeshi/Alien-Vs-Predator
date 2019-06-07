@@ -66,7 +66,7 @@ namespace RRYautja
                 return (10 * pawn.BodySize) * pawn.Map.glowGrid.GameGlowAt(pawn.Position, false);
             }
         }
-
+        
 
         public override void CompTickRare()
         {
@@ -82,12 +82,10 @@ namespace RRYautja
                 {
                     if (lord == null)
                     {
-#if DEBUG
-                        if (Prefs.DevMode)
+                        if (Prefs.DevMode && selected)
                         {
-                            Log.Message(string.Format("{0} has no lord, looking for lord from {1}", pawn.LabelShort, xenos.Name));
+                        //    Log.Message(string.Format("{0} has no lord, looking for lord from {1}", pawn.LabelShort, xenos.Name));
                         }
-#endif
                         IEnumerable<Lord> lords = pawn.Map.lordManager.lords.Where(x => x.faction.def == xenos.def);
                         if (lords.Count() != 0)
                         {
@@ -95,38 +93,32 @@ namespace RRYautja
                             {
                                 if (l == null)
                                 {
-#if DEBUG
-                                    if (Prefs.DevMode)
+                                    if (Prefs.DevMode && selected)
                                     {
-                                        Log.Message(string.Format("no lord of faction {0} for {1}", xenos.Name, pawn.LabelShort));
+                                    //    Log.Message(string.Format("no lord of faction {0} for {1}", xenos.Name, pawn.LabelShort));
                                     }
-
-#endif
 
                                 }
                                 else
                                 {
-#if DEBUG
-                                    if (Prefs.DevMode)
+                                    if (Prefs.DevMode && selected)
                                     {
-                                        Log.Message(string.Format("{0}: added to Lord: {1}, Cur Duty: {2}", pawn.LabelShort, l, l.LordJob));
+                                    //    Log.Message(string.Format("{0}: added to Lord: {1}, Cur Duty: {2}", pawn.LabelShort, l, l.LordJob));
                                     }
-
-#endif
+                                    
                                     lord = l;
                                     lord.AddPawn(pawn);
+                                    pawn.mindState.duty = lord.ownedPawns.FindAll(x => x.mindState.duty != null && x != pawn).RandomElement().mindState.duty;
                                     break;
                                 }
                             }
                         }
                         else
                         {
-#if DEBUG
-                            if (Prefs.DevMode)
+                            if (Prefs.DevMode && selected)
                             {
-                                Log.Message(string.Format("{2} lords of {0} for {1}", xenos.Name, pawn.LabelShort, lords.Count()));
+                            //    Log.Message(string.Format("{2} lords of {0} for {1}", xenos.Name, pawn.LabelShort, lords.Count()));
                             }
-#endif
                             if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
                             {
                                 CreateNewLord(pawn);
@@ -135,15 +127,17 @@ namespace RRYautja
                     }
                     else
                     {
-#if DEBUG
-                        if (Prefs.DevMode)
+                        if (Prefs.DevMode && selected)
                         {
-                            Log.Message(string.Format("Comp_Xenomorph CompTickRare \n{0} has Lord: {1}, Cur Duty: {2}", pawn.LabelShort, lord.CurLordToil, lord.LordJob));
+                        //    Log.Message(string.Format("Comp_Xenomorph CompTickRare \n{0} has Lord: {1}, Cur Duty: {2}", pawn.LabelShort, lord.CurLordToil, lord.LordJob));
                         }
-#endif
                         if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen && !(pawn.GetLord().LordJob is LordJob_DefendHiveLoc lordjob))
                         {
                             CreateNewLord(pawn);
+                        }
+                        if (pawn.mindState.duty == null)
+                        {
+                            pawn.mindState.duty = lord.ownedPawns.FindAll(x => x.mindState.duty!= null && x != pawn).RandomElement().mindState.duty;
                         }
                     }
                 }
@@ -181,7 +175,7 @@ namespace RRYautja
                 if (InfestationLikeCellFinder.TryFindCell(out c, pawn.Map))
                 {
 #if DEBUG
-                    if (Prefs.DevMode)
+                    if (Prefs.DevMode && selected)
                     {
                         ThingDef td = XenomorphDefOf.RRY_Filth_Slime;
                         GenSpawn.Spawn(td, c, pawn.Map);
@@ -382,11 +376,19 @@ namespace RRYautja
             */
         }
 
+        public Pawn Facehugger
+        {
+            get
+            {
+                return ((Pawn)this.parent);
+            }
+        }
+
         public bool RoyaleHugger
         {
             get
             {
-                return ((Pawn)this.parent).kindDef == RoyaleKindDef;
+                return Facehugger.kindDef == RoyaleKindDef;
             }
         }
 
@@ -414,24 +416,37 @@ namespace RRYautja
         public PawnKindDef HuggerKindDef = XenomorphDefOf.RRY_Xenomorph_FaceHugger;
         public PawnKindDef RoyaleKindDef = XenomorphDefOf.RRY_Xenomorph_RoyaleHugger;
 
-        public int healIntervalTicks = 60;
+        public int healIntervalTicks = 100;
+        public int deathIntervalTicks = 300 * Rand.RangeInclusive(1,5);
         public override void CompTick()
         {
             base.CompTick();
             this.ticksSinceHeal++;
+            this.ticksSinceImpregnation++;
             bool flag = this.ticksSinceHeal > this.healIntervalTicks;
             if (flag)
             {
-                bool flag2 = ((Pawn)base.parent).health.hediffSet.HasNaturallyHealingInjury();
+                bool flag2 = Facehugger.health.hediffSet.HasNaturallyHealingInjury();
                 if (flag2)
                 {
-                    this.ticksSinceHeal = 0;
                     float num = 8f;
-                    Hediff_Injury hediff_Injury = GenCollection.RandomElement<Hediff_Injury>(from x in ((Pawn)base.parent).health.hediffSet.GetHediffs<Hediff_Injury>()
+                    Hediff_Injury hediff_Injury = GenCollection.RandomElement<Hediff_Injury>(from x in Facehugger.health.hediffSet.GetHediffs<Hediff_Injury>()
                                                                                              where HediffUtility.CanHealNaturally(x)
                                                                                              select x);
-                    hediff_Injury.Heal(num * ((Pawn)base.parent).HealthScale * 0.05f);
-                    string text = string.Format("{0} healed.", ((Pawn)base.parent).LabelCap);
+                    hediff_Injury.Heal(num * Facehugger.HealthScale * 0.05f);
+                    string text = string.Format("{0} healed.", Facehugger.LabelCap);
+                }
+                if (Impregnations>=maxImpregnations)
+                {
+                    bool flag3 = this.ticksSinceImpregnation > this.deathIntervalTicks;
+                    if (flag3)
+                    {
+                        this.ticksSinceImpregnation = 0;
+                        if (Rand.Chance(0.5f))
+                        {
+                            Facehugger.Kill(null);
+                        }
+                    }
                 }
             }
         }
@@ -449,6 +464,7 @@ namespace RRYautja
         }
         public PawnKindDef host;
         public int ticksSinceHeal;
+        public int ticksSinceImpregnation;
     }
     // ---------------------------------------------------------------------------
     public class CompProperties_Neomorph : CompProperties

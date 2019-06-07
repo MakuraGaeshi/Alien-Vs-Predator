@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RRYautja;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Verse;
@@ -12,7 +13,7 @@ namespace RimWorld
         public FactionDef Faction;
         public ThingDef TunnelDef;
         public List<PawnKindDef> PawnKinds = new List<PawnKindDef>();
-        public float maxSpawnPointsPerHive = 2550f;
+        public float maxSpawnPointsPerHive = 550f;
         public float initalSpawnPointsPerHive = 250f;
     }
     // Token: 0x020006EC RID: 1772
@@ -57,7 +58,7 @@ namespace RimWorld
         {
             get
             {
-                if (Def.PawnKinds.Count>0)
+                if (Def.PawnKinds.Count > 0)
                 {
                     PawnKinds = Def.PawnKinds;
                 }
@@ -66,7 +67,7 @@ namespace RimWorld
                     var list = (from def in DefDatabase<PawnKindDef>.AllDefs
                                 where ((def.defaultFactionType == OfFaction.def && def.defaultFactionType != null) || (def.defaultFactionType == null && OfFaction.def.pawnGroupMakers.Any(pgm => pgm.options.Any(opt => opt.kind == def) && pgm.kindDef != PawnGroupKindDefOf.Trader && pgm.kindDef != PawnGroupKindDefOf.Peaceful))) && def.isFighter
                                 select def).ToList();
-                    if (list.Count>0)
+                    if (list.Count > 0)
                     {
                         PawnKinds = list;
                     }
@@ -82,7 +83,7 @@ namespace RimWorld
         {
             get
             {
-                return Def.maxSpawnPointsPerHive;
+                return Def.maxSpawnPointsPerHive + (Def.maxSpawnPointsPerHive * childHiveLikesCount);
             }
             set
             {
@@ -95,16 +96,45 @@ namespace RimWorld
         {
             get
             {
-                return Def.initalSpawnPointsPerHive;
+                return Def.initalSpawnPointsPerHive + (Def.initalSpawnPointsPerHive * childHiveLikesCount);
             }
         }
         public List<PawnKindDef> PawnKinds = new List<PawnKindDef>();
         // Token: 0x170005CD RID: 1485
         // (get) Token: 0x06002670 RID: 9840 RVA: 0x00123F94 File Offset: 0x00122394
-        private Lord Lord
+
+        public List<HiveLike> childHiveLikes
+        {
+            get
+            {
+                List<HiveLike> blist = new List<HiveLike>();
+                foreach (var item in XenomorphUtil.SpawnedHivelikes(Map))
+                {
+                    blist.Add((HiveLike)item);
+                }
+                return blist.FindAll(x => x.parentHiveLike == this);
+            }
+        }
+
+        public int childHiveLikesCount
+        {
+            get
+            {
+                return childHiveLikes.Count;
+            }
+        }
+
+        public Lord Lord
 		{
 			get
 			{
+                if (parentHiveLike!=null)
+                {
+                    if (parentHiveLike.Lord!=null)
+                    {
+                        return parentHiveLike.Lord;
+                    }
+                }
 				Predicate<Pawn> hasDefendHiveLord = delegate(Pawn x)
 				{
 					Lord lord = x.GetLord();
@@ -312,15 +342,16 @@ namespace RimWorld
 			Scribe_Values.Look<int>(ref this.nextPawnSpawnTick, "nextPawnSpawnTick", 0, false);
 			Scribe_Collections.Look<Pawn>(ref this.spawnedPawns, "spawnedPawns", LookMode.Reference, new object[0]);
 			Scribe_Values.Look<bool>(ref this.caveColony, "caveColony", false, false);
-			Scribe_Values.Look<bool>(ref this.canSpawnPawns, "canSpawnPawns", true, false);
-			if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            Scribe_Values.Look<bool>(ref this.canSpawnPawns, "canSpawnPawns", true, false);
+            Scribe_References.Look<HiveLike>(ref this.parentHiveLike, "parentHiveLike");
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
 			{
 				this.spawnedPawns.RemoveAll((Pawn x) => x == null);
 			}
 		}
-
-		// Token: 0x0600267B RID: 9851 RVA: 0x00124448 File Offset: 0x00122848
-		private void Activate()
+        public HiveLike parentHiveLike;
+        // Token: 0x0600267B RID: 9851 RVA: 0x00124448 File Offset: 0x00122848
+        private void Activate()
 		{
 			this.active = true;
 			this.SpawnInitialPawns();

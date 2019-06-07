@@ -117,7 +117,11 @@
 					  <tagToGive>Idle</tagToGive>
 					  <subNodes>
 						<!-- Hunt -->
-						<li Class="JobGiver_FacehuggerHunt" />
+						<li Class="ThinkNode_ConditionalFacehuggerFertile">
+						  <subNodes>
+							<li Class="JobGiver_FacehuggerHunt" />
+						  </subNodes>
+						</li>
 						<!-- Exit -->
 						<li Class="JobGiver_XenomorphFlee" />
 						<!-- Wander -->

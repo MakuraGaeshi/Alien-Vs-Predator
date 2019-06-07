@@ -316,7 +316,7 @@ namespace RimWorld
                     building_XenomorphCocoon.Rotation = Rot4.North;
                 }
             }
-            Log.Message(string.Format("Rotation: {0}", building_XenomorphCocoon.Rotation));
+        //    Log.Message(string.Format("Rotation: {0}", building_XenomorphCocoon.Rotation));
             return building_XenomorphCocoon;
         }
 

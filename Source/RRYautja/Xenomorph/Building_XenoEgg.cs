@@ -21,7 +21,7 @@ namespace RRYautja
                     if (p.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
                     {
 #if DEBUG
-                        Log.Message(string.Format("Queen found"));
+                    //    Log.Message(string.Format("Queen found"));
 #endif
                         queenPresent = true;
                         break;

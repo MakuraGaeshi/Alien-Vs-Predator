@@ -112,7 +112,7 @@ namespace RRYautja
             int halfHP = this.MaxHitPoints / 2;
             int quarterHP = this.MaxHitPoints / 4;
             int currentHP = this.HitPoints;
-            Log.Message(string.Format("{1} < {2} = {0}", currentHP < quarterHP, currentHP , quarterHP));
+        //    Log.Message(string.Format("{1} < {2} = {0}", currentHP < quarterHP, currentHP , quarterHP));
             if (currentHP <quarterHP && !this.contentsKnown && this.innerContainer.Count > 0 && dinfo.Def.harmsHealth && dinfo.Instigator != null && dinfo.Instigator.Faction != null)
             {
                 bool flag = false;

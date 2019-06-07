@@ -7,9 +7,16 @@ namespace RimWorld
 {
 	// Token: 0x020000A5 RID: 165
 	public class JobGiver_WanderHiveLike : JobGiver_Wander
-	{
-		// Token: 0x0600041F RID: 1055 RVA: 0x0002CD08 File Offset: 0x0002B108
-		public JobGiver_WanderHiveLike()
+    {
+        // Token: 0x0600041A RID: 1050 RVA: 0x0002C918 File Offset: 0x0002AD18
+        public override ThinkNode DeepCopy(bool resolve = true)
+        {
+            JobGiver_WanderHiveLike jobGiver_WanderHiveLike = (JobGiver_WanderHiveLike)base.DeepCopy(resolve);
+            jobGiver_WanderHiveLike.wanderRadius = this.wanderRadius;
+            return jobGiver_WanderHiveLike;
+        }
+        // Token: 0x0600041F RID: 1055 RVA: 0x0002CD08 File Offset: 0x0002B108
+        public JobGiver_WanderHiveLike()
 		{
 			this.wanderRadius = 7.5f;
 			this.ticksBetweenWandersRange = new IntRange(125, 200);

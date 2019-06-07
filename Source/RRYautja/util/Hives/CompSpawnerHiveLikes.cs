@@ -158,6 +158,7 @@ namespace RimWorld
             if (this.parent is HiveLike hivelike)
             {
                 newHiveLike.active = hivelike.active;
+                newHiveLike.parentHiveLike = hivelike.parentHiveLike != null ? hivelike.parentHiveLike: hivelike;
             }
             GenSpawn.Spawn(newHiveLike.Def.TunnelDef, loc, this.parent.Map, WipeMode.FullRefund);
             this.CalculateNextHiveLikeSpawnTick();

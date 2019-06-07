@@ -12,6 +12,7 @@ namespace RimWorld
         // Token: 0x060005B7 RID: 1463 RVA: 0x00037A28 File Offset: 0x00035E28
         protected override Job TryGiveJob(Pawn pawn)
         {
+            Comp_Facehugger _Facehugger = pawn.TryGetComp<Comp_Facehugger>();
             bool selected = Find.Selector.SingleSelectedThing == pawn;
             if (pawn.TryGetAttackVerb(null, false) == null)
             {
@@ -19,7 +20,7 @@ namespace RimWorld
             }
             Pawn pawn2 = FindPawnTarget(pawn);
         //    Pawn pawn2 = BestPawnToHuntForPredator(pawn, forceScanWholeMap);
-            if (pawn2 != null && XenomorphUtil.isInfectablePawn(pawn2) && pawn.CanReach(pawn2, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.ByPawn))
+            if (pawn2 != null && _Facehugger.Impregnations<_Facehugger.maxImpregnations && XenomorphUtil.isInfectablePawn(pawn2) && pawn.CanReach(pawn2, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.ByPawn))
             {
 
 #if DEBUG

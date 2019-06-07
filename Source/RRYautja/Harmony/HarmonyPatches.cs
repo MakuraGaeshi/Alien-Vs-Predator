@@ -485,7 +485,7 @@ namespace RRYautja
 #if DEBUG
                 if (Prefs.DevMode)
                 {
-                    Log.Message(string.Format("Xenomorph spawning"));
+                //    Log.Message(string.Format("Xenomorph spawning"));
                 }
 #endif
                 if (request.KindDef==XenomorphDefOf.RRY_Xenomorph_Queen)
@@ -493,7 +493,7 @@ namespace RRYautja
 #if DEBUG
                     if (Prefs.DevMode)
                     {
-                        Log.Message(string.Format("trying to spawn Xenomorph Queen, checking {0} pawns", Find.AnyPlayerHomeMap.mapPawns.AllPawns.Count()));
+                    //    Log.Message(string.Format("trying to spawn Xenomorph Queen, checking {0} pawns", Find.AnyPlayerHomeMap.mapPawns.AllPawns.Count()));
                     }
 #endif
                     bool QueenPresent = false;
@@ -502,7 +502,7 @@ namespace RRYautja
                     {
                         if (p.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
                         {
-                            Log.Message(string.Format("Queen Found"));
+                        //    Log.Message(string.Format("Queen Found"));
                             QueenPresent = true;
                             break;
                         }
@@ -512,7 +512,7 @@ namespace RRYautja
 #if DEBUG
                         if (Prefs.DevMode)
                         {
-                            Log.Message(string.Format("Queen Present: {0}", QueenPresent));
+                        //    Log.Message(string.Format("Queen Present: {0}", QueenPresent));
                         }
 #endif
                         request = new PawnGenerationRequest(XenomorphDefOf.RRY_Xenomorph_Warrior, request.Faction, request.Context, -1, true, false, false, false, false, true, 0f, fixedGender: Gender.None, allowGay: false);

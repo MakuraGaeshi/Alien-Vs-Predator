@@ -39,7 +39,7 @@ namespace RimWorld
                 result = false;
             }
 #if DEBUG
-            Log.Message(string.Format("{0}", result));
+        //    Log.Message(string.Format("{0}", result));
 #endif
             return result;
         }

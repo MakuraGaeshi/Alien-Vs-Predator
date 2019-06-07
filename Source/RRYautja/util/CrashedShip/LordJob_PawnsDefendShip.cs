@@ -53,9 +53,9 @@ namespace RimWorld
             }
             LordToil_DefendPoint lordToil_DefendPoint = new LordToil_DefendPoint(this.defSpot, this.defendRadius);
             stateGraph.StartingToil = lordToil_DefendPoint;
-            LordToil_AssaultColony lordToil_AssaultColony = new LordToil_AssaultColony(false);
+            LordToil_XenomrophAssaultColony lordToil_AssaultColony = new LordToil_XenomrophAssaultColony(false);
             stateGraph.AddToil(lordToil_AssaultColony);
-            LordToil_AssaultColony lordToil_AssaultColony2 = new LordToil_AssaultColony(false);
+            LordToil_XenomrophAssaultColony lordToil_AssaultColony2 = new LordToil_XenomrophAssaultColony(false);
             stateGraph.AddToil(lordToil_AssaultColony2);
             Transition transition = new Transition(lordToil_DefendPoint, lordToil_AssaultColony2, false, true);
             transition.AddSource(lordToil_AssaultColony);

@@ -42,7 +42,7 @@
    
   <ThingDef ParentName="BaseFilth">
     <defName>RRY_Filth_Slime</defName>
-    <label>slime</label>
+    <label>xenomorph slime</label>
     <statBases>
       <Beauty>-25</Beauty>
       <Cleanliness>-5</Cleanliness>

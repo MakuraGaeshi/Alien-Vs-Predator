@@ -199,12 +199,12 @@ namespace RRYautja
                 if (timer>=600&&!isImpregnated)
                 {
 #if DEBUG
-                    Log.Message("pre impreg checking Severity");
+                //    Log.Message("pre impreg checking Severity");
 #endif
                     if (Rand.Chance(this.parent.Severity))
                     {
 #if DEBUG
-                        Log.Message("adding embryo");
+                    //    Log.Message("adding embryo");
 #endif
                         parent.pawn.health.AddHediff(heDiffDeff, parent.pawn.RaceProps.body.corePart);
                         Hediff hediff = parent.pawn.health.hediffSet.GetFirstHediffOfDef(heDiffDeff);
@@ -217,7 +217,7 @@ namespace RRYautja
                             isImpregnated = true;
                             previousImpregnations++;
 #if DEBUG
-                             Log.Message("is Impregnated", isImpregnated);
+                         //    Log.Message("is Impregnated", isImpregnated);
 #endif
 
                         }
@@ -231,12 +231,12 @@ namespace RRYautja
                 if (timer2 >= 600)
                 {
 #if DEBUG
-                     Log.Message("post impreg checking Severity");
+                 //    Log.Message("post impreg checking Severity");
 #endif
                     if (Rand.Chance(this.parent.Severity))
                     {
 #if DEBUG
-                         Log.Message("removing Facehugger");
+                     //    Log.Message("removing Facehugger");
 #endif
                         Hediff heDiff = base.Pawn.health.hediffSet.GetFirstHediffOfDef(base.parent.def);
                         base.Pawn.health.hediffSet.hediffs.Remove(heDiff);

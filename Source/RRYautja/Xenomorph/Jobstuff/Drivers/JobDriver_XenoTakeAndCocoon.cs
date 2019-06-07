@@ -11,14 +11,6 @@ namespace RimWorld
     {
         // Token: 0x170000B6 RID: 182
         // (get) Token: 0x06000371 RID: 881 RVA: 0x0001EEFC File Offset: 0x0001D2FC
-        protected Thing Item
-        {
-            get
-            {
-                return this.job.GetTarget(TargetIndex.A).Thing;
-            }
-        }
-
         protected Pawn Takee
         {
             get
@@ -33,7 +25,7 @@ namespace RimWorld
         public override void Notify_Starting()
         {
             base.Notify_Starting();
-            this.useDuration = 300;
+            this.useDuration = (int)(300 * Takee.BodySize);
         }
 
         // Token: 0x06000372 RID: 882 RVA: 0x0001EF20 File Offset: 0x0001D320
@@ -42,6 +34,8 @@ namespace RimWorld
             Pawn pawn = this.pawn;
             LocalTargetInfo target = this.job.targetA;
             Job job = this.job;
+            this.pawn.ReserveAsManyAsPossible(this.job.GetTargetQueue(TargetIndex.A), this.job, 1, -1, null);
+            this.pawn.ReserveAsManyAsPossible(this.job.GetTargetQueue(TargetIndex.B), this.job, 1, -1, null);
             return pawn.Reserve(target, job, 1, -1, null, errorOnFailed);
         }
 
@@ -52,6 +46,10 @@ namespace RimWorld
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
             yield return Toils_Haul.StartCarryThing(TargetIndex.A, false, true, false);
             Toil carryToCell = Toils_Haul.CarryHauledThingToCell(TargetIndex.B);
+            if (TargetB.Cell.GetFirstBuilding(Map)!=null)
+            {
+             //   TargetB.Cell = GenAdj.AdjacentCells8WayRandomized();
+            }
             yield return carryToCell;
             yield return new Toil
             {
@@ -65,10 +63,12 @@ namespace RimWorld
                 defaultCompleteMode = ToilCompleteMode.Instant
             };
             yield return Toils_Haul.PlaceHauledThingInCell(TargetIndex.B, carryToCell, false);
-            Toil prepare = Toils_General.Wait(this.useDuration, TargetIndex.None);
-            prepare.WithProgressBarToilDelay(TargetIndex.A, false, -0.5f);
+            Toil prepare = Toils_General.Wait(this.useDuration, TargetIndex.A);
+            prepare.NPCWithProgressBarToilDelay(TargetIndex.A, false, -0.5f);
             prepare.FailOnDespawnedNullOrForbidden(TargetIndex.A);
-            prepare.FailOnCannotTouch(TargetIndex.A, PathEndMode.Touch);
+            prepare.FailOnCannotTouch(TargetIndex.A, PathEndMode.ClosestTouch);
+            prepare.WithEffect(EffecterDefOf.Vomit, TargetIndex.A);
+            prepare.PlaySustainerOrSound(() => SoundDefOf.Vomit);
             yield return prepare;
             Toil use = new Toil();
             use.initAction = delegate ()

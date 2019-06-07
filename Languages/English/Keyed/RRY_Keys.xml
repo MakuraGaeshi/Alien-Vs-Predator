@@ -43,4 +43,8 @@
   <RRY_Remove_Gauntlet>Surgically Remove Gauntlet</RRY_Remove_Gauntlet>
   <BloodStatus_Unblooded>{0}</BloodStatus_Unblooded>
   <BloodStatus_Unmarked>{0}</BloodStatus_Unmarked>
+  <!-- Hives -->
+  <RRY_MessageHiveReproduced>Another xenomorph hive has been dug.</RRY_MessageHiveReproduced>
+  <RRY_HiveReproducesIn>Dig new tunnel in</RRY_HiveReproducesIn>
+  <RRY_DormantHiveNotReproducing>Dormant: Not digging.</RRY_DormantHiveNotReproducing>
 </LanguageData>

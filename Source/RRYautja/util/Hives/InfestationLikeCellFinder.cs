@@ -11,24 +11,68 @@ namespace RimWorld
         // Token: 0x0600368B RID: 13963 RVA: 0x001A0E1C File Offset: 0x0019F21C
         public static bool TryFindCell(out IntVec3 cell, Map map)
         {
-            //Log.Message(string.Format("Tick: 1"));
             InfestationLikeCellFinder.CalculateLocationCandidates(map);
             if (!InfestationLikeCellFinder.locationCandidates.TryRandomElementByWeight((InfestationLikeCellFinder.LocationCandidate x) => x.score, out LocationCandidate locationCandidate))
             {
                 cell = IntVec3.Invalid;
-                //Log.Message(string.Format("TryFindCell: {0} From !InfestationLikeCellFinder.TryFindCell(out loc, map)", cell));
+            //    Log.Message(string.Format("TryFindCell: {0} From !InfestationLikeCellFinder.TryFindCell(out loc, map)", cell));
                 return false;
             }
+            cell = CellFinder.FindNoWipeSpawnLocNear(locationCandidate.cell, map, XenomorphDefOf.RRY_XenomorphHive, Rot4.North, 2, (IntVec3 x) => InfestationLikeCellFinder.GetScoreAt(x, map) > 0f && x.GetFirstThing(map, XenomorphDefOf.RRY_XenomorphHive) == null && x.GetFirstThing(map, OGHiveLikeDefOf.TunnelHiveLikeSpawner) == null && x.GetFirstThing(map, XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon) == null && x.GetFirstThing(map, XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon) == null);
 #if DEBUG
             if (Prefs.DevMode)
             {
                 ThingDef td = XenomorphDefOf.RRY_Filth_Slime;
-                GenSpawn.Spawn(td, locationCandidate.cell, map);
-                Find.LetterStack.ReceiveLetter(string.Format("InfestationLike Cell Finder"), string.Format("locationCandidate: {0} ", locationCandidate.cell), LetterDefOf.NegativeEvent, locationCandidate.cell.GetFirstThing(map, td), null, null);
+                GenSpawn.Spawn(td, cell, map);
+                Find.LetterStack.ReceiveLetter(string.Format("InfestationLike Cell Finder"), string.Format("locationCandidate: {0} ", cell), LetterDefOf.NegativeEvent, cell.GetFirstThing(map, td), null, null);
             }
 #endif
-            cell = CellFinder.FindNoWipeSpawnLocNear(locationCandidate.cell, map, OGHiveLikeDefOf.HiveLike, Rot4.North, 5, (IntVec3 x) => InfestationLikeCellFinder.GetScoreAt(x, map) > 0f && x.GetFirstThing(map, OGHiveLikeDefOf.HiveLike) == null && x.GetFirstThing(map, OGHiveLikeDefOf.TunnelHiveLikeSpawner) == null);
-            // 
+            return true;
+        }
+
+        // Token: 0x0600368B RID: 13963 RVA: 0x001A0E1C File Offset: 0x0019F21C
+        public static bool TryFindCell(out IntVec3 cell, Map map, bool allowFogged = true)
+        {
+            InfestationLikeCellFinder.CalculateLocationCandidates(map, allowFogged);
+            if (!InfestationLikeCellFinder.locationCandidates.TryRandomElementByWeight((InfestationLikeCellFinder.LocationCandidate x) => x.score, out LocationCandidate locationCandidate))
+            {
+                cell = IntVec3.Invalid;
+            //    Log.Message(string.Format("TryFindCell: {0} From !InfestationLikeCellFinder.TryFindCell(out loc, map)", cell));
+                return false;
+            }
+            cell = CellFinder.FindNoWipeSpawnLocNear(locationCandidate.cell, map, XenomorphDefOf.RRY_XenomorphHive, Rot4.North, 2, (IntVec3 x) => InfestationLikeCellFinder.GetScoreAt(x, map) > 0f && x.GetFirstThing(map, XenomorphDefOf.RRY_XenomorphHive) == null && x.GetFirstThing(map, OGHiveLikeDefOf.TunnelHiveLikeSpawner) == null && x.GetFirstThing(map, XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon) == null && x.GetFirstThing(map, XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon) == null);
+#if DEBUG
+            if (Prefs.DevMode)
+            {
+                ThingDef td = XenomorphDefOf.RRY_Filth_Slime;
+                GenSpawn.Spawn(td, cell, map);
+                Find.LetterStack.ReceiveLetter(string.Format("InfestationLike Cell Finder"), string.Format("locationCandidate: {0} ", cell), LetterDefOf.NegativeEvent, cell.GetFirstThing(map, td), null, null);
+            }
+#endif
+            return true;
+        }
+
+        // Token: 0x0600368B RID: 13963 RVA: 0x001A0E1C File Offset: 0x0019F21C
+        public static bool TryFindCell(out IntVec3 cell, out IntVec3 locationC, Map map, bool allowFogged = true)
+        {
+            InfestationLikeCellFinder.CalculateLocationCandidates(map, allowFogged);
+            if (!InfestationLikeCellFinder.locationCandidates.TryRandomElementByWeight((InfestationLikeCellFinder.LocationCandidate x) => x.score, out LocationCandidate locationCandidate))
+            {
+                cell = IntVec3.Invalid;
+                locationC = IntVec3.Invalid;
+            //    Log.Message(string.Format("TryFindCell: {0} From !InfestationLikeCellFinder.TryFindCell(out loc, map)", cell));
+                return false;
+            }
+            locationC = locationCandidate.cell;
+            cell = CellFinder.FindNoWipeSpawnLocNear(locationCandidate.cell, map, XenomorphDefOf.RRY_XenomorphHive, Rot4.North, 2, (IntVec3 x) => InfestationLikeCellFinder.GetScoreAt(x, map) > 0f && x.GetFirstThing(map, XenomorphDefOf.RRY_XenomorphHive) == null && x.GetFirstThing(map, OGHiveLikeDefOf.TunnelHiveLikeSpawner) == null && x.GetFirstThing(map, XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon) == null && x.GetFirstThing(map, XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon) == null);
+#if DEBUG
+            if (Prefs.DevMode)
+            {
+                ThingDef td = XenomorphDefOf.RRY_Filth_Slime;
+                GenSpawn.Spawn(td, cell, map);
+                Find.LetterStack.ReceiveLetter(string.Format("InfestationLike Cell Finder"), string.Format("locationCandidate: {0} ", cell), LetterDefOf.NegativeEvent, cell.GetFirstThing(map, td), null, null);
+            }
+#endif
             return true;
         }
 
@@ -43,12 +87,11 @@ namespace RimWorld
             {
                 return 0f;
             }
-            /*
+
             if (cell.Fogged(map))
             {
                 return 0f;
             }
-            */
             if (InfestationLikeCellFinder.CellHasBlockingThings(cell, map))
             {
                 return 0f;
@@ -67,7 +110,71 @@ namespace RimWorld
                 return 0f;
             }
             float temperature = cell.GetTemperature(map);
-            if (temperature < -17f)
+            if (temperature < -40f)
+            {
+                return 0f;
+            }
+            float mountainousnessScoreAt = InfestationLikeCellFinder.GetMountainousnessScoreAt(cell, map);
+            if (mountainousnessScoreAt < 0.17f)
+            {
+                return 0f;
+            }
+            int num = InfestationLikeCellFinder.StraightLineDistToUnroofed(cell, map);
+            if (!InfestationLikeCellFinder.regionsDistanceToUnroofed.TryGetValue(region, out float num2))
+            {
+                num2 = (float)num * 1.15f;
+            }
+            else
+            {
+                num2 = Mathf.Min(num2, (float)num * 4f);
+            }
+            num2 = Mathf.Pow(num2, 1.55f);
+            float num3 = Mathf.InverseLerp(0f, 12f, (float)num);
+            float num4 = Mathf.Lerp(1f, 0.18f, map.glowGrid.GameGlowAt(cell, false));
+            float num5 = 1f - Mathf.Clamp(InfestationLikeCellFinder.DistToBlocker(cell, map) / 11f, 0f, 0.6f);
+            float num6 = Mathf.InverseLerp(-17f, -7f, temperature);
+            float num7 = num2 * num3 * num5 * mountainousnessScoreAt * num4 * num6;
+            num7 = Mathf.Pow(num7, 1.2f);
+            if (num7 < 7.5f)
+            {
+                return 0f;
+            }
+            return num7;
+        }
+        // Token: 0x0600368C RID: 13964 RVA: 0x001A0EAC File Offset: 0x0019F2AC
+        private static float GetScoreAt(IntVec3 cell, Map map, bool allowFogged)
+        {
+            if ((float)InfestationLikeCellFinder.distToColonyBuilding[cell] < 20f)
+            {
+                return 0f;
+            }
+            if (!cell.Walkable(map))
+            {
+                return 0f;
+            }
+            if (cell.Fogged(map) && !allowFogged)
+            {
+                return 0f;
+            }
+            if (InfestationLikeCellFinder.CellHasBlockingThings(cell, map))
+            {
+                return 0f;
+            }
+            if (!cell.Roofed(map) || !cell.GetRoof(map).isThickRoof)
+            {
+                return 0f;
+            }
+            Region region = cell.GetRegion(map, RegionType.Set_Passable);
+            if (region == null)
+            {
+                return 0f;
+            }
+            if (InfestationLikeCellFinder.closedAreaSize[cell] < 2)
+            {
+                return 0f;
+            }
+            float temperature = cell.GetTemperature(map);
+            if (temperature < -40f)
             {
                 return 0f;
             }
@@ -174,6 +281,27 @@ namespace RimWorld
                 {
                     IntVec3 cell = new IntVec3(j, 0, i);
                     float scoreAt = InfestationLikeCellFinder.GetScoreAt(cell, map);
+                    if (scoreAt > 0f)
+                    {
+                        InfestationLikeCellFinder.locationCandidates.Add(new InfestationLikeCellFinder.LocationCandidate(cell, scoreAt));
+                    }
+                }
+            }
+        }
+
+        // Token: 0x0600368E RID: 13966 RVA: 0x001A127C File Offset: 0x0019F67C
+        private static void CalculateLocationCandidates(Map map, bool allowFogged)
+        {
+            InfestationLikeCellFinder.locationCandidates.Clear();
+            InfestationLikeCellFinder.CalculateTraversalDistancesToUnroofed(map);
+            InfestationLikeCellFinder.CalculateClosedAreaSizeGrid(map);
+            InfestationLikeCellFinder.CalculateDistanceToColonyBuildingGrid(map);
+            for (int i = 0; i < map.Size.z; i++)
+            {
+                for (int j = 0; j < map.Size.x; j++)
+                {
+                    IntVec3 cell = new IntVec3(j, 0, i);
+                    float scoreAt = InfestationLikeCellFinder.GetScoreAt(cell, map, allowFogged); // allowFogged
                     if (scoreAt > 0f)
                     {
                         InfestationLikeCellFinder.locationCandidates.Add(new InfestationLikeCellFinder.LocationCandidate(cell, scoreAt));

@@ -79,17 +79,17 @@ namespace RRYautja
             {
                 if (__instance is Building_XenoEgg)
                 {
-                    Log.Message(string.Format("Building_XenoEgg_get_DefaultGraphic_Patch\nis Xeno Egg"));
+                //    Log.Message(string.Format("Building_XenoEgg_get_DefaultGraphic_Patch\nis Xeno Egg"));
                     CompXenoHatcher xenoHatcher = __instance.TryGetComp<CompXenoHatcher>();
                     if (xenoHatcher!=null && xenoHatcher.royalProgress>0f)
                     {
-                        Log.Message(string.Format("Building_XenoEgg_get_DefaultGraphic_Patch\nFound CompXenoHatcher"));
+                    //    Log.Message(string.Format("Building_XenoEgg_get_DefaultGraphic_Patch\nFound CompXenoHatcher"));
                         float num = (0.7f * xenoHatcher.royalProgress);
-                        Log.Message(string.Format("Building_XenoEgg_get_DefaultGraphic_Patch\nnum : {0}", num));
+                    //    Log.Message(string.Format("Building_XenoEgg_get_DefaultGraphic_Patch\nnum : {0}", num));
                         num += __instance.def.graphicData.drawSize.x;
-                        Log.Message(string.Format("Building_XenoEgg_get_DefaultGraphic_Patch\nnum : {0}", num));
+                    //    Log.Message(string.Format("Building_XenoEgg_get_DefaultGraphic_Patch\nnum : {0}", num));
                         value = __result.GetCopy(new Vector2((num), (num)));
-                        Log.Message(string.Format("Building_XenoEgg_get_DefaultGraphic_Patch\value.drawSize : {0}", value.drawSize));
+                    //    Log.Message(string.Format("Building_XenoEgg_get_DefaultGraphic_Patch\value.drawSize : {0}", value.drawSize));
                         __result = value;
                         
                     }
@@ -902,38 +902,38 @@ namespace RRYautja
                 if (parms.faction != null && ((parms.faction.leader != null && parms.faction.leader.kindDef.race == YautjaDefOf.RRY_Alien_Yautja) || (parms.faction.def.basicMemberKind != null && parms.faction.def.basicMemberKind.race == YautjaDefOf.RRY_Alien_Yautja)))
                 {
 #if DEBUG
-                    Log.Message(string.Format("PreExecute Yautja Raid"));
+                //    Log.Message(string.Format("PreExecute Yautja Raid"));
 #endif
 
                     if ((parms.target as Map).GameConditionManager.ConditionIsActive(GameConditionDefOf.HeatWave))
                     {
 #if DEBUG
-                        Log.Message(string.Format("PreExecute During Heatwave, originally {0} points", parms.points));
+                    //    Log.Message(string.Format("PreExecute During Heatwave, originally {0} points", parms.points));
 #endif
                         parms.points *= 2;
                         parms.raidArrivalMode = YautjaDefOf.EdgeWalkInGroups;
 
 #if DEBUG
-                        Log.Message(string.Format("PreExecute During Heatwave, modified {0} points", parms.points));
+                    //    Log.Message(string.Format("PreExecute During Heatwave, modified {0} points", parms.points));
 #endif
                     }
                 }
                 if (parms.faction != null && (parms.faction.def == XenomorphDefOf.RRY_Xenomorph))
                 {
 #if DEBUG
-                    Log.Message(string.Format("PreExecute Xenomorph Raid CurSkyGlow: {0}", (parms.target as Map).skyManager.CurSkyGlow));
+                //    Log.Message(string.Format("PreExecute Xenomorph Raid CurSkyGlow: {0}", (parms.target as Map).skyManager.CurSkyGlow));
 #endif
 
                     if ((parms.target as Map).skyManager.CurSkyGlow <= 0.5f)
                     {
 #if DEBUG
-                        Log.Message(string.Format("PreExecute During Nighttime, originally {0} points", parms.points));
+                    //    Log.Message(string.Format("PreExecute During Nighttime, originally {0} points", parms.points));
 #endif
                         parms.points *= 2;
                         parms.raidArrivalMode = YautjaDefOf.EdgeWalkInGroups;
 
 #if DEBUG
-                        Log.Message(string.Format("PreExecute During Nighttime, modified {0} points", parms.points));
+                    //    Log.Message(string.Format("PreExecute During Nighttime, modified {0} points", parms.points));
 #endif
                     }
                 }
@@ -1016,7 +1016,7 @@ namespace RRYautja
                 if (parms.faction != null && ((parms.faction.leader != null && parms.faction.leader.kindDef.race == YautjaDefOf.RRY_Alien_Yautja) || (parms.faction.def.basicMemberKind != null && parms.faction.def.basicMemberKind.race == YautjaDefOf.RRY_Alien_Yautja)))
                 {
 #if DEBUG
-                    Log.Message(string.Format("PostGetLetterText Yautja Raid"));
+                //    Log.Message(string.Format("PostGetLetterText Yautja Raid"));
 #endif
 
                     if ((parms.target as Map).GameConditionManager.ConditionIsActive(GameConditionDefOf.HeatWave))
@@ -1030,7 +1030,7 @@ namespace RRYautja
                 if (parms.faction != null && (parms.faction.def == XenomorphDefOf.RRY_Xenomorph))
                 {
 #if DEBUG
-                    Log.Message(string.Format("PostGetLetterText Xenomorph Raid CurSkyGlow: {0}", (parms.target as Map).skyManager.CurSkyGlow));
+                //    Log.Message(string.Format("PostGetLetterText Xenomorph Raid CurSkyGlow: {0}", (parms.target as Map).skyManager.CurSkyGlow));
 #endif
 
                     if ((parms.target as Map).skyManager.CurSkyGlow <= 0.5f)
@@ -1055,8 +1055,8 @@ namespace RRYautja
         public static bool PreExecute(IncidentWorker_WandererJoin __instance, ref IncidentParms parms ,bool __result)
         { // request parms.faction.def
 
-            Log.Message(string.Format("Original race: {0}", __instance.def.pawnKind.race));
-            Log.Message(string.Format("Original faction: {0}", parms.faction.def));
+        //    Log.Message(string.Format("Original race: {0}", __instance.def.pawnKind.race));
+        //    Log.Message(string.Format("Original faction: {0}", parms.faction.def));
 
 
 
@@ -1077,12 +1077,12 @@ namespace RRYautja
         public static bool preCheckMakeInfection(HediffComp_Infecter __instance)
         {
 #if DEBUG
-            Log.Message(string.Format("trying to add an infection to {0}'s wounded {1}", __instance.Pawn, __instance.parent.Part));
+        //    Log.Message(string.Format("trying to add an infection to {0}'s wounded {1}", __instance.Pawn, __instance.parent.Part));
 #endif
             if (__instance.Pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned)|| (__instance.Pawn.InBed() && __instance.Pawn.CurrentBed() is Building_XenomorphCocoon))
             {
 #if DEBUG
-                Log.Message(string.Format("{0} protected from infection", __instance.Pawn));
+            //    Log.Message(string.Format("{0} protected from infection", __instance.Pawn));
 #endif
                 return false;
             }
@@ -1108,7 +1108,7 @@ namespace RRYautja
             if (absorbed)
             {
 #if DEBUG
-                Log.Message(string.Format("absorbed"));
+            //    Log.Message(string.Format("absorbed"));
 #endif
             }
             return !absorbed;
@@ -1127,7 +1127,7 @@ namespace RRYautja
             float num = __instance.CurrentEnergyGainRate();
             float num2 = __instance.CurrentStoredEnergy();
             bool active = !__instance.Map.gameConditionManager.ConditionIsActive(GameConditionDefOf.SolarFlare);
-            Log.Message(string.Format("PowerNetTick CurrentEnergyGainRate: {0}, CurrentStoredEnergy: {1}", num, num2));
+        //    Log.Message(string.Format("PowerNetTick CurrentEnergyGainRate: {0}, CurrentStoredEnergy: {1}", num, num2));
             
             return true;
         }
@@ -1146,7 +1146,7 @@ namespace RRYautja
             //    Log.Message(string.Format("GameConditionManager_ConditionIsActive_Patch SolarFlare: {0}", __result));
                 __result = __result || __instance.ConditionIsActive(XenomorphDefOf.RRY_Xenomorph_PowerCut);
 #if DEBUG
-                Log.Message(string.Format("GameConditionManager_ConditionIsActive_Patch Xenomorph_PowerCut: {0}", __result));
+            //    Log.Message(string.Format("GameConditionManager_ConditionIsActive_Patch Xenomorph_PowerCut: {0}", __result));
 #endif
             }
         }
