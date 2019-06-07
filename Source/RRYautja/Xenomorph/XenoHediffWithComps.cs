@@ -29,7 +29,7 @@ namespace RRYautja
                     {
                         if (_XenoSpawner.RoyaleHugger && _XenoSpawner.Impregnations == 0)
                         {
-                            num /= 10;
+                            num /= 5;
                         }
                     }
                     this.Severity += num;

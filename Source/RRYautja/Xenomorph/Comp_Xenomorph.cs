@@ -175,7 +175,7 @@ namespace RRYautja
                 if (InfestationLikeCellFinder.TryFindCell(out c, pawn.Map))
                 {
 #if DEBUG
-                    if (Prefs.DevMode && selected)
+                    if (Prefs.DevMode)
                     {
                         ThingDef td = XenomorphDefOf.RRY_Filth_Slime;
                         GenSpawn.Spawn(td, c, pawn.Map);
@@ -422,7 +422,7 @@ namespace RRYautja
         {
             base.CompTick();
             this.ticksSinceHeal++;
-            this.ticksSinceImpregnation++;
+            if (Impregnations >= maxImpregnations) this.ticksSinceImpregnation++;
             bool flag = this.ticksSinceHeal > this.healIntervalTicks;
             if (flag)
             {

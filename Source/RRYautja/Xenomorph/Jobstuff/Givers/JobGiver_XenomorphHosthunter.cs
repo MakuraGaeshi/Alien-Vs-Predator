@@ -40,7 +40,7 @@ namespace RimWorld
         // Token: 0x060005B7 RID: 1463 RVA: 0x00037A28 File Offset: 0x00035E28
         protected override Job TryGiveJob(Pawn pawn)
         {
-            if (pawn.mindState.duty.def == OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike && HuntingRange==9999f)
+            if (pawn.mindState.duty.def == OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike && HuntingRange==9999f && pawn.mindState.duty.radius > 0)
             {
                 HuntingRange = pawn.mindState.duty.radius;
             }
