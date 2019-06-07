@@ -1,0 +1,56 @@
+<Defs>
+  <ConceptDef>
+    <defName>Concept_Unblooded</defName>
+    <label>AvP: Unblooded</label>
+    <priority>50</priority>
+    <highlightTags>
+			
+    </highlightTags>
+    <helpText>Some Yautja will be Unblooded. Which is to say they haven't got a worthy kill yet and have a permanent mood penalty because of it.\n\nIn order to get rid of this penalty, the Yautja needs to have the killing blow on a worthy prey (big predators, other pawns) and mark themselves with it.</helpText>
+  </ConceptDef>
+  
+  <ConceptDef>
+    <defName>Concept_Blooding</defName>
+    <label>AvP: Blooding</label>
+    <needsOpportunity>True</needsOpportunity>
+    <priority>50</priority>
+    <highlightTags>
+      
+    </highlightTags>
+    <helpText>When a Yautja kill a worthy prey, they will have the option to mark themself with the blood of the kill.\n\nFind the creature the pawn killed in its health tab. Then right-click the creature and choose the option to mark yourself with it. Once done, the Yautja will get a permanent boost to mood.\n\n As the Yautja kill stronger games, they will be able to mark themsleves again and get a better permanent mood bonus.\n\n If the creature the Yautja killed is accidently destroyed before they can amrk themself, you can use the blood of a similar prey to mark the Yautja.</helpText>
+  </ConceptDef>  
+  
+  <ConceptDef>
+    <defName>Concept_Cocoons</defName>
+    <label>AvP: Cocoons</label>
+    <needsOpportunity>True</needsOpportunity>
+    <priority>50</priority>
+    <highlightTags>
+      <li>SidearmPrimary</li>
+    </highlightTags>
+    <helpText>Xenomorphs will kidnap downed pawn and bring them back to a safe place and cocoon them.\n\n The cocoon will keep the pawn alive and healthy until a Facehugger can impregnate the pawn. You can save the pawn by right-clicking the cocoon and selecting the option.\n\n If no Facehugger can impregnate the pawn, after a while the cocoon will disolve the colonist and transform into an egg.</helpText>
+  </ConceptDef>
+  
+<ConceptDef>
+    <defName>Concept_Facehuggers</defName>
+    <label>AvP: Facehuggers</label>
+    <needsOpportunity>True</needsOpportunity>
+    <priority>50</priority>
+    <highlightTags>
+      
+    </highlightTags>
+    <helpText>Facehuggers will attach themselves to pawns and big animals in order to reproduce. It is possible to remove a Facehugger through a very risky surgery.\n\n Do so at your own risk!</helpText>
+	</ConceptDef>
+  
+  <ConceptDef>
+    <defName>Concept_Embryo</defName>
+    <label>AvP: Xenomorph Embryos</label>
+    <needsOpportunity>True</needsOpportunity>
+    <priority>50</priority>
+    <highlightTags>
+      <li></li>
+    </highlightTags>
+    <helpText>Once impregnated, a pawn lives on borrowed time.\n\n It is possible to remove the Embryo through surgery.\n\n Do so at your own risk!</helpText>
+  </ConceptDef>
+
+ </Defs>  

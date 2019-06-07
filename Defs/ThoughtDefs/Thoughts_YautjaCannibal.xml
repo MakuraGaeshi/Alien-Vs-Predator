@@ -51,7 +51,7 @@
 		  <li>
 			<label>raw cannibalism</label>
 			<description>I ate the meat of another hunter, raw. I feel its strength in my body.</description>
-			<baseMoodEffect>20</baseMoodEffect>
+			<baseMoodEffect>15</baseMoodEffect>
 		  </li>
 		</stages>
 	</ThoughtDef>
@@ -67,8 +67,8 @@
 		<stages>
 		  <li>
 			<label>cooked cannibalism</label>
-			<description>I ate a meal made from the flesh of another Yautja. .</description>
-			<baseMoodEffect>15</baseMoodEffect>
+			<description>I ate a meal made from the flesh of another Yautja.</description>
+			<baseMoodEffect>10</baseMoodEffect>
 		  </li>
 		</stages>
 	</ThoughtDef>
@@ -89,7 +89,7 @@
 			<li>
 				<label>I butchered a Yautja</label>
 				<description>I butchered a fellow Hunter like an animal. They deserved better.</description>
-				<baseMoodEffect>-6</baseMoodEffect>
+				<baseMoodEffect>-7</baseMoodEffect>
 			</li>
 		</stages>
 	</ThoughtDef>
@@ -107,7 +107,7 @@
 			<li>
 				<label>we butchered a Yautja</label>
 				<description>We butchered another Yautja like an animal. They deserved better.</description>
-				<baseMoodEffect>-6</baseMoodEffect>
+				<baseMoodEffect>-5</baseMoodEffect>
 			</li>
 		</stages>
 	</ThoughtDef>
