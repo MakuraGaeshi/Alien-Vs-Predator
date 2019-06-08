@@ -36,6 +36,7 @@ namespace Verse
         // Token: 0x060064F4 RID: 25844 RVA: 0x001B8C14 File Offset: 0x001B7014
         protected override bool TryCastShot()
         {
+        //    Log.Message(string.Format("{0}, {1}, {2}, {3}", CasterPawn.equipment.Primary != null , CasterPawn.equipment.Primary.def.IsRangedWeapon , CasterPawn.equipment.PrimaryEq.PrimaryVerb.HarmsHealth() , !CasterPawn.equipment.PrimaryEq.PrimaryVerb.UsesExplosiveProjectiles()));
             if (this.currentTarget.HasThing && this.currentTarget.Thing.Map != this.caster.Map)
             {
                 return false;

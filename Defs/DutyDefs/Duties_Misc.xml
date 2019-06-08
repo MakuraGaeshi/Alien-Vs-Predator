@@ -128,10 +128,26 @@
       <subNodes>
         <li Class="ThinkNode_ConditionalFullyGrown">
           <subNodes>
-			<li Class="JobGiver_HiveLikeDefense">
-			  <needLOSToAcquireNonPawnTargets>true</needLOSToAcquireNonPawnTargets>
-			  <targetAcquireRadius>40</targetAcquireRadius>
-			  <chaseTarget>false</chaseTarget>
+			<!-- Queen -->
+			<li Class="ThinkNode_ConditionalPawnKind">
+			  <pawnKind>RRY_Xenomorph_Queen</pawnKind>
+			  <subNodes>
+				<li Class="JobGiver_HiveLikeDefense">
+				  <needLOSToAcquireNonPawnTargets>true</needLOSToAcquireNonPawnTargets>
+				  <targetAcquireRadius>10</targetAcquireRadius>
+				  <chaseTarget>false</chaseTarget>
+				</li>
+			  </subNodes>
+			</li>
+			<li Class="ThinkNode_ConditionalNotPawnKind">
+			  <pawnKind>RRY_Xenomorph_Queen</pawnKind>
+			  <subNodes>
+				<li Class="JobGiver_HiveLikeDefense">
+				  <needLOSToAcquireNonPawnTargets>true</needLOSToAcquireNonPawnTargets>
+				  <targetAcquireRadius>40</targetAcquireRadius>
+				  <chaseTarget>true</chaseTarget>
+				</li>
+			  </subNodes>
 			</li>
 			<li Class="JobGiver_MineRandomNearHive"> 
 			  <MiningRange>1</MiningRange>
@@ -195,48 +211,64 @@
 			  <subNodes>
 				<!-- Drone -->
 				<li Class="ThinkNode_ConditionalPawnKind">
+				  <pawnKind>RRY_Xenomorph_Queen</pawnKind>
+				  <subNodes>
+					<li Class="JobGiver_XenosKidnap"> 
+					</li>
+				  </subNodes>
+				</li>
+				<!-- Drone -->
+				<li Class="ThinkNode_ConditionalPawnKind">
 				  <pawnKind>RRY_Xenomorph_Drone</pawnKind>
 				  <subNodes>
-							<li Class="JobGiver_XenosKidnap" />
+					<li Class="JobGiver_XenosKidnap" />
 				  </subNodes>
 				</li>
 				<!-- Predalien -->
 				<li Class="ThinkNode_ConditionalPawnKind">
 				  <pawnKind>RRY_Xenomorph_Predalien</pawnKind>
 				  <subNodes>
-							<li Class="JobGiver_XenosKidnap" />
-							<!-- <li Class="JobGiver_PredalienImpregnate" /> -->
+					<li Class="JobGiver_XenosKidnap" />
+					<li Class="JobGiver_PredalienImpregnate" />
 				  </subNodes>
 				</li>
 				<!-- Warrior -->
 				<li Class="ThinkNode_ConditionalPawnKind">
 				  <pawnKind>RRY_Xenomorph_Warrior</pawnKind>
 				  <subNodes>
-							<li Class="JobGiver_XenosKidnap" />
+					<li Class="JobGiver_XenosKidnap" />
 				  </subNodes>
 				</li>
 				<!-- Runner -->
 				<li Class="ThinkNode_ConditionalPawnKind">
 				  <pawnKind>RRY_Xenomorph_Runner</pawnKind>
 				  <subNodes>
-							<li Class="JobGiver_XenosKidnap" />
+					<li Class="JobGiver_XenosKidnap" />
 				  </subNodes>
 				</li>
 			  </subNodes>
 			</li>
 			<!-- Hunt Infectables -->
-			<li Class="ThinkNode_ChancePerHour_Constant">
-			  <mtbHours>6</mtbHours>
-			  <subNodes>
 				<li Class="ThinkNode_ConditionalAnyInfectableSpawnedNearby">
 				  <subNodes>
 					
 					<!-- Drone Gather Infectable Hunting -->
 					<li Class="ThinkNode_ConditionalPawnKind">
-					  <pawnKind>RRY_Xenomorph_Predalien</pawnKind>
+					  <pawnKind>RRY_Xenomorph_Queen</pawnKind>
 					  <subNodes>
 						<li Class="JobGiver_XenomorphHosthunter"> 
 						  <HuntingRange>40</HuntingRange>
+						  <MinMeleeChaseTicks>3000</MinMeleeChaseTicks>
+						  <MaxMeleeChaseTicks>6000</MaxMeleeChaseTicks>
+						</li>
+					  </subNodes>
+					</li>
+					<!-- Drone Gather Infectable Hunting -->
+					<li Class="ThinkNode_ConditionalPawnKind">
+					  <pawnKind>RRY_Xenomorph_Predalien</pawnKind>
+					  <subNodes>
+						<li Class="JobGiver_XenomorphHosthunter"> 
+						  <HuntingRange>60</HuntingRange>
 						  <MinMeleeChaseTicks>3000</MinMeleeChaseTicks>
 						  <MaxMeleeChaseTicks>6000</MaxMeleeChaseTicks>
 						</li>
@@ -247,9 +279,6 @@
 					  <pawnKind>RRY_Xenomorph_Warrior</pawnKind>
 					  <subNodes>
 						<li Class="JobGiver_XenomorphHosthunter"> 
-						  <HuntingRange>40</HuntingRange>
-						  <MinMeleeChaseTicks>3000</MinMeleeChaseTicks>
-						  <MaxMeleeChaseTicks>6000</MaxMeleeChaseTicks>
 						</li>
 					  </subNodes>
 					</li>
@@ -258,14 +287,15 @@
 					  <pawnKind>RRY_Xenomorph_Runner</pawnKind>
 					  <subNodes>
 						<li Class="JobGiver_XenomorphHosthunter"> 
-						  <HuntingRange>40</HuntingRange>
-						  <MinMeleeChaseTicks>3000</MinMeleeChaseTicks>
-						  <MaxMeleeChaseTicks>6000</MaxMeleeChaseTicks>
 						</li>
 					  </subNodes>
 					</li>
 				  </subNodes>
 				</li>
+			<li Class="ThinkNode_ChancePerHour_Constant">
+			  <mtbHours>6</mtbHours>
+			  <subNodes>
+			  
 			  </subNodes>
 			</li>
 			
@@ -315,10 +345,26 @@
       <subNodes>
         <li Class="ThinkNode_ConditionalFullyGrown">
           <subNodes>
-			<li Class="JobGiver_HiveLikeDefense">
-			  <needLOSToAcquireNonPawnTargets>true</needLOSToAcquireNonPawnTargets>
-			  <targetAcquireRadius>80</targetAcquireRadius>
-			  <chaseTarget>true</chaseTarget>
+			<!-- Queen -->
+			<li Class="ThinkNode_ConditionalPawnKind">
+			  <pawnKind>RRY_Xenomorph_Queen</pawnKind>
+			  <subNodes>
+				<li Class="JobGiver_HiveLikeDefense">
+				  <needLOSToAcquireNonPawnTargets>true</needLOSToAcquireNonPawnTargets>
+				  <targetAcquireRadius>25</targetAcquireRadius>
+				  <chaseTarget>false</chaseTarget>
+				</li>
+			  </subNodes>
+			</li>
+			<li Class="ThinkNode_ConditionalNotPawnKind">
+			  <pawnKind>RRY_Xenomorph_Queen</pawnKind>
+			  <subNodes>
+				<li Class="JobGiver_HiveLikeDefense">
+				  <needLOSToAcquireNonPawnTargets>true</needLOSToAcquireNonPawnTargets>
+				  <targetAcquireRadius>80</targetAcquireRadius>
+				  <chaseTarget>true</chaseTarget>
+				</li>
+			  </subNodes>
 			</li>
 			<!-- Drone Gather Infectable Hunting -->
 			<li Class="ThinkNode_ConditionalPawnKind">

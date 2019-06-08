@@ -73,8 +73,9 @@
     <hediffSolid>Crack</hediffSolid>
     <impactSoundType>Slice</impactSoundType>
     <armorCategory>Sharp</armorCategory>
-    <overkillPctToDestroyPart>0~0.7</overkillPctToDestroyPart>
-    <isRanged>true</isRanged>
+    <overkillPctToDestroyPart>0~0.7</overkillPctToDestroyPart>	
+	<harmsHealth>true</harmsHealth>
+	<isRanged>true</isRanged>
     <makesAnimalsFlee>true</makesAnimalsFlee>
   </DamageDef>
   
@@ -89,7 +90,8 @@
     <impactSoundType>Slice</impactSoundType>
     <armorCategory>Sharp</armorCategory>
     <overkillPctToDestroyPart>0~0.7</overkillPctToDestroyPart>
-    <isRanged>true</isRanged>
+	<harmsHealth>true</harmsHealth>
+	<isRanged>true</isRanged>
     <makesAnimalsFlee>true</makesAnimalsFlee>
     <additionalHediffs>
 	

@@ -55,6 +55,16 @@ namespace RRYautja
         }
     }
 
+    [HarmonyPatch(typeof(VerbUtility), "HarmsHealth")]
+    public static class VerbUtility_HarmsHealthatch
+    {
+        [HarmonyPostfix]
+        public static void HarmsHealthPostfix(Verb verb, ref bool __result)
+        {
+            __result = verb is Verb_Launch_Stuffable_Projectile || verb is Verb_Shoot_Stuffable;
+        }
+    }
+
     [HarmonyPatch(typeof(FeedPatientUtility), "ShouldBeFed")]
     public static class FeedPatientUtility_ShouldBeFedPatch
     {
@@ -208,7 +218,7 @@ namespace RRYautja
             bool flag = pawn != null;
             if (flag)
             {
-                bool flag2 = (pawn.InBed() && pawn.CurrentBed() is Building_XenomorphCocoon);
+                bool flag2 = (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned));
                 bool flag3 = (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection) && Find.TickManager.TicksGame % 2 == 0);
                 if (flag2 || flag3)
                 {
@@ -935,6 +945,23 @@ namespace RRYautja
 #if DEBUG
                     //    Log.Message(string.Format("PreExecute During Nighttime, modified {0} points", parms.points));
 #endif
+                        if (Rand.Chance(0.05f))
+                        {
+                            int @int = Rand.Int;
+                            IncidentParms raidParms = StorytellerUtility.DefaultParmsNow(IncidentCategoryDefOf.ThreatBig, (Map)parms.target);
+                            raidParms.forced = true;
+                            raidParms.faction = parms.faction;
+                            raidParms.raidStrategy = RaidStrategyDefOf.ImmediateAttack;
+                            raidParms.raidArrivalMode = PawnsArrivalModeDefOf.EdgeWalkIn;
+                            raidParms.spawnCenter = parms.spawnCenter;
+                            raidParms.points = Mathf.Max(raidParms.points * new FloatRange(1f, 1.6f).RandomInRange, parms.faction.def.MinPointsToGeneratePawnGroup(PawnGroupKindDefOf.Combat));
+                            raidParms.pawnGroupMakerSeed = new int?(@int);
+                            PawnGroupMakerParms defaultPawnGroupMakerParms = IncidentParmsUtility.GetDefaultPawnGroupMakerParms(PawnGroupKindDefOf.Combat, raidParms, false);
+                            defaultPawnGroupMakerParms.points = IncidentWorker_Raid.AdjustedRaidPoints(defaultPawnGroupMakerParms.points, raidParms.raidArrivalMode, raidParms.raidStrategy, defaultPawnGroupMakerParms.faction, PawnGroupKindDefOf.Combat);
+                            IEnumerable<PawnKindDef> pawnKinds = PawnGroupMakerUtility.GeneratePawnKindsExample(defaultPawnGroupMakerParms);
+                            QueuedIncident qi = new QueuedIncident(new FiringIncident(IncidentDefOf.RaidEnemy, null, raidParms), Find.TickManager.TicksGame + new IntRange(1000, 4000).RandomInRange, 0);
+                            Find.Storyteller.incidentQueue.Add(qi);
+                        }
                     }
                 }
             }
@@ -1039,6 +1066,7 @@ namespace RRYautja
                         text += "\n\n";
                         text += __result;
                         __result = text;
+
                     }
                 }
             }

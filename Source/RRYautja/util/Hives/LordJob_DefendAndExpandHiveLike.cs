@@ -13,15 +13,24 @@ namespace RimWorld
 
 		}
 
-		// Token: 0x06000792 RID: 1938 RVA: 0x00042F2C File Offset: 0x0004132C
-		public LordJob_DefendAndExpandHiveLike(bool aggressive)
-		{
-			this.aggressive = aggressive;
-		}
+        // Token: 0x06000792 RID: 1938 RVA: 0x00042F2C File Offset: 0x0004132C
+        public LordJob_DefendAndExpandHiveLike(bool aggressive)
+        {
+            this.aggressive = aggressive;
+        }
 
-		// Token: 0x17000130 RID: 304
-		// (get) Token: 0x06000793 RID: 1939 RVA: 0x00042F3B File Offset: 0x0004133B
-		public override bool CanBlockHostileVisitors
+        // Token: 0x06000792 RID: 1938 RVA: 0x00042F2C File Offset: 0x0004132C
+        public LordJob_DefendAndExpandHiveLike(bool aggressive, Faction faction, IntVec3 vec3, float radius)
+        {
+            this.aggressive = aggressive;
+            this.radius = radius;
+            this.faction = faction;
+            this.flagLoc = vec3;
+        }
+
+        // Token: 0x17000130 RID: 304
+        // (get) Token: 0x06000793 RID: 1939 RVA: 0x00042F3B File Offset: 0x0004133B
+        public override bool CanBlockHostileVisitors
 		{
 			get
 			{
@@ -45,6 +54,7 @@ namespace RimWorld
 
         }
 
+
         // Token: 0x06000795 RID: 1941 RVA: 0x00042F44 File Offset: 0x00041344
         public override StateGraph CreateGraph()
 		{
@@ -52,13 +62,14 @@ namespace RimWorld
 			StateGraph stateGraph = new StateGraph();
             LordToil_DefendAndExpandHiveLike lordToil_DefendAndExpandHiveLike = new LordToil_DefendAndExpandHiveLike
             {
-                distToHiveToAttack = 40f
+                distToHiveToAttack = radius,
+                
             };
             stateGraph.StartingToil = lordToil_DefendAndExpandHiveLike;
 
             LordToil_DefendHiveLikeAggressively lordToil_DefendHiveAggressively = new LordToil_DefendHiveLikeAggressively
             {
-                distToHiveToAttack = 80f
+                distToHiveToAttack = radius
             };
             stateGraph.AddToil(lordToil_DefendHiveAggressively);
 
@@ -122,5 +133,8 @@ namespace RimWorld
 
 		// Token: 0x04000346 RID: 838
 		private bool aggressive;
-	}
+        private float radius = 40f;
+        private Faction faction;
+        private IntVec3 flagLoc;
+    }
 }
