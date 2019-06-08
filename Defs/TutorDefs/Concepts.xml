@@ -52,5 +52,15 @@
     </highlightTags>
     <helpText>Once impregnated, a pawn lives on borrowed time.\n\n It is possible to remove the Embryo through surgery.\n\n Do so at your own risk!</helpText>
   </ConceptDef>
-
+  
+  <ConceptDef>
+    <defName>Concept_Chestbursters</defName>
+    <label>AvP: Xenomorph Chestbursters</label>
+    <needsOpportunity>True</needsOpportunity>
+    <priority>50</priority>
+    <highlightTags>
+      <li></li>
+    </highlightTags>
+    <helpText>When a Chestburster bursts, it will flee any hostile presences. As soon as it reaches a certain distance, he will disappear in the surrounding, becoming completely invisible unless a hostile pawn is inside 6 squares of the Chestburster.</helpText>
+  </ConceptDef>	
  </Defs>  
