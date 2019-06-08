@@ -124,7 +124,7 @@
   <AlienRace.BackstoryDef>
     <defName>RRY_Yautja_Unblooded_Highborn</defName>
     <title>Unblooded Highborn</title>
-    <baseDescription>[PAWN_nameDef] is the child of one of the most prolific hunter of the Clan. [PAWN_objective] mother raised [PAWN_objective] that [PAWN_pronoun] is gonna be the next Clan Leader.</baseDescription>
+    <baseDescription>[PAWN_nameDef] is the child of one of the most prolific hunter of the Clan. [PAWN_possessive] mother raised [PAWN_objective] that [PAWN_pronoun] is gonna be the next Clan Leader.</baseDescription>
 
     <bodyTypeMale>Male</bodyTypeMale>
     <bodyTypeFemale>Female</bodyTypeFemale>
