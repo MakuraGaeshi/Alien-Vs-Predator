@@ -76,20 +76,20 @@ namespace RimWorld
                 emptycocoonsReachable = !XenomorphUtil.ClosestReachableEmptyCocoon(pawn, named).DestroyedOrNull();
                 emptyclosestReachableCocoon = XenomorphUtil.ClosestReachableEmptyCocoon(pawn, named);
 
-                if (selected && eggsPresent) Log.Message(string.Format("JobGiver_XenosKidnap for {3} eggsPresent: {0}, eggsReachable: {1}, closestReachableEgg: {2}", eggsPresent, eggsReachable, closestReachableEgg, pawn.LabelShortCap));
-                if (selected && hivelikesPresent) Log.Message(string.Format("JobGiver_XenosKidnap for {3} hivelikesPresent: {0}, hivelikesReachable: {1}, closestReachableHivelike: {2}", hivelikesPresent, hivelikesReachable, closestReachableHivelike, pawn.LabelShortCap));
-                if (selected && cocoonsPresent) Log.Message(string.Format("JobGiver_XenosKidnap for {3} cocoonsPresent: {0}, cocoonsReachable: {1}, closestReachableEgg: {2}", cocoonsPresent, cocoonsReachable, closestReachableCocoon, pawn.LabelShortCap));
+            //    if (selected && eggsPresent) Log.Message(string.Format("JobGiver_XenosKidnap for {3} eggsPresent: {0}, eggsReachable: {1}, closestReachableEgg: {2}", eggsPresent, eggsReachable, closestReachableEgg, pawn.LabelShortCap));
+            //    if (selected && hivelikesPresent) Log.Message(string.Format("JobGiver_XenosKidnap for {3} hivelikesPresent: {0}, hivelikesReachable: {1}, closestReachableHivelike: {2}", hivelikesPresent, hivelikesReachable, closestReachableHivelike, pawn.LabelShortCap));
+           //     if (selected && cocoonsPresent) Log.Message(string.Format("JobGiver_XenosKidnap for {3} cocoonsPresent: {0}, cocoonsReachable: {1}, closestReachableEgg: {2}", cocoonsPresent, cocoonsReachable, closestReachableCocoon, pawn.LabelShortCap));
                 if ((hivelikesPresent && hivelikesReachable))
                 {
                     ThingDef hiveDef = null;
                     List<ThingDef_HiveLike> hivedefs = DefDatabase<ThingDef_HiveLike>.AllDefsListForReading.FindAll(x => x.Faction == pawn.Faction.def);
                     foreach (ThingDef_HiveLike hivedef in hivedefs)
                     {
-                        if (selected) Log.Message(string.Format("JobGiver_XenosKidnap found hiveDef: {0} for {1}", hivedef, pawn));
+                    //    if (selected) Log.Message(string.Format("JobGiver_XenosKidnap found hiveDef: {0} for {1}", hivedef, pawn));
                         if (hivedef.Faction == pawn.Faction.def)
                         {
                             hiveDef = hivedef;
-                            if (selected) Log.Message(string.Format("JobGiver_XenosKidnap set hiveDef: {0} for {1}", hiveDef, pawn));
+                    //        if (selected) Log.Message(string.Format("JobGiver_XenosKidnap set hiveDef: {0} for {1}", hiveDef, pawn));
 
                             break;
                         }
@@ -109,10 +109,10 @@ namespace RimWorld
                 }
                 if (c == IntVec3.Invalid && !hivelikesPresent && (eggsPresent && eggsReachable && XenomorphUtil.SpawnedEggsNeedHosts(pawn.Map).Count > 0))
                 {
-                    if (selected) Log.Message(string.Format("JobGiver_XenosKidnap SpawnedEggsNeedHosts: {0}, EggCount: {1} for {2}", XenomorphUtil.SpawnedEggsNeedHosts(pawn.Map).Count > 0, XenomorphUtil.SpawnedEggsNeedHosts(pawn.Map).Count, pawn));
+                //    if (selected) Log.Message(string.Format("JobGiver_XenosKidnap SpawnedEggsNeedHosts: {0}, EggCount: {1} for {2}", XenomorphUtil.SpawnedEggsNeedHosts(pawn.Map).Count > 0, XenomorphUtil.SpawnedEggsNeedHosts(pawn.Map).Count, pawn));
                     eggThing = XenomorphUtil.SpawnedEggsNeedHosts(pawn.Map).Count > 1 ? XenomorphUtil.SpawnedEggsNeedHosts(pawn.Map).RandomElement() : XenomorphUtil.ClosestReachableEggNeedsHost(pawn);
 
-                    if (selected) Log.Message(string.Format("JobGiver_XenosKidnap eggThing: {0}, EggCount: {1} for {2}", eggThing, XenomorphUtil.SpawnedEggsNeedHosts(pawn.Map).Count, pawn));
+                //    if (selected) Log.Message(string.Format("JobGiver_XenosKidnap eggThing: {0}, EggCount: {1} for {2}", eggThing, XenomorphUtil.SpawnedEggsNeedHosts(pawn.Map).Count, pawn));
                     c = eggThing.Position;
                     if (c == eggThing.Position)
                     {
@@ -129,7 +129,7 @@ namespace RimWorld
                             if (!IsMapRectClear(mapRect, pawn.Map)) radius++;
                             else
                             {
-                                if (selected) Log.Message(string.Format("spot for cocoon found @ {0} which is {1} away from {2} @ {3}", intVec, radius, eggThing, eggThing.Position));
+                        //        if (selected) Log.Message(string.Format("spot for cocoon found @ {0} which is {1} away from {2} @ {3}", intVec, radius, eggThing, eggThing.Position));
                             }
                             if (radius > 30)
                             {
@@ -146,28 +146,28 @@ namespace RimWorld
                 }
                 if (c == IntVec3.Invalid && cocoonsPresent && !hivelikesPresent && !eggsPresent)
                 {
-                    if (selected) Log.Message(string.Format("cocoonsPresent: {0}", cocoonsPresent));
-                    if (selected) Log.Message(string.Format("cocoonsReachable: {0}", cocoonsReachable));
+                //    if (selected) Log.Message(string.Format("cocoonsPresent: {0}", cocoonsPresent));
+                //    if (selected) Log.Message(string.Format("cocoonsReachable: {0}", cocoonsReachable));
                     c = RCellFinder.RandomWanderDestFor(pawn, closestReachableCocoon.Position, 5f, null, Danger.Some);
-                    if (selected) Log.Message(string.Format("RCellFinder.RandomWanderDestFor(pawn, c, 5f, null, Danger.Some): {0}", c));
+                //    if (selected) Log.Message(string.Format("RCellFinder.RandomWanderDestFor(pawn, c, 5f, null, Danger.Some): {0}", c));
                 }
                 if (c == IntVec3.Invalid)
                 {
                     if (!InfestationLikeCellFinder.TryFindCell(out c, out IntVec3 lc, pawn.Map, false))
                     {
-                        if (selected) Log.Message(string.Format("no infestation cell found {0}\nfor {1} @ {2}", c, pawn, pawn.Position));
+                    //    if (selected) Log.Message(string.Format("no infestation cell found {0}\nfor {1} @ {2}", c, pawn, pawn.Position));
                         if (!RCellFinder.TryFindBestExitSpot(pawn, out c, TraverseMode.ByPawn) && (!XenomorphUtil.EggsPresent(pawn.Map) || (XenomorphUtil.EggsPresent(pawn.Map) && XenomorphUtil.ClosestReachableEgg(pawn) == null)))
                         {
-                            if (selected) Log.Message(string.Format("no Exit cell found {0}\nfor {1} @ {2}", c, pawn, pawn.Position));
+                    //        if (selected) Log.Message(string.Format("no Exit cell found {0}\nfor {1} @ {2}", c, pawn, pawn.Position));
                             return null;
                         }
                     }
                     else
                     {
-                        if (selected) Log.Message(string.Format("found infestation cell for {2} @ {3} \nlc: {0}, c:{1}", lc, c, pawn, pawn.Position));
+                    //    if (selected) Log.Message(string.Format("found infestation cell for {2} @ {3} \nlc: {0}, c:{1}", lc, c, pawn, pawn.Position));
                         if (pawn.GetLord()!=null && pawn.GetLord() is Lord lord)
                         {
-                            if (selected) Log.Message(string.Format("found lord for {2} @ {3} doing\n LordJob: {0}, CurLordToil: {1}", lord.LordJob, lord.CurLordToil, pawn, pawn.Position));
+                    //        if (selected) Log.Message(string.Format("found lord for {2} @ {3} doing\n LordJob: {0}, CurLordToil: {1}", lord.LordJob, lord.CurLordToil, pawn, pawn.Position));
 
                         }
                         if (pawn.mindState.duty.def != OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike && pawn.mindState.duty.def != OGHiveLikeDefOf.RRY_DefendHiveLikeAggressively)
@@ -182,7 +182,7 @@ namespace RimWorld
                         }
                     } 
                 }
-                if (selected) Log.Message(string.Format("TargetB == {0}", c));
+            //    if (selected) Log.Message(string.Format("TargetB == {0}", c));
                 if (c != IntVec3.Invalid && t !=null)
                 {
                     return new Job(XenomorphDefOf.RRY_Job_XenomorphKidnap)

@@ -77,7 +77,7 @@ namespace RimWorld
 			stateGraph.AddToil(lordToil_XenomrophAssaultColony);
             
 			Transition transition = new Transition(lordToil_DefendAndExpandHiveLike, (!aggressive) ? (LordToil)lordToil_DefendHiveAggressively : (LordToil)lordToil_XenomrophAssaultColony, false, true);
-			transition.AddTrigger(new Trigger_PawnHarmed(0.5f, true, null));
+			transition.AddTrigger(new Trigger_PawnHarmed(0.5f, true, Find.FactionManager.OfPlayer));
 			transition.AddTrigger(new Trigger_PawnLostViolently(false));
 			transition.AddTrigger(new Trigger_Memo(HiveLike.MemoAttackedByEnemy));
 			transition.AddTrigger(new Trigger_Memo(HiveLike.MemoBurnedBadly));
@@ -127,13 +127,17 @@ namespace RimWorld
 
 		// Token: 0x06000796 RID: 1942 RVA: 0x00043166 File Offset: 0x00041566
 		public override void ExposeData()
-		{
-			Scribe_Values.Look<bool>(ref this.aggressive, "aggressive", false, false);
-		}
+        {
+            Scribe_Values.Look<bool>(ref this.aggressive, "aggressive", false, false);
+            Scribe_Values.Look<float>(ref this.radius, "radius");
+            Scribe_Values.Look<float>(ref this.aggressiveradius, "aggressiveradius");
+            Scribe_Values.Look<IntVec3>(ref this.flagLoc, "flagLoc", IntVec3.Zero);
+        }
 
 		// Token: 0x04000346 RID: 838
 		private bool aggressive;
         private float radius = 40f;
+        private float aggressiveradius = 40f;
         private Faction faction;
         private IntVec3 flagLoc;
     }

@@ -247,6 +247,11 @@ namespace RRYautja
             base.ExposeData();
             Scribe_Values.Look(ref lastSpottedTick, "lastSpottedtick", -9999);
             Scribe_References.Look(ref lastCarried, "lastCarried");
+            /*
+            Scribe_Deep.Look(ref oldGraphics, "oldGraphics");
+            Scribe_Deep.Look(ref oldShadow, "oldShadow");
+            Scribe_Deep.Look(ref lastCarriedGraphic, "lastCarriedGraphic");
+            */
         }
 
         private PawnGraphicSet oldGraphics;

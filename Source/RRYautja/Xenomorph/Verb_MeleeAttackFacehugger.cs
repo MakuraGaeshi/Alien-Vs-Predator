@@ -19,6 +19,13 @@ namespace RRYautja
             float tgtdodge = 0f;
             if (hitPawn.RaceProps.Humanlike) tgtmelee = hitPawn.skills.GetSkill(SkillDefOf.Melee).Level;
             if (hitPawn.RaceProps.Humanlike) tgtdodge = hitPawn.GetStatValue(StatDefOf.MeleeDodgeChance);
+            float armourBlunt = hitPawn.GetStatValue(StatDefOf.ArmorRating_Blunt, false);
+            float armourBluntPP = hitPawn.GetStatValue(StatDefOf.ArmorRating_Blunt, true);
+            float armourSharp = hitPawn.GetStatValue(StatDefOf.ArmorRating_Sharp, false);
+            float armourSharpPP = hitPawn.GetStatValue(StatDefOf.ArmorRating_Sharp, true);
+            float armourHeat = hitPawn.GetStatValue(StatDefOf.ArmorRating_Heat, false);
+            float armourHeatPP = hitPawn.GetStatValue(StatDefOf.ArmorRating_Heat, true);
+       //     Log.Message(string.Format("armourBlunt: {0}, PP: {1}, armourSharp: {2}, PP: {3}, armourHeat: {4}, PP: {5}", armourBlunt, armourBluntPP, armourSharp, armourSharpPP, armourHeat, armourHeatPP));
             if (((Rand.Value * 100)*(1-tgtdodge)  > 50+tgtmelee || hitPawn.Downed) && flag&&hitPawn is Pawn)
             {
                 infect = true;
@@ -98,16 +105,8 @@ namespace RRYautja
 		// Token: 0x060039DF RID: 14815 RVA: 0x001B80A4 File Offset: 0x001B64A4
 		protected override DamageWorker.DamageResult ApplyMeleeDamageToTarget(LocalTargetInfo target)
         {
-            Pawn hitPawn = (Pawn)target;
             DamageWorker.DamageResult result = new DamageWorker.DamageResult();
-			foreach (DamageInfo dinfo in this.DamageInfosToApply(target))
-			{
-				if (target.ThingDestroyed)
-				{
-					break;
-				}
-				result = target.Thing.TakeDamage(dinfo);
-            }
+            Pawn hitPawn = (Pawn)target;
             if (infect && !XenomorphUtil.IsInfectedPawn(hitPawn))
             {
                 foreach (var part in hitPawn.RaceProps.body.AllParts.Where(x => x.def.defName == "Head"))
@@ -124,6 +123,17 @@ namespace RRYautja
                     MoteMaker.ThrowText(hitPawn.Position.ToVector3(), hitPawn.Map, text, 5f);
                     comp.GetDirectlyHeldThings();
                     caster.DeSpawn();
+                }
+            }
+            else
+            {
+                foreach (DamageInfo dinfo in this.DamageInfosToApply(target))
+                {
+                    if (target.ThingDestroyed)
+                    {
+                        break;
+                    }
+                    result = target.Thing.TakeDamage(dinfo);
                 }
             }
             return result;

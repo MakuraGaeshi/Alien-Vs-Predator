@@ -163,8 +163,6 @@
 				
         <li Class="ThinkNode_ConditionalFullyGrown">
           <subNodes>
-			<!-- Lay eggs you need to -->
-			<li Class="JobGiver_LayXenoEgg" />
 			
 			<!-- Do a queued job -->
 			<li Class="ThinkNode_QueuedJob" />
@@ -216,10 +214,13 @@
 			  </subNodes>
 			</li>
 					
-			<!-- Lord -->
+			<!-- Lord -->	
 			<li Class="ThinkNode_Subtree">
 			  <treeDef>LordDuty</treeDef>
 			</li>
+			
+			<!-- Lay eggs you need to -->
+			<li Class="JobGiver_LayXenoEgg" />
 			
 			<!-- Satisfy very urgent needs -->
 			<li Class="ThinkNode_Subtree">

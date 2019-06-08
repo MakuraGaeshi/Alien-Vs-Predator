@@ -56,7 +56,7 @@ namespace RRYautja
     }
 
     [HarmonyPatch(typeof(VerbUtility), "HarmsHealth")]
-    public static class VerbUtility_HarmsHealthatch
+    public static class VerbUtility_HarmsHealth_Patch
     {
         [HarmonyPostfix]
         public static void HarmsHealthPostfix(Verb verb, ref bool __result)
@@ -64,9 +64,22 @@ namespace RRYautja
             __result = verb is Verb_Launch_Stuffable_Projectile || verb is Verb_Shoot_Stuffable;
         }
     }
+    
+    /*
+    [HarmonyPatch(typeof(PawnUtility), "GetManhunterOnDamageChance")]
+    public static class PawnUtility_GetManhunterOnDamageChance_Patch
+    {
+        [HarmonyPostfix]
+        public static void HarmsHealthPostfix(Pawn pawn, float distance, Thing instigator, ref float __result)
+        {
+            Pawn p2 = (Pawn)instigator;
+            if (XenomorphUtil.IsXenomorphPawn(p2)) __result = 0f;
+        }
+    }
+    */
 
     [HarmonyPatch(typeof(FeedPatientUtility), "ShouldBeFed")]
-    public static class FeedPatientUtility_ShouldBeFedPatch
+    public static class FeedPatientUtility_ShouldBeFed_Patch
     {
         [HarmonyPostfix]
         public static void IgnoreCocooned(Pawn p, ref bool __result)

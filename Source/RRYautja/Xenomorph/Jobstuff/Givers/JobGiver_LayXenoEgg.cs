@@ -18,35 +18,62 @@ namespace RimWorld
             {
                 return null;
             }
-            if (c == IntVec3.Invalid)
+            Comp_Xenomorph _Xenomorph = pawn.TryGetComp<Comp_Xenomorph>();
+            if (_Xenomorph!=null)
+            {
+                if (_Xenomorph.HiveLoc!=IntVec3.Invalid && _Xenomorph.HiveLoc != IntVec3.Zero)
+                {
+                    c = _Xenomorph.HiveLoc;
+               //     Log.Message(string.Format("Laying Egg @ Comp_Xenomorph _Xenomorph.HiveLoc: {0}", c));
+                }
+            }
+            if (c == IntVec3.Invalid || c == IntVec3.Zero)
             {
                 if (pawn.GetLord() != null && pawn.GetLord().LordJob is LordJob_DefendAndExpandHiveLike LordJob_DefendAndExpandHiveLike)
                 {
-                    c = RCellFinder.RandomWanderDestFor(pawn, LordJob_DefendAndExpandHiveLike.lord.Graph.StartingToil.FlagLoc, 3f, null, Danger.Some);
+                    c = LordJob_DefendAndExpandHiveLike.lord.Graph.StartingToil.FlagLoc;
+                    foreach (var item in LordJob_DefendAndExpandHiveLike.lord.Graph.lordToils)
+                    {
+                   //     Log.Message(string.Format("lordToils: {0}", item));
+                    }
                     if (pawn.GetLord().CurLordToil is LordToil_DefendAndExpandHiveLike defender)
                     {
-                        c = RCellFinder.RandomWanderDestFor(pawn, defender.myFocus.Cell, 3f, null, Danger.Some);
-                    //    Log.Message(string.Format("pawn.GetLord().CurLordToil is LordToil_DefendAndExpandHiveLike @: {0}",c));
+                        if (pawn.DutyLocation() != IntVec3.Invalid || pawn.DutyLocation() != IntVec3.Zero && (c == IntVec3.Invalid || c == IntVec3.Zero))
+                        {
+                            c = pawn.DutyLocation();
+                       //     Log.Message(string.Format("Laying Egg @ LordToil_DefendAndExpandHiveLike pawn.DutyLocation(): {0}", c));
+                        }
+                        else if(defender.FlagLoc != IntVec3.Invalid || defender.FlagLoc != IntVec3.Zero && (c == IntVec3.Invalid || c == IntVec3.Zero))
+                        {
+                            c = defender.FlagLoc;
+                       //     Log.Message(string.Format("Laying Egg @ LordToil_DefendAndExpandHiveLike defender.FlagLoc: {0}", c));
+                        }
+                        else if (defender.myFocus.Cell != IntVec3.Invalid || defender.myFocus.Cell != IntVec3.Zero && (c == IntVec3.Invalid || c == IntVec3.Zero))
+                        {
+                            c = defender.myFocus.Cell;
+                       //     Log.Message(string.Format("Laying Egg @ LordToil_DefendAndExpandHiveLike defender.myFocus.Cell : {0}", c));
+                        }
                     }
-                    if (c == IntVec3.Invalid)
+                    if (c == IntVec3.Invalid || c == IntVec3.Zero)
                     {
-                        c = RCellFinder.RandomWanderDestFor(pawn, LordJob_DefendAndExpandHiveLike.lord.CurLordToil.FlagLoc, 3f, null, Danger.Some);
+                        c = LordJob_DefendAndExpandHiveLike.lord.CurLordToil.FlagLoc;
+                   //     Log.Message(string.Format("Laying Egg @ LordToil_DefendAndExpandHiveLike CurLordToil.FlagLoc @: {0}", c));
                     }
                 }
                 else if(pawn.GetLord() != null && pawn.GetLord().LordJob is LordJob_DefendHiveLoc LordJob_DefendHiveLoc)
                 {
-                    c = RCellFinder.RandomWanderDestFor(pawn, LordJob_DefendHiveLoc.lord.CurLordToil.FlagLoc, 3f, null, Danger.Some);
+                    c = LordJob_DefendHiveLoc.lord.CurLordToil.FlagLoc;
                     if (c == IntVec3.Invalid)
                     {
-                        c = RCellFinder.RandomWanderDestFor(pawn, LordJob_DefendHiveLoc.lord.Graph.StartingToil.FlagLoc, 3f, null, Danger.Some);
+                        c = LordJob_DefendHiveLoc.lord.Graph.StartingToil.FlagLoc;
                     }
                 }
                 else if (pawn.GetLord() != null && pawn.GetLord().LordJob is LordJob_DefendPoint LordJob_DefendPoint)
                 {
-                    c = RCellFinder.RandomWanderDestFor(pawn, LordJob_DefendPoint.lord.CurLordToil.FlagLoc, 5f, null, Danger.Some);
+                    c = LordJob_DefendPoint.lord.CurLordToil.FlagLoc;
                     if (c == IntVec3.Invalid)
                     {
-                        c = RCellFinder.RandomWanderDestFor(pawn, LordJob_DefendPoint.lord.Graph.StartingToil.FlagLoc, 5f, null, Danger.Some);
+                        c = LordJob_DefendPoint.lord.Graph.StartingToil.FlagLoc;
                     }
                 }
                 else
@@ -54,17 +81,17 @@ namespace RimWorld
                     Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_EggXenomorphFertilized), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, null, null, 0, -1, false, RegionType.Set_Passable, false);
                     if (thing != null)
                     {
-                        c = RCellFinder.RandomWanderDestFor(pawn, thing.Position, 5f, null, Danger.Some);
+                        c = thing.Position;
                     }
                     else
                     {
                         if (InfestationLikeCellFinder.TryFindCell(out c, pawn.Map, false) && pawn.CanReach(c, PathEndMode.OnCell, Danger.Deadly))
                         {
-                            c = RCellFinder.RandomWanderDestFor(pawn, c, 3f, null, Danger.Some);
+                        //    c = c;
                         }
                         else
                         {
-                            c = RCellFinder.RandomWanderDestFor(pawn, thing.Position, 3f, null, Danger.Some);
+                            c = thing.Position;
                         }
                     }
                 }
@@ -79,25 +106,37 @@ namespace RimWorld
             {
                 if (pawn.GetLord() != null && pawn.GetLord().LordJob is LordJob lordjob)
                 {
-                    c = RCellFinder.RandomWanderDestFor(pawn, lordjob.lord.Graph.StartingToil.FlagLoc, 5f, null, Danger.Some);
+                    c = lordjob.lord.Graph.StartingToil.FlagLoc;
                     if (c == IntVec3.Invalid)
                     {
-                        c = RCellFinder.RandomWanderDestFor(pawn, pawn.mindState.duty.focus.Cell, 5f, null, Danger.Some);
+                        c = pawn.mindState.duty.focus.Cell;
                     }
                 }
                 if (c == IntVec3.Invalid)
                 {
                     if (InfestationLikeCellFinder.TryFindCell(out c, pawn.Map) && pawn.CanReach(c, PathEndMode.OnCell, Danger.Deadly))
                     {
-                        c = RCellFinder.RandomWanderDestFor(pawn, c, 3f, null, Danger.Some);
+                     //   c = c;
                     }
                     else
                     {
-                        c = RCellFinder.RandomWanderDestFor(pawn, pawn.Position, 3f, null, Danger.Some);
+                        c = pawn.Position;
                     }
                 }
             }
-            return new Job(XenomorphDefOf.RRY_Job_LayXenomorphEgg, c);
+       //     Log.Message(string.Format("finding valid location near: {0}", c));
+            Predicate<IntVec3> validator = delegate (IntVec3 t)
+            {
+                return t.GetFirstBuilding(pawn.Map) == null;
+            };
+            IntVec3 fc = IntVec3.Invalid;
+            RCellFinder.TryFindRandomCellNearWith(c, validator, pawn.Map, out fc,3,16);
+            if (fc != IntVec3.Invalid)
+            {
+           //     Log.Message(string.Format("valid location found: {0}", fc));
+                return new Job(XenomorphDefOf.RRY_Job_LayXenomorphEgg, fc);
+            }
+            return null;
         }
 
         // Token: 0x04000275 RID: 629

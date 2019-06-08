@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using RimWorld;
 using RimWorld.Planet;
 using UnityEngine;
@@ -185,13 +186,16 @@ namespace RRYautja
             return Math.Sqrt(Math.Pow((x2 - x1), 2) + Math.Pow((y2 - y1), 2));
         }
         // Token: 0x0600295E RID: 10590 RVA: 0x00139BAC File Offset: 0x00137FAC
+        
         public override void CompTickRare()
         {
             
             bool selected = Find.Selector.SelectedObjects.Contains(this.parent);
             Thing thing = null;
-            bool shouldHatch = XenomorphUtil.TotalSpawnedFacehuggerPawnCount(MyMap, 10, this.MyPos) < XenomorphUtil.TotalSpawnedInfectablePawnCount(MyMap, 10, this.MyPos);
             if (MyMap !=null && MyPos.InBounds(MyMap)) thing = GenClosest.ClosestThingReachable(MyPos, MyMap, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), Props.triggerRadius, x => XenomorphUtil.isInfectablePawn(((Pawn)x)), null, 0, -1, false, RegionType.Set_Passable, false);
+            int huggercount = thing != null ? XenomorphUtil.TotalSpawnedFacehuggerPawnCount(MyMap, 10, (Pawn)thing) : 0;
+            int hostcount = thing != null ? XenomorphUtil.TotalSpawnedInfectablePawnCount(MyMap, 10, this.MyPos) : 0;
+            bool shouldHatch = huggercount < hostcount;
             if (thing != null)
             {
                 Pawn pawn = (Pawn)thing;

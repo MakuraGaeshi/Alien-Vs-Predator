@@ -147,18 +147,18 @@
 				  <targetAcquireRadius>40</targetAcquireRadius>
 				  <chaseTarget>true</chaseTarget>
 				</li>
+				<li Class="JobGiver_MineRandomNearHive"> 
+				  <MiningRange>1</MiningRange>
+				</li>
+				<li Class="JobGiver_ClearHiveEggZone"> 
+				</li>
+				<li Class="JobGiver_MineRandomNearHive"> 
+				  <MiningRange>2</MiningRange>
+				</li>
+				<li Class="JobGiver_ClearHiveEggZone"> 
+				  <ClearingRange>2</ClearingRange>
+				</li>
 			  </subNodes>
-			</li>
-			<li Class="JobGiver_MineRandomNearHive"> 
-			  <MiningRange>1</MiningRange>
-			</li>
-			<li Class="JobGiver_ClearHiveEggZone"> 
-			</li>
-			<li Class="JobGiver_MineRandomNearHive"> 
-			  <MiningRange>2</MiningRange>
-			</li>
-			<li Class="JobGiver_ClearHiveEggZone"> 
-			  <ClearingRange>2</ClearingRange>
 			</li>
 			<li Class="ThinkNode_ChancePerHour_Constant">
 			  <mtbHours>1</mtbHours>
@@ -200,16 +200,37 @@
 			<li Class="ThinkNode_ConditionalAnyInfectableSpawnedNearby">
 			  <subNodes>
 				
+				<!-- Queen -->
+				<li Class="ThinkNode_ConditionalPawnKind">
+				  <pawnKind>RRY_Xenomorph_Queen</pawnKind>
+				  <subNodes>
+					<li Class="JobGiver_XenosKidnap"> 
+				  <HuntingRange>6</HuntingRange>
+					</li>
+				  </subNodes>
+				</li>
+				<li Class="JobGiver_XenosKidnap"> 
+			  <HuntingRange>5</HuntingRange>
+				</li>
+				
 				<li Class="JobGiver_XenomorphHosthunter"> 
 				  <HuntingRange>20</HuntingRange>
 				</li>
 				
 			  </subNodes>
 			</li>
+		<!-- Queen -->
+		<li Class="ThinkNode_ConditionalPawnKind">
+		  <pawnKind>RRY_Xenomorph_Queen</pawnKind>
+		  <subNodes>
+			<!-- Lay eggs you need to -->
+			<li Class="JobGiver_LayXenoEgg" />
+		   </subNodes>
+		</li>
 			<!-- Gather Downed Infectable -->
 			<li Class="ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby">
 			  <subNodes>
-				<!-- Drone -->
+				<!-- Queen -->
 				<li Class="ThinkNode_ConditionalPawnKind">
 				  <pawnKind>RRY_Xenomorph_Queen</pawnKind>
 				  <subNodes>

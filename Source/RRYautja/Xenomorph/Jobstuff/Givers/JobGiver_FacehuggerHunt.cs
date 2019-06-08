@@ -9,6 +9,15 @@ namespace RimWorld
     // Token: 0x02000113 RID: 275
     public class JobGiver_FacehuggerHunt : ThinkNode_JobGiver
     {
+        // Token: 0x0600041A RID: 1050 RVA: 0x0002C918 File Offset: 0x0002AD18
+        public override ThinkNode DeepCopy(bool resolve = true)
+        {
+            JobGiver_FacehuggerHunt jobGiver_XenosKidnap = (JobGiver_FacehuggerHunt)base.DeepCopy(resolve);
+            jobGiver_XenosKidnap.HuntingRange = this.HuntingRange;
+            return jobGiver_XenosKidnap;
+        }
+        private float HuntingRange = 10f;
+
         // Token: 0x060005B7 RID: 1463 RVA: 0x00037A28 File Offset: 0x00035E28
         protected override Job TryGiveJob(Pawn pawn)
         {
@@ -20,7 +29,7 @@ namespace RimWorld
             }
             Pawn pawn2 = FindPawnTarget(pawn);
         //    Pawn pawn2 = BestPawnToHuntForPredator(pawn, forceScanWholeMap);
-            if (pawn2 != null && _Facehugger.Impregnations<_Facehugger.maxImpregnations && XenomorphUtil.isInfectablePawn(pawn2) && pawn.CanReach(pawn2, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.ByPawn))
+            if (pawn2 != null && !pawn2.Dead && _Facehugger.Impregnations<_Facehugger.maxImpregnations && XenomorphUtil.isInfectablePawn(pawn2) && pawn.CanReach(pawn2, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.ByPawn))
             {
 
 #if DEBUG
@@ -67,12 +76,13 @@ namespace RimWorld
         // Token: 0x060005B9 RID: 1465 RVA: 0x00037BC0 File Offset: 0x00035FC0
         private Pawn FindPawnTarget(Pawn pawn)
         {
-            Pawn pawn2 = (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn p && XenomorphUtil.isInfectablePawn(p) && !p.Dead, 0f, 10f, default(IntVec3), float.MaxValue, true, true);
-            if (pawn2 == null) pawn2 = (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn p && XenomorphUtil.isInfectablePawn(p) && !p.Dead, 0f, 20f, default(IntVec3), float.MaxValue, true, true);
-            if (pawn2 == null) pawn2 = (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn p && XenomorphUtil.isInfectablePawn(p) && !p.Dead, 0f, 30f, default(IntVec3), float.MaxValue, true, true);
-            if (pawn2 == null) pawn2 = (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn p && XenomorphUtil.isInfectablePawn(p) && !p.Dead, 0f, 40f, default(IntVec3), float.MaxValue, true, true);
-            if (pawn2 == null) pawn2 = (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn p && XenomorphUtil.isInfectablePawn(p) && !p.Dead, 0f, 50f, default(IntVec3), float.MaxValue, true, true);
-            if (pawn2 == null) pawn2 = (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn p && XenomorphUtil.isInfectablePawn(p) && !p.Dead, 0f, 9999f, default(IntVec3), float.MaxValue, true, true);
+            Pawn pawn2 = (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn p && XenomorphUtil.isInfectablePawn(p) && !p.Dead, 0f, HuntingRange, default(IntVec3), float.MaxValue, true, true);
+            while (pawn2==null && HuntingRange<50)
+            {
+                HuntingRange += 10;
+           //     Log.Message(string.Format("{0}@{1} hunting failed, extending radius to {2}", pawn.Label, pawn.Position, HuntingRange));
+                pawn2 = (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn p && XenomorphUtil.isInfectablePawn(p) && !p.Dead, 0f, HuntingRange, default(IntVec3), float.MaxValue, true, true);
+            }
             if (pawn2 == null) pawn2 = BestPawnToHuntForPredator(pawn, forceScanWholeMap);
 #if DEBUG
             bool selected = Find.Selector.SingleSelectedThing == pawn;
