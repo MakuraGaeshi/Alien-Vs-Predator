@@ -31,8 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>..\..\..\..\..\..\..\..\..\Users\User\Desktop\admechb19 scourcefile test\Assemblies\0Harmony.dll</HintPath>
+    <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Assemblies\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="0JecsTools">
       <HintPath>..\..\..\..\..\..\workshop\content\294100\932008009\Assemblies\0JecsTools.dll</HintPath>

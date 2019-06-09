@@ -266,7 +266,7 @@ namespace RRYautja
             Faction xenos = Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph);
             
             if (pawn != null && pawn.Map != null && !pawn.Dead && pawn.kindDef != XenomorphDefOf.RRY_Xenomorph_FaceHugger && pawn.kindDef != XenomorphDefOf.RRY_Xenomorph_RoyaleHugger)
-            { //Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph).
+            {
                 LifeStageDef stage = pawn.ageTracker.CurLifeStage;
                 if (stage == pawn.RaceProps.lifeStageAges[pawn.RaceProps.lifeStageAges.Count - 1].def)
                 {
@@ -274,77 +274,10 @@ namespace RRYautja
                     {
                         string text = TranslatorFormattedStringExtensions.Translate("Xeno_Chestburster_Matures",pawn.LabelCap);
                         Hediff hediff = pawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden);
-                        //    Log.Message(text);
                         MoteMaker.ThrowText(pawn.Position.ToVector3(), pawn.Map, text, 3f);
                         pawn.health.RemoveHediff(hediff);
                     }
-                    if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
-                    {
-                        //    XenoLordTick();
-                    }
                     XenoLordTick();
-                    /*
-                    if (lord != null && pawn.GetLord().LordJob is LordJob_DefendPoint LordJob_DefendPoint)
-                    {
-                        if (Prefs.DevMode && selected)
-                        {
-                       //     Log.Message(string.Format("{0} has no lord, looking for lord from {1}", pawn.LabelShort, xenos.Name));
-                        }
-                        IEnumerable<Lord> lords = pawn.Map.lordManager.lords.Where(x => x.faction.def == xenos.def);
-                        if (lords.Count() != 0)
-                        {
-                            foreach (var l in lords)
-                            {
-                                if (l == null)
-                                {
-                                    if (Prefs.DevMode && selected)
-                                    {
-                                   //     Log.Message(string.Format("no lord of faction {0} for {1}", xenos.Name, pawn.LabelShort));
-                                    }
-
-                                }
-                                else
-                                {
-                                    if (Prefs.DevMode && selected)
-                                    {
-                                   //     Log.Message(string.Format("{0}: added to Lord: {1}, Cur Duty: {2}", pawn.LabelShort, l, l.LordJob));
-                                    }
-                                    
-                                    lord = l;
-                                    lord.AddPawn(pawn);
-                                    pawn.mindState.duty = lord.ownedPawns.FindAll(x => x.mindState.duty != null && x != pawn).RandomElement().mindState.duty;
-                                    break;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            if (Prefs.DevMode && selected)
-                            {
-                           //     Log.Message(string.Format("{2} lords of {0} for {1}", xenos.Name, pawn.LabelShort, lords.Count()));
-                            }
-                            if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
-                            {
-                                CreateNewLord(pawn);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (Prefs.DevMode && selected)
-                        {
-                        //    Log.Message(string.Format("Comp_Xenomorph CompTickRare \n{0} has Lord: {1}, Cur Duty: {2}", pawn.LabelShort, lord.CurLordToil, lord.LordJob));
-                        }
-                        if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen && !(pawn.GetLord().LordJob is LordJob_DefendAndExpandHiveLike lordjob))
-                        {
-                            CreateNewLord(pawn);
-                        }
-                        if (pawn.mindState.duty == null)
-                        {
-                            pawn.mindState.duty = lord.ownedPawns.FindAll(x => x.mindState.duty!= null && x != pawn).RandomElement().mindState.duty;
-                        }
-                    }
-                    */
                 }
                 else
                 {
@@ -352,17 +285,11 @@ namespace RRYautja
                     if (!((Pawn)this.parent).health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden) && thing==null)
                     {
                         string text = TranslatorFormattedStringExtensions.Translate("Xeno_Chestburster_Hides");
-                    //    Log.Message(text);
+
                         MoteMaker.ThrowText(base.parent.Position.ToVector3(), base.parent.Map, text, 3f);
                         ((Pawn)this.parent).health.AddHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden);
                     }
                 }
-                /*
-                  for (int i = 0; i < num2; i++)
-                  {
-                      MoteMaker.ThrowDustPuff(loc, base.parent.Map, Rand.Range(0.8f, 1.2f));
-                  }
-                  */
             }
 
         }
