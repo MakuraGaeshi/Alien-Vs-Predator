@@ -238,7 +238,7 @@ namespace RRYautja
 #if DEBUG
                     //    Log.Message("removing Facehugger");
 #endif
-                        base.Pawn.health.hediffSet.hediffs.Remove(this.parent);
+                        Pawn.health.hediffSet.hediffs.Remove(this.parent);
                         this.CompPostPostRemoved();
 
                     }
@@ -249,20 +249,21 @@ namespace RRYautja
 
         public override void Notify_PawnDied()
         {
-            base.Notify_PawnDied();
             Pawn.health.RemoveHediff(this.parent);
+            base.Notify_PawnDied();
         }
 
         public override void CompPostPostRemoved()
         {
-            Thing hostThing = base.Pawn;
-            Pawn hostPawn = base.Pawn;
-            IntVec3 spawnLoc = !base.Pawn.Dead ? base.parent.pawn.Position : base.parent.pawn.PositionHeld;
-            Map spawnMap = !base.Pawn.Dead ? base.parent.pawn.Map : base.parent.pawn.MapHeld;
+            Thing hostThing = Pawn;
+            Pawn hostPawn = Pawn;
+            IntVec3 spawnLoc = !Pawn.Dead ? Pawn.Position : Pawn.PositionHeld;
+            Map spawnMap = !Pawn.Dead ? Pawn.Map : Pawn.MapHeld;
             bool spawnLive = this.spawnLive;
-            if ((hostPawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation) && !hasImpregnated))
+        //    if ((hostPawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation) && !hasImpregnated))
+            if (!hasImpregnated)
             {
-                spawnLive = true;
+            spawnLive = true;
             }
             PawnGenerationRequest pawnGenerationRequest = new PawnGenerationRequest(pawnKindDef, null, PawnGenerationContext.NonPlayer, -1, true, false, true, false, true, true, 20f);
             Pawn pawn = PawnGenerator.GeneratePawn(pawnGenerationRequest);

@@ -80,7 +80,7 @@ namespace RRYautja
             base.CompTick();
             if (IsWorn)
             {
-                if ((GetWearer.Downed && GetWearer.Awake() && !GetWearer.InBed()) || (GetWearer.IsPrisonerOfColony))
+                if ((GetWearer.Downed && GetWearer.Awake() && !GetWearer.InBed()) || (GetWearer.IsPrisonerOfColony) && !GetWearer.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection))
                 {
                     if (Find.TickManager.TicksGame >= this.nextUpdateTick && !Armed)
                     {
@@ -145,7 +145,7 @@ namespace RRYautja
                         {
                             IntVec3 vec3 = GetWearer.Position != null ? GetWearer.Position : GetWearer.PositionHeld;
                             Map map = GetWearer.Map ?? GetWearer.MapHeld;
-                            vec3.x -= 1;
+                        //    vec3.x -= 1;
                             vec3.z += 1;
                             MoteMaker.ThrowText(vec3.ToVector3ShiftedWithAltitude(AltitudeLayer.MoteOverhead), map, stringbit, 5f);
                         }
@@ -189,10 +189,10 @@ namespace RRYautja
         {
             Armed = true;
             ticksTillDetonation = 1000;
-            IntVec3 vec3 = GetWearer.Position;
-            vec3.x -= 1;
-            vec3.z += 1;
-            MoteMaker.ThrowText(vec3.ToVector3ShiftedWithAltitude(AltitudeLayer.MoteOverhead), GetWearer.Map, "Countdown Started", 5f);
+        //    IntVec3 vec3 = GetWearer.Position;
+        //    vec3.x -= 1;
+        //    vec3.z += 1;
+        //    MoteMaker.ThrowText(vec3.ToVector3ShiftedWithAltitude(AltitudeLayer.MoteOverhead), GetWearer.Map, "Countdown Started", 5f);
         }
 
         public void StopFuse()
@@ -200,7 +200,7 @@ namespace RRYautja
             Armed = false;
             ticksTillDetonation = 1000;
             IntVec3 vec3 = GetWearer.Position;
-            vec3.x -= 1;
+        //    vec3.x -= 1;
             vec3.z += 1;
             MoteMaker.ThrowText(vec3.ToVector3ShiftedWithAltitude(AltitudeLayer.MoteOverhead), GetWearer.Map, "Countdown Stopped", 5f);
         }

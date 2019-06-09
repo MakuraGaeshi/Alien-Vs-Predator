@@ -16,6 +16,7 @@
 	<pawnSingular>Yautja</pawnSingular>
     <pawnsPlural>Yautji</pawnsPlural>
     <listOrderPriority>20</listOrderPriority>
+    <earliestRaidDays>45</earliestRaidDays>
     <settlementGenerationWeight>1</settlementGenerationWeight>
     <requiredCountAtGameStart>1</requiredCountAtGameStart>
     <basicMemberKind>YautjaUnblooded_RRY</basicMemberKind>
@@ -142,6 +143,7 @@
     <pawnsPlural>Badblood yautji</pawnsPlural>
     <basicMemberKind>YautjaUnblooded_RRY</basicMemberKind>
     <listOrderPriority>20</listOrderPriority>
+    <earliestRaidDays>45</earliestRaidDays>
     <settlementGenerationWeight>1</settlementGenerationWeight>
     <requiredCountAtGameStart>1</requiredCountAtGameStart>
     <canMakeRandomly>true</canMakeRandomly>

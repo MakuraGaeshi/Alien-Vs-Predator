@@ -227,6 +227,7 @@
     </stages>
     <comps>
 		<li Class="RRYautja.HediffCompProperties_XenoSpawner">
+		<severityPerDay>0.5</severityPerDay>
 		<pawnKindDefs>
 			<li>RRY_Xenomorph_Queen</li>
 			<li>RRY_Xenomorph_Warrior</li>
@@ -239,9 +240,6 @@
 			<li>50</li>
 			<li>100</li>
 		</pawnKindWeights>
-		</li>
-		<li Class="HediffCompProperties_SeverityPerDay">
-		<severityPerDay>0.3</severityPerDay>
 		</li>
     </comps>
   </HediffDef>
@@ -623,15 +621,13 @@
     </stages>
     <comps>
 		<li Class="RRYautja.HediffCompProperties_XenoSpawner">
+		<severityPerDay>0.3</severityPerDay>
 		<pawnKindDefs>
 			<li>RRY_Xenomorph_Neomorph</li>
 		</pawnKindDefs>
 		<pawnKindWeights>
 			<li>100</li>
 		</pawnKindWeights>
-		</li>
-		<li Class="HediffCompProperties_SeverityPerDay">
-		<severityPerDay>0.3</severityPerDay>
 		</li>
     </comps>
   </HediffDef>

@@ -25,7 +25,7 @@ namespace RRYautja
                 _shadowGraphic = typeof(PawnRenderer).GetField("shadowGraphic", BindingFlags.Instance | BindingFlags.NonPublic);
                 if (_shadowGraphic == null)
                 {
-                //    Log.ErrorOnce("Unable to reflect PawnRenderer.shadowGraphic!", 0x12348765);
+                    Log.ErrorOnce("Unable to reflect PawnRenderer.shadowGraphic!", 0x12348765);
                 }
             }
             _shadowGraphic.SetValue(_this, newValue);
@@ -38,7 +38,7 @@ namespace RRYautja
                 _shadowGraphic = typeof(PawnRenderer).GetField("shadowGraphic", BindingFlags.Instance | BindingFlags.NonPublic);
                 if (_shadowGraphic == null)
                 {
-                //    Log.ErrorOnce("Unable to reflect PawnRenderer.shadowGraphic!", 0x12348765);
+                    Log.ErrorOnce("Unable to reflect PawnRenderer.shadowGraphic!", 0x12348765);
                 }
             }
             return (Graphic_Shadow)_shadowGraphic.GetValue(_this);
@@ -51,7 +51,7 @@ namespace RRYautja
                 _graphicInt = typeof(Thing).GetField("graphicInt", BindingFlags.Instance | BindingFlags.NonPublic);
                 if (_graphicInt == null)
                 {
-                //    Log.ErrorOnce("Unable to reflect Thing.graphicInt!", 0x12348765);
+                    Log.ErrorOnce("Unable to reflect Thing.graphicInt!", 0x12348765);
                 }
             }
             _graphicInt.SetValue(_this, newValue);
@@ -64,27 +64,37 @@ namespace RRYautja
                 _lastCell = typeof(Pawn_PathFollower).GetField("lastCell", BindingFlags.Instance | BindingFlags.NonPublic);
                 if (_lastCell == null)
                 {
-                //    Log.ErrorOnce("Unable to reflect Pawn_PathFollower.lastCell!", 0x12348765);
+                    Log.ErrorOnce("Unable to reflect Pawn_PathFollower.lastCell!", 0x12348765);
                 }
             }
             return (IntVec3)_lastCell.GetValue(_this);
         }
 
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look(ref lastSpottedTick, "lastSpottedtick", -9999);
+            Scribe_References.Look(ref lastCarried, "lastCarried");
+            // PawnGraphicSet
+            /*
+            Scribe_Values.Look(ref oldGraphics, "oldGraphics");
+            Scribe_Values.Look(ref oldShadow, "oldShadow");
+            */
+        }
 
         public override void PostAdd(DamageInfo? dinfo)
         {
             base.PostAdd(dinfo);
-            
-                oldGraphics = pawn.Drawer.renderer.graphics;
-                oldShadow = GetShadowGraphic(pawn.Drawer.renderer);
-                pawn.Drawer.renderer.graphics = new PawnGraphicSet_Invisible(pawn);
+
+            oldGraphics = pawn.Drawer.renderer.graphics;
+            oldShadow = GetShadowGraphic(pawn.Drawer.renderer);
+            pawn.Drawer.renderer.graphics = new PawnGraphicSet_Invisible(pawn);
             ShadowData shadowData = new ShadowData
             {
                 volume = new Vector3(0, 0, 0),
                 offset = new Vector3(0, 0, 0)
             };
             SetShadowGraphic(pawn.Drawer.renderer, new Graphic_Shadow(shadowData));
-            //pawn.Drawer.renderer.graphics.ResolveAllGraphics();
 
 
             pawn.stances.CancelBusyStanceHard();
@@ -97,8 +107,7 @@ namespace RRYautja
 
         public override void Tick()
         {
-            LifeStageDef stage = pawn.ageTracker.CurLifeStage;
-            if (!pawn.Spawned|| (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden)&& stage == pawn.RaceProps.lifeStageAges[pawn.RaceProps.lifeStageAges.Count - 1].def))
+            if (!pawn.Spawned)
             {
                 pawn.health.RemoveHediff(this);
             }
@@ -134,7 +143,7 @@ namespace RRYautja
                             foreach (Thing thing in thingList)
                             {
                                 Pawn observer = thing as Pawn;
-                                if (observer != null && !observer.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned) && !observer.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection) && observer != pawn && observer.Faction != null && (observer.Faction.IsPlayer || observer.Faction.HostileTo(pawn.Faction)))
+                                if (observer != null && observer != pawn && observer.Faction != null && (observer.Faction.IsPlayer || observer.Faction.HostileTo(pawn.Faction)))
                                 {
                                     float observerSight = observer.health.capacities.GetLevel(PawnCapacityDefOf.Sight);
                                     observerSight *= 0.805f + (pawn.Map.glowGrid.GameGlowAt(pawn.Position) / 4);
@@ -188,18 +197,9 @@ namespace RRYautja
 
         public override void PostRemoved()
         {
-            if (XenomorphUtil.IsXenomorph(this.pawn))
-            {
-                LifeStageDef stage = pawn.ageTracker.CurLifeStage;
-                if (stage == pawn.RaceProps.lifeStageAges[pawn.RaceProps.lifeStageAges.Count - 1].def)
-                {
-                //    Log.Message(string.Format("{0}", oldGraphics.nakedGraphic.path));
-                //    Log.Message(string.Format("{0}", oldGraphics.AllResolved.ToString()));
-                }
-            }
-            pawn.Drawer.renderer.graphics = oldGraphics;
-            pawn.Drawer.renderer.graphics.ResolveAllGraphics();
-            SetShadowGraphic(pawn.Drawer.renderer, oldShadow);
+           
+            if (oldGraphics != null) pawn.Drawer.renderer.graphics = oldGraphics;
+            if (oldShadow != null) SetShadowGraphic(pawn.Drawer.renderer, oldShadow);
             Thing holding = pawn.carryTracker.CarriedThing;
             if (holding != null)
             {
@@ -209,10 +209,8 @@ namespace RRYautja
             {
                 SetGraphicInt(lastCarried, lastCarriedGraphic);
             }
-            if (!pawn.Spawned && (holding != null || lastCarried != null))
-            {
-                Messages.Message("A thief has stolen " + (holding != null ? holding.LabelNoCount : lastCarried.LabelNoCount) + "!", MessageTypeDefOf.ThreatSmall);
-            }
+            pawn.Drawer.renderer.graphics.ResolveAllGraphics();
+            Log.Message(string.Format("removing xeno hidden from {0}", pawn.LabelShortCap));
         }
 
         public void AlertThief(Pawn pawn, Thing observer)
@@ -220,38 +218,28 @@ namespace RRYautja
             pawn.jobs.EndCurrentJob(JobCondition.InterruptForced);
             if (!pawn.Dead)
             {
-                /*
-                List<Pawn> thisPawn = new List<Pawn>();
-                thisPawn.Add(pawn);
-                IncidentParms parms = new IncidentParms();
-                parms.faction = pawn.Faction;
-                parms.spawnCenter = pawn.Position;
-                parms.raidStrategy = RaidStrategyDefOf.ImmediateAttack;
+                List<Pawn> thisPawn = new List<Pawn>
+                {
+                    pawn
+                };
+                IncidentParms parms = new IncidentParms
+                {
+                    faction = pawn.Faction,
+                    spawnCenter = pawn.Position,
+                    raidStrategy = RaidStrategyDefOf.ImmediateAttack
+                };
                 parms.raidStrategy.Worker.MakeLords(parms, thisPawn);
                 pawn.Map.avoidGrid.Regenerate();
                 LessonAutoActivator.TeachOpportunity(ConceptDefOf.EquippingWeapons, OpportunityType.Critical);
-                */
             }
             if (observer != null)
             {
-             //   Find.LetterStack.ReceiveLetter("LetterLabelThief".Translate(), "ThiefRevealed".Translate(observer.LabelShort, pawn.Faction.Name, pawn.Named("PAWN")), LetterDefOf.ThreatSmall, pawn, null);
+                //   Find.LetterStack.ReceiveLetter("LetterLabelThief".Translate(), "ThiefRevealed".Translate(observer.LabelShort, pawn.Faction.Name, pawn.Named("PAWN")), LetterDefOf.ThreatSmall, pawn, null);
             }
             else
             {
-            //    Find.LetterStack.ReceiveLetter("LetterLabelThief".Translate(), "ThiefInjured".Translate(pawn.Faction.Name, pawn.Named("PAWN")), LetterDefOf.NegativeEvent, pawn, null);
+                //    Find.LetterStack.ReceiveLetter("LetterLabelThief".Translate(), "ThiefInjured".Translate(pawn.Faction.Name, pawn.Named("PAWN")), LetterDefOf.NegativeEvent, pawn, null);
             }
-        }
-
-        public override void ExposeData()
-        {
-            base.ExposeData();
-            Scribe_Values.Look(ref lastSpottedTick, "lastSpottedtick", -9999);
-            Scribe_References.Look(ref lastCarried, "lastCarried");
-            /*
-            Scribe_Deep.Look(ref oldGraphics, "oldGraphics");
-            Scribe_Deep.Look(ref oldShadow, "oldShadow");
-            Scribe_Deep.Look(ref lastCarriedGraphic, "lastCarriedGraphic");
-            */
         }
 
         private PawnGraphicSet oldGraphics;

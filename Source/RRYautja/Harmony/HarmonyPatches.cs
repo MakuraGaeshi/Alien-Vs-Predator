@@ -90,14 +90,14 @@ namespace RRYautja
         public static bool Patch_HealthUtility_AdjustSeverity(Pawn pawn, HediffDef hdDef, float sevOffset)
         {
             bool preflag = hdDef != XenomorphDefOf.RRY_FaceHuggerInfection || hdDef != XenomorphDefOf.RRY_XenomorphImpregnation || hdDef != XenomorphDefOf.RRY_HiddenXenomorphImpregnation || hdDef != XenomorphDefOf.RRY_NeomorphImpregnation || hdDef != XenomorphDefOf.RRY_HiddenNeomorphImpregnation;
-            bool flag = (pawn.InBed() && pawn.CurrentBed() is Building_XenomorphCocoon) && preflag;
+            bool flag = (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned)) && preflag;
             return !flag;
         }
 
         public static bool Patch_Pawn_HealthTracker_DropBloodFilth(Pawn_HealthTracker __instance)
         {
             Pawn pawn = HarmonyPatches.Pawn_HealthTracker_GetPawn(__instance);
-            bool flag = (pawn.InBed() && pawn.CurrentBed() is Building_XenomorphCocoon);
+            bool flag = (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned));
             bool result;
             if (flag)
             {

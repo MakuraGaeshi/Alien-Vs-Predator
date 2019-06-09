@@ -39,6 +39,7 @@
   <Xeno_Chestburster_PreEmerge>{0} has collapsed and is writhing around! something is wrong...</Xeno_Chestburster_PreEmerge>
   <Xeno_Chestburster_Emerge>{0}'s convulsions stop suddenly and a Chestburster emerges in a gorey mess from {0}'s {1}</Xeno_Chestburster_Emerge>
   <Xeno_Chestburster_Hides>the Chestburster disappears into the surrounding area and hides</Xeno_Chestburster_Hides>
+  <Xeno_Chestburster_Matures>the Chestburster has matured into a fully grown {0}</Xeno_Chestburster_Matures>
    <!-- Yautja -->
   <RRY_Remove_Gauntlet>Surgically Remove Gauntlet</RRY_Remove_Gauntlet>
   <BloodStatus_Unblooded>{0}</BloodStatus_Unblooded>

@@ -10,23 +10,56 @@ namespace RRYautja
 	// Token: 0x02000A0D RID: 2573
 	public class Verb_MeleeAttackFacehugger : Verb_MeleeAttack
     {
-		// Token: 0x060039DE RID: 14814 RVA: 0x001B8078 File Offset: 0x001B6478
-		private IEnumerable<DamageInfo> DamageInfosToApply(LocalTargetInfo target)
+        public Pawn hitPawn
+        {
+            get
+            {
+                return (Pawn)this.currentTarget;
+            }
+        }
+
+        public BodyPartRecord Head
+        {
+            get
+            {
+                return hitPawn.RaceProps.body.AllParts.Where(x => x.def.defName == "Head").First();
+            }
+        }
+
+        // Token: 0x060039DE RID: 14814 RVA: 0x001B8078 File Offset: 0x001B6478
+        private IEnumerable<DamageInfo> DamageInfosToApply(LocalTargetInfo target)
         {
             Pawn hitPawn = (Pawn)target;
             bool flag = XenomorphUtil.isInfectablePawn(hitPawn);
             float tgtmelee = 0f;
             float tgtdodge = 0f;
+            float armourBlunt = 0f;
+            float armourSharp = 0f;
+            float armourHeat = 0f;
+            float armour = 0f;
             if (hitPawn.RaceProps.Humanlike) tgtmelee = hitPawn.skills.GetSkill(SkillDefOf.Melee).Level;
             if (hitPawn.RaceProps.Humanlike) tgtdodge = hitPawn.GetStatValue(StatDefOf.MeleeDodgeChance);
-            float armourBlunt = hitPawn.GetStatValue(StatDefOf.ArmorRating_Blunt, false);
-            float armourBluntPP = hitPawn.GetStatValue(StatDefOf.ArmorRating_Blunt, true);
-            float armourSharp = hitPawn.GetStatValue(StatDefOf.ArmorRating_Sharp, false);
-            float armourSharpPP = hitPawn.GetStatValue(StatDefOf.ArmorRating_Sharp, true);
-            float armourHeat = hitPawn.GetStatValue(StatDefOf.ArmorRating_Heat, false);
-            float armourHeatPP = hitPawn.GetStatValue(StatDefOf.ArmorRating_Heat, true);
-       //     Log.Message(string.Format("armourBlunt: {0}, PP: {1}, armourSharp: {2}, PP: {3}, armourHeat: {4}, PP: {5}", armourBlunt, armourBluntPP, armourSharp, armourSharpPP, armourHeat, armourHeatPP));
-            if (((Rand.Value * 100)*(1-tgtdodge)  > 50+tgtmelee || hitPawn.Downed) && flag&&hitPawn is Pawn)
+            if (hitPawn.RaceProps.Humanlike)
+            {
+                if (hitPawn.apparel.WornApparel.Count > 0 && hitPawn.apparel.WornApparel is List<Apparel> wornApparel)
+                {
+                    for (int i = 0; i < wornApparel.Count; i++)
+                    {
+                        bool flag2 = wornApparel[i].def.apparel.CoversBodyPart(Head);
+                        if (flag2) 
+                        {
+                            armourBlunt = wornApparel[i].def.statBases.GetStatOffsetFromList(StatDefOf.ArmorRating_Blunt); // hitPawn.GetStatValue(StatDefOf.ArmorRating_Blunt, false);
+                            armourSharp = wornApparel[i].def.statBases.GetStatOffsetFromList(StatDefOf.ArmorRating_Sharp); //hitPawn.GetStatValue(StatDefOf.ArmorRating_Sharp, false);
+                            armourHeat = wornApparel[i].def.statBases.GetStatOffsetFromList(StatDefOf.ArmorRating_Heat); //hitPawn.GetStatValue(StatDefOf.ArmorRating_Heat, false);
+                            armour = (armourBlunt + armourSharp + armourHeat);
+                            Log.Message(string.Format("Pawn: {4}\narmourBlunt: {0}, armourSharp: {1}, armourHeat: {2}, Total Armour {3}", armourBlunt, armourSharp, armourHeat, armour, wornApparel[i].LabelShortCap));
+                        }
+                    }
+                }
+            }
+            float InfecterRoll = (Rand.Value * 100) * (1 - tgtdodge);
+            float InfectionDefence = 50 + tgtmelee + (armour * 10);
+            if ((InfecterRoll > InfectionDefence || hitPawn.Downed) && flag&&hitPawn is Pawn)
             {
                 infect = true;
             }
@@ -34,6 +67,7 @@ namespace RRYautja
 			float armorPenetration = this.verbProps.AdjustedArmorPenetration(this, base.CasterPawn);
 			DamageDef damDef = this.verbProps.meleeDamageDef;
 			BodyPartGroupDef bodyPartGroupDef = null;
+
 			HediffDef hediffDef = null;
 			damAmount = Rand.Range(damAmount * 0.8f, damAmount * 1.2f);
 			if (base.CasterIsPawn)
@@ -107,7 +141,7 @@ namespace RRYautja
         {
             DamageWorker.DamageResult result = new DamageWorker.DamageResult();
             Pawn hitPawn = (Pawn)target;
-            if (infect && !XenomorphUtil.IsInfectedPawn(hitPawn))
+            if (infect && !XenomorphUtil.IsInfectedPawn(hitPawn) && !hitPawn.Dead && hitPawn.health.hediffSet.HasHead)
             {
                 foreach (var part in hitPawn.RaceProps.body.AllParts.Where(x => x.def.defName == "Head"))
                 {

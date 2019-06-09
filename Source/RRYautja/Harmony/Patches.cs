@@ -18,6 +18,7 @@ namespace RRYautja
     {
         static Main()
         {
+            //    HarmonyInstance.DEBUG = true;
             var harmony = HarmonyInstance.Create("com.ogliss.rimworld.mod.rryatuja");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
         }
@@ -25,6 +26,19 @@ namespace RRYautja
 
     }
 
+    [HarmonyPatch(typeof(RimWorld.PawnUtility), "GetManhunterOnDamageChance", new Type[] { typeof(Pawn), typeof(Thing) }), StaticConstructorOnStartup]
+    public static class PawnUtility_GetManhunterOnDamageChance_Patch
+    {
+        [HarmonyPostfix]
+        public static void GetManhunterOnDamageChancePostfix(Pawn pawn, Thing instigator, ref float __result)
+        {
+            if (instigator!=null)
+            {
+                __result = XenomorphUtil.IsXenomorphPawn(((Pawn)instigator)) ? 0.0f : __result;
+                Log.Message(string.Format("__result: {0}", __result));
+            }
+        }
+    }
 
     [HarmonyPatch(typeof(Pawn), "ThreatDisabled")]
     public static class Pawn_ThreatDisabledPatch
@@ -61,19 +75,27 @@ namespace RRYautja
         [HarmonyPostfix]
         public static void HarmsHealthPostfix(Verb verb, ref bool __result)
         {
-            __result = verb is Verb_Launch_Stuffable_Projectile || verb is Verb_Shoot_Stuffable;
+            __result = __result || verb is Verb_Launch_Stuffable_Projectile || verb is Verb_Shoot_Stuffable;
         }
     }
-    
+
+
+
     /*
+    // Token: 0x0200007A RID: 122
     [HarmonyPatch(typeof(PawnUtility), "GetManhunterOnDamageChance")]
-    public static class PawnUtility_GetManhunterOnDamageChance_Patch
+    internal class PawnUtility_GetManhunterOnDamageChance_Patch
     {
-        [HarmonyPostfix]
-        public static void HarmsHealthPostfix(Pawn pawn, float distance, Thing instigator, ref float __result)
+        // Token: 0x060001D9 RID: 473 RVA: 0x0000DB80 File Offset: 0x0000BD80
+        private static bool Prefix(Pawn p, ref float __result)
         {
-            Pawn p2 = (Pawn)instigator;
-            if (XenomorphUtil.IsXenomorphPawn(p2)) __result = 0f;
+            return true;
+        }
+
+        // Token: 0x060001DA RID: 474 RVA: 0x0000DBFC File Offset: 0x0000BDFC
+        private static void Postfix(Pawn p, ref float __result)
+        {
+
         }
     }
     */
@@ -203,7 +225,7 @@ namespace RRYautja
         [HarmonyPostfix]
         public static void IgnoreWristblade(Pawn __instance, ref bool __result)
         {
-            __result = !(__instance.apparel != null && __instance.apparel.WornApparelCount == 1 && __instance.apparel.WornApparel.Any(x => x.def == YautjaDefOf.RRY_Equipment_HunterGauntlet) && __instance.Faction != Faction.OfPlayerSilentFail);
+            __result = __result && !(__instance.apparel != null && __instance.apparel.WornApparelCount == 1 && __instance.apparel.WornApparel.Any(x => x.def == YautjaDefOf.RRY_Equipment_HunterGauntlet) && __instance.Faction != Faction.OfPlayerSilentFail);
 
         }
     }

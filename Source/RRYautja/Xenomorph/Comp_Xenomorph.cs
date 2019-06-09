@@ -235,6 +235,10 @@ namespace RRYautja
                    //     Log.Message(string.Format("New Lord switched: {0}", pawn.GetLord().LordJob));
                     }
                 }
+                if (pawn.GetLord() != null && pawn.mindState.duty == null)
+                {
+                    pawn.mindState.duty = pawn.GetLord().ownedPawns.Where(x => x.mindState.duty != null).RandomElement().mindState.duty;
+                }
             }
         }
 
@@ -266,6 +270,14 @@ namespace RRYautja
                 LifeStageDef stage = pawn.ageTracker.CurLifeStage;
                 if (stage == pawn.RaceProps.lifeStageAges[pawn.RaceProps.lifeStageAges.Count - 1].def)
                 {
+                    if (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden))
+                    {
+                        string text = TranslatorFormattedStringExtensions.Translate("Xeno_Chestburster_Matures",pawn.LabelCap);
+                        Hediff hediff = pawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden);
+                        //    Log.Message(text);
+                        MoteMaker.ThrowText(pawn.Position.ToVector3(), pawn.Map, text, 3f);
+                        pawn.health.RemoveHediff(hediff);
+                    }
                     if (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
                     {
                         //    XenoLordTick();
