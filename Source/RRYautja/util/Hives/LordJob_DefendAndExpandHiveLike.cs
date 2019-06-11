@@ -51,14 +51,12 @@ namespace RimWorld
         public override void LordJobTick()
         {
             base.LordJobTick();
-
         }
 
 
         // Token: 0x06000795 RID: 1941 RVA: 0x00042F44 File Offset: 0x00041344
         public override StateGraph CreateGraph()
 		{
-            
 			StateGraph stateGraph = new StateGraph();
             LordToil_DefendAndExpandHiveLike lordToil_DefendAndExpandHiveLike = new LordToil_DefendAndExpandHiveLike
             {
@@ -77,7 +75,7 @@ namespace RimWorld
 			stateGraph.AddToil(lordToil_XenomrophAssaultColony);
             
 			Transition transition = new Transition(lordToil_DefendAndExpandHiveLike, (!aggressive) ? (LordToil)lordToil_DefendHiveAggressively : (LordToil)lordToil_XenomrophAssaultColony, false, true);
-			transition.AddTrigger(new Trigger_PawnHarmed(0.5f, true, Find.FactionManager.OfPlayer));
+			transition.AddTrigger(new Trigger_PawnHarmed(0.5f, true, null));
 			transition.AddTrigger(new Trigger_PawnLostViolently(false));
 			transition.AddTrigger(new Trigger_Memo(HiveLike.MemoAttackedByEnemy));
 			transition.AddTrigger(new Trigger_Memo(HiveLike.MemoBurnedBadly));

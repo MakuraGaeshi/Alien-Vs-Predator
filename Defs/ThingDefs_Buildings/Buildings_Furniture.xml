@@ -68,14 +68,25 @@
       <WorkToBuild>600</WorkToBuild>
     </statBases>
     <comps>
-	
 		<!--
+      <li Class="CompProperties_Usable">
+        <compClass>RRYautja.CompUsable_Cocoon</compClass>
+        <useJob>UseItem</useJob>
+        <useLabel>Release from cocoon</useLabel>
+        <useDuration>300</useDuration>
+      </li>
+      <li Class="CompProperties_UseEffect">
+        <compClass>RRYautja.CompUseEffect_Cocoon</compClass>
+      </li>
+      <li Class="CompProperties_UseEffect">
+        <compClass>CompUseEffect_DestroySelf</compClass>
+      </li>
 			<li Class="CompProperties_RoomIdentifier">
 				<roomStat>Impressiveness</roomStat>
 			</li>
 			-->
       <li Class="CompProperties_SpawnerFilth">
-        <filthDef>Filth_Slime</filthDef>
+        <filthDef>RRY_Filth_Slime</filthDef>
         <spawnCountOnSpawn>10</spawnCountOnSpawn>
         <spawnMtbHours>4</spawnMtbHours>
         <spawnRadius>1</spawnRadius>
@@ -119,7 +130,12 @@
       <WorkToBuild>600</WorkToBuild>
     </statBases>
     <comps>
-	
+      <li Class="CompProperties_SpawnerFilth">
+        <filthDef>RRY_Filth_Slime</filthDef>
+        <spawnCountOnSpawn>10</spawnCountOnSpawn>
+        <spawnMtbHours>4</spawnMtbHours>
+        <spawnRadius>1</spawnRadius>
+      </li>
     </comps>
     <size>(1,1)</size>
     <building>

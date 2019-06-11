@@ -164,10 +164,8 @@ namespace RRYautja
                    
                     if (this.gestateProgress >= 1f)
                     {
-#if DEBUG
                         bool selected = Find.Selector.SingleSelectedThing == this.parent;
                         if (selected) Log.Message(string.Format("{0} @ {1}, Can hatch?: {2}, Will hatch?: {3}", this.parent.Label, MyPos, canHatch, willHatch));
-#endif
                         if (this.canHatch && this.willHatch)
                         {
                             this.Hatch();
@@ -200,51 +198,42 @@ namespace RRYautja
             {
                 Pawn pawn = (Pawn)thing;
                 bool flag = XenomorphUtil.isInfectablePawn(pawn);
-#if DEBUG
                 if (selected)
                 {
-                //    Log.Message(string.Format("{0} isInfectable?: {1}", pawn.Label, flag));
+                    Log.Message(string.Format("{0} isInfectable?: {1}", pawn.Label, flag));
                 }
-#endif
                 if (flag)
                 {
                     this.canHatch = true;
                 }
-                if (canHatch && shouldHatch)// && DistanceBetween(MyPos, pawn.Position)<10f)
+                if (canHatch && shouldHatch && DistanceBetween(MyPos, pawn.Position)<10f)
                 {
                     float thingdist = DistanceBetween(MyPos, pawn.Position);
                     float thingsize = pawn.BodySize;
                     float thingstealth = thing.GetStatValue(StatDefOf.HuntingStealth);
                     float thingmovespeed = thing.GetStatValue(StatDefOf.MoveSpeed);
-                    
-#if DEBUG
                     if (selected)
                     {
-                    //    Log.Message(string.Format("distance between {1} @{3} and {2} @ {4}: {0}", DistanceBetween(MyPos, pawn.Position), this.parent.LabelShort, pawn.Label, MyPos, pawn.Position));
-                    //    Log.Message(string.Format("{0} thingsize: {1}, thingstealth: {2}, thingmovespeed: {3}", pawn.Label, thingsize, thingstealth, thingmovespeed));
-
+                        Log.Message(string.Format("distance between {1} @{3} and {2} @ {4}: {0}", DistanceBetween(MyPos, pawn.Position), this.parent.LabelShort, pawn.Label, MyPos, pawn.Position));
+                        Log.Message(string.Format("{0} thingsize: {1}, thingstealth: {2}, thingmovespeed: {3}", pawn.Label, thingsize, thingstealth, thingmovespeed));
                     }
-#endif
+
                     float hatchon = ((10*thingdist) / thingsize);
                     float roll = thingstealth > 0 ? (Rand.RangeInclusive(0, 100)* thingstealth): (Rand.RangeInclusive(0, 100));
-#if DEBUG
                     if (selected)
                     {
-                    //    Log.Message(string.Format("{0} hatchon: {1}, roll: {2}", pawn.Label, hatchon, roll));
+                        Log.Message(string.Format("{0} hatchon: {1}, roll: {2}", pawn.Label, hatchon, roll));
                     }
-#endif
                     if (roll>hatchon)
                     {
                         this.willHatch = true;
                     }
                 }
             }
-#if DEBUG
             if (thing == null)
             {
                 if (selected) Log.Message(string.Format("{0} @ {1}, Cant hatch No suitable Host Found", this.parent.Label, MyPos, canHatch));
             }
-#endif
         }
 
 

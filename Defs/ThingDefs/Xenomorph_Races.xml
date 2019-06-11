@@ -52,7 +52,7 @@
   <ThingDef ParentName="RRY_BaseXenomorphPawn" Name="RRY_BaseXenomorph" Abstract="True">
     <soundImpactDefault>BulletImpact_Flesh</soundImpactDefault>
     <statBases>
-      <PainShockThreshold>1</PainShockThreshold>
+      <PainShockThreshold>0.999</PainShockThreshold>
       <MeleeDodgeChance>1.5</MeleeDodgeChance>
       <MeleeHitChance>1.5</MeleeHitChance>
       <MiningSpeed>1.5</MiningSpeed>

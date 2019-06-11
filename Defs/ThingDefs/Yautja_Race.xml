@@ -412,15 +412,16 @@
 				<li>KnowGuestOrganHarvested</li>
             </cannotReceiveThoughts>
 			
+				<!--
 			<ateThoughtSpecific>
                 <li>
                     <raceList>
                         <li>RRY_Alien_Yautja</li>
                     </raceList>
-                    <thought>RRY_AteYautjaMeatDirect</thought>
-                    <ingredientThought>RRY_AteYautjaMeatAsIngredient</ingredientThought>
-					<thoughtCannibal>RRY_AteYautjaMeatDirectCannibal</thoughtCannibal>
-					<ingredientThoughtCannibal>RRY_AteYautjaMeatAsIngredientCannibal</ingredientThoughtCannibal>
+                     <thought>RRY_AteYautjaMeatDirect</thought> 
+                     <ingredientThought>RRY_AteYautjaMeatAsIngredient</ingredientThought> 
+					 <thoughtCannibal>RRY_AteYautjaMeatDirectCannibal</thoughtCannibal> 
+					 <ingredientThoughtCannibal>RRY_AteYautjaMeatAsIngredientCannibal</ingredientThoughtCannibal> 
                 </li>
             </ateThoughtSpecific>
 			 <butcherThoughtSpecific>
@@ -432,6 +433,7 @@
                     <knowThought>RRY_KnowButcheredYautjaCorpse</knowThought>
                 </li>
             </butcherThoughtSpecific>
+				-->
         </thoughtSettings>
        
 	   <relationSettings>
@@ -643,7 +645,7 @@
       <baseBodySize>1.25</baseBodySize>
       <baseHungerRate>0.3</baseHungerRate>
       <baseHealthScale>1.25</baseHealthScale>
-      <foodType>CarnivoreAnimal, OvivoreAnimal</foodType>
+      <foodType>OmnivoreHuman</foodType>
       <gestationPeriodDays>45</gestationPeriodDays>
       <litterSizeCurve>
         <points>

@@ -8,7 +8,6 @@ namespace RimWorld
 	// Token: 0x0200018F RID: 399
 	public class LordToil_DefendAndExpandHiveLike : LordToil_HiveLikeRelated
     {
-        public bool hivelikesPresent;
         public bool eggsPresent;
         public bool cocoonsHumanoidPresent;
         public bool cocoonsAnimalPresent;
@@ -16,9 +15,7 @@ namespace RimWorld
         public bool eggsReachable;
         public Thing closestReachableEgg;
         public Thing closestReachableCocoontoEgg;
-
-        public bool emptycocoonsPresent;
-        public bool emptycocoonsReachable;
+        
         public bool cocoonOccupied;
         public Thing emptyclosestReachableCocoon;
 
@@ -34,34 +31,43 @@ namespace RimWorld
         public Thing hiveThing;
 
         public LocalTargetInfo myFocus;
+        bool QueenPresent;
 
 
         // Token: 0x06000860 RID: 2144 RVA: 0x00047694 File Offset: 0x00045A94
         public override void UpdateAllDuties()
         {
-            hivelikesPresent = XenomorphUtil.HivelikesPresent(Map);
+            QueenPresent = XenomorphUtil.QueenPresent(Map, out Pawn Queen);
+            if (QueenPresent)
+            {
+                if (this.Data.HiveQueen.DestroyedOrNull()) this.Data.HiveQueen = Queen;
+            }
             eggsPresent = XenomorphUtil.EggsPresent(Map);
             base.FilterOutUnspawnedHiveLikes();
-			for (int i = 0; i < this.lord.ownedPawns.Count; i++)
+            for (int i = 0; i < this.lord.ownedPawns.Count; i++)
 			{
                 Pawn pawn = this.lord.ownedPawns[i];
                 PawnDuty duty;
-                if (hivelikesPresent)
+                if (XenomorphUtil.HivelikesPresent(Map))
                 {
                     HiveLike hiveFor = base.GetHiveLikeFor(this.lord.ownedPawns[i]);
                     if (hiveFor.parentHiveLike != null)
                     {
-                    //    Log.Message(string.Format("hiveForParentPresent: {0}", hiveFor.parentHiveLike.Position));
                         duty = new PawnDuty(OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike, hiveFor.parentHiveLike, this.distToHiveToAttack);
+                    }
+                    else if (hiveFor!=null)
+                    {
+                        duty = new PawnDuty(OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike, hiveFor, this.distToHiveToAttack);
                     }
                     else
                     {
-                    //    Log.Message(string.Format("hiveForPresent: {0}", hiveFor.Position));
-                        duty = new PawnDuty(OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike, hiveFor, this.distToHiveToAttack);
+                        Log.Message(string.Format("hives present but not found, we dun fucked up boss"));
+                        duty = null;
                     }
                 }
                 else
                 {
+                    Log.Message(string.Format("HivelikesPresent: False"));
                     ThingDef named = pawn.RaceProps.Humanlike ? XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon : XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon;
 
                     cocoonsPresent = XenomorphUtil.CocoonsPresent(pawn.Map, named);
@@ -73,39 +79,42 @@ namespace RimWorld
 
                     cocoonsReachable = !XenomorphUtil.ClosestReachableCocoon(pawn, named).DestroyedOrNull();
                     closestReachableCocoon = XenomorphUtil.ClosestReachableCocoon(pawn, named);
-
-                    emptycocoonsPresent = XenomorphUtil.EmptyCocoonsPresent(pawn.Map, named);
-                    emptycocoonsReachable = !XenomorphUtil.ClosestReachableEmptyCocoon(pawn, named).DestroyedOrNull();
-                    emptyclosestReachableCocoon = XenomorphUtil.ClosestReachableEmptyCocoon(pawn, named);
-                    if (eggsPresent)
+                    
+                    if (XenomorphUtil.EggsPresent(Map))
                     {
-                    //    Log.Message(string.Format("eggsPresent: {0}", closestReachableEgg.Position));
+                        Log.Message(string.Format("eggsPresent: {0}", closestReachableEgg.Position));
                         duty = new PawnDuty(OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike, closestReachableEgg, this.distToHiveToAttack);
                     }
                     else if (cocoonsPresent)
                     {
-                    //    Log.Message(string.Format("cocoonsPresent: {0}", closestReachableCocoon.Position));
+                        Log.Message(string.Format("cocoonsPresent: {0}", closestReachableCocoon.Position));
                         duty = new PawnDuty(OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike, closestReachableCocoon, this.distToHiveToAttack);
                     }
                     else if (myFocus.Cell != IntVec3.Zero)
                     {
-                    //    Log.Message(string.Format("myFocus {0}", myFocus.Cell));
+                        Log.Message(string.Format("myFocus {0}", myFocus.Cell));
                         duty = new PawnDuty(OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike, myFocus, this.distToHiveToAttack);
                     }
                     else if (InfestationLikeCellFinder.TryFindCell(out IntVec3 c, Map, false))
                     {
-                    //    Log.Message(string.Format("InfestationLikeCellFinder: {0}", c));
+                        Log.Message(string.Format("InfestationLikeCellFinder: {0}", c));
                         duty = new PawnDuty(OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike, c, this.distToHiveToAttack);
                     }
                     else
                     {
-                    //    Log.Message(string.Format("pawn: {0}", pawn.Position));
+                        Log.Message(string.Format("pawn: {0}", pawn.Position));
                         duty = new PawnDuty(OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike, pawn, this.distToHiveToAttack);
                     }
-                    myFocus = duty.focus;
                 }
 				this.lord.ownedPawns[i].mindState.duty = duty;
-			}
+                if (duty != null)
+                {
+                    if (duty.focus != null && duty.focus != IntVec3.Invalid && duty.focus != IntVec3.Zero)
+                    {
+                        myFocus = duty.focus;
+                    }
+                }
+            }
 		}
 
 		// Token: 0x04000395 RID: 917

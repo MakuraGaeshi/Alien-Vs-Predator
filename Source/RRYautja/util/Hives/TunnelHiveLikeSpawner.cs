@@ -57,7 +57,7 @@ namespace RimWorld
         {
             get
             {
-                   ThingDef thing;
+                ThingDef thing;
                 if (Def.HiveDef != null)
                 {
                     thing = Def.HiveDef;
@@ -125,40 +125,24 @@ namespace RimWorld
         // Token: 0x0600139E RID: 5022 RVA: 0x00096118 File Offset: 0x00094518
         public void FireEvent(Map map, IntVec3 strikeLoc)
         {
-            //Log.Message(string.Format("1"));
             if (!strikeLoc.IsValid)
             {
-                //Log.Message(string.Format("1 a"));
                 strikeLoc = CellFinderLoose.RandomCellWith((IntVec3 sq) => sq.Standable(map) && !map.roofGrid.Roofed(sq), map, 1000);
-                //Log.Message(string.Format("1 b"));
             }
-            //Log.Message(string.Format("2"));
             boltMesh = LightningBoltMeshPool.RandomBoltMesh;
-            //Log.Message(string.Format("3"));
             if (!strikeLoc.Fogged(map))
             {
-                //Log.Message(string.Format("3 a"));
             //    GenExplosion.DoExplosion(strikeLoc, map, 1.9f, DamageDefOf.Flame, null, -1, -1f, null, null, null, null, null, 0f, 1, false, null, 0f, 1, 0f, false);
-                //Log.Message(string.Format("3 b"));
                 Vector3 loc = this.strikeLoc.ToVector3Shifted();
-                //Log.Message(string.Format("3 c"));
                 for (int i = 0; i < 4; i++)
                 {
-                    //Log.Message(string.Format("3 c 1"));
                     MoteMaker.ThrowSmoke(loc, map, 1.5f);
-                    //Log.Message(string.Format("3 c 2"));
                     MoteMaker.ThrowMicroSparks(loc, map);
-                    //Log.Message(string.Format("3 c 3"));
                     MoteMaker.ThrowLightningGlow(loc, map, 1.5f);
-                    //Log.Message(string.Format("3 c 4"));
                 }
-                //Log.Message(string.Format("3 d"));
             }
-            //Log.Message(string.Format("4"));
             SoundInfo info = SoundInfo.InMap(new TargetInfo(this.strikeLoc, map, false), MaintenanceType.None);
-            //Log.Message(string.Format("5"));
             SoundDefOf.Thunder_OnMap.PlayOneShot(info);
-            //Log.Message(string.Format("6"));
         }
 
         // Token: 0x0600139F RID: 5023 RVA: 0x00096229 File Offset: 0x00094629

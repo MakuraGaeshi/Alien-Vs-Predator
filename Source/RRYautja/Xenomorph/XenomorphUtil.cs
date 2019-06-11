@@ -97,14 +97,18 @@ namespace RRYautja
             {
                 return false;
             }
+            /*
             if (XenomorphUtil.DistanceBetween(c, center) > radius*2)
             {
                 return false;
             }
+            */
+            /*
             if (c.AdjacentTo8Way(center))
             {
                 return false;
             }
+            */
             if (haulable != null && haulable.def.BlockPlanting)
             {
                 Zone zone = worker.Map.zoneManager.ZoneAt(c);
@@ -526,32 +530,29 @@ namespace RRYautja
         }
         public static Thing ClosestReachableHivelike(Pawn pawn)
         {
-            Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_XenomorphHive), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, null, null, 0, -1, false, RegionType.Set_Passable, false);
+            Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, (x => XenomorphUtil.SpawnedHivelikes(pawn.Map).Contains(x)), null, 0, -1, false, RegionType.Set_Passable, false);
             return thing;
         }
-        public static Thing ClosestReachableHivelike(ThingDef hiveDef, Pawn pawn)
+        public static Thing ClosestReachableHivelike(Pawn pawn, List<Thing> Hivelikes)
         {
-            Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(hiveDef), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, null, null, 0, -1, false, RegionType.Set_Passable, false);
-            return thing;
-        }
-        public static Thing ClosestReachableHivelikeThatEggNeedsHost(Pawn pawn)
-        {
-            List<Thing> list = SpawnedEggsNeedHosts(pawn.Map);
-            Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_EggXenomorphFertilized), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, (x => list.Contains(x)), null, 0, -1, false, RegionType.Set_Passable, false);
-
+            Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, (x => Hivelikes.Contains(x)), null, 0, -1, false, RegionType.Set_Passable, false);
             return thing;
         }
         public static int TotalSpawnedHivelikeCount(Map map)
         {
-            return map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_XenomorphHive).Count;
+            return map.listerThings.AllThings.Where(x=> x is HiveLike hivelike && hivelike.OfFactionDef == XenomorphDefOf.RRY_Xenomorph).Count();
         }
         public static List<Thing> SpawnedHivelikes(Map map)
         {
-            return map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_XenomorphHive);
+            return map.listerThings.AllThings.Where(x => x is HiveLike hivelike && hivelike.OfFactionDef == XenomorphDefOf.RRY_Xenomorph).ToList();
         }
-        public static List<Thing> SpawnedHivelikes(ThingDef hiveDef, Map map)
+        public static List<Thing> SpawnedParentHivelikes(Map map)
         {
-            return map.listerThings.ThingsOfDef(hiveDef);
+            return map.listerThings.AllThings.Where(x => x is HiveLike hivelike && hivelike.OfFactionDef == XenomorphDefOf.RRY_Xenomorph && hivelike.parentHiveLike==null).ToList();
+        }
+        public static List<Thing> SpawnedChildHivelikes(Map map)
+        {
+            return map.listerThings.AllThings.Where(x => x is HiveLike hivelike && hivelike.OfFactionDef == XenomorphDefOf.RRY_Xenomorph && hivelike.parentHiveLike != null).ToList();
         }
 
         // space between / distance between

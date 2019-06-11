@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ScenPartDef>
+    <defName>Rule_HostileWithAll</defName>
+    <label>Hostile With All Factions</label>
+    <scenPartClass>ScenPart_BadBlood</scenPartClass>
+    <category>Rule</category>
+    <selectionWeight>1.0</selectionWeight>
+    <summaryPriority>359</summaryPriority>
+  </ScenPartDef>
+  
+</Defs>

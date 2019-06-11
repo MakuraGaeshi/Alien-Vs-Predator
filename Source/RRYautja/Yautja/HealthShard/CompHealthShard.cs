@@ -191,7 +191,7 @@ namespace RRYautja
         // Token: 0x06002946 RID: 10566 RVA: 0x00139554 File Offset: 0x00137954
         public override bool AllowStackWith(Thing other)
         {
-            return false;
+            return true;
         }
 
         // Token: 0x040016DD RID: 5853

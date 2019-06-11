@@ -12,6 +12,8 @@ namespace RimWorld
     {
         public FactionDef Faction;
         public ThingDef TunnelDef;
+        public ThingDef TunnelDefchild;
+        public ThingDef HiveDefchild;
         public List<PawnKindDef> PawnKinds = new List<PawnKindDef>();
         public float maxSpawnPointsPerHive = 550f;
         public float initalSpawnPointsPerHive = 250f;
@@ -44,16 +46,7 @@ namespace RimWorld
                 return Def.Faction;
             }
         }
-
-        public ThingDef OfTunnel
-        {
-            get
-            {
-                //Log.Message(string.Format("HiveLikeDef: {0}", Def.TunnelDef.defName));
-                return Def.TunnelDef; 
-            }
-        }
-
+        
         public List<PawnKindDef> OfPawnKinds
         {
             get

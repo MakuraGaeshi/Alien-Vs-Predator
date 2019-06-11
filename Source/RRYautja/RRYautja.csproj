@@ -66,6 +66,8 @@
     <Compile Include="util\Building_XenomorphCryptosleepCasket.cs" />
     <Compile Include="util\Building_CrashedShipPart_CryptosleepCasket_Xenomorph.cs" />
     <Compile Include="util\Class1.cs" />
+    <None Include="util\Hives\LordToil_DefendAndExpandHiveLike.cs.bak" />
+    <Compile Include="util\Hives\JobGiver_WandeEggs.cs" />
     <Compile Include="util\Hives\LordToil_DefendHiveLikeAggressively.cs" />
     <Compile Include="util\Hives\LordToil_XenomrophAssaultColony.cs" />
     <Compile Include="util\Hives\JobDriver_MaintainLike.cs" />
@@ -106,6 +108,7 @@
     <Compile Include="Xenomorph\ThinkNode_ConditionalAnyInfectableSpawnedNearby.cs" />
     <Compile Include="Xenomorph\ThinkNode_ConditionalQueenPresent.cs" />
     <Compile Include="Yautja\Alert_ColonistNeedsRescuingFromCocoon.cs" />
+    <Compile Include="Yautja\Class1.cs" />
     <Compile Include="Yautja\Recipe_Remove_Gauntlet.cs" />
     <Compile Include="Yautja\RRY_Thought_SituationalSocial.cs" />
     <Compile Include="Yautja\GetReturningProjectile.cs" />

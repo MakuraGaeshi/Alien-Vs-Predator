@@ -83,11 +83,13 @@
   
   <ThingDef Class="ThingDef_HiveLike" ParentName="BuildingHivelikeBase">
     <defName>RRY_XenomorphHive</defName>
-    <label>xenomorph tunnel</label>
+    <label>large xenomorph tunnel</label>
     <description>If activated, it will spawn additional pawns and hive over time.</description>
     <thingClass>HiveLike</thingClass>
 		<Faction>RRY_Xenomorph</Faction>
 		<TunnelDef>TunnelHiveLikeSpawner</TunnelDef>
+		<TunnelDefchild>TunnelHiveLikeChildSpawner</TunnelDefchild>
+		<HiveDefchild>RRY_XenomorphHive_Child</HiveDefchild>
 		<PawnKinds>
 		  <!-- <li>RRY_Xenomorph_FaceHugger</li> -->
 		  <!-- <li>RRY_Xenomorph_Queen</li> -->
@@ -167,11 +169,113 @@
     </comps>
   </ThingDef>
 
+  <ThingDef Class="ThingDef_HiveLike" ParentName="BuildingHivelikeBase">
+    <defName>RRY_XenomorphHive_Child</defName>
+    <label>small xenomorph tunnel</label>
+    <description>If activated, it will spawn additional pawns and hive over time.</description>
+    <thingClass>HiveLike</thingClass>
+		<Faction>RRY_Xenomorph</Faction>
+		<TunnelDef>TunnelHiveLikeChildSpawner</TunnelDef>
+		<PawnKinds>
+		  <!-- <li>RRY_Xenomorph_FaceHugger</li> -->
+		  <!-- <li>RRY_Xenomorph_Queen</li> -->
+		  <!-- <li>RRY_Xenomorph_Predalien</li> -->
+		  <!-- <li>RRY_Xenomorph_Neomorph</li> -->
+		  <li>RRY_Xenomorph_Warrior</li>
+		  <li>RRY_Xenomorph_Drone</li>
+		  <li>RRY_Xenomorph_Runner</li>
+		</PawnKinds>
+    <graphicData>
+      <texPath>Things/Special/TunnelExit</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+      <drawSize>2.6</drawSize>
+    </graphicData>
+    <altitudeLayer>Building</altitudeLayer>
+    <rotatable>false</rotatable>
+    <fillPercent>0.5</fillPercent>
+    <statBases>
+      <MaxHitPoints>500</MaxHitPoints>
+      <Flammability>0.0</Flammability>
+    </statBases>
+    <pathCost>50</pathCost>
+    <blockWind>true</blockWind>
+    <tickerType>Normal</tickerType>
+    <passability>PassThroughOnly</passability>
+    <drawerType>RealtimeOnly</drawerType>
+    <killedLeavings>
+      <!-- <InsectJelly>30</InsectJelly> -->
+    </killedLeavings>
+    <placeWorkers>
+      <li>PlaceWorker_Heater</li>
+    </placeWorkers>
+    <comps>
+	  <!--
+      <li Class="CompProperties_Spawner">
+        <thingToSpawn>RRY_EggXenomorphFertilized</thingToSpawn>
+        <spawnCount>5</spawnCount>
+        <spawnIntervalRange>
+          <min>13000</min>
+          <max>15000</max>
+        </spawnIntervalRange>
+      </li>
+      <li Class="CompProperties_Spawner">
+        <thingToSpawn>GlowPod</thingToSpawn>
+        <spawnCount>1</spawnCount>
+        <spawnIntervalRange>
+          <min>30000</min>
+          <max>60000</max>
+        </spawnIntervalRange>
+        <spawnMaxAdjacent>1</spawnMaxAdjacent>
+        <saveKeysPrefix>pod</saveKeysPrefix>
+        <inheritFaction>true</inheritFaction>
+      </li>
+      <li Class="CompProperties_HeatPusher">
+        <heatPerSecond>6</heatPerSecond>
+        <heatPushMaxTemperature>38</heatPushMaxTemperature>
+      </li>
+      <li Class="CompProperties_MaintainableLike">
+        <ticksHealthy>60000</ticksHealthy>
+        <ticksNeedsMaintenance>40000</ticksNeedsMaintenance>
+        <damagePerTickRare>10</damagePerTickRare>
+      </li>
+	  -->
+      <li Class="CompProperties_MaintainableLike">
+        <ticksHealthy>60000</ticksHealthy>
+        <ticksNeedsMaintenance>40000</ticksNeedsMaintenance>
+        <damagePerTickRare>10</damagePerTickRare>
+      </li>
+      <li Class="CompProperties_SpawnerFilth">
+        <filthDef>RRY_Filth_Slime</filthDef>
+        <spawnCountOnSpawn>10</spawnCountOnSpawn>
+        <spawnMtbHours>4</spawnMtbHours>
+        <spawnRadius>5</spawnRadius>
+      </li>
+    </comps>
+  </ThingDef>
+
   <ThingDef Class="ThingDef_TunnelHiveLikeSpawner"  ParentName="EtherealThingBase">
     <defName>TunnelHiveLikeSpawner</defName>
-    <label>tunnellike</label>
+    <label>xenomorph hive main</label>
     <thingClass>TunnelHiveLikeSpawner</thingClass>
 		<HiveDef>RRY_XenomorphHive</HiveDef>
+		<!--
+		<Faction>OGChaosDeamonFaction</Faction>
+		<strikespreexplode>true</strikespreexplode>
+		<explodesprespawn>true</explodesprespawn>
+		<damageDef>EMP</damageDef>
+		<blastradius>5</blastradius>
+		-->
+    <tickerType>Normal</tickerType>
+    <drawerType>RealtimeOnly</drawerType>
+    <alwaysFlee>true</alwaysFlee>
+  </ThingDef>
+  
+  <ThingDef Class="ThingDef_TunnelHiveLikeSpawner"  ParentName="EtherealThingBase">
+    <defName>TunnelHiveLikeChildSpawner</defName>
+    <label>xenomorph hive child</label>
+    <thingClass>TunnelHiveLikeSpawner</thingClass>
+		<HiveDef>RRY_XenomorphHive_Child</HiveDef>
 		<!--
 		<Faction>OGChaosDeamonFaction</Faction>
 		<strikespreexplode>true</strikespreexplode>
@@ -226,6 +330,42 @@
         <rect>(0.2,0.2,0.6,0.6)</rect>
       </damageData>
     </graphicData>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseFilth">
+    <defName>RRY_Filth_Slime</defName>
+    <label>xenomorph slime</label>
+    <statBases>
+      <Beauty>-25</Beauty>
+      <Cleanliness>-5</Cleanliness>
+    </statBases>
+    <graphicData>
+      <texPath>Things/Filth/Spatter</texPath>
+      <color>(130, 142, 120, 170)</color>
+    </graphicData>
+    <filth>
+      <rainWashes>false</rainWashes>
+      <cleaningWorkToReduceThickness>70</cleaningWorkToReduceThickness>
+      <canFilthAttach>true</canFilthAttach>
+    </filth>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseFilth">
+    <defName>RRY_Hive_Slime</defName>
+    <label>xenomorph slime</label>
+    <statBases>
+      <Beauty>-25</Beauty>
+      <Cleanliness>-5</Cleanliness>
+    </statBases>
+    <graphicData>
+      <texPath>Things/Filth/Spatter</texPath>
+      <color>(130, 142, 120, 170)</color>
+    </graphicData>
+    <filth>
+      <rainWashes>false</rainWashes>
+      <cleaningWorkToReduceThickness>700</cleaningWorkToReduceThickness>
+      <canFilthAttach>true</canFilthAttach>
+    </filth>
   </ThingDef>
 
 </Defs>

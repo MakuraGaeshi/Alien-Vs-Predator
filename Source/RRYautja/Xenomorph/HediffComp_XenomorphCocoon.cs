@@ -146,6 +146,12 @@ namespace RRYautja
                 this.Pawn.jobs.Notify_TuckedIntoBed((Building_XenomorphCocoon)thing);
                 this.Pawn.mindState.Notify_TuckedIntoBed();
             }
+            
+        }
+
+        public override void CompPostPostRemoved()
+        {
+            base.CompPostPostRemoved();
         }
 
         public override void CompPostTick(ref float severityAdjustment)

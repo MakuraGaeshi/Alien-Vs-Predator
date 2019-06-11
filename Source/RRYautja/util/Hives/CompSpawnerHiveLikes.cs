@@ -15,10 +15,10 @@ namespace RimWorld
         public ThingDef tunnelthingDef;
 
         // Token: 0x04001742 RID: 5954
-        public float HiveSpawnPreferredMinDist = 3.5f;
+        public float HiveSpawnPreferredMinDist = 20f;
 
         // Token: 0x04001743 RID: 5955
-        public float HiveSpawnRadius = 10f;
+        public float HiveSpawnRadius = 40f;
 
         // Token: 0x04001744 RID: 5956
         public FloatRange HiveSpawnIntervalDays = new FloatRange(2f, 3f);
@@ -144,7 +144,7 @@ namespace RimWorld
                 newHiveLike = null;
                 return false;
             }
-            IntVec3 loc = CompSpawnerHiveLikes.FindChildHiveLocation(this.parent.Position, this.parent.Map, this.parent.def, this.Props, true, false);
+            IntVec3 loc = CompSpawnerHiveLikes.FindChildHiveLocation(this.parent.Position, this.parent.Map, ((HiveLike)this.parent).Def.HiveDefchild, this.Props, true, false);
             if (!loc.IsValid)
             {
                 newHiveLike = null;
@@ -160,7 +160,7 @@ namespace RimWorld
                 newHiveLike.active = hivelike.active;
                 newHiveLike.parentHiveLike = hivelike.parentHiveLike != null ? hivelike.parentHiveLike: hivelike;
             }
-            GenSpawn.Spawn(newHiveLike.Def.TunnelDef, loc, this.parent.Map, WipeMode.FullRefund);
+            GenSpawn.Spawn(newHiveLike.Def.TunnelDefchild, loc, this.parent.Map, WipeMode.FullRefund);
             this.CalculateNextHiveLikeSpawnTick();
             return true;
         }
@@ -172,13 +172,13 @@ namespace RimWorld
                 newTunnelLike = null;
                 return false;
             }
-            IntVec3 loc = CompSpawnerHiveLikes.FindChildHiveLocation(this.parent.Position, this.parent.Map, this.parent.def, this.Props, true, false);
+            IntVec3 loc = CompSpawnerHiveLikes.FindChildHiveLocation(this.parent.Position, this.parent.Map, ((HiveLike)this.parent).Def.HiveDefchild, this.Props, true, false);
             if (!loc.IsValid)
             {
                 newTunnelLike = null;
                 return false;
             }
-            newTunnelLike = (TunnelHiveLikeSpawner)ThingMaker.MakeThing(this.parent.def, null);
+            newTunnelLike = (TunnelHiveLikeSpawner)ThingMaker.MakeThing(((HiveLike)this.parent).Def.TunnelDefchild, null);
             if (newTunnelLike.Faction != this.parent.Faction)
             {
                 newTunnelLike.SetFaction(this.parent.Faction, null);

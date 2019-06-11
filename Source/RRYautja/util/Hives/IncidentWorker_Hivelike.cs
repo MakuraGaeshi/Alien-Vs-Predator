@@ -61,7 +61,7 @@ namespace RimWorld
             IntVec3 loc = intVec;
             ThingDef_HiveLike thingDef = (ThingDef_HiveLike)this.def.shipPart;
             HiveLike hivelike = (HiveLike)ThingMaker.MakeThing(thingDef, null);
-            GenSpawn.Spawn(ThingMaker.MakeThing(hivelike.OfTunnel, null), loc, map);
+            GenSpawn.Spawn(ThingMaker.MakeThing(hivelike.Def.TunnelDef, null), loc, map);
             hivelike.SetFaction(hivelike.OfFaction, null);
             IncidentWorker_Hivelike.SpawnItemInstantly(hivelike);
             for (int i = 0; i < hiveCount - 1; i++)

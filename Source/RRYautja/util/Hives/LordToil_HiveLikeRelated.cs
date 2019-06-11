@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RRYautja;
+using System;
 using System.Collections.Generic;
 using Verse;
 using Verse.AI;
@@ -17,7 +18,7 @@ namespace RimWorld
 
 		// Token: 0x17000162 RID: 354
 		// (get) Token: 0x0600087D RID: 2173 RVA: 0x00047553 File Offset: 0x00045953
-		private LordToil_HiveLikeRelatedData Data
+		public LordToil_HiveLikeRelatedData Data
 		{
 			get
 			{
@@ -31,37 +32,45 @@ namespace RimWorld
 			this.Data.assignedHiveLikes.RemoveAll((KeyValuePair<Pawn, HiveLike> x) => x.Value == null || !x.Value.Spawned);
 		}
 
-		// Token: 0x0600087F RID: 2175 RVA: 0x00047590 File Offset: 0x00045990
-		protected HiveLike GetHiveLikeFor(Pawn pawn)
-		{
+        // Token: 0x0600087F RID: 2175 RVA: 0x00047590 File Offset: 0x00045990
+        protected HiveLike GetHiveLikeFor(Pawn pawn)
+        {
             if (this.Data.assignedHiveLikes.TryGetValue(pawn, out HiveLike hive))
             {
                 return hive;
             }
             hive = this.FindClosestHiveLike(pawn);
-			if (hive != null)
-			{
-				this.Data.assignedHiveLikes.Add(pawn, hive);
-			}
-			return hive;
-		}
-
-		// Token: 0x06000880 RID: 2176 RVA: 0x000475D8 File Offset: 0x000459D8
-		private HiveLike FindClosestHiveLike(Pawn pawn)
-		{
-            ThingDef hiveDef = null;
-            List<ThingDef_HiveLike> hivedefs = DefDatabase<ThingDef_HiveLike>.AllDefsListForReading.FindAll(x => x.Faction == pawn.Faction.def);
-            foreach (ThingDef_HiveLike hivedef in hivedefs)
+            if (hive != null)
             {
-            //    Log.Message(string.Format("LordToil_HiveLikeRelated found hiveDef: {0} for {1}", hiveDef, pawn));
-                if (hivedef.Faction == pawn.Faction.def)
-                {
-                    hiveDef = hivedef;
-                //    Log.Message(string.Format("LordToil_HiveLikeRelated set hiveDef: {0} for {1}", hiveDef, pawn));
-                    break;
-                }
+                this.Data.assignedHiveLikes.Add(pawn, hive);
             }
-			return (HiveLike)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(hiveDef), PathEndMode.Touch, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn, false), 30f, (Thing x) => x.Faction == pawn.Faction, null, 0, 30, false, RegionType.Set_Passable, false);
-		}
+            return hive;
+        }
+
+        // Token: 0x0600087F RID: 2175 RVA: 0x00047590 File Offset: 0x00045990
+        protected Pawn GetHiveQueenFor(Pawn pawn)
+        {
+            if (Prefs.DevMode)
+            {
+                Log.Message(this.Data.HiveQueen.LabelCap);
+            }
+            return this.Data.HiveQueen;
+        }
+
+        // Token: 0x0600087F RID: 2175 RVA: 0x00047590 File Offset: 0x00045990
+        protected IntVec3 GetHiveLocFor(Pawn pawn)
+        {
+            if (Prefs.DevMode)
+            {
+                Log.Message(this.Data.HiveLoc.ToString());
+            }
+            return this.Data.HiveLoc;
+        }
+
+        // Token: 0x06000880 RID: 2176 RVA: 0x000475D8 File Offset: 0x000459D8
+        private HiveLike FindClosestHiveLike(Pawn pawn)
+		{
+            return (HiveLike)XenomorphUtil.ClosestReachableHivelike(pawn);
+        }
 	}
 }

@@ -81,22 +81,11 @@ namespace RimWorld
            //     if (selected && cocoonsPresent) Log.Message(string.Format("JobGiver_XenosKidnap for {3} cocoonsPresent: {0}, cocoonsReachable: {1}, closestReachableEgg: {2}", cocoonsPresent, cocoonsReachable, closestReachableCocoon, pawn.LabelShortCap));
                 if ((hivelikesPresent && hivelikesReachable))
                 {
-                    ThingDef hiveDef = null;
                     List<ThingDef_HiveLike> hivedefs = DefDatabase<ThingDef_HiveLike>.AllDefsListForReading.FindAll(x => x.Faction == pawn.Faction.def);
-                    foreach (ThingDef_HiveLike hivedef in hivedefs)
-                    {
-                    //    if (selected) Log.Message(string.Format("JobGiver_XenosKidnap found hiveDef: {0} for {1}", hivedef, pawn));
-                        if (hivedef.Faction == pawn.Faction.def)
-                        {
-                            hiveDef = hivedef;
-                    //        if (selected) Log.Message(string.Format("JobGiver_XenosKidnap set hiveDef: {0} for {1}", hiveDef, pawn));
 
-                            break;
-                        }
-                    }
-                    if (XenomorphUtil.TotalSpawnedThingCount(hiveDef, pawn.Map) > 0 && hiveDef != null)
+                    if (XenomorphUtil.TotalSpawnedHivelikeCount(pawn.Map) > 0)
                     {
-                        hiveThing = XenomorphUtil.TotalSpawnedThingCount(hiveDef, pawn.Map) > 1 ? XenomorphUtil.SpawnedHivelikes(hiveDef, pawn.Map).RandomElement() : XenomorphUtil.ClosestReachableHivelike(hiveDef, pawn);
+                        hiveThing = XenomorphUtil.SpawnedParentHivelikes(pawn.Map).Count > 1 ? XenomorphUtil.SpawnedParentHivelikes(pawn.Map).RandomElement() : XenomorphUtil.ClosestReachableHivelike(pawn, XenomorphUtil.SpawnedParentHivelikes(pawn.Map));
                         c = hiveThing.Position;
                         int radius = 10;
                         IntVec3 intVec = CellFinder.RandomClosewalkCellNear(c, pawn.Map, radius, (x => (x.Roofed(pawn.Map) && hiveThing.Position.Roofed(pawn.Map) || (!x.Roofed(pawn.Map) && !hiveThing.Position.Roofed(pawn.Map))) && !x.AdjacentTo8Way(hiveThing.Position) && XenomorphKidnapUtility.XenoCocoonLocations(hiveThing.Position, radius, pawn.Map).Contains(x)));

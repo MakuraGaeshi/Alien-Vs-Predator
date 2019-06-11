@@ -109,9 +109,9 @@
           <targetAcquireRadius>65</targetAcquireRadius>
           <targetKeepRadius>72</targetKeepRadius>
         </li>
-        <li Class="JobGiver_AITrashColonyClose" />
-        <li Class="JobGiver_AITrashBuildingsDistant" />
-        <li Class="JobGiver_AIGotoNearestHostile" />
+      <!--  <li Class="JobGiver_AITrashColonyClose" />
+        <li Class="JobGiver_AITrashBuildingsDistant" /> -->
+        <li Class="JobGiver_AIGotoNearestHostile" /> 
         <!-- <li Class="JobGiver_AITrashBuildingsDistant">
           <attackAllInert>true</attackAllInert>
         </li> -->
@@ -128,14 +128,20 @@
       <subNodes>
         <li Class="ThinkNode_ConditionalFullyGrown">
           <subNodes>
+			<li Class="JobGiver_MaintainHiveLikes">
+			  <onlyIfDamagingState>true</onlyIfDamagingState>
+			</li>
 			<!-- Queen -->
 			<li Class="ThinkNode_ConditionalPawnKind">
 			  <pawnKind>RRY_Xenomorph_Queen</pawnKind>
 			  <subNodes>
 				<li Class="JobGiver_HiveLikeDefense">
 				  <needLOSToAcquireNonPawnTargets>true</needLOSToAcquireNonPawnTargets>
-				  <targetAcquireRadius>10</targetAcquireRadius>
+				  <targetAcquireRadius>15</targetAcquireRadius>
 				  <chaseTarget>false</chaseTarget>
+				</li>
+				<li Class="JobGiver_MineRandomNearHive"> 
+				  <MiningRange>1</MiningRange>
 				</li>
 			  </subNodes>
 			</li>
@@ -146,9 +152,6 @@
 				  <needLOSToAcquireNonPawnTargets>true</needLOSToAcquireNonPawnTargets>
 				  <targetAcquireRadius>40</targetAcquireRadius>
 				  <chaseTarget>true</chaseTarget>
-				</li>
-				<li Class="JobGiver_MineRandomNearHive"> 
-				  <MiningRange>1</MiningRange>
 				</li>
 				<li Class="JobGiver_ClearHiveEggZone"> 
 				</li>
@@ -168,9 +171,6 @@
 				  <ClearingRange>6</ClearingRange>
 				</li>
 			  </subNodes>
-			</li>
-			<li Class="JobGiver_MaintainHiveLikes">
-			  <onlyIfDamagingState>true</onlyIfDamagingState>
 			</li>
 			
 			<!-- Drone -->
@@ -225,7 +225,7 @@
 		  <subNodes>
 			<!-- Lay eggs you need to -->
 			<li Class="JobGiver_LayXenoEgg" />
-		   </subNodes>
+		</subNodes>
 		</li>
 			<!-- Gather Downed Infectable -->
 			<li Class="ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby">

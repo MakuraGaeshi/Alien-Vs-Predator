@@ -45,7 +45,7 @@
   <BloodStatus_Unblooded>{0}</BloodStatus_Unblooded>
   <BloodStatus_Unmarked>{0}</BloodStatus_Unmarked>
   <!-- Hives -->
-  <RRY_MessageHiveReproduced>Another xenomorph hive has been dug.</RRY_MessageHiveReproduced>
-  <RRY_HiveReproducesIn>Dig new tunnel in</RRY_HiveReproducesIn>
-  <RRY_DormantHiveNotReproducing>Dormant: Not digging.</RRY_DormantHiveNotReproducing>
+  <RRY_MessageHiveReproduced>Xenomorph tunnel network expands.</RRY_MessageHiveReproduced>
+  <RRY_HiveReproducesIn>Tunnel network expands in</RRY_HiveReproducesIn>
+  <RRY_DormantHiveNotReproducing>Dormant: Not expanding.</RRY_DormantHiveNotReproducing>
 </LanguageData>

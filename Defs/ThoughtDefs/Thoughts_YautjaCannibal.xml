@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-<!--=========== Yautja eating Yautja meat ============-->
+<!--=========== Yautja eating Yautja meat ============ -->
 
 	<ThoughtDef>
 			<defName>RRY_AteYautjaMeatDirect</defName>
@@ -37,7 +37,7 @@
 		</stages>
 	</ThoughtDef>
 
-<!--=========== Yautja Cannibal eating Yautja meat ============-->	
+<!--=========== Yautja Cannibal eating Yautja meat ============ -->	
 
 	<ThoughtDef>
 		<defName>RRY_AteYautjaMeatDirectCannibal</defName>
@@ -72,7 +72,7 @@
 		  </li>
 		</stages>
 	</ThoughtDef>
-	  
+	 
 	  <!--=========== Yautja Butchering Yautja ============-->	
 
 	<ThoughtDef>

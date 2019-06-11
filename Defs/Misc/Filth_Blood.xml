@@ -40,22 +40,4 @@
     </filth>
   </ThingDef>  
    
-  <ThingDef ParentName="BaseFilth">
-    <defName>RRY_Filth_Slime</defName>
-    <label>xenomorph slime</label>
-    <statBases>
-      <Beauty>-25</Beauty>
-      <Cleanliness>-5</Cleanliness>
-    </statBases>
-    <graphicData>
-      <texPath>Things/Filth/Spatter</texPath>
-      <color>(130, 142, 120, 170)</color>
-    </graphicData>
-    <filth>
-      <rainWashes>true</rainWashes>
-      <cleaningWorkToReduceThickness>70</cleaningWorkToReduceThickness>
-      <canFilthAttach>true</canFilthAttach>
-    </filth>
-  </ThingDef>
-
 </Defs>

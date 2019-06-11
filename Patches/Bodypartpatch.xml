@@ -15,4 +15,16 @@
 			</li>
 		</operations>	
 	</Operation>
+	<!-- AnimalThingBase -->
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[@Name = "AnimalThingBase"]/recipes</xpath>
+				<value>
+					<li>RRY_FaceHuggerRemoval</li>
+					<li>RRY_XenomorphImpregnationRemoval</li>
+				</value>
+			</li>
+		</operations>	
+	</Operation>
 </Patch>

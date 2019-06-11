@@ -19,10 +19,15 @@ namespace RimWorld
 			if (Scribe.mode == LoadSaveMode.PostLoadInit)
 			{
 				this.assignedHiveLikes.RemoveAll((KeyValuePair<Pawn, HiveLike> x) => x.Value == null);
-			}
-		}
-
-		// Token: 0x0400039A RID: 922
+            }
+            Scribe_Values.Look(ref HiveLoc, "HiveLoc");
+            Scribe_References.Look(ref HiveQueen, "HiveQueen");
+            Scribe_TargetInfo.Look(ref HiveFocus, "HiveFocus");
+        }
+        
 		public Dictionary<Pawn, HiveLike> assignedHiveLikes = new Dictionary<Pawn, HiveLike>();
-	}
+        public LocalTargetInfo HiveFocus;
+        public IntVec3 HiveLoc;
+        public Pawn HiveQueen;
+    }
 }

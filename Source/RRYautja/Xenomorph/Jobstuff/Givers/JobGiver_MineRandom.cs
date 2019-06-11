@@ -1,5 +1,6 @@
 ﻿using RRYautja;
 using System;
+using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
@@ -22,6 +23,51 @@ namespace RimWorld
         // Token: 0x0600041E RID: 1054 RVA: 0x0002CA54 File Offset: 0x0002AE54
         protected override Job TryGiveJob(Pawn pawn)
         {
+            List<IntVec3> pillarLoc = new List<IntVec3>()
+            {
+                // Cardinals
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + 4,
+                    z = pawn.mindState.duty.focus.Cell.z
+                },
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x - 4,
+                    z = pawn.mindState.duty.focus.Cell.z
+                },
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x,
+                    z = pawn.mindState.duty.focus.Cell.z - 4
+                },
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x,
+                    z = pawn.mindState.duty.focus.Cell.z - 4
+                },
+                // Corners
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + 2,
+                    z = pawn.mindState.duty.focus.Cell.z + 2
+                },
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x - 2,
+                    z = pawn.mindState.duty.focus.Cell.z + 2
+                },
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + 2,
+                    z = pawn.mindState.duty.focus.Cell.z - 2
+                },
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x - 2,
+                    z = pawn.mindState.duty.focus.Cell.z - 2
+                }
+            };
             Region region = pawn.GetRegion(RegionType.Set_Passable);
             if (region == null)
             {
@@ -39,27 +85,7 @@ namespace RimWorld
                         Building edifice = c.GetEdifice(pawn.Map);
                         if (edifice != null && (edifice.def.passability == Traversability.Impassable || edifice.def.IsDoor) && edifice.def.size == IntVec2.One && edifice.def != ThingDefOf.CollapsedRocks && pawn.CanReserve(edifice, 1, -1, null, false) && XenomorphUtil.DistanceBetween(edifice.Position, pawn.mindState.duty.focus.Cell) <= MiningRange)
                         {
-                            IntVec3 veca = new IntVec3
-                            {
-                                x = pawn.mindState.duty.focus.Cell.x + 2,
-                                z = pawn.mindState.duty.focus.Cell.z + 2
-                            };
-                            IntVec3 vecb = new IntVec3
-                            {
-                                x = pawn.mindState.duty.focus.Cell.x - 2,
-                                z = pawn.mindState.duty.focus.Cell.z + 2
-                            };
-                            IntVec3 vecc = new IntVec3
-                            {
-                                x = pawn.mindState.duty.focus.Cell.x + 2,
-                                z = pawn.mindState.duty.focus.Cell.z - 2
-                            };
-                            IntVec3 vecd = new IntVec3
-                            {
-                                x = pawn.mindState.duty.focus.Cell.x - 2,
-                                z = pawn.mindState.duty.focus.Cell.z - 2
-                            };
-                            if (edifice.Position != veca && edifice.Position != vecb && edifice.Position != vecc && edifice.Position != vecd)
+                            if (!pillarLoc.Contains(edifice.Position))
                             {
                                 return new Job(JobDefOf.Mine, edifice)
                                 {
@@ -67,12 +93,26 @@ namespace RimWorld
                                 };
                             }
                         }
+                        /*
+                        else if (edifice==null)
+                        {
+                            if (!pillarLoc.Contains(edifice.Position))
+                            {
+                                return new Job(JobDefOf.Mine, edifice)
+                                {
+                                    ignoreDesignations = true
+                                };
+                            }
+                        }
+                        */
                     }
                 }
             }
             return null;
         }
+
     }
+
     // Token: 0x020000A4 RID: 164
     public class JobGiver_ClearHiveEggZone : ThinkNode_JobGiver
     {
