@@ -1,0 +1,4 @@
+fps drop on Queen Death fix
+Xenomorph Infestations incident letter should now allow you to jump to the location of the hive
+increased facehugger Max Prey Body size from 10 to 30
+Mark Alert added, when selected alert will also mark the relevent corpse
