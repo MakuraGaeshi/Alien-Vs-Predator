@@ -52,7 +52,7 @@ namespace RimWorld
         {
             if (Prefs.DevMode)
             {
-                Log.Message(this.Data.HiveQueen.LabelCap);
+           //     Log.Message(this.Data.HiveQueen.LabelCap);
             }
             return this.Data.HiveQueen;
         }
@@ -62,7 +62,7 @@ namespace RimWorld
         {
             if (Prefs.DevMode)
             {
-                Log.Message(this.Data.HiveLoc.ToString());
+           //     Log.Message(this.Data.HiveLoc.ToString());
             }
             return this.Data.HiveLoc;
         }

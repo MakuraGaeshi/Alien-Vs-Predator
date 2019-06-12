@@ -76,9 +76,9 @@ namespace RimWorld
                 emptycocoonsReachable = !XenomorphUtil.ClosestReachableEmptyCocoon(pawn, named).DestroyedOrNull();
                 emptyclosestReachableCocoon = XenomorphUtil.ClosestReachableEmptyCocoon(pawn, named);
 
-            //    if (selected && eggsPresent) Log.Message(string.Format("JobGiver_XenosKidnap for {3} eggsPresent: {0}, eggsReachable: {1}, closestReachableEgg: {2}", eggsPresent, eggsReachable, closestReachableEgg, pawn.LabelShortCap));
-            //    if (selected && hivelikesPresent) Log.Message(string.Format("JobGiver_XenosKidnap for {3} hivelikesPresent: {0}, hivelikesReachable: {1}, closestReachableHivelike: {2}", hivelikesPresent, hivelikesReachable, closestReachableHivelike, pawn.LabelShortCap));
-           //     if (selected && cocoonsPresent) Log.Message(string.Format("JobGiver_XenosKidnap for {3} cocoonsPresent: {0}, cocoonsReachable: {1}, closestReachableEgg: {2}", cocoonsPresent, cocoonsReachable, closestReachableCocoon, pawn.LabelShortCap));
+                if (selected && eggsPresent) Log.Message(string.Format("JobGiver_XenosKidnap for {3} eggsPresent: {0}, eggsReachable: {1}, closestReachableEgg: {2}", eggsPresent, eggsReachable, closestReachableEgg, pawn.LabelShortCap));
+                if (selected && hivelikesPresent) Log.Message(string.Format("JobGiver_XenosKidnap for {3} hivelikesPresent: {0}, hivelikesReachable: {1}, closestReachableHivelike: {2}", hivelikesPresent, hivelikesReachable, closestReachableHivelike, pawn.LabelShortCap));
+                if (selected && cocoonsPresent) Log.Message(string.Format("JobGiver_XenosKidnap for {3} cocoonsPresent: {0}, cocoonsReachable: {1}, closestReachableEgg: {2}", cocoonsPresent, cocoonsReachable, closestReachableCocoon, pawn.LabelShortCap));
                 if ((hivelikesPresent && hivelikesReachable))
                 {
                     List<ThingDef_HiveLike> hivedefs = DefDatabase<ThingDef_HiveLike>.AllDefsListForReading.FindAll(x => x.Faction == pawn.Faction.def);
@@ -87,7 +87,7 @@ namespace RimWorld
                     {
                         hiveThing = XenomorphUtil.SpawnedParentHivelikes(pawn.Map).Count > 1 ? XenomorphUtil.SpawnedParentHivelikes(pawn.Map).RandomElement() : XenomorphUtil.ClosestReachableHivelike(pawn, XenomorphUtil.SpawnedParentHivelikes(pawn.Map));
                         c = hiveThing.Position;
-                        int radius = 10;
+                        int radius = 6;
                         IntVec3 intVec = CellFinder.RandomClosewalkCellNear(c, pawn.Map, radius, (x => (x.Roofed(pawn.Map) && hiveThing.Position.Roofed(pawn.Map) || (!x.Roofed(pawn.Map) && !hiveThing.Position.Roofed(pawn.Map))) && !x.AdjacentTo8Way(hiveThing.Position) && XenomorphKidnapUtility.XenoCocoonLocations(hiveThing.Position, radius, pawn.Map).Contains(x)));
                         if (intVec == IntVec3.Invalid)
                         {

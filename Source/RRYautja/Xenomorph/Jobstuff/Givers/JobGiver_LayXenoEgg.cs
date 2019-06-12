@@ -1,5 +1,6 @@
 ﻿using RRYautja;
 using System;
+using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
@@ -116,7 +117,8 @@ namespace RimWorld
                 {
                     if (InfestationLikeCellFinder.TryFindCell(out c, pawn.Map) && pawn.CanReach(c, PathEndMode.OnCell, Danger.Deadly))
                     {
-                     //   c = c;
+                        if (!c.GetThingList(pawn.Map).Any(x=> x.def == XenomorphDefOf.RRY_Hive_Slime)) GenSpawn.Spawn(XenomorphDefOf.RRY_Hive_Slime, c, pawn.Map);
+                        //   c = c;
                     }
                     else
                     {
@@ -124,14 +126,16 @@ namespace RimWorld
                     }
                 }
             }
-       //     Log.Message(string.Format("finding valid location near: {0}", c));
+            //     Log.Message(string.Format("finding valid location near: {0}", c));
+            List<Thing> egglist = pawn.Map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_EggXenomorphFertilized).FindAll(x=> c.InHorDistOf(x.Position, 9));
+            bool eggflag = egglist.CountAllowNull() < 70;
             Predicate<IntVec3> validator = delegate (IntVec3 t)
             {
-                return t.GetFirstBuilding(pawn.Map) == null;
+                return t.GetFirstBuilding(pawn.Map) == null && t.GetEdifice(pawn.Map) == null && t!=c && !t.GetThingList(pawn.Map).Any(x=> (x is Building_XenomorphCocoon) || (x is Building_XenoEgg) || (x is HiveLike));
             };
             IntVec3 fc = IntVec3.Invalid;
-            RCellFinder.TryFindRandomCellNearWith(c, validator, pawn.Map, out fc,3,16);
-            if (fc != IntVec3.Invalid)
+            RCellFinder.TryFindRandomCellNearWith(c, validator, pawn.Map, out fc,2,12);
+            if (fc != IntVec3.Invalid && eggflag)
             {
            //     Log.Message(string.Format("valid location found: {0}", fc));
                 return new Job(XenomorphDefOf.RRY_Job_LayXenomorphEgg, fc);

@@ -32,6 +32,13 @@
     <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
   </JobDef>
   
+  <JobDef>
+    <defName>RRY_Job_ConstructHiveWall</defName>
+    <driverClass>JobDriver_MaintainLike</driverClass>
+    <reportString>spinning web.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
   <!--
   <JobDef>
     <defName>RRY_Job_PlaceCocoon</defName>

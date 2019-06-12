@@ -41,6 +41,7 @@
     </Reference>
     <Reference Include="AbilityUser">
       <HintPath>..\..\..\..\..\..\workshop\content\294100\932008009\Assemblies\AbilityUser.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="AlienRace">
       <HintPath>..\..\..\..\..\..\workshop\content\294100\839005762\Assemblies\AlienRace.dll</HintPath>
@@ -67,6 +68,7 @@
     <Compile Include="util\Building_CrashedShipPart_CryptosleepCasket_Xenomorph.cs" />
     <Compile Include="util\Class1.cs" />
     <None Include="util\Hives\LordToil_DefendAndExpandHiveLike.cs.bak" />
+    <Compile Include="util\Class2.cs" />
     <Compile Include="util\Hives\JobGiver_WandeEggs.cs" />
     <Compile Include="util\Hives\LordToil_DefendHiveLikeAggressively.cs" />
     <Compile Include="util\Hives\LordToil_XenomrophAssaultColony.cs" />
@@ -107,8 +109,9 @@
     <Compile Include="util\MinifiedThingNoBox.cs" />
     <Compile Include="Xenomorph\ThinkNode_ConditionalAnyInfectableSpawnedNearby.cs" />
     <Compile Include="Xenomorph\ThinkNode_ConditionalQueenPresent.cs" />
+    <Compile Include="Yautja\Alert_PawnCanMark.cs" />
     <Compile Include="Yautja\Alert_ColonistNeedsRescuingFromCocoon.cs" />
-    <Compile Include="Yautja\Class1.cs" />
+    <Compile Include="Yautja\ScenPart_BadBlood.cs" />
     <Compile Include="Yautja\Recipe_Remove_Gauntlet.cs" />
     <Compile Include="Yautja\RRY_Thought_SituationalSocial.cs" />
     <Compile Include="Yautja\GetReturningProjectile.cs" />

@@ -61,13 +61,13 @@ namespace RimWorld
                     }
                     else
                     {
-                        Log.Message(string.Format("hives present but not found, we dun fucked up boss"));
+                   //     Log.Message(string.Format("hives present but not found, we dun fucked up boss"));
                         duty = null;
                     }
                 }
                 else
                 {
-                    Log.Message(string.Format("HivelikesPresent: False"));
+               //     Log.Message(string.Format("HivelikesPresent: False"));
                     ThingDef named = pawn.RaceProps.Humanlike ? XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon : XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon;
 
                     cocoonsPresent = XenomorphUtil.CocoonsPresent(pawn.Map, named);
@@ -82,27 +82,27 @@ namespace RimWorld
                     
                     if (XenomorphUtil.EggsPresent(Map))
                     {
-                        Log.Message(string.Format("eggsPresent: {0}", closestReachableEgg.Position));
+                   //     Log.Message(string.Format("eggsPresent: {0}", closestReachableEgg.Position));
                         duty = new PawnDuty(OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike, closestReachableEgg, this.distToHiveToAttack);
                     }
                     else if (cocoonsPresent)
                     {
-                        Log.Message(string.Format("cocoonsPresent: {0}", closestReachableCocoon.Position));
+                   //     Log.Message(string.Format("cocoonsPresent: {0}", closestReachableCocoon.Position));
                         duty = new PawnDuty(OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike, closestReachableCocoon, this.distToHiveToAttack);
                     }
                     else if (myFocus.Cell != IntVec3.Zero)
                     {
-                        Log.Message(string.Format("myFocus {0}", myFocus.Cell));
+                   //     Log.Message(string.Format("myFocus {0}", myFocus.Cell));
                         duty = new PawnDuty(OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike, myFocus, this.distToHiveToAttack);
                     }
                     else if (InfestationLikeCellFinder.TryFindCell(out IntVec3 c, Map, false))
                     {
-                        Log.Message(string.Format("InfestationLikeCellFinder: {0}", c));
+                   //     Log.Message(string.Format("InfestationLikeCellFinder: {0}", c));
                         duty = new PawnDuty(OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike, c, this.distToHiveToAttack);
                     }
                     else
                     {
-                        Log.Message(string.Format("pawn: {0}", pawn.Position));
+                   //     Log.Message(string.Format("pawn: {0}", pawn.Position));
                         duty = new PawnDuty(OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike, pawn, this.distToHiveToAttack);
                     }
                 }

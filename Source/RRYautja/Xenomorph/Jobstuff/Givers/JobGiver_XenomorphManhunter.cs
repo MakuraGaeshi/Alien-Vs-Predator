@@ -67,13 +67,13 @@ namespace RimWorld
         // Token: 0x060005B9 RID: 1465 RVA: 0x00037BC0 File Offset: 0x00035FC0
         private Pawn FindPawnTarget(Pawn pawn)
         {
-            return (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedThreat, (Thing x) => x is Pawn && x.def.race.intelligence >= Intelligence.ToolUser && !((Pawn)x).health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection) && !((Pawn)x).health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation) && !((Pawn)x).health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation) && ((Pawn)x).kindDef != XenomorphDefOf.RRY_Xenomorph_Drone && ((Pawn)x).kindDef != XenomorphDefOf.RRY_Xenomorph_FaceHugger && ((Pawn)x).kindDef != XenomorphDefOf.RRY_Xenomorph_Queen && ((Pawn)x).kindDef != XenomorphDefOf.RRY_Xenomorph_Runner && ((Pawn)x).kindDef != XenomorphDefOf.RRY_Xenomorph_Warrior, 0f, 9999f, default(IntVec3), float.MaxValue, true, true);
+            return (Pawn)XenomorphTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedThreat, (Thing x) => x is Pawn && x.def.race.intelligence >= Intelligence.ToolUser && !((Pawn)x).health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection) && !((Pawn)x).health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation) && !((Pawn)x).health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation) && ((Pawn)x).kindDef != XenomorphDefOf.RRY_Xenomorph_Drone && ((Pawn)x).kindDef != XenomorphDefOf.RRY_Xenomorph_FaceHugger && ((Pawn)x).kindDef != XenomorphDefOf.RRY_Xenomorph_Queen && ((Pawn)x).kindDef != XenomorphDefOf.RRY_Xenomorph_Runner && ((Pawn)x).kindDef != XenomorphDefOf.RRY_Xenomorph_Warrior, 0f, 9999f, default(IntVec3), float.MaxValue, true, true);
         }
 
         // Token: 0x060005BA RID: 1466 RVA: 0x00037C14 File Offset: 0x00036014
         private Building FindTurretTarget(Pawn pawn)
         {
-            return (Building)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedLOSToPawns | TargetScanFlags.NeedLOSToNonPawns | TargetScanFlags.NeedReachable | TargetScanFlags.NeedThreat, (Thing t) => t is Building, 0f, 70f, default(IntVec3), float.MaxValue, false, true);
+            return (Building)XenomorphTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedLOSToPawns | TargetScanFlags.NeedLOSToNonPawns | TargetScanFlags.NeedReachable | TargetScanFlags.NeedThreat, (Thing t) => t is Building, 0f, 70f, default(IntVec3), float.MaxValue, false, true);
         }
 
         // Token: 0x040002FD RID: 765

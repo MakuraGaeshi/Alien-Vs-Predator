@@ -171,14 +171,47 @@ namespace RRYautja
         }
         public static bool isInfectablePawn(Pawn pawn)
         {
-            if (pawn.Dead) return false;
-            if (pawn.RaceProps.IsMechanoid) return false;
-            if (!pawn.RaceProps.IsFlesh) return false;
-            if (IsXenomorph(pawn)) return false;
-            if (IsInfectedPawn(pawn)) return false;
-            if (IsXenomorphFaction(pawn)) return false;
-            if (pawn.BodySize < 0.65f) return false;
-            if (pawn.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Xenomorph) return false;
+            if (pawn.Dead)
+            {
+            //    Log.Message(string.Format("{0} is dead", pawn.LabelShortCap));
+                return false;
+            }
+            if (pawn.RaceProps.IsMechanoid)
+            {
+            //    Log.Message(string.Format("{0} is Mechanoid", pawn.LabelShortCap));
+                return false;
+            }
+            if (!pawn.RaceProps.IsFlesh)
+            {
+            //    Log.Message(string.Format("{0} not Flesh"));
+                return false;
+            }
+            if (IsXenomorph(pawn))
+            {
+            //    Log.Message(string.Format("{0} Is Xenomorph", pawn.LabelShortCap));
+                return false;
+            }
+            if (IsInfectedPawn(pawn))
+            {
+            //    Log.Message(string.Format("{0} Is Infected Pawn", pawn.LabelShortCap));
+                return false;
+            }
+            if (IsXenomorphFaction(pawn))
+            {
+            //    Log.Message(string.Format("{0} Is Xenomorph Faction", pawn.LabelShortCap));
+                return false;
+            }
+            if (pawn.BodySize < 0.65f)
+            {
+            //    Log.Message(string.Format("{0} too small", pawn.LabelShortCap));
+                return false;
+            }
+            if (pawn.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Xenomorph)
+            {
+            //    Log.Message(string.Format("{0} FleshType RRY_Xenomorph", pawn.LabelShortCap));
+                return false;
+            }
+            //    Log.Message(string.Format("{0} Infectable", pawn.LabelShortCap));
             return true;
         }
 

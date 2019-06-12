@@ -141,7 +141,7 @@
 				  <chaseTarget>false</chaseTarget>
 				</li>
 				<li Class="JobGiver_MineRandomNearHive"> 
-				  <MiningRange>1</MiningRange>
+				  <MiningRange>6</MiningRange>
 				</li>
 			  </subNodes>
 			</li>

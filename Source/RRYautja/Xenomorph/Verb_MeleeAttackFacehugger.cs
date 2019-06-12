@@ -52,7 +52,7 @@ namespace RRYautja
                             armourSharp = wornApparel[i].def.statBases.GetStatOffsetFromList(StatDefOf.ArmorRating_Sharp); //hitPawn.GetStatValue(StatDefOf.ArmorRating_Sharp, false);
                             armourHeat = wornApparel[i].def.statBases.GetStatOffsetFromList(StatDefOf.ArmorRating_Heat); //hitPawn.GetStatValue(StatDefOf.ArmorRating_Heat, false);
                             armour = (armourBlunt + armourSharp + armourHeat);
-                            Log.Message(string.Format("Pawn: {4}\narmourBlunt: {0}, armourSharp: {1}, armourHeat: {2}, Total Armour {3}", armourBlunt, armourSharp, armourHeat, armour, wornApparel[i].LabelShortCap));
+                       //     Log.Message(string.Format("Pawn: {4}\narmourBlunt: {0}, armourSharp: {1}, armourHeat: {2}, Total Armour {3}", armourBlunt, armourSharp, armourHeat, armour, wornApparel[i].LabelShortCap));
                         }
                     }
                 }

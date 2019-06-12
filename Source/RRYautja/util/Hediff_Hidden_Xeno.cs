@@ -210,7 +210,7 @@ namespace RRYautja
                 SetGraphicInt(lastCarried, lastCarriedGraphic);
             }
             pawn.Drawer.renderer.graphics.ResolveAllGraphics();
-            Log.Message(string.Format("removing xeno hidden from {0}", pawn.LabelShortCap));
+       //     Log.Message(string.Format("removing xeno hidden from {0}", pawn.LabelShortCap));
         }
 
         public void AlertThief(Pawn pawn, Thing observer)

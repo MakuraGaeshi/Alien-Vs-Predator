@@ -302,7 +302,7 @@ namespace RRYautja
                                 {
                                     if (item.def.defName.StartsWith(GenericmarkedDef.defName))
                                     {
-                                        if (this.combatPower < other.kindDef.combatPower)
+                                        if (this.combatPower <= other.kindDef.combatPower)
                                         {
                                             Hediff oldmarked = item;
 #if DEBUG

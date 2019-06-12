@@ -41,6 +41,7 @@
       <li>PlaceWorker_Heater</li>
     </placeWorkers>
     <comps>
+	  <!--
       <li Class="CompProperties_SpawnerHiveLikes" />
       <li Class="CompProperties_Spawner">
         <thingToSpawn>InsectJelly</thingToSpawn>
@@ -50,7 +51,6 @@
           <max>15000</max>
         </spawnIntervalRange>
       </li>
-	  <!--
       <li Class="CompProperties_Spawner">
         <thingToSpawn>GlowPod</thingToSpawn>
         <spawnCount>1</spawnCount>
@@ -118,7 +118,7 @@
     <passability>PassThroughOnly</passability>
     <drawerType>RealtimeOnly</drawerType>
     <killedLeavings>
-      <!-- <InsectJelly>30</InsectJelly> -->
+		<RRY_Hive_Slime>1</RRY_Hive_Slime> 
     </killedLeavings>
     <placeWorkers>
       <li>PlaceWorker_Heater</li>
@@ -239,12 +239,12 @@
         <ticksNeedsMaintenance>40000</ticksNeedsMaintenance>
         <damagePerTickRare>10</damagePerTickRare>
       </li>
-	  -->
       <li Class="CompProperties_MaintainableLike">
         <ticksHealthy>60000</ticksHealthy>
         <ticksNeedsMaintenance>40000</ticksNeedsMaintenance>
         <damagePerTickRare>10</damagePerTickRare>
       </li>
+	  -->
       <li Class="CompProperties_SpawnerFilth">
         <filthDef>RRY_Filth_Slime</filthDef>
         <spawnCountOnSpawn>10</spawnCountOnSpawn>

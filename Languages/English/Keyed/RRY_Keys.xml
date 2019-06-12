@@ -44,6 +44,8 @@
   <RRY_Remove_Gauntlet>Surgically Remove Gauntlet</RRY_Remove_Gauntlet>
   <BloodStatus_Unblooded>{0}</BloodStatus_Unblooded>
   <BloodStatus_Unmarked>{0}</BloodStatus_Unmarked>
+  <RRY_CanMarkSelf>New Worthy Kills</RRY_CanMarkSelf>
+  <RRY_CanMarkSelfDesc>Yautja with new Worthy Kills:\n\n{0}\nMake sure that they mark themselves if desired.</RRY_CanMarkSelfDesc>
   <!-- Hives -->
   <RRY_MessageHiveReproduced>Xenomorph tunnel network expands.</RRY_MessageHiveReproduced>
   <RRY_HiveReproducesIn>Tunnel network expands in</RRY_HiveReproducesIn>

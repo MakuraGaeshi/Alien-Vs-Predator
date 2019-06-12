@@ -31,9 +31,8 @@ namespace RimWorld
             if (def.tags.Contains("TunnelLike"))
             {
                 //Log.Message(string.Format("TunnelLike"));
-
                 Thing t = this.SpawnTunnelLikeCluster(hivelikeCount, map);
-                base.SendStandardLetter(t, null, new string[0]);
+                base.SendStandardLetter(new TargetInfo(intVec, map, false), null, new string[0]);
                 /*
                 Map map = (Map)parms.target;
                 int hiveCount = Mathf.Max(GenMath.RoundRandom(parms.points / 220f), 1);
@@ -48,7 +47,7 @@ namespace RimWorld
                 //Log.Message(string.Format("HiveLike"));
 
                 Thing t = this.SpawnHiveLikeCluster(hivelikeCount, map);
-                base.SendStandardLetter(t, null, new string[0]);
+                base.SendStandardLetter(new TargetInfo(intVec, map, false), null, new string[0]);
             }
 			Find.TickManager.slower.SignalForceNormalSpeedShort();
 			return true;

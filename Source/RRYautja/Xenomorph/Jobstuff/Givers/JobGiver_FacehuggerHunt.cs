@@ -76,26 +76,35 @@ namespace RimWorld
         // Token: 0x060005B9 RID: 1465 RVA: 0x00037BC0 File Offset: 0x00035FC0
         private Pawn FindPawnTarget(Pawn pawn)
         {
-            Pawn pawn2 = (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn p && XenomorphUtil.isInfectablePawn(p) && !p.Dead, 0f, HuntingRange, default(IntVec3), float.MaxValue, true, true);
+            Predicate<Thing> validator = delegate (Thing x)
+            {
+                Pawn p = (Pawn)x;
+                Log.Message(string.Format("{0}\nisInfectablePawn: {1}, Alive: {2}", pawn.LabelShortCap, XenomorphUtil.isInfectablePawn(p), !p.Dead));
+                return XenomorphUtil.isInfectablePawn(p);
+            };
+            Pawn pawn2 = (Pawn)XenomorphTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, validator, 0f, HuntingRange, pawn.Position, float.MaxValue, true, true);
+            /*
             while (pawn2==null && HuntingRange<50)
             {
                 HuntingRange += 10;
-           //     Log.Message(string.Format("{0}@{1} hunting failed, extending radius to {2}", pawn.Label, pawn.Position, HuntingRange));
-                pawn2 = (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn p && XenomorphUtil.isInfectablePawn(p) && !p.Dead, 0f, HuntingRange, default(IntVec3), float.MaxValue, true, true);
+                Log.Message(string.Format("{0}@{1} hunting failed, extending radius to {2}", pawn.Label, pawn.Position, HuntingRange));
+                pawn2 = (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, validator, 0f, HuntingRange, pawn.Position, float.MaxValue, true, true);
+            //    return pawn2;
             }
-            if (pawn2 == null) pawn2 = BestPawnToHuntForPredator(pawn, forceScanWholeMap);
+            */
+        //    if (pawn2 == null) pawn2 = BestPawnToHuntForPredator(pawn, forceScanWholeMap);
 #if DEBUG
             bool selected = Find.Selector.SingleSelectedThing == pawn;
             if (selected)
             { if (pawn2 != null) Log.Message(string.Format("{0}@{1} hunting {2}@{3}", pawn.Label, pawn.Position, pawn2.Label, pawn2.Position)); }                
 #endif
-            return pawn2;
+            return pawn2 ?? null;
         }
 
         // Token: 0x060005BA RID: 1466 RVA: 0x00037C14 File Offset: 0x00036014
         private Building FindTurretTarget(Pawn pawn)
         {
-            return (Building)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedLOSToPawns | TargetScanFlags.NeedLOSToNonPawns | TargetScanFlags.NeedReachable | TargetScanFlags.NeedThreat, (Thing t) => t is Building, 0f, 70f, default(IntVec3), float.MaxValue, false, true);
+            return (Building)XenomorphTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedLOSToPawns | TargetScanFlags.NeedLOSToNonPawns | TargetScanFlags.NeedReachable | TargetScanFlags.NeedThreat, (Thing t) => t is Building, 0f, 70f, default(IntVec3), float.MaxValue, false, true);
         }
 
         // RimWorld.FoodUtility
@@ -132,7 +141,7 @@ namespace RimWorld
                         }
                         else
                         {
-                        //    Log.Message(string.Format("{0} cannae hunt {2} XenoInfection:{1} IsXenos:{3}", predator.Label, XenoInfection, ((Pawn)list[j]).Label, IsXenos));
+                            Log.Message(string.Format("{0} cannae hunt {2} XenoInfection:{1} IsXenos:{3}", predator.Label, XenomorphUtil.IsInfectedPawn(p), ((Pawn)list[j]).Label, XenomorphUtil.IsXenomorph(p)));
                         }
                     }
                     return false;
@@ -179,15 +188,15 @@ namespace RimWorld
         public static bool IsAcceptablePreyFor(Pawn predator, Pawn prey)
         {
 
-        //    Log.Message(string.Format("{0} hunting {1}? XenoInfection:{2} IsXenos:{3}", predator.Label, prey.Label, XenoInfection, IsXenos));
+            Log.Message(string.Format("{0} hunting {1}? XenoInfection:{2} IsXenos:{3}", predator.Label, prey.Label, XenomorphUtil.IsInfectedPawn(prey), XenomorphUtil.IsXenomorph(prey)));
             if (XenomorphUtil.IsInfectedPawn(prey))
             {
-            //    Log.Message(string.Format("{0} cant hunt {1} cause XenoInfection:{2}", predator.Label, prey.Label, XenoInfection));
+                Log.Message(string.Format("{0} cant hunt {1} cause XenoInfection:{2}", predator.Label, prey.Label, XenomorphUtil.IsInfectedPawn(prey)));
                 return false;
             }
             if (XenomorphUtil.IsXenomorph(prey))
             {
-            //    Log.Message(string.Format("{0} cant hunt {1} cause IsXenos:{2}", predator.Label, prey.Label, IsXenos));
+                Log.Message(string.Format("{0} cant hunt {1} cause IsXenos:{2}", predator.Label, prey.Label, XenomorphUtil.IsXenomorph(prey)));
                 return false;
             }
             if (!prey.RaceProps.IsFlesh)
@@ -198,7 +207,7 @@ namespace RimWorld
             {
                 return false;
             }
-            if (prey.BodySize < 0.7f)
+            if (prey.BodySize < 0.65f)
             {
                 return false;
             }
@@ -217,7 +226,7 @@ namespace RimWorld
                 }
             }
             */
-            //Log.Message(string.Format("{0}@{1} can hunt {2}@{3}", predator.Label, predator.Position, prey.Label, prey.Position));
+            Log.Message(string.Format("{0}@{1} can hunt {2}@{3}", predator.Label, predator.Position, prey.Label, prey.Position));
             return (predator.Faction == null || prey.Faction == null || predator.HostileTo(prey)) && (predator.Faction == null || prey.HostFaction == null || predator.HostileTo(prey)) && (predator.Faction != Faction.OfPlayer || prey.Faction != Faction.OfPlayer) && (!predator.RaceProps.herdAnimal || predator.def != prey.def) && (!prey.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection) && !prey.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation) && !prey.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation));
         }
 
