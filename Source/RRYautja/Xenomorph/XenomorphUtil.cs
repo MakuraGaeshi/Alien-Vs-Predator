@@ -571,21 +571,54 @@ namespace RRYautja
             Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, (x => Hivelikes.Contains(x)), null, 0, -1, false, RegionType.Set_Passable, false);
             return thing;
         }
+        public static Thing ClosestReachableParentHivelike(Pawn pawn)
+        {
+            Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, (x => XenomorphUtil.SpawnedParentHivelikes(pawn.Map).Contains(x)), null, 0, -1, false, RegionType.Set_Passable, false);
+            return thing;
+        }
+        public static Thing ClosestReachableParentHivelike(Pawn pawn, List<Thing> Hivelikes)
+        {
+            Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, (x => Hivelikes.Contains(x)), null, 0, -1, false, RegionType.Set_Passable, false);
+            return thing;
+        }
+        public static Thing ClosestReachableChildHivelike(Pawn pawn)
+        {
+            Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, (x => XenomorphUtil.SpawnedChildHivelikes(pawn.Map).Contains(x)), null, 0, -1, false, RegionType.Set_Passable, false);
+            return thing;
+        }
+        public static Thing ClosestReachableChildHivelike(Pawn pawn, List<Thing> Hivelikes)
+        {
+            Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, (x => Hivelikes.Contains(x)), null, 0, -1, false, RegionType.Set_Passable, false);
+            return thing;
+        }
         public static int TotalSpawnedHivelikeCount(Map map)
         {
-            return map.listerThings.AllThings.Where(x=> x is HiveLike hivelike && hivelike.OfFactionDef == XenomorphDefOf.RRY_Xenomorph).Count();
+            List<Thing> lista = map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_XenomorphHive);
+            List<Thing> listb = map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_XenomorphHive_Child);
+            return lista.Count() + listb.Count();
         }
+
         public static List<Thing> SpawnedHivelikes(Map map)
         {
-            return map.listerThings.AllThings.Where(x => x is HiveLike hivelike && hivelike.OfFactionDef == XenomorphDefOf.RRY_Xenomorph).ToList();
+            List<Thing> lista = map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_XenomorphHive);
+            List<Thing> listb = map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_XenomorphHive_Child);
+            return lista.Concat(listb).ToList();
         }
         public static List<Thing> SpawnedParentHivelikes(Map map)
         {
-            return map.listerThings.AllThings.Where(x => x is HiveLike hivelike && hivelike.OfFactionDef == XenomorphDefOf.RRY_Xenomorph && hivelike.parentHiveLike==null).ToList();
+            return map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_XenomorphHive);
+        }
+        public static int TotalSpawnedParentHivelikeCount(Map map)
+        {
+            return SpawnedParentHivelikes(map).Count();
         }
         public static List<Thing> SpawnedChildHivelikes(Map map)
         {
-            return map.listerThings.AllThings.Where(x => x is HiveLike hivelike && hivelike.OfFactionDef == XenomorphDefOf.RRY_Xenomorph && hivelike.parentHiveLike != null).ToList();
+            return map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_XenomorphHive_Child);
+        }
+        public static int TotalSpawnedChildHivelikeCount(Map map)
+        {
+            return SpawnedChildHivelikes(map).Count(); 
         }
 
         // space between / distance between

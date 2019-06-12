@@ -207,8 +207,12 @@ namespace RimWorld
 
 		// Token: 0x06002673 RID: 9843 RVA: 0x001240D8 File Offset: 0x001224D8
 		public override void SpawnSetup(Map map, bool respawningAfterLoad)
-		{
-			base.SpawnSetup(map, respawningAfterLoad);
+        {
+            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Neomorphs) && this.def == XenomorphDefOf.RRY_XenomorphHive)
+            {
+                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Neomorphs, OpportunityType.Important);
+            }
+            base.SpawnSetup(map, respawningAfterLoad);
 			if (base.Faction == null)
 			{
 				this.SetFaction(OfFaction, null);

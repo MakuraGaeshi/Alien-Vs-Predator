@@ -117,4 +117,16 @@ namespace RimWorld
         public static BodyTypeDef RRYYautjaMale;
 
     }
+    [DefOf]
+    public static class YautjaConceptDefOf
+    {
+        // Token: 0x06003781 RID: 14209 RVA: 0x001A8393 File Offset: 0x001A6793
+        static YautjaConceptDefOf()
+        {
+            DefOfHelper.EnsureInitializedInCtor(typeof(XenomorphRacesDefOf));
+        }
+        // Xenomorph ConceptDefs
+        public static ConceptDef RRY_Concept_Unblooded;
+        public static ConceptDef RRY_Concept_Blooding;
+    }
 }

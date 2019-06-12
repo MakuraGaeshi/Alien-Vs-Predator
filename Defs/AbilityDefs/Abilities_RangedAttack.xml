@@ -47,7 +47,7 @@
             <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
 			<range>18</range>
 			<forcedMissRadius>50</forcedMissRadius>
-			<soundCast>FlamerSound</soundCast>
+			<!-- <soundCast>FlamerSound</soundCast> -->
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>0</muzzleFlashScale>
             <isPrimary>false</isPrimary>

@@ -146,7 +146,10 @@ namespace RRYautja
                 this.Pawn.jobs.Notify_TuckedIntoBed((Building_XenomorphCocoon)thing);
                 this.Pawn.mindState.Notify_TuckedIntoBed();
             }
-            
+            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Cocoons) && Pawn.IsColonist)
+            {
+                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Cocoons, OpportunityType.Critical);
+            }
         }
 
         public override void CompPostPostRemoved()

@@ -34,8 +34,8 @@
   
   <JobDef>
     <defName>RRY_Job_ConstructHiveWall</defName>
-    <driverClass>JobDriver_MaintainLike</driverClass>
-    <reportString>spinning web.</reportString>
+    <driverClass>JobDriver_ConstructHiveWall</driverClass>
+    <reportString>constructing hive.</reportString>
     <casualInterruptible>false</casualInterruptible>
   </JobDef>
 

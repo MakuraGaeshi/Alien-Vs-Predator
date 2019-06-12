@@ -177,6 +177,9 @@
 			<li Class="ThinkNode_ConditionalPawnKind">
 			  <pawnKind>RRY_Xenomorph_Drone</pawnKind>
 			  <subNodes>
+				<li Class="JobGiver_ConstructHive"> 
+				  <MiningRange>6</MiningRange>
+				</li>
 				<li Class="JobGiver_MineRandomNearHive"> 
 				  <MiningRange>6</MiningRange>
 				</li>

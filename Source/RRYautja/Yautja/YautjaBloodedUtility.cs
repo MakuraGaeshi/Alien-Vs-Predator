@@ -64,14 +64,22 @@ namespace RRYautja
             if (hasunblooded)
             {
                 BloodHD = hediffSet.GetFirstHediffOfDef(unbloodedDef);
-            //    Log.Message(string.Format("hasunblooded: {0}", BloodHD));
+                if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.RRY_Concept_Unblooded) && pawn.IsColonist && pawn.Spawned && (pawn.Map != null|| pawn.MapHeld != null))
+                {
+                    LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.RRY_Concept_Unblooded, OpportunityType.Important);
+                }
+                //    Log.Message(string.Format("hasunblooded: {0}", BloodHD));
                 result = false;
             }
             bool hasbloodedUM = hediffSet.HasHediff(unmarkedDef);
             if (hasbloodedUM)
             {
                 BloodHD = hediffSet.GetFirstHediffOfDef(unmarkedDef);
-            //    Log.Message(string.Format("hasbloodedUM: {0}", BloodHD));
+                if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.RRY_Concept_Blooding) && pawn.IsColonist && pawn.Spawned && (pawn.Map != null || pawn.MapHeld != null))
+                {
+                    LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.RRY_Concept_Blooding, OpportunityType.Important);
+                }
+                //    Log.Message(string.Format("hasbloodedUM: {0}", BloodHD));
                 result = true;
             }
             if (BloodHD==null)

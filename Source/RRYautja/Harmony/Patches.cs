@@ -106,7 +106,7 @@ namespace RRYautja
         [HarmonyPostfix]
         public static void IgnoreCocooned(Pawn p, ref bool __result)
         {
-            __result = __result && !(p.InBed() && p.CurrentBed() is Building_XenomorphCocoon);
+            __result = __result && !(p.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned));
         }
     }
 
@@ -254,7 +254,7 @@ namespace RRYautja
             if (flag)
             {
                 bool flag2 = (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned));
-                bool flag3 = (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection) && Find.TickManager.TicksGame % 2 == 0);
+                bool flag3 = (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection) && Find.TickManager.TicksGame % 5 != 0);
                 if (flag2 || flag3)
                 {
                     return false;

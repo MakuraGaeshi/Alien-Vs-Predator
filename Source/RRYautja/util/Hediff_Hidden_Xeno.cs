@@ -103,6 +103,14 @@ namespace RRYautja
                 lastCarriedGraphic = pawn.carryTracker.CarriedThing.Graphic;
                 SetGraphicInt(pawn.carryTracker.CarriedThing, new Graphic_Invisible());
             }
+            if (Find.Selector.SelectedObjects.Contains(pawn))
+            {
+                Find.Selector.SelectedObjects.Remove(pawn);
+            }
+            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Chestbursters))
+            {
+                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Chestbursters, OpportunityType.Important);
+            }
         }
 
         public override void Tick()
@@ -210,7 +218,31 @@ namespace RRYautja
                 SetGraphicInt(lastCarried, lastCarriedGraphic);
             }
             pawn.Drawer.renderer.graphics.ResolveAllGraphics();
-       //     Log.Message(string.Format("removing xeno hidden from {0}", pawn.LabelShortCap));
+            //     Log.Message(string.Format("removing xeno hidden from {0}", pawn.LabelShortCap));
+            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Runners) && pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Runner)
+            {
+                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Runners, OpportunityType.Important);
+            }
+            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Drones) && pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Drone)
+            {
+                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Drones, OpportunityType.Important);
+            }
+            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Warriors) && pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Warrior)
+            {
+                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Warriors, OpportunityType.Important);
+            }
+            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Predaliens) && pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Predalien)
+            {
+                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Predaliens, OpportunityType.Important);
+            }
+            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Queens) && pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
+            {
+                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Queens, OpportunityType.Important);
+            }
+            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Neomorphs) && pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Neomorph)
+            {
+                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Neomorphs, OpportunityType.Important);
+            }
         }
 
         public void AlertThief(Pawn pawn, Thing observer)

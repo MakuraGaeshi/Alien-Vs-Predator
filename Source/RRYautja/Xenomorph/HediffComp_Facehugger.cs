@@ -253,6 +253,15 @@ namespace RRYautja
             base.Notify_PawnDied();
         }
 
+        public override void CompPostPostAdd(DamageInfo? dinfo)
+        {
+            base.CompPostPostAdd(dinfo);
+            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Facehuggers) && Pawn.Spawned && Pawn.IsColonist)
+            {
+                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Facehuggers, OpportunityType.Important);
+            }
+        }
+
         public override void CompPostPostRemoved()
         {
             Thing hostThing = Pawn;

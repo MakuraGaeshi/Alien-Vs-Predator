@@ -61,13 +61,15 @@ namespace RimWorld
         public static DutyDef RRY_XenomorphAssaultColony;
         public static DutyDef RRY_DefendHiveLikeAggressively;
 
-        // Xenomorph ThingDefs 
+        // Xenomorph ThingDefs  
         public static ThingDef RRY_Xenomorph_Humanoid_Cocoon;
         public static ThingDef RRY_Xenomorph_Animal_Cocoon;
         public static ThingDef RRY_EggXenomorphFertilized;
         public static ThingDef RRY_Xenomorph_TailSpike;
         public static ThingDef RRY_Xenomorph_HeadShell;
         public static ThingDef RRY_Leather_Xenomorph;
+
+        public static ThingDef RRY_Xenomorph_HiveWall;
 
         public static ThingDef RRY_Neomorph_Spores;
         public static ThingDef RRY_Neomorph_Spores_Hidden;
@@ -76,9 +78,11 @@ namespace RimWorld
         public static ThingDef RRY_Plant_Neomorph_Fungus_Hidden;
 
         public static ThingDef RRY_XenomorphCryptosleepCasket;
-        public static ThingDef RRY_XenomorphHive;
 
+        public static ThingDef RRY_XenomorphHive; 
+        public static ThingDef RRY_XenomorphHive_Child;
         public static ThingDef RRY_Hive_Slime;
+
         public static ThingDef RRY_Filth_Slime;
 
         // Xenomorph BloodDefs 
@@ -108,7 +112,7 @@ namespace RimWorld
             }
 #endif
 */
-}
+    }
 
     [DefOf]
     public static class XenomorphRacesDefOf
@@ -132,5 +136,31 @@ namespace RimWorld
         // Xenomorph FleshTypeDefs
         public static FleshTypeDef RRY_Xenomorph;
         public static FleshTypeDef RRY_Neomorph;
+    }
+    [DefOf]
+    public static class XenomorphConceptDefOf
+    {
+        // Token: 0x06003781 RID: 14209 RVA: 0x001A8393 File Offset: 0x001A6793
+        static XenomorphConceptDefOf()
+        {
+            DefOfHelper.EnsureInitializedInCtor(typeof(XenomorphRacesDefOf));
+        }
+        // Xenomorph ConceptDefs  
+        public static ConceptDef RRY_Concept_Cocoons;
+        public static ConceptDef RRY_Concept_Facehuggers;
+        public static ConceptDef RRY_Concept_Royalehuggers;
+        public static ConceptDef RRY_Concept_Embryo;
+        public static ConceptDef RRY_Concept_Chestbursters;
+        public static ConceptDef RRY_Concept_Runners;
+        public static ConceptDef RRY_Concept_Drones;
+        public static ConceptDef RRY_Concept_Warriors;
+        public static ConceptDef RRY_Concept_Predaliens;
+        public static ConceptDef RRY_Concept_Queens;
+        public static ConceptDef RRY_Concept_Neomorphs;
+
+        public static ConceptDef RRY_Concept_HiveLike;
+        public static ConceptDef RRY_Concept_ShipPart;
+        public static ConceptDef RRY_Concept_Eggs;
+        public static ConceptDef RRY_Concept_Fungus;
     }
 }

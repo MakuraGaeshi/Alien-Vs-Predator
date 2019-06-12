@@ -332,6 +332,26 @@
     </graphicData>
   </ThingDef>
 
+  <ThingDef ParentName="RockBase">
+    <defName>RRY_Xenomorph_HiveWall</defName>
+    <label>collapsed rocks</label>
+    <description>Collapsed rocks, packed tightly enough to hold up a roof.</description>
+    <graphicData>
+      <texPath>Things/Buildings/Xenomorph/XenomorphWall</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <linkType>None</linkType>
+      <drawSize>(3,3)</drawSize>
+    </graphicData>
+    <statBases>
+      <MaxHitPoints>500</MaxHitPoints>
+    </statBases>
+		<rotatable>true</rotatable>
+    <building>
+      <isNaturalRock>false</isNaturalRock>
+      <claimable>false</claimable>
+    </building>
+  </ThingDef>
+  
   <ThingDef ParentName="BaseFilth">
     <defName>RRY_Filth_Slime</defName>
     <label>xenomorph slime</label>

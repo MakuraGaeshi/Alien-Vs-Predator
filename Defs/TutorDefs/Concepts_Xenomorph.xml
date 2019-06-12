@@ -1,0 +1,180 @@
+<Defs>
+  <ConceptDef>
+    <defName>RRY_Concept_Cocoons</defName>
+    <label>AvP: Cocoons</label>
+    <needsOpportunity>True</needsOpportunity>
+    <priority>50</priority>
+    <highlightTags>
+      <li>SidearmPrimary</li>
+    </highlightTags>
+    <!-- <helpText>Xenomorphs will kidnap downed pawn and bring them back to a safe place and cocoon them.\n\n The cocoon will keep the pawn alive and healthy until a Facehugger can impregnate the pawn. You can save the pawn by right-clicking the cocoon and selecting the option.\n\n If no Facehugger can impregnate the pawn, after a while the cocoon will disolve the colonist and transform into an egg.</helpText> -->
+    <helpText>Xenomorphs will kidnap downed pawn and bring them back to a safe place and cocoon them.\n\n The cocoon will keep the pawn alive and healthy until a Facehugger can impregnate the pawn. You can save the pawn by selecting the cocoon and clicking the deconstruct button.\n\n If no Facehugger can impregnate the pawn, after a while the cocoon will disolve the colonist and transform into an egg.</helpText>
+  </ConceptDef>
+  
+  <ConceptDef>
+    <defName>RRY_Concept_Eggs</defName>
+    <label>AvP: Cocoons</label>
+    <needsOpportunity>True</needsOpportunity>
+    <priority>50</priority>
+    <highlightTags>
+      <li>SidearmPrimary</li>
+    </highlightTags>
+    <!-- <helpText>Xenomorphs will kidnap downed pawn and bring them back to a safe place and cocoon them.\n\n The cocoon will keep the pawn alive and healthy until a Facehugger can impregnate the pawn. You can save the pawn by right-clicking the cocoon and selecting the option.\n\n If no Facehugger can impregnate the pawn, after a while the cocoon will disolve the colonist and transform into an egg.</helpText> -->
+    <helpText>Xenomorphs will kidnap downed pawn and bring them back to a safe place and cocoon them.\n\n The cocoon will keep the pawn alive and healthy until a Facehugger can impregnate the pawn. You can save the pawn by selecting the cocoon and clicking the deconstruct button.\n\n If no Facehugger can impregnate the pawn, after a while the cocoon will disolve the colonist and transform into an egg.</helpText>
+  </ConceptDef>
+  
+  <ConceptDef>
+    <defName>RRY_Concept_Facehuggers</defName>
+    <label>AvP: Facehuggers</label>
+    <needsOpportunity>True</needsOpportunity>
+    <priority>50</priority>
+    <highlightTags>
+      
+    </highlightTags>
+    <helpText>Facehuggers will attach themselves to pawns and any animal larger than a labradour in order to reproduce. It is possible to remove a Facehugger through a very risky surgery.\n\n Do so at your own risk!</helpText>
+  </ConceptDef>
+  
+  <ConceptDef>
+    <defName>RRY_Concept_Royalehuggers</defName>
+    <label>AvP: Royal Facehuggers</label>
+    <needsOpportunity>True</needsOpportunity>
+    <priority>50</priority>
+    <highlightTags>
+      
+    </highlightTags>
+    <helpText>Royal Facehuggers differ from their more common kin in two ways.\n\n They have two embryos, and the first impregnation will Always be a Royal Embryo</helpText>
+  </ConceptDef>
+  
+  <ConceptDef>
+    <defName>RRY_Concept_Embryo</defName>
+    <label>AvP: Xenomorph Embryos</label>
+    <needsOpportunity>True</needsOpportunity>
+    <priority>50</priority>
+    <highlightTags>
+      <li></li>
+    </highlightTags>
+    <helpText>Once impregnated, a pawn lives on borrowed time.\n\n It is possible to remove the Embryo through surgery.\n\n Do so at your own risk!</helpText>
+  </ConceptDef>
+  
+  <ConceptDef>
+    <defName>RRY_Concept_Chestbursters</defName>
+    <label>AvP: Xenomorph Chestbursters</label>
+    <needsOpportunity>True</needsOpportunity>
+    <priority>50</priority>
+    <highlightTags>
+      <li></li>
+    </highlightTags>
+    <helpText>When a Chestburster bursts, it will flee any hostile presences. As soon as it reaches a certain distance, he will disappear in the surrounding, becoming completely invisible unless a hostile pawn is inside 6 squares of the Chestburster.</helpText>
+  </ConceptDef>	
+  
+  <ConceptDef>
+    <defName>RRY_Concept_Runners</defName>
+    <label>AvP: Xenomorph Runners</label>
+    <needsOpportunity>True</needsOpportunity>
+    <priority>50</priority>
+    <highlightTags>
+      <li></li>
+    </highlightTags>
+    <helpText>Predaliens only spawn when a facehugger impregnates a yautja, when fully grown they can impregnate female pawns.\n\nAnother side effect of the combination of Xenomorph and Yautja DNA is that the Predalien impregnations mature faster and can yield more than a single Xenomorph, a side effect of this is that it tends to only produce runners or drones.</helpText>
+  </ConceptDef>	
+  
+  <ConceptDef>
+    <defName>RRY_Concept_Drones</defName>
+    <label>AvP: Xenomorph Drones</label>
+    <needsOpportunity>True</needsOpportunity>
+    <priority>50</priority>
+    <highlightTags>
+      <li></li>
+    </highlightTags>
+    <helpText>Predaliens only spawn when a facehugger impregnates a yautja, when fully grown they can impregnate female pawns.\n\nAnother side effect of the combination of Xenomorph and Yautja DNA is that the Predalien impregnations mature faster and can yield more than a single Xenomorph, a side effect of this is that it tends to only produce runners or drones.</helpText>
+  </ConceptDef>	
+  
+  <ConceptDef>
+    <defName>RRY_Concept_Warriors</defName>
+    <label>AvP: Xenomorph Warriors</label>
+    <needsOpportunity>True</needsOpportunity>
+    <priority>50</priority>
+    <highlightTags>
+      <li></li>
+    </highlightTags>
+    <helpText>Predaliens only spawn when a facehugger impregnates a yautja, when fully grown they can impregnate female pawns.\n\nAnother side effect of the combination of Xenomorph and Yautja DNA is that the Predalien impregnations mature faster and can yield more than a single Xenomorph, a side effect of this is that it tends to only produce runners or drones.</helpText>
+  </ConceptDef>	
+  
+  <ConceptDef>
+    <defName>RRY_Concept_Predaliens</defName>
+    <label>AvP: Xenomorph Predaliens</label>
+    <needsOpportunity>True</needsOpportunity>
+    <priority>50</priority>
+    <highlightTags>
+      <li></li>
+    </highlightTags>
+    <helpText>Predaliens only spawn when a facehugger impregnates a yautja, when fully grown they can impregnate female pawns.\n\nAnother side effect of the combination of Xenomorph and Yautja DNA is that the Predalien impregnations mature faster and can yield more than a single Xenomorph, a side effect of this is that it tends to only produce runners or drones.</helpText>
+  </ConceptDef>	
+  
+  <ConceptDef>
+    <defName>RRY_Concept_Queens</defName>
+    <label>AvP: Xenomorph Queens</label>
+    <needsOpportunity>True</needsOpportunity>
+    <priority>50</priority>
+    <highlightTags>
+      <li></li>
+    </highlightTags>
+    <helpText>Predaliens only spawn when a facehugger impregnates a yautja, when fully grown they can impregnate female pawns.\n\nAnother side effect of the combination of Xenomorph and Yautja DNA is that the Predalien impregnations mature faster and can yield more than a single Xenomorph, a side effect of this is that it tends to only produce runners or drones.</helpText>
+  </ConceptDef>
+  
+  <ConceptDef>
+    <defName>RRY_Concept_Neomorphs</defName>
+    <label>AvP: Xenomorph Queens</label>
+    <needsOpportunity>True</needsOpportunity>
+    <priority>50</priority>
+    <highlightTags>
+      <li></li>
+    </highlightTags>
+    <helpText>Predaliens only spawn when a facehugger impregnates a yautja, when fully grown they can impregnate female pawns.\n\nAnother side effect of the combination of Xenomorph and Yautja DNA is that the Predalien impregnations mature faster and can yield more than a single Xenomorph, a side effect of this is that it tends to only produce runners or drones.</helpText>
+  </ConceptDef>
+  
+  <ConceptDef>
+    <defName>RRY_Concept_Queens</defName>
+    <label>AvP: Xenomorph Queens</label>
+    <needsOpportunity>True</needsOpportunity>
+    <priority>50</priority>
+    <highlightTags>
+      <li></li>
+    </highlightTags>
+    <helpText>Predaliens only spawn when a facehugger impregnates a yautja, when fully grown they can impregnate female pawns.\n\nAnother side effect of the combination of Xenomorph and Yautja DNA is that the Predalien impregnations mature faster and can yield more than a single Xenomorph, a side effect of this is that it tends to only produce runners or drones.</helpText>
+  </ConceptDef>	
+  
+  <ConceptDef>
+    <defName>RRY_Concept_HiveLike</defName>
+    <label>AvP: Tunnels</label>
+    <needsOpportunity>True</needsOpportunity>
+    <priority>50</priority>
+    <highlightTags>
+      <li>SidearmPrimary</li>
+    </highlightTags>
+    <helpText>Xenomorphs Tunnels are similar to vanilla insect hives.\n\n Large tunnels serve as a hub, this is where potential hosts will be taken and will produce eggs and small tunnels.\n\n Small Tunnels are points from which they will attack from.</helpText>
+  </ConceptDef>	
+  
+  <ConceptDef>
+    <defName>RRY_Concept_ShipPart</defName>
+    <label>AvP: Ship Parts</label>
+    <needsOpportunity>True</needsOpportunity>
+    <priority>50</priority>
+    <highlightTags>
+      <li>SidearmPrimary</li>
+    </highlightTags>
+    <helpText>Xenomorphs Tunnels are similar to vanilla insect hives.\n\n Only Large tunnels will produce eggs and small tunnels. You can save the pawn by right-clicking the cocoon and selecting the option.\n\n If no Facehugger can impregnate the pawn, after a while the cocoon will disolve the colonist and transform into an egg.</helpText>
+  </ConceptDef>
+  
+  <ConceptDef>
+    <defName>RRY_Concept_Fungus</defName>
+    <label>AvP: Neomorph Fungus</label>
+    <needsOpportunity>True</needsOpportunity>
+    <priority>50</priority>
+    <highlightTags>
+      <li>SidearmPrimary</li>
+    </highlightTags>
+    <helpText>Xenomorphs Tunnels are similar to vanilla insect hives.\n\n Only Large tunnels will produce eggs and small tunnels. You can save the pawn by right-clicking the cocoon and selecting the option.\n\n If no Facehugger can impregnate the pawn, after a while the cocoon will disolve the colonist and transform into an egg.</helpText>
+  </ConceptDef>
+  
+ </Defs>  

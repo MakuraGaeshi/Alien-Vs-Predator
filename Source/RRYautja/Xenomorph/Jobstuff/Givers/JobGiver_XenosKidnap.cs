@@ -85,7 +85,7 @@ namespace RimWorld
 
                     if (XenomorphUtil.TotalSpawnedHivelikeCount(pawn.Map) > 0)
                     {
-                        hiveThing = XenomorphUtil.SpawnedParentHivelikes(pawn.Map).Count > 1 ? XenomorphUtil.SpawnedParentHivelikes(pawn.Map).RandomElement() : XenomorphUtil.ClosestReachableHivelike(pawn, XenomorphUtil.SpawnedParentHivelikes(pawn.Map));
+                        hiveThing = XenomorphUtil.TotalSpawnedParentHivelikeCount(pawn.Map) > 1 ? XenomorphUtil.SpawnedParentHivelikes(pawn.Map).RandomElement() : XenomorphUtil.ClosestReachableHivelike(pawn, XenomorphUtil.SpawnedParentHivelikes(pawn.Map));
                         c = hiveThing.Position;
                         int radius = 6;
                         IntVec3 intVec = CellFinder.RandomClosewalkCellNear(c, pawn.Map, radius, (x => (x.Roofed(pawn.Map) && hiveThing.Position.Roofed(pawn.Map) || (!x.Roofed(pawn.Map) && !hiveThing.Position.Roofed(pawn.Map))) && !x.AdjacentTo8Way(hiveThing.Position) && XenomorphKidnapUtility.XenoCocoonLocations(hiveThing.Position, radius, pawn.Map).Contains(x)));

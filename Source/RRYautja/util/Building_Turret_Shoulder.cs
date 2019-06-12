@@ -47,7 +47,7 @@ namespace RRYautja
         public override void ExposeData()
         {
             base.ExposeData();
-        //    Scribe_References.Look<Pawn>(ref this.Parental, "Parental", false);
+            Scribe_References.Look<Pawn>(ref this.Parental, "Parental", true);
             Scribe_Values.Look<bool>(ref this.turretIsOn, "TurretIsOn");
         }
 
@@ -224,11 +224,23 @@ namespace RRYautja
         {
             get
             {
-                if (Parental.TargetCurrentlyAimingAt !=null)
+            //    Log.Message(string.Format("looking for target"));
+                if (Parental!=null)
                 {
-                    return Parental.TargetCurrentlyAimingAt;
+            //        Log.Message(string.Format("found Parental"));
+                    if (Parental.TargetCurrentlyAimingAt != null)
+                    {
+            //            Log.Message(string.Format("found Parental Target"));
+                        return Parental.TargetCurrentlyAimingAt;
+                    }
                 }
-                return base.CurrentTarget;
+                if (base.CurrentTarget!=null)
+                {
+            //        Log.Message(string.Format("Base Target"));
+                    return base.CurrentTarget;
+                }
+            //    Log.Message(string.Format("No Target"));
+                return null;
             }
         }
 
