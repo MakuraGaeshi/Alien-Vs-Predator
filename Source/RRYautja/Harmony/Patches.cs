@@ -1270,4 +1270,63 @@ namespace RRYautja
             }
         }
     }
+    /*
+    // Token: 0x02000007 RID: 7
+    [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "TryExecute")]
+    public static class IncidentWorker_RaidEnemy_Patch_TryExecute
+    {
+        // Token: 0x06000017 RID: 23 RVA: 0x00002CD0 File Offset: 0x00000ED0
+        [HarmonyPrefix]
+        public static bool PreExecute(ref IncidentParms parms)
+        {
+            if (parms.target is Map && (parms.target as Map).IsPlayerHome)
+            {
+                if (parms.faction != null && (parms.faction.def == XenomorphDefOf.RRY_Xenomorph))
+                {
+                    if ((parms.target as Map).skyManager.CurSkyGlow <= 0.5f)
+                    {
+                        parms.points *= 2;
+                        parms.raidArrivalMode = YautjaDefOf.EdgeWalkInGroups;
+                        if (Rand.Chance(0.05f))
+                        {
+                            int @int = Rand.Int;
+                            IncidentParms raidParms = StorytellerUtility.DefaultParmsNow(IncidentCategoryDefOf.ThreatBig, (Map)parms.target);
+                            raidParms.forced = true;
+                            raidParms.faction = parms.faction;
+                            raidParms.raidStrategy = RaidStrategyDefOf.ImmediateAttack;
+                            raidParms.raidArrivalMode = PawnsArrivalModeDefOf.EdgeWalkIn;
+                            raidParms.spawnCenter = parms.spawnCenter;
+                            raidParms.points = Mathf.Max(raidParms.points * new FloatRange(1f, 1.6f).RandomInRange, parms.faction.def.MinPointsToGeneratePawnGroup(PawnGroupKindDefOf.Combat));
+                            raidParms.pawnGroupMakerSeed = new int?(@int);
+                            PawnGroupMakerParms defaultPawnGroupMakerParms = IncidentParmsUtility.GetDefaultPawnGroupMakerParms(PawnGroupKindDefOf.Combat, raidParms, false);
+                            defaultPawnGroupMakerParms.points = IncidentWorker_Raid.AdjustedRaidPoints(defaultPawnGroupMakerParms.points, raidParms.raidArrivalMode, raidParms.raidStrategy, defaultPawnGroupMakerParms.faction, PawnGroupKindDefOf.Combat);
+                            IEnumerable<PawnKindDef> pawnKinds = PawnGroupMakerUtility.GeneratePawnKindsExample(defaultPawnGroupMakerParms);
+                            QueuedIncident qi = new QueuedIncident(new FiringIncident(IncidentDefOf.RaidEnemy, null, raidParms), Find.TickManager.TicksGame + new IntRange(1000, 4000).RandomInRange, 0);
+                            Find.Storyteller.incidentQueue.Add(qi);
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+
+        
+        [HarmonyPostfix]
+        public static void PostExecute(bool __result, ref IncidentParms parms)
+        {
+            if (__result && parms.target is Map && (parms.target as Map).IsPlayerHome)
+            {
+                if (parms.faction != null && parms.faction.leader.kindDef.race == YautjaDefOf.RRY_Alien_Yautja)
+                {
+
+                    if ((parms.target as Map).GameConditionManager.ConditionIsActive(GameConditionDefOf.HeatWave))
+                    {
+
+                    }
+                }
+            }
+        }
+        
+    }
+    */
 }

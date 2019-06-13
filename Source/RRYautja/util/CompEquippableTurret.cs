@@ -57,6 +57,10 @@ namespace RRYautja
 		public override void CompTick()
         {
 			base.CompTick();
+            if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.RRY_Concept_Plasmacaster) && GetWearer.IsColonist)
+            {
+                LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.RRY_Concept_Plasmacaster, OpportunityType.GoodToKnow);
+            }
             if (this.turretIsOn || Find.TickManager.TicksGame >= this.nextUpdateTick)
             {
                 this.nextUpdateTick = Find.TickManager.TicksGame + 60;
