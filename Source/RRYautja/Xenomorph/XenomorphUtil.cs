@@ -229,7 +229,7 @@ namespace RRYautja
             //    Log.Message(string.Format("{0} Is Xenomorph Faction", pawn.LabelShortCap));
                 return false;
             }
-            if (pawn.BodySize < 0.65f)
+            if (pawn.BodySize < 0.65f && !pawn.RaceProps.Humanlike)
             {
             //    Log.Message(string.Format("{0} too small", pawn.LabelShortCap));
                 return false;

@@ -164,13 +164,16 @@ namespace RRYautja
         {
             if (!this.TemperatureDamaged)
             {
+                //Log.Message(string.Format("!this.TemperatureDamaged"));
                 float ambientTemperature = this.parent.AmbientTemperature;
                 float num = 1f / (this.Props.hatcherDaystoHatch * 60000f);
-                if (ambientTemperature > -20 && (this.parent.Spawned || this.ParentHolder is Pawn))
+                if (ambientTemperature > -20)
                 {
+                //    Log.Message(string.Format("ambientTemperature > -20"));
                     if (this.gestateProgress < 1f)
                     {
                         this.gestateProgress += num;
+                    //    Log.Message(string.Format("gestateProgress: {0}", gestateProgress));
                     }
                     else if (this.royalProgress < 1f && !QueenPresent && !RoyalPresent && (!RoyalEggPresent || (RoyalEggPresent && this.royalProgress > 0f)))// && !XenomorphUtil.HivelikesPresent(MyMap))
                     {
