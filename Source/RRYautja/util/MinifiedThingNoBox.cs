@@ -74,19 +74,27 @@ namespace RRYautja
         // Token: 0x06002382 RID: 9090 RVA: 0x0010F644 File Offset: 0x0010DA44
         public override void DrawAt(Vector3 drawLoc, bool flip = false)
         {
-            if (this.crateFrontGraphic == null)
+            try
             {
-                this.crateFrontGraphic = GraphicDatabase.Get<Graphic_Single>("DummyTexture", ShaderDatabase.Cutout, this.GetMinifiedDrawSize(this.InnerThing.def.size.ToVector2(), 1.1f) * 1.16f, Color.white);
+                if (this.crateFrontGraphic == null)
+                {
+                    this.crateFrontGraphic = GraphicDatabase.Get<Graphic_Single>("DummyTexture", ShaderDatabase.Cutout, this.GetMinifiedDrawSize(this.InnerThing.def.size.ToVector2(), 1.1f) * 1.16f, Color.white);
+                }
+                this.crateFrontGraphic.DrawFromDef(drawLoc + Altitudes.AltIncVect * 0.1f, Rot4.North, null, 0f);
+                if (this.Graphic is Graphic_Single)
+                {
+                    this.Graphic.Draw(drawLoc, Rot4.North, this, 0f);
+                }
+                else
+                {
+                    this.Graphic.Draw(drawLoc, Rot4.South, this, 0f);
+                }
             }
-            this.crateFrontGraphic.DrawFromDef(drawLoc + Altitudes.AltIncVect * 0.1f, Rot4.North, null, 0f);
-            if (this.Graphic is Graphic_Single)
+            catch (Exception)
             {
-                this.Graphic.Draw(drawLoc, Rot4.North, this, 0f);
+                this.Destroy();
             }
-            else
-            {
-                this.Graphic.Draw(drawLoc, Rot4.South, this, 0f);
-            }
+
         }
         
         // Token: 0x06002386 RID: 9094 RVA: 0x0010F7B8 File Offset: 0x0010DBB8

@@ -31,7 +31,7 @@ namespace RRYautja
         // Token: 0x060004D2 RID: 1234 RVA: 0x00031074 File Offset: 0x0002F474
         public static bool TryFindGoodImpregnateVictim(Pawn kidnapper, float maxDist, out Pawn victim, List<Thing> disallowed = null)
         {
-            if (!kidnapper.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation)) // || !kidnapper.Map.reachability.CanReachMapEdge(kidnapper.Position, TraverseParms.For(kidnapper, Danger.Some, TraverseMode.ByPawn, false)))
+            if (!kidnapper.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation) || !kidnapper.Map.reachability.CanReachMapEdge(kidnapper.Position, TraverseParms.For(kidnapper, Danger.Some, TraverseMode.ByPawn, false)))
             {
             //    Log.Message(string.Format("TryFindGoodImpregnateVictim \n{0} incapable of job", kidnapper.LabelShortCap));
                 victim = null;
@@ -40,8 +40,8 @@ namespace RRYautja
             Predicate<Thing> validator = delegate (Thing t)
             {
                 Pawn pawn = t as Pawn;
-                bool cocoonFlag = !pawn.InBed() || (pawn.InBed() && (pawn.CurrentBed() is Building_XenomorphCocoon));
-                bool pawnFlag = ((XenomorphUtil.isInfectablePawn(pawn)) || (XenomorphUtil.isInfectablePawn(pawn, false))) && pawn.Downed && (pawn.Faction == null || pawn.Faction.HostileTo(kidnapper.Faction) || kidnapper.Faction == null);
+                bool cocoonFlag = !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned);
+                bool pawnFlag = ((XenomorphUtil.isInfectablePawn(pawn))) && !XenomorphUtil.IsXenomorph(pawn) && pawn.gender == Gender.Female && pawn.Downed && (pawn.Faction == null || pawn.Faction.HostileTo(kidnapper.Faction) || kidnapper.Faction == null);
             //    Log.Message(string.Format(" cocoonFlag; {0} \n pawnFlag: {1}", cocoonFlag, pawnFlag));
                 return (cocoonFlag && pawnFlag) && (kidnapper.CanReserve(pawn, 1, -1, null, false) && (disallowed == null || !disallowed.Contains(pawn))) && pawn != kidnapper && pawn.gender == Gender.Female;
             };

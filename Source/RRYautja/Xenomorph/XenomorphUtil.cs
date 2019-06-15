@@ -176,9 +176,37 @@ namespace RRYautja
             //    Log.Message(string.Format("{0} is dead", pawn.LabelShortCap));
                 return false;
             }
+
+            if (UtilChjAndroids.ChjAndroid)
+            {
+                if (pawn.kindDef.race.defName == "ChjAndroid" || pawn.kindDef.race.defName == "ChjDroid")
+                {
+                    return false;
+                }
+            }
+            if (UtilTieredAndroids.TieredAndroid)
+            {
+                if (pawn.kindDef.race.defName.Contains("Android" + "Tier"))
+                {
+                    return false;
+                }
+            }
+            if (pawn.RaceProps.body.defName.Contains("AIRobot")) return false;
+            if (pawn.kindDef.race.defName.Contains("Android")) return false;
+            if (pawn.kindDef.race.defName.Contains("Droid")) return false;
+            if (pawn.kindDef.race.defName.Contains("Mech")) return false;
+            if (pawn.kindDef.race.defName.Contains("TM_Undead")) return false;
+            if (pawn.kindDef.race.race.FleshType.defName.Contains("TM_StoneFlesh")) return false;
+            if (pawn.kindDef.race.defName.Contains("TM_") && pawn.kindDef.race.defName.Contains("Minion")) return false;
+            if (pawn.kindDef.race.defName.Contains("TM_Demon")) return false;
+            if (pawn.kindDef.race.race.FleshType.defName.Contains("ChaosDeamon")) return false;
+            if (pawn.kindDef.race.race.FleshType.defName.Contains("Necron")) return false;
+            if (pawn.kindDef.race.race.FleshType.defName.Contains("EldarConstruct")) return false;
+            if (pawn.kindDef.race.race.FleshType.defName.Contains("ImperialConstruct")) return false;
+            if (pawn.kindDef.race.race.FleshType.defName.Contains("MechanicusConstruct")) return false;
             if (pawn.RaceProps.IsMechanoid)
             {
-            //    Log.Message(string.Format("{0} is Mechanoid", pawn.LabelShortCap));
+                //    Log.Message(string.Format("{0} is Mechanoid", pawn.LabelShortCap)); TM_MinionR 
                 return false;
             }
             if (!pawn.RaceProps.IsFlesh)
@@ -218,6 +246,34 @@ namespace RRYautja
         public static bool isInfectablePawn(Pawn pawn, bool allowinfected = false)
         {
             if (pawn.Dead) return false;
+            
+            if (UtilChjAndroids.ChjAndroid)
+            {
+                if (pawn.kindDef.race.defName == "ChjAndroid" || pawn.kindDef.race.defName == "ChjDroid")
+                {
+                    return false;
+                }
+            }
+            if (UtilTieredAndroids.TieredAndroid)
+            {
+                if (pawn.kindDef.race.defName.Contains("Android"+"Tier"))
+                {
+                    return false;
+                }
+            }
+            
+            if (pawn.kindDef.race.defName.Contains("Android")) return false;
+            if (pawn.kindDef.race.defName.Contains("Droid")) return false;
+            if (pawn.kindDef.race.defName.Contains("Mech")) return false;
+            if (pawn.kindDef.race.defName.Contains("TM_Undead")) return false;
+            if (pawn.kindDef.race.race.FleshType.defName.Contains("TM_StoneFlesh")) return false;
+            if (pawn.kindDef.race.defName.Contains("TM_") && pawn.kindDef.race.defName.Contains("Minion")) return false;
+            if (pawn.kindDef.race.defName.Contains("TM_Demon")) return false;
+            if (pawn.kindDef.race.race.FleshType.defName.Contains("ChaosDeamon")) return false;
+            if (pawn.kindDef.race.race.FleshType.defName.Contains("Necron")) return false;
+            if (pawn.kindDef.race.race.FleshType.defName.Contains("EldarConstruct")) return false;
+            if (pawn.kindDef.race.race.FleshType.defName.Contains("ImperialConstruct")) return false;
+            if (pawn.kindDef.race.race.FleshType.defName.Contains("MechanicusConstruct")) return false;
             if (pawn.RaceProps.IsMechanoid) return false;
             if (!pawn.RaceProps.IsFlesh) return false;
             if (pawn.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Xenomorph) return false;
@@ -230,6 +286,34 @@ namespace RRYautja
 
         public static bool isInfectablePawnKind(PawnKindDef pawn)
         {
+
+            if (UtilChjAndroids.ChjAndroid)
+            {
+                if (pawn.race.defName == "ChjAndroid" || pawn.race.defName == "ChjDroid")
+                {
+                    return false;
+                }
+            }
+            if (UtilTieredAndroids.TieredAndroid)
+            {
+                if (pawn.race.defName.Contains("Android" + "Tier"))
+                {
+                    return false;
+                }
+            }
+
+            if (pawn.race.defName.Contains("Android")) return false;
+            if (pawn.race.defName.Contains("Droid")) return false;
+            if (pawn.race.defName.Contains("Mech")) return false;
+            if (pawn.race.defName.Contains("TM_Undead")) return false;
+            if (pawn.race.race.FleshType.defName.Contains("TM_StoneFlesh")) return false;
+            if (pawn.race.defName.Contains("TM_") && pawn.race.defName.Contains("Minion")) return false;
+            if (pawn.race.defName.Contains("TM_Demon")) return false;
+            if (pawn.race.race.FleshType.defName.Contains("ChaosDeamon")) return false;
+            if (pawn.race.race.FleshType.defName.Contains("Necron")) return false;
+            if (pawn.race.race.FleshType.defName.Contains("EldarConstruct")) return false;
+            if (pawn.race.race.FleshType.defName.Contains("ImperialConstruct")) return false;
+            if (pawn.race.race.FleshType.defName.Contains("MechanicusConstruct")) return false;
             if (pawn.RaceProps.IsMechanoid) return false;
             if (!pawn.RaceProps.IsFlesh) return false;
             if (pawn.race.defName.Contains("RRY_Xenomorph_")) return false;

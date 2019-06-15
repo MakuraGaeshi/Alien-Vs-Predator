@@ -81,6 +81,7 @@ namespace RRYautja
         {
             get
             {
+                Log.Message(string.Format("RoyaleHugger: {0} && Impregnations: {1} < maxImpregnations: {2} == {3}", RoyaleHugger, Impregnations, maxImpregnations, RoyaleHugger && Impregnations < maxImpregnations));
                 return RoyaleHugger && Impregnations < maxImpregnations;
             }
         }
@@ -91,9 +92,9 @@ namespace RRYautja
             {
                 if (RoyaleHugger)
                 {
-                    return 2;
+                    return 1;
                 }
-                return 1;
+                return 0;
             }
         }
 
@@ -326,12 +327,10 @@ namespace RRYautja
             {
                 gender = Gender.None;
             }
-#if DEBUG
             if (Prefs.DevMode)
             {
-             //    Log.Message(string.Format("spawning: {0}", pawnKindDef.label));
+                 Log.Message(string.Format("spawning: {0}", pawnKindDef.label));
             }
-#endif
             return PawnGenerator.GeneratePawn(new PawnGenerationRequest(pawnKindDef, Find.FactionManager.FirstFactionOfDef(pawnKindDef.defaultFactionType), PawnGenerationContext.NonPlayer, -1, true, true, false, false, true, true, 20f, fixedGender: gender));
         }
 

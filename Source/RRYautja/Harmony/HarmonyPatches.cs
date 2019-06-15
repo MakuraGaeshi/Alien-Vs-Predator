@@ -329,6 +329,7 @@ namespace RRYautja
         }
 
         private static readonly Material BubbleMat = MaterialPool.MatFrom("Other/CloakActive", ShaderDatabase.Transparent);
+
         public static bool PawnRenderer_Blur_Prefix(PawnRenderer __instance, ref Vector3 drawLoc, ref RotDrawMode bodyDrawType, bool headStump)
         {
             Pawn value = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();

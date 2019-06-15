@@ -88,6 +88,26 @@ namespace RRYautja
                 return MyMap.mapPawns.AllPawnsSpawned.Any(validator);
             }
         }
+        public bool RoyalEggPresent
+        {
+            get
+            {
+                bool selected = Find.Selector.SelectedObjects.Contains(this.parent) && Prefs.DevMode;
+                Predicate<Thing> validator = delegate (Thing t)
+                {
+                    CompXenoHatcher hatcher = t.TryGetComp<CompXenoHatcher>();
+                    bool RoyalEgg = hatcher.royalProgress>0f;
+                    return RoyalEgg;
+                };
+                List<Thing> list = MyMap.listerThings.ThingsOfDef(XenomorphDefOf.RRY_EggXenomorphFertilized);
+                bool result = list.Any(validator);
+                if (selected && result)
+                {
+                    Log.Message(string.Format("RoyalEggPresent: {0}", result));
+                }
+                return result;
+            }
+        }
 
         public Map MyMap
         {
@@ -152,21 +172,18 @@ namespace RRYautja
                     {
                         this.gestateProgress += num;
                     }
-
-                    else if (this.royalProgress < 1f && !QueenPresent && !RoyalPresent)// && !XenomorphUtil.HivelikesPresent(MyMap))
+                    else if (this.royalProgress < 1f && !QueenPresent && !RoyalPresent && (!RoyalEggPresent || (RoyalEggPresent && this.royalProgress > 0f)))// && !XenomorphUtil.HivelikesPresent(MyMap))
                     {
                         this.royalProgress += num;
                     }
-
                 }
-
-                if (Find.TickManager.TicksGame % 250+(Rand.RangeInclusive(0,10)*10) == 0)
+                if (Find.TickManager.TicksGame % 250+(Rand.RangeInclusive(0,10)*100) == 0)
                 {
                     this.CompTickRare();
                    
-                    if (this.gestateProgress >= 1f)
+                    if (this.gestateProgress >= 1f&&(this.royalProgress == 0f || this.royalProgress <= 1f))
                     {
-                        bool selected = Find.Selector.SingleSelectedThing == this.parent;
+                        bool selected = Find.Selector.SingleSelectedThing == this.parent && false;
                         if (selected) Log.Message(string.Format("{0} @ {1}, Can hatch?: {2}, Will hatch?: {3}", this.parent.Label, MyPos, canHatch, willHatch));
                         if (this.canHatch && this.willHatch)
                         {
@@ -190,7 +207,7 @@ namespace RRYautja
         public override void CompTickRare()
         {
             
-            bool selected = Find.Selector.SelectedObjects.Contains(this.parent);
+            bool selected = Find.Selector.SelectedObjects.Contains(this.parent) && Prefs.DevMode;
             Thing thing = null;
             if (MyMap !=null && MyPos.InBounds(MyMap)) thing = GenClosest.ClosestThingReachable(MyPos, MyMap, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), Props.triggerRadius, x => XenomorphUtil.isInfectablePawn(((Pawn)x)), null, 0, -1, false, RegionType.Set_Passable, false);
             int huggercount = thing != null ? XenomorphUtil.TotalSpawnedFacehuggerPawnCount(MyMap, 10, (Pawn)thing) : 0;
@@ -202,7 +219,7 @@ namespace RRYautja
                 bool flag = XenomorphUtil.isInfectablePawn(pawn);
                 if (selected)
                 {
-               //     Log.Message(string.Format("{0} isInfectable?: {1}", pawn.Label, flag));
+                    Log.Message(string.Format("{0} isInfectable?: {1}", pawn.Label, flag));
                 }
                 if (flag)
                 {
@@ -216,15 +233,15 @@ namespace RRYautja
                     float thingmovespeed = thing.GetStatValue(StatDefOf.MoveSpeed);
                     if (selected)
                     {
-                   //     Log.Message(string.Format("distance between {1} @{3} and {2} @ {4}: {0}", DistanceBetween(MyPos, pawn.Position), this.parent.LabelShort, pawn.Label, MyPos, pawn.Position));
-                   //     Log.Message(string.Format("{0} thingsize: {1}, thingstealth: {2}, thingmovespeed: {3}", pawn.Label, thingsize, thingstealth, thingmovespeed));
+                        Log.Message(string.Format("distance between {1} @{3} and {2} @ {4}: {0}", DistanceBetween(MyPos, pawn.Position), this.parent.LabelShort, pawn.Label, MyPos, pawn.Position));
+                        Log.Message(string.Format("{0} thingsize: {1}, thingstealth: {2}, thingmovespeed: {3}", pawn.Label, thingsize, thingstealth, thingmovespeed));
                     }
 
                     float hatchon = ((10*thingdist) / thingsize);
                     float roll = thingstealth > 0 ? (Rand.RangeInclusive(0, 100)* thingstealth): (Rand.RangeInclusive(0, 100));
                     if (selected)
                     {
-                   //     Log.Message(string.Format("{0} hatchon: {1}, roll: {2}", pawn.Label, hatchon, roll));
+                         Log.Message(string.Format("{0} hatchon: {1}, roll: {2}", pawn.Label, hatchon, roll));
                     }
                     if (roll>hatchon)
                     {

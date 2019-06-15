@@ -237,14 +237,14 @@
     <selectable>true</selectable>
     <altitudeLayer>Building</altitudeLayer>
     <scatterableOnMapGen>false</scatterableOnMapGen>
-    <!-- <tickerType>Normal</tickerType> -->
+     <tickerType>Normal</tickerType> 
     <!-- for CompForbiddable -->
     <drawerType>RealtimeOnly</drawerType>
     <comps>
       <li Class="CompProperties_Forbiddable"/>
     </comps>
     <inspectorTabs>
-      <!-- <li>ITab_Art</li> -->
+       <li>ITab_Art</li> 
     </inspectorTabs>
     <alwaysHaulable>true</alwaysHaulable>
     <rotatable>false</rotatable>

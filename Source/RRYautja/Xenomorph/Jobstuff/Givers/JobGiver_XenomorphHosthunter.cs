@@ -17,6 +17,7 @@ namespace RimWorld
             jobGiver_XenomorphHosthunter.HuntingRange = this.HuntingRange;
             jobGiver_XenomorphHosthunter.MinMeleeChaseTicks = this.MinMeleeChaseTicks;
             jobGiver_XenomorphHosthunter.MaxMeleeChaseTicks = this.MaxMeleeChaseTicks;
+            jobGiver_XenomorphHosthunter.Gender = this.Gender;
             return jobGiver_XenomorphHosthunter;
         }
 
@@ -37,6 +38,7 @@ namespace RimWorld
         // Token: 0x04000301 RID: 769
         private const int WanderOutsideDoorRegions = 9;
 
+        private Gender Gender = Gender.None;
         // Token: 0x060005B7 RID: 1463 RVA: 0x00037A28 File Offset: 0x00035E28
         protected override Job TryGiveJob(Pawn pawn)
         {
@@ -48,12 +50,8 @@ namespace RimWorld
             {
                 return null;
             }
-            Pawn pawn2 = pawn.LastAttackedTarget != null && pawn.LastAttackedTarget.Thing  != null && !((Pawn)pawn.LastAttackedTarget.Thing).Dead && !((Pawn)pawn.LastAttackedTarget.Thing).Downed ? (Pawn)pawn.LastAttackedTarget.Thing : this.FindPawnTarget(pawn);
+            Pawn pawn2 = this.FindPawnTarget(pawn);
 
-#if DEBUG
-            bool selected = Find.Selector.SingleSelectedThing == pawn;
-            if (selected) Log.Message(string.Format("{0} hunting {1}", pawn, pawn2));
-#endif
             if (pawn2 != null && pawn.CanReach(pawn2, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.ByPawn))
             {
                 return this.MeleeAttackJob(pawn, pawn2);
@@ -98,11 +96,8 @@ namespace RimWorld
         private Pawn FindPawnTarget(Pawn pawn)
         {
             bool selected = Find.Selector.SingleSelectedThing == pawn;
-            List<Pawn> list = pawn.Map.mapPawns.AllPawns.Where((Pawn x) => !x.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned) && !x.Downed && XenomorphUtil.isInfectablePawn(x) && (!x.InBed() || (x.InBed() && !(x.CurrentBed() is Building_XenomorphCocoon))) && pawn.CanReach(x, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.NoPassClosedDoors)).ToList();
-#if DEBUG
-            if (selected) Log.Message(string.Format("found {0}", list.Count));
-#endif
-            return (Pawn)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.ClosestTouch, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), HuntingRange, (x => x is Pawn p && list.Contains(p) && XenomorphUtil.isInfectablePawn(p)));//(Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn p && XenomorphUtil.isInfectablePawn(p) && !p.Downed, 0f, 9999f, default(IntVec3), float.MaxValue, true, true);
+            List<Pawn> list = pawn.Map.mapPawns.AllPawns.Where((Pawn x) => !x.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned) && !x.Downed && XenomorphUtil.isInfectablePawn(x) && pawn.CanReach(x, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.NoPassClosedDoors) && (this.Gender == Gender.None || (this.Gender!=Gender.None && x.gender == this.Gender))).ToList();
+            return (Pawn)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.ClosestTouch, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), HuntingRange, (x => x is Pawn p && list.Contains(p)));//(Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn p && XenomorphUtil.isInfectablePawn(p) && !p.Downed, 0f, 9999f, default(IntVec3), float.MaxValue, true, true);
         }
         
     }

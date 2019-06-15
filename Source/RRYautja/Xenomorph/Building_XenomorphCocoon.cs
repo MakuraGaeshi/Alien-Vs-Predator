@@ -259,8 +259,29 @@ namespace RimWorld
             */
 		}
 
-		// Token: 0x060024D9 RID: 9433 RVA: 0x001184A0 File Offset: 0x001168A0
-		public override void DrawExtraSelectionOverlays()
+
+        // Token: 0x060024DE RID: 9438 RVA: 0x001189DC File Offset: 0x00116DDC
+        public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn myPawn)
+        {
+            foreach (FloatMenuOption o in base.GetFloatMenuOptions(myPawn))
+            {
+                yield return o;
+            }
+            if (base.AllComps != null)
+            {
+                for (int i = 0; i < this.AllComps.Count; i++)
+                {
+                    foreach (FloatMenuOption o2 in this.AllComps[i].CompFloatMenuOptions(myPawn))
+                    {
+                        yield return o2;
+                    }
+                }
+            }
+            yield break;
+        }
+
+        // Token: 0x060024D9 RID: 9433 RVA: 0x001184A0 File Offset: 0x001168A0
+        public override void DrawExtraSelectionOverlays()
 		{
 			base.DrawExtraSelectionOverlays();
 		}

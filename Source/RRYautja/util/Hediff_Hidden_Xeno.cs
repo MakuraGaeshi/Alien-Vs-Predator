@@ -248,7 +248,7 @@ namespace RRYautja
         public void AlertThief(Pawn pawn, Thing observer)
         {
             pawn.jobs.EndCurrentJob(JobCondition.InterruptForced);
-            if (!pawn.Dead)
+            if (false)
             {
                 List<Pawn> thisPawn = new List<Pawn>
                 {

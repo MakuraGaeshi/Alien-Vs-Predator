@@ -10,24 +10,11 @@ namespace RRYautja
 {
     class Building_XenoEgg : Building
     {
-
         public bool QueenPresent
         {
             get
             {
-                bool queenPresent = false;
-                foreach (var p in this.Map.mapPawns.AllPawnsSpawned)
-                {
-                    if (p.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
-                    {
-#if DEBUG
-                    //    Log.Message(string.Format("Queen found"));
-#endif
-                        queenPresent = true;
-                        break;
-                    }
-                }
-                return queenPresent;
+                return xenoHatcher.QueenPresent;
             }
         }
 
@@ -45,10 +32,18 @@ namespace RRYautja
             get
             {
                 float num = (float)Math.Round((0.7 * (double)xenoHatcher.royalProgress), 1);
-                if (false)// (xenoHatcher.royalProgress>0f)
+                if (xenoHatcher.royalProgress>0f)
                 {
-                    Graphic graphic = base.Graphic;
-                    graphic.drawSize = new Vector2(1f + (num), 1f + (num));
+                    //Graphic g = base.Graphic.GetCopy(DrawSize); //
+                    Graphic graphic = base.Graphic.GetCopy(DrawSize); //new Graphic();
+
+                    //graphic.Color.r += 40f;
+                    //graphic.drawSize = new Vector2(1f + (num), 1f + (num));
+                    if (xenoHatcher.royalProgress > 1f)
+                    {
+                        graphic.path = "Things/Resources/Raw/Xenomorph_RoyalEgg";
+                    }
+                    
                     return graphic;
                     return base.Graphic.GetCopy(new Vector2(1f + (num), 1f + (num)));
                 }
@@ -56,6 +51,8 @@ namespace RRYautja
             }
         }
         
+        
+
         public CompXenoHatcher xenoHatcher
         {
             get

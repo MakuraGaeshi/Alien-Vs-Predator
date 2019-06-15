@@ -68,18 +68,17 @@
       <WorkToBuild>600</WorkToBuild>
     </statBases>
     <comps>
-		<!--
-      <li Class="CompProperties_Usable">
-        <compClass>RRYautja.CompUsable_Cocoon</compClass>
-        <useJob>UseItem</useJob>
+      <li Class="CompProperties_UsableBuilding">
+        <useJob>RRY_Job_DestroyCocoon</useJob>
         <useLabel>Release from cocoon</useLabel>
-        <useDuration>300</useDuration>
+        <useDuration>450</useDuration>
       </li>
+      <li Class="CompProperties_UseEffect">
+        <compClass>CompUseEffect_Cocoon</compClass>
+      </li>
+		<!--
       <li Class="CompProperties_UseEffect">
         <compClass>RRYautja.CompUseEffect_Cocoon</compClass>
-      </li>
-      <li Class="CompProperties_UseEffect">
-        <compClass>CompUseEffect_DestroySelf</compClass>
       </li>
 			<li Class="CompProperties_RoomIdentifier">
 				<roomStat>Impressiveness</roomStat>
@@ -130,6 +129,14 @@
       <WorkToBuild>600</WorkToBuild>
     </statBases>
     <comps>
+      <li Class="CompProperties_UsableBuilding">
+        <useJob>RRY_Job_DestroyCocoon</useJob>
+        <useLabel>Release from cocoon</useLabel>
+        <useDuration>450</useDuration>
+      </li>
+      <li Class="CompProperties_UseEffect">
+        <compClass>CompUseEffect_Cocoon</compClass>
+      </li>
       <li Class="CompProperties_SpawnerFilth">
         <filthDef>RRY_Filth_Slime</filthDef>
         <spawnCountOnSpawn>10</spawnCountOnSpawn>
@@ -152,5 +159,12 @@
     <defaultPlacingRot>South</defaultPlacingRot>
     <designationHotKey>Misc2</designationHotKey>
   </ThingDef>
--->
+
+	<JobDef>
+		<defName>RRY_Job_DestroyCocoon</defName>
+		<driverClass>JobDriver_DestroyCocoon</driverClass>
+		<reportString>opening TargetA.</reportString>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
+  
  </Defs>

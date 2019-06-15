@@ -16,8 +16,6 @@ namespace RimWorld
             bool result;
             if (pawn.Spawned && XenomorphUtil.IsXenomorph(pawn))
             {
-                bool selected = pawn.Map != null ? Find.Selector.SelectedObjects.Contains(pawn) && (Prefs.DevMode) : false;
-
                 List<Pawn> list = pawn.Map.mapPawns.AllPawns.Where((Pawn x) => !x.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned) && x.Downed && XenomorphUtil.isInfectablePawn(x) && pawn.CanReach(x, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.NoPassClosedDoors)).ToList();
                 result = list.Any<Pawn>(x => x.Spawned);
             }
@@ -25,9 +23,6 @@ namespace RimWorld
             {
                 result = false;
             }
-#if DEBUG
-        //    Log.Message(string.Format("{0}", result));
-#endif
             return result;
         }
 
