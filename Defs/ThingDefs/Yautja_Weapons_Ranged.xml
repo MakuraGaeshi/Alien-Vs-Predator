@@ -4,7 +4,7 @@
   <ThingDef ParentName="RRYBaseSimpleRanged">
     <defName>RRY_Gun_Hunting_Bow</defName>
     <label>yautja hunting bow</label>
-    <description>The traditional Yautja Hunting is a large powerful bow taht can be made out of almost any materials.</description>
+    <description>The traditional Yautja Hunting is a large powerful bow that can be made out of almost any materials.</description>
     <graphicData>
       <texPath>Things/Equipment/Ranged/Yautja_Hunting_Bow</texPath>
       <graphicClass>Graphic_Single</graphicClass>

@@ -8,7 +8,7 @@
 	<ThingDef ParentName="RRY_Yautja_EquipmentBase">
 		<defName>RRY_Equipment_HunterGauntlet</defName>
 		<label>Yautja Hunter Gauntlet</label>
-		<description>This wrist mounted gauntlet is the most basic piece of equipement a Hunter carry. They come in infinite variations. At its base it contains extendable claws and a self destruction device. Can be upgraded to store a first aid kit, meds and activate cloaking capabilities.</description>
+		<description>This wrist mounted gauntlet is the most basic piece of equipment a Hunter carries. They come in infinite variations. At its base it contains extendable claws and a self destruction device. Can be upgraded to store a first aid kit, meds and activate cloaking capabilities.</description>
 		<thingClass>RRYautja.Cloakgen</thingClass>
 		<graphicData>
 			<texPath>Things/Apparel/Yautja_Gauntlet/Yautja_Gauntlet</texPath>
@@ -99,7 +99,7 @@
 	<ThingDef ParentName="RRY_Yautja_EquipmentBase">
 		<defName>RRY_Equipment_HunterShoulderCannon</defName>
 		<label>Yautja Shoulder Plasmacaster</label>
-		<description>Also known as the Shoulder Canon, this shoulder mounted high-energy weapon unable the Yautja to have long-range capabilities while wielding another weapon of his choice. The canon can be activated and deactivated as seen fit and have it's own targeting system making it completely independent.</description>
+		<description>Also known as the Shoulder Canon, this shoulder mounted high-energy weapon enable the Yautja to have long-range capabilities while wielding another weapon of his choice. The canon can be activated and deactivated as seen fit and has it's own targeting system making it completely independent.</description>
 		<graphicData>
 			<texPath>Things/Equipment/Yautja_ShoulderCannon</texPath>
 			<graphicClass>Graphic_Single</graphicClass>

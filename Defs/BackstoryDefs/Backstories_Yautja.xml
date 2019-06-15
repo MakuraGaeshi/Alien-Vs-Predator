@@ -124,7 +124,7 @@
   <AlienRace.BackstoryDef>
     <defName>RRY_Yautja_Unblooded_Highborn</defName>
     <title>Unblooded Highborn</title>
-    <baseDescription>[PAWN_nameDef] is the child of one of the most prolific hunter of the Clan. [PAWN_possessive] mother raised [PAWN_objective] that [PAWN_pronoun] is gonna be the next Clan Leader.</baseDescription>
+    <baseDescription>[PAWN_nameDef] is the child of one of the most prolific hunters of the Clan. [PAWN_possessive] mother raised [PAWN_objective] that [PAWN_pronoun] is gonna be the next Clan Leader.</baseDescription>
 
     <bodyTypeMale>Male</bodyTypeMale>
     <bodyTypeFemale>Female</bodyTypeFemale>
@@ -496,7 +496,7 @@
     <title>Black Smith</title>
     <titleShort>Smith</titleShort>
 	
-    <baseDescription>Hunters are nothing without their tools. [PAWN_nameDef] is one of those rare [PAWN_alienRace] whom create those tools. [PAWN_pronoun] takes pride in [PAWN_possessive] work and the other Hunters give [PAWN_objective] respect for it.</baseDescription>
+    <baseDescription>Hunters are nothing without their tools. [PAWN_nameDef] is one of those rare [PAWN_alienRace] who create those tools. [PAWN_pronoun] takes pride in [PAWN_possessive] work and the other Hunters give [PAWN_objective] respect for it.</baseDescription>
     <bodyTypeMale>Male</bodyTypeMale>
     <bodyTypeFemale>Female</bodyTypeFemale>
     <slot>Adulthood</slot>
@@ -558,7 +558,7 @@
     <defName>RRY_Yautja_Widow</defName>
     <title>Widow</title>
     <titleShort>Widow</titleShort>
-	<baseDescription>[PAWN_nameDef] lost [PAWN_possessive] mate. [PAWN_pronoun] chose the best, raised [PAWN_objective] mate's Suckling. All [PAWN_pronoun] got for it is pain. The grief process was long and harduous. Many [PAWN_alienRace] become crazy after this. [PAWN_nameDef] swore vengeance and now hunt as brutally, if not more so, than the other Hunters.</baseDescription>
+	<baseDescription>[PAWN_nameDef] lost [PAWN_possessive] mate. [PAWN_pronoun] chose the best, raised [PAWN_objective] mate's Suckling. All [PAWN_pronoun] got for it is pain. The grief process was long and arduous. Many [PAWN_alienRace] become crazy after this. [PAWN_nameDef] swore vengeance and now hunts as brutally, if not more so, than the other Hunters.</baseDescription>
     <bodyTypeFemale>Female</bodyTypeFemale>
 	<bodyTypeMale>Male</bodyTypeMale>
 	<maleCommonality>0</maleCommonality>

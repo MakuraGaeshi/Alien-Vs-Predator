@@ -16,7 +16,7 @@
 	<ThingDef ParentName="RRY_Yautja_ArmourBase">
 		<defName>RRY_Apparel_HunterLightArmourChestplate</defName>
 		<label>Yautja Light Chestplate</label>
-		<description>A light chesplate designed with freedom of movements in mind.</description>
+		<description>A light chestplate designed with freedom of movements in mind.</description>
 		<graphicData>
 			<texPath>Things/Apparel/Yautja_Light_Armour/Yautja_LightArmour</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -296,7 +296,7 @@
 	<ThingDef ParentName="RRY_Yautja_HeadgearBase">
 		<defName>RRY_Apparel_HunterBioMask</defName>
 		<label>Yautja Bio Mask</label>
-		<description>Arguably the most iconic piece of gear of the Yautja arsenal, the bio mask is part fonctional armor and part ritualistic object. The helmet offer protection from harm in combat as well as a respirator to avoid inhaling toxic compounds. The helmet is also equipped with a targeting system and vision enhancing utilities.</description>
+		<description>Arguably the most iconic piece of gear of the Yautja arsenal, the bio mask is part functional armor and part ritualistic object. The helmet offer protection from harm in combat as well as a respirator to avoid inhaling toxic compounds. The helmet is also equipped with a targeting system and vision enhancing utilities.</description>
 		<graphicData>
 		<texPath>Things/Apparel/Yautja_Armour_Helmet/Yautja_HunterArmour_Helmet</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
@@ -358,7 +358,7 @@
 	<ThingDef ParentName="RRY_Yautja_ArmourBase">
 		<defName>RRY_Apparel_HunterEliteArmourChestplate</defName>
 		<label>Elite Yautja Hunter Chestplate</label>
-		<description>Finely crafted and optimised for the most honorable Yautja warriors. The Elite armour is exactly what it's name suggest: Elite. Excellent protection with freedom of movement. Comfortable and heated. It does it all, because the elite warrant the Elite(tm).</description>
+		<description>Finely crafted and optimised for the most honorable Yautja warriors. The Elite armour is exactly what it's name suggests: Elite. Excellent protection with freedom of movement. Comfortable and heated. It does it all, because the elite warrant the Elite(tm).</description>
 		<graphicData>
 			<texPath>Things/Apparel/Yautja_Elite_Armour/Yautja_LeaderArmor</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -495,7 +495,7 @@
 	<ThingDef ParentName="RRY_Yautja_ArmourBase">
 		<defName>RRY_Apparel_HunterLeaderArmourChestplate</defName>
 		<label>Ornate Yautja Hunter Chestplate</label>
-		<description>Armor made for the leader of clan. As much a piece of arsenal as a piece of status. The Ornate armor offer all the proctection needed by a hunter and wearing it impose respect and inpire fear.</description>
+		<description>Armor made for the clan leader. As much a piece of arsenal as a piece of status. The Ornate armor offers all the protection needed by a hunter and wearing it imposes respect and inpires fear.</description>
 		<graphicData>
 			<texPath>Things/Apparel/Yautja_Leader_Armour/Yautja_LeaderArmor</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
