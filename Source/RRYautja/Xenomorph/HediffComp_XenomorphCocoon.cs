@@ -32,7 +32,11 @@ namespace RRYautja
         {
             base.CompExposeData();
             Scribe_Values.Look<float>(ref this.conversionProgress, "conversionProgress", 0f, false);
+            Scribe_Values.Look<int>(ref this.EggConvertTicks, "EggConvertTicks", 0, false);
+
         }
+
+        public int EggConvertTicks = 0;
 
         private List<Rot4> Rotlist = new List<Rot4>
         {
@@ -182,7 +186,9 @@ namespace RRYautja
                 {
                     if (this.conversionProgress >= 1f&& XenomorphUtil.TotalSpawnedEggCount(MyMap)<(cocoonedCount / 2) && !XenomorphUtil.IsInfectedPawn(Pawn))
                     {
-                        if (Pawn.RaceProps.Humanlike ? Rand.Chance(0.001f): Rand.Chance(0.05f))
+                        float chance = Pawn.RaceProps.Humanlike ? 0.001f+((float)EggConvertTicks/1000) : .05f + ((float)EggConvertTicks / 500);
+                        EggConvertTicks++;
+                        if (Rand.Chance(chance))
                         {
                             Thing thing = ThingMaker.MakeThing(eggDef, null);
                             Building_XenoEgg _XenoEgg = (Building_XenoEgg)thing;

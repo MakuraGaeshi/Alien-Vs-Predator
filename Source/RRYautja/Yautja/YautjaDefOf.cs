@@ -128,5 +128,14 @@ namespace RimWorld
         // Xenomorph ConceptDefs
         public static ConceptDef RRY_Concept_Unblooded;
         public static ConceptDef RRY_Concept_Blooding;
+        public static ConceptDef RRY_Concept_Gauntlet;
+        public static ConceptDef RRY_Concept_Wistblade;
+        public static ConceptDef RRY_Concept_SelfDestruct;
+        public static ConceptDef RRY_Concept_MediComp;
+        public static ConceptDef RRY_Concept_ShardInjector;
+        public static ConceptDef RRY_Concept_Cloak;
+        public static ConceptDef RRY_Concept_Plasmacaster;
+        public static ConceptDef RRY_Concept_SmartDisk;
+        public static ConceptDef RRY_Concept_CombiStaff;
     }
 }
