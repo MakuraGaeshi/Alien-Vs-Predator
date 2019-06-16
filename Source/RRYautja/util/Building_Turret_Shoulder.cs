@@ -227,16 +227,16 @@ namespace RRYautja
             //    Log.Message(string.Format("looking for target"));
                 if (Parental!=null)
                 {
-            //        Log.Message(string.Format("found Parental"));
+            //    //    Log.Message(string.Format("found Parental"));
                     if (Parental.TargetCurrentlyAimingAt != null)
                     {
-            //            Log.Message(string.Format("found Parental Target"));
+            //        //    Log.Message(string.Format("found Parental Target"));
                         return Parental.TargetCurrentlyAimingAt;
                     }
                 }
                 if (base.CurrentTarget!=null)
                 {
-            //        Log.Message(string.Format("Base Target"));
+            //    //    Log.Message(string.Format("Base Target"));
                     return base.CurrentTarget;
                 }
             //    Log.Message(string.Format("No Target"));

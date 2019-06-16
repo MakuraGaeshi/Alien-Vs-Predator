@@ -109,7 +109,7 @@ namespace RimWorld
             }
             else
             {
-                Log.Message(string.Format("{0} unocuppied", this));
+            //    Log.Message(string.Format("{0} unocuppied", this));
                 List<IntVec3> celllist = this.CellsAdjacent8WayAndInside().ToList();
                 if (!celllist.NullOrEmpty())
                 {
@@ -117,10 +117,10 @@ namespace RimWorld
                     {
                         if (cell.GetFirstPawn(this.Map) != null && cell.GetFirstPawn(this.Map) is Pawn p)
                         {
-                            Log.Message(string.Format("{0}", cell.GetFirstPawn(this.Map)));
+                        //    Log.Message(string.Format("{0}", cell.GetFirstPawn(this.Map)));
                             if (p.Downed && !p.Dead && !p.InBed() && !(p.kindDef.race.defName.Contains("RRY_Xenomorph_")))
                             {
-                                Log.Message(string.Format("{0} tucking", p));
+                            //    Log.Message(string.Format("{0} tucking", p));
                                 p.jobs.Notify_TuckedIntoBed(this);
                                 p.mindState.Notify_TuckedIntoBed();
                             }
@@ -131,7 +131,7 @@ namespace RimWorld
                 {
                     this.def.building.bed_showSleeperBody = true;
                 }
-                Log.Message(string.Format("Destroying : {0} ", this));
+            //    Log.Message(string.Format("Destroying : {0} ", this));
                 this.Destroy();
             }
         }

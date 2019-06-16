@@ -79,9 +79,9 @@ namespace RRYautja
             hiveslimepresent = XenomorphUtil.HiveSlimePresent(map);
             closestreachablehiveslime = XenomorphUtil.ClosestReachableHiveSlime(pawn);
 
-            if (selected && eggsPresent) Log.Message(string.Format("JobGiver_XenosKidnap for {3} eggsPresent: {0}, eggsReachable: {1}, closestReachableEgg: {2}", eggsPresent, eggsReachable, closestReachableEgg, pawn.LabelShortCap));
-            if (selected && hivelikesPresent) Log.Message(string.Format("JobGiver_XenosKidnap for {3} hivelikesPresent: {0}, hivelikesReachable: {1}, closestReachableHivelike: {2}", hivelikesPresent, hivelikesReachable, closestReachableHivelike, pawn.LabelShortCap));
-            if (selected && cocoonsPresent) Log.Message(string.Format("JobGiver_XenosKidnap for {3} cocoonsPresent: {0}, cocoonsReachable: {1}, closestReachableEgg: {2}", cocoonsPresent, cocoonsReachable, closestReachableCocoon, pawn.LabelShortCap));
+        //    if (selected && eggsPresent) Log.Message(string.Format("JobGiver_XenosKidnap for {3} eggsPresent: {0}, eggsReachable: {1}, closestReachableEgg: {2}", eggsPresent, eggsReachable, closestReachableEgg, pawn.LabelShortCap));
+        //    if (selected && hivelikesPresent) Log.Message(string.Format("JobGiver_XenosKidnap for {3} hivelikesPresent: {0}, hivelikesReachable: {1}, closestReachableHivelike: {2}", hivelikesPresent, hivelikesReachable, closestReachableHivelike, pawn.LabelShortCap));
+        //    if (selected && cocoonsPresent) Log.Message(string.Format("JobGiver_XenosKidnap for {3} cocoonsPresent: {0}, cocoonsReachable: {1}, closestReachableEgg: {2}", cocoonsPresent, cocoonsReachable, closestReachableCocoon, pawn.LabelShortCap));
 
             if (hiveslimepresent)
             {

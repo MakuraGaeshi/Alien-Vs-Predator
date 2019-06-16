@@ -453,7 +453,7 @@ namespace RRYautja
                                         _Yautja.predator = pawnKindDef.RaceProps.predator;
                                         _Yautja.BodySize = pawnKindDef.RaceProps.baseBodySize;
                                         _Yautja.combatPower = pawnKindDef.combatPower;
-                                        Log.Message(string.Format("{0}: {1}", hediffDef.stages[0].label, pawnKindDef.LabelCap));
+                                    //    Log.Message(string.Format("{0}: {1}", hediffDef.stages[0].label, pawnKindDef.LabelCap));
                                     }
                                 }
 
