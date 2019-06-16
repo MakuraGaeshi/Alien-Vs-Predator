@@ -22,11 +22,11 @@ namespace RimWorld
 #if DEBUG
             if (Prefs.DevMode)
             {
-                ThingDef td = XenomorphDefOf.RRY_Filth_Slime;
-                GenSpawn.Spawn(td, cell, map);
                 Find.LetterStack.ReceiveLetter(string.Format("InfestationLike Cell Finder"), string.Format("locationCandidate: {0} ", cell), LetterDefOf.NegativeEvent, cell.GetFirstThing(map, td), null, null);
             }
 #endif
+            ThingDef td = XenomorphDefOf.RRY_Hive_Slime;
+            GenSpawn.Spawn(td, cell, map);
             return true;
         }
 
@@ -49,6 +49,8 @@ namespace RimWorld
                 Find.LetterStack.ReceiveLetter(string.Format("InfestationLike Cell Finder"), string.Format("locationCandidate: {0} ", cell), LetterDefOf.NegativeEvent, cell.GetFirstThing(map, td), null, null);
             }
 #endif
+            ThingDef td = XenomorphDefOf.RRY_Hive_Slime;
+            GenSpawn.Spawn(td, cell, map);
             return true;
         }
 
@@ -73,6 +75,8 @@ namespace RimWorld
                 Find.LetterStack.ReceiveLetter(string.Format("InfestationLike Cell Finder"), string.Format("locationCandidate: {0} ", cell), LetterDefOf.NegativeEvent, cell.GetFirstThing(map, td), null, null);
             }
 #endif
+            ThingDef td = XenomorphDefOf.RRY_Hive_Slime;
+            GenSpawn.Spawn(td, cell, map);
             return true;
         }
 

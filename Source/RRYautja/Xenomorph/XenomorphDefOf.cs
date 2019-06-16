@@ -24,6 +24,7 @@ namespace RimWorld
         public static HediffDef RRY_Hediff_Xenomorph_Hidden;
         public static HediffDef RRY_Hediff_Cocooned;
         public static HediffDef HypothermicSlowdown;
+        public static HediffDef RRY_Hediff_Anesthetic;
 
         // Xenomorph HefiffDefs HypothermicSlowdown
         public static HediffDef RRY_FaceHuggerInfection;

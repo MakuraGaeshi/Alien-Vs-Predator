@@ -573,6 +573,10 @@ namespace RRYautja
         public int deathIntervalTicks = 300 * Rand.RangeInclusive(1,5);
         public override void CompTick()
         {
+            if (Facehugger.Faction==null)
+            {
+                Facehugger.SetFaction(Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph));
+            }
             base.CompTick();
             this.ticksSinceHeal++;
             if (Impregnations >= maxImpregnations) this.ticksSinceImpregnation++;
@@ -669,6 +673,10 @@ namespace RRYautja
         public int healIntervalTicks = 60;
         public override void CompTick()
         {
+            if (this.parent.Faction == null)
+            {
+                this.parent.SetFaction(Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph));
+            }
             base.CompTick();
             this.ticksSinceHeal++;
             bool flag = this.ticksSinceHeal > this.healIntervalTicks;

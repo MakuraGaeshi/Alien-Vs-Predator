@@ -90,17 +90,20 @@ namespace RRYautja
                     GenSpawn.Spawn(ThingMaker.MakeThing(thingDef), user.Position, user.Map);
                 }
             }
-            if (user.story.adulthood.identifier == null || user.story.adulthood.identifier == "Yautja_YoungBlood")
+            if (user.story.adulthood.identifier == null || user.story.adulthood.identifier == "RRY_Yautja_YoungBlood")
             {
-                AlienRace.BackstoryDef backstoryDef = DefDatabase<AlienRace.BackstoryDef>.GetNamed("Yautja_Blooded");
+                if (marked.def==YautjaDefOf.RRY_Hediff_BloodedMXenomorph)
+                {
+                    AlienRace.BackstoryDef backstoryDef = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_Blooded");
 #if DEBUG
             //    if (selected) Log.Message(string.Format("changing {0}", user.story.adulthood.identifier));
 #endif
 
-                user.story.adulthood = backstoryDef.backstory;
+                    user.story.adulthood = backstoryDef.backstory;
 #if DEBUG
             //    if (selected) Log.Message(string.Format("to {0}", user.story.adulthood.identifier));
 #endif
+                }
             }
         }
 

@@ -13,14 +13,14 @@
   
   <ConceptDef>
     <defName>RRY_Concept_Eggs</defName>
-    <label>AvP: Cocoons</label>
+    <label>AvP: Ovomorph (Eggs)</label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
     <highlightTags>
       <li>SidearmPrimary</li>
     </highlightTags>
     <!-- <helpText>Xenomorphs will kidnap downed pawn and bring them back to a safe place and cocoon them.\n\n The cocoon will keep the pawn alive and healthy until a Facehugger can impregnate the pawn. You can save the pawn by right-clicking the cocoon and selecting the option.\n\n If no Facehugger can impregnate the pawn, after a while the cocoon will disolve the colonist and transform into an egg.</helpText> -->
-    <helpText>Xenomorphs will kidnap downed pawn and bring them back to a safe place and cocoon them.\n\n The cocoon will keep the pawn alive and healthy until a Facehugger can impregnate the pawn. You can save the pawn by selecting the cocoon and clicking the deconstruct button.\n\n If no Facehugger can impregnate the pawn, after a while the cocoon will disolve the colonist and transform into an egg.</helpText>
+    <helpText>Ovomorphs are the inital stage of a Xenomorphs lifecycle.\n\nThey will only hatch if there is an acceptable host nearby.\n\nIf no Queens, Royal Facehuggers, Embryos or eggs exsist on the map, it will slowly morph into a royal egg.\n\nOnly one Royal should exist on any map at any given time</helpText>
   </ConceptDef>
   
   <ConceptDef>

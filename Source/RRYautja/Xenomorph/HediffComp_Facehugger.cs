@@ -269,6 +269,7 @@ namespace RRYautja
             IntVec3 spawnLoc = !Pawn.Dead ? Pawn.Position : Pawn.PositionHeld;
             Map spawnMap = !Pawn.Dead ? Pawn.Map : Pawn.MapHeld;
             bool spawnLive = this.spawnLive;
+            hostPawn.health.AddHediff(XenomorphDefOf.RRY_Hediff_Anesthetic);
         //    if ((hostPawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation) && !hasImpregnated))
             if (!hasImpregnated)
             {
@@ -289,7 +290,7 @@ namespace RRYautja
                 }
                 GenSpawn.Spawn(pawn, spawnLoc, spawnMap, 0);
                 pawn.jobs.ClearQueuedJobs();
-                pawn.jobs.curJob = null;
+            //    pawn.jobs.curJob = new Verse.AI.Job(JobDefOf.FleeAndCower, hostPawn);
             }
             else
             {

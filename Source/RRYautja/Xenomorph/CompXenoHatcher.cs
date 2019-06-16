@@ -175,7 +175,7 @@ namespace RRYautja
                         this.gestateProgress += num;
                     //    Log.Message(string.Format("gestateProgress: {0}", gestateProgress));
                     }
-                    else if (this.royalProgress < 1f && !QueenPresent && !RoyalPresent && (!RoyalEggPresent || (RoyalEggPresent && this.royalProgress > 0f)))// && !XenomorphUtil.HivelikesPresent(MyMap))
+                    else if (this.royalProgress < 1f && !QueenPresent && !RoyalPresent && (!RoyalEggPresent || (RoyalEggPresent && this.royalProgress > 0f)) && !XenomorphUtil.HivelikesPresent(MyMap))
                     {
                         this.royalProgress += num;
                     }

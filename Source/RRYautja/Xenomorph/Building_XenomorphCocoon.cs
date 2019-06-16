@@ -88,8 +88,10 @@ namespace RimWorld
             {
                 if (CurOccupants.Count()>0)
                 {
+                //    Log.Message(string.Format("{0} ocuppied", this));
                     foreach (Pawn p in CurOccupants)
                     {
+                    //    Log.Message(string.Format("p: {0}\nDead: {1} ", p, p.Dead));
                         if (p.RaceProps.Humanlike)
                         {
                             this.def.building.bed_showSleeperBody = false;
@@ -107,6 +109,7 @@ namespace RimWorld
             }
             else
             {
+                Log.Message(string.Format("{0} unocuppied", this));
                 List<IntVec3> celllist = this.CellsAdjacent8WayAndInside().ToList();
                 if (!celllist.NullOrEmpty())
                 {
@@ -114,21 +117,22 @@ namespace RimWorld
                     {
                         if (cell.GetFirstPawn(this.Map) != null && cell.GetFirstPawn(this.Map) is Pawn p)
                         {
-                        //    Log.Message(string.Format("{0}", cell.GetFirstPawn(this.Map)));
-                            if (p.Downed && !p.InBed() && !(p.kindDef.race.defName.Contains("RRY_Xenomorph_")))
+                            Log.Message(string.Format("{0}", cell.GetFirstPawn(this.Map)));
+                            if (p.Downed && !p.Dead && !p.InBed() && !(p.kindDef.race.defName.Contains("RRY_Xenomorph_")))
                             {
-                            //    Log.Message(string.Format("{0} tucking", p));
+                                Log.Message(string.Format("{0} tucking", p));
                                 p.jobs.Notify_TuckedIntoBed(this);
                                 p.mindState.Notify_TuckedIntoBed();
                             }
                         }
                     }
                 }
-                else if (this.owners.NullOrEmpty())
+                else if (!Occupied)
                 {
-                    this.Destroy();
+                    this.def.building.bed_showSleeperBody = true;
                 }
-                this.def.building.bed_showSleeperBody = true;
+                Log.Message(string.Format("Destroying : {0} ", this));
+                this.Destroy();
             }
         }
 

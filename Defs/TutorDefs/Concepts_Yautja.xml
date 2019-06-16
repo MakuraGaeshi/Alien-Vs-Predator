@@ -84,7 +84,7 @@
     <highlightTags>
       
     </highlightTags>
-    <helpText>One of the most well known and coverted peices of Yautja technology, Active Optical Cammoflage, it bends light around the user rendering them invisible.\n\nWhen active, the cloaking device renders the user almost perfectly invisible.\n\n.\n\n If the creature the Yautja killed is accidently destroyed before they can amrk themself, you can use the blood of a similar prey to mark the Yautja.</helpText>
+    <helpText>One of the most well known and coverted peices of Yautja technology, Active Optical Cammoflage, it bends light around the user rendering them invisible.\n\nWhen active, the cloaking device renders the user almost perfectly invisible.\n\nHowever it can be disrupted by the wearer taking sufficent damage and rain can give away the wearers position.\n\n Rain and water Disruption planned but not yet implemented.</helpText>
   </ConceptDef>  
   
   <ConceptDef>

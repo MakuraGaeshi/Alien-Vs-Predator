@@ -218,6 +218,13 @@ namespace RimWorld
 					break;
 				}
 			}
+            if (Rand.Chance(0.05f) || intVec == IntVec3.Invalid)
+            {
+                if (InfestationCellFinder.TryFindCell(out IntVec3 c, map))
+                {
+                    return c;
+                }
+            }
 			return intVec;
 		}
 
