@@ -158,6 +158,30 @@
     </comps>
   </HediffDef>
 
+  <HediffDef ParentName="DiseaseBase">
+    <defName>RRY_Hediff_Anesthetic</defName>
+    <label>deep sleep</label>
+    <isBad>false</isBad>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>
+          <min>6000</min>
+          <max>12000</max>
+        </disappearsAfterTicks>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.1</setMax>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
     <HediffDef ParentName="RRY_SpecialBadHeDiff">
     <defName>RRY_Hediff_Pinned</defName>
     <label>Pinned</label>
@@ -241,6 +265,12 @@
     <comps>
       <li>
         <compClass>RRYautja.HediffComp_BloodedYautja</compClass>
+      </li>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>
+          <min>36000</min>
+          <max>36000</max>
+        </disappearsAfterTicks>
       </li>
 	  <!--
       <li>

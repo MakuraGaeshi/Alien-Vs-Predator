@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RRYautja", "RRYautja\RRYautja.csproj", "{98FCBC2D-8EA4-42E6-A745-D691C3576586}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResourceBoxes", "ResourceBoxes\ResourceBoxes.csproj", "{39C8990C-9E46-45AC-A9EB-E54B57E11D0E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{98FCBC2D-8EA4-42E6-A745-D691C3576586}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98FCBC2D-8EA4-42E6-A745-D691C3576586}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98FCBC2D-8EA4-42E6-A745-D691C3576586}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39C8990C-9E46-45AC-A9EB-E54B57E11D0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39C8990C-9E46-45AC-A9EB-E54B57E11D0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39C8990C-9E46-45AC-A9EB-E54B57E11D0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39C8990C-9E46-45AC-A9EB-E54B57E11D0E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

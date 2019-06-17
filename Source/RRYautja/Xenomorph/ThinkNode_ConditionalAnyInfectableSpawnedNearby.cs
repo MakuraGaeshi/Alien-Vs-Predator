@@ -17,6 +17,7 @@ namespace RimWorld
             if (pawn.Spawned && XenomorphUtil.IsXenomorph(pawn))
             {
                 List<Pawn> list = pawn.Map.mapPawns.AllPawns.Where(x => !x.Downed && XenomorphUtil.isInfectablePawn(x) && pawn.CanReach(x, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.NoPassClosedDoors)).ToList();
+
                 result = list.Any<Pawn>(x => x.Spawned);
             }
             else

@@ -128,7 +128,7 @@ namespace RimWorld
             }
             //     Log.Message(string.Format("finding valid location near: {0}", c));
             List<Thing> egglist = pawn.Map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_EggXenomorphFertilized).FindAll(x=> c.InHorDistOf(x.Position, 9));
-            bool eggflag = egglist.CountAllowNull() < 70;
+            bool eggflag = egglist.CountAllowNull() < 30;
             Predicate<IntVec3> validator = delegate (IntVec3 t)
             {
                 return t.GetFirstBuilding(pawn.Map) == null && t.GetEdifice(pawn.Map) == null && t!=c && !t.GetThingList(pawn.Map).Any(x=> (x is Building_XenomorphCocoon) || (x is Building_XenoEgg) || (x is HiveLike));

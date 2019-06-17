@@ -123,7 +123,7 @@
     <comps>
       <li Class="RRYautja.CompProperties_XenoHatcher">
         <hatcherDaystoHatch>0.25</hatcherDaystoHatch>
-        <triggerRadius>10</triggerRadius>
+        <triggerRadius>15</triggerRadius>
         <hatcherPawn>RRY_Xenomorph_FaceHugger</hatcherPawn>
       </li>
     </comps>

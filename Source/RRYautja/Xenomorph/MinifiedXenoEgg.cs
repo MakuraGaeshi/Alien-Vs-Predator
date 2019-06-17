@@ -79,10 +79,26 @@ namespace RRYautja
                 }
                 else
                 {
-                    this.InnerThing.SetFaction(null);
-                    CellFinder.TryFindRandomCellNear(this.Position, this.Map, 2, (x => GridsUtility.GetFirstBuilding(x, this.Map)==null), out IntVec3 c);
-                    GenPlace.TryPlaceThing(this.InnerThing, c, this.Map, ThingPlaceMode.Direct);
-                //    if (this.Spawned) this.DeSpawn();
+                    ticksTillInstall--;
+                    if (ticksTillInstall==0)
+                    {
+                        Map map = this.Map;
+                        IntVec3 c = this.Position;
+                        this.InnerThing.SetFaction(null);
+                        if (this.Spawned) this.DeSpawn();
+                        try
+                        {
+                            GenPlace.TryPlaceThing(this.InnerThing, c, map, ThingPlaceMode.Direct);
+                        }
+                        catch (Exception)
+                        {
+                            CellFinder.TryFindRandomCellNear(c, map, 2, (x => GridsUtility.GetFirstBuilding(x, this.Map) == null), out c);
+                            GenPlace.TryPlaceThing(this.InnerThing, c, map, ThingPlaceMode.Direct);
+                            throw;
+                        }
+                        ticksTillInstall = 1000;
+                    }
+                //    
                 //    Log.Message("MinifiedThing on the ground.", false);
                 }
             }
@@ -147,6 +163,8 @@ namespace RRYautja
         // Token: 0x0400144B RID: 5195
         private const float CrateToGraphicScale = 1.16f;
 
+        private int ticksTillInstall = 1000;
+        private int TillInstalltick = 0;
         // Token: 0x0400144D RID: 5197
         private Graphic cachedGraphic;
 

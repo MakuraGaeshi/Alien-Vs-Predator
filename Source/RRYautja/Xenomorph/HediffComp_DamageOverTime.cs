@@ -39,6 +39,17 @@ namespace RRYautja
     // RRYautja.HediffCompDamageOverTime
     public class HediffComp_DamageOverTime : HediffComp
     {
+
+        // Token: 0x06000128 RID: 296 RVA: 0x0000AF5E File Offset: 0x0000915E
+        public override void CompExposeData()
+        {
+            base.CompExposeData();
+            Scribe_Values.Look<int>(ref this.ticksUntilDamage, "ticksUntilDamage", -1, false);
+            Scribe_Values.Look<int>(ref this.timesRepeated, "timesRepeated", 0, false);
+        }
+
+        // Token: 0x040000CC RID: 204
+        private int ticksUntilDamage = -1;
         public int timesRepeated = 0;
 
         public int MaxRepeats
@@ -99,15 +110,5 @@ namespace RRYautja
             stringBuilder.AppendLine(this.ticksUntilDamage.ToString());
             return GenText.TrimEndNewlines(stringBuilder.ToString());
         }
-
-        // Token: 0x06000128 RID: 296 RVA: 0x0000AF5E File Offset: 0x0000915E
-        public override void CompExposeData()
-        {
-            base.CompExposeData();
-            Scribe_Values.Look<int>(ref this.ticksUntilDamage, "ticksUntilDamage", -1, false);
-        }
-
-        // Token: 0x040000CC RID: 204
-        private int ticksUntilDamage = -1;
     }
 }

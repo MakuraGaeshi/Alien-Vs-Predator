@@ -2,3 +2,23 @@ fps drop on Queen Death fix
 Xenomorph Infestations incident letter should now allow you to jump to the location of the hive
 increased facehugger Max Prey Body size from 10 to 30
 Mark Alert added, when selected alert will also mark the relevent corpse
+
+V1.0.0.1 15/06/2019
+Added Tutorial Stuff: Unblooded, Blooding, Cocoons, Facehuggers, Xenomorph Embryos and more
+Plasmacaster save/load fix
+Tweaks to Mark System, additional support for Chj's Androids, Tiered Androids, Misc Robots
+Yautja should no longer spawn with marks from Misc Robots bots
+Royal Facehugger impreg bug fixed (Royal Embryos were spawning warriors and the normal Embyro was spawning the Queen)
+Check added for empty CratelessMinifiedthing
+Facehuggers should no longer try to attack unsuitable hosts from Chj's Androids or the Tiered Androids, Rimworld of Magic, Misc Robots and Adeptus Mechanicus mods
+Facehuggers should now be able to target all suitable humanlike hosts regardless of size
+Added forced Flee job to facehuggers when they detach from a host
+Xeno Acid Burns should (Hopefully) no longer start burning again after a save games loaded
+Added release action on cocooned pawns
+Can no longer strip cocooned pawns
+Lowered max Egg count before queens stop laying
+Tweaked Egg hatching code
+Eggs should now stay as a minified thing for 10 seconds (as opposed to instantly) when dropped to allow loading into transporters
+added Resource Box framework (not used Yet)
+More Xenos Ai Tweaks
+probobly other little fixes ive forgotten

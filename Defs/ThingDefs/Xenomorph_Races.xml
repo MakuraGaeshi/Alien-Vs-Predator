@@ -1429,18 +1429,18 @@
     <lifeStages>
       <li>
         <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
+          <texPath>Things/Pawn/Xenomorph/Xenomorph_Neomorph</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>0.5</drawSize>
           <shadowData>
-            <volume>(0.6, 0.8, 0.6)</volume>
+            <volume><!--(0.6, 0.8, 0.6)-->((0.6, 0.8, 0.6)</volume>
           </shadowData>
           <shaderType>CutoutComplex</shaderType>
         </bodyGraphicData>
       </li>
       <li>
         <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
+          <texPath>Things/Pawn/Xenomorph/Xenomorph_Neomorph</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <color>(180,180,180)</color>
           <drawSize>0.75</drawSize>

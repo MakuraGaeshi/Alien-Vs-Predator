@@ -24,6 +24,7 @@ namespace RimWorld
         public static HediffDef RRY_Hediff_Xenomorph_Hidden;
         public static HediffDef RRY_Hediff_Cocooned;
         public static HediffDef HypothermicSlowdown;
+        public static HediffDef RRY_Hediff_Anesthetic;
 
         // Xenomorph HefiffDefs HypothermicSlowdown
         public static HediffDef RRY_FaceHuggerInfection;
@@ -49,12 +50,13 @@ namespace RimWorld
         // Xenomorph FactionDefs
         public static FactionDef RRY_Xenomorph;
 
-        // Xenomorph JobDefs   
+        // Xenomorph JobDefs 
         public static JobDef RRY_Job_LayXenomorphEgg;
         public static JobDef RRY_Job_XenomorphKidnap;
         public static JobDef RRY_Job_PredalienImpregnate;
         public static JobDef RRY_Job_MaintainLike;
         public static JobDef RRY_Job_ConstructHiveWall;
+        public static JobDef RRY_Job_DestroyCocoon;
 
         // Xenomorph DutyDefs  
         public static DutyDef RRY_DefendHiveLoc;

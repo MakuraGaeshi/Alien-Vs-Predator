@@ -66,9 +66,13 @@
     <Compile Include="Harmony\ExtraButcheringProducts.cs" />
     <Compile Include="util\Building_XenomorphCryptosleepCasket.cs" />
     <Compile Include="util\Building_CrashedShipPart_CryptosleepCasket_Xenomorph.cs" />
+    <Compile Include="util\JobDriver_DestroyCocoon.cs" />
+    <Compile Include="util\CompUseEffect_Cocoon.cs" />
+    <None Include="util\CompUseEffect_ResourceBox.cs.bak" />
     <Compile Include="util\ThinkNode_ConditionalBleeding.cs" />
     <None Include="util\Hives\LordToil_DefendAndExpandHiveLike.cs.bak" />
-    <Compile Include="util\XenomorphTargetFinder.cs" />
+    <Compile Include="Xenomorph\CompUsableBuilding.cs" />
+    <Compile Include="Xenomorph\XenomorphTargetFinder.cs" />
     <Compile Include="util\Hives\JobGiver_WandeEggs.cs" />
     <Compile Include="util\Hives\LordToil_DefendHiveLikeAggressively.cs" />
     <Compile Include="util\Hives\LordToil_XenomrophAssaultColony.cs" />
@@ -112,6 +116,7 @@
     <Compile Include="Yautja\Alert_PawnCanMark.cs" />
     <Compile Include="Yautja\Alert_ColonistNeedsRescuingFromCocoon.cs" />
     <Compile Include="Xenomorph\Jobstuff\Job_ConstructHiveWall.cs" />
+    <Compile Include="util\IntergrationUtils.cs" />
     <Compile Include="Yautja\ScenPart_BadBlood.cs" />
     <Compile Include="Yautja\Recipe_Remove_Gauntlet.cs" />
     <Compile Include="Yautja\RRY_Thought_SituationalSocial.cs" />

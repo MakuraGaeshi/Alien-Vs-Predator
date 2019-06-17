@@ -88,8 +88,10 @@ namespace RimWorld
             {
                 if (CurOccupants.Count()>0)
                 {
+                //    Log.Message(string.Format("{0} ocuppied", this));
                     foreach (Pawn p in CurOccupants)
                     {
+                    //    Log.Message(string.Format("p: {0}\nDead: {1} ", p, p.Dead));
                         if (p.RaceProps.Humanlike)
                         {
                             this.def.building.bed_showSleeperBody = false;
@@ -107,6 +109,7 @@ namespace RimWorld
             }
             else
             {
+            //    Log.Message(string.Format("{0} unocuppied", this));
                 List<IntVec3> celllist = this.CellsAdjacent8WayAndInside().ToList();
                 if (!celllist.NullOrEmpty())
                 {
@@ -115,7 +118,7 @@ namespace RimWorld
                         if (cell.GetFirstPawn(this.Map) != null && cell.GetFirstPawn(this.Map) is Pawn p)
                         {
                         //    Log.Message(string.Format("{0}", cell.GetFirstPawn(this.Map)));
-                            if (p.Downed && !p.InBed() && !(p.kindDef.race.defName.Contains("RRY_Xenomorph_")))
+                            if (p.Downed && !p.Dead && !p.InBed() && !(p.kindDef.race.defName.Contains("RRY_Xenomorph_")))
                             {
                             //    Log.Message(string.Format("{0} tucking", p));
                                 p.jobs.Notify_TuckedIntoBed(this);
@@ -124,11 +127,12 @@ namespace RimWorld
                         }
                     }
                 }
-                else if (this.owners.NullOrEmpty())
+                else if (!Occupied)
                 {
-                    this.Destroy();
+                    this.def.building.bed_showSleeperBody = true;
                 }
-                this.def.building.bed_showSleeperBody = true;
+            //    Log.Message(string.Format("Destroying : {0} ", this));
+                this.Destroy();
             }
         }
 
@@ -259,8 +263,29 @@ namespace RimWorld
             */
 		}
 
-		// Token: 0x060024D9 RID: 9433 RVA: 0x001184A0 File Offset: 0x001168A0
-		public override void DrawExtraSelectionOverlays()
+
+        // Token: 0x060024DE RID: 9438 RVA: 0x001189DC File Offset: 0x00116DDC
+        public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn myPawn)
+        {
+            foreach (FloatMenuOption o in base.GetFloatMenuOptions(myPawn))
+            {
+                yield return o;
+            }
+            if (base.AllComps != null)
+            {
+                for (int i = 0; i < this.AllComps.Count; i++)
+                {
+                    foreach (FloatMenuOption o2 in this.AllComps[i].CompFloatMenuOptions(myPawn))
+                    {
+                        yield return o2;
+                    }
+                }
+            }
+            yield break;
+        }
+
+        // Token: 0x060024D9 RID: 9433 RVA: 0x001184A0 File Offset: 0x001168A0
+        public override void DrawExtraSelectionOverlays()
 		{
 			base.DrawExtraSelectionOverlays();
 		}

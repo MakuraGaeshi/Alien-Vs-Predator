@@ -267,7 +267,7 @@
 				<li Class="ThinkNode_ConditionalPawnKind">
 				  <pawnKind>RRY_Xenomorph_Runner</pawnKind>
 				  <subNodes>
-					<li Class="JobGiver_XenosKidnap" />
+					<!-- <li Class="JobGiver_XenosKidnap" /> -->
 				  </subNodes>
 				</li>
 			  </subNodes>
@@ -291,10 +291,24 @@
 					<li Class="ThinkNode_ConditionalPawnKind">
 					  <pawnKind>RRY_Xenomorph_Predalien</pawnKind>
 					  <subNodes>
-						<li Class="JobGiver_XenomorphHosthunter"> 
-						  <HuntingRange>60</HuntingRange>
-						  <MinMeleeChaseTicks>3000</MinMeleeChaseTicks>
-						  <MaxMeleeChaseTicks>6000</MaxMeleeChaseTicks>
+						<li Class="ThinkNode_ConditionalQueenAbsent">
+						  <subNodes>
+							<li Class="JobGiver_XenomorphHosthunter"> 
+							  <Gender>Female</Gender>
+							  <HuntingRange>60</HuntingRange>
+							  <MinMeleeChaseTicks>3000</MinMeleeChaseTicks>
+							  <MaxMeleeChaseTicks>6000</MaxMeleeChaseTicks>
+							</li>
+						  </subNodes>
+						</li>
+						<li Class="ThinkNode_ConditionalQueenAbsent">
+						  <subNodes>
+							<li Class="JobGiver_XenomorphHosthunter"> 
+							  <HuntingRange>60</HuntingRange>
+							  <MinMeleeChaseTicks>3000</MinMeleeChaseTicks>
+							  <MaxMeleeChaseTicks>6000</MaxMeleeChaseTicks>
+							</li>
+						  </subNodes>
 						</li>
 					  </subNodes>
 					</li>

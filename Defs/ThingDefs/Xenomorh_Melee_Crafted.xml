@@ -35,7 +35,7 @@
           <li>Blunt</li>
           <li>Poke</li>
         </capacities>
-        <power>13</power>
+        <power>9</power>
         <cooldownTime>2.6</cooldownTime>
       </li>
       <li>
@@ -44,8 +44,8 @@
           <li>Stab</li>
           <li>Scratch</li>
         </capacities>
-        <power>30</power>
-        <armorPenetration>0.50</armorPenetration>
+        <power>24</power>
+        <armorPenetration>0.250</armorPenetration>
         <cooldownTime>2.8</cooldownTime>
       </li>
     </tools>

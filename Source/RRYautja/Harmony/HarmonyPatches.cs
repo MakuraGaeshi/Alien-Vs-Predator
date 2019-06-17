@@ -329,6 +329,7 @@ namespace RRYautja
         }
 
         private static readonly Material BubbleMat = MaterialPool.MatFrom("Other/CloakActive", ShaderDatabase.Transparent);
+
         public static bool PawnRenderer_Blur_Prefix(PawnRenderer __instance, ref Vector3 drawLoc, ref RotDrawMode bodyDrawType, bool headStump)
         {
             Pawn value = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
@@ -452,6 +453,7 @@ namespace RRYautja
                                         _Yautja.predator = pawnKindDef.RaceProps.predator;
                                         _Yautja.BodySize = pawnKindDef.RaceProps.baseBodySize;
                                         _Yautja.combatPower = pawnKindDef.combatPower;
+                                    //    Log.Message(string.Format("{0}: {1}", hediffDef.stages[0].label, pawnKindDef.LabelCap));
                                     }
                                 }
 

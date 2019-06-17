@@ -62,10 +62,16 @@
 				  </subNodes>
 				</li>
 				
+			<!-- Idle -->
+			<li Class="ThinkNode_ConditionalNotPawnKind">
+			  <pawnKind>RRY_Xenomorph_FaceHugger</pawnKind>
+			  <subNodes>
                 <li Class="JobGiver_XenomorphManhunter" />
                 <li Class="JobGiver_WanderAnywhere">
                   <maxDanger>Deadly</maxDanger>
                 </li>
+			  </subNodes>
+			</li>
       </subNodes>
     </thinkRoot>
   </ThinkTreeDef> 
@@ -106,8 +112,6 @@
           </subNodes>
         </li>
 
-        <!-- React to close melee threat -->
-				<li Class="JobGiver_ReactToCloseMeleeThreat" />
 
 				<!-- Face Hugger Hunting -->
 				<li Class="ThinkNode_ConditionalPawnKind">
@@ -165,73 +169,81 @@
 				  </subNodes>
 				</li>
 				
-        <li Class="ThinkNode_ConditionalFullyGrown">
-          <subNodes>
-			
-			<!-- Do a queued job -->
-			<li Class="ThinkNode_QueuedJob" />
-
-			<!-- Mental state non critical -->
-			<li Class="ThinkNode_Subtree">
-			  <treeDef>MentalStateNonCritical</treeDef>
-			</li>
-
-			<!-- Forced goto -->
-			<li Class="ThinkNode_ConditionalForcedGoto">
+		<li Class="ThinkNode_ConditionalNotPawnKind">
+		  <pawnKind>RRY_Xenomorph_FaceHugger</pawnKind>
+		  <subNodes>
+			<li Class="ThinkNode_ConditionalFullyGrown">
 			  <subNodes>
-				<li Class="ThinkNode_Tagger">
-				  <tagToGive>Misc</tagToGive>
+				
+				<!-- React to close melee threat -->
+				<li Class="JobGiver_ReactToCloseMeleeThreat" />
+				
+				<!-- Do a queued job -->
+				<li Class="ThinkNode_QueuedJob" />
+
+				<!-- Mental state non critical -->
+				<li Class="ThinkNode_Subtree">
+				  <treeDef>MentalStateNonCritical</treeDef>
+				</li>
+
+				<!-- Forced goto -->
+				<li Class="ThinkNode_ConditionalForcedGoto">
 				  <subNodes>
-					<li Class="JobGiver_ForcedGoto" />
+					<li Class="ThinkNode_Tagger">
+					  <tagToGive>Misc</tagToGive>
+					  <subNodes>
+						<li Class="JobGiver_ForcedGoto" />
+					  </subNodes>
+					</li>
 				  </subNodes>
+				</li>
+				
+				<!-- Drone Gather Infectable Hunting -->
+				<li Class="ThinkNode_ConditionalPawnKind">
+				  <pawnKind>RRY_Xenomorph_Drone</pawnKind>
+				  <subNodes>
+						<li Class="ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby">
+						  <subNodes>
+							<li Class="JobGiver_XenosKidnap" />
+						  </subNodes>
+						</li>
+				  </subNodes>
+				</li>
+				
+				<!-- Drone Gather Infectable Hunting -->
+				<li Class="ThinkNode_ConditionalPawnKind">
+				  <pawnKind>RRY_Xenomorph_Predalien</pawnKind>
+				  <subNodes>
+						<li Class="ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby">
+						  <subNodes>
+							<li Class="JobGiver_XenosKidnap" />
+							<li Class="JobGiver_PredalienImpregnate" />
+						  </subNodes>
+						</li>
+						<li Class="ThinkNode_ConditionalAnyInfectableSpawnedNearby">
+						  <subNodes>
+							<li Class="JobGiver_XenomorphHosthunter" />
+						  </subNodes>
+						</li>
+				  </subNodes>
+				</li>
+						
+				<!-- Lord -->	
+				<li Class="ThinkNode_Subtree">
+				  <treeDef>LordDuty</treeDef>
+				</li>
+				
+				<!-- Lay eggs you need to -->
+				<li Class="JobGiver_LayXenoEgg" />
+				
+				<!-- Satisfy very urgent needs -->
+				<li Class="ThinkNode_Subtree">
+				  <treeDef>RRY_SatisfyXenomorphNeeds</treeDef>
 				</li>
 			  </subNodes>
 			</li>
-			
-			<!-- Drone Gather Infectable Hunting -->
-			<li Class="ThinkNode_ConditionalPawnKind">
-			  <pawnKind>RRY_Xenomorph_Drone</pawnKind>
-			  <subNodes>
-					<li Class="ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby">
-					  <subNodes>
-						<li Class="JobGiver_XenosKidnap" />
-					  </subNodes>
-					</li>
-			  </subNodes>
-			</li>
-			
-			<!-- Drone Gather Infectable Hunting -->
-			<li Class="ThinkNode_ConditionalPawnKind">
-			  <pawnKind>RRY_Xenomorph_Predalien</pawnKind>
-			  <subNodes>
-					<li Class="ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby">
-					  <subNodes>
-						<li Class="JobGiver_PredalienImpregnate" />
-						<li Class="JobGiver_XenosKidnap" />
-					  </subNodes>
-					</li>
-					<li Class="ThinkNode_ConditionalAnyInfectableSpawnedNearby">
-					  <subNodes>
-						<li Class="JobGiver_XenomorphHosthunter" />
-					  </subNodes>
-					</li>
-			  </subNodes>
-			</li>
-					
-			<!-- Lord -->	
-			<li Class="ThinkNode_Subtree">
-			  <treeDef>LordDuty</treeDef>
-			</li>
-			
-			<!-- Lay eggs you need to -->
-			<li Class="JobGiver_LayXenoEgg" />
-			
-			<!-- Satisfy very urgent needs -->
-			<li Class="ThinkNode_Subtree">
-			  <treeDef>RRY_SatisfyXenomorphNeeds</treeDef>
-			</li>
-          </subNodes>
-        </li>
+		  </subNodes>
+		</li>
 		
 				
         <!-- Idle -->
