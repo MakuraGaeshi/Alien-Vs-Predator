@@ -126,5 +126,37 @@
 		  </rulesStrings>
 		</rulePack>
 	</RulePackDef>
-
+	
+	<!--======================================== USCM Faction and Character namer ================================================-->
+	
+	<RulePackDef>
+		<defName>NamerRRYUSCMFaction</defName>
+		<rulePack>
+		  <rulesStrings>
+			<li>name->[RRYUSCMSquad]</li>
+		  </rulesStrings>
+		  <rulesRaw>
+			<li Class="Rule_File">
+				<keyword>RRYUSCMSquad</keyword>
+				<path>NameBanks/RRYUSCMSquad</path>
+			</li>
+		  </rulesRaw>
+		</rulePack>
+	</RulePackDef>
+	
+	<RulePackDef>
+		<defName>NamerRRYUSCMAO</defName>
+		<rulePack>
+			<rulesStrings>
+				<li>name->[RRYUSCMAONames]</li>
+			</rulesStrings>
+			<rulesRaw>
+				<li Class="Rule_File">
+					<keyword>RRUSCMBaseNames</keyword>
+					<path>NameBanks/RRYUSCMAONames</path>
+				</li>
+			</rulesRaw>
+		</rulePack>
+	</RulePackDef>
+	
 </Defs>
