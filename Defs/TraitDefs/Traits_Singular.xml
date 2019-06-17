@@ -51,25 +51,16 @@
     <commonality>0.00</commonality>
     <degreeDatas>
       <li>
-        <label>3 laws of robotic</label>
+        <label>3 Laws of Robotic</label>
         <description>[PAWN_nameDef] is bound by the 3 laws of robotics and can't do harm.</description>
-		
-        <statOffsets>
-         
-        </statOffsets>
-        <skillGains>
-          
-        </skillGains>
-      </li>
+	  </li>
     </degreeDatas>
     <conflictingTraits>
 		<li>Bloodlust</li>
 		<li>Psychopath</li>
 		<li>RRY_DefectiveInhibitor</li>
 	</conflictingTraits>
-    <requiredWorkTags>
-		
-    </requiredWorkTags>
+    
   </TraitDef>
   
   <TraitDef>
@@ -79,23 +70,15 @@
     <commonality>0.00</commonality>
     <degreeDatas>
       <li>
-        <label>defective inhibitor</label>
+        <label>Defective Inhibitor</label>
         <description>[PAWN_nameDef] has a defective inhibitor and no longer follow the laws of robotic.</description>
 		
-        <statOffsets>
-         
-        </statOffsets>
-        <skillGains>
-          
-        </skillGains>
-      </li>
+       </li>
     </degreeDatas>
     <conflictingTraits>
 		<li>RRY_3laws</li>
     </conflictingTraits>
-    <requiredWorkTags>
-		
-    </requiredWorkTags>
+    
   </TraitDef>
   
 </Defs>
