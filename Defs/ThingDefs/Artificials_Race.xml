@@ -116,7 +116,9 @@
             <immuneToAge>true</immuneToAge>
             
 			<forcedRaceTraitEntries>
-                <li>RRY_3laws</li>
+                <li>
+					<defName>RRY_3laws</defName>
+				</li>
 				<li>
 					<defName>RRY_DefectiveInhibitor</defName>
                     <chance>30</chance>
