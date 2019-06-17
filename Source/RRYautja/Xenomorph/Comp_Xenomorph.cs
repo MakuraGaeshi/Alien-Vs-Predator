@@ -364,6 +364,10 @@ namespace RRYautja
         public int healIntervalTicks = 60;
         public override void CompTick()
         {
+            if (pawn.Faction==null)
+            {
+                pawn.SetFaction(Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph));
+            }
             base.CompTick();
             this.ticksSinceHeal++;
             bool flag = this.ticksSinceHeal > this.healIntervalTicks;
@@ -406,6 +410,11 @@ namespace RRYautja
 #if DEBUG
                 if (selected) Log.Message(string.Format("CompXeno PPAD pawn: {0}", pawn.LabelShortCap));
 #endif
+                if (dinfo.Def.hediff.defName.Contains("CP_CQCTakedownHediff"))
+                {
+                    absorbed = true;
+                    return;
+                }
                 if (dinfo.Instigator is Pawn Instigator && Instigator!=null)
                 {
                     selected = selected? selected : Find.Selector.SelectedObjects.Contains(Instigator);
@@ -586,11 +595,11 @@ namespace RRYautja
                 bool flag2 = Facehugger.health.hediffSet.HasNaturallyHealingInjury();
                 if (flag2)
                 {
-                    float num = 8f;
+                    float num = 4f;
                     Hediff_Injury hediff_Injury = GenCollection.RandomElement<Hediff_Injury>(from x in Facehugger.health.hediffSet.GetHediffs<Hediff_Injury>()
                                                                                              where HediffUtility.CanHealNaturally(x)
                                                                                              select x);
-                    hediff_Injury.Heal(num * Facehugger.HealthScale * 0.05f);
+                    hediff_Injury.Heal(num * Facehugger.HealthScale * 0.01f);
                     string text = string.Format("{0} healed.", Facehugger.LabelCap);
                 }
                 if (Impregnations>=maxImpregnations)
@@ -673,9 +682,9 @@ namespace RRYautja
         public int healIntervalTicks = 60;
         public override void CompTick()
         {
-            if (this.parent.Faction == null)
+            if (parent.Faction == null)
             {
-                this.parent.SetFaction(Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph));
+                parent.SetFaction(Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph));
             }
             base.CompTick();
             this.ticksSinceHeal++;

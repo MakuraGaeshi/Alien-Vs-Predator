@@ -278,6 +278,7 @@ namespace RRYautja
                 foreach (var PKDef in pawnKindDefs)
                 {
                     float hostSize = base.parent.pawn.BodySize;
+                    bool hostHumanlike = base.parent.pawn.RaceProps.Humanlike;
                     float spawnRoll = ((Rand.Range(1, 100)) * hostSize);
 
                     if (PKDef == XenomorphDefOf.RRY_Xenomorph_Queen && (QueenPresent || predalienImpregnation))
@@ -296,6 +297,7 @@ namespace RRYautja
                     }
                     else if (predalienImpregnation)
                     {
+                        spawnRoll = 0;
                         if (PKDef == XenomorphDefOf.RRY_Xenomorph_Runner)
                         {
                             spawnRoll *= 2;
@@ -303,6 +305,13 @@ namespace RRYautja
                         else if (PKDef == XenomorphDefOf.RRY_Xenomorph_Drone)
                         {
                             spawnRoll *= 2;
+                        }
+                    }
+                    else if (hostHumanlike)
+                    {
+                        if (PKDef == XenomorphDefOf.RRY_Xenomorph_Runner)
+                        {
+                            spawnRoll /= 2;
                         }
                     }
                     if (spawnRoll > (100 - pawnKindWeights[ind]))

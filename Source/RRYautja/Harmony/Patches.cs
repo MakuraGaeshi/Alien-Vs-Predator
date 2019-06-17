@@ -1305,7 +1305,7 @@ namespace RRYautja
 #if DEBUG
                 //    Log.Message(string.Format("PostGetLetterText Xenomorph Raid CurSkyGlow: {0}", (parms.target as Map).skyManager.CurSkyGlow));
 #endif
-
+                    /*
                     if ((parms.target as Map).skyManager.CurSkyGlow <= 0.5f)
                     {
                         string text = "They mostly come at night......mostly.....";
@@ -1314,6 +1314,7 @@ namespace RRYautja
                         __result = text;
 
                     }
+                    */
                 }
             }
         }

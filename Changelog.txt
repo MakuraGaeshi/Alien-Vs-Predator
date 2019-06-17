@@ -22,3 +22,11 @@ Eggs should now stay as a minified thing for 10 seconds (as opposed to instantly
 added Resource Box framework (not used Yet)
 More Xenos Ai Tweaks
 probobly other little fixes ive forgotten
+
+
+V1.0.0.2 
+Slight balance tweaks to some weapons
+Cut value of Xeno Tail and shell
+Fixed doubled text in "They Only Come at Night" event letter
+added Blooding Caskets to Exotic Traders (Orbital && Caravans)
+More Xenos Ai Tweaks

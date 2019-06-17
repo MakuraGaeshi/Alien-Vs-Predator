@@ -67,7 +67,7 @@
     </statBases>
     <race>
       <herdAnimal>false</herdAnimal>
-      <predator>true</predator>
+      <predator>false</predator>
       <maxPreyBodySize>3.0</maxPreyBodySize>
       <baseBodySize>1.5</baseBodySize>
       <baseHungerRate>0.0</baseHungerRate>
@@ -76,7 +76,7 @@
       <bloodDef>RRY_FilthBloodXenomorph</bloodDef>	
       <needsRest>false</needsRest>
       <hasGenders>false</hasGenders>
-      <foodType>CarnivoreAnimalStrict</foodType>
+      <foodType>Corpse</foodType>
       <leatherDef>RRY_Leather_Xenomorph</leatherDef>
       <lifeExpectancy>2500</lifeExpectancy>
       <hediffGiverSets>
@@ -126,6 +126,7 @@
       </li>
     </tools>
     <race>
+      <foodType>CarnivoreAnimalStrict</foodType>
       <meatLabel>xenomorph flesh</meatLabel>
       <maxPreyBodySize>30</maxPreyBodySize>
       <intelligence>ToolUser</intelligence>
@@ -603,7 +604,7 @@
         <cooldownTime>2</cooldownTime>
         <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
         <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-        <chanceFactor>0.2</chanceFactor>
+        <chanceFactor>0.5</chanceFactor>
       </li>
       <li>
         <label>tail</label>

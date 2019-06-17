@@ -325,6 +325,13 @@
         </countRange>
       </li>
       <li Class="StockGenerator_SingleDef">
+        <thingDef>RRY_Yautja_CryptosleepCasket_Tribute_XenoEgg</thingDef>
+        <countRange>
+          <min>0</min>
+          <max>5</max>
+        </countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
         <thingDef>Neutroamine</thingDef>
         <countRange>
           <min>100</min>

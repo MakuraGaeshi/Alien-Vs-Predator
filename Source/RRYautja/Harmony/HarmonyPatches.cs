@@ -482,7 +482,7 @@ namespace RRYautja
                     }
                 }
             }
-            else if (request.Faction == Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph))
+            else if (__result.kindDef.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Xenomorph)
             {
 #if DEBUG
                 if (Prefs.DevMode)
@@ -498,6 +498,8 @@ namespace RRYautja
                     //    Log.Message(string.Format("trying to spawn Xenomorph Queen, checking {0} pawns", Find.AnyPlayerHomeMap.mapPawns.AllPawns.Count()));
                     }
 #endif
+                    __result.gender = Gender.Female;
+                    /*
                     bool QueenPresent = false;
                     
                     foreach (var p in Find.AnyPlayerHomeMap.mapPawns.AllPawns)
@@ -526,6 +528,7 @@ namespace RRYautja
                     {
                         __result.gender = Gender.Female;
                     }
+                    */
                 }
                 else
                 {
