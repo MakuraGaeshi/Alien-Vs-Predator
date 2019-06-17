@@ -130,30 +130,30 @@
 	<!--======================================== USCM Faction and Character namer ================================================-->
 	
 	<RulePackDef>
-		<defName>NamerRRYUSCMFaction</defName>
+		<defName>Namer_RRY_USCM_Operations</defName>
 		<rulePack>
 		  <rulesStrings>
-			<li>name->[RRYUSCMSquad]</li>
+			<li>name->[RRY_USCM_Operations]</li>
 		  </rulesStrings>
 		  <rulesRaw>
 			<li Class="Rule_File">
-				<keyword>RRYUSCMSquad</keyword>
-				<path>NameBanks/RRYUSCMSquad</path>
+				<keyword>RRY_USCM_Operations</keyword>
+				<path>NameBanks/RRY_USCM_Operations</path>
 			</li>
 		  </rulesRaw>
 		</rulePack>
 	</RulePackDef>
 	
 	<RulePackDef>
-		<defName>NamerRRYUSCMAO</defName>
+		<defName>Namer_RRY_USCM_Squads</defName>
 		<rulePack>
 			<rulesStrings>
-				<li>name->[RRYUSCMAONames]</li>
+				<li>name->[RRY_USCM_Squads]</li>
 			</rulesStrings>
 			<rulesRaw>
 				<li Class="Rule_File">
-					<keyword>RRUSCMBaseNames</keyword>
-					<path>NameBanks/RRYUSCMAONames</path>
+					<keyword>RRY_USCM_Squads</keyword>
+					<path>NameBanks/RRY_USCM_Squads</path>
 				</li>
 			</rulesRaw>
 		</rulePack>

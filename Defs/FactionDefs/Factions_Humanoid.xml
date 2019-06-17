@@ -19,8 +19,8 @@
     <basicMemberKind>RRY_USCM_Private</basicMemberKind>
     <pawnsPlural>Marines</pawnsPlural>
     <playerInitialSettlementNameMaker>NamerInitialSettlementColony</playerInitialSettlementNameMaker>
-		<factionNameMaker>NamerRRYUSCMFaction</factionNameMaker>
-    <settlementNameMaker>NamerRRYUSCMAO</settlementNameMaker>
+		<factionNameMaker>Namer_RRY_USCM_Operations</factionNameMaker>
+    <settlementNameMaker>Namer_RRY_USCM_Squads</settlementNameMaker>
     <techLevel>Spacer</techLevel>
     <backstoryCategories>
       <li>Raider</li>
@@ -87,8 +87,8 @@
       <min>30</min>
       <max>100</max>
     </startingGoodwill>
-	<factionNameMaker>NamerRRYUSCMFaction</factionNameMaker>
-	<settlementNameMaker>NamerRRYUSCMAO</settlementNameMaker>
+	<factionNameMaker>Namer_RRY_USCM_Operations</factionNameMaker>
+	<settlementNameMaker>Namer_RRY_USCM_Squads</settlementNameMaker>
 	<techLevel>Spacer</techLevel>
 	<backstoryCategories>
 		<li>Raider</li>

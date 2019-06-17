@@ -29,33 +29,7 @@
                     <kindDefs>
                         <li>RRY_Synth</li>
                     </kindDefs>
-                    <chance>10.0</chance>
-					</li>
-				</pawnKindEntries>
-					<factionDefs>
-						<li>RRY_Synth</li> 
-					</factionDefs>
-				</li>
-				<li>
-				<pawnKindEntries>
-					<li>
-                    <kindDefs>
-                        <li>RRY_Synth</li>
-                    </kindDefs>
-                    <chance>10.0</chance>
-					</li>
-				</pawnKindEntries>
-					<factionDefs>
-						<li>RRY_Synth</li> 
-					</factionDefs>
-				</li>
-				<li>
-				<pawnKindEntries>
-					<li>
-                    <kindDefs>
-                        <li>RRY_Synth</li>
-                    </kindDefs>
-                    <chance>10.0</chance>
+                    <chance>90.0</chance>
 					</li>
 				</pawnKindEntries>
 					<factionDefs>
@@ -63,7 +37,8 @@
 					</factionDefs>
 				</li>
 			</startingColonists>
-            <alienwandererkinds>
+           
+		   <alienwandererkinds>
                 <li>
                     <pawnKindEntries>
                         <li>
@@ -116,13 +91,15 @@
             <immuneToAge>true</immuneToAge>
             
 			<forcedRaceTraitEntries>
-                <li>
-					<defName>RRY_3laws</defName>
-				</li>
+                
 				<li>
 					<defName>RRY_DefectiveInhibitor</defName>
-                    <chance>30</chance>
+                    <chance>90</chance>
                 </li>
+				<li>
+					<defName>RRY_3laws</defName>
+				</li>
+				
             </forcedRaceTraitEntries>
 			
 			<disallowedTraits>
@@ -296,7 +273,7 @@
       </li>
     </tools>
     <race>
-	  <fleshType>Human</fleshType>
+	  <fleshType>Mechanoid</fleshType>
       <thinkTreeMain>Humanlike</thinkTreeMain>
       <thinkTreeConstant>HumanlikeConstant</thinkTreeConstant>
       <intelligence>Humanlike</intelligence>
