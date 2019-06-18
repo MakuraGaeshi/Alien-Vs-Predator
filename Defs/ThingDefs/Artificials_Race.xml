@@ -33,7 +33,7 @@
 					</li>
 				</pawnKindEntries>
 					<factionDefs>
-						<li>RRY_USCM_PlayerColony</li>
+						<li></li>
 					</factionDefs>
 				</li>
 			</startingColonists>
@@ -89,19 +89,15 @@
 			<useOnlyPawnkindBackstories>true</useOnlyPawnkindBackstories>
             <maleGenderProbability>0.5</maleGenderProbability>
             <immuneToAge>true</immuneToAge>
-            
-			<forcedRaceTraitEntries>
-                
-				<li>
-					<defName>RRY_DefectiveInhibitor</defName>
-                    <chance>90</chance>
+            <forcedRaceTraitEntries>
+                <li>
+					<defName>Kind</defName>
                 </li>
 				<li>
-					<defName>RRY_3laws</defName>
-					<chance>100</chance>
+					<defName>Psychopath</defName>
+					<chance>50</chance>
 				</li>
-				
-            </forcedRaceTraitEntries>
+			</forcedRaceTraitEntries>
 			
 			<disallowedTraits>
                <li>Cannibal</li>
