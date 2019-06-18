@@ -140,7 +140,7 @@
           <minAge>0</minAge>
           <soundWounded>RRY_Pawn_Xenomorph_Queen_Wounded</soundWounded>
           <soundDeath>RRY_Pawn_Xenomorph_Queen_Death</soundDeath>
-          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
+          <soundCall>RRY_Pawn_Xenomorph_Queen_Call</soundCall>
         </li>
       </lifeStageAges>
       <soundCallIntervalRange>
