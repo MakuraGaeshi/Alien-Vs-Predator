@@ -261,12 +261,12 @@
               <groups>
                 <li>UpperHead</li>
                 <li>FullHead</li>
-								<li>HeadAttackTool</li>
+				<li>HeadAttackTool</li>
               </groups>
               <parts>
                 <li>
                   <def>RRY_Xeno_Shell</def>
-                  <coverage>0.7</coverage>
+                  <coverage>0.5</coverage>
                   <groups>
                     <li>UpperHead</li>
                     <li>FullHead</li>
@@ -274,7 +274,7 @@
                 </li>
                 <li>
                   <def>RRY_Xeno_Skull</def>
-                  <coverage>0.18</coverage>
+                  <coverage>0.13</coverage>
                   <depth>Inside</depth>
                   <groups>
                     <li>UpperHead</li>
@@ -294,7 +294,7 @@
                 <li>
                   <def>RRY_Xeno_Eye</def>
                   <customLabel>left sensory organ</customLabel>
-                  <coverage>0.07</coverage>
+                  <coverage>0.06</coverage>
                   <groups>
                     <li>FullHead</li>
                     <li>Eyes</li>
@@ -303,7 +303,7 @@
                 <li>
                   <def>RRY_Xeno_Eye</def>
                   <customLabel>right sensory organ</customLabel>
-                  <coverage>0.07</coverage>
+                  <coverage>0.06</coverage>
                   <groups>
                     <li>FullHead</li>
                     <li>Eyes</li>
@@ -312,7 +312,7 @@
                 <li>
                   <def>RRY_Xeno_Ear</def>
                   <customLabel>left auditory sensor</customLabel>
-                  <coverage>0.07</coverage>
+                  <coverage>0.06</coverage>
                   <groups>
                     <li>UpperHead</li>
                     <li>FullHead</li>
@@ -321,27 +321,20 @@
                 <li>
                   <def>RRY_Xeno_Ear</def>
                   <customLabel>right auditory sensor</customLabel>
-                  <coverage>0.07</coverage>
+                  <coverage>0.06</coverage>
                   <groups>
                     <li>UpperHead</li>
                     <li>FullHead</li>
                   </groups>
                 </li>
                 <li>
-                  <def>RRY_Xeno_Nose</def>
-                  <coverage>0.10</coverage>
-                  <groups>
-                    <li>FullHead</li>
-                  </groups>
-                </li>
-                <li>
 					<def>RRY_Xeno_Jaw</def>
-					<coverage>0.10</coverage>
+					<coverage>0.09</coverage>
 					<depth>Inside</depth>
 					<parts>
 						<li>
 							<def>RRY_Xeno_InnerJaw</def>
-							<coverage>0.05</coverage>
+							<coverage>0.04</coverage>
 							<depth>Inside</depth>
 							  <groups>
 								<li>RRY_Xeno_InnerTeeth</li>
@@ -1951,7 +1944,7 @@
 							<parts>
 								<li>
 								  <def>RRY_Xeno_Shell</def>
-								  <coverage>0.65</coverage>
+								  <coverage>0.50</coverage>
 								  <groups>
 									<li>UpperHead</li>
 									<li>FullHead</li>
@@ -1959,7 +1952,7 @@
 								</li>
 								<li>
 									<def>RRY_Xeno_Skull</def>
-									<coverage>0.24</coverage>
+									<coverage>0.14</coverage>
 									<depth>Inside</depth>
 									<parts>
 										<li>
@@ -1972,35 +1965,31 @@
 								<li>
 									<def>RRY_Xeno_Eye</def>
 									<customLabel>left sensory organ</customLabel>
-									<coverage>0.09</coverage>
+									<coverage>0.05</coverage>
 								</li>
 								<li>
 									<def>RRY_Xeno_Eye</def>
 									<customLabel>right sensory organ</customLabel>
-									<coverage>0.09</coverage>
+									<coverage>0.05</coverage>
 								</li>
 								<li>
 									<def>RRY_Xeno_Ear</def>
 									<customLabel>left auditory sensor</customLabel>
-									<coverage>0.08</coverage>
+									<coverage>0.06</coverage>
 								</li>
 								<li>
 									<def>RRY_Xeno_Ear</def>
 									<customLabel>right auditory sensor</customLabel>
-									<coverage>0.08</coverage>
-								</li>
-								<li>
-									<def>RRY_Xeno_Nose</def>
-									<coverage>0.1</coverage>
+									<coverage>0.06</coverage>
 								</li>
 								<li>
 								<def>RRY_Xeno_Jaw</def>
-								<coverage>0.10</coverage>
+								<coverage>0.09</coverage>
 								<depth>Inside</depth>
 								<parts>
 									<li>
 										<def>RRY_Xeno_InnerJaw</def>
-										<coverage>0.05</coverage>
+										<coverage>0.04</coverage>
 										<depth>Inside</depth>
 										  <groups>
 											<li>RRY_Xeno_InnerTeeth</li>
