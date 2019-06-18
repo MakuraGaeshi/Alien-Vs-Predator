@@ -31,9 +31,11 @@
       <li>ClassicStart</li>
     </startingResearchTags>
     <hairTags>
-		<li>Civil</li>
 		<li>Rural</li>
 		<li>Tribal</li>
+		<li>Urban</li>
+		<li>Punk</li>
+		
     </hairTags>
     <apparelStuffFilter>
       <thingDefs>

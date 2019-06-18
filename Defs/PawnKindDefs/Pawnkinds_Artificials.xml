@@ -5,7 +5,7 @@
 <!--=============================================== Artificials - Player Faction ===============================================-->
 <!--=============================================== Artificials - Synths Base ===============================================-->
   <PawnKindDef Abstract="True" Name="BaseArtificialPawnKind">
-    <race>RRY_Artificial_Synths</race>
+    <race>RRY_Synth</race>
     <combatPower>40</combatPower>
     <baseRecruitDifficulty>0.5</baseRecruitDifficulty>
     <isFighter>true</isFighter>

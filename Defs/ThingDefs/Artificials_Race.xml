@@ -4,22 +4,22 @@
 <!--============================================= Synth =============================================-->
 
 <AlienRace.RaceSettings>
-    <defName>Synth_Settings</defName>
+    <defName>RRY_Synth_Settings</defName>
     <pawnKindSettings>
             <alienslavekinds>
                 <li>
                     <kindDefs>
-                        <li>RRY_Synth</li>
-                    </kindDefs>
-                    <chance>100.0</chance>
+						<li>RRY_Synth</li>
+					</kindDefs>
+                    <chance>40.0</chance>
                 </li>
             </alienslavekinds>
             <alienrefugeekinds>
                 <li>
                     <kindDefs>
-                        <li>RRY_Synth</li>
-                    </kindDefs>
-                    <chance>100.0</chance>
+						<li>RRY_Synth</li>
+					</kindDefs>
+                    <chance>40.0</chance>
                 </li>
             </alienrefugeekinds>
 			<startingColonists>
@@ -28,35 +28,34 @@
 					<li>
                     <kindDefs>
                         <li>RRY_Synth</li>
-                    </kindDefs>
-                    <chance>90.0</chance>
+					</kindDefs>
+                    <chance>80.0</chance>
 					</li>
 				</pawnKindEntries>
-					<factionDefs>
-						<li></li>
-					</factionDefs>
+				<factionDefs>
+					<li>RRY_USCM_PlayerColony</li> 
+				</factionDefs>
 				</li>
 			</startingColonists>
-           
-		   <alienwandererkinds>
+            <alienwandererkinds>
                 <li>
                     <pawnKindEntries>
-                        <li>
-                            <kindDefs>
-								<li>RRY_Synth</li>
-							</kindDefs>
-                            <chance>50.0</chance>
-                        </li>
-                    </pawnKindEntries>
-                    <factionDefs>
-						<li>RRY_USCM_PlayerColony</li> 
+					<li>
+                    <kindDefs>
+						<li>RRY_Synth</li>
+					</kindDefs>
+                    <chance>40.0</chance>
+					</li>
+					</pawnKindEntries>
+					<factionDefs>
+                        <li>RRY_USCM_PlayerColony</li> 
 					</factionDefs>
                 </li>
             </alienwandererkinds>
         </pawnKindSettings>
   </AlienRace.RaceSettings>
 
-<ThingDef Name="RRY_BaseArtificialPawn" Abstract="True">
+<ThingDef Name="RRY_Artificial_Synths" Abstract="True">
     <thingClass>Pawn</thingClass>
     <category>Pawn</category>
     <selectable>true</selectable>
@@ -77,13 +76,36 @@
         <li>ITab_Pawn_Log</li>
         <li>ITab_Pawn_FormingCaravan</li>
     </inspectorTabs>
-    <drawGUIOverlay>true</drawGUIOverlay>
+    
+	<!--<comps> See with Ogliss to make this comp for the Synths
+        <li>
+            <compClass>CompAttachBase</compClass>
+        </li>
+      <li Class="AdeptusMechanicus.CompProperties_FoodPoisonProtection">
+		<Poisonable>true</Poisonable>
+		<FoodTypeFlags>
+			<li>Meat</li>
+			<li>Corpse</li>
+		</FoodTypeFlags>
+		<FoodPoisonCause>
+			<li>DangerousFoodType</li>
+			
+			<li>FilthyKitchen</li>
+			<li>IncompetentCook</li>
+			<li>Rotten</li>
+			<li>Unknown</li>
+			
+		</FoodPoisonCause>
+      </li>
+    </comps>-->
+    
+	<drawGUIOverlay>true</drawGUIOverlay>
 </ThingDef>
 
-<AlienRace.ThingDef_AlienRace ParentName="RRY_BaseArtificialPawn" Name="RRY_Artificial_Synths">
-    <defName>RRY_Artificial_Synths</defName>
+<AlienRace.ThingDef_AlienRace Name="RRY_Synth" ParentName="RRY_Artificial_Synths">
+    <defName>RRY_Synth</defName>
     <label>Synth</label>
-    <description>A Synthetic being.</description>
+    <description>A synthetic being.</description>
     <alienRace>
         <generalSettings>
 			<useOnlyPawnkindBackstories>true</useOnlyPawnkindBackstories>
@@ -91,80 +113,58 @@
             <immuneToAge>true</immuneToAge>
             <forcedRaceTraitEntries>
                 <li>
-					<defName>Kind</defName>
+                    <defName>Psychopath</defName>
+                    <chance>25</chance>
                 </li>
-				<li>
-					<defName>Psychopath</defName>
-					<chance>50</chance>
-				</li>
-			</forcedRaceTraitEntries>
-			
+                <li>
+                    <defName>Kind</defName>
+                    <chance>75</chance>
+                </li>
+            </forcedRaceTraitEntries>
 			<disallowedTraits>
-               <li>Cannibal</li>
+               
             </disallowedTraits>
-            
-			<alienPartGenerator>
-				<useGenderedHeads>true</useGenderedHeads>
-				
-				<alienbodytypes>
+            <alienPartGenerator>
+				<!--<useGenderedHeads>true</useGenderedHeads>
+				<useGenderedBodies>true</useGenderedBodies>-->
+                <alienbodytypes>
+					<li>Thin</li>
+					<li>Male</li>
+					<li>Female</li>
 				</alienbodytypes>
-			    
-            </alienPartGenerator>
-			
+			</alienPartGenerator>
 			<chemicalSettings>	
 		    </chemicalSettings>
-            
-			<humanRecipeImport>true</humanRecipeImport>
-			
+            <humanRecipeImport>true</humanRecipeImport>
 			<notXenophobistTowards>
-		   
+				<li>Human</li>
 			</notXenophobistTowards>
 		<factionRelations>
                 <li>
                     <factions>
                        <li>RRY_USCM_PlayerColony</li>
-                    </factions>
+                       <li>RRY_USCM_Faction</li>
+					</factions>
                     <goodwill>
-                       <min>20</min>
-                       <max>50</max>
-                    </goodwill>
-                </li>
-				<li>
-                    <factions>
-					   <li>PlayerColony</li>
-					   <li>PlayerTribe</li>
-                    </factions>
-                    <goodwill>
-                       <min>-100</min>
-                       <max>10</max>
-                    </goodwill>
-                </li>
-				<li>
-                    <factions>
-                       <li>RRY_Yautja_BadBloodFaction</li>
-                    </factions>
-                    <goodwill>
-                       <min>-100</min>
-                       <max>-50</max>
+                       <min>-10</min>
+                       <max>40</max>
                     </goodwill>
                 </li>
 		</factionRelations>
         </generalSettings>
         <graphicPaths>
-            
         </graphicPaths>
         <hairSettings>
-            
+            <hasHair>true</hasHair>
+            <hairTags>
+            </hairTags>
         </hairSettings>
         <thoughtSettings>
 			<cannotReceiveThoughts>
-				
+                
             </cannotReceiveThoughts>
-			
-			
         </thoughtSettings>
-       
-	   <relationSettings>
+        <relationSettings>
             <relationChanceModifierParent>0</relationChanceModifierParent>
             <relationChanceModifierChild>0</relationChanceModifierChild>
             <relationChanceModifierSibling>0</relationChanceModifierSibling>
@@ -175,43 +175,55 @@
             <relationChanceModifierFiance>0</relationChanceModifierFiance>
             <relationChanceModifierSpouse>0</relationChanceModifierSpouse>
             <relationChanceModifierExSpouse>0</relationChanceModifierExSpouse>
+			   
         </relationSettings>
         <raceRestriction>
             <researchList>
-               
             </researchList>
-			<apparelList>
-				
-			</apparelList>
-            <whiteApparelList>
-                
-            </whiteApparelList>
-			<onlyUseRaceRestrictedApparel>true</onlyUseRaceRestrictedApparel>
-            <recipeList>
 			
+			<apparelList>
+			</apparelList>
+            
+			<recipeList>
             </recipeList>
+            
+			<plantList>
+            </plantList>
+           
+			<buildingList>
+            </buildingList>
         </raceRestriction>
     </alienRace>
 	<statBases>
 		<MarketValue>5000</MarketValue>
 		<MoveSpeed>4.8</MoveSpeed>
 		<Flammability>0.8</Flammability>
-		<ComfyTemperatureMin>-10</ComfyTemperatureMin>
-		<ComfyTemperatureMax>35</ComfyTemperatureMax>
-		<LeatherAmount>0</LeatherAmount>
-        <CarryingCapacity>150</CarryingCapacity>
+		<ComfyTemperatureMin>-20</ComfyTemperatureMin>
+		<ComfyTemperatureMax>40</ComfyTemperatureMax>
+		<LeatherAmount>55</LeatherAmount>
+        <CarryingCapacity>125</CarryingCapacity>
 		<PsychicSensitivity>0</PsychicSensitivity>
-		<MiningSpeed>1.1</MiningSpeed>
-		<ShootingAccuracyPawn>1.1</ShootingAccuracyPawn>
-		<AimingDelayFactor>-0.1</AimingDelayFactor>
-		<MentalBreakThreshold>0.025</MentalBreakThreshold>
-        <GlobalLearningFactor>1.2</GlobalLearningFactor>
-        <MeleeDodgeChance>1.0</MeleeDodgeChance>
-        <MeleeHitChance>1.0</MeleeHitChance>
+		<MiningSpeed>1.2</MiningSpeed>
+		<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+		<AimingDelayFactor>0</AimingDelayFactor>
+		<MentalBreakThreshold>0.020</MentalBreakThreshold>
+        <ImmunityGainSpeed>1.25</ImmunityGainSpeed>
+        <PainShockThreshold>1.0</PainShockThreshold>
+        <ForagedNutritionPerDay>0</ForagedNutritionPerDay>
+        <GlobalLearningFactor>1.3</GlobalLearningFactor>
+        <MeleeDodgeChance>1.2</MeleeDodgeChance>
+        <MeleeHitChance>1.1</MeleeHitChance>
         <UnskilledLaborSpeed>1.1</UnskilledLaborSpeed>
+        <ButcheryFleshSpeed>1.1</ButcheryFleshSpeed>
+        <ButcheryFleshEfficiency>1.1</ButcheryFleshEfficiency>
+        <SmeltingSpeed>1.1</SmeltingSpeed>
+        <SmithingSpeed>1.1</SmithingSpeed>
+        <TailoringSpeed>1.1</TailoringSpeed>
+        <NegotiationAbility>1.1</NegotiationAbility>
         <SocialImpact>0.9</SocialImpact>
-        
-		
+        <TradePriceImprovement>0.8</TradePriceImprovement>
+		<!--
+		-->
     </statBases>
   <tools>
       <li>
@@ -270,36 +282,29 @@
       </li>
     </tools>
     <race>
-	  <fleshType>Mechanoid</fleshType>
       <thinkTreeMain>Humanlike</thinkTreeMain>
       <thinkTreeConstant>HumanlikeConstant</thinkTreeConstant>
       <intelligence>Humanlike</intelligence>
       <makesFootprints>true</makesFootprints>
-      <lifeExpectancy>2000</lifeExpectancy>
+      <lifeExpectancy>500</lifeExpectancy>
       <leatherDef>Leather_Human</leatherDef>
-      <nameCategory>HumanStandard</nameCategory>
       <body>Human</body>
-      <bloodDef>RRY_FilthBloodSynth</bloodDef>	
-	  <!-- RGB in the photoshop is (R=224  G= 224  B=224) -->
+      <nameCategory>HumanStandard</nameCategory>
+	  <bloodDef>RRY_FilthBloodSynth</bloodDef>	
       <meatColor>(878,878,878)</meatColor>
-      <baseBodySize>1.0</baseBodySize>
-      <baseHungerRate>0</baseHungerRate>
+      <baseBodySize>1</baseBodySize>
       <baseHealthScale>1.25</baseHealthScale>
-      <foodType>OmnivoreHuman</foodType>
+      <foodType>OmnivoreAnimal</foodType>
       <gestationPeriodDays>45</gestationPeriodDays>
       <litterSizeCurve>
         <points>
           <li>(0.5, 0)</li>
-          <li>(1, 0)</li>
-          <li>(1.01, 0)</li>
-          <li>(3.5, 0)</li>
-        </points>
+        </points>  
       </litterSizeCurve>
       <lifeStageAges>
-      
         <li>
           <def>HumanlikeAdult</def>
-          <minAge>0</minAge>
+          <minAge>1</minAge>
         </li>
       </lifeStageAges>
       <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
@@ -311,7 +316,8 @@
       </specialShadowData>
       <ageGenerationCurve>
         <points>
-                    <li>(16,0)</li>
+					<li>(15,0)</li>
+					<li>(16,0)</li>
                     <li>(17,25)</li>
                     <li>(18,50)</li>
                     <li>(20,75)</li>
@@ -328,17 +334,16 @@
                     <li>(300,100)</li>
                     <li>(400,75)</li>
                     <li>(500,50)</li>
-					<li>(1200,25)</li>
-					<li>(1400,10)</li>
-                    <li>(2000,0)</li>
+					<li>(501,0)</li>
+					
         </points>
       </ageGenerationCurve>
       <hediffGiverSets>
-        <li>RRY_Artificials_Synth</li>
+        <li>RRY_Artificials_Synth_Hediff</li>
       </hediffGiverSets>
     </race>
     <recipes>
-      <li>InstallArchotechEye</li>
+       <li>InstallArchotechEye</li>
       <li>InstallArchotechArm</li>
       <li>InstallArchotechLeg</li>
       <li>InstallPowerClaw</li>
@@ -360,9 +365,6 @@
       <li>RemoveBodyPart</li>
       <li>Euthanize</li>
       <li>Anesthetize</li>
-      <li>RRY_FaceHuggerRemoval</li>
-      <li>RRY_XenomorphImpregnationRemoval</li>
-      
     </recipes>
 </AlienRace.ThingDef_AlienRace>
 
