@@ -59,7 +59,7 @@
   </SoundDef>
 
   <SoundDef>
-    <defName>RRY_Pawn_Xenomorph_Queen_Calls</defName>  
+    <defName>RRY_Pawn_Xenomorph_Queen_Call</defName>  
     <context>MapOnly</context>
     <eventNames />  
     <subSounds>
