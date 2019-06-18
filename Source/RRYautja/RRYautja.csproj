@@ -71,6 +71,7 @@
     <None Include="util\CompUseEffect_ResourceBox.cs.bak" />
     <Compile Include="Xenomorph\CompHiveConversionRadius.cs" />
     <Compile Include="Xenomorph\CompHiveExpand.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalSky.cs" />
     <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalHealth.cs" />
     <None Include="util\Hives\LordToil_DefendAndExpandHiveLike.cs.bak" />
     <Compile Include="Xenomorph\CompUsableBuilding.cs" />

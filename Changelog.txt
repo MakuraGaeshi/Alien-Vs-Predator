@@ -23,10 +23,14 @@ added Resource Box framework (not used Yet)
 More Xenos Ai Tweaks
 probobly other little fixes ive forgotten
 
-
 V1.0.0.2 
 Slight balance tweaks to some weapons
-Cut value of Xeno Tail and shell
+Cut value of Xeno Tail and shell and leather
+Egg Hatching code fixed royal eggs not hatching (Again)
 Fixed doubled text in "They Only Come at Night" event letter
-added Blooding Caskets to Exotic Traders (Orbital && Caravans)
+Added Blooding Caskets to Exotic Traders (Orbital && Caravans)
+Fixed Xenomorph Head children covereage issue
+Fixed Queen Soundcall missing def
+Fixed Crashed Xenomorph Ship event not dropping cryptopods
+Added Thrumbomorph
 More Xenos Ai Tweaks

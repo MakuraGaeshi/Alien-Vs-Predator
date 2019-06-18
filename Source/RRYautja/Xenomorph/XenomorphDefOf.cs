@@ -39,6 +39,7 @@ namespace RimWorld
         public static PawnKindDef RRY_Xenomorph_FaceHugger;
         public static PawnKindDef RRY_Xenomorph_RoyaleHugger;
         public static PawnKindDef RRY_Xenomorph_Queen;
+        public static PawnKindDef RRY_Xenomorph_Thrumbomorph;
         public static PawnKindDef RRY_Xenomorph_Warrior;
         public static PawnKindDef RRY_Xenomorph_Drone;
         public static PawnKindDef RRY_Xenomorph_Runner;
@@ -131,6 +132,7 @@ namespace RimWorld
         public static ThingDef RRY_Xenomorph_Drone;
         public static ThingDef RRY_Xenomorph_Runner;
         public static ThingDef RRY_Xenomorph_Predalien;
+        public static ThingDef RRY_Xenomorph_Thrumbomorph;
 
         // Neomorph ThingDefs Races
         public static ThingDef RRY_Xenomorph_Neomorph;

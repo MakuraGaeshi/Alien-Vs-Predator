@@ -184,7 +184,7 @@ namespace RRYautja
                 {
                     this.CompTickRare();
                    
-                    if (this.gestateProgress >= 1f&&(this.royalProgress == 0f || this.royalProgress <= 1f))
+                    if (this.gestateProgress >= 1f&&(this.royalProgress == 0f || this.royalProgress >= 1f))
                     {
                         bool selected = Find.Selector.SingleSelectedThing == this.parent && false;
                         if (selected) Log.Message(string.Format("{0} @ {1}, Can hatch?: {2}, Will hatch?: {3}", this.parent.Label, MyPos, canHatch, willHatch));

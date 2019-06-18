@@ -51,17 +51,17 @@ namespace RimWorld
                     }
                     else
                     {
-                        Log.Message(string.Format("{0} something went wrong", this));
+                        if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} something went wrong", this));
                     }
                 }
                 else
                 {
-                    Log.Message(string.Format("{0} No Cocooning spot Found", this));
+                    if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} No Cocooning spot Found", this));
                 }
             }
             else
             {
-                Log.Message(string.Format("{0} No Victim Found", this));
+                if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} No Victim Found", this));
             }
             return null;
         }

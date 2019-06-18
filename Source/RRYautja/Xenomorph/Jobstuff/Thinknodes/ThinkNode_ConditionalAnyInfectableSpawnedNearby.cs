@@ -23,7 +23,7 @@ namespace RimWorld
             {
                 result = false;
             }
-            Log.Message(string.Format("{0} Result: {1}", this, result));
+            if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} Result: {1}", this, result));
             return result;
         }
 

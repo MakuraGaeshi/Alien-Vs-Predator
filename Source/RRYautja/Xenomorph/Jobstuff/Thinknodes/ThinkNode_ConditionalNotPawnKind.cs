@@ -18,7 +18,7 @@ namespace RimWorld
         // Token: 0x060009B9 RID: 2489 RVA: 0x0004E0A3 File Offset: 0x0004C4A3
         protected override bool Satisfied(Pawn pawn)
         {
-            Log.Message(string.Format("{0} needs {3} > {2}, Result: {1}", this, pawn.kindDef != this.pawnKind, pawn.kindDef, pawnKind));
+            if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} needs {3} > {2}, Result: {1}", this, pawn.kindDef != this.pawnKind, pawn.kindDef, pawnKind));
             return pawn.kindDef != this.pawnKind;
         }
 

@@ -139,6 +139,13 @@
 			</li>
 		  </subNodes>
 		</li>
+		
+		<li Class="ThinkNode_ConditionalNotGrown">
+		  <subNodes>
+                <li Class="JobGiver_GetFood" />
+                <li Class="JobGiver_GetRest" />
+		  </subNodes>
+		</li>
 			
         <li Class="ThinkNode_ConditionalFullyGrown">
           <subNodes>
@@ -172,49 +179,57 @@
 				  </subNodes>
 				</li>
 					
-				<!-- There Are No Drones! -->
-				<li Class="ThinkNode_ConditionalPawnKindCountLesser">
-				  <pawnKind>RRY_Xenomorph_Drone</pawnKind>
-				  <pawnKindCount>1</pawnKindCount>
+				<!-- Under Impregnated Count -->
+				<li Class="ThinkNode_ConditionalImpregnatedCountLesser">
+				  <victimCount>4</victimCount>
 				  <subNodes>
-					<!-- Infectable Spawned -->
-					<li Class="ThinkNode_ConditionalAnyInfectableSpawnedNearby">
+					<!-- There Are No Drones! -->
+					<li Class="ThinkNode_ConditionalPawnKindCountLesser">
+					  <pawnKind>RRY_Xenomorph_Drone</pawnKind>
+					  <pawnKindCount>1</pawnKindCount>
 					  <subNodes>
-					<li Class="JobGiver_XenosKidnap"> 
-					</li>
-						<li Class="ThinkNode_Conditional_OverHealth">
-						  <pawnHealth>0.5</pawnHealth>
+					  
+						<!-- Infectable Spawned -->
+						<li Class="ThinkNode_ConditionalAnyInfectableSpawnedNearby">
 						  <subNodes>
-							<li Class="JobGiver_XenomorphHosthunter"> 
-							  <!-- <HuntingRange>60</HuntingRange> -->
+						<li Class="JobGiver_XenosKidnap"> 
+						</li>
+							<li Class="ThinkNode_Conditional_OverHealth">
+							  <pawnHealth>0.5</pawnHealth>
+							  <subNodes>
+								<li Class="JobGiver_XenomorphHosthunter"> 
+								  <!-- <HuntingRange>60</HuntingRange> -->
+								</li>
+							  </subNodes>
 							</li>
 						  </subNodes>
 						</li>
 					  </subNodes>
 					</li>
-				  </subNodes>
-				</li>
+						
+					<!-- There Are No Warriors! -->
+					<li Class="ThinkNode_ConditionalPawnKindCountLesser">
+					  <pawnKind>RRY_Xenomorph_Warrior</pawnKind>
+					  <pawnKindCount>1</pawnKindCount>
+					  <subNodes>
+						<!-- Infectable Spawned -->
+						<li Class="ThinkNode_ConditionalAnyInfectableSpawnedNearby">
+						  <subNodes>
+						<li Class="JobGiver_XenosKidnap"> 
+						</li>
+							<li Class="ThinkNode_Conditional_OverHealth">
+							  <pawnHealth>0.5</pawnHealth>
+							  <subNodes>
+								<li Class="JobGiver_XenomorphHosthunter"> 
+								  <!-- <HuntingRange>60</HuntingRange> -->
+								</li>
+							  </subNodes>
+							</li>
+						  </subNodes>
+						</li>
+					  </subNodes>
+					</li>
 					
-				<!-- There Are No Warriors! -->
-				<li Class="ThinkNode_ConditionalPawnKindCountLesser">
-				  <pawnKind>RRY_Xenomorph_Warrior</pawnKind>
-				  <pawnKindCount>1</pawnKindCount>
-				  <subNodes>
-					<!-- Infectable Spawned -->
-					<li Class="ThinkNode_ConditionalAnyInfectableSpawnedNearby">
-					  <subNodes>
-					<li Class="JobGiver_XenosKidnap"> 
-					</li>
-						<li Class="ThinkNode_Conditional_OverHealth">
-						  <pawnHealth>0.5</pawnHealth>
-						  <subNodes>
-							<li Class="JobGiver_XenomorphHosthunter"> 
-							  <!-- <HuntingRange>60</HuntingRange> -->
-							</li>
-						  </subNodes>
-						</li>
-					  </subNodes>
-					</li>
 				  </subNodes>
 				</li>
 				
@@ -281,6 +296,9 @@
 			</li>
 			-->
 			
+			<li Class="ThinkNode_ConditionalSkyDarker">
+			  <Brightness>1</Brightness>
+			  <subNodes>
 			<!-- Infectable Spawned -->
 			<li Class="ThinkNode_ConditionalAnyInfectableSpawnedNearby">
 			  <subNodes>
@@ -322,6 +340,8 @@
 					  <HuntingRange>5</HuntingRange>
 					</li>
 				  </subNodes>
+				  
+				  
 				</li>
 			  </subNodes>
 			</li>
@@ -447,6 +467,10 @@
 				
 				  </subNodes>
 				</li>
+				
+			  </subNodes>
+			</li>
+			
 			<li Class="ThinkNode_ChancePerHour_Constant">
 			  <mtbHours>6</mtbHours>
 			  <subNodes>

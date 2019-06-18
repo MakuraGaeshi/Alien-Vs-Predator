@@ -276,7 +276,7 @@ namespace RRYautja
             bool result = true;
             if (__instance.RaceProps.Humanlike)
             {
-                result = !(__instance.apparel.WornApparel.Any(x => x.def == YautjaDefOf.RRY_Equipment_HunterGauntlet));
+                result = !(__instance.apparel.WornApparel.Any(x => x.def == YautjaDefOf.RRY_Equipment_HunterGauntlet) &&!__instance.Dead);
             }
         //    Log.Message(string.Format("Pawn_StripPatch IgnoreWristblade: {0}", result));
             if (!result)

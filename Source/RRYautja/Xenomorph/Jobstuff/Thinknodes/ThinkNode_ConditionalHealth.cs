@@ -56,7 +56,7 @@ namespace RimWorld
 
         protected override bool Satisfied(Pawn pawn)
         {
-            Log.Message(string.Format("{0} needs {3} > {2}, Result: {1}", this, pawn.health.summaryHealth.SummaryHealthPercent >= pawnHealth, pawnHealth, pawn.health.summaryHealth.SummaryHealthPercent));
+            if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} needs {3} > {2}, Result: {1}", this, pawn.health.summaryHealth.SummaryHealthPercent >= pawnHealth, pawnHealth, pawn.health.summaryHealth.SummaryHealthPercent));
             return pawn.health.summaryHealth.SummaryHealthPercent >= pawnHealth;
         }
     }
@@ -77,7 +77,7 @@ namespace RimWorld
 
         protected override bool Satisfied(Pawn pawn)
         {
-            Log.Message(string.Format("{0} needs {3} < {2}, Result: {1}", this, pawn.health.summaryHealth.SummaryHealthPercent <= pawnHealth, pawnHealth, pawn.health.summaryHealth.SummaryHealthPercent));
+            if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} needs {3} < {2}, Result: {1}", this, pawn.health.summaryHealth.SummaryHealthPercent <= pawnHealth, pawnHealth, pawn.health.summaryHealth.SummaryHealthPercent));
             return pawn.health.summaryHealth.SummaryHealthPercent <= pawnHealth;
         }
     }

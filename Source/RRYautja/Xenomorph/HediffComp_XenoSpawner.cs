@@ -311,7 +311,7 @@ namespace RRYautja
                     {
                         if (PKDef == XenomorphDefOf.RRY_Xenomorph_Runner)
                         {
-                            spawnRoll /= 2;
+                            spawnRoll = 0;
                         }
                     }
                     if (spawnRoll > (100 - pawnKindWeights[ind]))
@@ -321,9 +321,21 @@ namespace RRYautja
                     }
                     ind++;
                 }
+                if (RoyaleEmbryo)
+                {
+                    pawnKindDef = XenomorphDefOf.RRY_Xenomorph_Queen;
+                }
                 if (Pawn.kindDef.race == YautjaDefOf.RRY_Alien_Yautja && !predalienImpregnation)
                 {
                     pawnKindDef = XenomorphDefOf.RRY_Xenomorph_Predalien;
+                }
+                if (Pawn.kindDef.race == ThingDefOf.Thrumbo)
+                {
+                    pawnKindDef = XenomorphDefOf.RRY_Xenomorph_Thrumbomorph;
+                }
+                if (!Pawn.RaceProps.Humanlike&&Pawn.BodySize<0.9f)
+                {
+                    pawnKindDef = XenomorphDefOf.RRY_Xenomorph_Runner;
                 }
             }
             
@@ -338,9 +350,14 @@ namespace RRYautja
             }
             if (Prefs.DevMode)
             {
-            //     Log.Message(string.Format("spawning: {0}", pawnKindDef.label));
+                 Log.Message(string.Format("spawning: {0}", pawnKindDef.label));
             }
-            return PawnGenerator.GeneratePawn(new PawnGenerationRequest(pawnKindDef, Find.FactionManager.FirstFactionOfDef(pawnKindDef.defaultFactionType), PawnGenerationContext.NonPlayer, -1, true, true, false, false, true, true, 20f, fixedGender: gender));
+            bool BeViolent = pawnKindDef == XenomorphDefOf.RRY_Xenomorph_Thrumbomorph ? false : true;
+            PawnGenerationRequest request = new PawnGenerationRequest(pawnKindDef, Find.FactionManager.FirstFactionOfDef(pawnKindDef.defaultFactionType), PawnGenerationContext.NonPlayer, -1, true, true, false, false, true, false, 20f, fixedGender: gender);
+
+            Pawn pawn = PawnGenerator.GeneratePawn(request);
+
+            return pawn;
         }
 
         public Color HostBloodColour
@@ -433,8 +450,24 @@ namespace RRYautja
                     MoteMaker.ThrowDustPuffThick(new Vector3(vector.x, 0f, vector.z)
                     {
                         y = AltitudeLayer.MoteOverhead.AltitudeFor()
-                    }, spawnMap, 1.0f, new Color(HostBloodColour.r, HostBloodColour.g, HostBloodColour.b, HostBloodColour.a));
+                    }, spawnMap, 1.5f, new Color(HostBloodColour.r, HostBloodColour.g, HostBloodColour.b, HostBloodColour.a));
                 }
+                if (i  == 100)
+                {
+                    
+                }
+                if (i % 10 == 0)
+                {
+
+                    FilthMaker.MakeFilth(spawnLoc + GenAdj.AdjacentCellsAndInside.RandomElement(), this.Pawn.MapHeld, this.Pawn.RaceProps.BloodDef, this.Pawn.LabelIndefinite(), 1);
+                }
+            }
+            ThingDef motedef = DefDatabase<ThingDef>.GetNamedSilentFail("Mote_BlastExtinguisher");
+            MoteMaker.ThrowExplosionCell(spawnLoc, MyMap, motedef, HostBloodColour);
+            // GenAdj.AdjacentCellsAndInside[i];
+            for (int i2 = 0; i2 < GenAdj.AdjacentCellsAndInside.Length; i2++)
+            {
+                FilthMaker.MakeFilth(spawnLoc + GenAdj.AdjacentCellsAndInside[i2], this.Pawn.MapHeld, this.Pawn.RaceProps.BloodDef, this.Pawn.LabelIndefinite(), 1);
             }
             string text = TranslatorFormattedStringExtensions.Translate("Xeno_Chestburster_Emerge", base.parent.pawn.LabelShort, this.parent.Part.LabelShort);
             MoteMaker.ThrowText(spawnLoc.ToVector3(), spawnMap, text, 5f);
@@ -443,7 +476,7 @@ namespace RRYautja
             {
                 LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Chestbursters, OpportunityType.Important);
             }
-
+             
         }
 
         // Token: 0x06004C89 RID: 19593 RVA: 0x002379D6 File Offset: 0x00235DD6
