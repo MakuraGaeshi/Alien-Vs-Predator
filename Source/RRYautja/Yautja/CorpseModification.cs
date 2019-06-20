@@ -37,8 +37,9 @@ namespace RRYautja
                 {
                     if (td.race.Humanlike)
                     {
-                        Log.Message(string.Format("Checking: {0}", td.label));
-                        if (!td.HasComp(typeof(Comp_Yautja)))
+                        bool pawnflag = !((td.defName.StartsWith("Android") && td.defName.Contains("Tier")) || td.defName.Contains("ChjDroid") || td.defName.Contains("ChjBattleDroid") || td.defName.Contains("M7Mech"));
+                        //    Log.Message(string.Format("Checking: {0}", td.label));
+                        if (!td.HasComp(typeof(Comp_Yautja))&& pawnflag)
                         {
                             td.comps.Add(new CompProperties_Yautja()
                             {

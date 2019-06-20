@@ -21,26 +21,26 @@ namespace RimWorld
             {
                 if ((_Yautja.inducted)||p.kindDef.race==YautjaDefOf.RRY_Alien_Yautja)
                 {
-                    if (selected) Log.Message(string.Format("{0} {1} == active", this, p.LabelShortCap));
+                //    if (selected) Log.Message(string.Format("{0} {1} == active", this, p.LabelShortCap));
 
                     if (YautjaBloodedUtility.Marked(p, out Hediff BloodHD))
                     {
-                        if (selected) Log.Message(string.Format("{0} {1} == 2", this, p.LabelShortCap));
+                    //    if (selected) Log.Message(string.Format("{0} {1} == 2", this, p.LabelShortCap));
                         return ThoughtState.ActiveAtStage(2);
                     }
                     if (p.health.hediffSet.HasHediff(unmarkedDef))
                     {
-                        if (selected) Log.Message(string.Format("{0} {1} == 1", this, p.LabelShortCap));
+                    //    if (selected) Log.Message(string.Format("{0} {1} == 1", this, p.LabelShortCap));
                         return ThoughtState.ActiveAtStage(1);
                     }
                     if (p.health.hediffSet.HasHediff(unbloodedDef))
                     {
-                        if (selected) Log.Message(string.Format("{0} {1} == 0", this, p.LabelShortCap));
+                    //    if (selected) Log.Message(string.Format("{0} {1} == 0", this, p.LabelShortCap));
                         return ThoughtState.ActiveAtStage(0);
                     }
                 }
             }
-            if (selected) Log.Message(string.Format("{0} {1} == Inactive", this, p.LabelShortCap));
+        //    if (selected) Log.Message(string.Format("{0} {1} == Inactive", this, p.LabelShortCap));
             return ThoughtState.Inactive;
         }
 

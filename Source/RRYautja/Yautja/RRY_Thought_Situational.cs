@@ -108,17 +108,17 @@ namespace RimWorld
             {
                 if (YautjaBloodedUtility.Marked(pawn, out Hediff BloodHD))
                 {
-                    if (selected) Log.Message(string.Format("{0} BloodHD is {1}", pawn.LabelShortCap, BloodHD.Label));
+                //    if (selected) Log.Message(string.Format("{0} BloodHD is {1}", pawn.LabelShortCap, BloodHD.Label));
                     return ((_Yautja.combatPower / 10) / 4);
                 }
                 if (pawn.health.hediffSet.HasHediff(unmarkedDef) && pawn.health.hediffSet.GetFirstHediffOfDef(unmarkedDef) is Hediff UnmarkedHD)
                 {
-                    if (selected) Log.Message(string.Format("{0} UnmarkedHD is {1}", pawn.LabelShortCap, UnmarkedHD.Label));
+                //    if (selected) Log.Message(string.Format("{0} UnmarkedHD is {1}", pawn.LabelShortCap, UnmarkedHD.Label));
                     return 0;
                 }
                 if (pawn.health.hediffSet.HasHediff(unbloodedDef) && pawn.health.hediffSet.GetFirstHediffOfDef(unbloodedDef) is Hediff UnbloodedHD)
                 {
-                    if (selected) Log.Message(string.Format("{0} UnbloodedHD is {1}", pawn.LabelShortCap, UnbloodedHD.Label));
+                //    if (selected) Log.Message(string.Format("{0} UnbloodedHD is {1}", pawn.LabelShortCap, UnbloodedHD.Label));
                     return base.BaseMoodOffset;
                 }
                 return 0;
