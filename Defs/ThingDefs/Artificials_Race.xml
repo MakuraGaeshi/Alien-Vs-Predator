@@ -122,8 +122,21 @@
                 </li>
             </forcedRaceTraitEntries>
 			<disallowedTraits>
-               
-            </disallowedTraits>
+					<li>DrugDesire</li>
+					<li>AnnoyingVoice</li>
+					<li>CreepyBreathing</li>
+					<li>Pyromaniac</li>
+					<li>Wimp</li>
+					<li>Masochist</li>
+					<li>NightOwl</li>
+					<li>Jealous</li>
+					<li>Nudist</li>
+					<li>Transhumanist</li>
+					<li>BodyPurist</li>
+					<li>SuperImmune</li>
+					<li>Beautiful</li>
+					<li>Tough</li>
+			</disallowedTraits>
             <alienPartGenerator>
 				<!--<useGenderedHeads>true</useGenderedHeads>
 				<useGenderedBodies>true</useGenderedBodies>-->
@@ -161,7 +174,14 @@
         </hairSettings>
         <thoughtSettings>
 			<cannotReceiveThoughts>
-                
+					<li>NeedFood</li>
+					<li>Naked</li>
+					<li>Pain</li>
+					<li>SleepDisturbed</li>
+					<li>SleptOnGround</li>
+					<li>ArtifactMoodBoost</li>
+					<li>EnvironmentCold</li>
+					<li>EnvironmentHot</li>
             </cannotReceiveThoughts>
         </thoughtSettings>
         <relationSettings>
@@ -198,15 +218,17 @@
 		<MarketValue>5000</MarketValue>
 		<MoveSpeed>4.8</MoveSpeed>
 		<Flammability>0.8</Flammability>
+		<baseHungerRate>0.3</baseHungerRate>
 		<!-- Don't forget to change temp back to -10 to 30 after you done testing -->
 		<ComfyTemperatureMin>0</ComfyTemperatureMin>
 		<ComfyTemperatureMax>10</ComfyTemperatureMax>
 		<LeatherAmount>55</LeatherAmount>
         <CarryingCapacity>125</CarryingCapacity>
 		<PsychicSensitivity>0</PsychicSensitivity>
+		<ToxicSensitivity>0.3</ToxicSensitivity>
 		<MiningSpeed>1.2</MiningSpeed>
 		<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
-		<AimingDelayFactor>0</AimingDelayFactor>
+		<AimingDelayFactor>1.0</AimingDelayFactor>
 		<MentalBreakThreshold>0.020</MentalBreakThreshold>
         <ImmunityGainSpeed>1.25</ImmunityGainSpeed>
         <PainShockThreshold>1.0</PainShockThreshold>
