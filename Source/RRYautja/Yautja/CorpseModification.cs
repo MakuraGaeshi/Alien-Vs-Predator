@@ -31,6 +31,55 @@ namespace RRYautja
                     //    td.tickerType = TickerType.Normal;
                 }
             });
+            DefDatabase<ThingDef>.AllDefsListForReading.ForEach(action: td =>
+            {
+                if (td.race!=null)
+                {
+                    if (td.race.Humanlike)
+                    {
+                        Log.Message(string.Format("Checking: {0}", td.label));
+                        if (!td.HasComp(typeof(Comp_Yautja)))
+                        {
+                            td.comps.Add(new CompProperties_Yautja()
+                            {
+                                bloodedDefs = new List<HediffDef>()
+                                {
+                                    YautjaDefOf.RRY_Hediff_BloodedM,
+                                    YautjaDefOf.RRY_Hediff_BloodedMHuman,
+                                    YautjaDefOf.RRY_Hediff_BloodedMWorthyHuman,
+                                    YautjaDefOf.RRY_Hediff_BloodedMHumanlike,
+                                    YautjaDefOf.RRY_Hediff_BloodedMWorthyHumanlike,
+                                    YautjaDefOf.RRY_Hediff_BloodedMMechanoid,
+                                    YautjaDefOf.RRY_Hediff_BloodedMXenomorph,
+                                    YautjaDefOf.RRY_Hediff_BloodedMXenomorphQueen,
+                                    YautjaDefOf.RRY_Hediff_BloodedMPredalien,
+                                    YautjaDefOf.RRY_Hediff_BloodedMBadBlood,
+                                    YautjaDefOf.RRY_Hediff_BloodedMHound,
+                                    YautjaDefOf.RRY_Hediff_BloodedMThrumbo,
+                                    YautjaDefOf.RRY_Hediff_BloodedMCrusher,
+                                    YautjaDefOf.RRY_Hediff_BloodedMGroTye
+                                }
+                            });
+                            if (td.HasComp(typeof(Comp_Yautja)))
+                            {
+                                Log.Message(string.Format("Added Comp_Yautja to: {0}", td.label));
+                            }
+                        }
+                        /*
+                        td.comps.Add(new CompProperties_UseEffect()
+                        {
+                            compClass = typeof(CompUseEffect_MarkSelf)
+                            //     chance = 0.25f
+                        });
+                        //    td.tickerType = TickerType.Normal;
+                        */
+                    }
+                }
+            });
+            DefDatabase<ThingDef>.AllDefsListForReading.ForEach(action: td =>
+            {
+
+            });
             /*
             DefDatabase<PawnKindDef>.AllDefsListForReading.ForEach(action: td =>
             {
@@ -57,7 +106,6 @@ namespace RRYautja
     // Token: 0x02000791 RID: 1937
     public class CompUseEffect_MarkSelf : CompUseEffect
     {
-        // Token: 0x06002ADC RID: 10972 RVA: 0x001433C0 File Offset: 0x001417C0
         public override void DoEffect(Pawn user)
         {
             bool selected = Find.Selector.SelectedObjects.Contains(user);
@@ -73,6 +121,7 @@ namespace RRYautja
             user.health.RemoveHediff(blooded);
             Hediff marked = HediffMaker.MakeHediff(markedDef, user, part);// user.health.hediffSet.GetFirstHediffOfDef(markedDef);
             HediffComp_MarkedYautja marked_Yautja = marked.TryGetComp<HediffComp_MarkedYautja>();
+            corpse = (Corpse)this.parent;
             marked_Yautja.BodySize = corpse.InnerPawn.BodySize;
             marked_Yautja.combatPower = corpse.InnerPawn.kindDef.combatPower;
             marked_Yautja.corpse = corpse;
@@ -90,8 +139,11 @@ namespace RRYautja
                 BodySize = corpse.InnerPawn.BodySize,
                 combatPower = corpse.InnerPawn.kindDef.combatPower
             };
+            Log.Message(string.Format(" 11 "));
             user.health.AddHediff(markedDef, part);
+            Log.Message(string.Format(" 12 "));
             ThingDef thingDef = null;
+            Log.Message(string.Format(" 13 "));
             foreach (var item in corpse.InnerPawn.health.hediffSet.GetNotMissingParts())
             {
                 if (Rand.Chance(corpse.InnerPawn.health.hediffSet.GetPartHealth(item)/3) &&item.def == XenomorphDefOf.RRY_Xeno_TailSpike && !corpse.InnerPawn.health.hediffSet.PartIsMissing(item))
@@ -128,8 +180,7 @@ namespace RRYautja
         }
 
         BodyPartRecord partRecord;
-        Corpse corpse;
-        // Token: 0x06002ADD RID: 10973 RVA: 0x00143464 File Offset: 0x00141864
+        public Corpse corpse;
         public override bool CanBeUsedBy(Pawn p, out string failReason)
         {
             bool selected = Find.Selector.SelectedObjects.Contains(p);
@@ -184,15 +235,12 @@ namespace RRYautja
                 return false;
             }
         }
-
-        // Token: 0x04001786 RID: 6022
         private const float XPGainAmount = 50000f;
     }
-    // Token: 0x0200074F RID: 1871
+
     public class CompKillMarker : Comp_UsableCorpse
     {
-        // Token: 0x17000651 RID: 1617
-        // (get) Token: 0x06002942 RID: 10562 RVA: 0x001394F0 File Offset: 0x001378F0
+
         protected override string FloatMenuOptionLabel
         {
             get
@@ -200,8 +248,7 @@ namespace RRYautja
                 return string.Format(base.Props.useLabel, this.parent.LabelCap);
             }
         }
-
-        // Token: 0x06002A4A RID: 10826 RVA: 0x00138F4C File Offset: 0x0013734C
+        
         public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn myPawn)
         {
             HediffSet hediffSet = myPawn.health.hediffSet;
@@ -246,8 +293,7 @@ namespace RRYautja
             }
             yield break;
         }
-
-        // Token: 0x06002A4D RID: 10829 RVA: 0x00139094 File Offset: 0x00137494
+        
         private new bool CanBeUsedBy(Pawn p, out string failReason)
         {
             List<ThingComp> allComps = this.parent.AllComps;
@@ -261,27 +307,24 @@ namespace RRYautja
             failReason = null;
             return true;
         }
-
-        // Token: 0x06002944 RID: 10564 RVA: 0x00139525 File Offset: 0x00137925
+        
         public override void Initialize(CompProperties props)
         {
             base.Initialize(props);
             this.skill = DefDatabase<SkillDef>.GetRandom();
         }
         /*
-        // Token: 0x06002945 RID: 10565 RVA: 0x00139539 File Offset: 0x00137939
         public override string TransformLabel(string label)
         {
             return this.skill.LabelCap + " " + label;
         }
         */
-        // Token: 0x06002946 RID: 10566 RVA: 0x00139554 File Offset: 0x00137954
+
         public override bool AllowStackWith(Thing other)
         {
             return false;
         }
-
-        // Token: 0x040016DD RID: 5853
+        
         public SkillDef skill;
     }
 

@@ -225,10 +225,16 @@
   <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_Unblooded</defName>
     <label>unblooded</label>
-    <labelNoun>an unblooded Yautja</labelNoun>
+    <labelNoun>an unblooded Hunter</labelNoun>
     <stages>
+	<!--
       <li>
-        <label>initial</label>
+        <label>initialised</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+	  -->
+      <li>
+        <label>initialised</label>
         <becomeVisible>false</becomeVisible>
       </li>
     </stages>
@@ -244,7 +250,7 @@
         <ignoreConfigErrors>true</ignoreConfigErrors>
     <label>blooded unmarked</label>
     <initialSeverity>0.5</initialSeverity>
-    <labelNoun>a blooded Yautja</labelNoun>
+    <labelNoun>a blooded Hunter</labelNoun>
     <stages>
       <li>
         <becomeVisible>false</becomeVisible>
@@ -287,7 +293,7 @@
     <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_BloodedM</defName>
     <label>blooded marked</label>
-    <labelNoun>a blooded Yautja</labelNoun>
+    <labelNoun>a marked Hunter</labelNoun>
     <stages>
       <li>
         <label>Beast</label>
@@ -304,7 +310,7 @@
     <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_BloodedMHuman</defName>
     <label>blooded marked</label>
-    <labelNoun>a blooded Yautja</labelNoun>
+    <labelNoun>a marked Hunter</labelNoun>
     <stages>
       <li>
         <label>Human</label>
@@ -314,13 +320,18 @@
       <li>
         <compClass>RRYautja.HediffComp_MarkedYautja</compClass>
       </li>
+      <li Class="RRYautja.HediffCompProperties_DrawImplant">
+        <compClass>RRYautja.HediffComp_DrawImplant</compClass>
+        <implantDrawerType>Head</implantDrawerType>
+        <implantGraphicPath>Things/Addons/Blood_Marks/Human_Kills/Mark_Humankill</implantGraphicPath>
+      </li>
     </comps>
   </HediffDef>
 
     <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_BloodedMWorthyHuman</defName>
     <label>blooded marked</label>
-    <labelNoun>a blooded Yautja</labelNoun>
+    <labelNoun>a marked Hunter</labelNoun>
     <stages>
       <li>
         <label>worthy Human</label>
@@ -330,13 +341,18 @@
       <li>
         <compClass>RRYautja.HediffComp_MarkedYautja</compClass>
       </li>
+      <li Class="RRYautja.HediffCompProperties_DrawImplant">
+        <compClass>RRYautja.HediffComp_DrawImplant</compClass>
+        <implantDrawerType>Head</implantDrawerType>
+        <implantGraphicPath>Things/Addons/Blood_Marks/Human_Kills/Mark_WorthyHumankill</implantGraphicPath>
+      </li>
     </comps>
   </HediffDef>
 
     <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_BloodedMHumanlike</defName>
     <label>blooded marked</label>
-    <labelNoun>a blooded Yautja</labelNoun>
+    <labelNoun>a marked Hunter</labelNoun>
     <stages>
       <li>
         <label>Alien</label>
@@ -346,13 +362,18 @@
       <li>
         <compClass>RRYautja.HediffComp_MarkedYautja</compClass>
       </li>
+      <li Class="RRYautja.HediffCompProperties_DrawImplant">
+        <compClass>RRYautja.HediffComp_DrawImplant</compClass>
+        <implantDrawerType>Head</implantDrawerType>
+        <implantGraphicPath>Things/Addons/Blood_Marks/Human_Kills/Mark_Humanlikekill</implantGraphicPath>
+      </li>
     </comps>
   </HediffDef>
 
     <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_BloodedMWorthyHumanlike</defName>
     <label>blooded marked</label>
-    <labelNoun>a blooded Yautja</labelNoun>
+    <labelNoun>a marked Hunter</labelNoun>
     <stages>
       <li>
         <label>worthy Alien</label>
@@ -362,13 +383,18 @@
       <li>
         <compClass>RRYautja.HediffComp_MarkedYautja</compClass>
       </li>
+      <li Class="RRYautja.HediffCompProperties_DrawImplant">
+        <compClass>RRYautja.HediffComp_DrawImplant</compClass>
+        <implantDrawerType>Head</implantDrawerType>
+        <implantGraphicPath>Things/Addons/Blood_Marks/Human_Kills/Mark_WorthyHumanlikekill</implantGraphicPath>
+      </li>
     </comps>
   </HediffDef>
 
     <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_BloodedMMechanoid</defName>
     <label>blooded marked</label>
-    <labelNoun>a blooded Yautja</labelNoun>
+    <labelNoun>a marked Hunter</labelNoun>
     <stages>
       <li>
         <label>Mechanoid</label>
@@ -378,13 +404,20 @@
       <li>
         <compClass>RRYautja.HediffComp_MarkedYautja</compClass>
       </li>
+	  <!--
+      <li Class="RRYautja.HediffCompProperties_DrawImplant">
+        <compClass>RRYautja.HediffComp_DrawImplant</compClass>
+        <implantDrawerType>Head</implantDrawerType>
+        <implantGraphicPath>Things</implantGraphicPath>
+      </li>
+	  -->
     </comps>
   </HediffDef>
 
     <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_BloodedMXenomorph</defName>
     <label>blooded marked</label>
-    <labelNoun>a blooded Yautja</labelNoun>
+    <labelNoun>a marked Hunter</labelNoun>
     <stages>
       <li>
         <label>Xenomorph</label>
@@ -393,6 +426,11 @@
     <comps>
       <li>
         <compClass>RRYautja.HediffComp_MarkedYautja</compClass>
+      </li>
+      <li Class="RRYautja.HediffCompProperties_DrawImplant">
+        <compClass>RRYautja.HediffComp_DrawImplant</compClass>
+        <implantDrawerType>Head</implantDrawerType>
+        <implantGraphicPath>Things/Addons/Blood_Marks/Xenomorph_Kills/Mark_Xenomorphkill</implantGraphicPath>
       </li>
     </comps>
   </HediffDef>
@@ -400,7 +438,7 @@
     <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_BloodedMXenomorphQueen</defName>
     <label>blooded marked</label>
-    <labelNoun>a blooded Yautja</labelNoun>
+    <labelNoun>a marked Hunter</labelNoun>
     <stages>
       <li>
         <label>Xenomorph</label>
@@ -409,6 +447,11 @@
     <comps>
       <li>
         <compClass>RRYautja.HediffComp_MarkedYautja</compClass>
+      </li>
+      <li Class="RRYautja.HediffCompProperties_DrawImplant">
+        <compClass>RRYautja.HediffComp_DrawImplant</compClass>
+        <implantDrawerType>Head</implantDrawerType>
+        <implantGraphicPath>Things/Addons/Blood_Marks/Xenomorph_Kills/Mark_QueenXenomorphkill</implantGraphicPath>
       </li>
     </comps>
   </HediffDef>
@@ -416,7 +459,7 @@
     <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_BloodedMPredalien</defName>
     <label>blooded marked</label>
-    <labelNoun>a blooded Yautja</labelNoun>
+    <labelNoun>a marked Hunter</labelNoun>
     <stages>
       <li>
         <label>Xenomorph</label>
@@ -426,13 +469,18 @@
       <li>
         <compClass>RRYautja.HediffComp_MarkedYautja</compClass>
       </li>
+      <li Class="RRYautja.HediffCompProperties_DrawImplant">
+        <compClass>RRYautja.HediffComp_DrawImplant</compClass>
+        <implantDrawerType>Head</implantDrawerType>
+        <implantGraphicPath>Things/Addons/Blood_Marks/Xenomorph_Kills/Mark_Predalienkill</implantGraphicPath>
+      </li>
     </comps>
   </HediffDef>
 
     <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_BloodedMBadBlood</defName>
     <label>blooded marked</label>
-    <labelNoun>a blooded Yautja</labelNoun>
+    <labelNoun>a marked Hunter</labelNoun>
     <stages>
       <li>
         <label>Badblood</label>
@@ -442,13 +490,18 @@
       <li>
         <compClass>RRYautja.HediffComp_MarkedYautja</compClass>
       </li>
+      <li Class="RRYautja.HediffCompProperties_DrawImplant">
+        <compClass>RRYautja.HediffComp_DrawImplant</compClass>
+        <implantDrawerType>Head</implantDrawerType>
+        <implantGraphicPath>Things/Addons/Blood_Marks/Yautja_Kills/Mark_BadBloodkill</implantGraphicPath>
+      </li>
     </comps>
   </HediffDef>
 
     <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_BloodedMHound</defName>
     <label>blooded marked</label>
-    <labelNoun>a blooded Yautja</labelNoun>
+    <labelNoun>a marked Hunter</labelNoun>
     <stages>
       <li>
         <label>Hound</label>
@@ -458,13 +511,18 @@
       <li>
         <compClass>RRYautja.HediffComp_MarkedYautja</compClass>
       </li>
+      <li Class="RRYautja.HediffCompProperties_DrawImplant">
+        <compClass>RRYautja.HediffComp_DrawImplant</compClass>
+        <implantDrawerType>Head</implantDrawerType>
+        <implantGraphicPath>Things/Addons/Blood_Marks/Animal_Kills/Mark_Houndkill</implantGraphicPath>
+      </li>
     </comps>
   </HediffDef>
   
     <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_BloodedMThrumbo</defName>
     <label>blooded marked</label>
-    <labelNoun>a blooded Yautja</labelNoun>
+    <labelNoun>a marked Hunter</labelNoun>
     <stages>
       <li>
         <label>Thrumbo</label>
@@ -474,13 +532,18 @@
       <li>
         <compClass>RRYautja.HediffComp_MarkedYautja</compClass>
       </li>
+      <li Class="RRYautja.HediffCompProperties_DrawImplant">
+        <compClass>RRYautja.HediffComp_DrawImplant</compClass>
+        <implantDrawerType>Head</implantDrawerType>
+        <implantGraphicPath>Things/Addons/Blood_Marks/Animal_Kills/Mark_Thrumbokill</implantGraphicPath>
+      </li>
     </comps>
   </HediffDef>
 
     <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_BloodedMCrusher</defName>
     <label>blooded marked</label>
-    <labelNoun>a blooded Yautja</labelNoun>
+    <labelNoun>a marked Hunter</labelNoun>
     <stages>
       <li>
         <label>Crusher</label>
@@ -490,13 +553,18 @@
       <li>
         <compClass>RRYautja.HediffComp_MarkedYautja</compClass>
       </li>
+      <li Class="RRYautja.HediffCompProperties_DrawImplant">
+        <compClass>RRYautja.HediffComp_DrawImplant</compClass>
+        <implantDrawerType>Head</implantDrawerType>
+        <implantGraphicPath>Things/Addons/Blood_Marks/Animal_Kills/Mark_Crusherkill</implantGraphicPath>
+      </li>
     </comps>
   </HediffDef>
 
     <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_Hediff_BloodedMGroTye</defName>
     <label>blooded marked</label>
-    <labelNoun>a blooded Yautja</labelNoun>
+    <labelNoun>a marked Hunter</labelNoun>
     <stages>
       <li>
         <label>Gro'tye</label>
@@ -505,6 +573,11 @@
     <comps>
       <li>
         <compClass>RRYautja.HediffComp_MarkedYautja</compClass>
+      </li>
+      <li Class="RRYautja.HediffCompProperties_DrawImplant">
+        <compClass>RRYautja.HediffComp_DrawImplant</compClass>
+        <implantDrawerType>Head</implantDrawerType>
+        <implantGraphicPath>Things/Addons/Blood_Marks/Animal_Kills/Mark_GroTyekill</implantGraphicPath>
       </li>
     </comps>
   </HediffDef>

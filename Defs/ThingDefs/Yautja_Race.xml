@@ -275,6 +275,7 @@
                 </options>
             </alienhaircolorgen>
             <useSkincolorForHair>false</useSkincolorForHair>
+			<!--
             <bodyAddons>
 				<li>
 					<path>Things/Addons/Blank</path>
@@ -314,6 +315,7 @@
 					<hediffGraphics>
 					<RRY_Hediff_BloodedMXenomorph>Things/Addons/Blood_Marks/Xenomorph_Kills/Mark_Xenomorphkill</RRY_Hediff_BloodedMXenomorph>
 					<RRY_Hediff_BloodedMXenomorphQueen>Things/Addons/Blood_Marks/Xenomorph_Kills/Mark_QueenXenomorphkill</RRY_Hediff_BloodedMXenomorphQueen>
+					<RRY_Hediff_BloodedMPredalien>Things/Addons/Blood_Marks/Xenomorph_Kills/Mark_Predalienkill</RRY_Hediff_BloodedMPredalien>
 
 					<RRY_Hediff_BloodedMBadBlood>Things/Addons/Blood_Marks/Yautja_Kills/Mark_BadBloodkill</RRY_Hediff_BloodedMBadBlood>
 					
@@ -321,21 +323,16 @@
 					<RRY_Hediff_BloodedMWorthyHuman>Things/Addons/Blood_Marks/Human_Kills/Mark_WorthyHumankill</RRY_Hediff_BloodedMWorthyHuman>
 					<RRY_Hediff_BloodedMHumanlike>Things/Addons/Blood_Marks/Human_Kills/Mark_Humanlikekill</RRY_Hediff_BloodedMHumanlike>
 					<RRY_Hediff_BloodedMWorthyHumanlike>Things/Addons/Blood_Marks/Human_Kills/Mark_WorthyHumanlikekill</RRY_Hediff_BloodedMWorthyHumanlike>
-					<RRY_Hediff_BloodedMPredalien>Things/Addons/Blood_Marks/Xenomorph_Kills/Mark_Predalienkill</RRY_Hediff_BloodedMPredalien>
 					
 					<RRY_Hediff_BloodedMThrumbo>Things/Addons/Blood_Marks/Animal_Kills/Mark_Thrumbokill</RRY_Hediff_BloodedMThrumbo>
 					<RRY_Hediff_BloodedMHound>Things/Addons/Blood_Marks/Animal_Kills/Mark_Houndkill</RRY_Hediff_BloodedMHound>
 					<RRY_Hediff_BloodedMCrusher>Things/Addons/Blood_Marks/Animal_Kills/Mark_Crusherkill</RRY_Hediff_BloodedMCrusher>
 					<RRY_Hediff_BloodedMGroTye>Things/Addons/Blood_Marks/Animal_Kills/Mark_GroTyekill</RRY_Hediff_BloodedMGroTye>
-					<!--
-					
-					
-					
-					<RRY_Hediff_BloodedM>Things/Addons/Blood_Marks/Animal_Kills/Mark_kill</RRY_Hediff_BloodedM>
-					-->
+					<RRY_Hediff_BloodedM>Things/Addons/Blood_Marks/Mark_Generickill</RRY_Hediff_BloodedM>
 					</hediffGraphics>
                 </li>
             </bodyAddons>
+			-->
             </alienPartGenerator>
 			<chemicalSettings>	
 		    </chemicalSettings>
@@ -393,7 +390,19 @@
             </hairTags>
         </hairSettings>
         <thoughtSettings>
+			<replacerList>
+                <li>
+                    <original>Disfigured</original>
+                    <replacer>RRY_Disfigured</replacer> 
+                </li>
+            </replacerList>
+			<!--
+            <restrictedThoughts>
+                <li>RRY_Thought_ThrillOfTheHunt</li>
+            </restrictedThoughts>
+			-->
 			<cannotReceiveThoughts>
+			<!--
 				<li>AteHumanlikeMeatDirect</li>
 				<li>AteHumanlikeMeatAsIngredient</li>
 				<li>AteRawHumanlikeMeat</li>
@@ -401,6 +410,7 @@
 				<li>AteHumanlikeMeatAsIngredientCannibal</li>
 				<li>ButcheredHumanlikeCorpse</li>
 				<li>KnowButcheredHumanlikeCorpse</li>
+				-->
 				<li>ObservedLayingCorpse</li>
 				<li>SoldPrisoner</li>
 				<li>KnowPrisonerDiedInnocent</li>
@@ -411,7 +421,24 @@
 				<li>KnowPrisonerSold</li>
 				<li>KnowGuestOrganHarvested</li>
             </cannotReceiveThoughts>
-			
+			<butcherThoughtSpecific>
+                <li>
+                    <raceList>
+                        <li>RRY_Alien_Yautja</li>
+                    </raceList>
+                    <thought>RRY_ButcheredYautjaCorpse</thought>
+                    <knowThought>RRY_KnowButcheredYautjaCorpse</knowThought>
+                </li>
+            </butcherThoughtSpecific>
+            <ateThoughtSpecific>
+                <li>
+                    <raceList>
+                        <li>RRY_Alien_Yautja</li>
+                    </raceList>
+                    <thought>RRY_AteYautjaMeatDirect</thought>
+					<thoughtCannibal>RRY_AteYautjaMeatDirectCannibal</thoughtCannibal> 
+                </li>
+            </ateThoughtSpecific>
 				<!--
 			<ateThoughtSpecific>
                 <li>
@@ -484,7 +511,6 @@
 				<li>RRY_Apparel_HunterLeaderBioMask</li>
 				<li>RRY_Apparel_HunterVest</li>
 				<li>RRY_Apparel_Mesh</li>
-				<!-- <li>RRY_Apparel_Apparel_TribalA</li> -->
 				
 				<li>RRY_Apparel_LeaderArmourChestplate</li>
 				<li>RRY_Apparel_LeaderArmourGreaves</li>
@@ -734,8 +760,95 @@
       <li>Anesthetize</li>
       <li>RRY_FaceHuggerRemoval</li>
       <li>RRY_XenomorphImpregnationRemoval</li>
+      <li>RRY_NeomorphImpregnationRemoval</li>
       <li>RRY_GauntletRemoval</li>
     </recipes>
+	<modExtensions>
+	  <li Class="RRYautja.OffsetDefExtension">
+		<!-- DefName of the hediff this applies to --> 
+		<hediff>RRY_Hediff_BloodedM</hediff>
+		<!-- adds the vanillia head offset for the current rotation, not sure if this will ever be useful, defaults to false if not set--> 
+		<ApplyBaseHeadOffset>false</ApplyBaseHeadOffset>
+		<!-- North offsets Y is the layer height, usually you can leave this at 0, all values default to 0 if not set-->
+		<NorthXOffset>0.0</NorthXOffset>
+		<NorthYOffset>0.0</NorthYOffset>
+		<NorthZOffset>0.0</NorthZOffset>
+		<!-- North Draw size overrides, will default to 1 if not set -->
+		<NorthXDrawSize>1</NorthXDrawSize>
+		<NorthZDrawSize>1</NorthZDrawSize>
+		<!-- North Angle overrides, will default to 0 if not set -->
+		<NorthAngle>0</NorthAngle>
+		<!-- South offsets Y is the layer height, usually you can leave this at 0, all values default to 0 if not set-->
+		<SouthXOffset>-0.002</SouthXOffset>
+		<SouthYOffset>0.0</SouthYOffset>
+		<SouthZOffset>0.40</SouthZOffset>
+		<!-- South Draw size overrides, will default to 1 if not set -->
+		<SouthXDrawSize>1.25</SouthXDrawSize>
+		<SouthZDrawSize>1.25</SouthZDrawSize>
+		<!-- South Angle overrides, will default to 0 if not set -->
+		<SouthAngle>0</SouthAngle>
+		<!-- East offsets Y is the layer height, usually you can leave this at 0, all values default to 0 if not set-->
+		<EastXOffset>0</EastXOffset>
+		<EastYOffset>0.0</EastYOffset>
+		<EastZOffset>0</EastZOffset>
+		<!-- East Draw size overrides, will default to 1 if not set -->
+		<EastXDrawSize>1</EastXDrawSize>
+		<EastZDrawSize>1</EastZDrawSize>
+		<!-- East Angle overrides, will default to 0 if not set -->
+		<EastAngle>0</EastAngle>
+		<!-- West offsets Y is the layer height, usually you can leave this at 0, all values default to 0 if not set-->
+		<WestXOffset>0</WestXOffset>
+		<WestYOffset>0.0</WestYOffset>
+		<WestZOffset>0</WestZOffset>
+		<!-- West Draw size overrides, will default to 1 if not set -->
+		<WestXDrawSize>1</WestXDrawSize>
+		<WestZDrawSize>1</WestZDrawSize>
+		<!-- West Angle overrides, will default to 0 if not set -->
+		<WestAngle>0</WestAngle>
+	  </li>
+	  <li Class="RRYautja.OffsetDefExtension">
+		<!-- DefName of the hediff this applies to --> 
+		<hediff>RRY_FaceHuggerInfection</hediff>
+		<!-- adds the vanillia head offset for the current rotation, not sure if this will ever be useful, defaults to false if not set--> 
+		<ApplyBaseHeadOffset>false</ApplyBaseHeadOffset>
+		<!-- North offsets Y is the layer height, usually you can leave this at 0, all values default to 0 if not set-->
+		<NorthXOffset>0.0</NorthXOffset>
+		<NorthYOffset>0.0</NorthYOffset>
+		<NorthZOffset>0.0</NorthZOffset>
+		<!-- North Draw size overrides, will default to 1 if not set -->
+		<NorthXDrawSize>1</NorthXDrawSize>
+		<NorthZDrawSize>1</NorthZDrawSize>
+		<!-- North Angle overrides, will default to 0 if not set -->
+		<NorthAngle>0</NorthAngle>
+		<!-- South offsets Y is the layer height, usually you can leave this at 0, all values default to 0 if not set-->
+		<SouthXOffset>-0.001</SouthXOffset>
+		<SouthYOffset>0.0</SouthYOffset>
+		<SouthZOffset>0.0</SouthZOffset>
+		<!-- South Draw size overrides, will default to 1 if not set -->
+		<SouthXDrawSize>2</SouthXDrawSize>
+		<SouthZDrawSize>2</SouthZDrawSize>
+		<!-- South Angle overrides, will default to 0 if not set -->
+		<SouthAngle>0</SouthAngle>
+		<!-- East offsets Y is the layer height, usually you can leave this at 0, all values default to 0 if not set-->
+		<EastXOffset>0</EastXOffset>
+		<EastYOffset>0.0</EastYOffset>
+		<EastZOffset>-0.20</EastZOffset>
+		<!-- East Draw size overrides, will default to 1 if not set -->
+		<EastXDrawSize>2</EastXDrawSize>
+		<EastZDrawSize>2</EastZDrawSize>
+		<!-- East Angle overrides, will default to 0 if not set -->
+		<EastAngle>0</EastAngle>
+		<!-- West offsets Y is the layer height, usually you can leave this at 0, all values default to 0 if not set-->
+		<WestXOffset>0</WestXOffset>
+		<WestYOffset>0.0</WestYOffset>
+		<WestZOffset>-0.20</WestZOffset>
+		<!-- West Draw size overrides, will default to 1 if not set -->
+		<WestXDrawSize>2</WestXDrawSize>
+		<WestZDrawSize>2</WestZDrawSize>
+		<!-- West Angle overrides, will default to 0 if not set -->
+		<WestAngle>0</WestAngle>
+	  </li>
+	</modExtensions>
 </AlienRace.ThingDef_AlienRace>
 
 </Defs>

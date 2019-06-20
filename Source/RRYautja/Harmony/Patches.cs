@@ -621,6 +621,7 @@ namespace RRYautja
         static void Prefix(PawnRenderer __instance, ref Vector3 rootLoc, ref float angle, ref bool renderBody, ref Rot4 bodyFacing, ref Rot4 headFacing, ref RotDrawMode bodyDrawType, ref bool portrait, ref bool headStump)
         {
             Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
+            bool selected = Find.Selector.SelectedObjects.Contains(pawn) && Prefs.DevMode;
             if (!portrait)
             {
                 if (pawn.RaceProps.Humanlike && pawn.CurrentBed() != null && pawn.CurrentBed() is Building_XenomorphCocoon)
@@ -649,7 +650,8 @@ namespace RRYautja
                     }
                     else rootLoc = pawn.CurrentBed().DrawPos;
                 }
-                if (pawn.RaceProps.Humanlike || pawn.kindDef.race.GetModExtension<FacehuggerOffsetDefExtension>() != null)
+                bool pawnflag = !((pawn.kindDef.race.defName.StartsWith("Android") && pawn.kindDef.race.defName.Contains("Tier")) || pawn.kindDef.race.defName.Contains("ChjDroid") || pawn.kindDef.race.defName.Contains("ChjBattleDroid") || pawn.kindDef.race.defName.Contains("M7Mech")); 
+                if ((pawn.RaceProps.Humanlike && pawnflag) || pawn.kindDef.race.GetModExtension<OffsetDefExtension>() != null)
                 {
                     foreach (var hd in pawn.health.hediffSet.hediffs)
                     {
@@ -659,6 +661,8 @@ namespace RRYautja
                             DrawImplant(comp, __instance, rootLoc, angle, renderBody, bodyFacing, headFacing, bodyDrawType, portrait, headStump);
                         }
                     }
+                    /*
+                    */
                 } // DrawWornExtras()
                 else
                 {
@@ -673,20 +677,21 @@ namespace RRYautja
                 }
             }
         }
-
+		
         static void DrawImplant(HediffComp_DrawImplant comp, PawnRenderer __instance, Vector3 rootLoc, float angle, bool renderBody, Rot4 bodyFacing, Rot4 headFacing, RotDrawMode bodyDrawType, bool portrait, bool headStump)
         {// this.Pawn
 
             Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
-            bool selected = Find.Selector.SelectedObjects.Contains(pawn);
+            bool selected = Find.Selector.SelectedObjects.Contains(pawn) && Prefs.DevMode;
             string direction = "";
             float offset = 0f;
             Rot4 rot = bodyFacing;
             Vector3 vector3 = pawn.RaceProps.Humanlike ? __instance.BaseHeadOffsetAt(headFacing) : new Vector3();
             Vector3 s = new Vector3(pawn.BodySize*1.75f,pawn.BodySize*1.75f,pawn.BodySize*1.75f);
-            if (pawn.kindDef.race.GetModExtension<FacehuggerOffsetDefExtension>() != null)
+            bool OffsetDefExtension = (pawn.def.modExtensions.NullOrEmpty()||(!pawn.def.modExtensions.NullOrEmpty() && pawn.def.modExtensions.Any((x) => comp.parent.def.defName.Contains(((OffsetDefExtension)x).hediff.defName))) || ThingDefOf.Human.modExtensions.Any((x) => comp.parent.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)));
+            if (OffsetDefExtension)// && pawn.kindDef.race.GetModExtension<OffsetDefExtension>() is OffsetDefExtension offsetDef && comp.parent.def.defName.Contains(offsetDef.hediff.defName))
             {
-                GetAltitudeOffset(pawn, rot, out float X, out float Y, out float Z, out float DsX, out float DsZ, out float ang);
+                GetAltitudeOffset(pawn, comp.parent, rot, out float X, out float Y, out float Z, out float DsX, out float DsZ, out float ang);
                 vector3.x += X;
                 vector3.y += Y;
                 vector3.z += Z;
@@ -777,12 +782,29 @@ namespace RRYautja
             Graphics.DrawMesh(rot == Rot4.West ? MeshPool.plane10Flip : MeshPool.plane10, matrix, matSingle, 0);
             */
         }
-
-
-        static void GetAltitudeOffset(Pawn pawn, Rot4 rotation, out float OffsetX, out float OffsetY, out float OffsetZ, out float DrawSizeX, out float DrawSizeZ, out float ang)
+		
+		static void GetAltitudeOffset(Pawn pawn, Hediff hediff, Rot4 rotation, out float OffsetX, out float OffsetY, out float OffsetZ, out float DrawSizeX, out float DrawSizeZ, out float ang)
         {
-            FacehuggerOffsetDefExtension myDef = pawn.kindDef.race.GetModExtension<FacehuggerOffsetDefExtension>() ?? new FacehuggerOffsetDefExtension();
+            OffsetDefExtension myDef = null;
+            if (!pawn.def.modExtensions.NullOrEmpty())
+            {
+                myDef = (OffsetDefExtension)pawn.kindDef.race.modExtensions.Find((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)) ?? (OffsetDefExtension)ThingDefOf.Human.modExtensions.Find((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)) ?? new OffsetDefExtension();
+            }
+            else if (myDef==null)
+            {
+                myDef = (OffsetDefExtension)ThingDefOf.Human.modExtensions.Find((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)) ?? new OffsetDefExtension();
+            }
+            else
+            {
+                myDef =  new OffsetDefExtension() {hediff =  hediff.def};
 
+            }
+            
+
+            if (myDef.hediff!=null)
+            {
+            //    Log.Message(string.Format("{0}'s drawdata for hediff {1} OffsetDefExtension.hediff {2}", pawn.LabelShortCap, hediff.LabelCap, myDef.hediff.label));
+            }
             string direction;
             if (pawn.RaceProps.Humanlike)
             {
@@ -898,12 +920,12 @@ namespace RRYautja
             }
 
         }
-
+		
         /*
     static void Postfix(PawnRenderer __instance, ref Vector3 rootLoc)
     {
         Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
-        if (pawn.RaceProps.Humanlike || pawn.kindDef.race.GetModExtension<FacehuggerOffsetDefExtension>()!=null)
+        if (pawn.RaceProps.Humanlike || pawn.kindDef.race.GetModExtension<OffsetDefExtension>()!=null)
         {
             foreach (var hd in pawn.health.hediffSet.hediffs)
             {

@@ -1497,7 +1497,7 @@
   <ThingDef ParentName="RRY_BaseXenomorph">
     <defName>RRY_Xenomorph_Thrumbomorph</defName>
     <label>Thrumbomorph</label>
-    <description>Thrumbomorph Xenomorphs are significantly larger and stronger than the normal adults, being approximately 4.5 metres (15 ft) tall. Their body structure differs also, having two pairs of arms, one large and one small. The queen's head is larger than those of other adult Xenomorphs and is protected by a large, flat crest, like a crown, which varies from queen to queen. Unlike other Xenomorphs, the queen's external mouth is separately segmented from the rest of her head, allowing her to turn her mouth left and right almost to the point where it is facing perpendicular to the direction of the rest of her head./n/nEgg-laying Xenomorph queens possess an immense ovipositor attached to their lower torso, similar to a queen termite's. Unlike insect queens, there appears to be no need for an Xenomorph queen's eggs to be fertilized. When attached to her ovipositor, the queen is supported by a "biomechanical throne" that consists of a lattice of struts resembling massive insect legs.</description>
+    <description>Thrumbomorph Xenomorphs are significantly larger and stronger than the normal adults, being over 5 metres tall. Their body structure differs also, having no arms, although its large limbs many manipulate objects. The thrumbomorphs's head is larger than those of other adult Xenomorphs and is adorned by a large, flat blade, which is an inherited feature from its host./n/nThis thing is a total monstrosity and can easily dismantle a battle tank, do not engage lightly.</description>
     <statBases>
       <MoveSpeed>5.5</MoveSpeed>
       <ArmorRating_Blunt>0.50</ArmorRating_Blunt>

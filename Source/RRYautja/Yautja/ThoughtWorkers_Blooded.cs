@@ -45,10 +45,12 @@ namespace RimWorld
             {
                 return false;
             }
+            /*
             if (other.kindDef.race != YautjaDefOf.RRY_Alien_Yautja)
             {
                 return false;
             }
+            */
             /*
             if (!RelationsUtility.PawnsKnowEachOther(p, other))
             {
@@ -150,10 +152,12 @@ namespace RimWorld
             {
                 return false;
             }
+            /*
             if (other.kindDef.race != YautjaDefOf.RRY_Alien_Yautja)
             {
                 return false;
             }
+            */
             /*
             if (!RelationsUtility.PawnsKnowEachOther(p, other))
             {
@@ -251,10 +255,12 @@ namespace RimWorld
             {
                 return false;
             }
+            /*
             if (other.kindDef.race != YautjaDefOf.RRY_Alien_Yautja)
             {
                 return false;
             }
+            */
             /*
             if (!RelationsUtility.PawnsKnowEachOther(p, other))
             {

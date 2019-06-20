@@ -14,7 +14,19 @@ namespace RimWorld
         {
             get
             {
-                return this.curStageIndex;
+                if (YautjaBloodedUtility.Marked(pawn, out Hediff BloodHD))
+                {
+                    return 2;
+                }
+                if (pawn.health.hediffSet.HasHediff(unmarkedDef) && pawn.health.hediffSet.GetFirstHediffOfDef(unmarkedDef) is Hediff UnmarkedHD)
+                {
+                    return 1;
+                }
+                if (pawn.health.hediffSet.HasHediff(unbloodedDef) && pawn.health.hediffSet.GetFirstHediffOfDef(unbloodedDef) is Hediff UnbloodedHD)
+                {
+                    return 0;
+                }
+                return 0;
             }
         }
 
@@ -26,19 +38,23 @@ namespace RimWorld
             }
         }
 
+        private bool selected => Find.Selector.SelectedObjects.Contains(pawn) && Prefs.DevMode;
+        public static HediffDef unbloodedDef = YautjaDefOf.RRY_Hediff_Unblooded;
+        public static HediffDef unmarkedDef = YautjaDefOf.RRY_Hediff_BloodedUM;
+        public static HediffDef markedDef = YautjaDefOf.RRY_Hediff_BloodedM;
+
         // Token: 0x170003A2 RID: 930
         // (get) Token: 0x0600197F RID: 6527 RVA: 0x0004E9F5 File Offset: 0x0004CDF5
+        
         public override string LabelCap
         {
             get
             {
                 string labelstring = !this.reason.NullOrEmpty() ? base.CurStage.label: base.LabelCap;
                 if (pawn!=null)
-                { // if (selected) Log.Message("found corpse");
-                //    Log.Message("found pawn");
+                { 
                     if (_Yautja != null)
                     {
-                    //    Log.Message("found Comp_Yautja");
                         if (!_Yautja.MarkHedifflabel.NullOrEmpty())
                         {
                             labelstring = labelstring.CapitalizeFirst()+" ("+ _Yautja.MarkHedifflabel.CapitalizeFirst()+")";
@@ -53,10 +69,12 @@ namespace RimWorld
                 return labelstring;
             }
         }
+
         public override float MoodOffset()
         {
             return base.MoodOffset();
         }
+        
         /*
         public new string Description
         {
@@ -84,7 +102,29 @@ namespace RimWorld
             }
         }
         */
-        protected override float BaseMoodOffset => ((_Yautja.combatPower / 10) / base.BaseMoodOffset);
+        protected override float BaseMoodOffset
+        {
+            get
+            {
+                if (YautjaBloodedUtility.Marked(pawn, out Hediff BloodHD))
+                {
+                    if (selected) Log.Message(string.Format("{0} BloodHD is {1}", pawn.LabelShortCap, BloodHD.Label));
+                    return ((_Yautja.combatPower / 10) / 4);
+                }
+                if (pawn.health.hediffSet.HasHediff(unmarkedDef) && pawn.health.hediffSet.GetFirstHediffOfDef(unmarkedDef) is Hediff UnmarkedHD)
+                {
+                    if (selected) Log.Message(string.Format("{0} UnmarkedHD is {1}", pawn.LabelShortCap, UnmarkedHD.Label));
+                    return 0;
+                }
+                if (pawn.health.hediffSet.HasHediff(unbloodedDef) && pawn.health.hediffSet.GetFirstHediffOfDef(unbloodedDef) is Hediff UnbloodedHD)
+                {
+                    if (selected) Log.Message(string.Format("{0} UnbloodedHD is {1}", pawn.LabelShortCap, UnbloodedHD.Label));
+                    return base.BaseMoodOffset;
+                }
+                return 0;
+
+            }
+        }
         // Token: 0x04000F33 RID: 3891
         private int curStageIndex = 0;
 

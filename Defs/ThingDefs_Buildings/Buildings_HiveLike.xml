@@ -17,7 +17,7 @@
 		<Faction>Mechanoid</Faction>
 		<TunnelDef>TunnelHiveLikeSpawner</TunnelDef>
     <graphicData>
-      <texPath>Things/Special/TunnelExit</texPath>
+      <texPath>Things/Special/HiveNode</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>CutoutComplex</shaderType>
       <drawSize>2.6</drawSize>
@@ -100,7 +100,7 @@
 		  <li>RRY_Xenomorph_Runner</li>
 		</PawnKinds>
     <graphicData>
-      <texPath>Things/Special/TunnelExit</texPath>
+      <texPath>Things/Special/HiveNode</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>CutoutComplex</shaderType>
       <drawSize>2.6</drawSize>

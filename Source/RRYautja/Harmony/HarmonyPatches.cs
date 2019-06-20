@@ -241,7 +241,7 @@ namespace RRYautja
                 }
             }, "PushingCharacter", false, null);
         }
-                
+            /*    
         public static void Patch_PawnRenderer_RenderPawnAt(PawnRenderer __instance, ref Vector3 drawLoc, ref RotDrawMode bodyDrawType, ref bool headStump)
         {
             Pawn pawn = HarmonyPatches.PawnRenderer_GetPawn(__instance);
@@ -268,7 +268,7 @@ namespace RRYautja
                 }
             }
         }
-        
+        */
         public static void PathOfNature(Pawn_PathFollower __instance, Pawn pawn, IntVec3 c, ref int __result)
         {
             if (pawn?.GetComp<Comp_Yautja>() is Comp_Yautja comp_Yautja || pawn?.GetComp<Comp_Xenomorph>() is Comp_Xenomorph comp_Xenomorph)
@@ -373,6 +373,73 @@ namespace RRYautja
         
         public static void Post_GeneratePawn_Yautja(PawnGenerationRequest request, ref Pawn __result)
         {
+            Comp_Yautja _Yautja = __result.TryGetComp<Comp_Yautja>();
+
+            if (_Yautja != null)
+            {
+                Backstory pawnStoryC = __result.story.childhood;
+                Backstory pawnStoryA = __result.story.adulthood ?? null;
+
+                AlienRace.BackstoryDef bsDefUnblooded = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_YoungBlood");
+                AlienRace.BackstoryDef bsDefBlooded = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_Blooded");
+                AlienRace.BackstoryDef bsDefBadbloodA = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_BadBloodA");
+                AlienRace.BackstoryDef bsDefBadblooBd = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_BadBloodB");
+
+                HediffDef unbloodedDef = YautjaDefOf.RRY_Hediff_Unblooded;
+                HediffDef unmarkedDef = YautjaDefOf.RRY_Hediff_BloodedUM;
+                HediffDef markedDef = YautjaDefOf.RRY_Hediff_BloodedM;
+
+                bool hasunblooded = __result.health.hediffSet.HasHediff(unbloodedDef);
+                bool hasbloodedUM = __result.health.hediffSet.HasHediff(unmarkedDef);
+                bool hasbloodedM = __result.health.hediffSet.hediffs.Any<Hediff>(x => x.def.defName.StartsWith(markedDef.defName));
+
+                if (!hasunblooded && !hasbloodedUM && !hasbloodedM)
+                {
+                    HediffDef hediffDef;
+                    if (pawnStoryA != null)
+                    {
+                        if (pawnStoryA != bsDefUnblooded.backstory && __result.kindDef.race == YautjaDefOf.RRY_Alien_Yautja)
+                        {
+                            hediffDef = _Yautja.Props.bloodedDefs.RandomElement();
+
+                            if (hediffDef != null)
+                            {
+                                PawnKindDef pawnKindDef = YautjaBloodedUtility.RandomMarked(hediffDef);
+                                if (_Yautja != null)
+                                {
+                                    _Yautja.MarkHedifflabel = pawnKindDef.LabelCap;
+                                    _Yautja.MarkedhediffDef = hediffDef;
+                                    _Yautja.predator = pawnKindDef.RaceProps.predator;
+                                    _Yautja.BodySize = pawnKindDef.RaceProps.baseBodySize;
+                                    _Yautja.combatPower = pawnKindDef.combatPower;
+                                    //    Log.Message(string.Format("{0}: {1}", hediffDef.stages[0].label, pawnKindDef.LabelCap));
+                                }
+                            }
+
+                        }
+                        else
+                        {
+                            hediffDef = unbloodedDef;
+                        }
+                    }
+                    else
+                    {
+                        hediffDef = unbloodedDef;
+                    }
+                    foreach (var item in __result.RaceProps.body.AllParts)
+                    {
+                        if (item.def == BodyPartDefOf.Head)
+                        {
+
+                            __result.health.AddHediff(hediffDef, item);
+                        }
+                    }
+                }
+                else
+                {
+                    //    Log.Message(string.Format("new pawn has hasunblooded:{0}, hasbloodedUM:{1}, hasbloodedM:{2}", hasunblooded, hasbloodedUM, hasbloodedM));
+                }
+            }
             if (__result.kindDef.race == YautjaDefOf.RRY_Alien_Yautja)
             {
                 if (request.Faction.leader == null && request.Faction != Faction.OfPlayerSilentFail && request.KindDef.race == YautjaDefOf.RRY_Alien_Yautja)
@@ -415,89 +482,12 @@ namespace RRYautja
                     }
 
                 }
-                Comp_Yautja _Yautja = __result.TryGetComp<Comp_Yautja>();
-                if (_Yautja != null)
-                {
-                    Backstory pawnStoryC = __result.story.childhood;
-                    Backstory pawnStoryA = __result.story.adulthood ?? null;
-
-                    AlienRace.BackstoryDef bsDefUnblooded = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_YoungBlood");
-                    AlienRace.BackstoryDef bsDefBlooded = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_Blooded");
-                    AlienRace.BackstoryDef bsDefBadbloodA = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_BadBloodA");
-                    AlienRace.BackstoryDef bsDefBadblooBd = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_BadBloodB");
-
-                    HediffDef unbloodedDef = YautjaDefOf.RRY_Hediff_Unblooded;
-                    HediffDef unmarkedDef = YautjaDefOf.RRY_Hediff_BloodedUM;
-                    HediffDef markedDef = YautjaDefOf.RRY_Hediff_BloodedM;
-
-                    bool hasunblooded = __result.health.hediffSet.HasHediff(unbloodedDef);
-                    bool hasbloodedUM = __result.health.hediffSet.HasHediff(unmarkedDef);
-                    bool hasbloodedM = __result.health.hediffSet.hediffs.Any<Hediff>(x => x.def.defName.StartsWith(markedDef.defName));
-
-                    if (!hasunblooded && !hasbloodedUM && !hasbloodedM)
-                    {
-                        HediffDef hediffDef;
-                        if (pawnStoryA != null)
-                        {
-                            if (pawnStoryA != bsDefUnblooded.backstory)
-                            {
-                                hediffDef = _Yautja.Props.bloodedDefs.RandomElement();
-
-                                if (hediffDef != null)
-                                {
-                                    PawnKindDef pawnKindDef = YautjaBloodedUtility.RandomMarked(hediffDef);
-                                    if (_Yautja != null)
-                                    {
-                                        _Yautja.MarkHedifflabel = pawnKindDef.LabelCap;
-                                        _Yautja.MarkedhediffDef = hediffDef;
-                                        _Yautja.predator = pawnKindDef.RaceProps.predator;
-                                        _Yautja.BodySize = pawnKindDef.RaceProps.baseBodySize;
-                                        _Yautja.combatPower = pawnKindDef.combatPower;
-                                    //    Log.Message(string.Format("{0}: {1}", hediffDef.stages[0].label, pawnKindDef.LabelCap));
-                                    }
-                                }
-
-                            }
-                            else
-                            {
-                                hediffDef = unbloodedDef;
-                            }
-                        }
-                        else
-                        {
-                            hediffDef = unbloodedDef;
-                        }
-                        foreach (var item in __result.RaceProps.body.AllParts)
-                        {
-                            if (item.def==BodyPartDefOf.Head)
-                            {
-
-                                __result.health.AddHediff(hediffDef, item);
-                            }
-                        }
-                    }
-                    else
-                    {
-                    //    Log.Message(string.Format("new pawn has hasunblooded:{0}, hasbloodedUM:{1}, hasbloodedM:{2}", hasunblooded, hasbloodedUM, hasbloodedM));
-                    }
-                }
+                
             }
-            else if (__result.kindDef.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Xenomorph)
+            if (__result.kindDef.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Xenomorph)
             {
-#if DEBUG
-                if (Prefs.DevMode)
-                {
-                //    Log.Message(string.Format("Xenomorph spawning"));
-                }
-#endif
                 if (request.KindDef==XenomorphDefOf.RRY_Xenomorph_Queen)
                 {
-#if DEBUG
-                    if (Prefs.DevMode)
-                    {
-                    //    Log.Message(string.Format("trying to spawn Xenomorph Queen, checking {0} pawns", Find.AnyPlayerHomeMap.mapPawns.AllPawns.Count()));
-                    }
-#endif
                     __result.gender = Gender.Female;
                     /*
                     bool QueenPresent = false;
@@ -513,12 +503,6 @@ namespace RRYautja
                     }
                     if (QueenPresent)
                     {
-#if DEBUG
-                        if (Prefs.DevMode)
-                        {
-                        //    Log.Message(string.Format("Queen Present: {0}", QueenPresent));
-                        }
-#endif
                         request = new PawnGenerationRequest(XenomorphDefOf.RRY_Xenomorph_Warrior, request.Faction, request.Context, -1, true, false, false, false, false, true, 0f, fixedGender: Gender.None, allowGay: false);
                         __result = PawnGenerator.GeneratePawn(request);
                         __result.gender = Gender.None;
@@ -535,10 +519,10 @@ namespace RRYautja
                     __result.gender = Gender.None;
                 }
             }
-            else if (__result.kindDef.race != YautjaDefOf.RRY_Alien_Yautja && __result.RaceProps.Humanlike && (__result.story.hairDef == YautjaDefOf.RRY_Yaujta_Dreds || __result.story.hairDef == YautjaDefOf.RRY_Yaujta_Ponytail || __result.story.hairDef == YautjaDefOf.RRY_Yaujta_Bald))
+            if (__result.kindDef.race != YautjaDefOf.RRY_Alien_Yautja && __result.RaceProps.Humanlike && (__result.story.hairDef == YautjaDefOf.RRY_Yaujta_Dreds || __result.story.hairDef == YautjaDefOf.RRY_Yaujta_Ponytail || __result.story.hairDef == YautjaDefOf.RRY_Yaujta_Bald))
             {
-            //    Log.Message(string.Format("Non Yautja with Yautja Hair"));
-                __result.story.hairDef = DefDatabase<HairDef>.GetRandom();
+                Log.Message(string.Format("Non Yautja with Yautja Hair"));
+                __result.story.hairDef = DefDatabase<HairDef>.AllDefsListForReading.FindAll(x=>!x.hairTags.Contains("Yautja")).RandomElement();
             }
             if (Rand.Chance(0.005f)&&XenomorphUtil.isInfectablePawn(__result))
             {
