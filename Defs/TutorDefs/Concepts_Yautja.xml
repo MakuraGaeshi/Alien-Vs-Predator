@@ -23,7 +23,7 @@
   
   <ConceptDef>
     <defName>RRY_Concept_Gauntlet</defName>
-    <label>AvP: Guantlet</label>
+    <label>AvP: Gauntlet</label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
     <highlightTags>
@@ -34,7 +34,7 @@
   
   <ConceptDef>
     <defName>RRY_Concept_Wistblade</defName>
-    <label>AvP: Guantlet - Wristblade</label>
+    <label>AvP: Gauntlet - Wristblade</label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
     <highlightTags>
@@ -45,7 +45,7 @@
   
   <ConceptDef>
     <defName>RRY_Concept_SelfDestruct</defName>
-    <label>AvP: Guantlet - Self Destruct</label>
+    <label>AvP: Gauntlet - Self Destruct</label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
     <highlightTags>
@@ -56,7 +56,7 @@
   
   <ConceptDef>
     <defName>RRY_Concept_MediComp</defName>
-    <label>AvP: Guantlet - MediComp</label>
+    <label>AvP: Gauntlet - MediComp</label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
     <highlightTags>
@@ -67,7 +67,7 @@
   
   <ConceptDef>
     <defName>RRY_Concept_ShardInjector</defName>
-    <label>AvP: Guantlet - Health Shards</label>
+    <label>AvP: Gauntlet - Health Shards</label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
     <highlightTags>
@@ -78,7 +78,7 @@
   
   <ConceptDef>
     <defName>RRY_Concept_Cloak</defName>
-    <label>AvP: Guantlet - Cloaking Device</label>
+    <label>AvP: Gauntlet - Cloaking Device</label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
     <highlightTags>
