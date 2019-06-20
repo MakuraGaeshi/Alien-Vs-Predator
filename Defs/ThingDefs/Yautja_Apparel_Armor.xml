@@ -580,11 +580,11 @@
 			<MarketValue>500</MarketValue>
 			<MaxHitPoints>150</MaxHitPoints>
 			<WorkToMake>35000</WorkToMake>
-			<ArmorRating_Sharp>0.20</ArmorRating_Sharp>
-			<ArmorRating_Blunt>0.36</ArmorRating_Blunt>
-			<ArmorRating_Heat>0.27</ArmorRating_Heat>
-			<Insulation_Heat>3</Insulation_Heat>
-			<Insulation_Cold>5</Insulation_Cold>
+			<ArmorRating_Sharp>1.2</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.85</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.9</ArmorRating_Heat>
+			<Insulation_Heat>7</Insulation_Heat>
+			<Insulation_Cold>7</Insulation_Cold>
 		</statBases>
 		<equippedStatOffsets>
 			<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>

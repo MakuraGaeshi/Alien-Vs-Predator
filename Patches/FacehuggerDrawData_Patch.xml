@@ -12,8 +12,10 @@
 				<xpath>/Defs/ThingDef[defName = "Megasloth"]</xpath>
 				<value>
 				<modExtensions>
-				  <li Class="RRYautja.FacehuggerOffsetDefExtension">
-				  <!-- adds the vanillia head offset for the current rotation, not sure if this will ever be useful, defaults to false if not set--> 
+				  <li Class="RRYautja.OffsetDefExtension">
+				    <!-- DefName of the hediff this applies to --> 
+					<hediff>RRY_FaceHuggerInfection</hediff>
+					<!-- adds the vanillia head offset for the current rotation, not sure if this will ever be useful, defaults to false if not set--> 
 					<ApplyBaseHeadOffset>false</ApplyBaseHeadOffset>
 					<!-- North offsets Y is the layer height, usually you can leave this at 0, all values default to 0 if not set-->
 					<NorthXOffset>0.0</NorthXOffset>

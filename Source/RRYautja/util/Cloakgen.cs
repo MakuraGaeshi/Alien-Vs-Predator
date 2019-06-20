@@ -326,31 +326,6 @@ namespace RRYautja
         {
             base.Tick();
 
-            if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.RRY_Concept_Gauntlet) && Wearer.IsColonist)
-            {
-                LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.RRY_Concept_Gauntlet, OpportunityType.GoodToKnow);
-            }
-            if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.RRY_Concept_Wistblade) && Wearer.IsColonist)
-            {
-                LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.RRY_Concept_Wistblade, OpportunityType.GoodToKnow);
-            }
-            if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.RRY_Concept_SelfDestruct) && (Wearer.IsColonist || Wearer.IsPrisoner))
-            {
-                LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.RRY_Concept_SelfDestruct, OpportunityType.GoodToKnow);
-            }
-            if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.RRY_Concept_MediComp) && Wearer.IsColonist && YautjaDefOf.RRY_YautjaMediComp.IsFinished)
-            {
-                LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.RRY_Concept_MediComp, OpportunityType.GoodToKnow);
-            }
-            if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.RRY_Concept_ShardInjector) && Wearer.IsColonist && YautjaDefOf.RRY_YautjaHealthShard.IsFinished)
-            {
-                LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.RRY_Concept_ShardInjector, OpportunityType.GoodToKnow);
-            }
-            if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.RRY_Concept_Cloak) && Wearer.IsColonist && YautjaDefOf.RRY_YautjaCloakGenerator.IsFinished)
-            {
-                LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.RRY_Concept_Cloak, OpportunityType.GoodToKnow);
-            }
-
             if (this.cloakIsOn || Find.TickManager.TicksGame >= this.nextUpdateTick)
             {
                 this.nextUpdateTick = Find.TickManager.TicksGame + 60;
@@ -360,6 +335,33 @@ namespace RRYautja
             {
                 this.energy = 0f;
                 return;
+            }
+            else if (Wearer.Faction == Faction.OfPlayer)
+            {
+                if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.RRY_Concept_Gauntlet) && Wearer.IsColonist)
+                {
+                    LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.RRY_Concept_Gauntlet, OpportunityType.GoodToKnow);
+                }
+                if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.RRY_Concept_Wistblade) && Wearer.IsColonist)
+                {
+                    LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.RRY_Concept_Wistblade, OpportunityType.GoodToKnow);
+                }
+                if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.RRY_Concept_SelfDestruct) && (Wearer.IsColonist || Wearer.IsPrisoner))
+                {
+                    LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.RRY_Concept_SelfDestruct, OpportunityType.GoodToKnow);
+                }
+                if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.RRY_Concept_MediComp) && Wearer.IsColonist && YautjaDefOf.RRY_YautjaMediComp.IsFinished)
+                {
+                    LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.RRY_Concept_MediComp, OpportunityType.GoodToKnow);
+                }
+                if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.RRY_Concept_ShardInjector) && Wearer.IsColonist && YautjaDefOf.RRY_YautjaHealthShard.IsFinished)
+                {
+                    LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.RRY_Concept_ShardInjector, OpportunityType.GoodToKnow);
+                }
+                if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.RRY_Concept_Cloak) && Wearer.IsColonist && YautjaDefOf.RRY_YautjaCloakGenerator.IsFinished)
+                {
+                    LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.RRY_Concept_Cloak, OpportunityType.GoodToKnow);
+                }
             }
             if (this.cloakState == Cloakgen.CloakState.Resetting)
             {

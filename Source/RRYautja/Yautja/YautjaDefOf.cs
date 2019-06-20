@@ -60,8 +60,8 @@ namespace RimWorld
         public static PawnsArrivalModeDef EdgeWalkInGroups;
 
         // Yautja ThoughtDefs
-        public static ThoughtDef RRY_Thought_UnBlooded;
-        public static ThoughtDef RRY_Thought_BloodedUM;
+        //    public static ThoughtDef RRY_Thought_UnBlooded;
+        //    public static ThoughtDef RRY_Thought_BloodedUM;
         public static ThoughtDef RRY_Thought_BloodedM;
 
         // Yautja ThoughtDefs Thought_SituationalSocial
@@ -79,8 +79,9 @@ namespace RimWorld
         public static HairDef RRY_Yaujta_Ponytail;
         public static HairDef RRY_Yaujta_Bald;
 
-        // Yautja JobDefs
+        // Yautja JobDefs 
         public static JobDef RRY_Yautja_MarkSelf;
+        public static JobDef RRY_Yautja_MarkOther;
         public static JobDef RRY_Yautja_TakeTrophy;
         public static JobDef RRY_Yautja_RearmTrapJob;
         public static JobDef RRY_Yautja_TendSelf;

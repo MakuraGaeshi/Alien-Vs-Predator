@@ -67,7 +67,7 @@
     </statBases>
     <race>
       <herdAnimal>false</herdAnimal>
-      <predator>true</predator>
+      <predator>false</predator>
       <maxPreyBodySize>3.0</maxPreyBodySize>
       <baseBodySize>1.5</baseBodySize>
       <baseHungerRate>0.0</baseHungerRate>
@@ -76,7 +76,7 @@
       <bloodDef>RRY_FilthBloodXenomorph</bloodDef>	
       <needsRest>false</needsRest>
       <hasGenders>false</hasGenders>
-      <foodType>CarnivoreAnimalStrict</foodType>
+      <foodType>Corpse</foodType>
       <leatherDef>RRY_Leather_Xenomorph</leatherDef>
       <lifeExpectancy>2500</lifeExpectancy>
       <hediffGiverSets>
@@ -126,6 +126,7 @@
       </li>
     </tools>
     <race>
+      <foodType>CarnivoreAnimalStrict</foodType>
       <meatLabel>xenomorph flesh</meatLabel>
       <maxPreyBodySize>30</maxPreyBodySize>
       <intelligence>ToolUser</intelligence>
@@ -139,7 +140,7 @@
           <minAge>0</minAge>
           <soundWounded>RRY_Pawn_Xenomorph_Queen_Wounded</soundWounded>
           <soundDeath>RRY_Pawn_Xenomorph_Queen_Death</soundDeath>
-          <soundCall>RRY_Pawn_Xenomorph_Queen_Calls</soundCall>
+          <soundCall>RRY_Pawn_Xenomorph_Queen_Call</soundCall>
         </li>
       </lifeStageAges>
       <soundCallIntervalRange>
@@ -603,7 +604,7 @@
         <cooldownTime>2</cooldownTime>
         <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
         <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-        <chanceFactor>0.2</chanceFactor>
+        <chanceFactor>0.5</chanceFactor>
       </li>
       <li>
         <label>tail</label>
@@ -1011,7 +1012,7 @@
       </li>
     </tools>
     <race>
-      <body>RRY_Xenomorph_Biped</body>
+      <body>RRY_Xenomorph_Quadruped</body>
 	  <useMeatFrom>RRY_Xenomorph_FaceHugger</useMeatFrom>
       <baseBodySize>1.4</baseBodySize>
       <baseHealthScale>1.32</baseHealthScale>
@@ -1491,5 +1492,260 @@
     </weaponTags>
   </PawnKindDef>
   
+
+  <!-- Thrumbomorph -->
+  <ThingDef ParentName="RRY_BaseXenomorph">
+    <defName>RRY_Xenomorph_Thrumbomorph</defName>
+    <label>Thrumbomorph</label>
+    <description>Thrumbomorph Xenomorphs are significantly larger and stronger than the normal adults, being over 5 metres tall. Their body structure differs also, having no arms, although its large limbs many manipulate objects. The thrumbomorphs's head is larger than those of other adult Xenomorphs and is adorned by a large, flat blade, which is an inherited feature from its host./n/nThis thing is a total monstrosity and can easily dismantle a battle tank, do not engage lightly.</description>
+    <statBases>
+      <MoveSpeed>5.5</MoveSpeed>
+      <ArmorRating_Blunt>0.50</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+      <MeatAmount>115</MeatAmount>
+      <LeatherAmount>90</LeatherAmount>
+    </statBases>
+    <tools>
+      <li>
+        <label>horn</label>
+        <capacities>
+          <li>Scratch</li>
+          <li>Stab</li>
+        </capacities>
+        <power>23</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
+      </li>
+      <li>
+        <label>left claw</label>
+        <capacities>
+          <li>Blunt</li>
+          <li>Cut</li>
+        </capacities>
+        <power>15</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>RRY_Xeno_LeftHand</linkedBodyPartsGroup>
+        <surpriseAttack>
+          <extraMeleeDamages>
+            <li>
+              <def>Stun</def>
+              <amount>15</amount>
+            </li>
+          </extraMeleeDamages>
+        </surpriseAttack>
+      </li>
+      <li>
+        <label>right claw</label>
+        <capacities>
+          <li>Blunt</li>
+          <li>Cut</li>
+        </capacities>
+        <power>15</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>RRY_Xeno_RightHand</linkedBodyPartsGroup>
+        <surpriseAttack>
+          <extraMeleeDamages>
+            <li>
+              <def>Stun</def>
+              <amount>15</amount>
+            </li>
+          </extraMeleeDamages>
+        </surpriseAttack>
+      </li>
+      <li>
+        <label>teeth</label>
+        <capacities>
+          <li>Bite</li>
+        </capacities>
+        <power>25</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+        <chanceFactor>0.07</chanceFactor>
+      </li>
+      <li>
+        <label>inner teeth</label>
+        <capacities>
+          <li>Bite</li>
+        </capacities>
+        <power>30</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+        <chanceFactor>0.07</chanceFactor>
+      </li>
+      <li>
+        <label>head</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>15</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+        <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+        <chanceFactor>0.2</chanceFactor>
+      </li>
+      <li>
+        <label>tail</label>
+        <capacities>
+          <li>Blunt</li>
+          <li>RRY_TailWhip</li>
+        </capacities>
+        <power>10</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>RRY_Xeno_Tail_AttackTool</linkedBodyPartsGroup>
+        <chanceFactor>0.2</chanceFactor>
+      </li>
+      <li>
+        <label>tail spike</label>
+        <capacities>
+          <li>Stab</li>
+          <li>Cut</li>
+        </capacities>
+        <power>40</power>
+        <cooldownTime>2.5</cooldownTime>
+        <linkedBodyPartsGroup>RRY_Xeno_Tail_SpikeAttackTool</linkedBodyPartsGroup>
+        <chanceFactor>0.2</chanceFactor>
+      </li>
+    </tools>
+    <race>
+      <intelligence>ToolUser</intelligence>
+      <thinkTreeMain>RRY_Xenommorph</thinkTreeMain>
+      <body>RRY_Xenomorph_QuadrupedWithHorn</body>
+	  <useMeatFrom>RRY_Xenomorph_FaceHugger</useMeatFrom>
+      <baseBodySize>4</baseBodySize>
+      <baseHealthScale>8.0</baseHealthScale>
+      <lifeStageAges>
+        <li>
+          <def>RRY_XenomorphChestBursterBaby</def>
+          <minAge>0</minAge>
+          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
+        </li>
+        <li>
+          <def>RRY_XenomorphChestBursterBig</def>
+          <minAge>0.0041666666666666</minAge>
+          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
+        </li>
+        <li>
+          <def>RRY_XenomorphFormedBaby</def>
+          <minAge>0.0083333333333332</minAge>
+          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
+        </li>
+        <li>
+          <def>RRY_XenomorphFormedMid</def>
+          <minAge>0.0124999999999998</minAge>
+          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
+        </li>
+        <li>
+          <def>RRY_XenomorphFullyFormed</def>
+          <minAge>0.0166666666666667</minAge>
+          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
+        </li>
+      </lifeStageAges>
+      <soundCallIntervalRange>
+        <min>1000</min>
+        <max>2000</max>
+      </soundCallIntervalRange>
+      <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
+      <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
+      <soundMeleeMiss>Pawn_Melee_Punch_Miss</soundMeleeMiss>
+    </race>
+    <comps> 
+      <li>
+        <compClass>RRYautja.Comp_Xenomorph</compClass>
+      </li>
+	  
+	<!--
+      <li Class="RRYautja.CompProperties_XenoEggLayer">
+        <eggDef>RRY_EggXenomorphFertilized</eggDef>
+        <eggCountMax>1</eggCountMax>
+        <eggLayIntervalDays>0.1</eggLayIntervalDays>
+        <eggCountRange>1</eggCountRange>
+      </li> 
+	  -->
+    </comps>
+	<!--
+    <butcherProducts>
+      <Steel>50</Steel>
+      <Plasteel>10</Plasteel>
+      <ComponentIndustrial>2</ComponentIndustrial>
+    </butcherProducts>
+	-->
+  </ThingDef>
+
+  <PawnKindDef ParentName="RRY_BaseXenomorphKind">
+    <defName>RRY_Xenomorph_Thrumbomorph</defName>
+    <label>Thrumbomorph</label>
+    <race>RRY_Xenomorph_Thrumbomorph</race>
+    <combatPower>850</combatPower>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>0.5</drawSize>
+          <shadowData>
+            <volume><!--(0.6, 0.8, 0.6)-->(0.0, 0.0, 0.0)</volume>
+          </shadowData>
+          <shaderType>CutoutComplex</shaderType>
+        </bodyGraphicData>
+      </li>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>0.75</drawSize>
+          <shadowData>
+            <volume><!--(0.6, 0.8, 0.6)-->(0.0, 0.0, 0.0)</volume>
+          </shadowData>
+        </bodyGraphicData>
+      </li>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Pawn/Xenomorph/Xenomorph_Thrumbomorph</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>2</drawSize>
+          <shadowData>
+            <volume>(0.6, 0.8, 0.6)</volume>
+          </shadowData>
+        </bodyGraphicData>
+      </li>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Pawn/Xenomorph/Xenomorph_Thrumbomorph</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>3</drawSize>
+          <shadowData>
+            <volume>(0.6, 0.8, 0.6)</volume>
+          </shadowData>
+        </bodyGraphicData>
+      </li>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Pawn/Xenomorph/Xenomorph_Thrumbomorph</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>4</drawSize>
+          <shadowData>
+            <volume>(0.6, 0.8, 0.6)</volume>
+          </shadowData>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    <weaponMoney>
+      <min>0</min>
+      <max>0</max>
+    </weaponMoney>
+    <weaponTags>
+	
+    </weaponTags>
+  </PawnKindDef>
 
 </Defs>

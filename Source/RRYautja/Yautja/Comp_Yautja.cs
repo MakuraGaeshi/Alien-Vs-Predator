@@ -1,10 +1,12 @@
-﻿using RimWorld;
+﻿using AlienRace;
+using RimWorld;
 using RRYautja;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Verse;
+using Verse.AI;
 
 namespace RRYautja
 {
@@ -34,25 +36,10 @@ namespace RRYautja
             }
         }
 
-        public BodyPartRecord partRecord
-        {
-            get
-            {
-                foreach (var part in ((Pawn)parent).RaceProps.body.AllParts.Where(x => x.def.defName == "Head"))
-                {
-                    return part;
-                }
-                return null;
-            }
-        }
-
-        public Pawn Pawn
-        {
-            get
-            {
-                return (Pawn)parent;
-            }
-        }
+        AlienRace.BackstoryDef bsDefUnblooded = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_YoungBlood");
+        AlienRace.BackstoryDef bsDefBlooded = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_Blooded");
+        AlienRace.BackstoryDef bsDefBadbloodA = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_BadBloodA");
+        AlienRace.BackstoryDef bsDefBadblooBd = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_BadBloodB");
 
         public Pawn pawn;
         public Pawn other;
@@ -74,11 +61,36 @@ namespace RRYautja
         public bool TurretIsOn;
         public bool predator;
         public bool blooded;
+        public bool inducted;
+        public bool inductable;
 
-        AlienRace.BackstoryDef bsDefUnblooded = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_YoungBlood");
-        AlienRace.BackstoryDef bsDefBlooded = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_Blooded");
-        AlienRace.BackstoryDef bsDefBadbloodA = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_BadBloodA");
-        AlienRace.BackstoryDef bsDefBadblooBd = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_BadBloodB");
+        public BodyPartRecord partRecord
+        {
+            get
+            {
+                foreach (var part in ((Pawn)parent).RaceProps.body.AllParts.Where(x => x.def.defName == "Head"))
+                {
+                    return part;
+                }
+                return null;
+            }
+        }
+
+        public Pawn Pawn
+        {
+            get
+            {
+                return (Pawn)parent;
+            }
+        }
+
+        public bool alienRace
+        {
+            get
+            {
+                return Pawn.def is ThingDef_AlienRace;
+            }
+        }
         
         public override void PostExposeData()
         {
@@ -86,7 +98,6 @@ namespace RRYautja
             Scribe_Values.Look<int>(ref this.TotalkillsRecord, "TotalkillsRecord");
             Scribe_Values.Look<int>(ref this.pawnKills, "pawnKills");
             Scribe_Deep.Look<Hediff>(ref this.unmarked, "bloodedUnmarked");
-
             Scribe_Defs.Look<HediffDef>(ref this.MarkedhediffDef, "MarkedhediffDef");
             Scribe_References.Look<Corpse>(ref this.corpse, "corpseRef", true);
             Scribe_References.Look<Pawn>(ref this.pawn, "pawnRef", true);
@@ -97,12 +108,14 @@ namespace RRYautja
             Scribe_Values.Look<float>(ref this.BodySize, "thisBodySize");
             Scribe_Values.Look<bool>(ref this.TurretIsOn, "thisTurretIsOn");
             Scribe_Values.Look<bool>(ref this.blooded, "thisblooded");
+            Scribe_Values.Look<bool>(ref this.inducted, "inducted");
+            Scribe_Values.Look<bool>(ref this.inductable, "inductable");
         }
 
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
-            if ((Pawn.story.hairDef != YautjaDefOf.RRY_Yaujta_Dreds && Pawn.story.hairDef != YautjaDefOf.RRY_Yaujta_Ponytail && Pawn.story.hairDef != YautjaDefOf.RRY_Yaujta_Bald))
+            if (Pawn.kindDef.race == YautjaDefOf.RRY_Alien_Yautja&&(Pawn.story.hairDef != YautjaDefOf.RRY_Yaujta_Dreds && Pawn.story.hairDef != YautjaDefOf.RRY_Yaujta_Ponytail && Pawn.story.hairDef != YautjaDefOf.RRY_Yaujta_Bald))
             {
                 Pawn.story.hairDef = Rand.Chance(0.5f) ? YautjaDefOf.RRY_Yaujta_Dreds : YautjaDefOf.RRY_Yaujta_Ponytail;
             }
@@ -111,6 +124,14 @@ namespace RRYautja
         public override void CompTick()
         {
             base.CompTick();
+            if (inducted != true)
+            {
+                inducted = false;
+            }
+            if (inductable != true)
+            {
+                inductable = false;
+            }
             if (base.parent.IsHashIntervalTick(30) && base.parent != null && base.parent is Pawn pawn && pawn.Map !=null)
             {
                 bool selected = Find.Selector.SelectedObjects.Contains(Pawn);
@@ -124,8 +145,16 @@ namespace RRYautja
 
                     }
                 }
-                if (Pawn.records.GetAsInt(RecordDefOf.Kills) > TotalkillsRecord)
+                if (Pawn.records.GetAsInt(RecordDefOf.Kills) > TotalkillsRecord || (!inducted && inductable) || (inducted && inductable))
                 {
+                    if (Pawn.records.GetAsInt(RecordDefOf.Kills) > TotalkillsRecord && Pawn.kindDef.race == YautjaDefOf.RRY_Alien_Yautja)
+                    {
+                        pawn.needs.mood.thoughts.memories.Memories.Add(new Thought_Memory()
+                        {
+                            def = YautjaDefOf.RRY_Thought_ThrillOfTheHunt
+                        });
+                    }
+                //    Log.Message(string.Format("kill incread: {0}\n!inducted: {1} && inductable: {2}", Pawn.records.GetAsInt(RecordDefOf.Kills) > TotalkillsRecord, !inducted, inductable));
                     pawnKills = Pawn.records.GetAsInt(RecordDefOf.Kills);
                     if (Pawn.LastAttackedTarget != null && (Pawn.LastAttackedTarget.Thing is Pawn other && !Pawn.Dead))
                     {
@@ -135,54 +164,59 @@ namespace RRYautja
                         float mdps = other.GetStatValue(StatDefOf.MeleeDPS);
                         float mhc = other.GetStatValue(StatDefOf.MeleeHitChance);
                         float mdc = other.GetStatValue(StatDefOf.MeleeDodgeChance);
-                        if (other.kindDef.race == XenomorphRacesDefOf.RRY_Xenomorph_Queen && other.Dead)
+
+                        markedDef = YautjaBloodedUtility.GetMark(other.kindDef);
+                        if (markedDef == null)
                         {
-                            markedDef = YautjaDefOf.RRY_Hediff_BloodedMXenomorphQueen;
-                        }
-                        else if (other.kindDef.race == XenomorphRacesDefOf.RRY_Xenomorph_Drone || other.kindDef.race == XenomorphRacesDefOf.RRY_Xenomorph_Runner || other.kindDef.race == XenomorphRacesDefOf.RRY_Xenomorph_Warrior || other.kindDef.race == XenomorphRacesDefOf.RRY_Xenomorph_Neomorph && other.Dead)
-                        {
-                            markedDef = YautjaDefOf.RRY_Hediff_BloodedMXenomorph;
-                        }
-                        else if (other.kindDef.race == ThingDefOf.Thrumbo && other.Dead)
-                        {
-                            markedDef = YautjaDefOf.RRY_Hediff_BloodedMXenomorph;
-                        }
-                        else if (other.kindDef.race == XenomorphRacesDefOf.RRY_Xenomorph_Predalien && other.Dead)
-                        {
-                            markedDef = YautjaDefOf.RRY_Hediff_BloodedMPredalien;
-                        }
-                        else if (other.kindDef.race == YautjaDefOf.RRY_Alien_Yautja && other.story.adulthood.identifier.StartsWith("Yautja_BadBlood") && other.Dead)
-                        {
-                            markedDef = YautjaDefOf.RRY_Hediff_BloodedMBadBlood;
-                        }
-                        else if (other.kindDef.race == ThingDefOf.Human && !other.kindDef.factionLeader && other.Dead)
-                        {
-                            markedDef = YautjaDefOf.RRY_Hediff_BloodedMHuman;
-                        }
-                        else if (other.kindDef.race == ThingDefOf.Human && (other.kindDef.factionLeader || (other.kindDef.isFighter && other.kindDef.combatPower > (100-(omelee + oshoot)))) && other.Dead)
-                        {
-                            markedDef = YautjaDefOf.RRY_Hediff_BloodedMWorthyHuman;
-                        }
-                        else if (other.kindDef.race != ThingDefOf.Human && !other.kindDef.factionLeader && other.RaceProps.Humanlike && other.Dead)
-                        {
-                            markedDef = YautjaDefOf.RRY_Hediff_BloodedMHumanlike;
-                        }
-                        else if (other.kindDef.race != ThingDefOf.Human && (other.kindDef.factionLeader || (other.kindDef.isFighter && other.kindDef.combatPower > (100 - (omelee + oshoot)))) && other.RaceProps.Humanlike && other.Dead)
-                        {
-                            markedDef = YautjaDefOf.RRY_Hediff_BloodedMWorthyHumanlike;
-                        }
-                        else if (other.kindDef.race == YautjaDefOf.RRY_Alien_Yautja && !other.story.adulthood.identifier.StartsWith("Yautja_BadBlood") && other.Dead && (other.Faction.PlayerGoodwill > 0 || other.Faction.IsPlayer))
-                        {
-                            markedDef = YautjaDefOf.RRY_Hediff_BloodedMBadBlood;
-                        }
-                        else if (!other.kindDef.race.defName.StartsWith("RRY_Xenomorph_") && !other.RaceProps.Humanlike && other.Dead && (other.kindDef.combatPower>100 || (other.kindDef.RaceProps.predator == true && other.kindDef.combatPower > 50)))
-                        {
-                            markedDef = YautjaDefOf.RRY_Hediff_BloodedM;
-                        }
-                        else
-                        {
-                            TotalkillsRecord = Pawn.records.GetAsInt(RecordDefOf.Kills);
-                            return;
+                            if (other.kindDef.race == XenomorphRacesDefOf.RRY_Xenomorph_Queen && other.Dead)
+                            {
+                                markedDef = YautjaDefOf.RRY_Hediff_BloodedMXenomorphQueen;
+                            }
+                            else if (other.kindDef.race == XenomorphRacesDefOf.RRY_Xenomorph_Drone || other.kindDef.race == XenomorphRacesDefOf.RRY_Xenomorph_Runner || other.kindDef.race == XenomorphRacesDefOf.RRY_Xenomorph_Warrior || other.kindDef.race == XenomorphRacesDefOf.RRY_Xenomorph_Neomorph && other.Dead)
+                            {
+                                markedDef = YautjaDefOf.RRY_Hediff_BloodedMXenomorph;
+                            }
+                            else if (other.kindDef.race == ThingDefOf.Thrumbo && other.Dead)
+                            {
+                                markedDef = YautjaDefOf.RRY_Hediff_BloodedMXenomorph;
+                            }
+                            else if (other.kindDef.race == XenomorphRacesDefOf.RRY_Xenomorph_Predalien && other.Dead)
+                            {
+                                markedDef = YautjaDefOf.RRY_Hediff_BloodedMPredalien;
+                            }
+                            else if (other.kindDef.race == YautjaDefOf.RRY_Alien_Yautja && other.story.adulthood.identifier.StartsWith("Yautja_BadBlood") && other.Dead)
+                            {
+                                markedDef = YautjaDefOf.RRY_Hediff_BloodedMBadBlood;
+                            }
+                            else if (other.kindDef.race == ThingDefOf.Human && !other.kindDef.factionLeader && other.Dead)
+                            {
+                                markedDef = YautjaDefOf.RRY_Hediff_BloodedMHuman;
+                            }
+                            else if (other.kindDef.race == ThingDefOf.Human && (other.kindDef.factionLeader || (other.kindDef.isFighter && other.kindDef.combatPower > (100 - (omelee + oshoot)))) && other.Dead)
+                            {
+                                markedDef = YautjaDefOf.RRY_Hediff_BloodedMWorthyHuman;
+                            }
+                            else if (other.kindDef.race != ThingDefOf.Human && !other.kindDef.factionLeader && other.RaceProps.Humanlike && other.Dead)
+                            {
+                                markedDef = YautjaDefOf.RRY_Hediff_BloodedMHumanlike;
+                            }
+                            else if (other.kindDef.race != ThingDefOf.Human && (other.kindDef.factionLeader || (other.kindDef.isFighter && other.kindDef.combatPower > (100 - (omelee + oshoot)))) && other.RaceProps.Humanlike && other.Dead)
+                            {
+                                markedDef = YautjaDefOf.RRY_Hediff_BloodedMWorthyHumanlike;
+                            }
+                            else if (other.kindDef.race == YautjaDefOf.RRY_Alien_Yautja && !other.story.adulthood.identifier.StartsWith("Yautja_BadBlood") && other.Dead && (other.Faction.PlayerGoodwill > 0 || other.Faction.IsPlayer))
+                            {
+                                markedDef = YautjaDefOf.RRY_Hediff_BloodedMBadBlood;
+                            }
+                            else if (!other.kindDef.race.defName.StartsWith("RRY_Xenomorph_") && !other.RaceProps.Humanlike && other.Dead && (other.kindDef.combatPower > 100 || (other.kindDef.RaceProps.predator == true && other.kindDef.combatPower > 50)))
+                            {
+                                markedDef = YautjaDefOf.RRY_Hediff_BloodedM;
+                            }
+                            else
+                            {
+                                TotalkillsRecord = Pawn.records.GetAsInt(RecordDefOf.Kills);
+                                return;
+                            }
                         }
                         if (markedDef == null)
                         {
@@ -191,20 +225,6 @@ namespace RRYautja
                         if (Pawn.health.hediffSet.HasHediff(unbloodedDef))
                         {
                             Hediff unblooded = Pawn.health.hediffSet.GetFirstHediffOfDef(this.unbloodedDef);
-                            Pawn.health.hediffSet.hediffs.Remove(unblooded);
-#if DEBUG
-                        //    if (selected) Log.Message("store info");
-                            if (selected) Log.Message(string.Format(
-                                "{6} is storing other:{0}, corpse:{1}, MarkedhediffDef:{2}, predator:{3}, BodySize:{4}, combatPower:{5}",
-                            other.Label,
-                            otherCorpse.Label,
-                            markedDef,
-                            other.kindDef.RaceProps.predator,
-                            other.BodySize,
-                            other.kindDef.combatPower,
-                            Pawn.Name.ToStringShort
-                            ));
-#endif
                             this.pawn = other;
                             this.corpse = otherCorpse;
                             this.MarkedhediffDef = markedDef;
@@ -212,32 +232,25 @@ namespace RRYautja
                             this.predator = other.kindDef.RaceProps.predator;
                             this.BodySize = other.BodySize;
                             this.combatPower = other.kindDef.combatPower;
-                            Pawn.health.AddHediff(HediffMaker.MakeHediff(YautjaDefOf.RRY_Hediff_BloodedUM, Pawn, partRecord), partRecord, null);
-                            HediffWithComps blooded = (HediffWithComps)Pawn.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_BloodedUM);
-                            blooded.source = Pawn.LastAttackedTarget.Thing.def;
-                            blooded.comps[0].props = new HediffCompProperties_BloodedYautja
+                            if (!inducted&&!inductable) this.inductable = true;
+                            if (inducted || Pawn.kindDef.race == YautjaDefOf.RRY_Alien_Yautja)
                             {
-                                pawn = other,
-                                corpse = otherCorpse,
-                                MarkedhediffDef = markedDef,
-                                predator = other.kindDef.RaceProps.predator,
-                                BodySize = other.BodySize,
-                                combatPower = other.kindDef.combatPower
-                            };
-                            HediffComp_BloodedYautja bloodedYautja = blooded.TryGetComp<HediffComp_BloodedYautja>();
-#if DEBUG
-                        //    if (selected) Log.Message("info Stored");
-                            if (selected) Log.Message(string.Format(
-                                "{6} stored other:{0}, corpse:{1}, MarkedhediffDef:{2}, predator:{3}, BodySize:{4}, combatPower:{5}",
-                            bloodedYautja.HediffProps.pawn,
-                            bloodedYautja.HediffProps.corpse,
-                            bloodedYautja.HediffProps.MarkedhediffDef,
-                            bloodedYautja.HediffProps.predator,
-                            bloodedYautja.HediffProps.BodySize,
-                            bloodedYautja.HediffProps.combatPower,
-                            Pawn.Name.ToStringShort
-                            ));
-#endif
+                                inductable = false;
+                                Pawn.health.hediffSet.hediffs.Remove(unblooded);
+                                Pawn.health.AddHediff(HediffMaker.MakeHediff(YautjaDefOf.RRY_Hediff_BloodedUM, Pawn, partRecord), partRecord, null);
+                                HediffWithComps blooded = (HediffWithComps)Pawn.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_BloodedUM);
+                                blooded.source = Pawn.LastAttackedTarget.Thing.def;
+                                blooded.comps[0].props = new HediffCompProperties_BloodedYautja
+                                {
+                                    pawn = other,
+                                    corpse = otherCorpse,
+                                    MarkedhediffDef = markedDef,
+                                    predator = other.kindDef.RaceProps.predator,
+                                    BodySize = other.BodySize,
+                                    combatPower = other.kindDef.combatPower
+                                };
+                                HediffComp_BloodedYautja bloodedYautja = blooded.TryGetComp<HediffComp_BloodedYautja>();
+                            }
                         }
                         else if (Pawn.health.hediffSet.HasHediff(unmarkedDef))
                         {
@@ -245,19 +258,6 @@ namespace RRYautja
                             {
                                 Hediff oldunmarked = Pawn.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_BloodedUM);
                                 Pawn.health.hediffSet.hediffs.Remove(oldunmarked);
-#if DEBUG
-                            //    if (selected) Log.Message("store new info");
-                                if (selected) Log.Message(string.Format(
-                                    "{6} is storing other:{0}, corpse:{1}, MarkedhediffDef:{2}, predator:{3}, BodySize:{4}, combatPower:{5}",
-                                other.Label,
-                                otherCorpse.Label,
-                                markedDef,
-                                other.kindDef.RaceProps.predator,
-                                other.BodySize,
-                                other.kindDef.combatPower,
-                                Pawn.Name.ToStringShort
-                                ));
-#endif
                                 this.pawn = other;
                                 this.corpse = otherCorpse;
                                 this.MarkedhediffDef = markedDef;
@@ -278,19 +278,6 @@ namespace RRYautja
                                     combatPower = other.kindDef.combatPower
                                 };
                                 HediffComp_BloodedYautja bloodedYautja = blooded.TryGetComp<HediffComp_BloodedYautja>();
-#if DEBUG
-                            //    if (selected) Log.Message("info Stored");
-                                if (selected) Log.Message(string.Format(
-                                    "{6} stored other:{0}, corpse:{1}, MarkedhediffDef:{2}, predator:{3}, BodySize:{4}, combatPower:{5}",
-                                bloodedYautja.HediffProps.pawn,
-                                bloodedYautja.HediffProps.corpse,
-                                bloodedYautja.HediffProps.MarkedhediffDef,
-                                bloodedYautja.HediffProps.predator,
-                                bloodedYautja.HediffProps.BodySize,
-                                bloodedYautja.HediffProps.combatPower,
-                                Pawn.Name.ToStringShort
-                                ));
-#endif
                             }
                         }
                         else
@@ -305,19 +292,6 @@ namespace RRYautja
                                         if (this.combatPower <= other.kindDef.combatPower)
                                         {
                                             Hediff oldmarked = item;
-#if DEBUG
-                                        //    if (selected) Log.Message("store new info");
-                                            if (selected) Log.Message(string.Format(
-                                                "{6} is storing other:{0}, corpse:{1}, MarkedhediffDef:{2}, predator:{3}, BodySize:{4}, combatPower:{5}",
-                                            other.Label,
-                                            otherCorpse.Label,
-                                            markedDef,
-                                            other.kindDef.RaceProps.predator,
-                                            other.BodySize,
-                                            other.kindDef.combatPower,
-                                            Pawn.Name.ToStringShort
-                                            ));
-#endif
                                             this.pawn = other;
                                             this.corpse = otherCorpse;
                                             this.MarkedhediffDef = markedDef;
@@ -338,18 +312,6 @@ namespace RRYautja
                                                 combatPower = other.kindDef.combatPower
                                             };
                                             HediffComp_BloodedYautja bloodedYautja = blooded.TryGetComp<HediffComp_BloodedYautja>();
-#if DEBUG
-                                            if (selected) Log.Message(string.Format(
-                                                "{6} stored other:{0}, corpse:{1}, MarkedhediffDef:{2}, predator:{3}, BodySize:{4}, combatPower:{5}",
-                                            bloodedYautja.HediffProps.pawn,
-                                            bloodedYautja.HediffProps.corpse,
-                                            bloodedYautja.HediffProps.MarkedhediffDef,
-                                            bloodedYautja.HediffProps.predator,
-                                            bloodedYautja.HediffProps.BodySize,
-                                            bloodedYautja.HediffProps.combatPower,
-                                            Pawn.Name.ToStringShort
-                                            ));
-#endif
                                         }
                                         break;
                                     }
@@ -363,7 +325,53 @@ namespace RRYautja
             }
 
         }
-       
+
+        public JobDef useJob = YautjaDefOf.RRY_Yautja_MarkOther;
+        public string useLabel = "Use {1}'s {0} kill to mark them as an honourary Blooded";
+        // (get) Token: 0x06002942 RID: 10562 RVA: 0x001394F0 File Offset: 0x001378F0
+        protected string FloatMenuOptionLabel
+        {
+            get
+            {
+                return string.Format(useLabel,this.corpse.LabelShortCap, this.parent.LabelShortCap);
+            }
+        }
+
+        public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
+        {
+            if (selPawn.kindDef.race == YautjaDefOf.RRY_Alien_Yautja && Pawn.kindDef.race!=YautjaDefOf.RRY_Alien_Yautja && inductable)
+            {
+                FloatMenuOption useopt = new FloatMenuOption(this.FloatMenuOptionLabel, delegate ()
+                {
+                    if (selPawn.CanReserveAndReach(this.parent, PathEndMode.Touch, Danger.Deadly, 1, -1, null, false))
+                    {
+                        this.TryStartUseJob(selPawn);
+                    }
+                }, MenuOptionPriority.Default, null, null, 0f, null, null);
+                yield return useopt;
+            }
+            foreach (var item in base.CompFloatMenuOptions(selPawn))
+            {
+                yield return item;
+            }
+            yield break;
+        }
+
+        // Token: 0x06002A4B RID: 10827 RVA: 0x00138F78 File Offset: 0x00137378
+        public void TryStartUseJob(Pawn user)
+        {
+            if (!user.CanReserveAndReach(this.parent, PathEndMode.Touch, Danger.Deadly, 1, -1, null, false))
+            {
+                return;
+            }
+            if (!user.CanReserveAndReach(this.parent, PathEndMode.Touch, Danger.Deadly, 1, -1, null, false))
+            {
+                return;
+            }
+            Job job = new Job(this.useJob,this.corpse, this.parent);
+            user.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+        }
+
         public override void PostIngested(Pawn ingester)
         {
             base.PostIngested(ingester);

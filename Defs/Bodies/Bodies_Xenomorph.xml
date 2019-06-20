@@ -128,7 +128,7 @@
   <BodyDef>
     <defName>RRY_Xenomorph_Biped</defName>
 	<ignoreConfigErrors>true</ignoreConfigErrors>
-    <label>xenomorph</label>
+    <label>bipedal xenomorph</label>
     <corePart>
       <def>RRY_Xeno_Torso</def>
       <height>Middle</height>
@@ -266,7 +266,7 @@
               <parts>
                 <li>
                   <def>RRY_Xeno_Shell</def>
-                  <coverage>0.5</coverage>
+                  <coverage>0.34</coverage>
                   <groups>
                     <li>UpperHead</li>
                     <li>FullHead</li>
@@ -1863,7 +1863,7 @@
 <!-- ==== Runner ==== -->
   <BodyDef>
 		<defName>RRY_Xenomorph_Quadruped</defName>
-		<label>xenomorph</label>
+		<label>quadropedal xenomorph</label>
 		<corePart>
 			<def>RRY_Xeno_Body</def>
 			<height>Middle</height>
@@ -1944,7 +1944,7 @@
 							<parts>
 								<li>
 								  <def>RRY_Xeno_Shell</def>
-								  <coverage>0.50</coverage>
+								  <coverage>0.25</coverage>
 								  <groups>
 									<li>UpperHead</li>
 									<li>FullHead</li>
@@ -1965,22 +1965,26 @@
 								<li>
 									<def>RRY_Xeno_Eye</def>
 									<customLabel>left sensory organ</customLabel>
-									<coverage>0.05</coverage>
+									<coverage>0.07</coverage>
 								</li>
 								<li>
 									<def>RRY_Xeno_Eye</def>
 									<customLabel>right sensory organ</customLabel>
-									<coverage>0.05</coverage>
+									<coverage>0.07</coverage>
 								</li>
 								<li>
 									<def>RRY_Xeno_Ear</def>
 									<customLabel>left auditory sensor</customLabel>
-									<coverage>0.06</coverage>
+									<coverage>0.07</coverage>
 								</li>
 								<li>
 									<def>RRY_Xeno_Ear</def>
 									<customLabel>right auditory sensor</customLabel>
-									<coverage>0.06</coverage>
+									<coverage>0.07</coverage>
+								</li>
+								<li>
+									<def>RRY_Xeno_Nose</def>
+									<coverage>0.1</coverage>
 								</li>
 								<li>
 								<def>RRY_Xeno_Jaw</def>
@@ -2171,4 +2175,345 @@
 		</corePart>
 	</BodyDef>
 	
+<!-- ==== Thrumbomorph ==== -->
+  <BodyDef>
+    <defName>RRY_Xenomorph_QuadrupedWithHorn</defName>
+    <label>quadrupedal horned xenomorph</label>
+    <corePart>
+      <def>RRY_Xeno_Body</def>
+      <height>Middle</height>
+      <depth>Outside</depth>
+      <parts>
+		<li>
+			<def>RRY_Xeno_Tail</def>
+			<coverage>0.07</coverage>
+          <groups>
+            <li>Torso</li>
+            <li>RRY_Xeno_Tail_AttackTool</li>
+          </groups>
+			<parts>
+				<li>
+					<def>RRY_Xeno_TailSpike</def>
+					<coverage>0.02</coverage>
+					  <groups>
+						<li>RRY_Xeno_Tail_SpikeAttackTool</li>
+					  </groups>
+				</li>
+			</parts>
+		</li>
+        <li>
+          <def>RRY_Xeno_Spine</def>
+          <coverage>0.03</coverage>
+          <depth>Inside</depth>
+        </li>
+        <li>
+          <def>RRY_Xeno_Stomach</def>
+          <coverage>0.03</coverage>
+          <depth>Inside</depth>
+        </li>
+        <li>
+          <def>RRY_Xeno_Heart</def>
+          <coverage>0.03</coverage>
+          <depth>Inside</depth>
+        </li>
+        <li>
+          <def>RRY_Xeno_Lung</def>
+          <customLabel>left lung</customLabel>
+          <coverage>0.03</coverage>
+          <depth>Inside</depth>
+        </li>
+        <li>
+          <def>RRY_Xeno_Lung</def>
+          <customLabel>right lung</customLabel>
+          <coverage>0.03</coverage>
+          <depth>Inside</depth>
+        </li>
+        <li>
+          <def>RRY_Xeno_Kidney</def>
+          <customLabel>left kidney</customLabel>
+          <coverage>0.03</coverage>
+          <depth>Inside</depth>
+        </li>
+        <li>
+          <def>RRY_Xeno_Kidney</def>
+          <customLabel>right kidney</customLabel>
+          <coverage>0.03</coverage>
+          <depth>Inside</depth>
+        </li>
+        <li>
+          <def>RRY_Xeno_Liver</def>
+          <coverage>0.03</coverage>
+          <depth>Inside</depth>
+        </li>
+        <li>
+          <def>RRY_Xeno_Neck</def>
+          <coverage>0.28</coverage>
+          <height>Top</height>
+          <parts>
+            <li>
+              <def>RRY_Xeno_Head</def>
+              <coverage>0.80</coverage>
+              <groups>
+                <li>UpperHead</li>
+                <li>FullHead</li>
+				<li>HeadAttackTool</li>
+              </groups>
+              <parts>
+                <li>
+                  <def>RRY_Xeno_Skull</def>
+                  <coverage>0.18</coverage>
+                  <depth>Inside</depth>
+                  <groups>
+                    <li>UpperHead</li>
+                    <li>FullHead</li>
+                  </groups>
+                  <parts>
+                    <li>
+                      <def>RRY_Xeno_Brain</def>
+                      <coverage>0.8</coverage>
+                      <groups>
+                        <li>UpperHead</li>
+                        <li>FullHead</li>
+                      </groups>
+                    </li>
+                  </parts>
+                </li>
+                <li>
+                  <def>RRY_Xeno_Eye</def>
+                  <customLabel>left sensory organ</customLabel>
+                  <coverage>0.07</coverage>
+                  <groups>
+                    <li>FullHead</li>
+                    <li>Eyes</li>
+                  </groups>
+                </li>
+                <li>
+                  <def>RRY_Xeno_Eye</def>
+                  <customLabel>right sensory organ</customLabel>
+                  <coverage>0.07</coverage>
+                  <groups>
+                    <li>FullHead</li>
+                    <li>Eyes</li>
+                  </groups>
+                </li>
+                <li>
+                  <def>RRY_Xeno_Ear</def>
+                  <customLabel>left auditory sensor</customLabel>
+                  <coverage>0.07</coverage>
+                  <groups>
+                    <li>UpperHead</li>
+                    <li>FullHead</li>
+                  </groups>
+                </li>
+                <li>
+                  <def>RRY_Xeno_Ear</def>
+                  <customLabel>right auditory sensor</customLabel>
+                  <coverage>0.07</coverage>
+                  <groups>
+                    <li>UpperHead</li>
+                    <li>FullHead</li>
+                  </groups>
+                </li>
+                <li>
+                  <def>RRY_Xeno_Nose</def>
+                  <coverage>0.35</coverage>
+                  <parts>
+                    <li>
+                      <def>Horn</def>
+                      <coverage>0.85</coverage>
+                      <groups>
+                        <li>HornAttackTool</li>
+                      </groups>
+                    </li>
+                  </parts>
+                </li>
+                <li>
+					<def>RRY_Xeno_Jaw</def>
+					<coverage>0.10</coverage>
+					<depth>Inside</depth>
+					<parts>
+						<li>
+							<def>RRY_Xeno_InnerJaw</def>
+							<coverage>0.05</coverage>
+							<depth>Inside</depth>
+							  <groups>
+								<li>RRY_Xeno_InnerTeeth</li>
+							  </groups>
+						</li>
+					</parts>
+                  <groups>
+                    <li>Teeth</li>
+                    <li>FullHead</li>
+                  </groups>
+                </li>
+              </parts>
+            </li>
+          </parts>
+        </li>
+		<li>
+			<def>RRY_Xeno_Leg</def>
+			<customLabel>front left leg</customLabel>
+			<coverage>0.065</coverage>
+			<height>Bottom</height>
+			<parts>
+				<li>
+					<def>RRY_Xeno_FrontClaw</def>
+					<customLabel>front left leg first claw</customLabel>
+					<coverage>0.05</coverage>
+					<groups>
+						<li>RRY_Xeno_LeftHand</li>
+					</groups>
+				</li>
+				<li>
+					<def>RRY_Xeno_FrontClaw</def>
+					<customLabel>front left leg second claw</customLabel>
+					<coverage>0.05</coverage>
+					<groups>
+						<li>RRY_Xeno_LeftHand</li>
+					</groups>
+				</li>
+				<li>
+					<def>RRY_Xeno_FrontClaw</def>
+					<customLabel>front left leg third claw</customLabel>
+					<coverage>0.05</coverage>
+					<groups>
+						<li>RRY_Xeno_LeftHand</li>
+					</groups>
+				</li>
+				<li>
+					<def>RRY_Xeno_FrontClaw</def>
+					<customLabel>front left leg fourth claw</customLabel>
+					<coverage>0.05</coverage>
+					<groups>
+						<li>RRY_Xeno_LeftHand</li>
+					</groups>
+				</li>
+				<li>
+					<def>RRY_Xeno_FrontClaw</def>
+					<customLabel>front left leg fifth claw</customLabel>
+					<coverage>0.05</coverage>
+					<groups>
+						<li>RRY_Xeno_LeftHand</li>
+					</groups>
+				</li>
+			</parts>
+		</li>
+		<li>
+			<def>RRY_Xeno_Leg</def>
+			<customLabel>front right leg</customLabel>
+			<coverage>0.065</coverage>
+			<height>Bottom</height>
+			<parts>
+				<li>
+					<def>RRY_Xeno_FrontClaw</def>
+					<customLabel>front right leg first claw</customLabel>
+					<coverage>0.05</coverage>
+					<groups>
+						<li>RRY_Xeno_RightHand</li>
+					</groups>
+				</li>
+				<li>
+					<def>RRY_Xeno_FrontClaw</def>
+					<customLabel>front right leg second claw</customLabel>
+					<coverage>0.05</coverage>
+					<groups>
+						<li>RRY_Xeno_RightHand</li>
+					</groups>
+				</li>
+				<li>
+					<def>RRY_Xeno_FrontClaw</def>
+					<customLabel>front right leg third claw</customLabel>
+					<coverage>0.05</coverage>
+					<groups>
+						<li>RRY_Xeno_RightHand</li>
+					</groups>
+				</li>
+				<li>
+					<def>RRY_Xeno_FrontClaw</def>
+					<customLabel>front right leg fourth claw</customLabel>
+					<coverage>0.05</coverage>
+					<groups>
+						<li>RRY_Xeno_RightHand</li>
+					</groups>
+				</li>
+				<li>
+					<def>RRY_Xeno_FrontClaw</def>
+					<customLabel>front right leg fifth claw</customLabel>
+					<coverage>0.05</coverage>
+					<groups>
+						<li>RRY_Xeno_RightHand</li>
+					</groups>
+				</li>
+			</parts>
+		</li>
+		<li>
+			<def>RRY_Xeno_Leg</def>
+			<customLabel>rear left leg</customLabel>
+			<coverage>0.065</coverage>
+			<height>Bottom</height>
+			<parts>
+				<li>
+					<def>RRY_Xeno_RearClaw</def>
+					<customLabel>rear left leg first claw</customLabel>
+					<coverage>0.05</coverage>
+				</li>
+				<li>
+					<def>RRY_Xeno_RearClaw</def>
+					<customLabel>rear left leg second claw</customLabel>
+					<coverage>0.05</coverage>
+				</li>
+				<li>
+					<def>RRY_Xeno_RearClaw</def>
+					<customLabel>rear left leg third claw</customLabel>
+					<coverage>0.05</coverage>
+				</li>
+				<li>
+					<def>RRY_Xeno_RearClaw</def>
+					<customLabel>rear left leg fourth claw</customLabel>
+					<coverage>0.05</coverage>
+				</li>
+				<li>
+					<def>RRY_Xeno_RearClaw</def>
+					<customLabel>rear left leg fifth claw</customLabel>
+					<coverage>0.05</coverage>
+				</li>
+			</parts>
+		</li>
+		<li>
+			<def>RRY_Xeno_Leg</def>
+			<customLabel>rear right leg</customLabel>
+			<coverage>0.065</coverage>
+			<height>Bottom</height>
+			<parts>
+				<li>
+					<def>RRY_Xeno_RearClaw</def>
+					<customLabel>rear right leg first claw</customLabel>
+					<coverage>0.05</coverage>
+				</li>
+				<li>
+					<def>RRY_Xeno_RearClaw</def>
+					<customLabel>rear right leg second claw</customLabel>
+					<coverage>0.05</coverage>
+				</li>
+				<li>
+					<def>RRY_Xeno_RearClaw</def>
+					<customLabel>rear right leg third claw</customLabel>
+					<coverage>0.05</coverage>
+				</li>
+				<li>
+					<def>RRY_Xeno_RearClaw</def>
+					<customLabel>rear right leg fourth claw</customLabel>
+					<coverage>0.05</coverage>
+				</li>
+				<li>
+					<def>RRY_Xeno_RearClaw</def>
+					<customLabel>rear right leg fifth claw</customLabel>
+					<coverage>0.05</coverage>
+				</li>
+			</parts>
+		</li>
+      </parts>
+    </corePart>
+  </BodyDef>
+
 </Defs>

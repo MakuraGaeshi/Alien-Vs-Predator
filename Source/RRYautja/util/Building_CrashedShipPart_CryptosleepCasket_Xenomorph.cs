@@ -14,6 +14,14 @@ namespace RimWorld
             base.ExposeData();
         }
 
+        private List<Rot4> Rotlist = new List<Rot4>
+        {
+            Rot4.North,
+            Rot4.South,
+            Rot4.East,
+            Rot4.West
+        };
+
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
@@ -32,10 +40,12 @@ namespace RimWorld
             {
                 for (int i = 0; i < count; i++)
                 {
+                    Rot4 rot = Rotlist.RandomElement();
                     CellRect mapRect;
-                    IntVec3 intVec = CellFinder.RandomClosewalkCellNear(this.InteractionCell, map, 5, null);
+                    IntVec3 intVec = CellFinder.RandomClosewalkCellNear(position, map, 5, null);
                     mapRect = new CellRect(intVec.x, intVec.z, num, num);
-                    GenPlace.TryPlaceThing(TryMakeCasket(mapRect, map, named), intVec, map, ThingPlaceMode.Near);
+                    GenSpawn.Spawn(TryMakeCasket(mapRect, map, named), intVec, map, rot, WipeMode.Vanish, false);
+                //    GenPlace.TryPlaceThing(TryMakeCasket(mapRect, map, named), intVec, map, ThingPlaceMode.Near);
                 }
             }
 

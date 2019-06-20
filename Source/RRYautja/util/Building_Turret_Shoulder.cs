@@ -54,7 +54,7 @@ namespace RRYautja
         public override void Tick()
         {
             base.Tick();
-            if (this.Parental==null||(this.Parental is Pawn pawn && (pawn.Dead || pawn.Downed)))//||this.comp==null)
+            if (this.Parental==null||(this.Parental is Pawn pawn && (pawn.Dead || pawn.Downed || this.Position!=pawn.Position) ))//||this.comp==null)
             {
                 this.Destroy();
             }

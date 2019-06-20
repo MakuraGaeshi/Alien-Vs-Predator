@@ -1,48 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-  <ThoughtDef>
-    <defName>RRY_Thought_ThrillOfTheHunt</defName>
-    <workerClass>ThoughtWorker_Hediff</workerClass>
-   <!-- <hediff>RRY_Hediff_ThrillOfTheHunt</hediff> -->
+ <ThoughtDef>
+	<defName>RRY_Thought_ThrillOfTheHunt</defName>
+	<durationDays>1</durationDays>
+	<stackLimit>3</stackLimit>
+	<validWhileDespawned>true</validWhileDespawned>
+	<stages>
+		<li>
+			<label>Thrill of the hunt</label>
+			<description>theres nothing Quite like bringing down your prey. It feels amazing.</description>
+			<baseMoodEffect>3</baseMoodEffect>
+		</li>
+	</stages>
+ </ThoughtDef>
+	
+ <ThoughtDef>
+    <defName>RRY_Disfigured</defName>
+    <thoughtClass>Thought_SituationalSocial</thoughtClass>
+    <workerClass>ThoughtWorker_Disfigured</workerClass>
     <validWhileDespawned>true</validWhileDespawned>
     <stages>
       <li>
-        <label>Thrill of the hunt</label>
-        <description>It feels amazing.</description>
-        <baseMoodEffect>10</baseMoodEffect>
+        <label>scarred</label>
+        <baseOpinionOffset>5</baseOpinionOffset>
       </li>
     </stages>
   </ThoughtDef>
   
-  
-  <ThoughtDef>
-    <defName>RRY_Thought_UnBlooded</defName>
-    <workerClass>ThoughtWorker_Hediff</workerClass>
-    <hediff>RRY_Hediff_Unblooded</hediff>
-    <validWhileDespawned>true</validWhileDespawned>
-    <stages>
-      <li>
-        <label>Unblooded</label>
-        <description>I need to prove myself by hunting and killing a Worthy foe!</description>
-        <baseMoodEffect>-10</baseMoodEffect>
-      </li>
-    </stages>
-  </ThoughtDef>
-  
-  <ThoughtDef>
-    <defName>RRY_Thought_BloodedUM</defName>
-    <workerClass>ThoughtWorker_Hediff</workerClass>
-    <hediff>RRY_Hediff_BloodedUM</hediff>
-    <validWhileDespawned>true</validWhileDespawned>
-    <stages>
-      <li>
-        <label>unmarked</label>
-        <description>I've proven myself by killing a Worthy Foe, all thats left it to mark myself with its blood.</description>
-        <baseMoodEffect>1</baseMoodEffect>
-      </li>
-    </stages>
-  </ThoughtDef>
-  <!-- -->
   <ThoughtDef>
     <defName>RRY_Thought_BloodedM</defName>
     <workerClass>ThoughtWorker_MarkedMood</workerClass>
@@ -50,9 +34,18 @@
 	<!--
     <workerClass>ThoughtWorker_MutliHediff</workerClass>
 	-->
-    <hediff>RRY_Hediff_BloodedM</hediff>
     <validWhileDespawned>true</validWhileDespawned>
     <stages>
+      <li>
+        <label>Unblooded</label>
+        <description>I need to prove myself by hunting and killing a Worthy foe!</description>
+        <baseMoodEffect>-10</baseMoodEffect>
+      </li>
+      <li>
+        <label>unmarked</label>
+        <description>I've proven myself by killing a Worthy Foe, all thats left it to mark myself with its blood.</description>
+        <baseMoodEffect>0</baseMoodEffect>
+      </li>
       <li>
         <label>marked</label>
         <description>I've proven myself by killing a Worthy foe and marked myself with its blood. I feel amazing.</description>

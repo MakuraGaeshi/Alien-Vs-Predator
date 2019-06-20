@@ -177,7 +177,7 @@
     </graphicData>
     <equippedAngleOffset>-20</equippedAngleOffset>
     <statBases>
-      <MarketValue>800</MarketValue>
+      <MarketValue>400</MarketValue>
       <MaxHitPoints>150</MaxHitPoints>
       <Mass>3</Mass>
       <Flammability>0.4</Flammability>
@@ -225,7 +225,7 @@
     </graphicData>
     <equippedAngleOffset>-20</equippedAngleOffset>
     <statBases>
-      <MarketValue>800</MarketValue>
+      <MarketValue>200</MarketValue>
       <MaxHitPoints>150</MaxHitPoints>
       <Mass>3</Mass>
       <Flammability>0.4</Flammability>
