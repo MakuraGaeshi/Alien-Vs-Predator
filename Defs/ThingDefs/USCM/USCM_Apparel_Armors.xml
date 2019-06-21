@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 	<!-- ========================= USCM - Armour base ========================== -->
-	<ThingDef Name="RRY_USCM_ArmorBase" ParentName="RRY_Armor_MakeableBase" Abstract="true">
+	<ThingDef Name="RRY_USCM_ArmorBase" ParentName="RRY_USCM_Armour_MakeableBase" Abstract="true">
 	<description>Standard issue USCM battlegear</description>
 		<statBases>
 			<Flammability>0.4</Flammability>
@@ -10,7 +10,7 @@
 	
 	
 	<!-- ========================= USCM - Headgear base ========================== -->
-	<ThingDef Name="RRY_USCM_HeadgearBase" ParentName="RRY_Armor_MakeableBase" Abstract="true">
+	<ThingDef Name="RRY_USCM_HeadgearBase" ParentName="RRY_USCM_Armour_MakeableBase" Abstract="true">
 	<description>Standard issue USCM headgear.</description>
 	</ThingDef>	
 	
@@ -24,47 +24,45 @@
 		<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<statBases>
-			<Mass>1</Mass>
-			<MarketValue>500</MarketValue>
-			<MaxHitPoints>150</MaxHitPoints>
-			<WorkToMake>27500</WorkToMake>
-			<ArmorRating_Sharp>1.1</ArmorRating_Sharp>
-			<ArmorRating_Blunt>0.75</ArmorRating_Blunt>
-			<ArmorRating_Heat>0.9</ArmorRating_Heat>
-			<Insulation_Heat>7</Insulation_Heat>
-			<Insulation_Cold>7</Insulation_Cold>
+				<MarketValue>350</MarketValue>
+				<WorkToMake>21000</WorkToMake>
+				<MaxHitPoints>150</MaxHitPoints>
+				<Mass>1.7</Mass>
+				<Flammability>0.4</Flammability>
+				<ArmorRating_Sharp>0.85</ArmorRating_Sharp>
+				<ArmorRating_Blunt>0.42</ArmorRating_Blunt>
+				<ArmorRating_Heat>0.9</ArmorRating_Heat>
+				<Insulation_Cold>5</Insulation_Cold>
+				<Insulation_Heat>2</Insulation_Heat>
+				<EquipDelay>2.5</EquipDelay>
 			
 		</statBases>
 		<equippedStatOffsets>
-			<ShootingAccuracyPawn>0.25</ShootingAccuracyPawn>
-			<PsychicSensitivity>-0.15</PsychicSensitivity>
-			<ToxicSensitivity>-0.6</ToxicSensitivity>
-			<SocialImpact>0.05</SocialImpact>
-            
+			<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
 		</equippedStatOffsets>
 		<costList>
-			<Plasteel>40</Plasteel>
-			<Uranium>10</Uranium>
-			<ComponentSpacer>2</ComponentSpacer>
+			<ComponentIndustrial>2</ComponentIndustrial>
+			<Plasteel>10</Plasteel>
+			<ComponentSpacer>1</ComponentSpacer>
 		</costList>
 		<recipeMaker>
-			<researchPrerequisite>RRY_YautjaTechHigh</researchPrerequisite>
+			<researchPrerequisite>MicroelectronicsBasics</researchPrerequisite>
 			<skillRequirements>
-				<Crafting>9</Crafting>
+				<Crafting>7</Crafting>
 			</skillRequirements>
 		</recipeMaker>
 		<apparel>
 			<bodyPartGroups>
-				<li>FullHead</li>
+				<li>UpperHead</li>
 			</bodyPartGroups>
 			<wornGraphicPath>Things/Apparel/USCM/Helmets/M10Pattern/ColonialMarineHelmet</wornGraphicPath>
-			<hatRenderedFrontOfFace>true</hatRenderedFrontOfFace>			
+			<hatRenderedFrontOfFace>false</hatRenderedFrontOfFace>			
 			<layers>
 				<li>Overhead</li>
 			</layers>
 			<tags>
 				<li>USCM_M10Pattern</li>
-				<li>USCM_StandardIssue</li>
+				<li>USCM_StandardIssue_Apparel</li>
 			</tags>
 			<defaultOutfitTags>
 				<li>Soldier</li>

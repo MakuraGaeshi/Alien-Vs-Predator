@@ -21,4 +21,24 @@
     </subSounds>
   </SoundDef>
 
+	<SoundDef>
+		<defName>RRY_M41A_Shot</defName>  
+		<context>MapOnly</context>
+		<eventNames />  
+		<maxSimultaneous>1</maxSimultaneous>  
+		<subSounds>
+		  <li>
+			<grains>
+			  <li Class="AudioGrain_Folder">
+				<clipFolderPath>Weapons/Ranged/M41A_Shot</clipFolderPath>
+			  </li>
+			</grains>      
+			<volumeRange>
+			  <min>35</min>        
+			  <max>35</max>
+			</volumeRange>      
+			<sustainLoop>False</sustainLoop>
+		  </li>
+		</subSounds>
+	</SoundDef>
 </Defs>

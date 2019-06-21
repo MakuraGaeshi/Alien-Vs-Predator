@@ -40,14 +40,21 @@
     
     <apparelTags>
 		<li>USCM_M10Pattern</li>
-		<li>USCM_StandardIssue</li>
+		<li>USCM_StandardIssue_Apparel</li>
 		<li>IndustrialMilitaryBasic</li>
-    </apparelTags>
-    <apparelMoney>
-      <min>10000</min>
-      <max>10000</max>
+	</apparelTags>
+	<apparelMoney>
+		<min>700</min>
+		<max>1000</max>
     </apparelMoney>
-    <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
+    <weaponTags>
+		<li>USCM_M41A</li>
+	</weaponTags>
+    <weaponMoney>
+		<min>700</min>
+		<max>1000</max>
+	</weaponMoney>
+	<backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
   </PawnKindDef>
   
   <!-- <PawnKindDef ParentName="BaseYautjaPawnKind">

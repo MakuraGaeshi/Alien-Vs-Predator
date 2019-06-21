@@ -37,9 +37,8 @@
     <defaultFactionType>RRY_USCM_PlayerColony</defaultFactionType>
     
     <apparelTags>
-		<li>IndustrialMilitaryBasic</li>
-		<li>USCM_M10Pattern</li>
-    </apparelTags>
+		<li>IndustrialBasic</li>
+	</apparelTags>
     <apparelMoney>
       <min>10000</min>
       <max>10000</max>
