@@ -218,11 +218,12 @@
 		<MarketValue>5000</MarketValue>
 		<MoveSpeed>4.8</MoveSpeed>
 		<Flammability>0.8</Flammability>
-		<baseHungerRate>0.3</baseHungerRate>
+		
 		<!-- Don't forget to change temp back to -10 to 30 after you done testing -->
 		<ComfyTemperatureMin>0</ComfyTemperatureMin>
 		<ComfyTemperatureMax>10</ComfyTemperatureMax>
-		<LeatherAmount>55</LeatherAmount>
+		<LeatherAmount>40</LeatherAmount>
+		<MeatAmount>40</MeatAmount>
         <CarryingCapacity>125</CarryingCapacity>
 		<PsychicSensitivity>0</PsychicSensitivity>
 		<ToxicSensitivity>0.3</ToxicSensitivity>
@@ -308,10 +309,11 @@
 	  <fleshType>RRY_SynthFlesh</fleshType>
       <thinkTreeMain>Humanlike</thinkTreeMain>
       <thinkTreeConstant>HumanlikeConstant</thinkTreeConstant>
+	  <baseHungerRate>0.3</baseHungerRate>
       <intelligence>Humanlike</intelligence>
       <makesFootprints>true</makesFootprints>
       <lifeExpectancy>500</lifeExpectancy>
-      <leatherDef>Leather_Human</leatherDef>
+      <leatherDef>RRY_Synthetic_Skin</leatherDef>
       <body>Human</body>
       <nameCategory>HumanStandard</nameCategory>
 	  <bloodDef>RRY_FilthBloodSynth</bloodDef>	
@@ -367,7 +369,7 @@
       </hediffGiverSets>
     </race>
     <recipes>
-       <li>InstallArchotechEye</li>
+      <li>InstallArchotechEye</li>
       <li>InstallArchotechArm</li>
       <li>InstallArchotechLeg</li>
       <li>InstallPowerClaw</li>
@@ -390,6 +392,13 @@
       <li>Euthanize</li>
       <li>Anesthetize</li>
     </recipes>
+	<butcherProducts>
+			<Plasteel>15</Plasteel>
+			<ComponentIndustrial>3</ComponentIndustrial>
+			<ComponentSpacer>2</ComponentSpacer>
+			<AIPersonaCore>1</AIPersonaCore>
+			
+	</butcherProducts>
 </AlienRace.ThingDef_AlienRace>
 
 </Defs>
