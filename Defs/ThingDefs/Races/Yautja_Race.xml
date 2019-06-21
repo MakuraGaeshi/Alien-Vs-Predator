@@ -403,7 +403,6 @@
 			-->
 			<cannotReceiveThoughts>
 			<!--
-				-->
 				<li>AteHumanlikeMeatDirect</li>
 				<li>AteHumanlikeMeatAsIngredient</li>
 				<li>AteRawHumanlikeMeat</li>
@@ -411,6 +410,7 @@
 				<li>AteHumanlikeMeatAsIngredientCannibal</li>
 				<li>ButcheredHumanlikeCorpse</li>
 				<li>KnowButcheredHumanlikeCorpse</li>
+				-->
 				<li>ObservedLayingCorpse</li>
 				<li>SoldPrisoner</li>
 				<li>KnowPrisonerDiedInnocent</li>
@@ -430,7 +430,6 @@
                     <knowThought>RRY_KnowButcheredYautjaCorpse</knowThought>
                 </li>
             </butcherThoughtSpecific>
-				<!--
             <ateThoughtSpecific>
                 <li>
                     <raceList>
@@ -440,6 +439,7 @@
 					<thoughtCannibal>RRY_AteYautjaMeatDirectCannibal</thoughtCannibal> 
                 </li>
             </ateThoughtSpecific>
+				<!--
 			<ateThoughtSpecific>
                 <li>
                     <raceList>

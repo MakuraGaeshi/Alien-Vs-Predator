@@ -44,10 +44,8 @@ namespace RRYautja
         public override void CompExposeData()
         {
             base.CompExposeData();
-            Scribe_Values.Look<int>(ref this.ticksUntilDamage, "ticksUntilDamage", -1, true);
-            Scribe_Values.Look<int>(ref this.timesRepeated, "timesRepeated", 0, true);
-            Scribe_Deep.Look<int>(ref this.ticksUntilDamage, "ticksUntilDamageD", 0, true);
-            Scribe_Deep.Look<int>(ref this.timesRepeated, "timesRepeatedD", 0, true);
+            Scribe_Values.Look<int>(ref this.ticksUntilDamage, "ticksUntilDamage", -1, false);
+            Scribe_Values.Look<int>(ref this.timesRepeated, "timesRepeated", 0, false);
         }
 
         // Token: 0x040000CC RID: 204

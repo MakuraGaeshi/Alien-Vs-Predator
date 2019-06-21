@@ -119,10 +119,6 @@ namespace RRYautja
             {
                 Pawn.story.hairDef = Rand.Chance(0.5f) ? YautjaDefOf.RRY_Yaujta_Dreds : YautjaDefOf.RRY_Yaujta_Ponytail;
             }
-            if (Pawn.kindDef.race != YautjaDefOf.RRY_Alien_Yautja)
-            {
-
-            }
         }
 
         public override void CompTick()
