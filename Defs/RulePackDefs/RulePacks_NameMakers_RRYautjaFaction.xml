@@ -126,37 +126,5 @@
 		  </rulesStrings>
 		</rulePack>
 	</RulePackDef>
-	
-	<!--======================================== USCM Faction and Character namer ================================================-->
-	
-	<RulePackDef>
-		<defName>Namer_RRY_USCM_Operations</defName>
-		<rulePack>
-		  <rulesStrings>
-			<li>name->[RRY_USCM_Operations]</li>
-		  </rulesStrings>
-		  <rulesRaw>
-			<li Class="Rule_File">
-				<keyword>RRY_USCM_Operations</keyword>
-				<path>NameBanks/RRY_USCM_Operations</path>
-			</li>
-		  </rulesRaw>
-		</rulePack>
-	</RulePackDef>
-	
-	<RulePackDef>
-		<defName>Namer_RRY_USCM_Squads</defName>
-		<rulePack>
-			<rulesStrings>
-				<li>name->[RRY_USCM_Squads]</li>
-			</rulesStrings>
-			<rulesRaw>
-				<li Class="Rule_File">
-					<keyword>RRY_USCM_Squads</keyword>
-					<path>NameBanks/RRY_USCM_Squads</path>
-				</li>
-			</rulesRaw>
-		</rulePack>
-	</RulePackDef>
-	
+
 </Defs>
