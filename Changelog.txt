@@ -22,3 +22,23 @@ Eggs should now stay as a minified thing for 10 seconds (as opposed to instantly
 added Resource Box framework (not used Yet)
 More Xenos Ai Tweaks
 probobly other little fixes ive forgotten
+
+V1.0.0.2 
+Slight balance tweaks to some weapons
+Marking System Support Extended to Humans and other alien races (right click on the non yautja with a yautja selected and an option should appear)
+Added Textures for Yautja/Colonist Statue mod compatability
+Cut value of Xeno Tail and shell and leather
+Egg Hatching code fixed royal eggs not hatching (Again)
+Fixed doubled text in "They Only Come at Night" event letter
+Fixed Hunting Weapon Alert and issue with Compound & Hunting Bows
+Added Blooding Caskets to Exotic Traders (Orbital)
+Fixed Xenomorph Head children covereage issue
+Fixed Queen Soundcall defname typo
+Fixed Crashed Xenomorph Ship event not dropping cryptopods
+Increased chestburster HP
+Rework of Facehugger hediff renderer && Mark Renderer
+Yautja should now view Scars as a badge of honor!
+Yautja (and honorary clan members) gain mood boosts by hunting, stacks up to 3 times
+Added Thrumbomorph
+More Xenos Ai Tweaks
+Now with Bloodier Burstings!!

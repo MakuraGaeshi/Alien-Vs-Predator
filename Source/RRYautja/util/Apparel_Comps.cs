@@ -84,7 +84,7 @@ namespace RRYautja
                 {
                     if (Find.TickManager.TicksGame >= this.nextUpdateTick && !Armed)
                     {
-                        this.nextUpdateTick = Find.TickManager.TicksGame + 100;
+                        this.nextUpdateTick = Find.TickManager.TicksGame + 1000;
                         float chanceBase = 0.01f;
                         chanceBase *= (this.parent.MaxHitPoints / this.parent.HitPoints); 
                         bool chance = Rand.Chance(chanceBase);

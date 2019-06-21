@@ -109,6 +109,7 @@
         <li Class="ThinkNode_ConditionalNotGrown">
           <subNodes>
 			<li Class="JobGiver_XenomorphFlee" />
+            <li Class="JobGiver_GetFood"/>
           </subNodes>
         </li>
 

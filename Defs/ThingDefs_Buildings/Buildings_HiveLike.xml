@@ -17,7 +17,7 @@
 		<Faction>Mechanoid</Faction>
 		<TunnelDef>TunnelHiveLikeSpawner</TunnelDef>
     <graphicData>
-      <texPath>Things/Special/TunnelExit</texPath>
+      <texPath>Things/Special/HiveNode</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>CutoutComplex</shaderType>
       <drawSize>2.6</drawSize>
@@ -100,7 +100,7 @@
 		  <li>RRY_Xenomorph_Runner</li>
 		</PawnKinds>
     <graphicData>
-      <texPath>Things/Special/TunnelExit</texPath>
+      <texPath>Things/Special/HiveNode</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>CutoutComplex</shaderType>
       <drawSize>2.6</drawSize>
@@ -165,6 +165,18 @@
         <spawnCountOnSpawn>10</spawnCountOnSpawn>
         <spawnMtbHours>4</spawnMtbHours>
         <spawnRadius>5</spawnRadius>
+      </li>
+      <li Class="CompProperties_HiveExpand" />
+      <li Class="CompProperties_HiveConversionRadius">
+		<radiusPerDayCurve>
+			<points>
+				<li>0,5</li>
+				<li>1.5,18</li>
+				<li>6,40</li>
+				<li>20,100</li>
+			</points>
+		</radiusPerDayCurve>
+		<harmFrequencyPerArea>0.015</harmFrequencyPerArea>
       </li>
     </comps>
   </ThingDef>
@@ -372,7 +384,7 @@
 
   <ThingDef ParentName="BaseFilth">
     <defName>RRY_Hive_Slime</defName>
-    <label>xenomorph slime</label>
+    <label>xenomorph hive slime</label>
     <statBases>
       <Beauty>-25</Beauty>
       <Cleanliness>-5</Cleanliness>
@@ -383,7 +395,7 @@
     </graphicData>
     <filth>
       <rainWashes>false</rainWashes>
-      <cleaningWorkToReduceThickness>700</cleaningWorkToReduceThickness>
+      <cleaningWorkToReduceThickness>10000</cleaningWorkToReduceThickness>
       <canFilthAttach>true</canFilthAttach>
     </filth>
   </ThingDef>

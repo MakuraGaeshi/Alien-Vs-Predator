@@ -138,6 +138,7 @@
     <fillPercent>0.5</fillPercent>
     <canOverlapZones>false</canOverlapZones>
     <statBases>
+      <MarketValue>10000</MarketValue>
       <Mass>50</Mass>
       <MaxHitPoints>250</MaxHitPoints>
       <Flammability>0</Flammability>

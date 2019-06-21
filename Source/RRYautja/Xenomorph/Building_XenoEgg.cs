@@ -64,8 +64,12 @@ namespace RRYautja
         public override void Tick()
         {
             base.Tick();
-            if (Find.TickManager.TicksGame % 200 == 0)
+            if (Find.TickManager.TicksGame % 100 == 0)
             {
+                if (this.Faction==null)
+                {
+                    this.SetFaction(Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph));
+                }
             //    Log.Message(string.Format("this.Graphic.drawSize {0}", this.Graphic.drawSize));
             }
         }

@@ -204,7 +204,192 @@ namespace RRYautja
             }
             return false;
         }
-    
+
+        public static bool TryFindGoodHiveLoc(Pawn pawn, out IntVec3 c)
+        {
+            Map map = pawn.Map;
+            c = IntVec3.Invalid;
+            bool selected = map != null ? Find.Selector.SelectedObjects.Contains(pawn) && (Prefs.DevMode) : false;
+            ThingDef named = XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon;
+            eggsPresent = XenomorphUtil.EggsPresent(map);
+            eggsReachable = !XenomorphUtil.ClosestReachableEgg(pawn).DestroyedOrNull();
+            closestReachableEgg = XenomorphUtil.ClosestReachableEgg(pawn);
+
+            hivelikesPresent = XenomorphUtil.HivelikesPresent(map);
+            hivelikesReachable = !XenomorphUtil.ClosestReachableHivelike(pawn).DestroyedOrNull();
+            closestReachableHivelike = XenomorphUtil.ClosestReachableHivelike(pawn);
+
+            cocoonsPresent = XenomorphUtil.CocoonsPresent(map, named);
+            if (!cocoonsPresent)
+            {
+                named = XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon;
+                cocoonsPresent = XenomorphUtil.CocoonsPresent(map, named);
+            }
+
+            cocoonsReachable = !XenomorphUtil.ClosestReachableCocoon(pawn, named).DestroyedOrNull();
+            if (!cocoonsReachable)
+            {
+                named = XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon;
+                cocoonsReachable = !XenomorphUtil.ClosestReachableCocoon(pawn, named).DestroyedOrNull();
+            }
+
+            closestReachableCocoon = XenomorphUtil.ClosestReachableCocoon(pawn, named);
+            if (closestReachableCocoon.DestroyedOrNull())
+            {
+                named = XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon;
+                closestReachableCocoon = XenomorphUtil.ClosestReachableCocoon(pawn, named);
+            }
+
+            emptycocoonsPresent = XenomorphUtil.EmptyCocoonsPresent(map, named);
+            if (!emptycocoonsPresent)
+            {
+                named = XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon;
+                emptycocoonsPresent = XenomorphUtil.EmptyCocoonsPresent(map, named);
+            }
+
+            emptycocoonsReachable = !XenomorphUtil.ClosestReachableEmptyCocoon(pawn, named).DestroyedOrNull();
+            if (!emptycocoonsReachable)
+            {
+                named = XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon;
+                emptycocoonsReachable = XenomorphUtil.ClosestReachableEmptyCocoon(pawn, named).DestroyedOrNull();
+            }
+
+            emptyclosestReachableCocoon = XenomorphUtil.ClosestReachableEmptyCocoon(pawn, named);
+            if (emptyclosestReachableCocoon.DestroyedOrNull())
+            {
+                named = XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon;
+                emptyclosestReachableCocoon = XenomorphUtil.ClosestReachableEmptyCocoon(pawn, named);
+            }
+
+            hiveslimepresent = XenomorphUtil.HiveSlimePresent(map);
+            closestreachablehiveslime = XenomorphUtil.ClosestReachableHiveSlime(pawn);
+
+            //    if (selected && eggsPresent) Log.Message(string.Format("JobGiver_XenosKidnap for {3} eggsPresent: {0}, eggsReachable: {1}, closestReachableEgg: {2}", eggsPresent, eggsReachable, closestReachableEgg, pawn.LabelShortCap));
+            //    if (selected && hivelikesPresent) Log.Message(string.Format("JobGiver_XenosKidnap for {3} hivelikesPresent: {0}, hivelikesReachable: {1}, closestReachableHivelike: {2}", hivelikesPresent, hivelikesReachable, closestReachableHivelike, pawn.LabelShortCap));
+            //    if (selected && cocoonsPresent) Log.Message(string.Format("JobGiver_XenosKidnap for {3} cocoonsPresent: {0}, cocoonsReachable: {1}, closestReachableEgg: {2}", cocoonsPresent, cocoonsReachable, closestReachableCocoon, pawn.LabelShortCap));
+
+            if (hiveslimepresent)
+            {
+                c = CellFinder.RandomClosewalkCellNear(closestreachablehiveslime.Position, map, 6);
+                return true;
+            }
+            if ((hivelikesPresent && hivelikesReachable))
+            {
+                List<ThingDef_HiveLike> hivedefs = DefDatabase<ThingDef_HiveLike>.AllDefsListForReading.FindAll(x => x.Faction == pawn.Faction.def);
+
+                if (XenomorphUtil.TotalSpawnedHivelikeCount(map) > 0)
+                {
+                    if (XenomorphUtil.TotalSpawnedParentHivelikeCount(map) > 0)
+                    {
+                        hiveThing = XenomorphUtil.TotalSpawnedParentHivelikeCount(map) > 1 ? XenomorphUtil.SpawnedParentHivelikes(map).RandomElement() : XenomorphUtil.ClosestReachableHivelike(pawn, XenomorphUtil.SpawnedParentHivelikes(map));
+                        c = hiveThing.Position;
+                        int radius = 6;
+                        IntVec3 intVec = CellFinder.RandomClosewalkCellNear(c, map, radius, (x => (x.Roofed(map) && hiveThing.Position.Roofed(map) || (!x.Roofed(map) && !hiveThing.Position.Roofed(map))) && !x.AdjacentTo8Way(hiveThing.Position) && XenomorphKidnapUtility.XenoCocoonLocations(hiveThing.Position, radius, map).Contains(x)));
+                        if (intVec == IntVec3.Invalid)
+                        {
+                            intVec = CellFinder.RandomClosewalkCellNear(c, map, radius, (x => (x.Roofed(map) && hiveThing.Position.Roofed(map) || (!x.Roofed(map) && !hiveThing.Position.Roofed(map))) && !x.AdjacentTo8Way(hiveThing.Position)));
+                        }
+                        c = intVec;
+                        return true;
+                    }
+                    if (XenomorphUtil.TotalSpawnedChildHivelikeCount(map) > 0)
+                    {
+                        hiveThing = XenomorphUtil.TotalSpawnedParentHivelikeCount(map) > 1 ? XenomorphUtil.SpawnedParentHivelikes(map).RandomElement() : XenomorphUtil.ClosestReachableHivelike(pawn, XenomorphUtil.SpawnedParentHivelikes(map));
+                        c = hiveThing.Position;
+                        int radius = 6;
+                        IntVec3 intVec = CellFinder.RandomClosewalkCellNear(c, map, radius, (x => (x.Roofed(map) && hiveThing.Position.Roofed(map) || (!x.Roofed(map) && !hiveThing.Position.Roofed(map))) && !x.AdjacentTo8Way(hiveThing.Position) && XenomorphKidnapUtility.XenoCocoonLocations(hiveThing.Position, radius, map).Contains(x)));
+                        if (intVec == IntVec3.Invalid)
+                        {
+                            intVec = CellFinder.RandomClosewalkCellNear(c, map, radius, (x => (x.Roofed(map) && hiveThing.Position.Roofed(map) || (!x.Roofed(map) && !hiveThing.Position.Roofed(map))) && !x.AdjacentTo8Way(hiveThing.Position)));
+                        }
+                        c = intVec;
+                        return true;
+                    }
+                }
+            }
+            if (c == IntVec3.Invalid && !hivelikesPresent && (eggsPresent && eggsReachable && XenomorphUtil.SpawnedEggsNeedHosts(map).Count > 0))
+            {
+                //    if (selected) Log.Message(string.Format("JobGiver_XenosKidnap SpawnedEggsNeedHosts: {0}, EggCount: {1} for {2}", XenomorphUtil.SpawnedEggsNeedHosts(map).Count > 0, XenomorphUtil.SpawnedEggsNeedHosts(map).Count, pawn));
+                eggThing = XenomorphUtil.SpawnedEggsNeedHosts(map).Count > 1 ? XenomorphUtil.SpawnedEggsNeedHosts(map).RandomElement() : XenomorphUtil.ClosestReachableEggNeedsHost(pawn);
+
+                //    if (selected) Log.Message(string.Format("JobGiver_XenosKidnap eggThing: {0}, EggCount: {1} for {2}", eggThing, XenomorphUtil.SpawnedEggsNeedHosts(map).Count, pawn));
+                c = eggThing.Position;
+                if (c == eggThing.Position)
+                {
+                    int radius = 1;
+                    int num = (named.Size.x > named.Size.z) ? named.Size.x : named.Size.z;
+                    CellRect mapRect;
+                    IntVec3 intVec = CellFinder.RandomClosewalkCellNear(c, map, radius, (x => (x.Roofed(map) && eggThing.Position.Roofed(map) || (!x.Roofed(map) && !eggThing.Position.Roofed(map)))));
+                    mapRect = Rand.Chance(0.5f) ? new CellRect(intVec.x, intVec.z, num, num) : new CellRect(intVec.z, intVec.x, num, num);
+
+                    while (!IsMapRectClear(mapRect, map))
+                    {
+                        intVec = CellFinder.RandomClosewalkCellNear(c, map, radius, (x => (x.Roofed(map) && eggThing.Position.Roofed(map) || (!x.Roofed(map) && !eggThing.Position.Roofed(map)))));
+                        mapRect = new CellRect(intVec.x, intVec.z, num, num);
+                        if (!IsMapRectClear(mapRect, map)) radius++;
+                        else
+                        {
+                            //        if (selected) Log.Message(string.Format("spot for cocoon found @ {0} which is {1} away from {2} @ {3}", intVec, radius, eggThing, eggThing.Position));
+                        }
+                        if (radius > 30)
+                        {
+                            break;
+                        }
+                    }
+                    if (intVec != null)
+                    {
+                        //    GenPlace.TryPlaceThing(TryMakeCocoon(mapRect, map, named), intVec, map, ThingPlaceMode.Near);
+                    }
+                    c = intVec;
+                    return true;
+                }
+                //GenPlace.TryPlaceThing(TryMakeCocoon(mapRect, map, named), intVec, map, ThingPlaceMode.Near);
+            }
+            if (c == IntVec3.Invalid && cocoonsPresent && !hivelikesPresent && !eggsPresent)
+            {
+                //    if (selected) Log.Message(string.Format("cocoonsPresent: {0}", cocoonsPresent));
+                //    if (selected) Log.Message(string.Format("cocoonsReachable: {0}", cocoonsReachable));
+                c = RCellFinder.RandomWanderDestFor(pawn, closestReachableCocoon.Position, 5f, null, Danger.Some);
+                //    if (selected) Log.Message(string.Format("RCellFinder.RandomWanderDestFor(pawn, c, 5f, null, Danger.Some): {0}", c));
+                return true;
+            }
+            if (c == IntVec3.Invalid)
+            {
+                if (!InfestationLikeCellFinder.TryFindCell(out c, out IntVec3 lc, map, false))
+                {
+                    //    if (selected) Log.Message(string.Format("no infestation cell found {0}\nfor {1} @ {2}", c, pawn, pawn.Position));
+                    if (!RCellFinder.TryFindBestExitSpot(pawn, out c, TraverseMode.ByPawn) && (!XenomorphUtil.EggsPresent(map) || (XenomorphUtil.EggsPresent(map) && XenomorphUtil.ClosestReachableEgg(pawn) == null)))
+                    {
+                        //        if (selected) Log.Message(string.Format("no Exit cell found {0}\nfor {1} @ {2}", c, pawn, pawn.Position));
+                        return false;
+                    }
+                    return true;
+                }
+                else
+                {
+                    //    if (selected) Log.Message(string.Format("found infestation cell for {2} @ {3} \nlc: {0}, c:{1}", lc, c, pawn, pawn.Position));
+                    if (pawn.GetLord() != null && pawn.GetLord() is Lord lord)
+                    {
+                        //        if (selected) Log.Message(string.Format("found lord for {2} @ {3} doing\n LordJob: {0}, CurLordToil: {1}", lord.LordJob, lord.CurLordToil, pawn, pawn.Position));
+
+                    }
+                    if (pawn.mindState.duty.def != OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike && pawn.mindState.duty.def != OGHiveLikeDefOf.RRY_DefendHiveLikeAggressively)
+                    {
+                        pawn.mindState.duty = new PawnDuty(OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike, lc, 40f);
+
+                        c = RCellFinder.RandomWanderDestFor(pawn, lc, 5f, null, Danger.Some);
+                        return true;
+                    }
+                    else
+                    {
+                        c = RCellFinder.RandomWanderDestFor(pawn, lc, 5f, null, Danger.Some);
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
 
 
         // Token: 0x060004D2 RID: 1234 RVA: 0x00031074 File Offset: 0x0002F474

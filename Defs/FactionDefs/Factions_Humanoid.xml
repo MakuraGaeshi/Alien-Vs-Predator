@@ -19,8 +19,8 @@
     <basicMemberKind>RRY_USCM_Private</basicMemberKind>
     <pawnsPlural>Marines</pawnsPlural>
     <playerInitialSettlementNameMaker>NamerInitialSettlementColony</playerInitialSettlementNameMaker>
-		<factionNameMaker>NamerRRYUSCMFaction</factionNameMaker>
-    <settlementNameMaker>NamerRRYUSCMAO</settlementNameMaker>
+		<factionNameMaker>Namer_RRY_USCM_Operations</factionNameMaker>
+    <settlementNameMaker>Namer_RRY_USCM_Squads</settlementNameMaker>
     <techLevel>Spacer</techLevel>
     <backstoryCategories>
       <li>Raider</li>
@@ -31,9 +31,11 @@
       <li>ClassicStart</li>
     </startingResearchTags>
     <hairTags>
-		<li>Civil</li>
 		<li>Rural</li>
 		<li>Tribal</li>
+		<li>Urban</li>
+		<li>Punk</li>
+		
     </hairTags>
     <apparelStuffFilter>
       <thingDefs>
@@ -87,8 +89,8 @@
       <min>30</min>
       <max>100</max>
     </startingGoodwill>
-	<factionNameMaker>NamerRRYUSCMFaction</factionNameMaker>
-	<settlementNameMaker>NamerRRYUSCMAO</settlementNameMaker>
+	<factionNameMaker>Namer_RRY_USCM_Operations</factionNameMaker>
+	<settlementNameMaker>Namer_RRY_USCM_Squads</settlementNameMaker>
 	<techLevel>Spacer</techLevel>
 	<backstoryCategories>
 		<li>Raider</li>
@@ -104,12 +106,12 @@
       <min>0</min>
       <max>30</max>
     </naturalColonyGoodwill>
-    <visitorTraderKinds>
+    <!--<visitorTraderKinds>
 	
       <li>RRY_USCM_Private</li>
 	  
     </visitorTraderKinds>
-   <caravanTraderKinds>
+    <caravanTraderKinds>
    
      
 	  
@@ -118,7 +120,7 @@
 	
       
 	  
-    </baseTraderKinds>
+    </baseTraderKinds>-->
     <allowedArrivalTemperatureRange>
       <min>-50</min>
       <max>45</max>
@@ -159,7 +161,7 @@
 	  <!--<li>
       <kindDef>Trader</kindDef>
         <traders>
-          <YautjaTrader_RRY>1</YautjaTrader_RRY>
+          <YautjaTrader_RRY></YautjaTrader_RRY>
         </traders>
         <carriers>
           <Muffalo>2</Muffalo>

@@ -126,9 +126,18 @@ namespace RimWorld
 
         private int MiningRange = 5;
 
+        private float CellsInScanRadius
+        {
+            get
+            {
+                return (float)GenRadial.NumCellsInRadius(MiningRange);
+            }
+        }
+
         // Token: 0x0600041E RID: 1054 RVA: 0x0002CA54 File Offset: 0x0002AE54
         protected override Job TryGiveJob(Pawn pawn)
         {
+            Map map = pawn.Map;
             List<IntVec3> pillarLoc = new List<IntVec3>()
             {
                 // Cardinals
@@ -179,41 +188,25 @@ namespace RimWorld
             {
                 return null;
             }
-            for (int i = 0; i < 40; i++)
+            for (int i = 0; i < GenRadial.NumCellsInRadius(MiningRange); i++)
             {
-                IntVec3 randomCell = region.RandomCell;
-                for (int j = 0; j < 4; j++)
+                IntVec3 c = pawn.mindState.duty.focus.Cell + GenRadial.RadialPattern[MiningRange];
+                if (!pillarLoc.Contains(c))
                 {
-                    IntVec3 c = randomCell + GenAdj.CardinalDirections[j];
-                    if (c.InBounds(pawn.Map) && c.Roofed(pawn.Map))
+                    Building edifice = c.GetEdifice(pawn.Map);
+                    if (edifice != null && (edifice.def.passability == Traversability.Impassable /* || edifice.def.IsDoor */) && edifice.def.size == IntVec2.One && edifice.def != ThingDefOf.CollapsedRocks && edifice.def != XenomorphDefOf.RRY_Xenomorph_HiveWall && pawn.CanReserve(edifice, 1, -1, null, false) && XenomorphUtil.DistanceBetween(edifice.Position, pawn.mindState.duty.focus.Cell) <= MiningRange)
                     {
-
-                        Building edifice = c.GetEdifice(pawn.Map);
-                        if (edifice != null && (edifice.def.passability == Traversability.Impassable || edifice.def.IsDoor) && edifice.def.size == IntVec2.One && edifice.def != ThingDefOf.CollapsedRocks && edifice.def != XenomorphDefOf.RRY_Xenomorph_HiveWall && pawn.CanReserve(edifice, 1, -1, null, false) && XenomorphUtil.DistanceBetween(edifice.Position, pawn.mindState.duty.focus.Cell) <= MiningRange)
+                        if (!pillarLoc.Contains(edifice.Position))
                         {
-                            if (!pillarLoc.Contains(edifice.Position))
+                            return new Job(JobDefOf.Mine, edifice)
                             {
-                                return new Job(JobDefOf.Mine, edifice)
-                                {
-                                    ignoreDesignations = true
-                                };
-                            }
+                                ignoreDesignations = true
+                            };
                         }
-                        /*
-                        else if (edifice==null)
-                        {
-                            if (!pillarLoc.Contains(edifice.Position))
-                            {
-                                return new Job(JobDefOf.Mine, edifice)
-                                {
-                                    ignoreDesignations = true
-                                };
-                            }
-                        }
-                        */
                     }
                 }
             }
+
             return null;
         }
 

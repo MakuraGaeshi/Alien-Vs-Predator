@@ -67,9 +67,15 @@ namespace RimWorld
                 }
                 else
                 {
-               //     Log.Message(string.Format("HivelikesPresent: False"));
-                    ThingDef named = pawn.RaceProps.Humanlike ? XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon : XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon;
+                    if (XenomorphUtil.HiveSlimePresent(Map))
+                    {
+                        duty = new PawnDuty(OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike, XenomorphUtil.ClosestReachableHiveSlime(pawn), this.distToHiveToAttack);
+                    }
+                    else if (XenomorphKidnapUtility.TryFindGoodHiveLoc(pawn, out IntVec3 c))
+                    {
 
+                    }
+                    ThingDef named = pawn.RaceProps.Humanlike ? XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon : XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon;
                     cocoonsPresent = XenomorphUtil.CocoonsPresent(pawn.Map, named);
                     eggsReachable = !XenomorphUtil.ClosestReachableEgg(pawn).DestroyedOrNull();
                     closestReachableEgg = XenomorphUtil.ClosestReachableEgg(pawn);

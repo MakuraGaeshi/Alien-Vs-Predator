@@ -60,20 +60,27 @@
   
   <!--============================================= Artificials =============================================-->
   
-  <HediffGiverSetDef>
-    <defName>RRY_Artificials_Synth</defName>
+	<HediffGiverSetDef>
+    <defName>RRY_Artificials_Synth_Hediff</defName>
     <hediffGivers>
       
       <!-- Environmental -->
       <li Class="HediffGiver_Bleeding">
-        <hediff>BloodLoss</hediff>
+        <hediff>RRY_Synth_BloodLoss</hediff>
       </li>
-      
-
-
+      <li Class="HediffGiver_Hypothermia">
+        <hediff>RRY_Synth_HypothermicSlowdown</hediff>
         
+      </li>
+      <li Class="HediffGiver_Heat">
+        <hediff>RRY_Synth_Overheating</hediff>
+      </li>
+
+
+       
+      
       
     </hediffGivers>
   </HediffGiverSetDef>
-  
+	  
 </Defs>

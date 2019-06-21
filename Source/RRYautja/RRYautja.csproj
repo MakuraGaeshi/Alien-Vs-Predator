@@ -64,14 +64,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Harmony\ExtraButcheringProducts.cs" />
+    <Compile Include="Harmony\Patches.cs" />
     <Compile Include="util\Building_XenomorphCryptosleepCasket.cs" />
     <Compile Include="util\Building_CrashedShipPart_CryptosleepCasket_Xenomorph.cs" />
+    <Compile Include="util\CompFoodPoisonProtection.cs" />
     <Compile Include="util\JobDriver_DestroyCocoon.cs" />
     <Compile Include="util\CompUseEffect_Cocoon.cs" />
     <None Include="util\CompUseEffect_ResourceBox.cs.bak" />
-    <Compile Include="util\ThinkNode_ConditionalBleeding.cs" />
+    <Compile Include="Xenomorph\CompHiveConversionRadius.cs" />
+    <Compile Include="Xenomorph\CompHiveExpand.cs" />
+    <Compile Include="util\MarkOffsetDefExtension.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalSky.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalHealth.cs" />
     <None Include="util\Hives\LordToil_DefendAndExpandHiveLike.cs.bak" />
     <Compile Include="Xenomorph\CompUsableBuilding.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalEggCount.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalPawnKindCount.cs" />
     <Compile Include="Xenomorph\XenomorphTargetFinder.cs" />
     <Compile Include="util\Hives\JobGiver_WandeEggs.cs" />
     <Compile Include="util\Hives\LordToil_DefendHiveLikeAggressively.cs" />
@@ -94,13 +102,13 @@
     <None Include="Xenomorph\HediffComp_Facehugger - Copy.cs.bak" />
     <None Include="Xenomorph\Jobstuff\Givers\JobGiver_XenosKidnap.cs.bak" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_MineRandom.cs" />
-    <Compile Include="Xenomorph\ThinkNode_ChancePerHour_XenomorphDigChance.cs" />
-    <Compile Include="Xenomorph\ThinkNode_ConditionalNotPawnKind.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ChancePerHour_XenomorphDigChance.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalNotPawnKind.cs" />
     <Compile Include="Xenomorph\LordJob_DefendHiveLoc.cs" />
     <Compile Include="Xenomorph\LordToil_DefendHiveLoc.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_PredalienImpregnate.cs" />
     <Compile Include="Xenomorph\IncidentWorker_PowerCut.cs" />
-    <Compile Include="Xenomorph\FacehuggerOffsetDefExtension.cs" />
+    <None Include="util\FacehuggerOffsetDefExtension.cs.bak" />
     <Compile Include="Xenomorph\GenStep_XenomorphCaveHives.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_PredalienImpregnate.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphHosthunter.cs" />
@@ -111,12 +119,15 @@
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphFightEnemies.cs" />
     <Compile Include="Xenomorph\HediffGiver_StartWithXenomorphHediff.cs" />
     <Compile Include="util\MinifiedThingNoBox.cs" />
-    <Compile Include="Xenomorph\ThinkNode_ConditionalAnyInfectableSpawnedNearby.cs" />
-    <Compile Include="Xenomorph\ThinkNode_ConditionalQueenPresent.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalAnyInfectableSpawnedNearby.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalQueenPresent.cs" />
     <Compile Include="Yautja\Alert_PawnCanMark.cs" />
     <Compile Include="Yautja\Alert_ColonistNeedsRescuingFromCocoon.cs" />
     <Compile Include="Xenomorph\Jobstuff\Job_ConstructHiveWall.cs" />
     <Compile Include="util\IntergrationUtils.cs" />
+    <Compile Include="Yautja\JobDriver_MarkOther.cs" />
+    <Compile Include="Yautja\JobDriver_TakeTrophy.cs" />
+    <None Include="Yautja\RRY_Thought_Situational.cs.bak" />
     <Compile Include="Yautja\ScenPart_BadBlood.cs" />
     <Compile Include="Yautja\Recipe_Remove_Gauntlet.cs" />
     <Compile Include="Yautja\RRY_Thought_SituationalSocial.cs" />
@@ -166,7 +177,7 @@
     <Compile Include="Xenomorph\Thing_AddsHediffDef.cs" />
     <Compile Include="Xenomorph\DamageWorker_Acid.cs" />
     <Compile Include="util\Apparel_Comps.cs" />
-    <Compile Include="Xenomorph\ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby.cs" />
     <Compile Include="Xenomorph\RoomRoleWorker_EggChamber.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_LayXenoEgg.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_LayXenoEgg.cs" />
@@ -179,7 +190,7 @@
     <Compile Include="util\HediffComp_Blur.cs" />
     <Compile Include="Xenomorph\HediffComp_NaturallyHealing.cs" />
     <Compile Include="util\Hediff_Cloak.cs" />
-    <Compile Include="Xenomorph\ThinkNode_ConditionalFinalLifeStage.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalFinalLifeStage.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_FacehuggerHunt.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphManhunter.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphFlee.cs" />
@@ -189,7 +200,7 @@
     <Compile Include="util\Graphic_Invisible.cs" />
     <Compile Include="util\PawnGraphicSet_Invisible.cs" />
     <Compile Include="Yautja\YautjaBloodedUtility.cs" />
-    <Compile Include="Xenomorph\HediffComp_DrawImplant.cs" />
+    <Compile Include="util\HediffComp_DrawImplant.cs" />
     <Compile Include="Xenomorph\XenoHediffWithComps.cs" />
     <Compile Include="util\CrashedShip\CompSpawnerPawnsOnDamaged.cs" />
     <Compile Include="util\Hives\CompSpawnerHiveLikes.cs" />
@@ -226,7 +237,7 @@
     <Compile Include="Yautja\YautjaDefOf.cs" />
     <Compile Include="util\HediffWeapon.cs" />
     <Compile Include="util\CompHediffApparel.cs" />
-    <Compile Include="Harmony\Patches.cs" />
+    <None Include="Harmony\Patches.cs.bak" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="util\Util_Cloakgen.cs" />
     <Compile Include="util\Util_CompEquippableTurret.cs" />
