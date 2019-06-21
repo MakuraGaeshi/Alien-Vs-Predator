@@ -17,11 +17,13 @@
       <li Class="HediffCompProperties_GetsPermanent">
         <permanentLabel>acid burn scar</permanentLabel>
       </li>
+	  <!--
       <li Class="RRYautja.HediffCompProperties_DamageOverTime">
         <cycleDamage>RRY_AcidBurn</cycleDamage>
         <maxCycleAmt>5</maxCycleAmt>
         <repeatChance>0.50</repeatChance>
       </li>
+	  -->
     </comps>
     <injuryProps>
       <painPerSeverity>0.01475</painPerSeverity>
