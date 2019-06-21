@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+
+<!--=============================================== Artificials - Player Faction ===============================================-->
+<!--=============================================== Artificials - Synths Base ===============================================-->
+  <PawnKindDef Abstract="True" Name="BaseArtificialPawnKind">
+    <race>RRY_Synth</race>
+    <combatPower>40</combatPower>
+    <baseRecruitDifficulty>0.5</baseRecruitDifficulty>
+    <isFighter>true</isFighter>
+    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+    <forceNormalGearQuality>false</forceNormalGearQuality>
+	    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <drawSize>0.75</drawSize>
+        </bodyGraphicData>
+      </li>
+      <li>
+        <bodyGraphicData>
+          <drawSize>1</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+	<backstoryCategories>
+			<li>RRY_Synth_Backstories</li>
+			<li>RRY_Artificial_Backstories</li>
+  	</backstoryCategories>
+  </PawnKindDef>
+
+<!--=============================================== Artificials ===============================================-->
+
+  <PawnKindDef ParentName="BaseArtificialPawnKind">
+    <defName>RRY_Synth</defName>
+    <label>Synth</label>
+    <defaultFactionType>RRY_USCM_PlayerColony</defaultFactionType>
+    
+    <apparelTags>
+		<li>IndustrialMilitaryBasic</li>
+		<li></li>
+    </apparelTags>
+    <apparelMoney>
+      <min>10000</min>
+      <max>10000</max>
+    </apparelMoney>
+    <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
+  </PawnKindDef>
+  
+</Defs>

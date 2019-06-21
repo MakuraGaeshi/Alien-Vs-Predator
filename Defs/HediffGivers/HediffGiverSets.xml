@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
+<!--============================================= Yautja =============================================-->
+
   <HediffGiverSetDef>
     <defName>RRY_Organic_Yautja</defName>
     <hediffGivers>
@@ -31,6 +33,8 @@
     </hediffGivers>
   </HediffGiverSetDef>
   
+  <!--============================================= Xenomoprh Impregnation =============================================-->
+  
   <HediffGiverSetDef>
     <defName>RRY_Xenomorph_Infection_Humanlike</defName>
     <hediffGivers>
@@ -54,4 +58,29 @@
     </hediffGivers>
   </HediffGiverSetDef>
   
+  <!--============================================= Artificials =============================================-->
+  
+	<HediffGiverSetDef>
+    <defName>RRY_Artificials_Synth_Hediff</defName>
+    <hediffGivers>
+      
+      <!-- Environmental -->
+      <li Class="HediffGiver_Bleeding">
+        <hediff>RRY_Synth_BloodLoss</hediff>
+      </li>
+      <li Class="HediffGiver_Hypothermia">
+        <hediff>RRY_Synth_HypothermicSlowdown</hediff>
+        
+      </li>
+      <li Class="HediffGiver_Heat">
+        <hediff>RRY_Synth_Overheating</hediff>
+      </li>
+
+
+       
+      
+      
+    </hediffGivers>
+  </HediffGiverSetDef>
+	  
 </Defs>
