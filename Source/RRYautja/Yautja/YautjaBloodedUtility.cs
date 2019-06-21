@@ -88,7 +88,7 @@ namespace RRYautja
                 Backstory pawnStoryC = pawn.story.childhood;
                 Backstory pawnStoryA = pawn.story.adulthood ?? null;
 
-                if (pawnStoryA != null)
+                if (pawn.kindDef.race == YautjaDefOf.RRY_Alien_Yautja && pawnStoryA != null)
                 {
                 //    Log.Message(string.Format("2"));
                     if (pawnStoryA != bsDefUnblooded.backstory)

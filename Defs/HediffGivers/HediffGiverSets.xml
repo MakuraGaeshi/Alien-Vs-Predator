@@ -1,8 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-<!--============================================= Yautja =============================================-->
-
   <HediffGiverSetDef>
     <defName>RRY_Organic_Yautja</defName>
     <hediffGivers>
@@ -33,8 +31,6 @@
     </hediffGivers>
   </HediffGiverSetDef>
   
-  <!--============================================= Xenomoprh Impregnation =============================================-->
-  
   <HediffGiverSetDef>
     <defName>RRY_Xenomorph_Infection_Humanlike</defName>
     <hediffGivers>
@@ -58,6 +54,7 @@
     </hediffGivers>
   </HediffGiverSetDef>
   
+
   <!--============================================= Artificials =============================================-->
   
 	<HediffGiverSetDef>
@@ -89,5 +86,6 @@
       
     </hediffGivers>
   </HediffGiverSetDef>
-	  
+	
+
 </Defs>

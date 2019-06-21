@@ -621,8 +621,8 @@ namespace RRYautja
         static void Prefix(PawnRenderer __instance, ref Vector3 rootLoc, ref float angle, ref bool renderBody, ref Rot4 bodyFacing, ref Rot4 headFacing, ref RotDrawMode bodyDrawType, ref bool portrait, ref bool headStump)
         {
             Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
-            bool selected = Find.Selector.SelectedObjects.Contains(pawn) && Prefs.DevMode;
-            if (!portrait)
+        //    bool selected = Find.Selector.SelectedObjects.Contains(pawn) && Prefs.DevMode;
+            if (pawn.Spawned)
             {
                 if (pawn.RaceProps.Humanlike && pawn.CurrentBed() != null && pawn.CurrentBed() is Building_XenomorphCocoon)
                 {
@@ -651,7 +651,7 @@ namespace RRYautja
                     else rootLoc = pawn.CurrentBed().DrawPos;
                 }
                 bool pawnflag = !((pawn.kindDef.race.defName.StartsWith("Android") && pawn.kindDef.race.defName.Contains("Tier")) || pawn.kindDef.race.defName.Contains("ChjDroid") || pawn.kindDef.race.defName.Contains("ChjBattleDroid") || pawn.kindDef.race.defName.Contains("M7Mech")); 
-                if ((pawn.RaceProps.Humanlike && pawnflag) || pawn.kindDef.race.GetModExtension<OffsetDefExtension>() != null)
+                if ((pawn.RaceProps.Humanlike && pawnflag) || pawn.kindDef.race.GetModExtension<OffsetDefExtension>() != null && pawn.Map!=null)
                 {
                     foreach (var hd in pawn.health.hediffSet.hediffs)
                     {
@@ -661,8 +661,7 @@ namespace RRYautja
                             DrawImplant(comp, __instance, rootLoc, angle, renderBody, bodyFacing, headFacing, bodyDrawType, portrait, headStump);
                         }
                     }
-                    /*
-                    */
+
                 } // DrawWornExtras()
                 else
                 {
