@@ -536,7 +536,7 @@ namespace RRYautja
             return;
         }
     }
-    
+
     [HarmonyPatch(typeof(RestUtility), "IsValidBedFor")]
     internal static class RestUtility_Bed_IsValidBedFor
     {
@@ -544,10 +544,22 @@ namespace RRYautja
         public static void Postfix(Thing bedThing, Pawn sleeper, Pawn traveler, ref bool __result)
         {
             bool flag = bedThing is Building_XenomorphCocoon;
-            bool flag2 = traveler != null ? traveler.kindDef.race.defName.Contains("RRY_Xenomorph") : false ;
+            bool flag2 = traveler != null ? traveler.kindDef.race.defName.Contains("RRY_Xenomorph") : false;
             bool flag3 = XenomorphUtil.isInfectablePawn(sleeper);
-            __result = __result&&!flag || (__result && flag && flag2);
-        //    Log.Message(string.Format("RestUtility_Bed_IsValidBedFor sleeper: {0} traveler: {1} result: {2} = !flag: {3} && flag2: {4}", sleeper, traveler, __result, !flag , flag2));
+            __result = __result && !flag || (__result && flag && flag2);
+            //    Log.Message(string.Format("RestUtility_Bed_IsValidBedFor sleeper: {0} traveler: {1} result: {2} = !flag: {3} && flag2: {4}", sleeper, traveler, __result, !flag , flag2));
+            return;
+        }
+    }
+
+    [HarmonyPatch(typeof(ShieldBelt), "AllowVerbCast")]
+    internal static class ShieldBelt_AllowVerbCast_YautjaWeapons
+    {
+        [HarmonyPostfix]
+        public static void Postfix(IntVec3 root, Map map, LocalTargetInfo targ, Verb verb, ref bool __result)
+        {
+            bool flag = verb is Verb_Launch_Stuffable_Projectile;
+            __result = __result && !flag;
             return;
         }
     }

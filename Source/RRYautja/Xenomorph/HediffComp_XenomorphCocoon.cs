@@ -144,6 +144,7 @@ namespace RRYautja
             base.CompPostPostAdd(dinfo);
             if (Pawn.CurrentBed() == null && MyPos != null && MyMap != null && Pawn.Spawned)
             {
+                Log.Message(string.Format("(Pawn.CurrentBed() == null && MyPos != null && MyMap != null && Pawn.Spawned) == {0}", (Pawn.CurrentBed() == null && MyPos != null && MyMap != null && Pawn.Spawned)));
                 Rot4 rot = Rotlist.RandomElement();
                 Thing thing = ThingMaker.MakeThing(MyCocoonDef);
                 GenSpawn.Spawn(thing, MyPos, MyMap, rot, WipeMode.Vanish, false);
