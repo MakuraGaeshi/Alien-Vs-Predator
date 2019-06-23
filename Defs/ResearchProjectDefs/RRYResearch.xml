@@ -236,4 +236,22 @@
 		<researchViewX>1.75</researchViewX>
 		<researchViewY>4.25</researchViewY>
 	</ResearchProjectDef>
+
+	<!--OG==================== Rebelrot's Yautja Mod - Carapace Armours =========================OG-->
+
+	<ResearchProjectDef>
+		<tab>Main</tab>
+		<defName>RRY_USCM_CarapaceArmor</defName>
+		<label>Carapace Armours</label>
+		<description>Allows you to create advanced personal armours.</description>
+		<baseCost>1750</baseCost>
+		<prerequisites>
+			<li>MicroelectronicsBasics</li>
+			<li>FlakArmor</li>
+		</prerequisites>
+		<techLevel>Spacer</techLevel>
+		<researchViewX>9</researchViewX>
+		<researchViewY>5.0</researchViewY>
+	</ResearchProjectDef>
+
 </Defs>

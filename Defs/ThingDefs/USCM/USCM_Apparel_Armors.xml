@@ -14,6 +14,7 @@
 	<description>Standard issue USCM headgear.</description>
 	</ThingDef>	
 	
+	
 	<!-- ========================= USCM - M10 Pattern Ballistic Helmet ========================== -->
 	<ThingDef ParentName="RRY_USCM_HeadgearBase">
 		<defName>RRY_USCM_M10PAttern</defName>
@@ -46,7 +47,7 @@
 			<ComponentSpacer>1</ComponentSpacer>
 		</costList>
 		<recipeMaker>
-			<researchPrerequisite>MicroelectronicsBasics</researchPrerequisite>
+			<researchPrerequisite>RRY_USCM_CarapaceArmor</researchPrerequisite>
 			<skillRequirements>
 				<Crafting>7</Crafting>
 			</skillRequirements>
@@ -76,7 +77,68 @@
 		</tradeTags>
 	</ThingDef>
 	
-
+<!-- ========================= USCM - M3 Pattern Personal Armor ========================== -->
+	<ThingDef ParentName="RRY_USCM_Armour_MakeableBase">
+		<defName>RRY_Apparel_M3Pattern</defName>
+		<label>M3 Pattern Personal Armor</label>
+		<description>The M3 Pattern Personal Armor is the standard ballistic protective armor system employed by the United States Colonial Marine Corps. Manufactured by Armat Battlefield Systems, it is designed to balance lightness and comfort with optimum protection. The M3 system is primarily concerned with protecting the user's torso only.</description>
+		<graphicData>
+			<texPath>Things/Apparel/USCM/Armour/M3Pattern/USCM_M3Pattern</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>1000</MarketValue>
+			<MaxHitPoints>300</MaxHitPoints>
+			<WorkToMake>23000</WorkToMake>
+			<ArmorRating_Blunt>0.50</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.30</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.20</ArmorRating_Heat>
+			<Insulation_Heat>6</Insulation_Heat>
+			<Insulation_Cold>10</Insulation_Cold>
+			<Mass>4.5</Mass>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.06</MoveSpeed>
+			<WorkSpeedGlobal>-0.08</WorkSpeedGlobal>
+		</equippedStatOffsets>
+		<costList>
+			<Steel>25</Steel>
+			<Plasteel>10</Plasteel>
+			<ComponentIndustrial>1</ComponentIndustrial>
+		</costList>
+		<recipeMaker>
+			<researchPrerequisite>RRY_USCM_CarapaceArmor</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>5</Crafting>
+			</skillRequirements>
+		</recipeMaker>
+		<apparel>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Shoulders</li>
+				<li>Arms</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Apparel/USCM/Armour/M3Pattern/USCM_M3Pattern</wornGraphicPath>
+			<layers>
+				<li>Middle</li>
+				<li>Shell</li>
+			</layers>
+			<tags>
+				<li>USCM_StandardIssue_Apparel</li>
+				<li>USCM_M3Pattern</li>
+				<li>USCM_Armour</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+		</apparel>
+		<thingCategories>
+			<li>RRY_Armour</li>
+		</thingCategories>
+		<tradeTags>
+			<li>Apparel</li>
+		</tradeTags>
+	</ThingDef>
 	
 
 </Defs>

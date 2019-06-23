@@ -59,8 +59,9 @@
         <kindDef>Peaceful</kindDef>
         <commonality>100</commonality>
         <options>
-          <RRY_USCM_Private>50</RRY_USCM_Private>
-		  <RRY_Synth>50</RRY_Synth>
+          <RRY_USCM_Private>60</RRY_USCM_Private>
+		  
+		  <RRY_Synth>10</RRY_Synth>
         </options>
       </li>
     </pawnGroupMakers>
