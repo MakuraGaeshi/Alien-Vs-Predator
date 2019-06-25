@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
+  <!-- Mod Settings -->
+  <RRY_AllowHiddenInfections>Allow Hidden Impregnations</RRY_AllowHiddenInfections>
   <!-- Rearmable Traps -->
   <DesignatorRearmTrap>Rearm trap</DesignatorRearmTrap>
   <DesignatorRearmTrapDesc>Rearm a sprung trap so it can be triggered again.</DesignatorRearmTrapDesc>

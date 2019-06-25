@@ -43,13 +43,9 @@ namespace RimWorld
         protected override IEnumerable<Toil> MakeNewToils()
         {
             this.FailOnIncapable(PawnCapacityDefOf.Manipulation);
-            yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
+            yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);
             yield return Toils_Haul.StartCarryThing(TargetIndex.A, false, true, false);
             Toil carryToCell = Toils_Haul.CarryHauledThingToCell(TargetIndex.B);
-            if (TargetB.Cell.GetFirstBuilding(Map)!=null)
-            {
-             //   TargetB.Cell = GenAdj.AdjacentCells8WayRandomized();
-            }
             yield return carryToCell;
             yield return new Toil
             {
@@ -63,10 +59,11 @@ namespace RimWorld
                 defaultCompleteMode = ToilCompleteMode.Instant
             };
             yield return Toils_Haul.PlaceHauledThingInCell(TargetIndex.B, carryToCell, false);
+            yield return Toils_Goto.GotoCell(TargetIndex.C, PathEndMode.OnCell);
             Toil prepare = Toils_General.Wait(this.useDuration, TargetIndex.A);
             prepare.NPCWithProgressBarToilDelay(TargetIndex.A, false, -0.5f);
             prepare.FailOnDespawnedNullOrForbidden(TargetIndex.A);
-            prepare.FailOnCannotTouch(TargetIndex.A, PathEndMode.ClosestTouch);
+        //    prepare.FailOnCannotTouch(TargetIndex.A, PathEndMode.InteractionCell);
             prepare.WithEffect(EffecterDefOf.Vomit, TargetIndex.A);
             prepare.PlaySustainerOrSound(() => SoundDefOf.Vomit);
             yield return prepare;

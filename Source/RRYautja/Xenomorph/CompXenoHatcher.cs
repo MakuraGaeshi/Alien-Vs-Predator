@@ -240,15 +240,15 @@ namespace RRYautja
                     //    Log.Message(string.Format("{0} thingsize: {1}, thingstealth: {2}, thingmovespeed: {3}", pawn.Label, thingsize, thingstealth, thingmovespeed));
                     }
 
-                    float hatchon = ((10*thingdist) / thingsize);
+                    float hatchon = ((10*thingdist) - (thingsize * 5));
                     float roll = thingstealth > 0 ? (Rand.RangeInclusive(0, 100)* thingstealth): (Rand.RangeInclusive(0, 100));
-                    if (selected)
-                    {
-                     //    Log.Message(string.Format("{0} hatchon: {1}, roll: {2}", pawn.Label, hatchon, roll));
-                    }
                     if (roll>hatchon)
                     {
                         this.willHatch = true;
+                    }
+                    if (selected)
+                    {
+                        Log.Message(string.Format("{0} hatchon: {1}, roll: {2}, willHatch: {3}", pawn.Label, hatchon, roll, willHatch));
                     }
                 }
             }

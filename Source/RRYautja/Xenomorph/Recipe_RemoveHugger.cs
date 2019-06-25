@@ -59,6 +59,7 @@ namespace RRYautja
             Hediff hediff = pawn.health.hediffSet.hediffs.Find((Hediff x) => x.def == this.recipe.removesHediff && x.Part == part && x.Visible);
             if (hediff != null)
             {
+                hediff.TryGetComp<HediffComp_XenoFacehugger>().killhugger = true;
                 pawn.health.RemoveHediff(hediff);
             }
         }

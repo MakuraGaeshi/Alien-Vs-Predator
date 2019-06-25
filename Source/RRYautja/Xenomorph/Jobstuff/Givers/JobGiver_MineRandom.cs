@@ -233,18 +233,35 @@ namespace RimWorld
             {
                 return null;
             }
-            IntVec3 hiveCell = pawn.mindState.duty.focus.Cell;
-            CellRect eggRect = new CellRect(hiveCell.x - 1, hiveCell.z - 1, 3, 3);
-            foreach (var c in eggRect)
+            
+            IntVec3 hiveCell;
+            if (!XenomorphUtil.ClosestReachableParentHivelike(pawn).DestroyedOrNull())
             {
-                if (c.GetFirstHaulable(pawn.Map) is Thing h && !(h is Pawn) && !(h is Building_XenoEgg) && !(h is Building_XenomorphCocoon))
+                hiveCell = XenomorphUtil.ClosestReachableParentHivelike(pawn).Position;
+            }
+            else if (!XenomorphUtil.ClosestReachableHiveSlime(pawn).DestroyedOrNull())
+            {
+                hiveCell = XenomorphUtil.ClosestReachableHiveSlime(pawn).Position;
+            }
+            else
+            {
+                hiveCell = pawn.mindState.duty.focus.Cell;
+            }
+            foreach (var c in GenAdj.AdjacentCellsAndInside)
+            {
+                if (Find.Selector.SelectedObjects.Contains(pawn) && Prefs.DevMode) Log.Message(string.Format("{0} TryGiveJob {1} @ {2}", this, pawn.LabelShortCap, (hiveCell + c)));
+                if ((hiveCell+c).GetFirstHaulable(pawn.Map) is Thing h && !(h is Pawn) && !(h is Building_XenoEgg) && !(h is Building_XenomorphCocoon))
                 {
+                    if (Find.Selector.SelectedObjects.Contains(pawn) && Prefs.DevMode) Log.Message(string.Format("{0} TryGiveJob {1} @ {2} 1", this, pawn.LabelShortCap, (hiveCell + c)));
                     if (pawn.CanReserve(h, 1, -1, null, false))
                     {
+                        if (Find.Selector.SelectedObjects.Contains(pawn) && Prefs.DevMode) Log.Message(string.Format("{0} TryGiveJob {1} @ {2} 2", this, pawn.LabelShortCap, (hiveCell + c)));
                         if (!XenomorphUtil.CanHaulAside(pawn, h, hiveCell, ClearingRange, out IntVec3 c2))
                         {
+                            if (Find.Selector.SelectedObjects.Contains(pawn) && Prefs.DevMode) Log.Message(string.Format("{0} TryGiveJob {1} @ {2} 3", this, pawn.LabelShortCap, (hiveCell + c)));
                             return null;
                         }
+                        if (Find.Selector.SelectedObjects.Contains(pawn) && Prefs.DevMode) Log.Message(string.Format("{0} TryGiveJob {1} @ {2} 4", this, pawn.LabelShortCap, (hiveCell + c)));
                         return new Job(JobDefOf.HaulToCell, h, c2)
                         {
                             count = 99999,
@@ -281,9 +298,21 @@ namespace RimWorld
             {
                 return null;
             }
+            IntVec3 hiveCell;
+            if (!XenomorphUtil.ClosestReachableParentHivelike(pawn).DestroyedOrNull())
+            {
+                hiveCell = XenomorphUtil.ClosestReachableParentHivelike(pawn).Position;
+            }
+            else if (!XenomorphUtil.ClosestReachableHiveSlime(pawn).DestroyedOrNull())
+            {
+                hiveCell = XenomorphUtil.ClosestReachableHiveSlime(pawn).Position;
+            }
+            else
+            {
+                hiveCell = pawn.mindState.duty.focus.Cell;
+            }
             for (int i = 0; i < 40; i++)
             {
-                IntVec3 hiveCell = pawn.mindState.duty.focus.Cell;
                 IntVec3 randomCell = region.RandomCell;
 
                 for (int j = 0; j < 8; j++)

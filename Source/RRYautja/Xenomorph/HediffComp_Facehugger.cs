@@ -38,6 +38,7 @@ namespace RRYautja
         {
             base.CompExposeData();
             Scribe_Values.Look<bool>(ref this.royaleHugger, "royaleHugger", false);
+            Scribe_Values.Look<bool>(ref this.killhugger, "killhugger");
             Scribe_Values.Look<int>(ref this.previousImpregnations, "previousImpregnations", 0);
             Scribe_Defs.Look<PawnKindDef>(ref this.instigatorKindDef, "InstigatorKindDef");
             Scribe_Defs.Look<HediffDef>(ref this.heDiffDeff, "heDiffDeff");
@@ -65,6 +66,7 @@ namespace RRYautja
         public float severityPerDay;
         public bool royaleHugger;
         public Pawn instigator;
+        public bool killhugger = false;
 
         public HediffComp_XenoFacehugger()
         {
@@ -297,6 +299,10 @@ namespace RRYautja
                 GenSpawn.Spawn(pawn, spawnLoc, spawnMap, 0);
                 Comp_Facehugger _Facehugger = pawn.TryGetComp<Comp_Facehugger>();
                 _Facehugger.Impregnations = previousImpregnations;
+                if (killhugger)
+                {
+                    pawn.Kill(null);
+                }
                 // pawn.Kill(null);
             }
             string text = TranslatorFormattedStringExtensions.Translate("Xeno_Facehugger_Detach", base.parent.pawn.LabelShort);

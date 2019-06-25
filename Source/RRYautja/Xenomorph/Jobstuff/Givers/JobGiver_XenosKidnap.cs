@@ -38,14 +38,43 @@ namespace RimWorld
             {
                 if (XenomorphKidnapUtility.TryFindGoodHiveLoc(pawn, t, out c))
                 {
+                    ThingDef named = t.RaceProps.Humanlike ? XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon : XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon;
                     bool selected = pawn.Map != null ? Find.Selector.SelectedObjects.Contains(pawn) && (Prefs.DevMode) : false;
                     //    if (selected) Log.Message(string.Format("TargetB == {0}", c));
                     if (c != IntVec3.Invalid && t != null)
                     {
+                        bool hiveAdj = false;
+
+                        bool b = RCellFinder.TryFindRandomCellNearWith(c, (x => x.GetFirstThing(pawn.Map, named).DestroyedOrNull() && x.GetFirstBuilding(pawn.Map).DestroyedOrNull() && x.GetEdifice(pawn.Map).DestroyedOrNull()), pawn.Map, out c,2,7);
+
+                        foreach (IntVec3 cell in GenAdj.AdjacentCells)
+                        {
+                            if (!(c+cell).GetFirstThing(pawn.Map, XenomorphDefOf.RRY_XenomorphHive).DestroyedOrNull())
+                            {
+                                hiveAdj = true;
+                                break;
+                            }
+                        }
+                        while (hiveAdj)
+                        {
+                            b = RCellFinder.TryFindRandomCellNearWith(c, (x => x.GetFirstThing(pawn.Map, named).DestroyedOrNull() && x.GetFirstBuilding(pawn.Map).DestroyedOrNull() && x.GetEdifice(pawn.Map).DestroyedOrNull()), pawn.Map, out c, 2, 7);
+
+                            foreach (IntVec3 cell in GenAdj.AdjacentCells)
+                            {
+                                if (!(c + cell).GetFirstThing(pawn.Map, XenomorphDefOf.RRY_XenomorphHive).DestroyedOrNull())
+                                {
+                                    hiveAdj = true;
+                                    break;
+                                }
+                            }
+
+                        }
+                        IntVec3 c2 = c.RandomAdjacentCell8Way();
                         return new Job(XenomorphDefOf.RRY_Job_XenomorphKidnap)
                         {
                             targetA = t,
                             targetB = c,
+                            targetC = c2,
                             count = 1
                         };
                     }

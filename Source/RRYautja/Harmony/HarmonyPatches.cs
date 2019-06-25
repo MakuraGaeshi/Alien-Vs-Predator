@@ -2,6 +2,7 @@
 using AlienRace;
 using Harmony;
 using RimWorld;
+using RRYautja.settings;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -484,6 +485,29 @@ namespace RRYautja
                 }
                 
             }
+            /*
+            if (__result.Faction.def.defName.Contains("RRY_USCM"))
+            {
+                __result.relations.ClearAllRelations();
+
+                if (__result.gender != Gender.Male)
+                {
+                    PawnKindDef pawnKindDef = request.KindDef;
+                    if (pawnKindDef == request.KindDef) pawnKindDef = Rand.Chance(0.15f) ? AstartesOGDefOf.OG_Astartes_Neophyte : AstartesOGDefOf.OG_Astartes_Brother;
+                    if (pawnKindDef == request.KindDef) pawnKindDef = Rand.Chance(0.15f) ? AstartesOGDefOf.OG_Astartes_Sargent : AstartesOGDefOf.OG_Astartes_Brother;
+                    if (pawnKindDef == request.KindDef) pawnKindDef = Rand.Chance(0.15f) ? AstartesOGDefOf.OG_Astartes_Captain : AstartesOGDefOf.OG_Astartes_Brother;
+                    request = new PawnGenerationRequest(request.KindDef, request.Faction, request.Context, -1, true, false, false, false, false, true, 0f, fixedGender: Gender.Male, allowGay: false);
+                    __result = PawnGenerator.GeneratePawn(request);
+                }
+
+                __result.story.bodyType = BodyTypeDefOf.Hulk;
+                __result.gender = Gender.Male;
+                //Log.Message(string.Format(__result.Drawer.renderer.graphics.headGraphic.data.texPath));
+                //   __result.Drawer.renderer.graphics.headGraphic.data.texPath.ToString();
+                HairDef hairdef = Rand.Chance(0.5f) ? AstartesOGDefOf.Shaved : AstartesOGDefOf.Topdog;
+                __result.story.hairDef = hairdef;
+            }
+            */
             if (__result.kindDef.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Xenomorph)
             {
                 if (request.KindDef==XenomorphDefOf.RRY_Xenomorph_Queen)
@@ -524,7 +548,7 @@ namespace RRYautja
                 Log.Message(string.Format("Non Yautja with Yautja Hair"));
                 __result.story.hairDef = DefDatabase<HairDef>.AllDefsListForReading.FindAll(x=>!x.hairTags.Contains("Yautja")).RandomElement();
             }
-            if (Rand.Chance(0.005f)&&XenomorphUtil.isInfectablePawn(__result))
+            if (Rand.Chance(0.005f)&&XenomorphUtil.isInfectablePawn(__result)&& SettingsHelper.latest.AllowHiddenInfections)
             {
                 HediffDef def = Rand.Chance(0.75f) ? XenomorphDefOf.RRY_HiddenXenomorphImpregnation : XenomorphDefOf.RRY_HiddenNeomorphImpregnation;
                 __result.health.AddHediff(def, __result.RaceProps.body.corePart, null);

@@ -63,29 +63,33 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="util\AvPSettings.cs" />
     <Compile Include="Harmony\ExtraButcheringProducts.cs" />
     <Compile Include="Harmony\Patches.cs" />
     <Compile Include="util\Building_XenomorphCryptosleepCasket.cs" />
     <Compile Include="util\Building_CrashedShipPart_CryptosleepCasket_Xenomorph.cs" />
     <Compile Include="util\CompFoodPoisonProtection.cs" />
-    <Compile Include="util\JobDriver_DestroyCocoon.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_DestroyCocoon.cs" />
     <Compile Include="util\CompUseEffect_Cocoon.cs" />
     <None Include="util\CompUseEffect_ResourceBox.cs.bak" />
+    <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_XenomorphTendSelf.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenoGetFood.cs" />
     <Compile Include="Xenomorph\CompHiveConversionRadius.cs" />
     <Compile Include="Xenomorph\CompHiveExpand.cs" />
     <Compile Include="util\MarkOffsetDefExtension.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphSelfTend.cs" />
     <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalSky.cs" />
     <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalHealth.cs" />
-    <None Include="util\Hives\LordToil_DefendAndExpandHiveLike.cs.bak" />
+    <None Include="Xenomorph\Lordstuff\LordToils\LordToil_DefendAndExpandHiveLike.cs.bak" />
     <Compile Include="Xenomorph\CompUsableBuilding.cs" />
     <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalEggCount.cs" />
     <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalPawnKindCount.cs" />
     <Compile Include="Xenomorph\XenomorphTargetFinder.cs" />
-    <Compile Include="util\Hives\JobGiver_WandeEggs.cs" />
-    <Compile Include="util\Hives\LordToil_DefendHiveLikeAggressively.cs" />
-    <Compile Include="util\Hives\LordToil_XenomrophAssaultColony.cs" />
-    <Compile Include="util\Hives\JobDriver_MaintainLike.cs" />
-    <Compile Include="util\Hives\CompMaintainableLike.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_WandeEggs.cs" />
+    <Compile Include="Xenomorph\Lordstuff\LordToils\LordToil_DefendHiveLikeAggressively.cs" />
+    <Compile Include="Xenomorph\Lordstuff\LordToils\LordToil_XenomrophAssaultColony.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_MaintainLike.cs" />
+    <Compile Include="Xenomorph\Hives\CompMaintainableLike.cs" />
     <Compile Include="util\RRY_Xenomorph_AbilityUser.cs" />
     <Compile Include="util\Building_Turret_Shoulder.cs" />
     <None Include="util\Cloakgen - withMedicomp.cs.bak" />
@@ -104,8 +108,8 @@
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_MineRandom.cs" />
     <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ChancePerHour_XenomorphDigChance.cs" />
     <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalNotPawnKind.cs" />
-    <Compile Include="Xenomorph\LordJob_DefendHiveLoc.cs" />
-    <Compile Include="Xenomorph\LordToil_DefendHiveLoc.cs" />
+    <Compile Include="Xenomorph\Lordstuff\LordJobs\LordJob_DefendHiveLoc.cs" />
+    <Compile Include="Xenomorph\Lordstuff\LordToils\LordToil_DefendHiveLoc.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_PredalienImpregnate.cs" />
     <Compile Include="Xenomorph\IncidentWorker_PowerCut.cs" />
     <None Include="util\FacehuggerOffsetDefExtension.cs.bak" />
@@ -203,21 +207,21 @@
     <Compile Include="util\HediffComp_DrawImplant.cs" />
     <Compile Include="Xenomorph\XenoHediffWithComps.cs" />
     <Compile Include="util\CrashedShip\CompSpawnerPawnsOnDamaged.cs" />
-    <Compile Include="util\Hives\CompSpawnerHiveLikes.cs" />
-    <Compile Include="util\Hives\CompSpawnerLike.cs" />
-    <Compile Include="util\Hives\HiveLike.cs" />
-    <Compile Include="util\Hives\HiveLikeDefOf.cs" />
-    <Compile Include="util\Hives\HiveLikeUtility.cs" />
-    <Compile Include="util\Hives\IncidentWorker_Hivelike.cs" />
-    <Compile Include="util\Hives\InfestationLikeCellFinder.cs" />
-    <Compile Include="util\Hives\JobGiver_HiveLikeDefense.cs" />
-    <Compile Include="util\Hives\JobGiver_MaintainHiveLikes.cs" />
-    <Compile Include="util\Hives\JobGiver_WanderHiveLike.cs" />
-    <Compile Include="util\Hives\LordJob_DefendAndExpandHiveLike.cs" />
-    <Compile Include="util\Hives\LordToil_DefendAndExpandHiveLike.cs" />
-    <Compile Include="util\Hives\LordToil_HiveLikeRelated.cs" />
-    <Compile Include="util\Hives\LordToil_HiveLikeRelatedData.cs" />
-    <Compile Include="util\Hives\TunnelHiveLikeSpawner.cs" />
+    <Compile Include="Xenomorph\Hives\CompSpawnerHiveLikes.cs" />
+    <Compile Include="Xenomorph\Hives\CompSpawnerLike.cs" />
+    <Compile Include="Xenomorph\Hives\HiveLike.cs" />
+    <Compile Include="Xenomorph\Hives\HiveLikeDefOf.cs" />
+    <Compile Include="Xenomorph\Hives\HiveLikeUtility.cs" />
+    <Compile Include="Xenomorph\Hives\IncidentWorker_Hivelike.cs" />
+    <Compile Include="Xenomorph\Hives\InfestationLikeCellFinder.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_HiveLikeDefense.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_MaintainHiveLikes.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_WanderHiveLike.cs" />
+    <Compile Include="Xenomorph\Lordstuff\LordJobs\LordJob_DefendAndExpandHiveLike.cs" />
+    <Compile Include="Xenomorph\Lordstuff\LordToils\LordToil_DefendAndExpandHiveLike.cs" />
+    <Compile Include="Xenomorph\Lordstuff\LordToils\LordToil_HiveLikeRelated.cs" />
+    <Compile Include="Xenomorph\Lordstuff\LordToils\LordToil_HiveLikeRelatedData.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Drivers\TunnelHiveLikeSpawner.cs" />
     <Compile Include="Xenomorph\IncidentWorker_CrashedShip.cs" />
     <Compile Include="util\CrashedShip\LordJob_PawnsDefendShip.cs" />
     <Compile Include="Yautja\ThoughtWorker_MarkedMood.cs" />
@@ -244,7 +248,6 @@
     <Compile Include="Xenomorph\Verb_MeleeAttackFacehugger.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Xenomorph\Jobstuff\Lords\" />
     <Folder Include="Xenomorph\Jobstuff\Workers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

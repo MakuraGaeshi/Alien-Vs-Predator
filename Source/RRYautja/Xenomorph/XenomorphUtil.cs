@@ -749,22 +749,29 @@ namespace RRYautja
         {
             return Math.Sqrt(Math.Pow((x2 - x1), 2) + Math.Pow((y2 - y1), 2));
         }
+
+        public static List<PawnKindDef> HostKinds
+        {
+            get
+            {
+                List<PawnKindDef> tmpHostKinds = new List<PawnKindDef>();
+                foreach (var item in DefDatabase<PawnKindDef>.AllDefsListForReading)
+                {
+                    if (XenomorphUtil.isInfectablePawnKind(item))
+                    {
+                        Log.Message(string.Format("Xenomorph Host: {0}", item.LabelCap));
+                        tmpHostKinds.Add(item);
+                    }
+                }
+                Log.Message(string.Format("HostKinds count: {0}", tmpHostKinds.Count));
+                return tmpHostKinds;
+            }
+        }
     }
 
     [StaticConstructorOnStartup]
     public static class XenomorphStaticUtil
     {
-        static void Main()
-        {
-            foreach (var item in DefDatabase<PawnKindDef>.AllDefsListForReading)
-            {
-                if (XenomorphUtil.isInfectablePawnKind(item))
-                {
-                //    Log.Message(string.Format("Xenomorph Host: {0}", item.LabelCap));
-                }
-            }
-        }
-        
         // Token: 0x06003BF5 RID: 15349 RVA: 0x001C4174 File Offset: 0x001C2574
         public static Toil NPCWithProgressBar(this Toil toil, TargetIndex ind, Func<float> progressGetter, bool interpolateBetweenActorAndTarget = false, float offsetZ = -0.5f)
         {

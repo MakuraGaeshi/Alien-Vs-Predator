@@ -49,3 +49,14 @@ Fixed Invisible pawns on select starting colonist screen
 Disabled acid damage DOT, untill damage on load issue is resolved
 Fixed random marks on non yautja pawns on load
 Credited Thrumbomorph namer
+
+V1.0.0.3 
+Added Option to disable chance for hidden impregnations on pawn generation, removed impregnated version of several vanilla incidents, as they are now redundant
+Fixed Compound and Hunting Bow firing with shield belt equipped
+Fixed doubled quality comp on Yautja melee weaponry
+Fixed Xenomorph raids trying to spawn nonviolent pawns, which crashed the raid
+Fixed (Hopefully) Chestbursters not bursting
+
+Even more Xenos Ai Tweaks
+Xenos hives should be more passive during the day and more active at night
+Xenos below 50% health should try to return to the hive untill healed

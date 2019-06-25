@@ -24,6 +24,7 @@ namespace RimWorld
         {
             List<IntVec3> HiveStruct = new List<IntVec3>()
             {
+                // Support Collums
                 // Cardinals
                 new IntVec3
                 {
@@ -65,7 +66,176 @@ namespace RimWorld
                 {
                     x = pawn.mindState.duty.focus.Cell.x - 2,
                     z = pawn.mindState.duty.focus.Cell.z - 2
-                }
+                },
+                // Exterior Walls
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + 6,
+                    z = pawn.mindState.duty.focus.Cell.z + 1
+                },
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + 6,
+                    z = pawn.mindState.duty.focus.Cell.z + 2
+                },
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + 6,
+                    z = pawn.mindState.duty.focus.Cell.z + 3
+                },
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + 6,
+                    z = pawn.mindState.duty.focus.Cell.z + 4
+                },
+                //
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + 6,
+                    z = pawn.mindState.duty.focus.Cell.z + -1
+                },
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + 6,
+                    z = pawn.mindState.duty.focus.Cell.z + -2
+                },
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + 6,
+                    z = pawn.mindState.duty.focus.Cell.z + -3
+                },
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + -6,
+                    z = pawn.mindState.duty.focus.Cell.z + -4
+                },
+                //
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + -6,
+                    z = pawn.mindState.duty.focus.Cell.z + 1
+                },
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + -6,
+                    z = pawn.mindState.duty.focus.Cell.z + 2
+                },
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + -6,
+                    z = pawn.mindState.duty.focus.Cell.z + 3
+                },
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + -6,
+                    z = pawn.mindState.duty.focus.Cell.z + 4
+                },
+                //
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + -6,
+                    z = pawn.mindState.duty.focus.Cell.z + -1
+                },
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + -6,
+                    z = pawn.mindState.duty.focus.Cell.z + -2
+                },
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + -6,
+                    z = pawn.mindState.duty.focus.Cell.z + -3
+                },
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + -6,
+                    z = pawn.mindState.duty.focus.Cell.z + -4
+                },
+                // 
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + 1,
+                    z = pawn.mindState.duty.focus.Cell.z + 6
+                },
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + 2,
+                    z = pawn.mindState.duty.focus.Cell.z + 6
+                },
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + 3,
+                    z = pawn.mindState.duty.focus.Cell.z + 6
+                },
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + 4,
+                    z = pawn.mindState.duty.focus.Cell.z + 6
+                },
+                //
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + -1,
+                    z = pawn.mindState.duty.focus.Cell.z + 6
+                },
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + -2,
+                    z = pawn.mindState.duty.focus.Cell.z + 6
+                },
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + -3,
+                    z = pawn.mindState.duty.focus.Cell.z + 6
+                },
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + -4,
+                    z = pawn.mindState.duty.focus.Cell.z + 6
+                }, 
+                //
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + 1,
+                    z = pawn.mindState.duty.focus.Cell.z + -6
+                },
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + 2,
+                    z = pawn.mindState.duty.focus.Cell.z + -6
+                },
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + 3,
+                    z = pawn.mindState.duty.focus.Cell.z + -6
+                },
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + 4,
+                    z = pawn.mindState.duty.focus.Cell.z + -6
+                },
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + -1,
+                    z = pawn.mindState.duty.focus.Cell.z + -6
+                },
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + -2,
+                    z = pawn.mindState.duty.focus.Cell.z + -6
+                },
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + -3,
+                    z = pawn.mindState.duty.focus.Cell.z + -6
+                },
+                new IntVec3
+                {
+                    x = pawn.mindState.duty.focus.Cell.x + -4,
+                    z = pawn.mindState.duty.focus.Cell.z + -6
+                },
+                //
+
             };
             Region region = pawn.GetRegion(RegionType.Set_Passable);
             if (region == null)
@@ -142,9 +312,11 @@ namespace RimWorld
             this.FailOnIncapable(PawnCapacityDefOf.Manipulation);
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
             Toil prepare = Toils_General.Wait(this.useDuration, TargetIndex.None);
-            prepare.WithProgressBarToilDelay(TargetIndex.A, false, -0.5f);
+            prepare.NPCWithProgressBarToilDelay(TargetIndex.A, false, -0.5f);
             prepare.FailOnDespawnedNullOrForbidden(TargetIndex.A);
             prepare.FailOnCannotTouch(TargetIndex.A, PathEndMode.Touch);
+            prepare.WithEffect(EffecterDefOf.Vomit, TargetIndex.A);
+            prepare.PlaySustainerOrSound(() => SoundDefOf.Vomit);
             yield return prepare;
             Toil use = new Toil();
             use.initAction = delegate ()

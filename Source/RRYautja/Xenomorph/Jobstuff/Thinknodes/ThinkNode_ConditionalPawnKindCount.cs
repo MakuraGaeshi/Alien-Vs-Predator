@@ -90,7 +90,48 @@ namespace RimWorld
             if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} needs < {2}, Found: {3} Result: {1}", this, pawn.Map.mapPawns.AllPawnsSpawned.FindAll(x => XenomorphUtil.IsInfectedPawn(x)).Count < this.victimCount || pawn.Map.mapPawns.AllPawnsSpawned.FindAll(x => XenomorphUtil.IsInfectedPawn(x)).NullOrEmpty(), victimCount, pawn.Map.mapPawns.AllPawnsSpawned.FindAll(x => XenomorphUtil.IsInfectedPawn(x)).Count));
             return pawn.Map.mapPawns.AllPawnsSpawned.FindAll(x => XenomorphUtil.IsInfectedPawn(x)).Count < this.victimCount || pawn.Map.mapPawns.AllPawnsSpawned.FindAll(x => XenomorphUtil.IsInfectedPawn(x)).NullOrEmpty();
         }
-        
+
+        public int victimCount;
+    }
+
+    public class ThinkNode_ConditionalFacehuggedCountGreater : ThinkNode_Conditional
+    {
+        // Token: 0x060009B8 RID: 2488 RVA: 0x0004E07C File Offset: 0x0004C47C
+        public override ThinkNode DeepCopy(bool resolve = true)
+        {
+            ThinkNode_ConditionalFacehuggedCountGreater thinkNode_ConditionalCountPawnKind = (ThinkNode_ConditionalFacehuggedCountGreater)base.DeepCopy(resolve);
+            thinkNode_ConditionalCountPawnKind.victimCount = this.victimCount;
+            return thinkNode_ConditionalCountPawnKind;
+        }
+
+        // Token: 0x060009B9 RID: 2489 RVA: 0x0004E0A3 File Offset: 0x0004C4A3
+        protected override bool Satisfied(Pawn pawn)
+        {
+            if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} needs > {2}, Found: {3} Result: {1}", this, pawn.Map.mapPawns.AllPawnsSpawned.FindAll(x => x.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection)).Count < this.victimCount || pawn.Map.mapPawns.AllPawnsSpawned.FindAll(x => x.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection)).NullOrEmpty(), victimCount, pawn.Map.mapPawns.AllPawnsSpawned.FindAll(x => x.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection)).Count));
+            return pawn.Map.mapPawns.AllPawnsSpawned.FindAll(x => x.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection)).Count > this.victimCount || pawn.Map.mapPawns.AllPawnsSpawned.FindAll(x => x.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection)).NullOrEmpty();
+        }
+
+        public int victimCount;
+    }
+
+    // Token: 0x020001EC RID: 492
+    public class ThinkNode_ConditionalFacehuggedCountLesser : ThinkNode_Conditional
+    {
+        // Token: 0x060009B8 RID: 2488 RVA: 0x0004E07C File Offset: 0x0004C47C
+        public override ThinkNode DeepCopy(bool resolve = true)
+        {
+            ThinkNode_ConditionalFacehuggedCountLesser thinkNode_ConditionalCountPawnKind = (ThinkNode_ConditionalFacehuggedCountLesser)base.DeepCopy(resolve);
+            thinkNode_ConditionalCountPawnKind.victimCount = this.victimCount;
+            return thinkNode_ConditionalCountPawnKind;
+        }
+
+        // Token: 0x060009B9 RID: 2489 RVA: 0x0004E0A3 File Offset: 0x0004C4A3
+        protected override bool Satisfied(Pawn pawn)
+        {
+            if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} needs < {2}, Found: {3} Result: {1}", this, pawn.Map.mapPawns.AllPawnsSpawned.FindAll(x => x.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection)).Count < this.victimCount || pawn.Map.mapPawns.AllPawnsSpawned.FindAll(x => x.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection)).NullOrEmpty(), victimCount, pawn.Map.mapPawns.AllPawnsSpawned.FindAll(x => x.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection)).Count));
+            return pawn.Map.mapPawns.AllPawnsSpawned.FindAll(x => x.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection)).Count < this.victimCount || pawn.Map.mapPawns.AllPawnsSpawned.FindAll(x => x.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection)).NullOrEmpty();
+        }
+
         public int victimCount;
     }
 }

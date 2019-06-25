@@ -22,7 +22,7 @@ namespace RRYautja
         {
             get
             {
-                return hitPawn.RaceProps.body.AllParts.Where(x => x.def.defName == "Head").First();
+                return hitPawn.RaceProps.body.AllParts.Where(x => x.def.defName.Contains("Head")).First();
             }
         }
 
@@ -59,9 +59,13 @@ namespace RRYautja
             }
             float InfecterRoll = (Rand.Value * 100) * (1 - tgtdodge);
             float InfectionDefence = 50 + tgtmelee + (armour * 10);
-            if ((InfecterRoll > InfectionDefence || hitPawn.Downed) && flag&&hitPawn is Pawn)
+            if ((InfecterRoll > InfectionDefence || hitPawn.Downed) && flag&&hitPawn is Pawn && !hitPawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Anesthetic))
             {
                 infect = true;
+            }
+            else
+            {
+                infect = false;
             }
             float damAmount = this.verbProps.AdjustedMeleeDamageAmount(this, base.CasterPawn);
 			float armorPenetration = this.verbProps.AdjustedArmorPenetration(this, base.CasterPawn);
@@ -141,9 +145,9 @@ namespace RRYautja
         {
             DamageWorker.DamageResult result = new DamageWorker.DamageResult();
             Pawn hitPawn = (Pawn)target;
-            if (infect && !XenomorphUtil.IsInfectedPawn(hitPawn) && !hitPawn.Dead && hitPawn.health.hediffSet.HasHead)
+            if (infect && !XenomorphUtil.IsInfectedPawn(hitPawn) && !hitPawn.Dead && hitPawn.RaceProps.body.AllParts.Any(x => x.def.defName.Contains("Head")))
             {
-                foreach (var part in hitPawn.RaceProps.body.AllParts.Where(x => x.def.defName == "Head"))
+                foreach (var part in hitPawn.RaceProps.body.AllParts.Where(x => x.def.defName.Contains("Head")))
                 {
                     Hediff hediff = HediffMaker.MakeHediff(XenomorphDefOf.RRY_FaceHuggerInfection, hitPawn, null);
                     Comp_Facehugger _Facehugger = CasterPawn.TryGetComp<Comp_Facehugger>();
@@ -157,6 +161,7 @@ namespace RRYautja
                     MoteMaker.ThrowText(hitPawn.Position.ToVector3(), hitPawn.Map, text, 5f);
                     comp.GetDirectlyHeldThings();
                     caster.DeSpawn();
+                    infect = false;
                 }
             }
             else

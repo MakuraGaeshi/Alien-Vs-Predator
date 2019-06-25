@@ -633,8 +633,8 @@ namespace RRYautja
         static void Prefix(PawnRenderer __instance, ref Vector3 rootLoc, ref float angle, ref bool renderBody, ref Rot4 bodyFacing, ref Rot4 headFacing, ref RotDrawMode bodyDrawType, ref bool portrait, ref bool headStump)
         {
             Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
-        //    bool selected = Find.Selector.SelectedObjects.Contains(pawn) && Prefs.DevMode;
-            if (pawn.Spawned)
+            //    bool selected = Find.Selector.SelectedObjects.Contains(pawn) && Prefs.DevMode;
+            if (!portrait)
             {
                 if (pawn.RaceProps.Humanlike && pawn.CurrentBed() != null && pawn.CurrentBed() is Building_XenomorphCocoon)
                 {
@@ -662,8 +662,8 @@ namespace RRYautja
                     }
                     else rootLoc = pawn.CurrentBed().DrawPos;
                 }
-                bool pawnflag = !((pawn.kindDef.race.defName.StartsWith("Android") && pawn.kindDef.race.defName.Contains("Tier")) || pawn.kindDef.race.defName.Contains("ChjDroid") || pawn.kindDef.race.defName.Contains("ChjBattleDroid") || pawn.kindDef.race.defName.Contains("M7Mech")); 
-                if ((pawn.RaceProps.Humanlike && pawnflag) || pawn.kindDef.race.GetModExtension<OffsetDefExtension>() != null && pawn.Map!=null)
+                bool pawnflag = !((pawn.kindDef.race.defName.StartsWith("Android") && pawn.kindDef.race.defName.Contains("Tier")) || pawn.kindDef.race.defName.Contains("ChjDroid") || pawn.kindDef.race.defName.Contains("ChjBattleDroid") || pawn.kindDef.race.defName.Contains("M7Mech"));
+                if ((pawn.RaceProps.Humanlike && pawnflag) || pawn.kindDef.race.GetModExtension<OffsetDefExtension>() != null)
                 {
                     foreach (var hd in pawn.health.hediffSet.hediffs)
                     {
@@ -673,7 +673,8 @@ namespace RRYautja
                             DrawImplant(comp, __instance, rootLoc, angle, renderBody, bodyFacing, headFacing, bodyDrawType, portrait, headStump);
                         }
                     }
-
+                    /*
+                    */
                 } // DrawWornExtras()
                 else
                 {
@@ -688,7 +689,8 @@ namespace RRYautja
                 }
             }
         }
-		
+
+
         static void DrawImplant(HediffComp_DrawImplant comp, PawnRenderer __instance, Vector3 rootLoc, float angle, bool renderBody, Rot4 bodyFacing, Rot4 headFacing, RotDrawMode bodyDrawType, bool portrait, bool headStump)
         {// this.Pawn
 
@@ -976,7 +978,7 @@ namespace RRYautja
 #if DEBUG
                 //    Log.Message(string.Format("PreExecute Yautja Raid"));
 #endif
-
+                    parms.generateFightersOnly = true;
                     if ((parms.target as Map).GameConditionManager.ConditionIsActive(GameConditionDefOf.HeatWave))
                     {
 #if DEBUG
@@ -992,6 +994,7 @@ namespace RRYautja
                 }
                 if (parms.faction != null && (parms.faction.def == XenomorphDefOf.RRY_Xenomorph))
                 {
+                    parms.generateFightersOnly = true;
 #if DEBUG
                 //    Log.Message(string.Format("PreExecute Xenomorph Raid CurSkyGlow: {0}", (parms.target as Map).skyManager.CurSkyGlow));
 #endif
@@ -1299,6 +1302,7 @@ namespace RRYautja
             {
                 if (parms.faction != null && (parms.faction.def == XenomorphDefOf.RRY_Xenomorph))
                 {
+                    parms.generateFightersOnly = true;
                     if ((parms.target is Map))
                     {
                         if (Rand.Chance(0.05f))

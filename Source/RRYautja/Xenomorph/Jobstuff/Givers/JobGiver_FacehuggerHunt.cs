@@ -92,7 +92,7 @@ namespace RimWorld
             //    return pawn2;
             }
             */
-        //    if (pawn2 == null) pawn2 = BestPawnToHuntForPredator(pawn, forceScanWholeMap);
+            if (pawn2 == null) pawn2 = BestPawnToHuntForPredator(pawn, forceScanWholeMap);
 #if DEBUG
             bool selected = Find.Selector.SingleSelectedThing == pawn;
             if (selected)
