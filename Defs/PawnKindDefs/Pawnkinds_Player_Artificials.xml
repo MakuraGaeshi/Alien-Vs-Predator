@@ -37,7 +37,7 @@
     <defaultFactionType>RRY_USCM_PlayerColony</defaultFactionType>
     
     <apparelTags>
-		<li>IndustrialBasic</li>
+		<li>USCM_Clothing</li>
 	</apparelTags>
     <apparelMoney>
       <min>10000</min>

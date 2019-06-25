@@ -7,7 +7,7 @@
 	
 	
 	<!-- ========================= USCM - HMS ========================== -->
-	<ThingDef ParentName="RRY_Yautja_EquipmentBase">
+	<ThingDef ParentName="RRY_USCM_EquipmentBase">
 		<defName>RRY_Equipment_HMS</defName>
 		<label>Head Mounted Sight</label>
 		<description>The Head Mounted Sight (HMS) is a headset-like device worn by the operator of an M56 Smartgun. Incorporating an eyepiece, camera and microphone, the HMS allows users to see targets detected by the Smartgun's infrared tracker.</description>
@@ -49,7 +49,7 @@
 			<layers>
 				<li>Overhead</li>
 			</layers>
-			<tags>
+			<tags Inherit="false">
 				<li>USCM_HMS</li>
 				<li>USCM_M56SmartGunSystem</li>
 			</tags>
