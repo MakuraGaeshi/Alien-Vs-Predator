@@ -5,7 +5,7 @@ using Verse.AI.Group;
 namespace RimWorld
 {
     // Token: 0x0200018B RID: 395
-    public class LordToil_XenomrophAssaultColony : LordToil
+    public class LordToil_XenomrophAssaultColony : LordToil_HiveLikeRelated
     {
         // Token: 0x0600084C RID: 2124 RVA: 0x00047017 File Offset: 0x00045417
         public LordToil_XenomrophAssaultColony(bool attackDownedIfStarving = false)

@@ -10,6 +10,7 @@ using System.Linq;
 using Verse.AI.Group;
 using RimWorld.Planet;
 using UnityEngine;
+using RRYautja.settings;
 
 namespace RRYautja
 {
@@ -21,9 +22,8 @@ namespace RRYautja
             //    HarmonyInstance.DEBUG = true;
             var harmony = HarmonyInstance.Create("com.ogliss.rimworld.mod.rryatuja");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
+            
         }
-        
-
     }
 
     [HarmonyPatch(typeof(RimWorld.PawnUtility), "GetManhunterOnDamageChance", new Type[] { typeof(Pawn), typeof(Thing) }), StaticConstructorOnStartup]
@@ -32,10 +32,121 @@ namespace RRYautja
         [HarmonyPostfix]
         public static void GetManhunterOnDamageChancePostfix(Pawn pawn, Thing instigator, ref float __result)
         {
-            if (instigator!=null)
+            if (instigator != null)
             {
                 __result = XenomorphUtil.IsXenomorphPawn(((Pawn)instigator)) ? 0.0f : __result;
-           //     Log.Message(string.Format("__result: {0}", __result));
+                //     Log.Message(string.Format("__result: {0}", __result));
+            }
+        }
+    }
+    
+    [HarmonyPatch(typeof(Verse.AI.PathGrid), "CalculatedCostAt", new Type[] { typeof(IntVec3), typeof(bool), typeof(IntVec3) }), StaticConstructorOnStartup]
+    public static class PathGrid_CalculatedCostAt_Patch
+    {
+        [HarmonyPostfix]
+        public static void CalculatedCostAtPostfix(IntVec3 c, bool perceivedStatic, IntVec3 prevCell, ref int __result)
+        {
+            Map map = Find.CurrentMap;
+
+            if (perceivedStatic && map != null)
+            {
+                List<Thing> list = map.thingGrid.ThingsListAt(c);
+                for (int j = 0; j < 9; j++)
+                {
+                    IntVec3 b = GenAdj.AdjacentCellsAndInside[j];
+                    IntVec3 c2 = c + b;
+                    if (c2.InBounds(map))
+                    {
+                        Filth_AddAcidDamage acid = null;
+                        list = map.thingGrid.ThingsListAtFast(c2);
+                        for (int k = 0; k < list.Count; k++)
+                        {
+                            acid = (list[k] as Filth_AddAcidDamage);
+                            if (acid != null)
+                            {
+                                break;
+                            }
+                        }
+                        if (acid != null)
+                        {
+                            if (acid.active)
+                            {
+                                if (b.x == 0 && b.z == 0)
+                                {
+                                    __result += 1000;
+                                }
+                                else
+                                {
+                                    __result += 150;
+                                }
+                            }
+                            else
+                            {
+                                __result += 0;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+    [HarmonyPatch(typeof(Pawn_MeleeVerbs), "ChooseMeleeVerb")]
+    public static class Pawn_MeleeVerbs_ChooseMeleeVerb_Patch
+    {
+        [HarmonyPostfix]
+        public static void HarmsHealthPostfix(Pawn_MeleeVerbs __instance, Thing target, ref Verb ___curMeleeVerb)
+        {
+            if (XenomorphUtil.IsXenomorph(__instance.Pawn) && __instance.Pawn.def != XenomorphRacesDefOf.RRY_Xenomorph_FaceHugger && target is Pawn pawn)
+            {
+                if (XenomorphUtil.isInfectablePawn(pawn))
+                {
+                    bool flag = Rand.Chance(0.04f);
+                    List<VerbEntry> updatedAvailableVerbsList = __instance.GetUpdatedAvailableVerbsList(flag);
+                //    Log.Message(string.Format("All AvailableVerbs for {0}: {1}", __instance.Pawn.LabelShortCap, updatedAvailableVerbsList.Count));
+                    updatedAvailableVerbsList = updatedAvailableVerbsList.FindAll(x=> x.verb.maneuver == DefDatabase<ManeuverDef>.GetNamedSilentFail("Smash"));
+                //    Log.Message(string.Format("AvailableVerbs Smash for {0}: {1}", __instance.Pawn.LabelShortCap, updatedAvailableVerbsList.Count));
+                    bool flag2 = false;
+                    VerbEntry verbEntry;
+                    if (updatedAvailableVerbsList.TryRandomElementByWeight((VerbEntry ve) => ve.GetSelectionWeight(target), out verbEntry))
+                    {
+                        flag2 = true;
+                    //    Log.Message(string.Format("{0}'s using {1} against {2}", __instance.Pawn.LabelShortCap, verbEntry.verb.maneuver, pawn.LabelShortCap));
+                    }
+                    else if (flag)
+                    {
+                        updatedAvailableVerbsList = __instance.GetUpdatedAvailableVerbsList(false);
+                        updatedAvailableVerbsList = updatedAvailableVerbsList.FindAll(x => x.verb.maneuver == DefDatabase<ManeuverDef>.GetNamedSilentFail("Smash"));
+                        flag2 = updatedAvailableVerbsList.TryRandomElementByWeight((VerbEntry ve) => ve.GetSelectionWeight(target), out verbEntry);
+                    //    Log.Message(string.Format("{0}'s using {1} against {2}", __instance.Pawn.LabelShortCap, verbEntry.verb.maneuver, pawn.LabelShortCap));
+                    }
+                    if (flag2)
+                    {
+                    //    verbEntry.verb.tool.capacities.Contains();
+                        ___curMeleeVerb = verbEntry.verb;
+                    }
+                    else
+                    {
+                        Log.ErrorOnce(string.Concat(new object[]
+                        {
+                    __instance.Pawn.ToStringSafe<Pawn>(),
+                    " has no available melee attack, spawned=",
+                    __instance.Pawn.Spawned,
+                    " dead=",
+                    __instance.Pawn.Dead,
+                    " downed=",
+                    __instance.Pawn.Downed,
+                    " curJob=",
+                    __instance.Pawn.CurJob.ToStringSafe<Job>(),
+                    " verbList=",
+                    updatedAvailableVerbsList.ToStringSafeEnumerable(),
+                    " bodyVerbs=",
+                    __instance.Pawn.verbTracker.AllVerbs.ToStringSafeEnumerable()
+                        }), __instance.Pawn.thingIDNumber ^ 195867354, false);
+                        ___curMeleeVerb =null;
+                    }
+                }
             }
         }
     }
@@ -81,7 +192,8 @@ namespace RRYautja
             __result = __result || verb is Verb_Launch_Stuffable_Projectile || verb is Verb_Shoot_Stuffable;
         }
     }
-    
+
+
     /*
     // Token: 0x0200007A RID: 122
     [HarmonyPatch(typeof(PawnUtility), "GetManhunterOnDamageChance")]
@@ -964,94 +1076,6 @@ namespace RRYautja
         */
     }
     
-    [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "TryExecute")]
-    public static class IncidentWorker_RaidEnemyPatch_TryExecute
-    {
-        // Token: 0x06000017 RID: 23 RVA: 0x00002CD0 File Offset: 0x00000ED0
-        [HarmonyPrefix]
-        public static bool PreExecute(ref IncidentParms parms)
-        {
-            if (parms.target is Map && (parms.target as Map).IsPlayerHome)
-            {
-                if (parms.faction != null && ((parms.faction.leader != null && parms.faction.leader.kindDef.race == YautjaDefOf.RRY_Alien_Yautja) || (parms.faction.def.basicMemberKind != null && parms.faction.def.basicMemberKind.race == YautjaDefOf.RRY_Alien_Yautja)))
-                {
-#if DEBUG
-                //    Log.Message(string.Format("PreExecute Yautja Raid"));
-#endif
-                    parms.generateFightersOnly = true;
-                    if ((parms.target as Map).GameConditionManager.ConditionIsActive(GameConditionDefOf.HeatWave))
-                    {
-#if DEBUG
-                    //    Log.Message(string.Format("PreExecute During Heatwave, originally {0} points", parms.points));
-#endif
-                        parms.points *= 2;
-                        parms.raidArrivalMode = YautjaDefOf.EdgeWalkInGroups;
-
-#if DEBUG
-                    //    Log.Message(string.Format("PreExecute During Heatwave, modified {0} points", parms.points));
-#endif
-                    }
-                }
-                if (parms.faction != null && (parms.faction.def == XenomorphDefOf.RRY_Xenomorph))
-                {
-                    parms.generateFightersOnly = true;
-#if DEBUG
-                //    Log.Message(string.Format("PreExecute Xenomorph Raid CurSkyGlow: {0}", (parms.target as Map).skyManager.CurSkyGlow));
-#endif
-
-                    if ((parms.target as Map).skyManager.CurSkyGlow <= 0.5f)
-                    {
-#if DEBUG
-                    //    Log.Message(string.Format("PreExecute During Nighttime, originally {0} points", parms.points));
-#endif
-                        parms.points *= 2;
-                        parms.raidArrivalMode = YautjaDefOf.EdgeWalkInGroups;
-
-#if DEBUG
-                    //    Log.Message(string.Format("PreExecute During Nighttime, modified {0} points", parms.points));
-#endif
-                        if (Rand.Chance(0.05f))
-                        {
-                            int @int = Rand.Int;
-                            IncidentParms raidParms = StorytellerUtility.DefaultParmsNow(IncidentCategoryDefOf.ThreatBig, (Map)parms.target);
-                            raidParms.forced = true;
-                            raidParms.faction = parms.faction;
-                            raidParms.raidStrategy = RaidStrategyDefOf.ImmediateAttack;
-                            raidParms.raidArrivalMode = PawnsArrivalModeDefOf.EdgeWalkIn;
-                            raidParms.spawnCenter = parms.spawnCenter;
-                            raidParms.points = Mathf.Max(raidParms.points * new FloatRange(1f, 1.6f).RandomInRange, parms.faction.def.MinPointsToGeneratePawnGroup(PawnGroupKindDefOf.Combat));
-                            raidParms.pawnGroupMakerSeed = new int?(@int);
-                            PawnGroupMakerParms defaultPawnGroupMakerParms = IncidentParmsUtility.GetDefaultPawnGroupMakerParms(PawnGroupKindDefOf.Combat, raidParms, false);
-                            defaultPawnGroupMakerParms.points = IncidentWorker_Raid.AdjustedRaidPoints(defaultPawnGroupMakerParms.points, raidParms.raidArrivalMode, raidParms.raidStrategy, defaultPawnGroupMakerParms.faction, PawnGroupKindDefOf.Combat);
-                            IEnumerable<PawnKindDef> pawnKinds = PawnGroupMakerUtility.GeneratePawnKindsExample(defaultPawnGroupMakerParms);
-                            QueuedIncident qi = new QueuedIncident(new FiringIncident(IncidentDefOf.RaidEnemy, null, raidParms), Find.TickManager.TicksGame + new IntRange(1000, 4000).RandomInRange, 0);
-                            Find.Storyteller.incidentQueue.Add(qi);
-                        }
-                    }
-                }
-            }
-            return true;
-        }
-
-        /*
-        [HarmonyPostfix]
-        public static void PostExecute(bool __result, ref IncidentParms parms)
-        {
-            if (__result && parms.target is Map && (parms.target as Map).IsPlayerHome)
-            {
-                if (parms.faction != null && parms.faction.leader.kindDef.race == YautjaDefOf.RRY_Alien_Yautja)
-                {
-
-                    if ((parms.target as Map).GameConditionManager.ConditionIsActive(GameConditionDefOf.HeatWave))
-                    {
-
-                    }
-                }
-            }
-        }
-        */
-    }
-    
     [HarmonyPatch(typeof(PawnWoundDrawer), "RenderOverBody")]
     public static class PawnWoundDrawerPatch_TryExecute
     {
@@ -1094,47 +1118,6 @@ namespace RRYautja
     }
     */
     
-    [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "GetLetterText")]
-    public static class IncidentWorker_RaidEnemyPatch_GetLetterText
-    {
-        [HarmonyPostfix]
-        public static void PostExecute(ref string __result, ref IncidentParms parms)
-        {
-            if (parms.target is Map && (parms.target as Map).IsPlayerHome)
-            {
-                if (parms.faction != null && ((parms.faction.leader != null && parms.faction.leader.kindDef.race == YautjaDefOf.RRY_Alien_Yautja) || (parms.faction.def.basicMemberKind != null && parms.faction.def.basicMemberKind.race == YautjaDefOf.RRY_Alien_Yautja)))
-                {
-#if DEBUG
-                //    Log.Message(string.Format("PostGetLetterText Yautja Raid"));
-#endif
-
-                    if ((parms.target as Map).GameConditionManager.ConditionIsActive(GameConditionDefOf.HeatWave))
-                    {
-                        string text = "El Diablo, cazador de hombre. Only in the hottest years this happens. And this year it grows hot.";
-                        text += "\n\n";
-                        text += __result;
-                        __result = text;
-                    }
-                }
-                if (parms.faction != null && (parms.faction.def == XenomorphDefOf.RRY_Xenomorph))
-                {
-#if DEBUG
-                //    Log.Message(string.Format("PostGetLetterText Xenomorph Raid CurSkyGlow: {0}", (parms.target as Map).skyManager.CurSkyGlow));
-#endif
-
-                    if ((parms.target as Map).skyManager.CurSkyGlow <= 0.5f)
-                    {
-                        string text = "They mostly come at night......mostly.....";
-                        text += "\n\n";
-                        text += __result;
-                        __result = text;
-
-                    }
-                }
-            }
-        }
-    }
-
     /*
     // Token: 0x02000007 RID: 7
     [HarmonyPatch(typeof(IncidentWorker_WandererJoin), "TryExecute")]
@@ -1291,7 +1274,75 @@ namespace RRYautja
             }
         }
     }
-    
+
+    [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "TryExecute")]
+    public static class IncidentWorker_RaidEnemyPatch_TryExecute
+    {
+        // Token: 0x06000017 RID: 23 RVA: 0x00002CD0 File Offset: 0x00000ED0
+        [HarmonyPrefix]
+        public static bool PreExecute(ref IncidentParms parms)
+        {
+            if (parms.target is Map && (parms.target as Map).IsPlayerHome)
+            {
+                if (parms.faction != null && ((parms.faction.leader != null && parms.faction.leader.kindDef.race == YautjaDefOf.RRY_Alien_Yautja) || (parms.faction.def.basicMemberKind != null && parms.faction.def.basicMemberKind.race == YautjaDefOf.RRY_Alien_Yautja)))
+                {
+                    parms.generateFightersOnly = true;
+                    if ((parms.target as Map).GameConditionManager.ConditionIsActive(GameConditionDefOf.HeatWave))
+                    {
+                        parms.points *= 2;
+                        parms.raidArrivalMode = YautjaDefOf.EdgeWalkInGroups;
+                    }
+                }
+                if (parms.faction != null && (parms.faction.def == XenomorphDefOf.RRY_Xenomorph))
+                {
+                    parms.generateFightersOnly = true;
+
+                    if ((parms.target as Map).skyManager.CurSkyGlow <= 0.5f)
+                    {
+                        parms.points *= 2;
+                        parms.raidArrivalMode = YautjaDefOf.EdgeWalkInGroups;
+                        if (Rand.Chance(0.05f))
+                        {
+                            int @int = Rand.Int;
+                            IncidentParms raidParms = StorytellerUtility.DefaultParmsNow(IncidentCategoryDefOf.ThreatBig, (Map)parms.target);
+                            raidParms.forced = true;
+                            raidParms.faction = parms.faction;
+                            raidParms.raidStrategy = RaidStrategyDefOf.ImmediateAttack;
+                            raidParms.raidArrivalMode = PawnsArrivalModeDefOf.EdgeWalkIn;
+                            raidParms.spawnCenter = parms.spawnCenter;
+                            raidParms.points = Mathf.Max(raidParms.points * new FloatRange(1f, 1.6f).RandomInRange, parms.faction.def.MinPointsToGeneratePawnGroup(PawnGroupKindDefOf.Combat));
+                            raidParms.pawnGroupMakerSeed = new int?(@int);
+                            PawnGroupMakerParms defaultPawnGroupMakerParms = IncidentParmsUtility.GetDefaultPawnGroupMakerParms(PawnGroupKindDefOf.Combat, raidParms, false);
+                            defaultPawnGroupMakerParms.points = IncidentWorker_Raid.AdjustedRaidPoints(defaultPawnGroupMakerParms.points, raidParms.raidArrivalMode, raidParms.raidStrategy, defaultPawnGroupMakerParms.faction, PawnGroupKindDefOf.Combat);
+                            IEnumerable<PawnKindDef> pawnKinds = PawnGroupMakerUtility.GeneratePawnKindsExample(defaultPawnGroupMakerParms);
+                            QueuedIncident qi = new QueuedIncident(new FiringIncident(IncidentDefOf.RaidEnemy, null, raidParms), Find.TickManager.TicksGame + new IntRange(1000, 4000).RandomInRange, 0);
+                            Find.Storyteller.incidentQueue.Add(qi);
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+
+        /*
+        [HarmonyPostfix]
+        public static void PostExecute(bool __result, ref IncidentParms parms)
+        {
+            if (__result && parms.target is Map && (parms.target as Map).IsPlayerHome)
+            {
+                if (parms.faction != null && parms.faction.leader.kindDef.race == YautjaDefOf.RRY_Alien_Yautja)
+                {
+
+                    if ((parms.target as Map).GameConditionManager.ConditionIsActive(GameConditionDefOf.HeatWave))
+                    {
+
+                    }
+                }
+            }
+        }
+        */
+    }
+
     [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "TryExecute")]
     public static class IncidentWorker_RaidEnemy_Patch_TryExecute
     {
@@ -1328,7 +1379,48 @@ namespace RRYautja
             return true;
         }
     }
-    
+
+    [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "GetLetterText")]
+    public static class IncidentWorker_RaidEnemyPatch_GetLetterText
+    {
+        [HarmonyPostfix]
+        public static void PostExecute(ref string __result, ref IncidentParms parms)
+        {
+            if (parms.target is Map && (parms.target as Map).IsPlayerHome)
+            {
+                if (parms.faction != null && ((parms.faction.leader != null && parms.faction.leader.kindDef.race == YautjaDefOf.RRY_Alien_Yautja) || (parms.faction.def.basicMemberKind != null && parms.faction.def.basicMemberKind.race == YautjaDefOf.RRY_Alien_Yautja)))
+                {
+#if DEBUG
+                //    Log.Message(string.Format("PostGetLetterText Yautja Raid"));
+#endif
+
+                    if ((parms.target as Map).GameConditionManager.ConditionIsActive(GameConditionDefOf.HeatWave))
+                    {
+                        string text = "El Diablo, cazador de hombre. Only in the hottest years this happens. And this year it grows hot.";
+                        text += "\n\n";
+                        text += __result;
+                        __result = text;
+                    }
+                }
+                if (parms.faction != null && (parms.faction.def == XenomorphDefOf.RRY_Xenomorph))
+                {
+#if DEBUG
+                //    Log.Message(string.Format("PostGetLetterText Xenomorph Raid CurSkyGlow: {0}", (parms.target as Map).skyManager.CurSkyGlow));
+#endif
+
+                    if ((parms.target as Map).skyManager.CurSkyGlow <= 0.5f)
+                    {
+                        string text = "They mostly come at night......mostly.....";
+                        text += "\n\n";
+                        text += __result;
+                        __result = text;
+
+                    }
+                }
+            }
+        }
+    }
+
     [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "GetLetterText")]
     public static class IncidentWorker_RaidEnemy_Patch_GetLetterText
     {
@@ -1356,5 +1448,124 @@ namespace RRYautja
             }
         }
     }
+    
+    [HarmonyPatch(typeof(FactionGenerator), "GenerateFactionsIntoWorld", null)]
+    public static class FactionGenerator_GenerateFactionsIntoWorld
+    {
+        // Token: 0x06000012 RID: 18 RVA: 0x000027D0 File Offset: 0x000017D0
+        public static bool Prefix()
+        {
+            int i = 0;
+            int num = 0;
+            foreach (FactionDef factionDef in DefDatabase<FactionDef>.AllDefs)
+            {
+                if (!factionDef.isPlayer)
+                {
+                    string defName = factionDef.defName;
+                    if (factionDef==XenomorphDefOf.RRY_Xenomorph&& !SettingsHelper.latest.AllowXenomorphFaction)
+                    {
+                        FactionGenerator_GenerateFactionsIntoWorld.UpdateDef(factionDef, 0);
+                        //    return false;
+                    }
+                    if (defName.Contains("RRY_Yautja_") && !SettingsHelper.latest.AllowYautjaFaction)
+                    {
+                        FactionGenerator_GenerateFactionsIntoWorld.UpdateDef(factionDef, 0);
+                        //    return false;
+                    }
+                }
+            }
+            return true;
+        }
 
+        // Token: 0x06000013 RID: 19 RVA: 0x00002C2C File Offset: 0x00001C2C
+        private static void UpdateDef(FactionDef def, int requiredCount)
+        {
+            def.requiredCountAtGameStart = requiredCount;
+            if (def.requiredCountAtGameStart < 1)
+            {
+                def.maxCountAtGameStart = 0;
+                return;
+            }
+            def.maxCountAtGameStart = 100;
+        }
+    }
+
+    [HarmonyPatch(typeof(Page_SelectScenario), "DoScenarioListEntry")]
+    public static class Page_SelectScenario_DoScenarioListEntry_Patch
+    {
+        [HarmonyPrefix]
+        public static bool DoScenarioListEntryPrefix(Rect rect, Scenario scen)
+        {
+            if (scen.name.Contains("Yautja") && !SettingsHelper.latest.AllowYautjaFaction)
+            {
+                return false;
+            }
+            return true;
+        }
+    }
+
+    /* Page_SelectScenario
+    [HarmonyPatch(typeof(ScenarioLister), "AllScenarios")]
+    public static class ScenarioFiles_AllScenarios_Patch
+    {
+        [HarmonyPostfix]
+        public static void AllScenariosWorkshopPostfix(ref IEnumerable<Scenario> __result)
+        {
+            List<Scenario> scenarios = new List<Scenario>();
+            if (!SettingsHelper.latest.AllowYautjaFaction)
+            {
+                foreach (Scenario item in __result)
+                {
+                    if (!item.name.Contains("RRY_YautjaScenario"))
+                    {
+                        scenarios.Add(item);
+                    }
+                }
+                __result = scenarios;
+            }
+        }
+    }
+    */
+    /* ScenarioLister
+    [HarmonyPatch(typeof(RimWorld.ScenarioFiles), "AllScenariosWorkshop", new Type[] { typeof(IEnumerable<Scenario>)})]
+    public static class ScenarioFiles_AllScenariosWorkshop_Patch
+    {
+        [HarmonyPostfix]
+        public static void AllScenariosWorkshopPostfix(ref IEnumerable<Scenario> __result)
+        {
+            List<Scenario> scenarios = new List<Scenario>();
+            if (!SettingsHelper.latest.AllowYautjaFaction)
+            {
+                foreach (Scenario item in __result)
+                {
+                    if (!item.name.Contains("RRY_YautjaScenario"))
+                    {
+                        scenarios.Add(item);
+                    }
+                }
+                __result = scenarios;
+            }
+        }
+    }
+    [HarmonyPatch(typeof(RimWorld.ScenarioFiles), "AllScenariosLocal", new Type[] { typeof(IEnumerable<Scenario>)})]
+    public static class ScenarioFiles_AllScenariosLocal_Patch
+    {
+        [HarmonyPostfix]
+        public static void AllScenariosLocalPostfix(ref IEnumerable<Scenario> __result)
+        {
+            List<Scenario> scenarios = new List<Scenario>();
+            if (!SettingsHelper.latest.AllowYautjaFaction)
+            {
+                foreach (Scenario item in __result)
+                {
+                    if (!item.name.Contains("RRY_YautjaScenario"))
+                    {
+                        scenarios.Add(item);
+                    }
+                }
+                __result = scenarios;
+            }
+        }
+    }
+    */
 }

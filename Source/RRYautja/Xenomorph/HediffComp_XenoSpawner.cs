@@ -357,7 +357,7 @@ namespace RRYautja
 
             if (pawnKindDef== null)
             {
-                Log.Message(string.Format("pawnKindDef is null"));
+             //   Log.Message(string.Format("pawnKindDef is null"));
             }
             if (pawnKindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
             {
@@ -413,7 +413,7 @@ namespace RRYautja
                     for (int i = 0; i < countToSpawn; i++)
                     {
                         Pawn pawn = XenomorphSpawnRequest();
-                        Log.Message(string.Format("Xenomorph to hatch: {0}", pawn.LabelShortCap));
+                    //    Log.Message(string.Format("Xenomorph to hatch: {0}", pawn.LabelShortCap));
                         pawn.ageTracker.CurKindLifeStage.bodyGraphicData.color = HostBloodColour;
                         pawn.Notify_ColorChanged();
                         pawn.ageTracker.AgeBiologicalTicks = 0;

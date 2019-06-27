@@ -27,6 +27,6 @@ namespace RimWorld
         }
 
         // Token: 0x04000397 RID: 919
-        public float distToHiveToAttack = 40f;
+        public float distToHiveToAttack = 100f;
     }
 }

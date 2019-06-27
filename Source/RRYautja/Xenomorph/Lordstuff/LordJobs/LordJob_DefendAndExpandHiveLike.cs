@@ -126,7 +126,7 @@ namespace RimWorld
 		// Token: 0x06000796 RID: 1942 RVA: 0x00043166 File Offset: 0x00041566
 		public override void ExposeData()
         {
-            Scribe_Values.Look<bool>(ref this.aggressive, "aggressive", false, false);
+            Scribe_Values.Look<bool>(ref this.aggressive, "aggressive", false);
             Scribe_Values.Look<float>(ref this.radius, "radius");
             Scribe_Values.Look<float>(ref this.aggressiveradius, "aggressiveradius");
             Scribe_Values.Look<IntVec3>(ref this.flagLoc, "flagLoc", IntVec3.Zero);

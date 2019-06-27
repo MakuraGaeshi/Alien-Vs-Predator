@@ -35,6 +35,11 @@ namespace RimWorld
         public static HediffDef RRY_NeomorphImpregnation;
         public static HediffDef RRY_HiddenNeomorphImpregnation;
 
+        // Surgical RecipeDefs
+        public static RecipeDef RRY_FaceHuggerRemoval;
+        public static RecipeDef RRY_XenomorphImpregnationRemoval;
+        public static RecipeDef RRY_NeomorphImpregnationRemoval;
+
         // Xenomorph PawnKindDefs
         public static PawnKindDef RRY_Xenomorph_FaceHugger;
         public static PawnKindDef RRY_Xenomorph_RoyaleHugger;
@@ -91,10 +96,12 @@ namespace RimWorld
         // Xenomorph BloodDefs 
         public static ThingDef RRY_FilthBloodXenomorph;
 
-        // Xenomorph IncidentDefs
+        // Xenomorph IncidentDefs RRY_XenomorphInfestation
         public static IncidentDef RRY_Neomorph_FungusSprout;
         public static IncidentDef RRY_Neomorph_FungusSprout_Hidden;
-
+        public static IncidentDef RRY_XenomorphInfestation;
+        public static IncidentDef RRY_XenomorphCrashedShipPartCrash;
+        
         // Xenomorph BodyPartDefs
         public static BodyPartDef RRY_Xeno_TailSpike;
         public static BodyPartDef RRY_Xeno_Shell;

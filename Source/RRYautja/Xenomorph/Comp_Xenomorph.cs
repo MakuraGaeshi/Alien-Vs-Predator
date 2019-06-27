@@ -37,6 +37,8 @@ namespace RRYautja
             base.PostExposeData();
             Scribe_Values.Look<int>(ref this.ticksSinceHeal, "ticksSinceHeal");
             Scribe_Values.Look<IntVec3>(ref this.HiveLoc, "HiveLoc", IntVec3.Invalid);
+            Scribe_Defs.Look<PawnKindDef>(ref this.host, "hostRef");
+            Scribe_Deep.Look<PawnKindDef>(ref this.host, "hostDeepRef");
             /*
             Scribe_Values.Look<int>(ref this.pawnKills, "pawnKills");
             Scribe_Deep.Look<Hediff>(ref this.unmarked, "bloodedUnmarked");
@@ -94,8 +96,9 @@ namespace RRYautja
                 LordJob Hivejob = null;
                 Pawn Hivequeen = null;
                 IEnumerable<Lord> lords = pawn.Map.lordManager.lords.Where(x => x.faction == pawn.Faction);
-                if (lords.Count() != 0)
+                if (lords.Count() != 0 && ((pawn.GetLord() != null && pawn.GetLord().LordJob is LordJob_DefendPoint) || pawn.GetLord() == null))
                 {
+               //     Log.Message(string.Format("Lords Found!"));
                     foreach (var l in lords)
                     {
                         if (l != null)
@@ -129,6 +132,7 @@ namespace RRYautja
                 if (pawn.GetLord() != null && pawn.GetLord().LordJob is LordJob_DefendPoint LordJob_DefendPoint)
                 {
                     lord = pawn.GetLord();
+               //     Log.Message(string.Format("Lords Found!"));
                     if (lord.ownedPawns.Count == 0)
                     {
                    //     Log.Message(string.Format("got no pawns, wtf?"));
@@ -140,25 +144,25 @@ namespace RRYautja
                     if (c == IntVec3.Invalid && XenomorphUtil.HivelikesPresent(map))
                     {
                    //     Log.Message(string.Format("Checking hiveloc"));
-                        c = XenomorphUtil.ClosestReachableHivelike(pawn).DestroyedOrNull() ? XenomorphUtil.ClosestReachableHivelike(pawn).Position : IntVec3.Invalid;
+                        c = !XenomorphUtil.ClosestReachableHivelike(pawn).DestroyedOrNull() ? XenomorphUtil.ClosestReachableHivelike(pawn).Position : IntVec3.Invalid;
                    //     Log.Message(string.Format("hiveloc: {0}", c));
                     }
                     if (c == IntVec3.Invalid && XenomorphUtil.EggsPresent(map))
                     {
                    //     Log.Message(string.Format("Checking eggloc"));
-                        c = XenomorphUtil.ClosestReachableEgg(pawn).DestroyedOrNull() ? XenomorphUtil.ClosestReachableEgg(pawn).Position : IntVec3.Invalid;
+                        c = !XenomorphUtil.ClosestReachableEgg(pawn).DestroyedOrNull() ? XenomorphUtil.ClosestReachableEgg(pawn).Position : IntVec3.Invalid;
                    //     Log.Message(string.Format("eggloc: {0}", c));
                     }
                     if (c == IntVec3.Invalid && XenomorphUtil.CocoonsPresent(map, XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon))
                     {
                    //     Log.Message(string.Format("Checking Hcocoonloc"));
-                        c = XenomorphUtil.ClosestReachableCocoon(pawn, XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon).DestroyedOrNull() ? XenomorphUtil.ClosestReachableCocoon(pawn, XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon).Position : IntVec3.Invalid;
+                        c = !XenomorphUtil.ClosestReachableCocoon(pawn, XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon).DestroyedOrNull() ? XenomorphUtil.ClosestReachableCocoon(pawn, XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon).Position : IntVec3.Invalid;
                    //     Log.Message(string.Format("Hcocoonloc: {0}", c));
                     }
                     if (c == IntVec3.Invalid && XenomorphUtil.CocoonsPresent(map, XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon))
                     {
                    //     Log.Message(string.Format("Checking Acocoonloc"));
-                        c = XenomorphUtil.ClosestReachableCocoon(pawn, XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon).DestroyedOrNull() ? XenomorphUtil.ClosestReachableCocoon(pawn, XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon).Position : IntVec3.Invalid;
+                        c = !XenomorphUtil.ClosestReachableCocoon(pawn, XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon).DestroyedOrNull() ? XenomorphUtil.ClosestReachableCocoon(pawn, XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon).Position : IntVec3.Invalid;
                    //     Log.Message(string.Format("Acocoonloc: {0}", c));
                     }
                     if (c == IntVec3.Invalid)
@@ -177,7 +181,7 @@ namespace RRYautja
                         if (pawn.CanReach(c, PathEndMode.OnCell, Danger.Deadly, true))
                         {
                        //     Log.Message(string.Format("CanReach"));
-                            //    c = RCellFinder.RandomWanderDestFor(pawn, c, 3f, null, Danger.Some);
+                                c = RCellFinder.RandomWanderDestFor(pawn, c, 3f, null, Danger.Some);
                        //     Log.Message(string.Format("InfestationLikeCellFinder: {0}", c));
                         }
                         else
@@ -389,13 +393,16 @@ namespace RRYautja
 
         public override void PostPostApplyDamage(DamageInfo dinfo, float totalDamageDealt)
         {
-            Pawn other = dinfo.Instigator as Pawn;
+            Pawn other = null;
             Pawn pawn = base.parent as Pawn;
-
-            base.PostPostApplyDamage(dinfo, totalDamageDealt);
-            if (((Pawn)this.parent).health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden))
+            if (dinfo.Instigator!=null)
             {
-                ((Pawn)this.parent).health.RemoveHediff(((Pawn)this.parent).health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden));
+                other = dinfo.Instigator as Pawn;
+            }
+            base.PostPostApplyDamage(dinfo, totalDamageDealt);
+            if (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden))
+            {
+                pawn.health.RemoveHediff(pawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden));
             }
 
 
@@ -408,7 +415,7 @@ namespace RRYautja
             {
                 if (dinfo.Def!=null)
                 {
-                    if (dinfo.Def.hediff.defName.Contains("CP_CQCTakedownHediff"))
+                    if (dinfo.Def.hediff == DefDatabase<HediffDef>.GetNamedSilentFail("CP_CQCTakedownHediff"))
                     {
                         absorbed = true;
                         return;

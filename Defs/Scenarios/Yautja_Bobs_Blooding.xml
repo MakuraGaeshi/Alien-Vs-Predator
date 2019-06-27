@@ -21,6 +21,14 @@
 				<method>DropPods</method>
 				<visible>true</visible>
 			</li>
+			
+			<!--
+			<li Class="RRYuatja.ScenPart_StartTemple">
+				<def>StartTemple</def>
+				<inhabitantKind>Abandoned</inhabitantKind>
+			</li>
+			-->
+			
 			<li Class="ScenPart_StartingThing_Defined">
 				<def>StartingThing_Defined</def>
 				<thingDef>ComponentIndustrial</thingDef>

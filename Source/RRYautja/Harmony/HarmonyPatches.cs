@@ -4,6 +4,7 @@ using Harmony;
 using RimWorld;
 using RRYautja.settings;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
@@ -25,10 +26,10 @@ namespace RRYautja
                     typeof(HarmonyPatches),
                     nameof(PathOfNature)), null);
 
-            Type typeFromHandle3 = typeof(PawnRenderer);
-            HarmonyPatches.pawnField_PawnRenderer = typeFromHandle3.GetField("pawn", BindingFlags.Instance | BindingFlags.NonPublic);
+            Type typeFromHandle1 = typeof(PawnRenderer);
+            HarmonyPatches.pawnField_PawnRenderer = typeFromHandle1.GetField("pawn", BindingFlags.Instance | BindingFlags.NonPublic);
             /*
-            MethodInfo method5 = typeFromHandle3.GetMethod("RenderPawnAt", new Type[]
+            MethodInfo method5 = typeFromHandle1.GetMethod("RenderPawnAt", new Type[]
             {
                 typeof(Vector3),
                 typeof(RotDrawMode),
@@ -74,9 +75,22 @@ namespace RRYautja
 
             Type typeFromHandle4 = typeof(HealthUtility);
             harmony.Patch(typeFromHandle4.GetMethod("AdjustSeverity"), new HarmonyMethod(typeof(HarmonyPatches).GetMethod("Patch_HealthUtility_AdjustSeverity")), null, null);
-        }
 
-        public static FieldInfo int_Pawn_HealthTracker_GetPawn;
+            Type typeFromHandle2 = typeof(Pawn_NativeVerbs);
+            HarmonyPatches._cachedVerbProperties = typeFromHandle2.GetField("cachedVerbProperties", BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.GetProperty | BindingFlags.SetProperty);
+            HarmonyPatches._pawnPawnNativeVerbs = typeFromHandle2.GetField("pawn", BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.GetProperty | BindingFlags.SetProperty);
+            harmony.Patch(typeFromHandle2.GetMethod("CheckCreateVerbProperties", BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.GetProperty | BindingFlags.SetProperty), new HarmonyMethod(typeof(HarmonyPatches).GetMethod("Patch_CheckCreateVerbProperties")), null, null);
+        }
+        
+        public static Pawn pawnPawnNativeVerbs(Pawn_NativeVerbs instance)
+        {
+            return (Pawn)HarmonyPatches._pawnPawnNativeVerbs.GetValue(instance);
+        }
+        
+        public static List<VerbProperties> cachedVerbProperties(Pawn_NativeVerbs instance)
+        {
+            return (List<VerbProperties>)HarmonyPatches._cachedVerbProperties.GetValue(instance);
+        }
 
         public static Pawn Pawn_HealthTracker_GetPawn(Pawn_HealthTracker instance)
         {
@@ -86,6 +100,31 @@ namespace RRYautja
         public static Pawn PawnRenderer_GetPawn(object instance)
         {
             return (Pawn)HarmonyPatches.pawnField_PawnRenderer.GetValue(instance);
+        }
+        
+        public static bool Patch_CheckCreateVerbProperties(ref Pawn_NativeVerbs __instance)
+        {
+            bool flag = HarmonyPatches._cachedVerbProperties.GetValue(__instance) != null;
+            bool result;
+            if (flag)
+            {
+                result = true;
+            }
+            else
+            {
+                bool flag2 = XenomorphUtil.IsXenomorph(HarmonyPatches.pawnPawnNativeVerbs(__instance));
+                if (flag2)
+                {
+                    HarmonyPatches._cachedVerbProperties.SetValue(__instance, new List<VerbProperties>());
+                    HarmonyPatches.cachedVerbProperties(__instance).Add(NativeVerbPropertiesDatabase.VerbWithCategory((VerbCategory)1));
+                    result = false;
+                }
+                else
+                {
+                    result = true;
+                }
+            }
+            return result;
         }
 
         public static bool Patch_HealthUtility_AdjustSeverity(Pawn pawn, HediffDef hdDef, float sevOffset)
@@ -556,5 +595,15 @@ namespace RRYautja
         }
         
         private static FieldInfo pawnField_PawnRenderer;
+
+        public static FieldInfo int_Pawn_HealthTracker_GetPawn;
+
+        private const BindingFlags allFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.GetProperty | BindingFlags.SetProperty;
+
+        public static FieldInfo _jobsGivenRecentTicksTextual;
+
+        public static FieldInfo _cachedVerbProperties;
+
+        public static FieldInfo _pawnPawnNativeVerbs;
     }
 }

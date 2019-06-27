@@ -125,7 +125,6 @@
           <subNodes>
 			<li Class="JobGiver_XenomorphFlee" />
 			<li Class="JobGiver_XenoGetFood"> 
-			  <minCategory>Fed</minCategory>
 			  <forceScanWholeMap>false</forceScanWholeMap>
 			</li>
 			<li Class="JobGiver_WanderHiveLike">
@@ -295,6 +294,26 @@
         <!-- Idle error -->
         <li Class="JobGiver_IdleError"/>
 		
+      </subNodes>
+    </thinkRoot>
+  </ThinkTreeDef>
+  
+  <!--============= Dig out if I can't reach map edge ===========-->
+  
+  <ThinkTreeDef>
+    <defName>RRY_DigOutIfCannotReachMapEdge</defName>
+    <thinkRoot Class="ThinkNode_ConditionalCannotReachMapEdge">
+      <subNodes>
+        <li Class="ThinkNode_Tagger">
+          <tagToGive>Misc</tagToGive>
+          <subNodes>
+            <li Class="JobGiver_ExitMapBest">
+              <defaultLocomotion>Walk</defaultLocomotion>
+              <forceCanDig>true</forceCanDig>
+              <canBash>true</canBash>
+            </li>
+          </subNodes>
+        </li>
       </subNodes>
     </thinkRoot>
   </ThinkTreeDef>

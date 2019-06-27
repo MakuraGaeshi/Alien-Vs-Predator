@@ -183,6 +183,45 @@ namespace RRYautja
             return result;
         }
 
+        public static bool isInfectableThing(ThingDef thingDef)
+        {
+            if (thingDef.race == null) return false;
+            if (UtilChjAndroids.ChjAndroid)
+            {
+                if (thingDef.defName == "ChjAndroid" || thingDef.defName == "ChjDroid")
+                {
+                    return false;
+                }
+            }
+            if (UtilTieredAndroids.TieredAndroid)
+            {
+                if (thingDef.defName.Contains("Android" + "Tier"))
+                {
+                    return false;
+                }
+            }
+            if (thingDef.race.IsMechanoid) return false;
+        //    if (thingDef.defName.Contains("")) return false;
+            if (thingDef.race.body.defName.Contains("AIRobot")) return false;
+            if (thingDef.defName.Contains("Android")) return false;
+            if (thingDef.defName.Contains("Droid")) return false;
+            if (thingDef.defName.Contains("Mech")) return false;
+            if (thingDef.defName.Contains("TM_Undead")) return false;
+            if (thingDef.defName.Contains("TM_") && thingDef.defName.Contains("Minion")) return false;
+            if (thingDef.defName.Contains("TM_Demon")) return false;
+            if (thingDef.race.FleshType == XenomorphRacesDefOf.RRY_Xenomorph) return false;
+            if (thingDef.race.FleshType == XenomorphRacesDefOf.RRY_Neomorph) return false;
+            if (thingDef.race.FleshType.defName.Contains("TM_StoneFlesh")) return false;
+            if (thingDef.race.FleshType.defName.Contains("ChaosDeamon")) return false;
+            if (thingDef.race.FleshType.defName.Contains("Necron")) return false;
+            if (thingDef.race.FleshType.defName.Contains("EldarConstruct")) return false;
+            if (thingDef.race.FleshType.defName.Contains("ImperialConstruct")) return false;
+            if (thingDef.race.FleshType.defName.Contains("MechanicusConstruct")) return false;
+            if (thingDef.race.baseBodySize < 0.65f && !thingDef.race.Humanlike) return false;
+
+
+            return true;
+        }
         public static bool isInfectablePawn(Pawn pawn)
         {
             if (pawn.Dead)

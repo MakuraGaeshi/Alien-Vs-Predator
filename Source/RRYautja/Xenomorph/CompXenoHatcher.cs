@@ -167,7 +167,7 @@ namespace RRYautja
                 //Log.Message(string.Format("!this.TemperatureDamaged"));
                 float ambientTemperature = this.parent.AmbientTemperature;
                 float num = 1f / (this.Props.hatcherDaystoHatch * 60000f);
-                if (ambientTemperature > -20)
+                if (ambientTemperature > -20f)
                 {
                 //    Log.Message(string.Format("ambientTemperature > -20"));
                     if (this.gestateProgress < 1f)
@@ -188,7 +188,7 @@ namespace RRYautja
                     {
                         bool selected = Find.Selector.SingleSelectedThing == this.parent && false;
                     //    if (selected) Log.Message(string.Format("{0} @ {1}, Can hatch?: {2}, Will hatch?: {3}", this.parent.Label, MyPos, canHatch, willHatch));
-                        if (this.canHatch && this.willHatch)
+                        if (this.canHatch && this.willHatch && ambientTemperature > -20f)
                         {
                             this.Hatch();
                         }
@@ -209,14 +209,15 @@ namespace RRYautja
         
         public override void CompTickRare()
         {
-            
+
+            float ambientTemperature = this.parent.AmbientTemperature;
             bool selected = Find.Selector.SelectedObjects.Contains(this.parent) && Prefs.DevMode;
             Thing thing = null;
             if (MyMap !=null && MyPos.InBounds(MyMap)) thing = GenClosest.ClosestThingReachable(MyPos, MyMap, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), Props.triggerRadius, x => XenomorphUtil.isInfectablePawn(((Pawn)x)), null, 0, -1, false, RegionType.Set_Passable, false);
             int huggercount = thing != null ? XenomorphUtil.TotalSpawnedFacehuggerPawnCount(MyMap, 10, (Pawn)thing) : 0;
             int hostcount = thing != null ? XenomorphUtil.TotalSpawnedInfectablePawnCount(MyMap, 10, this.MyPos) : 0;
             bool shouldHatch = huggercount < hostcount;
-            if (thing != null)
+            if (thing != null && ambientTemperature > -20f)
             {
                 Pawn pawn = (Pawn)thing;
                 bool flag = XenomorphUtil.isInfectablePawn(pawn);

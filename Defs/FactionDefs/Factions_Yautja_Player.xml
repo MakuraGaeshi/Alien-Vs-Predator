@@ -223,4 +223,5 @@
     <homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
     <expandingIconTexture>World/WorldObjects/YautjaIconB</expandingIconTexture>
     </FactionDef>
+
 </Defs>

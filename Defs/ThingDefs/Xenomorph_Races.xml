@@ -67,6 +67,7 @@
       <ArmorRating_Heat>0.75</ArmorRating_Heat>
     </statBases>
     <race>
+      <!-- <deathActionWorkerClass>RRYautja.DeathActionWorker_Xenomorph</deathActionWorkerClass> -->
       <herdAnimal>false</herdAnimal>
       <predator>false</predator>
       <maxPreyBodySize>3.0</maxPreyBodySize>

@@ -268,7 +268,7 @@ namespace RRYautja
         {
             Thing hostThing = Pawn;
             Pawn hostPawn = Pawn;
-            IntVec3 spawnLoc = !Pawn.Dead ? Pawn.Position : Pawn.PositionHeld;
+            IntVec3 spawnLoc = !Pawn.Dead ? Pawn.Position.RandomAdjacentCell8Way() : Pawn.PositionHeld.RandomAdjacentCell8Way();
             Map spawnMap = !Pawn.Dead ? Pawn.Map : Pawn.MapHeld;
             bool spawnLive = this.spawnLive;
             hostPawn.health.AddHediff(XenomorphDefOf.RRY_Hediff_Anesthetic);
@@ -277,7 +277,7 @@ namespace RRYautja
             {
             spawnLive = true;
             }
-            PawnGenerationRequest pawnGenerationRequest = new PawnGenerationRequest(pawnKindDef, null, PawnGenerationContext.NonPlayer, -1, true, false, true, false, true, true, 20f);
+            PawnGenerationRequest pawnGenerationRequest = new PawnGenerationRequest(pawnKindDef, null, PawnGenerationContext.NonPlayer, -1, true, false, true, false, true, true, 0f);
             Pawn pawn = PawnGenerator.GeneratePawn(pawnGenerationRequest);
             if (Instigator != null)
             {
@@ -293,11 +293,17 @@ namespace RRYautja
                 GenSpawn.Spawn(pawn, spawnLoc, spawnMap, 0);
                 pawn.jobs.ClearQueuedJobs();
             //    pawn.jobs.curJob = new Verse.AI.Job(JobDefOf.FleeAndCower, hostPawn);
+                if (killhugger)
+                {
+                    pawn.Kill(null);
+                }
             }
             else
             {
                 GenSpawn.Spawn(pawn, spawnLoc, spawnMap, 0);
                 Comp_Facehugger _Facehugger = pawn.TryGetComp<Comp_Facehugger>();
+            //    pawn.jobs.ClearQueuedJobs();
+            //    pawn.jobs.curJob = new Verse.AI.Job(JobDefOf.FleeAndCower, hostPawn);
                 _Facehugger.Impregnations = previousImpregnations;
                 if (killhugger)
                 {
