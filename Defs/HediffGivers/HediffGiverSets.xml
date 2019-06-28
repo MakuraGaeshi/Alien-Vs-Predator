@@ -33,8 +33,6 @@
     </hediffGivers>
   </HediffGiverSetDef>
   
-  <!--============================================= Xenomoprh Impregnation =============================================-->
-  
   <HediffGiverSetDef>
     <defName>RRY_Xenomorph_Infection_Humanlike</defName>
     <hediffGivers>
@@ -57,5 +55,27 @@
       
     </hediffGivers>
   </HediffGiverSetDef>
+  
+<!--============================================= Xenomorph =============================================-->
+
+  <HediffGiverSetDef>
+    <defName>RRY_Xenomorph_Standard</defName>
+    <hediffGivers>
+      
+      <!-- Environmental -->
+      <li Class="HediffGiver_Bleeding">
+        <hediff>BloodLoss</hediff>
+      </li>
+      <li Class="HediffGiver_Hypothermia">
+        <hediff>HypothermicSlowdown</hediff>
+      </li>
+      <li Class="HediffGiver_Heat">
+        <hediff>Heatstroke</hediff>
+      </li>
+
+      </hediffGivers>
+  </HediffGiverSetDef>
+  
+  <!--============================================= Synths =============================================-->
 
 </Defs>
