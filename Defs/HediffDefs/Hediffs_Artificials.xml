@@ -211,7 +211,7 @@
 <!--============================================= Artificials Damaged inhibitor =============================================-->
 
 	<HediffDef ParentName="DiseaseBase">
-		<defName>RRY_Damaged_Inhibitor</defName>
+		<defName>RRY_Defective_Inhibitor</defName>
 		<hediffClass>HediffWithComps</hediffClass>
 		<label>damaged inhibitor</label>
 		<labelNoun>trauma</labelNoun>
