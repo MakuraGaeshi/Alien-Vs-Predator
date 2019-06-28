@@ -242,6 +242,17 @@ namespace RimWorld
             {
                 return null;
             }
+            if (pawn.mindState.duty.focus.Cell == pawn.InteractionCell)
+            {
+                return null;
+            }
+            bool flag1 = pawn.mindState.duty.focus.Cell.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_XenomorphHive) != null;
+            bool flag2 = pawn.mindState.duty.focus.Cell.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_XenomorphHive_Child) != null;
+            bool flag3 = pawn.mindState.duty.focus.Cell.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Hive_Slime) != null;
+            if ((!flag1 && !flag2 && !flag3))
+            {
+                return null;
+            }
             for (int i = 0; i < 40; i++)
             {
                 IntVec3 randomCell = HiveStruct.RandomElement();

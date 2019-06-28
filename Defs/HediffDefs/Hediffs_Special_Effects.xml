@@ -404,13 +404,11 @@
       <li>
         <compClass>RRYautja.HediffComp_MarkedYautja</compClass>
       </li>
-	  <!--
       <li Class="RRYautja.HediffCompProperties_DrawImplant">
         <compClass>RRYautja.HediffComp_DrawImplant</compClass>
         <implantDrawerType>Head</implantDrawerType>
-        <implantGraphicPath>Things</implantGraphicPath>
+        <implantGraphicPath>Things/Addons/Blood_Marks/Mech_Kills/Mark_Mechanoidkill</implantGraphicPath>
       </li>
-	  -->
     </comps>
   </HediffDef>
 

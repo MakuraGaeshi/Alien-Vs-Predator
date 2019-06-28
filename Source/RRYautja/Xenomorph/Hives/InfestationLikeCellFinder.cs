@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
@@ -33,13 +34,30 @@ namespace RimWorld
         // Token: 0x0600368B RID: 13963 RVA: 0x001A0E1C File Offset: 0x0019F21C
         public static bool TryFindCell(out IntVec3 cell, Map map, bool allowFogged = true)
         {
+            ThingDef namedA = XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon;
+            ThingDef namedB = XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon;
             InfestationLikeCellFinder.CalculateLocationCandidates(map, allowFogged);
+
+            Predicate<IntVec3> validator = delegate (IntVec3 y)
+            {
+                bool score = InfestationLikeCellFinder.GetScoreAt(y, map) > 0f;
+                bool XenohiveA = y.GetFirstThing(map, XenomorphDefOf.RRY_XenomorphHive) == null;
+                bool XenohiveB = y.GetFirstThing(map, XenomorphDefOf.RRY_XenomorphHive_Child) == null;
+                bool filled = y.Filled(map);
+                bool edifice = y.GetEdifice(map).DestroyedOrNull();
+                bool building = y.GetFirstBuilding(map).DestroyedOrNull();
+                bool thingA = y.GetFirstThing(map, namedA).DestroyedOrNull();
+                bool thingB = y.GetFirstThing(map, namedB).DestroyedOrNull();
+                //Log.Message(string.Format("{0} {1} {2} {3} {4} {5}", y, !adjacent, !filled, edifice, building, thing));
+                return score && XenohiveA && XenohiveB && !filled && edifice && building && thingA && thingB;
+            };
+
             if (!InfestationLikeCellFinder.locationCandidates.TryRandomElementByWeight((InfestationLikeCellFinder.LocationCandidate x) => x.score, out LocationCandidate locationCandidate))
             {
                 cell = IntVec3.Invalid;
                 return false;
             }
-            cell = CellFinder.FindNoWipeSpawnLocNear(locationCandidate.cell, map, XenomorphDefOf.RRY_XenomorphHive, Rot4.North, 2, (IntVec3 x) => InfestationLikeCellFinder.GetScoreAt(x, map) > 0f && x.GetFirstThing(map, XenomorphDefOf.RRY_XenomorphHive) == null && x.GetFirstThing(map, OGHiveLikeDefOf.TunnelHiveLikeSpawner) == null && x.GetFirstThing(map, XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon) == null && x.GetFirstThing(map, XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon) == null);
+            cell = CellFinder.FindNoWipeSpawnLocNear(locationCandidate.cell, map, XenomorphDefOf.RRY_XenomorphHive, Rot4.North, 2, validator);
             ThingDef td = XenomorphDefOf.RRY_Hive_Slime;
             GenSpawn.Spawn(td, cell, map);
             return true;
@@ -78,6 +96,12 @@ namespace RimWorld
             {
                 return 0f;
             }
+            float temperature = cell.GetTemperature(map);
+            if (temperature < -40f)
+            {
+                return 0f;
+            }
+
             if (!cell.Walkable(map))
             {
                 return 0f;
@@ -101,11 +125,6 @@ namespace RimWorld
                 return 0f;
             }
             if (InfestationLikeCellFinder.closedAreaSize[cell] < 2)
-            {
-                return 0f;
-            }
-            float temperature = cell.GetTemperature(map);
-            if (temperature < -40f)
             {
                 return 0f;
             }
