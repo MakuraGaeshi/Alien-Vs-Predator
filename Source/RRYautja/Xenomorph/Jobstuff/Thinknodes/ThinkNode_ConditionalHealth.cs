@@ -82,4 +82,46 @@ namespace RimWorld
         }
     }
 
+    // Token: 0x020001D6 RID: 470
+    public class ThinkNode_Conditional_OverBleed : ThinkNode_Conditional
+    {
+        // Token: 0x040003F6 RID: 1014
+        public float pawnBleedRate;
+
+        // Token: 0x060009B8 RID: 2488 RVA: 0x0004E07C File Offset: 0x0004C47C
+        public override ThinkNode DeepCopy(bool resolve = true)
+        {
+            ThinkNode_Conditional_OverBleed thinkNode_Conditional_BleedRate = (ThinkNode_Conditional_OverBleed)base.DeepCopy(resolve);
+            thinkNode_Conditional_BleedRate.pawnBleedRate = this.pawnBleedRate;
+            return thinkNode_Conditional_BleedRate;
+        }
+
+        protected override bool Satisfied(Pawn pawn)
+        {
+            if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} needs {3} > {2}, Result: {1}", this, pawn.health.summaryHealth.SummaryHealthPercent >= pawnBleedRate, pawnBleedRate, pawn.health.summaryHealth.SummaryHealthPercent));
+            return pawn.health.hediffSet.BleedRateTotal >= pawnBleedRate;
+        }
+    }
+
+    // Token: 0x020001D6 RID: 470
+    public class ThinkNode_Conditional_UnderBleed : ThinkNode_Conditional
+    {
+        // Token: 0x040003F6 RID: 1014
+        public float pawnBleedRate;
+
+        // Token: 0x060009B8 RID: 2488 RVA: 0x0004E07C File Offset: 0x0004C47C
+        public override ThinkNode DeepCopy(bool resolve = true)
+        {
+            ThinkNode_Conditional_UnderBleed thinkNode_Conditional_BleedRate = (ThinkNode_Conditional_UnderBleed)base.DeepCopy(resolve);
+            thinkNode_Conditional_BleedRate.pawnBleedRate = this.pawnBleedRate;
+            return thinkNode_Conditional_BleedRate;
+        }
+
+        protected override bool Satisfied(Pawn pawn)
+        {
+            if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} needs {3} < {2}, Result: {1}", this, pawn.health.summaryHealth.SummaryHealthPercent <= pawnBleedRate, pawnBleedRate, pawn.health.summaryHealth.SummaryHealthPercent));
+            return pawn.health.hediffSet.BleedRateTotal <= pawnBleedRate;
+        }
+    }
+
 }

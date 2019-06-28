@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using Verse.Sound;
 
 namespace RRYautja
 {
@@ -43,7 +44,13 @@ namespace RRYautja
         protected virtual bool IsWorn => (GetWearer != null);
         protected virtual bool IsTurnedOn => (GetWearer != null && GetWearer.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_HeDiff_TurretIsOn) != null);
 
-        public bool turretIsOn => (IsTurnedOn);
+        public bool turretIsOn
+        {
+            get
+            {
+                return IsTurnedOn && !GetWearer.Dead && !GetWearer.Downed && GetWearer.Awake();
+            }
+        }
         // Token: 0x060053DC RID: 21468 RVA: 0x00264E1B File Offset: 0x0026321B
         public void ExposeData()
         {// Building_Turret_Shoulder
@@ -57,14 +64,17 @@ namespace RRYautja
 		public override void CompTick()
         {
 			base.CompTick();
-            if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.RRY_Concept_Plasmacaster) && GetWearer.IsColonist)
+            if (IsWorn)
             {
-                LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.RRY_Concept_Plasmacaster, OpportunityType.GoodToKnow);
-            }
-            if (this.turretIsOn || Find.TickManager.TicksGame >= this.nextUpdateTick)
-            {
-                this.nextUpdateTick = Find.TickManager.TicksGame + 60;
-                this.RefreshTurretState();
+                if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.RRY_Concept_Plasmacaster) && GetWearer.IsColonist)
+                {
+                    LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.RRY_Concept_Plasmacaster, OpportunityType.GoodToKnow);
+                }
+                if (this.turretIsOn || Find.TickManager.TicksGame >= this.nextUpdateTick)
+                {
+                    this.nextUpdateTick = Find.TickManager.TicksGame + 60;
+                    this.RefreshTurretState();
+                }
             }
         }
 
@@ -159,6 +169,37 @@ namespace RRYautja
                         action = new Action(this.SwitchTurretMode),
                         groupKey = num + 1,
                     };
+                    /*
+                    Command_VerbTarget attack = new Command_VerbTarget
+                    {
+                        defaultLabel = "CommandSetForceAttackTarget".Translate(),
+                        defaultDesc = "CommandSetForceAttackTargetDesc".Translate(),
+                        icon = ContentFinder<Texture2D>.Get("UI/Commands/Attack", true),
+                        verb = turret_Shoulder.AttackVerb,
+                        hotKey = KeyBindingDefOf.Misc4
+                    };
+                    yield return attack;
+                    if (turret_Shoulder.forcedTarget.IsValid)
+                    {
+                        Command_Action stop = new Command_Action
+                        {
+                            defaultLabel = "CommandStopForceAttack".Translate(),
+                            defaultDesc = "CommandStopForceAttackDesc".Translate(),
+                            icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt", true),
+                            action = delegate ()
+                            {
+                                turret_Shoulder.ResetForcedTarget();
+                                SoundDefOf.Tick_Low.PlayOneShotOnCamera(null);
+                            }
+                        };
+                        if (!turret_Shoulder.forcedTarget.IsValid)
+                        {
+                            stop.Disable("CommandStopAttackFailNotForceAttacking".Translate());
+                        }
+                        stop.hotKey = KeyBindingDefOf.Misc5;
+                        yield return stop;
+                    }
+                    */
                 }
             }
             yield break;

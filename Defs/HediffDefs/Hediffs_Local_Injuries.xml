@@ -24,7 +24,7 @@
       </li>
     </comps>
     <injuryProps>
-      <painPerSeverity>0.01475</painPerSeverity>
+      <painPerSeverity>0.02275</painPerSeverity>
       <averagePainPerSeverityPermanent>0.00325</averagePainPerSeverityPermanent>
       <canMerge>true</canMerge>
       <destroyedLabel>Burned off</destroyedLabel>

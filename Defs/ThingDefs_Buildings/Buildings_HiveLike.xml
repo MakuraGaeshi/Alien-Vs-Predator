@@ -362,6 +362,14 @@
       <isNaturalRock>false</isNaturalRock>
       <claimable>false</claimable>
     </building>
+    <comps>
+      <li Class="CompProperties_SpawnerFilth">
+        <filthDef>RRY_Filth_Slime</filthDef>
+        <spawnCountOnSpawn>10</spawnCountOnSpawn>
+        <spawnMtbHours>4</spawnMtbHours>
+        <spawnRadius>5</spawnRadius>
+      </li>
+    </comps>
   </ThingDef>
   
   <ThingDef ParentName="BaseFilth">

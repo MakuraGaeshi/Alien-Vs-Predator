@@ -28,7 +28,7 @@
 					<!-- South offsets Y is the layer height, usually you can leave this at 0, all values default to 0 if not set-->
 					<SouthXOffset>-0.001</SouthXOffset>
 					<SouthYOffset>0.0</SouthYOffset>
-					<SouthZOffset>0.290</SouthZOffset>
+					<SouthZOffset>0.267</SouthZOffset>
 					<!-- South Draw size overrides, will default to 1 if not set -->
 					<SouthXDrawSize>1</SouthXDrawSize>
 					<SouthZDrawSize>1</SouthZDrawSize>

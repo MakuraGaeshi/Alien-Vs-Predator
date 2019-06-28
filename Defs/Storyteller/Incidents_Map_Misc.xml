@@ -2,7 +2,7 @@
 <Defs>
 
 	<!-- =========================== Good ============================-->
-
+	<!--
 	<IncidentDef>
 		<defName>RRY_WandererJoinXenomorph</defName>
 		<label>wanderer join</label>
@@ -29,9 +29,9 @@
 		<baseChance>0.15</baseChance>
 		<populationEffect>IncreaseMedium</populationEffect>
 	</IncidentDef>
-
+	-->
 	<!-- =========================== Neutral ============================-->
-	
+	<!--
   <IncidentDef>
     <defName>RRY_RefugeeChasedXenomorph</defName>
     <label>chased refugee</label>
@@ -60,7 +60,7 @@
 		<letterText>A person living among wild animals has wandered into the area. {PAWN_pronoun}'s called {0}.\n\nYou can attempt to tame or arrest {PAWN_objective}.</letterText>
 		<letterDef>NeutralEvent</letterDef>
 	</IncidentDef>
-
+	-->
 	<!-- =========================== Bad ============================-->
 
 	<IncidentDef>

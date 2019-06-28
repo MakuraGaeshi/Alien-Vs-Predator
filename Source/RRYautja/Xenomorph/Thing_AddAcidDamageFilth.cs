@@ -46,6 +46,18 @@ namespace RRYautja
             }
         }
 
+        public override ushort PathFindCostFor(Pawn p)
+        {
+            if (this.active)
+            {
+                return 1000;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        
         // Token: 0x0600001A RID: 26 RVA: 0x000027C0 File Offset: 0x000009C0
         public override void Tick()
         {
@@ -55,10 +67,12 @@ namespace RRYautja
                 bool flag = this.destroyTick < 0 && !base.Destroyed;
                 if (flag)
                 {
+                    RecalcPathsOnAndAroundMe(Map);
                     this.active = false;
                 }
                 else
                 {
+                    RecalcPathsOnAndAroundMe(Map);
                     this.destroyTick--;
                     this.Ticks--;
                     bool flag2 = this.Ticks <= 0;
@@ -85,6 +99,7 @@ namespace RRYautja
                     bool flag = thingList[i] != null;
                     if (flag)
                     {
+                        
                         Thing thing = thingList[i];
                         Pawn pawn = thingList[i] as Pawn;
                         bool flaga = thing.def.useHitPoints && !this.touchingThings.Contains(thing) && thing.def != XenomorphDefOf.RRY_FilthBloodXenomorph && thing.GetType() != typeof(Pawn);

@@ -52,7 +52,7 @@
   <ThingDef ParentName="RRY_BaseXenomorphPawn" Name="RRY_BaseXenomorph" Abstract="True">
     <soundImpactDefault>BulletImpact_Flesh</soundImpactDefault>
     <statBases>
-      <PainShockThreshold>0.999</PainShockThreshold>
+      <PainShockThreshold>.9999</PainShockThreshold>
       <MeleeDodgeChance>1.5</MeleeDodgeChance>
       <MeleeHitChance>1.5</MeleeHitChance>
       <MiningSpeed>1.5</MiningSpeed>
@@ -64,8 +64,10 @@
       <ComfyTemperatureMax>150</ComfyTemperatureMax>
       <MeatAmount>15</MeatAmount>
       <LeatherAmount>15</LeatherAmount>
+      <ArmorRating_Heat>0.75</ArmorRating_Heat>
     </statBases>
     <race>
+      <!-- <deathActionWorkerClass>RRYautja.DeathActionWorker_Xenomorph</deathActionWorkerClass> -->
       <herdAnimal>false</herdAnimal>
       <predator>false</predator>
       <maxPreyBodySize>3.0</maxPreyBodySize>
@@ -80,7 +82,7 @@
       <leatherDef>RRY_Leather_Xenomorph</leatherDef>
       <lifeExpectancy>2500</lifeExpectancy>
       <hediffGiverSets>
-        <li>OrganicStandard</li>
+        <li>RRY_Xenomorph_Standard</li>
       </hediffGiverSets>
     </race>
   </ThingDef>
@@ -169,9 +171,6 @@
           <texPath>Things/Pawn/Xenomorph/Xenomorph_FaceHugger</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>2.30</drawSize>
-          <shadowData>
-            <volume>(0.2, 0.4, 0.2)</volume>
-          </shadowData>
         </bodyGraphicData>
       </li>
     </lifeStages>
@@ -194,9 +193,6 @@
           <texPath>Things/Pawn/Xenomorph/Xenomorph_FaceHuggerRoyal</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>1.30</drawSize>
-          <shadowData>
-            <volume>(0.2, 0.4, 0.2)</volume>
-          </shadowData>
         </bodyGraphicData>
       </li>
     </lifeStages>
@@ -214,9 +210,10 @@
     <label>Queen</label>
     <description>Queen Xenomorphs are significantly larger and stronger than the normal adults, being approximately 4.5 metres (15 ft) tall. Their body structure differs also, having two pairs of arms, one large and one small. The queen's head is larger than those of other adult Xenomorphs and is protected by a large, flat crest, like a crown, which varies from queen to queen. Unlike other Xenomorphs, the queen's external mouth is separately segmented from the rest of her head, allowing her to turn her mouth left and right almost to the point where it is facing perpendicular to the direction of the rest of her head./n/nEgg-laying Xenomorph queens possess an immense ovipositor attached to their lower torso, similar to a queen termite's. Unlike insect queens, there appears to be no need for an Xenomorph queen's eggs to be fertilized. When attached to her ovipositor, the queen is supported by a "biomechanical throne" that consists of a lattice of struts resembling massive insect legs.</description>
     <statBases>
-      <MoveSpeed>5.5</MoveSpeed>
-      <ArmorRating_Blunt>0.50</ArmorRating_Blunt>
-      <ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+      <MoveSpeed>5.75</MoveSpeed>
+      <ArmorRating_Blunt>1.50</ArmorRating_Blunt>
+      <ArmorRating_Sharp>1.80</ArmorRating_Sharp>
+      <ArmorRating_Heat>1.30</ArmorRating_Heat>
       <MeatAmount>115</MeatAmount>
       <LeatherAmount>90</LeatherAmount>
     </statBases>
@@ -1499,11 +1496,12 @@
     <label>Thrumbomorph</label>
     <description>Thrumbomorph Xenomorphs are significantly larger and stronger than the normal adults, being over 5 metres tall. Their body structure differs also, having no arms, although its large limbs many manipulate objects. The thrumbomorphs's head is larger than those of other adult Xenomorphs and is adorned by a large, flat blade, which is an inherited feature from its host./n/nThis thing is a total monstrosity and can easily dismantle a battle tank, do not engage lightly.</description>
     <statBases>
-      <MoveSpeed>5.5</MoveSpeed>
-      <ArmorRating_Blunt>0.50</ArmorRating_Blunt>
-      <ArmorRating_Sharp>0.80</ArmorRating_Sharp>
-      <MeatAmount>115</MeatAmount>
-      <LeatherAmount>90</LeatherAmount>
+      <MoveSpeed>6.5</MoveSpeed>
+      <ArmorRating_Blunt>1.50</ArmorRating_Blunt>
+      <ArmorRating_Sharp>1.80</ArmorRating_Sharp>
+      <ArmorRating_Heat>1.30</ArmorRating_Heat>
+      <MeatAmount>215</MeatAmount>
+      <LeatherAmount>140</LeatherAmount>
     </statBases>
     <tools>
       <li>
@@ -1512,7 +1510,7 @@
           <li>Scratch</li>
           <li>Stab</li>
         </capacities>
-        <power>23</power>
+        <power>50</power>
         <cooldownTime>2</cooldownTime>
         <linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
       </li>
@@ -1577,7 +1575,7 @@
         <capacities>
           <li>Blunt</li>
         </capacities>
-        <power>15</power>
+        <power>20</power>
         <cooldownTime>2</cooldownTime>
         <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
         <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
@@ -1589,7 +1587,7 @@
           <li>Blunt</li>
           <li>RRY_TailWhip</li>
         </capacities>
-        <power>10</power>
+        <power>15</power>
         <cooldownTime>2</cooldownTime>
         <linkedBodyPartsGroup>RRY_Xeno_Tail_AttackTool</linkedBodyPartsGroup>
         <chanceFactor>0.2</chanceFactor>
@@ -1612,7 +1610,8 @@
       <body>RRY_Xenomorph_QuadrupedWithHorn</body>
 	  <useMeatFrom>RRY_Xenomorph_FaceHugger</useMeatFrom>
       <baseBodySize>4</baseBodySize>
-      <baseHealthScale>8.0</baseHealthScale>
+      <baseHealthScale>9.0</baseHealthScale>
+      <manhunterOnDamageChance>1.00</manhunterOnDamageChance>
       <lifeStageAges>
         <li>
           <def>RRY_XenomorphChestBursterBaby</def>

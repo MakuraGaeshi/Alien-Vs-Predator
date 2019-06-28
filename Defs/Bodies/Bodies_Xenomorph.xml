@@ -2010,98 +2010,120 @@
 					</parts>
 				</li>
 				<li>
-					<def>RRY_Xeno_Leg</def>
+					<def>RRY_Xeno_FrontLeg</def>
 					<customLabel>front left leg</customLabel>
 					<coverage>0.065</coverage>
 					<height>Bottom</height>
 					<parts>
 						<li>
-							<def>RRY_Xeno_FrontClaw</def>
-							<customLabel>front left leg first claw</customLabel>
-							<coverage>0.05</coverage>
-							<groups>
-								<li>RRY_Xeno_LeftHand</li>
-							</groups>
-						</li>
-						<li>
-							<def>RRY_Xeno_FrontClaw</def>
-							<customLabel>front left leg second claw</customLabel>
-							<coverage>0.05</coverage>
-							<groups>
-								<li>RRY_Xeno_LeftHand</li>
-							</groups>
-						</li>
-						<li>
-							<def>RRY_Xeno_FrontClaw</def>
-							<customLabel>front left leg third claw</customLabel>
-							<coverage>0.05</coverage>
-							<groups>
-								<li>RRY_Xeno_LeftHand</li>
-							</groups>
-						</li>
-						<li>
-							<def>RRY_Xeno_FrontClaw</def>
-							<customLabel>front left leg fourth claw</customLabel>
-							<coverage>0.05</coverage>
-							<groups>
-								<li>RRY_Xeno_LeftHand</li>
-							</groups>
-						</li>
-						<li>
-							<def>RRY_Xeno_FrontClaw</def>
-							<customLabel>front left leg fifth claw</customLabel>
-							<coverage>0.05</coverage>
-							<groups>
-								<li>RRY_Xeno_LeftHand</li>
-							</groups>
+						  <def>RRY_Xeno_Hand</def>
+						  <customLabel>left hand</customLabel>
+						  <coverage>0.14</coverage>
+						  <height>Bottom</height>
+						  <groups>
+							<li>RRY_Xeno_Hands</li>
+						  </groups>
+						  <parts>
+							<li>
+								<def>RRY_Xeno_FrontClaw</def>
+								<customLabel>front left leg first claw</customLabel>
+								<coverage>0.05</coverage>
+								<groups>
+									<li>RRY_Xeno_LeftHand</li>
+								</groups>
+							</li>
+							<li>
+								<def>RRY_Xeno_FrontClaw</def>
+								<customLabel>front left leg second claw</customLabel>
+								<coverage>0.05</coverage>
+								<groups>
+									<li>RRY_Xeno_LeftHand</li>
+								</groups>
+							</li>
+							<li>
+								<def>RRY_Xeno_FrontClaw</def>
+								<customLabel>front left leg third claw</customLabel>
+								<coverage>0.05</coverage>
+								<groups>
+									<li>RRY_Xeno_LeftHand</li>
+								</groups>
+							</li>
+							<li>
+								<def>RRY_Xeno_FrontClaw</def>
+								<customLabel>front left leg fourth claw</customLabel>
+								<coverage>0.05</coverage>
+								<groups>
+									<li>RRY_Xeno_LeftHand</li>
+								</groups>
+							</li>
+							<li>
+								<def>RRY_Xeno_FrontClaw</def>
+								<customLabel>front left leg fifth claw</customLabel>
+								<coverage>0.05</coverage>
+								<groups>
+									<li>RRY_Xeno_LeftHand</li>
+								</groups>
+							</li>
+						  </parts>
 						</li>
 					</parts>
 				</li>
 				<li>
-					<def>RRY_Xeno_Leg</def>
+					<def>RRY_Xeno_FrontLeg</def>
 					<customLabel>front right leg</customLabel>
 					<coverage>0.065</coverage>
 					<height>Bottom</height>
 					<parts>
 						<li>
-							<def>RRY_Xeno_FrontClaw</def>
-							<customLabel>front right leg first claw</customLabel>
-							<coverage>0.05</coverage>
-							<groups>
-								<li>RRY_Xeno_RightHand</li>
-							</groups>
-						</li>
-						<li>
-							<def>RRY_Xeno_FrontClaw</def>
-							<customLabel>front right leg second claw</customLabel>
-							<coverage>0.05</coverage>
-							<groups>
-								<li>RRY_Xeno_RightHand</li>
-							</groups>
-						</li>
-						<li>
-							<def>RRY_Xeno_FrontClaw</def>
-							<customLabel>front right leg third claw</customLabel>
-							<coverage>0.05</coverage>
-							<groups>
-								<li>RRY_Xeno_RightHand</li>
-							</groups>
-						</li>
-						<li>
-							<def>RRY_Xeno_FrontClaw</def>
-							<customLabel>front right leg fourth claw</customLabel>
-							<coverage>0.05</coverage>
-							<groups>
-								<li>RRY_Xeno_RightHand</li>
-							</groups>
-						</li>
-						<li>
-							<def>RRY_Xeno_FrontClaw</def>
-							<customLabel>front right leg fifth claw</customLabel>
-							<coverage>0.05</coverage>
-							<groups>
-								<li>RRY_Xeno_RightHand</li>
-							</groups>
+						  <def>RRY_Xeno_Hand</def>
+						  <customLabel>left hand</customLabel>
+						  <coverage>0.14</coverage>
+						  <height>Bottom</height>
+						  <groups>
+							<li>RRY_Xeno_Hands</li>
+						  </groups>
+						  <parts>
+							<li>
+								<def>RRY_Xeno_FrontClaw</def>
+								<customLabel>front right leg first claw</customLabel>
+								<coverage>0.05</coverage>
+								<groups>
+									<li>RRY_Xeno_RightHand</li>
+								</groups>
+							</li>
+							<li>
+								<def>RRY_Xeno_FrontClaw</def>
+								<customLabel>front right leg second claw</customLabel>
+								<coverage>0.05</coverage>
+								<groups>
+									<li>RRY_Xeno_RightHand</li>
+								</groups>
+							</li>
+							<li>
+								<def>RRY_Xeno_FrontClaw</def>
+								<customLabel>front right leg third claw</customLabel>
+								<coverage>0.05</coverage>
+								<groups>
+									<li>RRY_Xeno_RightHand</li>
+								</groups>
+							</li>
+							<li>
+								<def>RRY_Xeno_FrontClaw</def>
+								<customLabel>front right leg fourth claw</customLabel>
+								<coverage>0.05</coverage>
+								<groups>
+									<li>RRY_Xeno_RightHand</li>
+								</groups>
+							</li>
+							<li>
+								<def>RRY_Xeno_FrontClaw</def>
+								<customLabel>front right leg fifth claw</customLabel>
+								<coverage>0.05</coverage>
+								<groups>
+									<li>RRY_Xeno_RightHand</li>
+								</groups>
+							</li>
+						  </parts>
 						</li>
 					</parts>
 				</li>
@@ -2351,98 +2373,120 @@
           </parts>
         </li>
 		<li>
-			<def>RRY_Xeno_Leg</def>
+			<def>RRY_Xeno_FrontLeg</def>
 			<customLabel>front left leg</customLabel>
 			<coverage>0.065</coverage>
 			<height>Bottom</height>
 			<parts>
 				<li>
-					<def>RRY_Xeno_FrontClaw</def>
-					<customLabel>front left leg first claw</customLabel>
-					<coverage>0.05</coverage>
-					<groups>
-						<li>RRY_Xeno_LeftHand</li>
-					</groups>
-				</li>
-				<li>
-					<def>RRY_Xeno_FrontClaw</def>
-					<customLabel>front left leg second claw</customLabel>
-					<coverage>0.05</coverage>
-					<groups>
-						<li>RRY_Xeno_LeftHand</li>
-					</groups>
-				</li>
-				<li>
-					<def>RRY_Xeno_FrontClaw</def>
-					<customLabel>front left leg third claw</customLabel>
-					<coverage>0.05</coverage>
-					<groups>
-						<li>RRY_Xeno_LeftHand</li>
-					</groups>
-				</li>
-				<li>
-					<def>RRY_Xeno_FrontClaw</def>
-					<customLabel>front left leg fourth claw</customLabel>
-					<coverage>0.05</coverage>
-					<groups>
-						<li>RRY_Xeno_LeftHand</li>
-					</groups>
-				</li>
-				<li>
-					<def>RRY_Xeno_FrontClaw</def>
-					<customLabel>front left leg fifth claw</customLabel>
-					<coverage>0.05</coverage>
-					<groups>
-						<li>RRY_Xeno_LeftHand</li>
-					</groups>
+				  <def>RRY_Xeno_Hand</def>
+				  <customLabel>left hand</customLabel>
+				  <coverage>0.14</coverage>
+				  <height>Bottom</height>
+				  <groups>
+					<li>RRY_Xeno_Hands</li>
+				  </groups>
+				  <parts>
+					<li>
+						<def>RRY_Xeno_FrontClaw</def>
+						<customLabel>front left leg first claw</customLabel>
+						<coverage>0.05</coverage>
+						<groups>
+							<li>RRY_Xeno_LeftHand</li>
+						</groups>
+					</li>
+					<li>
+						<def>RRY_Xeno_FrontClaw</def>
+						<customLabel>front left leg second claw</customLabel>
+						<coverage>0.05</coverage>
+						<groups>
+							<li>RRY_Xeno_LeftHand</li>
+						</groups>
+					</li>
+					<li>
+						<def>RRY_Xeno_FrontClaw</def>
+						<customLabel>front left leg third claw</customLabel>
+						<coverage>0.05</coverage>
+						<groups>
+							<li>RRY_Xeno_LeftHand</li>
+						</groups>
+					</li>
+					<li>
+						<def>RRY_Xeno_FrontClaw</def>
+						<customLabel>front left leg fourth claw</customLabel>
+						<coverage>0.05</coverage>
+						<groups>
+							<li>RRY_Xeno_LeftHand</li>
+						</groups>
+					</li>
+					<li>
+						<def>RRY_Xeno_FrontClaw</def>
+						<customLabel>front left leg fifth claw</customLabel>
+						<coverage>0.05</coverage>
+						<groups>
+							<li>RRY_Xeno_LeftHand</li>
+						</groups>
+					</li>
+				  </parts>
 				</li>
 			</parts>
 		</li>
 		<li>
-			<def>RRY_Xeno_Leg</def>
+			<def>RRY_Xeno_FrontLeg</def>
 			<customLabel>front right leg</customLabel>
 			<coverage>0.065</coverage>
 			<height>Bottom</height>
 			<parts>
 				<li>
-					<def>RRY_Xeno_FrontClaw</def>
-					<customLabel>front right leg first claw</customLabel>
-					<coverage>0.05</coverage>
-					<groups>
-						<li>RRY_Xeno_RightHand</li>
-					</groups>
-				</li>
-				<li>
-					<def>RRY_Xeno_FrontClaw</def>
-					<customLabel>front right leg second claw</customLabel>
-					<coverage>0.05</coverage>
-					<groups>
-						<li>RRY_Xeno_RightHand</li>
-					</groups>
-				</li>
-				<li>
-					<def>RRY_Xeno_FrontClaw</def>
-					<customLabel>front right leg third claw</customLabel>
-					<coverage>0.05</coverage>
-					<groups>
-						<li>RRY_Xeno_RightHand</li>
-					</groups>
-				</li>
-				<li>
-					<def>RRY_Xeno_FrontClaw</def>
-					<customLabel>front right leg fourth claw</customLabel>
-					<coverage>0.05</coverage>
-					<groups>
-						<li>RRY_Xeno_RightHand</li>
-					</groups>
-				</li>
-				<li>
-					<def>RRY_Xeno_FrontClaw</def>
-					<customLabel>front right leg fifth claw</customLabel>
-					<coverage>0.05</coverage>
-					<groups>
-						<li>RRY_Xeno_RightHand</li>
-					</groups>
+				  <def>RRY_Xeno_Hand</def>
+				  <customLabel>left hand</customLabel>
+				  <coverage>0.14</coverage>
+				  <height>Bottom</height>
+				  <groups>
+					<li>RRY_Xeno_Hands</li>
+				  </groups>
+				  <parts>
+					<li>
+						<def>RRY_Xeno_FrontClaw</def>
+						<customLabel>front right leg first claw</customLabel>
+						<coverage>0.05</coverage>
+						<groups>
+							<li>RRY_Xeno_RightHand</li>
+						</groups>
+					</li>
+					<li>
+						<def>RRY_Xeno_FrontClaw</def>
+						<customLabel>front right leg second claw</customLabel>
+						<coverage>0.05</coverage>
+						<groups>
+							<li>RRY_Xeno_RightHand</li>
+						</groups>
+					</li>
+					<li>
+						<def>RRY_Xeno_FrontClaw</def>
+						<customLabel>front right leg third claw</customLabel>
+						<coverage>0.05</coverage>
+						<groups>
+							<li>RRY_Xeno_RightHand</li>
+						</groups>
+					</li>
+					<li>
+						<def>RRY_Xeno_FrontClaw</def>
+						<customLabel>front right leg fourth claw</customLabel>
+						<coverage>0.05</coverage>
+						<groups>
+							<li>RRY_Xeno_RightHand</li>
+						</groups>
+					</li>
+					<li>
+						<def>RRY_Xeno_FrontClaw</def>
+						<customLabel>front right leg fifth claw</customLabel>
+						<coverage>0.05</coverage>
+						<groups>
+							<li>RRY_Xeno_RightHand</li>
+						</groups>
+					</li>
+				  </parts>
 				</li>
 			</parts>
 		</li>

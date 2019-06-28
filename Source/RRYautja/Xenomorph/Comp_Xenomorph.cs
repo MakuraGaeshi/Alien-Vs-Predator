@@ -37,6 +37,8 @@ namespace RRYautja
             base.PostExposeData();
             Scribe_Values.Look<int>(ref this.ticksSinceHeal, "ticksSinceHeal");
             Scribe_Values.Look<IntVec3>(ref this.HiveLoc, "HiveLoc", IntVec3.Invalid);
+            Scribe_Defs.Look<PawnKindDef>(ref this.host, "hostRef");
+            Scribe_Deep.Look<PawnKindDef>(ref this.host, "hostDeepRef");
             /*
             Scribe_Values.Look<int>(ref this.pawnKills, "pawnKills");
             Scribe_Deep.Look<Hediff>(ref this.unmarked, "bloodedUnmarked");
@@ -94,8 +96,9 @@ namespace RRYautja
                 LordJob Hivejob = null;
                 Pawn Hivequeen = null;
                 IEnumerable<Lord> lords = pawn.Map.lordManager.lords.Where(x => x.faction == pawn.Faction);
-                if (lords.Count() != 0)
+                if (lords.Count() != 0 && ((pawn.GetLord() != null && pawn.GetLord().LordJob is LordJob_DefendPoint) || pawn.GetLord() == null))
                 {
+               //     Log.Message(string.Format("Lords Found!"));
                     foreach (var l in lords)
                     {
                         if (l != null)
@@ -129,6 +132,7 @@ namespace RRYautja
                 if (pawn.GetLord() != null && pawn.GetLord().LordJob is LordJob_DefendPoint LordJob_DefendPoint)
                 {
                     lord = pawn.GetLord();
+               //     Log.Message(string.Format("Lords Found!"));
                     if (lord.ownedPawns.Count == 0)
                     {
                    //     Log.Message(string.Format("got no pawns, wtf?"));
@@ -140,25 +144,25 @@ namespace RRYautja
                     if (c == IntVec3.Invalid && XenomorphUtil.HivelikesPresent(map))
                     {
                    //     Log.Message(string.Format("Checking hiveloc"));
-                        c = XenomorphUtil.ClosestReachableHivelike(pawn).DestroyedOrNull() ? XenomorphUtil.ClosestReachableHivelike(pawn).Position : IntVec3.Invalid;
+                        c = !XenomorphUtil.ClosestReachableHivelike(pawn).DestroyedOrNull() ? XenomorphUtil.ClosestReachableHivelike(pawn).Position : IntVec3.Invalid;
                    //     Log.Message(string.Format("hiveloc: {0}", c));
                     }
                     if (c == IntVec3.Invalid && XenomorphUtil.EggsPresent(map))
                     {
                    //     Log.Message(string.Format("Checking eggloc"));
-                        c = XenomorphUtil.ClosestReachableEgg(pawn).DestroyedOrNull() ? XenomorphUtil.ClosestReachableEgg(pawn).Position : IntVec3.Invalid;
+                        c = !XenomorphUtil.ClosestReachableEgg(pawn).DestroyedOrNull() ? XenomorphUtil.ClosestReachableEgg(pawn).Position : IntVec3.Invalid;
                    //     Log.Message(string.Format("eggloc: {0}", c));
                     }
                     if (c == IntVec3.Invalid && XenomorphUtil.CocoonsPresent(map, XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon))
                     {
                    //     Log.Message(string.Format("Checking Hcocoonloc"));
-                        c = XenomorphUtil.ClosestReachableCocoon(pawn, XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon).DestroyedOrNull() ? XenomorphUtil.ClosestReachableCocoon(pawn, XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon).Position : IntVec3.Invalid;
+                        c = !XenomorphUtil.ClosestReachableCocoon(pawn, XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon).DestroyedOrNull() ? XenomorphUtil.ClosestReachableCocoon(pawn, XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon).Position : IntVec3.Invalid;
                    //     Log.Message(string.Format("Hcocoonloc: {0}", c));
                     }
                     if (c == IntVec3.Invalid && XenomorphUtil.CocoonsPresent(map, XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon))
                     {
                    //     Log.Message(string.Format("Checking Acocoonloc"));
-                        c = XenomorphUtil.ClosestReachableCocoon(pawn, XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon).DestroyedOrNull() ? XenomorphUtil.ClosestReachableCocoon(pawn, XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon).Position : IntVec3.Invalid;
+                        c = !XenomorphUtil.ClosestReachableCocoon(pawn, XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon).DestroyedOrNull() ? XenomorphUtil.ClosestReachableCocoon(pawn, XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon).Position : IntVec3.Invalid;
                    //     Log.Message(string.Format("Acocoonloc: {0}", c));
                     }
                     if (c == IntVec3.Invalid)
@@ -177,7 +181,7 @@ namespace RRYautja
                         if (pawn.CanReach(c, PathEndMode.OnCell, Danger.Deadly, true))
                         {
                        //     Log.Message(string.Format("CanReach"));
-                            //    c = RCellFinder.RandomWanderDestFor(pawn, c, 3f, null, Danger.Some);
+                                c = RCellFinder.RandomWanderDestFor(pawn, c, 3f, null, Danger.Some);
                        //     Log.Message(string.Format("InfestationLikeCellFinder: {0}", c));
                         }
                         else
@@ -389,13 +393,16 @@ namespace RRYautja
 
         public override void PostPostApplyDamage(DamageInfo dinfo, float totalDamageDealt)
         {
-            Pawn other = dinfo.Instigator as Pawn;
+            Pawn other = null;
             Pawn pawn = base.parent as Pawn;
-
-            base.PostPostApplyDamage(dinfo, totalDamageDealt);
-            if (((Pawn)this.parent).health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden))
+            if (dinfo.Instigator!=null)
             {
-                ((Pawn)this.parent).health.RemoveHediff(((Pawn)this.parent).health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden));
+                other = dinfo.Instigator as Pawn;
+            }
+            base.PostPostApplyDamage(dinfo, totalDamageDealt);
+            if (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden))
+            {
+                pawn.health.RemoveHediff(pawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden));
             }
 
 
@@ -406,98 +413,76 @@ namespace RRYautja
             bool acidburns = true;
             if (base.parent is Pawn pawn && pawn != null)
             {
-                bool selected = Find.Selector.SelectedObjects.Contains(pawn);
-#if DEBUG
-                if (selected) Log.Message(string.Format("CompXeno PPAD pawn: {0}", pawn.LabelShortCap));
-#endif
-                if (dinfo.Def.hediff.defName.Contains("CP_CQCTakedownHediff"))
+                if (dinfo.Def!=null)
                 {
-                    absorbed = true;
-                    return;
-                }
-                if (dinfo.Instigator is Pawn Instigator && Instigator!=null)
-                {
-                    selected = selected? selected : Find.Selector.SelectedObjects.Contains(Instigator);
-#if DEBUG
-                    if (selected) Log.Message(string.Format("CompXeno PPAD otherpawn: {0}", Instigator.LabelShortCap));
-#endif
-                    if (dinfo.Weapon is ThingDef WeaponDef && WeaponDef != null)
+                    if (dinfo.Def.hediff == DefDatabase<HediffDef>.GetNamedSilentFail("CP_CQCTakedownHediff"))
                     {
-#if DEBUG
-                        if (selected) Log.Message(string.Format("CompXeno PPAD WeaponDef: {0}", WeaponDef.defName));
-#endif
-                        if (WeaponDef.IsWeapon && WeaponDef.IsMeleeWeapon)
+                        absorbed = true;
+                        return;
+                    }
+                    if (!dinfo.Def.isRanged)
+                    {
+                        if (dinfo.Instigator is Pawn Instigator && Instigator != null && Instigator != pawn && Instigator.AdjacentTo8WayOrInside(pawn))
                         {
-
-                            if (WeaponDef == Instigator.equipment.Primary.def && Instigator.equipment.Primary is ThingWithComps Weapon && Instigator.equipment.PrimaryEq is CompEquippable WeaponEQ)
+                            if (dinfo.Weapon is ThingDef WeaponDef && WeaponDef != null)
                             {
-                                WeaponDef = Weapon.def;
-#if DEBUG
-                                if (selected) Log.Message(string.Format("CompXeno PPAD WeaponDef: {0} matches other.equipment.Primary: {1}", WeaponDef.LabelCap, Weapon.LabelCap));
-#endif
-                                if (WeaponDef.IsMeleeWeapon)
+                                if (WeaponDef.IsWeapon)
                                 {
-#if DEBUG
-                                    if (selected) Log.Message(string.Format("CompXeno PPAD WeaponDef.isMelee: {0}", WeaponDef.IsMeleeWeapon));
-#endif
-                                    if (dinfo.Weapon.MadeFromStuff && Weapon.Stuff is ThingDef WeaponStuff)
+                                    if (WeaponDef == Instigator.equipment.Primary.def && Instigator.equipment.Primary is ThingWithComps Weapon && Instigator.equipment.PrimaryEq is CompEquippable WeaponEQ)
                                     {
-#if DEBUG
-                                        if (selected) Log.Message(string.Format("CompXeno PPAD WeaponDef: {0}, MadeFromStuff: {1}", WeaponDef.LabelCap, WeaponDef.MadeFromStuff));
-#endif
-                                        if (WeaponStuff.defName.Contains("RRY_Xeno"))
+                                        if (WeaponDef.MadeFromStuff && Weapon.Stuff is ThingDef WeaponStuff)
                                         {
-#if DEBUG
-                                            if (selected) Log.Message(string.Format("CompXeno PPAD WeaponDef: {0}, MadeFromStuff: {1}", WeaponDef.LabelCap, WeaponDef.MadeFromStuff));
-#endif
-                                            acidburns = false;
-
-                                        }
-                                    }
-                                    else
-                                    {
-#if DEBUG
-                                        if (selected) Log.Message(string.Format("CompXeno PPAD WeaponDef: {0}, Not MadeFromStuff: {1}", WeaponDef.LabelCap, WeaponDef.MadeFromStuff));
-#endif
-                                        foreach (var item in Weapon.def.costList)
-                                        {
-                                            if (item.thingDef == XenomorphDefOf.RRY_Xenomorph_TailSpike || item.thingDef == XenomorphDefOf.RRY_Xenomorph_HeadShell)
+                                            if (WeaponStuff.defName.Contains("RRY_Xeno"))
                                             {
                                                 acidburns = false;
                                             }
                                         }
-                                    }
-                                    if (acidburns)
-                                    {
-                                        Weapon.HitPoints -= Rand.Range(0, 5);
-                                        if (Weapon.HitPoints <= 0)
+                                        else
                                         {
-                                            Weapon.Destroy();
+                                            foreach (var item in Weapon.def.costList)
+                                            {
+                                                if (item.thingDef == XenomorphDefOf.RRY_Xenomorph_TailSpike || item.thingDef == XenomorphDefOf.RRY_Xenomorph_HeadShell)
+                                                {
+                                                    acidburns = false;
+                                                }
+                                            }
+                                        }
+                                        if (acidburns)
+                                        {
+                                            Weapon.HitPoints -= Rand.Range(0, 5);
+                                            if (Weapon.HitPoints <= 0)
+                                            {
+                                                Weapon.Destroy();
+                                            }
                                         }
                                     }
-                                    else
-                                    {
-                                    //    Log.Message("weapon immune to acid");
-                                    }
-                                }
-                                else if (WeaponDef.IsWeapon&& WeaponDef.IsRangedWeapon)
-                                {
-                                //    Log.Message("ranged weapon, immune to acid");
                                 }
                             }
-
+                            if (Rand.Chance(0.25f) && Instigator.Map!=null)
+                            {
+                                FilthMaker.MakeFilth(Instigator.Position, Instigator.Map, pawn.RaceProps.BloodDef, pawn.LabelIndefinite(), 1);
+                            }
                         }
+                    }
+                    else if (dinfo.Def.isRanged)
+                    {
+#if DEBUG
+                        Log.Message(string.Format("{0} is ranged: {1}", dinfo.Weapon.LabelCap, dinfo.Def.isRanged));
+#endif
+                    }
+                    else
+                    {
+#if DEBUG
+                        Log.Message(string.Format("{0} is unknown", dinfo.Weapon.LabelCap));
+#endif
                     }
                 }
             }
-#if DEBUG
-#endif
             base.PostPreApplyDamage(dinfo, out absorbed);
         }
         public PawnKindDef host;
         public int ticksSinceHeal;
     }
-
     // --------------------------------------------------------------------------- //
     public class CompProperties_Facehugger : CompProperties
     {

@@ -42,3 +42,39 @@ Yautja (and honorary clan members) gain mood boosts by hunting, stacks up to 3 t
 Added Thrumbomorph
 More Xenos Ai Tweaks
 Now with Bloodier Burstings!!
+
+V1.0.0.2 Hotfix 21/06/2019
+Fixed Invisible pawns on select starting colonist screen
+Disabled acid damage DOT, untill damage on load issue is resolved
+Fixed random marks on non yautja pawns on load
+Credited Thrumbomorph namer
+
+V1.0.0.3 25/06/2019
+Added Option to disable chance for hidden impregnations on pawn generation, removed impregnated version of several vanilla incidents, as they are now redundant
+Fixed Compound and Hunting Bow firing with shield belt equipped
+Fixed doubled quality comp on Yautja melee weaponry
+Fixed Xenomorph raids trying to spawn nonviolent pawns, which crashed the raid
+Fixed (Hopefully) Chestbursters not bursting
+Fixed Facehugger Targeting (at least they shouldnt wander around aimlessly)
+Tweaked and increased chance for Xenos eggs to hatch when prey are enarby
+Even more Xenos Ai Tweaks
+Xenos hives should be more passive during the day and more active at night
+Xenos below 50% health should try to return to the hive untill healed
+
+V1.0.0.4 
+Added Mod Options to disable Yautja and Xenomorph Factions
+Added Mod Options to modify the chances of pawn death on failed operations to remove Facehuggers and Embryos
+Added List to Mod Options to display a list of all valid Hosts for Xenomorph impregnation (including things added by other mods)
+Added List to Mod Options to display a list of all Worthy Kills for Marking (including things added by other mods)
+Fixed Sucessful Facehugger removal Operation spawning a live Facehugger
+Disabled Xenos Ignite verb, they should no longer be able to start fires
+Improved pawn Pathfinding around active acid
+Xenomorphs should prioitize blunt attacks when attacking potential hosts(meaning less death hosts and more Xenos!)
+Enginner Ship Fragments now spread Fungal spores in an expanding radius, Blame Bob!
+Fixed Xenos eggs hatching below -20
+Maybe fixed shouldercannon error on tick
+Maybe fixed random error on xenos taking damage
+Fixed crash caused by kidnapping xenos getting stuck in infinite loop looking for a spot to place their victim
+More bloody Xenos Ai Tweaks
+
+Added Synth Defective Inhibitor HediffComp - Not yet used

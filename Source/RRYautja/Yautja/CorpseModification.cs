@@ -77,7 +77,7 @@ namespace RRYautja
                     }
                 }
             });
-            DefDatabase<ThingDef>.AllDefsListForReading.ForEach(action: td =>
+            DefDatabase<PawnKindDef>.AllDefsListForReading.ForEach(action: td => 
             {
 
             });

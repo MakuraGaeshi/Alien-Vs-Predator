@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-
+<!--
 	<IncidentDef>
 		<defName>RRY_Quest_DownedRefugeeXenomorph</defName>
 		<label>incapacitated refugee quest</label>
@@ -30,5 +30,5 @@
 		<baseChance>0.1</baseChance>
 		<populationEffect>IncreaseHard</populationEffect>
 	</IncidentDef>
-
+-->
 </Defs>

@@ -40,7 +40,7 @@ namespace RimWorld
         // Token: 0x060029BF RID: 10687 RVA: 0x0013C41B File Offset: 0x0013A81B
         public override void PostExposeData()
         {
-            Scribe_Values.Look<float>(ref this.hiveRadius, "snowRadius", 0f, false);
+            Scribe_Values.Look<float>(ref this.hiveRadius, "hiveRadius", 0f, false);
         }
 
         // Token: 0x060029C0 RID: 10688 RVA: 0x0013C433 File Offset: 0x0013A833

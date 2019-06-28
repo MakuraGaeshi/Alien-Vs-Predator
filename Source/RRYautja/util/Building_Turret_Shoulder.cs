@@ -56,6 +56,7 @@ namespace RRYautja
             base.Tick();
             if (this.Parental==null||(this.Parental is Pawn pawn && (pawn.Dead || pawn.Downed || this.Position!=pawn.Position) ))//||this.comp==null)
             {
+                
                 this.Destroy();
             }
             /*
@@ -79,9 +80,11 @@ namespace RRYautja
             }
             */
         }
+
+
         // Token: 0x17000561 RID: 1377
         // (get) Token: 0x06002432 RID: 9266 RVA: 0x001137B0 File Offset: 0x00111BB0
-        private bool CanSetForcedTarget
+        public bool CanSetForcedTarget
         {
             get
             {
@@ -119,7 +122,7 @@ namespace RRYautja
         }
 
         // Token: 0x0600244C RID: 9292 RVA: 0x00114342 File Offset: 0x00112742
-        private void ResetForcedTarget()
+        public void ResetForcedTarget()
         {
             this.forcedTarget = LocalTargetInfo.Invalid;
             this.burstWarmupTicksLeft = 0;
@@ -130,7 +133,7 @@ namespace RRYautja
         }
 
         // Token: 0x0600244D RID: 9293 RVA: 0x00114369 File Offset: 0x00112769
-        private void ResetCurrentTarget()
+        public void ResetCurrentTarget()
         {
             this.currentTargetInt = LocalTargetInfo.Invalid;
             this.burstWarmupTicksLeft = 0;
@@ -159,6 +162,7 @@ namespace RRYautja
                 verb.castCompleteCallback = new Action(this.BurstComplete);
             }
         }
+
         public override IEnumerable<Gizmo> GetGizmos()
         {
             if (this.CanSetForcedTarget)
@@ -243,6 +247,9 @@ namespace RRYautja
                 return null;
             }
         }
+
+
+        public LocalTargetInfo forcedTarget = LocalTargetInfo.Invalid;
 
         //public override Verb AttackVerb => base.AttackVerb.EquipmentSource.TryGetQuality();
         //public override LocalTargetInfo CurrentTarget => Parental.TargetCurrentlyAimingAt != null ? Parental.TargetCurrentlyAimingAt : base.CurrentTarget;

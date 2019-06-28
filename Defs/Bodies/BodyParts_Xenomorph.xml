@@ -358,6 +358,9 @@
     <hitPoints>10</hitPoints>
     <frostbiteVulnerability>0</frostbiteVulnerability>
     <skinCovered>true</skinCovered>
+    <tags>
+      <li>ManipulationLimbCore</li>
+    </tags>
   </BodyPartDef>
 
   <BodyPartDef>
@@ -399,6 +402,18 @@
     <canSuggestAmputation>false</canSuggestAmputation>
     <tags>
       <li>Spine</li>
+    </tags>
+  </BodyPartDef>
+
+  <BodyPartDef>
+    <defName>RRY_Xeno_FrontLeg</defName>
+    <label>leg</label>
+    <hitPoints>30</hitPoints>
+    <skinCovered>true</skinCovered>
+    <tags>
+      <li>MovingLimbCore</li>
+      <li>ManipulationLimbCore</li>
+      <li>ManipulationLimbSegment</li>
     </tags>
   </BodyPartDef>
 

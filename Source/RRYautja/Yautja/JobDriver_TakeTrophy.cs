@@ -37,7 +37,7 @@ namespace RRYautja
         {
             this.FailOnIncapable(PawnCapacityDefOf.Manipulation);
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
-            Toil prepare = Toils_General.Wait(this.useDuration, TargetIndex.None);
+            Toil prepare = Toils_General.Wait(this.useDuration, TargetIndex.A);
             prepare.WithProgressBarToilDelay(TargetIndex.A, false, -0.5f);
             prepare.FailOnDespawnedNullOrForbidden(TargetIndex.A);
             prepare.FailOnCannotTouch(TargetIndex.A, PathEndMode.Touch);

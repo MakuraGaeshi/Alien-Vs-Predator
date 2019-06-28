@@ -38,14 +38,29 @@ namespace RimWorld
             {
                 if (XenomorphKidnapUtility.TryFindGoodHiveLoc(pawn, t, out c))
                 {
+                    ThingDef namedA = XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon;
+                    ThingDef namedB = XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon;
                     bool selected = pawn.Map != null ? Find.Selector.SelectedObjects.Contains(pawn) && (Prefs.DevMode) : false;
-                    //    if (selected) Log.Message(string.Format("TargetB == {0}", c));
-                    if (c != IntVec3.Invalid && t != null)
+                    if (c != IntVec3.Invalid && t != null && pawn.CanReach(c, PathEndMode.ClosestTouch, Danger.Deadly, true, TraverseMode.PassAllDestroyableThings))
                     {
+                        Predicate<IntVec3> validator = delegate (IntVec3 y)
+                        {
+                            bool adjacent = c.AdjacentTo8WayOrInside(y);
+                            bool filled = y.Filled(pawn.Map);
+                            bool edifice = y.GetEdifice(pawn.Map).DestroyedOrNull();
+                            bool building = y.GetFirstBuilding(pawn.Map).DestroyedOrNull();
+                            bool thingA = y.GetFirstThing(pawn.Map, namedA).DestroyedOrNull();
+                            bool thingB = y.GetFirstThing(pawn.Map, namedB).DestroyedOrNull();
+                            //Log.Message(string.Format("{0} {1} {2} {3} {4} {5}", y, !adjacent, !filled, edifice, building, thing));
+                            return !adjacent && !filled && edifice && building && thingA && thingB;
+                        };
+
+                        bool b = RCellFinder.TryFindRandomCellNearWith(c, validator, pawn.Map, out IntVec3 lc,6,12);
+                        
                         return new Job(XenomorphDefOf.RRY_Job_XenomorphKidnap)
                         {
                             targetA = t,
-                            targetB = c,
+                            targetB = lc,
                             count = 1
                         };
                     }
@@ -65,8 +80,7 @@ namespace RimWorld
             }
             return null;
         }
-
-
+        
         // Token: 0x0600000B RID: 11 RVA: 0x00002C9C File Offset: 0x00000E9C
         private static bool IsMapRectClear(CellRect mapRect, Map map)
         {
@@ -89,70 +103,7 @@ namespace RimWorld
             }
             return true;
         }
-
-        // Token: 0x0600000C RID: 12 RVA: 0x00002D80 File Offset: 0x00000F80
-        private static void ClearMapRect(CellRect mapRect, Map map)
-        {
-            foreach (IntVec3 intVec in mapRect)
-            {
-                List<Thing> thingList = GridsUtility.GetThingList(intVec, map);
-                for (int i = 0; i < thingList.Count; i++)
-                {
-                    thingList[i].Destroy(0);
-                }
-            }
-        }
-        // Token: 0x0600000D RID: 13 RVA: 0x00002DF8 File Offset: 0x00000FF8
-        private static Building_XenomorphCocoon TryMakeCocoon(CellRect mapRect, Map map, ThingDef thingDef)
-        {
-            mapRect.ClipInsideMap(map);
-            CellRect cellRect;
-            cellRect = new CellRect(mapRect.BottomLeft.x + 1, mapRect.TopRight.z + 1, 2, 1);
-            cellRect.ClipInsideMap(map);
-            IsMapRectClear(cellRect, map);
-            foreach (IntVec3 intVec in cellRect)
-            {
-                List<Thing> thingList = GridsUtility.GetThingList(intVec, map);
-                for (int i = 0; i < thingList.Count; i++)
-                {
-                    bool flag = !thingList[i].def.destroyable;
-                    if (flag)
-                    {
-                        return null;
-                    }
-                }
-            }
-            Building_XenomorphCocoon building_XenomorphCocoon = (Building_XenomorphCocoon)ThingMaker.MakeThing(thingDef, null);
-            building_XenomorphCocoon.SetPositionDirect(cellRect.RandomCell);
-            bool flag2 = Rand.Value < 0.5f;
-            if (flag2)
-            {
-                flag2 = Rand.Value < 0.5f;
-                if (flag2)
-                {
-                    building_XenomorphCocoon.Rotation = Rot4.West;
-                }
-                else
-                {
-                    building_XenomorphCocoon.Rotation = Rot4.East;
-                }
-            }
-            else
-            {
-                flag2 = Rand.Value < 0.5f;
-                if (flag2)
-                {
-                    building_XenomorphCocoon.Rotation = Rot4.South;
-                }
-                else
-                {
-                    building_XenomorphCocoon.Rotation = Rot4.North;
-                }
-            }
-        //    Log.Message(string.Format("Rotation: {0}", building_XenomorphCocoon.Rotation));
-            return building_XenomorphCocoon;
-        }
-
+        
         // Token: 0x040002AB RID: 683
         public const float VictimSearchRadiusInitial = 8f;
 

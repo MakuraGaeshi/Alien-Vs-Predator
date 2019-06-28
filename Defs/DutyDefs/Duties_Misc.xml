@@ -114,10 +114,11 @@
         <li Class="JobGiver_AIGotoNearestHostile" /> 
         <!-- <li Class="JobGiver_AITrashBuildingsDistant">
           <attackAllInert>true</attackAllInert>
-        </li> -->
+        </li>
         <li Class="JobGiver_AISapper">
           <canMineNonMineables>false</canMineNonMineables>
-        </li>
+        </li> 
+		-->
       </subNodes>
     </thinkNode>
   </DutyDef>
@@ -126,30 +127,78 @@
     <defName>RRY_DefendAndExpandHiveLike</defName>
     <thinkNode Class="ThinkNode_Priority">
       <subNodes>
+	  
+		<li Class="ThinkNode_Conditional_OverBleed">
+		  <pawnBleedRate>0.5</pawnBleedRate>
+		  <subNodes>
+			
+			<!-- Lay eggs you need to -->
+			<li Class="JobGiver_LayXenoEgg" />
+			
+			<li Class="JobGiver_XenoGetFood"> 
+			  <minCategory>Fed</minCategory>
+			  <forceScanWholeMap>false</forceScanWholeMap>
+			</li>
+			
+				<li Class="JobGiver_ClearHiveEggZone"> 
+				  <ClearingRange>2</ClearingRange>
+				</li>
+				
+			<li Class="JobGiver_WanderHiveLike">
+			  <maxDanger>Deadly</maxDanger>
+			</li>
+			
+			<!-- tend to your wounds -->
+			<li Class="JobGiver_XenomorphSelfTend" />
+			
+		  </subNodes>
+		</li>
+		
 		<li Class="ThinkNode_Conditional_UnderHealth">
 		  <pawnHealth>0.25</pawnHealth>
 		  <subNodes>
 			<li Class="JobGiver_MaintainHiveLikes">
 			  <onlyIfDamagingState>true</onlyIfDamagingState>
 			</li>
+			
 			<!-- Lay eggs you need to -->
 			<li Class="JobGiver_LayXenoEgg" />
+			<li Class="JobGiver_XenoGetFood"> 
+			  <minCategory>Fed</minCategory>
+			  <forceScanWholeMap>false</forceScanWholeMap>
+			</li>
+				<li Class="JobGiver_ClearHiveEggZone"> 
+				  <ClearingRange>2</ClearingRange>
+				</li>
+				
 			<li Class="JobGiver_WanderHiveLike">
 			  <maxDanger>Deadly</maxDanger>
 			</li>
+			  
+			<!-- tend to your wounds -->
+			<li Class="JobGiver_XenomorphSelfTend" />
 		  </subNodes>
 		</li>
 		
 		<li Class="ThinkNode_ConditionalNotGrown">
 		  <subNodes>
-                <li Class="JobGiver_GetFood" />
-                <li Class="JobGiver_GetRest" />
+			<li Class="JobGiver_XenoGetFood"> 
+			  <minCategory>Fed</minCategory>
+			  <forceScanWholeMap>false</forceScanWholeMap>
+			</li>
+			<li Class="JobGiver_GetRest" />
 		  </subNodes>
 		</li>
 			
         <li Class="ThinkNode_ConditionalFullyGrown">
           <subNodes>
-		  
+			<li Class="JobGiver_XenosKidnap"> 
+				<HuntingRange>10</HuntingRange>
+			</li>
+	
+			<li Class="JobGiver_XenomorphHosthunter"> 
+			  <HuntingRange>10</HuntingRange>
+			</li>
 			<li Class="JobGiver_MaintainHiveLikes">
 			  <onlyIfDamagingState>true</onlyIfDamagingState>
 			</li>
@@ -160,9 +209,14 @@
 			  <subNodes>
 				<li Class="JobGiver_HiveLikeDefense">
 				  <needLOSToAcquireNonPawnTargets>true</needLOSToAcquireNonPawnTargets>
-				  <targetAcquireRadius>15</targetAcquireRadius>
+				  <targetAcquireRadius>10</targetAcquireRadius>
 				  <chaseTarget>false</chaseTarget>
 				</li>
+				
+				<li Class="JobGiver_ClearHiveEggZone"> 
+				  <ClearingRange>2</ClearingRange>
+				</li>
+				
 				<!-- Lay eggs you need to -->
 				<li Class="JobGiver_LayXenoEgg" />
 				
@@ -179,60 +233,81 @@
 				  </subNodes>
 				</li>
 					
-				<!-- Under Impregnated Count -->
-				<li Class="ThinkNode_ConditionalImpregnatedCountLesser">
-				  <victimCount>4</victimCount>
+				<!-- Dark out -->
+				<li Class="ThinkNode_ConditionalSkyDarker">
+				  <Brightness>0.5</Brightness>
 				  <subNodes>
-					<!-- There Are No Drones! -->
-					<li Class="ThinkNode_ConditionalPawnKindCountLesser">
-					  <pawnKind>RRY_Xenomorph_Drone</pawnKind>
-					  <pawnKindCount>1</pawnKindCount>
-					  <subNodes>
-					  
-						<!-- Infectable Spawned -->
-						<li Class="ThinkNode_ConditionalAnyInfectableSpawnedNearby">
+						<!-- Under Facehugged Count -->
+						<li Class="ThinkNode_ConditionalFacehuggedCountLesser">
+						  <victimCount>2</victimCount>
 						  <subNodes>
-						<li Class="JobGiver_XenosKidnap"> 
-						</li>
-							<li Class="ThinkNode_Conditional_OverHealth">
-							  <pawnHealth>0.5</pawnHealth>
+						  
+						<!-- Under Impregnated Count -->
+						<li Class="ThinkNode_ConditionalImpregnatedCountLesser">
+						  <victimCount>2</victimCount>
+						  <subNodes>
+						  
+							<!-- There Are No Drones! -->
+							<li Class="ThinkNode_ConditionalPawnKindCountLesser">
+							  <pawnKind>RRY_Xenomorph_Drone</pawnKind>
+							  <pawnKindCount>1</pawnKindCount>
 							  <subNodes>
-								<li Class="JobGiver_XenomorphHosthunter"> 
-								  <!-- <HuntingRange>60</HuntingRange> -->
+							  
+								<!-- Infectable Spawned -->
+								<li Class="ThinkNode_ConditionalAnyInfectableSpawnedNearby">
+								  <subNodes>
+								<li Class="JobGiver_XenosKidnap"> 
+								</li>
+									<li Class="ThinkNode_Conditional_OverHealth">
+									  <pawnHealth>0.5</pawnHealth>
+									  <subNodes>
+										<li Class="JobGiver_XenomorphHosthunter"> 
+										  <!-- <HuntingRange>60</HuntingRange> -->
+										</li>
+									  </subNodes>
+									</li>
+								  </subNodes>
 								</li>
 							  </subNodes>
 							</li>
+								
+							<!-- There Are No Warriors! -->
+							<li Class="ThinkNode_ConditionalPawnKindCountLesser">
+							  <pawnKind>RRY_Xenomorph_Warrior</pawnKind>
+							  <pawnKindCount>1</pawnKindCount>
+							  <subNodes>
+								<!-- Infectable Spawned -->
+								<li Class="ThinkNode_ConditionalAnyInfectableSpawnedNearby">
+								  <subNodes>
+								<li Class="JobGiver_XenosKidnap"> 
+								</li>
+									<li Class="ThinkNode_Conditional_OverHealth">
+									  <pawnHealth>0.5</pawnHealth>
+									  <subNodes>
+										<li Class="JobGiver_XenomorphHosthunter"> 
+										  <!-- <HuntingRange>60</HuntingRange> -->
+										</li>
+									  </subNodes>
+									</li>
+								  </subNodes>
+								</li>
+							  </subNodes>
+							</li>
+							
 						  </subNodes>
 						</li>
-					  </subNodes>
-					</li>
 						
-					<!-- There Are No Warriors! -->
-					<li Class="ThinkNode_ConditionalPawnKindCountLesser">
-					  <pawnKind>RRY_Xenomorph_Warrior</pawnKind>
-					  <pawnKindCount>1</pawnKindCount>
-					  <subNodes>
-						<!-- Infectable Spawned -->
-						<li Class="ThinkNode_ConditionalAnyInfectableSpawnedNearby">
-						  <subNodes>
-						<li Class="JobGiver_XenosKidnap"> 
-						</li>
-							<li Class="ThinkNode_Conditional_OverHealth">
-							  <pawnHealth>0.5</pawnHealth>
-							  <subNodes>
-								<li Class="JobGiver_XenomorphHosthunter"> 
-								  <!-- <HuntingRange>60</HuntingRange> -->
-								</li>
-							  </subNodes>
-							</li>
 						  </subNodes>
 						</li>
-					  </subNodes>
-					</li>
-					
+						
 				  </subNodes>
 				</li>
-				
+			
+				<!--
+				<li Class="JobGiver_MineRandomNearHive"> 
+				  <MiningRange>6</MiningRange>
+				</li>
+				-->
 			  </subNodes>
 			</li>
 			
@@ -241,28 +316,22 @@
 			  <pawnKind>RRY_Xenomorph_Queen</pawnKind>
 			  <subNodes>
 				<li Class="JobGiver_HiveLikeDefense">
-				  <needLOSToAcquireNonPawnTargets>true</needLOSToAcquireNonPawnTargets>
+				  <needLOSToAcquireNonPawnTargets>false</needLOSToAcquireNonPawnTargets>
 				  <targetAcquireRadius>40</targetAcquireRadius>
 				  <chaseTarget>true</chaseTarget>
-				</li>
-				<li Class="JobGiver_ClearHiveEggZone"> 
 				</li>
 				<li Class="JobGiver_MineRandomNearHive"> 
 				  <MiningRange>2</MiningRange>
 				</li>
-				<li Class="JobGiver_ClearHiveEggZone"> 
-				  <ClearingRange>2</ClearingRange>
-				</li>
+				<li Class="JobGiver_ClearHiveEggZone" />
 			  </subNodes>
 			</li>
-
+			
+			<!-- Maintain Hive -->
 			<li Class="ThinkNode_ChancePerHour_Constant">
 			  <mtbHours>1</mtbHours>
 			  <subNodes>
 				<li Class="JobGiver_MaintainHiveLikes" />
-				<li Class="JobGiver_ClearHiveEggZone"> 
-				  <ClearingRange>6</ClearingRange>
-				</li>
 			  </subNodes>
 			</li>
 			
@@ -271,10 +340,13 @@
 			  <pawnKind>RRY_Xenomorph_Drone</pawnKind>
 			  <subNodes>
 				<li Class="JobGiver_ConstructHive"> 
-				  <MiningRange>6</MiningRange>
+				  <MiningRange>8</MiningRange>
 				</li>
 				<li Class="JobGiver_MineRandomNearHive"> 
 				  <MiningRange>6</MiningRange>
+				</li>
+				<li Class="JobGiver_AISapper">
+				  <canMineNonMineables>false</canMineNonMineables>
 				</li>
 			  </subNodes>
 			</li>
@@ -297,7 +369,7 @@
 			-->
 			
 			<li Class="ThinkNode_ConditionalSkyDarker">
-			  <Brightness>1</Brightness>
+			  <Brightness>0.5</Brightness>
 			  <subNodes>
 			<!-- Infectable Spawned -->
 			<li Class="ThinkNode_ConditionalAnyInfectableSpawnedNearby">
@@ -314,11 +386,11 @@
 						  <pawnKindCount>1</pawnKindCount>
 						  <subNodes>
 							<li Class="JobGiver_XenosKidnap"> 
-								<HuntingRange>60</HuntingRange>
+								<!-- <HuntingRange>50</HuntingRange> -->
 							</li>
 					
 							<li Class="JobGiver_XenomorphHosthunter"> 
-							  <HuntingRange>40</HuntingRange>
+							  <!-- <HuntingRange>40</HuntingRange> -->
 							</li>
 						  </subNodes>
 						</li><li Class="ThinkNode_ConditionalPawnKindCountLesser">
@@ -326,18 +398,19 @@
 						  <pawnKindCount>1</pawnKindCount>
 						  <subNodes>
 							<li Class="JobGiver_XenosKidnap"> 
-								<HuntingRange>60</HuntingRange>
+								<!-- <HuntingRange>60</HuntingRange> -->
 							</li>
 					
 							<li Class="JobGiver_XenomorphHosthunter"> 
-							  <HuntingRange>40</HuntingRange>
+								<!-- <HuntingRange>40</HuntingRange> -->
 							</li>
 						  </subNodes>
 						</li>
 					  </subNodes>
 					</li>
+					
 					<li Class="JobGiver_XenosKidnap"> 
-					  <HuntingRange>5</HuntingRange>
+					  <!-- <HuntingRange>20</HuntingRange> -->
 					</li>
 				  </subNodes>
 				  
@@ -392,7 +465,7 @@
 				<li Class="ThinkNode_ConditionalPawnKind">
 				  <pawnKind>RRY_Xenomorph_Runner</pawnKind>
 				  <subNodes>
-					<!-- <li Class="JobGiver_XenosKidnap" /> -->
+					 <li Class="JobGiver_XenosKidnap" /> 
 				  </subNodes>
 				</li>
 				
@@ -450,6 +523,7 @@
 						  <pawnKind>RRY_Xenomorph_Warrior</pawnKind>
 						  <subNodes>
 							<li Class="JobGiver_XenomorphHosthunter"> 
+								  <HuntingRange>60</HuntingRange>
 							</li>
 						  </subNodes>
 						</li>
@@ -458,6 +532,7 @@
 						  <pawnKind>RRY_Xenomorph_Runner</pawnKind>
 						  <subNodes>
 							<li Class="JobGiver_XenomorphHosthunter"> 
+								  <HuntingRange>60</HuntingRange>
 							</li>
 						  </subNodes>
 						</li>
@@ -490,7 +565,7 @@
           </subNodes>
         </li>
 			<li Class="ThinkNode_Conditional_UnderHealth">
-			  <pawnHealth>0.25</pawnHealth>
+			  <pawnHealth>0.5</pawnHealth>
 			  <subNodes>
 				<li Class="JobGiver_WanderHiveLike">
 				  <maxDanger>Deadly</maxDanger>
@@ -504,21 +579,36 @@
             <li Class="ThinkNode_PrioritySorter">
               <subNodes>
 			  <!--
-                <li Class="JobGiver_GetFood" />
+                <li Class="JobGiver_XenoGetFood" />
                 <li Class="JobGiver_GetRest" />
 				-->
               </subNodes>
             </li>
           </subNodes>
         </li>
-		<!-- Runner -->
-		<li Class="ThinkNode_ConditionalPawnKind">
-		  <pawnKind>RRY_Xenomorph_Runner</pawnKind>
+
+
+		<li Class="ThinkNode_ConditionalSkyDarker">
+		  <Brightness>0.5</Brightness>
 		  <subNodes>
-			<li Class="JobGiver_WanderAnywhere">
-			  <maxDanger>Deadly</maxDanger>
+		  <!-- Runner -->
+			<li Class="ThinkNode_ConditionalPawnKind">
+			  <pawnKind>RRY_Xenomorph_Runner</pawnKind>
+			  <subNodes>
+				<li Class="JobGiver_WanderAnywhere">
+				  <maxDanger>Deadly</maxDanger>
+				</li>
+			  </subNodes>
 			</li>
 		  </subNodes>
+		</li>
+
+		
+		<li Class="JobGiver_MineRandomNearHive"> 
+		  <MiningRange>6</MiningRange>
+		</li>
+		<li Class="JobGiver_ClearNearHive"> 
+		  <maxClearingRange>6</maxClearingRange>
 		</li>
         <li Class="JobGiver_WanderHiveLike">
           <maxDanger>Deadly</maxDanger>
@@ -539,7 +629,7 @@
 			  <subNodes>
 				<li Class="JobGiver_HiveLikeDefense">
 				  <needLOSToAcquireNonPawnTargets>true</needLOSToAcquireNonPawnTargets>
-				  <targetAcquireRadius>25</targetAcquireRadius>
+				  <targetAcquireRadius>30</targetAcquireRadius>
 				  <chaseTarget>false</chaseTarget>
 				</li>
 			  </subNodes>
@@ -548,8 +638,8 @@
 			  <pawnKind>RRY_Xenomorph_Queen</pawnKind>
 			  <subNodes>
 				<li Class="JobGiver_HiveLikeDefense">
-				  <needLOSToAcquireNonPawnTargets>true</needLOSToAcquireNonPawnTargets>
-				  <targetAcquireRadius>80</targetAcquireRadius>
+				  <needLOSToAcquireNonPawnTargets>false</needLOSToAcquireNonPawnTargets>
+				  <targetAcquireRadius>100</targetAcquireRadius>
 				  <chaseTarget>true</chaseTarget>
 				</li>
 			  </subNodes>

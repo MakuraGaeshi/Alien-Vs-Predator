@@ -23,6 +23,7 @@
   </IncidentDef>
 	-->
 	
+	<!--
 	<IncidentDef>
 		<defName>RRY_Quest_DownedRefugee</defName>
 		<label>incapacitated refugee quest</label>
@@ -37,6 +38,7 @@
 		<baseChance>1</baseChance>
 		<populationEffect>IncreaseHard</populationEffect>
 	</IncidentDef>
+	-->
 	
 	<!--
 	<IncidentDef>

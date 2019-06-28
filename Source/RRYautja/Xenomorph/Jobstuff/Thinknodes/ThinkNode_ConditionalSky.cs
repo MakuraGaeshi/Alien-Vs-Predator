@@ -23,8 +23,8 @@ namespace RimWorld
         // Token: 0x060009B3 RID: 2483 RVA: 0x0004DFD8 File Offset: 0x0004C3D8
         protected override bool Satisfied(Pawn pawn)
         {
-            bool result = pawn.Map.skyManager.CurSkyGlow >= 0.5f;
-            if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} Result: {1}", this, result));
+            bool result = pawn.Map.skyManager.CurSkyGlow >= Brightness;
+            if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} Cur: {1} >= {2} Result: {3}", this, pawn.Map.skyManager.CurSkyGlow, Brightness, result));
             return result;
         }
 
@@ -45,8 +45,8 @@ namespace RimWorld
         // Token: 0x060009B3 RID: 2483 RVA: 0x0004DFD8 File Offset: 0x0004C3D8
         protected override bool Satisfied(Pawn pawn)
         {
-            bool result = pawn.Map.skyManager.CurSkyGlow <= 0.5f;
-            if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} Result: {1}", this, result));
+            bool result = pawn.Map.skyManager.CurSkyGlow <= Brightness;
+            if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} Cur: {1} <= {2} Result: {3}", this, pawn.Map.skyManager.CurSkyGlow, Brightness, result));
             return result;
         }
 

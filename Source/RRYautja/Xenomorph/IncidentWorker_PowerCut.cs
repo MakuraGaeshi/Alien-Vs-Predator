@@ -62,6 +62,7 @@ namespace RimWorld
             raidParms.raidStrategy = RaidStrategyDefOf.ImmediateAttack;
             raidParms.raidArrivalMode = PawnsArrivalModeDefOf.EdgeWalkIn;
             raidParms.spawnCenter = spawnSpot;
+            raidParms.generateFightersOnly = true;
             raidParms.points = Mathf.Max(raidParms.points * IncidentWorker_PowerCut.RaidPointsFactorRange.RandomInRange, faction.def.MinPointsToGeneratePawnGroup(PawnGroupKindDefOf.Combat));
             raidParms.pawnGroupMakerSeed = new int?(@int);
             PawnGroupMakerParms defaultPawnGroupMakerParms = IncidentParmsUtility.GetDefaultPawnGroupMakerParms(PawnGroupKindDefOf.Combat, raidParms, false);

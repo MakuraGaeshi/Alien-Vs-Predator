@@ -62,6 +62,9 @@
   
 	<HediffGiverSetDef>
     <defName>RRY_Artificials_Synth_Hediff</defName>
+
+  <HediffGiverSetDef>
+    <defName>RRY_Xenomorph_Standard</defName>
     <hediffGivers>
       
       <!-- Environmental -->
@@ -90,4 +93,15 @@
     </hediffGivers>
   </HediffGiverSetDef>
 	  
+        <hediff>BloodLoss</hediff>
+      </li>
+      <li Class="HediffGiver_Hypothermia">
+        <hediff>HypothermicSlowdown</hediff>
+      </li>
+      <li Class="HediffGiver_Heat">
+        <hediff>Heatstroke</hediff>
+      </li>
+
+      </hediffGivers>
+  </HediffGiverSetDef>
 </Defs>
