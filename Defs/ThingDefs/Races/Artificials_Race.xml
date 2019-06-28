@@ -29,7 +29,7 @@
                     <kindDefs>
                         <li>RRY_Synth</li>
 					</kindDefs>
-                    <chance>19.0</chance>
+                    <chance>90.0</chance>
 					</li>
 				</pawnKindEntries>
 				<factionDefs>
@@ -112,60 +112,110 @@
             <maleGenderProbability>0.5</maleGenderProbability>
             <immuneToAge>true</immuneToAge>
             <forcedRaceTraitEntries>
-                <li>
-                    <defName>Psychopath</defName>
-                    <chance>25</chance>
-                </li>
-                <li>
-                    <defName>Kind</defName>
-                    <chance>75</chance>
-                </li>
 				<li>
-                    <defName>Bloodlust</defName>
-                    <chance>0</chance>
+					<defName>Bloodlust</defName>
+					<chance>1</chance>
 				</li>
 				<li>
-                    <defName>Pyromaniac</defName>
-                    <chance>0</chance>
+					<defName>Psychopath</defName>
+					<chance>1</chance>
 				</li>
 				<li>
-                    <defName>Jealous</defName>
-                    <chance>0</chance>
+					<defName>Greedy</defName>
+					<chance>1</chance>
 				</li>
 				<li>
-                    <defName>Psychopath</defName>
-                    <chance>0</chance>
+					<defName>Jealous</defName>
+					<chance>0</chance>
 				</li>
 				<li>
-                    <defName>Abrasive</defName>
-                    <chance>0</chance>
+					<defName>Ascetic</defName>
+					<chance>0</chance>
 				</li>
 				<li>
-                    <defName>DislikesMen</defName>
-                    <chance>0</chance>
+					<defName>Pyromaniac</defName>
+					<chance>0</chance>
 				</li>
 				<li>
-                    <defName>DislikesWomen</defName>
-                    <chance>0</chance>
+					<defName>DislikesMen</defName>
+					<chance>0</chance>
 				</li>
-            </forcedRaceTraitEntries>
+				<li>
+					<defName>DislikesWomen</defName>
+					<chance>0</chance>
+				</li>
+				<li>
+					<defName>SpeedOffset</defName>
+					<degree>-1</degree>
+					<chance>0</chance>
+				</li>
+				<li>
+					<defName>NaturalMood</defName>
+					<degree>-1</degree>
+					<chance>0</chance>
+				</li>
+				<li>
+					<defName>NaturalMood</defName>
+					<degree>-2</degree>
+					<chance>0</chance>
+				</li>
+				<li>
+					<defName>Nerves</defName>
+					<degree>-1</degree>
+					<chance>0</chance>
+				</li>
+				<li>
+					<defName>Nerves</defName>
+					<degree>-2</degree>
+					<chance>0</chance>
+				</li>
+				<li>
+					<defName>Neurotic</defName>
+					<degree>1</degree>
+					<chance>0</chance>
+				</li>
+				<li>
+					<defName>Neurotic</defName>
+					<degree>2</degree>
+					<chance>0</chance>
+				</li>
+				<li>
+					<defName>Industriousness</defName>
+					<degree>-1</degree>
+					<chance>0</chance>
+				</li>
+				<li>
+					<defName>Industriousness</defName>
+					<degree>-2</degree>
+					<chance>0</chance>
+				</li>
+				<li>
+					<defName>Beauty</defName>
+					<degree>-1</degree>
+					<chance>0</chance>
+				</li>
+				<li>
+					<defName>Beauty</defName>
+					<degree>-2</degree>
+					<chance>0</chance>
+				</li>
+				
+			</forcedRaceTraitEntries>
 			<disallowedTraits>
-					<li>DrugDesire</li>
+					<li>Nudist</li>
+					<li>Cannibal</li>
+					<li>Masochist</li>
+					<li>Gay</li>
 					<li>AnnoyingVoice</li>
 					<li>CreepyBreathing</li>
 					<li>Wimp</li>
-					<li>Masochist</li>
-					<li>NightOwl</li>
-					<li>Nudist</li>
+					<li>FastLearner</li>
 					<li>Transhumanist</li>
 					<li>BodyPurist</li>
-					<li>Immunity</li>
-					<li>Beautiful</li>
 					<li>Tough</li>
-					<li>Cannibal</li>
+					<li>DrugDesire</li>
 					<li>PsychicSensitivity</li>
-					
-					
+					<li>Immunity</li>
 			</disallowedTraits>
             <alienPartGenerator>
 				<!--<useGenderedHeads>true</useGenderedHeads>
@@ -342,7 +392,7 @@
 	  <baseHungerRate>0.3</baseHungerRate>
       <intelligence>Humanlike</intelligence>
       <makesFootprints>true</makesFootprints>
-      <lifeExpectancy>500</lifeExpectancy>
+      <lifeExpectancy>20</lifeExpectancy>
       <leatherDef>RRY_Synthetic_Skin</leatherDef>
       <body>RRY_Artificials_Synths_Body</body>
       <nameCategory>HumanStandard</nameCategory>
@@ -372,25 +422,25 @@
       </specialShadowData>
       <ageGenerationCurve>
         <points>
-					<li>(15,0)</li>
-					<li>(16,0)</li>
-                    <li>(17,25)</li>
-                    <li>(18,50)</li>
-                    <li>(20,75)</li>
-                    <li>(30,100)</li>
-                    <li>(40,125)</li>
-                    <li>(50,150)</li>
-					<li>(120,175)</li>
-					<li>(140,200)</li>
-                    <li>(200,225)</li>
-                    <li>(160,200)</li>
-                    <li>(170,175)</li>
-                    <li>(180,150)</li>
-                    <li>(200,125)</li>
-                    <li>(300,100)</li>
-                    <li>(400,75)</li>
-                    <li>(500,50)</li>
-					<li>(501,0)</li>
+					<li>(0,0)</li>
+					<li>(1,25)</li>
+                    <li>(2,50)</li>
+                    <li>(3,75)</li>
+                    <li>(4,100)</li>
+                    <li>(5,100)</li>
+                    <li>(6,125)</li>
+                    <li>(7,150)</li>
+					<li>(8,175)</li>
+					<li>(9,200)</li>
+                    <li>(10,225)</li>
+                    <li>(11,200)</li>
+                    <li>(12,175)</li>
+                    <li>(13,150)</li>
+                    <li>(14,125)</li>
+                    <li>(15,100)</li>
+                    <li>(16,75)</li>
+                    <li>(17,50)</li>
+					<li>(18,0)</li>
 					
         </points>
       </ageGenerationCurve>
