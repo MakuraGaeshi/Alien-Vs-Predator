@@ -227,8 +227,8 @@
 					<li>DislikesMen</li>
 					<li>DislikesWomen</li>
 			</traitsToGive>
-			<TraitGainMinIntervalTicks>6000</TraitGainMinIntervalTicks>
-			<TraitGainMaxIntervalTicks>12000</TraitGainMaxIntervalTicks>
+			<TraitGainMinIntervalTicks>300</TraitGainMinIntervalTicks>
+			<TraitGainMaxIntervalTicks>600</TraitGainMaxIntervalTicks>
         </li>
 		</comps>
 		<stages>

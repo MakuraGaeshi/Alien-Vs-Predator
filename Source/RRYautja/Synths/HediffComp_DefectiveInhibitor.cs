@@ -44,12 +44,14 @@ namespace RRYautja
         {
             Scribe_Values.Look<int>(ref this.ticksSinceTraitGain, "ticksSinceTraitGain", 0, false);
             Scribe_Values.Look<int>(ref this.ticksTillTraitGain, "ticksTillTraitGain", 0, false);
+            Scribe_Collections.Look(ref this.OriginalTraits, "OriginalTraits");
         }
 
         public override void CompPostPostAdd(DamageInfo? dinfo)
         {
             base.CompPostPostAdd(dinfo);
             ticksTillTraitGain = Rand.Range(Props.TraitGainMinIntervalTicks, Props.TraitGainMaxIntervalTicks);
+            OriginalTraits = Pawn.story.traits.allTraits;
         }
 
         public override void CompPostTick(ref float severityAdjustment)
@@ -57,21 +59,54 @@ namespace RRYautja
             base.CompPostTick(ref severityAdjustment);
             if (ticksSinceTraitGain>=ticksTillTraitGain)
             {
-                if (MaxTraits>Pawn.story.traits.allTraits.Count)
+                Log.Message(string.Format("ticksSinceTraitGain>=ticksTillTraitGain"));
+                if (MaxTraits >= Pawn.story.traits.allTraits.Count)
                 {
+                    Log.Message(string.Format("MaxTraits>Pawn.story.traits.allTraits.Count"));
                     TraitDef traitDef = GenCollection.RandomElement(Props.traitsToGive);
+                    Trait replacedtrait = Pawn.story.traits.allTraits.FindAll(x => !Props.traitsToGive.Contains(x.def)).RandomElement();
+                    if (replacedtrait == null) replacedtrait = Pawn.story.traits.allTraits.RandomElement();
                     if (Pawn.story.traits.HasTrait(traitDef))
                     {
+                        Log.Message(string.Format("Pawn.story.traits.HasTrait(traitDef)"));
+                        Trait trait = Pawn.story.traits.GetTrait(traitDef);
+                        foreach (var item in traitDef.degreeDatas)
+                        {
+                            Log.Message(string.Format("degree {0}", item.degree));
+                        }
+                        /*
+                        if (trait.Degree)
+                        {
+
+                        }
+                        */
                         traitDef = GenCollection.RandomElement(Props.traitsToGive);
                     }
                     else
                     {
+                        Log.Message(string.Format("!Pawn.story.traits.HasTrait(traitDef)"));
+                        foreach (var item in traitDef.conflictingTraits)
+                        {
+                            if (Pawn.story.traits.HasTrait(item))
+                            {
+                                Log.Message(string.Format("removing {0}", item));
+                                Pawn.story.traits.allTraits.Remove(Pawn.story.traits.GetTrait(item));
+                            }
+                        }
+                        if (MaxTraits == Pawn.story.traits.allTraits.Count)
+                        {
+                            Pawn.story.traits.allTraits.Remove(replacedtrait);
+                            Log.Message(string.Format("removing {0}", replacedtrait));
+                        }
                         Trait trait = new Trait(traitDef);
+                        Log.Message(string.Format("adding {0}", trait));
                         Pawn.story.traits.GainTrait(trait);
                     }
                 }
                 ticksSinceTraitGain = 0;
+                Log.Message(string.Format("ticksSinceTraitGain to {0}", ticksSinceTraitGain));
                 ticksTillTraitGain = Rand.Range(Props.TraitGainMinIntervalTicks, Props.TraitGainMaxIntervalTicks);
+                Log.Message(string.Format("ticksTillTraitGain to {0}", ticksTillTraitGain));
             }
             ticksSinceTraitGain++;
         }
@@ -79,11 +114,18 @@ namespace RRYautja
         public override void CompPostPostRemoved()
         {
             base.CompPostPostRemoved();
-            foreach (var item in Pawn.story.traits.allTraits)
+            foreach (var item in Props.traitsToGive) // Pawn.story.traits.allTraits)
             {
-                if (Props.traitsToGive.Contains(item.def))
+                if (Pawn.story.traits.HasTrait(item))
                 {
-                    Pawn.story.traits.allTraits.Remove(item);
+                    Pawn.story.traits.allTraits.Remove(Pawn.story.traits.GetTrait(item));
+                }
+            }
+            foreach (var item in OriginalTraits)
+            {
+                if (!Pawn.story.traits.HasTrait(item.def))
+                {
+                    Pawn.story.traits.GainTrait(item);
                 }
             }
         }
@@ -91,5 +133,6 @@ namespace RRYautja
         // Token: 0x04000002 RID: 2
         public int ticksSinceTraitGain;
         public int ticksTillTraitGain;
+        public List<Trait> OriginalTraits;
     }
 }
