@@ -102,7 +102,7 @@
 		<defName>RRY_Artificials_Inhibitor_Hediffgiver</defName>
 		<hediffGivers>
 		  <li Class="HediffGiver_BrainInjury">
-			<hediff>RRY_Damaged_Inhibitor</hediff>
+			<hediff>RRY_Defective_Inhibitor</hediff>
 			<partsToAffect>
 			  <li>Brain</li>
 			  <li>RRY_BehavorialInhibitor</li>
