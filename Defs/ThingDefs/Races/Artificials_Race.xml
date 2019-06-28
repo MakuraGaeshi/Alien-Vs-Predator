@@ -125,17 +125,27 @@
 					<li>DrugDesire</li>
 					<li>AnnoyingVoice</li>
 					<li>CreepyBreathing</li>
-					<li>Pyromaniac</li>
 					<li>Wimp</li>
 					<li>Masochist</li>
 					<li>NightOwl</li>
-					<li>Jealous</li>
 					<li>Nudist</li>
 					<li>Transhumanist</li>
 					<li>BodyPurist</li>
-					<li>SuperImmune</li>
+					<li>Immunity</li>
 					<li>Beautiful</li>
 					<li>Tough</li>
+					<li>Cannibal</li>
+					<li>PsychicSensitivity</li>
+					
+					<li>Bloodlust</li>
+					<li>Pyromaniac</li>
+					<li>Jealous</li>
+					<li>Psychopath</li>
+					<li>Abrasive</li>
+					<li>DislikesMen</li>
+					<li>DislikesWomen</li>
+					
+					
 			</disallowedTraits>
             <alienPartGenerator>
 				<!--<useGenderedHeads>true</useGenderedHeads>
@@ -314,7 +324,7 @@
       <makesFootprints>true</makesFootprints>
       <lifeExpectancy>500</lifeExpectancy>
       <leatherDef>RRY_Synthetic_Skin</leatherDef>
-      <body>Human</body>
+      <body>RRY_Artificials_Synths_Body</body>
       <nameCategory>HumanStandard</nameCategory>
 	  <bloodDef>RRY_FilthBloodSynth</bloodDef>	
       <meatColor>(878,878,878)</meatColor>
@@ -365,7 +375,8 @@
         </points>
       </ageGenerationCurve>
       <hediffGiverSets>
-        <li>RRY_Artificials_Synth_Hediff</li>
+        <li>RRY_Artificials_Synth_Hediffgiver</li>
+		<li>RRY_Artificials_Inhibitor_Hediffgiver</li>
       </hediffGiverSets>
     </race>
     <recipes>

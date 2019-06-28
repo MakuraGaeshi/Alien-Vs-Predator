@@ -61,7 +61,7 @@
   <!--============================================= Artificials =============================================-->
   
 	<HediffGiverSetDef>
-    <defName>RRY_Artificials_Synth_Hediff</defName>
+    <defName>RRY_Artificials_Synth_Hediffgiver</defName>
     <hediffGivers>
       
       <!-- Environmental -->
@@ -76,18 +76,24 @@
         <hediff>RRY_Synth_Overheating</hediff>
       </li>
 
-	<!--<li Class="HediffGiver_BrainInjury">
-        <hediff>TraumaSavant</hediff>
-        <partsToAffect>
-          <li>Brain</li>
-        </partsToAffect>
-        <chancePerDamagePct>0.12</chancePerDamagePct>
-        <letterLabel>Trauma savant</letterLabel>
-        <letter>[PAWN_nameDef]'s brain injury has caused [PAWN_objective] to develop strange savant-like abilities.</letter>
-      </li>-->
-  
-      
-    </hediffGivers>
-  </HediffGiverSetDef>
-	  
+	</hediffGivers>
+	</HediffGiverSetDef>
+	
+
+	<HediffGiverSetDef>
+		<defName>RRY_Artificials_Inhibitor_Hediffgiver</defName>
+		<hediffGivers>
+		  <li Class="HediffGiver_BrainInjury">
+			<hediff>RRY_Defective_Inhibitor</hediff>
+			<partsToAffect>
+			  <li>Brain</li>
+			  <li>RRY_BehavorialInhibitor</li>
+			</partsToAffect>
+			<chancePerDamagePct>0.20</chancePerDamagePct>
+			<letterLabel>Damaged Inhibitor</letterLabel>
+			<letter>[PAWN_nameDef]'s head injury has caused [PAWN_objective]'s behaviorial inhibitor to develop bugs and glitches.</letter>
+		  </li>
+		</hediffGivers>
+	</HediffGiverSetDef>
+	
 </Defs>
