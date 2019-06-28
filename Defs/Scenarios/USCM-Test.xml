@@ -15,19 +15,12 @@
 		<parts>
 			<li Class="ScenPart_ConfigPage_ConfigureStartingPawns">
 				<def>ConfigPage_ConfigureStartingPawns</def>
-				<pawnCount>5</pawnCount>
+				<pawnCount>6</pawnCount>
 			</li>
 			<li Class="ScenPart_PlayerPawnsArriveMethod">
 				<def>PlayerPawnsArriveMethod</def>
 				<method>DropPods</method>
 				<visible>false</visible>
-			</li>
-			<li Class="ScenPart_ForcedHediff">
-				<def>ForcedHediff</def>
-				<chance>0.5</chance>
-				<context>PlayerStarter</context>
-				<hediff>Malnutrition</hediff>
-				<severityRange>0.09166667~0.297</severityRange>
 			</li>
 			<li Class="ScenPart_SetNeedLevel">
 				<def>SetNeedLevel</def>
@@ -35,11 +28,6 @@
 				<context>PlayerStarter</context>
 				<need>Food</need>
 				<levelRange>0~0.1</levelRange>
-			</li>
-			<li Class="ScenPart_StartingThing_Defined">
-				<def>StartingThing_Defined</def>
-				<thingDef>Silver</thingDef>
-				<count>200</count>
 			</li>
 			<li Class="ScenPart_StartingThing_Defined">
 				<def>StartingThing_Defined</def>
@@ -53,22 +41,17 @@
 			</li>
 			<li Class="ScenPart_StartingThing_Defined">
 				<def>StartingThing_Defined</def>
-				<thingDef>RRY_Gun_Hunting_Bow</thingDef>
+				<thingDef>RRY_USCM_StandardGear</thingDef>
 				<stuff>WoodLog</stuff>
 			</li>
 			<li Class="ScenPart_StartingThing_Defined">
 				<def>StartingThing_Defined</def>
-				<thingDef>MeleeWeapon_Spear</thingDef>
+				<thingDef>RRY_USCM_OperatorGear</thingDef>
 				<stuff>WoodLog</stuff>
-			</li>
-			<li Class="ScenPart_ScatterThingsNearPlayerStart">
-				<def>ScatterThingsNearPlayerStart</def>
-				<thingDef>Steel</thingDef>
-				<count>300</count>
 			</li>
 			<li Class="ScenPart_GameStartDialog">
 				<def>GameStartDialog</def>
-				<text>Your clan sent you in drop pods with the bare minimum. To become Hunters you have to hunt, survive and return to your clan... \n\nOr die trying.</text>
+				<text>TEN'HUT! \n\nMarines! We have received a distress call from topside. Your mission is to go out there and deal with the problem. Expect the presence of hostiles on the ground. \n\nYour unit will be dropped with the standard gear. Equip yourself quickly and be ready! We don't know what's awaiting you down there.\n\nOnce the threat dispatched, you are to build an outpost and await futher orders. Recruiting among civilians and indigeneous species has been authorised.\n\nGodspeed! </text>
 				<closeSound>GameStartSting</closeSound>
 			</li>
 			<!--
@@ -101,11 +84,6 @@
 				<repeat>True</repeat>
 			</li>
 			-->
-			<li Class="ScenPart_ScatterThingsAnywhere">
-				<def>ScatterThingsAnywhere</def>
-				<thingDef>ShipChunk</thingDef>
-				<count>10</count>
-			</li>
 			<li Class="ScenPart_ScatterThingsAnywhere">
 				<def>ScatterThingsAnywhere</def>
 				<thingDef>Steel</thingDef>

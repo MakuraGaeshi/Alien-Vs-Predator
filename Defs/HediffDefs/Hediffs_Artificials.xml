@@ -220,15 +220,51 @@
 		<li Class="RRYautja.HediffCompProperties_DefectiveInhibitor">
 			<traitsToGive>
 					<li>Bloodlust</li>
-					<li>Pyromaniac</li>
-					<li>Jealous</li>
 					<li>Psychopath</li>
-					<li>Abrasive</li>
+					<li>Greedy</li>
+					<li>Jealous</li>
+					<li>Pyromaniac</li>
 					<li>DislikesMen</li>
 					<li>DislikesWomen</li>
+					<li>
+						<defName>SpeedOffset</defName>
+						<degree>-1</degree>
+					</li>
+					<li>
+						<defName>NaturalMood</defName>
+						<degree>-1</degree>
+					</li>
+					<li>
+						<defName>NaturalMood</defName>
+						<degree>-2</degree>
+					</li>
+					<li>
+						<defName>Nerves</defName>
+						<degree>-1</degree>
+					</li>
+					<li>
+						<defName>Nerves</defName>
+						<degree>-2</degree>
+					</li>
+					<li>
+						<defName>Neurotic</defName>
+						<degree>1</degree>
+					</li>
+					<li>
+						<defName>Neurotic</defName>
+						<degree>2</degree>
+					</li>
+					<li>
+						<defName>Industriousness</defName>
+						<degree>-1</degree>
+					</li>
+					<li>
+						<defName>Industriousness</defName>
+						<degree>-2</degree>
+					</li>
 			</traitsToGive>
-			<TraitGainMinIntervalTicks>6000</TraitGainMinIntervalTicks>
-			<TraitGainMaxIntervalTicks>12000</TraitGainMaxIntervalTicks>
+			<TraitGainMinIntervalTicks>600</TraitGainMinIntervalTicks>
+			<TraitGainMaxIntervalTicks>1000</TraitGainMaxIntervalTicks>
         </li>
 		</comps>
 		<stages>
