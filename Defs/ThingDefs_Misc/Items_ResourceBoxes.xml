@@ -47,11 +47,8 @@
 				<li>RRY_Apparel_M3Pattern</li>
 				<li>RRY_USCM_M41A</li>
 			</possibleItems>
-            <minItems>12</minItems>
-            <maxItems>12</maxItems>
-            <minPerItem>4</minPerItem>
-            <maxPerItem>4</maxPerItem>
-             <soundDef>null</soundDef> 
+            <PerItemCount>4</PerItemCount>
+            <spawnAll>true</spawnAll>
             <destoryOnUse>true</destoryOnUse>
             <destroyChance>1.0</destroyChance>
             <maxUses>1</maxUses>
@@ -82,11 +79,8 @@
 				<li>RRY_USCM_M56SmartGun</li>
 				<li>RRY_Equipment_HMS</li>
 			</possibleItems>
-            <minItems>4</minItems>
-            <maxItems>4</maxItems>
-            <minPerItem>1</minPerItem>
-            <maxPerItem>1</maxPerItem>
-             <soundDef>null</soundDef> 
+            <PerItemCount>1</PerItemCount>
+            <spawnAll>true</spawnAll>
             <destoryOnUse>true</destoryOnUse>
             <destroyChance>1.0</destroyChance>
             <maxUses>1</maxUses>

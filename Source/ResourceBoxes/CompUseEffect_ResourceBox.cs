@@ -17,6 +17,7 @@ namespace ResourceBoxes
         public List<ThingDef> possibleItems = new List<ThingDef>();
         public List<List<ThingDefCount>> possibleItemLists = new List<List<ThingDefCount>>();
         public List<Pair<ThingDef, int>> possibleItemsWithWeight = new List<Pair<ThingDef, int>>();
+        public int PerItemCount = 0;
         public int minItems = 1;
         public int maxItems = 1;
         public int minPerItem = 1;
@@ -24,6 +25,7 @@ namespace ResourceBoxes
         public int maxUses = 1;
         public SoundDef soundDef = null;
         public bool destoryOnUse = true;
+        public bool spawnAll = false;
         public float destroyChance = 1f;
         public int maxWorth = -1;
     }
@@ -77,23 +79,39 @@ namespace ResourceBoxes
         // Token: 0x06000004 RID: 4 RVA: 0x00002160 File Offset: 0x00000360
         private List<Thing> CreateLoot()
         {
-            int ItemCount = Rand.RangeInclusive(PropsResourceBox.minItems, PropsResourceBox.maxItems);
             List<Thing> list = new List<Thing>();
+            int ItemCount;
+            if (PropsResourceBox.spawnAll)
+            {
+                ItemCount = PropsResourceBox.possibleItems.Count;
+            }
+            else
+            {
+                ItemCount = Rand.RangeInclusive(PropsResourceBox.minItems, PropsResourceBox.maxItems);
+            }
             for (int i = 0; i < ItemCount; i++)
             {
                 ThingDef named = null;
+                int PerItemCount;
                 int j = 0;
-                int PerItemCount = Rand.RangeInclusive(PropsResourceBox.minPerItem, PropsResourceBox.maxPerItem);
+                if (PropsResourceBox.PerItemCount!=0)
+                {
+                    PerItemCount = PropsResourceBox.PerItemCount;
+                }
+                else
+                {
+                    PerItemCount = Rand.RangeInclusive(PropsResourceBox.minPerItem, PropsResourceBox.maxPerItem);
+                }
                 if (!PropsResourceBox.possibleItems.NullOrEmpty())
                 {
-                    named = PropsResourceBox.possibleItems.RandomElement();
-                }
-                if (!PropsResourceBox.possibleItemsWithWeight.NullOrEmpty())
-                {
-                    //    named = PropsResourceBox.possibleItemsWithWeight.RandomElementByWeight(x => x.First.BaseMarketValue);
-                    Pair<ThingDef, int> pair;
-                    pair = GenCollection.RandomElementByWeight<Pair<ThingDef, int>>(PropsResourceBox.possibleItemsWithWeight, (x) => x.Second);
-                    named = pair.First;
+                    if (PropsResourceBox.spawnAll)
+                    {
+                        named = PropsResourceBox.possibleItems[i];
+                    }
+                    else
+                    {
+                        named = PropsResourceBox.possibleItems.RandomElement();
+                    }
                 }
                 if (named != null)
                 {
