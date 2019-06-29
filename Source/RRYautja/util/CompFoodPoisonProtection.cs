@@ -2,7 +2,7 @@
 using RimWorld;
 using System.Collections.Generic;
 
-namespace AdeptusMechanicus
+namespace RRYautja
 {
     public class CompProperties_FoodPoisonProtection : CompProperties
     {

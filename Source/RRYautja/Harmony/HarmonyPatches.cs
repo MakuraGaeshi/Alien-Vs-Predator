@@ -80,8 +80,52 @@ namespace RRYautja
             HarmonyPatches._cachedVerbProperties = typeFromHandle2.GetField("cachedVerbProperties", BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.GetProperty | BindingFlags.SetProperty);
             HarmonyPatches._pawnPawnNativeVerbs = typeFromHandle2.GetField("pawn", BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.GetProperty | BindingFlags.SetProperty);
             harmony.Patch(typeFromHandle2.GetMethod("CheckCreateVerbProperties", BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.GetProperty | BindingFlags.SetProperty), new HarmonyMethod(typeof(HarmonyPatches).GetMethod("Patch_CheckCreateVerbProperties")), null, null);
+
+
+            harmony.Patch(
+                original: AccessTools.Method(type: typeof(FoodUtility), name: "AddFoodPoisoningHediff"),
+                prefix: new HarmonyMethod(type: typeof(HarmonyPatches), name: nameof(Pre_AddFoodPoisoningHediff_CompCheck)),
+                postfix: null);
+
         }
         
+        public static bool Pre_AddFoodPoisoningHediff_CompCheck(Pawn pawn, Thing ingestible, FoodPoisonCause cause)
+        {
+            //    Log.Message(string.Format("checkin if {0} can get food poisioning from {1} because {2}", pawn.Name, ingestible, cause));
+            CompFoodPoisonProtection compFood = pawn.TryGetComp<CompFoodPoisonProtection>();
+            if (compFood != null)
+            {
+                if (!compFood.Props.Poisonable)
+                {
+                    //    Log.Message(string.Format("stopped {0} getting food poisioning from {1} because compFood.Props.Poisonable {2}", pawn.Name, ingestible, compFood.Props.Poisonable));
+                    return false;
+                }
+                if (!compFood.Props.FoodTypeFlags.NullOrEmpty<FoodTypeFlags>())
+                {
+                    foreach (var ftf in compFood.Props.FoodTypeFlags)
+                    {
+                        if (ftf == ingestible.def.ingestible.foodType)
+                        {
+                            //    Log.Message(string.Format("stopped {0} getting food poisioning from {1} because {2}", pawn.Name, ingestible, ingestible.def.ingestible.foodType));
+                            return false;
+                        }
+                    }
+                }
+                if (!compFood.Props.FoodPoisonCause.NullOrEmpty<FoodPoisonCause>())
+                {
+                    foreach (var fpc in compFood.Props.FoodPoisonCause)
+                    {
+                        if (fpc == cause)
+                        {
+                            //    Log.Message(string.Format("stopped {0} getting food poisioning from {1} because {2}", pawn.Name, ingestible, cause));
+                            return false;
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+
         public static Pawn pawnPawnNativeVerbs(Pawn_NativeVerbs instance)
         {
             return (Pawn)HarmonyPatches._pawnPawnNativeVerbs.GetValue(instance);
