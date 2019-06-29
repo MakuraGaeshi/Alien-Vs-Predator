@@ -47,8 +47,8 @@
 				<li>RRY_Apparel_M3Pattern</li>
 				<li>RRY_USCM_M41A</li>
 			</possibleItems>
-            <minItems>12</minItems>
-            <maxItems>12</maxItems>
+            <minItems>1</minItems>
+            <maxItems>1</maxItems>
             <minPerItem>4</minPerItem>
             <maxPerItem>4</maxPerItem>
              <soundDef>null</soundDef> 
