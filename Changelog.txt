@@ -62,7 +62,7 @@ Even more Xenos Ai Tweaks
 Xenos hives should be more passive during the day and more active at night
 Xenos below 50% health should try to return to the hive untill healed
 
-V1.0.0.4 
+V1.0.0.4 27/06/2019
 Added Mod Options to disable Yautja and Xenomorph Factions
 Added Mod Options to modify the chances of pawn death on failed operations to remove Facehuggers and Embryos
 Added List to Mod Options to display a list of all valid Hosts for Xenomorph impregnation (including things added by other mods)
@@ -79,3 +79,13 @@ Fixed crash caused by kidnapping xenos getting stuck in infinite loop looking fo
 More bloody Xenos Ai Tweaks
 
 Added Synth Defective Inhibitor HediffComp - Not yet used
+
+V1.0.0.5
+Compatability Tweaks
+Added Mechanoid Mark Visual
+Added Combistaff Ability Button Texture
+
+
+Completed Inhibitor HediffComp - For Synths
+Completed Foodpoisioning Protection Comp - For Synths
+Tweaked Box code - For USCM Starter Gear
