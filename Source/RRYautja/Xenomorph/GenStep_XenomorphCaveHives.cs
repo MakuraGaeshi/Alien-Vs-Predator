@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RRYautja.settings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Verse;
@@ -21,7 +22,7 @@ namespace RimWorld
         // Token: 0x06001189 RID: 4489 RVA: 0x00084CF0 File Offset: 0x000830F0
         public override void Generate(Map map, GenStepParams parms)
         {
-            if (!Find.Storyteller.difficulty.allowCaveHives)
+            if (!Find.Storyteller.difficulty.allowCaveHives || !SettingsHelper.latest.AllowXenomorphFaction )
             {
                 return;
             }

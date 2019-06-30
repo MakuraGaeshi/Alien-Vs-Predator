@@ -84,7 +84,7 @@ V1.0.0.5
 Compatability Tweaks
 Added Mechanoid Mark Visual
 Added Combistaff Ability Button Texture
-
+Added Check for null or destroyed Corpses while makring non yautja
 
 Completed Inhibitor HediffComp - For Synths
 Completed Foodpoisioning Protection Comp - For Synths

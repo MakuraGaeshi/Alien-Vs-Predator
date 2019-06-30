@@ -64,25 +64,22 @@ namespace RRYautja
                             acid = (list[k] as Filth_AddAcidDamage);
                             if (acid != null)
                             {
-                                break;
-                            }
-                        }
-                        if (acid != null)
-                        {
-                            if (acid.active)
-                            {
-                                if (b.x == 0 && b.z == 0)
+                                if (acid.active)
                                 {
-                                    __result += 1000;
+                                    if (b.x == 0 && b.z == 0)
+                                    {
+                                        __result = 750;
+                                    }
+                                    else
+                                    {
+                                        __result = 150;
+                                    }
                                 }
                                 else
                                 {
-                                    __result += 150;
+                                    __result = 0;
                                 }
-                            }
-                            else
-                            {
-                                __result += 0;
+                                break;
                             }
                         }
                     }
@@ -1150,7 +1147,7 @@ namespace RRYautja
 #if DEBUG
         //    Log.Message(string.Format("trying to add an infection to {0}'s wounded {1}", __instance.Pawn, __instance.parent.Part));
 #endif
-            if (__instance.Pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned)|| (__instance.Pawn.InBed() && __instance.Pawn.CurrentBed() is Building_XenomorphCocoon))
+            if (__instance.Pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned)|| (__instance.Pawn.InBed() && __instance.Pawn.CurrentBed() is Building_XenomorphCocoon) || __instance.Pawn.RaceProps.FleshType.defName.Contains("RRY_SynthFlesh"))
             {
 #if DEBUG
             //    Log.Message(string.Format("{0} protected from infection", __instance.Pawn));

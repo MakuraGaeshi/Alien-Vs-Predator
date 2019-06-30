@@ -38,7 +38,6 @@ namespace RRYautja
             Scribe_Values.Look<int>(ref this.ticksSinceHeal, "ticksSinceHeal");
             Scribe_Values.Look<IntVec3>(ref this.HiveLoc, "HiveLoc", IntVec3.Invalid);
             Scribe_Defs.Look<PawnKindDef>(ref this.host, "hostRef");
-            Scribe_Deep.Look<PawnKindDef>(ref this.host, "hostDeepRef");
             /*
             Scribe_Values.Look<int>(ref this.pawnKills, "pawnKills");
             Scribe_Deep.Look<Hediff>(ref this.unmarked, "bloodedUnmarked");
@@ -98,24 +97,43 @@ namespace RRYautja
                 IEnumerable<Lord> lords = pawn.Map.lordManager.lords.Where(x => x.faction == pawn.Faction);
                 if (lords.Count() != 0 && ((pawn.GetLord() != null && pawn.GetLord().LordJob is LordJob_DefendPoint) || pawn.GetLord() == null))
                 {
-               //     Log.Message(string.Format("Lords Found!"));
                     foreach (var l in lords)
                     {
                         if (l != null)
                         {
-                            if (l.LordJob is LordJob_DefendAndExpandHiveLike j)
+                            if (XenomorphUtil.HivelikesPresent(map))
                             {
-                                Hivelord = l;
-                                Hivejob = j;
-                                if (l.ownedPawns.Any(x => x.kindDef == QueenDef))
+                                if (l.LordJob is LordJob_DefendAndExpandHiveLike j)
                                 {
-                                    Hivequeen = l.ownedPawns.Find(x => x.kindDef == QueenDef);
-                                }
-                                if (pawn.kindDef != XenomorphDefOf.RRY_Xenomorph_Queen || (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen && Hivequeen != null))
-                                {
-                                    Hivelords.Add(l);
+                                    Hivelord = l;
+                                    Hivejob = j;
+                                    if (l.ownedPawns.Any(x => x.kindDef == QueenDef))
+                                    {
+                                        Hivequeen = l.ownedPawns.Find(x => x.kindDef == QueenDef);
+                                    }
+                                    if (pawn.kindDef != XenomorphDefOf.RRY_Xenomorph_Queen || (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen && Hivequeen != null))
+                                    {
+                                        Hivelords.Add(l);
+                                    }
                                 }
                             }
+                            else if (XenomorphUtil.HiveSlimePresent(map))
+                            {
+                                if (l.LordJob is LordJob_DefendHiveLoc j)
+                                {
+                                    Hivelord = l;
+                                    Hivejob = j;
+                                    if (l.ownedPawns.Any(x => x.kindDef == QueenDef))
+                                    {
+                                        Hivequeen = l.ownedPawns.Find(x => x.kindDef == QueenDef);
+                                    }
+                                    if (pawn.kindDef != XenomorphDefOf.RRY_Xenomorph_Queen || (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen && Hivequeen != null))
+                                    {
+                                        Hivelords.Add(l);
+                                    }
+                                }
+                            }
+                            
                         }
                         else
                         {
@@ -126,95 +144,77 @@ namespace RRYautja
                             break;
                             */
                         }
-                   //     Log.Message(string.Format("{0} found: {1} Lords of: {2}", pawn.Label, Hivelords.Count, pawn.Faction.Name));
                     }
                 }
                 if (pawn.GetLord() != null && pawn.GetLord().LordJob is LordJob_DefendPoint LordJob_DefendPoint)
                 {
                     lord = pawn.GetLord();
-               //     Log.Message(string.Format("Lords Found!"));
                     if (lord.ownedPawns.Count == 0)
                     {
-                   //     Log.Message(string.Format("got no pawns, wtf?"));
+                        Log.Message(string.Format("got no pawns, wtf?"));
                     }
                     if (lord.ownedPawns.Count == 1)
                     {
-                   //     Log.Message(string.Format("lords only pawn"));
+
                     }
                     if (c == IntVec3.Invalid && XenomorphUtil.HivelikesPresent(map))
                     {
-                   //     Log.Message(string.Format("Checking hiveloc"));
                         c = !XenomorphUtil.ClosestReachableHivelike(pawn).DestroyedOrNull() ? XenomorphUtil.ClosestReachableHivelike(pawn).Position : IntVec3.Invalid;
-                   //     Log.Message(string.Format("hiveloc: {0}", c));
                     }
                     if (c == IntVec3.Invalid && XenomorphUtil.EggsPresent(map))
                     {
-                   //     Log.Message(string.Format("Checking eggloc"));
                         c = !XenomorphUtil.ClosestReachableEgg(pawn).DestroyedOrNull() ? XenomorphUtil.ClosestReachableEgg(pawn).Position : IntVec3.Invalid;
-                   //     Log.Message(string.Format("eggloc: {0}", c));
                     }
                     if (c == IntVec3.Invalid && XenomorphUtil.CocoonsPresent(map, XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon))
                     {
-                   //     Log.Message(string.Format("Checking Hcocoonloc"));
                         c = !XenomorphUtil.ClosestReachableCocoon(pawn, XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon).DestroyedOrNull() ? XenomorphUtil.ClosestReachableCocoon(pawn, XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon).Position : IntVec3.Invalid;
-                   //     Log.Message(string.Format("Hcocoonloc: {0}", c));
                     }
                     if (c == IntVec3.Invalid && XenomorphUtil.CocoonsPresent(map, XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon))
                     {
-                   //     Log.Message(string.Format("Checking Acocoonloc"));
                         c = !XenomorphUtil.ClosestReachableCocoon(pawn, XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon).DestroyedOrNull() ? XenomorphUtil.ClosestReachableCocoon(pawn, XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon).Position : IntVec3.Invalid;
-                   //     Log.Message(string.Format("Acocoonloc: {0}", c));
                     }
                     if (c == IntVec3.Invalid)
                     {
                         if (InfestationLikeCellFinder.TryFindCell(out c, pawn.Map, false))
                         {
-                       //     Log.Message(string.Format("Checking InfestationLikeCellFinder"));
                             if (Prefs.DevMode)
                             {
                                 ThingDef td = XenomorphDefOf.RRY_Filth_Slime;
                                 GenSpawn.Spawn(td, c, pawn.Map);
                                 Find.LetterStack.ReceiveLetter(string.Format("Lord Created"), string.Format("@: {0} ", c), LetterDefOf.NegativeEvent, c.GetFirstThing(pawn.Map, td), null, null);
                             }
-                       //     Log.Message(string.Format("InfestationLikeCellFinder: {0}", c));
                         }
                         if (pawn.CanReach(c, PathEndMode.OnCell, Danger.Deadly, true))
                         {
-                       //     Log.Message(string.Format("CanReach"));
                                 c = RCellFinder.RandomWanderDestFor(pawn, c, 3f, null, Danger.Some);
-                       //     Log.Message(string.Format("InfestationLikeCellFinder: {0}", c));
                         }
                         else
                         {
-                       //     Log.Message(string.Format("CantReach InfestationLikeCellFinder"));
                             c = RCellFinder.RandomWanderDestFor(pawn, pawn.Position, 3f, null, Danger.Some);
-                       //     Log.Message(string.Format("RCellFinder: {0}", c));
                         }
                     }
                     if (c != IntVec3.Invalid)
                     {
-                   //     Log.Message(string.Format("Target cell found: {0}", c));
-                        LordJob newJob = new LordJob_DefendAndExpandHiveLike(false);
-                        /*
-                   //     Log.Message(string.Format("New job: {0}", newJob));
-                        lord.SetJob(newJob);
-                   //     Log.Message(string.Format("Set job: {0}", newJob));
-                        */
+                        LordJob newJob;
+                        if (XenomorphUtil.HivelikesPresent(map))
+                        {
+                            newJob = new LordJob_DefendAndExpandHiveLike(false);
+                        }
+                        else
+                        {
+                            newJob = new LordJob_DefendHiveLoc(parent.Faction, c);
+                        }
                         if (pawn.GetLord().LordJob is LordJob_DefendPoint)
                         {
-                       //     Log.Message(string.Format("New Lord Required: {0}", pawn.GetLord().LordJob));
-
                             if (!Hivelords.NullOrEmpty())
                             {
                                 Hivelord = Hivelords.RandomElement();
                                 SwitchToLord(Hivelord);
                                 CreateNewLord(pawn, c, newJob);
-                           //     Log.Message(string.Format("New Lord switched: {0}", pawn.GetLord().LordJob));
                             }
                             else
                             {
                                 CreateNewLord(pawn, c, newJob);
-                           //     Log.Message(string.Format("New Lord created: {0}", pawn.GetLord().LordJob));
                             }
                             if (HiveLoc == IntVec3.Invalid) HiveLoc = c;
                         }
@@ -231,12 +231,10 @@ namespace RRYautja
                 }
                 else if (pawn.GetLord() == null)
                 {
-               //     Log.Message(string.Format("{0} has no lord!!", pawn.Label));
                     if (!Hivelords.NullOrEmpty())
                     {
                         Hivelord = Hivelords.RandomElement();
                         SwitchToLord(Hivelord);
-                   //     Log.Message(string.Format("New Lord switched: {0}", pawn.GetLord().LordJob));
                     }
                 }
                 if (pawn.GetLord()!=null)

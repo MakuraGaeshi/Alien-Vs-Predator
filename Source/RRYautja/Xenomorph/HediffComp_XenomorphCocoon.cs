@@ -148,7 +148,12 @@ namespace RRYautja
                 Rot4 rot = Rotlist.RandomElement();
                 Thing thing = ThingMaker.MakeThing(MyCocoonDef);
                 GenSpawn.Spawn(thing, MyPos, MyMap, rot, WipeMode.Vanish, false);
-                this.Pawn.jobs.Notify_TuckedIntoBed((Building_XenomorphCocoon)thing);
+                Building_XenomorphCocoon thing2 = ((Building_XenomorphCocoon)thing);
+                if (this.Pawn.IsPrisoner)
+                {
+                    thing2.ForPrisoners = true;
+                }
+                this.Pawn.jobs.Notify_TuckedIntoBed(thing2);
                 this.Pawn.mindState.Notify_TuckedIntoBed();
             }
             if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Cocoons) && Pawn.IsColonist)

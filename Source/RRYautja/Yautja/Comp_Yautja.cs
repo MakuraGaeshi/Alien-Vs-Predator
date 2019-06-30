@@ -339,13 +339,13 @@ namespace RRYautja
         {
             get
             {
-                return string.Format(useLabel,this.corpse.LabelShortCap, this.parent.LabelShortCap);
+                return string.Format(useLabel, this.corpse.LabelShortCap, this.parent.LabelShortCap);
             }
         }
 
         public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
         {
-            if (selPawn.kindDef.race == YautjaDefOf.RRY_Alien_Yautja && Pawn.kindDef.race!=YautjaDefOf.RRY_Alien_Yautja && inductable)
+            if (selPawn.kindDef.race == YautjaDefOf.RRY_Alien_Yautja && Pawn.kindDef.race!=YautjaDefOf.RRY_Alien_Yautja && inductable && !this.corpse.DestroyedOrNull())
             {
                 FloatMenuOption useopt = new FloatMenuOption(this.FloatMenuOptionLabel, delegate ()
                 {
