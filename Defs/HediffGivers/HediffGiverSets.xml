@@ -94,6 +94,11 @@
 		<li Class="HediffGiver_Heat">
 			<hediff>RRY_Synth_Overheating</hediff>
 		</li>
+		<li Class="RRYautja.HediffGiver_StartWithXenomorphHediff">
+        <hediff>RRY_Defective_Inhibitor</hediff>
+        <chance>50</chance>
+		</li>
+		
 	</hediffGivers>
 	</HediffGiverSetDef>
 	
@@ -107,7 +112,7 @@
 			  <li>Brain</li>
 			  <li>RRY_BehavorialInhibitor</li>
 			</partsToAffect>
-			<chancePerDamagePct>0.20</chancePerDamagePct>
+			<chancePerDamagePct>0.25</chancePerDamagePct>
 			<letterLabel>Damaged Inhibitor</letterLabel>
 			<letter>[PAWN_nameDef]'s head injury has caused [PAWN_objective]'s behaviorial inhibitor to develop bugs and glitches.</letter>
 		  </li>
