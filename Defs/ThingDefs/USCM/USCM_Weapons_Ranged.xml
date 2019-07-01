@@ -195,7 +195,7 @@
 	<!-- ====================== M240 Incinerator Unit ===================== -->
  
  <ThingDef ParentName="BaseBullet">
-	<defName>OGI_Bullet_Flamer</defName>
+	<defName>RRY_M240_Bullet</defName>
     <label>flames</label>
     <tickerType>Normal</tickerType>
     <graphicData>
@@ -259,11 +259,11 @@
 		<li>RRY_RangedWeapons</li>
 	</tradeTags>
     <verbs>
-		<li Class="AdeptusMechanicus.VerbPropertiesOGSG">
-			<verbClass>AdeptusMechanicus.Verb_ShootShotgun</verbClass>
+		<li Class="RRyautja.VerbPropertiesOGSG">
+			<verbClass>RRYautja.Verb_ShootShotgun</verbClass>
 			<pelletCount>3</pelletCount>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGI_Bullet_Flamer</defaultProjectile>
+			<defaultProjectile>RRY_M240_Bullet</defaultProjectile>
 			<warmupTime>0.5</warmupTime>
 			<range>12</range>
 			<forcedMissRadius>2</forcedMissRadius>
