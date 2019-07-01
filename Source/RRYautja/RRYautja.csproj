@@ -69,6 +69,7 @@
     <Compile Include="Harmony\Patches.cs" />
     <Compile Include="util\Building_XenomorphCryptosleepCasket.cs" />
     <Compile Include="util\Building_CrashedShipPart_CryptosleepCasket_Xenomorph.cs" />
+    <Compile Include="util\HediffGiver_StartWithHediff.cs" />
     <Compile Include="util\MoreTraitSlotsUtil.cs" />
     <Compile Include="util\SetIncidents.cs" />
     <Compile Include="util\ThoughtWorker_RRY_Chestburster.cs" />
