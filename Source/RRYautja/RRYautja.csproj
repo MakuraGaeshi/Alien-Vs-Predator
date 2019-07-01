@@ -75,6 +75,7 @@
     <Compile Include="util\ThoughtWorker_RRY_Chestburster.cs" />
     <Compile Include="util\ThoughtWorker_RRY_Facehugger.cs" />
     <Compile Include="util\CompFoodPoisonProtection.cs" />
+    <Compile Include="util\HediffGiver_StartWithHediff.cs" />
     <Compile Include="Xenomorph\HiveGrid.cs" />
     <Compile Include="Xenomorph\HiveUtility.cs" />
     <None Include="Xenomorph\SectionLayer_Hive.cs.bak" />
