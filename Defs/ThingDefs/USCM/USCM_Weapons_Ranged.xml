@@ -192,4 +192,111 @@
 		</costList>
 	</ThingDef>
 	
+	<!-- ====================== M240 Incinerator Unit ===================== -->
+ 
+ <ThingDef ParentName="BaseBullet">
+	<defName>OGI_Bullet_Flamer</defName>
+    <label>flames</label>
+    <tickerType>Normal</tickerType>
+    <graphicData>
+      <texPath>Things/Projectile/Fire</texPath>
+      <graphicClass>Graphic_Flicker</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+    </graphicData>
+    <thingClass>Projectile_Explosive</thingClass>
+    <projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>RRY_Flamer</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+		<armorPenetrationBase>0.16</armorPenetrationBase>
+			<explosionRadius>0.75</explosionRadius>
+			<explosionChanceToStartFire>1.0</explosionChanceToStartFire>
+			<postExplosionSpawnThingDef>Filth_Fuel</postExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+			<stoppingPower>0.75</stoppingPower>
+			<speed>20</speed>
+			<soundExplode>OGIFL_Explosion</soundExplode>
+    </projectile>
+  </ThingDef>
+  
+ <ThingDef ParentName="RRY_USCM_BaseMakeableGun">
+    <defName>RRY_M240Incinerator</defName>
+    <label>M240 Incinerator Unit</label>
+    <description>The M240 Incinerator Unit, also known as the M240 Flamethrower and colloquially as the Bake-a-Flake, is a carbine-style flamethrower employed by the United States Colonial Marine Corps.</description>
+    <graphicData>
+		<texPath>Things/Equipment/USCM/Ranged/M240_incinerator_unit_Green</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <soundInteract>Interact_Rifle</soundInteract>
+    <statBases>
+		<WorkToMake>12000</WorkToMake>
+		<MarketValue>375</MarketValue>
+		<Mass>3.2</Mass>
+		<AccuracyTouch>0.90</AccuracyTouch>
+		<AccuracyShort>0.60</AccuracyShort>
+		<AccuracyMedium>0.55</AccuracyMedium>
+		<AccuracyLong>0.50</AccuracyLong>
+		<RangedWeapon_Cooldown>4.00</RangedWeapon_Cooldown>
+    </statBases>
+	<recipeMaker>
+		<researchPrerequisite>Gunsmithing</researchPrerequisite>
+		<skillRequirements>
+			<Crafting>8</Crafting>
+		</skillRequirements>
+	</recipeMaker>
+    <costList>
+		<Steel>75</Steel>
+		<ComponentIndustrial>4</ComponentIndustrial>
+		<Chemfuel>25</Chemfuel>
+    </costList>
+	<techLevel>Spacer</techLevel>
+    <weaponTags>
+		<li>USCM_Weapons</li>
+		<li>USCM_M240Incinerator</li>
+		<li>USCM_StandardIssue_Ranged</li>
+	</weaponTags>
+	<tradeTags>
+		<li>RRY_RangedWeapons</li>
+	</tradeTags>
+    <verbs>
+		<li Class="AdeptusMechanicus.VerbPropertiesOGSG">
+			<verbClass>AdeptusMechanicus.Verb_ShootShotgun</verbClass>
+			<pelletCount>3</pelletCount>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGI_Bullet_Flamer</defaultProjectile>
+			<warmupTime>0.5</warmupTime>
+			<range>12</range>
+			<forcedMissRadius>2</forcedMissRadius>
+			<burstShotCount>24</burstShotCount>
+			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+			<soundCast>FlamerSound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>28</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+      </li>
+    </verbs>
+    <tools>
+      <li>
+        <label>stock</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>1.8</cooldownTime>
+      </li>
+      <li>
+        <label>barrel</label>
+        <capacities>
+          <li>Blunt</li>
+          <li>Poke</li>
+        </capacities>
+        <power>10</power>
+        <cooldownTime>1.9</cooldownTime>
+      </li>
+    </tools>
+ </ThingDef>
+	
 </Defs>

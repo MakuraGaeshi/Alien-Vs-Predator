@@ -9,10 +9,10 @@
     <workAmount>2200</workAmount>
     <removesHediff>RRY_Defective_Inhibitor</removesHediff>
     <successfullyRemovedHediffMessage>{0} has successfully repaired {1}'s behavorial inhibitor.</successfullyRemovedHediffMessage>
-    <deathOnFailedSurgeryChance>15.0</deathOnFailedSurgeryChance>
+    <deathOnFailedSurgeryChance>2.0</deathOnFailedSurgeryChance>
     <surgerySuccessChanceFactor>1</surgerySuccessChanceFactor>
     <skillRequirements>
-      <Crafting>5</Crafting>
+      <Crafting>6</Crafting>
     </skillRequirements>
     <ingredients>
       <li>

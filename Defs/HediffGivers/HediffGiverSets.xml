@@ -99,7 +99,7 @@
 		<partsToAffect>
           <li>RRY_BehavorialInhibitor</li>
         </partsToAffect>
-        <chance>50</chance>
+        <chance>5</chance>
 		</li>
 		
 	</hediffGivers>
@@ -113,7 +113,7 @@
 			<partsToAffect>
 			  <li>RRY_BehavorialInhibitor</li>
 			</partsToAffect>
-			<chancePerDamagePct>0.75</chancePerDamagePct>
+			<chancePerDamagePct>0.85</chancePerDamagePct>
 			<letterLabel>Damaged Inhibitor</letterLabel>
 			<letter>[PAWN_nameDef]'s head injury has caused [PAWN_objective]'s behaviorial inhibitor to malfunction.</letter>
 		  </li>
