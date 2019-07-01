@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <RecipeDef ParentName="SurgeryFlesh">
+    <defName>RRY_RepairInhibitor</defName>
+    <label>Attempt repairing a behavorial inhibitor</label>
+    <description>Inhibitor repair</description>
+    <workerClass>RRYautja.Recipe_Remove_Gauntlet</workerClass>
+    <jobString>Attempting to repair a behavorial inhibitor</jobString>
+    <workAmount>2200</workAmount>
+    <removesHediff>RRY_Defective_Inhibitor</removesHediff>
+    <successfullyRemovedHediffMessage>{0} has successfully repaired {1}'s behavorial inhibitor.</successfullyRemovedHediffMessage>
+    <deathOnFailedSurgeryChance>15.0</deathOnFailedSurgeryChance>
+    <surgerySuccessChanceFactor>1</surgerySuccessChanceFactor>
+    <skillRequirements>
+      <Crafting>5</Crafting>
+    </skillRequirements>
+    <ingredients>
+      <li>
+        <filter>
+          <categories>
+            <li>ComponentSpacer</li>
+          </categories>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <categories>
+        <li>Medicine</li>
+      </categories>
+      <disallowedThingDefs>
+        <li>MedicineHerbal</li>
+      </disallowedThingDefs>
+    </fixedIngredientFilter>
+  </RecipeDef>
+ </Defs>

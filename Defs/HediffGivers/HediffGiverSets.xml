@@ -94,8 +94,11 @@
 		<li Class="HediffGiver_Heat">
 			<hediff>RRY_Synth_Overheating</hediff>
 		</li>
-		<li Class="RRYautja.HediffGiver_StartWithXenomorphHediff">
+		<li Class="JecsTools.HediffGiver_StartWithHediff">
         <hediff>RRY_Defective_Inhibitor</hediff>
+		<partsToAffect>
+          <li>RRY_BehavorialInhibitor</li>
+        </partsToAffect>
         <chance>50</chance>
 		</li>
 		
@@ -107,9 +110,8 @@
 		<defName>RRY_Artificials_Inhibitor_Hediffgiver</defName>
 		<hediffGivers>
 		  <li Class="HediffGiver_BrainInjury">
-			<hediff>RRY_Defective_Inhibitor</hediff>
+			<hediff>RRY_Damaged_Inhibitor</hediff>
 			<partsToAffect>
-			  <li>Brain</li>
 			  <li>RRY_BehavorialInhibitor</li>
 			</partsToAffect>
 			<chancePerDamagePct>0.25</chancePerDamagePct>

@@ -208,7 +208,7 @@
     </stages>
   </HediffDef>
 
-<!--============================================= Artificials Damaged inhibitor =============================================-->
+<!--============================================= Artificials Defective/Damaged inhibitor =============================================-->
 
 	<HediffDef ParentName="DiseaseBase">
         <defName>RRY_Defective_Inhibitor</defName>
@@ -280,6 +280,74 @@
             </li>
             <li>
 				<minSeverity>1</minSeverity>
+				<becomeVisible>true</becomeVisible>
+                <opinionOfOthersFactor>0</opinionOfOthersFactor>
+                <partIgnoreMissingHP>true</partIgnoreMissingHP> 
+                <capMods>
+                </capMods>
+            </li>
+        </stages>
+    </HediffDef>
+	
+	<HediffDef ParentName="DiseaseBase">
+        <defName>RRY_Damaged_Inhibitor</defName>
+        <hediffClass>HediffWithComps</hediffClass>
+        <label>damaged inhibitor</label>
+        <labelNoun>trauma</labelNoun>
+         <initialSeverity>0.01</initialSeverity>
+        <comps>
+        
+		<li Class="RRYautja.HediffCompProperties_DefectiveInhibitor">
+            <traitsToGive>
+                    <li>
+                        <defName>Bloodlust</defName>
+                    </li>
+                    <li>
+                        <defName>Psychopath</defName>
+                    </li>
+                    <li>
+                        <defName>Greedy</defName>
+                    </li>
+                    <li>
+                        <defName>Jealous</defName>
+                    </li>
+                    <li>
+                        <defName>Pyromaniac</defName>
+                    </li>
+                    <li>
+                        <defName>DislikesMen</defName>
+                    </li>
+                    <li>
+                        <defName>DislikesWomen</defName>
+                    </li>
+                    <li>
+                        <defName>SpeedOffset</defName>
+                        <degree>-1</degree>
+                    </li>
+                    <li>
+                        <defName>NaturalMood</defName>
+                        <degree>-1</degree>
+                    </li>
+                    <li>
+                        <defName>Nerves</defName>
+                        <degree>-1</degree>
+                    </li>
+                    <li>
+                        <defName>Neurotic</defName>
+                        <degree>1</degree>
+                    </li>
+                    <li>
+                        <defName>Industriousness</defName>
+                        <degree>-1</degree>
+                    </li>
+            </traitsToGive>
+            <TraitGainMinIntervalTicks>600</TraitGainMinIntervalTicks>
+            <TraitGainMaxIntervalTicks>1000</TraitGainMaxIntervalTicks>
+                </li>
+        </comps>
+        <stages>
+            <li>
+				<minSeverity>0.0</minSeverity>
 				<becomeVisible>true</becomeVisible>
                 <opinionOfOthersFactor>0</opinionOfOthersFactor>
                 <partIgnoreMissingHP>true</partIgnoreMissingHP> 
