@@ -265,8 +265,8 @@
                         <degree>-1</degree>
                     </li>
             </traitsToGive>
-            <TraitGainMinIntervalTicks>600</TraitGainMinIntervalTicks>
-            <TraitGainMaxIntervalTicks>1000</TraitGainMaxIntervalTicks>
+            <TraitGainMinIntervalTicks>30000</TraitGainMinIntervalTicks>
+            <TraitGainMaxIntervalTicks>60000</TraitGainMaxIntervalTicks>
                 </li>
         </comps>
         <stages>
@@ -339,8 +339,8 @@
                         <degree>-1</degree>
                     </li>
             </traitsToGive>
-            <TraitGainMinIntervalTicks>600</TraitGainMinIntervalTicks>
-            <TraitGainMaxIntervalTicks>1000</TraitGainMaxIntervalTicks>
+            <TraitGainMinIntervalTicks>30000</TraitGainMinIntervalTicks>
+            <TraitGainMaxIntervalTicks>60000</TraitGainMaxIntervalTicks>
                 </li>
         </comps>
         <stages>

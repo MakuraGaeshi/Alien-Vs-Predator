@@ -11,7 +11,7 @@
     <skinCovered>false</skinCovered>
     <permanentInjuryChanceFactor>9999999</permanentInjuryChanceFactor>
     <delicate>true</delicate>
-    <canSuggestAmputation>true</canSuggestAmputation>
+    <canSuggestAmputation>false</canSuggestAmputation>
   </BodyPartDef>
 
   

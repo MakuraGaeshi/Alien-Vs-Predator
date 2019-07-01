@@ -115,7 +115,7 @@
 			</partsToAffect>
 			<chancePerDamagePct>0.75</chancePerDamagePct>
 			<letterLabel>Damaged Inhibitor</letterLabel>
-			<letter>[PAWN_nameDef]'s head injury has caused [PAWN_objective]'s behaviorial inhibitor to develop bugs and glitches.</letter>
+			<letter>[PAWN_nameDef]'s head injury has caused [PAWN_objective]'s behaviorial inhibitor to malfunction.</letter>
 		  </li>
 		</hediffGivers>
 	</HediffGiverSetDef>
