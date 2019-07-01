@@ -467,6 +467,7 @@
       <li>RemoveBodyPart</li>
       <li>Euthanize</li>
       <li>Anesthetize</li>
+	  <li>RRY_RepairInhibitor</li>
     </recipes>
 	<butcherProducts>
 			<Plasteel>15</Plasteel>

@@ -18,7 +18,7 @@
       <li>
         <filter>
           <categories>
-            <li>ComponentSpacer</li>
+            <li>Manufactured</li>
           </categories>
         </filter>
         <count>2</count>
@@ -26,10 +26,13 @@
     </ingredients>
     <fixedIngredientFilter>
       <categories>
-        <li>Medicine</li>
+        <li>Manufactured</li>
       </categories>
       <disallowedThingDefs>
-        <li>MedicineHerbal</li>
+        <li>ComponentIndustrial</li>
+		<li>Wort</li>
+		<li>Neutroamine</li>
+		<li>Chemfuel</li>
       </disallowedThingDefs>
     </fixedIngredientFilter>
   </RecipeDef>
