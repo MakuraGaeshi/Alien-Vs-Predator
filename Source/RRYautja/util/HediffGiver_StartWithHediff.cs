@@ -25,20 +25,7 @@ namespace RRYautja
             //If the gender is female, check the female commonality chance, and if it fails, exit.
             if (pawn.gender == Gender.Female && !(femaleCommonality >= Rand.Range(0.0f, 100.0f)))
                 return;
-            IEnumerable<BodyPartRecord> source = pawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Undefined, BodyPartDepth.Undefined, null, null);
-            if (partsToAffect != null)
-            {
-                source = from p in source
-                         where partsToAffect.Contains(p.def)
-                         select p;
-            }
-            if (source != null)
-            {
-                foreach (var item in source)
-                {
-                    Log.Message(string.Format("{0}",item.LabelShortCap));
-                }
-            }
+
             HediffGiverUtility.TryApply(pawn, hediff, partsToAffect);
         }
     }

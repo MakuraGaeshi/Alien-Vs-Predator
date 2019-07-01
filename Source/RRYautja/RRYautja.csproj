@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Synths\Class1.cs" />
     <Compile Include="Synths\HediffComp_DefectiveInhibitor.cs" />
     <Compile Include="util\AvPSettings.cs" />
     <Compile Include="Harmony\ExtraButcheringProducts.cs" />

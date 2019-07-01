@@ -271,8 +271,7 @@
         </comps>
         <stages>
             <li>
-				<minSeverity>0.0</minSeverity>
-				<becomeVisible>true</becomeVisible>
+				<becomeVisible>false</becomeVisible>
                 <opinionOfOthersFactor>0</opinionOfOthersFactor>
                 <partIgnoreMissingHP>true</partIgnoreMissingHP> 
                 <capMods>
@@ -294,7 +293,6 @@
         <hediffClass>HediffWithComps</hediffClass>
         <label>damaged inhibitor</label>
         <labelNoun>trauma</labelNoun>
-         <initialSeverity>0.01</initialSeverity>
         <comps>
         
 		<li Class="RRYautja.HediffCompProperties_DefectiveInhibitor">
@@ -347,7 +345,6 @@
         </comps>
         <stages>
             <li>
-				<minSeverity>0.0</minSeverity>
 				<becomeVisible>true</becomeVisible>
                 <opinionOfOthersFactor>0</opinionOfOthersFactor>
                 <partIgnoreMissingHP>true</partIgnoreMissingHP> 
