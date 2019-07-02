@@ -63,7 +63,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Synths\HediffComp_DefectiveInhibitor.cs" />
+    <Compile Include="USCM\Verb_ShootShotgun.cs" />
+    <Compile Include="USCM\DamageWorker_FlameNoCamShake.cs" />
+    <Compile Include="USCM\HediffComp_DefectiveInhibitor.cs" />
     <Compile Include="util\AvPSettings.cs" />
     <Compile Include="Harmony\ExtraButcheringProducts.cs" />
     <Compile Include="Harmony\Patches.cs" />
@@ -76,10 +78,6 @@
     <Compile Include="util\ThoughtWorker_RRY_Facehugger.cs" />
     <Compile Include="util\CompFoodPoisonProtection.cs" />
     <Compile Include="util\HediffGiver_StartWithHediff.cs" />
-    <Compile Include="Xenomorph\HiveGrid.cs" />
-    <Compile Include="Xenomorph\HiveUtility.cs" />
-    <None Include="Xenomorph\SectionLayer_Hive.cs.bak" />
-    <Compile Include="Xenomorph\MapMeshFlag.cs" />
     <Compile Include="Xenomorph\CompPlantConversionRadius.cs" />
     <Compile Include="Xenomorph\CompHiveCreep.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_DestroyCocoon.cs" />
@@ -123,7 +121,6 @@
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_PredalienImpregnate.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphHosthunter.cs" />
     <Compile Include="Xenomorph\RRY_FlyingObject.cs" />
-    <Compile Include="Xenomorph\MapComponent_XenomorphCocoonTracker.cs" />
     <Compile Include="Xenomorph\HediffComp_XenomorphCocoon.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_XenoTakeToCocoon.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphFightEnemies.cs" />

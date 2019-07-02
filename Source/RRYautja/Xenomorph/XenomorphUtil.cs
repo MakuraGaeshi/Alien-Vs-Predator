@@ -156,32 +156,6 @@ namespace RRYautja
         // Token: 0x0400030C RID: 780
         private static List<IntVec3> candidates = new List<IntVec3>();
         // Token: 0x060000A8 RID: 168 RVA: 0x00007234 File Offset: 0x00005434
-        public static HashSet<Thing> XenomorphCocoonsFor(Map map, Thing t)
-        {
-            HashSet<Thing> wildCocoons = map.GetComponent<MapComponent_XenomorphCocoonTracker>().WildCocoons;
-            bool flag = (wildCocoons != null || wildCocoons.Count > 0) && t.Faction != Faction.OfPlayerSilentFail;
-            HashSet<Thing> result;
-            if (flag)
-            {
-                result = wildCocoons;
-            }
-            else
-            {
-                HashSet<Thing> domesticCocoons = map.GetComponent<MapComponent_XenomorphCocoonTracker>().DomesticCocoons;
-                bool flag2 = (domesticCocoons != null || domesticCocoons.Count > 0) && t.Faction == Faction.OfPlayerSilentFail;
-                if (flag2)
-                {
-                    result = new HashSet<Thing>(from x in domesticCocoons
-                                                where ForbidUtility.InAllowedArea(x.PositionHeld, t as Pawn)
-                                                select x);
-                }
-                else
-                {
-                    result = null;
-                }
-            }
-            return result;
-        }
 
         public static bool isInfectableThing(ThingDef thingDef)
         {
