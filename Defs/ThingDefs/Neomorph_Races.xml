@@ -69,7 +69,7 @@
       <!-- <deathActionWorkerClass>RRYautja.DeathActionWorker_Xenomorph</deathActionWorkerClass> -->
       <herdAnimal>false</herdAnimal>
       <predator>true</predator>
-      <maxPreyBodySize>3.0</maxPreyBodySize>
+      <maxPreyBodySize>5.0</maxPreyBodySize>
       <baseBodySize>1.5</baseBodySize>
       <baseHungerRate>0.0</baseHungerRate>
       <baseHealthScale>1.5</baseHealthScale>
@@ -95,7 +95,7 @@
  <!-- Walker (Neomorph) base -->
   <ThingDef ParentName="RRY_BaseNeomorph" Name="BaseNeomorphWalker" Abstract="True">
     <race>
-      <intelligence>ToolUser</intelligence>
+      <intelligence>Animal</intelligence>
       <thinkTreeMain>RRY_Xenommorph</thinkTreeMain>
       <baseBodySize>1.2</baseBodySize>
       <lifeStageAges>

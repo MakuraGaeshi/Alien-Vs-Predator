@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="USCM\Class1.cs" />
     <Compile Include="USCM\Verb_ShootShotgun.cs" />
     <Compile Include="USCM\DamageWorker_FlameNoCamShake.cs" />
     <Compile Include="USCM\HediffComp_DefectiveInhibitor.cs" />

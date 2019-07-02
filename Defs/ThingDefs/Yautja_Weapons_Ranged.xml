@@ -84,6 +84,12 @@
       <armorPenetrationBase>0.25</armorPenetrationBase>
       <speed>60</speed>
     </projectile>
+	
+	<comps>     
+      <li Class="CompProperties_FireOverlay">
+        <fireSize>1</fireSize>
+      </li>
+	</comps>
   </ThingDef>
   
 <!-- ====================== Compound Bow ===================== -->
