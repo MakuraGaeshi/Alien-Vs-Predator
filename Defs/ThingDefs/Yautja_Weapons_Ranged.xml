@@ -86,9 +86,7 @@
     </projectile>
 	
 	<comps>     
-      <li Class="CompProperties_FireOverlay">
-        <fireSize>1</fireSize>
-      </li>
+	
 	</comps>
   </ThingDef>
   
