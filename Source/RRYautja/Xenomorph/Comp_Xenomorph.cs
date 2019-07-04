@@ -71,6 +71,7 @@ namespace RRYautja
                 return pawn.Map != null ? pawn.Map : pawn.MapHeld;
             }
         }
+
         public float MinHideDist
         {
             get
@@ -264,6 +265,7 @@ namespace RRYautja
             lord.AddPawn(pawn);
             return lord;
         }
+
         public override void CompTickRare()
         {
             base.CompTickRare();

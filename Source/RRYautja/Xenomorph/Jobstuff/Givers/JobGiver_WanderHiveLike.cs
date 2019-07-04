@@ -45,12 +45,22 @@ namespace RimWorld
         protected override IntVec3 GetWanderRoot(Pawn pawn)
         {
             HiveLike hivelike = pawn.mindState.duty!=null && pawn.mindState.duty.focus!=null ? pawn.mindState.duty.focus.Thing as HiveLike: null;
+            if (hivelike!=null)
+            {
+                return hivelike.Position;
+            }
+            /*
             if (hivelike==null)
             {
                 hivelike = FindClosestHiveLike(pawn);
             }
+            */
             if (hivelike == null || !hivelike.Spawned)
             {
+                if (XenomorphUtil.HivelikesPresent(pawn.Map))
+                {
+                    return XenomorphUtil.ClosestReachableHivelike(pawn).Position;
+                }
                 if (!XenomorphKidnapUtility.hiveslimepresent)
                 {
                     if (XenomorphKidnapUtility.TryFindGoodHiveLoc(pawn, out IntVec3 c))

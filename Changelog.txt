@@ -86,8 +86,7 @@ Added Mechanoid Mark Visual
 Added Combistaff Ability Button Texture
 Added Check for null or destroyed Corpses while makring non yautja
 Fixed Acid blood pathfinding issue
-Fixed Save Corruption issue, if your save was corrupted while playing the last update, please try laoding it now
-
+Fixed Save Corruption issue, if your save was corrupted while playing the last update, please try loading it now
 Completed Inhibitor HediffComp - For Synths
 Added Foodpoisioning Protection Comp - For Synths
 Added scatter shot effect for flamers

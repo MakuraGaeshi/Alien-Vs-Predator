@@ -111,7 +111,7 @@ namespace RRYautja.settings
 
     class AvPSettings : ModSettings
     {
-        public bool AllowXenomorphFaction, AllowYautjaFaction, AllowHiddenInfections;
+        public bool AllowXenomorphFaction = true, AllowYautjaFaction = true, AllowHiddenInfections = true;
         public float fachuggerRemovalFailureDeathChance, embryoRemovalFailureDeathChance;
 
         public override void ExposeData()

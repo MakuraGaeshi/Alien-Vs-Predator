@@ -14,7 +14,6 @@ namespace RRYautja
         public static bool eggsReachable;
         public static Thing closestReachableEgg;
         public static Thing closestReachableCocoontoEgg;
-        
 
         public static bool cocoonsPresent;
         public static bool cocoonsReachable;

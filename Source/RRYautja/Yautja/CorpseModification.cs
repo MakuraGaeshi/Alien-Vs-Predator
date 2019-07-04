@@ -4,6 +4,7 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using System.Linq;
+using RRYautja.settings;
 
 namespace RRYautja
 {
@@ -81,26 +82,6 @@ namespace RRYautja
             {
 
             });
-            /*
-            DefDatabase<PawnKindDef>.AllDefsListForReading.ForEach(action: td =>
-            {
-                if (!XenomorphUtil.isInfectablePawnKind(td))
-                {
-                    Log.Message(string.Format("unimpregnable pawnkind: {0}", td.LabelCap));
-                }
-            });
-            */
-            int suitablehostkinds = DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(x => XenomorphUtil.isInfectablePawnKind(x)).Count;
-            int unsuitablehostkinds = DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(x => !XenomorphUtil.isInfectablePawnKind(x)).Count;
-            if (suitablehostkinds > 0)
-            {
-                Log.Message(string.Format("impregnable pawnkinds: {0}", suitablehostkinds));
-            }
-            if (unsuitablehostkinds > 0)
-            {
-                Log.Message(string.Format("unimpregnable pawnkinds: {0}", unsuitablehostkinds));
-            }
-
         }
     }
 
