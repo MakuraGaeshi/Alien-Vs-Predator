@@ -307,7 +307,7 @@
 		<AimingDelayFactor>1.0</AimingDelayFactor>
 		<MentalBreakThreshold>0.020</MentalBreakThreshold>
         <ImmunityGainSpeed>1.25</ImmunityGainSpeed>
-        <PainShockThreshold>1.0</PainShockThreshold>
+        <PainShockThreshold>0.9999</PainShockThreshold>
         <ForagedNutritionPerDay>0</ForagedNutritionPerDay>
         <GlobalLearningFactor>1.3</GlobalLearningFactor>
         <MeleeDodgeChance>1.2</MeleeDodgeChance>

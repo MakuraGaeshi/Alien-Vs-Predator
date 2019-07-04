@@ -30,7 +30,7 @@
 		<label>standard armamement of USCM</label>
 		<description>The box contains the gear for 4 privates of the USCM Corps.</description>
 		<graphicData>
-			<texPath>Things/Item/Minified/CrateFront</texPath>
+			<texPath>Things/Buildings/USCM/Gearbox</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<drawSize>(0.8,0.8)</drawSize>
 		</graphicData>
@@ -46,8 +46,11 @@
 				<li>RRY_USCM_M10PAttern</li>
 				<li>RRY_Apparel_M3Pattern</li>
 				<li>RRY_USCM_M41A</li>
+				<li>RRY_USCM_M41A</li>
+				<li>RRY_USCM_M41A</li>
+				<li>RRY_USCM_M240Incinerator</li>
 			</possibleItems>
-            <PerItemCount>4</PerItemCount>
+            <PerItemCount>1</PerItemCount>
             <spawnAll>true</spawnAll>
             <destoryOnUse>true</destoryOnUse>
             <destroyChance>1.0</destroyChance>
@@ -61,7 +64,7 @@
 		<label>M56 Battle System Operator supplies</label>
 		<description>The box contains the to equip 1 M56 Smart Gun Operator.</description>
 		<graphicData>
-			<texPath>Things/Item/Minified/CrateFront</texPath>
+			<texPath>Things/Buildings/USCM/Gearbox</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<drawSize>(0.8,0.8)</drawSize>
 		</graphicData>

@@ -220,7 +220,7 @@
   </ThingDef>
   
  <ThingDef ParentName="RRY_USCM_BaseMakeableGun">
-    <defName>RRY_M240Incinerator</defName>
+    <defName>RRY_USCM_M240Incinerator</defName>
     <label>M240 Incinerator Unit</label>
     <description>The M240 Incinerator Unit, also known as the M240 Flamethrower and colloquially as the Bake-a-Flake, is a carbine-style flamethrower employed by the United States Colonial Marine Corps.</description>
     <graphicData>
@@ -326,7 +326,7 @@
   </ThingDef>
   
  <ThingDef ParentName="RRY_USCM_BaseMakeableGun">
-    <defName>RRY_M240Incinerator_Heavy</defName>
+    <defName>RRY_USCM_M240Incinerator_Heavy</defName>
     <label>Heavy Flamer</label>
     <description>The Heavy varaint of the M240 Incinerator unit, the M240A2 "Cleaner" Incenerator Unit need a portable fuel tank being strapped to the back of the user to make it effective.</description>
     <graphicData>

@@ -14,11 +14,6 @@
 	    <lifeStages>
       <li>
         <bodyGraphicData>
-          <drawSize>0.75</drawSize>
-        </bodyGraphicData>
-      </li>
-      <li>
-        <bodyGraphicData>
           <drawSize>1</drawSize>
         </bodyGraphicData>
       </li>
@@ -43,6 +38,13 @@
       <min>10000</min>
       <max>10000</max>
     </apparelMoney>
+	<weaponTags>
+		<li>USCM_MaintenanceJack</li>
+	</weaponTags>
+	<weaponMoney>
+		<min>500</min>
+		<max>1000</max>
+	</weaponMoney>
     <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
   </PawnKindDef>
   
