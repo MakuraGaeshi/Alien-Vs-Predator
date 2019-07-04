@@ -80,7 +80,7 @@ More bloody Xenos Ai Tweaks
 
 Added Synth Defective Inhibitor HediffComp - Not yet used
 
-V1.0.0.5
+V1.0.0.5 02/07/2019
 Compatability Tweaks
 Added Mechanoid Mark Visual
 Added Combistaff Ability Button Texture
@@ -92,3 +92,5 @@ Added Foodpoisioning Protection Comp - For Synths
 Added scatter shot effect for flamers
 Added No camera shake explosions
 Tweaked Box code - For USCM Starter Gear
+
+V1.0.0.6
