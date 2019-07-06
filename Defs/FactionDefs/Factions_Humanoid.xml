@@ -4,8 +4,8 @@
   <!--============================================= USCM Player Faction =============================================-->
   
   <FactionDef Abstract="True" Name="RRY_USCMPlayerFactionBase">
-    <colorSpectrum>
-      <li>(0, 0.737, 0.847)</li>
+     <colorSpectrum>
+      <li>(1, 1, 1)</li>
     </colorSpectrum>
     <homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
     <expandingIconTexture>World/WorldObjects/USCMIcon</expandingIconTexture>
@@ -55,8 +55,8 @@
       </points>
     </maxPawnCostPerTotalPointsCurve>
     <homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
-    <expandingIconTexture>World/WorldObjects/USCMIcon</expandingIconTexture>
-    </FactionDef>
+    <expandingIconTexture>World/WorldObjects/Expanding/Town</expandingIconTexture>
+	</FactionDef>
 	
 	<!--============================================= USCM - NPC faction =============================================-->
 	
@@ -177,12 +177,8 @@
         </options>
       </li>
     </pawnGroupMakers>
-    <homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
+	<homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
     <expandingIconTexture>World/WorldObjects/USCMIcon</expandingIconTexture>
-	
-    <colorSpectrum>
-      <li>(1, 1, 1)</li>
-    </colorSpectrum>
   </FactionDef>
     
 </Defs>
