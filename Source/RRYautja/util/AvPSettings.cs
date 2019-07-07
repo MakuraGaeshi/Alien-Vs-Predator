@@ -107,12 +107,11 @@ namespace RRYautja.settings
         private Vector2 pos2 = new Vector2(0f, 0f);
 
     }
-
-
+    
     class AvPSettings : ModSettings
     {
         public bool AllowXenomorphFaction = true, AllowYautjaFaction = true, AllowHiddenInfections = true;
-        public float fachuggerRemovalFailureDeathChance, embryoRemovalFailureDeathChance;
+        public float fachuggerRemovalFailureDeathChance= 0.35f, embryoRemovalFailureDeathChance = 0.35f;
 
         public override void ExposeData()
         {

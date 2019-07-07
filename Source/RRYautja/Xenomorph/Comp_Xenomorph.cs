@@ -370,7 +370,10 @@ namespace RRYautja
         {
             if (pawn.Faction==null)
             {
-                pawn.SetFaction(Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph));
+                if (Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph) != null)
+                {
+                    pawn.SetFaction(Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph));
+                }
             }
             base.CompTick();
             this.ticksSinceHeal++;

@@ -94,3 +94,7 @@ Added No camera shake explosions
 Tweaked Box code - For USCM Starter Gear
 
 V1.0.0.6
+Acid Pathfinding tweaks
+Mod settings should now default to the correct values (active for all toggles and 35% for sliders)
+Shouldercannon comp should no longer tick while in a null map
+Neomorph impregnations should now always result in a neomorph

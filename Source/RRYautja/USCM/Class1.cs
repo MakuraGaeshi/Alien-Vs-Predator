@@ -56,7 +56,6 @@ namespace RRYautja
             base.PostSpawnSetup(respawningAfterLoad);
         }
         
-
         // Token: 0x040016B6 RID: 5814
         public static readonly Graphic FireGraphic = GraphicDatabase.Get<Graphic_Flicker>("Things/Special/Fire", ShaderDatabase.TransparentPostLight, Vector2.one, Color.white);
     }
