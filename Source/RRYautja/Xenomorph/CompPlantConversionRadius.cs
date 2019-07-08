@@ -82,11 +82,12 @@ namespace RimWorld
                 return;
             }
             Plant plant = c.GetPlant(this.parent.Map);
-            if (plant != null)
+            bool flag = c.GetThingList(this.parent.Map).Any(x=> x.def == XenomorphDefOf.RRY_Plant_Neomorph_Fungus_Hidden || x.def == XenomorphDefOf.RRY_Plant_Neomorph_Fungus);
+            if (plant != null && !flag)
             {
                 if (plant.LeaflessNow)
                 {
-                    if (Rand.Value < this.LeaflessPlantKillChance)
+                    if (Rand.Value < this.LeaflessPlantKillChance )
                     {
                         Thing thing2;
 

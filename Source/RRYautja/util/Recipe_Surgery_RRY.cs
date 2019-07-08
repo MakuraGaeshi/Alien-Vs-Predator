@@ -57,8 +57,9 @@ namespace RRYautja
                 {
                     if (Rand.Chance(0.1f))
                     {
-                        surgeon.health.AddHediff(patient.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_FaceHuggerInfection),
-                        patient.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_FaceHuggerInfection).Part);
+                        /*
+                        surgeon.health.AddHediff(patient.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_FaceHuggerInfection), patient.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_FaceHuggerInfection).Part);
+                        */
                         patient.health.RemoveHediff(patient.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_FaceHuggerInfection));
                         Messages.Message("RRYMessageMedicalOperationFailureRidiculous".Translate(surgeon.LabelShort, patient.LabelShort, surgeon.Named("SURGEON"), patient.Named("PATIENT")), patient, MessageTypeDefOf.NegativeHealthEvent, true);
                         HealthShardTendUtility.GiveInjuriesOperationFailureRidiculous(patient);
@@ -68,7 +69,9 @@ namespace RRYautja
                     {
                         if (Rand.Chance(0.15f))
                         {
+                            /*
                             surgeon.health.AddHediff(patient.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_FaceHuggerInfection), patient.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_FaceHuggerInfection).Part);
+                            */
                             patient.health.RemoveHediff(patient.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_FaceHuggerInfection));
                         }
                         else if (Rand.Chance(0.35f))

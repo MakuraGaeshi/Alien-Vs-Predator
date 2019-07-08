@@ -11,6 +11,7 @@ using Verse.AI.Group;
 using RimWorld.Planet;
 using UnityEngine;
 using RRYautja.settings;
+using RRYautja.ExtensionMethods;
 
 namespace RRYautja
 {
@@ -86,6 +87,19 @@ namespace RRYautja
         }
     }
 
+    /*
+    [HarmonyPatch(typeof(Map), "ConstructComponents")]
+    public static class Map_ConstructComponents_Patch
+    {
+        [HarmonyPostfix]
+        public static void HarmsHealthPostfix(Map __instance)
+        {
+
+            __instance.hiveGrid() = new HiveGrid(__instance);
+        }
+    }
+    */
+ 
     [HarmonyPatch(typeof(Pawn_MeleeVerbs), "ChooseMeleeVerb")]
     public static class Pawn_MeleeVerbs_ChooseMeleeVerb_Patch
     {

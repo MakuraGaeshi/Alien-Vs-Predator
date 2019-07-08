@@ -11,25 +11,34 @@ namespace RRYautja
     // Token: 0x02000B78 RID: 2936
     public class Plant_Neomorph : Plant
     {
+        public float radius = 6f;
+
+        public override bool IngestibleNow => false;
+
+        public override bool HarvestableNow => false;
+
         public override void TickLong()
         {
             base.TickLong();
             bool selected = Find.Selector.SingleSelectedThing == this;
             if (!this.IsBurning()&& !this.Destroyed && this.Map!=null)
             {
-                Thing thing = GenClosest.ClosestThingReachable(this.Position, this.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 6f, x => XenomorphUtil.isInfectablePawn(((Pawn)x)), null, 0, -1, false, RegionType.Set_Passable, false);
+                Thing thing = GenClosest.ClosestThingReachable(this.Position, this.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), radius, x => XenomorphUtil.isInfectablePawn(((Pawn)x)), null, 0, -1, false, RegionType.Set_Passable, false);
                 if (thing != null && this.Growth > 0.95f && !thing.Destroyed && !((Pawn)thing).Dead)
                 {
                     List<Thing> thingList = GridsUtility.GetThingList(thing.Position, this.Map);
                     Thing thing2;
-                    if (this.def == XenomorphDefOf.RRY_Plant_Neomorph_Fungus)
-                    {
-                        thing2 = ThingMaker.MakeThing(XenomorphDefOf.RRY_Neomorph_Spores);
-                    }
-                    else
+
+
+                    if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Fungus))
                     {
                         thing2 = ThingMaker.MakeThing(XenomorphDefOf.RRY_Neomorph_Spores_Hidden);
                     }
+                    else
+                    {
+                        thing2 = ThingMaker.MakeThing(XenomorphDefOf.RRY_Neomorph_Spores);
+                    }
+
                     float Chance = ((0.5f * Growth) * ((Pawn)thing).BodySize) / DistanceBetween(this.Position, thing.Position);
                 //    if (selected) Log.Message(string.Format("Chance: {0}", Chance));
                     if (Rand.Chance(Chance) && !thingList.Exists(x => x.def == XenomorphDefOf.RRY_Neomorph_Spores))
@@ -45,33 +54,100 @@ namespace RRYautja
                 }
                 else
                 {
-                    Plant plant = (Plant)GenClosest.ClosestThingReachable(this.Position, this.Map, ThingRequest.ForGroup(ThingRequestGroup.Plant), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 3f, x => ((Plant)x).Growth > 0.65f && x.def != XenomorphDefOf.RRY_Plant_Neomorph_Fungus && x.def != XenomorphDefOf.RRY_Plant_Neomorph_Fungus_Hidden && (x.def.defName.Contains("Grass") || x.def.defName.Contains("Moss")), null, 0, -1, false, RegionType.Set_Passable, false);
-                    if (plant != null && !plant.Destroyed && !plant.IsBurning() && this.Growth > 0.95f)
-                    {
-                    //    if (selected) Log.Message(string.Format("plant: {0}", plant));
-                        float Chance2 = ((0.5f * Growth) * plant.Growth / DistanceBetween(this.Position, plant.Position));
-                    //    if (selected) Log.Message(string.Format("Chance2: {0}", Chance2));
-                        if (Rand.Chance(Chance2))
-                        {
-                            Thing thing2;
-                            if (this.def == XenomorphDefOf.RRY_Plant_Neomorph_Fungus)
-                            {
-                                thing2 = ThingMaker.MakeThing(XenomorphDefOf.RRY_Neomorph_Spores);
-                            }
-                            else
-                            {
-                                thing2 = ThingMaker.MakeThing(XenomorphDefOf.RRY_Neomorph_Spores_Hidden);
-                            }
-                        //    if (selected) Log.Message(string.Format("was: {0}", plant));
-                            IntVec3 vec3 = plant.Position;
-                            GenSpawn.Spawn(thing2, vec3, this.Map);
-                            plant.Destroy();
-                            GenSpawn.Spawn(ThingMaker.MakeThing(this.def), vec3, this.Map);
-
-                        }
-                    }
+                    HarmRandomPlantInRadius(radius/2);
                 }
             }
+        }
+
+        // Token: 0x0600295A RID: 10586 RVA: 0x00139AB0 File Offset: 0x00137EB0
+        private void HarmRandomPlantInRadius(float radius)
+        {
+            IntVec3 c = this.Position + (Rand.InsideUnitCircleVec3 * radius).ToIntVec3();
+            if (!c.InBounds(this.Map))
+            {
+                return;
+            }
+            Plant plant = c.GetPlant(this.Map);
+            bool flag = c.GetThingList(this.Map).Any(x => x.def == XenomorphDefOf.RRY_Plant_Neomorph_Fungus_Hidden || x.def == XenomorphDefOf.RRY_Plant_Neomorph_Fungus);
+            if (plant != null && !flag)
+            {
+                if (plant.LeaflessNow)
+                {
+                    if (Rand.Value < this.LeaflessPlantKillChance)
+                    {
+                        Thing thing2;
+
+                        if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Fungus))
+                        {
+                            thing2 = ThingMaker.MakeThing(XenomorphDefOf.RRY_Plant_Neomorph_Fungus_Hidden);
+                        }
+                        else
+                        {
+                            thing2 = ThingMaker.MakeThing(XenomorphDefOf.RRY_Plant_Neomorph_Fungus);
+                        }
+                        IntVec3 vec3 = plant.Position;
+                        GenSpawn.Spawn(thing2, vec3, plant.Map, WipeMode.Vanish);
+                        //    plant.Destroy();
+                        //    GenSpawn.Spawn(ThingMaker.MakeThing(this.def), vec3, this.Map);
+                    }
+                }
+                else
+                {
+                    plant.MakeLeafless(Plant.LeaflessCause.Poison);
+                }
+            }
+        }
+        
+        public new float GrowthRateFactor_Temperature
+        {
+            get
+            {
+                float num;
+                if (!GenTemperature.TryGetTemperatureForCell(base.Position, base.Map, out num))
+                {
+                    return 1f;
+                }
+                /*
+                if (num < 10f)
+                {
+                    return Mathf.InverseLerp(0f, 10f, num);
+                }
+                */
+                if (num > 42f)
+                {
+                    return Mathf.InverseLerp(58f, 42f, num);
+                }
+                return 1f;
+            }
+        }
+
+        public new bool LeaflessNow
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        public override void MakeLeafless(LeaflessCause cause)
+        {
+            return;
+        }
+
+        public override ushort PathFindCostFor(Pawn p)
+        {
+            if (!XenomorphUtil.IsXenomorph(p))
+            {
+                if (p.Faction == Faction.OfPlayer)
+                {
+                    if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Fungus) && p.Spawned && p.IsColonist)
+                    {
+                        return base.PathFindCostFor(p);
+                    }
+                    return 800;
+                }
+            }
+            return base.PathFindCostFor(p);
         }
 
         public float DistanceBetween(IntVec3 a, IntVec3 b)
@@ -79,9 +155,12 @@ namespace RRYautja
             double distance = GetDistance(a.x, a.z, b.x, b.z);
             return (float)distance;
         }
+
         private static double GetDistance(double x1, double y1, double x2, double y2)
         {
             return Math.Sqrt(Math.Pow((x2 - x1), 2) + Math.Pow((y2 - y1), 2));
         }
+        
+        private float LeaflessPlantKillChance = 0.09f;
     }
 }

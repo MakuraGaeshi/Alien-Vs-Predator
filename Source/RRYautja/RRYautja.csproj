@@ -79,8 +79,12 @@
     <Compile Include="util\ThoughtWorker_RRY_Facehugger.cs" />
     <Compile Include="util\CompFoodPoisonProtection.cs" />
     <Compile Include="util\HediffGiver_StartWithHediff.cs" />
+    <Compile Include="Xenomorph\Hives\HiveUtility.cs" />
+    <Compile Include="Xenomorph\Hives\SectionLayer_Hive.cs" />
+    <Compile Include="Xenomorph\Hives\HiveExtensions.cs" />
+    <Compile Include="Xenomorph\Hives\HiveGrid.cs" />
     <Compile Include="Xenomorph\CompPlantConversionRadius.cs" />
-    <Compile Include="Xenomorph\CompHiveCreep.cs" />
+    <Compile Include="Xenomorph\Hives\CompHiveCreep.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_DestroyCocoon.cs" />
     <Compile Include="util\CompUseEffect_Cocoon.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_XenomorphTendSelf.cs" />
@@ -118,7 +122,7 @@
     <Compile Include="Xenomorph\Lordstuff\LordToils\LordToil_DefendHiveLoc.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_PredalienImpregnate.cs" />
     <Compile Include="Xenomorph\IncidentWorker_PowerCut.cs" />
-    <Compile Include="Xenomorph\GenStep_XenomorphCaveHives.cs" />
+    <Compile Include="Xenomorph\Hives\GenStep_XenomorphCaveHives.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_PredalienImpregnate.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphHosthunter.cs" />
     <Compile Include="Xenomorph\RRY_FlyingObject.cs" />

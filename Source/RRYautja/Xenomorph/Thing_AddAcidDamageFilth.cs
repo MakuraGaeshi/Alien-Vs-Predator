@@ -18,31 +18,32 @@ namespace RRYautja
             base.ExposeData();
             Scribe_Values.Look<int>(ref this.destroyTick, "destroyTick", 0, false);
             Scribe_Values.Look<int>(ref this.activeTicks, "activeTicks", 0, false);
-            Scribe_Values.Look<bool>(ref this.active, "active", true, false);
+            Scribe_Values.Look<bool>(ref this.active, "active", false, false);
         }
-
+        
         public object cachedLabelMouseover { get; private set; }
         public bool active;
         public int destroyTick;
         public int activeTicks;
-
-        private List<Pawn> touchingPawns = new List<Pawn>();
-
-        private List<Thing> touchingThings = new List<Thing>();
-
         private int Ticks = 100;
         private int TickRate = 100;
         private int AcidDamage = 3;
+        private List<Pawn> touchingPawns = new List<Pawn>();
+        private List<Thing> touchingThings = new List<Thing>();
+
 
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
-            this.RecalcPathsOnAndAroundMe(map);
-            if (destroyTick==0)
+            if (!respawningAfterLoad)
             {
-                this.destroyTick = (Rand.Range(29, 121) * 100);
+                this.RecalcPathsOnAndAroundMe(map);
+                if (destroyTick == 0)
+                {
+                    this.destroyTick = (Rand.Range(29, 121) * 100);
+                }
+                this.active = true;
             }
-            this.active = true;
         }
 
         public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
@@ -66,16 +67,21 @@ namespace RRYautja
         }
 
         /*
+
         public override ushort PathFindCostFor(Pawn p)
         {
-            if (this.active)
+            if (!XenomorphUtil.IsXenomorph(p))
             {
-                return 1000;
+                if (p.Faction == Faction.OfPlayer)
+                {
+                    if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Fungus) && p.Spawned && p.IsColonist)
+                    {
+                        return base.PathFindCostFor(p);
+                    }
+                    return 800;
+                }
             }
-            else
-            {
-                return 0;
-            }
+            return base.PathFindCostFor(p);
         }
         */
 

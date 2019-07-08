@@ -98,3 +98,6 @@ Acid Pathfinding tweaks
 Mod settings should now default to the correct values (active for all toggles and 35% for sliders)
 Shouldercannon comp should no longer tick while in a null map
 Neomorph impregnations should now always result in a neomorph
+Strange Fungus spread by Xenomorph Ships parts should no longer stack on plants
+Tweaks to fungus spreading method
+Inital BnC(Babies and Children) compatability

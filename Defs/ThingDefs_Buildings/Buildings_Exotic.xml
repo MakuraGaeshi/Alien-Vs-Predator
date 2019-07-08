@@ -55,7 +55,7 @@
 			</shadowData>
     </graphicData>
 		<comps>
-			<!-- <li Class="CompProperties_HiveCreep" /> -->
+			<li Class="CompProperties_HiveCreep" />
 			<li Class="CompProperties_PlantConversionRadius">
 				<radiusPerDayCurve>
 					<points>

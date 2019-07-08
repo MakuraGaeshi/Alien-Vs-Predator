@@ -12,7 +12,7 @@ namespace RRYautja
     {
         public static bool HiveSlimePresent(Map map)
         {
-            return map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_Hive_Slime).Count!=0;
+            return map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_Hive_Slime).Count > 0;
         }
 
         public static Thing ClosestReachableHiveSlime(Pawn pawn)
@@ -21,7 +21,17 @@ namespace RRYautja
             return thing;
         }
 
-    //    public static IntVec3 HiveLocation(Map map)
+        public static bool HiveShipPresent(Map map)
+        {
+            return map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_XenomorphCrashedShipPart).Count > 0;
+        }
+
+        public static Thing ClosestReachableHiveShip(Pawn pawn)
+        {
+            return pawn.Map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_XenomorphCrashedShipPart).RandomElement();
+        }
+
+        //    public static IntVec3 HiveLocation(Map map)
 
         // Token: 0x060005D7 RID: 1495 RVA: 0x00039248 File Offset: 0x00037648
         public static bool CanHaulAside(Pawn p, Thing t, IntVec3 center, int radius, out IntVec3 storeCell)
