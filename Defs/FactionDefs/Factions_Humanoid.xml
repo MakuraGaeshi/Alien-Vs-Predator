@@ -96,21 +96,24 @@
       <min>0</min>
       <max>30</max>
     </naturalColonyGoodwill>
-    <!--<visitorTraderKinds>
+    <visitorTraderKinds>
 	
-      <li>RRY_USCM_Private</li>
+      <li>RRY_Base_USCM_Standard</li>
+	  
 	  
     </visitorTraderKinds>
     <caravanTraderKinds>
    
-     
+		<li>RRY_Base_USCM_Standard</li>
+		
 	  
     </caravanTraderKinds>
     <baseTraderKinds>
 	
-      
+      <li>RRY_Base_USCM_Standard</li>
 	  
-    </baseTraderKinds>-->
+	  
+    </baseTraderKinds>
     <allowedArrivalTemperatureRange>
       <min>-50</min>
       <max>45</max>
@@ -128,52 +131,35 @@
       <li>
         <kindDef>Combat</kindDef>
         <options>
-          <RRY_USCM_Private>14</RRY_USCM_Private>
-          <!--<YautjaYoungBlood_RRY>10</YautjaYoungBlood_RRY>
-          <YautjaBlooded_RRY>8</YautjaBlooded_RRY>
-          <YautjaElite_RRY>4</YautjaElite_RRY>
-          <YautjaElder_RRY>2</YautjaElder_RRY>
-          <YautjaAncient_RRY>1</YautjaAncient_RRY>-->
+          <RRY_USCM_Private>10</RRY_USCM_Private>
+		  <RRY_USCM_Operator>2</RRY_USCM_Operator>
         </options>
       </li>
       <li>
         <kindDef>Peaceful</kindDef>
         <options>
           <RRY_USCM_Private>10</RRY_USCM_Private>
-          <!--<YautjaUnblooded_RRY>13</YautjaUnblooded_RRY>
-          <YautjaYoungBlood_RRY>10</YautjaYoungBlood_RRY>
-          <YautjaBlooded_RRY>8</YautjaBlooded_RRY>
-          <YautjaElite_RRY>4</YautjaElite_RRY>
-          <YautjaElder_RRY>2</YautjaElder_RRY>
-          <YautjaAncient_RRY>1</YautjaAncient_RRY>-->
+		  <RRY_USCM_Operator>2</RRY_USCM_Operator>
         </options>
       </li>
-	  <!--<li>
+	  <li>
       <kindDef>Trader</kindDef>
         <traders>
-          <YautjaTrader_RRY></YautjaTrader_RRY>
+          <RRY_USCM_PAO>1</RRY_USCM_PAO>
         </traders>
         <carriers>
           <Muffalo>2</Muffalo>
           <Dromedary>2</Dromedary>
         </carriers>
         <guards>
-          <YautjaUnblooded_RRY>13</YautjaUnblooded_RRY>
-          <YautjaYoungBlood_RRY>10</YautjaYoungBlood_RRY>
-          <YautjaBlooded_RRY>10</YautjaBlooded_RRY>
-          <YautjaAncient_RRY>1</YautjaAncient_RRY>
+          <RRY_USCM_Private>13</RRY_USCM_Private>
+          <RRY_USCM_Operator>2</RRY_USCM_Operator>
         </guards>
-      </li>-->
+      </li>
 	  <li>
         <kindDef>Settlement</kindDef>
         <options>
           <RRY_USCM_Private>5</RRY_USCM_Private>
-          <!--<YautjaUnblooded_RRY>14</YautjaUnblooded_RRY>
-          <YautjaYoungBlood_RRY>10</YautjaYoungBlood_RRY>
-          <YautjaBlooded_RRY>8</YautjaBlooded_RRY>
-          <YautjaElite_RRY>4</YautjaElite_RRY>
-          <YautjaElder_RRY>2</YautjaElder_RRY>
-          <YautjaAncient_RRY>10</YautjaAncient_RRY>-->
         </options>
       </li>
     </pawnGroupMakers>

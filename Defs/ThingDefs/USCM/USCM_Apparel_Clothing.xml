@@ -125,6 +125,7 @@
     <graphicData>
       <texPath>Things/Apparel/USCM/Clothing/Fatigue/ColonialMarineFatigues</texPath>
       <graphicClass>Graphic_Single</graphicClass>
+		  <shaderType>CutoutComplex</shaderType>
     </graphicData>
     <costStuffCount>45</costStuffCount>
     <stuffCategories>
