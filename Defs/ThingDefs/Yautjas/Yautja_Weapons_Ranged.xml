@@ -84,6 +84,10 @@
       <armorPenetrationBase>0.25</armorPenetrationBase>
       <speed>60</speed>
     </projectile>
+	
+	<comps>     
+	
+	</comps>
   </ThingDef>
   
 <!-- ====================== Compound Bow ===================== -->

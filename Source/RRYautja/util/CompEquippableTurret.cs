@@ -64,7 +64,7 @@ namespace RRYautja
 		public override void CompTick()
         {
 			base.CompTick();
-            if (IsWorn)
+            if (IsWorn && GetWearer.Map!=null)
             {
                 if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.RRY_Concept_Plasmacaster) && GetWearer.IsColonist)
                 {

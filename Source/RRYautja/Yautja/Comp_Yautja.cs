@@ -99,10 +99,10 @@ namespace RRYautja
             Scribe_Values.Look<int>(ref this.pawnKills, "pawnKills");
             Scribe_Deep.Look<Hediff>(ref this.unmarked, "bloodedUnmarked");
             Scribe_Defs.Look<HediffDef>(ref this.MarkedhediffDef, "MarkedhediffDef");
-            Scribe_References.Look<Corpse>(ref this.corpse, "corpseRef", true);
-            Scribe_Deep.Look<Corpse>(ref this.corpse, "corpseRefDeep");
-            Scribe_References.Look<Pawn>(ref this.pawn, "pawnRef", true);
-            Scribe_Deep.Look<Pawn>(ref this.pawn, "pawnRefDeep");
+            Scribe_References.Look<Corpse>(ref this.corpse, "corpseRef");
+        //    Scribe_Deep.Look<Corpse>(ref this.corpse, "corpseRefDeep");
+            Scribe_References.Look<Pawn>(ref this.pawn, "pawnRef");
+        //    Scribe_Deep.Look<Pawn>(ref this.pawn, "pawnRefDeep");
             Scribe_Values.Look<String>(ref this.MarkHedifftype, "thisMarktype");
             Scribe_Values.Look<String>(ref this.MarkHedifflabel, "thislabel");
             Scribe_Values.Look<bool>(ref this.predator, "thisPred");
@@ -335,13 +335,13 @@ namespace RRYautja
         {
             get
             {
-                return string.Format(useLabel,this.corpse.LabelShortCap, this.parent.LabelShortCap);
+                return string.Format(useLabel, this.corpse.LabelShortCap, this.parent.LabelShortCap);
             }
         }
 
         public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
         {
-            if (selPawn.kindDef.race == YautjaDefOf.RRY_Alien_Yautja && Pawn.kindDef.race!=YautjaDefOf.RRY_Alien_Yautja && inductable)
+            if (selPawn.kindDef.race == YautjaDefOf.RRY_Alien_Yautja && Pawn.kindDef.race!=YautjaDefOf.RRY_Alien_Yautja && inductable && !this.corpse.DestroyedOrNull())
             {
                 FloatMenuOption useopt = new FloatMenuOption(this.FloatMenuOptionLabel, delegate ()
                 {

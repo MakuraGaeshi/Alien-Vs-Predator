@@ -12,7 +12,7 @@ namespace RRYautja
     {
         public static bool HiveSlimePresent(Map map)
         {
-            return map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_Hive_Slime).Count!=0;
+            return map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_Hive_Slime).Count > 0;
         }
 
         public static Thing ClosestReachableHiveSlime(Pawn pawn)
@@ -21,7 +21,17 @@ namespace RRYautja
             return thing;
         }
 
-    //    public static IntVec3 HiveLocation(Map map)
+        public static bool HiveShipPresent(Map map)
+        {
+            return map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_XenomorphCrashedShipPart).Count > 0;
+        }
+
+        public static Thing ClosestReachableHiveShip(Pawn pawn)
+        {
+            return pawn.Map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_XenomorphCrashedShipPart).RandomElement();
+        }
+
+        //    public static IntVec3 HiveLocation(Map map)
 
         // Token: 0x060005D7 RID: 1495 RVA: 0x00039248 File Offset: 0x00037648
         public static bool CanHaulAside(Pawn p, Thing t, IntVec3 center, int radius, out IntVec3 storeCell)
@@ -156,32 +166,6 @@ namespace RRYautja
         // Token: 0x0400030C RID: 780
         private static List<IntVec3> candidates = new List<IntVec3>();
         // Token: 0x060000A8 RID: 168 RVA: 0x00007234 File Offset: 0x00005434
-        public static HashSet<Thing> XenomorphCocoonsFor(Map map, Thing t)
-        {
-            HashSet<Thing> wildCocoons = map.GetComponent<MapComponent_XenomorphCocoonTracker>().WildCocoons;
-            bool flag = (wildCocoons != null || wildCocoons.Count > 0) && t.Faction != Faction.OfPlayerSilentFail;
-            HashSet<Thing> result;
-            if (flag)
-            {
-                result = wildCocoons;
-            }
-            else
-            {
-                HashSet<Thing> domesticCocoons = map.GetComponent<MapComponent_XenomorphCocoonTracker>().DomesticCocoons;
-                bool flag2 = (domesticCocoons != null || domesticCocoons.Count > 0) && t.Faction == Faction.OfPlayerSilentFail;
-                if (flag2)
-                {
-                    result = new HashSet<Thing>(from x in domesticCocoons
-                                                where ForbidUtility.InAllowedArea(x.PositionHeld, t as Pawn)
-                                                select x);
-                }
-                else
-                {
-                    result = null;
-                }
-            }
-            return result;
-        }
 
         public static bool isInfectableThing(ThingDef thingDef)
         {

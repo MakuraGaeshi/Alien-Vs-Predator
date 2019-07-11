@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-
-	<!-- Defs\Bodies\Bodies_Humanlike.xml -->
-
-	<!-- Human -->
+	<!-- Human Embryo/Hugger Removal -->
 	<Operation Class="PatchOperationSequence">
 		<operations>
 			<li Class="PatchOperationAdd">
@@ -16,7 +13,8 @@
 			</li>
 		</operations>	
 	</Operation>
-	<!-- AnimalThingBase -->
+	
+	<!-- AnimalThingBase Embryo/Hugger Removal -->
 	<Operation Class="PatchOperationSequence">
 		<operations>
 			<li Class="PatchOperationAdd">
@@ -29,4 +27,153 @@
 			</li>
 		</operations>	
 	</Operation>
+
+	<!-- Xenomorph Embryo Implantation -->	
+	<Operation Class="PatchOperationSequence">
+	<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+				<xpath>/Defs/ThingDef[@Name = "RRY_XenomorphEmbryo"]</xpath>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs</xpath>
+				<value>
+				  <RecipeDef ParentName="SurgeryFlesh">
+					<defName>RRY_XenomorphEmbryoImplantation</defName>
+					<label>implant xenomorph embyro</label>
+					<description>implant a xenomorph embyro.</description>
+					<workerClass>Recipe_InstallArtificialBodyPart</workerClass>
+					<jobString>Implanting xenomorph embyro.</jobString>
+					<workAmount>1300</workAmount>
+					<surgerySuccessChanceFactor>1.40</surgerySuccessChanceFactor>
+					<skillRequirements>
+					  <Medicine>3</Medicine>
+					</skillRequirements>
+					<ingredients>
+					  <li>
+						<filter>
+						  <categories>
+							<li>Medicine</li>
+						  </categories>
+						</filter>
+						<count>1</count>
+					  </li>
+
+					  <li>
+						<filter>
+						  <thingDefs>
+							<li>RRY_XenomorphEmbryo</li>
+						  </thingDefs>
+						</filter>
+						<count>1</count>
+					  </li>
+
+					</ingredients>
+					<fixedIngredientFilter>
+					  <categories>
+						<li>Medicine</li>
+					  </categories>
+
+					  <thingDefs>
+						<li>RRY_XenomorphEmbryo</li>
+					  </thingDefs>
+
+					</fixedIngredientFilter>
+					<appliedOnFixedBodyParts>
+					  <li>Torso</li>
+					  <li>Body</li>
+					</appliedOnFixedBodyParts>
+					<addsHediff>RRY_XenomorphImpregnation</addsHediff>
+				  </RecipeDef>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName = "Human"]/recipes</xpath>
+				<value>
+					<li>RRY_XenomorphEmbryoImplantation</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[@Name = "AnimalThingBase"]/recipes</xpath>
+				<value>
+					<li>RRY_XenomorphEmbryoImplantation</li>
+				</value>
+			</li>
+		</operations>	
+	</Operation>
+	
+	<!-- Neomorph Embryo Implantation -->	
+	<Operation Class="PatchOperationSequence">
+	<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+				<xpath>/Defs/ThingDef[@Name = "RRY_NeomorphEmbryo"]</xpath>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs</xpath>
+				<value>
+				  <RecipeDef ParentName="SurgeryFlesh">
+					<defName>RRY_NeomorphEmbryoImplantation</defName>
+					<label>implant neoomorph embyro</label>
+					<description>implant a neomorph embyro.</description>
+					<workerClass>Recipe_InstallArtificialBodyPart</workerClass>
+					<jobString>Implanting neomorph embyro.</jobString>
+					<workAmount>1300</workAmount>
+					<surgerySuccessChanceFactor>1.40</surgerySuccessChanceFactor>
+					<skillRequirements>
+					  <Medicine>3</Medicine>
+					</skillRequirements>
+					<ingredients>
+					  <li>
+						<filter>
+						  <categories>
+							<li>Medicine</li>
+						  </categories>
+						</filter>
+						<count>1</count>
+					  </li>
+
+					  <li>
+						<filter>
+						  <thingDefs>
+							<li>RRY_NeomorphEmbryo</li>
+						  </thingDefs>
+						</filter>
+						<count>1</count>
+					  </li>
+
+					</ingredients>
+					<fixedIngredientFilter>
+					  <categories>
+						<li>Medicine</li>
+					  </categories>
+
+					  <thingDefs>
+						<li>RRY_NeomorphEmbryo</li>
+					  </thingDefs>
+
+					</fixedIngredientFilter>
+					<appliedOnFixedBodyParts>
+					  <li>Torso</li>
+					  <li>Body</li>
+					</appliedOnFixedBodyParts>
+					<addsHediff>RRY_NeomorphImpregnation</addsHediff>
+				  </RecipeDef>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName = "Human"]/recipes</xpath>
+				<value>
+					<li>RRY_NeomorphEmbryoImplantation</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[@Name = "AnimalThingBase"]/recipes</xpath>
+				<value>
+					<li>RRY_NeomorphEmbryoImplantation</li>
+				</value>
+			</li>
+		</operations>	
+	</Operation>
+	
 </Patch>

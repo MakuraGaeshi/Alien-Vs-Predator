@@ -565,6 +565,7 @@
         </raceRestriction>
     </alienRace>
 	<statBases>
+		<Mass>85</Mass>
 		<MarketValue>3500</MarketValue>
 		<MoveSpeed>5.5</MoveSpeed>
 		<Flammability>0.6</Flammability>
@@ -683,15 +684,23 @@
       </litterSizeCurve>
       <lifeStageAges>
         <li>
-          <def>HumanlikeBaby</def>
+          <def>RRY_Yautja_Baby</def>
           <minAge>0</minAge>
         </li>
         <li>
-          <def>HumanlikeTeenager</def>
+          <def>RRY_Yautja_Toddler</def>
+          <minAge>1.2</minAge>
+        </li>
+        <li>
+          <def>RRY_Yautja_Child</def>
+          <minAge>4</minAge>
+        </li>
+        <li>
+          <def>RRY_Yautja_Teenager</def>
           <minAge>14</minAge>
         </li>
         <li>
-          <def>HumanlikeAdult</def>
+          <def>RRY_Yautja_Adult</def>
           <minAge>18</minAge>
         </li>
       </lifeStageAges>

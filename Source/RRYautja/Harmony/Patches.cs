@@ -11,6 +11,7 @@ using Verse.AI.Group;
 using RimWorld.Planet;
 using UnityEngine;
 using RRYautja.settings;
+using RRYautja.ExtensionMethods;
 
 namespace RRYautja
 {
@@ -48,7 +49,7 @@ namespace RRYautja
         {
             Map map = Find.CurrentMap;
 
-            if (perceivedStatic && map != null)
+            if (map != null)
             {
                 List<Thing> list = map.thingGrid.ThingsListAt(c);
                 for (int j = 0; j < 9; j++)
@@ -64,25 +65,19 @@ namespace RRYautja
                             acid = (list[k] as Filth_AddAcidDamage);
                             if (acid != null)
                             {
-                                break;
-                            }
-                        }
-                        if (acid != null)
-                        {
-                            if (acid.active)
-                            {
-                                if (b.x == 0 && b.z == 0)
+                                if (acid.active)
                                 {
-                                    __result += 1000;
+                                //    Log.Message(string.Format("acid is active: {0} = {1}", acid.active, __result));
+                                    if (b.x == 0 && b.z == 0)
+                                    {
+                                        __result += 100;
+                                    }
+                                    else
+                                    {
+                                        __result += 50;
+                                    }
                                 }
-                                else
-                                {
-                                    __result += 150;
-                                }
-                            }
-                            else
-                            {
-                                __result += 0;
+                            //    Log.Message(string.Format("acid.active: {0} = {1}", acid.active, __result));
                             }
                         }
                     }
@@ -92,6 +87,19 @@ namespace RRYautja
         }
     }
 
+    /*
+    [HarmonyPatch(typeof(Map), "ConstructComponents")]
+    public static class Map_ConstructComponents_Patch
+    {
+        [HarmonyPostfix]
+        public static void HarmsHealthPostfix(Map __instance)
+        {
+
+            __instance.hiveGrid() = new HiveGrid(__instance);
+        }
+    }
+    */
+ 
     [HarmonyPatch(typeof(Pawn_MeleeVerbs), "ChooseMeleeVerb")]
     public static class Pawn_MeleeVerbs_ChooseMeleeVerb_Patch
     {
@@ -1150,7 +1158,7 @@ namespace RRYautja
 #if DEBUG
         //    Log.Message(string.Format("trying to add an infection to {0}'s wounded {1}", __instance.Pawn, __instance.parent.Part));
 #endif
-            if (__instance.Pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned)|| (__instance.Pawn.InBed() && __instance.Pawn.CurrentBed() is Building_XenomorphCocoon))
+            if (__instance.Pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned)|| (__instance.Pawn.InBed() && __instance.Pawn.CurrentBed() is Building_XenomorphCocoon) || __instance.Pawn.RaceProps.FleshType.defName.Contains("RRY_SynthFlesh"))
             {
 #if DEBUG
             //    Log.Message(string.Format("{0} protected from infection", __instance.Pawn));
@@ -1490,6 +1498,61 @@ namespace RRYautja
         }
     }
 
+    // ScenarioLister.ScenariosInCategory
+    [HarmonyPatch(typeof(ScenarioLister), "ScenariosInCategory")]
+    public static class Page_ScenarioLister_ScenariosInCategory_Patch
+    {
+        [HarmonyPostfix]
+        public static IEnumerable<Scenario> ScenariosInCategoryPrefix(IEnumerable<Scenario> scenario ,ScenarioCategory cat)
+        {
+            if (cat == ScenarioCategory.FromDef)
+            {
+                IEnumerable<ScenarioDef> scenarios = null;
+                scenarios = DefDatabase<ScenarioDef>.AllDefs;
+                foreach (ScenarioDef scenDef in DefDatabase<ScenarioDef>.AllDefs)
+                {
+                    Log.Message(string.Format("Found {0}", scenarios.Count()));
+                    if ((!scenDef.defName.Contains("Yautja") && !SettingsHelper.latest.AllowYautjaFaction) || SettingsHelper.latest.AllowYautjaFaction)
+                    {
+                        yield return scenDef.scenario;
+                    }
+                }
+            }
+            else if (cat == ScenarioCategory.CustomLocal)
+            {
+                IEnumerable<Scenario> scenarios = ScenarioFiles.AllScenariosLocal;
+                foreach (Scenario scen in scenarios)
+                {
+                    Log.Message(string.Format("Found {0}", scenarios.Count()));
+                    if ((!scen.name.Contains("Yautja") && !SettingsHelper.latest.AllowYautjaFaction) || SettingsHelper.latest.AllowYautjaFaction)
+                    {
+                        yield return scen;
+                    }
+                }
+            }
+            else if (cat == ScenarioCategory.SteamWorkshop)
+            {
+                IEnumerable<Scenario> scenarios = ScenarioFiles.AllScenariosWorkshop;
+                foreach (Scenario scen2 in scenarios)
+                {
+                    Log.Message(string.Format("Found {0}", scenarios.Count()));
+                    if ((!scen2.name.Contains("Yautja") && !SettingsHelper.latest.AllowYautjaFaction) || SettingsHelper.latest.AllowYautjaFaction)
+                    {
+                        yield return scen2;
+                    }
+                }
+            }
+            yield break;
+            //   return list;
+
+        }
+
+    }
+
+    
+
+    /*
+     
     [HarmonyPatch(typeof(Page_SelectScenario), "DoScenarioListEntry")]
     public static class Page_SelectScenario_DoScenarioListEntry_Patch
     {
@@ -1504,68 +1567,95 @@ namespace RRYautja
         }
     }
 
-    /* Page_SelectScenario
+
+    */
+
+
+    /* ScenarioLister
+     
+
+    [HarmonyPatch(typeof(ScenarioLister), "AllScenarios")]
+    public static class ScenarioFiles_AllScenarios_Patch
+    {
+        [HarmonyPrefix]
+        public static bool AllScenariosWorkshop_Prefix(ref IEnumerable<Scenario> __result)
+        {
+            if (!SettingsHelper.latest.AllowYautjaFaction)
+            {
+                __result = AllScenarios();
+                return false;
+            }
+            return true;
+        }
+
+        // Token: 0x060022B1 RID: 8881 RVA: 0x001049F0 File Offset: 0x00102DF0
+        public static IEnumerable<Scenario> AllScenarios()
+        {
+            foreach (ScenarioDef scenDef in DefDatabase<ScenarioDef>.AllDefs)
+            {
+                if (scenDef.defName.Contains("Yautja") && !SettingsHelper.latest.AllowYautjaFaction)
+                {
+
+                }
+                else
+                {
+
+                }
+                yield return scenDef.scenario;
+            }
+            foreach (Scenario scen in ScenarioFiles.AllScenariosLocal)
+            {
+                if (scen.name.Contains("Yautja") && !SettingsHelper.latest.AllowYautjaFaction)
+                {
+
+                }
+                else
+                {
+                    yield return scen;
+                }
+            }
+            foreach (Scenario scen2 in ScenarioFiles.AllScenariosWorkshop)
+            {
+                if (scen2.name.Contains("Yautja") && !SettingsHelper.latest.AllowYautjaFaction)
+                {
+
+                }
+                else
+                {
+                    yield return scen2;
+                }
+            }
+            yield break;
+        }
+    }
+
     [HarmonyPatch(typeof(ScenarioLister), "AllScenarios")]
     public static class ScenarioFiles_AllScenarios_Patch
     {
         [HarmonyPostfix]
         public static void AllScenariosWorkshopPostfix(ref IEnumerable<Scenario> __result)
         {
+            Log.Message(string.Format("ScenarioFiles_AllScenarios_Patch"));
             List<Scenario> scenarios = new List<Scenario>();
+            Log.Message(string.Format("Allow Yautja: {0}", SettingsHelper.latest.AllowYautjaFaction));
             if (!SettingsHelper.latest.AllowYautjaFaction)
             {
-                foreach (Scenario item in __result)
+                Log.Message(string.Format("checking for Yautja Scenarios"));
+                foreach (Scenario scen in __result)
                 {
-                    if (!item.name.Contains("RRY_YautjaScenario"))
+                    if (!scen.name.Contains("Yautja"))
                     {
-                        scenarios.Add(item);
+                        scenarios.Add(scen);
+                    }
+                    else
+                    {
+                        Log.Message(string.Format("Yautja Scenario, skipping"));
                     }
                 }
                 __result = scenarios;
             }
         }
     }
-    */
-    /* ScenarioLister
-    [HarmonyPatch(typeof(RimWorld.ScenarioFiles), "AllScenariosWorkshop", new Type[] { typeof(IEnumerable<Scenario>)})]
-    public static class ScenarioFiles_AllScenariosWorkshop_Patch
-    {
-        [HarmonyPostfix]
-        public static void AllScenariosWorkshopPostfix(ref IEnumerable<Scenario> __result)
-        {
-            List<Scenario> scenarios = new List<Scenario>();
-            if (!SettingsHelper.latest.AllowYautjaFaction)
-            {
-                foreach (Scenario item in __result)
-                {
-                    if (!item.name.Contains("RRY_YautjaScenario"))
-                    {
-                        scenarios.Add(item);
-                    }
-                }
-                __result = scenarios;
-            }
-        }
-    }
-    [HarmonyPatch(typeof(RimWorld.ScenarioFiles), "AllScenariosLocal", new Type[] { typeof(IEnumerable<Scenario>)})]
-    public static class ScenarioFiles_AllScenariosLocal_Patch
-    {
-        [HarmonyPostfix]
-        public static void AllScenariosLocalPostfix(ref IEnumerable<Scenario> __result)
-        {
-            List<Scenario> scenarios = new List<Scenario>();
-            if (!SettingsHelper.latest.AllowYautjaFaction)
-            {
-                foreach (Scenario item in __result)
-                {
-                    if (!item.name.Contains("RRY_YautjaScenario"))
-                    {
-                        scenarios.Add(item);
-                    }
-                }
-                __result = scenarios;
-            }
-        }
-    }
+
     */
 }

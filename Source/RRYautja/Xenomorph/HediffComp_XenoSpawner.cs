@@ -367,6 +367,10 @@ namespace RRYautja
             {
                 gender = Gender.None;
             }
+            if (this.parent.def == XenomorphDefOf.RRY_HiddenNeomorphImpregnation || this.parent.def == XenomorphDefOf.RRY_NeomorphImpregnation)
+            {
+                pawnKindDef = XenomorphDefOf.RRY_Xenomorph_Neomorph;
+            }
             if (Prefs.DevMode)
             {
                  Log.Message(string.Format("spawning: {0}", pawnKindDef.label));

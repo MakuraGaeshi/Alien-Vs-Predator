@@ -13,17 +13,37 @@ namespace RRYautja
 
     public class Filth_AddAcidDamage : Filth
     {
-        // Token: 0x17000003 RID: 3
-        // (get) Token: 0x06000017 RID: 23 RVA: 0x000027A2 File Offset: 0x000009A2
-        // (set) Token: 0x06000018 RID: 24 RVA: 0x000027AA File Offset: 0x000009AA
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look<int>(ref this.destroyTick, "destroyTick", 0, false);
+            Scribe_Values.Look<int>(ref this.activeTicks, "activeTicks", 0, false);
+            Scribe_Values.Look<bool>(ref this.active, "active", false, false);
+        }
+        
         public object cachedLabelMouseover { get; private set; }
-        public bool active = true;
-        // Token: 0x06000019 RID: 25 RVA: 0x000027B3 File Offset: 0x000009B3
+        public bool active;
+        public int destroyTick;
+        public int activeTicks;
+        private int Ticks = 100;
+        private int TickRate = 100;
+        private int AcidDamage = 3;
+        private List<Pawn> touchingPawns = new List<Pawn>();
+        private List<Thing> touchingThings = new List<Thing>();
+
+
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
-            this.RecalcPathsOnAndAroundMe(map);
-            this.destroyTick = (Rand.Range(29, 121) * 100);
+            if (!respawningAfterLoad)
+            {
+                this.RecalcPathsOnAndAroundMe(map);
+                if (destroyTick == 0)
+                {
+                    this.destroyTick = (Rand.Range(29, 121) * 100);
+                }
+                this.active = true;
+            }
         }
 
         public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
@@ -46,25 +66,32 @@ namespace RRYautja
             }
         }
 
+        /*
+
         public override ushort PathFindCostFor(Pawn p)
         {
-            if (this.active)
+            if (!XenomorphUtil.IsXenomorph(p))
             {
-                return 1000;
+                if (p.Faction == Faction.OfPlayer)
+                {
+                    if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Fungus) && p.Spawned && p.IsColonist)
+                    {
+                        return base.PathFindCostFor(p);
+                    }
+                    return 800;
+                }
             }
-            else
-            {
-                return 0;
-            }
+            return base.PathFindCostFor(p);
         }
-        
+        */
+
         // Token: 0x0600001A RID: 26 RVA: 0x000027C0 File Offset: 0x000009C0
         public override void Tick()
         {
             bool destroyed = base.Destroyed;
             if (!destroyed && this.active)
             {
-                bool flag = this.destroyTick < 0 && !base.Destroyed;
+                bool flag = this.activeTicks > this.destroyTick && !base.Destroyed;
                 if (flag)
                 {
                     RecalcPathsOnAndAroundMe(Map);
@@ -73,7 +100,7 @@ namespace RRYautja
                 else
                 {
                     RecalcPathsOnAndAroundMe(Map);
-                    this.destroyTick--;
+                    this.activeTicks++;
                     this.Ticks--;
                     bool flag2 = this.Ticks <= 0;
                     if (flag2)
@@ -221,23 +248,15 @@ namespace RRYautja
         // Token: 0x0600001E RID: 30 RVA: 0x00002BAC File Offset: 0x00000DAC
         public void addAcidDamage(Pawn p)
         {
-        //    Log.Message(string.Format("addAcidDamage: {0}", p.LabelShort));
             List<BodyPartRecord> list = new List<BodyPartRecord>();
-        //    Log.Message(string.Format("0 "));
             List<Apparel> wornApparel = new List<Apparel>();
             if (p.RaceProps.Humanlike) wornApparel = p.apparel.WornApparel;
-        //    Log.Message(string.Format("1 "));
             int num = Mathf.RoundToInt((float)this.AcidDamage * Rand.Range(0.5f, 1.25f));
-        //    Log.Message(string.Format("2 "));
             DamageInfo damageInfo = default(DamageInfo);
-        //    Log.Message(string.Format("3 "));
             MoteMaker.ThrowDustPuff(p.Position, base.Map, 0.2f);
-        //    Log.Message(string.Format("4 "));
             BodyPartHeight bodyPartHeight = p.Downed ? BodyPartHeight.Undefined : BodyPartHeight.Bottom;
-        //    Log.Message(string.Format("{0}", bodyPartHeight));
             foreach (BodyPartRecord bodyPartRecord in p.health.hediffSet.GetNotMissingParts(bodyPartHeight, BodyPartDepth.Outside, null, null))
             {
-            //    Log.Message(string.Format("{0}", bodyPartRecord.Label));
                 bool flag = wornApparel.Count > 0;
                 if (flag)
                 {
@@ -248,27 +267,23 @@ namespace RRYautja
                         if (flag3)
                         {
                             flag2 = true;
-                        //    Log.Message(string.Format("is protected"));
                             break;
                         }
                     }
                     bool flag4 = !flag2;
                     if (flag4)
                     {
-                    //    Log.Message(string.Format("{0}", bodyPartRecord));
                         list.Add(bodyPartRecord);
                     }
                 }
                 else
                 {
-                //    Log.Message(string.Format("{0}", bodyPartRecord));
                     list.Add(bodyPartRecord);
                 }
             }
             for (int k = 0; k < list.Count; k++)
             {
                 damageInfo = new DamageInfo(XenomorphDefOf.RRY_AcidBurn, (float)Mathf.RoundToInt(((float)num * list[k].coverage)*10), 0f, -1f, this, list[k], null, 0, null);
-                //    Log.Message(string.Format("addAcidDamage TakeDamage: {0}, list[k].coverage: {1}, damageInfo: {2}", list[k].customLabel, list[k].coverage, damageInfo));
                 if (Rand.Chance(list[k].coverage))
                 {
 
@@ -285,22 +300,5 @@ namespace RRYautja
                 }
             }
         }
-        public override void ExposeData()
-        {
-            base.ExposeData();
-            Scribe_Values.Look<int>(ref this.destroyTick, "destroyTick", 0, false);
-        }
-
-        public int destroyTick;
-
-        private List<Pawn> touchingPawns = new List<Pawn>();
-
-        private List<Thing> touchingThings = new List<Thing>();
-
-        private int Ticks = 100;
-
-        private int TickRate = 100;
-
-        private int AcidDamage = 1;
     }
 }

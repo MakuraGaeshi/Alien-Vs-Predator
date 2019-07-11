@@ -61,7 +61,7 @@ Even more Xenos Ai Tweaks
 Xenos hives should be more passive during the day and more active at night
 Xenos below 50% health should try to return to the hive untill healed
 
-V1.0.0.4 
+V1.0.0.4 27/06/2019
 Added Mod Options to disable Yautja and Xenomorph Factions
 Added Mod Options to modify the chances of pawn death on failed operations to remove Facehuggers and Embryos
 Added List to Mod Options to display a list of all valid Hosts for Xenomorph impregnation (including things added by other mods)
@@ -78,3 +78,25 @@ Fixed crash caused by kidnapping xenos getting stuck in infinite loop looking fo
 More bloody Xenos Ai Tweaks
 
 Added Synth Defective Inhibitor HediffComp - Not yet used
+
+V1.0.0.5 02/07/2019
+Compatability Tweaks
+Added Mechanoid Mark Visual
+Added Combistaff Ability Button Texture
+Added Check for null or destroyed Corpses while makring non yautja
+Fixed Acid blood pathfinding issue
+Fixed Save Corruption issue, if your save was corrupted while playing the last update, please try loading it now
+Completed Inhibitor HediffComp - For Synths
+Added Foodpoisioning Protection Comp - For Synths
+Added scatter shot effect for flamers
+Added No camera shake explosions
+Tweaked Box code - For USCM Starter Gear
+
+V1.0.0.6
+Acid Pathfinding tweaks
+Mod settings should now default to the correct values (active for all toggles and 35% for sliders)
+Shouldercannon comp should no longer tick while in a null map
+Neomorph impregnations should now always result in a neomorph
+Strange Fungus spread by Xenomorph Ships parts should no longer stack on plants
+Tweaks to fungus spreading method
+Inital BnC(Babies and Children) compatability

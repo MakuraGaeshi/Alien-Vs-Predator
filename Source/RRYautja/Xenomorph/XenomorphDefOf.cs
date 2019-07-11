@@ -75,7 +75,7 @@ namespace RimWorld
         public static ThingDef RRY_EggXenomorphFertilized;
         public static ThingDef RRY_Xenomorph_TailSpike;
         public static ThingDef RRY_Xenomorph_HeadShell;
-        public static ThingDef RRY_Leather_Xenomorph;
+        public static ThingDef RRY_Leather_Xenomorph; 
 
         public static ThingDef RRY_Xenomorph_HiveWall;
 
@@ -87,6 +87,7 @@ namespace RimWorld
 
         public static ThingDef RRY_XenomorphCryptosleepCasket;
 
+        public static ThingDef RRY_XenomorphCrashedShipPart;
         public static ThingDef RRY_XenomorphHive; 
         public static ThingDef RRY_XenomorphHive_Child;
         public static ThingDef RRY_Hive_Slime;

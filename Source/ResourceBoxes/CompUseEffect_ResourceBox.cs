@@ -52,7 +52,7 @@ namespace ResourceBoxes
         public override void DoEffect(Pawn usedBy)
         {
             base.DoEffect(usedBy);
-            if (PropsResourceBox.soundDef!=null)
+            if (PropsResourceBox.soundDef != null)
             {
                 SoundStarter.PlayOneShotOnCamera(PropsResourceBox.soundDef, usedBy.MapHeld);
             }

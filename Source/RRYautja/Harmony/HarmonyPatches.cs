@@ -44,7 +44,7 @@ namespace RRYautja
                 typeof(RotDrawMode),
                 typeof(bool)
             }, null), new HarmonyMethod(typeof(HarmonyPatches), "PawnRenderer_Blur_Prefix", null), null, null);
-            
+
             harmony.Patch(
                 original: AccessTools.Method(type: typeof(PawnRenderer), name: "DrawEquipment"),
                 prefix: new HarmonyMethod(type: typeof(HarmonyPatches), name: nameof(Pre_DrawEquipment_Cloak)),
@@ -68,7 +68,7 @@ namespace RRYautja
             Type typeFromHandle22 = typeof(Pawn_HealthTracker);
             HarmonyPatches.int_Pawn_HealthTracker_GetPawn = typeFromHandle22.GetField("pawn", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.GetField);
 
-         //   harmony.Patch(AccessTools.Method(typeof(PawnRenderer), "BaseHeadOffsetAt", null, null), null, new HarmonyMethod(typeof(HarmonyPatches), "BaseHeadOffsetAtPostfix", null), null);
+            //   harmony.Patch(AccessTools.Method(typeof(PawnRenderer), "BaseHeadOffsetAt", null, null), null, new HarmonyMethod(typeof(HarmonyPatches), "BaseHeadOffsetAtPostfix", null), null);
 
             Type typeFromHandle6 = typeof(Pawn_HealthTracker);
             harmony.Patch(typeFromHandle6.GetMethod("DropBloodFilth"), new HarmonyMethod(typeof(HarmonyPatches).GetMethod("Patch_Pawn_HealthTracker_DropBloodFilth")), null, null);
@@ -88,7 +88,7 @@ namespace RRYautja
                 postfix: null);
 
         }
-        
+
         public static bool Pre_AddFoodPoisoningHediff_CompCheck(Pawn pawn, Thing ingestible, FoodPoisonCause cause)
         {
             //    Log.Message(string.Format("checkin if {0} can get food poisioning from {1} because {2}", pawn.Name, ingestible, cause));
@@ -130,7 +130,7 @@ namespace RRYautja
         {
             return (Pawn)HarmonyPatches._pawnPawnNativeVerbs.GetValue(instance);
         }
-        
+
         public static List<VerbProperties> cachedVerbProperties(Pawn_NativeVerbs instance)
         {
             return (List<VerbProperties>)HarmonyPatches._cachedVerbProperties.GetValue(instance);
@@ -145,7 +145,7 @@ namespace RRYautja
         {
             return (Pawn)HarmonyPatches.pawnField_PawnRenderer.GetValue(instance);
         }
-        
+
         public static bool Patch_CheckCreateVerbProperties(ref Pawn_NativeVerbs __instance)
         {
             bool flag = HarmonyPatches._cachedVerbProperties.GetValue(__instance) != null;
@@ -200,7 +200,7 @@ namespace RRYautja
             Vector2 offset = Vector2.zero;
             if (pawn.InBed() && pawn.CurrentBed() is Building_XenomorphCocoon cocoonthing)
             {
-             //   Log.Message(string.Format("true"));
+                //   Log.Message(string.Format("true"));
                 if (cocoonthing.Rotation == Rot4.North)
                 {
                     __result.z -= 0.5f;
@@ -208,7 +208,7 @@ namespace RRYautja
             }
             else
             {
-             //   Log.Message(string.Format("false"));
+                //   Log.Message(string.Format("false"));
             }
             __result.x += offset.x;
             __result.z += offset.y;
@@ -247,10 +247,10 @@ namespace RRYautja
             }
             return true;
         }
-        
+
         public static bool Pre_PawnDied_Facehugger(Corpse corpse, DeathActionWorker_BigExplosion __instance)
         {
-        //    Log.Message(string.Format("{0}", corpse.Label));
+            //    Log.Message(string.Format("{0}", corpse.Label));
             bool flag = XenomorphUtil.IsInfectedPawn(corpse.InnerPawn);
             if (flag)
             {
@@ -258,7 +258,7 @@ namespace RRYautja
             }
             return true;
         }
-        
+
         public static Vector3 PushResult(Thing Caster, Thing thingToPush, int pushDist, out bool collision)
         {
             Vector3 vector = GenThing.TrueCenter(thingToPush);
@@ -297,7 +297,7 @@ namespace RRYautja
             collision = flag;
             return result;
         }
-        
+
         public static void PushEffect(Thing Caster, Thing target, int distance, bool damageOnCollision = false)
         {
             if (target is Building)
@@ -325,34 +325,34 @@ namespace RRYautja
                 }
             }, "PushingCharacter", false, null);
         }
-            /*    
-        public static void Patch_PawnRenderer_RenderPawnAt(PawnRenderer __instance, ref Vector3 drawLoc, ref RotDrawMode bodyDrawType, ref bool headStump)
+        /*    
+    public static void Patch_PawnRenderer_RenderPawnAt(PawnRenderer __instance, ref Vector3 drawLoc, ref RotDrawMode bodyDrawType, ref bool headStump)
+    {
+        Pawn pawn = HarmonyPatches.PawnRenderer_GetPawn(__instance);
+        if (pawn.RaceProps.Humanlike)
         {
-            Pawn pawn = HarmonyPatches.PawnRenderer_GetPawn(__instance);
-            if (pawn.RaceProps.Humanlike)
+            foreach (var hd in pawn.health.hediffSet.hediffs)
             {
-                foreach (var hd in pawn.health.hediffSet.hediffs)
+                HediffComp_DrawImplant comp = hd.TryGetComp<HediffComp_DrawImplant>();
+                if (comp != null)
                 {
-                    HediffComp_DrawImplant comp = hd.TryGetComp<HediffComp_DrawImplant>();
-                    if (comp != null)
-                    {
-                        comp.DrawImplant(drawLoc);
-                    }
+                    comp.DrawImplant(drawLoc);
                 }
-            } // DrawWornExtras()
-            else
+            }
+        } // DrawWornExtras()
+        else
+        {
+            foreach (var hd in pawn.health.hediffSet.hediffs)
             {
-                foreach (var hd in pawn.health.hediffSet.hediffs)
+                HediffComp_DrawImplant comp = hd.TryGetComp<HediffComp_DrawImplant>();
+                if (comp != null)
                 {
-                    HediffComp_DrawImplant comp = hd.TryGetComp<HediffComp_DrawImplant>();
-                    if (comp != null)
-                    {
-                        comp.DrawWornExtras();
-                    }
+                    comp.DrawWornExtras();
                 }
             }
         }
-        */
+    }
+    */
         public static void PathOfNature(Pawn_PathFollower __instance, Pawn pawn, IntVec3 c, ref int __result)
         {
             if (pawn?.GetComp<Comp_Yautja>() is Comp_Yautja comp_Yautja || pawn?.GetComp<Comp_Xenomorph>() is Comp_Xenomorph comp_Xenomorph)
@@ -425,7 +425,7 @@ namespace RRYautja
                 {
                     bool selected = Find.Selector.SingleSelectedThing == value;
                 }
-                
+
                 __instance.graphics = new PawnGraphicSet_Invisible(value)
                 {
                     nakedGraphic = new Graphic_Invisible(),
@@ -454,7 +454,7 @@ namespace RRYautja
             }
             return true;
         }
-        
+
         public static void Post_GeneratePawn_Yautja(PawnGenerationRequest request, ref Pawn __result)
         {
             Comp_Yautja _Yautja = __result.TryGetComp<Comp_Yautja>();
@@ -566,7 +566,7 @@ namespace RRYautja
                     }
 
                 }
-                
+
             }
             /*
             if (__result.Faction.def.defName.Contains("RRY_USCM"))
@@ -593,7 +593,7 @@ namespace RRYautja
             */
             if (__result.kindDef.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Xenomorph)
             {
-                if (request.KindDef==XenomorphDefOf.RRY_Xenomorph_Queen)
+                if (request.KindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
                 {
                     __result.gender = Gender.Female;
                     /*
@@ -629,9 +629,9 @@ namespace RRYautja
             if (__result.kindDef.race != YautjaDefOf.RRY_Alien_Yautja && __result.RaceProps.Humanlike && (__result.story.hairDef == YautjaDefOf.RRY_Yaujta_Dreds || __result.story.hairDef == YautjaDefOf.RRY_Yaujta_Ponytail || __result.story.hairDef == YautjaDefOf.RRY_Yaujta_Bald))
             {
                 Log.Message(string.Format("Non Yautja with Yautja Hair"));
-                __result.story.hairDef = DefDatabase<HairDef>.AllDefsListForReading.FindAll(x=>!x.hairTags.Contains("Yautja")).RandomElement();
+                __result.story.hairDef = DefDatabase<HairDef>.AllDefsListForReading.FindAll(x => !x.hairTags.Contains("Yautja")).RandomElement();
             }
-            if (Rand.Chance(0.005f)&&XenomorphUtil.isInfectablePawn(__result)&& SettingsHelper.latest.AllowHiddenInfections)
+            if (Rand.Chance(0.005f) && XenomorphUtil.isInfectablePawn(__result) && SettingsHelper.latest.AllowHiddenInfections)
             {
                 HediffDef def = Rand.Chance(0.75f) ? XenomorphDefOf.RRY_HiddenXenomorphImpregnation : XenomorphDefOf.RRY_HiddenNeomorphImpregnation;
                 __result.health.AddHediff(def, __result.RaceProps.body.corePart, null);
@@ -652,7 +652,7 @@ namespace RRYautja
                 }
             }
         }
-        
+
         private static FieldInfo pawnField_PawnRenderer;
 
         public static FieldInfo int_Pawn_HealthTracker_GetPawn;

@@ -3,7 +3,7 @@
   <ThingDef Name="RRY_Plant_Base" Abstract="True">
     <category>Plant</category>
     <thingClass>Plant</thingClass>
-    <altitudeLayer>LowPlant</altitudeLayer>
+    <altitudeLayer>FloorEmplacement</altitudeLayer>
     <useHitPoints>True</useHitPoints>
     <statBases>
       <Flammability>10</Flammability>
