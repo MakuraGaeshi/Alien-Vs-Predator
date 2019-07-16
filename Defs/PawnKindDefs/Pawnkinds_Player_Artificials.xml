@@ -27,12 +27,12 @@
 <!--=============================================== Artificials ===============================================-->
 
   <PawnKindDef ParentName="BaseArtificialPawnKind">
-    <defName>RRY_Synth</defName>
+    <defName>RRY_Player_Synth</defName>
     <label>Synth</label>
     <defaultFactionType>RRY_USCM_PlayerColony</defaultFactionType>
     
     <apparelTags>
-		<li>USCM_Clothing</li>
+		<li>USCM_StandardIssue_Apparel</li>
 	</apparelTags>
     <apparelMoney>
       <min>10000</min>

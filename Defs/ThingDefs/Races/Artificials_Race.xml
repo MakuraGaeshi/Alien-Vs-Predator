@@ -9,17 +9,17 @@
             <alienslavekinds>
                 <li>
                     <kindDefs>
-						<li>RRY_Synth</li>
+						<li>RRY_Player_Synth</li>
 					</kindDefs>
-                    <chance>40.0</chance>
+                    <chance>15.0</chance>
                 </li>
             </alienslavekinds>
             <alienrefugeekinds>
                 <li>
                     <kindDefs>
-						<li>RRY_Synth</li>
+						<li>RRY_Player_Synth</li>
 					</kindDefs>
-                    <chance>40.0</chance>
+                    <chance>10.0</chance>
                 </li>
             </alienrefugeekinds>
 			<startingColonists>
@@ -27,9 +27,9 @@
 				<pawnKindEntries>
 					<li>
                     <kindDefs>
-                        <li>RRY_Synth</li>
+                        <li>RRY_Player_Synth</li>
 					</kindDefs>
-                    <chance>90.0</chance>
+                    <chance>15.0</chance>
 					</li>
 				</pawnKindEntries>
 				<factionDefs>
@@ -42,9 +42,9 @@
                     <pawnKindEntries>
 					<li>
                     <kindDefs>
-						<li>RRY_Synth</li>
+						<li>RRY_Player_Synth</li>
 					</kindDefs>
-                    <chance>40.0</chance>
+                    <chance>5.0</chance>
 					</li>
 					</pawnKindEntries>
 					<factionDefs>
@@ -477,5 +477,7 @@
 			
 	</butcherProducts>
 </AlienRace.ThingDef_AlienRace>
+
+
 
 </Defs>

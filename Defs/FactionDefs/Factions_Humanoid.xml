@@ -98,14 +98,15 @@
     </naturalColonyGoodwill>
     <visitorTraderKinds>
 	
-      <li>RRY_Base_USCM_Standard</li>
+      <li>RRY_USCM_Visitor_Official</li>
+	  <li>RRY_USCM_Visitor_Smuggler</li>
 	  
 	  
     </visitorTraderKinds>
     <caravanTraderKinds>
    
 		<li>RRY_Base_USCM_Standard</li>
-		
+		<li>RRY_USCM_CombatSupplier</li>
 	  
     </caravanTraderKinds>
     <baseTraderKinds>
@@ -159,7 +160,9 @@
 	  <li>
         <kindDef>Settlement</kindDef>
         <options>
-          <RRY_USCM_Private>5</RRY_USCM_Private>
+          <RRY_USCM_Private>6</RRY_USCM_Private>
+		  <RRY_USCM_Operator>2</RRY_USCM_Operator>
+		  <RRY_USCM_PAO>1</RRY_USCM_PAO>
         </options>
       </li>
     </pawnGroupMakers>

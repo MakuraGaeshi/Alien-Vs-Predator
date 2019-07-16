@@ -16,8 +16,8 @@
     </gearHealthRange>
 	<apparelTags>
 		<li>USCM_M10Pattern</li>
-		<li>USCM_Apparel_Clothing</li>
-		<li>USCM_Apparel_Armour</li>
+		<li>USCM_Clothing</li>
+		<li>USCM_Armour</li>
 	</apparelTags>
 	<apparelMoney>
 		<min>5000</min>
@@ -141,7 +141,7 @@
     </gearHealthRange>
 	<apparelTags>
 		<li>USCM_StandardIssue_Apparel</li>
-		<li>USCM_Armour</li>
+		<li>IndustrialMilitaryBasic</li>
 	</apparelTags>
 	<apparelMoney>
 		<min>5000</min>

@@ -38,15 +38,12 @@
     <label>marine</label>
     <defaultFactionType>RRY_USCM_PlayerColony</defaultFactionType>
     <apparelTags>
-		<li>USCM_M10Pattern</li>
-		<li>USCM_Apparel_Clothing</li>
-		<li>USCM_Apparel_Armour</li>
+		<li>USCM_StandardIssue_Apparel</li>
 	</apparelTags>
 	<apparelMoney>
 		<min>5000</min>
 		<max>10000</max>
     </apparelMoney>
-  
 	<backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
   </PawnKindDef>
   
