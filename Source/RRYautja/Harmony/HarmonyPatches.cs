@@ -214,6 +214,40 @@ namespace RRYautja
             __result.z += offset.y;
         }
 
+        public static bool Pre_CanDrawAddon_Cloak(Pawn pawn)
+        {
+            bool flag = pawn.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked, false);
+            if (flag)
+            {
+                //Log.Message(string.Format("tetet"));
+                return false;
+            }
+            return true;
+        }
+
+        public static bool Pre_DrawWound_Cloak(PawnWoundDrawer __instance)
+        {
+            Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
+            bool flag = pawn.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked, false);
+            if (flag)
+            {
+                //Log.Message(string.Format("tetet"));
+                return false;
+            }
+            return true;
+        }
+
+        public static bool Pre_DrawEquipment_Cloak(PawnRenderer __instance)
+        {
+            Pawn pawn = HarmonyPatches.PawnRenderer_GetPawn(__instance);
+            bool flag = pawn.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked, false);
+            if (flag)
+            {
+                return false;
+            }
+            return true;
+        }
+
         public static bool Pre_PawnDied_Facehugger(Corpse corpse, DeathActionWorker_BigExplosion __instance)
         {
             //    Log.Message(string.Format("{0}", corpse.Label));
@@ -380,41 +414,7 @@ namespace RRYautja
 
         private static readonly Material BubbleMat = MaterialPool.MatFrom("Other/CloakActive", ShaderDatabase.Transparent);
 
-        public static bool Pre_CanDrawAddon_Cloak(Pawn pawn)
-        {
-            bool flag = pawn.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked, false);
-            if (flag)
-            {
-                //Log.Message(string.Format("tetet"));
-                return false;
-            }
-            return true;
-        }
-
-        public static bool Pre_DrawWound_Cloak(PawnWoundDrawer __instance)
-        {
-            Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
-            bool flag = pawn.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked, false);
-            if (flag)
-            {
-                //Log.Message(string.Format("tetet"));
-                return false;
-            }
-            return true;
-        }
-
-        public static bool Pre_DrawEquipment_Cloak(PawnRenderer __instance)
-        {
-            Pawn pawn = HarmonyPatches.PawnRenderer_GetPawn(__instance);
-            bool flag = pawn.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked, false);
-            if (flag)
-            {
-                return false;
-            }
-            return true;
-        }
-
-        public static bool PawnRenderer_Cloak_Prefix(PawnRenderer __instance, ref Vector3 drawLoc, ref RotDrawMode bodyDrawType, bool headStump)
+        public static bool PawnRenderer_Blur_Prefix(PawnRenderer __instance, ref Vector3 drawLoc, ref RotDrawMode bodyDrawType, bool headStump)
         {
             Pawn value = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
             PawnGraphicSet value2 = Traverse.Create(__instance).Field("graphics").GetValue<PawnGraphicSet>();
@@ -454,36 +454,6 @@ namespace RRYautja
             }
             return true;
         }
-
-        private static FieldInfo pawnField_PawnRenderer;
-
-        /*
-        public static void Pre_GeneratePawn_Xenomorph(ref PawnGenerationRequest request, ref Pawn __result)
-        {
-            if (request.KindDef.race.race.FleshType == XenomorphRacesDefOf.RRY_Xenomorph || request.KindDef.race.race.FleshType == XenomorphRacesDefOf.RRY_Neomorph)
-            {
-                //    Log.Message(string.Format("Pre_GeneratePawn_Xenomorph request is {0}, {1}, {2}", request.KindDef.LabelCap, request.FixedGender, request.MustBeCapableOfViolence));
-                PawnKindDef pawnKind = request.KindDef;
-                Gender gender;
-
-                if (pawnKind == XenomorphDefOf.RRY_Xenomorph_Queen)
-                {
-                    
-                }
-
-                if (pawnKind == XenomorphDefOf.RRY_Xenomorph_Queen)
-                {
-                    gender = Gender.Female;
-                }
-                else
-                {
-                    gender = Gender.None;
-                }
-                request = new PawnGenerationRequest(pawnKind, request.Faction, request.Context, -1, true, false, false, false, false, true, 0f, fixedGender: gender, allowGay: false);
-                //    Log.Message(string.Format("Pre_GeneratePawn_Xenomorph End request is {0}, {1}, {2}", request.KindDef.LabelCap, request.FixedGender, request.MustBeCapableOfViolence));
-            }
-        }
-        */
 
         public static void Post_GeneratePawn_Yautja(PawnGenerationRequest request, ref Pawn __result)
         {
@@ -626,7 +596,7 @@ namespace RRYautja
                 if (request.KindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
                 {
                     __result.gender = Gender.Female;
-                    
+                    /*
                     bool QueenPresent = false;
                     
                     foreach (var p in Find.AnyPlayerHomeMap.mapPawns.AllPawns)
@@ -649,14 +619,13 @@ namespace RRYautja
                     {
                         __result.gender = Gender.Female;
                     }
-                    
+                    */
                 }
                 else
                 {
                     __result.gender = Gender.None;
                 }
             }
-            
             if (__result.kindDef.race != YautjaDefOf.RRY_Alien_Yautja && __result.RaceProps.Humanlike && (__result.story.hairDef == YautjaDefOf.RRY_Yaujta_Dreds || __result.story.hairDef == YautjaDefOf.RRY_Yaujta_Ponytail || __result.story.hairDef == YautjaDefOf.RRY_Yaujta_Bald))
             {
                 Log.Message(string.Format("Non Yautja with Yautja Hair"));
@@ -684,6 +653,7 @@ namespace RRYautja
             }
         }
 
+        private static FieldInfo pawnField_PawnRenderer;
 
         public static FieldInfo int_Pawn_HealthTracker_GetPawn;
 

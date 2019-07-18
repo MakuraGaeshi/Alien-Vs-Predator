@@ -7,24 +7,11 @@
 	<!-- Human -->
 	<Operation Class="PatchOperationSequence">
 		<operations>
-		
-		  <li Class="PatchOperationConditional">
-			<xpath>
-			  /Defs/ThingDef [defName = "Human"]/modExtensions
-			</xpath>
-			<success>Always</success>
-			<nomatch Class="PatchOperationAdd">
-			  <xpath>/Defs/ThingDef [defName = "Human"]</xpath>
-			  <value>
-				<modExtensions />
-			  </value>
-			</nomatch>
-		  </li>
-		
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName = "Human"]/modExtensions</xpath>
+				<xpath>/Defs/ThingDef[defName = "Human"]</xpath>
 				<value>
-				  <li Class="RRYautja.RRYOffsetDefExtension">
+				<modExtensions>
+				  <li Class="RRYautja.OffsetDefExtension">
 				    <!-- DefName of the hediff this applies to --> 
 					<hediff>RRY_Hediff_BloodedM</hediff>
 				    <!-- adds the vanillia head offset for the current rotation, not sure if this will ever be useful, defaults to false if not set--> 
@@ -66,6 +53,49 @@
 					<!-- West Angle overrides, will default to 0 if not set -->
 					<WestAngle>0</WestAngle>
 				  </li>
+				  <li Class="RRYautja.OffsetDefExtension">
+				    <!-- DefName of the hediff this applies to --> 
+					<hediff>RRY_FaceHuggerInfection</hediff>
+				    <!-- adds the vanillia head offset for the current rotation, not sure if this will ever be useful, defaults to false if not set--> 
+					<ApplyBaseHeadOffset>false</ApplyBaseHeadOffset>
+					<!-- North offsets Y is the layer height, usually you can leave this at 0, all values default to 0 if not set-->
+					<NorthXOffset>0.0</NorthXOffset>
+					<NorthYOffset>0.0</NorthYOffset>
+					<NorthZOffset>0.0</NorthZOffset>
+					<!-- North Draw size overrides, will default to 1 if not set -->
+					<NorthXDrawSize>1</NorthXDrawSize>
+					<NorthZDrawSize>1</NorthZDrawSize>
+					<!-- North Angle overrides, will default to 0 if not set -->
+					<NorthAngle>0</NorthAngle>
+					<!-- South offsets Y is the layer height, usually you can leave this at 0, all values default to 0 if not set-->
+					<SouthXOffset>-0.001</SouthXOffset>
+					<SouthYOffset>0.0</SouthYOffset>
+					<SouthZOffset>0.0</SouthZOffset>
+					<!-- South Draw size overrides, will default to 1 if not set -->
+					<SouthXDrawSize>1.75</SouthXDrawSize>
+					<SouthZDrawSize>1.75</SouthZDrawSize>
+					<!-- South Angle overrides, will default to 0 if not set -->
+					<SouthAngle>0</SouthAngle>
+					<!-- East offsets Y is the layer height, usually you can leave this at 0, all values default to 0 if not set-->
+					<EastXOffset>0</EastXOffset>
+					<EastYOffset>0.0</EastYOffset>
+					<EastZOffset>0</EastZOffset>
+					<!-- East Draw size overrides, will default to 1 if not set -->
+					<EastXDrawSize>1.75</EastXDrawSize>
+					<EastZDrawSize>1.75</EastZDrawSize>
+					<!-- East Angle overrides, will default to 0 if not set -->
+					<EastAngle>0</EastAngle>
+					<!-- West offsets Y is the layer height, usually you can leave this at 0, all values default to 0 if not set-->
+					<WestXOffset>0</WestXOffset>
+					<WestYOffset>0.0</WestYOffset>
+					<WestZOffset>0</WestZOffset>
+					<!-- West Draw size overrides, will default to 1 if not set -->
+					<WestXDrawSize>1.75</WestXDrawSize>
+					<WestZDrawSize>1.75</WestZDrawSize>
+					<!-- West Angle overrides, will default to 0 if not set -->
+					<WestAngle>0</WestAngle>
+				  </li>
+				</modExtensions>
 				</value>
 			</li>
 		</operations>	

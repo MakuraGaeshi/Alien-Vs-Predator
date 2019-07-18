@@ -9,7 +9,6 @@ namespace RimWorld
     // Token: 0x0200002D RID: 45
     public class JobDriver_LayXenoEgg : JobDriver
     {
-       
         // Token: 0x060001B3 RID: 435 RVA: 0x00010CE0 File Offset: 0x0000F0E0
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {

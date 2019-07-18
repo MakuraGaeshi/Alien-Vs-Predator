@@ -69,7 +69,6 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <equippedAngleOffset>-20</equippedAngleOffset>
-    <generateCommonality>0.25</generateCommonality>
     <statBases>
       <WorkToMake>8000</WorkToMake>
       <MarketValue>800</MarketValue>
@@ -142,7 +141,6 @@
 		<graphicClass>Graphic_Single</graphicClass>
 		<drawSize>1.50</drawSize>		
     </graphicData>
-    <generateCommonality>0.1</generateCommonality>
 		<tickerType>Normal</tickerType>
 		<comps>  
       <li>
@@ -160,6 +158,9 @@
 		</li>
 	</comps>
     <soundInteract>Interact_BeatFire</soundInteract>
+    <costList>
+      <WoodLog>70</WoodLog>
+    </costList>
     <statBases>
 	  <MarketValue>300</MarketValue>
       <WorkToMake>7000</WorkToMake>
@@ -178,10 +179,6 @@
 		<thingCategories>
 			<li>RRY_MeleeWeapons</li>
 		</thingCategories>
-		<costStuffCount>175</costStuffCount>
-		<stuffCategories>
-			<li>Metallic</li>
-		</stuffCategories>
     <recipeMaker>
 			<researchPrerequisite>RRY_YautjaMelee_Special</researchPrerequisite>
       <skillRequirements>

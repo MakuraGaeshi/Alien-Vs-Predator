@@ -155,7 +155,7 @@ namespace RimWorld
         // Token: 0x06003781 RID: 14209 RVA: 0x001A8393 File Offset: 0x001A6793
         static XenomorphConceptDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(XenomorphConceptDefOf));
+            DefOfHelper.EnsureInitializedInCtor(typeof(XenomorphRacesDefOf));
         }
         // Xenomorph ConceptDefs  
         public static ConceptDef RRY_Concept_Cocoons;

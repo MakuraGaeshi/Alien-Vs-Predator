@@ -51,6 +51,7 @@
       <color>(250, 225, 0, 180)</color>
     </graphicData>
 	<tickerType>Normal</tickerType> 
+	<thingClass>RRYautja.Filth_AddAcidDamage</thingClass>
     <filth>
       <rainWashes>true</rainWashes>
       <cleaningWorkToReduceThickness>90</cleaningWorkToReduceThickness>
