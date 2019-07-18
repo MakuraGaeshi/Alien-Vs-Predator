@@ -86,20 +86,55 @@ namespace RRYautja
 
         }
     }
+    
+/*
+  [HarmonyPatch(typeof(MapGenerator), "GenerateMap")]
+    public static class MapGenerator_GenerateMap_Patch
+    {
+        [HarmonyPostfix]
+        public static void GenerateMapPostfix(Map __result)
+        {
+            MapComponent_HiveGrid _AvPHiveCreep = __result.GetComponent<MapComponent_HiveGrid>();
+            if (_AvPHiveCreep == null)
+            {
+                _AvPHiveCreep = new MapComponent_HiveGrid(__result);
+                __result.components.Add(_AvPHiveCreep);
+            }
+        }
+    }
 
-    /*
     [HarmonyPatch(typeof(Map), "ConstructComponents")]
     public static class Map_ConstructComponents_Patch
     {
         [HarmonyPostfix]
-        public static void HarmsHealthPostfix(Map __instance)
+        public static void ConstructComponentsPostfix(Map __instance)
         {
+            MapComponent_HiveGrid _AvPHiveCreep = __instance.GetComponent<MapComponent_HiveGrid>();
+            if (_AvPHiveCreep == null)
+            {
+                _AvPHiveCreep = new MapComponent_HiveGrid(__instance);
+                __instance.components.Add(_AvPHiveCreep);
+            }
+        }
+    }
 
-            __instance.hiveGrid() = new HiveGrid(__instance);
+    [HarmonyPatch(typeof(Map), "ExposeComponents")]
+    public static class Map_ExposeComponents_Patch
+    {
+        [HarmonyPostfix]
+        public static void ExposeComponentsPostfix(Map __instance)
+        {
+            MapComponent_HiveGrid _AvPHiveCreep = __instance.GetComponent<MapComponent_HiveGrid>();
+            if (_AvPHiveCreep != null)
+            {
+                Scribe_Deep.Look<HiveGrid>(ref _AvPHiveCreep.HiveGrid, "hiveGrid", new object[]
+                {
+                _AvPHiveCreep
+                });
+            }
         }
     }
     */
- 
     [HarmonyPatch(typeof(Pawn_MeleeVerbs), "ChooseMeleeVerb")]
     public static class Pawn_MeleeVerbs_ChooseMeleeVerb_Patch
     {
@@ -782,29 +817,29 @@ namespace RRYautja
                     }
                     else rootLoc = pawn.CurrentBed().DrawPos;
                 }
-                bool pawnflag = !((pawn.kindDef.race.defName.StartsWith("Android") && pawn.kindDef.race.defName.Contains("Tier")) || pawn.kindDef.race.defName.Contains("ChjDroid") || pawn.kindDef.race.defName.Contains("ChjBattleDroid") || pawn.kindDef.race.defName.Contains("M7Mech"));
-                if ((pawn.RaceProps.Humanlike && pawnflag) || pawn.kindDef.race.GetModExtension<OffsetDefExtension>() != null)
+            }
+            bool pawnflag = !((pawn.kindDef.race.defName.StartsWith("Android") && pawn.kindDef.race.defName.Contains("Tier")) || pawn.kindDef.race.defName.Contains("ChjDroid") || pawn.kindDef.race.defName.Contains("ChjBattleDroid") || pawn.kindDef.race.defName.Contains("M7Mech"));
+            if ((pawn.RaceProps.Humanlike && pawnflag) || pawn.kindDef.race.GetModExtension<RRYOffsetDefExtension>() != null)
+            {
+                foreach (var hd in pawn.health.hediffSet.hediffs)
                 {
-                    foreach (var hd in pawn.health.hediffSet.hediffs)
+                    HediffComp_DrawImplant comp = hd.TryGetComp<HediffComp_DrawImplant>();
+                    if (comp != null)
                     {
-                        HediffComp_DrawImplant comp = hd.TryGetComp<HediffComp_DrawImplant>();
-                        if (comp != null)
-                        {
-                            DrawImplant(comp, __instance, rootLoc, angle, renderBody, bodyFacing, headFacing, bodyDrawType, portrait, headStump);
-                        }
+                        DrawImplant(comp, __instance, rootLoc, angle, renderBody, bodyFacing, headFacing, bodyDrawType, portrait, headStump);
                     }
-                    /*
-                    */
-                } // DrawWornExtras()
-                else
+                }
+                /*
+                */
+            } // DrawWornExtras()
+            else
+            {
+                foreach (var hd in pawn.health.hediffSet.hediffs)
                 {
-                    foreach (var hd in pawn.health.hediffSet.hediffs)
+                    HediffComp_DrawImplant comp = hd.TryGetComp<HediffComp_DrawImplant>();
+                    if (comp != null)
                     {
-                        HediffComp_DrawImplant comp = hd.TryGetComp<HediffComp_DrawImplant>();
-                        if (comp != null)
-                        {
-                            comp.DrawWornExtras();
-                        }
+                        comp.DrawWornExtras();
                     }
                 }
             }
@@ -821,7 +856,7 @@ namespace RRYautja
             Rot4 rot = bodyFacing;
             Vector3 vector3 = pawn.RaceProps.Humanlike ? __instance.BaseHeadOffsetAt(headFacing) : new Vector3();
             Vector3 s = new Vector3(pawn.BodySize*1.75f,pawn.BodySize*1.75f,pawn.BodySize*1.75f);
-            bool OffsetDefExtension = (pawn.def.modExtensions.NullOrEmpty()||(!pawn.def.modExtensions.NullOrEmpty() && pawn.def.modExtensions.Any((x) => comp.parent.def.defName.Contains(((OffsetDefExtension)x).hediff.defName))) || ThingDefOf.Human.modExtensions.Any((x) => comp.parent.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)));
+            bool OffsetDefExtension = (pawn.def.modExtensions.NullOrEmpty()||(!pawn.def.modExtensions.NullOrEmpty() && pawn.def.modExtensions.Any((x) => comp.parent.def.defName.Contains(((RRYOffsetDefExtension)x).hediff.defName))) || ThingDefOf.Human.modExtensions.Any((x) => comp.parent.def.defName.Contains(((RRYOffsetDefExtension)x).hediff.defName)));
             if (OffsetDefExtension)// && pawn.kindDef.race.GetModExtension<OffsetDefExtension>() is OffsetDefExtension offsetDef && comp.parent.def.defName.Contains(offsetDef.hediff.defName))
             {
                 GetAltitudeOffset(pawn, comp.parent, rot, out float X, out float Y, out float Z, out float DsX, out float DsZ, out float ang);
@@ -918,18 +953,18 @@ namespace RRYautja
 		
 		static void GetAltitudeOffset(Pawn pawn, Hediff hediff, Rot4 rotation, out float OffsetX, out float OffsetY, out float OffsetZ, out float DrawSizeX, out float DrawSizeZ, out float ang)
         {
-            OffsetDefExtension myDef = null;
+            RRYOffsetDefExtension myDef = null;
             if (!pawn.def.modExtensions.NullOrEmpty())
             {
-                myDef = (OffsetDefExtension)pawn.kindDef.race.modExtensions.Find((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)) ?? (OffsetDefExtension)ThingDefOf.Human.modExtensions.Find((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)) ?? new OffsetDefExtension();
+                myDef = (RRYOffsetDefExtension)pawn.kindDef.race.modExtensions.Find((x) => hediff.def.defName.Contains(((RRYOffsetDefExtension)x).hediff.defName)) ?? (RRYOffsetDefExtension)ThingDefOf.Human.modExtensions.Find((x) => hediff.def.defName.Contains(((RRYOffsetDefExtension)x).hediff.defName)) ?? new RRYOffsetDefExtension();
             }
             else if (myDef==null)
             {
-                myDef = (OffsetDefExtension)ThingDefOf.Human.modExtensions.Find((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)) ?? new OffsetDefExtension();
+                myDef = (RRYOffsetDefExtension)ThingDefOf.Human.modExtensions.Find((x) => hediff.def.defName.Contains(((RRYOffsetDefExtension)x).hediff.defName)) ?? new RRYOffsetDefExtension();
             }
             else
             {
-                myDef =  new OffsetDefExtension() {hediff =  hediff.def};
+                myDef =  new RRYOffsetDefExtension() {hediff =  hediff.def};
 
             }
             
@@ -1511,7 +1546,6 @@ namespace RRYautja
                 scenarios = DefDatabase<ScenarioDef>.AllDefs;
                 foreach (ScenarioDef scenDef in DefDatabase<ScenarioDef>.AllDefs)
                 {
-                    Log.Message(string.Format("Found {0}", scenarios.Count()));
                     if ((!scenDef.defName.Contains("Yautja") && !SettingsHelper.latest.AllowYautjaFaction) || SettingsHelper.latest.AllowYautjaFaction)
                     {
                         yield return scenDef.scenario;
@@ -1523,7 +1557,6 @@ namespace RRYautja
                 IEnumerable<Scenario> scenarios = ScenarioFiles.AllScenariosLocal;
                 foreach (Scenario scen in scenarios)
                 {
-                    Log.Message(string.Format("Found {0}", scenarios.Count()));
                     if ((!scen.name.Contains("Yautja") && !SettingsHelper.latest.AllowYautjaFaction) || SettingsHelper.latest.AllowYautjaFaction)
                     {
                         yield return scen;
@@ -1535,7 +1568,6 @@ namespace RRYautja
                 IEnumerable<Scenario> scenarios = ScenarioFiles.AllScenariosWorkshop;
                 foreach (Scenario scen2 in scenarios)
                 {
-                    Log.Message(string.Format("Found {0}", scenarios.Count()));
                     if ((!scen2.name.Contains("Yautja") && !SettingsHelper.latest.AllowYautjaFaction) || SettingsHelper.latest.AllowYautjaFaction)
                     {
                         yield return scen2;

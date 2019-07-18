@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <DamageDef Name="BluntBase">
+  <DamageDef ParentName="BluntBase">
     <defName>RRY_XenoTailWhipBlunt</defName>
     <label>blunt</label>
     <workerClass>DamageWorker_Blunt</workerClass>

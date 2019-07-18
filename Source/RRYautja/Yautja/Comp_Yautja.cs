@@ -130,6 +130,22 @@ namespace RRYautja
         public override void CompTick()
         {
             base.CompTick();
+            if (!Pawn.IsColonist)
+            {
+                return;
+            }
+            if (Pawn.Map != Find.CurrentMap)
+            {
+                return;
+            }
+            if (Pawn.Map == null)
+            {
+                return;
+            }
+            if (!Find.CurrentMap.mapPawns.FreeColonistsAndPrisoners.Any(x=>x.def==YautjaDefOf.RRY_Alien_Yautja))
+            {
+                return;
+            }
             if (inducted != true)
             {
                 inducted = false;
@@ -140,6 +156,7 @@ namespace RRYautja
             }
             if (base.parent.IsHashIntervalTick(30) && base.parent != null && base.parent is Pawn pawn && pawn.Map !=null)
             {
+                Log.Message(string.Format("{0} Comp_Yautja CompTick", pawn.LabelShortCap));
                 bool selected = Find.Selector.SelectedObjects.Contains(Pawn);
                 blooded = YautjaBloodedUtility.BloodStatus(Pawn, out BloodStatus);
                 

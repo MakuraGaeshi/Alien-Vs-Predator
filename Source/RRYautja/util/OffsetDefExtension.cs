@@ -4,7 +4,7 @@ using Verse;
 namespace RRYautja
 {
     // Token: 0x02000020 RID: 32
-    public class OffsetDefExtension : DefModExtension
+    public class RRYOffsetDefExtension : DefModExtension
     {
         public HediffDef hediff;
         // North

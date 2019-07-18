@@ -11,26 +11,30 @@ namespace RRYautja
         
     }
 
-    public class Filth_AddAcidDamage : Filth
+    public class Filth_AddAcidDamage : Filth, IExposable
     {
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look<int>(ref this.destroyTick, "destroyTick", 0, false);
             Scribe_Values.Look<int>(ref this.activeTicks, "activeTicks", 0, false);
-            Scribe_Values.Look<bool>(ref this.active, "active", false, false);
         }
         
-        public object cachedLabelMouseover { get; private set; }
-        public bool active;
-        public int destroyTick;
-        public int activeTicks;
+        public int destroyTick = 3000;
+        public int activeTicks = 0;
         private int Ticks = 100;
         private int TickRate = 100;
         private int AcidDamage = 3;
         private List<Pawn> touchingPawns = new List<Pawn>();
         private List<Thing> touchingThings = new List<Thing>();
 
+        public object cachedLabelMouseover { get; private set; }
+        public bool active
+        {
+            get
+            {
+                return this.activeTicks < this.destroyTick;
+            }
+        }
 
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
@@ -38,11 +42,6 @@ namespace RRYautja
             if (!respawningAfterLoad)
             {
                 this.RecalcPathsOnAndAroundMe(map);
-                if (destroyTick == 0)
-                {
-                    this.destroyTick = (Rand.Range(29, 121) * 100);
-                }
-                this.active = true;
             }
         }
 
@@ -52,6 +51,8 @@ namespace RRYautja
             base.DeSpawn(mode);
             this.RecalcPathsOnAndAroundMe(map);
         }
+
+        public override string Label =>  this.active ? base.Label + " (Active)" : base.Label+" (Inert)";
 
         private void RecalcPathsOnAndAroundMe(Map map)
         {
@@ -91,16 +92,14 @@ namespace RRYautja
             bool destroyed = base.Destroyed;
             if (!destroyed && this.active)
             {
-                bool flag = this.activeTicks > this.destroyTick && !base.Destroyed;
-                if (flag)
+                this.activeTicks++;
+                if (!active)
                 {
                     RecalcPathsOnAndAroundMe(Map);
-                    this.active = false;
                 }
                 else
                 {
                     RecalcPathsOnAndAroundMe(Map);
-                    this.activeTicks++;
                     this.Ticks--;
                     bool flag2 = this.Ticks <= 0;
                     if (flag2)

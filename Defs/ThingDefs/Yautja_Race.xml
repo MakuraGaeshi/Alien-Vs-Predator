@@ -103,36 +103,12 @@
         <li>ITab_Pawn_Log</li>
         <li>ITab_Pawn_FormingCaravan</li>
     </inspectorTabs>
+    <drawGUIOverlay>true</drawGUIOverlay>
     <comps>
         <li>
             <compClass>CompAttachBase</compClass>
         </li>
-		<!--
-        <li>
-            <compClass>RRYautja.Comp_Yautja</compClass>
-        </li>
-		-->
-		<li Class="RRYautja.CompProperties_Yautja">
-			<bloodedDefs>
-			<li>RRY_Hediff_BloodedM</li>
-			<li>RRY_Hediff_BloodedMHuman</li>
-			<li>RRY_Hediff_BloodedMHumanlike</li>
-			<li>RRY_Hediff_BloodedMHound</li>
-			<li>RRY_Hediff_BloodedMCrusher</li>
-			<li>RRY_Hediff_BloodedMGroTye</li>
-			<li>RRY_Hediff_BloodedMThrumbo</li>
-			<li>RRY_Hediff_BloodedMWorthyHuman</li>
-			<li>RRY_Hediff_BloodedMWorthyHumanlike</li>
-			<li>RRY_Hediff_BloodedMMechanoid</li>
-			<li>RRY_Hediff_BloodedMBadBlood</li>
-			<li>RRY_Hediff_BloodedMXenomorph</li>
-			<li>RRY_Hediff_BloodedMPredalien</li>
-			<li>RRY_Hediff_BloodedMXenomorphQueen</li>
-			</bloodedDefs>
-			
-		</li> 
     </comps>
-    <drawGUIOverlay>true</drawGUIOverlay>
 </ThingDef>
 
 <AlienRace.ThingDef_AlienRace ParentName="RRY_BaseYautjaPawn" Name="RRY_Alien_YautjaBase">
@@ -525,7 +501,9 @@
                 <li>Apparel_Pants</li>
                 <li>Apparel_FlakPants</li>
 				<li>Apparel_ShieldBelt</li>
-				<li>Apparel_ShieldBelt</li>
+				<li>Apparel_SmokePopBelt</li>
+				<li>Apparel_TribalBackpack</li>
+				<li>Apparel_Backpack</li>
             </whiteApparelList>
 			<onlyUseRaceRestrictedApparel>true</onlyUseRaceRestrictedApparel>
             <recipeList>
@@ -544,7 +522,6 @@
 				<li>RRY_Apparel_HunterLeaderBioMask</li>
 				<li>RRY_Apparel_HunterVest</li>
 				<li>RRY_Apparel_Mesh</li>
-				<!-- <li>RRY_Apparel_Apparel_TribalA</li> -->
 				
 				<li>RRY_Apparel_LeaderArmourChestplate</li>
 				<li>RRY_Apparel_LeaderArmourGreaves</li>
@@ -772,8 +749,37 @@
       <li>RRY_NeomorphImpregnationRemoval</li>
       <li>RRY_GauntletRemoval</li>
     </recipes>
+    <comps>
+        <li>
+            <compClass>CompAttachBase</compClass>
+        </li>
+		<!--
+        <li>
+            <compClass>RRYautja.Comp_Yautja</compClass>
+        </li>
+		-->
+		<li Class="RRYautja.CompProperties_Yautja">
+			<bloodedDefs>
+			<li>RRY_Hediff_BloodedM</li>
+			<li>RRY_Hediff_BloodedMHuman</li>
+			<li>RRY_Hediff_BloodedMHumanlike</li>
+			<li>RRY_Hediff_BloodedMHound</li>
+			<li>RRY_Hediff_BloodedMCrusher</li>
+			<li>RRY_Hediff_BloodedMGroTye</li>
+			<li>RRY_Hediff_BloodedMThrumbo</li>
+			<li>RRY_Hediff_BloodedMWorthyHuman</li>
+			<li>RRY_Hediff_BloodedMWorthyHumanlike</li>
+			<li>RRY_Hediff_BloodedMMechanoid</li>
+			<li>RRY_Hediff_BloodedMBadBlood</li>
+			<li>RRY_Hediff_BloodedMXenomorph</li>
+			<li>RRY_Hediff_BloodedMPredalien</li>
+			<li>RRY_Hediff_BloodedMXenomorphQueen</li>
+			</bloodedDefs>
+			
+		</li> 
+    </comps>
 	<modExtensions>
-	  <li Class="RRYautja.OffsetDefExtension">
+	  <li Class="RRYautja.RRYOffsetDefExtension">
 		<!-- DefName of the hediff this applies to --> 
 		<hediff>RRY_Hediff_BloodedM</hediff>
 		<!-- adds the vanillia head offset for the current rotation, not sure if this will ever be useful, defaults to false if not set--> 
@@ -815,7 +821,7 @@
 		<!-- West Angle overrides, will default to 0 if not set -->
 		<WestAngle>0</WestAngle>
 	  </li>
-	  <li Class="RRYautja.OffsetDefExtension">
+	  <li Class="RRYautja.RRYOffsetDefExtension">
 		<!-- DefName of the hediff this applies to --> 
 		<hediff>RRY_FaceHuggerInfection</hediff>
 		<!-- adds the vanillia head offset for the current rotation, not sure if this will ever be useful, defaults to false if not set--> 

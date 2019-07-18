@@ -194,7 +194,8 @@ namespace RRYautja
             if (thingDef.defName.Contains("TM_") && thingDef.defName.Contains("Minion")) return false;
             if (thingDef.defName.Contains("TM_Demon")) return false;
             if (thingDef.race.FleshType == XenomorphRacesDefOf.RRY_Xenomorph) return false;
-            if (thingDef.race.FleshType == XenomorphRacesDefOf.RRY_Neomorph) return false;
+            if (thingDef.race.FleshType == XenomorphRacesDefOf.RRY_Neomorph) return false; 
+            if (thingDef.race.FleshType.defName.Contains("RRY_SynthFlesh")) return false;
             if (thingDef.race.FleshType.defName.Contains("TM_StoneFlesh")) return false;
             if (thingDef.race.FleshType.defName.Contains("ChaosDeamon")) return false;
             if (thingDef.race.FleshType.defName.Contains("Necron")) return false;
@@ -236,6 +237,7 @@ namespace RRYautja
             if (pawn.kindDef.race.race.FleshType.defName.Contains("TM_StoneFlesh")) return false;
             if (pawn.kindDef.race.defName.Contains("TM_") && pawn.kindDef.race.defName.Contains("Minion")) return false;
             if (pawn.kindDef.race.defName.Contains("TM_Demon")) return false;
+            if (pawn.kindDef.race.race.FleshType.defName.Contains("RRY_SynthFlesh")) return false;
             if (pawn.kindDef.race.race.FleshType.defName.Contains("ChaosDeamon")) return false;
             if (pawn.kindDef.race.race.FleshType.defName.Contains("Necron")) return false;
             if (pawn.kindDef.race.race.FleshType.defName.Contains("EldarConstruct")) return false;
@@ -306,6 +308,7 @@ namespace RRYautja
             if (pawn.kindDef.race.race.FleshType.defName.Contains("TM_StoneFlesh")) return false;
             if (pawn.kindDef.race.defName.Contains("TM_") && pawn.kindDef.race.defName.Contains("Minion")) return false;
             if (pawn.kindDef.race.defName.Contains("TM_Demon")) return false;
+            if (pawn.kindDef.race.race.FleshType.defName.Contains("RRY_SynthFlesh")) return false;
             if (pawn.kindDef.race.race.FleshType.defName.Contains("ChaosDeamon")) return false;
             if (pawn.kindDef.race.race.FleshType.defName.Contains("Necron")) return false;
             if (pawn.kindDef.race.race.FleshType.defName.Contains("EldarConstruct")) return false;
@@ -346,6 +349,7 @@ namespace RRYautja
             if (pawn.race.race.FleshType.defName.Contains("TM_StoneFlesh")) return false;
             if (pawn.race.defName.Contains("TM_") && pawn.race.defName.Contains("Minion")) return false;
             if (pawn.race.defName.Contains("TM_Demon")) return false;
+            if (pawn.race.race.FleshType.defName.Contains("RRY_SynthFlesh")) return false;
             if (pawn.race.race.FleshType.defName.Contains("ChaosDeamon")) return false;
             if (pawn.race.race.FleshType.defName.Contains("Necron")) return false;
             if (pawn.race.race.FleshType.defName.Contains("EldarConstruct")) return false;
