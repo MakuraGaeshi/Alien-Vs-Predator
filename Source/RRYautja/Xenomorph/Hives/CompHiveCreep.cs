@@ -109,14 +109,14 @@ namespace RimWorld
                         {
                             num2 = 0.1f;
                         }
-                        /*
+
                         if (this.parent.Map.GetComponent<MapComponent_HiveGrid>().GetDepth(intVec) <= num2)
                         {
                             float lengthHorizontal = (intVec - this.parent.Position).LengthHorizontal;
                             float num3 = 1f - lengthHorizontal / this.hiveRadius;
                             this.parent.Map.GetComponent<MapComponent_HiveGrid>().AddDepth(intVec, num3 * this.Props.addAmount * num2);
                         }
-                        */
+
                     }
                 }
             }

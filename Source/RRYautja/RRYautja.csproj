@@ -81,9 +81,9 @@
     <Compile Include="util\ThoughtWorker_RRY_Facehugger.cs" />
     <Compile Include="util\CompFoodPoisonProtection.cs" />
     <Compile Include="util\HediffGiver_StartWithHediff.cs" />
-    <None Include="Xenomorph\Hives\MapComponent_HiveGrid.cs.bak" />
+    <Compile Include="Xenomorph\Hives\MapComponent_HiveGrid.cs" />
     <Compile Include="Xenomorph\Hives\HiveUtility.cs" />
-    <None Include="Xenomorph\Hives\SectionLayer_Hive.cs.bak" />
+    <Compile Include="Xenomorph\Hives\SectionLayer_Hive.cs" />
     <Compile Include="Xenomorph\Hives\HiveExtensions.cs" />
     <Compile Include="Xenomorph\Hives\CompPlantConversionRadius.cs" />
     <Compile Include="Xenomorph\Hives\CompHiveCreep.cs" />
