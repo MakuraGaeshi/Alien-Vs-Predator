@@ -11,7 +11,7 @@ namespace RRYautja
         
     }
 
-    public class Filth_AddAcidDamage : Filth, IExposable
+    public class Filth_AddAcidDamage : Filth
     {
         public override void ExposeData()
         {

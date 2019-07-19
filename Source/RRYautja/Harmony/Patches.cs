@@ -27,6 +27,24 @@ namespace RRYautja
         }
     }
 
+    [HarmonyPatch(typeof(Pawn_RecordsTracker), "Increment")]
+    public static class AdMech_Pawn_RecordsTracker_Increment_Patch
+    {
+        [HarmonyPostfix]
+        public static void IncrementPostfix(Pawn_RecordsTracker __instance, RecordDef def)
+        {
+            Log.Message(string.Format("IncrementPostfix 1"));
+            if (def == RecordDefOf.Kills)
+            {
+                Log.Message(string.Format("IncrementPostfix 2"));
+                if (__instance.pawn!=null && __instance.pawn.TryGetComp<Comp_Yautja>() != null && __instance.pawn.TryGetComp<Comp_Yautja>() is Comp_Yautja _Yautja)
+                {
+                    Log.Message(string.Format("IncrementPostfix 3"));
+                    _Yautja.CalcTick();
+                }
+            }
+        }
+    }
     [HarmonyPatch(typeof(RimWorld.PawnUtility), "GetManhunterOnDamageChance", new Type[] { typeof(Pawn), typeof(Thing) }), StaticConstructorOnStartup]
     public static class PawnUtility_GetManhunterOnDamageChance_Patch
     {
@@ -87,54 +105,6 @@ namespace RRYautja
         }
     }
     
-/*
-  [HarmonyPatch(typeof(MapGenerator), "GenerateMap")]
-    public static class MapGenerator_GenerateMap_Patch
-    {
-        [HarmonyPostfix]
-        public static void GenerateMapPostfix(Map __result)
-        {
-            MapComponent_HiveGrid _AvPHiveCreep = __result.GetComponent<MapComponent_HiveGrid>();
-            if (_AvPHiveCreep == null)
-            {
-                _AvPHiveCreep = new MapComponent_HiveGrid(__result);
-                __result.components.Add(_AvPHiveCreep);
-            }
-        }
-    }
-
-    [HarmonyPatch(typeof(Map), "ConstructComponents")]
-    public static class Map_ConstructComponents_Patch
-    {
-        [HarmonyPostfix]
-        public static void ConstructComponentsPostfix(Map __instance)
-        {
-            MapComponent_HiveGrid _AvPHiveCreep = __instance.GetComponent<MapComponent_HiveGrid>();
-            if (_AvPHiveCreep == null)
-            {
-                _AvPHiveCreep = new MapComponent_HiveGrid(__instance);
-                __instance.components.Add(_AvPHiveCreep);
-            }
-        }
-    }
-
-    [HarmonyPatch(typeof(Map), "ExposeComponents")]
-    public static class Map_ExposeComponents_Patch
-    {
-        [HarmonyPostfix]
-        public static void ExposeComponentsPostfix(Map __instance)
-        {
-            MapComponent_HiveGrid _AvPHiveCreep = __instance.GetComponent<MapComponent_HiveGrid>();
-            if (_AvPHiveCreep != null)
-            {
-                Scribe_Deep.Look<HiveGrid>(ref _AvPHiveCreep.HiveGrid, "hiveGrid", new object[]
-                {
-                _AvPHiveCreep
-                });
-            }
-        }
-    }
-    */
     [HarmonyPatch(typeof(Pawn_MeleeVerbs), "ChooseMeleeVerb")]
     public static class Pawn_MeleeVerbs_ChooseMeleeVerb_Patch
     {
@@ -718,68 +688,7 @@ namespace RRYautja
             return;
         }
     }
-
-    /*
-    // Token: 0x02000086 RID: 134
-    [HarmonyPatch(typeof(Building_Bed), "GetSleepingSlotPos")]
-    internal static class Building_Bed_GetSleepingSlotPos
-    {
-        // Token: 0x060001EF RID: 495 RVA: 0x0000E0A8 File Offset: 0x0000C2A8
-        private static void Postfix(Building_Bed __instance, ref IntVec3 __result)
-        {
-            bool flag = __instance is Building_XenomorphCocoon;
-            bool selected = Find.Selector.SelectedObjects.Contains(__instance);
-            if (selected) Log.Message(string.Format("Building_Bed_GetSleepingSlotPos 1 Old Drawloc {0}", __result));
-            if (flag)
-            {
-
-
-                if (selected) Log.Message(string.Format("Building_Bed_GetSleepingSlotPos 2 Old Drawloc {0}", __result));
-                IntVec3 bedCenter = __instance.Position;
-                Rot4 bedRot = __instance.Rotation;
-                IntVec2 bedSize = __instance.def.size;
-                CellRect cellRect = GenAdj.OccupiedRect(bedCenter, bedRot, bedSize);
-                if (bedRot == Rot4.North)
-                {
-                    __result = new IntVec3(cellRect.minX, bedCenter.y, cellRect.minZ);
-                }
-                else if (bedRot == Rot4.East)
-                {
-                    __result = new IntVec3(cellRect.minX, bedCenter.y, cellRect.maxZ);
-                }
-                else if (bedRot == Rot4.South)
-                {
-                    __result = new IntVec3(cellRect.minX, bedCenter.y, cellRect.maxZ);
-                }
-                else __result = new IntVec3(cellRect.maxX, bedCenter.y, cellRect.maxZ);
-                if (selected) Log.Message(string.Format("Building_Bed_GetSleepingSlotPos 3 new Drawloc {0}", __result));
-
-                
-                
-
-                if (__instance.Rotation == Rot4.North)
-                {
-                    __result = __instance.Position;
-                }
-                else if (__instance.Rotation == Rot4.North)
-                {
-                    __result = __instance.Position;
-                }
-                else if (__instance.Rotation == Rot4.North)
-                {
-                    __result = __instance.Position;
-                }
-                else if (__instance.Rotation == Rot4.North)
-                {
-                    __result = __instance.Position;
-                }
-                else __result = __instance.Position;
-
-                
-            }
-        }
-    }
-    */
+    
 
     [HarmonyPatch(typeof(PawnRenderer), "RenderPawnInternal")]
     [HarmonyPatch(new Type[] { typeof(Vector3), typeof(float), typeof(bool), typeof(Rot4), typeof(Rot4), typeof(RotDrawMode), typeof(bool), typeof(bool) })]
@@ -1086,37 +995,7 @@ namespace RRYautja
                     direction = "Unknown";
                 }
             }
-
         }
-		
-        /*
-    static void Postfix(PawnRenderer __instance, ref Vector3 rootLoc)
-    {
-        Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
-        if (pawn.RaceProps.Humanlike || pawn.kindDef.race.GetModExtension<OffsetDefExtension>()!=null)
-        {
-            foreach (var hd in pawn.health.hediffSet.hediffs)
-            {
-                HediffComp_DrawImplant comp = hd.TryGetComp<HediffComp_DrawImplant>();
-                if (comp != null)
-                {
-                    comp.DrawImplant(rootLoc);
-                }
-            }
-        } // DrawWornExtras()
-        else
-        {
-            foreach (var hd in pawn.health.hediffSet.hediffs)
-            {
-                HediffComp_DrawImplant comp = hd.TryGetComp<HediffComp_DrawImplant>();
-                if (comp != null)
-                {
-                    comp.DrawWornExtras();
-                }
-            }
-        }
-    }
-        */
     }
     
     [HarmonyPatch(typeof(PawnWoundDrawer), "RenderOverBody")]
@@ -1463,7 +1342,7 @@ namespace RRYautja
             }
         }
     }
-
+    /*
     [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "GetLetterText")]
     public static class IncidentWorker_RaidEnemy_Patch_GetLetterText
     {
@@ -1477,7 +1356,7 @@ namespace RRYautja
 #if DEBUG
                 //    Log.Message(string.Format("PostGetLetterText Xenomorph Raid CurSkyGlow: {0}", (parms.target as Map).skyManager.CurSkyGlow));
 #endif
-                    /*
+              
                     if ((parms.target as Map).skyManager.CurSkyGlow <= 0.5f)
                     {
                         string text = "They mostly come at night......mostly.....";
@@ -1486,12 +1365,12 @@ namespace RRYautja
                         __result = text;
 
                     }
-                    */
+         
                 }
             }
         }
     }
-    
+    */
     [HarmonyPatch(typeof(FactionGenerator), "GenerateFactionsIntoWorld", null)]
     public static class FactionGenerator_GenerateFactionsIntoWorld
     {
@@ -1575,119 +1454,9 @@ namespace RRYautja
                 }
             }
             yield break;
-            //   return list;
 
         }
 
     }
-
     
-
-    /*
-     
-    [HarmonyPatch(typeof(Page_SelectScenario), "DoScenarioListEntry")]
-    public static class Page_SelectScenario_DoScenarioListEntry_Patch
-    {
-        [HarmonyPrefix]
-        public static bool DoScenarioListEntryPrefix(Rect rect, Scenario scen)
-        {
-            if (scen.name.Contains("Yautja") && !SettingsHelper.latest.AllowYautjaFaction)
-            {
-                return false;
-            }
-            return true;
-        }
-    }
-
-
-    */
-
-
-    /* ScenarioLister
-     
-
-    [HarmonyPatch(typeof(ScenarioLister), "AllScenarios")]
-    public static class ScenarioFiles_AllScenarios_Patch
-    {
-        [HarmonyPrefix]
-        public static bool AllScenariosWorkshop_Prefix(ref IEnumerable<Scenario> __result)
-        {
-            if (!SettingsHelper.latest.AllowYautjaFaction)
-            {
-                __result = AllScenarios();
-                return false;
-            }
-            return true;
-        }
-
-        // Token: 0x060022B1 RID: 8881 RVA: 0x001049F0 File Offset: 0x00102DF0
-        public static IEnumerable<Scenario> AllScenarios()
-        {
-            foreach (ScenarioDef scenDef in DefDatabase<ScenarioDef>.AllDefs)
-            {
-                if (scenDef.defName.Contains("Yautja") && !SettingsHelper.latest.AllowYautjaFaction)
-                {
-
-                }
-                else
-                {
-
-                }
-                yield return scenDef.scenario;
-            }
-            foreach (Scenario scen in ScenarioFiles.AllScenariosLocal)
-            {
-                if (scen.name.Contains("Yautja") && !SettingsHelper.latest.AllowYautjaFaction)
-                {
-
-                }
-                else
-                {
-                    yield return scen;
-                }
-            }
-            foreach (Scenario scen2 in ScenarioFiles.AllScenariosWorkshop)
-            {
-                if (scen2.name.Contains("Yautja") && !SettingsHelper.latest.AllowYautjaFaction)
-                {
-
-                }
-                else
-                {
-                    yield return scen2;
-                }
-            }
-            yield break;
-        }
-    }
-
-    [HarmonyPatch(typeof(ScenarioLister), "AllScenarios")]
-    public static class ScenarioFiles_AllScenarios_Patch
-    {
-        [HarmonyPostfix]
-        public static void AllScenariosWorkshopPostfix(ref IEnumerable<Scenario> __result)
-        {
-            Log.Message(string.Format("ScenarioFiles_AllScenarios_Patch"));
-            List<Scenario> scenarios = new List<Scenario>();
-            Log.Message(string.Format("Allow Yautja: {0}", SettingsHelper.latest.AllowYautjaFaction));
-            if (!SettingsHelper.latest.AllowYautjaFaction)
-            {
-                Log.Message(string.Format("checking for Yautja Scenarios"));
-                foreach (Scenario scen in __result)
-                {
-                    if (!scen.name.Contains("Yautja"))
-                    {
-                        scenarios.Add(scen);
-                    }
-                    else
-                    {
-                        Log.Message(string.Format("Yautja Scenario, skipping"));
-                    }
-                }
-                __result = scenarios;
-            }
-        }
-    }
-
-    */
 }

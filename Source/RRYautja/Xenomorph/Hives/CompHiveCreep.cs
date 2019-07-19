@@ -1,6 +1,4 @@
 ﻿using RRYautja;
-using RRYautja.ExtensionMethods;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
@@ -62,7 +60,7 @@ namespace RimWorld
         // Token: 0x060029C1 RID: 10689 RVA: 0x0013C434 File Offset: 0x0013A834
         private void TryExpandHive()
         {
-            if (this.parent.Map.mapTemperature.OutdoorTemp > 100f)
+            if (this.parent.Map.mapTemperature.OutdoorTemp > 50f)
             {
                 this.hiveRadius = 0f;
                 return;
