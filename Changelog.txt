@@ -111,3 +111,8 @@ Fixed Hive Taint not presisting after save
 Tweaks to Comp_Yautja to hopefully increase performance
 Fixed Egglaying JobGiver error (hopefully)
 Marking system Tweak, should decrease cpu load
+
+
+V1.0.0.7 Hotfix 19/07/2019
+fixed vanilla tribal apparel losing colour while equipped (forgot the textures)
+disabled some spam logging stuff
