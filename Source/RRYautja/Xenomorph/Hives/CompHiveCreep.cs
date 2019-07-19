@@ -1,5 +1,3 @@
-﻿using RRYautja.ExtensionMethods;
-using System;
 ﻿using RRYautja;
 using System.Collections.Generic;
 using UnityEngine;
@@ -114,8 +112,9 @@ namespace RimWorld
                         {
                             float lengthHorizontal = (intVec - this.parent.Position).LengthHorizontal;
                             float num3 = 1f - lengthHorizontal / this.hiveRadius;
-                            this.parent.Map.hiveGrid().AddDepth(intVec, num3 * this.Props.addAmount * num2);
+                            this.parent.Map.GetComponent<MapComponent_HiveGrid>().AddDepth(intVec, num3 * this.Props.addAmount * num2);
                         }
+
                     }
                 }
             }
