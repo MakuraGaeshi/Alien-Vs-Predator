@@ -100,8 +100,8 @@ namespace RRYautja
             Scribe_Deep.Look<Hediff>(ref this.unmarked, "bloodedUnmarked");
             Scribe_Defs.Look<HediffDef>(ref this.MarkedhediffDef, "MarkedhediffDef");
             Scribe_References.Look<Corpse>(ref this.corpse, "corpseRef");
-        //    Scribe_Deep.Look<Corpse>(ref this.corpse, "corpseRefDeep");
-            Scribe_References.Look<Pawn>(ref this.pawn, "pawnRef");
+            Scribe_Deep.Look<Corpse>(ref this.corpse, "corpseRefDeep");
+            Scribe_References.Look<Pawn>(ref this.pawn, "pawnRef", true);
         //    Scribe_Deep.Look<Pawn>(ref this.pawn, "pawnRefDeep");
             Scribe_Values.Look<String>(ref this.MarkHedifftype, "thisMarktype");
             Scribe_Values.Look<String>(ref this.MarkHedifflabel, "thislabel");
@@ -127,9 +127,25 @@ namespace RRYautja
             }
         }
 
-        public override void CompTick()
+        public void CalcTick()
         {
-            base.CompTick();
+            if (!Pawn.IsColonist)
+            {
+                return;
+            }
+            if (Pawn.Map != Find.CurrentMap)
+            {
+                return;
+            }
+            if (Pawn.Map == null)
+            {
+                return;
+            }
+            if (!Find.CurrentMap.mapPawns.FreeColonistsAndPrisoners.Any(x=>x.def==YautjaDefOf.RRY_Alien_Yautja))
+            {
+                return;
+            }
+            
             if (inducted != true)
             {
                 inducted = false;
@@ -138,7 +154,7 @@ namespace RRYautja
             {
                 inductable = false;
             }
-            if (base.parent.IsHashIntervalTick(30) && base.parent != null && base.parent is Pawn pawn && pawn.Map !=null)
+            if (base.parent != null && base.parent is Pawn pawn && pawn.Map !=null)
             {
                 bool selected = Find.Selector.SelectedObjects.Contains(Pawn);
                 blooded = YautjaBloodedUtility.BloodStatus(Pawn, out BloodStatus);
@@ -155,15 +171,18 @@ namespace RRYautja
                 {
                     if (Pawn.records.GetAsInt(RecordDefOf.Kills) > TotalkillsRecord && Pawn.kindDef.race == YautjaDefOf.RRY_Alien_Yautja)
                     {
+                        /*
                         pawn.needs.mood.thoughts.memories.Memories.Add(new Thought_Memory()
                         {
                             def = YautjaDefOf.RRY_Thought_ThrillOfTheHunt
                         });
+                        */
                     }
                 //    Log.Message(string.Format("kill incread: {0}\n!inducted: {1} && inductable: {2}", Pawn.records.GetAsInt(RecordDefOf.Kills) > TotalkillsRecord, !inducted, inductable));
                     pawnKills = Pawn.records.GetAsInt(RecordDefOf.Kills);
                     if (Pawn.LastAttackedTarget != null && (Pawn.LastAttackedTarget.Thing is Pawn other && !Pawn.Dead))
                     {
+                        corpse = other.Corpse;
                         Corpse otherCorpse = other.Corpse;
                         int omelee = other.RaceProps.Humanlike ? other.skills.GetSkill(SkillDefOf.Melee).Level : 0;
                         int oshoot = other.RaceProps.Humanlike ? other.skills.GetSkill(SkillDefOf.Shooting).Level : 0;
