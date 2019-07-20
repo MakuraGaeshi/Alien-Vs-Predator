@@ -23,9 +23,10 @@
     <settlementNameMaker>Namer_RRY_USCM_Squads</settlementNameMaker>
     <techLevel>Spacer</techLevel>
     <backstoryCategories>
-      <li>Raider</li>
+      <li>RRY_USCM_Backstories</li>
+	  <!--<li>Raider</li>
       <li>Tribal</li>
-      <li>Civil</li>
+      <li>Civil</li>-->
   	</backstoryCategories>
     <startingResearchTags>
       <li>ClassicStart</li>

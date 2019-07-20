@@ -24,9 +24,9 @@
       </li>
     </lifeStages>
 	<backstoryCategories>
-			<li>Civil</li>
+			<!--<li>Civil</li>
 			<li>Tribal</li>
-			<li>Raider</li>
+			<li>Raider</li>-->
 			<li>RRY_USCM_Backstories</li>
   	</backstoryCategories>
   </PawnKindDef>
