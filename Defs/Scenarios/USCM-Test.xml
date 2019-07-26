@@ -44,15 +44,31 @@
 				<text>TEN'HUT! \n\nMarines! We have received a distress call from topside. Your mission is to go out there and deal with the problem. Expect the presence of hostiles on the ground. \n\nYour unit will be dropped with the standard gear. Equip yourself quickly and be ready! We don't know what's awaiting you down there.\n\nOnce the threat dispatched, you are to build an outpost and await futher orders. Recruiting among civilians and indigeneous species has been authorised.\n\nGodspeed! </text>
 				<closeSound>GameStartSting</closeSound>
 			</li>
-			<li Class="ScenPart_ScatterThingsNearPlayerStart">
+			<li Class="ScenPart_StartingThing_Defined">
 					<def>StartingThing_Defined</def>
 					<thingDef>RRY_USCM_StandardGear</thingDef>
 					<count>1</count>
 			</li>
-			<li Class="ScenPart_ScatterThingsNearPlayerStart">
+			<li Class="ScenPart_StartingThing_Defined">
 					<def>StartingThing_Defined</def>
 					<thingDef>RRY_USCM_OperatorGear</thingDef>
 					<count>1</count>
+			</li>
+			<li Class="ScenPart_StartingThing_Defined">
+					<def>StartingThing_Defined</def>
+					<thingDef>Steel</thingDef>
+					<count>150</count>
+			</li>
+			<li Class="ScenPart_StartingThing_Defined">
+					<def>StartingThing_Defined</def>
+					<thingDef>Turret_MiniTurret</thingDef>
+					<stuff>Steel</stuff>
+					<count>2</count>
+			</li>
+			<li Class="ScenPart_StartingThing_Defined">
+					<def>StartingThing_Defined</def>
+					<thingDef>Battery</thingDef>
+					<count>2</count>
 			</li>
 		</parts>
 		</scenario>
