@@ -422,13 +422,8 @@
       </li>
     </stages>
     <comps>
-		<li Class="RRYautja.HediffCompProperties_XenoSpawner">
-		<pawnKindDefs>
-			<li>RRY_Xenomorph_Neomorph</li>
-		</pawnKindDefs>
-		<pawnKindWeights>
-			<li>100</li>
-		</pawnKindWeights>
+		<li Class="RRYautja.HediffCompProperties_NeoSpawner">
+		<pawnKindDef>RRY_Xenomorph_Neomorph</pawnKindDef>
 		</li>
 		<li Class="HediffCompProperties_SeverityPerDay">
 		<severityPerDay>1</severityPerDay>
@@ -537,7 +532,7 @@
         </capMods>
       </li>
       <li>
-        <minSeverity>0.75</minSeverity>
+        <minSeverity>0.90</minSeverity>
         <label>late gestation</label>
         <becomeVisible>false</becomeVisible>
         <vomitMtbDays>0.7</vomitMtbDays>
@@ -620,14 +615,9 @@
       </li>
     </stages>
     <comps>
-		<li Class="RRYautja.HediffCompProperties_XenoSpawner">
+		<li Class="RRYautja.HediffCompProperties_NeoSpawner">
 		<severityPerDay>0.3</severityPerDay>
-		<pawnKindDefs>
-			<li>RRY_Xenomorph_Neomorph</li>
-		</pawnKindDefs>
-		<pawnKindWeights>
-			<li>100</li>
-		</pawnKindWeights>
+		<pawnKindDef>RRY_Xenomorph_Neomorph</pawnKindDef>
 		</li>
     </comps>
   </HediffDef>

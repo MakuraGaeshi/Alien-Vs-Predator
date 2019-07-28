@@ -169,15 +169,6 @@ namespace RRYautja
                 }
                 if (Pawn.records.GetAsInt(RecordDefOf.Kills) > TotalkillsRecord || (!inducted && inductable) || (inducted && inductable))
                 {
-                    if (Pawn.records.GetAsInt(RecordDefOf.Kills) > TotalkillsRecord && Pawn.kindDef.race == YautjaDefOf.RRY_Alien_Yautja)
-                    {
-                        /*
-                        pawn.needs.mood.thoughts.memories.Memories.Add(new Thought_Memory()
-                        {
-                            def = YautjaDefOf.RRY_Thought_ThrillOfTheHunt
-                        });
-                        */
-                    }
                 //    Log.Message(string.Format("kill incread: {0}\n!inducted: {1} && inductable: {2}", Pawn.records.GetAsInt(RecordDefOf.Kills) > TotalkillsRecord, !inducted, inductable));
                     pawnKills = Pawn.records.GetAsInt(RecordDefOf.Kills);
                     if (Pawn.LastAttackedTarget != null && (Pawn.LastAttackedTarget.Thing is Pawn other && !Pawn.Dead))

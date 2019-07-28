@@ -59,9 +59,17 @@ namespace ResourceBoxes
             this.OpenBox(usedBy);
             if (PropsResourceBox.destoryOnUse && Rand.Chance(PropsResourceBox.destroyChance))
             {
-                this.parent.Destroy();
+                if (this.parent.stackCount == 1)
+                {
+                    this.parent.Destroy();
+                }
+                else
+                {
+                    this.parent.stackCount--;
+                }
             }
         }
+
 
         // Token: 0x06000003 RID: 3 RVA: 0x0000209C File Offset: 0x0000029C
         protected virtual void OpenBox(Pawn usedBy)

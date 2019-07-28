@@ -100,9 +100,9 @@
 			<!-- Lay eggs you need to -->
 			<li Class="JobGiver_LayXenoEgg" />
 			
-			<li Class="JobGiver_XenoGetFood"> 
+			<li Class="JobGiver_GetFoodXenomorph"> 
 			  <minCategory>Fed</minCategory>
-			  <forceScanWholeMap>false</forceScanWholeMap>
+			  
 			</li>
 			
 				<li Class="JobGiver_ClearHiveEggZone"> 
@@ -124,9 +124,8 @@
 		  <subNodes>
 			<!-- Lay eggs you need to -->
 			<li Class="JobGiver_LayXenoEgg" />
-			<li Class="JobGiver_XenoGetFood"> 
+			<li Class="JobGiver_GetFoodXenomorph"> 
 			  <minCategory>Fed</minCategory>
-			  <forceScanWholeMap>false</forceScanWholeMap>
 			</li>
 				<li Class="JobGiver_ClearHiveEggZone"> 
 				  <ClearingRange>2</ClearingRange>
@@ -143,9 +142,9 @@
 		
 		<li Class="ThinkNode_ConditionalNotGrown">
 		  <subNodes>
-			<li Class="JobGiver_XenoGetFood"> 
+			<li Class="JobGiver_GetFoodXenomorph"> 
 			  <minCategory>Fed</minCategory>
-			  <forceScanWholeMap>false</forceScanWholeMap>
+			  
 			</li>
 			<li Class="JobGiver_GetRest" />
 		  </subNodes>
@@ -526,7 +525,7 @@
             <li Class="ThinkNode_PrioritySorter">
               <subNodes>
 			  <!--
-                <li Class="JobGiver_XenoGetFood" />
+                <li Class="JobGiver_GetFoodXenomorph" />
                 <li Class="JobGiver_GetRest" />
 				-->
               </subNodes>
@@ -603,9 +602,9 @@
 			<!-- Lay eggs you need to -->
 			<li Class="JobGiver_LayXenoEgg" />
 			
-			<li Class="JobGiver_XenoGetFood"> 
+			<li Class="JobGiver_GetFoodXenomorph"> 
 			  <minCategory>Fed</minCategory>
-			  <forceScanWholeMap>false</forceScanWholeMap>
+			  
 			</li>
 			
 				<li Class="JobGiver_ClearHiveEggZone"> 
@@ -631,9 +630,8 @@
 			
 			<!-- Lay eggs you need to -->
 			<li Class="JobGiver_LayXenoEgg" />
-			<li Class="JobGiver_XenoGetFood"> 
+			<li Class="JobGiver_GetFoodXenomorph"> 
 			  <minCategory>Fed</minCategory>
-			  <forceScanWholeMap>false</forceScanWholeMap>
 			</li>
 				<li Class="JobGiver_ClearHiveEggZone"> 
 				  <ClearingRange>2</ClearingRange>
@@ -650,9 +648,7 @@
 		
 		<li Class="ThinkNode_ConditionalNotGrown">
 		  <subNodes>
-			<li Class="JobGiver_XenoGetFood"> 
-			  <minCategory>Fed</minCategory>
-			  <forceScanWholeMap>false</forceScanWholeMap>
+			<li Class="JobGiver_GetFoodXenomorph"> 
 			</li>
 			<li Class="JobGiver_GetRest" />
 		  </subNodes>
@@ -1047,7 +1043,7 @@
             <li Class="ThinkNode_PrioritySorter">
               <subNodes>
 			  <!--
-                <li Class="JobGiver_XenoGetFood" />
+                <li Class="JobGiver_GetFoodXenomorph" />
                 <li Class="JobGiver_GetRest" />
 				-->
               </subNodes>
@@ -1063,8 +1059,10 @@
 			<li Class="ThinkNode_ConditionalPawnKind">
 			  <pawnKind>RRY_Xenomorph_Runner</pawnKind>
 			  <subNodes>
-				<li Class="JobGiver_WanderAnywhere">
+				<li Class="RRYautja.JobGiver_WanderCloserToHosts">
 				  <maxDanger>Deadly</maxDanger>
+				  <wanderRadius>30</wanderRadius>
+				  <locomotionUrgency>Jog</locomotionUrgency>
 				</li>
 			  </subNodes>
 			</li>

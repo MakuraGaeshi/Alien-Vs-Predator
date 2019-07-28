@@ -388,8 +388,8 @@
 		<costList>
 			<Plasteel>80</Plasteel>
 			<Uranium>30</Uranium>
-			<ComponentIndustrial>5</ComponentIndustrial>
-			<ComponentSpacer>2</ComponentSpacer>
+			<ComponentIndustrial>3</ComponentIndustrial>
+			<ComponentSpacer>1</ComponentSpacer>
 		</costList>
 		<recipeMaker>
 			<researchPrerequisite>RRY_YautjaTechHigh</researchPrerequisite>
@@ -528,8 +528,8 @@
 			<Steel>20</Steel>
 			<Plasteel>60</Plasteel>
 			<Gold>10</Gold>
-			<ComponentIndustrial>3</ComponentIndustrial>
-			<ComponentSpacer>1</ComponentSpacer>
+			<ComponentIndustrial>5</ComponentIndustrial>
+			<ComponentSpacer>2</ComponentSpacer>
 		</costList>
 		<recipeMaker>
 			<researchPrerequisite>RRY_YautjaTechHigh</researchPrerequisite>

@@ -26,27 +26,101 @@ namespace RRYautja
             
         }
     }
-
+    
+    // Marking system tick replacement
     [HarmonyPatch(typeof(Pawn_RecordsTracker), "Increment")]
-    public static class AdMech_Pawn_RecordsTracker_Increment_Patch
+    public static class AvP_Pawn_RecordsTracker_Increment_Patch
     {
         [HarmonyPostfix]
         public static void IncrementPostfix(Pawn_RecordsTracker __instance, RecordDef def)
         {
-            Log.Message(string.Format("IncrementPostfix 1"));
             if (def == RecordDefOf.Kills)
             {
-                Log.Message(string.Format("IncrementPostfix 2"));
-                if (__instance.pawn!=null && __instance.pawn.TryGetComp<Comp_Yautja>() != null && __instance.pawn.TryGetComp<Comp_Yautja>() is Comp_Yautja _Yautja)
+                Pawn p = __instance.pawn;
+                if (p!=null && p.isBloodable() && p.BloodStatus() is Comp_Yautja _Yautja)
                 {
-                    Log.Message(string.Format("IncrementPostfix 3"));
+                    if (p.CurBloodStatus()==AvPExtensions.BloodStatusMode.None)
+                    {
+                        p.health.AddHediff(YautjaDefOf.RRY_Hediff_Unblooded);
+                    }
                     _Yautja.CalcTick();
+                }
+                if (p.isYautja())
+                {
+                    List<Thought_Memory> _Memories = p.needs.mood.thoughts.memories.Memories.FindAll(x=> x.def == YautjaDefOf.RRY_Thought_ThrillOfTheHunt);
+                    if (_Memories.Count < YautjaDefOf.RRY_Thought_ThrillOfTheHunt.stackLimit)
+                    {
+                        p.needs.mood.thoughts.memories.Memories.Add(new Thought_Memory()
+                        {
+                            def = YautjaDefOf.RRY_Thought_ThrillOfTheHunt
+                        });
+                    }
                 }
             }
         }
     }
+
+    [HarmonyPatch(typeof(Pawn_RelationsTracker), "SecondaryRomanceChanceFactor", null)]
+    public class XenophobeAttractionMultiplier
+    {
+        [HarmonyPostfix]
+        public static void SecondaryRomanceChanceFactor(Pawn_RelationsTracker __instance, Pawn otherPawn, ref float __result)
+        {
+            Traverse traverse = Traverse.Create(__instance);
+            Pawn pawn = (Pawn)XenophobeAttractionMultiplier.pawn.GetValue(__instance);
+            bool flag = pawn != null && otherPawn != null;
+            if (flag)
+            {
+                bool alien = !Equals(otherPawn.def, pawn.def);
+                if (pawn.isYautja() && alien)
+                {
+                    float num = 0f;
+                    __result *= num;
+                }
+                else
+                {
+                    /*
+                    int degree = pawn.story.traits.DegreeOfTrait(DefDatabase<TraitDef>.GetNamedSilentFail("Xenophobia"));
+                    if (alien)
+                    {
+                        if (degree == 1)
+                        {
+                            float num = 0.25f;
+                            __result *= num;
+                            Log.Message(string.Format("{0}({1}) is alien to {2}({3}), lowering compatability by {4} to {5} due to {2}'s Xenophobia", otherPawn.LabelShortCap, otherPawn.def.LabelCap, pawn.LabelShortCap, pawn.def.LabelCap, num, __result));
+                        }
+                        else if (degree == -1)
+                        {
+                            float num = 1.75f;
+                            __result *= num;
+                            Log.Message(string.Format("{0}({1}) is alien to {2}({3}), increasing compatability by {4} to {5} due to {2}'s Xenophelia", otherPawn.LabelShortCap, otherPawn.def.LabelCap, pawn.LabelShortCap, pawn.def.LabelCap, num, __result));
+                        }
+                        else
+                        {
+                            float num = 0.5f;
+                            __result *= num;
+                            Log.Message(string.Format("{0}({1}) is alien to {2}({3}), lowering compatability by {4} to {5}", otherPawn.LabelShortCap, otherPawn.def.LabelCap, pawn.LabelShortCap, pawn.def.LabelCap, num, __result));
+                        }
+                    }
+                    else
+                    {
+                        float num = 1f;
+                        __result *= num;
+
+                        Log.Message(string.Format("{0} and {1} are both {2} no action taken", otherPawn.LabelShortCap, pawn.LabelShortCap, pawn.def.LabelCap));
+                    }
+                    */
+                }
+            }
+        }
+
+        public static FieldInfo pawn = typeof(Pawn_RelationsTracker).GetField("pawn", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.GetField);
+
+    }
+
+    // Stops wild animals attacked by xeno/neomorphs triggering manhunter 
     [HarmonyPatch(typeof(RimWorld.PawnUtility), "GetManhunterOnDamageChance", new Type[] { typeof(Pawn), typeof(Thing) }), StaticConstructorOnStartup]
-    public static class PawnUtility_GetManhunterOnDamageChance_Patch
+    public static class AvP_PawnUtility_GetManhunterOnDamageChance_Patch
     {
         [HarmonyPostfix]
         public static void GetManhunterOnDamageChancePostfix(Pawn pawn, Thing instigator, ref float __result)
@@ -58,9 +132,10 @@ namespace RRYautja
             }
         }
     }
-    
-    [HarmonyPatch(typeof(Verse.AI.PathGrid), "CalculatedCostAt", new Type[] { typeof(IntVec3), typeof(bool), typeof(IntVec3) }), StaticConstructorOnStartup]
-    public static class PathGrid_CalculatedCostAt_Patch
+
+    // Pawns avoid acid Xenomorph acid
+    [HarmonyPatch(typeof(Verse.AI.PathGrid), "CalculatedCostAt", new Type[] { typeof(IntVec3), typeof(bool), typeof(IntVec3) })]
+    public static class AvP_PathGrid_CalculatedCostAt_Patch
     {
         [HarmonyPostfix]
         public static void CalculatedCostAtPostfix(IntVec3 c, bool perceivedStatic, IntVec3 prevCell, ref int __result)
@@ -74,28 +149,44 @@ namespace RRYautja
                 {
                     IntVec3 b = GenAdj.AdjacentCellsAndInside[j];
                     IntVec3 c2 = c + b;
-                    if (c2.InBounds(map))
+                    if (c2.InBounds(map) && perceivedStatic)
                     {
                         Filth_AddAcidDamage acid = null;
                         list = map.thingGrid.ThingsListAtFast(c2);
-                        for (int k = 0; k < list.Count; k++)
+                        if (list.Any(x=> x.def == XenomorphDefOf.RRY_FilthBloodXenomorph))
                         {
-                            acid = (list[k] as Filth_AddAcidDamage);
-                            if (acid != null)
+                            list = list.FindAll(x => x.def == XenomorphDefOf.RRY_FilthBloodXenomorph);
+                            for (int k = 0; k < list.Count; k++)
                             {
-                                if (acid.active)
+                                acid = (list[k] as Filth_AddAcidDamage);
+                                if (acid != null)
                                 {
-                                //    Log.Message(string.Format("acid is active: {0} = {1}", acid.active, __result));
-                                    if (b.x == 0 && b.z == 0)
+                                    if (acid.active)
                                     {
-                                        __result += 100;
+                                        if (__result<9000)
+                                        {
+                                            //    Log.Message(string.Format("acid is active: {0} = {1}", acid.active, __result));
+                                            if (b.x == 0 && b.z == 0)
+                                            {
+                                                __result += 1000;
+                                            //    Log.Message(string.Format("acid @: {0}, active: {1}, PathCost: {2}", c, acid.active, __result));
+                                            }
+                                            else
+                                            {
+                                                __result += 500;
+                                            //    Log.Message(string.Format("acid adjacent to: {0} @: {1}, active: {2}, PathCost: {3}", c, c2, acid.active, __result));
+                                            }
+                                        }
                                     }
                                     else
                                     {
-                                        __result += 50;
+                                    //    Log.Message(string.Format("acid @: {0}, active: {1}, PathCost: {2}", c, acid.active, __result));
                                     }
                                 }
-                            //    Log.Message(string.Format("acid.active: {0} = {1}", acid.active, __result));
+                                else
+                                {
+
+                                }
                             }
                         }
                     }
@@ -105,13 +196,15 @@ namespace RRYautja
         }
     }
 
+
+    // Xenomorphs should prefer blunt attacks when attempting to gather host pawns
     [HarmonyPatch(typeof(Pawn_MeleeVerbs), "ChooseMeleeVerb")]
-    public static class Pawn_MeleeVerbs_ChooseMeleeVerb_Patch
+    public static class AvP_Pawn_MeleeVerbs_ChooseMeleeVerb_Patch
     {
         [HarmonyPostfix]
         public static void HarmsHealthPostfix(Pawn_MeleeVerbs __instance, Thing target, ref Verb ___curMeleeVerb)
         {
-            if (XenomorphUtil.IsXenomorph(__instance.Pawn) && __instance.Pawn.def != XenomorphRacesDefOf.RRY_Xenomorph_FaceHugger && target is Pawn pawn)
+            if (__instance.Pawn.isXenomorph() && __instance.Pawn.def != XenomorphRacesDefOf.RRY_Xenomorph_FaceHugger && target is Pawn pawn)
             {
                 if (XenomorphUtil.isInfectablePawn(pawn))
                 {
@@ -164,40 +257,49 @@ namespace RRYautja
         }
     }
 
-    [HarmonyPatch(typeof(Pawn), "ThreatDisabled")]
-    public static class Pawn_ThreatDisabledPatch
+    // FoodUtility.BestPawnToHuntForPredator(getter, forceScanWholeMap)  BestPawnToHuntForPredator(Pawn predator, bool forceScanWholeMap)
+    // Xeno/Neomorph Hunting patch
+    [HarmonyPatch(typeof(FoodUtility), "BestPawnToHuntForPredator")]
+    public static class AvP_FoodUtility_BestPawnToHuntForPredator_Patch
     {
         [HarmonyPostfix]
-        public static void IgnoreCloak(Pawn __instance, ref bool __result, IAttackTargetSearcher disabledFor)
+        public static void BestPawnToHuntForPredator(Pawn predator, bool forceScanWholeMap, ref Pawn __result)
         {
-            bool selected__instance = Find.Selector.SelectedObjects.Contains(__instance);
-            Comp_Facehugger _Xenomorph = null;
-            if (disabledFor != null)
+            if (predator.isNeomorph())
             {
-                if (disabledFor.Thing != null)
-                {
-                    _Xenomorph = disabledFor.Thing.TryGetComp<Comp_Facehugger>();
-                    if (_Xenomorph != null)
-                    {
-                        __result = __result || !XenomorphUtil.isInfectablePawn(__instance);
-                    //    Log.Message(string.Format("__instance: {0}, __result: {1}, _Xenomorph: {2}, Infectable?: {3}", __instance, __result, _Xenomorph, XenomorphUtil.isInfectablePawn(__instance)));
-                    }
-                }
+                Comp_Neomorph _Neomorph = predator.TryGetComp<Comp_Neomorph>();
+                __result = _Neomorph.BestPawnToHuntForPredator(predator, forceScanWholeMap);
             }
-            if (__instance != null)
+            if (predator.isXenomorph())
             {
-                if (__instance != null)
-                {
 
-                }
-            } // XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden
-            __result = __result || ((__instance.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked) || __instance.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden)) && _Xenomorph == null);
-
+            }
         }
     }
+    /*
+    // FoodUtility.BestPawnToHuntForPredator(getter, forceScanWholeMap)  BestPawnToHuntForPredator(Pawn predator, bool forceScanWholeMap)
+    // Xeno/Neomorph Hunting patch
+    [HarmonyPatch(typeof(FoodUtility), "TryFindBestFoodSourceFor")]
+    public static class AvP_FoodUtility_TryFindBestFoodSourceFor_Patch
+    {
+        [HarmonyPostfix]
+        public static void TryFindBestFoodSourceFor(Pawn getter, Pawn eater, bool desperate, ref Thing foodSource, ref ThingDef foodDef, ref bool __result, bool canRefillDispenser = true, bool canUseInventory = true, bool allowForbidden = false, bool allowCorpse = true, bool allowSociallyImproper = false, bool allowHarvest = false, bool forceScanWholeMap = false)
+        {
+            if (eater.isNeomorph())
+            {
+                Comp_Neomorph _Neomorph = eater.TryGetComp<Comp_Neomorph>();
+                __result = _Neomorph.TryFindBestFoodSourceFor(getter, eater, desperate, out foodSource, out foodDef, canRefillDispenser, canUseInventory, allowForbidden, allowCorpse, allowSociallyImproper, allowHarvest,forceScanWholeMap);
+            }
+            if (eater.isXenomorph())
+            {
 
+            }
+        }
+    }
+    */
+    // Stuffable Projectile hunting weapon fix
     [HarmonyPatch(typeof(VerbUtility), "HarmsHealth")]
-    public static class VerbUtility_HarmsHealth_Patch
+    public static class AvP_VerbUtility_HarmsHealth_Patch
     {
         [HarmonyPostfix]
         public static void HarmsHealthPostfix(Verb verb, ref bool __result)
@@ -206,33 +308,93 @@ namespace RRYautja
         }
     }
 
-
-    /*
-    // Token: 0x0200007A RID: 122
-    [HarmonyPatch(typeof(PawnUtility), "GetManhunterOnDamageChance")]
-    internal class PawnUtility_GetManhunterOnDamageChance_Patch
-    {
-        // Token: 0x060001D9 RID: 473 RVA: 0x0000DB80 File Offset: 0x0000BD80
-        private static bool Prefix(Pawn p, ref float __result)
-        {
-            return true;
-        }
-
-        // Token: 0x060001DA RID: 474 RVA: 0x0000DBFC File Offset: 0x0000BDFC
-        private static void Postfix(Pawn p, ref float __result)
-        {
-
-        }
-    }
-    */
-
-    [HarmonyPatch(typeof(FeedPatientUtility), "ShouldBeFed")]
-    public static class FeedPatientUtility_ShouldBeFed_Patch
+    // Stuffable Projectile Explanation patch
+    [HarmonyPatch(typeof(StatWorker), "GetExplanationUnfinalized")]
+    public static class AvP_StatWorker_GetExplanationUnfinalized_Patch
     {
         [HarmonyPostfix]
-        public static void IgnoreCocooned(Pawn p, ref bool __result)
+        public static void GetExplanationUnfinalized(StatWorker __instance, StatRequest req, ToStringNumberSense numberSense, ref string __result)
         {
-            __result = __result && !(p.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned));
+            if (__instance != null)
+            {
+                StatDef value = Traverse.Create(__instance).Field("stat").GetValue<StatDef>();
+                if (req != null && req.Thing != null && req.Def != null && (req.Def == YautjaDefOf.RRY_Gun_Hunting_Bow || req.Def == YautjaDefOf.RRY_Gun_Compound_Bow) && value == StatDefOf.RangedWeapon_DamageMultiplier)
+                {
+                    DamageArmorCategoryDef CategoryOfDamage = ((ThingDef)req.Def).Verbs[0].defaultProjectile.projectile.damageDef.armorCategory;
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.Append(__instance.GetExplanationUnfinalized(req, numberSense));
+                    stringBuilder.AppendLine();
+                    ThingDef def = (ThingDef)req.Def;
+                    if (req.StuffDef != null)
+                    {
+                        StatDef statDef = null;
+                        if (CategoryOfDamage != null)
+                        {
+                            statDef = CategoryOfDamage.multStat;
+                        }
+                        if (statDef != null)
+                        {
+                            stringBuilder.AppendLine(req.StuffDef.LabelCap + ": x" + req.StuffDef.GetStatValueAbstract(statDef, null).ToStringPercent());
+                        }
+                    }
+                    __result = stringBuilder.ToString();
+                }
+            }
+            return;
+        }
+
+    }
+
+    // Stuffable Projectile StatWorker patch
+    [HarmonyPatch(typeof(StatWorker), "GetValueUnfinalized")]
+    public static class AvP_StatWorker_GetValueUnfinalized_Patch
+    {
+        [HarmonyPostfix]
+        public static void GetValueUnfinalized(StatWorker __instance, StatRequest req, ref float __result)
+        {
+            if (__instance != null)
+            {
+                StatDef value = Traverse.Create(__instance).Field("stat").GetValue<StatDef>();
+                if (req != null && req.Thing != null && req.Def != null && (req.Def == YautjaDefOf.RRY_Gun_Hunting_Bow || req.Def == YautjaDefOf.RRY_Gun_Compound_Bow) && value == StatDefOf.RangedWeapon_DamageMultiplier)
+                {
+                    //    Log.Message(string.Format("GetValueUnfinalized value: {0}, Def: {1}, Empty: {2}, HasThing: {3}, QualityCategory: {4}, StuffDef: {5}, Thing: {6}", value, req.Def, req.Empty, req.HasThing, req.QualityCategory, req.StuffDef, req.Thing));
+                    //    Log.Message(string.Format("GetValueUnfinalized Original __result: {0}", __result));
+
+                    DamageArmorCategoryDef CategoryOfDamage = ((ThingDef)req.Def).Verbs[0].defaultProjectile.projectile.damageDef.armorCategory;
+
+                    float num = __result;
+                    ThingDef def = (ThingDef)req.Def;
+                    if (req.StuffDef != null)
+                    {
+                        StatDef statDef = null;
+                        if (CategoryOfDamage != null)
+                        {
+                            statDef = CategoryOfDamage.multStat;
+                        }
+                        if (statDef != null)
+                        {
+                            num *= req.StuffDef.GetStatValueAbstract(statDef, null);
+                        }
+                        __result = num;
+                    }
+
+                    //    Log.Message(string.Format("GetValueUnfinalized Modified __result: {0}", __result));
+                }
+            }
+            return;
+        }
+    }
+
+    // Disables Stuffable Projectiles Firing while wearing vanillia Shield Belts
+    [HarmonyPatch(typeof(ShieldBelt), "AllowVerbCast")]
+    internal static class AvP_ShieldBelt_AllowVerbCast_YautjaWeapons_Patch
+    {
+        [HarmonyPostfix]
+        public static void Postfix(IntVec3 root, Map map, LocalTargetInfo targ, Verb verb, ref bool __result)
+        {
+            bool flag = verb is Verb_Launch_Stuffable_Projectile;
+            __result = __result && !flag;
+            return;
         }
     }
 
@@ -270,8 +432,9 @@ namespace RRYautja
     }
     */
 
+    // Xeno/Neomorph Hypothermic slowdown
     [HarmonyPatch(typeof(HediffGiver_Hypothermia), "OnIntervalPassed")]
-    public static class HediffGiver_Hypothermia_OnIntervalPassed_Patch
+    public static class AvP_HediffGiver_Hypothermia_OnIntervalPassed_Patch
     {
         [HarmonyPrefix]
         public static bool OnIntervalPassedPrefix(Pawn pawn, Hediff cause)
@@ -331,9 +494,57 @@ namespace RRYautja
             }
         }
     }
+    
+    // Protects Cocooned Pawns from wound infections
+    [HarmonyPatch(typeof(HediffComp_Infecter), "CheckMakeInfection")]
+    public static class AvP_HediffComp_Infecter_CheckMakeInfection_Patch
+    {
+        [HarmonyPrefix]
+        public static bool preCheckMakeInfection(HediffComp_Infecter __instance)
+        {
+#if DEBUG
+        //    Log.Message(string.Format("trying to add an infection to {0}'s wounded {1}", __instance.Pawn, __instance.parent.Part));
+#endif
+            if (__instance.Pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned) || (__instance.Pawn.InBed() && __instance.Pawn.CurrentBed() is Building_XenomorphCocoon) || __instance.Pawn.RaceProps.FleshType.defName.Contains("RRY_SynthFlesh"))
+            {
+#if DEBUG
+            //    Log.Message(string.Format("{0} protected from infection", __instance.Pawn));
+#endif
+                return false;
+            }
+            return true;
+        }
+    }
 
+    // Stops Cocooned Pawns taking damage from Xeno blood
+    [HarmonyPatch(typeof(Pawn), "PreApplyDamage")]
+    public static class AvP_Pawn_PreApplyDamage_Patch
+    {
+        [HarmonyPrefix]
+        public static bool Ignore_Acid_Damage(Pawn __instance, ref DamageInfo dinfo, out bool absorbed)
+        {
+            if (__instance.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned) || XenomorphUtil.IsXenomorph(__instance))
+            {
+                absorbed = dinfo.Def == XenomorphDefOf.RRY_AcidBurn || dinfo.Def == XenomorphDefOf.RRY_AcidDamage;
+            }
+            else
+            {
+                absorbed = false;
+            }
+            if (absorbed)
+            {
+#if DEBUG
+            //    Log.Message(string.Format("absorbed"));
+#endif
+            }
+            return !absorbed;
+        }
+
+    }
+
+    // stop Pawns trying to wander near Cocooned colonists
     [HarmonyPatch(typeof(JobGiver_WanderColony), "GetWanderRoot")]
-    public static class JobGiver_WanderColony_GetWanderRootPatch
+    public static class AvP_JobGiver_WanderColony_GetWanderRoot_Patch
     {
         [HarmonyPostfix]
         public static void GetWanderRoot(Pawn pawn, ref IntVec3 __result)
@@ -345,19 +556,20 @@ namespace RRYautja
         }
     }
 
-    [HarmonyPatch(typeof(Pawn), "AnythingToStrip")]
-    public static class Pawn_AnythingToStripPatch
+    // Stop Doctors trying to feed cocooned Pawns
+    [HarmonyPatch(typeof(FeedPatientUtility), "ShouldBeFed")]
+    public static class AvP_FeedPatientUtility_ShouldBeFed_Patch
     {
         [HarmonyPostfix]
-        public static void IgnoreWristblade(Pawn __instance, ref bool __result)
+        public static void IgnoreCocooned(Pawn p, ref bool __result)
         {
-            __result = __result && !(__instance.apparel != null && __instance.apparel.WornApparelCount == 1 && __instance.apparel.WornApparel.Any(x => x.def == YautjaDefOf.RRY_Equipment_HunterGauntlet) && __instance.Faction != Faction.OfPlayerSilentFail) && !(__instance.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned));
-
+            __result = __result && !(p.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned));
         }
     }
 
+    // Doctors Ignore Cocooned Pawns that need tending
     [HarmonyPatch(typeof(WorkGiver_Tend), "GoodLayingStatusForTend")]
-    public static class WorkGiver_Tend_GoodLayingStatusForTend_Patch
+    public static class AvP_WorkGiver_Tend_GoodLayingStatusForTend_Patch
     {
         [HarmonyPostfix]
         public static void PawnInCocoon(WorkGiver_Tend __instance, Pawn patient, Pawn doctor, ref bool __result)
@@ -368,13 +580,14 @@ namespace RRYautja
         }
     }
 
+    // Pauses NeedsTracker on Cocooned Pawns
     [HarmonyPatch(typeof(Pawn_NeedsTracker), "NeedsTrackerTick", null)]
-    public static class Pawn_NeedsTracker_Patch
+    public static class AvP_Pawn_NeedsTracker_Patch
     {
         public static bool Prefix(Pawn_NeedsTracker __instance)
         {
             Traverse traverse = Traverse.Create(__instance);
-            Pawn pawn = (Pawn)Pawn_NeedsTracker_Patch.pawn.GetValue(__instance);
+            Pawn pawn = (Pawn)AvP_Pawn_NeedsTracker_Patch.pawn.GetValue(__instance);
             bool flag = pawn != null;
             if (flag)
             {
@@ -387,12 +600,41 @@ namespace RRYautja
             }
             return true;
         }
-        
+
         public static FieldInfo pawn = typeof(Pawn_NeedsTracker).GetField("pawn", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.GetField);
     }
-    
+
+    // Ignore Cocoons as Beds
+    [HarmonyPatch(typeof(RestUtility), "IsValidBedFor")]
+    internal static class AvP_RestUtility_Bed_IsValidBedFor_Patch
+    {
+        [HarmonyPostfix]
+        public static void Postfix(Thing bedThing, Pawn sleeper, Pawn traveler, ref bool __result)
+        {
+            bool flag = bedThing is Building_XenomorphCocoon;
+            bool flag2 = traveler != null ? traveler.kindDef.race.defName.Contains("RRY_Xenomorph") : false;
+            bool flag3 = XenomorphUtil.isInfectablePawn(sleeper);
+            __result = __result && !flag || (__result && flag && flag2);
+            //    Log.Message(string.Format("RestUtility_Bed_IsValidBedFor sleeper: {0} traveler: {1} result: {2} = !flag: {3} && flag2: {4}", sleeper, traveler, __result, !flag , flag2));
+            return;
+        }
+    }
+
+    // Disallows stripping of the Wristblade
+    [HarmonyPatch(typeof(Pawn), "AnythingToStrip")]
+    public static class AvP_Pawn_AnythingToStrip_Patch
+    {
+        [HarmonyPostfix]
+        public static void IgnoreWristblade(Pawn __instance, ref bool __result)
+        {
+            __result = __result && !(__instance.apparel != null && __instance.apparel.WornApparelCount == 1 && __instance.apparel.WornApparel.Any(x => x.def == YautjaDefOf.RRY_Equipment_HunterGauntlet) && __instance.Faction != Faction.OfPlayerSilentFail) && !(__instance.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned));
+
+        }
+    }
+
+    // Disallows stripping of the Wristblade
     [HarmonyPatch(typeof(Pawn), "Strip")]
-    public static class Pawn_StripPatch
+    public static class AvP_Pawn_Strip_Patch
     {
         [HarmonyPrefix]
         public static bool IgnoreWristblade(Pawn __instance)
@@ -440,7 +682,6 @@ namespace RRYautja
             return result;
         }
         
-		// Token: 0x04000E58 RID: 3672
 		private static List<Apparel> tmpApparelList = new List<Apparel>();
         
         public static void DropAll(Pawn __instance, IntVec3 pos, bool forbid = true)
@@ -464,8 +705,61 @@ namespace RRYautja
         }
     }
 
+    // Hides wounds on Stealthed Pawns
+    [HarmonyPatch(typeof(PawnWoundDrawer), "RenderOverBody")]
+    public static class AvP_PawnWoundDrawer_TryExecute_Patch
+    {
+        // Token: 0x06000017 RID: 23 RVA: 0x00002CD0 File Offset: 0x00000ED0
+        [HarmonyPrefix]
+        public static bool PreExecute(PawnWoundDrawer __instance)
+        {
+            Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
+            bool flag_Cloaked = pawn.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked, false);
+            bool flag_HiddenXeno = pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden, false);
+            if (flag_Cloaked || flag_HiddenXeno)
+            {
+                return false;
+            }
+            return true;
+        }
+    }
+
+    // Pawns ignore Cloaked things
+    [HarmonyPatch(typeof(Pawn), "ThreatDisabled")]
+    public static class AvP_Pawn_ThreatDisabled_Patch
+    {
+        [HarmonyPostfix]
+        public static void IgnoreCloak(Pawn __instance, ref bool __result, IAttackTargetSearcher disabledFor)
+        {
+            bool selected__instance = Find.Selector.SelectedObjects.Contains(__instance);
+            Comp_Facehugger _Xenomorph = null;
+            if (disabledFor != null)
+            {
+                if (disabledFor.Thing != null)
+                {
+                    _Xenomorph = disabledFor.Thing.TryGetComp<Comp_Facehugger>();
+                    if (_Xenomorph != null)
+                    {
+                        __result = __result || !XenomorphUtil.isInfectablePawn(__instance);
+                        //    Log.Message(string.Format("__instance: {0}, __result: {1}, _Xenomorph: {2}, Infectable?: {3}", __instance, __result, _Xenomorph, XenomorphUtil.isInfectablePawn(__instance)));
+                    }
+                }
+            }
+            if (__instance != null)
+            {
+                if (__instance != null)
+                {
+
+                }
+            } // XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden
+            __result = __result || ((__instance.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked) || __instance.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden)) && _Xenomorph == null);
+
+        }
+    }
+
+    // Plasmacasters ignore Cloaked things
     [HarmonyPatch(typeof(Building_Turret_Shoulder), "ThreatDisabled")]
-    public static class Building_Turret_Shoulder_ThreatDisabledPatch
+    public static class AvP_Building_Turret_Shoulder_ThreatDisabled_Patch
     {
         [HarmonyPostfix]
         public static void IgnoreShoulderTurret(Building_Turret_Shoulder __instance, ref bool __result, IAttackTargetSearcher disabledFor)
@@ -484,8 +778,9 @@ namespace RRYautja
         }
     }
 
+    // Gets Gizmos from Apparel's Comps
     [HarmonyPatch(typeof(Apparel), "GetWornGizmos")]
-    public static class Ogliss_RimWorld_Apparel_GetWornGizmos
+    public static class AvP_RimWorld_Apparel_GetWornGizmos_Patch
     {
         [HarmonyPostfix]
         public static void ApparelGizmosFromComps(Apparel __instance, ref IEnumerable<Gizmo> __result)
@@ -514,8 +809,9 @@ namespace RRYautja
         }
     }
 
+    // Gets Gizmos from Cloakgen's Comps
     [HarmonyPatch(typeof(Cloakgen), "GetWornGizmos")]
-    public static class Ogliss_RimWorld_Cloakgen_GetWornGizmos
+    public static class AvP_RimWorld_Cloakgen_GetWornGizmos_Patch
     {
         [HarmonyPostfix]
         public static void ApparelGizmosFromComps(Cloakgen __instance, ref IEnumerable<Gizmo> __result)
@@ -552,147 +848,10 @@ namespace RRYautja
         }
     }
    
-    /*
-   [HarmonyPatch(typeof(Pawn), "CheckAcceptArrest")]
-   public static class Pawn_AcceptArrestPatch
-   {
-       [HarmonyPrefix]
-       public static bool RevealSaboteur(Pawn __instance, Pawn arrester)
-       {
-           if (__instance.health.hediffSet.HasHediff(HediffDefOfIncidents.Saboteur))
-           {
-               __instance.health.hediffSet.hediffs.RemoveAll(h => h.def == HediffDefOfIncidents.Saboteur);
-               Faction faction = Find.FactionManager.RandomEnemyFaction();
-               __instance.SetFaction(faction);
-               List<Pawn> thisPawn = new List<Pawn>();
-               thisPawn.Add(__instance);
-               IncidentParms parms = new IncidentParms();
-               parms.faction = faction;
-               parms.spawnCenter = __instance.Position;
-               parms.raidStrategy = RaidStrategyDefOf.ImmediateAttack;
-               parms.raidStrategy.Worker.MakeLords(parms, thisPawn);
-               __instance.Map.avoidGrid.Regenerate();
-               LessonAutoActivator.TeachOpportunity(ConceptDefOf.EquippingWeapons, OpportunityType.Critical);
-               if (faction != null)
-               {
-                   Find.LetterStack.ReceiveLetter("LetterLabelSabotage".Translate(), "SaboteurRevealedFaction".Translate(__instance.LabelShort, faction.Name, __instance.Named("PAWN")), LetterDefOf.ThreatBig, __instance, null);
-               }
-               else
-               {
-                   Find.LetterStack.ReceiveLetter("LetterLabelSabotage".Translate(), "SaboteurRevealed".Translate(__instance.LabelShort, __instance.Named("PAWN")), LetterDefOf.ThreatBig, __instance, null);
-               }
-           }
-           return true;
-       }
-   }
-   */
-   
-    [HarmonyPatch(typeof(StatWorker), "GetExplanationUnfinalized")]
-    public static class StatWorker_GetExplanationUnfinalized
-    {
-        [HarmonyPostfix]
-        public static void GetExplanationUnfinalized(StatWorker __instance, StatRequest req, ToStringNumberSense numberSense, ref string __result)
-        {
-            if (__instance != null)
-            {
-                StatDef value = Traverse.Create(__instance).Field("stat").GetValue<StatDef>();
-                if (req != null && req.Thing != null && req.Def != null && (req.Def == YautjaDefOf.RRY_Gun_Hunting_Bow || req.Def == YautjaDefOf.RRY_Gun_Compound_Bow) && value == StatDefOf.RangedWeapon_DamageMultiplier)
-                {
-                    DamageArmorCategoryDef CategoryOfDamage = ((ThingDef)req.Def).Verbs[0].defaultProjectile.projectile.damageDef.armorCategory;
-                    StringBuilder stringBuilder = new StringBuilder();
-                    stringBuilder.Append(__instance.GetExplanationUnfinalized(req, numberSense));
-                    stringBuilder.AppendLine();
-                    ThingDef def = (ThingDef)req.Def;
-                    if (req.StuffDef != null)
-                    {
-                        StatDef statDef = null;
-                        if (CategoryOfDamage != null)
-                        {
-                            statDef = CategoryOfDamage.multStat;
-                        }
-                        if (statDef != null)
-                        {
-                            stringBuilder.AppendLine(req.StuffDef.LabelCap + ": x" + req.StuffDef.GetStatValueAbstract(statDef, null).ToStringPercent());
-                        }
-                    }
-                    __result = stringBuilder.ToString();
-                }
-            }
-            return;
-        }
-
-    }
-    
-    [HarmonyPatch(typeof(StatWorker), "GetValueUnfinalized")]
-    public static class StatWorker_GetValueUnfinalized
-    {
-        [HarmonyPostfix]
-        public static void GetValueUnfinalized(StatWorker __instance, StatRequest req, ref float __result)
-        {
-            if (__instance != null)
-            {
-                StatDef value = Traverse.Create(__instance).Field("stat").GetValue<StatDef>();
-                if (req != null && req.Thing != null && req.Def != null && (req.Def == YautjaDefOf.RRY_Gun_Hunting_Bow || req.Def == YautjaDefOf.RRY_Gun_Compound_Bow) && value == StatDefOf.RangedWeapon_DamageMultiplier)
-                {
-                //    Log.Message(string.Format("GetValueUnfinalized value: {0}, Def: {1}, Empty: {2}, HasThing: {3}, QualityCategory: {4}, StuffDef: {5}, Thing: {6}", value, req.Def, req.Empty, req.HasThing, req.QualityCategory, req.StuffDef, req.Thing));
-                //    Log.Message(string.Format("GetValueUnfinalized Original __result: {0}", __result));
-
-                    DamageArmorCategoryDef CategoryOfDamage = ((ThingDef)req.Def).Verbs[0].defaultProjectile.projectile.damageDef.armorCategory;
-
-                    float num = __result;
-                    ThingDef def = (ThingDef)req.Def;
-                    if (req.StuffDef != null)
-                    {
-                        StatDef statDef = null;
-                        if (CategoryOfDamage != null)
-                        {
-                            statDef = CategoryOfDamage.multStat;
-                        }
-                        if (statDef != null)
-                        {
-                            num *= req.StuffDef.GetStatValueAbstract(statDef, null);
-                        }
-                        __result = num;
-                    }
-
-                //    Log.Message(string.Format("GetValueUnfinalized Modified __result: {0}", __result));
-                }
-            }
-            return;
-        }
-    }
-
-    [HarmonyPatch(typeof(RestUtility), "IsValidBedFor")]
-    internal static class RestUtility_Bed_IsValidBedFor
-    {
-        [HarmonyPostfix]
-        public static void Postfix(Thing bedThing, Pawn sleeper, Pawn traveler, ref bool __result)
-        {
-            bool flag = bedThing is Building_XenomorphCocoon;
-            bool flag2 = traveler != null ? traveler.kindDef.race.defName.Contains("RRY_Xenomorph") : false;
-            bool flag3 = XenomorphUtil.isInfectablePawn(sleeper);
-            __result = __result && !flag || (__result && flag && flag2);
-            //    Log.Message(string.Format("RestUtility_Bed_IsValidBedFor sleeper: {0} traveler: {1} result: {2} = !flag: {3} && flag2: {4}", sleeper, traveler, __result, !flag , flag2));
-            return;
-        }
-    }
-
-    [HarmonyPatch(typeof(ShieldBelt), "AllowVerbCast")]
-    internal static class ShieldBelt_AllowVerbCast_YautjaWeapons
-    {
-        [HarmonyPostfix]
-        public static void Postfix(IntVec3 root, Map map, LocalTargetInfo targ, Verb verb, ref bool __result)
-        {
-            bool flag = verb is Verb_Launch_Stuffable_Projectile;
-            __result = __result && !flag;
-            return;
-        }
-    }
-    
-
+    // Hediff_Implant Drawer
     [HarmonyPatch(typeof(PawnRenderer), "RenderPawnInternal")]
     [HarmonyPatch(new Type[] { typeof(Vector3), typeof(float), typeof(bool), typeof(Rot4), typeof(Rot4), typeof(RotDrawMode), typeof(bool), typeof(bool) })]
-    static class Pawn_DrawTracker_get_DrawPos
+    static class AvP_Pawn_DrawTracker_get_DrawPos_Patch
     {
         static void Prefix(PawnRenderer __instance, ref Vector3 rootLoc, ref float angle, ref bool renderBody, ref Rot4 bodyFacing, ref Rot4 headFacing, ref RotDrawMode bodyDrawType, ref bool portrait, ref bool headStump)
         {
@@ -753,8 +912,7 @@ namespace RRYautja
                 }
             }
         }
-
-
+        
         static void DrawImplant(HediffComp_DrawImplant comp, PawnRenderer __instance, Vector3 rootLoc, float angle, bool renderBody, Rot4 bodyFacing, Rot4 headFacing, RotDrawMode bodyDrawType, bool portrait, bool headStump)
         {// this.Pawn
 
@@ -998,24 +1156,41 @@ namespace RRYautja
         }
     }
     
-    [HarmonyPatch(typeof(PawnWoundDrawer), "RenderOverBody")]
-    public static class PawnWoundDrawerPatch_TryExecute
-    {
-        // Token: 0x06000017 RID: 23 RVA: 0x00002CD0 File Offset: 0x00000ED0
-        [HarmonyPrefix]
-        public static bool PreExecute(PawnWoundDrawer __instance)
-        {
-            Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
-            bool flag_Cloaked = pawn.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked, false);
-            bool flag_HiddenXeno = pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden, false);
-            if (flag_Cloaked || flag_HiddenXeno)
-            {
-                return false;
-            }
-            return true;
-        }
-    }
-    
+    /*
+   [HarmonyPatch(typeof(Pawn), "CheckAcceptArrest")]
+   public static class Pawn_AcceptArrestPatch
+   {
+       [HarmonyPrefix]
+       public static bool RevealSaboteur(Pawn __instance, Pawn arrester)
+       {
+           if (__instance.health.hediffSet.HasHediff(HediffDefOfIncidents.Saboteur))
+           {
+               __instance.health.hediffSet.hediffs.RemoveAll(h => h.def == HediffDefOfIncidents.Saboteur);
+               Faction faction = Find.FactionManager.RandomEnemyFaction();
+               __instance.SetFaction(faction);
+               List<Pawn> thisPawn = new List<Pawn>();
+               thisPawn.Add(__instance);
+               IncidentParms parms = new IncidentParms();
+               parms.faction = faction;
+               parms.spawnCenter = __instance.Position;
+               parms.raidStrategy = RaidStrategyDefOf.ImmediateAttack;
+               parms.raidStrategy.Worker.MakeLords(parms, thisPawn);
+               __instance.Map.avoidGrid.Regenerate();
+               LessonAutoActivator.TeachOpportunity(ConceptDefOf.EquippingWeapons, OpportunityType.Critical);
+               if (faction != null)
+               {
+                   Find.LetterStack.ReceiveLetter("LetterLabelSabotage".Translate(), "SaboteurRevealedFaction".Translate(__instance.LabelShort, faction.Name, __instance.Named("PAWN")), LetterDefOf.ThreatBig, __instance, null);
+               }
+               else
+               {
+                   Find.LetterStack.ReceiveLetter("LetterLabelSabotage".Translate(), "SaboteurRevealed".Translate(__instance.LabelShort, __instance.Named("PAWN")), LetterDefOf.ThreatBig, __instance, null);
+               }
+           }
+           return true;
+       }
+   }
+   */
+
     /*
     [HarmonyPatch(typeof(Pawn), "Tick")]
     public static class Pawn_TickPatch
@@ -1039,7 +1214,7 @@ namespace RRYautja
         
     }
     */
-    
+
     /*
     // Token: 0x02000007 RID: 7
     [HarmonyPatch(typeof(IncidentWorker_WandererJoin), "TryExecute")]
@@ -1062,51 +1237,7 @@ namespace RRYautja
         }
     }
     */
-    
-    [HarmonyPatch(typeof(HediffComp_Infecter), "CheckMakeInfection")]
-    public static class HediffComp_Infecter_Patch_CheckMakeInfection
-    {
-        [HarmonyPrefix]
-        public static bool preCheckMakeInfection(HediffComp_Infecter __instance)
-        {
-#if DEBUG
-        //    Log.Message(string.Format("trying to add an infection to {0}'s wounded {1}", __instance.Pawn, __instance.parent.Part));
-#endif
-            if (__instance.Pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned)|| (__instance.Pawn.InBed() && __instance.Pawn.CurrentBed() is Building_XenomorphCocoon) || __instance.Pawn.RaceProps.FleshType.defName.Contains("RRY_SynthFlesh"))
-            {
-#if DEBUG
-            //    Log.Message(string.Format("{0} protected from infection", __instance.Pawn));
-#endif
-                return false;
-            }
-            return true;
-        }
-    }
-    
-    [HarmonyPatch(typeof(Pawn), "PreApplyDamage")]
-    public static class Pawn_PreApplyDamage_Patch
-    {
-        [HarmonyPrefix]
-        public static bool Ignore_Acid_Damage(Pawn __instance, ref DamageInfo dinfo, out bool absorbed)
-        {
-            if (__instance.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned) || XenomorphUtil.IsXenomorph(__instance))
-            {
-                absorbed = dinfo.Def == XenomorphDefOf.RRY_AcidBurn || dinfo.Def == XenomorphDefOf.RRY_AcidDamage;
-            }
-            else
-            {
-                absorbed = false;
-            }
-            if (absorbed)
-            {
-#if DEBUG
-            //    Log.Message(string.Format("absorbed"));
-#endif
-            }
-            return !absorbed;
-        }
-        
-    }
+
 
     /*
     // Token: 0x02000007 RID: 7
@@ -1125,9 +1256,9 @@ namespace RRYautja
         }
     }
     */
-    
+
     [HarmonyPatch(typeof(GameConditionManager), "ConditionIsActive")]
-    internal static class GameConditionManager_ConditionIsActive_Patch
+    internal static class AvP_GameConditionManager_ConditionIsActive_Patch
     {
         [HarmonyPostfix]
         public static void Postfix(GameConditionManager __instance, ref GameConditionDef def, ref bool __result)
@@ -1144,7 +1275,7 @@ namespace RRYautja
     }
     
     [HarmonyPatch(typeof(ApparelGraphicRecordGetter), "TryGetGraphicApparel")]
-    public static class YautjaSpecificHatPatch
+    public static class AvP_YautjaSpecificHat_Patch
     {
         // Token: 0x0600004B RID: 75 RVA: 0x0000349C File Offset: 0x0000169C
         [HarmonyPostfix]
@@ -1184,7 +1315,7 @@ namespace RRYautja
     }
 
     [HarmonyPatch(typeof(PawnGenerator), "GenerateBodyType")]
-    public static class YautjaGenerateBodyTypePatch
+    public static class AvP_PawnGenerator_GenerateBodyType_Yautja_Patch
     {
         [HarmonyPostfix]
         public static void Yautja_GenerateBodyTypePatch(ref Pawn pawn)
@@ -1198,7 +1329,7 @@ namespace RRYautja
     }
 
     [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "TryExecute")]
-    public static class IncidentWorker_RaidEnemyPatch_TryExecute
+    public static class AvP_IncidentWorker_RaidEnemyPatch_TryExecute_Patch
     {
         // Token: 0x06000017 RID: 23 RVA: 0x00002CD0 File Offset: 0x00000ED0
         [HarmonyPrefix]
@@ -1266,7 +1397,7 @@ namespace RRYautja
     }
 
     [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "TryExecute")]
-    public static class IncidentWorker_RaidEnemy_Patch_TryExecute
+    public static class AvP_IncidentWorker_RaidEnemy_Patch_TryExecute_Patch
     {
         [HarmonyPrefix]
         public static bool PreExecute(ref IncidentParms parms)
@@ -1303,7 +1434,7 @@ namespace RRYautja
     }
 
     [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "GetLetterText")]
-    public static class IncidentWorker_RaidEnemyPatch_GetLetterText
+    public static class AvP_IncidentWorker_RaidEnemyPatch_GetLetterText_Patch
     {
         [HarmonyPostfix]
         public static void PostExecute(ref string __result, ref IncidentParms parms)
@@ -1344,7 +1475,7 @@ namespace RRYautja
     }
     /*
     [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "GetLetterText")]
-    public static class IncidentWorker_RaidEnemy_Patch_GetLetterText
+    public static class AvP_IncidentWorker_RaidEnemy_Patch_GetLetterText_Patch
     {
         [HarmonyPostfix]
         public static void PostExecute(ref string __result, ref IncidentParms parms)
@@ -1371,8 +1502,10 @@ namespace RRYautja
         }
     }
     */
+
+    // Prevents disabled factions from generating in a new world
     [HarmonyPatch(typeof(FactionGenerator), "GenerateFactionsIntoWorld", null)]
-    public static class FactionGenerator_GenerateFactionsIntoWorld
+    public static class AvP_FactionGenerator_GenerateFactionsIntoWorld_Patch
     {
         // Token: 0x06000012 RID: 18 RVA: 0x000027D0 File Offset: 0x000017D0
         public static bool Prefix()
@@ -1386,12 +1519,12 @@ namespace RRYautja
                     string defName = factionDef.defName;
                     if (factionDef==XenomorphDefOf.RRY_Xenomorph&& !SettingsHelper.latest.AllowXenomorphFaction)
                     {
-                        FactionGenerator_GenerateFactionsIntoWorld.UpdateDef(factionDef, 0);
+                        AvP_FactionGenerator_GenerateFactionsIntoWorld_Patch.UpdateDef(factionDef, 0);
                         //    return false;
                     }
                     if (defName.Contains("RRY_Yautja_") && !SettingsHelper.latest.AllowYautjaFaction)
                     {
-                        FactionGenerator_GenerateFactionsIntoWorld.UpdateDef(factionDef, 0);
+                        AvP_FactionGenerator_GenerateFactionsIntoWorld_Patch.UpdateDef(factionDef, 0);
                         //    return false;
                     }
                 }
@@ -1413,8 +1546,9 @@ namespace RRYautja
     }
 
     // ScenarioLister.ScenariosInCategory
+    // Hides Yautja Scenarios when Faction is disabled
     [HarmonyPatch(typeof(ScenarioLister), "ScenariosInCategory")]
-    public static class Page_ScenarioLister_ScenariosInCategory_Patch
+    public static class AvP_Page_ScenarioLister_ScenariosInCategory_Patch
     {
         [HarmonyPostfix]
         public static IEnumerable<Scenario> ScenariosInCategoryPrefix(IEnumerable<Scenario> scenario ,ScenarioCategory cat)
@@ -1425,7 +1559,7 @@ namespace RRYautja
                 scenarios = DefDatabase<ScenarioDef>.AllDefs;
                 foreach (ScenarioDef scenDef in DefDatabase<ScenarioDef>.AllDefs)
                 {
-                    Log.Message(string.Format("Found {0}", scenarios.Count()));
+                //    Log.Message(string.Format("Found {0}", scenarios.Count()));
                     if ((!scenDef.defName.Contains("Yautja") && !SettingsHelper.latest.AllowYautjaFaction) || SettingsHelper.latest.AllowYautjaFaction)
                     {
                         yield return scenDef.scenario;
@@ -1437,7 +1571,7 @@ namespace RRYautja
                 IEnumerable<Scenario> scenarios = ScenarioFiles.AllScenariosLocal;
                 foreach (Scenario scen in scenarios)
                 {
-                    Log.Message(string.Format("Found {0}", scenarios.Count()));
+                //    Log.Message(string.Format("Found {0}", scenarios.Count()));
                     if ((!scen.name.Contains("Yautja") && !SettingsHelper.latest.AllowYautjaFaction) || SettingsHelper.latest.AllowYautjaFaction)
                     {
                         yield return scen;
@@ -1449,7 +1583,7 @@ namespace RRYautja
                 IEnumerable<Scenario> scenarios = ScenarioFiles.AllScenariosWorkshop;
                 foreach (Scenario scen2 in scenarios)
                 {
-                    Log.Message(string.Format("Found {0}", scenarios.Count()));
+                //    Log.Message(string.Format("Found {0}", scenarios.Count()));
                     if ((!scen2.name.Contains("Yautja") && !SettingsHelper.latest.AllowYautjaFaction) || SettingsHelper.latest.AllowYautjaFaction)
                     {
                         yield return scen2;
@@ -1459,7 +1593,40 @@ namespace RRYautja
             yield break;
 
         }
-
     }
-    
+    // DoComplexCalcs
+    /*
+    [HarmonyPatch(typeof(Fire), "DoComplexCalcs")]
+    public static class AvP_Fire_DoComplexCalcs_Patch
+    {
+        [HarmonyPostfix]
+        public static void DoComplexCalcsPostfix(Fire __instance)
+        {
+            Map map = __instance.Map != null ? __instance.Map : __instance.MapHeld;
+            IntVec3 center = __instance.Position != null ? __instance.Position : __instance.PositionHeld;
+            float radius = __instance.fireSize * 3f;
+            MapComponent_HiveGrid _HiveGrid = map.GetComponent<MapComponent_HiveGrid>();
+            if (_HiveGrid != null)
+            {
+                HiveUtility.AddHiveRadial(center, map, radius, -(__instance.fireSize * 0.1f));
+            }
+        }
+    }
+    */
+    [HarmonyPatch(typeof(SnowUtility), "AddSnowRadial")]
+    public static class AvP_SnowUtility_AddSnowRadial_Patch
+    {
+        [HarmonyPostfix]
+        public static void AddSnowRadialPostfix(IntVec3 center, Map map, float radius, float depth)
+        {
+        //    Log.Message(string.Format("AddSnowRadial center: {0}, radius: {1}, depth: {2}", center, radius, depth));
+            MapComponent_HiveGrid _HiveGrid = map.GetComponent<MapComponent_HiveGrid>();
+            if (_HiveGrid != null)
+            {
+        //        Log.Message(string.Format("AddSnowRadial _HiveGrid != null center: {0}, radius: {1}, depth: {2}", center, radius, depth));
+                HiveUtility.AddHiveRadial(center, map, radius, depth);
+            }
+        }
+    }
+
 }

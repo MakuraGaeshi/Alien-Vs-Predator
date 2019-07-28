@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using RimWorld;
+using UnityEngine;
 using Verse;
 using static RRYautja.HiveUtility;
 
@@ -49,6 +50,24 @@ namespace RRYautja
         public override void MapComponentTick()
         {
             base.MapComponentTick();
+            /*
+            if (true)
+            {
+                bool hiveship = XenomorphUtil.HiveShipPresent(this.map);
+                bool hivetunnel = XenomorphUtil.HivelikesPresent(this.map);
+                bool hiveslime = XenomorphUtil.HiveSlimePresent(this.map);
+                if (!hiveship && !hivetunnel && !hiveslime)
+                {
+                    for (int i = 0; i < depthGrid.Length; i++)
+                    {
+                        if (depthGrid[i] > 0f)
+                        {
+                            HiveUtility.AddHiveRadial(this.map.cellIndices.IndexToCell(i), map, 1, -Rand.RangeSeeded(0.0001f,0.001f, AvPConstants.AvPSeed));
+                        }
+                    }
+                }
+            }
+            */
         }
 
         internal float[] DepthGridDirect_Unsafe
@@ -88,12 +107,12 @@ namespace RRYautja
                 return false;
             }
             TerrainDef terrainDef = this.map.terrainGrid.TerrainAt(ind);
-            return terrainDef == null || terrainDef.holdSnow;
+            return terrainDef.passability != Traversability.Impassable;// terrainDef == null || terrainDef.holdSnow;
         }
 
         public static bool CanCoexistWithHive(ThingDef def)
         {
-            return def.category != ThingCategory.Building || def.Fillage != FillCategory.Full;
+            return def.category != ThingCategory.Building || def.Fillage != FillCategory.Full || def == XenomorphDefOf.RRY_XenomorphCrashedShipPart;
         }
 
         public void AddDepth(IntVec3 c, float depthToAdd)

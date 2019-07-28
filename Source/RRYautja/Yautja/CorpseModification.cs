@@ -5,6 +5,7 @@ using Verse;
 using Verse.AI;
 using System.Linq;
 using RRYautja.settings;
+using RRYautja.ExtensionMethods;
 
 namespace RRYautja
 {
@@ -13,7 +14,6 @@ namespace RRYautja
     {
         static CorpseModification()
         {
-
             DefDatabase<ThingDef>.AllDefsListForReading.ForEach(action: td =>
             {
                 if (td.IsCorpse)
@@ -78,10 +78,22 @@ namespace RRYautja
                     }
                 }
             });
-            DefDatabase<PawnKindDef>.AllDefsListForReading.ForEach(action: td => 
+            /*
+            DefDatabase<ThingDef>.AllDefsListForReading.ForEach(action: td => 
             {
+                if (td.race!=null && td.isPotentialHost())
+                {
+                    string text = string.Format("{0}'s possible Xenoforms", td.LabelCap);
+                    Log.Message(text);
 
+                    foreach (var item in td.resultingXenomorph())
+                    {
+                        text = item.LabelCap;
+                        Log.Message(text);
+                    }
+                }
             });
+            */
         }
     }
 

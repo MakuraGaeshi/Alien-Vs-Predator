@@ -72,7 +72,7 @@ namespace RimWorld
         public static ThoughtDef RRY_MarkedVs_ThoughtDef;
 
         // Yautja ThoughtDefs Memories
-     //   public static ThoughtDef RRY_Thought_ThrillOfTheHunt;
+        public static ThoughtDef RRY_Thought_ThrillOfTheHunt;
 
         // Yautja HairDefs 
         public static HairDef RRY_Yaujta_Dreds;
