@@ -5,15 +5,14 @@ using static RRYautja.HiveUtility;
 
 namespace RRYautja
 {
-    // Token: 0x02000067 RID: 103
-    public class MapComponent_HiveGrid : MapComponent
+    public sealed class HiveGrid : IExposable
     {
-        // Token: 0x06000217 RID: 535 RVA: 0x0000B430 File Offset: 0x00009630
-        public MapComponent_HiveGrid(Map map) : base(map)
+        public HiveGrid(Map map)
         {
             this.map = map;
             this.depthGrid = new float[map.cellIndices.NumGridCells];
         }
+<<<<<<< HEAD:Source/RRYautja/Xenomorph/Hives/MapComponent_HiveGrid.cs
 
         // Token: 0x0400011D RID: 285
         public MapComponent_HiveGrid HiveGrid;
@@ -70,6 +69,9 @@ namespace RRYautja
             */
         }
 
+=======
+        
+>>>>>>> parent of 28eee9c... V1.0.0.7 Final:Source/RRYautja/Xenomorph/Hives/HiveGrid.cs
         internal float[] DepthGridDirect_Unsafe
         {
             get
@@ -77,7 +79,7 @@ namespace RRYautja
                 return this.depthGrid;
             }
         }
-
+        
         public float TotalDepth
         {
             get
@@ -85,36 +87,43 @@ namespace RRYautja
                 return (float)this.totalDepth;
             }
         }
-
-
+        
+        public void ExposeData()
+        {
+            MapExposeUtility.ExposeUshort(this.map, (IntVec3 c) => HiveGrid.HiveFloatToShort(this.GetDepth(c)), delegate (IntVec3 c, ushort val)
+            {
+                this.depthGrid[this.map.cellIndices.CellToIndex(c)] = HiveGrid.HiveShortToFloat(val);
+            }, "depthGrid");
+        }
+        
         private static ushort HiveFloatToShort(float depth)
         {
             depth = Mathf.Clamp(depth, 0f, 1f);
             depth *= 65535f;
             return (ushort)Mathf.RoundToInt(depth);
         }
-
+        
         private static float HiveShortToFloat(ushort depth)
         {
             return (float)depth / 65535f;
         }
-
+        
         private bool CanHaveHive(int ind)
         {
             Building building = this.map.edificeGrid[ind];
-            if (building != null && !MapComponent_HiveGrid.CanCoexistWithHive(building.def))
+            if (building != null && !HiveGrid.CanCoexistWithHive(building.def))
             {
                 return false;
             }
             TerrainDef terrainDef = this.map.terrainGrid.TerrainAt(ind);
             return terrainDef.passability != Traversability.Impassable;// terrainDef == null || terrainDef.holdSnow;
         }
-
+        
         public static bool CanCoexistWithHive(ThingDef def)
         {
             return def.category != ThingCategory.Building || def.Fillage != FillCategory.Full || def == XenomorphDefOf.RRY_XenomorphCrashedShipPart;
         }
-
+        
         public void AddDepth(IntVec3 c, float depthToAdd)
         {
             int num = this.map.cellIndices.CellToIndex(c);
@@ -142,7 +151,7 @@ namespace RRYautja
                 this.CheckVisualOrPathCostChange(c, num2, num3);
             }
         }
-
+        
         public void SetDepth(IntVec3 c, float newDepth)
         {
             int num = this.map.cellIndices.CellToIndex(c);
@@ -158,7 +167,7 @@ namespace RRYautja
             this.totalDepth += (double)num3;
             this.CheckVisualOrPathCostChange(c, num2, newDepth);
         }
-
+        
         private void CheckVisualOrPathCostChange(IntVec3 c, float oldDepth, float newDepth)
         {
             if (!Mathf.Approximately(oldDepth, newDepth))
@@ -178,7 +187,7 @@ namespace RRYautja
                 }
             }
         }
-
+        
         public float GetDepth(IntVec3 c)
         {
             if (!c.InBounds(this.map))
@@ -187,17 +196,18 @@ namespace RRYautja
             }
             return this.depthGrid[this.map.cellIndices.CellToIndex(c)];
         }
-
+        
         public HiveCategory GetCategory(IntVec3 c)
         {
             return HiveUtility.GetSnowCategory(this.GetDepth(c));
         }
-
+        
+        private Map map;
+        
         private float[] depthGrid;
-
+        
         private double totalDepth;
-
+        
         public const float MaxDepth = 1f;
-
     }
 }

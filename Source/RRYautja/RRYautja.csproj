@@ -87,6 +87,7 @@
     <Compile Include="util\ThoughtWorker_RRY_Facehugger.cs" />
     <Compile Include="util\CompFoodPoisonProtection.cs" />
     <Compile Include="util\HediffGiver_StartWithHediff.cs" />
+<<<<<<< HEAD
     <Compile Include="util\TrailThrower.cs" />
     <Compile Include="util\CrashedShip\CompGooSpread.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_IngestNeomorph.cs" />
@@ -101,6 +102,14 @@
     <Compile Include="Xenomorph\Hives\HiveExtensions.cs" />
     <Compile Include="Xenomorph\Hives\MapComponent_HiveGrid.cs" />
     <Compile Include="util\CrashedShip\CompPlantConversionRadius.cs" />
+=======
+    <Compile Include="Xenomorph\Hives\MapComponent_HiveGrid.cs" />
+    <Compile Include="Xenomorph\Hives\HiveUtility.cs" />
+    <Compile Include="Xenomorph\Hives\SectionLayer_Hive.cs" />
+    <Compile Include="Xenomorph\Hives\HiveExtensions.cs" />
+    <Compile Include="Xenomorph\Hives\HiveGrid.cs" />
+    <Compile Include="Xenomorph\CompPlantConversionRadius.cs" />
+>>>>>>> parent of 28eee9c... V1.0.0.7 Final
     <Compile Include="Xenomorph\Hives\CompHiveCreep.cs" />
     <Compile Include="Xenomorph\IncidentWorker_PowerCutV1.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_DestroyCocoon.cs" />
