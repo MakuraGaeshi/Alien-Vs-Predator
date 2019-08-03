@@ -92,7 +92,7 @@ Added scatter shot effect for flamers
 Added No camera shake explosions
 Tweaked Box code - For USCM Starter Gear
 
-V1.0.0.6
+V1.0.0.6 09/07/2019
 Acid Pathfinding tweaks
 Mod settings should now default to the correct values (active for all toggles and 35% for sliders)
 Shouldercannon comp should no longer tick while in a null map
@@ -100,3 +100,18 @@ Neomorph impregnations should now always result in a neomorph
 Strange Fungus spread by Xenomorph Ships parts should no longer stack on plants
 Tweaks to fungus spreading method
 Inital BnC(Babies and Children) compatability
+
+V1.0.0.7 19/07/2019
+updated BnC Textures
+Fixed overwritten base blunt damange (Thanks for spotting it Ryflamer!)
+Added Backpack Textures for CE support
+fixed vanilla tribal apparel losing colour while equipped
+Fixed Hive Taint not presisting after save
+Tweaks to Comp_Yautja to hopefully increase performance
+Fixed Egglaying JobGiver error (hopefully)
+Marking system Tweak, should decrease cpu load
+
+
+V1.0.0.7 Hotfix 19/07/2019
+fixed vanilla tribal apparel losing colour while equipped (forgot the textures)
+disabled some spam logging stuff

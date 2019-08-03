@@ -1,62 +1,137 @@
-﻿using System;
-using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using RimWorld;
 using Verse;
 
-namespace RRYautja
+namespace AdeptusMechanicus
 {
-    // Token: 0x0200024D RID: 589
-    public class CompProperties_FireOverlay : CompProperties
+    public class CompProperties_HediffWeapon : CompProperties
     {
-        // Token: 0x06000AAF RID: 2735 RVA: 0x00055935 File Offset: 0x00053D35
-        public CompProperties_FireOverlay()
+        public HediffDef hediffDef;
+        public List<BodyPartDef> partsToAffect;
+        public List<BodyPartGroupDef> groupsToAffect;
+        public bool severityBasedOnDurability = false;
+
+        public CompProperties_HediffWeapon()
         {
-            this.compClass = typeof(CompFireOverlay);
+            base.compClass = typeof(CompHediffWeapon);
         }
-
-        // Token: 0x06000AB0 RID: 2736 RVA: 0x00055958 File Offset: 0x00053D58
-        public override void DrawGhost(IntVec3 center, Rot4 rot, ThingDef thingDef, Color ghostCol, AltitudeLayer drawAltitude)
-        {
-            Graphic graphic = GhostUtility.GhostGraphicFor(CompFireOverlay.FireGraphic, thingDef, ghostCol);
-            graphic.DrawFromDef(center.ToVector3ShiftedWithAltitude(drawAltitude), rot, thingDef, 0f);
-        }
-
-        // Token: 0x040004A9 RID: 1193
-        public float fireSize = 1f;
-
-        // Token: 0x040004AA RID: 1194
-        public Vector3 offset;
     }
 
-    // Token: 0x0200073A RID: 1850
-    [StaticConstructorOnStartup]
-    public class CompFireOverlay : ThingComp
+    public class CompHediffWeapon : ThingComp
     {
-        // Token: 0x17000623 RID: 1571
-        // (get) Token: 0x060028B9 RID: 10425 RVA: 0x00135B3C File Offset: 0x00133F3C
-        public CompProperties_FireOverlay Props
+        private float lastDurability;
+        private Pawn lastWearer;
+        private List<Hediff> addedHediffs = new List<Hediff>();
+        private Pawn pawn;
+
+        public CompProperties_HediffWeapon Props => (CompProperties_HediffWeapon)base.props;
+
+        public void MyRemoveHediffs(Pawn pawn)
         {
-            get
+            if (addedHediffs.Any())
             {
-                return (CompProperties_FireOverlay)this.props;
+                if (pawn != null)
+                {
+                    for (int i = 0; i < addedHediffs.Count; i++)
+                    {
+                        pawn.health.RemoveHediff(addedHediffs[i]);
+                    }
+                }
+                addedHediffs.Clear();
             }
         }
 
-        // Token: 0x060028BA RID: 10426 RVA: 0x00135B4C File Offset: 0x00133F4C
-        public override void PostDraw()
+
+        public bool MyAddHediffs(Pawn pawn)
         {
-            base.PostDraw();
-            Vector3 drawPos = this.parent.DrawPos;
-            drawPos.y += 0.046875f;
-            CompFireOverlay.FireGraphic.Draw(drawPos, Rot4.North, this.parent, 0f);
+            // Sanity test; if our pawn doesn't exist, don't even bother.
+            if (pawn == null) return false;
+
+            // Special case; if we're not told to apply to anything in particular, apply to the Whole Body.
+            if (Props.partsToAffect.NullOrEmpty() && Props.groupsToAffect.NullOrEmpty())
+            {
+                return HediffGiverUtility.TryApply(pawn, Props.hediffDef, null, false, 1, addedHediffs);
+            }
+
+            IEnumerable<BodyPartRecord> source = pawn.health.hediffSet.GetNotMissingParts();
+            List<BodyPartDef> partsToAffect = new List<BodyPartDef>();
+            int countToAffect;
+
+            if (!Props.partsToAffect.NullOrEmpty())
+            {
+                partsToAffect.AddRange(from p in source where Props.partsToAffect.Contains(p.def) select p.def);
+            }
+
+            if (!Props.groupsToAffect.NullOrEmpty())
+            {
+                partsToAffect.AddRange(from p in source where Props.groupsToAffect.Intersect(p.groups).Any() select p.def);
+            }
+
+            countToAffect = partsToAffect.Count();
+            partsToAffect.RemoveDuplicates();
+
+            return HediffGiverUtility.TryApply(pawn, Props.hediffDef, partsToAffect, false, countToAffect, addedHediffs);
         }
 
-        // Token: 0x060028BB RID: 10427 RVA: 0x00135BB5 File Offset: 0x00133FB5
-        public override void PostSpawnSetup(bool respawningAfterLoad)
+        public void MyUpdateSeverity()
         {
-            base.PostSpawnSetup(respawningAfterLoad);
+            // Get our current durability as a percentage.
+            float currentDurability = (float)parent.HitPoints / parent.MaxHitPoints;
+
+            // Only update if our durability has changed.
+            if (lastDurability != currentDurability)
+            {
+                // Set the severity for each of our hediffs.
+                foreach (Hediff item in addedHediffs)
+                {
+                    item.Severity = currentDurability;
+                }
+
+                // Update our durability so we don't run code too often.
+                lastDurability = currentDurability;
+            }
         }
-        
-        // Token: 0x040016B6 RID: 5814
-        public static readonly Graphic FireGraphic = GraphicDatabase.Get<Graphic_Flicker>("Things/Projectile/Fire", ShaderDatabase.TransparentPostLight, Vector2.one, Color.white);
+
+        public override void PostDestroy(DestroyMode mode, Map previousMap)
+        {
+            base.PostDestroy(mode, previousMap);
+
+            // We've been destroyed, so remove our effects.
+            MyRemoveHediffs(lastWearer);
+        }
+
+        public override void CompTick()
+        {
+            base.CompTick();
+
+            foreach (CompEquippable c in base.parent.GetComps<CompEquippable>())
+            {
+                pawn = (Pawn)c.verbTracker.PrimaryVerb.caster;
+            }
+            if (pawn != null)
+            {
+            //    Log.Message(string.Format("10"));
+                // We only need to do something if our wearer has changed.
+                if (pawn != lastWearer)
+                {
+                    // It has, so remove our effects from the last wearer and apply them to the new one.
+                    MyRemoveHediffs(lastWearer);
+                    MyAddHediffs(pawn);
+                    // Update our wearer so we don't run code too often.
+                    lastWearer = pawn;
+                    // Set our last recorded durability to some impossible value to force an update.
+                    lastDurability = -1;
+                }
+            }
+            
+            // Check to see if we should update our severity.
+            if (Props.severityBasedOnDurability)
+            {
+               // Log.Message(string.Format("9"));
+                MyUpdateSeverity();
+            }
+           // Log.Message(string.Format("10"));
+        }
     }
 }

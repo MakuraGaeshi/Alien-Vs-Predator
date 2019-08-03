@@ -8,6 +8,7 @@ using RimWorld;
 using System.Reflection;
 using UnityEngine;
 using AlienRace;
+using RRYautja.ExtensionMethods;
 
 namespace RRYautja
 {
@@ -70,6 +71,24 @@ namespace RRYautja
             return (IntVec3)_lastCell.GetValue(_this);
         }
 
+        public bool Hidden
+        {
+            get
+            {
+                if (pawn.isXenomorph())
+                {
+                    Comp_Xenomorph _Xenomorph = pawn.TryGetComp<Comp_Xenomorph>();
+                    return _Xenomorph.Hidden;
+                }
+                if (pawn.isNeomorph())
+                {
+                    Comp_Neomorph _Nenomorph = pawn.TryGetComp<Comp_Neomorph>();
+                    return _Nenomorph.Hidden;
+                }
+                return false;
+            }
+        }
+
         public override void ExposeData()
         {
             base.ExposeData();
@@ -85,31 +104,9 @@ namespace RRYautja
         public override void PostAdd(DamageInfo? dinfo)
         {
             base.PostAdd(dinfo);
-
-            oldGraphics = pawn.Drawer.renderer.graphics;
-            oldShadow = GetShadowGraphic(pawn.Drawer.renderer);
-            pawn.Drawer.renderer.graphics = new PawnGraphicSet_Invisible(pawn);
-            ShadowData shadowData = new ShadowData
+            if (pawn.ageTracker.CurLifeStage != XenomorphDefOf.RRY_XenomorphFullyFormed)
             {
-                volume = new Vector3(0, 0, 0),
-                offset = new Vector3(0, 0, 0)
-            };
-            SetShadowGraphic(pawn.Drawer.renderer, new Graphic_Shadow(shadowData));
-
-
-            pawn.stances.CancelBusyStanceHard();
-            if (lastCarried != null && lastCarried == pawn.carryTracker.CarriedThing)
-            {
-                lastCarriedGraphic = pawn.carryTracker.CarriedThing.Graphic;
-                SetGraphicInt(pawn.carryTracker.CarriedThing, new Graphic_Invisible());
-            }
-            if (Find.Selector.SelectedObjects.Contains(pawn))
-            {
-                Find.Selector.SelectedObjects.Remove(pawn);
-            }
-            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Chestbursters))
-            {
-                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Chestbursters, OpportunityType.Important);
+                MakeInvisible();
             }
         }
 
@@ -124,11 +121,11 @@ namespace RRYautja
                 pawn.health.RemoveHediff(this);
                 if (pawn.pather != null)
                 {
-                    AlertThief(pawn, pawn.pather.nextCell.GetFirstPawn(pawn.Map));
+                    AlertXenomorph(pawn, pawn.pather.nextCell.GetFirstPawn(pawn.Map));
                 }
                 else
                 {
-                    AlertThief(pawn, null);
+                    AlertXenomorph(pawn, null);
                 }
             }
             if (pawn.pather != null && GetLastCell(pawn.pather).GetDoor(pawn.Map) != null)
@@ -164,8 +161,18 @@ namespace RRYautja
                                     float spotChance = 0.8f * thiefMoving / observerSight;
                                     if (Rand.Value > spotChance)
                                     {
-                                        pawn.health.RemoveHediff(this);
-                                        AlertThief(pawn, observer);
+                                        if (pawn.isXenomorph())
+                                        {
+                                            Comp_Xenomorph _Xenomorph = pawn.TryGetComp<Comp_Xenomorph>();
+                                            _Xenomorph.Hidden = false;
+                                        }
+                                        if (pawn.isNeomorph())
+                                        {
+                                            Comp_Neomorph _Nenomorph = pawn.TryGetComp<Comp_Neomorph>();
+                                            _Nenomorph.Hidden = false;
+                                        }
+                                        //pawn.health.RemoveHediff(this);
+                                        AlertXenomorph(pawn, observer);
                                     }
                                 }
                                 else if (observer == null)
@@ -176,8 +183,18 @@ namespace RRYautja
                                         float spotChance = 0.99f * thiefMoving;
                                         if (Rand.Value > spotChance)
                                         {
-                                            pawn.health.RemoveHediff(this);
-                                            AlertThief(pawn, turret);
+                                            if (pawn.isXenomorph())
+                                            {
+                                                Comp_Xenomorph _Xenomorph = pawn.TryGetComp<Comp_Xenomorph>();
+                                                _Xenomorph.Hidden = false;
+                                            }
+                                            if (pawn.isNeomorph())
+                                            {
+                                                Comp_Neomorph _Nenomorph = pawn.TryGetComp<Comp_Neomorph>();
+                                                _Nenomorph.Hidden = false;
+                                            }
+                                            //pawn.health.RemoveHediff(this);
+                                            AlertXenomorph(pawn, turret);
                                         }
                                     }
                                 }
@@ -203,9 +220,37 @@ namespace RRYautja
             }
         }
 
-        public override void PostRemoved()
+        public void MakeInvisible()
         {
-           
+            oldGraphics = pawn.Drawer.renderer.graphics;
+            oldShadow = GetShadowGraphic(pawn.Drawer.renderer);
+            pawn.Drawer.renderer.graphics = new PawnGraphicSet_Invisible(pawn);
+            ShadowData shadowData = new ShadowData
+            {
+                volume = new Vector3(0, 0, 0),
+                offset = new Vector3(0, 0, 0)
+            };
+            SetShadowGraphic(pawn.Drawer.renderer, new Graphic_Shadow(shadowData));
+
+
+            pawn.stances.CancelBusyStanceHard();
+            if (lastCarried != null && lastCarried == pawn.carryTracker.CarriedThing)
+            {
+                lastCarriedGraphic = pawn.carryTracker.CarriedThing.Graphic;
+                SetGraphicInt(pawn.carryTracker.CarriedThing, new Graphic_Invisible());
+            }
+            if (Find.Selector.SelectedObjects.Contains(pawn))
+            {
+                Find.Selector.SelectedObjects.Remove(pawn);
+            }
+            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Chestbursters))
+            {
+                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Chestbursters, OpportunityType.Important);
+            }
+        }
+
+        public void MakeVisible()
+        {
             if (oldGraphics != null) pawn.Drawer.renderer.graphics = oldGraphics;
             if (oldShadow != null) SetShadowGraphic(pawn.Drawer.renderer, oldShadow);
             Thing holding = pawn.carryTracker.CarriedThing;
@@ -219,6 +264,10 @@ namespace RRYautja
             }
             pawn.Drawer.renderer.graphics.ResolveAllGraphics();
             //     Log.Message(string.Format("removing xeno hidden from {0}", pawn.LabelShortCap));
+            if (true)
+            {
+
+            }
             if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Runners) && pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Runner)
             {
                 LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Runners, OpportunityType.Important);
@@ -245,7 +294,13 @@ namespace RRYautja
             }
         }
 
-        public void AlertThief(Pawn pawn, Thing observer)
+        public override void PostRemoved()
+        {
+            base.PostRemoved();
+            this.MakeVisible();
+        }
+
+        public void AlertXenomorph(Pawn pawn, Thing observer)
         {
             pawn.jobs.EndCurrentJob(JobCondition.InterruptForced);
             if (false)

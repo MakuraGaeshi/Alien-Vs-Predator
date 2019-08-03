@@ -30,7 +30,27 @@ namespace RRYautja
             Building building = base.Map.edificeGrid[index];
             return building != null && building.def.Fillage == FillCategory.Full;
         }
-
+        /*
+        public override void DrawLayer()
+        {
+            if (!this.Visible)
+            {
+                return;
+            }
+            int count = this.subMeshes.Count;
+            for (int i = 0; i < count; i++)
+            {
+                LayerSubMesh layerSubMesh = this.subMeshes[i];
+                Vector3 s = new Vector3(.28f, 1f, .28f);
+                Matrix4x4 matrix = default(Matrix4x4);
+                matrix.SetTRS(vector, Quaternion.AngleAxis(angle, Vector3.up), s);
+                if (layerSubMesh.finalized && !layerSubMesh.disabled)
+                {
+                    Graphics.DrawMesh(layerSubMesh.mesh, Vector3.zero, Quaternion.identity, layerSubMesh.material, 0);
+                }
+            }
+        }
+        */
         // Token: 0x060047BA RID: 18362 RVA: 0x0021ADFC File Offset: 0x002191FC
         public override void Regenerate()
         {
@@ -110,6 +130,10 @@ namespace RRYautja
         private static readonly Color32 ColorClear = new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, 0);
 
         // Token: 0x04003129 RID: 12585
+<<<<<<< HEAD
+        private static readonly Color32 ColorHive = new Color32(40, 25, 90, 100);
+=======
         private static readonly Color32 ColorWhite = new Color32(75, 75, 90, byte.MaxValue);
+>>>>>>> parent of 28eee9c... V1.0.0.7 Final
     }
 }

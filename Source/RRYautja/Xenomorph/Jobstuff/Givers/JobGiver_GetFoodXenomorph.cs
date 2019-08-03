@@ -5,22 +5,34 @@ using Verse.AI;
 namespace RimWorld
 {
     // Token: 0x020000E4 RID: 228
-    public class JobGiver_XenoGetFood : ThinkNode_JobGiver
+    public class JobGiver_GetFoodXenomorph : ThinkNode_JobGiver
     {
         // Token: 0x060004FB RID: 1275 RVA: 0x00032140 File Offset: 0x00030540
         public override ThinkNode DeepCopy(bool resolve = true)
         {
-            JobGiver_XenoGetFood jobGiver_XenoGetFood = (JobGiver_XenoGetFood)base.DeepCopy(resolve);
+            JobGiver_GetFoodXenomorph jobGiver_XenoGetFood = (JobGiver_GetFoodXenomorph)base.DeepCopy(resolve);
             jobGiver_XenoGetFood.minCategory = this.minCategory;
             jobGiver_XenoGetFood.forceScanWholeMap = this.forceScanWholeMap;
             return jobGiver_XenoGetFood;
         }
-
+        
         // Token: 0x060004FC RID: 1276 RVA: 0x00032174 File Offset: 0x00030574
         public override float GetPriority(Pawn pawn)
         {
-            LifeStageDef stage = pawn.ageTracker.CurLifeStage;
-            if (stage != pawn.RaceProps.lifeStageAges[pawn.RaceProps.lifeStageAges.Count - 1].def)
+            Need_Food food = pawn.needs.food;
+            if (food == null)
+            {
+                return 0f;
+            }
+            if (pawn.needs.food.CurCategory < HungerCategory.Starving && FoodUtility.ShouldBeFedBySomeone(pawn))
+            {
+                return 0f;
+            }
+            if (food.CurCategory < this.minCategory)
+            {
+                return 0f;
+            }
+            if (food.CurLevelPercentage < pawn.RaceProps.FoodLevelPercentageWantEat)
             {
                 return 9.5f;
             }
@@ -32,14 +44,15 @@ namespace RimWorld
         {
             Need_Food food = pawn.needs.food;
             LifeStageDef stage = pawn.ageTracker.CurLifeStage;
+            /*
             if (stage == pawn.RaceProps.lifeStageAges[pawn.RaceProps.lifeStageAges.Count - 1].def)
             {
                 return null;
             }
+            */
             bool flag;
             if (pawn.AnimalOrWildMan())
             {
-                Log.Message(string.Format("XenoGetFood AnimalOrWildMan"));
                 flag = true;
             }
             else
@@ -53,23 +66,31 @@ namespace RimWorld
             ThingDef thingDef;
             bool canRefillDispenser = false;
             bool canUseInventory = false;
-            bool allowCorpse = flag;
+            bool allowCorpse = true;
             bool flag3 = this.forceScanWholeMap;
-            if (!FoodUtility.TryFindBestFoodSourceFor(pawn, pawn, desperate, out thing, out thingDef, canRefillDispenser, canUseInventory, false, allowCorpse, false, pawn.IsWildMan(), flag3))
+            if (!FoodUtility.TryFindBestFoodSourceFor(pawn, pawn, desperate, out thing, out thingDef, canRefillDispenser, canUseInventory, true, allowCorpse, true, pawn.IsWildMan(), flag3))
             {
                 return null;
             }
+            Pawn pawn2 = thing as Pawn;
+            if (pawn2 != null)
+            {
+                return new Job(JobDefOf.PredatorHunt, pawn2)
+                {
+                    killIncappedTarget = true
+                };
+            }
             float nutrition = FoodUtility.GetNutrition(thing, thingDef);
-            return new Job(JobDefOf.Ingest, thing)
+            return new Job(XenomorphDefOf.RRY_Neomorph_Ingest, thing)
             {
                 count = FoodUtility.WillIngestStackCountOf(pawn, thingDef, nutrition)
             };
         }
 
         // Token: 0x040002BD RID: 701
-        private HungerCategory minCategory;
+        private HungerCategory minCategory = HungerCategory.Starving;
 
         // Token: 0x040002BE RID: 702
-        public bool forceScanWholeMap;
+        public bool forceScanWholeMap = false;
     }
 }

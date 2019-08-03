@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using RRYautja.ExtensionMethods;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,27 +16,15 @@ namespace RRYautja
         {
             this.compClass = typeof(HediffComp_XenoSpawner);
         }
-
-        // Token: 0x040033C3 RID: 13251
+        
         public PawnKindDef pawnKindDef;
         public List<PawnKindDef> pawnKindDefs;
         public List<float> pawnKindWeights;
         public float severityPerDay;
     }
+
     public class HediffComp_XenoSpawner : HediffComp
     {
-        /*
-        Scribe_Defs.Look<HediffDef>(ref MarkedhediffDef, "MarkedhediffDef");
-        Scribe_References.Look<Corpse>(ref this.corpse, "corpseRef");//, Props.corpse);//
-        Scribe_References.Look<Pawn>(ref this.pawn, "pawnRef");//, Props.pawn);
-        Scribe_Values.Look<String>(ref this.MarkHedifftype, "thisMarktype");//, Props.Marklabel);
-        Scribe_Values.Look<String>(ref this.MarkHedifflabel, "thislabel");//, Props.Marklabel);
-        Scribe_Values.Look<bool>(ref this.predator, "thisPred");
-        Scribe_Values.Look<float>(ref this.combatPower, "thiscombatPower");
-        Scribe_Values.Look<float>(ref this.BodySize, "thisBodySize");
-        */
-        // Token: 0x17000BE6 RID: 3046
-        // (get) Token: 0x06004C0F RID: 19471 RVA: 0x002370CE File Offset: 0x002354CE
         public HediffCompProperties_XenoSpawner Props
         {
             get
@@ -97,16 +86,7 @@ namespace RRYautja
                 return 0;
             }
         }
-
-        List<string> Coughlist = new List<string>
-        {
-            "quietly",
-            "abruptly",
-            "loudly",
-            "painfully",
-            "violently"
-        };
-
+        
         public IntVec3 MyPos
         {
             get
@@ -164,40 +144,6 @@ namespace RRYautja
             }
         }
 
-        public void DoNeoCough()
-        {
-            lastCoughSeverity = parent.Severity;
-            lastCoughStage = parent.CurStageIndex;
-            lastCoughTick = parent.ageTicks; // Find.TickManager.TicksGame; // parent.ageTicks; //
-            nextCoughTick = lastCoughTick + Rand.RangeInclusive(3000, 24000);
-            float chance = ((0.5f * lastCoughSeverity) * lastCoughStage) + (((timesCoughedBlood*2) + timesCoughed)/10);
-            if (Rand.Chance(chance))
-            {
-                string text = TranslatorFormattedStringExtensions.Translate("Xeno_Neospores_Cough", base.parent.pawn.LabelShortCap, Coughlist[timesCoughed+timesCoughedBlood]);
-                if (this.parent.pawn.Faction == Faction.OfPlayer)
-                {
-                //    Log.Message(text);
-                    MoteMaker.ThrowText(base.parent.pawn.Position.ToVector3(), base.parent.pawn.Map, text, 3f);
-                }
-                if (Rand.Chance(chance))
-                {
-                    text = TranslatorFormattedStringExtensions.Translate("Xeno_Neospores_Cough_Blood");
-                    if (this.parent.pawn.Faction == Faction.OfPlayer)
-                    {
-                    //    Log.Message(text);
-                        MoteMaker.ThrowText(base.parent.pawn.Position.ToVector3(), base.parent.pawn.Map, text, 3f);
-                    }
-                    parent.pawn.health.DropBloodFilth();
-                    timesCoughedBlood++;
-                }
-                else
-                {
-                    timesCoughed++;
-                }
-                
-            }
-        }
-
         public override void CompPostTick(ref float severityAdjustment)
         {
             bool selected = Find.Selector.SingleSelectedThing == parent.pawn;
@@ -208,11 +154,6 @@ namespace RRYautja
                 float num = this.SeverityChangePerDay();
                 num *= 0.00333333341f;
                 severityAdjustment += num;
-            }
-            if (parent.ageTicks> nextCoughTick && (this.Def == XenomorphDefOf.RRY_HiddenNeomorphImpregnation || this.Def == XenomorphDefOf.RRY_NeomorphImpregnation) && Pawn.Map != null && Pawn.Spawned)
-            {
-                DoNeoCough();
-
             }
 
             if (parent.CurStageIndex == parent.def.stages.Count - 2)
@@ -354,11 +295,7 @@ namespace RRYautja
                     }
                 }
             }
-
-            if (pawnKindDef== null)
-            {
-             //   Log.Message(string.Format("pawnKindDef is null"));
-            }
+            
             if (pawnKindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
             {
                 gender = Gender.Female;
@@ -367,13 +304,10 @@ namespace RRYautja
             {
                 gender = Gender.None;
             }
-            if (this.parent.def == XenomorphDefOf.RRY_HiddenNeomorphImpregnation || this.parent.def == XenomorphDefOf.RRY_NeomorphImpregnation)
-            {
-                pawnKindDef = XenomorphDefOf.RRY_Xenomorph_Neomorph;
-            }
             if (Prefs.DevMode)
             {
                  Log.Message(string.Format("spawning: {0}", pawnKindDef.label));
+                parent.pawn.resultingXenomorph();
             }
             bool BeViolent = pawnKindDef == XenomorphDefOf.RRY_Xenomorph_Thrumbomorph ? true : true;
             PawnGenerationRequest request = new PawnGenerationRequest(pawnKindDef, Find.FactionManager.FirstFactionOfDef(pawnKindDef.defaultFactionType), PawnGenerationContext.NonPlayer, -1, true, true, false, false, true, false, 20f, fixedGender: gender);

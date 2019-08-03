@@ -11,10 +11,7 @@ namespace RimWorld
         {
             this.compClass = typeof(CompPlantConversionRadius);
         }
-
-        // Token: 0x040016E9 RID: 5865
-        public SimpleCurve radiusPerDayCurve;
-
+        
         // Token: 0x040016EA RID: 5866
         public float harmFrequencyPerArea = 1f;
     }
@@ -24,11 +21,19 @@ namespace RimWorld
     {
         // Token: 0x17000656 RID: 1622
         // (get) Token: 0x06002957 RID: 10583 RVA: 0x001399A1 File Offset: 0x00137DA1
-        protected CompProperties_PlantConversionRadius PropsPlantHarmRadius
+        public CompProperties_PlantConversionRadius PropsPlantHarmRadius
         {
             get
             {
                 return (CompProperties_PlantConversionRadius)this.props;
+            }
+        }
+
+        public CompGooSpread PlantHarmRadius
+        {
+            get
+            {
+                return (CompGooSpread)this.parent.TryGetComp<CompGooSpread>();
             }
         }
 
@@ -51,7 +56,7 @@ namespace RimWorld
             if (this.ticksToPlantHarm <= 0)
             {
                 float x = (float)this.plantHarmAge / 60000f;
-                float num = this.PropsPlantHarmRadius.radiusPerDayCurve.Evaluate(x);
+                float num = this.PlantHarmRadius.Props.radiusPerDayCurve.Evaluate(x)-3;
                 float num2 = 3.14159274f * num * num;
                 float num3 = num2 * this.PropsPlantHarmRadius.harmFrequencyPerArea;
                 float num4 = 60f / num3;
@@ -82,43 +87,36 @@ namespace RimWorld
                 return;
             }
             Plant plant = c.GetPlant(this.parent.Map);
-            bool flag = c.GetThingList(this.parent.Map).Any(x=> x.def == XenomorphDefOf.RRY_Plant_Neomorph_Fungus_Hidden || x.def == XenomorphDefOf.RRY_Plant_Neomorph_Fungus);
+            bool flag = c.GetThingList(this.parent.Map).Any(x=> x.def.defName.Contains("RRY_Plant_Neomorph_Fungus"));
             if (plant != null && !flag)
             {
-                if (plant.LeaflessNow)
+                if (Rand.Value < this.LeaflessPlantKillChance)
                 {
-                    if (Rand.Value < this.LeaflessPlantKillChance )
-                    {
-                        Thing thing2;
+                    Thing thing2;
 
-                        if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Fungus))
-                        {
-                            thing2 = ThingMaker.MakeThing(XenomorphDefOf.RRY_Plant_Neomorph_Fungus_Hidden);
-                        }
-                        else
-                        {
-                            thing2 = ThingMaker.MakeThing(XenomorphDefOf.RRY_Plant_Neomorph_Fungus);
-                        }
-                        IntVec3 vec3 = plant.Position;
-                        GenSpawn.Spawn(thing2, vec3, plant.Map, WipeMode.Vanish);
+                    if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Fungus))
+                    {
+                        thing2 = ThingMaker.MakeThing(XenomorphDefOf.RRY_Plant_Neomorph_Fungus_Hidden);
+                    }
+                    else
+                    {
+                        thing2 = ThingMaker.MakeThing(XenomorphDefOf.RRY_Plant_Neomorph_Fungus);
+                    }
+                    IntVec3 vec3 = plant.Position;
+                    GenSpawn.Spawn(thing2, vec3, plant.Map, WipeMode.Vanish);
                     //    plant.Destroy();
                     //    GenSpawn.Spawn(ThingMaker.MakeThing(this.def), vec3, this.Map);
-                    }
-                }
-                else
-                {
-                    plant.MakeLeafless(Plant.LeaflessCause.Poison);
                 }
             }
         }
 
         // Token: 0x040016EB RID: 5867
-        private int plantHarmAge;
+        public int plantHarmAge;
 
         // Token: 0x040016EC RID: 5868
         private int ticksToPlantHarm;
 
         // Token: 0x040016ED RID: 5869
-        private float LeaflessPlantKillChance = 0.09f;
+        private float LeaflessPlantKillChance = 0.05f;
     }
 }

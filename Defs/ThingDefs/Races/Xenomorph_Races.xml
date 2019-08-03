@@ -52,6 +52,7 @@
   <ThingDef ParentName="RRY_BaseXenomorphPawn" Name="RRY_BaseXenomorph" Abstract="True">
     <soundImpactDefault>BulletImpact_Flesh</soundImpactDefault>
     <statBases>
+      <Mass>70</Mass>
       <PainShockThreshold>0.9999</PainShockThreshold>
       <MeleeDodgeChance>1.5</MeleeDodgeChance>
       <MeleeHitChance>1.5</MeleeHitChance>
@@ -99,6 +100,7 @@
     <label>Facehugger</label>
     <description>Facehuggers are the second stage in the Xenomorph's life cycle. It has eight long, finger-like legs, which allow it to crawl rapidly, and a long tail adapted for making great leaps. These particular appendages give it an appearance somewhat comparable to chelicerate arthropods such as arachnids and horseshoe crabs./n/nThe facehugger is a parasitoid; its only purpose is to make contact with the host's mouth for the implantation process by gripping its legs around the victim's head and wrapping its tail around the host's neck. Upon making contact, the facehugger administers a cynose-based paralytic in order to render it unconscious and immobile. During a successful attachment, the facehugger will insert a proboscis down the host's throat while simultaneously implanting an embryo. The host is kept alive, and the creature breathes for the host. Attempts to remove facehuggers generally prove fatal, as the parasitoid will respond by tightening its tail around the host's neck, and its acidic blood prevents it from being cut away. In addition, its grip on the host's head is strong enough to tear the host's face off if it is forcibly removed./n/nOnce the embryo is implanted, the facehugger will remain attached until the implant is secure, which can take anywhere from less than a minute to 16 hours. Once this happens, the parasite detaches, crawls away, and dies. The victim awakens with no awareness of the implantation, believing themselves to have been asleep, and appears to have a normal, healthy bodily function.</description>
     <statBases>
+      <Mass>1.5</Mass>
       <MoveSpeed>6.9</MoveSpeed>
       <ArmorRating_Blunt>0.2</ArmorRating_Blunt>
       <ArmorRating_Sharp>0.2</ArmorRating_Sharp>
@@ -132,7 +134,7 @@
       <meatLabel>xenomorph flesh</meatLabel>
       <maxPreyBodySize>30</maxPreyBodySize>
       <intelligence>ToolUser</intelligence>
-      <thinkTreeMain>RRY_Xenommorph</thinkTreeMain>
+      <thinkTreeMain>RRY_Xenomorph_ThinkTree</thinkTreeMain>
       <body>RRY_Xenomorph_FaceHugger</body>
       <baseBodySize>0.30</baseBodySize>
       <baseHealthScale>0.3</baseHealthScale>
@@ -210,6 +212,7 @@
     <label>Queen</label>
     <description>Queen Xenomorphs are significantly larger and stronger than the normal adults, being approximately 4.5 metres (15 ft) tall. Their body structure differs also, having two pairs of arms, one large and one small. The queen's head is larger than those of other adult Xenomorphs and is protected by a large, flat crest, like a crown, which varies from queen to queen. Unlike other Xenomorphs, the queen's external mouth is separately segmented from the rest of her head, allowing her to turn her mouth left and right almost to the point where it is facing perpendicular to the direction of the rest of her head./n/nEgg-laying Xenomorph queens possess an immense ovipositor attached to their lower torso, similar to a queen termite's. Unlike insect queens, there appears to be no need for an Xenomorph queen's eggs to be fertilized. When attached to her ovipositor, the queen is supported by a "biomechanical throne" that consists of a lattice of struts resembling massive insect legs.</description>
     <statBases>
+      <Mass>160</Mass>
       <MoveSpeed>5.75</MoveSpeed>
       <ArmorRating_Blunt>1.50</ArmorRating_Blunt>
       <ArmorRating_Sharp>1.80</ArmorRating_Sharp>
@@ -310,7 +313,7 @@
     </tools>
     <race>
       <intelligence>ToolUser</intelligence>
-      <thinkTreeMain>RRY_Xenommorph</thinkTreeMain>
+      <thinkTreeMain>RRY_Xenomorph_ThinkTree</thinkTreeMain>
       <body>RRY_Xenomorph_Biped</body>
 	  <useMeatFrom>RRY_Xenomorph_FaceHugger</useMeatFrom>
       <baseBodySize>3.0</baseBodySize>
@@ -451,7 +454,7 @@
   <ThingDef ParentName="RRY_BaseXenomorph" Name="BaseXenomorphWalker" Abstract="True">
     <race>
       <intelligence>ToolUser</intelligence>
-      <thinkTreeMain>RRY_Xenommorph</thinkTreeMain>
+      <thinkTreeMain>RRY_Xenomorph_ThinkTree</thinkTreeMain>
       <baseBodySize>1.0</baseBodySize>
       <lifeStageAges>
         <li>
@@ -726,6 +729,7 @@
     <label>Warrior</label>
     <description>Warriors, also known as Soldiers, are the primary assault caste of the Xenomorph XX121 species and as such is almost certainly the most numerous caste of Xenomorph in existence. They are fast, reasonably tough, and savage combatants./n/nEven in death the Warrior is dangerous, as its pressurized bloodstream will cause it to burst apart, drenching nearby enemies in acid blood. Warriors are identified by their ridged heads, and stand around 7–8 feet tall on their hind legs. They are about 14–16 feet long, including their tail.</description>
     <statBases>
+      <Mass>85</Mass>
       <MoveSpeed>5.5</MoveSpeed>
       <ArmorRating_Blunt>0.55</ArmorRating_Blunt>
       <ArmorRating_Sharp>0.70</ArmorRating_Sharp>
@@ -911,6 +915,7 @@
     <label>Runner</label>
     <description>Runners, also known as Dog Aliens or Ox Aliens, is an adult form of the species Xenomorph XX121 spawned from a quadrupedal host animal (such as a dog). Runners, as their name implies, are fast and agile, and can spit acid from their mouths./n/n Runners have variously been portrayed as being slightly larger and slightly smaller than typical human-spawned Aliens, differences that no doubt derive from the animal that hosted the creature. However, Runners average around 7 feet 5 inches tall when standing on their hind legs.</description>
     <statBases>
+      <Mass>60</Mass>
       <MoveSpeed>7.6</MoveSpeed>
       <ArmorRating_Blunt>0.25</ArmorRating_Blunt>
       <ArmorRating_Sharp>0.40</ArmorRating_Sharp>
@@ -1091,6 +1096,7 @@
     <label>Predalien</label>
     <description>Predaliens are Xenomorphs spawned from a Yautja. A more obvious result of the Xenomorph's DNA Reflex, the Predalien takes more clearly after its Yautja host, sharing physical features such as dreadlocks, mandibles and lighter skin coloration./n/n They are lethal combatants, often seen to possess strength far in excess of human-spawned Xenomorphs owing to the greater physical prowess of their hosts, a trait the Predalien subsequently inherits and enhances. They are apparently rare and are regarded by the Yautja as abominations and an insult to their species.</description>
     <statBases>
+      <Mass>95</Mass>
       <MoveSpeed>5.6</MoveSpeed>
       <ArmorRating_Blunt>0.55</ArmorRating_Blunt>
       <ArmorRating_Sharp>0.80</ArmorRating_Sharp>
@@ -1271,6 +1277,7 @@
     <label>Thrumbomorph</label>
     <description>Thrumbomorph Xenomorphs are significantly larger and stronger than the normal adults, being over 5 metres tall. Their body structure differs also, having no arms, although its large limbs many manipulate objects. The thrumbomorphs's head is larger than those of other adult Xenomorphs and is adorned by a large, flat blade, which is an inherited feature from its host./n/nThis thing is a total monstrosity and can easily dismantle a battle tank, do not engage lightly.</description>
     <statBases>
+      <Mass>200</Mass>
       <MoveSpeed>6.5</MoveSpeed>
       <ArmorRating_Blunt>1.50</ArmorRating_Blunt>
       <ArmorRating_Sharp>1.80</ArmorRating_Sharp>
@@ -1381,7 +1388,7 @@
     </tools>
     <race>
       <intelligence>ToolUser</intelligence>
-      <thinkTreeMain>RRY_Xenommorph</thinkTreeMain>
+      <thinkTreeMain>RRY_Xenomorph_ThinkTree</thinkTreeMain>
       <body>RRY_Xenomorph_QuadrupedWithHorn</body>
 	  <useMeatFrom>RRY_Xenomorph_FaceHugger</useMeatFrom>
       <baseBodySize>4</baseBodySize>

@@ -64,11 +64,11 @@
 	
     </comps>
 		<plant>
-			<fertilityMin>0.05</fertilityMin>
+			<fertilityMin>0.001</fertilityMin>
 			<fertilitySensitivity>0.3</fertilitySensitivity>
 			<growDays>0.5</growDays>
 			<harvestWork>40</harvestWork>
-			<maxMeshCount>9</maxMeshCount>
+			<maxMeshCount>4</maxMeshCount>
       <dieIfLeafless>false</dieIfLeafless>
       <neverBlightable>true</neverBlightable>
 			<visualSizeRange>
@@ -137,7 +137,7 @@
 			<fertilitySensitivity>0.3</fertilitySensitivity>
 			<growDays>0.5</growDays>
 			<harvestWork>40</harvestWork>
-			<maxMeshCount>9</maxMeshCount>
+			<maxMeshCount>4</maxMeshCount>
       <dieIfLeafless>false</dieIfLeafless>
       <neverBlightable>true</neverBlightable>
 			<visualSizeRange>

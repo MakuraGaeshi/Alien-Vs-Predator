@@ -55,8 +55,7 @@
 			</shadowData>
     </graphicData>
 		<comps>
-			<li Class="CompProperties_HiveCreep" />
-			<li Class="CompProperties_PlantConversionRadius">
+			<li Class="CompProperties_GooSpread">
 				<radiusPerDayCurve>
 					<points>
 						<li>0,5</li>
@@ -69,6 +68,8 @@
 						<li>200,200</li>
 					</points>
 				</radiusPerDayCurve>
+			</li>
+			<li Class="CompProperties_PlantConversionRadius">
 				<harmFrequencyPerArea>0.015</harmFrequencyPerArea>
 			</li>
 			<li Class="CompProperties_SpawnerPawnsOnDamaged"> 

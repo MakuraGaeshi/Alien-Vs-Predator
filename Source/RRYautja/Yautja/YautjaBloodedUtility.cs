@@ -213,117 +213,21 @@ namespace RRYautja
             }
             return result;
         }
-        
-        public static List<Pair<ThingDef, HediffDef>> Bloolist = new List<Pair<ThingDef, HediffDef>>
-        { // XenomorphRacesDefOf XenomorphDefOf
-            new Pair<ThingDef, HediffDef>(XenomorphDefOf.RRY_Xenomorph_Queen.race, YautjaDefOf.RRY_Hediff_BloodedMXenomorphQueen),
-            new Pair<ThingDef, HediffDef>(XenomorphDefOf.RRY_Xenomorph_Predalien.race, YautjaDefOf.RRY_Hediff_BloodedMPredalien),
-            new Pair<ThingDef, HediffDef>(XenomorphDefOf.RRY_Xenomorph_Warrior.race, YautjaDefOf.RRY_Hediff_BloodedMXenomorph),
-            new Pair<ThingDef, HediffDef>(XenomorphDefOf.RRY_Xenomorph_Drone.race, YautjaDefOf.RRY_Hediff_BloodedMXenomorph),
-            new Pair<ThingDef, HediffDef>(XenomorphDefOf.RRY_Xenomorph_Runner.race, YautjaDefOf.RRY_Hediff_BloodedMXenomorph),
-            new Pair<ThingDef, HediffDef>(XenomorphDefOf.RRY_Xenomorph_Neomorph.race, YautjaDefOf.RRY_Hediff_BloodedMXenomorph),
-            new Pair<ThingDef, HediffDef>(YautjaDefOf.RRY_Alien_Yautja, YautjaDefOf.RRY_Hediff_BloodedMBadBlood),
-            new Pair<ThingDef, HediffDef>(ThingDefOf.Human, YautjaDefOf.RRY_Hediff_BloodedMHuman),
-            new Pair<ThingDef, HediffDef>(ThingDefOf.Human, YautjaDefOf.RRY_Hediff_BloodedMWorthyHuman),
-            new Pair<ThingDef, HediffDef>(ThingDefOf.Human, YautjaDefOf.RRY_Hediff_BloodedMHumanlike),
-            new Pair<ThingDef, HediffDef>(ThingDefOf.Human, YautjaDefOf.RRY_Hediff_BloodedMWorthyHumanlike),
-            new Pair<ThingDef, HediffDef>(YautjaDefOf.RRY_Yautja_Hound, YautjaDefOf.RRY_Hediff_BloodedMHound),
-            new Pair<ThingDef, HediffDef>(YautjaDefOf.RRY_Rynath, YautjaDefOf.RRY_Hediff_BloodedMCrusher),
-            new Pair<ThingDef, HediffDef>(ThingDefOf.Thrumbo, YautjaDefOf.RRY_Hediff_BloodedMGroTye),
-
-            /*
-            new Pair<HediffDef, ThingDef>(YautjaDefOf.RRY_Hediff_BloodedMXenomorph, XenomorphDefOf.RRY_Xenomorph_Warrior.race),
-            new Pair<HediffDef, ThingDef>(YautjaDefOf.RRY_Hediff_BloodedMPredalien, XenomorphDefOf.RRY_Xenomorph_Predalien.race),
-            new Pair<HediffDef, ThingDef>(YautjaDefOf.RRY_Hediff_BloodedMBadBlood, YautjaDefOf.Alien_Yautja),
-            new Pair<HediffDef, ThingDef>(YautjaDefOf.RRY_Hediff_BloodedMHuman, ThingDefOf.Human),
-            new Pair<HediffDef, ThingDef>(YautjaDefOf.RRY_Hediff_BloodedMWorthyHuman, ThingDefOf.Human),
-            new Pair<HediffDef, ThingDef>(YautjaDefOf.RRY_Hediff_BloodedMHumanlike, ThingDefOf.Human),
-            new Pair<HediffDef, ThingDef>(YautjaDefOf.RRY_Hediff_BloodedMWorthyHumanlike, ThingDefOf.Human),
-            new Pair<HediffDef, ThingDef>(YautjaDefOf.RRY_Hediff_BloodedMHound, YautjaDefOf.RRY_Yautja_Hound),
-            new Pair<HediffDef, ThingDef>(YautjaDefOf.RRY_Hediff_BloodedMCrusher, YautjaDefOf.RRY_Rynath),
-            new Pair<HediffDef, ThingDef>(YautjaDefOf.RRY_Hediff_BloodedMGroTye, ThingDefOf.Thrumbo),
-            new Pair<HediffDef, ThingDef>(YautjaDefOf.RRY_Hediff_BloodedM, XenomorphDefOf.RRY_Xenomorph_Drone.race)
-            */
-        };
-
+      
 
         public static PawnKindDef RandomMarked(HediffDef markedDef)
         {
-            //    Log.Message(string.Format("{0}", markedDef));
-            if (markedDef == YautjaDefOf.RRY_Hediff_BloodedMXenomorphQueen)
+            List<PawnKindDef> kinddefs = DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(x => GetMark(x) == markedDef);
+            if (kinddefs.NullOrEmpty())
             {
-                return XenomorphDefOf.RRY_Xenomorph_Queen;
+                return null;
             }
-            else if (markedDef == YautjaDefOf.RRY_Hediff_BloodedMXenomorph)
-            {
-                return DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(x => x.race.defName.Contains("Xenomorph") && !x.race.defName.Contains("FaceHugger") && !x.race.defName.Contains("Predalien") && !x.race.defName.Contains("Queen")).RandomElement();
-            }
-            else if (markedDef == YautjaDefOf.RRY_Hediff_BloodedMMechanoid)
-            {
-                return DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(x => ((x.race.defName.Contains("Mech") || x.race.defName.Contains("Droid") || x.race.defName.Contains("Android") || x.race.defName.Contains("ChjDroid") || x.race.defName.Contains("ChjAndroid")) && x.RaceProps.IsMechanoid || (x.defaultFactionType != null && x.defaultFactionType == Faction.OfMechanoids.def)) && !x.race.race.body.defName.Contains("AIRobot")).RandomElement();
-            }
-            else if (markedDef == YautjaDefOf.RRY_Hediff_BloodedMPredalien)
-            {
-                return XenomorphDefOf.RRY_Xenomorph_Predalien;
-            }
-            else if (markedDef == YautjaDefOf.RRY_Hediff_BloodedMBadBlood)
-            {
-                return DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(x => x.race == YautjaDefOf.RRY_Alien_Yautja && x.defaultFactionType == YautjaDefOf.RRY_Yautja_BadBloodFaction).RandomElement();
-            }
-            else if (markedDef == YautjaDefOf.RRY_Hediff_BloodedMHumanlike)
-            {
-                List<PawnKindDef> list = DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(x => x.race != ThingDefOf.Human && x.RaceProps.Humanlike && (/*!x.race.defName.Contains("Yautja") &&*/ !x.race.defName.Contains("Mech") && !x.race.defName.Contains("Droid") && !x.race.defName.Contains("Android") && !x.race.defName.Contains("ChjDroid") && !x.race.defName.Contains("ChjAndroid")) && !x.factionLeader);
-                if (!list.NullOrEmpty())
-                {
-                    return list.RandomElement();
-                }
-            }
-            else if (markedDef == YautjaDefOf.RRY_Hediff_BloodedMWorthyHumanlike)
-            {
-                return DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(x => x.race != ThingDefOf.Human && x.RaceProps.Humanlike && ( /*!x.race.defName.Contains("Yautja") &&*/ !x.race.defName.Contains("Mech") && !x.race.defName.Contains("Droid") && !x.race.defName.Contains("Android") && !x.race.defName.Contains("ChjDroid") && !x.race.defName.Contains("ChjAndroid")) && (x.factionLeader || (x.isFighter && x.combatPower > (100)))).RandomElement();
-            }
-            else if (markedDef == YautjaDefOf.RRY_Hediff_BloodedMHuman)
-            {
-                return DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(x => x.race == ThingDefOf.Human && !x.factionLeader).RandomElement();
-            }
-            else if (markedDef == YautjaDefOf.RRY_Hediff_BloodedMWorthyHuman)
-            {
-                return DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(x => x.race == ThingDefOf.Human && (x.factionLeader || (x.isFighter && x.combatPower > (100)))).RandomElement();
-            }
-            /*
-            else if (other.kindDef.race == YautjaDefOf.RRY_Alien_Yautja && !other.story.adulthood.identifier.StartsWith("Yautja_BadBlood") && other.Dead && (other.Faction.PlayerGoodwill > 0 || other.Faction.IsPlayer)) 
-            {
-                markedDef == YautjaDefOf.RRY_Hediff_BloodedMBadBlood;
-            }
-            */
-            else if (markedDef == YautjaDefOf.RRY_Hediff_BloodedMGroTye)
-            {
-                return DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(x => !x.race.defName.Contains("Xenomorph") && x.defName.Contains("Megasloth")).RandomElement();
-            }
-            else if (markedDef == YautjaDefOf.RRY_Hediff_BloodedMCrusher)
-            {
-                return DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(x => !x.race.defName.Contains("Xenomorph") && (x.defName.Contains("Rhinoceros") || x.defName.Contains("Elephant"))).RandomElement();
-            }
-            else if (markedDef == YautjaDefOf.RRY_Hediff_BloodedMThrumbo)
-            {
-                return DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(x => x.defName.Contains("Thrumbo")).RandomElement();
-            }
-            else if (markedDef == YautjaDefOf.RRY_Hediff_BloodedMHound)
-            {
-                List<PawnKindDef> list = DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(x => !x.race.defName.Contains("Xenomorph") && !x.RaceProps.Humanlike && ((x.defName.Contains("Wolf") || x.race.description.Contains("Wolf") || x.race.description.Contains("wolf") || x.race.description.Contains("wolves")) || (x.defName.Contains("Hound") || x.defName.Contains("hound") || x.race.description.Contains("Hound") || x.race.description.Contains("hound") || x.race.description.Contains("hounds")) || (x.race.defName.Contains("Dog") || x.race.description.Contains("Dog") || x.race.description.Contains("dog") || x.race.description.Contains("dogs"))) && ((x.RaceProps.predator == true && x.combatPower > 50) || (x.RaceProps.predator == false && x.combatPower > 100)));
-                PawnKindDef kindDef = list.RandomElement();
-                return kindDef;
-            }
-            else if (markedDef == YautjaDefOf.RRY_Hediff_BloodedM)
-            {
-                return DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(x => (!x.RaceProps.IsMechanoid && x.defaultFactionType != Faction.OfMechanoids.def) && !x.race.defName.Contains("Xenomorph") && (!x.defName.Contains("Rhinoceros") && !x.defName.Contains("Elephant") && !x.defName.Contains("Thrumbo")) && !x.defName.Contains("Megasloth") && ((!x.defName.Contains("Wolf") && !x.race.description.Contains("Wolf") && !x.race.description.Contains("wolf") && !x.race.description.Contains("wolves")) && (!x.defName.Contains("Hound") && !x.defName.Contains("hound") && !x.race.description.Contains("Hound") && !x.race.description.Contains("hound") && !x.race.description.Contains("hounds")) && (!x.race.defName.Contains("Dog") && !x.race.description.Contains("Dog") && !x.race.description.Contains("dog") && !x.race.description.Contains("dogs"))) && !x.RaceProps.Humanlike && (x.combatPower > 100 || (x.RaceProps.predator == true && x.combatPower > 50))).RandomElement();
-            }
-            return null;
+            return kinddefs.RandomElement();
         }
 
         public static HediffDef GetMark(PawnKindDef x)
         {
-            //    Log.Message(string.Format("{0}", markedDef));
+            //    Log.Message(string.Format("{0}", markedDef)); 
             if (x == XenomorphDefOf.RRY_Xenomorph_Queen)
             {
                 return YautjaDefOf.RRY_Hediff_BloodedMXenomorphQueen;
@@ -332,7 +236,7 @@ namespace RRYautja
             {
                 return YautjaDefOf.RRY_Hediff_BloodedMXenomorph;
             }
-            else if (((x.race.defName.Contains("Mech") || x.race.defName.Contains("Droid") || x.race.defName.Contains("Android") || x.race.defName.Contains("ChjDroid") || x.race.defName.Contains("ChjAndroid")) || x.RaceProps.IsMechanoid/* || (x.defaultFactionType != null && x.defaultFactionType.defName.Contains("Mechanoid"))*/) && !x.race.race.body.defName.Contains("AIRobot"))
+            else if (!x.race.defName.Contains("Human") && ((x.race.defName.Contains("WraithGuard") || x.race.defName.Contains("Necron") || x.race.defName.Contains("Mech") || x.race.defName.Contains("Droid") || x.race.defName.Contains("Android") || x.race.defName.Contains("ChjDroid") || x.race.defName.Contains("ChjAndroid")) || x.RaceProps.IsMechanoid/* || (x.defaultFactionType != null && x.defaultFactionType.defName.Contains("Mechanoid"))*/) && !x.race.race.body.defName.Contains("AIRobot"))
             {
                 return YautjaDefOf.RRY_Hediff_BloodedMMechanoid;
             }
@@ -344,21 +248,21 @@ namespace RRYautja
             {
                 return YautjaDefOf.RRY_Hediff_BloodedMBadBlood;
             }
-            else if (x.race != ThingDefOf.Human && x.RaceProps.Humanlike && (/*!x.race.defName.Contains("Yautja") &&*/ !x.race.defName.Contains("Mech") && !x.race.defName.Contains("Droid") && !x.race.defName.Contains("Android") && !x.race.defName.Contains("ChjDroid") && !x.race.defName.Contains("ChjAndroid")) && !x.factionLeader)
-            {
-                return YautjaDefOf.RRY_Hediff_BloodedMHumanlike;
-            }
-            else if (x.race != ThingDefOf.Human && x.RaceProps.Humanlike && ( /*!x.race.defName.Contains("Yautja") &&*/ !x.race.defName.Contains("Mech") && !x.race.defName.Contains("Droid") && !x.race.defName.Contains("Android") && !x.race.defName.Contains("ChjDroid") && !x.race.defName.Contains("ChjAndroid")) && (x.factionLeader || (x.isFighter && x.combatPower > (100))))
-            {
-                return YautjaDefOf.RRY_Hediff_BloodedMWorthyHumanlike;
-            }
-            else if (x.race == ThingDefOf.Human && !x.factionLeader)
+            else if (x.race.defName.Contains("Human") && !x.factionLeader)
             {
                 return YautjaDefOf.RRY_Hediff_BloodedMHuman;
             }
-            else if (x.race == ThingDefOf.Human && (x.factionLeader || (x.isFighter && x.combatPower > (100))))
+            else if (x.race.defName.Contains("Human") && (x.factionLeader || (x.isFighter && x.combatPower > (100))))
             {
                 return YautjaDefOf.RRY_Hediff_BloodedMWorthyHuman;
+            }
+            else if (!x.race.defName.Contains("Human") && x.RaceProps.Humanlike && (/*!x.race.defName.Contains("Yautja") &&*/ !x.race.defName.Contains("Mech") && !x.race.defName.Contains("Droid") && !x.race.defName.Contains("Android") && !x.race.defName.Contains("ChjDroid") && !x.race.defName.Contains("ChjAndroid")) && !x.factionLeader)
+            {
+                return YautjaDefOf.RRY_Hediff_BloodedMHumanlike;
+            }
+            else if (!x.race.defName.Contains("Human") && x.RaceProps.Humanlike && ( /*!x.race.defName.Contains("Yautja") &&*/ !x.race.defName.Contains("Mech") && !x.race.defName.Contains("Droid") && !x.race.defName.Contains("Android") && !x.race.defName.Contains("ChjDroid") && !x.race.defName.Contains("ChjAndroid")) && (x.factionLeader || (x.isFighter && x.combatPower > (100))))
+            {
+                return YautjaDefOf.RRY_Hediff_BloodedMWorthyHumanlike;
             }
             /*
             else if (x.race == YautjaDefOf.RRY_Alien_Yautja && !other.story.adulthood.identifier.StartsWith("Yautja_BadBlood") && other.Dead && (other.Faction.PlayerGoodwill > 0 || other.Faction.IsPlayer)) 
@@ -382,7 +286,7 @@ namespace RRYautja
             {
                 return YautjaDefOf.RRY_Hediff_BloodedMHound;
             }
-            else if ((!x.RaceProps.IsMechanoid && (x.defaultFactionType != null && !x.defaultFactionType.defName.Contains("Mechanoid"))) && !x.race.defName.Contains("Xenomorph") && (!x.defName.Contains("Rhinoceros") && !x.defName.Contains("Elephant") && !x.defName.Contains("Thrumbo")) && !x.defName.Contains("Megasloth") && ((!x.defName.Contains("Wolf") && !x.race.description.Contains("Wolf") && !x.race.description.Contains("wolf") && !x.race.description.Contains("wolves")) && (!x.defName.Contains("Hound") && !x.defName.Contains("hound") && !x.race.description.Contains("Hound") && !x.race.description.Contains("hound") && !x.race.description.Contains("hounds")) && (!x.race.defName.Contains("Dog") && !x.race.description.Contains("Dog") && !x.race.description.Contains("dog") && !x.race.description.Contains("dogs"))) && !x.RaceProps.Humanlike && (x.combatPower > 100 || (x.RaceProps.predator == true && x.combatPower > 50)))
+            else if ((!x.RaceProps.IsMechanoid && (x.defaultFactionType == null || (x.defaultFactionType != null && !x.defaultFactionType.defName.Contains("Mechanoid")))) && !x.race.defName.Contains("Xenomorph") && !x.RaceProps.Humanlike && (x.combatPower > 100 || (x.RaceProps.predator == true && x.combatPower > 50)))
             {
                 return YautjaDefOf.RRY_Hediff_BloodedM;
             }
@@ -391,57 +295,7 @@ namespace RRYautja
 
         public static bool WorthyKill(PawnKindDef x)
         {
-            if (x.race.defName.Contains("Xenomorph") && !x.race.defName.Contains("FaceHugger"))
-            {
-                return true;
-            }
-            else if (((x.race.defName.Contains("Mech") || x.race.defName.Contains("Droid") || x.race.defName.Contains("Android") || x.race.defName.Contains("ChjDroid") || x.race.defName.Contains("ChjAndroid")) || x.RaceProps.IsMechanoid/* || (x.defaultFactionType != null && x.defaultFactionType.defName.Contains("Mechanoid"))*/) && !x.race.race.body.defName.Contains("AIRobot"))
-            {
-                return true;
-            }
-            else if (x.race == YautjaDefOf.RRY_Alien_Yautja && x.defaultFactionType == YautjaDefOf.RRY_Yautja_BadBloodFaction)
-            {
-                return true;
-            }
-            else if (x.race != ThingDefOf.Human && x.RaceProps.Humanlike && (/*!x.race.defName.Contains("Yautja") &&*/ !x.race.defName.Contains("Mech") && !x.race.defName.Contains("Droid") && !x.race.defName.Contains("Android") && !x.race.defName.Contains("ChjDroid") && !x.race.defName.Contains("ChjAndroid")) && !x.factionLeader)
-            {
-                return true;
-            }
-            else if (x.race != ThingDefOf.Human && x.RaceProps.Humanlike && ( /*!x.race.defName.Contains("Yautja") &&*/ !x.race.defName.Contains("Mech") && !x.race.defName.Contains("Droid") && !x.race.defName.Contains("Android") && !x.race.defName.Contains("ChjDroid") && !x.race.defName.Contains("ChjAndroid")) && (x.factionLeader || (x.isFighter && x.combatPower > (100))))
-            {
-                return true;
-            }
-            else if (x.race == ThingDefOf.Human && !x.factionLeader)
-            {
-                return true;
-            }
-            else if (x.race == ThingDefOf.Human && (x.factionLeader || (x.isFighter && x.combatPower > (100))))
-            {
-                return true;
-            }
-            /*
-            else if (x.race == YautjaDefOf.RRY_Alien_Yautja && !other.story.adulthood.identifier.StartsWith("Yautja_BadBlood") && other.Dead && (other.Faction.PlayerGoodwill > 0 || other.Faction.IsPlayer)) 
-            {
-                return true;
-            }
-            */
-            else if (x.race.defName.Contains("GroTye") || x.defName.Contains("Megasloth"))
-            {
-                return true;
-            }
-            else if (!x.race.defName.Contains("Xenomorph") && (x.defName.Contains("Rhinoceros") || x.defName.Contains("Elephant")))
-            {
-                return true;
-            }
-            else if (!x.race.defName.Contains("Xenomorph") && x.defName.Contains("Thrumbo"))
-            {
-                return true;
-            }
-            else if (!x.race.defName.Contains("Xenomorph") && !x.RaceProps.Humanlike && ((x.defName.Contains("Wolf") || x.race.description.Contains("Wolf") || x.race.description.Contains("wolf") || x.race.description.Contains("wolves")) || (x.defName.Contains("Hound") || x.defName.Contains("hound") || x.race.description.Contains("Hound") || x.race.description.Contains("hound") || x.race.description.Contains("hounds")) || (x.race.defName.Contains("Dog") || x.race.description.Contains("Dog") || x.race.description.Contains("dog") || x.race.description.Contains("dogs"))) && ((x.RaceProps.predator == true && x.combatPower > 50) || (x.RaceProps.predator == false && x.combatPower > 100)))
-            {
-                return true;
-            }
-            else if ((!x.RaceProps.IsMechanoid && (x.defaultFactionType != null && !x.defaultFactionType.defName.Contains("Mechanoid"))) && !x.race.defName.Contains("Xenomorph") && (!x.defName.Contains("Rhinoceros") && !x.defName.Contains("Elephant") && !x.defName.Contains("Thrumbo")) && !x.defName.Contains("Megasloth") && ((!x.defName.Contains("Wolf") && !x.race.description.Contains("Wolf") && !x.race.description.Contains("wolf") && !x.race.description.Contains("wolves")) && (!x.defName.Contains("Hound") && !x.defName.Contains("hound") && !x.race.description.Contains("Hound") && !x.race.description.Contains("hound") && !x.race.description.Contains("hounds")) && (!x.race.defName.Contains("Dog") && !x.race.description.Contains("Dog") && !x.race.description.Contains("dog") && !x.race.description.Contains("dogs"))) && !x.RaceProps.Humanlike && (x.combatPower > 100 || (x.RaceProps.predator == true && x.combatPower > 50)))
+            if (GetMark(x)!=null)
             {
                 return true;
             }

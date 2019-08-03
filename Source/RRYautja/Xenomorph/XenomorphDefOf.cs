@@ -62,7 +62,8 @@ namespace RimWorld
         public static JobDef RRY_Job_PredalienImpregnate;
         public static JobDef RRY_Job_MaintainLike;
         public static JobDef RRY_Job_ConstructHiveWall;
-        public static JobDef RRY_Job_DestroyCocoon;
+        public static JobDef RRY_Job_DestroyCocoon; 
+        public static JobDef RRY_Neomorph_Ingest; 
 
         // Xenomorph DutyDefs  
         public static DutyDef RRY_DefendHiveLoc;
@@ -96,6 +97,21 @@ namespace RimWorld
 
         // Xenomorph BloodDefs 
         public static ThingDef RRY_FilthBloodXenomorph;
+
+        // Xenomorph LifeStageDefs 
+        public static LifeStageDef RRY_XFacehuggerFullyFormed;
+        public static LifeStageDef RRY_XenomorphChestBursterBaby;
+        public static LifeStageDef RRY_XenomorphChestBursterBig;
+        public static LifeStageDef RRY_XenomorphFormedBaby;
+        public static LifeStageDef RRY_XenomorphFormedMid;
+        public static LifeStageDef RRY_XenomorphFullyFormed;
+
+        // Neomorph LifeStageDefs 
+        public static LifeStageDef RRY_NeomorphBloodBursterBaby;
+        public static LifeStageDef RRY_NeomorphBloodBursterBig;
+        public static LifeStageDef RRY_NeomorphFormedBaby;
+        public static LifeStageDef RRY_NeomorphFormedMid;
+        public static LifeStageDef RRY_NeomorphFullyFormed;
 
         // Xenomorph IncidentDefs RRY_XenomorphInfestation
         public static IncidentDef RRY_Neomorph_FungusSprout;
