@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+	<ThingDef Name="BaseGun" Abstract="True" ParentName="BaseWeapon">
+		<techLevel>Industrial</techLevel>
+		<smeltable>true</smeltable>
+		<thingCategories>
+			<li>RRY_USCM_Weapons</li>
+		</thingCategories>
+		<inspectorTabs>
+			<li>ITab_Art</li>
+		</inspectorTabs>
+		<comps>
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef Name="BaseHumanGun" ParentName="BaseGun" Abstract="True">
+		<weaponTags>
+			<li>RRY_USCM_RangedWeapons</li>
+		</weaponTags>
+	</ThingDef>
+
+
+    <!-- ============================================================== -->
+
+	<ThingDef Name="BaseBullet" Abstract="True">
+		<category>Projectile</category>
+		<tickerType>Normal</tickerType>
+		<altitudeLayer>Projectile</altitudeLayer>
+		<thingClass>Bullet</thingClass>
+		<label>bullet</label>
+		<useHitPoints>False</useHitPoints>
+		<neverMultiSelect>True</neverMultiSelect>
+		<graphicData>
+			<shaderType>Transparent</shaderType>
+		</graphicData>
+	</ThingDef>	
+	
+	<!-- =================== UA 571-C Automated Sentry Gun ================== -->
+
+	<ThingDef ParentName="BaseBullet">
+		<defName>RRY_Bullet_UA571C_USCM</defName>
+		<label>10×28mm Caseless bullet</label>
+		<graphicData>
+		<texPath>Things/Projectile/Bullet_Small</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>15</damageAmountBase>
+			<speed>110</speed>
+		</projectile>
+    </ThingDef>
+	
+
+	<ThingDef ParentName="BaseHumanGun">
+		<defName>RRY_Gun_UA571C_USCM</defName>
+		<label>UA 571-C canon</label>
+		<description>The UA 571-C Automated Sentry Gun, known colloquially as the "Robot Sentry", is a tripod-mounted automated perimeter defense system employed by the United States Colonial Marine Corps to deliver pre-set automatic fire to any hostile within range or area targets. They are equipped with M30 Autocannons and automatic thermal and movement actuated AI targeting capabilities.</description>
+		<graphicData>
+			<texPath>Things/Buildings/Security/UA571CGun</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(2,2)</drawSize>
+		</graphicData>		
+		<menuHidden>true</menuHidden>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<tradeability>None</tradeability>
+		<passability>Impassable</passability>
+		<castEdgeShadows>true</castEdgeShadows>
+		<destroyOnDrop>true</destroyOnDrop>
+		<fillPercent>0.4</fillPercent>
+		<hasTooltip>true</hasTooltip>		
+		<statBases>
+			<AccuracyTouch>0.98</AccuracyTouch>
+			<AccuracyShort>0.88</AccuracyShort>
+			<AccuracyMedium>0.78</AccuracyMedium>
+			<AccuracyLong>0.62</AccuracyLong>
+			<RangedWeapon_Cooldown>1.0</RangedWeapon_Cooldown>
+			<Mass>30</Mass>
+		</statBases>		
+		<weaponTags>
+		  <li>RRY_USCM_Turret</li>
+		</weaponTags>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>RRY_Bullet_UA571C_USCM</defaultProjectile>
+				<warmupTime>120</warmupTime>
+				<range>34</range>
+				<burstShotCount>15</burstShotCount>
+				<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+				<soundCast>RRY_USCM_shotUA571C</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+        		<muzzleFlashScale>14</muzzleFlashScale>
+				<consumeFuelPerShot>1</consumeFuelPerShot>
+			</li>
+		</verbs>
+	</ThingDef>
+
+	
+</Defs>
