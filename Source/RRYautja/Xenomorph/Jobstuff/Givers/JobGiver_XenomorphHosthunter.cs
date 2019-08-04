@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Verse;
 using Verse.AI;
+using Verse.AI.Group;
 
 namespace RimWorld
 {
@@ -19,8 +20,11 @@ namespace RimWorld
             jobGiver_XenomorphHosthunter.MinMeleeChaseTicks = this.MinMeleeChaseTicks;
             jobGiver_XenomorphHosthunter.MaxMeleeChaseTicks = this.MaxMeleeChaseTicks;
             jobGiver_XenomorphHosthunter.Gender = this.Gender;
+            jobGiver_XenomorphHosthunter.requireLOS = this.requireLOS;
             return jobGiver_XenomorphHosthunter;
         }
+
+        public HiveLike hive = null;
 
         // Token: 0x040002FF RID: 767
         private int MinMeleeChaseTicks = 420;
@@ -40,15 +44,33 @@ namespace RimWorld
         private const int WanderOutsideDoorRegions = 9;
 
         private Gender Gender = Gender.None;
+
+        private bool requireLOS = true;
         // Token: 0x060005B7 RID: 1463 RVA: 0x00037A28 File Offset: 0x00035E28
         protected override Job TryGiveJob(Pawn pawn)
         {
-            /*
-            if (pawn.mindState.duty.def == OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike && pawn.mindState.duty.radius > 0)
+            if (pawn.GetLord() != null && pawn.GetLord() is Lord lord)
             {
-                HuntingRange = pawn.mindState.duty.radius;
+                if (lord.LordJob is LordJob_DefendAndExpandHiveLike hivejob)
+                {
+                    if (lord.CurLordToil is LordToil_DefendAndExpandHiveLike hivetoil)
+                    {
+                        if (hivetoil.Data.assignedHiveLikes.TryGetValue(pawn) != null)
+                        {
+                            hive = hivetoil.Data.assignedHiveLikes.TryGetValue(pawn);
+                        }
+                    }
+                }
+                if (lord.CurLordToil is LordToil_DefendHiveLikeAggressively hivetoilA)
+                {
+                    if (hivetoilA.Data.assignedHiveLikes.TryGetValue(pawn) != null)
+                    {
+                        hive = hivetoilA.Data.assignedHiveLikes.TryGetValue(pawn);
+                    }
+                }
             }
-            */
+
+            bool aggressive;
             Comp_Xenomorph _Xenomorph = pawn.TryGetComp<Comp_Xenomorph>();
             if (pawn.TryGetAttackVerb(null, false) == null)
             {
@@ -59,7 +81,7 @@ namespace RimWorld
             Pawn pawn2 = null;
             if (_Xenomorph!=null)
             {
-                pawn2 = _Xenomorph.BestPawnToHuntForPredator(pawn, true, true);
+                pawn2 = _Xenomorph.BestPawnToHuntForPredator(pawn, false, true);
             }
             if (pawn2 == null)
             {
@@ -117,7 +139,7 @@ namespace RimWorld
         private Pawn FindPawnTarget(Pawn pawn)
         {
             bool selected = Find.Selector.SingleSelectedThing == pawn;
-            List<Pawn> list = pawn.Map.mapPawns.AllPawns.Where((Pawn x) => !x.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned) && !x.Downed && XenomorphUtil.isInfectablePawn(x) && pawn.CanReach(x, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.NoPassClosedDoors) && !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Anesthetic) && (this.Gender == Gender.None || (this.Gender!=Gender.None && x.gender == this.Gender))).ToList();
+            List<Pawn> list = pawn.Map.mapPawns.AllPawns.Where((Pawn x) => !x.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned) && !x.Downed && XenomorphUtil.isInfectablePawn(x) && pawn.CanReach(x, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.NoPassClosedDoors) && !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Anesthetic)&& ((requireLOS && pawn.CanSee(x)) || !requireLOS) && (this.Gender == Gender.None || (this.Gender!=Gender.None && x.gender == this.Gender))).ToList();
             if (list.NullOrEmpty())
             {
                 return null;
