@@ -1,5 +1,3 @@
-﻿using RRYautja.ExtensionMethods;
-using System;
 ﻿using RRYautja;
 using System.Collections.Generic;
 using UnityEngine;
@@ -123,6 +121,20 @@ namespace RimWorld
                     //    if (i % 50 == 0) Log.Message(string.Format("3 {0} b", i), true);
                         if (CompHiveCreep.reachableCells.Contains(intVec))
                         {
+                            List<Thing> list = intVec.GetThingList(parent.Map);
+                            if (!list.NullOrEmpty())
+                            {
+                                if (list.Any(x=> x.def.IsFilth))
+                                {
+                                    foreach (var item in list.FindAll(x => x.def.IsFilth))
+                                    {
+                                        if (Rand.ChanceSeeded(0.25f, AvPConstants.AvPSeed))
+                                        {
+                                            item.Destroy();
+                                        }
+                                    }
+                                }
+                            }
                             //    Log.Message(string.Format("3 {0} c", i));
                             float num2 = 1f;
                             num2 += 1f;
@@ -132,7 +144,6 @@ namespace RimWorld
                                 num2 = 0.1f;
                             }
 
-<<<<<<< HEAD
                             if (this.parent.Map.GetComponent<MapComponent_HiveGrid>().GetDepth(intVec) <= num2)
                             {
                                 //    Log.Message(string.Format("3 {0} d", i));
@@ -142,13 +153,6 @@ namespace RimWorld
                                 //    Log.Message(string.Format("3 {0} e", i));
                             }
 
-=======
-                        if (this.parent.Map.GetComponent<MapComponent_HiveGrid>().GetDepth(intVec) <= num2)
-                        {
-                            float lengthHorizontal = (intVec - this.parent.Position).LengthHorizontal;
-                            float num3 = 1f - lengthHorizontal / this.hiveRadius;
-                            this.parent.Map.hiveGrid().AddDepth(intVec, num3 * this.Props.addAmount * num2);
->>>>>>> parent of 28eee9c... V1.0.0.7 Final
                         }
                     }
                 }

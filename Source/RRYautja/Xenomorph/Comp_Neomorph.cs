@@ -21,7 +21,7 @@ namespace RRYautja
     }
 
     public class Comp_Neomorph : ThingComp
-    {
+    { 
         public CompProperties_Neomorph Props
         {
             get
@@ -38,10 +38,13 @@ namespace RRYautja
             }
         }
 
+        public bool Hidden = false;
+
         public override void PostExposeData()
         {
             base.PostExposeData();
             Scribe_Values.Look<int>(ref this.ticksSinceHeal, "ticksSinceHeal");
+            Scribe_Values.Look<bool>(ref this.Hidden, "Hidden");
         }
 
         public override void CompTickRare()

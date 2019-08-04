@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
+using Verse.AI.Group;
 
 namespace RRYautja.ExtensionMethods
 {
@@ -35,6 +36,71 @@ namespace RRYautja.ExtensionMethods
             return p.health.hediffSet.hediffs.Any(x => x.def.defName.Contains("RRY_Hediff_BloodedM"));
         }
 
+        public static bool switchLord (this Pawn p, Lord L)
+        {
+            Log.Message(string.Format("trying to switch {0} to {1}", p.LabelShortCap, L));
+            if (p.GetLord() != null && p.GetLord() is Lord l)
+            {
+                Log.Message(string.Format("{0} currently belongs to {1}", p.LabelShortCap, l));
+                if (l.ownedPawns.Count > 0)
+                {
+                    Log.Message(string.Format("removing {0} from {1}", p.LabelShortCap, l));
+                    l.ownedPawns.Remove(p);
+                    Log.Message(string.Format("removed {0} from {1}: {2}", p.LabelShortCap, l, p.GetLord() == null));
+                }
+                if (l.ownedPawns.Count == 0)
+                {
+                    Log.Message(string.Format("removed {0} final pawn, removing l", l));
+                    l.lordManager.RemoveLord(l);
+                    Log.Message(string.Format("removed l: {0}", l==null));
+                }
+                Log.Message(string.Format("{0} currently has lord: {1}", p.LabelShortCap, p.GetLord() == null));
+            }
+            Log.Message(string.Format("adding {0} to {1}", p.LabelShortCap, L));
+            L.AddPawn(p);
+            Log.Message(string.Format("addied {0} to {1} = {2}", p.LabelShortCap, L, p.GetLord() == L));
+            return p.GetLord() == L;
+
+        }
+
+        public static Comp_Xenomorph xenomorph(this Pawn p)
+        {
+            if (p.isXenomorph())
+            {
+                return p.TryGetComp<Comp_Xenomorph>();
+            }
+            return null;
+        }
+
+        /*
+        public static HiveLike hive(this Pawn p)
+        {
+            if (p.isXenomorph())
+            {
+                if (p.GetLord()!=null && p.GetLord().LordJob is LordJob_DefendAndExpandHiveLike)
+                {
+                    if (p.GetLord().CurLordToil is LordToil_DefendAndExpandHiveLike daehl)
+                    {
+                        if (daehl.Data.HiveFocus)
+                        {
+
+                        }
+                    }
+                    return p.GetLord().lord;
+                }
+            }
+            return null;
+        }
+        */
+
+        public static Comp_Neomorph neomorph(this Pawn p)
+        {
+            if (p.isNeomorph())
+            {
+                return p.TryGetComp<Comp_Neomorph>();
+            }
+            return null;
+        }
 
         public static bool isBloodable(this Pawn p)
         {
@@ -106,9 +172,154 @@ namespace RRYautja.ExtensionMethods
             return p.race.FleshType == XenomorphRacesDefOf.RRY_Neomorph;
         }
 
+        public static bool isPotentialHost(this Pawn p, out string failReason)
+        {
+            failReason = string.Empty;
+            if (!p.health.hediffSet.HasHead)
+            {
+                failReason = "HasHead";
+                return false;
+            }
+            if (p.isNeomorph())
+            {
+                failReason = "isNeomorph";
+                return false;
+            }
+            if (p.isXenomorph())
+            {
+                failReason = "isXenomorph";
+                return false;
+            }
+            if (p.Dead)
+            {
+                failReason = "Dead";
+                return false;
+            }
+            if (UtilChjAndroids.ChjAndroid)
+            {
+                if (p.kindDef.race.defName == "ChjAndroid" || p.kindDef.race.defName == "ChjDroid")
+                {
+                    failReason = "ChjAndroid";
+                    return false;
+                }
+            }
+            if (UtilTieredAndroids.TieredAndroid)
+            {
+                if (p.kindDef.race.defName.Contains("Android" + "Tier"))
+                {
+                    failReason = "TieredAndroid";
+                    return false;
+                }
+            }
+            if (p.RaceProps.body.defName.Contains("AIRobot"))
+            {
+                failReason = "AIRobot";
+                return false;
+            }
+            if (p.kindDef.race.defName.Contains("Android"))
+            {
+                failReason = "Android";
+                return false;
+            }
+            if (p.kindDef.race.defName.Contains("Droid"))
+            {
+                failReason = "Droid";
+                return false;
+            }
+            if (p.kindDef.race.defName.Contains("Mech"))
+            {
+                failReason = "Mech";
+                return false;
+            }
+            if (p.kindDef.race.defName.Contains("TM_Undead"))
+            {
+                failReason = "TM_Undead";
+                return false;
+            }
+            if (p.kindDef.race.race.FleshType.defName.Contains("TM_StoneFlesh"))
+            {
+                failReason = "TM_StoneFlesh";
+                return false;
+            }
+            if (p.kindDef.race.defName.Contains("TM_") && p.kindDef.race.defName.Contains("Minion"))
+            {
+                failReason = "TM_Minion";
+                return false;
+            }
+            if (p.kindDef.race.defName.Contains("TM_Demon"))
+            {
+                failReason = "TM_Demon";
+                return false;
+            }
+            if (p.kindDef.race.race.FleshType.defName.Contains("ChaosDeamon"))
+            {
+                failReason = "ChaosDeamon";
+                return false;
+            }
+            if (p.kindDef.race.race.FleshType.defName.Contains("Necron"))
+            {
+                failReason = "Necron";
+                return false;
+            }
+            if (p.kindDef.race.race.FleshType.defName.Contains("EldarConstruct"))
+            {
+                failReason = "EldarConstruct";
+                return false;
+            }
+            if (p.kindDef.race.race.FleshType.defName.Contains("ImperialConstruct"))
+            {
+                failReason = "ImperialConstruct";
+                return false;
+            }
+            if (p.kindDef.race.race.FleshType.defName.Contains("MechanicusConstruct"))
+            {
+                failReason = "MechanicusConstruct";
+                return false;
+            }
+            if (p.RaceProps.IsMechanoid)
+            {
+                failReason = "IsMechanoid";
+                return false;
+            }
+            if (!p.RaceProps.IsFlesh)
+            {
+                failReason = "notFlesh";
+                return false;
+            }
+            if (p.isHost())
+            {
+                failReason = "isHost";
+                if (p.isNeoHost())
+                {
+                    failReason = "isHostNeo";
+                }
+                if (p.isXenoHost())
+                {
+                    failReason = "isHostXeno";
+                }
+                return false;
+            }
+            if (XenomorphUtil.IsXenomorphFaction(p))
+            {
+                failReason = "IsXenomorphFaction";
+                return false;
+            }
+            if (p.BodySize < 0.65f && !p.RaceProps.Humanlike)
+            {
+                failReason = "NonhumanlikeTooSmall";
+                return false;
+            }
+            return true;
+        }
+
         public static bool isPotentialHost(this Pawn p)
         {
-            return XenomorphUtil.isInfectablePawn(p) && !p.isXenomorph() && !p.isNeomorph();
+            return XenomorphUtil.isInfectablePawn(p) && !p.isXenomorph() && !p.isNeomorph() && p.health.hediffSet.HasHead;
+        }
+        public static bool isPotentialHost(this Thing t)
+        {
+            Pawn p = (Pawn)t;
+            return XenomorphUtil.isInfectablePawn(p) && !p.isXenomorph() && !p.isNeomorph() && p.health.hediffSet.HasHead;
         }
 
         public static bool isPotentialHost(this PawnKindDef p)
@@ -116,9 +327,263 @@ namespace RRYautja.ExtensionMethods
             return XenomorphUtil.isInfectablePawnKind(p) && !p.isXenomorph() && !p.isNeomorph();
         }
 
+        public static bool isPotentialHost(this PawnKindDef p, out string failReason)
+        {
+            failReason = string.Empty;
+            if (!p.race.race.body.AllParts.Any(x=>x.def.defName.Contains("Head")))
+            {
+                failReason = "HasHead";
+                return false;
+            }
+            if (p.isNeomorph())
+            {
+                failReason = "isNeomorph";
+                return false;
+            }
+            if (p.isXenomorph())
+            {
+                failReason = "isXenomorph";
+                return false;
+            }
+            if (UtilChjAndroids.ChjAndroid)
+            {
+                if (p.race.defName == "ChjAndroid" || p.race.defName == "ChjDroid")
+                {
+                    failReason = "ChjAndroid";
+                    return false;
+                }
+            }
+            if (UtilTieredAndroids.TieredAndroid)
+            {
+                if (p.race.defName.Contains("Android" + "Tier"))
+                {
+                    failReason = "TieredAndroid";
+                    return false;
+                }
+            }
+            if (p.RaceProps.body.defName.Contains("AIRobot"))
+            {
+                failReason = "AIRobot";
+                return false;
+            }
+            if (p.race.defName.Contains("Android"))
+            {
+                failReason = "Android";
+                return false;
+            }
+            if (p.race.defName.Contains("Droid"))
+            {
+                failReason = "Droid";
+                return false;
+            }
+            if (p.race.defName.Contains("Mech"))
+            {
+                failReason = "Mech";
+                return false;
+            }
+            if (p.race.defName.Contains("TM_Undead"))
+            {
+                failReason = "TM_Undead";
+                return false;
+            }
+            if (p.race.race.FleshType.defName.Contains("TM_StoneFlesh"))
+            {
+                failReason = "TM_StoneFlesh";
+                return false;
+            }
+            if (p.race.defName.Contains("TM_") && p.race.defName.Contains("Minion"))
+            {
+                failReason = "TM_Minion";
+                return false;
+            }
+            if (p.race.defName.Contains("TM_Demon"))
+            {
+                failReason = "TM_Demon";
+                return false;
+            }
+            if (p.race.race.FleshType.defName.Contains("ChaosDeamon"))
+            {
+                failReason = "ChaosDeamon";
+                return false;
+            }
+            if (p.race.race.FleshType.defName.Contains("Necron"))
+            {
+                failReason = "Necron";
+                return false;
+            }
+            if (p.race.race.FleshType.defName.Contains("EldarConstruct"))
+            {
+                failReason = "EldarConstruct";
+                return false;
+            }
+            if (p.race.race.FleshType.defName.Contains("ImperialConstruct"))
+            {
+                failReason = "ImperialConstruct";
+                return false;
+            }
+            if (p.race.race.FleshType.defName.Contains("MechanicusConstruct"))
+            {
+                failReason = "MechanicusConstruct";
+                return false;
+            }
+            if (p.RaceProps.IsMechanoid)
+            {
+                failReason = "IsMechanoid";
+                return false;
+            }
+            if (!p.RaceProps.IsFlesh)
+            {
+                failReason = "IsFlesh";
+                return false;
+            }
+            if (p.defaultFactionType==XenomorphDefOf.RRY_Xenomorph)
+            {
+                failReason = "IsXenomorphFaction";
+                return false;
+            }
+            if (p.race.race.baseBodySize < 0.65f && !p.RaceProps.Humanlike)
+            {
+                failReason = "NonhumanlikeTooSmall";
+                return false;
+            }
+            return true;
+        }
+
         public static bool isPotentialHost(this ThingDef p)
         {
             return XenomorphUtil.isInfectableThing(p) && !p.isXenomorph() && !p.isNeomorph();
+        }
+
+        public static bool isPotentialHost(this ThingDef p, out string failReason)
+        {
+            failReason = string.Empty;
+            if (!p.race.body.AllParts.Any(x => x.def.defName.Contains("Head")))
+            {
+                failReason = "HasHead";
+                return false;
+            }
+            if (p.isNeomorph())
+            {
+                failReason = "isNeomorph";
+                return false;
+            }
+            if (p.isXenomorph())
+            {
+                failReason = "isXenomorph";
+                return false;
+            }
+            if (UtilChjAndroids.ChjAndroid)
+            {
+                if (p.defName == "ChjAndroid" || p.defName == "ChjDroid")
+                {
+                    failReason = "ChjAndroid";
+                    return false;
+                }
+            }
+            if (UtilTieredAndroids.TieredAndroid)
+            {
+                if (p.defName.Contains("Android" + "Tier"))
+                {
+                    failReason = "TieredAndroid";
+                    return false;
+                }
+            }
+            if (p.race.body.defName.Contains("AIRobot"))
+            {
+                failReason = "AIRobot";
+                return false;
+            }
+            if (p.defName.Contains("Android"))
+            {
+                failReason = "Android";
+                return false;
+            }
+            if (p.defName.Contains("Droid"))
+            {
+                failReason = "Droid";
+                return false;
+            }
+            if (p.defName.Contains("Mech"))
+            {
+                failReason = "Mech";
+                return false;
+            }
+            if (p.defName.Contains("TM_Undead"))
+            {
+                failReason = "TM_Undead";
+                return false;
+            }
+            if (p.race.FleshType.defName.Contains("TM_StoneFlesh"))
+            {
+                failReason = "TM_StoneFlesh";
+                return false;
+            }
+            if (p.defName.Contains("TM_") && p.defName.Contains("Minion"))
+            {
+                failReason = "TM_Minion";
+                return false;
+            }
+            if (p.defName.Contains("TM_Demon"))
+            {
+                failReason = "TM_Demon";
+                return false;
+            }
+            if (p.race.FleshType.defName.Contains("ChaosDeamon"))
+            {
+                failReason = "ChaosDeamon";
+                return false;
+            }
+            if (p.race.FleshType.defName.Contains("Necron"))
+            {
+                failReason = "Necron";
+                return false;
+            }
+            if (p.race.FleshType.defName.Contains("EldarConstruct"))
+            {
+                failReason = "EldarConstruct";
+                return false;
+            }
+            if (p.race.FleshType.defName.Contains("ImperialConstruct"))
+            {
+                failReason = "ImperialConstruct";
+                return false;
+            }
+            if (p.race.FleshType.defName.Contains("MechanicusConstruct"))
+            {
+                failReason = "MechanicusConstruct";
+                return false;
+            }
+            if (p.race.IsMechanoid)
+            {
+                failReason = "IsMechanoid";
+                return false;
+            }
+            if (!p.race.IsFlesh)
+            {
+                failReason = "IsFlesh";
+                return false;
+            }
+            if (p.race.baseBodySize < 0.65f && !p.race.Humanlike)
+            {
+                failReason = "NonhumanlikeTooSmall";
+                return false;
+            }
+            return true;
+        }
+
+        public static List<Pawn> ViableHosts(this Map m)
+        {
+            return m.mapPawns.AllPawnsSpawned.FindAll(x => x.isPotentialHost());
+        }
+
+        public static List<Pawn> InviableHosts(this Map m)
+        {
+            return m.mapPawns.AllPawnsSpawned.FindAll(x => !x.isPotentialHost());
+        }
+
+        public static List<Pawn> CocoonedPawns(this Map m)
+        {
+            return m.mapPawns.AllPawnsSpawned.FindAll(x => x.isCocooned());
         }
 
         public static bool isHost(this Pawn p)

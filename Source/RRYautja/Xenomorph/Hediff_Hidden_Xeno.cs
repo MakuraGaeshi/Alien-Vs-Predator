@@ -18,6 +18,7 @@ namespace RRYautja
         private FieldInfo _shadowGraphic;
         private FieldInfo _graphicInt;
         private FieldInfo _lastCell;
+        private bool hidden;
 
         public void SetShadowGraphic(PawnRenderer _this, Graphic_Shadow newValue)
         {
@@ -93,6 +94,8 @@ namespace RRYautja
         {
             base.ExposeData();
             Scribe_Values.Look(ref lastSpottedTick, "lastSpottedtick", -9999);
+            Scribe_Values.Look(ref raidOnAlert, "raidOnAlert", false);
+            Scribe_Values.Look(ref hidden, "hidden", false);
             Scribe_References.Look(ref lastCarried, "lastCarried");
             // PawnGraphicSet
             /*
@@ -100,6 +103,8 @@ namespace RRYautja
             Scribe_Values.Look(ref oldShadow, "oldShadow");
             */
         }
+
+        public bool raidOnAlert = false;
 
         public override void PostAdd(DamageInfo? dinfo)
         {
@@ -112,75 +117,60 @@ namespace RRYautja
 
         public override void Tick()
         {
-            if (!pawn.Spawned)
+            if (Hidden)
             {
-                pawn.health.RemoveHediff(this);
-            }
-            if (pawn.Downed || pawn.Dead || (pawn.pather != null && pawn.pather.WillCollideWithPawnOnNextPathCell()))
-            {
-                pawn.health.RemoveHediff(this);
-                if (pawn.pather != null)
+                if (!hidden)
                 {
-                    AlertXenomorph(pawn, pawn.pather.nextCell.GetFirstPawn(pawn.Map));
+                    MakeInvisible();
+                    hidden = true;
                 }
-                else
+                if (!pawn.Spawned)
                 {
-                    AlertXenomorph(pawn, null);
+                    pawn.health.RemoveHediff(this);
                 }
-            }
-            if (pawn.pather != null && GetLastCell(pawn.pather).GetDoor(pawn.Map) != null)
-            {
-                GetLastCell(pawn.pather).GetDoor(pawn.Map).StartManualCloseBy(pawn);
-            }
-            if (pawn.Map != null && lastSpottedTick < Find.TickManager.TicksGame - 125)
-            {
-                lastSpottedTick = Find.TickManager.TicksGame;
-                int num = 0;
-                while (num < 20)
+                if (pawn.Downed || pawn.Dead || (pawn.pather != null && pawn.pather.WillCollideWithPawnOnNextPathCell()))
                 {
-                    IntVec3 c = pawn.Position + GenRadial.RadialPattern[num];
-                    Room room = RegionAndRoomQuery.RoomAt(c, pawn.Map);
-                    if (c.InBounds(pawn.Map))
+                    pawn.health.RemoveHediff(this);
+                    if (pawn.pather != null)
                     {
-                        if (RegionAndRoomQuery.RoomAt(c, pawn.Map) == room)
+                        AlertXenomorph(pawn, pawn.pather.nextCell.GetFirstPawn(pawn.Map));
+                    }
+                    else
+                    {
+                        AlertXenomorph(pawn, null);
+                    }
+                }
+                if (pawn.pather != null && GetLastCell(pawn.pather).GetDoor(pawn.Map) != null)
+                {
+                    GetLastCell(pawn.pather).GetDoor(pawn.Map).StartManualCloseBy(pawn);
+                }
+                if (pawn.Map != null && lastSpottedTick < Find.TickManager.TicksGame - 125)
+                {
+                    lastSpottedTick = Find.TickManager.TicksGame;
+                    int num = 0;
+                    while (num < 20)
+                    {
+                        IntVec3 c = pawn.Position + GenRadial.RadialPattern[num];
+                        Room room = RegionAndRoomQuery.RoomAt(c, pawn.Map);
+                        if (c.InBounds(pawn.Map))
                         {
-                            List<Thing> thingList = c.GetThingList(pawn.Map);
-                            foreach (Thing thing in thingList)
+                            if (RegionAndRoomQuery.RoomAt(c, pawn.Map) == room)
                             {
-                                Pawn observer = thing as Pawn;
-                                if (observer != null && observer != pawn && observer.Faction != null && (observer.Faction.IsPlayer || observer.Faction.HostileTo(pawn.Faction)))
+                                List<Thing> thingList = c.GetThingList(pawn.Map);
+                                foreach (Thing thing in thingList)
                                 {
-                                    float observerSight = observer.health.capacities.GetLevel(PawnCapacityDefOf.Sight);
-                                    observerSight *= 0.805f + (pawn.Map.glowGrid.GameGlowAt(pawn.Position) / 4);
-                                    if (observer.RaceProps.Animal)
+                                    Pawn observer = thing as Pawn;
+                                    if (observer != null && observer != pawn && observer.Faction != null && (observer.Faction.IsPlayer || observer.Faction.HostileTo(pawn.Faction)))
                                     {
-                                        observerSight *= 0.9f;
-                                    }
-                                    observerSight = Math.Min(2f, observerSight);
-                                    float thiefMoving = pawn.health.capacities.GetLevel(PawnCapacityDefOf.Moving);
-                                    float spotChance = 0.8f * thiefMoving / observerSight;
-                                    if (Rand.Value > spotChance)
-                                    {
-                                        if (pawn.isXenomorph())
+                                        float observerSight = observer.health.capacities.GetLevel(PawnCapacityDefOf.Sight);
+                                        observerSight *= 0.805f + (pawn.Map.glowGrid.GameGlowAt(pawn.Position) / 4);
+                                        if (observer.RaceProps.Animal)
                                         {
-                                            Comp_Xenomorph _Xenomorph = pawn.TryGetComp<Comp_Xenomorph>();
-                                            _Xenomorph.Hidden = false;
+                                            observerSight *= 0.9f;
                                         }
-                                        if (pawn.isNeomorph())
-                                        {
-                                            Comp_Neomorph _Nenomorph = pawn.TryGetComp<Comp_Neomorph>();
-                                            _Nenomorph.Hidden = false;
-                                        }
-                                        //pawn.health.RemoveHediff(this);
-                                        AlertXenomorph(pawn, observer);
-                                    }
-                                }
-                                else if (observer == null)
-                                {
-                                    if (thing is Building_Turret turret && turret.Faction != null && turret.Faction.IsPlayer)
-                                    {
+                                        observerSight = Math.Min(2f, observerSight);
                                         float thiefMoving = pawn.health.capacities.GetLevel(PawnCapacityDefOf.Moving);
-                                        float spotChance = 0.99f * thiefMoving;
+                                        float spotChance = 0.8f * thiefMoving / observerSight;
                                         if (Rand.Value > spotChance)
                                         {
                                             if (pawn.isXenomorph())
@@ -194,28 +184,59 @@ namespace RRYautja
                                                 _Nenomorph.Hidden = false;
                                             }
                                             //pawn.health.RemoveHediff(this);
-                                            AlertXenomorph(pawn, turret);
+                                            AlertXenomorph(pawn, observer);
+                                        }
+                                    }
+                                    else if (observer == null)
+                                    {
+                                        if (thing is Building_Turret turret && turret.Faction != null && turret.Faction.IsPlayer)
+                                        {
+                                            float thiefMoving = pawn.health.capacities.GetLevel(PawnCapacityDefOf.Moving);
+                                            float spotChance = 0.99f * thiefMoving;
+                                            if (Rand.Value > spotChance)
+                                            {
+                                                if (pawn.isXenomorph())
+                                                {
+                                                    Comp_Xenomorph _Xenomorph = pawn.TryGetComp<Comp_Xenomorph>();
+                                                    _Xenomorph.Hidden = false;
+                                                }
+                                                if (pawn.isNeomorph())
+                                                {
+                                                    Comp_Neomorph _Nenomorph = pawn.TryGetComp<Comp_Neomorph>();
+                                                    _Nenomorph.Hidden = false;
+                                                }
+                                                //pawn.health.RemoveHediff(this);
+                                                AlertXenomorph(pawn, turret);
+                                            }
                                         }
                                     }
                                 }
                             }
                         }
+                        num++;
                     }
-                    num++;
+                    Thing holding = pawn.carryTracker.CarriedThing;
+                    if (lastCarried != holding)
+                    {
+                        if (lastCarried != null)
+                        {
+                            SetGraphicInt(lastCarried, lastCarriedGraphic);
+                        }
+                        if (holding != null)
+                        {
+                            lastCarried = holding;
+                            lastCarriedGraphic = holding.Graphic;
+                            SetGraphicInt(lastCarried, new Graphic_Invisible());
+                        }
+                    }
                 }
-                Thing holding = pawn.carryTracker.CarriedThing;
-                if (lastCarried != holding)
+            }
+            else
+            {
+                if (hidden)
                 {
-                    if (lastCarried != null)
-                    {
-                        SetGraphicInt(lastCarried, lastCarriedGraphic);
-                    }
-                    if (holding != null)
-                    {
-                        lastCarried = holding;
-                        lastCarriedGraphic = holding.Graphic;
-                        SetGraphicInt(lastCarried, new Graphic_Invisible());
-                    }
+                    MakeVisible();
+                    hidden = false;
                 }
             }
         }
@@ -231,8 +252,6 @@ namespace RRYautja
                 offset = new Vector3(0, 0, 0)
             };
             SetShadowGraphic(pawn.Drawer.renderer, new Graphic_Shadow(shadowData));
-
-
             pawn.stances.CancelBusyStanceHard();
             if (lastCarried != null && lastCarried == pawn.carryTracker.CarriedThing)
             {
@@ -303,7 +322,7 @@ namespace RRYautja
         public void AlertXenomorph(Pawn pawn, Thing observer)
         {
             pawn.jobs.EndCurrentJob(JobCondition.InterruptForced);
-            if (false)
+            if (raidOnAlert)
             {
                 List<Pawn> thisPawn = new List<Pawn>
                 {
@@ -328,6 +347,7 @@ namespace RRYautja
                 //    Find.LetterStack.ReceiveLetter("LetterLabelThief".Translate(), "ThiefInjured".Translate(pawn.Faction.Name, pawn.Named("PAWN")), LetterDefOf.NegativeEvent, pawn, null);
             }
         }
+
 
         private PawnGraphicSet oldGraphics;
         private Graphic_Shadow oldShadow;
