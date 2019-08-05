@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using Verse;
 using Verse.AI;
-using Verse.AI.Group;
 
 namespace RimWorld
 {
@@ -67,11 +66,7 @@ namespace RimWorld
                 {
                     x = pawn.mindState.duty.focus.Cell.x - 2,
                     z = pawn.mindState.duty.focus.Cell.z - 2
-                }
-
-            };
-            List<IntVec3> HiveWalls = new List<IntVec3>()
-            {
+                },
                 // Exterior Walls
                 new IntVec3
                 {
@@ -254,31 +249,9 @@ namespace RimWorld
             bool flag1 = pawn.mindState.duty.focus.Cell.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_XenomorphHive) != null;
             bool flag2 = pawn.mindState.duty.focus.Cell.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_XenomorphHive_Child) != null;
             bool flag3 = pawn.mindState.duty.focus.Cell.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Hive_Slime) != null;
-            if (pawn.GetLord() is Lord L && L != null)
-            {
-                if ((L.CurLordToil is LordToil_DefendAndExpandHiveLike || L.CurLordToil is LordToil_DefendHiveLikeAggressively) && L.CurLordToil is LordToil_HiveLikeRelated THL)
-                {
-                    if (THL != null)
-                    {
-                        if (THL.Data != null)
-                        {
-                            HiveLike hive = THL.Data.assignedHiveLikes.TryGetValue(pawn);
-                            if (hive != null)
-                            {
-                                flag1 = hive.def == XenomorphDefOf.RRY_XenomorphHive;
-                                flag2 = hive.def == XenomorphDefOf.RRY_XenomorphHive_Child;
-                            }
-                        }
-                    }
-                }
-            }
             if ((!flag1 && !flag2 && !flag3))
             {
                 return null;
-            }
-            if (flag2)
-            {
-                MiningRange = 3;
             }
             for (int i = 0; i < 40; i++)
             {
@@ -309,38 +282,6 @@ namespace RimWorld
                             }
                         }
                         */
-                    }
-                }
-                if (flag1)
-                {
-                    randomCell = HiveWalls.RandomElement();
-                    for (int j = 0; j < 4; j++)
-                    {
-                        IntVec3 c = randomCell;// + GenAdj.CardinalDirections[j];
-                        if (c.InBounds(pawn.Map) && c.Roofed(pawn.Map))
-                        {
-
-                            Building edifice = c.GetEdifice(pawn.Map);
-                            if (edifice == null && XenomorphUtil.DistanceBetween(c, pawn.mindState.duty.focus.Cell) <= MiningRange)
-                            {
-                                return new Job(XenomorphDefOf.RRY_Job_ConstructHiveWall, c)
-                                {
-                                    ignoreDesignations = false
-                                };
-                            }
-                            /*
-                            else if (edifice==null)
-                            {
-                                if (!pillarLoc.Contains(edifice.Position))
-                                {
-                                    return new Job(JobDefOf.Mine, edifice)
-                                    {
-                                        ignoreDesignations = true
-                                    };
-                                }
-                            }
-                            */
-                        }
                     }
                 }
             }

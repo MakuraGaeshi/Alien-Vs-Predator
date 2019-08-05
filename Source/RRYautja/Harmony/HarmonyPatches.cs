@@ -317,7 +317,7 @@ namespace RRYautja
 
         public static void PathOfNature(Pawn_PathFollower __instance, Pawn pawn, IntVec3 c, ref int __result)
         {
-            if (pawn?.GetComp<Comp_Yautja>() is Comp_Yautja comp_Yautja || pawn?.GetComp<Comp_Xenomorph>() is Comp_Xenomorph comp_Xenomorph)
+            if (pawn.def == YautjaDefOf.RRY_Alien_Yautja || pawn?.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Neomorph || pawn?.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Xenomorph)
             {
                 int num;
                 if (c.x == pawn.Position.x || c.z == pawn.Position.z)
@@ -328,7 +328,7 @@ namespace RRYautja
                 {
                     num = pawn.TicksPerMoveDiagonal;
                 }
-
+                
                 Building edifice = c.GetEdifice(pawn.Map);
                 if (edifice != null)
                 {

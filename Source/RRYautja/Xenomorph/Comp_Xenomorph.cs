@@ -23,6 +23,10 @@ namespace RRYautja
 
     public class Comp_Xenomorph : ThingComp, IThoughtGiver
     {
+        public PawnKindDef HuggerKindDef = XenomorphDefOf.RRY_Xenomorph_FaceHugger;
+        public PawnKindDef RoyaleKindDef = XenomorphDefOf.RRY_Xenomorph_RoyaleHugger;
+
+        public PawnKindDef QueenDef = XenomorphDefOf.RRY_Xenomorph_Queen;
         public CompProperties_Xenomorph Props
         {
             get
@@ -35,6 +39,10 @@ namespace RRYautja
         {
             get
             {
+                if (pawn.)
+                {
+
+                }
                 return hidden;
             }
             set
@@ -43,19 +51,13 @@ namespace RRYautja
             }
         }
         private bool hidden = false;
-        public int healIntervalTicks = 60;
-
-        public PawnKindDef HuggerKindDef = XenomorphDefOf.RRY_Xenomorph_FaceHugger;
-        public PawnKindDef RoyaleKindDef = XenomorphDefOf.RRY_Xenomorph_RoyaleHugger;
-
-        public PawnKindDef QueenDef = XenomorphDefOf.RRY_Xenomorph_Queen;
         public override void PostExposeData()
         {
             base.PostExposeData();
             Scribe_Values.Look<int>(ref this.ticksSinceHeal, "ticksSinceHeal");
             Scribe_Values.Look<IntVec3>(ref this.HiveLoc, "HiveLoc", IntVec3.Invalid);
             Scribe_Defs.Look<PawnKindDef>(ref this.host, "hostRef");
-            Scribe_Values.Look<bool>(ref this.hidden, "hidden");
+            Scribe_Values.Look<bool>(ref this.hidden, "Hidden");
         }
 
         public IntVec3 HiveLoc;
@@ -72,7 +74,7 @@ namespace RRYautja
         {
             get
             {
-                return pawn.Map ?? pawn.MapHeld;
+                return pawn.Map != null ? pawn.Map : pawn.MapHeld;
             }
         }
 
@@ -87,38 +89,43 @@ namespace RRYautja
         public Thought_Memory GiveObservedThought()
         {
             string concept = string.Format("RRY_Concept_{0}s", pawn.def.label);
-            string thought = string.Format("RRY_Observed_{0}", pawn.def.label);
             ConceptDef conceptDef = null;
-            ThoughtDef thoughtDef = null;
-            Thought_MemoryObservation observation = null;
-            thoughtDef = DefDatabase<ThoughtDef>.GetNamedSilentFail(thought);
             conceptDef = DefDatabase<ConceptDef>.GetNamedSilentFail(concept);
-            if (conceptDef!=null && !pawn.isXenomorph() && !pawn.isNeomorph())
+            if (conceptDef!=null)
             {
-                if (PlayerKnowledgeDatabase.IsComplete(conceptDef))
+                if (!PlayerKnowledgeDatabase.IsComplete(conceptDef))
                 {
+                    string thought = string.Format("RRY_Concept_{0}s", pawn.def.label);
+                    ThoughtDef thoughtDef = DefDatabase<ThoughtDef>.GetNamedSilentFail(thought);
                     if (thoughtDef!=null)
                     {
-                        observation = (Thought_MemoryObservation)ThoughtMaker.MakeThought(thoughtDef);
+                        Thought_MemoryObservation observation =
+
                     }
+                      
                  //   LessonAutoActivator.TeachOpportunity(conceptDef, OpportunityType.Important);
                 }
                 else
                 {
-                    thought = string.Format("RRY_Observed_Xenomorph");
-                    thoughtDef = DefDatabase<ThoughtDef>.GetNamedSilentFail(thought);
-                    if (thoughtDef != null)
-                    {
-                        observation = (Thought_MemoryObservation)ThoughtMaker.MakeThought(thoughtDef);
-                    }
+
                 }
+                if (this.StoringThing() == null)
+                {
+                    Thought_MemoryObservation thought_MemoryObservation;
+                    if (this.IsNotFresh())
+                    {
+                        thought_MemoryObservation = (Thought_MemoryObservation)ThoughtMaker.MakeThought(ThoughtDefOf.ObservedLayingRottingCorpse);
+                    }
+                    else
+                    {
+                        thought_MemoryObservation = (Thought_MemoryObservation)ThoughtMaker.MakeThought(ThoughtDefOf.ObservedLayingCorpse);
+                    }
+                    thought_MemoryObservation.Target = this;
+                    return thought_MemoryObservation;
+                }
+                return null;
             }
-            if (observation != null)
-            {
-                observation.Target = this.parent;
-                return observation;
-            }
-            return null;
+            throw new NotImplementedException();
         }
 
         public override void PostSpawnSetup(bool respawningAfterLoad)
@@ -141,12 +148,7 @@ namespace RRYautja
                 LordJob Hivejob = null;
                 Pawn Hivequeen = null;
                 IEnumerable<Lord> lords = pawn.Map.lordManager.lords.Where(x => x.faction == pawn.Faction);
-                bool isDefendPoint = pawn.GetLord()!= null ? pawn.GetLord().LordJob is LordJob_DefendPoint : false;
-                bool isAssaultColony = pawn.GetLord() != null ? pawn.GetLord().LordJob is LordJob_AssaultColony : false;
-                bool hostsPresent = map.mapPawns.AllPawnsSpawned.Any(x => x.isPotentialHost() && !x.isCocooned() && IsAcceptablePreyFor(pawn,x,true));
-                bool LordReplaceable = (isDefendPoint || (isAssaultColony && !hostsPresent));
-             //   Log.Message(string.Format("LordReplaceable: {0}, isDefendPoint: {1}, isAssaultColony: {2}, hostsPresent: {3}", LordReplaceable, isDefendPoint, isAssaultColony, !hostsPresent));
-                if (lords.Count() != 0 && ((pawn.GetLord() != null && LordReplaceable) || pawn.GetLord() == null))
+                if (lords.Count() != 0 && ((pawn.GetLord() != null && pawn.GetLord().LordJob is LordJob_DefendPoint) || pawn.GetLord() == null))
                 {
                     foreach (var l in lords)
                     {
@@ -197,7 +199,7 @@ namespace RRYautja
                         }
                     }
                 }
-                if (pawn.GetLord() != null && LordReplaceable)
+                if (pawn.GetLord() != null && pawn.GetLord().LordJob is LordJob_DefendPoint LordJob_DefendPoint)
                 {
                     lord = pawn.GetLord();
                     if (lord.ownedPawns.Count == 0)
@@ -255,7 +257,7 @@ namespace RRYautja
                         {
                             newJob = new LordJob_DefendHiveLoc(parent.Faction, c);
                         }
-                        if (LordReplaceable)
+                        if (pawn.GetLord().LordJob is LordJob_DefendPoint)
                         {
                             if (!Hivelords.NullOrEmpty())
                             {
@@ -299,7 +301,7 @@ namespace RRYautja
             }
         }
 
-        public Lord SwitchToLord(Lord lord)
+        private Lord SwitchToLord(Lord lord)
         {
             if (pawn.GetLord() != null && pawn.GetLord() is Lord l)
             {
@@ -333,7 +335,6 @@ namespace RRYautja
                         string text = TranslatorFormattedStringExtensions.Translate("Xeno_Chestburster_Matures",pawn.LabelCap);
                         Hediff hediff = pawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden);
                         MoteMaker.ThrowText(pawn.Position.ToVector3(), pawn.Map, text, 3f);
-                        hidden = false;
                         pawn.health.RemoveHediff(hediff);
                     }
                     XenoLordTick();
@@ -347,7 +348,6 @@ namespace RRYautja
 
                         MoteMaker.ThrowText(base.parent.Position.ToVector3(), base.parent.Map, text, 3f);
                         ((Pawn)this.parent).health.AddHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden);
-                        hidden = true;
                     }
                 }
             }
@@ -417,19 +417,9 @@ namespace RRYautja
             return lord;
         }
 
+        public int healIntervalTicks = 60;
         public override void CompTick()
         {
-            if (pawn.ageTracker.CurLifeStage!=XenomorphDefOf.RRY_XenomorphFullyFormed)
-            {
-                if (pawn.CurJobDef == JobDefOf.Ingest && Hidden)
-                {
-                    hidden = false;
-                }
-                else if (!Hidden)
-                {
-                    hidden = true;
-                }
-            }
             if (pawn.Faction==null)
             {
                 if (Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph) != null)
@@ -456,6 +446,7 @@ namespace RRYautja
                 }
             }
         }
+
 
         public static void doClot(Pawn pawn, BodyPartRecord part = null)
         {
@@ -562,7 +553,6 @@ namespace RRYautja
         // Token: 0x06000186 RID: 390 RVA: 0x0000E940 File Offset: 0x0000CD40
         public Pawn BestPawnToHuntForPredator(Pawn predator, bool forceScanWholeMap, bool findhost = false)
         {
-            bool selected = Find.Selector.SelectedObjects.Contains(predator) && Prefs.DevMode;
             if (predator.meleeVerbs.TryGetMeleeVerb(null) == null)
             {
                 return null;
@@ -575,7 +565,6 @@ namespace RRYautja
             }
             tmpPredatorCandidates.Clear();
             int maxRegionsToScan = GetMaxRegionsToScan(predator, forceScanWholeMap);
-            if (selected) Log.Message(string.Format("Xenomorph BestPawnToHuntForPredator maxRegionsToScan: {0}", maxRegionsToScan));
             if (maxRegionsToScan < 0)
             {
                 tmpPredatorCandidates.AddRange(predator.Map.mapPawns.AllPawnsSpawned);
@@ -628,6 +617,7 @@ namespace RRYautja
                 }
             }
             tmpPredatorCandidates.Clear();
+            bool selected = Find.Selector.SingleSelectedThing == predator && Prefs.DevMode;
             if (selected)
             {
                 if (pawn != null)
@@ -643,7 +633,7 @@ namespace RRYautja
         }
 
         // Token: 0x06000187 RID: 391 RVA: 0x0000EB14 File Offset: 0x0000CF14
-        public bool IsAcceptablePreyFor(Pawn predator, Pawn prey, bool findhost)
+        public static bool IsAcceptablePreyFor(Pawn predator, Pawn prey, bool findhost)
         {
             if (prey.isXenomorph())
             {
@@ -660,10 +650,6 @@ namespace RRYautja
                     return false;
                 }
                 if (!prey.isPotentialHost())
-                {
-                    return false;
-                }
-                if (prey.isNeomorph())
                 {
                     return false;
                 }
@@ -704,30 +690,7 @@ namespace RRYautja
                     return false;
                 }
                 float num = prey.kindDef.combatPower * prey.health.summaryHealth.SummaryHealthPercent * prey.ageTracker.CurLifeStage.bodySizeFactor;
-                float numa = prey.GetStatValue(StatDefOf.MeleeDPS);
-                float numb = prey.HealthScale;
-                float numc = prey.GetStatValue(StatDefOf.MeleeHitChance);
-                float numd = prey.GetStatValue(StatDefOf.MeleeDodgeChance);
-                num = ((num + numa) * numc) * (1 - numd) * numb;
-                bool selected = Find.Selector.SelectedObjects.Contains(predator) && Prefs.DevMode;
-                if (selected)
-                {
-                    Log.Message(string.Format("num: {0} = combatPower: {1} * SummaryHealthPercent: {2} * bodySizeFactor: {3}", num, prey.kindDef.combatPower, prey.health.summaryHealth.SummaryHealthPercent, prey.ageTracker.CurLifeStage.bodySizeFactor));
-                    Log.Message(string.Format("numa: {0} = MeleeDPS: {1} * MeleeHitChance: {2} * MeleeDodgeChance: {3}", numa, prey.GetStatValue(StatDefOf.MeleeDPS) , prey.GetStatValue(StatDefOf.MeleeHitChance) , prey.GetStatValue(StatDefOf.MeleeDodgeChance)));
-                    Log.Message(string.Format("numb: {0} = HealthScale: {1}", numb, prey.HealthScale));
-                }
                 float num2 = predator.kindDef.combatPower * predator.health.summaryHealth.SummaryHealthPercent * predator.ageTracker.CurLifeStage.bodySizeFactor;
-                float num2a = predator.GetStatValue(StatDefOf.MeleeDPS);
-                float num2b = predator.HealthScale;
-                float num2c = predator.GetStatValue(StatDefOf.MeleeHitChance);
-                float num2d = predator.GetStatValue(StatDefOf.MeleeDodgeChance);
-                num2 = ((num2 + num2a) * num2c) * (1 - num2d) * num2b;
-                if (selected)
-                {
-                    Log.Message(string.Format("num2: {0} = combatPower: {1} * SummaryHealthPercent: {2} * bodySizeFactor: {3}", num2, predator.kindDef.combatPower, predator.health.summaryHealth.SummaryHealthPercent, predator.ageTracker.CurLifeStage.bodySizeFactor));
-                    Log.Message(string.Format("num2a: {0} = MeleeDPS: {1} * MeleeHitChance: {2} * MeleeDodgeChance: {3}", num2a, predator.GetStatValue(StatDefOf.MeleeDPS), predator.GetStatValue(StatDefOf.MeleeHitChance), predator.GetStatValue(StatDefOf.MeleeDodgeChance)));
-                    Log.Message(string.Format("num2b: {0} = HealthScale: {1}", num2b, predator.HealthScale));
-                }
                 if (num >= num2)
                 {
                     return false;

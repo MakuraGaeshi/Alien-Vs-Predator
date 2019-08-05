@@ -2,13 +2,6 @@
 <Defs>
 
   <JobDef>
-    <defName>RRY_Job_EnterHiveTunnel</defName>
-    <driverClass>RRYautja.JobDriver_EnterHiveTunnel</driverClass>
-    <reportString>entering TargetA.</reportString>
-    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
-  </JobDef>
-  
-  <JobDef>
     <defName>RRY_Job_LayXenomorphEgg</defName>
     <driverClass>JobDriver_LayXenoEgg</driverClass>
     <reportString>laying egg.</reportString>
