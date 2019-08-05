@@ -63,9 +63,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="USCM\DamageWorker_BombNoCamShake.cs" />
     <Compile Include="USCM\DamageWorker_FlameNoCamShake.cs" />
     <Compile Include="USCM\Verb_ShootShotgun.cs" />
+=======
+>>>>>>> parent of 4006a20... v1.0.0.8
     <Compile Include="USCM\Class1.cs" />
     <Compile Include="USCM\CompFireOverlay.cs" />
     <Compile Include="USCM\Verb_ShootShotgun.cs" />
