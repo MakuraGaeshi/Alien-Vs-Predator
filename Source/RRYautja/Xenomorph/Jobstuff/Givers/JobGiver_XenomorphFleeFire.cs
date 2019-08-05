@@ -32,6 +32,7 @@ namespace RimWorld
         private Job FleeJob(Pawn pawn, Thing danger)
         {
             IntVec3 intVec;
+            bool selected = Find.Selector.SelectedObjects.Contains(pawn) && Prefs.DevMode && DebugSettings.godMode;
             if (pawn.CurJob != null && pawn.CurJob.def == JobDefOf.FleeAndCower)
             {
                 intVec = pawn.CurJob.targetA.Cell;
@@ -45,6 +46,10 @@ namespace RimWorld
             }
             if (intVec != pawn.Position)
             {
+                if (selected)
+                {
+                    Log.Message(string.Format("{0} @:{1} is fleeing from {2} @:{3}",pawn.LabelShortCap, pawn.Position, danger.LabelShortCap, danger.Position));
+                }
                 return new Job(JobDefOf.FleeAndCower, intVec, danger);
             }
             return null;

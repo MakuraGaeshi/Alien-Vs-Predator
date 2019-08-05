@@ -79,9 +79,8 @@ namespace RimWorld
                 }
                 else
                 {
-
+                    return true;
                 }
-                return hiveExpander != null ;
             }
         }
 
@@ -330,7 +329,7 @@ namespace RimWorld
 					}
 					this.CalculateNextPawnSpawnTick();
                 }
-                if (this.Map.skyManager.CurSkyGlow < 0.5f && this.active && !hiveDormant)
+                if (this.Map.skyManager.CurSkyGlow < 0.5f && this.active)
                 {
                     if (this.innerContainer != null)
                     {
@@ -467,21 +466,22 @@ namespace RimWorld
             return true;
         }
 
-        private bool TrySpawnPawn(List<Pawn> list, out Pawn pawn)
+        private bool TrySpawnPawn(ThingOwner thingOwner, out Pawn pawn)
         {
-            if (list.NullOrEmpty())
-            {
-                this.TrySpawnPawn(out pawn);
-            }
             if (!this.canSpawnPawns)
             {
                 pawn = null;
                 return false;
             }
             float curPoints = this.SpawnedPawnsPoints;
-            IEnumerable<Pawn> source = from x in list
+            List<Pawn> sourced = null;
+            foreach (Pawn p in innerContainer)
+            {
+                sourced.Add(p);
+            }
+            IEnumerable<Pawn> source = from x in sourced
                                        where curPoints + x.kindDef.combatPower <= MaxSpawnedPawnsPoints
-                                              select x;
+                                       select x;
             if (!source.TryRandomElement(out Pawn kind))
             {
                 pawn = null;
@@ -554,19 +554,6 @@ namespace RimWorld
                             this.EjectContents();
                         }
                     };
-                    /*
-                    List<Pawn> pawnlist = (List<Pawn>)from x in innerContainer where x is Pawn && ((Pawn)x).isXenomorph() select x;
-                    yield return new Command_Action
-                    {
-                        defaultLabel = "DEBUG: release pawn",
-                        icon = TexCommand.ReleaseAnimals,
-                        defaultDesc = "Release xeno inside",
-                        action = delegate ()
-                        {
-                            this.TrySpawnPawn(pawnlist, out Pawn pawn);
-                        }
-                    };
-                    */
                 }
 
             }

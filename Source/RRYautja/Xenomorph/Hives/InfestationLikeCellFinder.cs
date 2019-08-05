@@ -32,7 +32,11 @@ namespace RimWorld
             if (!InfestationLikeCellFinder.locationCandidates.TryRandomElementByWeight((InfestationLikeCellFinder.LocationCandidate x) => x.score, out LocationCandidate locationCandidate))
             {
                 cell = IntVec3.Invalid;
-                return false;
+                if (!InfestationCellFinder.TryFindCell(out cell, map))
+                {
+                    cell = IntVec3.Invalid;
+                    return false;
+                }
             }
             cell = CellFinder.FindNoWipeSpawnLocNear(locationCandidate.cell, map, XenomorphDefOf.RRY_XenomorphHive, Rot4.North, 2, validator);
             ThingDef td = XenomorphDefOf.RRY_Hive_Slime;
@@ -63,7 +67,11 @@ namespace RimWorld
             {
                 cell = IntVec3.Invalid;
                 locationC = IntVec3.Invalid;
-                return false;
+                if (!InfestationCellFinder.TryFindCell(out cell, map))
+                {
+                    cell = IntVec3.Invalid;
+                    return false;
+                }
             }
             locationC = locationCandidate.cell;
             cell = CellFinder.FindNoWipeSpawnLocNear(locationCandidate.cell, map, XenomorphDefOf.RRY_XenomorphHive, Rot4.North, 2, (IntVec3 x) => InfestationLikeCellFinder.GetScoreAt(x, map, allowFogged) > 0f && x.GetFirstThing(map, XenomorphDefOf.RRY_XenomorphHive) == null && x.GetFirstThing(map, OGHiveLikeDefOf.TunnelHiveLikeSpawner) == null && x.GetFirstThing(map, XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon) == null && x.GetFirstThing(map, XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon) == null);

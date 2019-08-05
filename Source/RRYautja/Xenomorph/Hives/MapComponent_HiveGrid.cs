@@ -16,7 +16,7 @@ namespace RRYautja
             this.map = map;
             this.depthGrid = new float[map.cellIndices.NumGridCells];
             this.potentialHosts = new List<Pawn>();
-            this.Queenlist = new List<Pawn>();
+            this.nonpotentialHosts = new List<Pawn>();
             this.Queenlist = new List<Pawn>();
             this.Dronelist = new List<Pawn>();
             this.Warriorlist = new List<Pawn>();
@@ -68,8 +68,9 @@ namespace RRYautja
             */
             if (Find.TickManager.TicksGame % 500 == 0)
             {
-                Log.Message(string.Format("MapComponentTick update lists"));
+            //    Log.Message(string.Format("MapComponentTick update lists"));
                 potentialHosts = map.ViableHosts();
+                nonpotentialHosts = map.InviableHosts();
                 Queenlist = map.mapPawns.AllPawnsSpawned.FindAll(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen);
                 Dronelist = map.mapPawns.AllPawnsSpawned.FindAll(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Drone);
                 Warriorlist = map.mapPawns.AllPawnsSpawned.FindAll(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Warrior);

@@ -131,7 +131,6 @@
     <Compile Include="util\PawnsArrivalModeWorker_DropThroughRoof.cs" />
     <Compile Include="Xenomorph\RaidStrategyWorker_ImmediateAttackSmart_CutPower.cs" />
     <Compile Include="Xenomorph\Hives\CompHiveTunnel.cs" />
-    <Compile Include="Xenomorph\Hives\list.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_EnterHiveTunnel.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_AICutColonyPowerClose.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_EnterHiveTunnel.cs" />

@@ -47,6 +47,11 @@ namespace RRYautja
             {
                 Pawn pawn = t as Pawn;
                 bool cocoonFlag = !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned);
+                bool xenoimpregnationFlag = !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation) || (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation) && pawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_XenomorphImpregnation).CurStageIndex != pawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_XenomorphImpregnation).def.stages.Count - 2);
+                bool xenohiddenimpregnationFlag = !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation) || (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation) && pawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_HiddenXenomorphImpregnation).CurStageIndex != pawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_HiddenXenomorphImpregnation).def.stages.Count - 2);
+                bool neoimpregnationFlag = !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_NeomorphImpregnation);
+                bool neohiddenimpregnationFlag = !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenNeomorphImpregnation);
+                bool impregnationFlag = xenoimpregnationFlag && xenohiddenimpregnationFlag && neoimpregnationFlag && neohiddenimpregnationFlag;
                 bool pawnFlag = ((XenomorphUtil.isInfectablePawn(pawn, true))) && pawn.Downed && (pawn.Faction == null || pawn.Faction.HostileTo(kidnapper.Faction));
                 return  cocoonFlag && pawnFlag && kidnapper.CanReserve(pawn, 1, -1, null, false) && (disallowed == null || !disallowed.Contains(pawn));
             };

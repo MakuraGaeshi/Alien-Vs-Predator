@@ -11,6 +11,11 @@ namespace RRYautja.ExtensionMethods
     public static class AvPExtensions
     {
 
+        public static MapComponent_HiveGrid HiveGrid(this Map m) 
+        {
+            return m.GetComponent<MapComponent_HiveGrid>();
+        }
+
         public static bool isYautja(this Pawn p)
         {
             return p.def == YautjaDefOf.RRY_Alien_Yautja;

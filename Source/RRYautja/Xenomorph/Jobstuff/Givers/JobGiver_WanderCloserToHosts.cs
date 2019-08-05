@@ -20,17 +20,24 @@ namespace RRYautja
         // Token: 0x06003EF3 RID: 16115 RVA: 0x001D7E89 File Offset: 0x001D6289
         protected override IntVec3 GetWanderRoot(Pawn pawn)
         {
-            bool anyPotentialHosts = !GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.ClosestTouch, TraverseParms.For(TraverseMode.ByPawn, Danger.Some), float.MaxValue, (x => ((Pawn)x).isPotentialHost()) ).DestroyedOrNull();
+            bool anyPotentialHosts = !pawn.Map.ViableHosts().NullOrEmpty();
             if (anyPotentialHosts)
             {
-                Pawn potentialHost = (Pawn)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.ClosestTouch, TraverseParms.For(TraverseMode.ByPawn, Danger.Some), float.MaxValue, (x => ((Pawn)x).isPotentialHost()));
-                Predicate<IntVec3> validator = delegate (IntVec3 y)
+                bool anyReachablePotentialHosts = pawn.Map.ViableHosts().Any(x => pawn.CanReach(x, PathEndMode.ClosestTouch, Danger.Deadly, false, TraverseMode.NoPassClosedDoors));
+                if (anyReachablePotentialHosts)
                 {
-                    return XenomorphUtil.DistanceBetween(y, potentialHost.Position) < XenomorphUtil.DistanceBetween(y, pawn.Position);
-                };
-                if (RCellFinder.TryFindRandomCellNearWith(pawn.Position, validator, pawn.Map, out IntVec3 lc, 6, (int)wanderRadius))
-                {
-                    return lc;
+                    Pawn potentialHost = (Pawn)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.ClosestTouch, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Some), float.MaxValue, (x => ((Pawn)x).isPotentialHost())) ?? null;
+                    if (potentialHost != null)
+                    {
+                        Predicate<IntVec3> validator = delegate (IntVec3 y)
+                        {
+                            return XenomorphUtil.DistanceBetween(y, potentialHost.Position) < XenomorphUtil.DistanceBetween(y, pawn.Position);
+                        };
+                        if (RCellFinder.TryFindRandomCellNearWith(pawn.Position, validator, pawn.Map, out IntVec3 lc, 6, (int)wanderRadius))
+                        {
+                            return lc;
+                        }
+                    }
                 }
             }
             return pawn.Position;

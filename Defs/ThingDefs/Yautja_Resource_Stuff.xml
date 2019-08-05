@@ -1,8 +1,63 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <!--=============== Pure stuffs: Basics ====================
+  <!--=============== Pure stuffs: Basics ==================== -->
+<!--
+  <ThingDef ParentName="ResourceBase">
+    <defName>RRY_YautjaAlloy</defName>
+    <label>yautja alloy</label>
+    <description>Advanced spacer tech structural material. Yautja alloy is extremely strong due to its unique molecular structure, which also allows it resistance to the acidic effects of xenomorph blood</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/Plasteel</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <soundInteract>Metal_Drop</soundInteract>
+    <soundDrop>Metal_Drop</soundDrop>
+    <useHitPoints>false</useHitPoints>
+    <statBases>
+      <MarketValue>9</MarketValue>
+      <Mass>0.25</Mass>
+      <StuffPower_Armor_Sharp>1.26</StuffPower_Armor_Sharp>
+      <StuffPower_Armor_Blunt>0.63</StuffPower_Armor_Blunt>
+      <StuffPower_Armor_Heat>1.08</StuffPower_Armor_Heat>
+      <StuffPower_Insulation_Cold>3</StuffPower_Insulation_Cold>
+      <StuffPower_Insulation_Heat>0</StuffPower_Insulation_Heat>
+      <SharpDamageMultiplier>1.1</SharpDamageMultiplier>
+      <BluntDamageMultiplier>0.9</BluntDamageMultiplier>
+    </statBases>
+    <thingCategories>
+      <li>ResourcesRaw</li>
+    </thingCategories>
+    <deepCommonality>1</deepCommonality>
+    <deepCountPerPortion>7</deepCountPerPortion>
+    <deepLumpSizeRange>
+      <min>2</min>
+      <max>10</max>
+    </deepLumpSizeRange>
+    <stuffProps>
+      <categories>
+        <li>Metallic</li>
+      </categories>
+      <commonality>0.05</commonality>
+      <constructEffect>ConstructMetal</constructEffect>
+      <color>(160,178,181)</color>
+      <soundImpactStuff>BulletImpact_Metal</soundImpactStuff>
+      <soundMeleeHitSharp>MeleeHit_Metal_Sharp</soundMeleeHitSharp>
+      <soundMeleeHitBlunt>MeleeHit_Metal_Blunt</soundMeleeHitBlunt>
+      <statFactors>
+        <MaxHitPoints>2.8</MaxHitPoints>
+        <Beauty>1</Beauty>
+        <Flammability>0.2</Flammability>
+        <WorkToMake>2.2</WorkToMake>
+				<WorkToBuild>2.2</WorkToBuild>
+        <MeleeWeapon_CooldownMultiplier>0.8</MeleeWeapon_CooldownMultiplier>
+      </statFactors>
+      <smeltable>true</smeltable>
+    </stuffProps>
+  </ThingDef>
+-->
 
+  <!--
 
   <ThingDef ParentName="ResourceBase">
     <defName>Silver</defName>

@@ -730,7 +730,12 @@ namespace RRYautja
                 }
                 if (num >= num2)
                 {
-                    return false;
+                    float num3 = map.mapPawns.AllPawns.Where(x => x.isXenomorph() && x.def == predator.def).Count();
+                    num2 *= num3;
+                    if (num >= num2)
+                    {
+                        return false;
+                    }
                 }
             }
             return (predator.Faction == null || prey.Faction == null || predator.HostileTo(prey)) && (predator.Faction == null || prey.HostFaction == null || predator.HostileTo(prey)) && (predator.Faction != Faction.OfPlayer || prey.Faction != Faction.OfPlayer) && (!predator.RaceProps.herdAnimal || predator.def != prey.def);

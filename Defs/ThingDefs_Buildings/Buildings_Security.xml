@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <!--=============== Sentry-turret ===============-->
+  <!--=============== Sentry-turret  ===============--> 
   
   <ThingDef ParentName="BuildingBase">
     <defName>Turret_SentryTurret</defName>
