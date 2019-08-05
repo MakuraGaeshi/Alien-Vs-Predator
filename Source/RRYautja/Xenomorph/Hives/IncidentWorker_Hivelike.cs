@@ -56,7 +56,7 @@ namespace RimWorld
 
         }
 
-        private HiveLike SpawnHiveLikeCluster(int hiveCount, Map map)
+        private HiveLike SpawnHiveLikeCluster(int hiveCount, Map map, bool ignoreRoofedRequirement = false, bool allowUnreachable = false, float modifier = 1)
         {;
             IntVec3 loc = intVec;
             ThingDef_HiveLike thingDef = (ThingDef_HiveLike)this.def.shipPart;
@@ -67,7 +67,7 @@ namespace RimWorld
             for (int i = 0; i < hiveCount - 1; i++)
             {
                 CompSpawnerHiveLikes c = hivelike.GetComp<CompSpawnerHiveLikes>();
-                if (hivelike.Spawned && hivelike.GetComp<CompSpawnerHiveLikes>().TrySpawnChildHiveLike(true, out HiveLike hivelike2))
+                if (hivelike.Spawned && hivelike.GetComp<CompSpawnerHiveLikes>().TrySpawnChildHiveLike(modifier, modifier, out HiveLike hivelike2, ignoreRoofedRequirement, allowUnreachable))
                 {
                     IncidentWorker_Hivelike.SpawnItemInstantly(hivelike2);
                     hivelike = hivelike2;
@@ -76,7 +76,7 @@ namespace RimWorld
             return hivelike;
         }
 
-        private TunnelHiveLikeSpawner SpawnTunnelLikeCluster(int hiveCount, Map map)
+        private TunnelHiveLikeSpawner SpawnTunnelLikeCluster(int hiveCount, Map map, bool ignoreRoofedRequirement = false, bool allowUnreachable = false, float modifier = 1)
         {
             IntVec3 loc = intVec;
             ThingDef_HiveLike tD = (ThingDef_HiveLike)this.def.shipPart;
@@ -88,7 +88,7 @@ namespace RimWorld
             for (int i = 0; i < hiveCount - 1; i++)
             {
                 CompSpawnerHiveLikes c = hivelike.GetComp<CompSpawnerHiveLikes>();
-                if (hivelike.Spawned && hivelike.GetComp<CompSpawnerHiveLikes>().TrySpawnChildHiveLike(true, out TunnelHiveLikeSpawner hivelike2))
+                if (hivelike.Spawned && hivelike.GetComp<CompSpawnerHiveLikes>().TrySpawnChildHiveLike(modifier, modifier,out TunnelHiveLikeSpawner hivelike2, ignoreRoofedRequirement, allowUnreachable))
                 {
                     IncidentWorker_Hivelike.SpawnItemInstantly(hivelike2);
                     hivelike = hivelike2;
@@ -139,7 +139,7 @@ namespace RimWorld
             Thing thing = GenSpawn.Spawn(ThingMaker.MakeThing(thingDef.TunnelDef, null), loc, map, WipeMode.FullRefund);
 			for (int i = 0; i < hivelikeCount - 1; i++)
 			{
-				loc = CompSpawnerHiveLikes.FindChildHiveLocation(thing.Position, map, this.def.shipPart, this.def.shipPart.GetCompProperties<CompProperties_SpawnerHiveLikes>(), true, true);
+				loc = CompSpawnerHiveLikes.FindChildHiveLocation(thing.Position, map, this.def.shipPart, this.def.shipPart.GetCompProperties<CompProperties_SpawnerHiveLikes>(), 1, 1, true, true);
             //    Log.Message(string.Format("loc: {0} to check", !InfestationLikeCellFinder.TryFindCell(out loc, map)));
                 if (loc.IsValid)
                 {

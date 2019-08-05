@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RRYautja.ExtensionMethods;
+using System;
 using Verse;
 using Verse.AI;
 
@@ -10,7 +11,7 @@ namespace RimWorld
         // Token: 0x0600052D RID: 1325 RVA: 0x00033CB8 File Offset: 0x000320B8
         protected override Job TryGiveJob(Pawn pawn)
         {
-            if ((pawn.RaceProps.FleshType != XenomorphRacesDefOf.RRY_Xenomorph && pawn.RaceProps.FleshType != XenomorphRacesDefOf.RRY_Neomorph) || !pawn.health.HasHediffsNeedingTend(false) || !pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation) || pawn.InAggroMentalState)
+            if (!pawn.isXenomorph() && !pawn.isNeomorph() || !pawn.health.HasHediffsNeedingTend(false) || !pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation) || pawn.InAggroMentalState)
             {
                 return null;
             }

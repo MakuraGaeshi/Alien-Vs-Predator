@@ -57,6 +57,6 @@ namespace RRYautja
         }
         
         // Token: 0x040016B6 RID: 5814
-        public static readonly Graphic FireGraphic = GraphicDatabase.Get<Graphic_Flicker>("Things/Projectile/Fire", ShaderDatabase.TransparentPostLight, Vector2.one, Color.white);
+        public static readonly Graphic FireGraphic = GraphicDatabase.Get<Graphic_Flicker>("Things/Projectile/Flamer", ShaderDatabase.TransparentPostLight, Vector2.one, Color.white);
     }
 }

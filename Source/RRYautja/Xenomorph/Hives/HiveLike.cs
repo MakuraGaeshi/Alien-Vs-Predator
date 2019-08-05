@@ -1,4 +1,5 @@
 ﻿using RRYautja;
+using RRYautja.ExtensionMethods;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +20,13 @@ namespace RimWorld
         public float initalSpawnPointsPerHive = 250f;
     }
     // Token: 0x020006EC RID: 1772
-    public class HiveLike : ThingWithComps
+    public class HiveLike : ThingWithComps, IThingHolder
     {
+        public HiveLike()
+        {
+            this.innerContainer = new ThingOwner<Thing>(this, false, LookMode.Deep);
+        }
+
         public ThingDef_HiveLike Def
         {
             get
@@ -28,7 +34,7 @@ namespace RimWorld
                 return this.def as ThingDef_HiveLike;
             }
         }
-
+        
         public Faction OfFaction
         {
             get
@@ -46,7 +52,47 @@ namespace RimWorld
                 return Def.Faction;
             }
         }
-        
+
+        public CompSpawnerHiveLikes hiveExpander
+        {
+            get
+            {
+                return this.TryGetComp<CompSpawnerHiveLikes>();
+            }
+        }
+
+        public CompMaintainableLike hiveMaintainer
+        {
+            get
+            {
+                return this.TryGetComp<CompMaintainableLike>();
+            }
+        }
+
+        public bool hiveDormant
+        {
+            get
+            {
+                if (hiveExpander != null)
+                {
+                    return hiveExpander.canSpawnHiveLikes;
+                }
+                else
+                {
+
+                }
+                return hiveExpander != null ;
+            }
+        }
+
+        public bool Childhive
+        {
+            get
+            {
+                return hiveExpander == null;
+            }
+        }
+
         public List<PawnKindDef> OfPawnKinds
         {
             get
@@ -72,15 +118,21 @@ namespace RimWorld
         }
 
         // Token: 0x040015B0 RID: 5552
+        
+        public float maxSpawnPointsPerHive = 0f;
         public float MaxSpawnedPawnsPoints
         {
             get
             {
-                return Def.maxSpawnPointsPerHive + (Def.maxSpawnPointsPerHive * childHiveLikesCount);
+                if (maxSpawnPointsPerHive!=0f)
+                {
+                    return maxSpawnPointsPerHive;
+                }
+                return Def.maxSpawnPointsPerHive;
             }
             set
             {
-                return;
+                maxSpawnPointsPerHive = value;
             }
         }
 
@@ -89,10 +141,9 @@ namespace RimWorld
         {
             get
             {
-                return Def.initalSpawnPointsPerHive + (Def.initalSpawnPointsPerHive * childHiveLikesCount);
+                return Def.initalSpawnPointsPerHive;
             }
         }
-        public List<PawnKindDef> PawnKinds = new List<PawnKindDef>();
         // Token: 0x170005CD RID: 1485
         // (get) Token: 0x06002670 RID: 9840 RVA: 0x00123F94 File Offset: 0x00122394
 
@@ -278,25 +329,48 @@ namespace RimWorld
 						}
 					}
 					this.CalculateNextPawnSpawnTick();
-				}
-			}
+                }
+                if (this.Map.skyManager.CurSkyGlow < 0.5f && this.active && !hiveDormant)
+                {
+                    if (this.innerContainer != null)
+                    {
+                        if (this.innerContainer.Count > 0)
+                        {
+                            this.innerContainer.TryDropAll(this.Position, this.Map, ThingPlaceMode.Near, null, null);
+                        }
+                    }
+                }
+                if (this.innerContainer != null && hiveMaintainer != null)
+                {
+                    if (this.innerContainer.Count > 0 && hiveMaintainer.CurStage == MaintainableStage.NeedsMaintenance)
+                    {
+                        Thing thing = this.innerContainer.RandomElement();
+                        this.innerContainer.TryDrop(thing, ThingPlaceMode.Near, out thing);
+                    }
+                }
+                if (this.innerContainer != null && Find.TickManager.TicksGame % 10000 == 0)
+                {
+                    Thing thing = GenClosest.ClosestThingReachable(this.Position, this.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), Verse.AI.PathEndMode.ClosestTouch, TraverseParms.For(TraverseMode.ByPawn, Danger.Deadly), 30f, (x => x.isPotentialHost()));
+                    if (this.innerContainer.Count > 0 && !thing.DestroyedOrNull())
+                    {
+                        Pawn p = (Pawn)thing;
+                        for (int i = 0; i < this.innerContainer.Count; i++)
+                        {
+                            Thing thing2 = this.innerContainer[i];
+                            float chance = p.RaceProps.baseBodySize * p.ageTracker.CurLifeStage.bodySizeFactor / XenomorphUtil.DistanceBetween(this.Position,p.Position) * this.innerContainer.Count;
+                            if (Rand.ChanceSeeded(chance,AvPConstants.AvPSeed))
+                            {
+                                this.innerContainer.TryDrop(thing2, ThingPlaceMode.Near, out thing2);
+                            }
+                        }
+                    }
+                }
+
+            }
 		}
 
-		// Token: 0x06002677 RID: 9847 RVA: 0x00124224 File Offset: 0x00122624
-		public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
-		{
-			Map map = base.Map;
-			base.DeSpawn(mode);
-			List<Lord> lords = map.lordManager.lords;
-			for (int i = 0; i < lords.Count; i++)
-			{
-				lords[i].ReceiveMemo(HiveLike.MemoDeSpawned);
-			}
-			HiveLikeUtility.Notify_HiveLikeDespawned(this, map);
-		}
-
-		// Token: 0x06002678 RID: 9848 RVA: 0x0012427C File Offset: 0x0012267C
-		public override void PostApplyDamage(DamageInfo dinfo, float totalDamageDealt)
+        // Token: 0x06002678 RID: 9848 RVA: 0x0012427C File Offset: 0x0012267C
+        public override void PostApplyDamage(DamageInfo dinfo, float totalDamageDealt)
 		{
 			if (dinfo.Def.ExternalViolenceFor(this) && dinfo.Instigator != null && dinfo.Instigator.Faction != null)
 			{
@@ -331,22 +405,6 @@ namespace RimWorld
 			base.Kill(dinfo, exactCulprit);
 		}
 
-		// Token: 0x0600267A RID: 9850 RVA: 0x001243A0 File Offset: 0x001227A0
-		public override void ExposeData()
-		{
-			base.ExposeData();
-			Scribe_Values.Look<bool>(ref this.active, "active", false, false);
-			Scribe_Values.Look<int>(ref this.nextPawnSpawnTick, "nextPawnSpawnTick", 0, false);
-			Scribe_Collections.Look<Pawn>(ref this.spawnedPawns, "spawnedPawns", LookMode.Reference, new object[0]);
-			Scribe_Values.Look<bool>(ref this.caveColony, "caveColony", false, false);
-            Scribe_Values.Look<bool>(ref this.canSpawnPawns, "canSpawnPawns", true, false);
-            Scribe_References.Look<HiveLike>(ref this.parentHiveLike, "parentHiveLike");
-            if (Scribe.mode == LoadSaveMode.PostLoadInit)
-			{
-				this.spawnedPawns.RemoveAll((Pawn x) => x == null);
-			}
-		}
-        public HiveLike parentHiveLike;
         // Token: 0x0600267B RID: 9851 RVA: 0x00124448 File Offset: 0x00122848
         private void Activate()
 		{
@@ -379,38 +437,71 @@ namespace RimWorld
 			}
 		}
 
-		// Token: 0x0600267E RID: 9854 RVA: 0x00124538 File Offset: 0x00122938
-		private bool TrySpawnPawn(out Pawn pawn)
-		{
-			if (!this.canSpawnPawns)
-			{
-				pawn = null;
-				return false;
-			}
-			float curPoints = this.SpawnedPawnsPoints;
-			IEnumerable<PawnKindDef> source = from x in spawnablePawnKinds
-			where curPoints + x.combatPower <= MaxSpawnedPawnsPoints
-			select x;
+        // Token: 0x0600267E RID: 9854 RVA: 0x00124538 File Offset: 0x00122938
+        private bool TrySpawnPawn(out Pawn pawn)
+        {
+            if (!this.canSpawnPawns)
+            {
+                pawn = null;
+                return false;
+            }
+            float curPoints = this.SpawnedPawnsPoints;
+            IEnumerable<PawnKindDef> source = from x in spawnablePawnKinds
+                                              where curPoints + x.combatPower <= MaxSpawnedPawnsPoints
+                                              select x;
             if (!source.TryRandomElement(out PawnKindDef kindDef))
             {
                 pawn = null;
                 return false;
             }
             pawn = PawnGenerator.GeneratePawn(kindDef, base.Faction);
-			this.spawnedPawns.Add(pawn);
-			GenSpawn.Spawn(pawn, CellFinder.RandomClosewalkCellNear(base.Position, base.Map, 2, null), base.Map, WipeMode.Vanish);
-			Lord lord = this.Lord;
-			if (lord == null)
-			{
-				lord = this.CreateNewLord();
-			}
-			lord.AddPawn(pawn);
-			SoundDefOf.Hive_Spawn.PlayOneShot(this);
-			return true;
-		}
+            this.spawnedPawns.Add(pawn);
+            GenSpawn.Spawn(pawn, CellFinder.RandomClosewalkCellNear(base.Position, base.Map, 2, null), base.Map, WipeMode.Vanish);
+            Lord lord = this.Lord;
+            if (lord == null)
+            {
+                lord = this.CreateNewLord();
+            }
+            lord.AddPawn(pawn);
+            SoundDefOf.Hive_Spawn.PlayOneShot(this);
+            return true;
+        }
 
-		// Token: 0x0600267F RID: 9855 RVA: 0x001245FC File Offset: 0x001229FC
-		public override IEnumerable<Gizmo> GetGizmos()
+        private bool TrySpawnPawn(List<Pawn> list, out Pawn pawn)
+        {
+            if (list.NullOrEmpty())
+            {
+                this.TrySpawnPawn(out pawn);
+            }
+            if (!this.canSpawnPawns)
+            {
+                pawn = null;
+                return false;
+            }
+            float curPoints = this.SpawnedPawnsPoints;
+            IEnumerable<Pawn> source = from x in list
+                                       where curPoints + x.kindDef.combatPower <= MaxSpawnedPawnsPoints
+                                              select x;
+            if (!source.TryRandomElement(out Pawn kind))
+            {
+                pawn = null;
+                return false;
+            }
+            pawn = kind;
+            this.spawnedPawns.Add(pawn);
+            GenSpawn.Spawn(pawn, CellFinder.RandomClosewalkCellNear(base.Position, base.Map, 2, null), base.Map, WipeMode.Vanish);
+            Lord lord = this.Lord;
+            if (lord == null)
+            {
+                lord = this.CreateNewLord();
+            }
+            lord.AddPawn(pawn);
+            SoundDefOf.Hive_Spawn.PlayOneShot(this);
+            return true;
+        }
+
+        // Token: 0x0600267F RID: 9855 RVA: 0x001245FC File Offset: 0x001229FC
+        public override IEnumerable<Gizmo> GetGizmos()
 		{
 			foreach (Gizmo g in base.GetGizmos())
 			{
@@ -441,16 +532,44 @@ namespace RimWorld
                     Desc += "\n";
                 }
                 yield return new Command_Action
-				{
-					defaultLabel = "DEBUG: Spawn pawn",
-					icon = TexCommand.ReleaseAnimals,
+                {
+                    defaultLabel = "DEBUG: Spawn pawn",
+                    icon = TexCommand.ReleaseAnimals,
                     defaultDesc = Desc,
-					action = delegate()
-					{
+                    action = delegate ()
+                    {
                         this.TrySpawnPawn(out Pawn pawn);
                     }
-				};
-			}
+                };
+
+                if (this.innerContainer.Count > 0)
+                {
+                    yield return new Command_Action
+                    {
+                        defaultLabel = "DEBUG: release all pawns",
+                        icon = TexCommand.ReleaseAnimals,
+                        defaultDesc = "Release all xenos inside",
+                        action = delegate ()
+                        {
+                            this.EjectContents();
+                        }
+                    };
+                    /*
+                    List<Pawn> pawnlist = (List<Pawn>)from x in innerContainer where x is Pawn && ((Pawn)x).isXenomorph() select x;
+                    yield return new Command_Action
+                    {
+                        defaultLabel = "DEBUG: release pawn",
+                        icon = TexCommand.ReleaseAnimals,
+                        defaultDesc = "Release xeno inside",
+                        action = delegate ()
+                        {
+                            this.TrySpawnPawn(pawnlist, out Pawn pawn);
+                        }
+                    };
+                    */
+                }
+
+            }
 			yield break;
 		}
 
@@ -475,40 +594,146 @@ namespace RimWorld
 			return LordMaker.MakeNewLord(base.Faction, new LordJob_DefendAndExpandHiveLike(!this.caveColony), base.Map, null);
 		}
 
-		// Token: 0x040015AA RID: 5546
-		public bool active = true;
+        // Token: 0x060024FB RID: 9467 RVA: 0x00116DF3 File Offset: 0x001151F3
+        public virtual bool Accepts(Thing thing)
+        {
+            return this.innerContainer.CanAcceptAnyOf(thing, true);
+        }
 
-		// Token: 0x040015AB RID: 5547
-		public int nextPawnSpawnTick = -1;
+        // Token: 0x060024FC RID: 9468 RVA: 0x00116E04 File Offset: 0x00115204
+        public virtual bool BaseTryAcceptThing(Thing thing, bool allowSpecialEffects = true)
+        {
+            if (!this.Accepts(thing))
+            {
+                return false;
+            }
+            bool flag;
+            if (thing.holdingOwner != null)
+            {
+                thing.holdingOwner.TryTransferToContainer(thing, this.innerContainer, thing.stackCount, true);
+                flag = true;
+            }
+            else
+            {
+                flag = this.innerContainer.TryAdd(thing, true);
+            }
+            if (flag)
+            {
+                return true;
+            }
+            return false;
+        }
 
-		// Token: 0x040015AC RID: 5548
-		private List<Pawn> spawnedPawns = new List<Pawn>();
+        public virtual void EjectContents()
+        {
+            this.innerContainer.TryDropAll(this.Position, base.Map, ThingPlaceMode.Near, null, null);
+        }
 
-		// Token: 0x040015AD RID: 5549
-		public bool caveColony;
+        // Token: 0x060024F3 RID: 9459 RVA: 0x00116CE3 File Offset: 0x001150E3
+        public ThingOwner GetDirectlyHeldThings()
+        {
+            return this.innerContainer;
+        }
 
-		// Token: 0x040015AE RID: 5550
+        // Token: 0x060024F4 RID: 9460 RVA: 0x00116CEB File Offset: 0x001150EB
+        public void GetChildHolders(List<IThingHolder> outChildren)
+        {
+            ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, this.GetDirectlyHeldThings());
+        }
+
+        // Token: 0x06002677 RID: 9847 RVA: 0x00124224 File Offset: 0x00122624
+        public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
+        {
+            Map map = base.Map;
+            base.DeSpawn(mode);
+            List<Lord> lords = map.lordManager.lords;
+            for (int i = 0; i < lords.Count; i++)
+            {
+                lords[i].ReceiveMemo(HiveLike.MemoDeSpawned);
+            }
+            HiveLikeUtility.Notify_HiveLikeDespawned(this, map);
+        }
+
+        // Token: 0x060024FD RID: 9469 RVA: 0x00116E88 File Offset: 0x00115288
+        public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
+        {
+            if (this.innerContainer.Count > 0)
+            {
+                float chance;
+                if (this.parentHiveLike == null)
+                {
+                    chance = 1f;
+                }
+                else
+                {
+                    chance = 0.35f;
+                }
+                if (Rand.ChanceSeeded(chance,AvPConstants.AvPSeed))
+                {
+                    this.EjectContents();
+                }
+                else
+                {
+                    if (this.parentHiveLike != null)
+                    {
+                        foreach (var item in this.innerContainer)
+                        {
+                            this.innerContainer.Remove(item);
+                            this.parentHiveLike.innerContainer.TryAddOrTransfer(item);
+                        }
+                    }
+                }
+            }
+            this.innerContainer.ClearAndDestroyContents(DestroyMode.Vanish);
+            base.Destroy(mode);
+        }
+
+        public override void PreApplyDamage(ref DamageInfo dinfo, out bool absorbed)
+        {
+            base.PreApplyDamage(ref dinfo, out absorbed);
+        }
+
+        protected ThingOwner innerContainer;
+        public List<PawnKindDef> PawnKinds = new List<PawnKindDef>();
+        public HiveLike parentHiveLike;
+        public bool active = true;
+        public int nextPawnSpawnTick = -1;
+        public int lastHostSeenTick = -1;
+        public List<Pawn> spawnedPawns = new List<Pawn>();
+        public List<Pawn> spawnedHiveguardPawns = new List<Pawn>();
+        public List<Pawn> spawnedWorkerPawns = new List<Pawn>();
+        public List<Pawn> spawnedScoutPawns = new List<Pawn>();
+        public bool caveColony;
 		public bool canSpawnPawns = true;
-
-		// Token: 0x040015AF RID: 5551
 		public const int PawnSpawnRadius = 2;
-
-		// Token: 0x040015B2 RID: 5554
 		private static readonly FloatRange PawnSpawnIntervalDays = new FloatRange(0.85f, 1.15f);
-
-        // Token: 0x040015B3 RID: 5555
         public List<PawnKindDef> spawnablePawnKinds = new List<PawnKindDef>();
-
-        // Token: 0x040015B4 RID: 5556
         public static readonly string MemoAttackedByEnemy = "HiveAttacked";
-
-		// Token: 0x040015B5 RID: 5557
 		public static readonly string MemoDeSpawned = "HiveDeSpawned";
-
-		// Token: 0x040015B6 RID: 5558
 		public static readonly string MemoBurnedBadly = "HiveBurnedBadly";
-
-		// Token: 0x040015B7 RID: 5559
 		public static readonly string MemoDestroyedNonRoofCollapse = "HiveDestroyedNonRoofCollapse";
-	}
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look<bool>(ref this.active, "active", false, false);
+            Scribe_Values.Look<int>(ref this.nextPawnSpawnTick, "nextPawnSpawnTick", 0, false);
+            Scribe_Values.Look<int>(ref this.lastHostSeenTick, "lastHostSeenTick", 0, false);
+            Scribe_Collections.Look<Pawn>(ref this.spawnedPawns, "spawnedPawns", LookMode.Reference, new object[0]);
+            Scribe_Collections.Look<Pawn>(ref this.spawnedHiveguardPawns, "spawnedHiveguardPawns", LookMode.Reference, new object[0]);
+            Scribe_Collections.Look<Pawn>(ref this.spawnedWorkerPawns, "spawnedWorkerPawns", LookMode.Reference, new object[0]);
+            Scribe_Collections.Look<Pawn>(ref this.spawnedScoutPawns, "spawnedScoutPawns", LookMode.Reference, new object[0]);
+            Scribe_Values.Look<bool>(ref this.caveColony, "caveColony", false, false);
+            Scribe_Values.Look<bool>(ref this.canSpawnPawns, "canSpawnPawns", true, false);
+            Scribe_References.Look<HiveLike>(ref this.parentHiveLike, "parentHiveLike");
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                this.spawnedPawns.RemoveAll((Pawn x) => x == null);
+            }
+            Scribe_Deep.Look<ThingOwner>(ref this.innerContainer, "innerContainer", new object[]
+            {
+                this
+            });
+        }
+    }
 }

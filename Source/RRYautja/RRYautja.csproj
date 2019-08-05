@@ -63,30 +63,85 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <Compile Include="USCM\DamageWorker_BombNoCamShake.cs" />
-    <Compile Include="USCM\DamageWorker_FlameNoCamShake.cs" />
-    <Compile Include="USCM\Verb_ShootShotgun.cs" />
-=======
->>>>>>> parent of 4006a20... v1.0.0.8
-    <Compile Include="USCM\Class1.cs" />
+    <Compile Include="Harmony\Patches.cs" />
+    <Compile Include="Harmony\Patches\AvP_AlienRace_HarmonyPatches_ThoughtsFromIngesting_Patch.cs" />
+    <Compile Include="Harmony\Patches\AVP_AEmptyPatch.cs" />
+    <Compile Include="Harmony\Patches\AvP_ApparelGraphicRecordGetter_TryGetGraphicApparel_YautjaSpecificHat_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_Building_Turret_Shoulder_ThreatDisabled_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_Building_XenoEgg_get_DefaultGraphic_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_FactionGenerator_GenerateFactionsIntoWorld_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_FeedPatientUtility_ShouldBeFed_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_Fire_DoComplexCalcs_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_FoodUtility_BestPawnToHuntForPredator_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_FoodUtility_TryFindBestFoodSourceFor_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_GameConditionManager_ConditionIsActive_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_HediffComp_Infecter_CheckMakeInfection_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_HediffGiver_Hypothermia_OnIntervalPassed_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_IncidentWorker_RaidEnemyPatch_GetLetterText_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_IncidentWorker_RaidEnemy_Yautja_TryExecute_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_IncidentWorker_RaidEnemy_Xenomorph_TryExecute_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_IncidentWorker_WandererJoin_TryExecute_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_JobGiver_WanderColony_GetWanderRoot_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_Page_ScenarioLister_ScenariosInCategory_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_PathGrid_CalculatedCostAt_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_PawnGenerator_GenerateBodyType_Yautja_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_PawnObserver_ObserveSurroundingThings_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_PawnUtility_GetManhunterOnDamageChance_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_PawnWoundDrawer_TryExecute_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_Pawn_AcceptArrest_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_Pawn_AnythingToStrip_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_Pawn_DrawTracker_get_DrawPos_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_Pawn_MeleeVerbs_ChooseMeleeVerb_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_Pawn_NeedsTracker_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_Pawn_PreApplyDamage_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_Pawn_RecordsTracker_Increment_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_Pawn_RelationsTracker_SecondaryRomanceChanceFactor_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_Pawn_Strip_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_Pawn_ThreatDisabled_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_Pawn_Tick_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_PowerNet_PowerNetTick_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_RestUtility_Bed_IsValidBedFor_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_RimWorld_Apparel_GetWornGizmos_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_RimWorld_Cloakgen_GetWornGizmos_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_SelfDefenseUtility_ShouldFleeFrom_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_ShieldBelt_AllowVerbCast_YautjaWeapons_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_SnowUtility_AddSnowRadial_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_StatWorker_GetExplanationUnfinalized_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_StatWorker_GetValueUnfinalized_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_VerbUtility_HarmsHealth_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_WorkGiver_Tend_GoodLayingStatusForTend_Patch.cs" />
     <Compile Include="USCM\CompFireOverlay.cs" />
     <Compile Include="USCM\Verb_ShootShotgun.cs" />
     <Compile Include="USCM\DamageWorker_FlameNoCamShake.cs" />
     <Compile Include="USCM\HediffComp_DefectiveInhibitor.cs" />
     <Compile Include="util\AvPSettings.cs" />
     <Compile Include="Harmony\ExtraButcheringProducts.cs" />
-    <Compile Include="Harmony\Patches.cs" />
     <Compile Include="util\Building_XenomorphCryptosleepCasket.cs" />
     <Compile Include="util\Building_CrashedShipPart_CryptosleepCasket_Xenomorph.cs" />
     <Compile Include="util\HediffGiver_StartWithHediff.cs" />
     <Compile Include="util\AvPMatBases.cs" />
     <Compile Include="util\AvPExtensions.cs" />
     <Compile Include="util\AvPConstants.cs" />
+    <Compile Include="util\CompPowerPlantSolarTurret.cs" />
+    <Compile Include="util\DropThroughRoofUtility.cs" />
+    <Compile Include="util\DropThoughRoofCellFinder.cs" />
+    <Compile Include="util\IncidentWorker_RaidFriendly_FactionSpecific.cs" />
+    <Compile Include="util\IncidentWorker_RaidEnemy_FactionSpecific.cs" />
+    <Compile Include="util\IncidentDef_FactionSpecific.cs" />
     <Compile Include="util\PawnsArrivalModeWorker_RandomEnterFromTunnel.cs" />
-    <Compile Include="util\PawnsArrivalModeWorker_RandomDropThroughRoof.cs" />
+    <Compile Include="util\PawnsArrivalModeWorker_DropThroughRoof.cs" />
+    <Compile Include="Xenomorph\RaidStrategyWorker_ImmediateAttackSmart_CutPower.cs" />
+    <Compile Include="Xenomorph\Hives\CompHiveTunnel.cs" />
+    <Compile Include="Xenomorph\Hives\list.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_EnterHiveTunnel.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_AICutColonyPowerClose.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_EnterHiveTunnel.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_WanderCloserToHosts.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphXenohunter.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphNeohunter.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalHive.cs" />
+    <Compile Include="Xenomorph\Lordstuff\LordJobs\LordJob_AssaultColony_CutPower.cs" />
+    <Compile Include="Xenomorph\Lordstuff\LordToils\LordToil_AssaultColony_CutPower.cs" />
     <Compile Include="Xenomorph\Neomorph.cs" />
     <Compile Include="util\MoreTraitSlotsUtil.cs" />
     <Compile Include="util\SetIncidents.cs" />
@@ -94,7 +149,6 @@
     <Compile Include="util\ThoughtWorker_RRY_Facehugger.cs" />
     <Compile Include="util\CompFoodPoisonProtection.cs" />
     <Compile Include="util\HediffGiver_StartWithHediff.cs" />
-<<<<<<< HEAD
     <Compile Include="util\TrailThrower.cs" />
     <Compile Include="util\CrashedShip\CompGooSpread.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_IngestNeomorph.cs" />
@@ -103,20 +157,11 @@
     <Compile Include="Xenomorph\Comp_Neomorph.cs" />
     <Compile Include="Xenomorph\Comp_Facehugger.cs" />
     <Compile Include="Xenomorph\HediffComp_SpawneNeo.cs" />
-    <Compile Include="Xenomorph\Hives\Class1.cs" />
     <Compile Include="Xenomorph\Hives\HiveUtility.cs" />
     <Compile Include="Xenomorph\Hives\SectionLayer_Hive.cs" />
     <Compile Include="Xenomorph\Hives\HiveExtensions.cs" />
     <Compile Include="Xenomorph\Hives\MapComponent_HiveGrid.cs" />
     <Compile Include="util\CrashedShip\CompPlantConversionRadius.cs" />
-=======
-    <Compile Include="Xenomorph\Hives\MapComponent_HiveGrid.cs" />
-    <Compile Include="Xenomorph\Hives\HiveUtility.cs" />
-    <Compile Include="Xenomorph\Hives\SectionLayer_Hive.cs" />
-    <Compile Include="Xenomorph\Hives\HiveExtensions.cs" />
-    <Compile Include="Xenomorph\Hives\HiveGrid.cs" />
-    <Compile Include="Xenomorph\CompPlantConversionRadius.cs" />
->>>>>>> parent of 28eee9c... V1.0.0.7 Final
     <Compile Include="Xenomorph\Hives\CompHiveCreep.cs" />
     <Compile Include="Xenomorph\IncidentWorker_PowerCutV1.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_DestroyCocoon.cs" />
@@ -262,7 +307,7 @@
     <Compile Include="Xenomorph\Lordstuff\LordToils\LordToil_DefendAndExpandHiveLike.cs" />
     <Compile Include="Xenomorph\Lordstuff\LordToils\LordToil_HiveLikeRelated.cs" />
     <Compile Include="Xenomorph\Lordstuff\LordToils\LordToil_HiveLikeRelatedData.cs" />
-    <Compile Include="Xenomorph\Jobstuff\Drivers\TunnelHiveLikeSpawner.cs" />
+    <Compile Include="Xenomorph\Hives\TunnelHiveLikeSpawner.cs" />
     <Compile Include="Xenomorph\IncidentWorker_CrashedShip.cs" />
     <Compile Include="util\CrashedShip\LordJob_PawnsDefendShip.cs" />
     <Compile Include="Yautja\ThoughtWorker_MarkedMood.cs" />

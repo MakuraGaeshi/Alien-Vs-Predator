@@ -92,7 +92,7 @@ namespace RRYautja
         public int deathIntervalTicks = 300 * Rand.RangeInclusive(1,5);
         public override void CompTick()
         {
-            if (Facehugger.Faction==null)
+            if (Facehugger.Faction==null && Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph)!=null)
             {
                 Facehugger.SetFaction(Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph));
             }

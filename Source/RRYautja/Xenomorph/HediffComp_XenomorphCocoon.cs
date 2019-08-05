@@ -201,7 +201,7 @@ namespace RRYautja
                             CompXenoHatcher xenoHatcher = _XenoEgg.TryGetComp<CompXenoHatcher>();
                             if (!RoyalEggPresent && !RoyalPresent) xenoHatcher.royalProgress = Pawn.BodySize;
                             MyCocoon.Destroy();
-                            GenPlace.TryPlaceThing(thing, Pawn.Position != null ? Pawn.Position : Pawn.PositionHeld, Pawn.Map != null ? Pawn.Map : Pawn.MapHeld, ThingPlaceMode.Direct);
+                            GenPlace.TryPlaceThing(thing, Pawn.Position != null ? Pawn.Position : Pawn.PositionHeld, Pawn.Map ?? Pawn.MapHeld, ThingPlaceMode.Direct);
                         //    Pawn.health.RemoveHediff(this.parent);
                             Pawn.Destroy();
                         }

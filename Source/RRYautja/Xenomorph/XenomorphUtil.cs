@@ -298,7 +298,10 @@ namespace RRYautja
                     return false;
                 }
             }
-            
+            if (!pawn.health.hediffSet.HasHead)
+            {
+                return false;
+            }
             if (pawn.kindDef.race.defName.Contains("Android")) return false;
             if (pawn.kindDef.race.defName.Contains("Droid")) return false;
             if (pawn.kindDef.race.defName.Contains("Mech")) return false;
