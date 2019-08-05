@@ -130,6 +130,9 @@ Neomorphs now have Food and Sleep Needs, and are ravenously hungry, their abilit
 Neomorphs are no longer part of the Xenomorph faction.
 Added Faction specific raidworkers for both Friendly and Enemy Raids.
 Xenomorph Hive & Hive AI Tweaks
-Xenomorph Hives expansion method revised, 
+Xenomorph Hives expansion method revised, infestation threat level increased
+Xenomorph Hive tunnel networks allow xenos to travel between hive tunnels underground
+Xenomorph Hive tunnels allow for a new Arrival mode for raids, when hive tunnels are present on the map, Xenomorph raids can use them as entry points
 Xenomorph AI Tweaks
+Renamed Flamer projectile from Fire to AvPFlamer to avoid conflicts with other mods (Good call Pelador)
 small balance tweaks to a myriad of items
