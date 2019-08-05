@@ -184,34 +184,9 @@ namespace RimWorld
                 }
             };
             Region region = pawn.GetRegion(RegionType.Set_Passable);
-            bool flag1 = pawn.mindState.duty.focus.Cell.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_XenomorphHive) != null;
-            bool flag2 = pawn.mindState.duty.focus.Cell.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_XenomorphHive_Child) != null;
-            bool flag3 = pawn.mindState.duty.focus.Cell.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Hive_Slime) != null;
-            if (pawn.GetLord() is Lord L && L != null)
-            {
-                if ((L.CurLordToil is LordToil_DefendAndExpandHiveLike || L.CurLordToil is LordToil_DefendHiveLikeAggressively) && L.CurLordToil is LordToil_HiveLikeRelated THL)
-                {
-                    if (THL != null)
-                    {
-                        if (THL.Data!=null)
-                        {
-                            HiveLike hive = THL.Data.assignedHiveLikes.TryGetValue(pawn);
-                            if (hive!=null)
-                            {
-                                flag1 = hive.def == XenomorphDefOf.RRY_XenomorphHive;
-                                flag2 = hive.def == XenomorphDefOf.RRY_XenomorphHive_Child;
-                            }
-                        }
-                    }
-                }
-            }
             if (region == null)
             {
                 return null;
-            }
-            if (flag2)
-            {
-                MiningRange = 3;
             }
             for (int i = 0; i < GenRadial.NumCellsInRadius(MiningRange); i++)
             {

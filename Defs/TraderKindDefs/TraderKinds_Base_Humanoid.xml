@@ -451,6 +451,13 @@
           <max>10</max>
         </countRange>
       </li>
+	  <li Class="StockGenerator_SingleDef">
+				<thingDef>RRY_USCM_UA571C_Turret</thingDef>
+				<countRange>
+				  <min>1</min>
+				  <max>5</max>
+				</countRange>
+			</li>
       <li Class="StockGenerator_Category">
         <categoryDef>Drugs</categoryDef>
       </li>
@@ -603,7 +610,10 @@
           <li>Chocolate</li>
         </thingDefs>
       </li>
+	  
     </stockGenerators>
   </TraderKindDef>
+  
+  <!--================================================= USCM Orbital USCM Trader =====================================================-->
   
 </Defs>

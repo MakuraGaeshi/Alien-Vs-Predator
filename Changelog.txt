@@ -111,24 +111,7 @@ Tweaks to Comp_Yautja to hopefully increase performance
 Fixed Egglaying JobGiver error (hopefully)
 Marking system Tweak, should decrease cpu load
 
+
 V1.0.0.7 Hotfix 19/07/2019
 fixed vanilla tribal apparel losing colour while equipped (forgot the textures)
 disabled some spam logging stuff
-
-V1.0.0.8 Not Yet Released
-Fixed Egglayer JogGiver Error (Hopefully)
-Fire now kills off the purple Taint left behind hive ships
-Fixed all humanlikes ignoring terrain
-Fixed Thrill of the Hunt erroring (Hopefully)
-Replaced CompSnowRadius with CompHiveCreep on Xenomorph Hives
-Added mod option to disable Predaliens Ability to impregnate female pawns
-Seperated Xenomorph and Neomorph spawning mechanics so there should no longer be any crossover
-Chesbursters will now devour corpses.
-Neomorph AI Tweaks.
-Neomorphs now have Food and Sleep Needs, and are ravenously hungry, their ability to heal now costs them Nutrition to heal, if their Nutrition/food bar is empty, they are unable to heal.
-Neomorphs are no longer part of the Xenomorph faction.
-Added Faction specific raidworkers for both Friendly and Enemy Raids.
-Xenomorph Hive & Hive AI Tweaks
-Xenomorph Hives expansion method revised, 
-Xenomorph AI Tweaks
-small balance tweaks to a myriad of items
