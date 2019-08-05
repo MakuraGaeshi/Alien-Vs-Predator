@@ -52,5 +52,12 @@
 		<parent>Apparel</parent>
 	</ThingCategoryDef>
 	
+	<!-- ========================= USCM - Turrets ========================== -->
+	<ThingCategoryDef>
+		<defName>RRY_USCM_Turrets</defName>
+		<label>USCM security equipments</label>
+		<iconPath>Things/Buildings/Security/UA571C</iconPath>
+		<parent>Manufactured</parent>
+	</ThingCategoryDef>
 	
 </Defs>

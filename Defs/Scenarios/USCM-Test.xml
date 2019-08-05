@@ -61,7 +61,7 @@
 			</li>
 			<li Class="ScenPart_StartingThing_Defined">
 					<def>StartingThing_Defined</def>
-					<thingDef>Turret_MiniTurret</thingDef>
+					<thingDef>RRY_USCM_UA571C_Turret</thingDef>
 					<stuff>Steel</stuff>
 					<count>2</count>
 			</li>
