@@ -31,7 +31,7 @@ namespace RimWorld
                     target = enemyTarget,
                     verb = verb,
                     maxRangeFromTarget = verb.verbProps.range,
-                    wantCoverFromTarget = true
+                    wantCoverFromTarget = (verb.verbProps.range > 5f)
                 }, out dest);
             }
             return CastPositionFinder.TryFindCastPosition(new CastPositionRequest

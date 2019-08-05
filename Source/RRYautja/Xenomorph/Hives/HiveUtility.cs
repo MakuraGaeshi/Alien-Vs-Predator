@@ -65,7 +65,7 @@ namespace RRYautja
             }
         }
         
-        public static void AddHiveRadial(IntVec3 center, Map map, float radius, float depth)
+        public static void AddSnowRadial(IntVec3 center, Map map, float radius, float depth)
         {
             int num = GenRadial.NumCellsInRadius(radius);
             for (int i = 0; i < num; i++)
@@ -75,9 +75,7 @@ namespace RRYautja
                 {
                     float lengthHorizontal = (center - intVec).LengthHorizontal;
                     float num2 = 1f - lengthHorizontal / radius;
-
-                    MapComponent_HiveGrid _HiveGrid = map.GetComponent<MapComponent_HiveGrid>();
-                    _HiveGrid.AddDepth(intVec, num2 * depth);
+                    map.snowGrid.AddDepth(intVec, num2 * depth);
                 }
             }
         }

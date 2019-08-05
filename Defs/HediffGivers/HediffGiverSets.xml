@@ -66,7 +66,7 @@
       
       <!-- Environmental -->
       <li Class="HediffGiver_Bleeding">
-        <hediff>RRY_Xenomorph_BloodLoss</hediff>
+        <hediff>BloodLoss</hediff>
       </li>
       <li Class="HediffGiver_Hypothermia">
         <hediff>HypothermicSlowdown</hediff>

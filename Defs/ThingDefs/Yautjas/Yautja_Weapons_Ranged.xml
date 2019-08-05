@@ -453,7 +453,7 @@
 <!-- ====================== Smart Disk ===================== -->	 
   <ThingDef ParentName="RRYBaseSimpleRanged">
     <defName>RRY_Gun_SmartDisk</defName>
-    <label>Smart Disk</label>
+    <label>Yautja Smart Disk</label>
     <description>A circular shaped, extremely sharp thrown weapon. The smart disk come equipped with a targeting system that makes it deadly accurate but with a long time to setup before throwing. But it is unwieldy in close-combat.</description>
     <graphicData>
       <texPath>Things/Equipment/Ranged/SmartDisk</texPath>

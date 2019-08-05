@@ -70,7 +70,6 @@
 =======
 >>>>>>> parent of 4006a20... v1.0.0.8
     <Compile Include="USCM\Class1.cs" />
-    <Compile Include="USCM\CompFireOverlay.cs" />
     <Compile Include="USCM\Verb_ShootShotgun.cs" />
     <Compile Include="USCM\DamageWorker_FlameNoCamShake.cs" />
     <Compile Include="USCM\HediffComp_DefectiveInhibitor.cs" />
@@ -81,53 +80,25 @@
     <Compile Include="util\Building_CrashedShipPart_CryptosleepCasket_Xenomorph.cs" />
     <Compile Include="util\HediffGiver_StartWithHediff.cs" />
     <Compile Include="util\AvPMatBases.cs" />
-    <Compile Include="util\AvPExtensions.cs" />
-    <Compile Include="util\AvPConstants.cs" />
-    <Compile Include="util\PawnsArrivalModeWorker_RandomEnterFromTunnel.cs" />
-    <Compile Include="util\PawnsArrivalModeWorker_RandomDropThroughRoof.cs" />
-    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_WanderCloserToHosts.cs" />
-    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphNeohunter.cs" />
-    <Compile Include="Xenomorph\Neomorph.cs" />
     <Compile Include="util\MoreTraitSlotsUtil.cs" />
     <Compile Include="util\SetIncidents.cs" />
     <Compile Include="util\ThoughtWorker_RRY_Chestburster.cs" />
     <Compile Include="util\ThoughtWorker_RRY_Facehugger.cs" />
     <Compile Include="util\CompFoodPoisonProtection.cs" />
     <Compile Include="util\HediffGiver_StartWithHediff.cs" />
-<<<<<<< HEAD
-    <Compile Include="util\TrailThrower.cs" />
-    <Compile Include="util\CrashedShip\CompGooSpread.cs" />
-    <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_IngestNeomorph.cs" />
-    <Compile Include="Xenomorph\Projectile_AcidSpit.cs" />
-    <Compile Include="Xenomorph\CompFungalOverlay.cs" />
-    <Compile Include="Xenomorph\Comp_Neomorph.cs" />
-    <Compile Include="Xenomorph\Comp_Facehugger.cs" />
-    <Compile Include="Xenomorph\HediffComp_SpawneNeo.cs" />
-    <Compile Include="Xenomorph\Hives\Class1.cs" />
-    <Compile Include="Xenomorph\Hives\HiveUtility.cs" />
-    <Compile Include="Xenomorph\Hives\SectionLayer_Hive.cs" />
-    <Compile Include="Xenomorph\Hives\HiveExtensions.cs" />
-    <Compile Include="Xenomorph\Hives\MapComponent_HiveGrid.cs" />
-    <Compile Include="util\CrashedShip\CompPlantConversionRadius.cs" />
-=======
-    <Compile Include="Xenomorph\Hives\MapComponent_HiveGrid.cs" />
     <Compile Include="Xenomorph\Hives\HiveUtility.cs" />
     <Compile Include="Xenomorph\Hives\SectionLayer_Hive.cs" />
     <Compile Include="Xenomorph\Hives\HiveExtensions.cs" />
     <Compile Include="Xenomorph\Hives\HiveGrid.cs" />
     <Compile Include="Xenomorph\CompPlantConversionRadius.cs" />
->>>>>>> parent of 28eee9c... V1.0.0.7 Final
     <Compile Include="Xenomorph\Hives\CompHiveCreep.cs" />
-    <Compile Include="Xenomorph\IncidentWorker_PowerCutV1.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_DestroyCocoon.cs" />
     <Compile Include="util\CompUseEffect_Cocoon.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_XenomorphTendSelf.cs" />
-    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_GetFoodNeomorph.cs" />
-    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_GetFoodXenomorph.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenoGetFood.cs" />
     <Compile Include="Xenomorph\CompHiveConversionRadius.cs" />
     <Compile Include="Xenomorph\CompHiveExpand.cs" />
     <Compile Include="util\MarkOffsetDefExtension.cs" />
-    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphFleeFire.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphSelfTend.cs" />
     <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalLordPawnCount.cs" />
     <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalSky.cs" />
@@ -145,7 +116,7 @@
     <Compile Include="util\RRY_Xenomorph_AbilityUser.cs" />
     <Compile Include="util\Building_Turret_Shoulder.cs" />
     <Compile Include="util\Verb_UseAbility_RRY_Thrown.cs" />
-    <Compile Include="Xenomorph\Hediff_Hidden_Xeno.cs" />
+    <Compile Include="util\Hediff_Hidden_Xeno.cs" />
     <Compile Include="util\Returning_Projectile.cs" />
     <Compile Include="util\Projectile_AbilityRRY_ThrownReturning.cs" />
     <Compile Include="util\Gizmo_ShardStatus.cs" />
@@ -157,7 +128,7 @@
     <Compile Include="Xenomorph\Lordstuff\LordJobs\LordJob_DefendHiveLoc.cs" />
     <Compile Include="Xenomorph\Lordstuff\LordToils\LordToil_DefendHiveLoc.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_PredalienImpregnate.cs" />
-    <Compile Include="Xenomorph\IncidentWorker_PowerCutV2.cs" />
+    <Compile Include="Xenomorph\IncidentWorker_PowerCut.cs" />
     <Compile Include="Xenomorph\Hives\GenStep_XenomorphCaveHives.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_PredalienImpregnate.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphHosthunter.cs" />
@@ -194,7 +165,7 @@
     <Compile Include="Yautja\HediffComp_PinnedByWeapon.cs" />
     <Compile Include="Yautja\Hediff_Bouncer.cs" />
     <Compile Include="Xenomorph\Plant_Neomorph.cs" />
-    <Compile Include="Xenomorph\HediffComp_SpawnerXeno.cs" />
+    <Compile Include="Xenomorph\HediffComp_XenoSpawner.cs" />
     <Compile Include="util\Recipe_RemoveFacehugger.cs" />
     <Compile Include="util\Recipe_Surgery_RRY.cs" />
     <Compile Include="util\GenericCompAbilityItem.cs" />
@@ -209,7 +180,7 @@
     <Compile Include="util\Projectile_AbilityRRY.cs" />
     <Compile Include="Yautja\Verb_Launch_Stuffable_Projectile.cs" />
     <Compile Include="Yautja\Verb_Shoot_Stuffable.cs" />
-    <Compile Include="Xenomorph\XenosCorpseModification.cs" />
+    <Compile Include="Yautja\XenosCorpseModification.cs" />
     <Compile Include="Yautja\Traps\Building_Trap.cs" />
     <Compile Include="Yautja\Traps\Building_TrapRearmable.cs" />
     <Compile Include="Yautja\Traps\JobDriver_RearmTrap.cs" />
@@ -240,6 +211,7 @@
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_FacehuggerHunt.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphManhunter.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphFlee.cs" />
+    <Compile Include="Xenomorph\HediffComp_Xenomorph.cs" />
     <Compile Include="Yautja\ThoughtWorkers_Blooded.cs" />
     <Compile Include="Xenomorph\XenomorphUtil.cs" />
     <Compile Include="util\Graphic_Invisible.cs" />
@@ -280,7 +252,7 @@
     <Compile Include="Xenomorph\HediffComp_Facehugger.cs" />
     <Compile Include="Xenomorph\XenomorphDefOf.cs" />
     <Compile Include="Yautja\YautjaDefOf.cs" />
-    <Compile Include="util\CompHediffWeapon.cs" />
+    <Compile Include="util\HediffWeapon.cs" />
     <Compile Include="util\CompHediffApparel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="util\Util_Cloakgen.cs" />

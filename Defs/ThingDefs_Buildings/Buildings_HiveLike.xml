@@ -166,9 +166,7 @@
         <spawnMtbHours>4</spawnMtbHours>
         <spawnRadius>5</spawnRadius>
       </li>
-	  
-      <li Class="CompProperties_HiveCreep" />
-	  <!--
+      <li Class="CompProperties_HiveExpand" />
       <li Class="CompProperties_HiveConversionRadius">
 		<radiusPerDayCurve>
 			<points>
@@ -180,7 +178,6 @@
 		</radiusPerDayCurve>
 		<harmFrequencyPerArea>0.015</harmFrequencyPerArea>
       </li>
-	  -->
     </comps>
   </ThingDef>
 

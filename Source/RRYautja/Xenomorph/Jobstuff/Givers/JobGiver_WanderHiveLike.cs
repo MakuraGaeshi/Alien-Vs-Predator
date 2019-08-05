@@ -1,5 +1,4 @@
 ﻿using RRYautja;
-using RRYautja.ExtensionMethods;
 using System;
 using System.Collections.Generic;
 using Verse;
@@ -45,54 +44,38 @@ namespace RimWorld
         // Token: 0x06000420 RID: 1056 RVA: 0x0002CD30 File Offset: 0x0002B130
         protected override IntVec3 GetWanderRoot(Pawn pawn)
         {
-            if (pawn.isXenomorph())
+            HiveLike hivelike = pawn.mindState.duty!=null && pawn.mindState.duty.focus!=null ? pawn.mindState.duty.focus.Thing as HiveLike: null;
+            if (hivelike!=null)
             {
-                HiveLike hivelike = pawn.mindState.duty != null && pawn.mindState.duty.focus != null ? pawn.mindState.duty.focus.Thing as HiveLike : null;
-                if (hivelike != null)
-                {
-                    return hivelike.Position;
-                }
-                /*
-                if (hivelike==null)
-                {
-                    hivelike = FindClosestHiveLike(pawn);
-                }
-                */
-                if (hivelike == null || !hivelike.Spawned)
-                {
-                    if (XenomorphUtil.HivelikesPresent(pawn.Map))
-                    {
-                        return XenomorphUtil.ClosestReachableHivelike(pawn).Position;
-                    }
-                    if (!XenomorphKidnapUtility.hiveslimepresent)
-                    {
-                        if (XenomorphKidnapUtility.TryFindGoodHiveLoc(pawn, out IntVec3 c))
-                        {
-                            return c;
-                        }
-                    }
-                    else if (!XenomorphUtil.ClosestReachableHiveSlime(pawn).DestroyedOrNull())
-                    {
-                        return XenomorphUtil.ClosestReachableHiveSlime(pawn).Position;
-                    }
-                    return pawn.Position;
-                }
-                //    Log.Message(string.Format("JobGiver_WanderHiveLike hivelike.Position: {0}", hivelike.Position));
                 return hivelike.Position;
             }
-            else if (pawn.isNeomorph())
+            /*
+            if (hivelike==null)
             {
-                Corpse corpse = (Corpse)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.Corpse), PathEndMode.Touch, TraverseParms.For(pawn, Danger.Deadly), 20f);
-                if (corpse!=null)
+                hivelike = FindClosestHiveLike(pawn);
+            }
+            */
+            if (hivelike == null || !hivelike.Spawned)
+            {
+                if (XenomorphUtil.HivelikesPresent(pawn.Map))
                 {
-                    return corpse.Position;
+                    return XenomorphUtil.ClosestReachableHivelike(pawn).Position;
+                }
+                if (!XenomorphKidnapUtility.hiveslimepresent)
+                {
+                    if (XenomorphKidnapUtility.TryFindGoodHiveLoc(pawn, out IntVec3 c))
+                    {
+                        return c;
+                    }
+                }
+                else if (!XenomorphUtil.ClosestReachableHiveSlime(pawn).DestroyedOrNull())
+                {
+                    return XenomorphUtil.ClosestReachableHiveSlime(pawn).Position;
                 }
                 return pawn.Position;
             }
-            else
-            {
-                return pawn.Position;
-            }
+            //    Log.Message(string.Format("JobGiver_WanderHiveLike hivelike.Position: {0}", hivelike.Position));
+            return hivelike.Position;
 		}
 	}
 }
