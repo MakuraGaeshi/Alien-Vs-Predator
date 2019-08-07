@@ -116,7 +116,7 @@ V1.0.0.7 Hotfix 19/07/2019
 fixed vanilla tribal apparel losing colour while equipped (forgot the textures)
 disabled some spam logging stuff
 
-V1.0.0.8 Not Yet Released
+V1.0.0.8 05/08/2019
 Fixed Egglayer JogGiver Error (Hopefully)
 Fire now kills off the purple Taint left behind hive ships
 Fixed all humanlikes ignoring terrain
@@ -136,3 +136,10 @@ Xenomorph Hive tunnels allow for a new Arrival mode for raids, when hive tunnels
 Xenomorph AI Tweaks
 Renamed Flamer projectile from Fire to AvPFlamer to avoid conflicts with other mods (Good call Pelador)
 small balance tweaks to a myriad of items
+
+V1.0.0.8 Hotfix 07/08/2019
+Fixed Error with hivetunnels when damaged/destroyed
+Fixed accidently reveted fix for WanderHivelike
+Fixed accidently reveted fix for Humanlikes ignoring terrain
+Fixed Error with JobGiver_EnterHiveTunnel when tunnel is destroyed
+Dormant Xenos Hives are now far less aggressive
