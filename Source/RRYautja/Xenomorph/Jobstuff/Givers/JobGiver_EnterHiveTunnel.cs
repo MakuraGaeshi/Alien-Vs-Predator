@@ -21,6 +21,10 @@ namespace RRYautja
             {
                 return null;
             }
+            if (Tunnel.HitPoints==0)
+            {
+                return null;
+            }
             if (Tunnel.hiveDormant && !_HiveGrid.HiveGuardlist.Contains(pawn))
             {
                 return new Job(XenomorphDefOf.RRY_Job_EnterHiveTunnel, Tunnel);

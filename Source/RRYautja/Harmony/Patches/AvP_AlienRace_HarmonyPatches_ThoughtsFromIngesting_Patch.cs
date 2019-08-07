@@ -31,7 +31,7 @@ namespace RRYautja
     public static class AvP_FoodUtility_ThoughtsFromIngesting_Patch
     {
         [HarmonyPostfix]
-        public static void ThoughtsFromIngestingPostPostfix(Pawn ingester, Thing foodSource, ref List<ThoughtDef> __result)
+        public static void ThoughtsFromIngestingPostfix(Pawn ingester, Thing foodSource, ref List<ThoughtDef> __result)
         {
             if (ingester.story.traits.HasTrait(tDef: AlienDefOf.Xenophobia) && ingester.story.traits.DegreeOfTrait(tDef: AlienDefOf.Xenophobia) == 1)
                 if (__result.Contains(item: ThoughtDefOf.AteHumanlikeMeatDirect) && foodSource.def.ingestible.sourceDef != ingester.def)
@@ -39,7 +39,6 @@ namespace RRYautja
                 else if (__result.Contains(item: ThoughtDefOf.AteHumanlikeMeatAsIngredient) &&
                          (foodSource.TryGetComp<CompIngredients>()?.ingredients.Any(predicate: td => FoodUtility.IsHumanlikeMeat(def: td) && td.ingestible.sourceDef != ingester.def) ?? false))
                     __result.Remove(item: ThoughtDefOf.AteHumanlikeMeatAsIngredient);
-
             if (!(ingester.def is ThingDef_AlienRace alienProps)) return;
 
             bool cannibal = ingester.story.traits.HasTrait(tDef: TraitDefOf.Cannibal);

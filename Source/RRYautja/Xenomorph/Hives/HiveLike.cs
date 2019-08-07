@@ -386,8 +386,12 @@ namespace RimWorld
 				{
 					lord2.ReceiveMemo(HiveLike.MemoBurnedBadly);
 				}
-			}
-			base.PostApplyDamage(dinfo, totalDamageDealt);
+            }
+            if (this.innerContainer.Count > 0)
+            {
+                this.EjectContents();
+            }
+            base.PostApplyDamage(dinfo, totalDamageDealt);
 		}
 
 		// Token: 0x06002679 RID: 9849 RVA: 0x0012431C File Offset: 0x0012271C
@@ -646,30 +650,7 @@ namespace RimWorld
         {
             if (this.innerContainer.Count > 0)
             {
-                float chance;
-                if (this.parentHiveLike == null)
-                {
-                    chance = 1f;
-                }
-                else
-                {
-                    chance = 0.35f;
-                }
-                if (Rand.ChanceSeeded(chance,AvPConstants.AvPSeed))
-                {
-                    this.EjectContents();
-                }
-                else
-                {
-                    if (this.parentHiveLike != null)
-                    {
-                        foreach (var item in this.innerContainer)
-                        {
-                            this.innerContainer.Remove(item);
-                            this.parentHiveLike.innerContainer.TryAddOrTransfer(item);
-                        }
-                    }
-                }
+                this.EjectContents();
             }
             this.innerContainer.ClearAndDestroyContents(DestroyMode.Vanish);
             base.Destroy(mode);

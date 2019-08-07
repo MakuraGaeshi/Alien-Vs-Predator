@@ -182,9 +182,9 @@ namespace RRYautja
                         this.damageEntities(thing2, Mathf.RoundToInt((float)this.AcidDamage * Rand.Range(0.5f, 1.25f)));
                     }
                 }
+                */
                 this.damageBuildings(Mathf.RoundToInt((float)this.AcidDamage * Rand.Range(0.5f, 1.25f)));
                 this.cachedLabelMouseover = null;
-                */
             }
         }
 
@@ -233,6 +233,12 @@ namespace RRYautja
             {
                 Building firstBuilding = GridsUtility.GetFirstBuilding(intVec, base.Map);
                 DamageInfo damageInfo;
+                /*
+                if (firstBuilding.GetStatValue(AvPDefOf.RRY_AcidResistance)>0)
+                {
+
+                }
+                */
                 damageInfo = new DamageInfo(XenomorphDefOf.RRY_AcidBurn, (float)amt, 0f, -1f, null, null, null, 0, null);
                 bool flag3 = firstBuilding != null;
                 bool flag4 = flag3;

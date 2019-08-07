@@ -121,6 +121,7 @@
     <Compile Include="util\AvPMatBases.cs" />
     <Compile Include="util\AvPExtensions.cs" />
     <Compile Include="util\AvPConstants.cs" />
+    <Compile Include="util\AvPDefOf.cs" />
     <Compile Include="util\CompPowerPlantSolarTurret.cs" />
     <Compile Include="util\DropThroughRoofUtility.cs" />
     <Compile Include="util\DropThoughRoofCellFinder.cs" />

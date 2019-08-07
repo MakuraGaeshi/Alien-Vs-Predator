@@ -157,7 +157,7 @@
   </RecordDef>
   
    <JobDef>
-    <defName>TR_Yautja_RearmTrapJob</defName>
+    <defName>TR_RearmTrapJob</defName>
     <driverClass>TrapsRearmable.JobDriver_RearmTrap</driverClass>
     <reportString>rearming Target.</reportString>
   </JobDef>

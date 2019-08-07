@@ -231,7 +231,7 @@ namespace RRYautja
                     return true;
                 }
             }
-
+            /*
             hiveshippresent = XenomorphUtil.HiveShipPresent(map);
             hiveshipReachable = !XenomorphUtil.ClosestReachableHiveShip(pawn).DestroyedOrNull();
             closestreachablehiveship = XenomorphUtil.ClosestReachableHiveShip(pawn);
@@ -243,7 +243,7 @@ namespace RRYautja
                     return true;
                 }
             }
-
+            */
             eggsPresent = XenomorphUtil.EggsPresent(map);
             eggsReachable = !XenomorphUtil.ClosestReachableEgg(pawn).DestroyedOrNull();
             closestReachableEgg = XenomorphUtil.ClosestReachableEgg(pawn);
