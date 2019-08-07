@@ -13,6 +13,7 @@ namespace RimWorld
         public override ThinkNode DeepCopy(bool resolve = true)
         {
             ThinkNode_ConditionalHive thinkNode_ConditionalHive = (ThinkNode_ConditionalHive)base.DeepCopy(resolve);
+            
             return thinkNode_ConditionalHive;
         }
 

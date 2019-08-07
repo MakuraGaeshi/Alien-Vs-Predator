@@ -35,6 +35,21 @@ namespace RimWorld
             }
         }
 
+        private HiveLike hiveLike
+        {
+            get
+            {
+                return (HiveLike)parent;
+            }
+        }
+
+        public CompSpawnerHiveLikes compSpawner
+        {
+            get
+            {
+                return hiveLike.TryGetComp<CompSpawnerHiveLikes>();
+            }
+        }
         // Token: 0x17000646 RID: 1606
         // (get) Token: 0x06002927 RID: 10535 RVA: 0x00138844 File Offset: 0x00136C44
         public MaintainableStage CurStage
@@ -59,8 +74,7 @@ namespace RimWorld
         {
             get
             {
-                HiveLike hive = this.parent as HiveLike;
-                return hive == null || hive.active;
+                return compSpawner.canSpawnHiveLikes;
             }
         }
 
@@ -74,14 +88,13 @@ namespace RimWorld
         public override void CompTick()
         {
             base.CompTick();
-            if (!this.Active)
+            if (this.Active)
             {
-                return;
-            }
-            this.ticksSinceMaintain++;
-            if (Find.TickManager.TicksGame % 250 == 0)
-            {
-                this.CheckTakeDamage();
+                this.ticksSinceMaintain++;
+                if (Find.TickManager.TicksGame % 250 == 0)
+                {
+                    this.CheckTakeDamage();
+                }
             }
         }
 
@@ -89,12 +102,11 @@ namespace RimWorld
         public override void CompTickRare()
         {
             base.CompTickRare();
-            if (!this.Active)
+            if (this.Active)
             {
-                return;
+                this.ticksSinceMaintain += 250;
+                this.CheckTakeDamage();
             }
-            this.ticksSinceMaintain += 250;
-            this.CheckTakeDamage();
         }
 
         // Token: 0x0600292C RID: 10540 RVA: 0x0013892C File Offset: 0x00136D2C

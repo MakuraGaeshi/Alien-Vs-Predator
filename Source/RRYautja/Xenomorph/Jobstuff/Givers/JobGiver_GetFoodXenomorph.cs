@@ -1,6 +1,8 @@
-﻿using System;
+﻿using RRYautja.ExtensionMethods;
+using System;
 using Verse;
 using Verse.AI;
+using Verse.AI.Group;
 
 namespace RimWorld
 {
@@ -68,12 +70,25 @@ namespace RimWorld
             bool canUseInventory = false;
             bool allowCorpse = true;
             bool flag3 = this.forceScanWholeMap;
+            if (pawn.GetLord() != null && pawn.GetLord() is Lord L)
+            {
+                if (L.CurLordToil is LordToil_DefendAndExpandHiveLike Hivelord)
+                {
+                    if (Hivelord.Data.assignedHiveLikes.TryGetValue(pawn) != null)
+                    {
+                        if (!Hivelord.Data.assignedHiveLikes.TryGetValue(pawn).active)
+                        {
+                            return null;
+                        }
+                    }
+                }
+            }
             if (!FoodUtility.TryFindBestFoodSourceFor(pawn, pawn, desperate, out thing, out thingDef, canRefillDispenser, canUseInventory, true, allowCorpse, true, pawn.IsWildMan(), flag3))
             {
                 return null;
             }
             Pawn pawn2 = thing as Pawn;
-            if (pawn2 != null)
+            if (pawn2 != null && pawn.CanSee(pawn2))
             {
                 return new Job(JobDefOf.PredatorHunt, pawn2)
                 {

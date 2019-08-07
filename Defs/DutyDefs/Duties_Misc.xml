@@ -621,12 +621,12 @@
 			
 			<!-- Lay eggs you need to -->
 			<li Class="JobGiver_LayXenoEgg" />
-			
+			<!--
 			<li Class="JobGiver_GetFoodXenomorph"> 
 			  <minCategory>Fed</minCategory>
 			  
 			</li>
-			
+			-->
 				<li Class="JobGiver_ClearHiveEggZone"> 
 				  <ClearingRange>2</ClearingRange>
 				</li>
@@ -692,10 +692,15 @@
 			<li Class="JobGiver_XenomorphHosthunter"> 
 			  <HuntingRange>10</HuntingRange>
 			</li>
+			
 			<li Class="JobGiver_MaintainHiveLikes">
 			  <onlyIfDamagingState>true</onlyIfDamagingState>
 			</li>
 			
+		  
+		<li Class="ThinkNode_ConditionalHiveActive">
+		  <subNodes>
+		  
 			<!-- Queen -->
 			<li Class="ThinkNode_ConditionalPawnKind">
 			  <pawnKind>RRY_Xenomorph_Queen</pawnKind>
@@ -1098,6 +1103,9 @@
 		  </subNodes>
 		</li>
 
+		  </subNodes>
+		</li>
+		
 		<li Class="ThinkNode_ConditionalSkyDarker">
 		  <Brightness>0.5</Brightness>
 		  <subNodes>

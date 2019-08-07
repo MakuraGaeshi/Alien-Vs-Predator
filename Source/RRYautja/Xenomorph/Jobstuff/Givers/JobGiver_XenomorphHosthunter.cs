@@ -79,7 +79,7 @@ namespace RimWorld
 
 
             Pawn pawn2 = null;
-            if (_Xenomorph!=null)
+            if (_Xenomorph!=null && hive.hiveDormant)
             {
                 pawn2 = _Xenomorph.BestPawnToHuntForPredator(pawn, false, true);
             }
