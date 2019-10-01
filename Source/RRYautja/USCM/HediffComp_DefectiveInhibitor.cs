@@ -8,7 +8,7 @@ namespace RRYautja
 {
     // Token: 0x02000010 RID: 16
     public class SynthTraitEntry
-    {
+    { 
         public TraitDef def
         {
             get
@@ -150,7 +150,7 @@ namespace RRYautja
             get
             {
                 bool flag1 = OriginalTraits.Any(x => Pawn.story.traits.HasTrait(x.def));
-                bool flag2 = AddedSpectrumTraits.Any(x => Props.traitsToGive.Any(y => y.def == x.def && ((y.degree > 0 && y.def.degreeDatas.Any(z => z.degree == x.Degree + 1)) || (y.degree < 0 && y.def.degreeDatas.Any(z => z.degree == x.Degree - 1)))));
+                bool flag2 = AddedSpectrumTraits.Any(x => Props.traitsToGive.Any(y=> y.def == x.def && ((y.degree > 0 && y.def.degreeDatas.Any(z => z.degree == x.Degree + 1))|| (y.degree < 0 && y.def.degreeDatas.Any(z => z.degree == x.Degree - 1)))));
                 return flag1 || flag2;
             }
         }
@@ -173,30 +173,30 @@ namespace RRYautja
         public override void CompPostTick(ref float severityAdjustment)
         {
             base.CompPostTick(ref severityAdjustment);
-            if (ticksSinceTraitGain >= ticksTillTraitGain)
+            if (ticksSinceTraitGain>=ticksTillTraitGain)
             {
-                //    if (Selected) Log.Message(string.Format("{0} Trait change on {1} Traits: {2}/{3}\n active: {4}, Originals: {5}/{6}, Added: {7}", this.parent.LabelCap, Pawn.LabelShortCap, CurTraitCount, MaxTraits, Active, OriRemaining, OriTraitCount, AddedTraitCount));
+            //    if (Selected) Log.Message(string.Format("{0} Trait change on {1} Traits: {2}/{3}\n active: {4}, Originals: {5}/{6}, Added: {7}", this.parent.LabelCap, Pawn.LabelShortCap, CurTraitCount, MaxTraits, Active, OriRemaining, OriTraitCount, AddedTraitCount));
                 if (MaxTraits >= CurTraitCount && Active)
                 {
-                    SynthTraitEntry traitEntry = GenCollection.RandomElementByWeight(Props.traitsToGive, (x => x.chance));
+                    SynthTraitEntry traitEntry = GenCollection.RandomElementByWeight(Props.traitsToGive, (x=> x.chance));
                     TraitDef traitDef = traitEntry.def;
-                    //    if (Selected) Log.Message(string.Format("{0} rolled {1}", Pawn, traitDef));
+                //    if (Selected) Log.Message(string.Format("{0} rolled {1}", Pawn, traitDef));
                     Trait replacedtrait = null;
                     if (CurTraitCount == MaxTraits)
                     {
                         replacedtrait = OriRemaining > 0 ? OriTraitsRemaining.RandomElement() : AddedSpectrumTraits.FindAll(x => Props.traitsToGive.Any(y => y.def == x.def && ((y.degree > 0 && y.def.degreeDatas.Any(z => z.degree == x.Degree + 1)) || (y.degree < 0 && y.def.degreeDatas.Any(z => z.degree == x.Degree - 1))))).RandomElement();
                         if (replacedtrait == null && CurTraitCount == MaxTraits)
                         {
-                            //    if (Selected) Log.Message(string.Format("{0} failed to find a trait to replace with {1}", Pawn, traitDef));
+                        //    if (Selected) Log.Message(string.Format("{0} failed to find a trait to replace with {1}", Pawn, traitDef));
                             return;
                         }
-                        //    if (Selected) Log.Message(string.Format("{0} replacing {1} with {2}", Pawn, replacedtrait, traitDef));
+                    //    if (Selected) Log.Message(string.Format("{0} replacing {1} with {2}", Pawn, replacedtrait, traitDef));
                     }
                     if (Pawn.story.traits.HasTrait(traitDef))// || (replacedtrait!=null && replacedtrait.def.degreeDatas.Count>1))
                     {
                         Trait trait = Pawn.story.traits.GetTrait(traitDef);
-                        //   if (Selected) Log.Message(string.Format("{0} already has {1}",Pawn, trait.LabelCap));
-                        if (traitDef.degreeDatas.Count > 1)
+                     //   if (Selected) Log.Message(string.Format("{0} already has {1}",Pawn, trait.LabelCap));
+                        if (traitDef.degreeDatas.Count>1)
                         {
                             string spectxt = string.Format("{0} is a spectrum trait at Degree {1}", trait.LabelCap, trait.Degree);
                             int targetDegree = trait.Degree;
@@ -204,12 +204,12 @@ namespace RRYautja
                             bool specdec = traitEntry.degree < 0 && traitEntry.def.degreeDatas.Any(x => x.degree == trait.Degree - 1);
                             if (specinc)
                             {
-                                targetDegree = +traitEntry.degree;
+                                targetDegree =+ traitEntry.degree;
                                 spectxt = spectxt + " " + string.Format("specinc:{0} target Degree {1}", specinc, targetDegree);
                             }
                             else if (specdec)
                             {
-                                targetDegree = +traitEntry.degree;
+                                targetDegree =+ traitEntry.degree;
                                 spectxt = spectxt + " " + string.Format("specdec:{0} target Degree {1}", specdec, targetDegree);
                             }
                             else
@@ -217,7 +217,7 @@ namespace RRYautja
                                 targetDegree = +traitEntry.degree;
                                 spectxt = spectxt + " " + string.Format("target Degree {2} is max", specinc, specdec, targetDegree);
                             }
-                            //    if (Selected) Log.Message(spectxt);
+                        //    if (Selected) Log.Message(spectxt);
                             if (trait.Degree == traitEntry.degree && traitEntry.degree != 0)
                             {
                                 int degree = traitEntry.degree;
@@ -265,7 +265,7 @@ namespace RRYautja
             }
             ticksSinceTraitGain++;
         }
-
+        
 
         public void GainTrait(Pawn pawn, Trait trait)
         {
@@ -279,7 +279,7 @@ namespace RRYautja
             {
                 pawn.workSettings.Notify_GainedTrait();
             }
-            //    pawn.story.Notify_TraitChanged();
+        //    pawn.story.Notify_TraitChanged();
             if (pawn.skills != null)
             {
                 pawn.skills.Notify_SkillDisablesChanged();

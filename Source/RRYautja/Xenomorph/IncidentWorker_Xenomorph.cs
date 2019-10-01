@@ -169,25 +169,21 @@ namespace RimWorld
             text = text.AdjustedFor(refugee, "PAWN");
             PawnRelationUtility.TryAppendRelationsWithColonistsInfo(ref text, refugee);
             DiaNode diaNode = new DiaNode(text);
-            DiaOption diaOption = new DiaOption("RefugeeChasedInitial_Accept".Translate())
+            DiaOption diaOption = new DiaOption("RefugeeChasedInitial_Accept".Translate());
+            diaOption.action = delegate ()
             {
-                action = delegate ()
-                {
-                    GenSpawn.Spawn(refugee, spawnSpot, map, WipeMode.Vanish);
-                    refugee.SetFaction(Faction.OfPlayer, null);
-                    CameraJumper.TryJump(refugee);
-                    QueuedIncident qi = new QueuedIncident(new FiringIncident(IncidentDefOf.RaidEnemy, null, raidParms), Find.TickManager.TicksGame + IncidentWorker_RefugeeChasedXenomorph.RaidDelay.RandomInRange, 0);
-                    Find.Storyteller.incidentQueue.Add(qi);
-                },
-                resolveTree = true
+                GenSpawn.Spawn(refugee, spawnSpot, map, WipeMode.Vanish);
+                refugee.SetFaction(Faction.OfPlayer, null);
+                CameraJumper.TryJump(refugee);
+                QueuedIncident qi = new QueuedIncident(new FiringIncident(IncidentDefOf.RaidEnemy, null, raidParms), Find.TickManager.TicksGame + IncidentWorker_RefugeeChasedXenomorph.RaidDelay.RandomInRange, 0);
+                Find.Storyteller.incidentQueue.Add(qi);
             };
+            diaOption.resolveTree = true;
             diaNode.options.Add(diaOption);
             string text2 = "RefugeeChasedRejected".Translate(refugee.LabelShort, refugee);
             DiaNode diaNode2 = new DiaNode(text2);
-            DiaOption diaOption2 = new DiaOption("OK".Translate())
-            {
-                resolveTree = true
-            };
+            DiaOption diaOption2 = new DiaOption("OK".Translate());
+            diaOption2.resolveTree = true;
             diaNode2.options.Add(diaOption2);
             DiaOption diaOption3 = new DiaOption("RefugeeChasedInitial_Reject".Translate());
             diaOption3.action = delegate ()

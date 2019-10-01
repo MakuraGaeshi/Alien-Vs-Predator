@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-
+<!--============================================= Yautja =============================================-->
   <TraitDef>
     <defName>RRY_Berserker</defName>
         <ignoreConfigErrors>true</ignoreConfigErrors>
@@ -35,12 +35,34 @@
       </li>
     </degreeDatas>
     <conflictingTraits>
-			<li>Wimp</li>
+		<li>Wimp</li>
     </conflictingTraits>
     <requiredWorkTags>
-      <li>Violent</li>
+		<li>Violent</li>
     </requiredWorkTags>
   </TraitDef>
   
+
+   <!--============================================= Artificials =============================================-->
+  
+   
+  
+  <TraitDef>
+    <defName>RRY_DefectiveInhibitor</defName>
+        <ignoreConfigErrors>true</ignoreConfigErrors>
+	<!-- 0.08 -->
+    <commonality>0.00</commonality>
+    <degreeDatas>
+      <li>
+        <label>Defective Inhibitor</label>
+        <description>[PAWN_nameDef] has a defective inhibitor.</description>
+		
+       </li>
+    </degreeDatas>
+    <conflictingTraits>
+	</conflictingTraits>
     
+  </TraitDef>
+  
+
 </Defs>

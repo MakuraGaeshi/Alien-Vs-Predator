@@ -1,5 +1,4 @@
 ﻿using RRYautja;
-using RRYautja.settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +13,6 @@ namespace RimWorld
         // Token: 0x060004D1 RID: 1233 RVA: 0x0003100C File Offset: 0x0002F40C
         protected override Job TryGiveJob(Pawn pawn)
         {
-            if (!SettingsHelper.latest.AllowPredalienImpregnations)
-            {
-                return null;
-            }
         //    Log.Message(string.Format("JobGiver_PredalienImpregnate TryGiveJob"));
             Pawn t;
             if (XenomorphKidnapUtility.TryFindGoodImpregnateVictim(pawn, 18f, out t, null) && !GenAI.InDangerousCombat(pawn))

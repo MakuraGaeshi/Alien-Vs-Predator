@@ -59,25 +59,22 @@ namespace RRYautja
             return victim != null;
         }
 
-        public static bool TryFindGoodHiveLoc(Pawn pawn, Pawn victim, out IntVec3 c, bool AllowHiveShip = false)
+        public static bool TryFindGoodHiveLoc(Pawn pawn, Pawn victim, out IntVec3 c)
         {
             Map map = pawn.Map;
             c = IntVec3.Invalid;
             bool selected = map != null ? Find.Selector.SelectedObjects.Contains(pawn) && (Prefs.DevMode) : false;
             ThingDef named = victim.RaceProps.Humanlike ? XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon : XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon;
 
-            if (AllowHiveShip)
+            hiveshippresent = XenomorphUtil.HiveShipPresent(map);
+            hiveshipReachable = !XenomorphUtil.ClosestReachableHiveShip(pawn).DestroyedOrNull();
+            closestreachablehiveship = XenomorphUtil.ClosestReachableHiveShip(pawn);
+            if (c == IntVec3.Invalid && hiveshippresent && hiveshipReachable)
             {
-                hiveshippresent = XenomorphUtil.HiveShipPresent(map);
-                hiveshipReachable = !XenomorphUtil.ClosestReachableHiveShip(pawn).DestroyedOrNull();
-                closestreachablehiveship = XenomorphUtil.ClosestReachableHiveShip(pawn);
-                if (c == IntVec3.Invalid && hiveshippresent && hiveshipReachable)
-                {
-                    if (Prefs.DevMode && DebugSettings.godMode) Log.Message(string.Format("(c == IntVec3.Invalid && hiveshippresent && hiveshipReachable)"));
-                    c = closestreachablehiveship.Position;
-                    if (Prefs.DevMode && DebugSettings.godMode) Log.Message(string.Format("(c == {0})", c));
-                    return true;
-                }
+                if (Prefs.DevMode && DebugSettings.godMode) Log.Message(string.Format("(c == IntVec3.Invalid && hiveshippresent && hiveshipReachable)"));
+                c = closestreachablehiveship.Position;
+                if (Prefs.DevMode && DebugSettings.godMode) Log.Message(string.Format("(c == {0})",c));
+                return true;
             }
 
             hivelikesPresent = XenomorphUtil.HivelikesPresent(map);

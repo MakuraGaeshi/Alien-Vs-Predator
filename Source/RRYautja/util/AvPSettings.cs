@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Reflection;
 using Harmony;
-using RRYautja.ExtensionMethods;
 using UnityEngine;
 using Verse;
 
@@ -54,8 +53,7 @@ namespace RRYautja.settings
                 "Restart before playing to ensure your changes take effect.");
             Widgets.CheckboxLabeled(inRect.TopHalf().TopHalf().TopHalf().BottomHalf().ContractedBy(4), "RRY_AllowYautjaFaction".Translate(), ref settings.AllowYautjaFaction);
             Widgets.CheckboxLabeled(inRect.TopHalf().TopHalf().BottomHalf().TopHalf().ContractedBy(4), "RRY_AllowXenomorphFaction".Translate(), ref settings.AllowXenomorphFaction);
-            Widgets.CheckboxLabeled(inRect.TopHalf().TopHalf().BottomHalf().BottomHalf().LeftHalf().ContractedBy(4), "RRY_AllowHiddenInfections".Translate(), ref settings.AllowHiddenInfections);
-            Widgets.CheckboxLabeled(inRect.TopHalf().TopHalf().BottomHalf().BottomHalf().RightHalf().ContractedBy(4), "RRY_AllowPredalienImpregnations".Translate(), ref settings.AllowHiddenInfections);
+            Widgets.CheckboxLabeled(inRect.TopHalf().TopHalf().BottomHalf().BottomHalf().ContractedBy(4), "RRY_AllowHiddenInfections".Translate(), ref settings.AllowHiddenInfections);
 
             this.settings.fachuggerRemovalFailureDeathChance = Widgets.HorizontalSlider(inRect.TopHalf().BottomHalf().TopHalf().TopHalf().ContractedBy(4),
                 this.settings.fachuggerRemovalFailureDeathChance, 0f, 1f, true,
@@ -77,24 +75,16 @@ namespace RRYautja.settings
             List<ThingDef> suitablehostDefs = DefDatabase<ThingDef>.AllDefsListForReading.FindAll(xx => XenomorphUtil.isInfectableThing(xx));
             Widgets.Label(inRect.TopHalf().BottomHalf().BottomHalf().BottomHalf().LeftHalf().ContractedBy(4), "RRY_SuitableHostKinds".Translate(suitablehostDefs.Count));
             Widgets.BeginScrollView(inRect.BottomHalf().LeftHalf().ContractedBy(4), ref this.pos, new Rect(inRect.x, inRect.y, num, suitablehostDefs.Count * 22f), true);
-            foreach (ThingDef pkd in suitablehostDefs.OrderBy(xy=> xy.label))
+            foreach (ThingDef pkd in suitablehostDefs)
             {
-                string text = pkd.LabelCap;
-                /*
-                text += " possible Xenoforms:";
-                foreach (var item in pkd.resultingXenomorph())
-                {
-                    text += " "+item.LabelCap;
-                }
-                */
-                Widgets.Label(new Rect(x, num2, num, 32f), text);
+                Widgets.Label(new Rect(x, num2, num, 32f), pkd.LabelCap);
                 num2 += 22f;
             }
             Widgets.EndScrollView();
             List<PawnKindDef> WorthyKillDefs = DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(xx => YautjaBloodedUtility.WorthyKill(xx));
             Widgets.Label(inRect.TopHalf().BottomHalf().BottomHalf().BottomHalf().RightHalf().ContractedBy(4), "RRY_WorthyKillKinds".Translate(WorthyKillDefs.Count));
             Widgets.BeginScrollView(inRect.BottomHalf().RightHalf().ContractedBy(4), ref this.pos2, new Rect(inRect.x, inRect.y, num, WorthyKillDefs.Count * 22f), true);
-            foreach (PawnKindDef pkd in WorthyKillDefs.OrderBy(xz=> YautjaBloodedUtility.GetMark(xz).stages[0].label))
+            foreach (PawnKindDef pkd in WorthyKillDefs)
             {
                 Widgets.Label(new Rect(x, num3, num, 32f), YautjaBloodedUtility.GetMark(pkd).stages[0].label + " : "+ pkd.LabelCap);
                 num3 += 22f;
@@ -120,7 +110,7 @@ namespace RRYautja.settings
     
     class AvPSettings : ModSettings
     {
-        public bool AllowXenomorphFaction = true, AllowYautjaFaction = true, AllowHiddenInfections = true, AllowPredalienImpregnations = true;
+        public bool AllowXenomorphFaction = true, AllowYautjaFaction = true, AllowHiddenInfections = true;
         public float fachuggerRemovalFailureDeathChance= 0.35f, embryoRemovalFailureDeathChance = 0.35f;
 
         public override void ExposeData()
@@ -129,7 +119,6 @@ namespace RRYautja.settings
             Scribe_Values.Look(ref this.AllowXenomorphFaction, "AllowXenomorphFaction", true);
             Scribe_Values.Look(ref this.AllowYautjaFaction, "AllowYautjaFaction", true);
             Scribe_Values.Look(ref this.AllowHiddenInfections, "AllowHiddenInfections", true);
-            Scribe_Values.Look(ref this.AllowPredalienImpregnations, "AllowPredalienImpregnations", true);
             Scribe_Values.Look<float>(ref this.fachuggerRemovalFailureDeathChance, "fachuggerRemovalFailureDeathChance", 0.35f);
             Scribe_Values.Look<float>(ref this.embryoRemovalFailureDeathChance, "embryoRemovalFailureDeathChance", 0.35f);
         }

@@ -124,10 +124,6 @@
       <li>PlaceWorker_Heater</li>
     </placeWorkers>
     <comps>
-	<!--
-      <li Class="RRYautja.CompProperties_HiveTunnel">
-      </li>
-	  -->
       <li Class="CompProperties_SpawnerHiveLikes" />
       <li Class="CompProperties_Spawner">
         <thingToSpawn>RRY_EggXenomorphFertilized</thingToSpawn>
@@ -170,9 +166,7 @@
         <spawnMtbHours>4</spawnMtbHours>
         <spawnRadius>5</spawnRadius>
       </li>
-	  
-      <li Class="CompProperties_HiveCreep" />
-	  <!--
+      <li Class="CompProperties_HiveExpand" />
       <li Class="CompProperties_HiveConversionRadius">
 		<radiusPerDayCurve>
 			<points>
@@ -184,7 +178,6 @@
 		</radiusPerDayCurve>
 		<harmFrequencyPerArea>0.015</harmFrequencyPerArea>
       </li>
-	  -->
     </comps>
   </ThingDef>
 
@@ -262,10 +255,6 @@
         <ticksHealthy>60000</ticksHealthy>
         <ticksNeedsMaintenance>40000</ticksNeedsMaintenance>
         <damagePerTickRare>10</damagePerTickRare>
-      </li>
-	  -->
-	  <!--
-      <li Class="RRYautja.CompProperties_HiveTunnel">
       </li>
 	  -->
       <li Class="CompProperties_SpawnerFilth">

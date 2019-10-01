@@ -39,6 +39,24 @@
     </filth>
   </ThingDef>  
   
+	<ThingDef ParentName="BaseFilth">
+    <defName>RRY_FilthBloodSynth</defName>
+    <label>blood</label>
+    <statBases>
+      <Beauty>-15</Beauty>
+      <Cleanliness>-12</Cleanliness>
+    </statBases>
+    <graphicData>
+      <texPath>Things/Filth/Spatter</texPath>
+      <color>(878, 878, 878, 180)</color>
+    </graphicData>
+    <filth>
+      <rainWashes>true</rainWashes>
+      <cleaningWorkToReduceThickness>100</cleaningWorkToReduceThickness>
+      <canFilthAttach>true</canFilthAttach>
+    </filth>
+  </ThingDef>    
+  
   <ThingDef ParentName="BaseFilth">
     <defName>RRY_FilthBloodNeomorph</defName>
     <label>blood</label>
@@ -50,6 +68,8 @@
       <texPath>Things/Filth/Spatter</texPath>
       <color>(250, 225, 0, 180)</color>
     </graphicData>
+	<tickerType>Normal</tickerType> 
+	<thingClass>RRYautja.Filth_AddAcidDamage</thingClass>
     <filth>
       <rainWashes>true</rainWashes>
       <cleaningWorkToReduceThickness>90</cleaningWorkToReduceThickness>

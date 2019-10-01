@@ -5,7 +5,6 @@ using Verse;
 using Verse.AI;
 using System.Linq;
 using RRYautja.settings;
-using RRYautja.ExtensionMethods;
 
 namespace RRYautja
 {
@@ -14,6 +13,7 @@ namespace RRYautja
     {
         static CorpseModification()
         {
+
             DefDatabase<ThingDef>.AllDefsListForReading.ForEach(action: td =>
             {
                 if (td.IsCorpse)
@@ -64,7 +64,7 @@ namespace RRYautja
                             });
                             if (td.HasComp(typeof(Comp_Yautja)))
                             {
-                            //    Log.Message(string.Format("Added Comp_Yautja to: {0}", td.label));
+                                Log.Message(string.Format("Added Comp_Yautja to: {0}", td.label));
                             }
                         }
                         /*
@@ -78,22 +78,10 @@ namespace RRYautja
                     }
                 }
             });
-            /*
-            DefDatabase<ThingDef>.AllDefsListForReading.ForEach(action: td => 
+            DefDatabase<PawnKindDef>.AllDefsListForReading.ForEach(action: td => 
             {
-                if (td.race!=null && td.isPotentialHost())
-                {
-                    string text = string.Format("{0}'s possible Xenoforms", td.LabelCap);
-                    Log.Message(text);
 
-                    foreach (var item in td.resultingXenomorph())
-                    {
-                        text = item.LabelCap;
-                        Log.Message(text);
-                    }
-                }
             });
-            */
         }
     }
 
@@ -180,24 +168,25 @@ namespace RRYautja
             bool selected = Find.Selector.SelectedObjects.Contains(p);
             if (p.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_BloodedUM))
             {
+            //    Log.Message(string.Format("has RRY_Hediff_BloodedUM"));
                 Hediff blooded = p.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_BloodedUM);
                 Comp_Yautja _Yautja = p.TryGetComp<Comp_Yautja>();
                 HediffWithComps hediff = (HediffWithComps)blooded;
+#if DEBUG
+            //    if (selected) Log.Message(string.Format("has {0} comp", hediff.comps.Count));
+#endif
                 HediffComp_BloodedYautja comp = blooded.TryGetComp<HediffComp_BloodedYautja>();
-                /*
-                if (selected) Log.Message(string.Format("{0}", _Yautja.corpse));
-                if (selected) Log.Message(string.Format("{0}", _Yautja.pawn.Corpse));
-                if (selected) Log.Message(string.Format("{0}", _Yautja.pawn));
-                if (selected) Log.Message(string.Format("{0}", _Yautja.MarkedhediffDef));
-                */
-                ThingDef def = _Yautja.pawn.Corpse.InnerPawn.kindDef.race;
+#if DEBUG
+            //    if (selected) Log.Message(string.Format("{0}", _Yautja.corpse));
+            //    if (selected) Log.Message(string.Format("{0}", _Yautja.pawn));
+            //    if (selected) Log.Message(string.Format("{0}", _Yautja.MarkedhediffDef));
+#endif
+                ThingDef def = _Yautja.corpse.InnerPawn.kindDef.race;
                 if (this.parent is Corpse corpse)
                 {
                     this.corpse = corpse;
-                    /*
-                    Log.Message(string.Format("this.parent is Corpse corpse"));
-                    Log.Message(string.Format("corpse.InnerPawn.kindDef.race: {0}, def: {1}", corpse.InnerPawn.kindDef.race, def));
-                    */
+                    //    Log.Message(string.Format("this.parent is Corpse corpse"));
+                    //    Log.Message(string.Format("corpse.InnerPawn.kindDef.race: {0}, def: {1}", corpse.InnerPawn.kindDef.race, def));
                     if (corpse.InnerPawn.kindDef.race == def)
                     {
                         failReason = null;

@@ -56,29 +56,18 @@ namespace RimWorld
         // Xenomorph FactionDefs
         public static FactionDef RRY_Xenomorph;
 
-        // Xenomorph PawnsArrivalModeDefs 
-        public static PawnsArrivalModeDef RRY_RandomDropThroughRoof;
-        public static PawnsArrivalModeDef RRY_DropThroughRoofNearPower;
-        public static PawnsArrivalModeDef RRY_RandomEnterFromTunnel;
-
-        public static RaidStrategyDef RRY_PowerCut;
-
         // Xenomorph JobDefs 
         public static JobDef RRY_Job_LayXenomorphEgg;
         public static JobDef RRY_Job_XenomorphKidnap;
         public static JobDef RRY_Job_PredalienImpregnate;
         public static JobDef RRY_Job_MaintainLike;
         public static JobDef RRY_Job_ConstructHiveWall;
-        public static JobDef RRY_Job_DestroyCocoon; 
-        public static JobDef RRY_Neomorph_Ingest;
-        public static JobDef RRY_Job_EnterHiveTunnel;
+        public static JobDef RRY_Job_DestroyCocoon;
 
-        // Xenomorph DutyDefs   
+        // Xenomorph DutyDefs  
         public static DutyDef RRY_DefendHiveLoc;
         public static DutyDef RRY_XenomorphAssaultColony;
-        public static DutyDef RRY_AssaultColony_CutPower;
         public static DutyDef RRY_DefendHiveLikeAggressively;
-
 
         // Xenomorph ThingDefs  
         public static ThingDef RRY_Xenomorph_Humanoid_Cocoon;
@@ -108,29 +97,12 @@ namespace RimWorld
         // Xenomorph BloodDefs 
         public static ThingDef RRY_FilthBloodXenomorph;
 
-        // Xenomorph LifeStageDefs 
-        public static LifeStageDef RRY_XFacehuggerFullyFormed;
-        public static LifeStageDef RRY_XenomorphChestBursterBaby;
-        public static LifeStageDef RRY_XenomorphChestBursterBig;
-        public static LifeStageDef RRY_XenomorphFormedBaby;
-        public static LifeStageDef RRY_XenomorphFormedMid;
-        public static LifeStageDef RRY_XenomorphFullyFormed;
-
-        // Neomorph LifeStageDefs 
-        public static LifeStageDef RRY_NeomorphBloodBursterBaby;
-        public static LifeStageDef RRY_NeomorphBloodBursterBig;
-        public static LifeStageDef RRY_NeomorphFormedBaby;
-        public static LifeStageDef RRY_NeomorphFormedMid;
-        public static LifeStageDef RRY_NeomorphFullyFormed;
-
         // Xenomorph IncidentDefs RRY_XenomorphInfestation
         public static IncidentDef RRY_Neomorph_FungusSprout;
         public static IncidentDef RRY_Neomorph_FungusSprout_Hidden;
         public static IncidentDef RRY_XenomorphInfestation;
         public static IncidentDef RRY_XenomorphCrashedShipPartCrash;
-    //    public static IncidentDef RRY_RaidEnemy_PowerCut_Xenomorph;
-        public static IncidentDef RRY_PowerCut_Xenomorph;
-
+        
         // Xenomorph BodyPartDefs
         public static BodyPartDef RRY_Xeno_TailSpike;
         public static BodyPartDef RRY_Xeno_Shell;

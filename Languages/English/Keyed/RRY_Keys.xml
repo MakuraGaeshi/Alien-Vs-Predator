@@ -3,8 +3,7 @@
   <!-- Mod Settings -->
   <RRY_AllowYautjaFaction>Enable Yautja: this Should enable all Yautja factions, Scenarios, related incidents and events</RRY_AllowYautjaFaction>
   <RRY_AllowXenomorphFaction>Enable Xenomorphs: this Should enable all Xenomorph related incidents and events</RRY_AllowXenomorphFaction>
-  <RRY_AllowHiddenInfections>Allow Hidden Impregnations:</RRY_AllowHiddenInfections>
-  <RRY_AllowPredalienImpregnations>Allow Predalien Impregnation of Females:</RRY_AllowPredalienImpregnations>
+  <RRY_AllowHiddenInfections>Allow Hidden Impregnations: Disable this to stop pawns spawning impregnated</RRY_AllowHiddenInfections>
   <RRY_FacehuggerRemovalDeathChance>Facehugger Removal Death Chance: {0}% of patient death on fail</RRY_FacehuggerRemovalDeathChance>
   <RRY_EmbryoRemovalDeathChance>Embryo Removal Death Chance: {0}% of patient death on fail</RRY_EmbryoRemovalDeathChance>
   <RRY_SuitableHostKinds>Potential Hosts: {0}</RRY_SuitableHostKinds>

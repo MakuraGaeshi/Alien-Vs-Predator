@@ -1,4 +1,3 @@
-V1.0.0.0 Hotfix
 fps drop on Queen Death fix
 Xenomorph Infestations incident letter should now allow you to jump to the location of the hive
 increased facehugger Max Prey Body size from 10 to 30
@@ -24,7 +23,7 @@ added Resource Box framework (not used Yet)
 More Xenos Ai Tweaks
 probobly other little fixes ive forgotten
 
-V1.0.0.2 20/06/2019
+V1.0.0.2 
 Slight balance tweaks to some weapons
 Marking System Support Extended to Humans and other alien races (right click on the non yautja with a yautja selected and an option should appear)
 Added Textures for Yautja/Colonist Statue mod compatability
@@ -93,7 +92,7 @@ Added scatter shot effect for flamers
 Added No camera shake explosions
 Tweaked Box code - For USCM Starter Gear
 
-V1.0.0.6 09/07/2019
+V1.0.0.6
 Acid Pathfinding tweaks
 Mod settings should now default to the correct values (active for all toggles and 35% for sliders)
 Shouldercannon comp should no longer tick while in a null map

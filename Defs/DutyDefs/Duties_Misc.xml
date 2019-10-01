@@ -70,26 +70,6 @@
   </DutyDef>
   
 -->
-
-
-  <DutyDef>
-    <defName>RRY_AssaultColony_CutPower</defName>
-    <alwaysShowWeapon>true</alwaysShowWeapon>
-    <thinkNode Class="ThinkNode_Priority">
-      <subNodes>
-        <li Class="JobGiver_AICutColonyPowerClose" />
-        <li Class="JobGiver_AIFightEnemies">
-          <targetAcquireRadius>65</targetAcquireRadius>
-          <targetKeepRadius>72</targetKeepRadius>
-        </li>
-        <li Class="JobGiver_AIGotoNearestHostile" />
-        <li Class="JobGiver_AISapper">
-          <canMineNonMineables>false</canMineNonMineables>
-        </li>
-      </subNodes>
-    </thinkNode>
-  </DutyDef>
-
   <DutyDef>
     <defName>RRY_DefendHiveLoc</defName>
     <alwaysShowWeapon>true</alwaysShowWeapon>
@@ -120,9 +100,9 @@
 			<!-- Lay eggs you need to -->
 			<li Class="JobGiver_LayXenoEgg" />
 			
-			<li Class="JobGiver_GetFoodXenomorph"> 
+			<li Class="JobGiver_XenoGetFood"> 
 			  <minCategory>Fed</minCategory>
-			  
+			  <forceScanWholeMap>false</forceScanWholeMap>
 			</li>
 			
 				<li Class="JobGiver_ClearHiveEggZone"> 
@@ -144,8 +124,9 @@
 		  <subNodes>
 			<!-- Lay eggs you need to -->
 			<li Class="JobGiver_LayXenoEgg" />
-			<li Class="JobGiver_GetFoodXenomorph"> 
+			<li Class="JobGiver_XenoGetFood"> 
 			  <minCategory>Fed</minCategory>
+			  <forceScanWholeMap>false</forceScanWholeMap>
 			</li>
 				<li Class="JobGiver_ClearHiveEggZone"> 
 				  <ClearingRange>2</ClearingRange>
@@ -162,9 +143,9 @@
 		
 		<li Class="ThinkNode_ConditionalNotGrown">
 		  <subNodes>
-			<li Class="JobGiver_GetFoodXenomorph"> 
+			<li Class="JobGiver_XenoGetFood"> 
 			  <minCategory>Fed</minCategory>
-			  
+			  <forceScanWholeMap>false</forceScanWholeMap>
 			</li>
 			<li Class="JobGiver_GetRest" />
 		  </subNodes>
@@ -545,7 +526,7 @@
             <li Class="ThinkNode_PrioritySorter">
               <subNodes>
 			  <!--
-                <li Class="JobGiver_GetFoodXenomorph" />
+                <li Class="JobGiver_XenoGetFood" />
                 <li Class="JobGiver_GetRest" />
 				-->
               </subNodes>
@@ -624,7 +605,7 @@
 			<!--
 			<li Class="JobGiver_GetFoodXenomorph"> 
 			  <minCategory>Fed</minCategory>
-			  
+			  <forceScanWholeMap>false</forceScanWholeMap>
 			</li>
 			-->
 				<li Class="JobGiver_ClearHiveEggZone"> 
@@ -650,8 +631,9 @@
 			
 			<!-- Lay eggs you need to -->
 			<li Class="JobGiver_LayXenoEgg" />
-			<li Class="JobGiver_GetFoodXenomorph"> 
+			<li Class="JobGiver_XenoGetFood"> 
 			  <minCategory>Fed</minCategory>
+			  <forceScanWholeMap>false</forceScanWholeMap>
 			</li>
 				<li Class="JobGiver_ClearHiveEggZone"> 
 				  <ClearingRange>2</ClearingRange>
@@ -668,7 +650,9 @@
 		
 		<li Class="ThinkNode_ConditionalNotGrown">
 		  <subNodes>
-			<li Class="JobGiver_GetFoodXenomorph"> 
+			<li Class="JobGiver_XenoGetFood"> 
+			  <minCategory>Fed</minCategory>
+			  <forceScanWholeMap>false</forceScanWholeMap>
 			</li>
 			<li Class="JobGiver_GetRest" />
 		  </subNodes>
@@ -676,15 +660,6 @@
 			
         <li Class="ThinkNode_ConditionalFullyGrown">
           <subNodes>
-		  
-			<li Class="ThinkNode_ConditionalCannotReachMapEdge">
-			  <subNodes>
-				<li Class="ThinkNode_Subtree">
-				  <treeDef>DigOutIfCannotReachMapEdge</treeDef>
-				</li>
-			  </subNodes>
-			</li>
-			
 			<li Class="JobGiver_XenosKidnap"> 
 				<HuntingRange>10</HuntingRange>
 			</li>
@@ -1077,7 +1052,7 @@
             <li Class="ThinkNode_PrioritySorter">
               <subNodes>
 			  <!--
-                <li Class="JobGiver_GetFoodXenomorph" />
+                <li Class="JobGiver_XenoGetFood" />
                 <li Class="JobGiver_GetRest" />
 				-->
               </subNodes>
@@ -1113,10 +1088,8 @@
 			<li Class="ThinkNode_ConditionalPawnKind">
 			  <pawnKind>RRY_Xenomorph_Runner</pawnKind>
 			  <subNodes>
-				<li Class="RRYautja.JobGiver_WanderCloserToHosts">
+				<li Class="JobGiver_WanderAnywhere">
 				  <maxDanger>Deadly</maxDanger>
-				  <wanderRadius>12</wanderRadius>
-				  <locomotionUrgency>Jog</locomotionUrgency>
 				</li>
 			  </subNodes>
 			</li>
