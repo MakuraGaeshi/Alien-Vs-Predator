@@ -8,7 +8,7 @@ namespace RRYautja
 {
     public class Filth_AddAcidDamageDef : ThingDef
     {
-        
+
     }
 
     public class Filth_AddAcidDamage : Filth
@@ -16,21 +16,25 @@ namespace RRYautja
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look<int>(ref this.destroyTick, "destroyTick", 0, false);
             Scribe_Values.Look<int>(ref this.activeTicks, "activeTicks", 0, false);
-            Scribe_Values.Look<bool>(ref this.active, "active", false, false);
         }
-        
-        public object cachedLabelMouseover { get; private set; }
-        public bool active;
-        public int destroyTick;
-        public int activeTicks;
+
+        public int destroyTick = 3000;
+        public int activeTicks = 0;
         private int Ticks = 100;
         private int TickRate = 100;
         private int AcidDamage = 3;
         private List<Pawn> touchingPawns = new List<Pawn>();
         private List<Thing> touchingThings = new List<Thing>();
 
+        public object cachedLabelMouseover { get; private set; }
+        public bool active
+        {
+            get
+            {
+                return this.activeTicks < this.destroyTick;
+            }
+        }
 
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
@@ -38,11 +42,6 @@ namespace RRYautja
             if (!respawningAfterLoad)
             {
                 this.RecalcPathsOnAndAroundMe(map);
-                if (destroyTick == 0)
-                {
-                    this.destroyTick = (Rand.Range(29, 121) * 100);
-                }
-                this.active = true;
             }
         }
 
@@ -52,6 +51,8 @@ namespace RRYautja
             base.DeSpawn(mode);
             this.RecalcPathsOnAndAroundMe(map);
         }
+
+        public override string Label => this.active ? base.Label + " (Active)" : base.Label + " (Inert)";
 
         private void RecalcPathsOnAndAroundMe(Map map)
         {
@@ -91,23 +92,21 @@ namespace RRYautja
             bool destroyed = base.Destroyed;
             if (!destroyed && this.active)
             {
-                bool flag = this.activeTicks > this.destroyTick && !base.Destroyed;
-                if (flag)
+                this.activeTicks++;
+                if (!active)
                 {
                     RecalcPathsOnAndAroundMe(Map);
-                    this.active = false;
                 }
                 else
                 {
                     RecalcPathsOnAndAroundMe(Map);
-                    this.activeTicks++;
                     this.Ticks--;
                     bool flag2 = this.Ticks <= 0;
                     if (flag2)
                     {
                         this.TickTack();
                         this.Ticks = this.TickRate;
-                        
+
                     }
                 }
             }
@@ -126,14 +125,14 @@ namespace RRYautja
                     bool flag = thingList[i] != null;
                     if (flag)
                     {
-                        
+
                         Thing thing = thingList[i];
                         Pawn pawn = thingList[i] as Pawn;
                         bool flaga = thing.def.useHitPoints && !this.touchingThings.Contains(thing) && thing.def != XenomorphDefOf.RRY_FilthBloodXenomorph && thing.GetType() != typeof(Pawn);
                         bool flag2 = thing != null && !this.touchingThings.Contains(thing) && thing.def != XenomorphDefOf.RRY_FilthBloodXenomorph && thing.GetType() != typeof(Mote) && thing.GetType() != typeof(MoteThrown) && thing.GetType() != typeof(Bullet) && thing.GetType() != typeof(Pawn);
                         bool flag2a = !(thing is Corpse corpse && XenomorphUtil.IsXenoCorpse(corpse));
                         bool flag2b = !(thing is Pawn && XenomorphUtil.IsXenomorph((Pawn)thing));
-                        if (flaga && flag2a && flag2b )
+                        if (flaga && flag2a && flag2b)
                         {
                             this.touchingThings.Add(thing);
                             this.damageEntities(thing, Mathf.RoundToInt((float)this.AcidDamage * Rand.Range(0.5f, 1.25f)));
@@ -151,7 +150,7 @@ namespace RRYautja
                             }
                         }
                     }
-                }   
+                }
                 /*
                 for (int j = 0; j < this.touchingPawns.Count; j++)
                 {
@@ -203,11 +202,11 @@ namespace RRYautja
             DamageInfo damageInfo;
             damageInfo = new DamageInfo(XenomorphDefOf.RRY_AcidBurn, (float)amt, 0f, -1f, null, null, null, 0, null);
             bool flag = e != null;
-            if (!flag||e.Stuff!=null)
+            if (!flag || e.Stuff != null)
             {
-                if (e.Stuff!=XenomorphDefOf.RRY_Leather_Xenomorph) return;
+                if (e.Stuff != XenomorphDefOf.RRY_Leather_Xenomorph) return;
             }
-            if (e.def.costList!=null)
+            if (e.def.costList != null)
             {
                 foreach (var cost in e.def.costList)
                 {
@@ -289,7 +288,7 @@ namespace RRYautja
             }
             for (int k = 0; k < list.Count; k++)
             {
-                damageInfo = new DamageInfo(XenomorphDefOf.RRY_AcidBurn, (float)Mathf.RoundToInt(((float)num * list[k].coverage)*10), 0f, -1f, this, list[k], null, 0, null);
+                damageInfo = new DamageInfo(XenomorphDefOf.RRY_AcidBurn, (float)Mathf.RoundToInt(((float)num * list[k].coverage) * 10), 0f, -1f, this, list[k], null, 0, null);
                 if (Rand.Chance(list[k].coverage))
                 {
 

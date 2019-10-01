@@ -123,8 +123,8 @@
         <!-- Conditional Not Fully Grown -->
         <li Class="ThinkNode_ConditionalNotGrown">
           <subNodes>
-			<li Class="JobGiver_XenomorphFlee" />
-			<li Class="JobGiver_XenoGetFood"> 
+			<li Class="JobGiver_GetFoodXenomorph" />
+			<li Class="JobGiver_GetFoodXenomorph"> 
 			  <forceScanWholeMap>false</forceScanWholeMap>
 			</li>
 			<li Class="JobGiver_WanderHiveLike">
@@ -137,8 +137,8 @@
         <li Class="ThinkNode_ConditionalFullyGrown">
           <subNodes>
 			<!--
-			<li Class="JobGiver_XenomorphFlee" />
-			<li Class="JobGiver_XenoGetFood"> 
+			<li Class="JobGiver_GetFoodXenomorph" />
+			<li Class="JobGiver_GetFoodXenomorph"> 
 			  <minCategory>Fed</minCategory>
 			  <forceScanWholeMap>false</forceScanWholeMap>
 			</li>
@@ -157,7 +157,7 @@
 						  </subNodes>
 						</li>
 						<!-- Exit -->
-						<li Class="JobGiver_XenomorphFlee" />
+						<li Class="JobGiver_GetFoodXenomorph" />
 						<!-- Wander -->
 						<li Class="JobGiver_WanderAnywhere">
 						  <maxDanger>Deadly</maxDanger>
@@ -185,7 +185,7 @@
 						  </subNodes>
 						</li>
 						<!-- Exit -->
-						<li Class="JobGiver_XenomorphFlee" />
+						<li Class="JobGiver_GetFoodXenomorph" />
 						<!-- Wander -->
 						<li Class="JobGiver_WanderAnywhere">
 						  <maxDanger>Deadly</maxDanger>

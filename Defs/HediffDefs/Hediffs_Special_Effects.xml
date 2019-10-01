@@ -334,7 +334,7 @@
     <labelNoun>a marked Hunter</labelNoun>
     <stages>
       <li>
-        <label>worthy Human</label>
+        <label>Human (Worthy)</label>
       </li>
     </stages>
     <comps>
@@ -376,7 +376,7 @@
     <labelNoun>a marked Hunter</labelNoun>
     <stages>
       <li>
-        <label>worthy Alien</label>
+        <label>Alien (Worthy)</label>
       </li>
     </stages>
     <comps>
@@ -397,7 +397,7 @@
     <labelNoun>a marked Hunter</labelNoun>
     <stages>
       <li>
-        <label>Mechanoid</label>
+        <label>Construct</label>
       </li>
     </stages>
     <comps>

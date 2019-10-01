@@ -30,17 +30,39 @@ namespace RRYautja
             Building building = base.Map.edificeGrid[index];
             return building != null && building.def.Fillage == FillCategory.Full;
         }
-
+        /*
+        public override void DrawLayer()
+        {
+            if (!this.Visible)
+            {
+                return;
+            }
+            int count = this.subMeshes.Count;
+            for (int i = 0; i < count; i++)
+            {
+                LayerSubMesh layerSubMesh = this.subMeshes[i];
+                Vector3 s = new Vector3(.28f, 1f, .28f);
+                Matrix4x4 matrix = default(Matrix4x4);
+                matrix.SetTRS(vector, Quaternion.AngleAxis(angle, Vector3.up), s);
+                if (layerSubMesh.finalized && !layerSubMesh.disabled)
+                {
+                    Graphics.DrawMesh(layerSubMesh.mesh, Vector3.zero, Quaternion.identity, layerSubMesh.material, 0);
+                }
+            }
+        }
+        */
         // Token: 0x060047BA RID: 18362 RVA: 0x0021ADFC File Offset: 0x002191FC
         public override void Regenerate()
         {
-            LayerSubMesh subMesh = base.GetSubMesh(MatBases.Snow);
+            LayerSubMesh subMesh = base.GetSubMesh(RRYMatBases.Hive);
             if (subMesh.mesh.vertexCount == 0)
             {
                 SectionLayerGeometryMaker_Solid.MakeBaseGeometry(this.section, subMesh, AltitudeLayer.Terrain);
             }
             subMesh.Clear(MeshParts.Colors);
-            float[] depthGridDirect_Unsafe = base.Map.hiveGrid().DepthGridDirect_Unsafe;
+            MapComponent_HiveGrid _AvPHiveCreep = base.Map.GetComponent<MapComponent_HiveGrid>();
+            //    Log.Message(string.Format(" 6 {0}", _AvPHiveCreep.DepthGridDirect_Unsafe));
+            float[] depthGridDirect_Unsafe = _AvPHiveCreep.DepthGridDirect_Unsafe;
             CellRect cellRect = this.section.CellRect;
             int num = base.Map.Size.z - 1;
             int num2 = base.Map.Size.x - 1;
@@ -80,9 +102,10 @@ namespace RRYautja
                     {
                         if (this.vertDepth[k] > 0.01f)
                         {
+                            ;
                             flag = true;
                         }
-                        subMesh.colors.Add(SectionLayer_Hive.SnowDepthColor(this.vertDepth[k]));
+                        subMesh.colors.Add(SectionLayer_Hive.HiveDepthColor(this.vertDepth[k]));
                     }
                 }
             }
@@ -98,18 +121,18 @@ namespace RRYautja
         }
 
         // Token: 0x060047BB RID: 18363 RVA: 0x0021B154 File Offset: 0x00219554
-        private static Color32 SnowDepthColor(float snowDepth)
+        private static Color32 HiveDepthColor(float snowDepth)
         {
-            return Color32.Lerp(SectionLayer_Hive.ColorClear, SectionLayer_Hive.ColorWhite, snowDepth);
+            return Color32.Lerp(SectionLayer_Hive.ColorClear, SectionLayer_Hive.ColorHive, snowDepth);
         }
 
         // Token: 0x04003127 RID: 12583
         private float[] vertDepth = new float[9];
 
         // Token: 0x04003128 RID: 12584
-        private static readonly Color32 ColorClear = new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, 0);
+        private static readonly Color32 ColorClear = new Color32(75, 75, 75, 0);
 
         // Token: 0x04003129 RID: 12585
-        private static readonly Color32 ColorWhite = new Color32(75, 75, 90, byte.MaxValue);
+        private static readonly Color32 ColorHive = new Color32(40, 25, 90, 100);
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using RimWorld;
 using UnityEngine;
 using Verse;
 using static RRYautja.HiveUtility;
@@ -12,7 +12,66 @@ namespace RRYautja
             this.map = map;
             this.depthGrid = new float[map.cellIndices.NumGridCells];
         }
+<<<<<<< HEAD:Source/RRYautja/Xenomorph/Hives/MapComponent_HiveGrid.cs
+
+        // Token: 0x0400011D RID: 285
+        public MapComponent_HiveGrid HiveGrid;
+        // Token: 0x06000218 RID: 536 RVA: 0x0000B490 File Offset: 0x00009690
+        public override void FinalizeInit()
+        {
+            base.FinalizeInit();
+        }
+
+        // Token: 0x06000219 RID: 537 RVA: 0x0000B49A File Offset: 0x0000969A
+        public override void MapGenerated()
+        {
+            base.MapGenerated();
+        }
+
+        // Token: 0x0600021A RID: 538 RVA: 0x0000B4A4 File Offset: 0x000096A4
+        public override void ExposeData()
+        {
+            MapExposeUtility.ExposeUshort(this.map, (IntVec3 c) => MapComponent_HiveGrid.HiveFloatToShort(this.GetDepth(c)), delegate (IntVec3 c, ushort val)
+            {
+                this.depthGrid[this.map.cellIndices.CellToIndex(c)] = MapComponent_HiveGrid.HiveShortToFloat(val);
+            }, "depthGrid");
+            base.ExposeData();
+        }
+
+        // Token: 0x0600021B RID: 539 RVA: 0x0000B4C0 File Offset: 0x000096C0
+        public override void MapComponentUpdate()
+        {
+            base.MapComponentUpdate();
+            //    this.HiveGrid.Regenerate();
+        }
+
+        // Token: 0x0600021C RID: 540 RVA: 0x0000B528 File Offset: 0x00009728
+        public override void MapComponentTick()
+        {
+            base.MapComponentTick();
+            /*
+            if (true)
+            {
+                bool hiveship = XenomorphUtil.HiveShipPresent(this.map);
+                bool hivetunnel = XenomorphUtil.HivelikesPresent(this.map);
+                bool hiveslime = XenomorphUtil.HiveSlimePresent(this.map);
+                if (!hiveship && !hivetunnel && !hiveslime)
+                {
+                    for (int i = 0; i < depthGrid.Length; i++)
+                    {
+                        if (depthGrid[i] > 0f)
+                        {
+                            HiveUtility.AddHiveRadial(this.map.cellIndices.IndexToCell(i), map, 1, -Rand.RangeSeeded(0.0001f,0.001f, AvPConstants.AvPSeed));
+                        }
+                    }
+                }
+            }
+            */
+        }
+
+=======
         
+>>>>>>> parent of 28eee9c... V1.0.0.7 Final:Source/RRYautja/Xenomorph/Hives/HiveGrid.cs
         internal float[] DepthGridDirect_Unsafe
         {
             get
@@ -57,12 +116,12 @@ namespace RRYautja
                 return false;
             }
             TerrainDef terrainDef = this.map.terrainGrid.TerrainAt(ind);
-            return terrainDef == null || terrainDef.holdSnow;
+            return terrainDef.passability != Traversability.Impassable;// terrainDef == null || terrainDef.holdSnow;
         }
         
         public static bool CanCoexistWithHive(ThingDef def)
         {
-            return def.category != ThingCategory.Building || def.Fillage != FillCategory.Full;
+            return def.category != ThingCategory.Building || def.Fillage != FillCategory.Full || def == XenomorphDefOf.RRY_XenomorphCrashedShipPart;
         }
         
         public void AddDepth(IntVec3 c, float depthToAdd)
