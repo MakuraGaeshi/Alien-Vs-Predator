@@ -28,16 +28,7 @@ namespace RRYautja
 
             Type typeFromHandle1 = typeof(PawnRenderer);
             HarmonyPatches.pawnField_PawnRenderer = typeFromHandle1.GetField("pawn", BindingFlags.Instance | BindingFlags.NonPublic);
-            /*
-            MethodInfo method5 = typeFromHandle1.GetMethod("RenderPawnAt", new Type[]
-            {
-                typeof(Vector3),
-                typeof(RotDrawMode),
-                typeof(bool)
-            });
-            MethodInfo method6 = typeof(HarmonyPatches).GetMethod("Patch_PawnRenderer_RenderPawnAt");
-            harmony.Patch(method5, new HarmonyMethod(method6), null, null);
-            */
+
             harmony.Patch(AccessTools.Method(typeof(PawnRenderer), "RenderPawnAt", new Type[]
             {
                 typeof(Vector3),
@@ -67,8 +58,6 @@ namespace RRYautja
 
             Type typeFromHandle22 = typeof(Pawn_HealthTracker);
             HarmonyPatches.int_Pawn_HealthTracker_GetPawn = typeFromHandle22.GetField("pawn", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.GetField);
-
-            //   harmony.Patch(AccessTools.Method(typeof(PawnRenderer), "BaseHeadOffsetAt", null, null), null, new HarmonyMethod(typeof(HarmonyPatches), "BaseHeadOffsetAtPostfix", null), null);
 
             Type typeFromHandle6 = typeof(Pawn_HealthTracker);
             harmony.Patch(typeFromHandle6.GetMethod("DropBloodFilth"), new HarmonyMethod(typeof(HarmonyPatches).GetMethod("Patch_Pawn_HealthTracker_DropBloodFilth")), null, null);
@@ -325,37 +314,10 @@ namespace RRYautja
                 }
             }, "PushingCharacter", false, null);
         }
-        /*    
-    public static void Patch_PawnRenderer_RenderPawnAt(PawnRenderer __instance, ref Vector3 drawLoc, ref RotDrawMode bodyDrawType, ref bool headStump)
-    {
-        Pawn pawn = HarmonyPatches.PawnRenderer_GetPawn(__instance);
-        if (pawn.RaceProps.Humanlike)
-        {
-            foreach (var hd in pawn.health.hediffSet.hediffs)
-            {
-                HediffComp_DrawImplant comp = hd.TryGetComp<HediffComp_DrawImplant>();
-                if (comp != null)
-                {
-                    comp.DrawImplant(drawLoc);
-                }
-            }
-        } // DrawWornExtras()
-        else
-        {
-            foreach (var hd in pawn.health.hediffSet.hediffs)
-            {
-                HediffComp_DrawImplant comp = hd.TryGetComp<HediffComp_DrawImplant>();
-                if (comp != null)
-                {
-                    comp.DrawWornExtras();
-                }
-            }
-        }
-    }
-    */
+
         public static void PathOfNature(Pawn_PathFollower __instance, Pawn pawn, IntVec3 c, ref int __result)
         {
-            if (pawn?.GetComp<Comp_Yautja>() is Comp_Yautja comp_Yautja || pawn?.GetComp<Comp_Xenomorph>() is Comp_Xenomorph comp_Xenomorph)
+            if (pawn.def == YautjaDefOf.RRY_Alien_Yautja || pawn?.GetComp<Comp_Xenomorph>() is Comp_Xenomorph comp_Xenomorph)
             {
                 int num;
                 if (c.x == pawn.Position.x || c.z == pawn.Position.z)
@@ -367,7 +329,6 @@ namespace RRYautja
                     num = pawn.TicksPerMoveDiagonal;
                 }
 
-                //num += pawn.Map.pathGrid.CalculatedCostAt(c, false, pawn.Position);
                 Building edifice = c.GetEdifice(pawn.Map);
                 if (edifice != null)
                 {

@@ -50,7 +50,7 @@ namespace RimWorld
                 building_CrashedShipPart.SetFaction(faction, null);
                 building_CrashedShipPart.GetComp<CompSpawnerPawnsOnDamaged>().pointsLeft = Mathf.Max(parms.points * 0.9f, 300f);
 
-                ThingDef faller = building_CrashedShipPart.GetComp<CompSpawnerPawnsOnDamaged>().Props.skyFaller != null ? building_CrashedShipPart.GetComp<CompSpawnerPawnsOnDamaged>().Props.skyFaller : ThingDefOf.CrashedShipPartIncoming ;
+                ThingDef faller = building_CrashedShipPart.GetComp<CompSpawnerPawnsOnDamaged>().Props.skyFaller ?? ThingDefOf.CrashedShipPartIncoming;
                 Skyfaller skyfaller = SkyfallerMaker.MakeSkyfaller(faller, building_CrashedShipPart);
                 skyfaller.shrapnelDirection = shrapnelDirection;
                 GenSpawn.Spawn(skyfaller, intVec, map, WipeMode.Vanish);

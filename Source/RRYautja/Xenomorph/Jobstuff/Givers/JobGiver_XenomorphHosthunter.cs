@@ -1,9 +1,11 @@
 ﻿using RRYautja;
+using RRYautja.ExtensionMethods;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Verse;
 using Verse.AI;
+using Verse.AI.Group;
 
 namespace RimWorld
 {
@@ -18,8 +20,11 @@ namespace RimWorld
             jobGiver_XenomorphHosthunter.MinMeleeChaseTicks = this.MinMeleeChaseTicks;
             jobGiver_XenomorphHosthunter.MaxMeleeChaseTicks = this.MaxMeleeChaseTicks;
             jobGiver_XenomorphHosthunter.Gender = this.Gender;
+            jobGiver_XenomorphHosthunter.requireLOS = this.requireLOS;
             return jobGiver_XenomorphHosthunter;
         }
+
+        public HiveLike hive = null;
 
         // Token: 0x040002FF RID: 767
         private int MinMeleeChaseTicks = 420;
@@ -39,22 +44,57 @@ namespace RimWorld
         private const int WanderOutsideDoorRegions = 9;
 
         private Gender Gender = Gender.None;
+
+        private bool requireLOS = true;
         // Token: 0x060005B7 RID: 1463 RVA: 0x00037A28 File Offset: 0x00035E28
         protected override Job TryGiveJob(Pawn pawn)
         {
-            /*
-            if (pawn.mindState.duty.def == OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike && pawn.mindState.duty.radius > 0)
+            if (pawn.GetLord() != null && pawn.GetLord() is Lord lord)
             {
-                HuntingRange = pawn.mindState.duty.radius;
+                if (lord.LordJob is LordJob_DefendAndExpandHiveLike hivejob)
+                {
+                    if (lord.CurLordToil is LordToil_DefendAndExpandHiveLike hivetoil)
+                    {
+                        if (hivetoil.Data.assignedHiveLikes.TryGetValue(pawn) != null)
+                        {
+                            hive = hivetoil.Data.assignedHiveLikes.TryGetValue(pawn);
+                        }
+                    }
+                }
+                if (lord.CurLordToil is LordToil_DefendHiveLikeAggressively hivetoilA)
+                {
+                    if (hivetoilA.Data.assignedHiveLikes.TryGetValue(pawn) != null)
+                    {
+                        hive = hivetoilA.Data.assignedHiveLikes.TryGetValue(pawn);
+                    }
+                }
             }
-            */
 
+            bool aggressive;
+            Comp_Xenomorph _Xenomorph = pawn.TryGetComp<Comp_Xenomorph>();
             if (pawn.TryGetAttackVerb(null, false) == null)
             {
                 return null;
             }
-            Pawn pawn2 = this.FindPawnTarget(pawn);
 
+
+            Pawn pawn2 = null;
+            if (_Xenomorph!=null && hive.hiveDormant)
+            {
+                pawn2 = _Xenomorph.BestPawnToHuntForPredator(pawn, false, true);
+            }
+            if (pawn2 == null)
+            {
+                pawn2 = this.FindPawnTarget(pawn);
+            }
+            if (pawn2 == null)
+            {
+                return null;
+            }
+            if (!pawn2.isPotentialHost())
+            {
+                return null;
+            }
             if (pawn2 != null && pawn.CanReach(pawn2, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.ByPawn))
             {
                 return this.MeleeAttackJob(pawn, pawn2);
@@ -99,156 +139,14 @@ namespace RimWorld
         private Pawn FindPawnTarget(Pawn pawn)
         {
             bool selected = Find.Selector.SingleSelectedThing == pawn;
-            List<Pawn> list = pawn.Map.mapPawns.AllPawns.Where((Pawn x) => !x.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned) && !x.Downed && XenomorphUtil.isInfectablePawn(x) && pawn.CanReach(x, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.NoPassClosedDoors) && !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Anesthetic) && (this.Gender == Gender.None || (this.Gender!=Gender.None && x.gender == this.Gender))).ToList();
+            List<Pawn> list = pawn.Map.mapPawns.AllPawns.Where((Pawn x) => !x.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned) && !x.Downed && XenomorphUtil.isInfectablePawn(x) && pawn.CanReach(x, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.NoPassClosedDoors) && !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Anesthetic)&& ((requireLOS && pawn.CanSee(x)) || !requireLOS) && (this.Gender == Gender.None || (this.Gender!=Gender.None && x.gender == this.Gender))).ToList();
             if (list.NullOrEmpty())
             {
                 return null;
             }
             return (Pawn)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.ClosestTouch, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), HuntingRange, (x => x is Pawn p && list.Contains(p)));//(Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn p && XenomorphUtil.isInfectablePawn(p) && !p.Downed, 0f, 9999f, default(IntVec3), float.MaxValue, true, true);
         }
-
-        // RimWorld.FoodUtility
-        private static Pawn BestPawnToHuntForPredator(Pawn predator, bool forceScanWholeMap)
-        {
-            if (predator.meleeVerbs.TryGetMeleeVerb(null) == null)
-            {
-                return null;
-            }
-            bool flag = false;
-            float summaryHealthPercent = predator.health.summaryHealth.SummaryHealthPercent;
-            if (summaryHealthPercent < 0.25f)
-            {
-                flag = true;
-            }
-            tmpPredatorCandidates.Clear();
-            int maxRegionsToScan = GetMaxRegionsToScan(predator, forceScanWholeMap);
-            if (maxRegionsToScan < 0)
-            {
-                tmpPredatorCandidates.AddRange(predator.Map.mapPawns.AllPawnsSpawned);
-            }
-            else
-            {
-                TraverseParms traverseParms = TraverseParms.For(predator, Danger.Deadly, TraverseMode.ByPawn, false);
-                RegionTraverser.BreadthFirstTraverse(predator.Position, predator.Map, (Region from, Region to) => to.Allows(traverseParms, true), delegate (Region x)
-                {
-                    List<Thing> list = x.ListerThings.ThingsInGroup(ThingRequestGroup.Pawn);
-                    for (int j = 0; j < list.Count; j++)
-                    {
-                        Pawn p = ((Pawn)list[j]);
-                        if (XenomorphUtil.isInfectablePawn(p))
-                        {
-                            tmpPredatorCandidates.Add(p);
-                        }
-                        else
-                        {
-                            //    Log.Message(string.Format("{0} cannae hunt {2} XenoInfection:{1} IsXenos:{3}", predator.Label, XenomorphUtil.IsInfectedPawn(p), ((Pawn)list[j]).Label, XenomorphUtil.IsXenomorph(p)));
-                        }
-                    }
-                    return false;
-                }, 999999, RegionType.Set_Passable);
-            }
-            Pawn pawn = null;
-            float num = 0f;
-            bool tutorialMode = TutorSystem.TutorialMode;
-            for (int i = 0; i < tmpPredatorCandidates.Count; i++)
-            {
-                Pawn pawn2 = tmpPredatorCandidates[i];
-                if (predator.GetRoom(RegionType.Set_Passable) == pawn2.GetRoom(RegionType.Set_Passable))
-                {
-                    if (predator != pawn2)
-                    {
-                        if (!flag || pawn2.Downed)
-                        {
-                            if (IsAcceptablePreyFor(predator, pawn2))
-                            {
-                                if (predator.CanReach(pawn2, PathEndMode.ClosestTouch, Danger.Deadly, false, TraverseMode.ByPawn))
-                                {
-                                    if (!pawn2.IsForbidden(predator))
-                                    {
-                                        if (!tutorialMode || pawn2.Faction != Faction.OfPlayer)
-                                        {
-                                            float preyScoreFor = FoodUtility.GetPreyScoreFor(predator, pawn2);
-                                            if (preyScoreFor > num || pawn == null)
-                                            {
-                                                num = preyScoreFor;
-                                                pawn = pawn2;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            tmpPredatorCandidates.Clear();
-            return pawn;
-        }
-
-        public static bool IsAcceptablePreyFor(Pawn predator, Pawn prey)
-        {
-
-            //    Log.Message(string.Format("{0} hunting {1}? XenoInfection:{2} IsXenos:{3}", predator.Label, prey.Label, XenomorphUtil.IsInfectedPawn(prey), XenomorphUtil.IsXenomorph(prey)));
-            if (XenomorphUtil.IsInfectedPawn(prey))
-            {
-                //    Log.Message(string.Format("{0} cant hunt {1} cause XenoInfection:{2}", predator.Label, prey.Label, XenomorphUtil.IsInfectedPawn(prey)));
-                return false;
-            }
-            if (XenomorphUtil.IsXenomorph(prey))
-            {
-                //    Log.Message(string.Format("{0} cant hunt {1} cause IsXenos:{2}", predator.Label, prey.Label, XenomorphUtil.IsXenomorph(prey)));
-                return false;
-            }
-            if (!prey.RaceProps.IsFlesh)
-            {
-                return false;
-            }
-            if (prey.BodySize > predator.RaceProps.maxPreyBodySize)
-            {
-                return false;
-            }
-            if (prey.BodySize < 0.65f)
-            {
-                return false;
-            }
-            /*
-            if (!prey.Downed)
-            {
-                if (prey.kindDef.combatPower > 2f * predator.kindDef.combatPower)
-                {
-                    return false;
-                }
-                float num = prey.kindDef.combatPower * prey.health.summaryHealth.SummaryHealthPercent * prey.ageTracker.CurLifeStage.bodySizeFactor;
-                float num2 = predator.kindDef.combatPower * predator.health.summaryHealth.SummaryHealthPercent * predator.ageTracker.CurLifeStage.bodySizeFactor;
-                if (num >= num2)
-                {
-                    return false;
-                }
-            }
-            */
-            //    Log.Message(string.Format("{0}@{1} can hunt {2}@{3}", predator.Label, predator.Position, prey.Label, prey.Position));
-            return (predator.Faction == null || prey.Faction == null || predator.HostileTo(prey)) && (predator.Faction == null || prey.HostFaction == null || predator.HostileTo(prey)) && (predator.Faction != Faction.OfPlayer || prey.Faction != Faction.OfPlayer) && (!predator.RaceProps.herdAnimal || predator.def != prey.def) && (!XenomorphUtil.IsInfectedPawn(prey));
-        }
-
-        private static int GetMaxRegionsToScan(Pawn getter, bool forceScanWholeMap)
-        {
-            if (getter.RaceProps.Humanlike)
-            {
-                return -1;
-            }
-            if (forceScanWholeMap)
-            {
-                return -1;
-            }
-            if (getter.Faction == Faction.OfPlayer)
-            {
-                return 100;
-            }
-            return 30;
-        }
-
-        private static List<Pawn> tmpPredatorCandidates = new List<Pawn>();
-
+        
         public bool forceScanWholeMap = true;
         
     }

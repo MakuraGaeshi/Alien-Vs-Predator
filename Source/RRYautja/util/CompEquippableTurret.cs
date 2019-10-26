@@ -48,7 +48,7 @@ namespace RRYautja
         {
             get
             {
-                return IsTurnedOn && !GetWearer.Dead && !GetWearer.Downed && GetWearer.Awake();
+                return IsTurnedOn && !GetWearer.Dead && !GetWearer.Downed && GetWearer.Awake() && !GetWearer.IsPrisoner;
             }
         }
         // Token: 0x060053DC RID: 21468 RVA: 0x00264E1B File Offset: 0x0026321B

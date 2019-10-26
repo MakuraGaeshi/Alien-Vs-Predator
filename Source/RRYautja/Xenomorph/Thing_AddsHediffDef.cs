@@ -187,7 +187,7 @@ namespace RRYautja
                                 else
                                 {
                                     HediffSet hediffSet = health.hediffSet;
-                                    hediff2 = ((hediffSet != null) ? hediffSet.GetFirstHediffOfDef(_heddiff, false) : null);
+                                    hediff2 = (hediffSet?.GetFirstHediffOfDef(_heddiff, false));
                                 }
                             }
                             Hediff hediff3 = hediff2;
@@ -221,7 +221,7 @@ namespace RRYautja
                         else
                         {
                             HediffSet hediffSet2 = health2.hediffSet;
-                            hediff4 = ((hediffSet2 != null) ? hediffSet2.GetFirstHediffOfDef(_heddiff, false) : null);
+                            hediff4 = (hediffSet2?.GetFirstHediffOfDef(_heddiff, false));
                         }
                     }
                     Hediff hediff5 = hediff4;

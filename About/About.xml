@@ -70,14 +70,37 @@
 	Crashed Ship part: 
 	Xenomorph Infestation: 
 	
-	Credits:
-	C# and Xml by Ogliss
-	Most Textures by Rebelrot
-	Xenomorph Textures by Deon
-	Xml, Balancing by Acide_Bob
-	Bladed Mauled, Combistaff and Needler Textures by Temmy
-	Rynath Textures by Serpy Derpy
-	
-	also a big Thank you to Jecrell, Erdelf, Menhi, Roolo and the many others who assited with the c#
+	Credits 
+	Authors and their credits:
+	Rebelrot : Yautja concepts and textures
+	Ogliss: Coding, XML, mechanics
+	acide_bob: XML &amp; balancing
+
+	Arts:
+	Rebelrot: Everything except what follow.
+	Temmy: Needler, Bladed Maul, combistaff
+	Deon: Drone, Warrior, Runner, Queen Xenomorphs.
+	SerpyDerpy: Rynath
+
+	Translators are welcome!
+
+	Special Thanks
+	Lore:
+	Daiki97427 &amp; acide_bob
+
+	Erdelf - For the framework and all the help in general
+	Jecrell - Those tools are awesome
+	UnlimitedHugs - HugsLib is a must around the workshop
+	Stan Winston - For creating one of the most badass creature in sci-fy history
+	H. R. Giger- For creating The most badass creature in sci-fy history
+
+	also a big Thank you to Jecrell, Erdelf, Menhi, Roolo, Walking Problem, Ministry of MOM and the many others who assisted with the C#
+
+	Playtesters:
+	acide_bob
+	Blyatwing
+	buupis
+
+	Thrumbomorph named by ＧｅｎｅｒａｌＴｈｉｃｃＬｏｌｉ
 		</description>
 </ModMetaData>

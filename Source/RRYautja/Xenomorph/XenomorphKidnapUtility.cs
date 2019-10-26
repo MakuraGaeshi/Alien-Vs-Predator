@@ -47,6 +47,11 @@ namespace RRYautja
             {
                 Pawn pawn = t as Pawn;
                 bool cocoonFlag = !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned);
+                bool xenoimpregnationFlag = !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation) || (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation) && pawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_XenomorphImpregnation).CurStageIndex != pawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_XenomorphImpregnation).def.stages.Count - 2);
+                bool xenohiddenimpregnationFlag = !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation) || (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation) && pawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_HiddenXenomorphImpregnation).CurStageIndex != pawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_HiddenXenomorphImpregnation).def.stages.Count - 2);
+                bool neoimpregnationFlag = !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_NeomorphImpregnation);
+                bool neohiddenimpregnationFlag = !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenNeomorphImpregnation);
+                bool impregnationFlag = xenoimpregnationFlag && xenohiddenimpregnationFlag && neoimpregnationFlag && neohiddenimpregnationFlag;
                 bool pawnFlag = ((XenomorphUtil.isInfectablePawn(pawn, true))) && pawn.Downed && (pawn.Faction == null || pawn.Faction.HostileTo(kidnapper.Faction));
                 return  cocoonFlag && pawnFlag && kidnapper.CanReserve(pawn, 1, -1, null, false) && (disallowed == null || !disallowed.Contains(pawn));
             };
@@ -54,22 +59,25 @@ namespace RRYautja
             return victim != null;
         }
 
-        public static bool TryFindGoodHiveLoc(Pawn pawn, Pawn victim, out IntVec3 c)
+        public static bool TryFindGoodHiveLoc(Pawn pawn, Pawn victim, out IntVec3 c, bool AllowHiveShip = false)
         {
             Map map = pawn.Map;
             c = IntVec3.Invalid;
             bool selected = map != null ? Find.Selector.SelectedObjects.Contains(pawn) && (Prefs.DevMode) : false;
             ThingDef named = victim.RaceProps.Humanlike ? XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon : XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon;
 
-            hiveshippresent = XenomorphUtil.HiveShipPresent(map);
-            hiveshipReachable = !XenomorphUtil.ClosestReachableHiveShip(pawn).DestroyedOrNull();
-            closestreachablehiveship = XenomorphUtil.ClosestReachableHiveShip(pawn);
-            if (c == IntVec3.Invalid && hiveshippresent && hiveshipReachable)
+            if (AllowHiveShip)
             {
-                if (Prefs.DevMode && DebugSettings.godMode) Log.Message(string.Format("(c == IntVec3.Invalid && hiveshippresent && hiveshipReachable)"));
-                c = closestreachablehiveship.Position;
-                if (Prefs.DevMode && DebugSettings.godMode) Log.Message(string.Format("(c == {0})",c));
-                return true;
+                hiveshippresent = XenomorphUtil.HiveShipPresent(map);
+                hiveshipReachable = !XenomorphUtil.ClosestReachableHiveShip(pawn).DestroyedOrNull();
+                closestreachablehiveship = XenomorphUtil.ClosestReachableHiveShip(pawn);
+                if (c == IntVec3.Invalid && hiveshippresent && hiveshipReachable)
+                {
+                    if (Prefs.DevMode && DebugSettings.godMode) Log.Message(string.Format("(c == IntVec3.Invalid && hiveshippresent && hiveshipReachable)"));
+                    c = closestreachablehiveship.Position;
+                    if (Prefs.DevMode && DebugSettings.godMode) Log.Message(string.Format("(c == {0})", c));
+                    return true;
+                }
             }
 
             hivelikesPresent = XenomorphUtil.HivelikesPresent(map);
@@ -223,7 +231,7 @@ namespace RRYautja
                     return true;
                 }
             }
-
+            /*
             hiveshippresent = XenomorphUtil.HiveShipPresent(map);
             hiveshipReachable = !XenomorphUtil.ClosestReachableHiveShip(pawn).DestroyedOrNull();
             closestreachablehiveship = XenomorphUtil.ClosestReachableHiveShip(pawn);
@@ -235,7 +243,7 @@ namespace RRYautja
                     return true;
                 }
             }
-
+            */
             eggsPresent = XenomorphUtil.EggsPresent(map);
             eggsReachable = !XenomorphUtil.ClosestReachableEgg(pawn).DestroyedOrNull();
             closestReachableEgg = XenomorphUtil.ClosestReachableEgg(pawn);

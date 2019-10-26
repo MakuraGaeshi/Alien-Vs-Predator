@@ -1,0 +1,8 @@
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Rebelrots-Yautja-Race\Source\TrapsRearmable\bin\Debug\TrapsRearmable.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Rebelrots-Yautja-Race\Source\TrapsRearmable\bin\Debug\TrapsRearmable.pdb
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Rebelrots-Yautja-Race\Source\TrapsRearmable\obj\Debug\TrapsRearmable.csprojResolveAssemblyReference.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Rebelrots-Yautja-Race\Source\TrapsRearmable\obj\Debug\TrapsRearmable.csproj.CoreCompileInputs.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Rebelrots-Yautja-Race\Source\TrapsRearmable\obj\Debug\TrapsRearmable.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Rebelrots-Yautja-Race\Source\TrapsRearmable\obj\Debug\TrapsRearmable.pdb
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Rebelrots-Yautja-Race\Assemblies\TrapsRearmable.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Rebelrots-Yautja-Race\Assemblies\TrapsRearmable.pdb

@@ -1,5 +1,4 @@
-﻿using RRYautja.ExtensionMethods;
-using System;
+﻿using RRYautja;
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
@@ -23,7 +22,7 @@ namespace RimWorld
         public float addAmount = 0.12f;
 
         // Token: 0x040004CD RID: 1229
-        public float maxRadius = 55f;
+        public float maxRadius = 10f;
     }
 
     // Token: 0x02000762 RID: 1890
@@ -58,19 +57,31 @@ namespace RimWorld
             }
         }
 
+        public float maxRadius
+        {
+            get
+            {
+                if (Props.maxRadius != 0f && Props.maxRadius < GenRadial.MaxRadialPatternRadius)
+                {
+                    return Props.maxRadius;
+                }
+                else
+                {
+                    return GenRadial.MaxRadialPatternRadius-1;
+                }
+            }
+            set
+            {
+
+            }
+        }
+
         // Token: 0x060029C1 RID: 10689 RVA: 0x0013C434 File Offset: 0x0013A834
         private void TryExpandHive()
         {
-            /*
-            if (this.parent.Map.mapTemperature.OutdoorTemp > 10f)
-            {
-                this.hiveRadius = 0f;
-                return;
-            }
-            */
             if (this.snowNoise == null)
             {
-                this.snowNoise = new Perlin(0.054999999701976776, 2.0, 0.5, 5, Rand.Range(0, 651431), QualityMode.Medium);
+                this.snowNoise = new Perlin(5.074999999701976776, 2.0, 0.5, 5, Rand.Range(0, 651431), QualityMode.Medium); //new Perlin(0.054999999701976776, 2.0, 0.5, 5, Rand.Range(0, 651431), QualityMode.Medium);
             }
             if (this.hiveRadius < 8f)
             {
@@ -88,33 +99,60 @@ namespace RimWorld
             {
                 this.hiveRadius += 0.1f;
             }
-            this.hiveRadius = Mathf.Min(this.hiveRadius, this.Props.maxRadius);
+            this.hiveRadius = this.maxRadius ;// Mathf.Min(this.hiveRadius, this.maxRadius);
             CellRect occupiedRect = this.parent.OccupiedRect();
             CompHiveCreep.reachableCells.Clear();
-            this.parent.Map.floodFiller.FloodFill(this.parent.Position, (IntVec3 x) => (float)x.DistanceToSquared(this.parent.Position) <= this.hiveRadius * this.hiveRadius && (occupiedRect.Contains(x) || !x.Filled(this.parent.Map)), delegate (IntVec3 x)
+        //    Log.Message(string.Format("1"));
+            this.parent.Map.floodFiller.FloodFill(this.parent.Position, (IntVec3 x) => (float)x.DistanceToSquared(this.parent.Position) <= this.hiveRadius * this.hiveRadius && (occupiedRect.Contains(x) || !x.Filled(this.parent.Map) && x.InBounds(this.parent.Map)), delegate (IntVec3 x)
             {
                 CompHiveCreep.reachableCells.Add(x);
             }, int.MaxValue, false, null);
+        //    Log.Message(string.Format("2")); errors here V
             int num = GenRadial.NumCellsInRadius(this.hiveRadius);
+        //    Log.Message(string.Format("3")); errors here ^
             for (int i = 0; i < num; i++)
             {
-                IntVec3 intVec = this.parent.Position + GenRadial.RadialPattern[i];
-                if (intVec.InBounds(this.parent.Map))
+            //    Log.Message(string.Format("3 {0} a", i), true);
+                if ((this.parent.Position + GenRadial.RadialPattern[i]).InBounds(this.parent.Map))
                 {
-                    if (CompHiveCreep.reachableCells.Contains(intVec))
+                    IntVec3 intVec = this.parent.Position + GenRadial.RadialPattern[i];
+                    if (intVec.InBounds(this.parent.Map))
                     {
-                        float num2 = this.snowNoise.GetValue(intVec);
-                        num2 += 1f;
-                        num2 *= 0.5f;
-                        if (num2 < 0.1f)
+                    //    if (i % 50 == 0) Log.Message(string.Format("3 {0} b", i), true);
+                        if (CompHiveCreep.reachableCells.Contains(intVec))
                         {
-                            num2 = 0.1f;
-                        }
-                        if (this.parent.Map.hiveGrid().GetDepth(intVec) <= num2)
-                        {
-                            float lengthHorizontal = (intVec - this.parent.Position).LengthHorizontal;
-                            float num3 = 1f - lengthHorizontal / this.hiveRadius;
-                            this.parent.Map.hiveGrid().AddDepth(intVec, num3 * this.Props.addAmount * num2);
+                            List<Thing> list = intVec.GetThingList(parent.Map);
+                            if (!list.NullOrEmpty())
+                            {
+                                if (list.Any(x=> x.def.IsFilth))
+                                {
+                                    foreach (var item in list.FindAll(x => x.def.IsFilth))
+                                    {
+                                        if (Rand.ChanceSeeded(0.25f, AvPConstants.AvPSeed))
+                                        {
+                                            item.Destroy();
+                                        }
+                                    }
+                                }
+                            }
+                            //    Log.Message(string.Format("3 {0} c", i));
+                            float num2 = 1f;
+                            num2 += 1f;
+                            num2 *= 0.5f;
+                            if (num2 < 0.1f)
+                            {
+                                num2 = 0.1f;
+                            }
+
+                            if (this.parent.Map.GetComponent<MapComponent_HiveGrid>().GetDepth(intVec) <= num2)
+                            {
+                                //    Log.Message(string.Format("3 {0} d", i));
+                                float lengthHorizontal = (intVec - this.parent.Position).LengthHorizontal;
+                                float num3 = 1f - lengthHorizontal / this.hiveRadius;
+                                this.parent.Map.GetComponent<MapComponent_HiveGrid>().AddDepth(intVec, num3 * this.Props.addAmount * num2);
+                                //    Log.Message(string.Format("3 {0} e", i));
+                            }
+
                         }
                     }
                 }
