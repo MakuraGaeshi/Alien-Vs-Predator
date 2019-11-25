@@ -10,40 +10,53 @@ namespace RimWorld
     public static class InfestationLikeCellFinder
     {
         // Token: 0x0600368B RID: 13963 RVA: 0x001A0E1C File Offset: 0x0019F21C
-        public static bool TryFindCell(out IntVec3 cell, Map map, bool allowFogged = false)
+        public static bool TryFindCell(out IntVec3 cell, out IntVec3 locationC, Map map, bool allowFogged = false, bool allowUnroofed = false, bool allowDigging = false)
         {
-            ThingDef namedA = XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon;
-            ThingDef namedB = XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon;
-            InfestationLikeCellFinder.CalculateLocationCandidates(map, allowFogged);
+            ThingDef namedA = XenomorphDefOf.RRY_Xenomorph_Cocoon_Humanoid;
+            ThingDef namedB = XenomorphDefOf.RRY_Xenomorph_Cocoon_Animal;
+            InfestationLikeCellFinder.CalculateLocationCandidates(map, allowFogged, allowUnroofed, allowDigging);
 
             Predicate<IntVec3> validator = delegate (IntVec3 y)
             {
-                bool score = InfestationLikeCellFinder.GetScoreAt(y, map, allowFogged) > 0f;
-                bool XenohiveA = y.GetFirstThing(map, XenomorphDefOf.RRY_XenomorphHive) == null;
-                bool XenohiveB = y.GetFirstThing(map, XenomorphDefOf.RRY_XenomorphHive_Child) == null;
-                bool filled = y.Filled(map);
-                bool edifice = y.GetEdifice(map).DestroyedOrNull();
-                bool building = y.GetFirstBuilding(map).DestroyedOrNull();
+                bool roofed = (!allowUnroofed && y.Roofed(map)) || allowUnroofed;
+                bool score = InfestationLikeCellFinder.GetScoreAt(y, map, allowFogged, allowUnroofed, allowDigging) > 0f;
+                bool XenohiveA = y.GetFirstThing(map, XenomorphDefOf.RRY_Xenomorph_Hive) == null;
+                bool XenohiveB = y.GetFirstThing(map, XenomorphDefOf.RRY_Xenomorph_Hive_Child) == null;
+                bool filled = y.Filled(map) && !allowDigging;
+                bool edifice = y.GetEdifice(map).DestroyedOrNull() || allowDigging;
+                if (!edifice)
+                {
+                //    Log.Message(string.Format("edifice detected: {0}", y.GetEdifice(map).LabelCap));
+                }
+                bool building = y.GetFirstBuilding(map).DestroyedOrNull() || allowDigging;
+                if (!building)
+                {
+                //    Log.Message(string.Format("building detected: {0}", y.GetFirstBuilding(map).LabelCap));
+                }
                 bool thingA = y.GetFirstThing(map, namedA).DestroyedOrNull();
                 bool thingB = y.GetFirstThing(map, namedB).DestroyedOrNull();
-                Log.Message(string.Format("Cell: {0}, score: {1}, XenohiveA: {2}, XenohiveB: {3}, !filled: {4}, edifice: {5}, building: {6}, thingA: {7}, thingB: {8}\nResult: {9}", y, GetScoreAt(y, map, allowFogged), XenohiveA , XenohiveB , !filled , edifice , building , thingA , thingB, score && XenohiveA && XenohiveB && !filled && edifice && building && thingA && thingB));
-                return score && XenohiveA && XenohiveB && !filled && edifice && building && thingA && thingB;
+                bool result = score && XenohiveA && XenohiveB && !filled && edifice && building && thingA && thingB && roofed;
+             //   Log.Message(string.Format("Cell: {0}, score: {1}, XenohiveA: {2}, XenohiveB: {3}, !filled: {4}, edifice: {5}, building: {6}, thingA: {7}, thingB: {8}, roofed: {9}\nResult: {10}", y, GetScoreAt(y, map, allowFogged), XenohiveA , XenohiveB , !filled , edifice , building , thingA , thingB, roofed, result));
+                return result;
             };
             if (!InfestationLikeCellFinder.locationCandidates.TryRandomElementByWeight((InfestationLikeCellFinder.LocationCandidate x) => x.score, out LocationCandidate locationCandidate))
             {
+            //    Log.Message(string.Format("Cant find any suitable location candidates"));
                 cell = IntVec3.Invalid;
                 if (!InfestationCellFinder.TryFindCell(out cell, map))
                 {
                     cell = IntVec3.Invalid;
+                    locationC = IntVec3.Invalid;
                     return false;
                 }
             }
-            cell = CellFinder.FindNoWipeSpawnLocNear(locationCandidate.cell, map, XenomorphDefOf.RRY_XenomorphHive, Rot4.North, 2, validator);
-            ThingDef td = XenomorphDefOf.RRY_Hive_Slime;
+            locationC = locationCandidate.cell;
+            cell = CellFinder.FindNoWipeSpawnLocNear(locationCandidate.cell, map, XenomorphDefOf.RRY_Xenomorph_Hive, Rot4.North, 2, validator);
+            ThingDef td = XenomorphDefOf.RRY_Xenomorph_Hive_Slime;
             GenSpawn.Spawn(td, cell, map);
             return true;
         }
-
+        /*
         // Token: 0x0600368B RID: 13963 RVA: 0x001A0E1C File Offset: 0x0019F21C
         public static bool TryFindCell(out IntVec3 cell, out IntVec3 locationC, Map map, bool allowFogged = true)
         {
@@ -79,15 +92,11 @@ namespace RimWorld
             GenSpawn.Spawn(td, cell, map);
             return true;
         }
-
+        */
         // Token: 0x0600368C RID: 13964 RVA: 0x001A0EAC File Offset: 0x0019F2AC
-        private static float GetScoreAt(IntVec3 cell, Map map, bool allowFogged)
+        private static float GetScoreAt(IntVec3 cell, Map map, bool allowFogged = false, bool allowUnroofed = false, bool allowDigging = false)
         {
-            if ((float)InfestationLikeCellFinder.distToColonyBuilding[cell] < 20f)
-            {
-                return 0f;
-            }
-            if (!cell.Walkable(map) && !allowFogged)
+            if ((!cell.Walkable(map) && !cell.GetFirstMineable(map).DestroyedOrNull() && !allowDigging))
             {
                 return 0f;
             }
@@ -95,41 +104,56 @@ namespace RimWorld
             {
                 return 0f;
             }
-            if (InfestationLikeCellFinder.CellHasBlockingThings(cell, map) && !allowFogged)
+            if (InfestationLikeCellFinder.CellHasBlockingThings(cell, map) && !allowDigging)
             {
                 return 0f;
             }
-            if (!cell.Roofed(map) || !cell.GetRoof(map).isThickRoof && !allowFogged)
+            if ((!cell.Roofed(map) || !cell.GetRoof(map).isThickRoof) && !allowUnroofed)
             {
                 return 0f;
             }
             Region region = cell.GetRegion(map, RegionType.Set_Passable);
-            if (region == null)
+            if (region == null && !allowDigging)
             {
                 return 0f;
             }
-            if (InfestationLikeCellFinder.closedAreaSize[cell] < 2)
+            if (InfestationLikeCellFinder.closedAreaSize[cell] < 2 && !allowDigging)
             {
                 return 0f;
             }
             float temperature = cell.GetTemperature(map);
+
             if (temperature < -40f)
             {
                 return 0f;
             }
             float mountainousnessScoreAt = InfestationLikeCellFinder.GetMountainousnessScoreAt(cell, map);
+        //    Log.Message(String.Format("{0} mountainousnessScoreAt: {1}", cell, mountainousnessScoreAt), true);
             if (mountainousnessScoreAt < 0.17f)
             {
+            //    Log.Message(String.Format("{0} faield due to Low Mountainousness Score",cell), true);
                 return 0f;
             }
             int num = InfestationLikeCellFinder.StraightLineDistToUnroofed(cell, map);
-            if (!InfestationLikeCellFinder.regionsDistanceToUnroofed.TryGetValue(region, out float num2))
+            if ((float)InfestationLikeCellFinder.distToColonyBuilding[cell] < 20f)
+            {
+                num-=20;
+            }
+            float num2;
+            if (region == null)
             {
                 num2 = (float)num * 1.15f;
             }
             else
             {
-                num2 = Mathf.Min(num2, (float)num * 4f);
+                if (!InfestationLikeCellFinder.regionsDistanceToUnroofed.TryGetValue(region, out num2))
+                {
+                    num2 = (float)num * 1.15f;
+                }
+                else
+                {
+                    num2 = Mathf.Min(num2, (float)num * 4f);
+                }
             }
             num2 = Mathf.Pow(num2, 1.55f);
             float num3 = Mathf.InverseLerp(0f, 12f, (float)num);
@@ -146,7 +170,7 @@ namespace RimWorld
         }
 
         // Token: 0x0600368E RID: 13966 RVA: 0x001A127C File Offset: 0x0019F67C
-        private static void CalculateLocationCandidates(Map map, bool allowFogged)
+        private static void CalculateLocationCandidates(Map map, bool allowFogged = false, bool allowUnroofed = false, bool allowDigging = false)
         {
             InfestationLikeCellFinder.locationCandidates.Clear();
             InfestationLikeCellFinder.CalculateTraversalDistancesToUnroofed(map);
@@ -157,7 +181,7 @@ namespace RimWorld
                 for (int j = 0; j < map.Size.x; j++)
                 {
                     IntVec3 cell = new IntVec3(j, 0, i);
-                    float scoreAt = InfestationLikeCellFinder.GetScoreAt(cell, map, allowFogged); // allowFogged
+                    float scoreAt = InfestationLikeCellFinder.GetScoreAt(cell, map, allowFogged, allowUnroofed, allowDigging); // allowFogged
                     if (scoreAt > 0f)
                     {
                         InfestationLikeCellFinder.locationCandidates.Add(new InfestationLikeCellFinder.LocationCandidate(cell, scoreAt));
@@ -177,7 +201,7 @@ namespace RimWorld
                     return true;
                 }
                 bool flag = thingList[i].def.category == ThingCategory.Building && thingList[i].def.passability == Traversability.Impassable;
-                if (flag && GenSpawn.SpawningWipes(OGHiveLikeDefOf.HiveLike, thingList[i].def))
+                if (flag && GenSpawn.SpawningWipes(XenomorphDefOf.RRY_Xenomorph_Hive, thingList[i].def))
                 {
                     return true;
                 }

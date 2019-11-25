@@ -5,12 +5,12 @@ using Verse;
 namespace RimWorld
 {
     // Token: 0x02000763 RID: 1891
-    public class CompProperties_SpawnerLike : CompProperties
+    public class CompProperties_Xenomorph_SpawnerLike : CompProperties
     {
         // Token: 0x060029C3 RID: 10691 RVA: 0x0013C6C7 File Offset: 0x0013AAC7
-        public CompProperties_SpawnerLike()
+        public CompProperties_Xenomorph_SpawnerLike()
         {
-            this.compClass = typeof(CompSpawnerLike);
+            this.compClass = typeof(CompXenomorph_SpawnerLike);
         }
 
         // Token: 0x0400172B RID: 5931
@@ -44,15 +44,15 @@ namespace RimWorld
         public bool inheritFaction;
     }
     // Token: 0x02000764 RID: 1892
-    public class CompSpawnerLike : ThingComp
+    public class CompXenomorph_SpawnerLike : ThingComp
     {
         // Token: 0x17000675 RID: 1653
         // (get) Token: 0x060029C5 RID: 10693 RVA: 0x0013C704 File Offset: 0x0013AB04
-        public CompProperties_SpawnerLike PropsSpawner
+        public CompProperties_Xenomorph_SpawnerLike PropsSpawner
         {
             get
             {
-                return (CompProperties_SpawnerLike)this.props;
+                return (CompProperties_Xenomorph_SpawnerLike)this.props;
             }
         }
 
@@ -80,6 +80,17 @@ namespace RimWorld
         public override void CompTick()
         {
             this.TickInterval(1);
+            if (this.parent is HiveLike hive)
+            {
+                if (DebugSettings.godMode && hive.hasQueen)
+                {
+                    PropsSpawner.writeTimeLeftToSpawn = true;
+                }
+                else
+                {
+                    PropsSpawner.writeTimeLeftToSpawn = false;
+                }
+            }
         }
 
         // Token: 0x060029C9 RID: 10697 RVA: 0x0013C753 File Offset: 0x0013AB53
@@ -98,6 +109,10 @@ namespace RimWorld
             if (this.parent is HiveLike hive)
             {
                 if (!hive.active)
+                {
+                    return;
+                }
+                if (!hive.hasQueen)
                 {
                     return;
                 }

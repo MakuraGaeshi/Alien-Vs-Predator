@@ -190,7 +190,18 @@ namespace RRYautja
                 if (selected) Log.Message(string.Format("{0}", _Yautja.pawn));
                 if (selected) Log.Message(string.Format("{0}", _Yautja.MarkedhediffDef));
                 */
+                if (_Yautja==null)
+                {
+                    failReason = "Unmarkable pawn";
+                    return false;
+                }
                 ThingDef def = _Yautja.pawn.Corpse.InnerPawn.kindDef.race;
+
+                if (def == null)
+                {
+                    failReason = "def pawn missing";
+                    return false;
+                }
                 if (this.parent is Corpse corpse)
                 {
                     this.corpse = corpse;

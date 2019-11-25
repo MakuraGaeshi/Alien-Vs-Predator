@@ -53,12 +53,12 @@ namespace RimWorld
                     HiveLike hiveFor = base.GetHiveLikeFor(this.lord.ownedPawns[i]);
                     if (hiveFor.parentHiveLike != null)
                     {
-                        duty = new PawnDuty(OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike, hiveFor.parentHiveLike, this.distToHiveToAttack);
+                        duty = new PawnDuty(XenomorphDefOf.RRY_Xenomorph_DefendAndExpandHive, hiveFor.parentHiveLike, this.distToHiveToAttack);
                         this.Data.HiveLoc = hiveFor.parentHiveLike.Position;
                     }
                     else if (hiveFor!=null)
                     {
-                        duty = new PawnDuty(OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike, hiveFor, this.distToHiveToAttack);
+                        duty = new PawnDuty(XenomorphDefOf.RRY_Xenomorph_DefendAndExpandHive, hiveFor, this.distToHiveToAttack);
                         this.Data.HiveLoc = hiveFor.Position;
                     }
                     else
@@ -71,12 +71,12 @@ namespace RimWorld
                 {
                     if (XenomorphUtil.HiveSlimePresent(Map))
                     {
-                        duty = new PawnDuty(OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike, XenomorphUtil.ClosestReachableHiveSlime(pawn), this.distToHiveToAttack);
+                        duty = new PawnDuty(XenomorphDefOf.RRY_Xenomorph_DefendAndExpandHive, XenomorphUtil.ClosestReachableHiveSlime(pawn), this.distToHiveToAttack);
                         this.Data.HiveLoc = XenomorphUtil.ClosestReachableHiveSlime(pawn).Position;
                     }
                     else if (XenomorphKidnapUtility.TryFindGoodHiveLoc(pawn, out IntVec3 c))
                     {
-                        duty = new PawnDuty(OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike, c, this.distToHiveToAttack);
+                        duty = new PawnDuty(XenomorphDefOf.RRY_Xenomorph_DefendAndExpandHive, c, this.distToHiveToAttack);
                         this.Data.HiveLoc = c;
                     }
                     else

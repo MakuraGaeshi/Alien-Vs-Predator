@@ -228,7 +228,7 @@ namespace RimWorld
                         {
                             parentHiveLike.childHiveLikes.Add(hive);
                         }
-                        foreach (CompSpawnerLike compSpawner in hive.GetComps<CompSpawnerLike>())
+                        foreach (CompXenomorph_SpawnerLike compSpawner in hive.GetComps<CompXenomorph_SpawnerLike>())
                         {
                             if (compSpawner.PropsSpawner.thingToSpawn == ThingDefOf.InsectJelly)
                             {

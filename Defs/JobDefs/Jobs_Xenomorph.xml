@@ -2,14 +2,14 @@
 <Defs>
 
   <JobDef>
-    <defName>RRY_Job_EnterHiveTunnel</defName>
+    <defName>RRY_Job_Xenomorph_EnterHiveTunnel</defName>
     <driverClass>RRYautja.JobDriver_EnterHiveTunnel</driverClass>
     <reportString>entering TargetA.</reportString>
     <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
   </JobDef>
   
   <JobDef>
-    <defName>RRY_Job_LayXenomorphEgg</defName>
+    <defName>RRY_Job_Xenomorph_LayEgg</defName>
     <driverClass>JobDriver_LayXenoEgg</driverClass>
     <reportString>laying egg.</reportString>
     <casualInterruptible>false</casualInterruptible>
@@ -17,7 +17,7 @@
   </JobDef>
   
   <JobDef>
-    <defName>RRY_Job_XenomorphKidnap</defName>
+    <defName>RRY_Job_Xenomorph_Kidnap</defName>
     <driverClass>JobDriver_XenosKidnap</driverClass>
     <reportString>kidnapping TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
@@ -25,14 +25,14 @@
   </JobDef>
   
   <JobDef>
-    <defName>RRY_Job_PredalienImpregnate</defName>
+    <defName>RRY_Job_Xenomorph_PredalienImpregnate</defName>
     <driverClass>JobDriver_PredalienImpregnate</driverClass>
     <reportString>Impregnating TargetA.</reportString>
     <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
   </JobDef>
   
   <JobDef>
-    <defName>RRY_Job_MaintainLike</defName>
+    <defName>RRY_Job_Xenomorph_MaintainHive</defName>
     <driverClass>JobDriver_MaintainLike</driverClass>
     <reportString>maintaining TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
@@ -40,9 +40,30 @@
   </JobDef>
   
   <JobDef>
-    <defName>RRY_Job_ConstructHiveWall</defName>
-    <driverClass>JobDriver_ConstructHiveWall</driverClass>
-    <reportString>constructing hive.</reportString>
+    <defName>RRY_Job_Xenomorph_Construct_Hive_Slime</defName>
+    <driverClass>JobDriver_ConstructHive_Slime</driverClass>
+    <reportString>constructing hive slime.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>RRY_Job_Xenomorph_Construct_Hive_Node</defName>
+    <driverClass>JobDriver_ConstructHive_Node</driverClass>
+    <reportString>constructing hive node.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>RRY_Job_Xenomorph_Construct_Hive_Wall</defName>
+    <driverClass>JobDriver_ConstructHive_Wall</driverClass>
+    <reportString>constructing hive wall.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>RRY_Job_Xenomorph_Construct_Hive_Roof</defName>
+    <driverClass>JobDriver_ConstructHive_Roof</driverClass>
+    <reportString>constructing hive roof.</reportString>
     <casualInterruptible>false</casualInterruptible>
   </JobDef>
 

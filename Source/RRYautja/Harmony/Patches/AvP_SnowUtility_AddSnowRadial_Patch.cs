@@ -26,7 +26,7 @@ namespace RRYautja
             if (_HiveGrid != null)
             {
                 //        Log.Message(string.Format("AddSnowRadial _HiveGrid != null center: {0}, radius: {1}, depth: {2}", center, radius, depth));
-                HiveUtility.AddHiveRadial(center, map, radius, depth);
+                XenomorphHiveUtility.AddHiveRadial(center, map, radius, depth);
             }
         }
     }

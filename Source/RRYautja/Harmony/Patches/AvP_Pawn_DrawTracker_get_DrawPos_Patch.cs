@@ -27,7 +27,7 @@ namespace RRYautja
             //    bool selected = Find.Selector.SelectedObjects.Contains(pawn) && Prefs.DevMode;
             if (!portrait)
             {
-                if (pawn.RaceProps.Humanlike && pawn.CurrentBed() != null && pawn.CurrentBed() is Building_XenomorphCocoon)
+                if (pawn.RaceProps.Humanlike && pawn.CurrentBed() != null && pawn.CurrentBed().GetType() == typeof(Building_XenomorphCocoon))
                 {
                     //rootLoc.z += 1f;
                     //rootLoc.x += 1f;

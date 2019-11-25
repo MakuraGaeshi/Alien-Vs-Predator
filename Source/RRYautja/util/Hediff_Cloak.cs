@@ -110,6 +110,7 @@ namespace RRYautja
             if (pawn.Downed || pawn.Dead || (pawn.pather != null && pawn.pather.WillCollideWithPawnOnNextPathCell()))
             {
                 pawn.health.RemoveHediff(this);
+                /*
                 if (pawn.pather != null)
                 {
                     AlertThief(pawn, pawn.pather.nextCell.GetFirstPawn(pawn.Map));
@@ -118,6 +119,7 @@ namespace RRYautja
                 {
                     AlertThief(pawn, null);
                 }
+                */
             }
             if (pawn.pather != null && GetLastCell(pawn.pather).GetDoor(pawn.Map) != null)
             {
@@ -153,7 +155,7 @@ namespace RRYautja
                                     if (Rand.Value > spotChance)
                                     {
                                         pawn.health.RemoveHediff(this);
-                                        AlertThief(pawn, observer);
+                                        //AlertThief(pawn, observer);
                                     }
                                 }
                                 else if (observer == null)
@@ -165,7 +167,7 @@ namespace RRYautja
                                         if (Rand.Value > spotChance)
                                         {
                                             pawn.health.RemoveHediff(this);
-                                            AlertThief(pawn, turret);
+                                            //AlertThief(pawn, turret);
                                         }
                                     }
                                 }
@@ -218,12 +220,8 @@ namespace RRYautja
             {
                 SetGraphicInt(lastCarried, lastCarriedGraphic);
             }
-            if (!pawn.Spawned && (holding != null || lastCarried != null))
-            {
-                Messages.Message("A thief has stolen " + (holding != null ? holding.LabelNoCount : lastCarried.LabelNoCount) + "!", MessageTypeDefOf.ThreatSmall);
-            }
         }
-
+        /*
         public void AlertThief(Pawn pawn, Thing observer)
         {
             pawn.jobs.EndCurrentJob(JobCondition.InterruptForced);
@@ -252,7 +250,7 @@ namespace RRYautja
             //    Find.LetterStack.ReceiveLetter("LetterLabelThief".Translate(), "ThiefInjured".Translate(pawn.Faction.Name, pawn.Named("PAWN")), LetterDefOf.NegativeEvent, pawn, null);
             }
         }
-
+        */
         private PawnGraphicSet oldGraphics;
         private Graphic_Shadow oldShadow;
         private int lastSpottedTick = -9999;

@@ -66,7 +66,7 @@ namespace RRYautja
         {
             get
             {
-                return Pawn.RaceProps.Humanlike ? XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon : XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon;
+                return Pawn.RaceProps.Humanlike ? XenomorphDefOf.RRY_Xenomorph_Cocoon_Humanoid : XenomorphDefOf.RRY_Xenomorph_Cocoon_Animal;
             }
         }
 
@@ -117,7 +117,19 @@ namespace RRYautja
         {
             get
             {
-                return MyMap.mapPawns.AllPawnsSpawned.Any(x => x.kindDef == QueenKindDef);
+                bool queenPresent = MyMap.mapPawns.AllPawnsSpawned.Any(x => x.kindDef == QueenKindDef);
+                if (!queenPresent && XenomorphUtil.HivelikesPresent(MyMap))
+                {
+                    foreach (HiveLike h in XenomorphUtil.SpawnedHivelikes(MyMap))
+                    {
+                        if (h.hasQueen)
+                        {
+                            queenPresent = true;
+                            break;
+                        }
+                    }
+                }
+                return queenPresent;
             }
         }
 
@@ -134,7 +146,7 @@ namespace RRYautja
         {
             get
             {
-                return MyMap.listerThings.ThingsOfDef(XenomorphDefOf.RRY_EggXenomorphFertilized).Any(x => x is Building_XenoEgg egg && egg.xenoHatcher.royalProgress>=1f);
+                return MyMap.listerThings.ThingsOfDef(eggDef).Any(x => x is Building_XenoEgg egg && egg.xenoHatcher.eggState == CompXenoHatcher.EggState.Royal);
             }
         }
         ThingDef eggDef = XenomorphDefOf.RRY_EggXenomorphFertilized;
@@ -199,7 +211,7 @@ namespace RRYautja
                             Thing thing = ThingMaker.MakeThing(eggDef, null);
                             Building_XenoEgg _XenoEgg = (Building_XenoEgg)thing;
                             CompXenoHatcher xenoHatcher = _XenoEgg.TryGetComp<CompXenoHatcher>();
-                            if (!RoyalEggPresent && !RoyalPresent) xenoHatcher.royalProgress = Pawn.BodySize;
+                            if (!RoyalEggPresent && !RoyalPresent) xenoHatcher.mutateProgress = Pawn.BodySize;
                             MyCocoon.Destroy();
                             GenPlace.TryPlaceThing(thing, Pawn.Position != null ? Pawn.Position : Pawn.PositionHeld, Pawn.Map ?? Pawn.MapHeld, ThingPlaceMode.Direct);
                         //    Pawn.health.RemoveHediff(this.parent);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RRYautja;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
@@ -63,7 +64,7 @@ namespace RimWorld
             get
             {
                 List<HiveLike> hives = new List<HiveLike>();
-                foreach (var item in parent.Map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_XenomorphHive_Child))
+                foreach (var item in parent.Map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_Xenomorph_Hive_Child))
                 {
                     hives.Add((HiveLike)item);
                 }
@@ -103,7 +104,7 @@ namespace RimWorld
 		{
 			get
 			{
-				return this.canSpawnHiveLikes && HiveLikeUtility.TotalSpawnedHiveLikesCount(this.parent.Map) < 30;
+				return this.canSpawnHiveLikes && XenomorphHiveUtility.TotalSpawnedHiveLikesCount(this.parent.Map) < 30;
 			}
 		}
 
@@ -121,7 +122,7 @@ namespace RimWorld
 		{
 			base.CompTick();
             int extra = 0;
-            if (hiveLike.def == XenomorphDefOf.RRY_XenomorphHive && canSpawnHiveLikes)
+            if (hiveLike.def == XenomorphDefOf.RRY_Xenomorph_Hive && canSpawnHiveLikes)
             {
                 extra += hiveLike.GetDirectlyHeldThings().Count;
                 foreach (var item in hiveLike.childHiveLikes)
@@ -170,7 +171,7 @@ namespace RimWorld
                     this.parent.HitPoints++;
                 }
                 int extra = 0;
-                if (hiveLike.def == XenomorphDefOf.RRY_XenomorphHive && canSpawnHiveLikes)
+                if (hiveLike.def == XenomorphDefOf.RRY_Xenomorph_Hive && canSpawnHiveLikes)
                 {
                     extra += hiveLike.GetDirectlyHeldThings().Count;
                     foreach (var item in hiveLike.childHiveLikes)

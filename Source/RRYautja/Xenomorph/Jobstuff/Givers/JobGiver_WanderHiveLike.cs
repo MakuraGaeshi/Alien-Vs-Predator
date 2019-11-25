@@ -64,7 +64,7 @@ namespace RimWorld
                     {
                         return XenomorphUtil.ClosestReachableHivelike(pawn).Position;
                     }
-                    if (!XenomorphKidnapUtility.hiveslimepresent)
+                    if (!XenomorphUtil.HiveSlimePresent(pawn.Map))
                     {
                         if (XenomorphKidnapUtility.TryFindGoodHiveLoc(pawn, out IntVec3 c))
                         {

@@ -16,11 +16,11 @@ namespace RimWorld
                 PawnDuty duty;
                 if (hiveFor.parentHiveLike!=null)
                 {
-                    duty = new PawnDuty(OGHiveLikeDefOf.RRY_DefendHiveLikeAggressively, hiveFor.parentHiveLike, this.distToHiveToAttack);
+                    duty = new PawnDuty(XenomorphDefOf.RRY_Xenomorph_DefendHiveAggressively, hiveFor.parentHiveLike, this.distToHiveToAttack);
                 }
                 else
                 {
-                    duty = new PawnDuty(OGHiveLikeDefOf.RRY_DefendHiveLikeAggressively, hiveFor, this.distToHiveToAttack);
+                    duty = new PawnDuty(XenomorphDefOf.RRY_Xenomorph_DefendHiveAggressively, hiveFor, this.distToHiveToAttack);
                 }
                 this.lord.ownedPawns[i].mindState.duty = duty;
             }

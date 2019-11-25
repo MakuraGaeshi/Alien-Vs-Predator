@@ -132,7 +132,7 @@
       <meatLabel>xenomorph flesh</meatLabel>
       <maxPreyBodySize>30</maxPreyBodySize>
       <intelligence>ToolUser</intelligence>
-      <thinkTreeMain>RRY_Xenommorph</thinkTreeMain>
+      <thinkTreeMain>RRY_Xenomorph</thinkTreeMain>
       <body>RRY_Xenomorph_FaceHugger</body>
       <baseBodySize>0.30</baseBodySize>
       <baseHealthScale>0.3</baseHealthScale>
@@ -310,7 +310,7 @@
     </tools>
     <race>
       <intelligence>ToolUser</intelligence>
-      <thinkTreeMain>RRY_Xenommorph</thinkTreeMain>
+      <thinkTreeMain>RRY_Xenomorph</thinkTreeMain>
       <body>RRY_Xenomorph_Biped</body>
 	  <useMeatFrom>RRY_Xenomorph_FaceHugger</useMeatFrom>
       <baseBodySize>3.0</baseBodySize>
@@ -451,7 +451,7 @@
   <ThingDef ParentName="RRY_BaseXenomorph" Name="BaseXenomorphWalker" Abstract="True">
     <race>
       <intelligence>ToolUser</intelligence>
-      <thinkTreeMain>RRY_Xenommorph</thinkTreeMain>
+      <thinkTreeMain>RRY_Xenomorph</thinkTreeMain>
       <baseBodySize>1.0</baseBodySize>
       <lifeStageAges>
         <li>
@@ -527,7 +527,7 @@
     <description>Drones are an adult form of the species Xenomorph XX121, often said to be the most basic adult caste. They are loyal servants of the Queen, but essentially represents the lowliest class of Xenomorph, comparable to a worker ant. Drones construct Xenomorph Hives, using a resin-like secretion that they produce, and collect hosts for impregnation./n/n Drones are easily identified by their smooth head carapaces, among the smoothest of all Xenomorphs, and they are capable of spitting cysts of acidic blood at their enemies. They average around 8 feet tall when standing on hind legs, and about 14–15 feet long, tail included.</description>
     <statBases>
       <MoveSpeed>5.2</MoveSpeed>
-      <MeleeDodgeChance>1.75</MeleeDodgeChance>
+      <MeleeDodgeChance>2.75</MeleeDodgeChance>
       <MeleeHitChance>1.25</MeleeHitChance>
       <ArmorRating_Blunt>0.40</ArmorRating_Blunt>
       <ArmorRating_Sharp>0.60</ArmorRating_Sharp>
@@ -542,7 +542,7 @@
           <li>Blunt</li>
           <li>Cut</li>
         </capacities>
-        <power>11.5</power>
+        <power>14.5</power>
         <cooldownTime>2</cooldownTime>
         <linkedBodyPartsGroup>RRY_Xeno_LeftHand</linkedBodyPartsGroup>
         <surpriseAttack>
@@ -560,7 +560,7 @@
           <li>Blunt</li>
           <li>Cut</li>
         </capacities>
-        <power>11.5</power>
+        <power>14.5</power>
         <cooldownTime>2</cooldownTime>
         <linkedBodyPartsGroup>RRY_Xeno_RightHand</linkedBodyPartsGroup>
         <surpriseAttack>
@@ -629,7 +629,7 @@
     <race>
       <body>RRY_Xenomorph_Biped</body>
 	  <useMeatFrom>RRY_Xenomorph_FaceHugger</useMeatFrom>
-      <baseHealthScale>0.72</baseHealthScale>
+      <baseHealthScale>1</baseHealthScale>
       <baseBodySize>1.6</baseBodySize>
       <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
       <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
@@ -1381,7 +1381,7 @@
     </tools>
     <race>
       <intelligence>ToolUser</intelligence>
-      <thinkTreeMain>RRY_Xenommorph</thinkTreeMain>
+      <thinkTreeMain>RRY_Xenomorph</thinkTreeMain>
       <body>RRY_Xenomorph_QuadrupedWithHorn</body>
 	  <useMeatFrom>RRY_Xenomorph_FaceHugger</useMeatFrom>
       <baseBodySize>4</baseBodySize>

@@ -22,30 +22,42 @@ namespace RRYautja
         {
             get
             {
-                float num = (0.6f * xenoHatcher.royalProgress) < 1.7 ? (0.6f * xenoHatcher.royalProgress) : 1.7f;
+                float basic = 0f;
+                if (xenoHatcher.eggState == CompXenoHatcher.EggState.Praetorian)
+                {
+                    basic += 0.25f;
+                }
+                if (xenoHatcher.eggState == CompXenoHatcher.EggState.Royal)
+                {
+                    basic += 0.5f;
+                }
+                if (xenoHatcher.eggState == CompXenoHatcher.EggState.Hyperfertile)
+                {
+                    basic += 0.75f;
+                }
+                float num = (basic * xenoHatcher.mutateProgress);
                 return  new Vector2( 1f + (num) , 1f + (num) );
             }
         }
-
+        
         public override Graphic Graphic
         {
             get
             {
-                float num = (float)Math.Round((0.7 * (double)xenoHatcher.royalProgress), 1);
-                if (xenoHatcher.royalProgress>0f)
+                float num = (float)Math.Round((0.7 * (double)xenoHatcher.mutateProgress), 1);
+                if (xenoHatcher.mutateProgress>0f)
                 {
                     //Graphic g = base.Graphic.GetCopy(DrawSize); //
                     Graphic graphic = base.Graphic.GetCopy(DrawSize); //new Graphic();
 
                     //graphic.Color.r += 40f;
                     //graphic.drawSize = new Vector2(1f + (num), 1f + (num));
-                    if (xenoHatcher.royalProgress > 1f)
+                    if (xenoHatcher.mutateProgress > 1f)
                     {
                         graphic.path = "Things/Resources/Raw/Xenomorph_RoyalEgg";
                     }
                     
                     return graphic;
-                    return base.Graphic.GetCopy(new Vector2(1f + (num), 1f + (num)));
                 }
                 return base.Graphic;
             }
@@ -70,7 +82,6 @@ namespace RRYautja
                 {
                     this.SetFaction(Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph));
                 }
-            //    Log.Message(string.Format("this.Graphic.drawSize {0}", this.Graphic.drawSize));
             }
         }
 

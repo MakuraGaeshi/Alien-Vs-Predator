@@ -401,12 +401,12 @@ namespace RRYautja.ExtensionMethods
                 failReason = "TM_Minion";
                 return false;
             }
-            if (p.race.defName.Contains("TM_Demon"))
+            if (p.race.defName.Contains("Demon"))
             {
                 failReason = "TM_Demon";
                 return false;
             }
-            if (p.race.race.FleshType.defName.Contains("ChaosDeamon"))
+            if (p.race.race.FleshType.defName.Contains("Deamon"))
             {
                 failReason = "ChaosDeamon";
                 return false;

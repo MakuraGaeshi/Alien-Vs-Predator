@@ -121,6 +121,7 @@ namespace RRYautja
             return null;
         }
 
+
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
@@ -128,10 +129,127 @@ namespace RRYautja
             {
                 hidden = true;
             }
+            MapComponent_HiveGrid hiveGrid = map.HiveGrid();
+            if (hiveGrid != null)
+            {
+                if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_FaceHugger)
+                {
+                    /*
+                    if (!hiveGrid.Dronelist.Contains(pawn))
+                    {
+                        hiveGrid.Dronelist.Add(pawn);
+                    }
+                    */
+                }
+                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Runner)
+                {
+                    if (!hiveGrid.Runnerlist.Contains(pawn))
+                    {
+                        hiveGrid.Runnerlist.Add(pawn);
+                    }
+                }
+                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Drone)
+                {
+                    if (!hiveGrid.Dronelist.Contains(pawn))
+                    {
+                        hiveGrid.Dronelist.Add(pawn);
+                    }
+                }
+                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Warrior)
+                {
+                    if (!hiveGrid.Warriorlist.Contains(pawn))
+                    {
+                        hiveGrid.Warriorlist.Add(pawn);
+                    }
+                }
+                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Predalien)
+                {
+                    if (!hiveGrid.Predalienlist.Contains(pawn))
+                    {
+                        hiveGrid.Predalienlist.Add(pawn);
+                    }
+                }
+                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen)
+                {
+                    if (!hiveGrid.Queenlist.Contains(pawn))
+                    {
+                        hiveGrid.Queenlist.Add(pawn);
+                    }
+                }
+                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Thrumbomorph)
+                {
+                    if (!hiveGrid.HiveGuardlist.Contains(pawn))
+                    {
+                        hiveGrid.HiveGuardlist.Add(pawn);
+                    }
+                }
+            }
+        }
+
+        public override void PostDeSpawn(Map map)
+        {
+
+            MapComponent_HiveGrid hiveGrid = map.HiveGrid();
+            if (hiveGrid != null)
+            {
+                if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_FaceHugger)
+                {
+                    /*
+                    if (hiveGrid.Dronelist.Contains(pawn))
+                    {
+                        hiveGrid.Dronelist.Remove(pawn);
+                    }
+                    */
+                }
+                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Runner)
+                {
+                    if (hiveGrid.Runnerlist.Contains(pawn))
+                    {
+                        hiveGrid.Runnerlist.Remove(pawn);
+                    }
+                }
+                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Drone)
+                {
+                    if (hiveGrid.Dronelist.Contains(pawn))
+                    {
+                        hiveGrid.Dronelist.Remove(pawn);
+                    }
+                }
+                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Warrior)
+                {
+                    if (hiveGrid.Warriorlist.Contains(pawn))
+                    {
+                        hiveGrid.Warriorlist.Remove(pawn);
+                    }
+                }
+                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Predalien)
+                {
+                    if (hiveGrid.Predalienlist.Contains(pawn))
+                    {
+                        hiveGrid.Predalienlist.Remove(pawn);
+                    }
+                }
+                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen)
+                {
+                    if (hiveGrid.Queenlist.Contains(pawn))
+                    {
+                        hiveGrid.Queenlist.Remove(pawn);
+                    }
+                }
+                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Thrumbomorph)
+                {
+                    if (hiveGrid.HiveGuardlist.Contains(pawn))
+                    {
+                        hiveGrid.HiveGuardlist.Remove(pawn);
+                    }
+                }
+            }
+            base.PostDeSpawn(map);
         }
 
         public void XenoLordTick()
         {
+            Log.Message("XenoLordTick");
             if (map != null)
             {
                 IntVec3 c = IntVec3.Invalid;
@@ -141,11 +259,41 @@ namespace RRYautja
                 LordJob Hivejob = null;
                 Pawn Hivequeen = null;
                 IEnumerable<Lord> lords = pawn.Map.lordManager.lords.Where(x => x.faction == pawn.Faction);
-                bool isDefendPoint = pawn.GetLord()!= null ? pawn.GetLord().LordJob is LordJob_DefendPoint : false;
-                bool isAssaultColony = pawn.GetLord() != null ? pawn.GetLord().LordJob is LordJob_AssaultColony : false;
-                bool hostsPresent = map.mapPawns.AllPawnsSpawned.Any(x => x.isPotentialHost() && !x.isCocooned() && IsAcceptablePreyFor(pawn,x,true));
-                bool LordReplaceable = (isDefendPoint || (isAssaultColony && !hostsPresent));
-             //   Log.Message(string.Format("LordReplaceable: {0}, isDefendPoint: {1}, isAssaultColony: {2}, hostsPresent: {3}", LordReplaceable, isDefendPoint, isAssaultColony, !hostsPresent));
+                bool isDefendPoint = pawn.GetLord()!= null ? pawn.GetLord().LordJob is LordJob_DefendPoint : true;
+                bool isAssaultColony = pawn.GetLord() != null ? pawn.GetLord().LordJob is LordJob_AssaultColony : true;
+                bool hostsPresent = map.mapPawns.AllPawnsSpawned.Any(x => x.isPotentialHost() && !x.isCocooned() && IsAcceptablePreyFor(pawn,x,true) && x.Faction.HostileTo(pawn.Faction));
+                bool LordReplaceable = (isDefendPoint || (isAssaultColony && hostsPresent && !GenHostility.AnyHostileActiveThreatTo(pawn.Map,pawn.Faction)));
+                //   Log.Message(string.Format("LordReplaceable: {0}, isDefendPoint: {1}, isAssaultColony: {2}, hostsPresent: {3}", LordReplaceable, isDefendPoint, isAssaultColony, !hostsPresent));
+                if (c == IntVec3.Invalid && XenomorphUtil.HivelikesPresent(map))
+                {
+                    c = !XenomorphUtil.ClosestReachableHivelike(pawn).DestroyedOrNull() ? XenomorphUtil.ClosestReachableHivelike(pawn).Position : IntVec3.Invalid;
+                }
+                if (c == IntVec3.Invalid && XenomorphUtil.HiveSlimePresent(map))
+                {
+                    c = !XenomorphUtil.ClosestReachableHiveSlime(pawn).DestroyedOrNull() ? XenomorphUtil.ClosestReachableHiveSlime(pawn).Position : IntVec3.Invalid;
+                }
+                if (c == IntVec3.Invalid && !map.GetComponent<MapComponent_HiveGrid>().HiveLoclist.NullOrEmpty())
+                {
+                    c = map.GetComponent<MapComponent_HiveGrid>().HiveLoclist.RandomElement();
+                }
+                if (c == IntVec3.Invalid && XenomorphUtil.EggsPresent(map))
+                {
+                    c = !XenomorphUtil.ClosestReachableEgg(pawn).DestroyedOrNull() ? XenomorphUtil.ClosestReachableEgg(pawn).Position : IntVec3.Invalid;
+                }
+                if (c == IntVec3.Invalid && XenomorphUtil.CocoonsPresent(map, XenomorphDefOf.RRY_Xenomorph_Cocoon_Humanoid))
+                {
+                    c = !XenomorphUtil.ClosestReachableCocoon(pawn, XenomorphDefOf.RRY_Xenomorph_Cocoon_Humanoid).DestroyedOrNull() ? XenomorphUtil.ClosestReachableCocoon(pawn, XenomorphDefOf.RRY_Xenomorph_Cocoon_Humanoid).Position : IntVec3.Invalid;
+                }
+                if (c == IntVec3.Invalid && XenomorphUtil.CocoonsPresent(map, XenomorphDefOf.RRY_Xenomorph_Cocoon_Animal))
+                {
+                    c = !XenomorphUtil.ClosestReachableCocoon(pawn, XenomorphDefOf.RRY_Xenomorph_Cocoon_Animal).DestroyedOrNull() ? XenomorphUtil.ClosestReachableCocoon(pawn, XenomorphDefOf.RRY_Xenomorph_Cocoon_Animal).Position : IntVec3.Invalid;
+                }
+                if (lords.Count() == 0 && c!=IntVec3.Invalid)
+                {
+                    LordJob
+                        newJob = new LordJob_DefendAndExpandHiveLike(false, pawn.Faction, c, 40f);
+                    CreateNewLord(pawn, c, newJob);
+                }
                 if (lords.Count() != 0 && ((pawn.GetLord() != null && LordReplaceable) || pawn.GetLord() == null))
                 {
                     foreach (var l in lords)
@@ -208,25 +356,9 @@ namespace RRYautja
                     {
 
                     }
-                    if (c == IntVec3.Invalid && XenomorphUtil.HivelikesPresent(map))
-                    {
-                        c = !XenomorphUtil.ClosestReachableHivelike(pawn).DestroyedOrNull() ? XenomorphUtil.ClosestReachableHivelike(pawn).Position : IntVec3.Invalid;
-                    }
-                    if (c == IntVec3.Invalid && XenomorphUtil.EggsPresent(map))
-                    {
-                        c = !XenomorphUtil.ClosestReachableEgg(pawn).DestroyedOrNull() ? XenomorphUtil.ClosestReachableEgg(pawn).Position : IntVec3.Invalid;
-                    }
-                    if (c == IntVec3.Invalid && XenomorphUtil.CocoonsPresent(map, XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon))
-                    {
-                        c = !XenomorphUtil.ClosestReachableCocoon(pawn, XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon).DestroyedOrNull() ? XenomorphUtil.ClosestReachableCocoon(pawn, XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon).Position : IntVec3.Invalid;
-                    }
-                    if (c == IntVec3.Invalid && XenomorphUtil.CocoonsPresent(map, XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon))
-                    {
-                        c = !XenomorphUtil.ClosestReachableCocoon(pawn, XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon).DestroyedOrNull() ? XenomorphUtil.ClosestReachableCocoon(pawn, XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon).Position : IntVec3.Invalid;
-                    }
                     if (c == IntVec3.Invalid)
                     {
-                        if (InfestationLikeCellFinder.TryFindCell(out c, pawn.Map, false))
+                        if (InfestationLikeCellFinder.TryFindCell(out c, out IntVec3 lc, pawn.Map, false))
                         {
                             if (Prefs.DevMode)
                             {
@@ -246,22 +378,15 @@ namespace RRYautja
                     }
                     if (c != IntVec3.Invalid)
                     {
-                        LordJob newJob;
-                        if (XenomorphUtil.HivelikesPresent(map))
-                        {
-                            newJob = new LordJob_DefendAndExpandHiveLike(false);
-                        }
-                        else
-                        {
-                            newJob = new LordJob_DefendHiveLoc(parent.Faction, c);
-                        }
+                        LordJob
+                            newJob = new LordJob_DefendAndExpandHiveLike(false,pawn.Faction,c,40f);
                         if (LordReplaceable)
                         {
                             if (!Hivelords.NullOrEmpty())
                             {
                                 Hivelord = Hivelords.RandomElement();
                                 SwitchToLord(Hivelord);
-                                CreateNewLord(pawn, c, newJob);
+                            //    CreateNewLord(pawn, c, newJob);
                             }
                             else
                             {
@@ -318,15 +443,42 @@ namespace RRYautja
 
         public override void CompTickRare()
         {
-            base.CompTickRare();
+            if (pawn.Dead)
+            {
+                return;
+            }
+            TrySealWounds();
+            TryRegrowBodyparts();
             bool selected = Find.Selector.SelectedObjects.Contains(pawn);
-            Lord lord = pawn.GetLord();
+            bool huggerFlag = (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_FaceHugger || pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_RoyaleHugger);
+            if (pawn.GetLord() == null && !huggerFlag)
+            {
+                Thing thing = GenClosest.ClosestThingReachable(this.parent.Position, this.parent.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.Touch, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, x => ((Pawn)x).Faction == pawn.Faction && !((Pawn)x).Dead && !((Pawn)x).Downed && ((Pawn)x).GetLord()!=null, null, 0, -1, false, RegionType.Set_Passable, false);
+                if (thing != null && thing is Pawn pawn2)
+                {
+                    if (pawn2 != null)
+                    {
+                        if (pawn2.GetLord() != null && pawn2.GetLord() is Lord lord2)
+                        {
+                            lord2.AddPawn(pawn);
+                        }
+                    }
+                }
+                else
+                {
+                    Log.Message("no pawns with lord found");
+                }
+                if (pawn.GetLord() == null)
+                {
+                    XenoLordTick();
+                }
+            }
             Faction xenos = Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph);
-            
-            if (pawn != null && pawn.Map != null && !pawn.Dead && pawn.kindDef != XenomorphDefOf.RRY_Xenomorph_FaceHugger && pawn.kindDef != XenomorphDefOf.RRY_Xenomorph_RoyaleHugger)
+           
+            if (pawn != null && pawn.Map != null && !pawn.Dead && !huggerFlag)
             {
                 LifeStageDef stage = pawn.ageTracker.CurLifeStage;
-                if (stage == pawn.RaceProps.lifeStageAges[pawn.RaceProps.lifeStageAges.Count - 1].def)
+                if (stage == XenomorphDefOf.RRY_XenomorphFullyFormed)
                 {
                     if (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden))
                     {
@@ -336,7 +488,33 @@ namespace RRYautja
                         hidden = false;
                         pawn.health.RemoveHediff(hediff);
                     }
-                    XenoLordTick();
+                    //    XenoLordTick();
+                    if (!pawn.Downed)
+                    {
+                        bool hasDuty = pawn.mindState.duty != null;
+                        bool hiveDuty = false;
+                        bool assaultDuty = false;
+                        bool swapDuty = hasDuty ? false : true;
+                        bool anyHostiles = GenHostility.AnyHostileActiveThreatTo(map, pawn.Faction);
+                        if (hasDuty)
+                        {
+                            hiveDuty = pawn.mindState.duty.def == XenomorphDefOf.RRY_Xenomorph_DefendAndExpandHive || pawn.mindState.duty.def == XenomorphDefOf.RRY_Xenomorph_DefendHiveAggressively;
+                            if (!hiveDuty && !pawn.Downed)
+                            {
+                                assaultDuty = pawn.mindState.duty.def == DutyDefOf.AssaultColony;
+                                if (assaultDuty && !anyHostiles && !map.HiveGrid().HiveLoclist.NullOrEmpty())
+                                {
+                                    swapDuty = true;
+                                }
+                            }
+                        }
+                        if (!hasDuty || (hasDuty && !hiveDuty && assaultDuty) && swapDuty)
+                        {
+                            IntVec3 vec3 = map.HiveGrid().HiveLoclist.NullOrEmpty() ? (XenomorphUtil.HiveSlimePresent(pawn.Map) ? XenomorphUtil.ClosestReachableHiveSlime(pawn).Position : (XenomorphUtil.HivelikesPresent(pawn.Map) ? XenomorphUtil.ClosestReachableHivelike(pawn).Position : (XenomorphKidnapUtility.TryFindGoodHiveLoc(pawn, out IntVec3 c, null, true, false, true) ? c : IntVec3.Invalid) )): map.HiveGrid().HiveLoclist.RandomElement();
+                            PawnDuty duty = new PawnDuty(XenomorphDefOf.RRY_Xenomorph_DefendAndExpandHive, vec3, 40f);
+                            pawn.mindState.duty = duty;
+                        }
+                    }
                 }
                 else
                 {
@@ -349,26 +527,37 @@ namespace RRYautja
                         ((Pawn)this.parent).health.AddHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden);
                         hidden = true;
                     }
+                    else if (((Pawn)this.parent).health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden) && thing != null)
+                    {
+                        if (thing.Faction.HostileTo(pawn.Faction))
+                        {
+                            string text = TranslatorFormattedStringExtensions.Translate("Xeno_Chestburster_Appears", pawn.LabelCap);
+                            Hediff hediff = pawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden);
+                            MoteMaker.ThrowText(pawn.Position.ToVector3(), pawn.Map, text, 3f);
+                            hidden = false;
+                            pawn.health.RemoveHediff(hediff);
+                        }
+                    }
                 }
             }
-
+            base.CompTickRare();
         }
 
         private Lord CreateNewLord(Pawn pawn)
         {
             IntVec3 c;
-            Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_EggXenomorphFertilized), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, null, null, 0, -1, false, RegionType.Set_Passable, false);
+            Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_Xenomorph_Hive_Slime), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, null, null, 0, -1, false, RegionType.Set_Passable, false);
             if (thing != null)
             {
                 c = RCellFinder.RandomWanderDestFor(pawn, thing.Position, 5f, null, Danger.Some);
             }
             else
             {
-                if (InfestationLikeCellFinder.TryFindCell(out c, pawn.Map, false))
+                if (InfestationLikeCellFinder.TryFindCell(out c, out IntVec3 lc, pawn.Map, false))
                 {
                     if (Prefs.DevMode && Find.Selector.SelectedObjects.Contains(pawn))
                     {
-                        ThingDef td = XenomorphDefOf.RRY_Filth_Slime;
+                        ThingDef td = XenomorphDefOf.RRY_Xenomorph_Hive_Slime;
                         GenSpawn.Spawn(td, c, pawn.Map);
                         Find.LetterStack.ReceiveLetter(string.Format("Lord Created"), string.Format("@: {0} ", c), LetterDefOf.NegativeEvent, c.GetFirstThing(pawn.Map, td), null, null);
                     }
@@ -425,7 +614,7 @@ namespace RRYautja
                 {
                     hidden = false;
                 }
-                else if (!Hidden)
+                else if (pawn.CurJobDef != JobDefOf.Ingest && !Hidden)
                 {
                     hidden = true;
                 }
@@ -450,7 +639,6 @@ namespace RRYautja
                     Hediff_Injury hediff_Injury = GenCollection.RandomElement<Hediff_Injury>(from x in ((Pawn)base.parent).health.hediffSet.GetHediffs<Hediff_Injury>()
                                                                                              where HediffUtility.CanHealNaturally(x)
                                                                                              select x);
-                    doClot(pawn);
                     hediff_Injury.Heal(num * ((Pawn)base.parent).HealthScale * 0.01f);
                     string text = string.Format("{0} healed.", ((Pawn)base.parent).LabelCap);
                 }
@@ -469,6 +657,52 @@ namespace RRYautja
                 i--;
 
                 if (i <= 0) return;
+            }
+        }
+
+        public void TrySealWounds()
+        {
+            IEnumerable<Hediff> wounds = (from hd in pawn.health.hediffSet.hediffs
+                                          where hd.Bleeding
+                                          select hd);
+
+            if (wounds != null)
+            {
+                foreach (Hediff wound in wounds)
+                {
+                    HediffWithComps hediffWithComps = wound as HediffWithComps;
+                    if (hediffWithComps != null)
+                    {
+                        HediffComp_TendDuration hediffComp_TendDuration = hediffWithComps.TryGetComp<HediffComp_TendDuration>();
+
+                        //Equivalent to Glitterworld Medicine.
+                        hediffComp_TendDuration.tendQuality = 2.0f;                    //Sets the tending quality.
+                        hediffComp_TendDuration.tendTicksLeft = Find.TickManager.TicksGame; //Sets the last tend tick.
+
+                        pawn.health.Notify_HediffChanged(wound);
+                    }
+                }
+            }
+        }
+        
+        public void TryRegrowBodyparts()
+        {
+            //Iterate through the whole body from Core.
+            //Stop at first and try to regrow there.
+            foreach (BodyPartRecord part in pawn.GetFirstMatchingBodyparts(pawn.RaceProps.body.corePart, HediffDefOf.MissingBodyPart, XenomorphDefOf.RRY_Hediff_Xenomorph_ProtoBodypart, hediff => hediff is Hediff_AddedPart))
+            {
+                //Get the bodypart it is on.
+                Hediff missingHediff = pawn.health.hediffSet.hediffs.First(hediff => hediff.Part == part && hediff.def == HediffDefOf.MissingBodyPart);
+
+                if (missingHediff != null)
+                {
+                    //Remove the missing body part.
+                    pawn.health.RemoveHediff(missingHediff);
+
+                    //Insert fake body part.
+                    pawn.health.AddHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_ProtoBodypart, part);
+                    pawn.health.hediffSet.DirtyCache();
+                }
             }
         }
 
@@ -500,6 +734,14 @@ namespace RRYautja
                     {
                         absorbed = true;
                         return;
+                    }
+                    if (dinfo.Def.isRanged)
+                    {
+                        absorbed = false;
+                        return;
+#if DEBUG
+                        //    Log.Message(string.Format("{0} is ranged: {1}", dinfo.Weapon.LabelCap, dinfo.Def.isRanged));
+#endif
                     }
                     if (!dinfo.Def.isRanged)
                     {
@@ -545,16 +787,10 @@ namespace RRYautja
                             }
                         }
                     }
-                    else if (dinfo.Def.isRanged)
-                    {
-#if DEBUG
-                        Log.Message(string.Format("{0} is ranged: {1}", dinfo.Weapon.LabelCap, dinfo.Def.isRanged));
-#endif
-                    }
                     else
                     {
 #if DEBUG
-                        Log.Message(string.Format("{0} is unknown", dinfo.Weapon.LabelCap));
+                     //   Log.Message(string.Format("{0} is unknown", dinfo.Weapon.LabelCap));
 #endif
                     }
                 }
@@ -702,11 +938,11 @@ namespace RRYautja
             }
             if (!prey.Downed)
             {
-                if (prey.kindDef.combatPower > 2f * predator.kindDef.combatPower)
+                if (prey.GetStatValue(StatDefOf.MeleeDPS) > 2f * predator.GetStatValue(StatDefOf.MeleeDPS))
                 {
                     return false;
                 }
-                float num = prey.kindDef.combatPower * prey.health.summaryHealth.SummaryHealthPercent * prey.ageTracker.CurLifeStage.bodySizeFactor;
+                float num = prey.GetStatValue(StatDefOf.MeleeDPS) * (prey.def.race.baseHealthScale * prey.health.summaryHealth.SummaryHealthPercent) * prey.ageTracker.CurLifeStage.bodySizeFactor;
                 float numa = prey.GetStatValue(StatDefOf.MeleeDPS);
                 float numb = prey.HealthScale;
                 float numc = prey.GetStatValue(StatDefOf.MeleeHitChance);
@@ -715,11 +951,12 @@ namespace RRYautja
                 bool selected = Find.Selector.SelectedObjects.Contains(predator) && Prefs.DevMode;
                 if (selected)
                 {
-                    Log.Message(string.Format("num: {0} = combatPower: {1} * SummaryHealthPercent: {2} * bodySizeFactor: {3}", num, prey.kindDef.combatPower, prey.health.summaryHealth.SummaryHealthPercent, prey.ageTracker.CurLifeStage.bodySizeFactor));
+                    Log.Message(string.Format("prey: {0} @: {1}", prey.LabelCap, prey.Position));
+                    Log.Message(string.Format("num: {0} = MeleeDPS: {1} * (baseHealthScale * SummaryHealthPercent): {2} * bodySizeFactor: {3}", num, prey.GetStatValue(StatDefOf.MeleeDPS), (prey.def.race.baseHealthScale * prey.health.summaryHealth.SummaryHealthPercent), prey.ageTracker.CurLifeStage.bodySizeFactor));
                     Log.Message(string.Format("numa: {0} = MeleeDPS: {1} * MeleeHitChance: {2} * MeleeDodgeChance: {3}", numa, prey.GetStatValue(StatDefOf.MeleeDPS) , prey.GetStatValue(StatDefOf.MeleeHitChance) , prey.GetStatValue(StatDefOf.MeleeDodgeChance)));
                     Log.Message(string.Format("numb: {0} = HealthScale: {1}", numb, prey.HealthScale));
                 }
-                float num2 = predator.kindDef.combatPower * predator.health.summaryHealth.SummaryHealthPercent * predator.ageTracker.CurLifeStage.bodySizeFactor;
+                float num2 = predator.GetStatValue(StatDefOf.MeleeDPS) * (predator.def.race.baseHealthScale * predator.health.summaryHealth.SummaryHealthPercent) * predator.ageTracker.CurLifeStage.bodySizeFactor;
                 float num2a = predator.GetStatValue(StatDefOf.MeleeDPS);
                 float num2b = predator.HealthScale;
                 float num2c = predator.GetStatValue(StatDefOf.MeleeHitChance);
@@ -727,7 +964,7 @@ namespace RRYautja
                 num2 = ((num2 + num2a) * num2c) * (1 - num2d) * num2b;
                 if (selected)
                 {
-                    Log.Message(string.Format("num2: {0} = combatPower: {1} * SummaryHealthPercent: {2} * bodySizeFactor: {3}", num2, predator.kindDef.combatPower, predator.health.summaryHealth.SummaryHealthPercent, predator.ageTracker.CurLifeStage.bodySizeFactor));
+                    Log.Message(string.Format("num2: {0} = MeleeDPS: {1} * SummaryHealthPercent: {2} * bodySizeFactor: {3}", num2, predator.GetStatValue(StatDefOf.MeleeDPS), (predator.def.race.baseHealthScale * predator.health.summaryHealth.SummaryHealthPercent), predator.ageTracker.CurLifeStage.bodySizeFactor));
                     Log.Message(string.Format("num2a: {0} = MeleeDPS: {1} * MeleeHitChance: {2} * MeleeDodgeChance: {3}", num2a, predator.GetStatValue(StatDefOf.MeleeDPS), predator.GetStatValue(StatDefOf.MeleeHitChance), predator.GetStatValue(StatDefOf.MeleeDodgeChance)));
                     Log.Message(string.Format("num2b: {0} = HealthScale: {1}", num2b, predator.HealthScale));
                 }
@@ -766,7 +1003,7 @@ namespace RRYautja
         public static float GetPreyScoreFor(Pawn predator, Pawn prey, bool findhost)
         {
             float offset = XenomorphUtil.TotalSpawnedXenomorphPawnCount(prey.Map);
-            float num = prey.kindDef.combatPower / predator.kindDef.combatPower;
+            float num = (prey.def.race.baseHealthScale * prey.health.summaryHealth.SummaryHealthPercent) / (predator.def.race.baseHealthScale * predator.health.summaryHealth.SummaryHealthPercent);
             float num2 = prey.health.summaryHealth.SummaryHealthPercent;
             float bodySizeFactor = prey.ageTracker.CurLifeStage.bodySizeFactor / predator.ageTracker.CurLifeStage.bodySizeFactor;
             float lengthHorizontal = (predator.Position - prey.Position).LengthHorizontal;

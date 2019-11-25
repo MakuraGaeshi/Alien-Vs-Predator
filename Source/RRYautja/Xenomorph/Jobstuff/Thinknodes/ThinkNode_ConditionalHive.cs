@@ -96,6 +96,10 @@ namespace RimWorld
 
         protected override bool Satisfied(Pawn pawn)
         {
+            if (Tunnel(pawn) == null)
+            {
+                return false;
+            }
             bool result = !Tunnel(pawn).hiveDormant;
             if (Find.Selector.SelectedObjects.Contains(pawn) && Prefs.DevMode && DebugSettings.godMode) Log.Message(string.Format("{0} hiveDormant: {1} = Result: {2}", this, pawn.LabelShortCap, result));
             return result;

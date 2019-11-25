@@ -4,6 +4,7 @@
   <RRY_AllowYautjaFaction>Enable Yautja: this Should enable all Yautja factions, Scenarios, related incidents and events</RRY_AllowYautjaFaction>
   <RRY_AllowXenomorphFaction>Enable Xenomorphs: this Should enable all Xenomorph related incidents and events</RRY_AllowXenomorphFaction>
   <RRY_AllowHiddenInfections>Allow Hidden Impregnations: Disable this to stop pawns spawning impregnated</RRY_AllowHiddenInfections>
+  <RRY_AllowPredalienImpregnations>Allow Predalien Impregnations: Disable this to Predaliens from being able to impregnate female pawns</RRY_AllowPredalienImpregnations>
   <RRY_FacehuggerRemovalDeathChance>Facehugger Removal Death Chance: {0}% of patient death on fail</RRY_FacehuggerRemovalDeathChance>
   <RRY_EmbryoRemovalDeathChance>Embryo Removal Death Chance: {0}% of patient death on fail</RRY_EmbryoRemovalDeathChance>
   <RRY_SuitableHostKinds>Potential Hosts: {0}</RRY_SuitableHostKinds>
@@ -47,7 +48,14 @@
   <Xeno_Chestburster_PreEmerge>{0} has collapsed and is writhing around! something is wrong...</Xeno_Chestburster_PreEmerge>
   <Xeno_Chestburster_Emerge>{0}'s convulsions stop suddenly and a Chestburster emerges in a gorey mess from {0}'s {1}</Xeno_Chestburster_Emerge>
   <Xeno_Chestburster_Hides>the Chestburster disappears into the surrounding area and hides</Xeno_Chestburster_Hides>
+  <Xeno_Chestburster_Appears>a Chestburster has been spotted</Xeno_Chestburster_Appears>
   <Xeno_Chestburster_Matures>the Chestburster has matured into a fully grown {0}</Xeno_Chestburster_Matures>
+  <Xeno_Egg>Facehugger</Xeno_Egg>
+  <Xeno_Egg_Hyperfertile>Hyperfertile</Xeno_Egg_Hyperfertile>
+  <Xeno_Egg_Praetorian>Praetorian</Xeno_Egg_Praetorian>
+  <Xeno_Egg_Royal>Royal</Xeno_Egg_Royal>
+  <Xeno_Egg_Gestation_Progress>Facehugger Gestation</Xeno_Egg_Gestation_Progress>
+  <Xeno_Egg_Mutation_Progress>Mutation</Xeno_Egg_Mutation_Progress>
    <!-- Yautja -->
   <RRY_Remove_Gauntlet>Surgically Remove Gauntlet</RRY_Remove_Gauntlet>
   <BloodStatus_Unblooded>{0}</BloodStatus_Unblooded>

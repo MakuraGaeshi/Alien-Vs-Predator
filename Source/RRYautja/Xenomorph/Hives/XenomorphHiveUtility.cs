@@ -1,11 +1,63 @@
-﻿using System;
+﻿using RimWorld;
+using System;
+using System.Collections.Generic;
 using Verse;
 
 namespace RRYautja
 {
     // Token: 0x02000CFE RID: 3326
-    public static class HiveUtility
+    public static class XenomorphHiveUtility
     {
+
+        // Token: 0x06002688 RID: 9864 RVA: 0x00124A2B File Offset: 0x00122E2B
+        public static int TotalSpawnedHiveLikesCount(Map map)
+        {
+            return map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_Xenomorph_Hive).Count;
+        }
+
+        // Token: 0x06002689 RID: 9865 RVA: 0x00124A44 File Offset: 0x00122E44
+        public static bool AnyHiveLikePreventsClaiming(Thing thing)
+        {
+            if (!thing.Spawned)
+            {
+                return false;
+            }
+            int num = GenRadial.NumCellsInRadius(2f);
+            for (int i = 0; i < num; i++)
+            {
+                IntVec3 c = thing.Position + GenRadial.RadialPattern[i];
+                if (c.InBounds(thing.Map) && c.GetFirstThing(thing.Map, null) != null)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // Token: 0x0600268A RID: 9866 RVA: 0x00124ABC File Offset: 0x00122EBC
+        public static void Notify_HiveLikeDespawned(HiveLike hivelike, Map map)
+        {
+            int num = GenRadial.NumCellsInRadius(2f);
+            for (int i = 0; i < num; i++)
+            {
+                IntVec3 c = hivelike.Position + GenRadial.RadialPattern[i];
+                if (c.InBounds(map))
+                {
+                    List<Thing> thingList = c.GetThingList(map);
+                    for (int j = 0; j < thingList.Count; j++)
+                    {
+                        if (thingList[j].Faction == hivelike.OfFaction && !XenomorphHiveUtility.AnyHiveLikePreventsClaiming(thingList[j]))
+                        {
+                            thingList[j].SetFaction(null, null);
+                        }
+                    }
+                }
+            }
+        }
+
+
+        // Token: 0x040015BC RID: 5564
+        private const float HivePreventsClaimingInRadius = 2f;
         public static HiveCategory GetSnowCategory(float snowDepth)
         {
             if (snowDepth < 0.03f)

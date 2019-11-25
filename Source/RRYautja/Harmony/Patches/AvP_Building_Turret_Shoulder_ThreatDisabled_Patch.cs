@@ -26,7 +26,7 @@ namespace RRYautja
             bool shouldturret = false;
             if (__instance != null)
             {
-                if (__instance is Building_Turret_Shoulder)
+                if (__instance.GetType() == typeof(Building_Turret_Shoulder))
                 {
                     shouldturret = true;
                 }

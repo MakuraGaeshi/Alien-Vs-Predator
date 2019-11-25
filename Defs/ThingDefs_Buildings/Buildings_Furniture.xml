@@ -46,7 +46,7 @@
 			-->
 			
   <ThingDef ParentName="BuildingBase">
-    <defName>RRY_Xenomorph_Humanoid_Cocoon</defName>
+    <defName>RRY_Xenomorph_Cocoon_Humanoid</defName>
     <label>humanoid cocoon</label>
     <description>Designates a spot on the ground where people should sleep. Not comfortable.</description>
     <thingClass>Building_XenomorphCocoon</thingClass>
@@ -108,7 +108,7 @@
   
 
   <ThingDef ParentName="BuildingBase">
-    <defName>RRY_Xenomorph_Animal_Cocoon</defName>
+    <defName>RRY_Xenomorph_Cocoon_Animal</defName>
     <label>cocoon</label>
     <description>Designates a spot on the ground where people should sleep. Not comfortable.</description>
     <thingClass>Building_XenomorphCocoon</thingClass>

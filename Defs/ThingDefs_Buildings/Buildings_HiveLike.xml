@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <ThingDef Name="BuildingHivelikeBase" Abstract="True">
+  <ThingDef Name="RRY_Building_Hive_Base" Abstract="True">
     <category>Building</category>
     <selectable>true</selectable>
     <drawerType>MapMeshOnly</drawerType>
@@ -9,8 +9,7 @@
 		<scatterableOnMapGen>false</scatterableOnMapGen>
 	</ThingDef>
 
-  <ThingDef Class="ThingDef_HiveLike" ParentName="BuildingHivelikeBase">
-    <defName>HiveLike</defName>
+  <ThingDef Class="ThingDef_HiveLike" ParentName="RRY_Building_Hive_Base" Abstract="True">
     <label>hivelike</label>
     <description>If activated, it will spawn additional pawns and hivelikes over time.</description>
     <thingClass>HiveLike</thingClass>
@@ -81,15 +80,15 @@
     </comps>
   </ThingDef>
   
-  <ThingDef Class="ThingDef_HiveLike" ParentName="BuildingHivelikeBase">
-    <defName>RRY_XenomorphHive</defName>
+  <ThingDef Class="ThingDef_HiveLike" ParentName="RRY_Building_Hive_Base">
+    <defName>RRY_Xenomorph_Hive</defName>
     <label>large xenomorph tunnel</label>
     <description>If activated, it will spawn additional pawns and hive over time.</description>
     <thingClass>HiveLike</thingClass>
 		<Faction>RRY_Xenomorph</Faction>
 		<TunnelDef>TunnelHiveLikeSpawner</TunnelDef>
 		<TunnelDefchild>TunnelHiveLikeChildSpawner</TunnelDefchild>
-		<HiveDefchild>RRY_XenomorphHive_Child</HiveDefchild>
+		<HiveDefchild>RRY_Xenomorph_Hive_Child</HiveDefchild>
 		<PawnKinds>
 		  <!-- <li>RRY_Xenomorph_FaceHugger</li> -->
 		  <!-- <li>RRY_Xenomorph_Queen</li> -->
@@ -118,19 +117,19 @@
     <passability>PassThroughOnly</passability>
     <drawerType>RealtimeOnly</drawerType>
     <killedLeavings>
-		<RRY_Hive_Slime>1</RRY_Hive_Slime> 
+		<RRY_Xenomorph_Hive_Slime>1</RRY_Xenomorph_Hive_Slime> 
     </killedLeavings>
     <placeWorkers>
       <li>PlaceWorker_Heater</li>
     </placeWorkers>
     <comps>
       <li Class="CompProperties_SpawnerHiveLikes" />
-      <li Class="CompProperties_Spawner">
+      <li Class="CompProperties_Xenomorph_SpawnerLike">
         <thingToSpawn>RRY_EggXenomorphFertilized</thingToSpawn>
-        <spawnCount>5</spawnCount>
+        <spawnCount>1</spawnCount>
         <spawnIntervalRange>
-          <min>13000</min>
-          <max>15000</max>
+          <min>1000</min>
+          <max>6000</max>
         </spawnIntervalRange>
       </li>
 	  <!--
@@ -181,8 +180,8 @@
     </comps>
   </ThingDef>
 
-  <ThingDef Class="ThingDef_HiveLike" ParentName="BuildingHivelikeBase">
-    <defName>RRY_XenomorphHive_Child</defName>
+  <ThingDef Class="ThingDef_HiveLike" ParentName="RRY_Building_Hive_Base">
+    <defName>RRY_Xenomorph_Hive_Child</defName>
     <label>small xenomorph tunnel</label>
     <description>If activated, it will spawn additional pawns and hive over time.</description>
     <thingClass>HiveLike</thingClass>
@@ -270,7 +269,7 @@
     <defName>TunnelHiveLikeSpawner</defName>
     <label>xenomorph hive main</label>
     <thingClass>TunnelHiveLikeSpawner</thingClass>
-		<HiveDef>RRY_XenomorphHive</HiveDef>
+		<HiveDef>RRY_Xenomorph_Hive</HiveDef>
 		<!--
 		<Faction>OGChaosDeamonFaction</Faction>
 		<strikespreexplode>true</strikespreexplode>
@@ -287,7 +286,7 @@
     <defName>TunnelHiveLikeChildSpawner</defName>
     <label>xenomorph hive child</label>
     <thingClass>TunnelHiveLikeSpawner</thingClass>
-		<HiveDef>RRY_XenomorphHive_Child</HiveDef>
+		<HiveDef>RRY_Xenomorph_Hive_Child</HiveDef>
 		<!--
 		<Faction>OGChaosDeamonFaction</Faction>
 		<strikespreexplode>true</strikespreexplode>
@@ -300,7 +299,7 @@
     <alwaysFlee>true</alwaysFlee>
   </ThingDef>
   
-  <ThingDef ParentName="BuildingHivelikeBase">
+  <ThingDef ParentName="RRY_Building_Hive_Base">
     <defName>GlowPodLike</defName>
     <label>glow pod</label>
     <description>A bioluminescent pod produced by giant insects. Glows under its own light for a long time, then dies.</description>
@@ -345,7 +344,7 @@
   </ThingDef>
 
   <ThingDef ParentName="RockBase">
-    <defName>RRY_Xenomorph_HiveWall</defName>
+    <defName>RRY_Xenomorph_Hive_Wall</defName>
     <label>collapsed rocks</label>
     <description>Collapsed rocks, packed tightly enough to hold up a roof.</description>
     <graphicData>
@@ -391,7 +390,7 @@
   </ThingDef>
 
   <ThingDef ParentName="BaseFilth">
-    <defName>RRY_Hive_Slime</defName>
+    <defName>RRY_Xenomorph_Hive_Slime</defName>
     <label>xenomorph hive slime</label>
     <statBases>
       <Beauty>-25</Beauty>

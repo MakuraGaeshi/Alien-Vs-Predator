@@ -22,7 +22,7 @@ namespace RimWorld
         {
             Lord lord = pawn.GetLord();
             int lordpawncount = lord.ownedPawns.Count;
-            if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} needs {3} > {2}, Result: {1}", this, pawn.kindDef != this.pawnKind, pawn.kindDef, pawnKind));
+        //    if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} needs {3} > {2}, Result: {1}", this, pawn.kindDef != this.pawnKind, pawn.kindDef, pawnKind));
             return pawn.kindDef != this.pawnKind;
         }
 
@@ -30,4 +30,5 @@ namespace RimWorld
         public PawnKindDef pawnKind;
         public int pawnKindCount;
     }
+
 }

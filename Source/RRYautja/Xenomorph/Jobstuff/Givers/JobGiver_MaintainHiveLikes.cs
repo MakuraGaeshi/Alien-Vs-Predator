@@ -48,7 +48,7 @@ namespace RimWorld
 							{
 								if (!this.onlyIfDamagingState || compMaintainable.CurStage == MaintainableStage.Damaging)
 								{
-									return new Job(XenomorphDefOf.RRY_Job_MaintainLike, hivelike);
+									return new Job(XenomorphDefOf.RRY_Job_Xenomorph_MaintainHive, hivelike);
 								}
 							}
 						}

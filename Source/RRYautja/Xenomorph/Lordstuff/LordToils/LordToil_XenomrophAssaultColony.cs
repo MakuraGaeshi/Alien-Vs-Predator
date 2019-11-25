@@ -45,7 +45,7 @@ namespace RimWorld
         {
             for (int i = 0; i < this.lord.ownedPawns.Count; i++)
             {
-                this.lord.ownedPawns[i].mindState.duty = new PawnDuty(XenomorphDefOf.RRY_XenomorphAssaultColony);
+                this.lord.ownedPawns[i].mindState.duty = new PawnDuty(XenomorphDefOf.RRY_Xenomorph_AssaultColony);
                 this.lord.ownedPawns[i].mindState.duty.attackDownedIfStarving = this.attackDownedIfStarving;
             }
         }

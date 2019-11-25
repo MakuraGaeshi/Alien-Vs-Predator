@@ -106,7 +106,8 @@
 		</graphicData>
 		<tickerType>Normal</tickerType>
 		<comps>  
-	      <li Class="RRYautja.CompProperties_EquippableTurret">
+	      <li Class="RRYautja.CompProperties_EquippableTurret"> 
+			<TurretDef>RRY_EquippableTurret</TurretDef>
 		  </li>
 		</comps>
 		<statBases>

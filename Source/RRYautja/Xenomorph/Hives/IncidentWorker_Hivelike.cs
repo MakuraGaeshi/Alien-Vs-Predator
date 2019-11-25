@@ -15,7 +15,7 @@ namespace RimWorld
 		{
             
 			Map map = (Map)parms.target;
-			return base.CanFireNowSub(parms) && HiveLikeUtility.TotalSpawnedHiveLikesCount(map) < 30 && InfestationLikeCellFinder.TryFindCell(out intVec, map);
+			return base.CanFireNowSub(parms) && XenomorphHiveUtility.TotalSpawnedHiveLikesCount(map) < 30 && InfestationLikeCellFinder.TryFindCell(out intVec, out IntVec3 lc, map);
             
             /*
             Map map = (Map)parms.target;
@@ -102,9 +102,9 @@ namespace RimWorld
 
         private static void SpawnItemInstantly(HiveLike hive)
         {
-            CompSpawnerLike compSpawner = (CompSpawnerLike)hive.AllComps.Find(delegate (ThingComp x)
+            CompXenomorph_SpawnerLike compSpawner = (CompXenomorph_SpawnerLike)hive.AllComps.Find(delegate (ThingComp x)
             {
-                CompSpawnerLike compSpawner2 = x as CompSpawnerLike;
+                CompXenomorph_SpawnerLike compSpawner2 = x as CompXenomorph_SpawnerLike;
                 return compSpawner2 != null && compSpawner2.PropsSpawner.thingToSpawn == ThingDefOf.InsectJelly;
             });
             if (compSpawner != null)
@@ -115,9 +115,9 @@ namespace RimWorld
         
         private static void SpawnItemInstantly(TunnelHiveLikeSpawner hive)
         {
-            CompSpawnerLike compSpawner = (CompSpawnerLike)hive.AllComps.Find(delegate (ThingComp x)
+            CompXenomorph_SpawnerLike compSpawner = (CompXenomorph_SpawnerLike)hive.AllComps.Find(delegate (ThingComp x)
             {
-                CompSpawnerLike compSpawner2 = x as CompSpawnerLike;
+                CompXenomorph_SpawnerLike compSpawner2 = x as CompXenomorph_SpawnerLike;
                 return compSpawner2 != null && compSpawner2.PropsSpawner.thingToSpawn == ThingDefOf.InsectJelly;
             });
             if (compSpawner != null)
@@ -130,7 +130,7 @@ namespace RimWorld
         // Token: 0x06000E65 RID: 3685 RVA: 0x0006B914 File Offset: 0x00069D14
         private Thing SpawnTunnels(int hivelikeCount, Map map)
 		{
-            if (!InfestationLikeCellFinder.TryFindCell(out IntVec3 loc, map))
+            if (!InfestationLikeCellFinder.TryFindCell(out IntVec3 loc, out IntVec3 lc, map))
             {
                 //    Log.Message(string.Format("TryFindCell: {0} From !InfestationLikeCellFinder.TryFindCell(out loc, map)", !InfestationLikeCellFinder.TryFindCell(out loc, map)));
                 return null;

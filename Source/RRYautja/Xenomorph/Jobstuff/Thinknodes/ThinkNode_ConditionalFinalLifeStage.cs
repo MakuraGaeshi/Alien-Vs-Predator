@@ -14,7 +14,7 @@ namespace RimWorld
             LifeStageDef stage = pawn.ageTracker.CurLifeStage;
 #if DEBUG
             bool selected = Find.Selector.SingleSelectedThing == pawn;
-            if (selected&&pawn.kindDef!=XenomorphDefOf.RRY_Xenomorph_FaceHugger&&stage == pawn.RaceProps.lifeStageAges[pawn.RaceProps.lifeStageAges.Count - 1].def) Log.Message(string.Format("ThinkNode_ConditionalFullyGrown {0} \nCurLifeStage:{1} FinalLifeStage:{2}", pawn.Label, stage, pawn.RaceProps.lifeStageAges[pawn.RaceProps.lifeStageAges.Count - 1].def));
+        //    if (selected&&pawn.kindDef!=XenomorphDefOf.RRY_Xenomorph_FaceHugger&&stage == pawn.RaceProps.lifeStageAges[pawn.RaceProps.lifeStageAges.Count - 1].def) Log.Message(string.Format("ThinkNode_ConditionalFullyGrown {0} \nCurLifeStage:{1} FinalLifeStage:{2}", pawn.Label, stage, pawn.RaceProps.lifeStageAges[pawn.RaceProps.lifeStageAges.Count - 1].def));
 #endif
             return stage == pawn.RaceProps.lifeStageAges[pawn.RaceProps.lifeStageAges.Count - 1].def;
         }
@@ -29,7 +29,7 @@ namespace RimWorld
             LifeStageDef stage = pawn.ageTracker.CurLifeStage;
 #if DEBUG
             bool selected = Find.Selector.SingleSelectedThing == pawn;
-            if (selected&&stage != pawn.RaceProps.lifeStageAges[pawn.RaceProps.lifeStageAges.Count - 1].def) Log.Message(string.Format("ThinkNode_ConditionalNotGrown {0} \nCurLifeStage:{1} FinalLifeStage:{2}", pawn.Label, stage, pawn.RaceProps.lifeStageAges[pawn.RaceProps.lifeStageAges.Count - 1].def));
+         //   if (selected&&stage != pawn.RaceProps.lifeStageAges[pawn.RaceProps.lifeStageAges.Count - 1].def) Log.Message(string.Format("ThinkNode_ConditionalNotGrown {0} \nCurLifeStage:{1} FinalLifeStage:{2}", pawn.Label, stage, pawn.RaceProps.lifeStageAges[pawn.RaceProps.lifeStageAges.Count - 1].def));
 #endif
             return stage != pawn.RaceProps.lifeStageAges[pawn.RaceProps.lifeStageAges.Count - 1].def;
         }

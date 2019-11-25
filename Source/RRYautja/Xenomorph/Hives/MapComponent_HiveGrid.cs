@@ -3,7 +3,7 @@ using RRYautja.ExtensionMethods;
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
-using static RRYautja.HiveUtility;
+using static RRYautja.XenomorphHiveUtility;
 
 namespace RRYautja
 {
@@ -26,7 +26,9 @@ namespace RRYautja
             this.HiveGuardlist = new List<Pawn>();
             this.HiveWorkerlist = new List<Pawn>();
             this.Hivelist = new List<Thing>();
+            this.HiveLoclist = new List<IntVec3>();
             this.HiveChildlist = new List<Thing>();
+            this.HiveChildLoclist = new List<IntVec3>();
         }
 
         public override void FinalizeInit()
@@ -66,6 +68,7 @@ namespace RRYautja
                 }
             }
             */
+            /*
             if (Find.TickManager.TicksGame % 500 == 0)
             {
             //    Log.Message(string.Format("MapComponentTick update lists"));
@@ -155,6 +158,7 @@ namespace RRYautja
                     }
                 }
             }
+            */
         }
 
         internal float[] DepthGridDirect_Unsafe
@@ -259,7 +263,7 @@ namespace RRYautja
                 {
                     this.map.mapDrawer.MapMeshDirty(c, (Verse.MapMeshFlag)ExtensionMethods.MapMeshFlag.Hive, true, false);
                 }
-                if (HiveUtility.GetSnowCategory(oldDepth) != HiveUtility.GetSnowCategory(newDepth))
+                if (XenomorphHiveUtility.GetSnowCategory(oldDepth) != XenomorphHiveUtility.GetSnowCategory(newDepth))
                 {
                     this.map.pathGrid.RecalculatePerceivedPathCostAt(c);
                 }
@@ -277,7 +281,7 @@ namespace RRYautja
 
         public HiveCategory GetCategory(IntVec3 c)
         {
-            return HiveUtility.GetSnowCategory(this.GetDepth(c));
+            return XenomorphHiveUtility.GetSnowCategory(this.GetDepth(c));
         }
 
         public override void ExposeData()
@@ -297,13 +301,18 @@ namespace RRYautja
             Scribe_Collections.Look<Pawn>(ref this.Predalienlist, "Predalienlist", LookMode.Reference, new object[0]);
             Scribe_Collections.Look<Pawn>(ref this.Thrumbomorphlist, "Thrumbomorphlist", LookMode.Reference, new object[0]);
             Scribe_Collections.Look<Thing>(ref this.Hivelist, "Hivelist", LookMode.Reference, new object[0]);
+            Scribe_Collections.Look<IntVec3>(ref this.HiveLoclist, "HiveLoclist", LookMode.Reference, new object[0]);
             Scribe_Collections.Look<Thing>(ref this.HiveChildlist, "HiveChildlist", LookMode.Reference, new object[0]);
+            Scribe_Collections.Look<IntVec3>(ref this.HiveChildLoclist, "HiveChildLoclist", LookMode.Reference, new object[0]);
+
             base.ExposeData();
         }
 
         public MapComponent_HiveGrid HiveGrid;
         public List<Thing> Hivelist;
+        public List<IntVec3> HiveLoclist;
         public List<Thing> HiveChildlist;
+        public List<IntVec3> HiveChildLoclist;
         public List<Pawn> HiveGuardlist;
         public List<Pawn> HiveWorkerlist;
         public List<Pawn> potentialHosts;

@@ -169,7 +169,6 @@ namespace RimWorld
 			Scribe_Values.Look<bool>(ref this.alreadySetDefaultMed, "alreadySetDefaultMed", false, false);
             */
 		}
-
         // Token: 0x060024DE RID: 9438 RVA: 0x001189DC File Offset: 0x00116DDC
         public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn myPawn)
         {

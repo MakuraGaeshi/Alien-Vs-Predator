@@ -224,6 +224,7 @@ namespace RRYautja
             */
             yield break;
         }
+
         public override LocalTargetInfo CurrentTarget
         {
             get

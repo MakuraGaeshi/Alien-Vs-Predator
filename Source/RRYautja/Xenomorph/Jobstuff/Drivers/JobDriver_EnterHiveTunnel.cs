@@ -41,7 +41,14 @@ namespace RRYautja
                 {
                     HiveLike transporter = this.Transporter;
                     this.pawn.DeSpawn(DestroyMode.Vanish);
-                    transporter.GetDirectlyHeldThings().TryAdd(this.pawn, true);
+                    if (pawn.def==XenomorphRacesDefOf.RRY_Xenomorph_Queen)
+                    {
+                        transporter.GetDirectlyHeldQueens().TryAdd(this.pawn, false);
+                    }
+                    else
+                    {
+                        transporter.GetDirectlyHeldThings().TryAdd(this.pawn, false);
+                    }
                 }
             };
             yield break;

@@ -96,7 +96,7 @@
   <ThingDef ParentName="RRY_BaseNeomorph" Name="BaseNeomorphWalker" Abstract="True">
     <race>
       <intelligence>ToolUser</intelligence>
-      <thinkTreeMain>RRY_Xenommorph</thinkTreeMain>
+      <thinkTreeMain>RRY_Xenomorph</thinkTreeMain>
       <baseBodySize>1.2</baseBodySize>
       <lifeStageAges>
         <li>
