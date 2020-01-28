@@ -22,7 +22,7 @@ namespace RRYautja
         [HarmonyPostfix]
         public static void IgnoreWristblade(Pawn __instance, ref bool __result)
         {
-            __result = __result && !(__instance.apparel != null && __instance.apparel.WornApparelCount == 1 && __instance.apparel.WornApparel.Any(x => x.def == YautjaDefOf.RRY_Equipment_HunterGauntlet) && __instance.Faction != Faction.OfPlayerSilentFail) && !(__instance.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned));
+            __result = __result && !(__instance.apparel != null && __instance.apparel.WornApparelCount == 1 && __instance.apparel.WornApparel.Any(x => x.def.defName.Contains("RRY_Equipment_HunterGauntlet")) && __instance.Faction != Faction.OfPlayerSilentFail) && !(__instance.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned));
 
         }
     }

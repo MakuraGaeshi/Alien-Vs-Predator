@@ -516,11 +516,15 @@
 				<li>RRY_Apparel_LeaderArmourGreaves</li>
 				<li>RRY_Apparel_LeaderBioMask</li>
 				
-				<!-- <li>RRY_Equipment_HunterGauntlet</li> -->
+				<!-- 
+                <li>RRY_Equipment_HunterGauntlet_TOGGLEDEF_RH</li>
+                <li>RRY_Equipment_HunterGauntlet_TOGGLEDEF_LH</li>
+				-->
 				<li>RRY_Equipment_HunterShoulderCannon</li>
 			</apparelList>
             <whiteApparelList>
-                <li>RRY_Equipment_HunterGauntlet</li>
+                <li>RRY_Equipment_HunterGauntlet_TOGGLEDEF_RH</li>
+                <li>RRY_Equipment_HunterGauntlet_TOGGLEDEF_LH</li>
                 <li>Apparel_TribalA</li>
                 <li>Apparel_Pants</li>
                 <li>Apparel_FlakPants</li>
@@ -550,7 +554,8 @@
 				<li>RRY_Apparel_LeaderArmourGreaves</li>
 				<li>RRY_Apparel_LeaderBioMask</li>
 				
-				<li>RRY_Equipment_HunterGauntlet</li>
+                <li>RRY_Equipment_HunterGauntlet_TOGGLEDEF_RH</li>
+                <li>RRY_Equipment_HunterGauntlet_TOGGLEDEF_LH</li>
 				<li>RRY_Equipment_HunterShoulderCannon</li>
 				
 				<li>RRY_Melee_Combistaff</li>

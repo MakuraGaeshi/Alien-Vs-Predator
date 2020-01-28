@@ -42,7 +42,7 @@ namespace RRYautja
         // Token: 0x06002ADC RID: 10972 RVA: 0x001433C0 File Offset: 0x001417C0
         public override void DoEffect(Pawn user)
         {
-            Cloakgen injector = (Cloakgen)user.apparel.WornApparel.Find((Apparel x) => x.def == YautjaDefOf.RRY_Equipment_HunterGauntlet);
+            Cloakgen injector = (Cloakgen)user.apparel.WornApparel.Find((Apparel x) => x.def.defName.Contains("RRY_Equipment_HunterGauntlet"));
             CompMedicalInjector medicalInjector = injector.TryGetComp<CompMedicalInjector>();
             bool selected = Find.Selector.SelectedObjects.Contains(user);
             int needed = medicalInjector.Props.Uses - injector.uses;
@@ -70,10 +70,10 @@ namespace RRYautja
         public override bool CanBeUsedBy(Pawn p, out string failReason)
         {
             bool selected = Find.Selector.SelectedObjects.Contains(p);
-            bool flag = GenCollection.Any<Apparel>(p.apparel.WornApparel, (Apparel x) => x.def == YautjaDefOf.RRY_Equipment_HunterGauntlet);
+            bool flag = GenCollection.Any<Apparel>(p.apparel.WornApparel, (Apparel x) => x.def.defName.Contains("RRY_Equipment_HunterGauntlet"));
             if (flag)
             {
-                Cloakgen injector = (Cloakgen)p.apparel.WornApparel.Find((Apparel x) => x.def == YautjaDefOf.RRY_Equipment_HunterGauntlet);
+                Cloakgen injector = (Cloakgen)p.apparel.WornApparel.Find((Apparel x) => x.def.defName.Contains("RRY_Equipment_HunterGauntlet"));
                 if (injector!=null)
                 {
                     CompMedicalInjector medicalInjector = injector.TryGetComp<CompMedicalInjector>();

@@ -20,6 +20,7 @@ namespace RRYautja
         static HarmonyPatches()
         {
             HarmonyInstance harmony = HarmonyInstance.Create("rimworld.ogliss.yautja");
+
             harmony.Patch(
                 AccessTools.Method(typeof(Pawn_PathFollower), "CostToMoveIntoCell",
                     new[] { typeof(Pawn), typeof(IntVec3) }), null, new HarmonyMethod(

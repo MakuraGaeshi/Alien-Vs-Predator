@@ -25,8 +25,11 @@ namespace RRYautja
         {
             if (instigator != null)
             {
-                __result = XenomorphUtil.IsXenomorphPawn(((Pawn)instigator)) ? 0.0f : __result;
-                //     Log.Message(string.Format("__result: {0}", __result));
+                if (instigator.def.thingClass == typeof(Pawn))
+                {
+                    __result = XenomorphUtil.IsXenomorphPawn(((Pawn)instigator)) ? 0.0f : __result;
+                    //     Log.Message(string.Format("__result: {0}", __result));
+                }
             }
         }
     }

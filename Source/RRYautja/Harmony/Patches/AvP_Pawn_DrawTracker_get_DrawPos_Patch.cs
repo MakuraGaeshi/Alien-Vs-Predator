@@ -19,7 +19,7 @@ namespace RRYautja
     // Hediff_Implant Drawer
     [HarmonyPatch(typeof(PawnRenderer), "RenderPawnInternal")]
     [HarmonyPatch(new Type[] { typeof(Vector3), typeof(float), typeof(bool), typeof(Rot4), typeof(Rot4), typeof(RotDrawMode), typeof(bool), typeof(bool) })]
-    static class AvP_Pawn_DrawTracker_get_DrawPos_Patch
+    static class AvP_PawnRenderer_RenderPawnInternal_Patch
     {
         static void Prefix(PawnRenderer __instance, ref Vector3 rootLoc, ref float angle, ref bool renderBody, ref Rot4 bodyFacing, ref Rot4 headFacing, ref RotDrawMode bodyDrawType, ref bool portrait, ref bool headStump)
         {
@@ -176,6 +176,7 @@ namespace RRYautja
                 Matrix4x4 matrix = default(Matrix4x4);
                 matrix.SetTRS(loc2, quaternion, s);
                 Graphics.DrawMesh((pawn.RaceProps.Humanlike ? headFacing : bodyFacing) == Rot4.West ? MeshPool.plane10Flip : MeshPool.plane10, matrix, mat, 0);
+            //    Graphics.DrawMesh((pawn.RaceProps.Humanlike ? headFacing : bodyFacing) == Rot4.West ? MeshPool.plane10Flip : MeshPool.plane10, matrix, mat, 0);
             }
 
             /*

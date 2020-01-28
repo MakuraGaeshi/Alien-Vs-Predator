@@ -69,7 +69,7 @@ namespace RRYautja
             }
             */
             /*
-            if (Find.TickManager.TicksGame % 500 == 0)
+            if (Find.TickManager.TicksGame % 600 == 0)
             {
             //    Log.Message(string.Format("MapComponentTick update lists"));
                 potentialHosts = map.ViableHosts();

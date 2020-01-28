@@ -29,7 +29,7 @@ namespace RRYautja
                 Widgets.Label(rect2, this.cloak.LabelShortCap);
                 Rect rect3 = rect;
                 rect3.yMin = overRect.height / 2f;
-                float fillPercent = this.cloak.Energy / Mathf.Max(1f, this.cloak.GetStatValue(StatDefOf.EnergyShieldEnergyMax, true));
+                float fillPercent = this.cloak.Energy / this.cloak.GetStatValue(StatDefOf.EnergyShieldEnergyMax, true);
                 Widgets.FillableBar(rect3, fillPercent, Gizmo_CloakgenStatus.FullShieldBarTex, Gizmo_CloakgenStatus.EmptyShieldBarTex, false);
                 Text.Font = GameFont.Small;
                 Text.Anchor = TextAnchor.MiddleCenter;

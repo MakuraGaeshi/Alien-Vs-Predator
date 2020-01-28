@@ -41,4 +41,30 @@
 		  </li>
 		</subSounds>
 	</SoundDef>
+	<!--==================== Flamer Sound =========================-->
+	<SoundDef>
+		<defName>RRY_Flamer_Sound</defName>
+		<context>MapOnly</context>
+		<eventNames />  
+		<maxSimultaneous>10</maxSimultaneous>  
+		<subSounds>
+			<li>
+				<grains>
+					<li Class="AudioGrain_Folder">
+					<clipFolderPath>Weapons/Ranged/FlamerFire</clipFolderPath>
+					</li>
+				</grains>      
+				<volumeRange>
+					<min>15.0</min>        
+					<max>25.0</max>
+				</volumeRange>      
+				<pitchRange>
+					<min>0.9</min>        
+					<max>1.0</max>
+				</pitchRange>      
+				<sustainLoop>false</sustainLoop>
+			</li>
+		</subSounds>
+	</SoundDef>	
+	
 </Defs>

@@ -24,6 +24,7 @@ namespace RRYautja
         {
             if (__instance != null)
             {
+
                 StatDef value = Traverse.Create(__instance).Field("stat").GetValue<StatDef>();
                 if (req != null && req.Thing != null && req.Def != null && (req.Def == YautjaDefOf.RRY_Gun_Hunting_Bow || req.Def == YautjaDefOf.RRY_Gun_Compound_Bow) && value == StatDefOf.RangedWeapon_DamageMultiplier)
                 {

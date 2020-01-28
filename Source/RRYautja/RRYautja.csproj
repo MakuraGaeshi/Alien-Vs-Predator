@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Harmony\Patches.cs" />
+    <Compile Include="Harmony\Patches\AVP_AEmptyPatch - Copy.cs" />
     <Compile Include="Harmony\Patches\AvP_AlienRace_HarmonyPatches_ThoughtsFromIngesting_Patch.cs" />
     <Compile Include="Harmony\Patches\AVP_AEmptyPatch.cs" />
     <Compile Include="Harmony\Patches\AvP_ApparelGraphicRecordGetter_TryGetGraphicApparel_YautjaSpecificHat_Patch.cs" />
@@ -107,9 +108,11 @@
     <Compile Include="Harmony\Patches\AvP_ShieldBelt_AllowVerbCast_YautjaWeapons_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_SnowUtility_AddSnowRadial_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_StatWorker_GetExplanationUnfinalized_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_StatWorker_GetValueUnfinalized_Patch - Copy.cs" />
     <Compile Include="Harmony\Patches\AvP_StatWorker_GetValueUnfinalized_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_VerbUtility_HarmsHealth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_WorkGiver_Tend_GoodLayingStatusForTend_Patch.cs" />
+    <Compile Include="USCM\CompSmartgunSystem.cs" />
     <Compile Include="USCM\CompFireOverlay.cs" />
     <Compile Include="USCM\Verb_ShootShotgun.cs" />
     <Compile Include="USCM\DamageWorker_FlameNoCamShake.cs" />
@@ -333,8 +336,6 @@
     <Compile Include="util\CompHediffWeapon.cs" />
     <Compile Include="util\CompHediffApparel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="util\Util_Cloakgen.cs" />
-    <Compile Include="util\Util_CompEquippableTurret.cs" />
     <Compile Include="Xenomorph\Verb_MeleeAttackFacehugger.cs" />
   </ItemGroup>
   <ItemGroup>

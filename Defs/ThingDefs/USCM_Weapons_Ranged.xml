@@ -136,8 +136,16 @@
 			<AccuracyShort>0.42</AccuracyShort>
 			<AccuracyMedium>0.50</AccuracyMedium>
 			<AccuracyLong>0.26</AccuracyLong>
-			<RangedWeapon_Cooldown>2.1</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>3.1</RangedWeapon_Cooldown>
 		</statBases>
+		<comps>
+			<li Class="RRYautja.CompProperties_SmartgunSystem"> 
+			<WarmUpReductionQualityAffected>false</WarmUpReductionQualityAffected>
+			<TargeterDef>RRY_Equipment_HMS</TargeterDef>
+			<HarnessDef>RRY_Equipment_HMS</HarnessDef>
+			
+			</li>
+		</comps>
 	<recipeMaker>
 		<researchPrerequisite>ChargedShot</researchPrerequisite>
 		<skillRequirements>
@@ -150,7 +158,7 @@
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>RRY_10x28mm_Pulse</defaultProjectile>
-				<warmupTime>2.0</warmupTime>
+				<warmupTime>2.5</warmupTime>
 				<range>31</range>
 				<burstShotCount>25</burstShotCount>
 				<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
@@ -178,7 +186,7 @@
 			<li>USCM_M56SmartGunSystem</li>
 		</weaponTags>
 		 <equippedStatOffsets>
-			<MoveSpeed>-0.32</MoveSpeed>
+			<MoveSpeed>-2.32</MoveSpeed>
 		</equippedStatOffsets>
 		<thingCategories>
 			<li>RRY_RangedWeapons</li>
@@ -274,7 +282,7 @@
 			<burstShotCount>24</burstShotCount>
 			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
 			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
-			<soundCast>FlamerFire</soundCast>
+			<soundCast>RRY_Flamer_Sound</soundCast>
 			<soundCastTail>GunTail_Light</soundCastTail>
 			<muzzleFlashScale>28</muzzleFlashScale>
 			<targetParams>
@@ -378,7 +386,7 @@
 			<burstShotCount>24</burstShotCount>
 			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
 			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
-			<soundCast>FlamerFire</soundCast>
+			<soundCast>RRY_Flamer_Sound</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>28</muzzleFlashScale>
 			<targetParams>

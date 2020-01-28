@@ -44,7 +44,7 @@
       <li>RRY_Apparel_HunterLightArmourChestplate</li>
       <li>RRY_Apparel_HunterArmourGreaves</li>
       <li>RRY_Apparel_HunterVest</li>
-      <li>RRY_Equipment_HunterGauntlet</li>
+		<li>RRY_Equipment_HunterGauntlet_TOGGLEDEF_RH</li>
     </apparelRequired>
 	
     <apparelColor>(58,58,58)</apparelColor>
