@@ -142,7 +142,7 @@
 			<li Class="RRYautja.CompProperties_SmartgunSystem"> 
 			<WarmUpReductionQualityAffected>false</WarmUpReductionQualityAffected>
 			<TargeterDef>RRY_Equipment_HMS</TargeterDef>
-			<HarnessDef>RRY_Equipment_HMS</HarnessDef>
+			<HarnessDef>RRY_Apparel_M56CombatHarness+</HarnessDef>
 			
 			</li>
 		</comps>

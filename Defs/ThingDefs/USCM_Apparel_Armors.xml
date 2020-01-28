@@ -17,7 +17,7 @@
 	
 	<!-- ========================= USCM - M10 Pattern Ballistic Helmet ========================== -->
 	<ThingDef ParentName="RRY_USCM_HeadgearBase">
-		<defName>RRY_USCM_M10PAttern</defName>
+		<defName>RRY_Headgear_M10PAttern</defName>
 		<label>M10 Pattern Ballistic Helmet</label>
 		<description>The M10 Pattern Ballistic Helmet is a helmet used primarily by the United States Colonial Marine Corps in conjunction with the M3 Pattern Personal Armor. In addition to providing head protection, it features an integrated video camera, infrared sight, transmitter and microphone.</description>
 		<graphicData>
