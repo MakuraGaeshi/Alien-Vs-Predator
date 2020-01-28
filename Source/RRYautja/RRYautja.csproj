@@ -52,10 +52,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
       <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.dll</HintPath>
@@ -133,6 +130,8 @@
     <Compile Include="util\IncidentDef_FactionSpecific.cs" />
     <Compile Include="util\PawnsArrivalModeWorker_RandomEnterFromTunnel.cs" />
     <Compile Include="util\PawnsArrivalModeWorker_DropThroughRoof.cs" />
+    <Compile Include="util\Projectile_Anim.cs" />
+    <Compile Include="util\Projectile_Fire.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_XenoTakeAndCocoon - Copy.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_Xenomorph_Cocoon.cs" />
     <Compile Include="Xenomorph\Removable_Hediff.cs" />

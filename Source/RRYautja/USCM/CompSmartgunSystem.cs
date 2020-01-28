@@ -27,13 +27,6 @@ namespace RRYautja
         public CompEquippable equippable => this.parent.TryGetComp<CompEquippable>();
         public CompQuality quality => this.parent.TryGetComp<CompQuality>();
         public Pawn pawn => this.equippable?.PrimaryVerb?.CasterPawn;
-        CompSmartgunSystem()
-        {
-            if (this.parent!=null)
-            {
-                this.originalwarmupTime = this.parent.def.Verbs[0].warmupTime;
-            }
-        }
 
         public bool hasTargheter
         {
@@ -100,6 +93,7 @@ namespace RRYautja
                 this.originalwarmupTime = this.parent.def.Verbs[0].warmupTime;
             }
         }
+        
 
     }
 }

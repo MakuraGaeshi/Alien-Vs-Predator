@@ -142,7 +142,7 @@
 			<li Class="RRYautja.CompProperties_SmartgunSystem"> 
 			<WarmUpReductionQualityAffected>false</WarmUpReductionQualityAffected>
 			<TargeterDef>RRY_Equipment_HMS</TargeterDef>
-			<HarnessDef>RRY_Apparel_M56CombatHarness+</HarnessDef>
+			<HarnessDef>RRY_Apparel_M56CombatHarness</HarnessDef>
 			
 			</li>
 		</comps>
@@ -210,23 +210,30 @@
     <label>flames</label>
     <tickerType>Normal</tickerType>
     <graphicData>
-      <texPath>Things/Projectile/Fire</texPath>
+      <texPath>Things/Projectile/Flamer</texPath>
       <graphicClass>Graphic_Flicker</graphicClass>
       <shaderType>TransparentPostLight</shaderType>
     </graphicData>
-    <thingClass>Projectile_Explosive</thingClass>
+    <thingClass>RRYautja.Projectile_Fire</thingClass>
+	<!--
+    <modExtensions>
+      <li Class="RRYautja.AnimatedProjectileExtension">
+        <ticksPerFrame>15</ticksPerFrame>
+      </li>
+    </modExtensions>
+	-->
     <projectile>
-			<flyOverhead>false</flyOverhead>
-			<damageDef>RRY_Flamer</damageDef>
-			<damageAmountBase>1</damageAmountBase>
+		<flyOverhead>false</flyOverhead>
+		<damageDef>RRY_Flamer</damageDef>
+		<damageAmountBase>1</damageAmountBase>
 		<armorPenetrationBase>0.16</armorPenetrationBase>
-			<explosionRadius>0.75</explosionRadius>
-			<explosionChanceToStartFire>1.0</explosionChanceToStartFire>
-			<postExplosionSpawnThingDef>Filth_Fuel</postExplosionSpawnThingDef>
-			<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
-			<stoppingPower>0.75</stoppingPower>
-			<speed>20</speed>
-			<soundExplode>RRY_Explosion</soundExplode>
+		<explosionRadius>0.75</explosionRadius>
+		<explosionChanceToStartFire>1.0</explosionChanceToStartFire>
+		<postExplosionSpawnThingDef>Filth_Fuel</postExplosionSpawnThingDef>
+		<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+		<stoppingPower>0.75</stoppingPower>
+		<speed>20</speed>
+		<soundExplode>RRY_Explosion</soundExplode>
     </projectile>
   </ThingDef>
   
@@ -278,7 +285,6 @@
 			<defaultProjectile>RRY_M240_Bullet</defaultProjectile>
 			<warmupTime>0.5</warmupTime>
 			<range>12</range>
-			<forcedMissRadius>2</forcedMissRadius>
 			<burstShotCount>24</burstShotCount>
 			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
 			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
@@ -317,23 +323,30 @@
     <label>flames</label>
     <tickerType>Normal</tickerType>
     <graphicData>
-      <texPath>Things/Projectile/Fire</texPath>
+      <texPath>Things/Projectile/Flamer</texPath>
       <graphicClass>Graphic_Flicker</graphicClass>
       <shaderType>TransparentPostLight</shaderType>
     </graphicData>
-    <thingClass>Projectile_Explosive</thingClass>
+    <thingClass>RRYautja.Projectile_Fire</thingClass>
+	<!--
+    <modExtensions>
+      <li Class="RRYautja.AnimatedProjectileExtension">
+        <ticksPerFrame>15</ticksPerFrame>
+      </li>
+    </modExtensions>
+	-->
     <projectile>
-			<flyOverhead>false</flyOverhead>
-			<damageDef>RRY_Flamer</damageDef>
-			<damageAmountBase>2</damageAmountBase>
-			<armorPenetrationBase>0.33</armorPenetrationBase>
-			<explosionRadius>1.550</explosionRadius>
-			<explosionChanceToStartFire>1.0</explosionChanceToStartFire>
-			<postExplosionSpawnThingDef>Filth_Fuel</postExplosionSpawnThingDef>
-			<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
-			<stoppingPower>0.75</stoppingPower>
-			<speed>20</speed>
-			<soundExplode>RRY_Explosion</soundExplode>
+		<flyOverhead>false</flyOverhead>
+		<damageDef>RRY_Flamer</damageDef>
+		<damageAmountBase>2</damageAmountBase>
+		<armorPenetrationBase>0.33</armorPenetrationBase>
+		<explosionRadius>1.550</explosionRadius>
+		<explosionChanceToStartFire>1.0</explosionChanceToStartFire>
+		<postExplosionSpawnThingDef>Filth_Fuel</postExplosionSpawnThingDef>
+		<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+		<stoppingPower>0.75</stoppingPower>
+		<speed>20</speed>
+		<soundExplode>RRY_Explosion</soundExplode>
     </projectile>
   </ThingDef>
   
@@ -382,7 +395,6 @@
 			<defaultProjectile>RRY_M240_HeavyBullet</defaultProjectile>
 			<warmupTime>2.5</warmupTime>
 			<range>12</range>
-			<forcedMissRadius>2</forcedMissRadius>
 			<burstShotCount>24</burstShotCount>
 			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
 			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
