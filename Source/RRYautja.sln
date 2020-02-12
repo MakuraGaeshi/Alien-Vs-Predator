@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResourceBoxes", "ResourceBo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrapsRearmable", "TrapsRearmable\TrapsRearmable.csproj", "{BB637E1C-5493-4031-B1DC-DF4779B0FDEF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HunterMarkingSystem", "HunterMarkingSystem\HunterMarkingSystem.csproj", "{99F78F0B-7600-45BC-BD6E-8E935C05E66B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{BB637E1C-5493-4031-B1DC-DF4779B0FDEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB637E1C-5493-4031-B1DC-DF4779B0FDEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB637E1C-5493-4031-B1DC-DF4779B0FDEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99F78F0B-7600-45BC-BD6E-8E935C05E66B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99F78F0B-7600-45BC-BD6E-8E935C05E66B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99F78F0B-7600-45BC-BD6E-8E935C05E66B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99F78F0B-7600-45BC-BD6E-8E935C05E66B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

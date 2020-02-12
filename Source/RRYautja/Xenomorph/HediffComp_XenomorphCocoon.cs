@@ -185,7 +185,7 @@ namespace RRYautja
             base.CompPostTick(ref severityAdjustment);
             if (!QueenPresent && !PredalienPresent)
             {
-                float num = 1f / ((3* Pawn.BodySize) * 60000f);
+                float num = 1f / ((3* Pawn.BodySize) * (Pawn.RaceProps.Humanlike ? 60000f : 10000f));
                 if (this.conversionProgress < 1f)
                 {
                     this.conversionProgress += num;
@@ -204,7 +204,7 @@ namespace RRYautja
                 {
                     if (this.conversionProgress >= 1f&& XenomorphUtil.TotalSpawnedEggCount(MyMap)<(cocoonedCount / 2) && !XenomorphUtil.IsInfectedPawn(Pawn))
                     {
-                        float chance = Pawn.RaceProps.Humanlike ? 0.001f+((float)EggConvertTicks/1000) : .05f + ((float)EggConvertTicks / 500);
+                        float chance = Pawn.RaceProps.Humanlike ? 0.001f+((float)EggConvertTicks/5000) : .05f + ((float)EggConvertTicks / 500);
                         EggConvertTicks++;
                         if (Rand.Chance(chance))
                         {
@@ -225,6 +225,19 @@ namespace RRYautja
                         }
                     }
                 }
+            }
+        }
+
+        public override string CompTipStringExtra
+        {
+            get
+            {
+                string extra = string.Empty;
+                if (this.conversionProgress>0)
+                {
+                    extra += string.Format("conversionProgress: {0}", conversionProgress.ToStringPercent());
+                }
+                return extra;
             }
         }
 

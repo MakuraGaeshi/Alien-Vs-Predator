@@ -25,16 +25,18 @@ namespace RRYautja
             {
                 return null;
             }
-            if (Tunnel.hiveDormant && !_HiveGrid.HiveGuardlist.Contains(pawn))
-            {
-                return new Job(XenomorphDefOf.RRY_Job_Xenomorph_EnterHiveTunnel, Tunnel);
-            }
             bool flag1 = Tunnel.def == XenomorphDefOf.RRY_Xenomorph_Hive;
             bool flag2 = Tunnel.def == XenomorphDefOf.RRY_Xenomorph_Hive_Child;
             bool flag3 = Tunnel.Map.mapPawns.AllPawnsSpawned.Any(x => x.isPotentialHost() && pawn.TryGetComp<Comp_Xenomorph>().IsAcceptablePreyFor(pawn, x, true));
-            if (flag3 || Tunnel == null || (Tunnel != null && Tunnel.spawnedPawns.Contains(pawn) && (Tunnel.Position.Roofed(Tunnel.Map) || flag1)) || !pawn.CanReach(Tunnel, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.ByPawn))
+            bool flag4 = _HiveGrid.HiveGuardlist.Contains(pawn) || (Tunnel.hiveMaintainer!=null && Tunnel.hiveMaintainer.CurStage != MaintainableStage.Healthy && (_HiveGrid.HiveWorkerlist.Contains(pawn) || _HiveGrid.HiveWorkerlist.NullOrEmpty()));
+
+            if (flag3 || flag4 || Tunnel == null || (Tunnel != null && Tunnel.spawnedPawns.Contains(pawn) && (Tunnel.Position.Roofed(Tunnel.Map) || flag1)) || !pawn.CanReach(Tunnel, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.ByPawn))
             {
                 return null;
+            }
+            if (Tunnel.hiveDormant && !_HiveGrid.HiveGuardlist.Contains(pawn))
+            {
+                return new Job(XenomorphDefOf.RRY_Job_Xenomorph_EnterHiveTunnel, Tunnel);
             }
             return new Job(XenomorphDefOf.RRY_Job_Xenomorph_EnterHiveTunnel, Tunnel);
         }

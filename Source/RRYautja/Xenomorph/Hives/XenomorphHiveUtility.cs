@@ -58,7 +58,7 @@ namespace RRYautja
 
         // Token: 0x040015BC RID: 5564
         private const float HivePreventsClaimingInRadius = 2f;
-        public static HiveCategory GetSnowCategory(float snowDepth)
+        public static HiveCategory GetHiveCategory(float snowDepth)
         {
             if (snowDepth < 0.03f)
             {
@@ -78,7 +78,28 @@ namespace RRYautja
             }
             return HiveCategory.Thick;
         }
-        
+
+        public static GooCategory GetGooCategory(float snowDepth)
+        {
+            if (snowDepth < 0.03f)
+            {
+                return GooCategory.None;
+            }
+            if (snowDepth < 0.25f)
+            {
+                return GooCategory.Inital;
+            }
+            if (snowDepth < 0.5f)
+            {
+                return GooCategory.Thin;
+            }
+            if (snowDepth < 0.75f)
+            {
+                return GooCategory.Medium;
+            }
+            return GooCategory.Thick;
+        }
+
         public static string GetDescription(HiveCategory category)
         {
             switch (category)
@@ -97,7 +118,25 @@ namespace RRYautja
                     return "Unknown snow";
             }
         }
-        
+        public static string GetDescription(GooCategory category)
+        {
+            switch (category)
+            {
+                case GooCategory.None:
+                    return "SnowNone".Translate();
+                case GooCategory.Inital:
+                    return "SnowDusting".Translate();
+                case GooCategory.Thin:
+                    return "SnowThin".Translate();
+                case GooCategory.Medium:
+                    return "SnowMedium".Translate();
+                case GooCategory.Thick:
+                    return "SnowThick".Translate();
+                default:
+                    return "Unknown snow";
+            }
+        }
+
         public static int MovementTicksAddOn(HiveCategory category)
         {
             switch (category)
@@ -116,7 +155,7 @@ namespace RRYautja
                     return 0;
             }
         }
-        
+
         public static void AddHiveRadial(IntVec3 center, Map map, float radius, float depth)
         {
             int num = GenRadial.NumCellsInRadius(radius);
@@ -133,8 +172,39 @@ namespace RRYautja
                 }
             }
         }
-        
+
+
+        public static void AddGooRadial(IntVec3 center, Map map, float radius, float depth)
+        {
+            int num = GenRadial.NumCellsInRadius(radius);
+            for (int i = 0; i < num; i++)
+            {
+                IntVec3 intVec = center + GenRadial.RadialPattern[i];
+                if (intVec.InBounds(map))
+                {
+                    float lengthHorizontal = (center - intVec).LengthHorizontal;
+                    float num2 = 1f - lengthHorizontal / radius;
+
+                    MapComponent_GooGrid _HiveGrid = map.GetComponent<MapComponent_GooGrid>();
+                    _HiveGrid.AddDepth(intVec, num2 * depth);
+                }
+            }
+        }
+
         public enum HiveCategory : byte
+        {
+            // Token: 0x0400322C RID: 12844
+            None,
+            // Token: 0x0400322D RID: 12845
+            Inital,
+            // Token: 0x0400322E RID: 12846
+            Thin,
+            // Token: 0x0400322F RID: 12847
+            Medium,
+            // Token: 0x04003230 RID: 12848
+            Thick
+        }
+        public enum GooCategory : byte
         {
             // Token: 0x0400322C RID: 12844
             None,

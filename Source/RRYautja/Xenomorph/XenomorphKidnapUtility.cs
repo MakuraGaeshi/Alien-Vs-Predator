@@ -37,16 +37,15 @@ namespace RRYautja
             Predicate<Thing> validator = delegate (Thing t)
             {
                 Pawn pawn = t as Pawn;
-                bool minFlag = minDistance==0 ? true : !t.Position.InHorDistOf(kidnapper.mindState.duty.focus.Cell,minDistance);
+                bool minFlag = minDistance==0 ? true : t.Position.DistanceTo(kidnapper.mindState.duty.focus.Cell) <= minDistance;
                 bool roofedFlag = !t.Position.Roofed(pawn.Map);
-                bool cocoonFlag = (!pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned)) || (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned) && allowCocooned);
-                bool xenoimpregnationFlag = !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation) || (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation) && pawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_XenomorphImpregnation).CurStageIndex != pawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_XenomorphImpregnation).def.stages.Count - 2);
-                bool xenohiddenimpregnationFlag = !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation) || (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation) && pawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_HiddenXenomorphImpregnation).CurStageIndex != pawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_HiddenXenomorphImpregnation).def.stages.Count - 2);
-                bool neoimpregnationFlag = !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_NeomorphImpregnation);
-                bool neohiddenimpregnationFlag = !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenNeomorphImpregnation);
-                bool impregnationFlag = xenoimpregnationFlag && xenohiddenimpregnationFlag && neoimpregnationFlag && neohiddenimpregnationFlag;
-                bool pawnFlag = ((XenomorphUtil.isInfectablePawn(pawn, true))) && pawn.Downed && (pawn.Faction == null || pawn.Faction.HostileTo(kidnapper.Faction));
-                return  cocoonFlag && pawnFlag && minFlag && kidnapper.CanReserve(pawn, 1, -1, null, false) && (disallowed == null || !disallowed.Contains(pawn));
+                bool cocoonFlag = !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned) || allowCocooned;
+
+                bool xenoimpregnationFlag = pawn.health.hediffSet.hediffs.Any(x => x.def.defName.Contains("XenomorphImpregnation") && x.CurStageIndex < x.def.stages.Count - 2);
+                bool neoimpregnationFlag = pawn.health.hediffSet.hediffs.Any(x=> x.def.defName.Contains("NeomorphImpregnation"));
+                bool impregnationFlag = ((xenoimpregnationFlag && cocoonFlag) || !xenoimpregnationFlag) && !neoimpregnationFlag;
+                bool pawnFlag = ((XenomorphUtil.isInfectablePawn(pawn, true))) && pawn.Downed /* && (pawn.Faction == null || pawn.Faction.HostileTo(kidnapper.Faction)) */;
+                return  cocoonFlag && pawnFlag && impregnationFlag && minFlag && kidnapper.CanReserve(pawn, 1, -1, null, false) && (disallowed == null || !disallowed.Contains(pawn));
             };
             victim = (Pawn)GenClosest.ClosestThingReachable(kidnapper.Position, kidnapper.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Some, false), maxDist, validator, null, 0, -1, false, RegionType.Set_Passable, false);
             return victim != null;
@@ -97,7 +96,7 @@ namespace RRYautja
                     {
                         if (XenomorphUtil.TotalSpawnedParentHivelikeCount(map) > 0)
                         {
-                            hiveThing = XenomorphUtil.TotalSpawnedParentHivelikeCount(map) > 1 ? XenomorphUtil.SpawnedParentHivelikes(map).RandomElement() : XenomorphUtil.ClosestReachableHivelike(pawn, XenomorphUtil.SpawnedParentHivelikes(map));
+                            hiveThing = XenomorphUtil.TotalSpawnedParentHivelikeCount(map) > 1 ? XenomorphUtil.SpawnedParentHivelikes(map).RandomElement() : XenomorphUtil.ClosestReachableHivelike(pawn, XenomorphUtil.SpawnedParentHives(map));
                             c = hiveThing.Position;
                         }
                         /*

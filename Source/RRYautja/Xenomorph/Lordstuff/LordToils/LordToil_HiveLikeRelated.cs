@@ -46,26 +46,7 @@ namespace RimWorld
             }
             return hive;
         }
-
-        // Token: 0x0600087F RID: 2175 RVA: 0x00047590 File Offset: 0x00045990
-        protected Pawn GetHiveQueenFor(Pawn pawn)
-        {
-            if (Prefs.DevMode)
-            {
-           //     Log.Message(this.Data.HiveQueen.LabelCap);
-            }
-            return this.Data.HiveQueen;
-        }
-
-        // Token: 0x0600087F RID: 2175 RVA: 0x00047590 File Offset: 0x00045990
-        protected IntVec3 GetHiveLocFor(Pawn pawn)
-        {
-            if (Prefs.DevMode)
-            {
-           //     Log.Message(this.Data.HiveLoc.ToString());
-            }
-            return this.Data.HiveLoc;
-        }
+        
 
         // Token: 0x06000880 RID: 2176 RVA: 0x000475D8 File Offset: 0x000459D8
         private HiveLike FindClosestHiveLike(Pawn pawn)

@@ -129,7 +129,7 @@ namespace RRYautja
             ThingDef thingDef = null;
             ThingDef foodDef2 = thingDef;
             bool allowPlant = getter == eater;
-            Thing thing2 = FoodUtility.BestFoodSourceOnMap(getter, eater, desperate, out foodDef2, FoodPreferability.MealLavish, allowPlant, flag2, allowCorpse, true, canRefillDispenser, allowForbidden, allowSociallyImproper, allowHarvest, forceScanWholeMap);
+            Thing thing2 = FoodUtility.BestFoodSourceOnMap(getter, eater, desperate, out foodDef2, FoodPreferability.Undefined, allowPlant, flag2, allowCorpse, true, canRefillDispenser, allowForbidden, allowSociallyImproper, allowHarvest, forceScanWholeMap);
             if (thing == null && thing2 == null)
             {
                 if (canUseInventory && flag)

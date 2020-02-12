@@ -121,6 +121,7 @@ namespace RimWorld
         public static ThingDef RRY_Filth_Slime;
 
         // Xenomorph BloodDefs 
+        public static ThingDef RRY_FilthBloodXenomorph_Active;
         public static ThingDef RRY_FilthBloodXenomorph;
 
         // Xenomorph LifeStageDefs 

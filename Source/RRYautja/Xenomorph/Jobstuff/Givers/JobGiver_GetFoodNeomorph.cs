@@ -55,7 +55,7 @@ namespace RimWorld
 
             if (stage == pawn.RaceProps.lifeStageAges[pawn.RaceProps.lifeStageAges.Count - 1].def)
             {
-                if (selected) Log.Message(string.Format("adult {0} @ {1}", pawn, pawn.Position));
+                if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("adult {0} @ {1}", pawn, pawn.Position));
                 if (food.CurCategory == HungerCategory.Fed)
                 {
                     return null;
@@ -63,7 +63,7 @@ namespace RimWorld
             }
             else
             {
-                if (selected) Log.Message(string.Format("young {0} @ {1}", pawn, pawn.Position));
+                if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("young {0} @ {1}", pawn, pawn.Position));
                 /*
                 if (food.CurCategory == HungerCategory.Fed)
                 {
@@ -79,7 +79,7 @@ namespace RimWorld
             }
             if (thing is Corpse corpse)
             {
-                if (selected) Log.Message(string.Format("{0} is corpse @ {1}", thing, thing.Position));
+                if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0} is corpse @ {1}", thing, thing.Position));
                 nutrition = FoodUtility.GetNutrition(thing, thingDef);
                 return new Job(XenomorphDefOf.RRY_Neomorph_Ingest, thing)
                 {
@@ -88,7 +88,7 @@ namespace RimWorld
             }
             if (thing is Pawn pawn2)
             {
-                if (selected) Log.Message(string.Format("{0} is pawn @ {1}", thing, thing.Position));
+                if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0} is pawn @ {1}", thing, thing.Position));
                 if (pawn2 != null)
                 {
                     return new Job(JobDefOf.PredatorHunt, pawn2)
@@ -98,7 +98,7 @@ namespace RimWorld
                 }
             }
             nutrition = FoodUtility.GetNutrition(thing, thingDef);
-            if (selected) Log.Message(string.Format("{0} is thing @ {1}", thing, thing.Position));
+            if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0} is thing @ {1}", thing, thing.Position));
             return new Job(XenomorphDefOf.RRY_Neomorph_Ingest, thing)
             {
                 count = FoodUtility.WillIngestStackCountOf(pawn, thingDef, nutrition)

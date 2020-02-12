@@ -40,16 +40,18 @@ namespace RRYautja
                 if (parms.faction != null && (parms.faction.def == XenomorphDefOf.RRY_Xenomorph))
                 {
 #if DEBUG
-                //    Log.Message(string.Format("PostGetLetterText Xenomorph Raid CurSkyGlow: {0}", (parms.target as Map).skyManager.CurSkyGlow));
+                    //    Log.Message(string.Format("PostGetLetterText Xenomorph Raid CurSkyGlow: {0}", (parms.target as Map).skyManager.CurSkyGlow));
 #endif
-
-                    if ((parms.target as Map).skyManager.CurSkyGlow <= 0.5f)
+                    if (parms.raidStrategy != XenomorphDefOf.RRY_PowerCut)
                     {
-                        string text = "They mostly come at night......mostly.....";
-                        text += "\n\n";
-                        text += __result;
-                        __result = text;
+                        if ((parms.target as Map).skyManager.CurSkyGlow <= 0.5f)
+                        {
+                            string text = "They mostly come at night......mostly.....";
+                            text += "\n\n";
+                            text += __result;
+                            __result = text;
 
+                        }
                     }
                 }
             }

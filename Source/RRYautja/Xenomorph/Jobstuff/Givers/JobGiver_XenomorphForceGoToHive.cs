@@ -30,17 +30,34 @@ namespace Verse.AI
                 flag = true;
             }
             IntVec3 c;
+            if (pawn.xenomorph().HiveLoc == null)
+            {
+                if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0} no hiveloc", pawn));
+                return null;
+            }
             if (!pawn.xenomorph().HiveLoc.IsValid)
             {
-                Log.Message(string.Format("{0} no hiveloc", pawn));
+                if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0} no hiveloc", pawn));
                 return null;
             }
             if (pawn.xenomorph().HiveLoc == IntVec3.Zero)
             {
-                Log.Message(string.Format("{0} hiveloc zero", pawn));
+                if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0} hiveloc zero", pawn));
                 return null;
             }
             c = pawn.xenomorph().HiveLoc;
+            
+            if (!c.IsValid)
+            {
+                if(pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0} no c", pawn));
+                return null;
+            }
+            if (c == IntVec3.Zero)
+            {
+                if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0} c zero", pawn));
+                return null;
+            }
+            
             if (flag)
             {
                 using (PawnPath pawnPath = pawn.Map.pathFinder.FindPath(pawn.Position, c, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.PassAllDestroyableThings, false), PathEndMode.OnCell))
@@ -49,18 +66,48 @@ namespace Verse.AI
                     Thing thing = pawnPath.FirstBlockingBuilding(out cellBeforeBlocker, pawn);
                     if (thing != null)
                     {
-                        Job job = DigUtility.PassBlockerJob(pawn, thing, cellBeforeBlocker, true, true);
-                        if (job != null)
+                        if (!thing.def.defName.Contains("Xenomorph_Hive"))
                         {
-                            return job;
+                            Job job = DigUtility.PassBlockerJob(pawn, thing, cellBeforeBlocker, true, true);
+                            if (job != null)
+                            {
+                                return job;
+                            }
                         }
                     }
                 }
             }
-            if (c.GetFirstBuilding(pawn.Map).def==XenomorphDefOf.RRY_Xenomorph_Hive)
+            /*
+            Log.Message("TryGiveJob 6");
+            Log.Message(string.Format("TryGiveJob 6 {0}, {1}", pawn.Map, c));
+            if (c.GetFirstBuilding(pawn.Map)!=null)
             {
-                return null;
+                Log.Message(string.Format("TryGiveJob 6 {0}, {1} Building == {2}", pawn.Map, c, c.GetFirstBuilding(pawn.Map)));
+                if (c.GetFirstBuilding(pawn.Map).def == XenomorphDefOf.RRY_Xenomorph_Hive)
+                {
+                    Log.Message("TryGiveJob 6 1");
+                    return null;
+                }
             }
+            else
+            {
+                Log.Message(string.Format("TryGiveJob 6 {0}, {1} Building == Null", pawn.Map, c));
+                if (c.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive) != null)
+                {
+                    Log.Message(string.Format("TryGiveJob 6 {0}, {1} Building == {2}", pawn.Map, c, c.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive)));
+                    if (c.GetFirstBuilding(pawn.Map).def == )
+                    {
+                        Log.Message("TryGiveJob 6 1");
+                        return null;
+                    }
+                }
+                else
+                {
+                    Log.Message(string.Format("TryGiveJob 6 {0}, {1} Building == Null", pawn.Map, c));
+                }
+            }
+            Log.Message("TryGiveJob 7");
+            */
             return new Job(JobDefOf.Goto, c)
             {
                 exitMapOnArrival = false,

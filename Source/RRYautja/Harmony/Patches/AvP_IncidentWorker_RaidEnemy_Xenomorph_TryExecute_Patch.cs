@@ -36,30 +36,29 @@ namespace RRYautja
                             parms.points = Mathf.Max(parms.points * new FloatRange(1f, 1.6f).RandomInRange, parms.faction.def.MinPointsToGeneratePawnGroup(PawnGroupKindDefOf.Combat));
                             
                         }
-                        if ((parms.target as Map).skyManager.CurSkyGlow <= 0.5f)
+                        if (parms.raidStrategy != XenomorphDefOf.RRY_PowerCut)
                         {
-                            parms.points *= 2;
-                            parms.raidArrivalMode = YautjaDefOf.EdgeWalkInGroups;
-                            if (Rand.ChanceSeeded(0.05f, AvPConstants.AvPSeed))
+                            if ((parms.target as Map).skyManager.CurSkyGlow <= 0.5f)
                             {
-                                parms.forced = true;
-                                parms.points = Mathf.Max(parms.points * new FloatRange(1f, 1.6f).RandomInRange, parms.faction.def.MinPointsToGeneratePawnGroup(PawnGroupKindDefOf.Combat));
+                                parms.points *= 2;
+                                parms.raidArrivalMode = YautjaDefOf.EdgeWalkInGroups;
+                                if (Rand.ChanceSeeded(0.05f, AvPConstants.AvPSeed))
+                                {
+                                    parms.forced = true;
+                                    parms.points = Mathf.Max(parms.points * new FloatRange(1f, 1.6f).RandomInRange, parms.faction.def.MinPointsToGeneratePawnGroup(PawnGroupKindDefOf.Combat));
+                                }
                             }
-                        }
-                        if (extTunnels && Rand.ChanceSeeded(0.10f + (map.GetComponent<MapComponent_HiveGrid>().HiveChildlist.Count/100f), AvPConstants.AvPSeed))
-                        {
-                            parms.raidStrategy = RaidStrategyDefOf.ImmediateAttack;
-                            parms.raidArrivalMode = XenomorphDefOf.RRY_RandomEnterFromTunnel;
-                        }
-                        else
-                        {
-                            if (parms.raidStrategy != XenomorphDefOf.RRY_PowerCut)
+                            if (extTunnels && Rand.ChanceSeeded(0.10f + (map.GetComponent<MapComponent_HiveGrid>().HiveChildlist.Count / 100f), AvPConstants.AvPSeed))
                             {
                                 parms.raidStrategy = RaidStrategyDefOf.ImmediateAttack;
+                                parms.raidArrivalMode = XenomorphDefOf.RRY_RandomEnterFromTunnel;
                             }
-                            if (parms.raidArrivalMode != XenomorphDefOf.RRY_RandomEnterFromTunnel && parms.raidArrivalMode != XenomorphDefOf.RRY_DropThroughRoofNearPower)
+                            else
                             {
-                                parms.raidArrivalMode = PawnsArrivalModeDefOf.EdgeWalkIn;
+                                if (parms.raidArrivalMode != XenomorphDefOf.RRY_RandomEnterFromTunnel && parms.raidArrivalMode != XenomorphDefOf.RRY_DropThroughRoofNearPower)
+                                {
+                                    parms.raidArrivalMode = PawnsArrivalModeDefOf.EdgeWalkIn;
+                                }
                             }
                         }
                     }

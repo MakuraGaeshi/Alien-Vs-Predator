@@ -431,9 +431,9 @@ namespace RRYautja
                 AlienRace.BackstoryDef bsDefBadbloodA = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_BadBloodA");
                 AlienRace.BackstoryDef bsDefBadblooBd = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_BadBloodB");
 
-                HediffDef unbloodedDef = YautjaDefOf.RRY_Hediff_Unblooded;
-                HediffDef unmarkedDef = YautjaDefOf.RRY_Hediff_BloodedUM;
-                HediffDef markedDef = YautjaDefOf.RRY_Hediff_BloodedM;
+                HediffDef unbloodedDef = YautjaDefOf.HMS_Hediff_Unblooded;
+                HediffDef unmarkedDef = YautjaDefOf.HMS_Hediff_BloodedUM;
+                HediffDef markedDef = YautjaDefOf.HMS_Hediff_BloodedM;
 
                 bool hasunblooded = __result.health.hediffSet.HasHediff(unbloodedDef);
                 bool hasbloodedUM = __result.health.hediffSet.HasHediff(unmarkedDef);
@@ -450,6 +450,7 @@ namespace RRYautja
 
                             if (hediffDef != null)
                             {
+                                /*
                                 PawnKindDef pawnKindDef = YautjaBloodedUtility.RandomMarked(hediffDef);
                                 if (_Yautja != null)
                                 {
@@ -460,6 +461,7 @@ namespace RRYautja
                                     _Yautja.combatPower = pawnKindDef.combatPower;
                                     //    Log.Message(string.Format("{0}: {1}", hediffDef.stages[0].label, pawnKindDef.LabelCap));
                                 }
+                                */
                             }
 
                         }

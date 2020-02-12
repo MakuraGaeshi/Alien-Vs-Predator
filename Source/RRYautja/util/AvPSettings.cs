@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Reflection;
 using Harmony;
+using HunterMarkingSystem;
 using RRYautja.ExtensionMethods;
 using UnityEngine;
 using Verse;
@@ -91,15 +92,17 @@ namespace RRYautja.settings
                 num2 += 22f;
             }
             Widgets.EndScrollView();
-            List<PawnKindDef> WorthyKillDefs = DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(xx => YautjaBloodedUtility.WorthyKill(xx));
+            /*
+            List<PawnKindDef> WorthyKillDefs = DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(xx => HMSUtility.WorthyKill(xx));
             Widgets.Label(inRect.TopHalf().BottomHalf().BottomHalf().BottomHalf().RightHalf().ContractedBy(4), "RRY_WorthyKillKinds".Translate(WorthyKillDefs.Count));
             Widgets.BeginScrollView(inRect.BottomHalf().RightHalf().ContractedBy(4), ref this.pos2, new Rect(inRect.x, inRect.y, num, WorthyKillDefs.Count * 22f), true);
-            foreach (PawnKindDef pkd in WorthyKillDefs.OrderBy(xz=> YautjaBloodedUtility.GetMark(xz).stages[0].label))
+            foreach (PawnKindDef pkd in WorthyKillDefs.OrderBy(xz=> HMSUtility.GetMark(xz).stages[0].label))
             {
-                Widgets.Label(new Rect(x, num3, num, 32f), YautjaBloodedUtility.GetMark(pkd).stages[0].label + " : "+ pkd.LabelCap);
+                Widgets.Label(new Rect(x, num3, num, 32f), HMSUtility.GetMark(pkd).stages[0].label + " : "+ pkd.LabelCap);
                 num3 += 22f;
             }
             Widgets.EndScrollView();
+            */
 
             /* 
         //    Widgets.CheckboxLabeled(inRect.TopHalf().TopHalf().BottomHalf().TopHalf().ContractedBy(4), "setting3: Desc", ref settings.setting3);

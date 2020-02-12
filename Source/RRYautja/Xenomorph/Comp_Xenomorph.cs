@@ -44,6 +44,8 @@ namespace RRYautja
         }
         private bool hidden = false;
         public int healIntervalTicks = 60;
+        public int HiveX;
+        public int HiveZ;
 
         public PawnKindDef HuggerKindDef = XenomorphDefOf.RRY_Xenomorph_FaceHugger;
         public PawnKindDef RoyaleKindDef = XenomorphDefOf.RRY_Xenomorph_RoyaleHugger;
@@ -53,12 +55,24 @@ namespace RRYautja
         {
             base.PostExposeData();
             Scribe_Values.Look<int>(ref this.ticksSinceHeal, "ticksSinceHeal");
-            Scribe_Values.Look<IntVec3>(ref this.HiveLoc, "HiveLoc", IntVec3.Invalid);
+            Scribe_Values.Look<int>(ref this.HiveX, "HiveX");
+            Scribe_Values.Look<int>(ref this.HiveZ, "HiveZ");
             Scribe_Defs.Look<PawnKindDef>(ref this.host, "hostRef");
             Scribe_Values.Look<bool>(ref this.hidden, "hidden");
         }
 
-        public IntVec3 HiveLoc;
+        public IntVec3 HiveLoc
+        {
+            get
+            {
+                return new IntVec3(HiveX, 0, HiveZ);
+            }
+            set
+            {
+                HiveX = value.x;
+                HiveZ = value.z;
+            }
+        }
 
         public Pawn pawn
         {
@@ -470,7 +484,11 @@ namespace RRYautja
                 }
                 if (pawn.GetLord() == null)
                 {
-                    XenoLordTick();
+                    //    XenoLordTick();
+                    if (!map.HiveGrid().Hivelist.NullOrEmpty())
+                    {
+                        ((HiveLike)map.HiveGrid().Hivelist.RandomElement()).Lord.AddPawn(pawn);
+                    }
                 }
             }
             Faction xenos = Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph);

@@ -78,16 +78,16 @@ namespace RimWorld
                             bool building = y.GetFirstBuilding(pawn.Map).DestroyedOrNull();
                             bool thingA = y.GetFirstThing(pawn.Map, namedA).DestroyedOrNull();
                             bool thingB = y.GetFirstThing(pawn.Map, namedB).DestroyedOrNull();
-                        //    Log.Message(string.Format("{0}, adjacent: {1}, filled: {2}, edifice: {3}, building: {4}", y, !adjacent, !filled, edifice, building));
+                            if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0}, adjacent: {1}, filled: {2}, edifice: {3}, building: {4}", y, !adjacent, !filled, edifice, building));
                             return !adjacent && !filled && edifice && building && thingA && thingB && roofed;
                         };
                         if (pawn.GetLord() != null && pawn.GetLord() is Lord lord)
                         {
-                        //    Log.Message(string.Format("TryFindGoodHiveLoc pawn.GetLord() != null"));
+                            if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("TryFindGoodHiveLoc pawn.GetLord() != null"));
                         }
                         else
                         {
-                         //   Log.Message(string.Format("TryFindGoodHiveLoc pawn.GetLord() == null"));
+                            if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("TryFindGoodHiveLoc pawn.GetLord() == null"));
                         }
                         if (pawn.mindState.duty.def != XenomorphDefOf.RRY_Xenomorph_DefendAndExpandHive && pawn.mindState.duty.def != XenomorphDefOf.RRY_Xenomorph_DefendHiveAggressively)
                         {
@@ -105,17 +105,17 @@ namespace RimWorld
                     }
                     else
                     {
-                     //   if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} something went wrong", this));
+                        if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0} something went wrong", this));
                     }
                 }
                 else
                 {
-                 //   if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} No Cocooning spot Found", this));
+                    if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0} No Cocooning spot Found", this));
                 }
             }
             else
             {
-             //   if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} No Victim Found", this));
+                if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0} No Victim Found", this));
             }
             return null;
         }

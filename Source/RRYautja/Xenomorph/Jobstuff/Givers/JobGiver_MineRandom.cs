@@ -517,16 +517,16 @@ namespace RimWorld
             {
                 if ((hiveCell+c).GetFirstHaulable(pawn.Map) is Thing h && !(h is Pawn) && !(h is Building_XenoEgg) && !(h is Building_XenomorphCocoon))
                 {
-                    if (Find.Selector.SelectedObjects.Contains(pawn) && Prefs.DevMode) Log.Message(string.Format("{0} TryGiveJob {1} @ {2} 1", this, pawn.LabelShortCap, (hiveCell + c)));
+                    if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0} TryGiveJob {1} @ {2} 1", this, pawn.LabelShortCap, (hiveCell + c)));
                     if (pawn.CanReserve(h, 1, -1, null, false))
                     {
-                        if (Find.Selector.SelectedObjects.Contains(pawn) && Prefs.DevMode) Log.Message(string.Format("{0} TryGiveJob {1} @ {2} 2", this, pawn.LabelShortCap, (hiveCell + c)));
+                        if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0} TryGiveJob {1} @ {2} 2", this, pawn.LabelShortCap, (hiveCell + c)));
                         if (!XenomorphUtil.CanHaulAside(pawn, h, hiveCell, ClearingRange, out IntVec3 c2))
                         {
-                            if (Find.Selector.SelectedObjects.Contains(pawn) && Prefs.DevMode) Log.Message(string.Format("{0} TryGiveJob {1} @ {2} 3", this, pawn.LabelShortCap, (hiveCell + c)));
+                            if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0} TryGiveJob {1} @ {2} 3", this, pawn.LabelShortCap, (hiveCell + c)));
                             return null;
                         }
-                        if (Find.Selector.SelectedObjects.Contains(pawn) && Prefs.DevMode) Log.Message(string.Format("{0} TryGiveJob {1} @ {2} 4", this, pawn.LabelShortCap, (hiveCell + c)));
+                        if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0} TryGiveJob {1} @ {2} 4", this, pawn.LabelShortCap, (hiveCell + c)));
                         return new Job(JobDefOf.HaulToCell, h, c2)
                         {
                             count = 99999,

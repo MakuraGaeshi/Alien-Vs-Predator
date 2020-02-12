@@ -78,7 +78,20 @@ namespace RimWorld
             if (this.pawn.Faction != null && !(this.IngestibleSource is Building_NutrientPasteDispenser))
             {
                 Thing ingestibleSource = this.IngestibleSource;
-                int num = FoodUtility.WillIngestStackCountOf(this.pawn, ingestibleSource.def, ingestibleSource.GetStatValue(StatDefOf.Nutrition, true));
+                if (ingestibleSource == null)
+                {
+                    return false;
+                }
+                if (ingestibleSource.def == null)
+                {
+                    return false;
+                }
+                /*
+                Log.Message(string.Format("pawn: {0}", pawn));
+                Log.Message(string.Format("ingestibleSource.def: {0}", ingestibleSource.def));
+                Log.Message(string.Format("Nutrition: {0}", ingestibleSource.GetStatValue(StatDefOf.Nutrition, true)));
+                */
+                int num = FoodUtility.WillIngestStackCountOf(this.pawn, ingestibleSource.def, ingestibleSource.GetStatValue(StatDefOf.Nutrition, true)+1);
                 if (num >= ingestibleSource.stackCount && ingestibleSource.Spawned)
                 {
                     Pawn pawn = this.pawn;

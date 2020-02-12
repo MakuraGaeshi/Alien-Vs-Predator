@@ -55,9 +55,22 @@
 			</shadowData>
     </graphicData>
 		<comps>
-			<li Class="CompProperties_HiveCreep" />
+			<li Class="CompProperties_GooSpread">
+				<radiusPerDayCurve>
+					<points>
+						<li>0,5</li>
+						<li>1.5,18</li>
+						<li>6,40</li>
+						<li>20,100</li>
+						<li>40,140</li>
+						<li>60,160</li>
+						<li>80,180</li>
+						<li>200,200</li>
+					</points>
+				</radiusPerDayCurve>
+			</li>
 			<li Class="CompProperties_PlantConversionRadius">
-			<!--
+				<!--
 				<radiusPerDayCurve>
 					<points>
 						<li>0,5</li>

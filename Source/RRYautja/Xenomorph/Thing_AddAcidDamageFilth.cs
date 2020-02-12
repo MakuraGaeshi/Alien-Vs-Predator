@@ -128,8 +128,8 @@ namespace RRYautja
 
                         Thing thing = thingList[i];
                         Pawn pawn = thingList[i] as Pawn;
-                        bool flaga = thing.def.useHitPoints && !this.touchingThings.Contains(thing) && thing.def != XenomorphDefOf.RRY_FilthBloodXenomorph && thing.GetType() != typeof(Pawn);
-                        bool flag2 = thing != null && !this.touchingThings.Contains(thing) && thing.def != XenomorphDefOf.RRY_FilthBloodXenomorph && thing.GetType() != typeof(Mote) && thing.GetType() != typeof(MoteThrown) && thing.GetType() != typeof(Bullet) && thing.GetType() != typeof(Pawn);
+                        bool flaga = thing.def.useHitPoints && !this.touchingThings.Contains(thing) && thing.def != XenomorphDefOf.RRY_FilthBloodXenomorph_Active && thing.GetType() != typeof(Pawn);
+                        bool flag2 = thing != null && !this.touchingThings.Contains(thing) && thing.def != XenomorphDefOf.RRY_FilthBloodXenomorph_Active && thing.GetType() != typeof(Mote) && thing.GetType() != typeof(MoteThrown) && thing.GetType() != typeof(Bullet) && thing.GetType() != typeof(Pawn);
                         bool flag2a = !(thing is Corpse corpse && XenomorphUtil.IsXenoCorpse(corpse));
                         bool flag2b = !(thing is Pawn && XenomorphUtil.IsXenomorph((Pawn)thing));
                         if (flaga && flag2a && flag2b)

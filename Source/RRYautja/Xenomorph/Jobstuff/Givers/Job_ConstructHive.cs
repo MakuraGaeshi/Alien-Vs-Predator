@@ -2,6 +2,7 @@
 using RRYautja.ExtensionMethods;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
@@ -20,16 +21,8 @@ namespace RimWorld
         }
 
         private int MiningRange;
-
-        // Token: 0x0600041E RID: 1054 RVA: 0x0002CA54 File Offset: 0x0002AE54
-        protected override Job TryGiveJob(Pawn pawn)
+        public List<IntVec3> HiveStruct(IntVec3 HiveCenter)
         {
-            if (pawn.def != XenomorphRacesDefOf.RRY_Xenomorph_Queen && pawn.def != XenomorphRacesDefOf.RRY_Xenomorph_Drone)
-            {
-                return null;
-            }
-            Comp_Xenomorph _Xenomorph = pawn.xenomorph();
-            IntVec3 HiveCenter = _Xenomorph.HiveLoc == IntVec3.Invalid || _Xenomorph.HiveLoc == IntVec3.Zero ? pawn.mindState.duty.focus.Cell : _Xenomorph.HiveLoc;
             List<IntVec3> HiveStruct = new List<IntVec3>()
             {
                 // Support Collums
@@ -77,6 +70,11 @@ namespace RimWorld
                 }
 
             };
+            return HiveStruct;
+        }
+
+        public List<IntVec3> HiveWalls(IntVec3 HiveCenter)
+        {
             List<IntVec3> HiveWalls = new List<IntVec3>()
             {
                 // Exterior Walls
@@ -284,6 +282,21 @@ namespace RimWorld
                 //
 
             };
+            return HiveWalls;
+        }
+
+        // Token: 0x0600041E RID: 1054 RVA: 0x0002CA54 File Offset: 0x0002AE54
+        protected override Job TryGiveJob(Pawn pawn)
+        {
+            if (pawn.def != XenomorphRacesDefOf.RRY_Xenomorph_Queen && pawn.def != XenomorphRacesDefOf.RRY_Xenomorph_Drone)
+            {
+                return null;
+            }
+            Map map = pawn.Map;
+            IntVec3 pos = pawn.Position;
+            Comp_Xenomorph _Xenomorph = pawn.xenomorph();
+            IntVec3 HiveCenter = _Xenomorph.HiveLoc == IntVec3.Invalid || _Xenomorph.HiveLoc == IntVec3.Zero ? pawn.mindState.duty.focus.Cell : _Xenomorph.HiveLoc;
+            
             Region region = pawn.GetRegion(RegionType.Set_Passable);
             if (region == null)
             {
@@ -363,53 +376,43 @@ namespace RimWorld
             {
                 MiningRange = 3;
             }
-            for (int i = 0; i < 40; i++)
+            
+            if (centerNode)
             {
-                IntVec3 randomCell = HiveStruct.RandomElement();
-                for (int j = 0; j < 4; j++)
+                Predicate<IntVec3> validator = delegate (IntVec3 y)
                 {
-                    IntVec3 c = randomCell;// + GenAdj.CardinalDirections[j];
-                    if (c.InBounds(pawn.Map) && c.Roofed(pawn.Map) && pawn.CanReserveAndReach(c, PathEndMode.OnCell, Danger.Deadly))
-                    {
+                    bool pillarloc = HiveStruct(HiveCenter).Contains(y) || HiveWalls(HiveCenter).Contains(y);
+                    bool Node = y.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive) == null;
+                    bool Child = y.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive_Child) == null;
+                    bool Wall = y.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive_Wall) == null;
 
-                        Building edifice = c.GetEdifice(pawn.Map);
-                        if (edifice == null && XenomorphUtil.DistanceBetween(c, HiveCenter) <= MiningRange)
+                    bool result = Node && Child && Wall && pillarloc /* && HiveCenter.DistanceTo(y) <= MiningRange */ && pawn.CanReserveAndReach(y, PathEndMode.OnCell, Danger.Deadly, layer: ReservationLayerDefOf.Floor);
+                    return result;
+                };
+
+                if (RCellFinder.TryFindRandomCellNearWith(HiveCenter, validator, pawn.Map, out IntVec3 c1, MiningRange, MiningRange+1))
+                {
+                    if (c1.InBounds(pawn.Map) && pawn.CanReserveAndReach(c1, PathEndMode.OnCell, Danger.Deadly, layer:ReservationLayerDefOf.Floor))
+                    {
+                        Building edifice = c1.GetEdifice(pawn.Map);
+                        if (edifice == null)
                         {
-                            return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Construct_Hive_Wall, c)
+                            return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Construct_Hive_Wall, c1)
                             {
-                                ignoreDesignations = true
+                                ignoreDesignations = false
                             };
                         }
                     }
                 }
-                if (centerNode)
-                {
-                    randomCell = HiveWalls.RandomElement();
-                    for (int j = 0; j < 4; j++)
-                    {
-                        IntVec3 c = randomCell;// + GenAdj.CardinalDirections[j];
-                        if (c.InBounds(pawn.Map) && pawn.CanReserveAndReach(c, PathEndMode.OnCell, Danger.Deadly))
-                        {
-
-                            Building edifice = c.GetEdifice(pawn.Map);
-                            if (edifice == null && XenomorphUtil.DistanceBetween(c, HiveCenter) <= MiningRange+1)
-                            {
-                                return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Construct_Hive_Wall, c)
-                                {
-                                    ignoreDesignations = false
-                                };
-                            }
-                        }
-                    }
-                }
+                
             }
-            Predicate<IntVec3> validator = delegate (IntVec3 y)
+            Predicate<IntVec3> validator2 = delegate (IntVec3 y)
             {
                 bool roofed = (y.Roofed(pawn.Map));
-                bool result = !roofed && XenomorphUtil.DistanceBetween(y, HiveCenter) <= MiningRange && pawn.CanReserveAndReach(y, PathEndMode.OnCell, Danger.Deadly);
+                bool result = !roofed && XenomorphUtil.DistanceBetween(y, HiveCenter) <= MiningRange && pawn.CanReserveAndReach(y, PathEndMode.OnCell, Danger.Deadly, layer: ReservationLayerDefOf.Ceiling);
             return result;
             };
-            if (RCellFinder.TryFindRandomCellNearWith(HiveCenter, validator, pawn.Map, out IntVec3 c2, MiningRange, MiningRange))
+            if (RCellFinder.TryFindRandomCellNearWith(HiveCenter, validator2, pawn.Map, out IntVec3 c2, MiningRange, MiningRange))
             {
                 if (c2.InBounds(pawn.Map) && pawn.CanReserveAndReach(c2, PathEndMode.OnCell, Danger.Deadly))
                 {
@@ -446,7 +449,7 @@ namespace RimWorld
             Pawn pawn = this.pawn;
             LocalTargetInfo targetA = this.job.targetA;
             Job job = this.job;
-            return pawn.Reserve(targetA, job, 1, -1, ReservationLayerDefOf.Ceiling, errorOnFailed);
+            return pawn.Reserve(targetA, job, 1, -1, ReservationLayerDefOf.Floor, errorOnFailed);
         }
 
         public ThingDef MyDef = XenomorphDefOf.RRY_Xenomorph_Hive_Wall;
@@ -454,15 +457,19 @@ namespace RimWorld
         // Token: 0x06000393 RID: 915 RVA: 0x000245C8 File Offset: 0x000229C8
         protected override IEnumerable<Toil> MakeNewToils()
         {
+            Log.Message("MakeNewToils");
             this.FailOnIncapable(PawnCapacityDefOf.Manipulation);
+            Log.Message("Manipulation capable");
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
-            Toil prepare = Toils_General.Wait(this.useDuration, TargetIndex.None);
+            Log.Message("Going to");
+            Toil prepare = Toils_General.Wait(this.useDuration, TargetIndex.A);
             prepare.NPCWithProgressBarToilDelay(TargetIndex.A, false, -0.5f);
             prepare.FailOnDespawnedNullOrForbidden(TargetIndex.A);
             prepare.FailOnCannotTouch(TargetIndex.A, PathEndMode.Touch);
             prepare.WithEffect(EffecterDefOf.Vomit, TargetIndex.A);
             prepare.PlaySustainerOrSound(() => SoundDefOf.Vomit);
             yield return prepare;
+            Log.Message("Preparing");
             Toil use = new Toil();
             use.initAction = delegate ()
             {
@@ -472,6 +479,7 @@ namespace RimWorld
             };
             use.defaultCompleteMode = ToilCompleteMode.Instant;
             yield return use;
+            Log.Message("use");
             yield break;
         }
 

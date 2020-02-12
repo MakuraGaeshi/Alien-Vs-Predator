@@ -12,7 +12,7 @@
     <letterLabel>Infestation</letterLabel>
     <letterText>Something is tunneling towards you! They will break through in a few seconds.</letterText>
     <letterDef>ThreatBig</letterDef>
-    <baseChance>2.7</baseChance>
+    <baseChance>0.7</baseChance>
     <minRefireDays>20</minRefireDays>
     <category>ThreatBig</category>
     <pointsScaleable>true</pointsScaleable>

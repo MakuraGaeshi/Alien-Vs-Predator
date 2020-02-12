@@ -114,20 +114,20 @@
 		-->
 		<li Class="RRYautja.CompProperties_Yautja">
 			<bloodedDefs>
-			<li>RRY_Hediff_BloodedM</li>
-			<li>RRY_Hediff_BloodedMHuman</li>
-			<li>RRY_Hediff_BloodedMHumanlike</li>
-			<li>RRY_Hediff_BloodedMHound</li>
-			<li>RRY_Hediff_BloodedMCrusher</li>
-			<li>RRY_Hediff_BloodedMGroTye</li>
-			<li>RRY_Hediff_BloodedMThrumbo</li>
-			<li>RRY_Hediff_BloodedMWorthyHuman</li>
-			<li>RRY_Hediff_BloodedMWorthyHumanlike</li>
-			<li>RRY_Hediff_BloodedMMechanoid</li>
-			<li>RRY_Hediff_BloodedMBadBlood</li>
-			<li>RRY_Hediff_BloodedMXenomorph</li>
-			<li>RRY_Hediff_BloodedMPredalien</li>
-			<li>RRY_Hediff_BloodedMXenomorphQueen</li>
+			<li>HMS_Hediff_BloodedM</li>
+			<li>HMS_Hediff_BloodedMHuman</li>
+			<li>HMS_Hediff_BloodedMHumanlike</li>
+			<li>HMS_Hediff_BloodedMHound</li>
+			<li>HMS_Hediff_BloodedMCrusher</li>
+			<li>HMS_Hediff_BloodedMGroTye</li>
+			<li>HMS_Hediff_BloodedMThrumbo</li>
+			<li>HMS_Hediff_BloodedMWorthyHuman</li>
+			<li>HMS_Hediff_BloodedMWorthyHumanlike</li>
+			<li>HMS_Hediff_BloodedMMechanoid</li>
+			<li>HMS_Hediff_BloodedMBadBlood</li>
+			<li>HMS_Hediff_BloodedMXenomorph</li>
+			<li>HMS_Hediff_BloodedMPredalien</li>
+			<li>HMS_Hediff_BloodedMXenomorphQueen</li>
 			</bloodedDefs>
 			
 		</li> 
@@ -275,64 +275,6 @@
                 </options>
             </alienhaircolorgen>
             <useSkincolorForHair>false</useSkincolorForHair>
-			<!--
-            <bodyAddons>
-				<li>
-					<path>Things/Addons/Blank</path>
-					<bodyPart>Head</bodyPart>
-					<useSkinColor>true</useSkinColor>
-					<inFrontOfBody>true</inFrontOfBody>
-					<layerOffset>-0.2636656</layerOffset>
-					<offsets>
-					<south>
-										<bodyTypes>
-										<RRYYautjaMale>(-0.425,0.55)</RRYYautjaMale>
-										<RRYYautjaFemale>(-0.43,0.55)</RRYYautjaFemale>
-										</bodyTypes>
-					</south>
-
-					<north>
-										<bodyTypes>
-										<RRYYautjaMale>(0,0.0)</RRYYautjaMale>
-										<RRYYautjaFemale>(0,0.0)</RRYYautjaFemale>
-										</bodyTypes>
-					</north>
-
-					<east>
-										<bodyTypes>
-										<RRYYautjaMale>(-0.48,0.55)</RRYYautjaMale>
-										<RRYYautjaFemale>(-0.48,0.55)</RRYYautjaFemale>
-										</bodyTypes>
-					</east>
-					
-					<west>
-										<bodyTypes>
-										<RRYYautjaMale>(-0.48,0.55)</RRYYautjaMale>
-										<RRYYautjaFemale>(-0.48,0.55)</RRYYautjaFemale>
-										</bodyTypes>
-					</west>
-					</offsets>
-					<hediffGraphics>
-					<RRY_Hediff_BloodedMXenomorph>Things/Addons/Blood_Marks/Xenomorph_Kills/Mark_Xenomorphkill</RRY_Hediff_BloodedMXenomorph>
-					<RRY_Hediff_BloodedMXenomorphQueen>Things/Addons/Blood_Marks/Xenomorph_Kills/Mark_QueenXenomorphkill</RRY_Hediff_BloodedMXenomorphQueen>
-					<RRY_Hediff_BloodedMPredalien>Things/Addons/Blood_Marks/Xenomorph_Kills/Mark_Predalienkill</RRY_Hediff_BloodedMPredalien>
-
-					<RRY_Hediff_BloodedMBadBlood>Things/Addons/Blood_Marks/Yautja_Kills/Mark_BadBloodkill</RRY_Hediff_BloodedMBadBlood>
-					
-					<RRY_Hediff_BloodedMHuman>Things/Addons/Blood_Marks/Human_Kills/Mark_Humankill</RRY_Hediff_BloodedMHuman>
-					<RRY_Hediff_BloodedMWorthyHuman>Things/Addons/Blood_Marks/Human_Kills/Mark_WorthyHumankill</RRY_Hediff_BloodedMWorthyHuman>
-					<RRY_Hediff_BloodedMHumanlike>Things/Addons/Blood_Marks/Human_Kills/Mark_Humanlikekill</RRY_Hediff_BloodedMHumanlike>
-					<RRY_Hediff_BloodedMWorthyHumanlike>Things/Addons/Blood_Marks/Human_Kills/Mark_WorthyHumanlikekill</RRY_Hediff_BloodedMWorthyHumanlike>
-					
-					<RRY_Hediff_BloodedMThrumbo>Things/Addons/Blood_Marks/Animal_Kills/Mark_Thrumbokill</RRY_Hediff_BloodedMThrumbo>
-					<RRY_Hediff_BloodedMHound>Things/Addons/Blood_Marks/Animal_Kills/Mark_Houndkill</RRY_Hediff_BloodedMHound>
-					<RRY_Hediff_BloodedMCrusher>Things/Addons/Blood_Marks/Animal_Kills/Mark_Crusherkill</RRY_Hediff_BloodedMCrusher>
-					<RRY_Hediff_BloodedMGroTye>Things/Addons/Blood_Marks/Animal_Kills/Mark_GroTyekill</RRY_Hediff_BloodedMGroTye>
-					<RRY_Hediff_BloodedM>Things/Addons/Blood_Marks/Mark_Generickill</RRY_Hediff_BloodedM>
-					</hediffGraphics>
-                </li>
-            </bodyAddons>
-			-->
             </alienPartGenerator>
 			<chemicalSettings>	
 		    </chemicalSettings>
@@ -578,7 +520,7 @@
 		<ComfyTemperatureMax>40</ComfyTemperatureMax>
 		<LeatherAmount>55</LeatherAmount>
         <CarryingCapacity>200</CarryingCapacity>
-		<AimingDelayFactor>-0.5</AimingDelayFactor>
+		<AimingDelayFactor>0.75</AimingDelayFactor>
 		<MentalBreakThreshold>0.025</MentalBreakThreshold>
         <ImmunityGainSpeed>1.25</ImmunityGainSpeed>
         <PainShockThreshold>0.9</PainShockThreshold>
@@ -778,9 +720,17 @@
       <li>RRY_GauntletRemoval</li>
     </recipes>
 	<modExtensions>
-	  <li Class="RRYautja.OffsetDefExtension">
+	  <li Class="HunterMarkingSystem.MarkDefExtension">
+		<!-- DefName of the Marking Hediff Kills of this race give --> 
+		<hediffs>
+		<li>HMS_Hediff_BloodedMHumanlike</li>
+		<li>HMS_Hediff_BloodedMWorthyHumanlike</li>
+		<li>HMS_Hediff_BloodedMBadBlood</li>
+		</hediffs>
+	  </li>
+	  <li Class="HunterMarkingSystem.MarkOffsetDefExtension">
 		<!-- DefName of the hediff this applies to --> 
-		<hediff>RRY_Hediff_BloodedM</hediff>
+		<hediff>HMS_Hediff_BloodedM</hediff>
 		<!-- adds the vanillia head offset for the current rotation, not sure if this will ever be useful, defaults to false if not set--> 
 		<ApplyBaseHeadOffset>false</ApplyBaseHeadOffset>
 		<!-- North offsets Y is the layer height, usually you can leave this at 0, all values default to 0 if not set-->

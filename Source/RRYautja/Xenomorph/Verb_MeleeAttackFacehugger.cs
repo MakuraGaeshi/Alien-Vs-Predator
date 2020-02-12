@@ -145,9 +145,9 @@ namespace RRYautja
         {
             DamageWorker.DamageResult result = new DamageWorker.DamageResult();
             Pawn hitPawn = (Pawn)target;
-            if (infect && !XenomorphUtil.IsInfectedPawn(hitPawn) && !hitPawn.Dead && hitPawn.RaceProps.body.AllParts.Any(x => x.def.defName.Contains("Head")))
+            if (infect && !XenomorphUtil.IsInfectedPawn(hitPawn) && !hitPawn.Dead && hitPawn.RaceProps.body.AllParts.Any(x => x.def.defName.Contains("Head") && !x.def.defName.Contains("Claw")))
             {
-                foreach (var part in hitPawn.RaceProps.body.AllParts.Where(x => x.def.defName.Contains("Head")))
+                foreach (var part in hitPawn.RaceProps.body.AllParts.Where(x => x.def.defName.Contains("Head") && !x.def.defName.Contains("Claw")))
                 {
                     Hediff hediff = HediffMaker.MakeHediff(XenomorphDefOf.RRY_FaceHuggerInfection, hitPawn, null);
                     Comp_Facehugger _Facehugger = CasterPawn.TryGetComp<Comp_Facehugger>();
@@ -159,8 +159,12 @@ namespace RRYautja
                     hitPawn.health.AddHediff(hediff, part, null);
                     string text = TranslatorFormattedStringExtensions.Translate("Xeno_Facehugger_Attach", hitPawn.LabelShort, part.LabelShortCap);
                     MoteMaker.ThrowText(hitPawn.Position.ToVector3(), hitPawn.Map, text, 5f);
-                    comp.GetDirectlyHeldThings();
-                    caster.DeSpawn();
+                    if (CasterPawn.Spawned)
+                    {
+                        CasterPawn.DeSpawn();
+                    }
+                //    comp.GetDirectlyHeldThings().TryAdd(CasterPawn);
+
                     infect = false;
                 }
             }

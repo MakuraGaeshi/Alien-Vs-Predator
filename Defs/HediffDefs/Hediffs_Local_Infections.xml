@@ -85,7 +85,6 @@
 		-->
 		<li Class="RRYautja.HediffCompProperties_XenoFacehugger">
 		<severityPerDay>1</severityPerDay>
-		<pawnKindDef>RRY_Xenomorph_FaceHugger</pawnKindDef>
 		</li>
 		<li Class="RRYautja.HediffCompProperties_DrawImplant">
         <compClass>RRYautja.HediffComp_DrawImplant</compClass>
@@ -422,13 +421,8 @@
       </li>
     </stages>
     <comps>
-		<li Class="RRYautja.HediffCompProperties_XenoSpawner">
-		<pawnKindDefs>
-			<li>RRY_Xenomorph_Neomorph</li>
-		</pawnKindDefs>
-		<pawnKindWeights>
-			<li>100</li>
-		</pawnKindWeights>
+		<li Class="RRYautja.HediffCompProperties_NeoSpawner">
+		<pawnKindDef>RRY_Xenomorph_Neomorph</pawnKindDef>
 		</li>
 		<li Class="HediffCompProperties_SeverityPerDay">
 		<severityPerDay>1</severityPerDay>
@@ -620,14 +614,9 @@
       </li>
     </stages>
     <comps>
-		<li Class="RRYautja.HediffCompProperties_XenoSpawner">
+		<li Class="RRYautja.HediffCompProperties_NeoSpawner">
 		<severityPerDay>0.3</severityPerDay>
-		<pawnKindDefs>
-			<li>RRY_Xenomorph_Neomorph</li>
-		</pawnKindDefs>
-		<pawnKindWeights>
-			<li>100</li>
-		</pawnKindWeights>
+		<pawnKindDef>RRY_Xenomorph_Neomorph</pawnKindDef>
 		</li>
     </comps>
   </HediffDef>

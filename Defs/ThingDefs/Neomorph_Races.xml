@@ -13,6 +13,7 @@
     <inspectorTabs>
         <li>ITab_Pawn_Health</li>
         <li>ITab_Pawn_Log</li>
+        <li>ITab_Pawn_Needs</li>
 		<!--
         <li>ITab_Pawn_Training</li>
         <li>ITab_Pawn_Character</li>
@@ -23,25 +24,10 @@
             <compClass>CompAttachBase</compClass>
         </li>
 		<!--
-        <li>
-            <compClass>RRYautja.Comp_Yautja</compClass>
-        </li>
 		<li Class="RRYautja.CompProperties_Yautja">
 			<bloodedDefs>
-			<li>RRY_Hediff_BloodedM</li>
-			<li>RRY_Hediff_BloodedMHuman</li>
-			<li>RRY_Hediff_BloodedMHumanlike</li>
-			<li>RRY_Hediff_BloodedMHound</li>
-			<li>RRY_Hediff_BloodedMCrusher</li>
-			<li>RRY_Hediff_BloodedMGroTye</li>
-			<li>RRY_Hediff_BloodedMWorthyHuman</li>
-			<li>RRY_Hediff_BloodedMWorthyHumanlike</li>
-			<li>RRY_Hediff_BloodedMBadBlood</li>
-			<li>RRY_Hediff_BloodedMXenomorph</li>
-			<li>RRY_Hediff_BloodedMPredalien</li>
-			<li>RRY_Hediff_BloodedMXenomorphQueen</li>
+			<li>HMS_Hediff_BloodedM</li>
 			</bloodedDefs>
-			
 		</li> 
 		-->
     </comps>
@@ -51,6 +37,7 @@
   <ThingDef ParentName="RRY_BaseNeomorphPawn" Name="RRY_BaseNeomorph" Abstract="True">
     <soundImpactDefault>BulletImpact_Flesh</soundImpactDefault>
     <statBases>
+      <Mass>70</Mass>
       <PainShockThreshold>0.9999</PainShockThreshold>
       <MeleeDodgeChance>1.5</MeleeDodgeChance>
       <MeleeHitChance>1.5</MeleeHitChance>
@@ -67,19 +54,25 @@
     </statBases>
     <race>
       <!-- <deathActionWorkerClass>RRYautja.DeathActionWorker_Xenomorph</deathActionWorkerClass> -->
-      <herdAnimal>false</herdAnimal>
-      <predator>true</predator>
-      <maxPreyBodySize>3.0</maxPreyBodySize>
-      <baseBodySize>1.5</baseBodySize>
-      <baseHungerRate>0.0</baseHungerRate>
-      <baseHealthScale>1.5</baseHealthScale>
+      <intelligence>ToolUser</intelligence>
+      <trainability>Intermediate</trainability>
+      <thinkTreeMain>RRY_Neomorph_ThinkTree</thinkTreeMain>
+      <thinkTreeConstant>AnimalConstant</thinkTreeConstant>
       <fleshType>RRY_Neomorph</fleshType>
       <bloodDef>RRY_FilthBloodNeomorph</bloodDef>	
-      <needsRest>false</needsRest>
-      <hasGenders>false</hasGenders>
-      <foodType>Corpse, CarnivoreAnimalStrict</foodType>
       <leatherDef>RRY_Leather_Xenomorph</leatherDef>
+      <needsRest>true</needsRest>
+      <hasGenders>false</hasGenders>
+      <herdAnimal>true</herdAnimal>
+      <predator>true</predator>
+      <maxPreyBodySize>5.0</maxPreyBodySize>
+      <baseBodySize>1.5</baseBodySize>
+      <baseHungerRate>0.35</baseHungerRate>
+      <baseHealthScale>1.5</baseHealthScale>
+      <foodType>Corpse, CarnivoreAnimalStrict</foodType>
       <lifeExpectancy>30</lifeExpectancy>
+      <manhunterOnTameFailChance>1</manhunterOnTameFailChance>
+      <manhunterOnDamageChance>1</manhunterOnDamageChance>
       <hediffGiverSets>
         <li>RRY_Xenomorph_Standard</li>
       </hediffGiverSets>
@@ -87,48 +80,47 @@
   </ThingDef>
 
   <PawnKindDef Name="RRY_BaseNeomorphKind" Abstract="True">
+	<!--
     <defaultFactionType>RRY_Xenomorph</defaultFactionType>
+	-->
     <aiAvoidCover>true</aiAvoidCover>
-    <destroyGearOnDrop>true</destroyGearOnDrop>
   </PawnKindDef>
 
  <!-- Walker (Neomorph) base -->
   <ThingDef ParentName="RRY_BaseNeomorph" Name="BaseNeomorphWalker" Abstract="True">
     <race>
-      <intelligence>ToolUser</intelligence>
-      <thinkTreeMain>RRY_Xenomorph</thinkTreeMain>
       <baseBodySize>1.2</baseBodySize>
       <lifeStageAges>
         <li>
-          <def>RRY_XenomorphChestBursterBaby</def>
+          <def>RRY_NeomorphBloodBursterBaby</def>
           <minAge>0</minAge>
           <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
           <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
           <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
         <li>
-          <def>RRY_XenomorphChestBursterBig</def>
+          <def>RRY_NeomorphBloodBursterBig</def>
           <minAge>0.0041666666666666</minAge>
           <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
           <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
           <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
         <li>
-          <def>RRY_XenomorphFormedBaby</def>
+          <def>RRY_NeomorphFormedBaby</def>
           <minAge>0.0083333333333332</minAge>
           <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
           <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
           <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
         <li>
-          <def>RRY_XenomorphFormedMid</def>
+          <def>RRY_NeomorphFormedMid</def>
           <minAge>0.0124999999999998</minAge>
           <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
           <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
           <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
         <li>
-          <def>RRY_XenomorphFullyFormed</def>
+          <def>RRY_NeomorphFullyFormed</def>
           <minAge>0.0166666666666667</minAge>
           <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
           <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
@@ -145,13 +137,6 @@
         <compClass>RRYautja.Comp_Neomorph</compClass>
       </li>
     </comps>
-	<!--
-    <butcherProducts>
-      <Steel>20</Steel>
-      <Plasteel>5</Plasteel>
-      <ComponentIndustrial>1</ComponentIndustrial>
-    </butcherProducts>
-	-->
   </ThingDef>
 
   <!-- Neomorph - Basic -->
@@ -238,8 +223,6 @@
     </tools>
     <race>
       <body>RRY_Xenomorph_Neomorph</body>
-      <fleshType>RRY_Neomorph</fleshType>
-      <bloodDef>RRY_FilthBloodNeomorph</bloodDef>	
       <baseHealthScale>1.72</baseHealthScale>
       <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
       <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
@@ -259,7 +242,7 @@
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>0.5</drawSize>
           <shadowData>
-            <volume><!--(0.6, 0.8, 0.6)-->((0.6, 0.8, 0.6)</volume>
+            <volume><!--(0.6, 0.8, 0.6)-->((0.1, 0.1, 0.1)</volume>
           </shadowData>
           <shaderType>CutoutComplex</shaderType>
         </bodyGraphicData>
@@ -271,7 +254,7 @@
           <color>(180,180,180)</color>
           <drawSize>0.75</drawSize>
           <shadowData>
-            <volume><!--(0.6, 0.8, 0.6)-->(0.0, 0.0, 0.0)</volume>
+            <volume><!--(0.6, 0.8, 0.6)-->(0.2, 0.2, 0.2)</volume>
           </shadowData>
         </bodyGraphicData>
       </li>
@@ -282,7 +265,7 @@
           <color>(180,180,180)</color>
           <drawSize>1.0</drawSize>
           <shadowData>
-            <volume><!--(0.6, 0.8, 0.6)-->(0.0, 0.0, 0.0)</volume>
+            <volume><!--(0.6, 0.8, 0.6)-->(0.3, 0.3, 0.3)</volume>
           </shadowData>
         </bodyGraphicData>
       </li>
@@ -293,7 +276,7 @@
           <color>(180,180,180)</color>
           <drawSize>1.25</drawSize>
           <shadowData>
-            <volume>(0.4, 0.8, 0.4)</volume>
+            <volume>(0.4, 0.4, 0.4)</volume>
           </shadowData>
         </bodyGraphicData>
       </li>
@@ -304,7 +287,7 @@
           <color>(221,231,237)</color>
           <drawSize>1.7</drawSize>
           <shadowData>
-            <volume>(0.4, 0.8, 0.4)</volume>
+            <volume>(0.5, 0.5, 0.5)</volume>
           </shadowData>
         </bodyGraphicData>
       </li>

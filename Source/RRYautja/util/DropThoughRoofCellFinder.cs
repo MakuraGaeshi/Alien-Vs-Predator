@@ -23,7 +23,7 @@ namespace RimWorld
             {
                 map.debugDrawer.FlashCell(center, 1f, "center", 50);
             }
-            Predicate<IntVec3> validator = (IntVec3 c) => DropThoughRoofCellFinder.IsGoodDropSpot(c, map, allowFogged, canRoofPunch) && map.reachability.CanReach(center, c, PathEndMode.OnCell, TraverseMode.PassDoors, Danger.Deadly);
+            Predicate<IntVec3> validator = (IntVec3 c) => DropThoughRoofCellFinder.IsGoodDropSpot(c, map, allowFogged, canRoofPunch) && map.reachability.CanReach(center, c, PathEndMode.OnCell, TraverseMode.NoPassClosedDoors, Danger.Deadly) && GenRadial.RadialCellsAround(c, 1, true).Any(x => x.Roofed(map));
             int num = 5;
             while (!CellFinder.TryFindRandomCellNear(center, map, num, validator, out result, -1))
             {
@@ -40,7 +40,7 @@ namespace RimWorld
         // Token: 0x06003685 RID: 13957 RVA: 0x001A08D4 File Offset: 0x0019ECD4
         public static bool IsGoodDropSpot(IntVec3 c, Map map, bool allowFogged, bool canRoofPunch)
         {
-            if (!c.InBounds(map) || !c.Standable(map) || c.Roofed(map))
+            if (!c.InBounds(map) || !c.Standable(map))
             {
                 return false;
             }
@@ -199,10 +199,12 @@ namespace RimWorld
                 {
                     return false;
                 }
+                /*
                 if (roof.isThickRoof)
                 {
                     return false;
                 }
+                */
             }
             return true;
         }

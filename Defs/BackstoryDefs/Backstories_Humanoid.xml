@@ -181,7 +181,7 @@
       
     </skillGains>
 	<forcedHediffs>
-		<li>RRY_Hediff_BloodedMHuman</li>
+		<li>HMS_Hediff_BloodedMHuman</li>
     </forcedHediffs>
     <spawnCategories>
       <li>RRY_USCM_Backstories</li>

@@ -12,12 +12,34 @@ namespace RimWorld
 		public LordJob_DefendAndExpandHiveLike()
 		{
 
-		}
+            this.RunnerList = new List<Pawn>();
+            this.DroneList = new List<Pawn>();
+            this.WarriorList = new List<Pawn>();
+            this.PreatorianList = new List<Pawn>();
+            this.PredalienList = new List<Pawn>();
+            this.QueenList = new List<Pawn>();
+            this.ThrumbomorphList = new List<Pawn>();
+            this.XenoList = new List<Pawn>();
+            this.ScoutList = new List<Pawn>();
+            this.WorkerList = new List<Pawn>();
+            this.GuardList = new List<Pawn>();
+        }
 
         // Token: 0x06000792 RID: 1938 RVA: 0x00042F2C File Offset: 0x0004132C
         public LordJob_DefendAndExpandHiveLike(bool aggressive)
         {
             this.aggressive = aggressive;
+            this.RunnerList = new List<Pawn>();
+            this.DroneList = new List<Pawn>();
+            this.WarriorList = new List<Pawn>();
+            this.PreatorianList = new List<Pawn>();
+            this.PredalienList = new List<Pawn>();
+            this.QueenList = new List<Pawn>();
+            this.ThrumbomorphList = new List<Pawn>();
+            this.XenoList = new List<Pawn>();
+            this.ScoutList = new List<Pawn>();
+            this.WorkerList = new List<Pawn>();
+            this.GuardList = new List<Pawn>();
         }
 
         // Token: 0x06000792 RID: 1938 RVA: 0x00042F2C File Offset: 0x0004132C
@@ -34,6 +56,12 @@ namespace RimWorld
             this.PredalienList = new List<Pawn>();
             this.QueenList = new List<Pawn>();
             this.ThrumbomorphList = new List<Pawn>();
+            this.XenoList = new List<Pawn>();
+            this.ScoutList = new List<Pawn>();
+            this.WorkerList = new List<Pawn>();
+            this.GuardList = new List<Pawn>();
+
+
         }
 
         // Token: 0x17000130 RID: 304

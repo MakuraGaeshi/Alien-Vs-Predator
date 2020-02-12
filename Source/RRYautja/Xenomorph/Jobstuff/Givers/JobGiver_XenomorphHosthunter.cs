@@ -106,6 +106,8 @@ namespace RimWorld
             {
                 using (PawnPath pawnPath = pawn.Map.pathFinder.FindPath(pawn.Position, pawn2.Position, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.PassDoors, true), PathEndMode.OnCell))
                 {
+                    if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("pawnPath.TotalCost: {0}", pawnPath.TotalCost));
+                    
                     if (!pawnPath.Found)
                     {
                         return null;
@@ -132,7 +134,7 @@ namespace RimWorld
             return new Job(JobDefOf.AttackMelee, target)
             {
                 maxNumMeleeAttacks = 1,
-                expiryInterval = Rand.Range(MinMeleeChaseTicks, MaxMeleeChaseTicks),
+                expiryInterval = Rand.Range(MinMeleeChaseTicks, MaxMeleeChaseTicks) * (int)Math.Max(1, (pawn.Position.DistanceTo(target.Position) / 5)),
                 killIncappedTarget = false,
                 attackDoorIfTargetLost = true
             };

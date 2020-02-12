@@ -15,7 +15,34 @@ namespace RimWorld
 		{
             
 			Map map = (Map)parms.target;
-			return base.CanFireNowSub(parms) && XenomorphHiveUtility.TotalSpawnedHiveLikesCount(map) < 30 && InfestationLikeCellFinder.TryFindCell(out intVec, out IntVec3 lc, map);
+            bool result = base.CanFireNowSub(parms) && XenomorphHiveUtility.TotalSpawnedHiveLikesCount(map) < 30 && InfestationLikeCellFinder.TryFindCell(out intVec, out IntVec3 lc, map);
+            ThingDef thing = DefDatabase<ThingDef>.GetNamedSilentFail("O21_AntiInfestationThumper");
+            if (map.listerBuildings.ColonistsHaveBuildingWithPowerOn(thing) && result)
+            {
+                IncidentDef def;
+                def = new IncidentDef
+                {
+                    defName = this.def.defName + "B",
+                    workerClass = typeof(IncidentWorker_XenomorphHive),
+                    category = this.def.category,
+                    allowedBiomes = this.def.allowedBiomes,
+                    baseChance = 0,
+                    description = this.def.description,
+                    letterDef = this.def.letterDef,
+                    letterLabel = this.def.letterLabel,
+                    letterText = this.def.letterText,
+                    targetTags = this.def.targetTags,
+                    tags = this.def.tags,
+                    tale = this.def.tale,
+                    refireCheckTags = this.def.refireCheckTags,
+                    shipPart = this.def.shipPart
+                };
+                parms.points *= 3;
+                QueuedIncident qi = new QueuedIncident(new FiringIncident(def, null, parms), Find.TickManager.TicksGame+10);
+                Find.Storyteller.incidentQueue.Add(qi);
+            //    return false;
+            }
+			return result;
             
             /*
             Map map = (Map)parms.target;

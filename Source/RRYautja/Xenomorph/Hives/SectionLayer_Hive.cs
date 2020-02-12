@@ -12,6 +12,7 @@ namespace RRYautja
         public SectionLayer_Hive(Section section) : base(section)
         {
             this.relevantChangeTypes = (Verse.MapMeshFlag)ExtensionMethods.MapMeshFlag.Hive;
+            this.HiveMaterial.mainTexture = this.HiveTex;
         }
 
         // Token: 0x17000B30 RID: 2864
@@ -30,7 +31,7 @@ namespace RRYautja
             Building building = base.Map.edificeGrid[index];
             return building != null && building.def.Fillage == FillCategory.Full;
         }
-        /*
+
         public override void DrawLayer()
         {
             if (!this.Visible)
@@ -41,20 +42,17 @@ namespace RRYautja
             for (int i = 0; i < count; i++)
             {
                 LayerSubMesh layerSubMesh = this.subMeshes[i];
-                Vector3 s = new Vector3(.28f, 1f, .28f);
-                Matrix4x4 matrix = default(Matrix4x4);
-                matrix.SetTRS(vector, Quaternion.AngleAxis(angle, Vector3.up), s);
                 if (layerSubMesh.finalized && !layerSubMesh.disabled)
                 {
                     Graphics.DrawMesh(layerSubMesh.mesh, Vector3.zero, Quaternion.identity, layerSubMesh.material, 0);
                 }
             }
         }
-        */
+
         // Token: 0x060047BA RID: 18362 RVA: 0x0021ADFC File Offset: 0x002191FC
         public override void Regenerate()
         {
-            LayerSubMesh subMesh = base.GetSubMesh(RRYMatBases.Hive);
+            LayerSubMesh subMesh = base.GetSubMesh(this.HiveMaterial);
             if (subMesh.mesh.vertexCount == 0)
             {
                 SectionLayerGeometryMaker_Solid.MakeBaseGeometry(this.section, subMesh, AltitudeLayer.Terrain);
@@ -123,16 +121,20 @@ namespace RRYautja
         // Token: 0x060047BB RID: 18363 RVA: 0x0021B154 File Offset: 0x00219554
         private static Color32 HiveDepthColor(float snowDepth)
         {
-            return Color32.Lerp(SectionLayer_Hive.ColorClear, SectionLayer_Hive.ColorHive, snowDepth);
+            return Color32.Lerp(SectionLayer_Hive.ColorClear, SectionLayer_Hive.ColorFull, snowDepth);
         }
 
         // Token: 0x04003127 RID: 12583
         private float[] vertDepth = new float[9];
 
+        public Material HiveMaterial = new Material(MatBases.Snow);
+
+        // Token: 0x040001A3 RID: 419
+        public Texture2D HiveTex = ContentFinder<Texture2D>.Get("Other/HiveMat", true);
         // Token: 0x04003128 RID: 12584
-        private static readonly Color32 ColorClear = new Color32(75, 75, 75, 0);
+        private static readonly Color32 ColorClear = new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, 0);
 
         // Token: 0x04003129 RID: 12585
-        private static readonly Color32 ColorHive = new Color32(40, 25, 90, 100);
+        private static readonly Color32 ColorFull = new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue);
     }
 }

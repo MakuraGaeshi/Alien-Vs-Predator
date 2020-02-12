@@ -58,7 +58,7 @@ namespace RimWorld
                             bool thingA = y.GetFirstThing(pawn.Map, namedA).DestroyedOrNull();
                             bool thingB = y.GetFirstThing(pawn.Map, namedB).DestroyedOrNull();
                         //    Log.Message(string.Format("{0}, adjacent: {1}, filled: {2}, edifice: {3}, building: {4}", y, !adjacent, !filled, edifice, building));
-                            return !adjacent && !filled && edifice && building && thingA && thingB && roofed;
+                            return !adjacent && !filled && edifice && building && thingA && thingB && roofed && pawn.CanReserveAndReach(y, PathEndMode.OnCell, Danger.Deadly, layer: ReservationLayerDefOf.Floor);
                         };
                         if (pawn.GetLord() != null && pawn.GetLord() is Lord lord)
                         {

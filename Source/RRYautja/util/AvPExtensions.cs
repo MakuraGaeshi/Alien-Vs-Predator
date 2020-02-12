@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using HunterMarkingSystem;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -106,42 +107,7 @@ namespace RRYautja.ExtensionMethods
             }
             return null;
         }
-
-        public static bool isBloodable(this Pawn p)
-        {
-            return p.TryGetComp<Comp_Yautja>() != null;
-        }
-
-        public static Comp_Yautja BloodStatus(this Pawn p)
-        {
-            if (p.isBloodable())
-            {
-                return p.TryGetComp<Comp_Yautja>();
-            }
-            return null;
-        }
-
-        public static BloodStatusMode CurBloodStatus(this Pawn p)
-        {
-            if (p.isBloodable())
-            {
-                if (p.isUnblooded())
-                {
-                    return BloodStatusMode.Unblooded;
-                }
-                if (p.isBloodUnmarked())
-                {
-                    return BloodStatusMode.Unmarked;
-                }
-                if (p.isBloodMarked())
-                {
-                    return BloodStatusMode.Marked;
-                }
-                return BloodStatusMode.None;
-            }
-            return BloodStatusMode.NoComp;
-        }
-
+        
         public static bool isCocooned(this Pawn p)
         {
             return p.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned);
@@ -319,12 +285,12 @@ namespace RRYautja.ExtensionMethods
 
         public static bool isPotentialHost(this Pawn p)
         {
-            return XenomorphUtil.isInfectablePawn(p) && !p.isXenomorph() && !p.isNeomorph() && p.health.hediffSet.HasHead;
+            return XenomorphUtil.isInfectablePawn(p) && !p.isXenomorph() && !p.isNeomorph() && p.health.hediffSet.HasHead && !p.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned);
         }
         public static bool isPotentialHost(this Thing t)
         {
             Pawn p = (Pawn)t;
-            return XenomorphUtil.isInfectablePawn(p) && !p.isXenomorph() && !p.isNeomorph() && p.health.hediffSet.HasHead;
+            return XenomorphUtil.isInfectablePawn(p) && !p.isXenomorph() && !p.isNeomorph() && p.health.hediffSet.HasHead && !p.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned);
         }
 
         public static bool isPotentialHost(this PawnKindDef p)
@@ -603,19 +569,12 @@ namespace RRYautja.ExtensionMethods
         {
             return p.health.hediffSet.hediffs.Any(x =>  x.def.defName.Contains("NeomorphImpregnation"));
         }
-
-        public static bool isWorthyKill(this Pawn p)
+        public static List<PawnKindDef> PossibleXenoforms(this Pawn p)
         {
-            bool predatory = p.kindDef.RaceProps.predator;
-            bool fighter = p.kindDef.isFighter;
-            bool leader = p.kindDef.factionLeader;
-            bool human = p.def.defName.Contains("Human");
-            bool humanlike = p.RaceProps.Humanlike;
-            bool combatpower50 = p.kindDef.combatPower >= 50;
-            bool combatpower100 = p.kindDef.combatPower >= 100;
-            return YautjaBloodedUtility.WorthyKill(p.kindDef);
-        }
+            List<PawnKindDef> list = new List<PawnKindDef>();
 
+            return list;
+        }
         public static PawnKindDef resultingXenomorph(this Pawn p)
         {
             PawnKindDef kindDef = null;
@@ -623,10 +582,10 @@ namespace RRYautja.ExtensionMethods
             {
                 return null;
             }
-            bool human = p.def.defName.Contains("Human") || YautjaBloodedUtility.GetMark(p.kindDef) == YautjaDefOf.RRY_Hediff_BloodedMHuman;
+            bool human = p.def.defName.Contains("Human") || HMSUtility.GetMark(p.kindDef) == YautjaDefOf.HMS_Hediff_BloodedMHuman;
             bool yautja = p.def.defName.Contains("Yautja");
-            bool thrumbo = p.def.defName.Contains("Human") || YautjaBloodedUtility.GetMark(p.kindDef) == YautjaDefOf.RRY_Hediff_BloodedMThrumbo;
-            bool hound = YautjaBloodedUtility.GetMark(p.kindDef) == YautjaDefOf.RRY_Hediff_BloodedMHound;
+            bool thrumbo = p.def.defName.Contains("Human") || HMSUtility.GetMark(p.kindDef) == YautjaDefOf.HMS_Hediff_BloodedMThrumbo;
+            bool hound = HMSUtility.GetMark(p.kindDef) == YautjaDefOf.HMS_Hediff_BloodedMHound;
 
             bool humanlike = p.RaceProps.Humanlike;
 
@@ -751,10 +710,10 @@ namespace RRYautja.ExtensionMethods
             {
                 return null;
             }
-            bool human = p.race.defName.Contains("Human") || YautjaBloodedUtility.GetMark(p) == YautjaDefOf.RRY_Hediff_BloodedMHuman;
+            bool human = p.race.defName.Contains("Human") || HMSUtility.GetMark(p) == YautjaDefOf.HMS_Hediff_BloodedMHuman;
             bool yautja = p.race.defName.Contains("Yautja");
-            bool thrumbo = p.race.defName.Contains("Human") || YautjaBloodedUtility.GetMark(p) == YautjaDefOf.RRY_Hediff_BloodedMThrumbo;
-            bool hound = YautjaBloodedUtility.GetMark(p) == YautjaDefOf.RRY_Hediff_BloodedMHound;
+            bool thrumbo = p.race.defName.Contains("Human") || HMSUtility.GetMark(p) == YautjaDefOf.HMS_Hediff_BloodedMThrumbo;
+            bool hound = HMSUtility.GetMark(p).defName.Contains("BloodedMHound");
 
             bool humanlike = p.RaceProps.Humanlike;
 
@@ -942,9 +901,9 @@ namespace RRYautja.ExtensionMethods
             return kindDef;
         }
 
-        public static HediffDef unbloodedDef = YautjaDefOf.RRY_Hediff_Unblooded;
-        public static HediffDef unmarkedDef = YautjaDefOf.RRY_Hediff_BloodedUM;
-        public static HediffDef markedDef = YautjaDefOf.RRY_Hediff_BloodedM;
+        public static HediffDef unbloodedDef = YautjaDefOf.HMS_Hediff_Unblooded;
+        public static HediffDef unmarkedDef = YautjaDefOf.HMS_Hediff_BloodedUM;
+        public static HediffDef markedDef = YautjaDefOf.HMS_Hediff_BloodedM;
         public static AlienRace.BackstoryDef bsDefUnblooded = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_YoungBlood");
         public static AlienRace.BackstoryDef bsDefBlooded = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_Blooded");
         public static AlienRace.BackstoryDef bsDefBadbloodA = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_BadBloodA");

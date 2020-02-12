@@ -129,12 +129,6 @@ namespace RRYautja
             {
                 if (parent.pawn.Map != null)
                 {
-                    if (parent.def == XenomorphDefOf.RRY_HiddenNeomorphImpregnation || parent.def == XenomorphDefOf.RRY_NeomorphImpregnation && this.parent.pawn.Faction == Faction.OfPlayer)
-                    {
-                        string text = TranslatorFormattedStringExtensions.Translate("Xeno_Neospores_Added", base.parent.pawn.LabelShortCap, parent.Part.LabelShort);
-                        MoteMaker.ThrowText(base.parent.pawn.Position.ToVector3(), base.parent.pawn.Map, text, 3f);
-                    }
-
                     if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Embryo) && Pawn.Spawned && Pawn.IsColonist && (this.parent.def == XenomorphDefOf.RRY_XenomorphImpregnation || this.parent.def == XenomorphDefOf.RRY_NeomorphImpregnation) && MyMap != null)
                     {
                         LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Embryo, OpportunityType.Important);

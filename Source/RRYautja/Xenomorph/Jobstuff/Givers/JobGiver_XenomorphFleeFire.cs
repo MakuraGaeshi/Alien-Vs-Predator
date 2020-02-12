@@ -46,10 +46,8 @@ namespace RimWorld
             }
             if (intVec != pawn.Position)
             {
-                if (selected)
-                {
-                    Log.Message(string.Format("{0} @:{1} is fleeing from {2} @:{3}",pawn.LabelShortCap, pawn.Position, danger.LabelShortCap, danger.Position));
-                }
+                if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0} @:{1} is fleeing from {2} @:{3}",pawn.LabelShortCap, pawn.Position, danger.LabelShortCap, danger.Position));
+                
                 return new Job(JobDefOf.FleeAndCower, intVec, danger);
             }
             return null;

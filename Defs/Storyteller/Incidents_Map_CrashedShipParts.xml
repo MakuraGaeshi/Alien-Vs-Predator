@@ -8,7 +8,7 @@
     <targetTags>
       <li>Map_PlayerHome</li>
     </targetTags>
-    <workerClass>IncidentWorker_CrashedShip</workerClass>
+    <workerClass>RRYautja.IncidentWorker_CrashedShip</workerClass>
     <letterLabel>Unknown Ship part Impact</letterLabel>
     <letterText>A large piece of an ancient Ship tumbles through the atmosphere and has crashed nearby. you wonder what it could contain</letterText>
     <letterDef>ThreatSmall</letterDef>

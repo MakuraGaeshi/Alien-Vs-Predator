@@ -1,9 +1,10 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
 
-namespace RimWorld
+namespace RRYautja
 {
     // Token: 0x0200034F RID: 847
     public class IncidentWorker_CrashedShip : IncidentWorker

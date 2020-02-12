@@ -213,7 +213,7 @@ namespace RRYautja
         public override void Notify_Starting()
         {
             base.Notify_Starting();
-            this.useDuration = this.job.GetTarget(TargetIndex.A).Thing.TryGetComp<Comp_UsableCorpse>().Props.useDuration;
+            this.useDuration = this.job.GetTarget(TargetIndex.A).Thing.TryGetComp<CompUsable_HealthShard>().Props.useDuration;
         }
 
         // Token: 0x06000392 RID: 914 RVA: 0x00024590 File Offset: 0x00022990

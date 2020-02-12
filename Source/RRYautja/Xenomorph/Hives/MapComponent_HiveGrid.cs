@@ -8,12 +8,13 @@ using static RRYautja.XenomorphHiveUtility;
 namespace RRYautja
 {
     // Token: 0x02000067 RID: 103
-    public class MapComponent_HiveGrid : MapComponent
+    public class MapComponent_HiveGrid : MapComponent, IThingHolder
     {
         // Token: 0x06000217 RID: 535 RVA: 0x0000B430 File Offset: 0x00009630
         public MapComponent_HiveGrid(Map map) : base(map)
         {
             this.map = map;
+            this.innerContainer = new ThingOwner<Thing>(this, false, LookMode.Deep);
             this.depthGrid = new float[map.cellIndices.NumGridCells];
             this.potentialHosts = new List<Pawn>();
             this.nonpotentialHosts = new List<Pawn>();
@@ -29,6 +30,20 @@ namespace RRYautja
             this.HiveLoclist = new List<IntVec3>();
             this.HiveChildlist = new List<Thing>();
             this.HiveChildLoclist = new List<IntVec3>();
+        }
+
+        public List<Pawn> XenoList
+        {
+            get
+            {
+                List<Pawn> List = new List<Pawn>();
+                Queenlist.ForEach(x => List.Add(x));
+                Dronelist.ForEach(x => List.Add(x));
+                Warriorlist.ForEach(x => List.Add(x));
+                Predalienlist.ForEach(x => List.Add(x));
+                Thrumbomorphlist.ForEach(x => List.Add(x));
+                return List;
+            }
         }
 
         public override void FinalizeInit()
@@ -68,8 +83,65 @@ namespace RRYautja
                 }
             }
             */
+            if (Find.TickManager.TicksGame % 60 == 0)
+            {
+                if (map.mapPawns.AllPawnsSpawned.Any(x=> x.isXenomorph()))
+                {
+                    foreach (Pawn p in map.mapPawns.AllPawnsSpawned)
+                    {
+                        if (p.isPotentialHost())
+                        {
+                            if (!potentialHosts.Contains(p))
+                            {
+                                potentialHosts.Add(p);
+                            }
+                        }
+                        else
+                        {
+                            if (p.isXenomorph())
+                            {
+                                if (p.def == XenomorphRacesDefOf.RRY_Xenomorph_Runner)
+                                {
+                                    if (!Runnerlist.Contains(p))
+                                    {
+                                        Runnerlist.Add(p);
+                                    }
+                                }
+                                if (p.def == XenomorphRacesDefOf.RRY_Xenomorph_Drone)
+                                {
+                                    if (!Dronelist.Contains(p))
+                                    {
+                                        Dronelist.Add(p);
+                                    }
+                                }
+                                if (p.def == XenomorphRacesDefOf.RRY_Xenomorph_Warrior)
+                                {
+                                    if (!Warriorlist.Contains(p))
+                                    {
+                                        Warriorlist.Add(p);
+                                    }
+                                }
+                                if (p.def == XenomorphRacesDefOf.RRY_Xenomorph_Drone)
+                                {
+                                    if (!Dronelist.Contains(p))
+                                    {
+                                        Dronelist.Add(p);
+                                    }
+                                }
+                                if (p.def == XenomorphRacesDefOf.RRY_Xenomorph_Drone)
+                                {
+                                    if (!Dronelist.Contains(p))
+                                    {
+                                        Dronelist.Add(p);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             /*
-            if (Find.TickManager.TicksGame % 600 == 0)
+            if (Find.TickManager.TicksGame % 60 == 0)
             {
             //    Log.Message(string.Format("MapComponentTick update lists"));
                 potentialHosts = map.ViableHosts();
@@ -198,12 +270,12 @@ namespace RRYautja
                 return false;
             }
             TerrainDef terrainDef = this.map.terrainGrid.TerrainAt(ind);
-            return terrainDef.passability != Traversability.Impassable;// terrainDef == null || terrainDef.holdSnow;
+            return terrainDef.passability != Traversability.Impassable && this.map.roofGrid.RoofAt(ind)!=null;// terrainDef == null || terrainDef.holdSnow;
         }
 
         public static bool CanCoexistWithHive(ThingDef def)
         {
-            return def.category != ThingCategory.Building || def.Fillage != FillCategory.Full || def == XenomorphDefOf.RRY_XenomorphCrashedShipPart;
+            return def.category != ThingCategory.Building || def.Fillage != FillCategory.Full || def == XenomorphDefOf.RRY_Xenomorph_Hive || def == XenomorphDefOf.RRY_Xenomorph_Hive_Child || def == XenomorphDefOf.RRY_Xenomorph_Hive_Wall;
         }
 
         public void AddDepth(IntVec3 c, float depthToAdd)
@@ -263,7 +335,7 @@ namespace RRYautja
                 {
                     this.map.mapDrawer.MapMeshDirty(c, (Verse.MapMeshFlag)ExtensionMethods.MapMeshFlag.Hive, true, false);
                 }
-                if (XenomorphHiveUtility.GetSnowCategory(oldDepth) != XenomorphHiveUtility.GetSnowCategory(newDepth))
+                if (XenomorphHiveUtility.GetHiveCategory(oldDepth) != XenomorphHiveUtility.GetHiveCategory(newDepth))
                 {
                     this.map.pathGrid.RecalculatePerceivedPathCostAt(c);
                 }
@@ -281,7 +353,7 @@ namespace RRYautja
 
         public HiveCategory GetCategory(IntVec3 c)
         {
-            return XenomorphHiveUtility.GetSnowCategory(this.GetDepth(c));
+            return XenomorphHiveUtility.GetHiveCategory(this.GetDepth(c));
         }
 
         public override void ExposeData()
@@ -290,6 +362,23 @@ namespace RRYautja
             {
                 this.depthGrid[this.map.cellIndices.CellToIndex(c)] = MapComponent_HiveGrid.HiveShortToFloat(val);
             }, "depthGrid");
+
+
+            if (Scribe.mode == LoadSaveMode.Saving)
+            {
+                this.HiveGuardlist.RemoveAll((Pawn x) => x.Destroyed);
+                this.HiveWorkerlist.RemoveAll((Pawn x) => x.Destroyed);
+                this.potentialHosts.RemoveAll((Pawn x) => x.Destroyed);
+                this.nonpotentialHosts.RemoveAll((Pawn x) => x.Destroyed);
+                this.Queenlist.RemoveAll((Pawn x) => x.Destroyed);
+                this.Dronelist.RemoveAll((Pawn x) => x.Destroyed);
+                this.Warriorlist.RemoveAll((Pawn x) => x.Destroyed);
+                this.Runnerlist.RemoveAll((Pawn x) => x.Destroyed);
+                this.Runnerlist.RemoveAll((Pawn x) => x.Destroyed);
+                this.Thrumbomorphlist.RemoveAll((Pawn x) => x.Destroyed);
+                this.Hivelist.RemoveAll((Thing x) => x.Destroyed);
+                this.HiveChildlist.RemoveAll((Thing x) => x.Destroyed);
+            }
             Scribe_Collections.Look<Pawn>(ref this.HiveGuardlist, "HiveGuardlist", LookMode.Reference, new object[0]);
             Scribe_Collections.Look<Pawn>(ref this.HiveWorkerlist, "HiveWorkerlist", LookMode.Reference, new object[0]);
             Scribe_Collections.Look<Pawn>(ref this.potentialHosts, "potentialHosts", LookMode.Reference, new object[0]);
@@ -301,12 +390,49 @@ namespace RRYautja
             Scribe_Collections.Look<Pawn>(ref this.Predalienlist, "Predalienlist", LookMode.Reference, new object[0]);
             Scribe_Collections.Look<Pawn>(ref this.Thrumbomorphlist, "Thrumbomorphlist", LookMode.Reference, new object[0]);
             Scribe_Collections.Look<Thing>(ref this.Hivelist, "Hivelist", LookMode.Reference, new object[0]);
-            Scribe_Collections.Look<IntVec3>(ref this.HiveLoclist, "HiveLoclist", LookMode.Reference, new object[0]);
             Scribe_Collections.Look<Thing>(ref this.HiveChildlist, "HiveChildlist", LookMode.Reference, new object[0]);
-            Scribe_Collections.Look<IntVec3>(ref this.HiveChildLoclist, "HiveChildLoclist", LookMode.Reference, new object[0]);
-
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                this.HiveGuardlist.RemoveAll((Pawn x) => x == null);
+                this.HiveWorkerlist.RemoveAll((Pawn x) => x == null);
+                this.potentialHosts.RemoveAll((Pawn x) => x == null);
+                this.nonpotentialHosts.RemoveAll((Pawn x) => x == null);
+                this.Queenlist.RemoveAll((Pawn x) => x == null);
+                this.Dronelist.RemoveAll((Pawn x) => x == null);
+                this.Warriorlist.RemoveAll((Pawn x) => x == null);
+                this.Runnerlist.RemoveAll((Pawn x) => x == null);
+                this.Predalienlist.RemoveAll((Pawn x) => x == null);
+                this.Thrumbomorphlist.RemoveAll((Pawn x) => x == null);
+                this.Hivelist.RemoveAll((Thing x) => x == null);
+                this.HiveChildlist.RemoveAll((Thing x) => x == null);
+            }
+            Scribe_Deep.Look<ThingOwner>(ref this.innerContainer, "innerContainer", new object[]
+            {
+                this
+            });
             base.ExposeData();
         }
+
+        // Token: 0x060024F3 RID: 9459 RVA: 0x00116CE3 File Offset: 0x001150E3
+        public ThingOwner GetDirectlyHeldThings()
+        {
+            return this.innerContainer;
+        }
+
+        // Token: 0x060024F4 RID: 9460 RVA: 0x00116CEB File Offset: 0x001150EB
+        public void GetChildHolders(List<IThingHolder> outChildren)
+        {
+            ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, this.GetDirectlyHeldThings());
+        }
+
+        public IThingHolder ParentHolder
+        {
+            get
+            {
+                return map;
+            }
+        }
+        protected ThingOwner innerContainer;
 
         public MapComponent_HiveGrid HiveGrid;
         public List<Thing> Hivelist;

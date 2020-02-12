@@ -61,7 +61,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Harmony\Patches.cs" />
-    <Compile Include="Harmony\Patches\AVP_AEmptyPatch - Copy.cs" />
+    <Compile Include="Harmony\Patches\AvP_FilthMaker_MakeFilth_Xenoblood_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_Verb_Shoot_TryStartCastOn_SmartGun_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_AlienRace_HarmonyPatches_ThoughtsFromIngesting_Patch.cs" />
     <Compile Include="Harmony\Patches\AVP_AEmptyPatch.cs" />
     <Compile Include="Harmony\Patches\AvP_ApparelGraphicRecordGetter_TryGetGraphicApparel_YautjaSpecificHat_Patch.cs" />
@@ -88,11 +89,10 @@
     <Compile Include="Harmony\Patches\AvP_PawnWoundDrawer_TryExecute_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Pawn_AcceptArrest_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Pawn_AnythingToStrip_Patch.cs" />
-    <Compile Include="Harmony\Patches\AvP_Pawn_DrawTracker_get_DrawPos_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_PawnRenderer_RenderPawnInternal_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Pawn_MeleeVerbs_ChooseMeleeVerb_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Pawn_NeedsTracker_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Pawn_PreApplyDamage_Patch.cs" />
-    <Compile Include="Harmony\Patches\AvP_Pawn_RecordsTracker_Increment_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Pawn_RelationsTracker_SecondaryRomanceChanceFactor_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Pawn_Strip_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Pawn_ThreatDisabled_Patch.cs" />
@@ -105,7 +105,7 @@
     <Compile Include="Harmony\Patches\AvP_ShieldBelt_AllowVerbCast_YautjaWeapons_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_SnowUtility_AddSnowRadial_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_StatWorker_GetExplanationUnfinalized_Patch.cs" />
-    <Compile Include="Harmony\Patches\AvP_StatWorker_GetValueUnfinalized_Patch - Copy.cs" />
+    <Compile Include="Harmony\Patches\AvP_StatPart_StatWorker_TransformValue_Smartgun_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_StatWorker_GetValueUnfinalized_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_VerbUtility_HarmsHealth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_WorkGiver_Tend_GoodLayingStatusForTend_Patch.cs" />
@@ -118,21 +118,26 @@
     <Compile Include="Harmony\ExtraButcheringProducts.cs" />
     <Compile Include="util\Building_XenomorphCryptosleepCasket.cs" />
     <Compile Include="util\Building_CrashedShipPart_CryptosleepCasket_Xenomorph.cs" />
-    <Compile Include="util\AvPMatBases.cs" />
     <Compile Include="util\AvPExtensions.cs" />
     <Compile Include="util\AvPConstants.cs" />
     <Compile Include="util\AvPDefOf.cs" />
+    <Compile Include="util\TunnelSpawner.cs" />
     <Compile Include="util\CompPowerPlantSolarTurret.cs" />
+    <Compile Include="util\CrashedShip\MapComponent_GooGrid.cs" />
+    <Compile Include="util\CrashedShip\SectionLayer_Goo.cs" />
     <Compile Include="util\DropThroughRoofUtility.cs" />
     <Compile Include="util\DropThoughRoofCellFinder.cs" />
     <Compile Include="util\IncidentWorker_RaidFriendly_FactionSpecific.cs" />
     <Compile Include="util\IncidentWorker_RaidEnemy_FactionSpecific.cs" />
     <Compile Include="util\IncidentDef_FactionSpecific.cs" />
+    <None Include="util\PawnsArrivalModeWorker_DropThroughRoofV1.cs.bak" />
     <Compile Include="util\PawnsArrivalModeWorker_RandomEnterFromTunnel.cs" />
     <Compile Include="util\PawnsArrivalModeWorker_DropThroughRoof.cs" />
     <Compile Include="util\Projectile_Anim.cs" />
     <Compile Include="util\Projectile_Fire.cs" />
-    <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_XenoTakeAndCocoon - Copy.cs" />
+    <Compile Include="Xenomorph\Hives\IncidentWorker_Hivelike - Copy.cs" />
+    <Compile Include="Xenomorph\XenomorphHostSystem.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_Xenomorph_Cocoon.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_Xenomorph_Cocoon.cs" />
     <Compile Include="Xenomorph\Removable_Hediff.cs" />
     <Compile Include="Xenomorph\Xenomorph_Part_Hediff.cs" />
@@ -172,7 +177,7 @@
     <Compile Include="Xenomorph\Hives\MapComponent_HiveGrid.cs" />
     <Compile Include="util\CrashedShip\CompPlantConversionRadius.cs" />
     <Compile Include="Xenomorph\Hives\CompHiveCreep.cs" />
-    <Compile Include="Xenomorph\IncidentWorker_PowerCutV1.cs" />
+    <None Include="Xenomorph\IncidentWorker_PowerCutV1.cs.bak" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_DestroyCocoon.cs" />
     <Compile Include="util\CompUseEffect_Cocoon.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_XenomorphTendSelf.cs" />
@@ -186,6 +191,8 @@
     <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalLordPawnCount.cs" />
     <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalSky.cs" />
     <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalHealth.cs" />
+    <None Include="Xenomorph\IncidentWorker_PowerCutV2.cs.bal" />
+    <Compile Include="Xenomorph\IncidentWorker_PowerCutV3.cs" />
     <None Include="Xenomorph\Lordstuff\LordToils\LordToil_DefendAndExpandHiveLike.cs.bak" />
     <Compile Include="Xenomorph\CompUsableBuilding.cs" />
     <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalEggCount.cs" />
@@ -212,7 +219,7 @@
     <Compile Include="Xenomorph\Lordstuff\LordJobs\LordJob_DefendHiveLoc.cs" />
     <Compile Include="Xenomorph\Lordstuff\LordToils\LordToil_DefendHiveLoc.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_PredalienImpregnate.cs" />
-    <Compile Include="Xenomorph\IncidentWorker_PowerCutV2.cs" />
+    <None Include="Xenomorph\IncidentWorker_PowerCutV2.cs.bak" />
     <Compile Include="Xenomorph\Hives\GenStep_XenomorphCaveHives.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_PredalienImpregnate.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphHosthunter.cs" />
@@ -223,15 +230,12 @@
     <Compile Include="util\MinifiedThingNoBox.cs" />
     <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalAnyInfectableSpawnedNearby.cs" />
     <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalQueenPresent.cs" />
-    <Compile Include="Yautja\Alert_PawnCanMark.cs" />
     <Compile Include="util\Alert_ColonistNeedsRescuingFromCocoon.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\Job_ConstructHive.cs" />
     <Compile Include="util\IntergrationUtils.cs" />
-    <Compile Include="Yautja\JobDriver_MarkOther.cs" />
-    <Compile Include="Yautja\JobDriver_TakeTrophy.cs" />
     <Compile Include="Yautja\ScenPart_BadBlood.cs" />
     <Compile Include="Yautja\Recipe_Remove_Gauntlet.cs" />
-    <Compile Include="Yautja\RRY_Thought_SituationalSocial.cs" />
+    <None Include="Yautja\RRY_Thought_SituationalSocial.cs.bak2" />
     <Compile Include="Yautja\GetReturningProjectile.cs" />
     <Compile Include="Xenomorph\XenomorphKidnapUtility.cs" />
     <Compile Include="Xenomorph\XenomorphCocoonUtility.cs" />
@@ -269,9 +273,7 @@
     <Compile Include="Yautja\Traps\JobDriver_RearmTrap.cs" />
     <Compile Include="Yautja\Traps\Designator_Rearm.cs" />
     <Compile Include="Yautja\Traps\WorkGiver_RearmTraps.cs" />
-    <Compile Include="Yautja\RRY_Thought_Situational.cs" />
-    <Compile Include="Yautja\JobDriver_MarkSelf.cs" />
-    <Compile Include="Yautja\CorpseModification.cs" />
+    <None Include="Yautja\RRY_Thought_Situational.cs.bak2" />
     <Compile Include="Xenomorph\HediffComp_DamageOverTime.cs" />
     <Compile Include="Xenomorph\Thing_AddAcidDamageFilth.cs" />
     <Compile Include="Xenomorph\Thing_AddsHediffDef.cs" />
@@ -294,7 +296,7 @@
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_FacehuggerHunt.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphManhunter.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphFlee.cs" />
-    <Compile Include="Yautja\ThoughtWorkers_Blooded.cs" />
+    <None Include="Yautja\ThoughtWorkers_Blooded.cs.bak2" />
     <Compile Include="Xenomorph\XenomorphUtil.cs" />
     <Compile Include="util\Graphic_Invisible.cs" />
     <Compile Include="util\PawnGraphicSet_Invisible.cs" />
@@ -317,11 +319,10 @@
     <Compile Include="Xenomorph\Hives\TunnelHiveLikeSpawner.cs" />
     <Compile Include="Xenomorph\IncidentWorker_CrashedShip.cs" />
     <Compile Include="util\CrashedShip\LordJob_PawnsDefendShip.cs" />
-    <Compile Include="Yautja\ThoughtWorker_MarkedMood.cs" />
+    <None Include="Yautja\ThoughtWorker_MarkedMood.cs.bak2" />
     <Compile Include="Yautja\YautjaThoughtDef.cs" />
     <Compile Include="Harmony\HarmonyPatches.cs" />
     <Compile Include="Yautja\Comp_Yautja.cs" />
-    <Compile Include="Yautja\HediffComp_BloodStatus.cs" />
     <Compile Include="Xenomorph\RoomRoleWorker_TrophyRoom.cs" />
     <Compile Include="Yautja\ThoughtWorker_HonourableVsBadBlood.cs" />
     <Compile Include="Xenomorph\IncidentWorker_Xenomorph.cs" />
@@ -339,6 +340,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Xenomorph\Jobstuff\Workers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HunterMarkingSystem\HunterMarkingSystem.csproj">
+      <Project>{99F78F0B-7600-45BC-BD6E-8E935C05E66B}</Project>
+      <Name>HunterMarkingSystem</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

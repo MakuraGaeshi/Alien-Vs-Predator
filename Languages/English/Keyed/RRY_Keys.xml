@@ -8,7 +8,6 @@
   <RRY_FacehuggerRemovalDeathChance>Facehugger Removal Death Chance: {0}% of patient death on fail</RRY_FacehuggerRemovalDeathChance>
   <RRY_EmbryoRemovalDeathChance>Embryo Removal Death Chance: {0}% of patient death on fail</RRY_EmbryoRemovalDeathChance>
   <RRY_SuitableHostKinds>Potential Hosts: {0}</RRY_SuitableHostKinds>
-  <RRY_WorthyKillKinds>Worthy Kills: {0}</RRY_WorthyKillKinds>
   <!-- Rearmable Traps -->
   <DesignatorRearmTrap>Rearm trap</DesignatorRearmTrap>
   <DesignatorRearmTrapDesc>Rearm a sprung trap so it can be triggered again.</DesignatorRearmTrapDesc>
@@ -58,10 +57,12 @@
   <Xeno_Egg_Mutation_Progress>Mutation</Xeno_Egg_Mutation_Progress>
    <!-- Yautja -->
   <RRY_Remove_Gauntlet>Surgically Remove Gauntlet</RRY_Remove_Gauntlet>
+  <!--
   <BloodStatus_Unblooded>{0}</BloodStatus_Unblooded>
   <BloodStatus_Unmarked>{0}</BloodStatus_Unmarked>
   <RRY_CanMarkSelf>New Worthy Kills</RRY_CanMarkSelf>
   <RRY_CanMarkSelfDesc>Yautja with new Worthy Kills:\n\n{0}\nMake sure that they mark themselves if desired.</RRY_CanMarkSelfDesc>
+  -->
   <!-- Hives -->
   <RRY_MessageHiveReproduced>Xenomorph tunnel network expands.</RRY_MessageHiveReproduced>
   <RRY_HiveReproducesIn>Tunnel network expands in</RRY_HiveReproducesIn>

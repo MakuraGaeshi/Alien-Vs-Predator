@@ -28,14 +28,14 @@ namespace RimWorld
         {
             ThingDef hiveDef = null;
             List<ThingDef_HiveLike> hivedefs = DefDatabase<ThingDef_HiveLike>.AllDefsListForReading.FindAll(x => x.Faction == pawn.Faction.def);
-        //    Log.Message(string.Format("hivedefs found: {0}", hivedefs.Count));
+            if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("hivedefs found: {0}", hivedefs.Count));
             foreach (ThingDef_HiveLike hivedef in hivedefs)
             {
-            //    Log.Message(string.Format("LordToil_HiveLikeRelated found hiveDef: {0} for {1}", hiveDef, pawn));
+                if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("LordToil_HiveLikeRelated found hiveDef: {0} for {1}", hiveDef, pawn));
                 if (hivedef.Faction == pawn.Faction.def)
                 {
                     hiveDef = hivedef;
-                //    Log.Message(string.Format("LordToil_HiveLikeRelated set hiveDef: {0} for {1}", hiveDef, pawn));
+                    if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("LordToil_HiveLikeRelated set hiveDef: {0} for {1}", hiveDef, pawn));
                     return (HiveLike)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(hiveDef), PathEndMode.Touch, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn, false), 30f, (Thing x) => x.Faction == pawn.Faction, null, 0, 30, false, RegionType.Set_Passable, false);
                 }
             }
@@ -47,38 +47,24 @@ namespace RimWorld
         {
             if (pawn.isXenomorph())
             {
-                HiveLike hivelike = pawn.mindState.duty != null && pawn.mindState.duty.focus != null ? pawn.mindState.duty.focus.Thing as HiveLike : null;
-                if (hivelike != null)
+                if (!pawn.Map.HiveGrid().Hivelist.NullOrEmpty())
                 {
-                    return hivelike.Position;
-                }
-                /*
-                if (hivelike==null)
-                {
-                    hivelike = FindClosestHiveLike(pawn);
-                }
-                */
-                if (hivelike == null || !hivelike.Spawned)
-                {
-                    if (XenomorphUtil.HivelikesPresent(pawn.Map))
+
+                    HiveLike hivelike = pawn.mindState.duty != null && pawn.mindState.duty.focus != null ? pawn.mindState.duty.focus.Thing as HiveLike : null;
+                    if (hivelike != null)
                     {
-                        return XenomorphUtil.ClosestReachableHivelike(pawn).Position;
+                        return hivelike.Position;
                     }
-                    if (!XenomorphUtil.HiveSlimePresent(pawn.Map))
+
+                    if (hivelike == null || !hivelike.Spawned)
                     {
-                        if (XenomorphKidnapUtility.TryFindGoodHiveLoc(pawn, out IntVec3 c))
+                        if (XenomorphUtil.HivelikesPresent(pawn.Map))
                         {
-                            return c;
+                            return XenomorphUtil.ClosestReachableHivelike(pawn).Position;
                         }
                     }
-                    else if (!XenomorphUtil.ClosestReachableHiveSlime(pawn).DestroyedOrNull())
-                    {
-                        return XenomorphUtil.ClosestReachableHiveSlime(pawn).Position;
-                    }
-                    return pawn.Position;
+                    if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("JobGiver_WanderHiveLike hivelike.Position: {0}", hivelike.Position));
                 }
-                //    Log.Message(string.Format("JobGiver_WanderHiveLike hivelike.Position: {0}", hivelike.Position));
-                return hivelike.Position;
             }
             else if (pawn.isNeomorph())
             {
@@ -87,12 +73,8 @@ namespace RimWorld
                 {
                     return corpse.Position;
                 }
-                return pawn.Position;
             }
-            else
-            {
-                return pawn.Position;
-            }
-		}
+            return pawn.Position;
+        }
 	}
 }

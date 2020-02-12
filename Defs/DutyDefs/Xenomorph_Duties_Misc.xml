@@ -93,6 +93,20 @@
   </DutyDef>
 
   <DutyDef>
+    <defName>RRY_Xenomorph_HuntEnemiesIndividual</defName>
+    <alwaysShowWeapon>true</alwaysShowWeapon>
+    <thinkNode Class="ThinkNode_Priority">
+      <subNodes>
+        <li Class="JobGiver_AIFightEnemies">
+          <targetAcquireRadius>65</targetAcquireRadius>
+          <targetKeepRadius>72</targetKeepRadius>
+        </li>
+        <li Class="JobGiver_AIGotoNearestHostile" />
+      </subNodes>
+    </thinkNode>
+  </DutyDef>
+
+  <DutyDef>
     <defName>RRY_Xenomorph_AssaultColony_CutPower</defName>
     <alwaysShowWeapon>true</alwaysShowWeapon>
     <thinkNode Class="ThinkNode_Priority">
@@ -115,11 +129,13 @@
     <thinkNode Class="ThinkNode_Priority">
       <subNodes>
         <li Class="JobGiver_XenosKidnap" />
+		<!--
         <li Class="JobGiver_ExitMapBest">
           <defaultLocomotion>Jog</defaultLocomotion>
           <jobMaxDuration>200</jobMaxDuration>
           <forceCanDig>true</forceCanDig>
         </li>
+		-->
       </subNodes>
     </thinkNode>
   </DutyDef>
@@ -154,6 +170,9 @@
     <defName>RRY_Xenomorph_DefendAndExpandHive</defName> 
     <thinkNode Class="ThinkNode_Priority">
       <subNodes>
+        <li Class="JobGiver_MaintainHiveLikes">
+          <onlyIfDamagingState>true</onlyIfDamagingState>
+        </li>
 		<li Class="ThinkNode_Conditional_UnderHealth">
 		  <pawnHealth>0.25</pawnHealth>
 		  <subNodes>
@@ -313,9 +332,11 @@
 			  <subNodes>
 				<li Class="JobGiver_ConstructHive"> 
 				</li>
+				<!--
 				<li Class="JobGiver_AISapper">
 				  <canMineNonMineables>false</canMineNonMineables>
 				</li>
+				-->
 			  </subNodes>
 			</li>
 			<!-- Downed Infectable Spawned -->
@@ -329,7 +350,7 @@
 			<li Class="ThinkNode_ConditionalAnyInfectableSpawnedNearby">
 			  <subNodes>
 				<li Class="ThinkNode_Conditional_OverHealth">
-				  <pawnHealth>0.5</pawnHealth>
+				  <pawnHealth>0.75</pawnHealth>
 				  <subNodes>
 					<li Class="JobGiver_XenomorphHosthunter"> 
 						<HuntingRange>40</HuntingRange>

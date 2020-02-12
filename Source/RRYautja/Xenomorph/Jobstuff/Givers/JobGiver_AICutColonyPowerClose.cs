@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 
@@ -10,12 +11,14 @@ namespace RimWorld
         // Token: 0x0600048F RID: 1167 RVA: 0x0002F174 File Offset: 0x0002D574
         protected override Job TryGiveJob(Pawn pawn)
         {
+            Map map = pawn.Map;
             if (!pawn.HostileTo(Faction.OfPlayer))
             {
                 return null;
             }
             bool flag = pawn.HostileTo(Faction.OfPlayer);
             CellRect cellRect = CellRect.CenteredOn(pawn.Position, 5);
+            List<Building> list = map.listerBuildings.allBuildingsColonist.FindAll(x => x.TryGetComp<CompPowerPlant>() != null || x.TryGetComp<CompPowerBattery>() != null);
             for (int i = 0; i < 35; i++)
             {
                 IntVec3 randomCell = cellRect.RandomCell;
@@ -24,7 +27,7 @@ namespace RimWorld
                     Building edifice = randomCell.GetEdifice(pawn.Map);
                     if (flag)
                     {
-                        if (edifice != null && TrashUtility.ShouldTrashBuilding(pawn, edifice, false) && GenSight.LineOfSight(pawn.Position, randomCell, pawn.Map, false, null, 0, 0) && edifice.TransmitsPowerNow)
+                        if (edifice != null && TrashUtility.ShouldTrashBuilding(pawn, edifice, false) && GenSight.LineOfSight(pawn.Position, randomCell, pawn.Map, false, null, 0, 0) && (edifice.TryGetComp<CompPowerPlant>() != null || edifice.TryGetComp<CompPowerBattery>() != null || edifice.TryGetComp<CompPowerTransmitter>() != null))
                         {
                             if (DebugViewSettings.drawDestSearch && Find.CurrentMap == pawn.Map)
                             {

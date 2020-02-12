@@ -49,12 +49,12 @@ namespace RimWorld
                 }
                 else
                 {
-                    if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} something went wrong", this));
+                    if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0} something went wrong", this));
                 }
             }
             else
             {
-                if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} No Egglaying spot Found", this));
+                if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0} No Egglaying spot Found", this));
                 c = pawn.Position;
                 Predicate<IntVec3> validator = delegate (IntVec3 y)
                 {

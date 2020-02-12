@@ -28,6 +28,13 @@ namespace RRYautja
                 //        Log.Message(string.Format("AddSnowRadial _HiveGrid != null center: {0}, radius: {1}, depth: {2}", center, radius, depth));
                 XenomorphHiveUtility.AddHiveRadial(center, map, radius, depth);
             }
+            //    Log.Message(string.Format("AddSnowRadial center: {0}, radius: {1}, depth: {2}", center, radius, depth));
+            MapComponent_GooGrid _GooGrid = map.GetComponent<MapComponent_GooGrid>();
+            if (_GooGrid != null)
+            {
+                //        Log.Message(string.Format("AddSnowRadial _HiveGrid != null center: {0}, radius: {1}, depth: {2}", center, radius, depth));
+                XenomorphHiveUtility.AddGooRadial(center, map, radius, depth);
+            }
         }
     }
 }

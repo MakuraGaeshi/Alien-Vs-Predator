@@ -16,10 +16,8 @@ namespace RRYautja
         }
 
         // Token: 0x040033C3 RID: 13251
-        public PawnKindDef pawnKindDef;
         public bool killHost = false;
         public float severityPerDay;
-        public Pawn Instigator;
     }
     // Token: 0x02000D5B RID: 3419
     public class HediffComp_XenoFacehugger : HediffComp, IThingHolder
@@ -42,8 +40,7 @@ namespace RRYautja
             Scribe_Values.Look<int>(ref this.previousImpregnations, "previousImpregnations", 0);
             Scribe_Defs.Look<PawnKindDef>(ref this.instigatorKindDef, "InstigatorKindDef");
             Scribe_Defs.Look<HediffDef>(ref this.heDiffDeff, "heDiffDeff");
-            Scribe_References.Look<Pawn>(ref this.instigator, "instigatorRef");//, Props.pawn);
-            Scribe_Deep.Look<Pawn>(ref this.instigator, "instigatorRefDeep");//, Props.pawn);
+            Scribe_Deep.Look<Pawn>(ref this.instigator, "instigator");//, Props.pawn);
         }
 
         private string FacehuggerTexpath = "Things/Pawn/Xenomorph/Xenomorph_FaceHugger_Mask";
@@ -241,7 +238,7 @@ namespace RRYautja
                     //    Log.Message("removing Facehugger");
 #endif
                         Pawn.health.hediffSet.hediffs.Remove(this.parent);
-                        this.CompPostPostRemoved();
+                    //    this.CompPostPostRemoved();
 
                     }
                     timer2 = 0;
@@ -268,8 +265,17 @@ namespace RRYautja
         {
             Thing hostThing = Pawn;
             Pawn hostPawn = Pawn;
-            IntVec3 spawnLoc = !Pawn.Dead ? Pawn.Position.RandomAdjacentCell8Way() : Pawn.PositionHeld.RandomAdjacentCell8Way();
             Map spawnMap = !Pawn.Dead ? Pawn.Map : Pawn.MapHeld;
+            IntVec3 spawnLoc = !Pawn.Dead ? Pawn.Position : Pawn.PositionHeld;
+            foreach (IntVec3 loc in GenRadial.RadialCellsAround(spawnLoc, 1, false))
+            {
+                if (loc.Standable(spawnMap))
+                {
+                    spawnLoc = loc;
+                    Rand.Chance(0.5f);
+                    break;
+                }
+            }
             bool spawnLive = this.spawnLive;
             hostPawn.health.AddHediff(XenomorphDefOf.RRY_Hediff_Anesthetic);
         //    if ((hostPawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation) && !hasImpregnated))
@@ -277,11 +283,15 @@ namespace RRYautja
             {
             spawnLive = true;
             }
-            PawnGenerationRequest pawnGenerationRequest = new PawnGenerationRequest(pawnKindDef, null, PawnGenerationContext.NonPlayer, -1, true, false, true, false, true, true, 0f);
-            Pawn pawn = PawnGenerator.GeneratePawn(pawnGenerationRequest);
+            Pawn pawn;
             if (Instigator != null)
             {
                 pawn = instigator;
+            }
+            else
+            {
+                PawnGenerationRequest pawnGenerationRequest = new PawnGenerationRequest(pawnKindDef, null, PawnGenerationContext.NonPlayer, -1, true, false, true, false, true, true, 0f);
+                pawn = PawnGenerator.GeneratePawn(pawnGenerationRequest);
             }
             if (spawnLive == true)
             {
@@ -290,7 +300,10 @@ namespace RRYautja
                 {
                     _Facehugger.Impregnations = previousImpregnations;
                 }
-                GenSpawn.Spawn(pawn, spawnLoc, spawnMap, 0);
+                if (!pawn.Spawned)
+                {
+                    GenSpawn.Spawn(pawn, spawnLoc, spawnMap, 0);
+                }
                 pawn.jobs.ClearQueuedJobs();
             //    pawn.jobs.curJob = new Verse.AI.Job(JobDefOf.FleeAndCower, hostPawn);
                 if (killhugger)
@@ -300,7 +313,10 @@ namespace RRYautja
             }
             else
             {
-                GenSpawn.Spawn(pawn, spawnLoc, spawnMap, 0);
+                if (!pawn.Spawned)
+                {
+                    GenSpawn.Spawn(pawn, spawnLoc, spawnMap, 0);
+                }
                 Comp_Facehugger _Facehugger = pawn.TryGetComp<Comp_Facehugger>();
             //    pawn.jobs.ClearQueuedJobs();
             //    pawn.jobs.curJob = new Verse.AI.Job(JobDefOf.FleeAndCower, hostPawn);

@@ -56,8 +56,9 @@ namespace RimWorld
 
         protected override bool Satisfied(Pawn pawn)
         {
-            if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} needs {3} > {2}, Result: {1}", this, pawn.health.summaryHealth.SummaryHealthPercent >= pawnHealth, pawnHealth, pawn.health.summaryHealth.SummaryHealthPercent));
-            return pawn.health.summaryHealth.SummaryHealthPercent >= pawnHealth;
+            if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0} needs {3} > {2}, Result: {1}", this, pawn.health.summaryHealth.SummaryHealthPercent >= pawnHealth, pawnHealth, pawn.health.summaryHealth.SummaryHealthPercent));
+            
+            return pawn.health.summaryHealth.SummaryHealthPercent >= pawnHealth && pawn.health.hediffSet.PainTotal < pawnHealth;
         }
     }
 
@@ -77,7 +78,8 @@ namespace RimWorld
 
         protected override bool Satisfied(Pawn pawn)
         {
-            if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} needs {3} < {2}, Result: {1}", this, pawn.health.summaryHealth.SummaryHealthPercent <= pawnHealth, pawnHealth, pawn.health.summaryHealth.SummaryHealthPercent));
+            if (pawn.jobs.debugLog)  pawn.jobs.DebugLogEvent(string.Format("{0} needs {3} < {2}, Result: {1}", this, pawn.health.summaryHealth.SummaryHealthPercent <= pawnHealth, pawnHealth, pawn.health.summaryHealth.SummaryHealthPercent));
+            
             return pawn.health.summaryHealth.SummaryHealthPercent <= pawnHealth;
         }
     }
@@ -98,7 +100,7 @@ namespace RimWorld
 
         protected override bool Satisfied(Pawn pawn)
         {
-            if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} needs {3} > {2}, Result: {1}", this, pawn.health.summaryHealth.SummaryHealthPercent >= pawnBleedRate, pawnBleedRate, pawn.health.summaryHealth.SummaryHealthPercent));
+            if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0} needs {3} > {2}, Result: {1}", this, pawn.health.summaryHealth.SummaryHealthPercent >= pawnBleedRate, pawnBleedRate, pawn.health.summaryHealth.SummaryHealthPercent));
             return pawn.health.hediffSet.BleedRateTotal >= pawnBleedRate;
         }
     }
@@ -119,7 +121,7 @@ namespace RimWorld
 
         protected override bool Satisfied(Pawn pawn)
         {
-            if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} needs {3} < {2}, Result: {1}", this, pawn.health.summaryHealth.SummaryHealthPercent <= pawnBleedRate, pawnBleedRate, pawn.health.summaryHealth.SummaryHealthPercent));
+            if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0} needs {3} < {2}, Result: {1}", this, pawn.health.summaryHealth.SummaryHealthPercent <= pawnBleedRate, pawnBleedRate, pawn.health.summaryHealth.SummaryHealthPercent));
             return pawn.health.hediffSet.BleedRateTotal <= pawnBleedRate;
         }
     }

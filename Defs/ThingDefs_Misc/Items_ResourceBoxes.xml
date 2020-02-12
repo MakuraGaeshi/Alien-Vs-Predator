@@ -51,10 +51,10 @@
 				<li>RRY_Apparel_M3Pattern</li>
 				<li>RRY_Headgear_M10PAttern</li>
 				<li>RRY_Apparel_M3Pattern</li>
-				<li>RRY_USCM_M41A</li>
-				<li>RRY_USCM_M41A</li>
-				<li>RRY_USCM_M39SMG</li>
-				<li>RRY_USCM_M240Incinerator</li>
+				<li>RRY_USCM_Gun_M41APR</li>
+				<li>RRY_USCM_Gun_M41APR</li>
+				<li>RRY_USCM_Gun_M39SMG</li>
+				<li>RRY_USCM_Gun_M240Incinerator</li>
 			</possibleItems>
             <PerItemCount>1</PerItemCount>
             <spawnAll>true</spawnAll>
@@ -85,7 +85,7 @@
             <possibleItems>
 				<li>RRY_Apparel_M56CombatHarness</li>
 				<li>RRY_Apparel_M3Pattern</li>
-				<li>RRY_USCM_M56SmartGun</li>
+				<li>RRY_USCM_Gun_M56SmartGun</li>
 				<li>RRY_Equipment_HMS</li>
 			</possibleItems>
             <PerItemCount>1</PerItemCount>
