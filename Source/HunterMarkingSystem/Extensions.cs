@@ -94,7 +94,7 @@ namespace HunterMarkingSystem.ExtensionMethods
             }
             return result;
         }
-
+        /*
         public static MarkData markDataFor(this Pawn x)
         {
             MarkData data = null;
@@ -107,6 +107,6 @@ namespace HunterMarkingSystem.ExtensionMethods
             }
             return data;
         }
-
+        */
     }
 }

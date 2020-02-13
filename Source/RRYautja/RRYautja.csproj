@@ -60,6 +60,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Harmony\Patches\AvP_Need_get_IsFrozen_Synth_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_Pawn_NeedsTracker_ShouldHaveNeed_Synth_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_Pawn_ApparelTracker_Notify_ApparelRemoved_CompAbilityItem_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_Pawn_EquipmentTracker_Notify_EquipmentRemoved_CompAbilityItem_Patch.cs" />
     <Compile Include="Harmony\Patches.cs" />
     <Compile Include="Harmony\Patches\AvP_FilthMaker_MakeFilth_Xenoblood_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Verb_Shoot_TryStartCastOn_SmartGun_Patch.cs" />
@@ -109,11 +113,14 @@
     <Compile Include="Harmony\Patches\AvP_StatWorker_GetValueUnfinalized_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_VerbUtility_HarmsHealth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_WorkGiver_Tend_GoodLayingStatusForTend_Patch.cs" />
+    <Compile Include="USCM\HediffGiver_Synth.cs" />
     <Compile Include="USCM\CompSmartgunSystem.cs" />
     <Compile Include="USCM\CompFireOverlay.cs" />
     <Compile Include="USCM\Verb_ShootShotgun.cs" />
     <Compile Include="USCM\DamageWorker_FlameNoCamShake.cs" />
     <Compile Include="USCM\HediffComp_DefectiveInhibitor.cs" />
+    <Compile Include="USCM\Verb_UseEquipment.cs" />
+    <Compile Include="USCM\USCMDefOf.cs" />
     <Compile Include="util\AvPSettings.cs" />
     <Compile Include="Harmony\ExtraButcheringProducts.cs" />
     <Compile Include="util\Building_XenomorphCryptosleepCasket.cs" />

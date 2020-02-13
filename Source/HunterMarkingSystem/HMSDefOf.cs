@@ -25,6 +25,7 @@ namespace HunterMarkingSystem
         public static HediffDef HMS_Hediff_BloodedMWorthyHumanlike;
         public static HediffDef HMS_Hediff_BloodedMMechanoid;
         public static HediffDef HMS_Hediff_BloodedMXenomorph;
+        public static HediffDef HMS_Hediff_BloodedMXenomorphThrumbo;
         public static HediffDef HMS_Hediff_BloodedMXenomorphQueen;
         public static HediffDef HMS_Hediff_BloodedMPredalien;
         public static HediffDef HMS_Hediff_BloodedMBadBlood;

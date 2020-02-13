@@ -284,8 +284,15 @@ namespace RRYautja
         {
             bool result = true;
             string failreason = string.Format("{0} Not Infectable:", pawn.kindDef.race.defName);
+
             if (pawn.Dead) { result = false; failreason += " Dead"; }
-            
+
+            if (!settings.SettingsHelper.latest.AllowNonHumanlikeHosts && !pawn.RaceProps.Humanlike)
+            {
+                result = false;
+                failreason += " Insuitable";
+            }
+
             if (UtilChjAndroids.ChjAndroid)
             {
                 if (pawn.kindDef.race.defName == "ChjAndroid" || pawn.kindDef.race.defName == "ChjDroid")

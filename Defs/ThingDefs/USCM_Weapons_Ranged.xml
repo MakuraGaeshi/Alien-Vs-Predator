@@ -284,6 +284,14 @@
 			
 			</li>
 		</verbs>
+		<comps>   
+			<li Class="AbilityUser.CompProperties_AbilityItem">
+				<!-- <AbilityUserClass>AbilityUser.GenericCompAbilityItem</AbilityUserClass> -->
+				<Abilities>
+					<li>RRY_Ability_LaunchM42AGrenade</li>
+				</Abilities>
+			</li> 
+		</comps>
     <tools>
       <li>
         <label>grip</label>

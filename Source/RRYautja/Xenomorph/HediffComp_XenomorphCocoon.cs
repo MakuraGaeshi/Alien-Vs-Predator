@@ -14,8 +14,7 @@ namespace RRYautja
         {
             this.compClass = typeof(HediffComp_XenomorphCocoon);
         }
-
-
+        
     }
 
     public class HediffComp_XenomorphCocoon : HediffComp
@@ -183,12 +182,15 @@ namespace RRYautja
         {
             bool selected = Find.Selector.SelectedObjects.Contains(Pawn) && Prefs.DevMode;
             base.CompPostTick(ref severityAdjustment);
-            if (!QueenPresent && !PredalienPresent)
+            if (settings.SettingsHelper.latest.AllowXenoCocoonMetamorph)
             {
-                float num = 1f / ((3* Pawn.BodySize) * (Pawn.RaceProps.Humanlike ? 60000f : 10000f));
-                if (this.conversionProgress < 1f)
+                if (!QueenPresent && !PredalienPresent)
                 {
-                    this.conversionProgress += num;
+                    float num = 1f / ((3 * Pawn.BodySize) * (Pawn.RaceProps.Humanlike ? 60000f : 10000f));
+                    if (this.conversionProgress < 1f)
+                    {
+                        this.conversionProgress += num;
+                    }
                 }
             }
             if (Find.TickManager.TicksGame % 300 == 0)

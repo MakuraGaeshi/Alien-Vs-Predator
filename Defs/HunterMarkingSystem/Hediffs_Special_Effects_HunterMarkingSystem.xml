@@ -80,7 +80,7 @@
     <labelNoun>a marked Hunter</labelNoun>
     <stages>
       <li>
-        <label></label>
+        <label>Xenos</label>
         <becomeVisible>true</becomeVisible>
       </li>
     </stages>
@@ -251,7 +251,7 @@
   </HediffDef>
 
     <HediffDef ParentName="HMS_MarkingSystemHediffBase">
-    <defName>HMS_Hediff_BloodedMThrumbomorph</defName>
+    <defName>HMS_Hediff_BloodedMXenomorphThrumbo</defName>
     <label>blooded marked</label>
     <labelNoun>a marked Hunter</labelNoun>
     <stages>

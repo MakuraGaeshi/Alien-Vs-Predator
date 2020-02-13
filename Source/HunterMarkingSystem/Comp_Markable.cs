@@ -72,7 +72,6 @@ namespace HunterMarkingSystem
         public Hediff markHediff;
         public MarkData markDataKill;
         public MarkData markDataKillNew;
-        public MarkData markDataSelf;
         public bool blooded;
         public bool inducted => BloodStatus == BloodStatusMode.Marked;
         public bool Inducted => MarkerRace || inducted;
@@ -161,7 +160,7 @@ namespace HunterMarkingSystem
 
 
         public float MarkScore => markDataKill!=null? markDataKill.MarkScore : (MyScore*Settings.SettingsHelper.latest.MinWorthyKill);
-        public float MyScore => markDataSelf.MarkScore;
+        public float MyScore => pawn.GetStatValue(StatDef.Named("HMS_MarkScore"));
 
         public override string CompInspectStringExtra()
         {
@@ -187,7 +186,6 @@ namespace HunterMarkingSystem
             Scribe_References.Look<Pawn>(ref this.Mark, "Mark");
             Scribe_Deep.Look(ref this.markDataKill, "killedData");
             Scribe_Deep.Look(ref this.markDataKillNew, "killedDataNew");
-            Scribe_Deep.Look(ref this.markDataSelf, "SelfData");
             Scribe_Values.Look(ref this.blooded, "thisblooded");
         //    Scribe_Values.Look(ref this.inducted, "inducted");
         }
@@ -203,10 +201,6 @@ namespace HunterMarkingSystem
                 blood = BloodStatusMode.Unblooded;
             }
             */
-            if (markDataSelf == null)
-            {
-                markDataSelf = new MarkData(pawn);
-            }
             if (markDataKill == null)
             {
                 if (BloodStatus == BloodStatusMode.Marked)

@@ -1485,7 +1485,7 @@
 	<modExtensions>
 	  <li Class="HunterMarkingSystem.MarkDefExtension">
 		<!-- DefName of the Marking Hediff Kills of this race give --> 
-		<hediffs><li>HMS_Hediff_BloodedMThrumbomorph</li></hediffs>
+		<hediffs><li>HMS_Hediff_BloodedMXenomorphThrumbo</li></hediffs>
 	  </li>
 	</modExtensions>
   </ThingDef>

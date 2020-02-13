@@ -77,9 +77,12 @@ namespace RRYautja
 
                 if (ambientTemperature > -20f)
                 {
-                    if (this.mutateProgress < 1f && this.eggState!=EggState.Normal)
+                    if (settings.SettingsHelper.latest.AllowXenoEggMetamorph)
                     {
-                        this.mutateProgress += num;
+                        if (this.mutateProgress < 1f && this.eggState != EggState.Normal)
+                        {
+                            this.mutateProgress += num;
+                        }
                     }
                     else if (this.gestateProgress < 1f && (!this.EggMutating))
                     {

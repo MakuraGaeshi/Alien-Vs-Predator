@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Defs>
+<!-- ======================== Grenade Ability Defs ================================== -->
+	<ThingDef ParentName="BaseGrenadeAbility">
+		<defName>RRY_Projectile_M42AGrenade</defName>
+		<graphicData>
+			<texPath>Things/Projectile/Grenade</texPath>
+		</graphicData>
+		<projectile>
+			<damageDef>Bomb</damageDef>
+			<!-- <damageAmountBase>20</damageAmountBase> -->
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<explosionRadius>3</explosionRadius>
+			<explosionDelay>20</explosionDelay>
+			<speed>35</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+
+	<AbilityUser.AbilityDef ParentName="BaseAbility">
+        <defName>RRY_Ability_LaunchM42AGrenade</defName>
+        <label>Launch Grenade</label>
+        <uiIconPath>Things/Projectile/Grenade</uiIconPath>
+        <description>Launches a Grenade.</description>
+        <MainVerb Class="RRYautja.VerbProperties_EquipmentAbility">
+            <verbClass>RRYautja.Verb_UseEquipment</verbClass>
+            <AlwaysHits>false</AlwaysHits>
+            <tooltipShowProjectileDamage>true</tooltipShowProjectileDamage>
+            <tooltipShowExtraDamages>false</tooltipShowExtraDamages>
+            <tooltipShowHediffsToApply>true</tooltipShowHediffsToApply>
+            <tooltipShowMentalStatesToApply>false</tooltipShowMentalStatesToApply>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+			<defaultProjectile>RRY_Projectile_M42AGrenade</defaultProjectile>
+            <abilityDef>OGT_Ability_LaunchPhoton</abilityDef>
+            <warmupTime>0.4</warmupTime>
+            <SecondsToRecharge>15.0</SecondsToRecharge>
+            <burstShotCount>1</burstShotCount>
+            <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<range>31</range>
+			<forcedMissRadius>1.9</forcedMissRadius>
+            <soundCast>ThrowGrenade</soundCast>
+            <muzzleFlashScale>0</muzzleFlashScale>
+            <isPrimary>false</isPrimary>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </MainVerb>
+	</AbilityUser.AbilityDef>
+ 
+</Defs>

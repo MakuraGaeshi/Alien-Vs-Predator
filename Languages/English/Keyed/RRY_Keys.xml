@@ -2,11 +2,14 @@
 <LanguageData>
   <!-- Mod Settings -->
   <RRY_AllowYautjaFaction>Enable Yautja: this Should enable all Yautja factions, Scenarios, related incidents and events</RRY_AllowYautjaFaction>
-  <RRY_AllowXenomorphFaction>Enable Xenomorphs: this Should enable all Xenomorph related incidents and events</RRY_AllowXenomorphFaction>
-  <RRY_AllowHiddenInfections>Allow Hidden Impregnations: Disable this to stop pawns spawning impregnated</RRY_AllowHiddenInfections>
+  <RRY_AllowXenomorphFaction>Enable Xenomorphs:\n1this Should enable all Xenomorph related incidents and events</RRY_AllowXenomorphFaction>
+  <RRY_AllowHiddenInfections>Allow Hidden Impregnations:\nDisable this to stop pawns spawning impregnated</RRY_AllowHiddenInfections>
   <RRY_AllowPredalienImpregnations>Allow Predalien Impregnations: Disable this to Predaliens from being able to impregnate female pawns</RRY_AllowPredalienImpregnations>
-  <RRY_FacehuggerRemovalDeathChance>Facehugger Removal Death Chance: {0}% of patient death on fail</RRY_FacehuggerRemovalDeathChance>
-  <RRY_EmbryoRemovalDeathChance>Embryo Removal Death Chance: {0}% of patient death on fail</RRY_EmbryoRemovalDeathChance>
+  <RRY_FacehuggerRemovalDeathChance>Facehugger Removal Death Chance:\n{0}% of patient death on fail</RRY_FacehuggerRemovalDeathChance>
+  <RRY_EmbryoRemovalDeathChance>Embryo Removal Death Chance:\n{0}% of patient death on fail</RRY_EmbryoRemovalDeathChance>
+  <RRY_AllowXenoCocoonMetamorph>Allow Cocooned pawns to be converted to Eggs if there are no Queens present</RRY_AllowXenoCocoonMetamorph>
+  <RRY_AllowXenoEggMetamorph>Allows Ovimorph mutation</RRY_AllowXenoEggMetamorph>
+  <RRY_AllowNonHumanlikeHosts>Allows Xenomorph Impregnations of Non-Humanlikes</RRY_AllowNonHumanlikeHosts>
   <RRY_SuitableHostKinds>Potential Hosts: {0}</RRY_SuitableHostKinds>
   <!-- Rearmable Traps -->
   <DesignatorRearmTrap>Rearm trap</DesignatorRearmTrap>
