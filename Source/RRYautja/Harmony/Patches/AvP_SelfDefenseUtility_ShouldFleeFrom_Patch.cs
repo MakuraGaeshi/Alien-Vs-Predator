@@ -27,14 +27,17 @@ namespace RRYautja
                 if (pawn.isXenomorph())
                 {
                     __result = false;
+                    return;
                 }
                 if (pawn.isNeomorph() && pawn.ageTracker.CurLifeStage != XenomorphDefOf.RRY_NeomorphFullyFormed)
                 {
                     __result = true;
+                    return;
                 }
                 if (!pawn.isNeomorph() && !pawn.isXenomorph())
                 {
                     __result = true;
+                    return;
                 }
             }
             if (t.TryGetComp<Comp_Facehugger>() is Comp_Facehugger _Hugger)
@@ -42,14 +45,17 @@ namespace RRYautja
                 if (pawn.isXenomorph())
                 {
                     __result = false;
+                    return;
                 }
                 if (pawn.isNeomorph())
                 {
                     __result = false;
+                    return;
                 }
                 if (pawn.isPotentialHost() && !pawn.isXenomorph())
                 {
                     __result = true;
+                    return;
                 }
             }
             if (t.TryGetComp<Comp_Neomorph>() is Comp_Neomorph _Neo)
@@ -57,10 +63,21 @@ namespace RRYautja
                 if (pawn.isXenomorph() && pawn.ageTracker.CurLifeStage != XenomorphDefOf.RRY_NeomorphFullyFormed)
                 {
                     __result = true;
+                    return;
                 }
                 if (!pawn.isNeomorph() && !pawn.isXenomorph())
                 {
                     __result = true;
+                    return;
+                }
+            }
+            Pawn other = (Pawn)t;
+            if (other!=null && pawn.CanSee(other))
+            {
+                if ((other.isXenomorph() && !pawn.isXenomorph()) || (other.isNeomorph() && !pawn.isNeomorph()))
+                {
+                    __result = true;
+                    return;
                 }
             }
         }

@@ -24,7 +24,7 @@ namespace RRYautja
         {
             bool selected__instance = Find.Selector.SelectedObjects.Contains(__instance);
             bool cloaked = __instance.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked);
-            bool hidden = __instance.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden);
+            bool hidden = __instance.isXenomorph(out Comp_Xenomorph comp) && comp.Hidden;
             bool Stealth = cloaked || hidden;
 
             Comp_Facehugger _Xenomorph = null;
@@ -39,12 +39,19 @@ namespace RRYautja
 
             if (pawn != null)
             {
-                if (pawn.apparel != null)
+                if (pawn.equipment != null)
                 {
-                    if (pawn.apparel.WornApparel.Any(x => x.def == USCMDefOf.RRY_Equipment_HMS))
+                    if (pawn.equipment.Primary!=null)
                     {
-                        Log.Message(string.Format("{0} IgnoreCloak {1}: {2}, HMS Equipped", pawn.LabelShortCap, __instance, __result));
-                        return;
+                        CompSmartgunSystem smartgunSystem = pawn.equipment.Primary.TryGetComp<CompSmartgunSystem>();
+                        if (smartgunSystem!=null)
+                        {
+                            if (smartgunSystem.hasTargheter && smartgunSystem.hasHarness)
+                            {
+                                Log.Message(string.Format("{0} IgnoreCloak {1}: {2}", pawn.LabelShortCap, __instance, __result));
+                                return;
+                            }
+                        }
                     }
                 }
                 _Xenomorph = pawn.TryGetComp<Comp_Facehugger>();
@@ -62,7 +69,7 @@ namespace RRYautja
 
                 }
             } // XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden
-            __result = __result || ((__instance.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked) || __instance.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden)) && _Xenomorph == null);
+            __result = __result || ((__instance.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked) || hidden));
 
         }
     }

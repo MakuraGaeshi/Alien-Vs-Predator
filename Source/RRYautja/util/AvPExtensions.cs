@@ -117,6 +117,11 @@ namespace RRYautja.ExtensionMethods
         {
             return p.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Xenomorph;
         }
+        public static bool isXenomorph(this Pawn p, out Comp_Xenomorph comp)
+        {
+            comp = p.TryGetComp<Comp_Xenomorph>();
+            return p.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Xenomorph;
+        }
 
         public static bool isNeomorph(this Pawn p)
         {

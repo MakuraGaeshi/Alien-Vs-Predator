@@ -24,7 +24,7 @@ namespace RRYautja
             Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
             if (pawn.def == USCMDefOf.RRY_Synth)
             {
-                if (__instance.def == NeedDefOf.Food && __instance.CurLevelPercentage>0.05f)
+                if (__instance.def == NeedDefOf.Food && __instance.CurLevelPercentage<0.1f)
                 {
                     __result = true;
                 }

@@ -60,7 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Harmony\HMS_RecordsUtility_Notify_PawnKilled_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_RecordsUtility_Notify_PawnKilled_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_HediffSet_CalculateBleedRate_Synth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Need_get_IsFrozen_Synth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Hediff_Injury_BleedingStoppedDueToAge_Synth_Patch.cs" />
@@ -93,7 +93,7 @@
     <Compile Include="Harmony\Patches\AvP_PawnGenerator_GenerateBodyType_Yautja_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_PawnObserver_ObserveSurroundingThings_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_PawnUtility_GetManhunterOnDamageChance_Patch.cs" />
-    <Compile Include="Harmony\Patches\AvP_PawnWoundDrawer_TryExecute_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_PawnWoundDrawer_RenderOverBody_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Pawn_AcceptArrest_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Pawn_AnythingToStrip_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_PawnRenderer_RenderPawnInternal_Patch.cs" />
@@ -116,6 +116,7 @@
     <Compile Include="Harmony\Patches\AvP_StatWorker_GetValueUnfinalized_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_VerbUtility_HarmsHealth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_WorkGiver_Tend_GoodLayingStatusForTend_Patch.cs" />
+    <Compile Include="USCM\CompSmartgunSystem - Copy.cs" />
     <Compile Include="USCM\UtilSynths.cs" />
     <Compile Include="USCM\HediffGiver_Synth.cs" />
     <Compile Include="USCM\CompSmartgunSystem.cs" />
@@ -167,7 +168,7 @@
     <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalHive.cs" />
     <Compile Include="Xenomorph\Lordstuff\LordJobs\LordJob_AssaultColony_CutPower.cs" />
     <Compile Include="Xenomorph\Lordstuff\LordToils\LordToil_AssaultColony_CutPower.cs" />
-    <Compile Include="Xenomorph\Neomorph.cs" />
+    <Compile Include="Xenomorph\NeomorphPawn.cs" />
     <Compile Include="util\MoreTraitSlotsUtil.cs" />
     <Compile Include="util\SetIncidents.cs" />
     <Compile Include="util\ThoughtWorker_RRY_Chestburster.cs" />
@@ -295,11 +296,11 @@
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_LayXenoEgg.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_LayXenoEgg.cs" />
     <Compile Include="Xenomorph\CompXenoEggLayer.cs" />
-    <Compile Include="Harmony\Building_Door.cs" />
+    <Compile Include="Harmony\Patches\AvP_Building_Door_CanOpen_Cloaked_Patch.cs" />
     <Compile Include="Xenomorph\CompXenoHatcher.cs" />
     <Compile Include="Harmony\IncidentWorker_RaidEnemy.cs" />
-    <Compile Include="Harmony\PawnUIOverlay.cs" />
-    <Compile Include="Harmony\ThingSelectionUtility.cs" />
+    <Compile Include="Harmony\Patches\AvP_PawnUIOverlay_DrawPawnGUIOverlay_Stealth_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_ThingSelectionUtility_SelectableByMapClick_HostileStealth_Patch.cs" />
     <Compile Include="util\HediffComp_Blur.cs" />
     <Compile Include="Xenomorph\HediffComp_NaturallyHealing.cs" />
     <Compile Include="util\Hediff_Cloak.cs" />

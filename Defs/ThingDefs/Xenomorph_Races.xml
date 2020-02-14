@@ -14,38 +14,13 @@
     <inspectorTabs>
         <li>ITab_Pawn_Health</li>
         <li>ITab_Pawn_Log</li>
-		<!--
-        <li>ITab_Pawn_Training</li>
-        <li>ITab_Pawn_Character</li>
-		-->
     </inspectorTabs>
     <comps>
         <li>
             <compClass>CompAttachBase</compClass>
         </li>
-		<!--
-        <li>
-            <compClass>RRYautja.Comp_Yautja</compClass>
-        </li>
-		<li Class="RRYautja.CompProperties_Yautja">
-			<bloodedDefs>
-			<li>HMS_Hediff_BloodedM</li>
-			<li>HMS_Hediff_BloodedMHuman</li>
-			<li>HMS_Hediff_BloodedMHumanlike</li>
-			<li>HMS_Hediff_BloodedMHound</li>
-			<li>HMS_Hediff_BloodedMCrusher</li>
-			<li>HMS_Hediff_BloodedMGroTye</li>
-			<li>HMS_Hediff_BloodedMWorthyHuman</li>
-			<li>HMS_Hediff_BloodedMWorthyHumanlike</li>
-			<li>HMS_Hediff_BloodedMBadBlood</li>
-			<li>HMS_Hediff_BloodedMXenomorph</li>
-			<li>HMS_Hediff_BloodedMPredalien</li>
-			<li>HMS_Hediff_BloodedMXenomorphQueen</li>
-			</bloodedDefs>
-			
-		</li> 
-		-->
     </comps>
+    <alwaysFlee>true</alwaysFlee>
     <drawGUIOverlay>true</drawGUIOverlay>
 </ThingDef>
 

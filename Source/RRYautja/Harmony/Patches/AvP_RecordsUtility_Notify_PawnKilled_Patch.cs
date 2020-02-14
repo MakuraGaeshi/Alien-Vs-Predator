@@ -15,7 +15,7 @@ using RRYautja.ExtensionMethods;
 namespace RRYautja
 {
     [HarmonyPatch(typeof(RecordsUtility), "Notify_PawnKilled")]
-    public static class RRY_RecordsUtility_Notify_PawnKilled_Patch
+    public static class AvP_RecordsUtility_Notify_PawnKilled_Patch
     {
         [HarmonyPostfix]
         public static void IncrementPostfix(Pawn killed, Pawn killer)

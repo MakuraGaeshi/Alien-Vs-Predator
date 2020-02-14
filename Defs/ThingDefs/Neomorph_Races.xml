@@ -32,6 +32,7 @@
 		-->
     </comps>
     <drawGUIOverlay>true</drawGUIOverlay>
+    <alwaysFlee>true</alwaysFlee>
 </ThingDef>
 
   <ThingDef ParentName="RRY_BaseNeomorphPawn" Name="RRY_BaseNeomorph" Abstract="True">

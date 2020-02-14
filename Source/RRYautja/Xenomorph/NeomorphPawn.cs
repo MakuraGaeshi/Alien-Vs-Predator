@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace RRYautja
 {
-    public class Neomorph : Pawn
+    public class NeomorphPawn : Pawn
     {
         
     }

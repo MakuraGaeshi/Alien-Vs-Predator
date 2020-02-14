@@ -149,6 +149,7 @@ Disabled Bleed out for Synths.
 Disabled Sleep Need for Synths.
 Disabled Food Need for Synths(They can and will still eat, but should never suffer from malnutrition).
 Implemented Smart Gun System, wearing a Head Mounted Sight reduced the warmup/aiming time for Smart Guns, wearing a Combat Harness negates the move speed penalty applied by the Smart Gun.
+Fully Equipped Smart Gun users Can target Cloaked/hidden enemies.
 Added New Flamer visual effects.
 Small tweaks and changes to Xenomorph Jobdrivers and jobgivers.
 Implemented Xenomorph terraforming creep around hives (Placeholder texture).
