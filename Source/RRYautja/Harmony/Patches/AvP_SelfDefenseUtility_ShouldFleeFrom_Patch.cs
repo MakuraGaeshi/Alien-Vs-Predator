@@ -22,62 +22,69 @@ namespace RRYautja
         [HarmonyPostfix]
         public static void ShouldFleeFromPostfix(Thing t, Pawn pawn, bool checkDistance, bool checkLOS, ref bool __result)
         {
-            if (t.TryGetComp<Comp_Xenomorph>() is Comp_Xenomorph _Xeno && pawn.CanSee(t))
+            if (pawn!=null)
             {
-                if (pawn.isXenomorph())
+
+                if (t.TryGetComp<Comp_Xenomorph>() is Comp_Xenomorph _Xeno && pawn.CanSee(t))
                 {
-                    __result = false;
-                    return;
+                    if (pawn.isXenomorph())
+                    {
+                        __result = false;
+                        return;
+                    }
+                    if (pawn.isNeomorph() && pawn.ageTracker.CurLifeStage != XenomorphDefOf.RRY_NeomorphFullyFormed)
+                    {
+                        __result = true;
+                        return;
+                    }
+                    if (!pawn.isNeomorph() && !pawn.isXenomorph())
+                    {
+                        __result = true;
+                        return;
+                    }
                 }
-                if (pawn.isNeomorph() && pawn.ageTracker.CurLifeStage != XenomorphDefOf.RRY_NeomorphFullyFormed)
+                if (t.TryGetComp<Comp_Facehugger>() is Comp_Facehugger _Hugger)
                 {
-                    __result = true;
-                    return;
+                    if (pawn.isXenomorph())
+                    {
+                        __result = false;
+                        return;
+                    }
+                    if (pawn.isNeomorph())
+                    {
+                        __result = false;
+                        return;
+                    }
+                    if (pawn.isPotentialHost() && !pawn.isXenomorph())
+                    {
+                        __result = true;
+                        return;
+                    }
                 }
-                if (!pawn.isNeomorph() && !pawn.isXenomorph())
+                if (t.TryGetComp<Comp_Neomorph>() is Comp_Neomorph _Neo)
                 {
-                    __result = true;
-                    return;
+                    if (pawn.isXenomorph() && pawn.ageTracker.CurLifeStage != XenomorphDefOf.RRY_NeomorphFullyFormed)
+                    {
+                        __result = true;
+                        return;
+                    }
+                    if (!pawn.isNeomorph() && !pawn.isXenomorph())
+                    {
+                        __result = true;
+                        return;
+                    }
                 }
-            }
-            if (t.TryGetComp<Comp_Facehugger>() is Comp_Facehugger _Hugger)
-            {
-                if (pawn.isXenomorph())
+                if (t.GetType() == typeof(Pawn))
                 {
-                    __result = false;
-                    return;
-                }
-                if (pawn.isNeomorph())
-                {
-                    __result = false;
-                    return;
-                }
-                if (pawn.isPotentialHost() && !pawn.isXenomorph())
-                {
-                    __result = true;
-                    return;
-                }
-            }
-            if (t.TryGetComp<Comp_Neomorph>() is Comp_Neomorph _Neo)
-            {
-                if (pawn.isXenomorph() && pawn.ageTracker.CurLifeStage != XenomorphDefOf.RRY_NeomorphFullyFormed)
-                {
-                    __result = true;
-                    return;
-                }
-                if (!pawn.isNeomorph() && !pawn.isXenomorph())
-                {
-                    __result = true;
-                    return;
-                }
-            }
-            Pawn other = (Pawn)t;
-            if (other!=null && pawn.CanSee(other))
-            {
-                if ((other.isXenomorph() && !pawn.isXenomorph()) || (other.isNeomorph() && !pawn.isNeomorph()))
-                {
-                    __result = true;
-                    return;
+                    Pawn other = (Pawn)t;
+                    if (other != null && pawn.CanSee(other))
+                    {
+                        if ((other.isXenomorph() && !pawn.isXenomorph(out Comp_Xenomorph comp) && comp.hidden) || (other.isNeomorph() && !pawn.isNeomorph()))
+                        {
+                            __result = true;
+                            return;
+                        }
+                    }
                 }
             }
         }

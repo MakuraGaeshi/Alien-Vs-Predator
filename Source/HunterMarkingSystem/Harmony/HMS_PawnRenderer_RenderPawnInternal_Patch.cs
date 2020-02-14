@@ -33,7 +33,7 @@ namespace HunterMarkingSystem
                         HediffComp_HunterMark comp = hd.TryGetComp<HediffComp_HunterMark>();
                         if (comp.BloodStatus > HMSUtility.BloodStatusMode.Unblooded)
                         {
-                            if (comp != null && comp.hasMat)
+                            if (comp != null && comp.hasMat && !portrait)
                             {
                                 DrawMark(comp, __instance, rootLoc, angle, renderBody, bodyFacing, headFacing, bodyDrawType, portrait, headStump);
                             }
