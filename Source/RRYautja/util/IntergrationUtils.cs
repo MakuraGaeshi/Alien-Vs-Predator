@@ -23,7 +23,7 @@ namespace RRYautja
         }
 
     }
-
+    
     static class UtilChjAndroids
     {
         private static bool logging = false;
@@ -40,6 +40,24 @@ namespace RRYautja
             }
         }
 
+        public static bool isChjAndroid(PawnKindDef pawn)
+        {
+            bool Result = pawn.race.comps.Any(x => x.compClass.Name.Contains("Androids.CompProperties_EnergyTracker"));
+
+            return Result;
+        }
+        public static bool isChjAndroid(Pawn pawn)
+        {
+            bool Result = pawn.def.comps.Any(x => x.compClass.Name.Contains("Androids.CompProperties_EnergyTracker"));
+
+            return Result;
+        }
+        public static bool isChjAndroid(ThingDef td)
+        {
+            bool Result = td.comps.Any(x => x.compClass.Name.Contains("Androids.CompProperties_EnergyTracker"));
+
+            return Result;
+        }
     }
 
     static class UtilTieredAndroids
@@ -58,6 +76,34 @@ namespace RRYautja
             }
         }
 
+        public static bool isAtlasAndroid(PawnKindDef pawn)
+        {
+
+            bool Result = false;
+            if (pawn.race.modExtensions != null)
+            {
+                Result = pawn.race.modExtensions.Any(x => x.GetType().Name.Contains("MOARANDROIDS.AndroidTweaker"));
+            }
+            return Result;
+        }
+        public static bool isAtlasAndroid(Pawn pawn)
+        {
+            bool Result = false;
+            if (pawn.def.modExtensions != null)
+            {
+                Result = pawn.def.modExtensions.Any(x => x.GetType().Name.Contains("MOARANDROIDS.AndroidTweaker"));
+            }
+            return Result;
+        }
+        public static bool isAtlasAndroid(ThingDef td)
+        {
+            bool Result = false;
+            if (td.modExtensions != null)
+            {
+                Result = td.modExtensions.Any(x => x.GetType().Name.Contains("MOARANDROIDS.AndroidTweaker"));
+            }
+            return Result;
+        }
     }
 
     static class UtilDinosauria

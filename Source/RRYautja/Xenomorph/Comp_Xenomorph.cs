@@ -127,11 +127,22 @@ namespace RRYautja
                     }
                 }
             }
+            else
+            {
+                thought = string.Format("RRY_Observed_Xenomorph");
+                thoughtDef = DefDatabase<ThoughtDef>.GetNamedSilentFail(thought);
+                if (thoughtDef != null)
+                {
+                    observation = (Thought_MemoryObservation)ThoughtMaker.MakeThought(thoughtDef);
+                }
+            }
             if (observation != null)
             {
                 observation.Target = this.parent;
                 return observation;
             }
+            else Log.Message("observation == null");
+
             return null;
         }
 

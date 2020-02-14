@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using RRYautja.ExtensionMethods;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -170,37 +171,25 @@ namespace RRYautja
         public static bool isInfectableThing(ThingDef thingDef)
         {
             if (thingDef.race == null) return false;
-            if (UtilChjAndroids.ChjAndroid)
+            if (!settings.SettingsHelper.latest.AllowNonHumanlikeHosts && !thingDef.race.Humanlike)
             {
-                if (thingDef.defName == "ChjAndroid" || thingDef.defName == "ChjDroid")
-                {
-                    return false;
-                }
+                return false;
             }
-            if (UtilTieredAndroids.TieredAndroid)
+            if (thingDef.isXenomorph() || thingDef.isNeomorph())
             {
-                if (thingDef.defName.Contains("Android" + "Tier"))
-                {
-                    return false;
-                }
+                return false;
             }
+            bool pawnflag = !((UtilChjAndroids.ChjAndroid && UtilChjAndroids.isChjAndroid(thingDef)) || (UtilTieredAndroids.TieredAndroid && UtilTieredAndroids.isAtlasAndroid(thingDef)) || (UtilSynths.isAvPSynth(thingDef)));
+            if (!pawnflag) return false;
             if (thingDef.race.IsMechanoid) return false;
-        //    if (thingDef.defName.Contains("")) return false;
             if (thingDef.race.body.defName.Contains("AIRobot")) return false;
-            if (thingDef.defName.Contains("Android")) return false;
-            if (thingDef.defName.Contains("Droid")) return false;
-            if (thingDef.defName.Contains("Mech")) return false;
-            if (thingDef.defName.Contains("TM_Undead")) return false;
-            if (thingDef.defName.Contains("TM_") && thingDef.defName.Contains("Minion")) return false;
-            if (thingDef.defName.Contains("TM_Demon")) return false;
-            if (thingDef.race.FleshType == XenomorphRacesDefOf.RRY_Xenomorph) return false;
-            if (thingDef.race.FleshType == XenomorphRacesDefOf.RRY_Neomorph) return false;
+            if (thingDef.defName.Contains("TM_"))
+            {
+                if (thingDef.defName.Contains("Undead") || thingDef.defName.Contains("Minion") || thingDef.defName.Contains("Demon")) return false;
+            }
             if (thingDef.race.FleshType.defName.Contains("TM_StoneFlesh")) return false;
-            if (thingDef.race.FleshType.defName.Contains("ChaosDeamon")) return false;
-            if (thingDef.race.FleshType.defName.Contains("Necron")) return false;
-            if (thingDef.race.FleshType.defName.Contains("EldarConstruct")) return false;
-            if (thingDef.race.FleshType.defName.Contains("ImperialConstruct")) return false;
-            if (thingDef.race.FleshType.defName.Contains("MechanicusConstruct")) return false;
+            if (thingDef.race.FleshType.defName.Contains("Chaos") && thingDef.race.FleshType.defName.Contains("Deamon")) return false;
+            if (thingDef.race.FleshType.defName.Contains("Construct") && thingDef.race.FleshType.defName.Contains("Flesh")) return false;
             if (thingDef.race.baseBodySize < 0.65f && !thingDef.race.Humanlike) return false;
 
 
@@ -208,165 +197,18 @@ namespace RRYautja
         }
         public static bool isInfectablePawn(Pawn pawn)
         {
-            if (pawn.Dead)
-            {
-            //    Log.Message(string.Format("{0} is dead", pawn.LabelShortCap));
-                return false;
-            }
-
-            if (UtilChjAndroids.ChjAndroid)
-            {
-                if (pawn.kindDef.race.defName == "ChjAndroid" || pawn.kindDef.race.defName == "ChjDroid")
-                {
-                    return false;
-                }
-            }
-            if (UtilTieredAndroids.TieredAndroid)
-            {
-                if (pawn.kindDef.race.defName.Contains("Android" + "Tier"))
-                {
-                    return false;
-                }
-            }
-            if (pawn.RaceProps.body.defName.Contains("AIRobot")) return false;
-            if (pawn.kindDef.race.defName.Contains("Android")) return false;
-            if (pawn.kindDef.race.defName.Contains("Droid")) return false;
-            if (pawn.kindDef.race.defName.Contains("Mech")) return false;
-            if (pawn.kindDef.race.defName.Contains("TM_Undead")) return false;
-            if (pawn.kindDef.race.race.FleshType.defName.Contains("TM_StoneFlesh")) return false;
-            if (pawn.kindDef.race.defName.Contains("TM_") && pawn.kindDef.race.defName.Contains("Minion")) return false;
-            if (pawn.kindDef.race.defName.Contains("TM_Demon")) return false;
-            if (pawn.kindDef.race.race.FleshType.defName.Contains("ChaosDeamon")) return false;
-            if (pawn.kindDef.race.race.FleshType.defName.Contains("Necron")) return false;
-            if (pawn.kindDef.race.race.FleshType.defName.Contains("EldarConstruct")) return false;
-            if (pawn.kindDef.race.race.FleshType.defName.Contains("ImperialConstruct")) return false;
-            if (pawn.kindDef.race.race.FleshType.defName.Contains("MechanicusConstruct")) return false;
-            if (pawn.RaceProps.IsMechanoid)
-            {
-                //    Log.Message(string.Format("{0} is Mechanoid", pawn.LabelShortCap)); TM_MinionR 
-                return false;
-            }
-            if (!pawn.RaceProps.IsFlesh)
-            {
-            //    Log.Message(string.Format("{0} not Flesh"));
-                return false;
-            }
-            if (IsXenomorph(pawn))
-            {
-            //    Log.Message(string.Format("{0} Is Xenomorph", pawn.LabelShortCap));
-                return false;
-            }
-            if (IsInfectedPawn(pawn))
-            {
-            //    Log.Message(string.Format("{0} Is Infected Pawn", pawn.LabelShortCap));
-                return false;
-            }
-            if (IsXenomorphFaction(pawn))
-            {
-            //    Log.Message(string.Format("{0} Is Xenomorph Faction", pawn.LabelShortCap));
-                return false;
-            }
-            if (pawn.BodySize < 0.65f && !pawn.RaceProps.Humanlike)
-            {
-            //    Log.Message(string.Format("{0} too small", pawn.LabelShortCap));
-                return false;
-            }
-            if (pawn.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Xenomorph)
-            {
-            //    Log.Message(string.Format("{0} FleshType RRY_Xenomorph", pawn.LabelShortCap));
-                return false;
-            }
-            //    Log.Message(string.Format("{0} Infectable", pawn.LabelShortCap));
-            return true;
+            return isInfectableThing(pawn.def);
         }
 
         public static bool isInfectablePawn(Pawn pawn, bool allowinfected = false)
         {
-            bool result = true;
-            string failreason = string.Format("{0} Not Infectable:", pawn.kindDef.race.defName);
-
-            if (pawn.Dead) { result = false; failreason += " Dead"; }
-
-            if (!settings.SettingsHelper.latest.AllowNonHumanlikeHosts && !pawn.RaceProps.Humanlike)
-            {
-                result = false;
-                failreason += " Insuitable";
-            }
-
-            if (UtilChjAndroids.ChjAndroid)
-            {
-                if (pawn.kindDef.race.defName == "ChjAndroid" || pawn.kindDef.race.defName == "ChjDroid")
-                {
-                    result = false; failreason += string.Format(" ChjAndroid");
-                }
-            }
-            if (UtilTieredAndroids.TieredAndroid)
-            {
-                if (pawn.kindDef.race.defName.Contains("Android") && pawn.kindDef.race.defName.Contains("Tier"))
-                {
-                    result = false; failreason += string.Format(" TieredAndroid");
-                }
-            }
-            if (!pawn.RaceProps.body.AllParts.Any(x => x.def.defName.Contains("Head") && !x.def.defName.Contains("Claw")))
-            {
-                result = false; failreason += string.Format(" No Head");
-            }
-            if (pawn.kindDef.race.defName.Contains("Android")) { result = false; failreason += " Android"; }
-            if (pawn.kindDef.race.defName.Contains("Droid")) { result = false; failreason += " Droid"; }
-            if (pawn.kindDef.race.defName.Contains("Mech")) { result = false; failreason += " Mech"; }
-            if (pawn.kindDef.race.defName.Contains("TM_Undead")) { result = false; failreason += " TM_Undead"; }
-            if (pawn.kindDef.race.race.FleshType.defName.Contains("TM_StoneFlesh")) { result = false; failreason += " TM_StoneFlesh"; }
-            if (pawn.kindDef.race.defName.Contains("TM_") && pawn.kindDef.race.defName.Contains("Minion")) { result = false; failreason += " TM_Minion"; }
-            if (pawn.kindDef.race.defName.Contains("TM_Demon")) { result = false; failreason += " Android"; }
-            if (pawn.kindDef.race.race.FleshType.defName.Contains("RRY_SynthFlesh")) { result = false; failreason += " RRY_SynthFlesh"; }
-            if (pawn.kindDef.race.race.FleshType.defName.Contains("OG_Construct_Flesh")) { result = false; failreason += " OG_Construct_Flesh"; }
-            if (pawn.RaceProps.IsMechanoid) { result = false; failreason += " Mechanoid"; }
-            if (!pawn.RaceProps.IsFlesh) { result = false; failreason += " Not Flesh"; }
-            if (pawn.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Xenomorph) { result = false; failreason += " Xenomorph"; }
-            if (!allowinfected && IsInfectedPawn(pawn)) { result = false; failreason += " Infected"; }
-            if (IsXenomorph(pawn)) { result = false; failreason += " IsXenomorph"; }
-            if (IsXenomorphFaction(pawn)) { result = false; failreason += " IsXenomorphFaction"; }
-            if (pawn.BodySize < 0.65f) { result = false; failreason += " Too Small"; }
-            if (!result && !failreason.Contains("Xenomorph"))
-            {
-                if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(failreason);
-            }
-            return result;
+            return isInfectableThing(pawn.def) && (allowinfected || !pawn.isHost());
         }
 
         public static bool isInfectablePawnKind(PawnKindDef pawn)
         {
 
-            if (UtilChjAndroids.ChjAndroid)
-            {
-                if (pawn.race.defName == "ChjAndroid" || pawn.race.defName == "ChjDroid")
-                {
-                    return false;
-                }
-            }
-            if (UtilTieredAndroids.TieredAndroid)
-            {
-                if (pawn.race.defName.Contains("Android" + "Tier"))
-                {
-                    return false;
-                }
-            }
-            // RRY_SynthFlesh
-            if (pawn.race.defName.Contains("Android")) return false;
-            if (pawn.race.defName.Contains("Droid")) return false;
-            if (pawn.race.defName.Contains("Mech")) return false;
-            if (pawn.race.defName.Contains("TM_Undead")) return false;
-            if (pawn.race.race.FleshType.defName.Contains("TM_StoneFlesh")) return false;
-            if (pawn.race.defName.Contains("TM_") && pawn.race.defName.Contains("Minion")) return false;
-            if (pawn.race.defName.Contains("TM_Demon")) return false;
-            if (pawn.race.race.FleshType.defName.Contains("Deamon")) return false;
-            if (pawn.race.race.FleshType.defName.Contains("OG_Construct_Flesh")) return false;
-            if (pawn.race.race.FleshType.defName.Contains("RRY_SynthFlesh")) return false;
-            if (pawn.RaceProps.IsMechanoid) return false;
-            if (!pawn.RaceProps.IsFlesh) return false;
-            if (pawn.race.defName.Contains("RRY_Xenomorph_")) return false;
-            if (pawn.RaceProps.baseBodySize < 0.65f) return false;
-            return true;
+            return isInfectableThing(pawn.race);
         }
 
         public static List<Pawn> SpawnedInfectablePawns(Map map)

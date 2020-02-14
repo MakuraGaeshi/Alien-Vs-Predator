@@ -12,6 +12,15 @@
         <stuffPowerStat>RRY_StuffPower_Armor_Acid</stuffPowerStat>
         <multiplierStat>StuffEffectMultiplierArmor</multiplierStat>
       </li>
+      <li Class="StatPart_Quality">
+        <factorAwful>0.76</factorAwful>
+        <factorPoor>0.88</factorPoor>
+        <factorNormal>1</factorNormal>
+        <factorGood>1.12</factorGood>
+        <factorExcellent>1.24</factorExcellent>
+        <factorMasterwork>1.4</factorMasterwork>
+        <factorLegendary>1.8</factorLegendary>
+      </li>
     </parts>
   </StatDef>
 

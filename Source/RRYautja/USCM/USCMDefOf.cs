@@ -21,7 +21,7 @@ namespace RimWorld
         public static ThingDef RRY_Synth;
 
         // USCM ThingDefs  Equipment
-        //    public static ThingDef RRY_Equipment_HunterGauntlet;
+        public static ThingDef RRY_Equipment_HMS;
 
         // USCM ThingDefs  Weapons
     //    public static ThingDef RRY_Gun_Hunting_Bow;

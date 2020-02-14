@@ -17,6 +17,7 @@ namespace Verse
                 Find.TickManager.slower.SignalForceNormalSpeedShort();
             }
             Map map = victim.Map;
+            dinfo.SetAmount((dinfo.Amount * (1 - victim.GetStatValue(DefDatabase<StatDef>.GetNamed("RRY_AcidResistance")))));
             DamageWorker.DamageResult damageResult = base.Apply(dinfo, victim);
             if (!damageResult.deflected && !dinfo.InstantPermanentInjury)
             {

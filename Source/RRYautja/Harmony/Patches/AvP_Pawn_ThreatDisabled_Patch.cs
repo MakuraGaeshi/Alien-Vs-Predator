@@ -23,19 +23,38 @@ namespace RRYautja
         public static void IgnoreCloak(Pawn __instance, ref bool __result, IAttackTargetSearcher disabledFor)
         {
             bool selected__instance = Find.Selector.SelectedObjects.Contains(__instance);
+            bool cloaked = __instance.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked);
+            bool hidden = __instance.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden);
+            bool Stealth = cloaked || hidden;
+
             Comp_Facehugger _Xenomorph = null;
+            Pawn pawn = null;
             if (disabledFor != null)
             {
                 if (disabledFor.Thing != null)
                 {
-                    _Xenomorph = disabledFor.Thing.TryGetComp<Comp_Facehugger>();
-                    if (_Xenomorph != null)
-                    {
-                        __result = __result || !XenomorphUtil.isInfectablePawn(__instance);
-                        //    Log.Message(string.Format("__instance: {0}, __result: {1}, _Xenomorph: {2}, Infectable?: {3}", __instance, __result, _Xenomorph, XenomorphUtil.isInfectablePawn(__instance)));
-                    }
+                    pawn = (Pawn)disabledFor.Thing;
                 }
             }
+
+            if (pawn != null)
+            {
+                if (pawn.apparel != null)
+                {
+                    if (pawn.apparel.WornApparel.Any(x => x.def == USCMDefOf.RRY_Equipment_HMS))
+                    {
+                        Log.Message(string.Format("{0} IgnoreCloak {1}: {2}, HMS Equipped", pawn.LabelShortCap, __instance, __result));
+                        return;
+                    }
+                }
+                _Xenomorph = pawn.TryGetComp<Comp_Facehugger>();
+                if (_Xenomorph != null)
+                {
+                    __result = __result || !XenomorphUtil.isInfectablePawn(__instance);
+                    //    Log.Message(string.Format("__instance: {0}, __result: {1}, _Xenomorph: {2}, Infectable?: {3}", __instance, __result, _Xenomorph, XenomorphUtil.isInfectablePawn(__instance)));
+                }
+            }
+
             if (__instance != null)
             {
                 if (__instance != null)
