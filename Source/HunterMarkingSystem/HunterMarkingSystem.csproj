@@ -51,7 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Alert_PawnCanMark.cs" />
-    <Compile Include="Harmony\Class1.cs" />
+    <Compile Include="Harmony\AvP_BackCompatibility_BackCompatibleDefName_Patch.cs" />
     <Compile Include="MarkData.cs" />
     <Compile Include="StatWorker_MarkScore.cs" />
     <Compile Include="Harmony\HMS_ThingWithComps_get_DescriptionFlavor_Patch.cs" />
