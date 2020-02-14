@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <Defs>
+<ThingDef Name="RRYBaseGrenadeAbility" Class="AbilityUser.ProjectileDef_Ability" ParentName="BaseGrenadeProjectile" Abstract="True">
+   <thingClass>RRYautja.Projectile_AbilityExplosive</thingClass>
+   <label>Throw Grenade</label>
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Things/Projectile/Grenade</texPath>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+ </ThingDef>
 <!-- ======================== Grenade Ability Defs ================================== -->
-	<ThingDef ParentName="BaseGrenadeAbility">
+	<ThingDef ParentName="RRYBaseGrenadeAbility">
 		<defName>RRY_Projectile_M42AGrenade</defName>
 		<graphicData>
 			<texPath>Things/Projectile/Grenade</texPath>
@@ -33,7 +42,7 @@
             <hasStandardCommand>true</hasStandardCommand>
 			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
 			<defaultProjectile>RRY_Projectile_M42AGrenade</defaultProjectile>
-            <abilityDef>OGT_Ability_LaunchPhoton</abilityDef>
+            <abilityDef>RRY_Ability_LaunchM42AGrenade</abilityDef>
             <warmupTime>0.4</warmupTime>
             <SecondsToRecharge>15.0</SecondsToRecharge>
             <burstShotCount>1</burstShotCount>

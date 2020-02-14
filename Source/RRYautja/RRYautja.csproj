@@ -117,6 +117,7 @@
     <Compile Include="Harmony\Patches\AvP_VerbUtility_HarmsHealth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_WorkGiver_Tend_GoodLayingStatusForTend_Patch.cs" />
     <Compile Include="USCM\CompSmartgunSystem - Copy.cs" />
+    <Compile Include="USCM\Projectile_ExplosiveAbility.cs" />
     <Compile Include="USCM\UtilSynths.cs" />
     <Compile Include="USCM\HediffGiver_Synth.cs" />
     <Compile Include="USCM\CompSmartgunSystem.cs" />

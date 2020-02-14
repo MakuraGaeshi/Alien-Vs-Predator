@@ -20,7 +20,7 @@
             <compClass>CompAttachBase</compClass>
         </li>
     </comps>
-    <alwaysFlee>true</alwaysFlee>
+    <!-- <alwaysFlee>true</alwaysFlee> -->
     <drawGUIOverlay>true</drawGUIOverlay>
 </ThingDef>
 

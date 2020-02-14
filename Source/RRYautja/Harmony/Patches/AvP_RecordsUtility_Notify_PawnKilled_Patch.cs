@@ -20,11 +20,14 @@ namespace RRYautja
         [HarmonyPostfix]
         public static void IncrementPostfix(Pawn killed, Pawn killer)
         {
-            if (killed.isXenomorph())
+            if (killer!=null)
             {
-                if (killer.needs.mood.thoughts.memories.AnyMemoryConcerns(killed))
+                if (killed.isXenomorph())
                 {
-                    killer.needs.mood.thoughts.memories.RemoveMemoriesWhereOtherPawnIs(killed);
+                    if (killer.needs.mood.thoughts.memories.AnyMemoryConcerns(killed))
+                    {
+                        killer.needs.mood.thoughts.memories.RemoveMemoriesWhereOtherPawnIs(killed);
+                    }
                 }
             }
         }
