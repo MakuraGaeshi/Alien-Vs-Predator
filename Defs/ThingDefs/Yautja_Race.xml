@@ -344,7 +344,7 @@
             </restrictedThoughts>
 			-->
 			<cannotReceiveThoughts>
-			<!--
+			
 				<li>AteHumanlikeMeatDirect</li>
 				<li>AteHumanlikeMeatAsIngredient</li>
 				<li>AteRawHumanlikeMeat</li>
@@ -352,7 +352,7 @@
 				<li>AteHumanlikeMeatAsIngredientCannibal</li>
 				<li>ButcheredHumanlikeCorpse</li>
 				<li>KnowButcheredHumanlikeCorpse</li>
-				-->
+				
 				<li>ObservedLayingCorpse</li>
 				<li>SoldPrisoner</li>
 				<li>KnowPrisonerDiedInnocent</li>
@@ -363,6 +363,7 @@
 				<li>KnowPrisonerSold</li>
 				<li>KnowGuestOrganHarvested</li>
             </cannotReceiveThoughts>
+			
 			<butcherThoughtSpecific>
                 <li>
                     <raceList>
@@ -372,7 +373,8 @@
                     <knowThought>RRY_KnowButcheredYautjaCorpse</knowThought>
                 </li>
             </butcherThoughtSpecific>
-            <ateThoughtSpecific>
+            
+			<ateThoughtSpecific>
                 <li>
                     <raceList>
                         <li>RRY_Alien_Yautja</li>
@@ -381,28 +383,8 @@
 					<thoughtCannibal>RRY_AteYautjaMeatDirectCannibal</thoughtCannibal> 
                 </li>
             </ateThoughtSpecific>
-				<!--
-			<ateThoughtSpecific>
-                <li>
-                    <raceList>
-                        <li>RRY_Alien_Yautja</li>
-                    </raceList>
-                     <thought>RRY_AteYautjaMeatDirect</thought> 
-                     <ingredientThought>RRY_AteYautjaMeatAsIngredient</ingredientThought> 
-					 <thoughtCannibal>RRY_AteYautjaMeatDirectCannibal</thoughtCannibal> 
-					 <ingredientThoughtCannibal>RRY_AteYautjaMeatAsIngredientCannibal</ingredientThoughtCannibal> 
-                </li>
-            </ateThoughtSpecific>
-			 <butcherThoughtSpecific>
-                <li>
-                    <raceList>
-                        <li>RRY_Alien_Yautja</li>
-                    </raceList>
-                    <thought>RRY_ButcheredYautjaCorpse</thought>
-                    <knowThought>RRY_KnowButcheredYautjaCorpse</knowThought>
-                </li>
-            </butcherThoughtSpecific>
-				-->
+			
+			
         </thoughtSettings>
        
 	   <relationSettings>

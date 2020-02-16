@@ -29,7 +29,7 @@
                     <kindDefs>
                         <li>RRY_Player_Synth</li>
 					</kindDefs>
-                    <chance>15.0</chance>
+                    <chance>90.0</chance> <!-- Change it back to 10 after testing -->
 					</li>
 				</pawnKindEntries>
 				<factionDefs>
@@ -384,7 +384,7 @@
 	  <fleshType>RRY_SynthFlesh</fleshType>
       <thinkTreeMain>Humanlike</thinkTreeMain>
       <thinkTreeConstant>HumanlikeConstant</thinkTreeConstant>
-	  <baseHungerRate>0.3</baseHungerRate>
+	  <baseHungerRate>0.1</baseHungerRate>
       <intelligence>Humanlike</intelligence>
       <makesFootprints>true</makesFootprints>
       <lifeExpectancy>20</lifeExpectancy>
@@ -404,8 +404,12 @@
       </litterSizeCurve>
       <lifeStageAges>
         <li>
-          <def>HumanlikeAdult</def>
-          <minAge>1</minAge>
+          <def>RRY_Synth_New</def>
+          <minAge>0</minAge>
+        </li>
+        <li>
+          <def>RRY_Synth_Adult</def>
+          <minAge>8</minAge>
         </li>
       </lifeStageAges>
       <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
