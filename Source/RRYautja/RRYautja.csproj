@@ -134,6 +134,7 @@
     <Compile Include="util\AvPExtensions.cs" />
     <Compile Include="util\AvPConstants.cs" />
     <Compile Include="util\AvPDefOf.cs" />
+    <Compile Include="util\IngestionOutcomeDoer_RemoveHediff.cs" />
     <Compile Include="util\TunnelSpawner.cs" />
     <Compile Include="util\CompPowerPlantSolarTurret.cs" />
     <Compile Include="util\CrashedShip\MapComponent_GooGrid.cs" />
