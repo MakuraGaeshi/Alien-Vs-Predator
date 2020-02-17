@@ -71,9 +71,6 @@
 	<ThingDef Name="RRY_USCM_BaseGun" Abstract="True" ParentName="RRY_USCM_BaseWeapon">
 		<techLevel>Industrial</techLevel>
 		<smeltable>true</smeltable>
-		<thingCategories>
-      <li>WeaponsRanged</li>
-    </thingCategories>
     <inspectorTabs>
       <li>ITab_Art</li>
     </inspectorTabs>
@@ -90,6 +87,10 @@
 	<weaponTags>
         <li>USCM_Guns</li>
     </weaponTags>
+	<thingCategories>
+		<li>WeaponsRanged</li>
+		<li>RRY_USCM_RangedWeapons</li>
+	</thingCategories>
 	</ThingDef>
 	
 	<!-- ==================== USCM - Base Makeable Gun Weapon Template ========================= -->

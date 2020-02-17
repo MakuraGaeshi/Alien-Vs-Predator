@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>..\..\Assemblies\0Harmony.dll</HintPath>
+    <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lib.Harmony.1.2.0.1\lib\net35\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="AlienRace">
       <HintPath>..\..\..\..\..\..\workshop\content\294100\839005762\Assemblies\AlienRace.dll</HintPath>
@@ -80,6 +80,7 @@
     <Compile Include="Harmony\Harmony.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThoughtWorker_Unmarked.cs" />
+    <None Include="packages.config" />
     <None Include="ThoughtWorkers_Blooded.cs.bak" />
     <Compile Include="ThoughtWorker_Unblooded.cs" />
     <Compile Include="ThoughtWorker_Marked.cs" />

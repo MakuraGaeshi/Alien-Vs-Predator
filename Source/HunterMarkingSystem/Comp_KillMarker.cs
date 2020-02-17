@@ -23,16 +23,21 @@ namespace HunterMarkingSystem
         public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn myPawn)
         {
             HediffSet hediffSet = myPawn.health.hediffSet;
-            if (!myPawn.Markable(out Comp_Markable markable))
+            Comp_Markable markable = null;
+            if (!myPawn.Markable(out markable))
             {
+                Log.Message(string.Format("myPawn.Markable: {0}", !myPawn.Markable(out markable)));
                 yield break;
             }
-            if (!hediffSet.HasHediff(markable.Props.Unmarked, false) || markable == null)
+            if (!hediffSet.hediffs.Any(x => x.def.defName.Contains(HunterMarkingSystem.Unmarkededkey)) || markable == null)
             {
+                Log.Message(string.Format("HasHediff: {0}, markable: {1}", hediffSet.hediffs.Any(x => x.def.defName.Contains(HunterMarkingSystem.Unmarkededkey)), markable != null));
                 yield break;
             }
+            HediffDef UnmarkedDef = hediffSet.hediffs.Find(x => x.def.defName.Contains(HunterMarkingSystem.Unmarkededkey)).def ?? null;
             if (!markable.MarkerRace && !markable.Inducted)
             {
+                Log.Message(string.Format("MarkerRace: {0}, Inducted: {1}", markable.MarkerRace, markable.Inducted));
                 yield break;
             }
             if (!this.CanBeUsedBy(myPawn, out string failReason))

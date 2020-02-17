@@ -12,24 +12,37 @@ namespace HunterMarkingSystem.ExtensionMethods
     [StaticConstructorOnStartup]
     public static class Extensions
     {
-        public static bool Marked(this Pawn p, out Hediff BloodHD)
+        public static bool Marked(this Pawn p, out Hediff MarkedHD, out Hediff UnmarkedHD)
         {
-            Comp_Markable Markable = p.TryGetComp<Comp_Markable>();
-            HediffSet hediffSet = p.health.hediffSet;
-            BloodHD = null;
-            if (Markable == null)
+            MarkedHD = null;
+            UnmarkedHD = null;
+            if (!p.Markable(out Comp_Markable Markable))
             {
                 return false;
             }
-            bool hasbloodedM = hediffSet.hediffs.Any(x => x.def == Markable.Markeddef || x.def.defName.Contains("Hediff_BloodedM"));
-            if (hasbloodedM)
-                BloodHD = hediffSet.hediffs.Find(x => x.def == Markable.Markeddef || x.def.defName.Contains("Hediff_BloodedM"));
-            if (hediffSet.HasHediff(Markable.Unmarkeddef))
-            {
-                BloodHD = hediffSet.GetFirstHediffOfDef(Markable.Unmarkeddef);
-            }
+            HediffSet hediffSet = p.health.hediffSet;
+            bool hasbloodedM = hediffSet.hediffs.Any(x => x.def == Markable.Markeddef || x.def.defName.Contains(HunterMarkingSystem.Markedkey));
+            if (hasbloodedM) MarkedHD = hediffSet.hediffs.Find(x => x.def == Markable.Markeddef || x.def.defName.Contains(HunterMarkingSystem.Markedkey));
+            bool hasbloodedUM = hediffSet.hediffs.Any(x => x.def == Markable.Unmarkeddef || x.def.defName.Contains(HunterMarkingSystem.Unmarkededkey));
+            if (hasbloodedUM) UnmarkedHD = hediffSet.hediffs.Find(x => x.def == Markable.Unmarkeddef || x.def.defName.Contains(HunterMarkingSystem.Unmarkededkey));
             return hasbloodedM;
         }
+
+        public static bool Marked(this Pawn p, out Hediff MarkedHD)
+        {
+            MarkedHD = null;
+            if (!p.Markable(out Comp_Markable Markable))
+            {
+                return false;
+            }
+            HediffSet hediffSet = p.health.hediffSet;
+            bool hasbloodedM = hediffSet.hediffs.Any(x => x.def == Markable.Markeddef || x.def.defName.Contains(HunterMarkingSystem.Markedkey));
+            if (hasbloodedM) MarkedHD = hediffSet.hediffs.Find(x => x.def == Markable.Markeddef || x.def.defName.Contains(HunterMarkingSystem.Markedkey));
+            bool hasbloodedUM = hediffSet.hediffs.Any(x => x.def == Markable.Unmarkeddef || x.def.defName.Contains(HunterMarkingSystem.Unmarkededkey));
+            if (hasbloodedUM) MarkedHD = hediffSet.hediffs.Find(x => x.def == Markable.Unmarkeddef || x.def.defName.Contains(HunterMarkingSystem.Unmarkededkey));
+            return hasbloodedM;
+        }
+
         public static bool Marked(this Pawn p)
         {
             HediffSet hediffSet = p.health.hediffSet;

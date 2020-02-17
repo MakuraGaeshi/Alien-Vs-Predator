@@ -16,22 +16,19 @@ namespace HunterMarkingSystem
             //    base.DoEffect(user);
             if (user.Markable(out Comp_Markable Markable))
             {
-                Hediff blooded = user.health.hediffSet.GetFirstHediffOfDef(Markable.Unmarkeddef);
                 BodyPartRecord part = Markable.partRecord;
-                if (user.Marked(out Hediff hediff))
+                if (user.Marked(out Hediff marked, out Hediff blooded))
                 {
-                    user.health.RemoveHediff(hediff);
+                //    Log.Message(string.Format("Removing hediff {0}", marked));
+                    user.health.RemoveHediff(marked);
                 }
-                else
+                if (blooded!=null)
                 {
                     user.health.RemoveHediff(blooded);
-                }
-                if (hediff != null)
-                {
-                    Log.Message(string.Format("hediff {0}", hediff));
+                //    Log.Message(string.Format("Removing hediff {0}", marked));
                 }
                 corpse = (Corpse)this.parent;
-                Hediff marked = HediffMaker.MakeHediff(Markable.markDataKillNew.MarkDef, user, part);// user.health.hediffSet.GetFirstHediffOfDef(markedDef);
+                marked = HediffMaker.MakeHediff(Markable.markDataKillNew.MarkDef, user, part);// user.health.hediffSet.GetFirstHediffOfDef(markedDef);
                 HediffComp_HunterMark marked_Yautja = marked.TryGetComp<HediffComp_HunterMark>();
                 Markable.Mark = corpse.InnerPawn;
                 user.health.AddHediff(marked, part);

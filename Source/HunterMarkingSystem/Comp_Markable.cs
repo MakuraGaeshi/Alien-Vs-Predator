@@ -75,16 +75,18 @@ namespace HunterMarkingSystem
         public bool blooded;
         public bool inducted => BloodStatus == BloodStatusMode.Marked;
         public bool Inducted => MarkerRace || inducted;
+
         public bool inductable
         {
             get
             {
-                bool result = !Inducted && (allowedRaces.NullOrEmpty() || allowedRaces.Contains(pawn.def)) && (disallowedRaces.NullOrEmpty() || !disallowedRaces.Contains(pawn.def)) && blood >= BloodStatusMode.Unblooded /*&& MarkableCorpse*/;
+                bool result = !Inducted && (allowedRaces.NullOrEmpty() || allowedRaces.Contains(pawn.def)) && (disallowedRaces.NullOrEmpty() || !disallowedRaces.Contains(pawn.def)) && blood >= BloodStatusMode.Unblooded;
 
                 Log.Message(string.Format(pawn.Name.ToStringShort + " inductable: {0} = {1} && {2} && {3} && {4} && {5}", result, !Inducted, (allowedRaces.NullOrEmpty() || allowedRaces.Contains(pawn.def)), (disallowedRaces.NullOrEmpty() || !disallowedRaces.Contains(pawn.def)), blood == BloodStatusMode.Unblooded, MarkableCorpse));
                 return result;
             }
         }
+
         public bool MarkableCorpse => (Markcorpse != null && !Markcorpse.Destroyed);
         private BloodStatusMode blood = BloodStatusMode.NoComp;
         public BloodStatusMode BloodStatus

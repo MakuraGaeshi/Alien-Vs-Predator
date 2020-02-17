@@ -32,8 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Assemblies\0Harmony.dll</HintPath>
+      <HintPath>..\packages\Lib.Harmony.1.2.0.1\lib\net35\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="0JecsTools">
       <HintPath>..\..\..\..\..\..\workshop\content\294100\932008009\Assemblies\0JecsTools.dll</HintPath>
@@ -144,6 +143,7 @@
     <Compile Include="util\IncidentWorker_RaidFriendly_FactionSpecific.cs" />
     <Compile Include="util\IncidentWorker_RaidEnemy_FactionSpecific.cs" />
     <Compile Include="util\IncidentDef_FactionSpecific.cs" />
+    <None Include="packages.config" />
     <None Include="util\PawnsArrivalModeWorker_DropThroughRoofV1.cs.bak" />
     <Compile Include="util\PawnsArrivalModeWorker_RandomEnterFromTunnel.cs" />
     <Compile Include="util\PawnsArrivalModeWorker_DropThroughRoof.cs" />
