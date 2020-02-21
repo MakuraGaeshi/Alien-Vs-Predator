@@ -211,6 +211,9 @@
 					<li>PsychicSensitivity</li>
 					<li>Immunity</li>
 					<li>Gourmand</li>
+					<li>QuickSleeper</li>
+					<li>NightOwl</li>
+					
 			</disallowedTraits>
             <alienPartGenerator>
 				<!--<useGenderedHeads>true</useGenderedHeads>
