@@ -5,3 +5,5 @@ C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Rebelrots-Yautja-Rac
 C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Rebelrots-Yautja-Race\Source\ResourceBoxes\obj\Debug\ResourceBoxes.dll
 C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Rebelrots-Yautja-Race\Source\ResourceBoxes\obj\Debug\ResourceBoxes.pdb
 C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Rebelrots-Yautja-Race\Source\ResourceBoxes\bin\Debug\0Harmony.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Rebelrots-Yautja-Race\Assemblies\ResourceBoxes.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Rebelrots-Yautja-Race\Assemblies\ResourceBoxes.pdb

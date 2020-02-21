@@ -9,7 +9,7 @@
 			<li Class="PatchOperationAdd">
 				<xpath>/Defs/DesignationCategoryDef[defName = "Security"]/specialDesignatorClasses</xpath>
 				<value>
-					<li>RRYautja.Designator_Rearm</li>
+					<li>TrapsRearmable.Designator_Rearm</li>
 				</value>
 			</li>
 		</operations>	

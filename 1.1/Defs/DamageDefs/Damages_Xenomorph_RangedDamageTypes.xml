@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+ <!-- <DamageDef>
+    <defName>Laser</defName>
+    <workerClass>DamageWorker_AddInjury</workerClass>
+    <label>burn</label>
+    <hasForcefulImpact>true</hasForcefulImpact>
+    <makesBlood>false</makesBlood>
+     <incapChanceMultiplier>1.2</incapChanceMultiplier> 
+    <canInterruptJobs>false</canInterruptJobs>
+    <externalViolence>true</externalViolence>
+    <deathMessage>{0} has been shot to death.</deathMessage>
+    <hediff>Burn</hediff>
+    <armorCategory>Heat</armorCategory>
+    <explosionHeatEnergyPerCell>15</explosionHeatEnergyPerCell>
+    <explosionCellMote>Mote_BlastFlame</explosionCellMote>
+    <explosionColorCenter>(1, 0.7, 0.7)</explosionColorCenter>
+    <explosionColorEdge>(1, 1, 0.7)</explosionColorEdge>
+    <soundExplosion>Explosion_Flame</soundExplosion>
+  </DamageDef>-->
+
+	<!--==================== Grenade Base Damage Type =========================-->
+  <DamageDef Name="Acid">
+    <defName>RRY_AcidDamage</defName>
+    <workerClass>DamageWorker_Acid</workerClass>
+    <label>acid</label>
+    <hasForcefulImpact>false</hasForcefulImpact>
+    <makesBlood>false</makesBlood>
+    <canInterruptJobs>false</canInterruptJobs>
+    <externalViolence>true</externalViolence>
+    <deathMessage>{0} has burned to death.</deathMessage>
+    <hediff>RRY_XenoAcidBurn</hediff>
+    <armorCategory>RRY_Acid</armorCategory>
+    <minDamageToFragment>15</minDamageToFragment>
+    <defaultDamage>10</defaultDamage>
+    <defaultArmorPenetration>0</defaultArmorPenetration>
+    <explosionHeatEnergyPerCell>15</explosionHeatEnergyPerCell>
+    <explosionCellMote>Mote_BlastFlame</explosionCellMote>
+    <explosionColorCenter>(1, 0.7, 0.7)</explosionColorCenter>
+    <explosionColorEdge>(1, 1, 0.7)</explosionColorEdge>
+    <soundExplosion>Explosion_Flame</soundExplosion>
+    <combatLogRules>Damage_Flame</combatLogRules>
+    <canUseDeflectMetalEffect>false</canUseDeflectMetalEffect>
+  </DamageDef>
+  
+  <!-- AcidBurn is like AcidDamage, but doesn't repeat -->
+  <DamageDef ParentName="Acid">
+    <defName>RRY_AcidBurn</defName>
+    <label>acid burn</label>
+    <workerClass>DamageWorker_AddInjury</workerClass>
+  </DamageDef>
+
+</Defs>

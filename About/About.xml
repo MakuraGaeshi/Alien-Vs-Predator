@@ -6,16 +6,11 @@
       <li>1.0</li>
       <li>1.1</li>
    </supportedVersions>
-   <!--
-   <supportedGameVersions>
-      <li>1.1</li>
-   </supportedGameVersions>
    <packageId>Ogliss.AlienVsPredator</packageId>
-   -->
 	<description>V1.5.0.0
 	
 	Requirments
-	JecsTools
+	JecsTools (For Rimworld 1.0, NOT required for RimWorld 1.1)
 	Humanoid Alien Races 2.0
 	
 	This mod adds 

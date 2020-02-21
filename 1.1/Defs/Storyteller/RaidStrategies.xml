@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <RaidStrategyDef>
+    <defName>RRY_PowerCut</defName>
+    <workerClass>RaidStrategyWorker_ImmediateAttackSmart_CutPower</workerClass>
+    <selectionWeightPerPointsCurve>
+      <points>
+        <li>(0,1)</li>
+      </points>
+    </selectionWeightPerPointsCurve>
+    <pointsFactorCurve>
+      <points>
+        <li>0, 1</li>
+      </points>
+    </pointsFactorCurve>
+    <arriveModes>
+      <li>RRY_RandomDropThroughRoof</li>
+    </arriveModes>
+    <letterLabelEnemy>Raid</letterLabelEnemy>
+    <arrivalTextEnemy>They are attacking immediately.</arrivalTextEnemy>
+  </RaidStrategyDef>
+</Defs>
