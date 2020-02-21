@@ -73,85 +73,9 @@ namespace HunterMarkingSystem
 
         public static HediffDef GetMark(ThingDef x)
         {
-            bool ArtificalPawn = x.race.FleshType.defName.Contains("Flesh_Construct") || x.race.FleshType.defName.Contains("Deamon") || x.race.body.defName.Contains("AIRobot") || x.race.IsMechanoid || (UtilChjAndroids.ChjAndroid && UtilChjAndroids.isChjAndroid(x)) || (UtilTieredAndroids.TieredAndroid && UtilTieredAndroids.isAtlasAndroid(x));
-            if (x.HasModExtension<MarkDefExtension>())
-            {
-                if (!x.GetModExtension<MarkDefExtension>().hediffs.NullOrEmpty())
-                {
-                    return x.GetModExtension<MarkDefExtension>().hediffs[0];
-                }
-                else
-                {
-                    Log.Warning(string.Format("MarkDefExtension found for {0} but no Hediffs found", x.defName));
-                }
-            }
-            else
-            {
-            //    Log.Warning(string.Format("No MarkDefExtension found for {0}", x.defName));
-            }
-            if (ArtificalPawn)
-            {
-                return HMSDefOf.HMS_Hediff_BloodedMMechanoid;
-            }
-            else
-            if (x.race.Humanlike)
-            {
-                if (x.defName.Contains("Human") || x == ThingDefOf.Human || x.race.meatDef == ThingDefOf.Meat_Human)
-                {
-                    return HMSDefOf.HMS_Hediff_BloodedMHuman;
-                    return HMSDefOf.HMS_Hediff_BloodedMWorthyHuman;
-                }
-                else
-                {
-                    return HMSDefOf.HMS_Hediff_BloodedMHumanlike;
-                    return HMSDefOf.HMS_Hediff_BloodedMWorthyHumanlike;
-                }
-            }
-            else
-            {
-
-                if (x.defName.Contains("Xenomorph"))
-                {
-                    if (x.defName.Contains("Queen"))
-                    {
-                        return HMSDefOf.HMS_Hediff_BloodedMXenomorphQueen;
-                    }
-                    if (x.defName.Contains("Predalien"))
-                    {
-                        return HMSDefOf.HMS_Hediff_BloodedMPredalien;
-                    }
-                    if (x.defName.Contains("Thrumbo"))
-                    {
-                        return HMSDefOf.HMS_Hediff_BloodedMXenomorphThrumbo;
-                    }
-                    return HMSDefOf.HMS_Hediff_BloodedMXenomorph;
-                }
-                else if (x.defName.Contains("GroTye") || x.defName.Contains("Megasloth"))
-                {
-                    return HMSDefOf.HMS_Hediff_BloodedMGroTye;
-                }
-                else if ((x.defName.Contains("Rhinoceros") || x.defName.Contains("Elephant")))
-                {
-                    return HMSDefOf.HMS_Hediff_BloodedMCrusher;
-                }
-                else if (x.defName.Contains("Thrumbo"))
-                {
-                    return HMSDefOf.HMS_Hediff_BloodedMThrumbo;
-                }
-                else if (!x.race.Humanlike && ((x.defName.Contains("Wolf") || x.description.Contains("Wolf") || x.description.Contains("wolf") || x.description.Contains("wolves")) || (x.defName.Contains("Hound") || x.defName.Contains("hound") || x.description.Contains("Hound") || x.description.Contains("hound") || x.description.Contains("hounds")) || (x.defName.Contains("Dog") || x.description.Contains("Dog") || x.description.Contains("dog") || x.description.Contains("dogs"))) && ((x.race.predator == true)))
-                {
-                    return HMSDefOf.HMS_Hediff_BloodedMHound;
-                }
-                else if (x.race.Animal)
-                {
-                    return HMSDefOf.HMS_Hediff_BloodedMBeast;
-                }
-                else
-                {
-                    return HMSDefOf.HMS_Hediff_BloodedM;
-                }
-            }
-            return null;
+            List<HediffDef> list = new List<HediffDef>();
+            list = GetMarks(x);
+            return list[0];
         }
 
         public static List<HediffDef> GetMarks(ThingDef x)
@@ -197,18 +121,15 @@ namespace HunterMarkingSystem
                     {
                         Marks.Add(HMSDefOf.HMS_Hediff_BloodedMXenomorphQueen);
                     }
-                    else
-                    if (x.defName.Contains("Predalien"))
+                    else if (x.defName.Contains("Predalien"))
                     {
                         Marks.Add(HMSDefOf.HMS_Hediff_BloodedMPredalien);
                     }
-                    else
-                    if (x.defName.Contains("Thrumbo"))
+                    else if (x.defName.Contains("Thrumbo"))
                     {
                         Marks.Add(HMSDefOf.HMS_Hediff_BloodedMXenomorphThrumbo);
                     }
-                    else
-                        Marks.Add(HMSDefOf.HMS_Hediff_BloodedMXenomorph);
+                    else Marks.Add(HMSDefOf.HMS_Hediff_BloodedMXenomorph);
                 }
                 else if (x.defName.Contains("GroTye") || x.defName.Contains("Megasloth"))
                 {
@@ -222,7 +143,7 @@ namespace HunterMarkingSystem
                 {
                     Marks.Add(HMSDefOf.HMS_Hediff_BloodedMThrumbo);
                 }
-                else if (!x.race.Humanlike && ((x.defName.Contains("Wolf") || x.description.Contains("Wolf") || x.description.Contains("wolf") || x.description.Contains("wolves")) || (x.defName.Contains("Hound") || x.defName.Contains("hound") || x.description.Contains("Hound") || x.description.Contains("hound") || x.description.Contains("hounds")) || (x.defName.Contains("Dog") || x.description.Contains("Dog") || x.description.Contains("dog") || x.description.Contains("dogs"))) && ((x.race.predator == true)))
+                else if (((x.defName.Contains("Wolf") || x.description.Contains("Wolf") || x.description.Contains("wolf") || x.description.Contains("wolves")) || (x.defName.Contains("Hound") || x.defName.Contains("hound") || x.description.Contains("Hound") || x.description.Contains("hound") || x.description.Contains("hounds")) || (x.defName.Contains("Dog") || x.description.Contains("Dog") || x.description.Contains("dog") || x.description.Contains("dogs"))) && x.race.body.defName.Contains("Quad") && ((x.race.predator == true)))
                 {
                     Marks.Add(HMSDefOf.HMS_Hediff_BloodedMHound);
                 }
