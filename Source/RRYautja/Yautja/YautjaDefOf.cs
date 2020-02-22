@@ -86,7 +86,6 @@ namespace RimWorld
         public static JobDef RRY_Yautja_MarkOther;
         public static JobDef RRY_Yautja_TakeTrophy;
         */
-        public static JobDef RRY_Yautja_RearmTrapJob;
         public static JobDef RRY_Yautja_TendSelf;
         public static JobDef RRY_Yautja_HealthShard;
 
@@ -106,16 +105,7 @@ namespace RimWorld
         public static ResearchProjectDef RRY_YautjaRanged_Basic;
         public static ResearchProjectDef RRY_YautjaRanged_Med;
         public static ResearchProjectDef RRY_YautjaRanged_Adv;
-
-        // Yautja WorkTypeDefs 
-        public static WorkTypeDef RRY_Rearm;
-
-        // Yautja DesignationDefs
-        public static DesignationDef RRY_RearmTrap;
-
-        // Yautja RecordDefs
-        public static RecordDef RRY_TrapsRearmed;
-
+        
         // Yautja BodyTypeDefs
         public static BodyTypeDef RRYYautjaFemale;
         public static BodyTypeDef RRYYautjaMale;

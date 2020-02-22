@@ -456,7 +456,7 @@
 		<flyOverhead>false</flyOverhead>
 		<damageDef>RRY_Flamer</damageDef>
 		<damageAmountBase>1</damageAmountBase>
-		<armorPenetrationBase>0.16</armorPenetrationBase>
+		<armorPenetrationBase>0.08</armorPenetrationBase>
 		<explosionRadius>0.75</explosionRadius>
 		<explosionChanceToStartFire>1.0</explosionChanceToStartFire>
 		<postExplosionSpawnThingDef>Filth_Fuel</postExplosionSpawnThingDef>
@@ -514,7 +514,7 @@
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>RRY_USCM_Bullet_M240F</defaultProjectile>
 			<warmupTime>0.5</warmupTime>
-			<range>12</range>
+			<range>16</range>
 			<burstShotCount>24</burstShotCount>
 			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
 			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>

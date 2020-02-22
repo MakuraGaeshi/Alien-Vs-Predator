@@ -25,7 +25,7 @@ namespace RRYautja
         {
             Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
             bool flag_Cloaked = pawn.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked, false);
-            bool flag_HiddenXeno = pawn.isXenomorph(out Comp_Xenomorph comp) && (comp.Hidden || comp.hidden);
+            bool flag_HiddenXeno = pawn.isXenomorph(out Comp_Xenomorph comp) && (comp!=null && (comp.Hidden || comp.hidden));
             if (flag_Cloaked || flag_HiddenXeno)
             {
                 return false;

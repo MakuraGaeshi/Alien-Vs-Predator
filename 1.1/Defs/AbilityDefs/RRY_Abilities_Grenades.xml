@@ -12,16 +12,16 @@
  </ThingDef>
 <!-- ======================== Grenade Ability Defs ================================== -->
 	<ThingDef ParentName="BaseGrenadeProjectile">
-		<defName>RRY_Projectile_M42AGrenade</defName>
+		<defName>RRY_Bullet_M42AGrenade</defName>
 		<graphicData>
 			<texPath>Things/Projectile/Grenade</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile>
 			<damageDef>Bomb</damageDef>
-			<!-- <damageAmountBase>20</damageAmountBase> -->
+			<damageAmountBase>15</damageAmountBase>
 			<armorPenetrationBase>0.16</armorPenetrationBase>
-			<explosionRadius>3</explosionRadius>
+			<explosionRadius>2.5</explosionRadius>
 			<explosionDelay>20</explosionDelay>
 			<speed>35</speed>
 			<flyOverhead>false</flyOverhead>
@@ -34,13 +34,13 @@
         <iconPath>Things/Projectile/Grenade</iconPath>
         <description>Launches a Grenade.</description>
         <abilityClass>RRYautja.EquipmentAbility</abilityClass>
-		<cooldown>15</cooldown>
+		<cooldown>30</cooldown>
         <verbProperties Class="RRYautja.VerbProperties_EquipmentAbility">
             <verbClass>RRYautja.Verb_UseEquipment</verbClass>
             <hasStandardCommand>true</hasStandardCommand>
 			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
-			<defaultProjectile>RRY_Projectile_M42AGrenade</defaultProjectile>
-            <warmupTime>0.4</warmupTime>
+			<defaultProjectile>RRY_Bullet_M42AGrenade</defaultProjectile>
+            <warmupTime>0.75</warmupTime>
             <burstShotCount>1</burstShotCount>
             <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
 			<range>31</range>

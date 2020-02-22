@@ -8,7 +8,7 @@
       <li>(1, 1, 1)</li>
     </colorSpectrum>
     <homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
-    <expandingIconTexture>World/WorldObjects/USCMIcon</expandingIconTexture>
+    <expandingIconTexture>Ui/Icons/Icon_USCM</expandingIconTexture>
   </FactionDef>
   
     <FactionDef Parent="RRY_USCMPlayerFactionBase">
@@ -168,7 +168,7 @@
       </li>
     </pawnGroupMakers>
 	<homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
-    <expandingIconTexture>World/WorldObjects/USCMIcon</expandingIconTexture>
+    <expandingIconTexture>Ui/Icons/Icon_USCM</expandingIconTexture>
   </FactionDef>
     
 </Defs>

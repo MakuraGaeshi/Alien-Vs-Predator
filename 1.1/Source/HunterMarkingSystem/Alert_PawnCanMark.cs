@@ -2,6 +2,7 @@
 using RimWorld;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Verse;
 
@@ -135,9 +136,7 @@ namespace HunterMarkingSystem
         // Token: 0x06002BF7 RID: 11255 RVA: 0x00149B50 File Offset: 0x00147F50
         public override AlertReport GetReport()
         {
-
-            List<Thing> list = (List<Thing>)this.SickPawns;
-            return AlertReport.CulpritsAre(list);
+            return AlertReport.CulpritsAre(this.SickPawns.ToList());
         }
     }
 }
