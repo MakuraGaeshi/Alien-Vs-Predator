@@ -26,6 +26,11 @@ namespace RRYautja
             bool flag = pawn != null && otherPawn != null;
             if (flag)
             {
+                if (pawn.def == USCMDefOf.RRY_Synth)
+                {
+                    float num = 0f;
+                    __result *= num;
+                }
                 bool alien = !Equals(otherPawn.def, pawn.def);
                 if (pawn.isYautja() && alien)
                 {

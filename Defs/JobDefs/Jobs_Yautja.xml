@@ -19,9 +19,4 @@
     <reportString>restocking health shards.</reportString>
   </JobDef>
   
-   <JobDef>
-    <defName>RRY_Yautja_RearmTrapJob</defName>
-    <driverClass>RRYautja.JobDriver_RearmTrap</driverClass>
-    <reportString>rearming Target.</reportString>
-  </JobDef>
 </Defs>

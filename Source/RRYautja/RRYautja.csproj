@@ -57,6 +57,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Harmony\Patches\AvP_AlienRace_HarmonyPatches_ThoughtsFromIngesting_Patch - Copy.cs" />
     <Compile Include="Harmony\Patches\AvP_RecordsUtility_Notify_PawnKilled_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_HediffSet_CalculateBleedRate_Synth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Need_get_IsFrozen_Synth_Patch.cs" />

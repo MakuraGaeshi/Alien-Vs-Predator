@@ -5,7 +5,7 @@
       <li>(0, 0.737, 0.847)</li>
     </colorSpectrum>
     <homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
-    <expandingIconTexture>World/WorldObjects/YautjaIconB</expandingIconTexture>
+    <expandingIconTexture>Ui/Icons/Icon_YautjaB</expandingIconTexture>
   </FactionDef>
   
     <FactionDef Parent="RRY_YautjaPlayerFactionBase">
@@ -59,7 +59,7 @@
       </li>
     </pawnGroupMakers>
     <homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
-    <expandingIconTexture>World/WorldObjects/YautjaIconB</expandingIconTexture>
+    <expandingIconTexture>Ui/Icons/Icon_YautjaB</expandingIconTexture>
     </FactionDef>
 	
     <FactionDef Parent="RRY_YautjaPlayerFactionBase">
@@ -113,7 +113,7 @@
       </li>
     </pawnGroupMakers>
     <homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
-    <expandingIconTexture>World/WorldObjects/YautjaIconB</expandingIconTexture>
+    <expandingIconTexture>Ui/Icons/Icon_YautjaB</expandingIconTexture>
     </FactionDef>
 	
     <FactionDef Parent="RRY_YautjaPlayerFactionBase">
@@ -167,7 +167,7 @@
       </li>
     </pawnGroupMakers>
     <homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
-    <expandingIconTexture>World/WorldObjects/YautjaIconB</expandingIconTexture>
+    <expandingIconTexture>Ui/Icons/Icon_YautjaB</expandingIconTexture>
     </FactionDef>
 	
 	<FactionDef Parent="RRY_YautjaPlayerFactionBase">
@@ -221,7 +221,7 @@
       </li>
     </pawnGroupMakers>
     <homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
-    <expandingIconTexture>World/WorldObjects/YautjaIconB</expandingIconTexture>
+    <expandingIconTexture>Ui/Icons/Icon_YautjaB</expandingIconTexture>
     </FactionDef>
 
 </Defs>
