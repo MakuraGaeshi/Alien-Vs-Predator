@@ -91,6 +91,13 @@
 			<li>Unknown</li>
 		</FoodPoisonCause>
       </li>
+      <li Class="RRYautja.CompProperties_SynthProps">
+		<AllowedDiseases>
+			<li>MuscleParasites</li>
+			<li>FibrousMechanites</li>
+			<li>SensoryMechanites</li>
+		</AllowedDiseases>
+      </li>
     </comps>
     
 	<drawGUIOverlay>true</drawGUIOverlay>
@@ -210,6 +217,8 @@
 					<li>PsychicSensitivity</li>
 					<li>Immunity</li>
 					<li>Gourmand</li>
+					<li>QuickSleeper</li>
+					<li>NightOwl</li>
 			</disallowedTraits>
             <alienPartGenerator>
 				<!--<useGenderedHeads>true</useGenderedHeads>
@@ -294,8 +303,8 @@
 		<Flammability>0.8</Flammability>
 		
 		<!-- Don't forget to change temp back to -10 to 30 after you done testing -->
-		<ComfyTemperatureMin>0</ComfyTemperatureMin>
-		<ComfyTemperatureMax>0</ComfyTemperatureMax>
+		<ComfyTemperatureMin>-10</ComfyTemperatureMin>
+		<ComfyTemperatureMax>30</ComfyTemperatureMax>
 		<LeatherAmount>40</LeatherAmount>
 		<MeatAmount>40</MeatAmount>
         <CarryingCapacity>125</CarryingCapacity>

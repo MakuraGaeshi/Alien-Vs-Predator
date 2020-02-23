@@ -11,7 +11,7 @@ namespace RRYautja
     {
         public CompProperties_SynthProps()
         {
-            this.compClass = typeof(CompSynthProps);
+            this.compClass = typeof(CompSmartgunSystem);
         }
         public List<HediffDef> AllowedDiseases = new List<HediffDef>();
     }
@@ -26,5 +26,7 @@ namespace RRYautja
         {
             base.PostExposeData();
         }
+        
+
     }
 }

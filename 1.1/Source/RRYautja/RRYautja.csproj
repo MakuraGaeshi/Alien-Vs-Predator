@@ -34,6 +34,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Harmony\Patches\AvP_SickPawnVisitUtility_CanVisit_Synth_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_RecordWorker_TimeInBedForMedicalReasons_ShouldMeasureTimeNow_Synth_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_IncidentWorker_DiseaseHuman_ActualVictims_Synth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_RecordsUtility_Notify_PawnKilled_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_HediffSet_CalculateBleedRate_Synth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Need_get_IsFrozen_Synth_Patch.cs" />
@@ -90,6 +93,7 @@
     <Compile Include="Harmony\Patches\AvP_StatWorker_GetValueUnfinalized_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_VerbUtility_HarmsHealth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_WorkGiver_Tend_GoodLayingStatusForTend_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_GatheringsUtility_ShouldGuestKeepAttendingGathering_Synth_Patch.cs" />
     <Compile Include="USCM\CompSynth.cs" />
     <Compile Include="USCM\CompTargeterSystem.cs" />
     <Compile Include="USCM\HediffComp_Overheating.cs" />

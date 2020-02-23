@@ -11,7 +11,7 @@ namespace RRYautja
     {
         public CompProperties_TargeterSystem()
         {
-            this.compClass = typeof(CompSmartgunSystem);
+            this.compClass = typeof(CompTargeterSystem);
         }
     }
 

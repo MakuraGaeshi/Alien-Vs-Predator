@@ -91,6 +91,13 @@
 			<li>Unknown</li>
 		</FoodPoisonCause>
       </li>
+      <li Class="RRYautja.CompProperties_SynthProps">
+		<AllowedDiseases>
+			<li>MuscleParasites</li>
+			<li>FibrousMechanites</li>
+			<li>SensoryMechanites</li>
+		</AllowedDiseases>
+      </li>
     </comps>
     
 	<drawGUIOverlay>true</drawGUIOverlay>
