@@ -1,14 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <FactionDef Abstract="True" Name="RRY_Yautja_NPCFactionBase">
-    <colorSpectrum>
-      <li>(0, 0.737, 0.847)</li>
-    </colorSpectrum>
-    <settlementTexturePath>World/WorldObjects/TribalSettlement</settlementTexturePath>
-    <factionIconPath>Ui/Icons/Icon_Yautja</factionIconPath>
-  </FactionDef>
-  
   <FactionDef ParentName="RRY_Yautja_NPCFactionBase">
 		<defName>RRY_Yautja_JungleClan</defName>
 		<label>Yautja Jungle Clan</label>
@@ -31,9 +23,13 @@
 	<factionNameMaker>NamerRRYYautjaJungleClan</factionNameMaker>
 	<settlementNameMaker>NamerRRYautjaBases</settlementNameMaker>
 	<techLevel>Spacer</techLevel>
-	<backstoryCategories>
-		<li>Raider</li>
-	</backstoryCategories>
+    <backstoryFilters>
+      <li>
+        <categories>
+          <li>RRY_Yautja_Standard</li>
+        </categories>
+      </li>
+    </backstoryFilters>
 	<hairTags>
 		<li>Punk</li>
 	</hairTags>
@@ -129,128 +125,6 @@
 	
     <colorSpectrum>
       <li>(1, 1, 1)</li>
-    </colorSpectrum>
-  </FactionDef>
-
-  <FactionDef>
-		<defName>RRY_Yautja_BadBloodFaction</defName>
-		<label>Yautja Badbloods</label>
-    <description>The Bad Bloods are traitors, pariah and, worst of all, dishonored members of the Yautja society. They are banned from their parents clan and hunted out of spite. They live in chaos with no rules or lord except the will to live and to hunt. They do not obey to any code of Honor known to yautja society and their existence is considered an insult to the Clans.</description>
-	<pawnSingular>Badblood yautja</pawnSingular>
-    <pawnsPlural>Badblood yautji</pawnsPlural>
-    <basicMemberKind>YautjaUnblooded_RRY</basicMemberKind>
-    <listOrderPriority>20</listOrderPriority>
-    <earliestRaidDays>45</earliestRaidDays>
-    <settlementGenerationWeight>1</settlementGenerationWeight>
-    <requiredCountAtGameStart>1</requiredCountAtGameStart>
-    <canMakeRandomly>true</canMakeRandomly>
-    <canSiege>false</canSiege>
-    <canStageAttacks>true</canStageAttacks>
-    <leaderTitle>Badblood Yautji</leaderTitle>
-    <startingGoodwill>
-      <min>-100</min>
-      <max>0</max>
-    </startingGoodwill>
-	<factionNameMaker>NamerRRYautjaFaction</factionNameMaker>
-	<settlementNameMaker>NamerRRYautjaBases</settlementNameMaker>
-		<techLevel>Spacer</techLevel>
-		<backstoryCategories>
-			<li>Raider</li>
-		</backstoryCategories>
-		<hairTags>
-			<li>Punk</li>
-		</hairTags>
-    <naturalColonyGoodwill>
-      <min>-60</min>
-      <max>0</max>
-    </naturalColonyGoodwill>
-    <visitorTraderKinds>
-	<!--
-      <li>RRY_Visitor_Yautja_Standard</li>
-	  -->
-    </visitorTraderKinds>
-   <caravanTraderKinds>
-   <!--
-      <li>Caravan_Outlander_BulkGoods</li>
-      <li>Caravan_Outlander_CombatSupplier</li>
-      <li>Caravan_Outlander_Exotic</li>
-	  -->
-    </caravanTraderKinds>
-    <baseTraderKinds>
-	<!--
-      <li>Base_Outlander_Standard</li>
-	  -->
-    </baseTraderKinds>
-    <allowedArrivalTemperatureRange>
-      <min>-50</min>
-      <max>45</max>
-    </allowedArrivalTemperatureRange>
-    <maxPawnCostPerTotalPointsCurve>
-      <points>
-        <li>(0,35)</li>
-        <li>(70, 50)</li>
-        <li>(700, 100)</li>
-        <li>(1300, 150)</li>
-        <li>(100000, 10000)</li>
-      </points>
-    </maxPawnCostPerTotalPointsCurve>
-    <pawnGroupMakers>
-      <li>
-        <kindDef>Combat</kindDef>
-        <options>
-          <YautjaUnblooded_RRY>14</YautjaUnblooded_RRY>
-          <YautjaYoungBlood_RRY>10</YautjaYoungBlood_RRY>
-          <YautjaBlooded_RRY>8</YautjaBlooded_RRY>
-          <YautjaElite_RRY>4</YautjaElite_RRY>
-          <YautjaElder_RRY>2</YautjaElder_RRY>
-          <YautjaAncient_RRY>1</YautjaAncient_RRY>
-        </options>
-      </li>
-        <li>
-        <kindDef>Peaceful</kindDef>
-        <options>
-          <YautjaColonist_RRY>10</YautjaColonist_RRY>
-          <YautjaSlave_RRY>13</YautjaSlave_RRY>
-          <YautjaAncient_RRY>1</YautjaAncient_RRY>
-        </options>
-      </li>
-	  <li>
-      <kindDef>Trader</kindDef>
-        <traders>
-          <YautjaTrader_RRY>1</YautjaTrader_RRY>
-        </traders>
-        <carriers>
-          <Muffalo>2</Muffalo>
-          <Dromedary>2</Dromedary>
-        </carriers>
-        <guards>
-          <YautjaUnblooded_RRY>14</YautjaUnblooded_RRY>
-          <YautjaYoungBlood_RRY>10</YautjaYoungBlood_RRY>
-          <YautjaBlooded_RRY>8</YautjaBlooded_RRY>
-          <YautjaElite_RRY>4</YautjaElite_RRY>
-          <YautjaElder_RRY>2</YautjaElder_RRY>
-          <YautjaAncient_RRY>1</YautjaAncient_RRY>
-        </guards>
-      </li>
-	  <li>
-        <kindDef>Settlement</kindDef>
-        <options>
-          <YautjaColonist_RRY>5</YautjaColonist_RRY>
-          <YautjaUnblooded_RRY>14</YautjaUnblooded_RRY>
-          <YautjaYoungBlood_RRY>10</YautjaYoungBlood_RRY>
-          <YautjaBlooded_RRY>8</YautjaBlooded_RRY>
-          <YautjaElite_RRY>4</YautjaElite_RRY>
-          <YautjaElder_RRY>2</YautjaElder_RRY>
-          <YautjaAncient_RRY>10</YautjaAncient_RRY>
-        </options>
-      </li>
-    </pawnGroupMakers>
-    <settlementTexturePath>World/WorldObjects/TribalSettlement</settlementTexturePath>
-    <factionIconPath>Ui/Icons/Icon_Yautja</factionIconPath>
-	
-    <colorSpectrum>
-      <li>(0.45, 0.05, 0.05)</li>
-      <li>(0.80, 0.25, 0.05)</li>
     </colorSpectrum>
   </FactionDef>
 

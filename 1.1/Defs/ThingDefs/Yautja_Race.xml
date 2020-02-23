@@ -141,7 +141,7 @@
     <description>.</description>
     <alienRace>
         <generalSettings>
-            <maleGenderProbability>0.5</maleGenderProbability>
+            <maleGenderProbability>0.75</maleGenderProbability>
             <immuneToAge>false</immuneToAge>
             <forcedRaceTraitEntries>
                 <li>
@@ -640,11 +640,11 @@
       <ageGenerationCurve>
         <points>
                     <li>(16,0)</li>
-                    <li>(17,25)</li>
-                    <li>(18,50)</li>
-                    <li>(20,75)</li>
-                    <li>(30,100)</li>
-                    <li>(40,125)</li>
+                    <li>(17,100)</li>
+                    <li>(18,110)</li>
+                    <li>(20,120)</li>
+                    <li>(30,130)</li>
+                    <li>(40,140)</li>
                     <li>(50,150)</li>
 					<li>(120,175)</li>
 					<li>(140,200)</li>

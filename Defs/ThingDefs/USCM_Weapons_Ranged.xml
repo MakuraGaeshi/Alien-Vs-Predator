@@ -226,112 +226,6 @@
 		</tools>
 	</ThingDef>
 
-<!-- ====================== USCM - M41A Pulse Rifle ====================== -->
- <ThingDef ParentName="BaseBullet">
-	<defName>RRY_USCM_Bullet_10x24mm_PR</defName>
-    <label>10x24mm caseless</label>
-    <graphicData>
-		<texPath>Things/Projectile/Charge_Small</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile>
-		<flyOverhead>false</flyOverhead>
-		<damageDef>Bullet</damageDef>
-		<damageAmountBase>13</damageAmountBase>
-		<armorPenetrationBase>0.35</armorPenetrationBase>
-		<stoppingPower>1.3</stoppingPower>
-		<speed>80</speed>
-	</projectile>
- </ThingDef>
-
-	<ThingDef ParentName="RRY_USCM_BaseMakeableGun">
-		<defName>RRY_USCM_Gun_M41APR</defName>
-		<label>M41A pulse rifle</label>
-		<description>The Armat M41A Pulse Rifle is an American-made pulse-action assault rifle chambered for 10×24mm Caseless ammunition.</description>
-		<graphicData>
-			<texPath>Things/Equipment/USCM/Ranged/M41A_green</texPath>
-			<graphicClass>Graphic_Single</graphicClass>		
-    </graphicData>
-		<soundInteract>Interact_ChargeRifle</soundInteract>
-		<statBases>
-			<WorkToMake>25000</WorkToMake>
-			<MarketValue>500</MarketValue>
-			<Mass>5.2</Mass>
-			<AccuracyTouch>0.55</AccuracyTouch>
-			<AccuracyShort>0.55</AccuracyShort>
-			<AccuracyMedium>0.68</AccuracyMedium>
-			<AccuracyLong>0.48</AccuracyLong>
-			<RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
-		</statBases>
-	<recipeMaker>
-		<researchPrerequisite>ChargedShot</researchPrerequisite>
-		<skillRequirements>
-			<Crafting>7</Crafting>
-		</skillRequirements>
-	</recipeMaker>		
-		<verbs>
-			<li>
-				<verbClass>Verb_Shoot</verbClass>
-				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>RRY_USCM_Bullet_10x24mm_PR</defaultProjectile>
-				<warmupTime>1</warmupTime>
-				<range>31</range>
-				<burstShotCount>4</burstShotCount>
-				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-				<soundCast>RRY_M41A_Shot</soundCast>
-				<soundCastTail>GunTail_Medium</soundCastTail>
-				<muzzleFlashScale>6</muzzleFlashScale>
-			
-			</li>
-		</verbs>
-		<comps>   
-			<li Class="AbilityUser.CompProperties_AbilityItem">
-				<!-- <AbilityUserClass>AbilityUser.GenericCompAbilityItem</AbilityUserClass> -->
-				<Abilities>
-					<li>RRY_Ability_LaunchM42AGrenade</li>
-				</Abilities>
-			</li> 
-		</comps>
-    <tools>
-      <li>
-        <label>grip</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>12</power>
-        <cooldownTime>1.6</cooldownTime>
-      </li>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>12</power>
-        <cooldownTime>1.6</cooldownTime>
-      </li>
-    </tools>
-		<techLevel>Spacer</techLevel>
-		<weaponTags>
-			<li>USCM_M41A</li>
-			<li>USCM_StandardIssue_Ranged</li>
-			<li>USCM_Weapons</li>
-		</weaponTags>
-		<thingCategories>
-			<li>RRY_RangedWeapons</li>
-			<li>RRY_USCM_RangedWeapons</li>
-		</thingCategories>
-		<tradeTags>
-			<li>RRY_RangedWeapons</li>
-			<li>RRY_USCM_RangedWeapons</li>
-		</tradeTags>
-		<costList>				
-			<Steel>30</Steel>
-			<Plasteel>5</Plasteel>
-			<ComponentIndustrial>3</ComponentIndustrial>
-		</costList>
-	</ThingDef>
-	
 <!-- ====================== USCM - M56 Smart Gun ====================== -->
 	<ThingDef ParentName="BaseBullet">
 	<defName>RRY_USCM_Bullet_10x28mm_SG</defName>
@@ -419,10 +313,6 @@
 		 <equippedStatOffsets>
 			<MoveSpeed>-2.32</MoveSpeed>
 		</equippedStatOffsets>
-		<thingCategories>
-			<li>RRY_RangedWeapons</li>
-			<li>RRY_USCM_RangedWeapons</li>
-		</thingCategories>
 		<tradeTags>
 			<li>RRY_RangedWeapons</li>
 			<li>RRY_USCM_RangedWeapons</li>
@@ -724,10 +614,6 @@
 			<li>USCM_StandardIssue_Ranged</li>
 			<li>USCM_Weapons</li>
 		</weaponTags>
-		<thingCategories>
-			<li>RRY_RangedWeapons</li>
-			<li>RRY_USCM_RangedWeapons</li>
-		</thingCategories>
 		<tradeTags>
 			<li>RRY_RangedWeapons</li>
 			<li>RRY_USCM_RangedWeapons</li>

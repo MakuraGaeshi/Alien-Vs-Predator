@@ -62,4 +62,38 @@
 		</comps>
 	</RRYautja.EquipmentAbilityDef>
  
+	<RRYautja.EquipmentAbilityDef ParentName="RRY_BaseAbility">
+        <defName>RRY_Ability_LaunchM42BShotgun</defName>
+        <label>Launch Grenade</label>
+        <iconPath>Things/Projectile/Grenade</iconPath>
+        <description>Launches a Grenade.</description>
+        <abilityClass>RRYautja.EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+        <verbProperties Class="RRYautja.VerbProperties_EquipmentAbility">
+            <verbClass>RRYautja.Verb_UseEquipment</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+			<defaultProjectile>RRY_USCM_Bullet_M37A2S</defaultProjectile>
+            <warmupTime>0.75</warmupTime>
+            <burstShotCount>8</burstShotCount>
+            <ticksBetweenBurstShots>0</ticksBetweenBurstShots>
+			<range>15</range>
+            <soundCast>RRY_M37A2_Shot</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+		  <li Class="CompProperties_EffectWithDest">
+			<compClass>RRYautja.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+		  </li>
+		</comps>
+	</RRYautja.EquipmentAbilityDef>
+ 
 </Defs>

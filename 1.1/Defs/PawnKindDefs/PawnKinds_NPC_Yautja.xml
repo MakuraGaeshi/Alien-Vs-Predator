@@ -5,9 +5,13 @@
   <PawnKindDef Name="RRY_YautjaBase" Abstract="True">
     <defaultFactionType>RRY_Yautja_BadBloodFaction</defaultFactionType>
     <race>RRY_Alien_Yautja</race>
-	<backstoryCategories>
-			<li>RRY_Yautja_Standard</li>
-  	</backstoryCategories>
+    <backstoryFilters>
+      <li>
+        <categories>
+          <li>RRY_Yautja_Standard</li>
+        </categories>
+      </li>
+    </backstoryFilters>
     <chemicalAddictionChance>0.05</chemicalAddictionChance>
     <baseRecruitDifficulty>1</baseRecruitDifficulty>
     <apparelAllowHeadgearChance>0.85</apparelAllowHeadgearChance>
@@ -20,7 +24,7 @@
 	  <li Class="AlienRace.Info">
 		<useOnlyPawnkindBackstories>true</useOnlyPawnkindBackstories>
 		<allowHumanBios>false</allowHumanBios>
-		<maleGenderProbability>0.5</maleGenderProbability>
+		<maleGenderProbability>0.75</maleGenderProbability>
 	  </li>
 	</modExtensions>
   </PawnKindDef>
@@ -124,9 +128,14 @@
     <techHediffsTags>
       <li>Advanced</li>
     </techHediffsTags>
-	<backstoryCategories>
-			<li>RRY_Yautja_Ancient</li>
-  	</backstoryCategories>
+    <backstoryFilters>
+      <li>
+        <categories>
+          <li>RRY_Yautja_Ancient</li>
+          <li>RRY_Yautja_Standard</li>
+        </categories>
+      </li>
+    </backstoryFilters>
 	<minGenerationAge>1000</minGenerationAge>
 	<maxGenerationAge>2000</maxGenerationAge>
   </PawnKindDef>
@@ -164,7 +173,7 @@
     <defName>YautjaUnblooded_RRY</defName>
     <label>Unblooded Yautja</label>
     <combatPower>100</combatPower>
-    <maxGenerationAge>40</maxGenerationAge>
+    <maxGenerationAge>20</maxGenerationAge>
 	<backstoryCategories>
 			<li>RRY_Yautja_Unblooded</li>
   	</backstoryCategories>

@@ -56,8 +56,6 @@
 						  </subNodes>
 						</li>
 						
-						<li Class="AbilityUserAI.JobGiver_AIAbilityUser"/>
-						
 						<li Class="JobGiver_XenomorphFightEnemies" />
 						
 						<!-- Wander -->

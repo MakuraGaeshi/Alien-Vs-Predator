@@ -41,7 +41,7 @@
             <burstShotCount>6</burstShotCount>
             <ticksBetweenBurstShots>0</ticksBetweenBurstShots>
 			<range>12</range>
-			<soundCast>OG_Flamer_Sound</soundCast>
+			<!--<soundCast>OG_Flamer_Sound</soundCast>-->
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>4</muzzleFlashScale>
 			<targetParams>

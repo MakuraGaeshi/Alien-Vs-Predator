@@ -16,7 +16,7 @@
 		<resourceReadoutPriority>Middle</resourceReadoutPriority>
 		<stackLimit>1</stackLimit>
 		<useHitPoints>true</useHitPoints>
-		<tradeability>Buyable</tradeability>
+		<tradeability>Sellable</tradeability>
 		<comps>
 			<li Class="CompProperties_Usable">
 				<useJob>OpenResourceBox</useJob>

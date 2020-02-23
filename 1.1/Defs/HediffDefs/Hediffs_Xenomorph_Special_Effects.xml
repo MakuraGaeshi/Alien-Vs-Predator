@@ -73,4 +73,25 @@
 			</li>
 		</stages>
 	</HediffDef>
+	
+  <HediffDef>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defName>RRY_EmergingChestburster</defName>
+    <label>horrified</label>
+    <description>horrified</description>
+    <labelNoun>horrified</labelNoun>
+    <battleStateLabel>blind</battleStateLabel>
+    <maxSeverity>1</maxSeverity>
+    <stages>
+      <li>
+        <partEfficiencyOffset>-0.8</partEfficiencyOffset>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_SelfHeal">
+        <healAmount>0.005</healAmount>
+      </li>
+    </comps>
+  </HediffDef>
+
 </Defs>

@@ -19,11 +19,16 @@
 		<factionNameMaker>NamerRRYautjaFaction</factionNameMaker>
     <settlementNameMaker>NamerRRYautjaBases</settlementNameMaker>
     <techLevel>Ultra</techLevel>
-    <backstoryCategories>
-      <li>Raider</li>
-      <li>Tribal</li>
-      <li>Civil</li>
-  	</backstoryCategories>
+    <backstoryFilters>
+      <li>
+        <categories>
+		  <li>Raider</li>
+		  <li>Tribal</li>
+		  <li>Civil</li>
+          <li>RRY_Yautja_Standard</li>
+        </categories>
+      </li>
+    </backstoryFilters>
     <startingResearchTags>
       <li>ClassicStart</li>
     </startingResearchTags>
@@ -73,11 +78,16 @@
     <isPlayer>true</isPlayer>
     <basicMemberKind>Colonist_YautjaUnblooded_RRY</basicMemberKind>
     <pawnsPlural>Yautja</pawnsPlural>
-    <backstoryCategories>
-      <li>Raider</li>
-      <li>Tribal</li>
-      <li>Civil</li>
-  	</backstoryCategories>
+    <backstoryFilters>
+      <li>
+        <categories>
+		  <li>Raider</li>
+		  <li>Tribal</li>
+		  <li>Civil</li>
+          <li>RRY_Yautja_Unblooded</li>
+        </categories>
+      </li>
+    </backstoryFilters>
     <startingResearchTags>
       <li>ClassicStart</li>
     </startingResearchTags>
@@ -127,11 +137,16 @@
     <isPlayer>true</isPlayer>
     <basicMemberKind>Colonist_YautjaBlooded_RRY</basicMemberKind>
     <pawnsPlural>Yautja</pawnsPlural>
-    <backstoryCategories>
-      <li>Raider</li>
-      <li>Tribal</li>
-      <li>Civil</li>
-  	</backstoryCategories>
+    <backstoryFilters>
+      <li>
+        <categories>
+		  <li>Raider</li>
+		  <li>Tribal</li>
+		  <li>Civil</li>
+          <li>RRY_Yautja_Blooded</li>
+        </categories>
+      </li>
+    </backstoryFilters>
     <startingResearchTags>
       <li>ClassicStart</li>
     </startingResearchTags>
@@ -181,11 +196,14 @@
     <isPlayer>true</isPlayer>
     <basicMemberKind>Colonist_Yautja_Blooding_RRY</basicMemberKind>
     <pawnsPlural>Yautja</pawnsPlural>
-    <backstoryCategories>
-      <li>Raider</li>
-      <li>Tribal</li>
-      <li>Civil</li>
-  	</backstoryCategories>
+    <backstoryFilters>
+      <li>
+        <categories>
+		  <li>Tribal</li>
+          <li>RRY_Yautja_Unblooded</li>
+        </categories>
+      </li>
+    </backstoryFilters>
     <startingResearchTags>
       <li>ClassicStart</li>
     </startingResearchTags>

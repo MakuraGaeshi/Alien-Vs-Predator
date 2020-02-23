@@ -29,7 +29,7 @@
                     <kindDefs>
                         <li>RRY_Player_Synth</li>
 					</kindDefs>
-                    <chance>90.0</chance> <!-- Change it back to 10 after testing -->
+                    <chance>10.0</chance> <!-- Change it back to 10 after testing -->
 					</li>
 				</pawnKindEntries>
 				<factionDefs>

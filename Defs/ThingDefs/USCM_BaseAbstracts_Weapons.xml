@@ -94,7 +94,7 @@
 	</ThingDef>
 	
 	<!-- ==================== USCM - Base Makeable Gun Weapon Template ========================= -->
-	<ThingDef Name="RRY_USCM_BaseMakeableGun" ParentName="RRY_USCM_BaseWeapon" Abstract="True">
+	<ThingDef Name="RRY_USCM_BaseMakeableGun" ParentName="RRY_USCM_BaseGun" Abstract="True">
     <recipeMaker>
       <workSpeedStat>SmithingSpeed</workSpeedStat>
       <workSkill>Crafting</workSkill>

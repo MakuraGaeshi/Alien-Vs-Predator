@@ -112,7 +112,6 @@
     </forcedHediffs>
     <spawnCategories>
       <li>RRY_Yautja_Standard</li>
-      <li>RRY_Yautja_Standard</li>
       <li>RRY_Yautja_Unblooded</li>
       <li>RRY_Yautja_BadBlood</li>
       <li>RRY_Yautja_Blooded</li>
@@ -169,7 +168,6 @@
     <defName>RRY_Yautja_YoungBlood</defName>
     <title>Young blood</title>
     <baseDescription>[PAWN_nameDef] is a Young adult [PAWN_alienRace] who yet to be seen as "true hunters" in the eyes of [PAWN_possessive] clanmates. These hunters are refined enough to overpower a skilled human fighter, however their skill against a Xenomorph varies. Once they kill one, [PAWN_alienRace] mark themselves with Xenomorph blood, completing their initiation into Adulthood.</baseDescription>
-	<linkedBackstory>RRY_Yautja_Unblooded</linkedBackstory>
     <bodyTypeMale>Male</bodyTypeMale>
     <bodyTypeFemale>Female</bodyTypeFemale>
 	<slot>Adulthood</slot>
