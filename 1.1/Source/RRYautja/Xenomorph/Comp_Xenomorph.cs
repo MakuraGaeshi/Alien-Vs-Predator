@@ -115,131 +115,6 @@ namespace RRYautja
                 return false;
             }
         }
-        public override void PostSpawnSetup(bool respawningAfterLoad)
-        {
-            base.PostSpawnSetup(respawningAfterLoad);
-            if (pawn.ageTracker.CurLifeStage != XenomorphDefOf.RRY_XenomorphFullyFormed)
-            {
-                hidden = true;
-            }
-            MapComponent_HiveGrid hiveGrid = map.HiveGrid();
-            if (hiveGrid != null)
-            {
-                if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_FaceHugger)
-                {
-                    /*
-                    if (!hiveGrid.Dronelist.Contains(pawn))
-                    {
-                        hiveGrid.Dronelist.Add(pawn);
-                    }
-                    */
-                }
-                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Runner)
-                {
-                    if (!hiveGrid.Runnerlist.Contains(pawn))
-                    {
-                        hiveGrid.Runnerlist.Add(pawn);
-                    }
-                }
-                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Drone)
-                {
-                    if (!hiveGrid.Dronelist.Contains(pawn))
-                    {
-                        hiveGrid.Dronelist.Add(pawn);
-                    }
-                }
-                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Warrior)
-                {
-                    if (!hiveGrid.Warriorlist.Contains(pawn))
-                    {
-                        hiveGrid.Warriorlist.Add(pawn);
-                    }
-                }
-                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Predalien)
-                {
-                    if (!hiveGrid.Predalienlist.Contains(pawn))
-                    {
-                        hiveGrid.Predalienlist.Add(pawn);
-                    }
-                }
-                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen)
-                {
-                    if (!hiveGrid.Queenlist.Contains(pawn))
-                    {
-                        hiveGrid.Queenlist.Add(pawn);
-                    }
-                }
-                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Thrumbomorph)
-                {
-                    if (!hiveGrid.HiveGuardlist.Contains(pawn))
-                    {
-                        hiveGrid.HiveGuardlist.Add(pawn);
-                    }
-                }
-
-            }
-        }
-
-        public override void PostDeSpawn(Map map)
-        {
-
-            MapComponent_HiveGrid hiveGrid = map.HiveGrid();
-            if (hiveGrid != null)
-            {
-                if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_FaceHugger)
-                {
-                    /*
-                    if (hiveGrid.Dronelist.Contains(pawn))
-                    {
-                        hiveGrid.Dronelist.Remove(pawn);
-                    }
-                    */
-                }
-                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Runner)
-                {
-                    if (hiveGrid.Runnerlist.Contains(pawn))
-                    {
-                        hiveGrid.Runnerlist.Remove(pawn);
-                    }
-                }
-                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Drone)
-                {
-                    if (hiveGrid.Dronelist.Contains(pawn))
-                    {
-                        hiveGrid.Dronelist.Remove(pawn);
-                    }
-                }
-                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Warrior)
-                {
-                    if (hiveGrid.Warriorlist.Contains(pawn))
-                    {
-                        hiveGrid.Warriorlist.Remove(pawn);
-                    }
-                }
-                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Predalien)
-                {
-                    if (hiveGrid.Predalienlist.Contains(pawn))
-                    {
-                        hiveGrid.Predalienlist.Remove(pawn);
-                    }
-                }
-                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen)
-                {
-                    if (hiveGrid.Queenlist.Contains(pawn))
-                    {
-                        hiveGrid.Queenlist.Remove(pawn);
-                    }
-                }
-                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Thrumbomorph)
-                {
-                    if (hiveGrid.HiveGuardlist.Contains(pawn))
-                    {
-                        hiveGrid.HiveGuardlist.Remove(pawn);
-                    }
-                }
-            }
-            base.PostDeSpawn(map);
-        }
 
         public void XenoLordTick()
         {
@@ -661,7 +536,7 @@ namespace RRYautja
             }
             else
             {
-                if (hidden )
+                if (hidden  )
                 {
                     MakeVisible();
                     hidden = false;
@@ -1226,6 +1101,10 @@ namespace RRYautja
             {
                 Find.Selector.SelectedObjects.Remove(pawn);
             }
+            if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_FaceHugger)
+            {
+
+            }
             if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Chestbursters))
             {
                 LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Chestbursters, OpportunityType.Important);
@@ -1273,6 +1152,133 @@ namespace RRYautja
                 LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Neomorphs, OpportunityType.Important);
             }
         }
+
+        public override void PostSpawnSetup(bool respawningAfterLoad)
+        {
+            base.PostSpawnSetup(respawningAfterLoad);
+            if (pawn.ageTracker.CurLifeStage != XenomorphDefOf.RRY_XenomorphFullyFormed)
+            {
+                hidden = true;
+            }
+            MapComponent_HiveGrid hiveGrid = map.HiveGrid();
+            if (hiveGrid != null)
+            {
+                if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_FaceHugger)
+                {
+                    /*
+                    if (!hiveGrid.Dronelist.Contains(pawn))
+                    {
+                        hiveGrid.Dronelist.Add(pawn);
+                    }
+                    */
+                }
+                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Runner)
+                {
+                    if (!hiveGrid.Runnerlist.Contains(pawn))
+                    {
+                        hiveGrid.Runnerlist.Add(pawn);
+                    }
+                }
+                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Drone)
+                {
+                    if (!hiveGrid.Dronelist.Contains(pawn))
+                    {
+                        hiveGrid.Dronelist.Add(pawn);
+                    }
+                }
+                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Warrior)
+                {
+                    if (!hiveGrid.Warriorlist.Contains(pawn))
+                    {
+                        hiveGrid.Warriorlist.Add(pawn);
+                    }
+                }
+                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Predalien)
+                {
+                    if (!hiveGrid.Predalienlist.Contains(pawn))
+                    {
+                        hiveGrid.Predalienlist.Add(pawn);
+                    }
+                }
+                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen)
+                {
+                    if (!hiveGrid.Queenlist.Contains(pawn))
+                    {
+                        hiveGrid.Queenlist.Add(pawn);
+                    }
+                }
+                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Thrumbomorph)
+                {
+                    if (!hiveGrid.HiveGuardlist.Contains(pawn))
+                    {
+                        hiveGrid.HiveGuardlist.Add(pawn);
+                    }
+                }
+
+            }
+        }
+
+        public override void PostDeSpawn(Map map)
+        {
+
+            MapComponent_HiveGrid hiveGrid = map.HiveGrid();
+            if (hiveGrid != null)
+            {
+                if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_FaceHugger)
+                {
+                    /*
+                    if (hiveGrid.Dronelist.Contains(pawn))
+                    {
+                        hiveGrid.Dronelist.Remove(pawn);
+                    }
+                    */
+                }
+                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Runner)
+                {
+                    if (hiveGrid.Runnerlist.Contains(pawn))
+                    {
+                        hiveGrid.Runnerlist.Remove(pawn);
+                    }
+                }
+                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Drone)
+                {
+                    if (hiveGrid.Dronelist.Contains(pawn))
+                    {
+                        hiveGrid.Dronelist.Remove(pawn);
+                    }
+                }
+                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Warrior)
+                {
+                    if (hiveGrid.Warriorlist.Contains(pawn))
+                    {
+                        hiveGrid.Warriorlist.Remove(pawn);
+                    }
+                }
+                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Predalien)
+                {
+                    if (hiveGrid.Predalienlist.Contains(pawn))
+                    {
+                        hiveGrid.Predalienlist.Remove(pawn);
+                    }
+                }
+                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen)
+                {
+                    if (hiveGrid.Queenlist.Contains(pawn))
+                    {
+                        hiveGrid.Queenlist.Remove(pawn);
+                    }
+                }
+                else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Thrumbomorph)
+                {
+                    if (hiveGrid.HiveGuardlist.Contains(pawn))
+                    {
+                        hiveGrid.HiveGuardlist.Remove(pawn);
+                    }
+                }
+            }
+            base.PostDeSpawn(map);
+        }
+
         private static List<Pawn> tmpPredatorCandidates = new List<Pawn>();
         public PawnKindDef host;
         public int ticksSinceHeal;

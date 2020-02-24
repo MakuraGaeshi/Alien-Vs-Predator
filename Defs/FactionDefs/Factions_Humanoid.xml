@@ -134,6 +134,7 @@
         <kindDef>Combat</kindDef>
         <options>
           <RRY_USCM_Private>10</RRY_USCM_Private>
+          <RRY_USCM_Lieutenant>1</RRY_USCM_Lieutenant>
 		  <RRY_USCM_Operator>2</RRY_USCM_Operator>
         </options>
       </li>
@@ -142,6 +143,7 @@
         <options>
           <RRY_USCM_Private>10</RRY_USCM_Private>
 		  <RRY_USCM_Operator>2</RRY_USCM_Operator>
+          <RRY_USCM_Lieutenant>1</RRY_USCM_Lieutenant>
         </options>
       </li>
 	  <li>
@@ -163,6 +165,7 @@
         <options>
           <RRY_USCM_Private>6</RRY_USCM_Private>
 		  <RRY_USCM_Operator>2</RRY_USCM_Operator>
+          <RRY_USCM_Lieutenant>1</RRY_USCM_Lieutenant>
 		  <RRY_USCM_PAO>1</RRY_USCM_PAO>
         </options>
       </li>
