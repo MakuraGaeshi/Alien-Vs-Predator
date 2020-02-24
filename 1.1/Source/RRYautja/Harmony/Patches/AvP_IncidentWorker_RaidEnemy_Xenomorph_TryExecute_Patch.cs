@@ -15,7 +15,7 @@ using RRYautja.ExtensionMethods;
 
 namespace RRYautja
 {
-    [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "TryExecute")]
+    [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "TryExecuteWorker")]
     public static class AvP_IncidentWorker_RaidEnemy_Xenomorph_TryExecute_Patch
     {
         [HarmonyPrefix]

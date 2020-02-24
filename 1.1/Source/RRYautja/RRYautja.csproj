@@ -94,6 +94,8 @@
     <Compile Include="Harmony\Patches\AvP_VerbUtility_HarmsHealth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_WorkGiver_Tend_GoodLayingStatusForTend_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_GatheringsUtility_ShouldGuestKeepAttendingGathering_Synth_Patch.cs" />
+    <Compile Include="USCM\CompUSCMDropship.cs" />
+    <Compile Include="USCM\ScenPart_PlayerPawnsArriveMethod.cs" />
     <Compile Include="USCM\Comp_Stealth.cs" />
     <Compile Include="USCM\CompSynth.cs" />
     <Compile Include="USCM\CompTargeterSystem.cs" />
@@ -120,6 +122,8 @@
     <Compile Include="util\AvPConstants.cs" />
     <Compile Include="util\AvPDefOf.cs" />
     <Compile Include="util\Class1.cs" />
+    <Compile Include="util\Class2.cs" />
+    <Compile Include="util\DebugTools\DebugToolsSpawningAvP.cs" />
     <Compile Include="util\IngestionOutcomeDoer_RemoveHediff.cs" />
     <Compile Include="util\TunnelSpawner.cs" />
     <Compile Include="util\CompPowerPlantSolarTurret.cs" />

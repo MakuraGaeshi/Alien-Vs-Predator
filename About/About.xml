@@ -2,18 +2,55 @@
 <ModMetaData>
 	<name>Alien Vs Predator</name>
 	<author>Ogliss &amp; Rebelrot &amp; acide_bob</author>
-   <supportedVersions>
-      <li>1.0</li>
-      <li>1.1</li>
-   </supportedVersions>
-   <packageId>Ogliss.AlienVsPredator</packageId>
+	<supportedVersions>
+		<li>1.0</li>
+		<li>1.1</li>
+	</supportedVersions>
+	<packageId>Ogliss.AlienVsPredator</packageId>
 	<description>V1.5.0.0
 	
 	Requirments
 	JecsTools (For Rimworld 1.0, NOT required for RimWorld 1.1)
 	Humanoid Alien Races 2.0
 	
-	This mod adds 
+	"All right, sweethearts, what are you waiting for? Breakfast in bed? It's another glorious day in the Corps. A day in the Marine Corps is like a day on the farm: Every meal's a banquet. Every paycheck's a fortune! Every formation's a parade! I love the Corps!" - Sgt. Apone
+	Thats right, the USCM have arrived on the Rim!
+	
+	Apparel:
+	USCM Bandana - Texture by Rebelrot
+	USCM Military Cap - Texture by Rebelrot
+	USCM Fatigues - Texture by Rebelrot
+	USCM Medical jumpsuit - Texture by Rebelrot
+	USCM Engineer jumpsuit - Texture by Rebelrot
+	
+	Armour:
+	M10 Ballistic Helmet - Texture by Rebelrot
+	M3 Personal Armor - Texture by Rebelrot
+	M56 Combat Harness - (Smart Gun System Component) - Texture by Rebelrot
+	
+	Equipment:
+	Head Mounted Sight - (Smart Gun System Component) - Texture by Rebelrot
+	Weapons:
+	M4A3 Service Pistol
+	M4A4 Pistol
+	88 Mod 4 Combat Pistol
+	M41A Pulse rifle - (Underslung Grenade Launcher)
+	M41B Pulse rifle - (Underslung Shotgun)
+	M56 Smartgun - (Smart Gun System Component)
+	M240 Incinerator Unit
+	M2402 Heavy incinerator
+	M39 Submachine gun
+	M37A2 Pump Shotgun
+	M42A Sniper Rifle
+	M5 Rocket Propelled Grenade
+	
+	Turrets:
+	UA 571-C automated sentry gun - Texture by Hiztaar
+	
+	Misc:
+
+	Synth race:
+	
 
 	"El Diablo, cazador de hombre. Only in the hottest years this happens. And this year it grows hot."
 	The Yautja are one of the fiercest hunters in the known galaxy. Smart, cunning, strong and endurable, their thirst for Glorious hunting can never be sated.
@@ -60,11 +97,11 @@
 	Full Xenomorph lifeycle, facehuggers can impregnate pawns, the resulting xenomorph is mostly random, however if the host is a yautja then it will always result in a predalien.
 	
 	Pawns:
-	Queen, Drone(Spitter), Warrior, Runner, Facehugger. Chestburster, Predalien, Neomorph
+	Queen, Drone(Spitter), Warrior, Runner, Facehugger. Chestburster, Predalien, Thrumbomorph, Neomorph
 	
 	Mechanics:
-	Acidic Blood: 
-	Hidden Infections:
+	Acidic Blood: Xenomorph Blood is Highly Acidic and will damage everything in the same tile as it for a short period after being dropped by a LIVING xenomorph
+	Hidden Infections: Can be disabled Via Mod Options, if enabled, there is a small chance any pawn spawned will have a hidden impregnation.
 	
 	incidents:
 	They Mostly Come at Night: Xenomorph raids during the night are larger than normal
@@ -82,6 +119,7 @@
 	Rebelrot: Everything except what follow.
 	Temmy: Needler, Bladed Maul, combistaff
 	Deon: Drone, Warrior, Runner, Queen Xenomorphs.
+	Hiztarr: M4A3 Service Pistol, M4A4 Pistol, 88 Mod 4 Combat Pistol M42A Sniper Rifle.
 	SerpyDerpy: Rynath
 
 	Translators are welcome!
@@ -98,11 +136,17 @@
 
 	also a big Thank you to Jecrell, Erdelf, Menhi, Roolo, Walking Problem, Ministry of MOM and the many others who assisted with the C#
 
-	Playtesters:
-	acide_bob
-	Blyatwing
-	buupis
-
 	Thrumbomorph named by ＧｅｎｅｒａｌＴｈｉｃｃＬｏｌｉ
-		</description>
+	</description>
+    <modDependencies>
+      <li>
+        <packageId>erdelf.HumanoidAlienRaces</packageId>
+        <displayName>Humanoid Alien Races 2.0</displayName>
+        <steamWorkshopUrl>steam://url/CommunityFilePage/839005762</steamWorkshopUrl>
+        <downloadUrl>https://github.com/RimWorld-CCL-Reborn/AlienRaces</downloadUrl>
+      </li>
+    </modDependencies>
+  <loadAfter>
+    <li>erdelf.HumanoidAlienRaces</li>
+  </loadAfter>
 </ModMetaData>

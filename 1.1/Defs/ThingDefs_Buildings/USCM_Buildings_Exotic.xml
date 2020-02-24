@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>RRY_USCM_DropshipUD4L</defName>
+    <label>UD-4L Cheyenne Dropship</label>
+    <description>The UD-4 Utility Dropship, better known colloquially as the "Cheyenne", is a type of combat utility spacecraft manufactured by UA Northridge and primarily used by the United States Colonial Marine Corps. The Cheyenne is designed for rapid troop deployment, dropping from the belly of USCM spacecraft in orbit and delivering Marines and equipment quickly to a planet's surface. They typically carry the M577 Armored Personnel Carrier, although they can also be used to transport other equipment and even Marines directly in the field.</description>
+    <altitudeLayer>Building</altitudeLayer>
+    <pathCost>150</pathCost>
+    <blockWind>true</blockWind>
+    <passability>Impassable</passability>
+    <fillPercent>1.0</fillPercent>
+    <size>(5,3)</size>
+    <graphicData>
+      <texPath>Things/Buildings/USCM/Dropship/UD4L</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(6,3)</drawSize>
+      <!-- <color>(162,164,149)</color> -->
+      <shadowData>
+        <volume>(4.1, 1.0, 1.8)</volume>
+        <offset>(0, 0, -0.1)</offset>
+      </shadowData>
+    </graphicData>
+    <statBases>
+      <MaxHitPoints>1000</MaxHitPoints>
+      <Flammability>1</Flammability>
+    </statBases>
+    <tickerType>Normal</tickerType>
+    <killedLeavings>
+      <Steel>100</Steel>
+      <Plasteel>35</Plasteel>
+      <ChunkSlagSteel>8</ChunkSlagSteel>
+      <ComponentIndustrial>4</ComponentIndustrial>
+      <ComponentSpacer>1</ComponentSpacer>
+    </killedLeavings>
+    <rotatable>false</rotatable>
+    <selectable>true</selectable>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+    <drawerType>MapMeshOnly</drawerType>
+    <repairEffect>ConstructMetal</repairEffect>
+    <forceDebugSpawnable>true</forceDebugSpawnable>
+    <building>
+      <claimable>false</claimable>
+    </building>
+    <inspectorTabs>
+      <li>ITab_ContentsTransporter</li>
+    </inspectorTabs>
+    <comps>
+      <li Class="CompProperties_USCMDropship" />
+      <li Class="CompProperties_Transporter">
+        <massCapacity>999999</massCapacity>
+        <max1PerGroup>true</max1PerGroup>
+        <canChangeAssignedThingsAfterStarting>true</canChangeAssignedThingsAfterStarting>
+        <showOverallStats>false</showOverallStats>
+        <pawnLoadedSound>Shuttle_PawnLoaded</pawnLoadedSound>
+      </li>
+    </comps>
+    <placeWorkers>
+      <li>PlaceWorker_NotUnderRoof</li>
+    </placeWorkers>
+  </ThingDef>
+
+</Defs>

@@ -24,24 +24,29 @@ namespace RimWorld
         public static ThingDef RRY_Equipment_HMS;
 
         // USCM ThingDefs  Weapons
-    //    public static ThingDef RRY_Gun_Hunting_Bow;
-    //    public static ThingDef RRY_Gun_Compound_Bow;
+        //    public static ThingDef RRY_Gun_Hunting_Bow;
+        //    public static ThingDef RRY_Gun_Compound_Bow;
 
         // USCM ThingDefs  Projectiles
-    //    public static ThingDef RRY_SmartDisk_Thrown;
+        //    public static ThingDef RRY_SmartDisk_Thrown;
+
+        // USCM ThingDefs  Equipment
+        public static ThingDef RRY_USCM_DropshipUD4L;
+        public static ThingDef RRY_USCM_DropshipUD4LIncoming;
+        public static ThingDef RRY_USCM_DropshipUD4LLeaving;
 
         // USCM ThingDefs  Motes
-    //    public static ThingDef RRY_SmartDisk_Mote;
+        //    public static ThingDef RRY_SmartDisk_Mote;
 
         // USCM PawnsArrivalModeDefs 
-    //    public static PawnsArrivalModeDef EdgeWalkInGroups;
+        //    public static PawnsArrivalModeDef EdgeWalkInGroups;
 
         // USCM ThoughtDefs
-    //    public static ThoughtDef RRY_HonourableVsBadBlood;
+        //    public static ThoughtDef RRY_HonourableVsBadBlood;
 
         // USCM ThoughtDefs Memories
-    //    public static ThoughtDef RRY_Thought_ThrillOfTheHunt;
-        
+        //    public static ThoughtDef RRY_Thought_ThrillOfTheHunt;
+
     }
     [DefOf]
     public static class USCMConceptDefOf

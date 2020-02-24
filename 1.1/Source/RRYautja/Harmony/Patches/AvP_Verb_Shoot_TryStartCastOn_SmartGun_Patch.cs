@@ -15,7 +15,7 @@ using RRYautja.ExtensionMethods;
 
 namespace RRYautja
 {
-    [HarmonyPatch(typeof(Verb), "TryStartCastOn")]
+    [HarmonyPatch(typeof(Verb), "TryStartCastOn", new Type[] { typeof(LocalTargetInfo), typeof(LocalTargetInfo), typeof(bool), typeof(bool) })]
     public static class AvP_Verb_Shoot_TryStartCastOn_SmartGun_Patch
     {
         [HarmonyPrefix]

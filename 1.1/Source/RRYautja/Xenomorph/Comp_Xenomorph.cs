@@ -115,7 +115,17 @@ namespace RRYautja
                 return false;
             }
         }
-
+        public bool CanHide
+        {
+            get
+            {
+                if (pawn.Map.glowGrid.GameGlowAt(pawn.Position, false)<0.5f)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
         public void XenoLordTick()
         {
             Log.Message("XenoLordTick");
@@ -489,8 +499,8 @@ namespace RRYautja
                                             observerSight *= 0.9f;
                                         }
                                         observerSight = Math.Min(2f, observerSight);
-                                        float thiefMoving = pawn.health.capacities.GetLevel(PawnCapacityDefOf.Moving);
-                                        float spotChance = 0.8f * thiefMoving / observerSight;
+                                        float TargetMoving = pawn.health.capacities.GetLevel(PawnCapacityDefOf.Moving);
+                                        float spotChance = 0.8f * TargetMoving / observerSight;
                                         if (Rand.Value > spotChance || spotted)
                                         {
                                             MakeVisible();
@@ -502,8 +512,8 @@ namespace RRYautja
                                     {
                                         if (thing is Building_Turret turret && turret.Faction != null && turret.Faction.IsPlayer)
                                         {
-                                            float thiefMoving = pawn.health.capacities.GetLevel(PawnCapacityDefOf.Moving);
-                                            float spotChance = 0.99f * thiefMoving;
+                                            float TargetMoving = pawn.health.capacities.GetLevel(PawnCapacityDefOf.Moving);
+                                            float spotChance = 0.99f * TargetMoving;
                                             if (Rand.Value > spotChance || spotted)
                                             {
                                                 MakeVisible();

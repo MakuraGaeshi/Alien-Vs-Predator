@@ -15,7 +15,7 @@ using RRYautja.ExtensionMethods;
 
 namespace RRYautja 
 {
-    [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "TryExecute")]
+    [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "TryExecuteWorker")]
     public static class AvP_IncidentWorker_RaidEnemy_Yautja_TryExecute_Patch
     {
         // Token: 0x06000017 RID: 23 RVA: 0x00002CD0 File Offset: 0x00000ED0

@@ -17,7 +17,7 @@ namespace RRYautja
 {
     /*
     // Token: 0x02000007 RID: 7
-    [HarmonyPatch(typeof(IncidentWorker_WandererJoin), "TryExecute")]
+    [HarmonyPatch(typeof(IncidentWorker_WandererJoin), "TryExecuteWorker")]
     public static class AvP_IncidentWorker_WandererJoin_TryExecute_Patch
     {
         public static string stranger = "StrangerInBlack";
