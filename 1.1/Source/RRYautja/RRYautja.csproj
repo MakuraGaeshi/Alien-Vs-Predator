@@ -94,6 +94,7 @@
     <Compile Include="Harmony\Patches\AvP_VerbUtility_HarmsHealth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_WorkGiver_Tend_GoodLayingStatusForTend_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_GatheringsUtility_ShouldGuestKeepAttendingGathering_Synth_Patch.cs" />
+    <Compile Include="USCM\Comp_Stealth.cs" />
     <Compile Include="USCM\CompSynth.cs" />
     <Compile Include="USCM\CompTargeterSystem.cs" />
     <Compile Include="USCM\HediffComp_Overheating.cs" />
@@ -135,6 +136,7 @@
     <Compile Include="util\PawnsArrivalModeWorker_DropThroughRoof.cs" />
     <Compile Include="util\Projectile_Anim.cs" />
     <Compile Include="util\Projectile_Fire.cs" />
+    <Compile Include="Xenomorph\XenomorphExtensions.cs" />
     <Compile Include="Xenomorph\Hives\IncidentWorker_Hivelike - Copy.cs" />
     <Compile Include="Xenomorph\XenomorphHostSystem.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_Xenomorph_Cocoon.cs" />
@@ -263,7 +265,6 @@
     <Compile Include="util\Projectile_AbilityRRY.cs" />
     <Compile Include="Yautja\Verb_Launch_Stuffable_Projectile.cs" />
     <Compile Include="Yautja\Verb_Shoot_Stuffable.cs" />
-    <Compile Include="Xenomorph\XenosCorpseModification.cs" />
     <None Include="Yautja\RRY_Thought_Situational.cs.bak2" />
     <Compile Include="Xenomorph\HediffComp_DamageOverTime.cs" />
     <Compile Include="Xenomorph\Thing_AddAcidDamageFilth.cs" />

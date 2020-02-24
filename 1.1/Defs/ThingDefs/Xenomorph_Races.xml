@@ -134,6 +134,9 @@
       <li>
         <compClass>RRYautja.Comp_Facehugger</compClass>
       </li>
+      <li>
+        <compClass>RRYautja.Comp_Xenomorph</compClass>
+      </li>
     </comps>
   </ThingDef>
   

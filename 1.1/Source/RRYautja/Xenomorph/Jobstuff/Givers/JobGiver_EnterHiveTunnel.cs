@@ -53,7 +53,7 @@ namespace RRYautja
                     {
                         if (hive.Lord!=null && hive.Lord!=pawn.GetLord())
                         {
-                            pawn.xenomorph().SwitchToLord(hive.Lord);
+                            pawn.SwitchToLord(hive.Lord);
                         }
                         return (HiveLike)XenomorphUtil.ClosestReachableHivelike(pawn);
                     }
@@ -85,7 +85,7 @@ namespace RRYautja
                         HiveLike hive = (HiveLike)XenomorphUtil.ClosestReachableHivelike(pawn);
                         if (hive.Lord != null && hive.Lord != pawn.GetLord())
                         {
-                            pawn.xenomorph().SwitchToLord(hive.Lord);
+                            pawn.SwitchToLord(hive.Lord);
                         }
                         return (HiveLike)XenomorphUtil.ClosestReachableHivelike(pawn);
                     }

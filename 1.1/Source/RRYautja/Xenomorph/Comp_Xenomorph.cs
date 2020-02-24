@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using HarmonyLib;
+using RimWorld;
 using RRYautja.ExtensionMethods;
 using System;
 using System.Collections.Generic;
@@ -96,10 +97,24 @@ namespace RRYautja
         {
             get
             {
-                return (10 * pawn.BodySize) * pawn.Map.glowGrid.GameGlowAt(pawn.Position, false);
+                return Mathf.Max((10 * pawn.BodySize) * pawn.Map.glowGrid.GameGlowAt(pawn.Position, false), (10 * pawn.BodySize));
             }
         }
-
+        public bool spotted
+        {
+            get
+            {
+                List<Pawn> pawns = map.mapPawns.AllPawnsSpawned.FindAll(x => pawn.Position.DistanceTo(x.Position) < MinHideDist);
+                if (!pawns.NullOrEmpty())
+                {
+                    if (pawns.Any(x => GenSight.LineOfSight(pawn.Position, x.Position, map)))
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
@@ -161,6 +176,7 @@ namespace RRYautja
                         hiveGrid.HiveGuardlist.Add(pawn);
                     }
                 }
+
             }
         }
 
@@ -270,7 +286,7 @@ namespace RRYautja
                 {
                     LordJob
                         newJob = new LordJob_DefendAndExpandHiveLike(false, pawn.Faction, c, 40f);
-                    CreateNewLord(pawn, c, newJob);
+                    pawn.CreateNewLord(c, newJob);
                 }
                 if (lords.Count() != 0 && ((pawn.GetLord() != null && LordReplaceable) || pawn.GetLord() == null))
                 {
@@ -363,12 +379,12 @@ namespace RRYautja
                             if (!Hivelords.NullOrEmpty())
                             {
                                 Hivelord = Hivelords.RandomElement();
-                                SwitchToLord(Hivelord);
+                                pawn.SwitchToLord(Hivelord);
                             //    CreateNewLord(pawn, c, newJob);
                             }
                             else
                             {
-                                CreateNewLord(pawn, c, newJob);
+                                pawn.CreateNewLord(c, newJob);
                             }
                             if (HiveLoc == IntVec3.Invalid) HiveLoc = c;
                         }
@@ -388,7 +404,7 @@ namespace RRYautja
                     if (!Hivelords.NullOrEmpty())
                     {
                         Hivelord = Hivelords.RandomElement();
-                        SwitchToLord(Hivelord);
+                        pawn.SwitchToLord(Hivelord);
                     }
                 }
                 if (pawn.GetLord()!=null)
@@ -508,95 +524,16 @@ namespace RRYautja
             base.CompTickRare();
         }
         */
-        public Lord SwitchToLord(Lord lord)
-        {
-            if (pawn.GetLord() != null && pawn.GetLord() is Lord l)
-            {
-                if (l.ownedPawns.Count > 0)
-                {
-                    l.ownedPawns.Remove(pawn);
-                }
-                if (l.ownedPawns.Count == 0)
-                {
-                    l.lordManager.RemoveLord(l);
-                }
-            }
-            lord.AddPawn(pawn);
-            return lord;
-        }
-
-        private Lord CreateNewLord(Pawn pawn)
-        {
-            IntVec3 c;
-            Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_Xenomorph_Hive_Slime), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, null, null, 0, -1, false, RegionType.Set_Passable, false);
-            if (thing != null)
-            {
-                c = RCellFinder.RandomWanderDestFor(pawn, thing.Position, 5f, null, Danger.Some);
-            }
-            else
-            {
-                if (InfestationLikeCellFinder.TryFindCell(out c, out IntVec3 lc, pawn.Map, false))
-                {
-                    if (Prefs.DevMode && Find.Selector.SelectedObjects.Contains(pawn))
-                    {
-                        ThingDef td = XenomorphDefOf.RRY_Xenomorph_Hive_Slime;
-                        GenSpawn.Spawn(td, c, pawn.Map);
-                        Find.LetterStack.ReceiveLetter(string.Format("Lord Created"), string.Format("@: {0} ", c), LetterDefOf.NegativeEvent, c.GetFirstThing(pawn.Map, td), null, null);
-                    }
-                }
-                if (pawn.CanReach(c, PathEndMode.OnCell, Danger.Deadly, true))
-                {
-                //    c = RCellFinder.RandomWanderDestFor(pawn, c, 3f, null, Danger.Some);
-                }
-                else
-                {
-                    c = RCellFinder.RandomWanderDestFor(pawn, thing.Position, 3f, null, Danger.Some);
-                }
-            }
-            if (pawn.GetLord() != null && pawn.GetLord() is Lord l)
-            {
-                if (l.ownedPawns.Count > 0)
-                {
-                    l.ownedPawns.Remove(pawn);
-                }
-                if (l.ownedPawns.Count == 0)
-                {
-                    l.lordManager.RemoveLord(l);
-                }
-            }
-            Lord lord = LordMaker.MakeNewLord(parent.Faction, new LordJob_DefendAndExpandHiveLike(false), parent.Map, null);
-            lord.AddPawn(pawn);
-            return lord;
-        }
-
-        private Lord CreateNewLord(Pawn pawn, IntVec3 loc, LordJob lordJob)
-        {
-            IntVec3 c = loc;
-            if (pawn.GetLord() != null && pawn.GetLord() is Lord l)
-            {
-                if (l.ownedPawns.Count > 0)
-                {
-                    l.ownedPawns.Remove(pawn);
-                }
-                if (l.ownedPawns.Count == 0)
-                {
-                    l.lordManager.RemoveLord(l);
-                }
-            }
-            Lord lord = LordMaker.MakeNewLord(parent.Faction, lordJob, map, null);
-            lord.AddPawn(pawn);
-            return lord;
-        }
 
         public override void CompTick()
         {
             if (pawn.ageTracker.CurLifeStage!=XenomorphDefOf.RRY_XenomorphFullyFormed)
             {
-                if (pawn.CurJobDef == JobDefOf.Ingest && Hidden)
+                if (pawn.CurJobDef == JobDefOf.Ingest)
                 {
                     hidden = false;
                 }
-                else if (pawn.CurJobDef != JobDefOf.Ingest && !Hidden)
+                else if (pawn.CurJobDef != JobDefOf.Ingest)
                 {
                     hidden = true;
                 }
@@ -622,7 +559,7 @@ namespace RRYautja
                                                                                              where HediffUtility.CanHealNaturally(x)
                                                                                              select x);
                     hediff_Injury.Heal(num * ((Pawn)base.parent).HealthScale * 0.01f);
-                    string text = string.Format("{0} healed.", ((Pawn)base.parent).LabelCap);
+                //    Traverse.Create(hediff_Injury).Property(name: "BleedRate").SetValue(hediff_Injury.BleedRate*0.95);
                 }
             }
 
@@ -646,10 +583,12 @@ namespace RRYautja
                         AlertXenomorph(pawn, null);
                     }
                 }
+                /*
                 if (pawn.pather != null && GetLastCell(pawn.pather).GetDoor(pawn.Map) != null)
                 {
                     GetLastCell(pawn.pather).GetDoor(pawn.Map).StartManualCloseBy(pawn);
                 }
+                */
                 if (pawn.Map != null && lastSpottedTick < Find.TickManager.TicksGame - 125)
                 {
                     lastSpottedTick = Find.TickManager.TicksGame;
@@ -666,7 +605,7 @@ namespace RRYautja
                                 foreach (Thing thing in thingList)
                                 {
                                     Pawn observer = thing as Pawn;
-                                    if (observer != null && observer != pawn && observer.Faction != null && (observer.Faction.IsPlayer || observer.Faction.HostileTo(pawn.Faction)))
+                                    if (observer != null && observer != pawn && observer.Faction != null && (observer.Faction.HostileTo(pawn.Faction)))
                                     {
                                         float observerSight = observer.health.capacities.GetLevel(PawnCapacityDefOf.Sight);
                                         observerSight *= 0.805f + (pawn.Map.glowGrid.GameGlowAt(pawn.Position) / 4);
@@ -677,11 +616,10 @@ namespace RRYautja
                                         observerSight = Math.Min(2f, observerSight);
                                         float thiefMoving = pawn.health.capacities.GetLevel(PawnCapacityDefOf.Moving);
                                         float spotChance = 0.8f * thiefMoving / observerSight;
-                                        if (Rand.Value > spotChance)
+                                        if (Rand.Value > spotChance || spotted)
                                         {
                                             MakeVisible();
                                             hidden = false;
-                                            //pawn.health.RemoveHediff(this);
                                             AlertXenomorph(pawn, observer);
                                         }
                                     }
@@ -691,7 +629,7 @@ namespace RRYautja
                                         {
                                             float thiefMoving = pawn.health.capacities.GetLevel(PawnCapacityDefOf.Moving);
                                             float spotChance = 0.99f * thiefMoving;
-                                            if (Rand.Value > spotChance)
+                                            if (Rand.Value > spotChance || spotted)
                                             {
                                                 MakeVisible();
                                                 hidden = false;
@@ -723,7 +661,7 @@ namespace RRYautja
             }
             else
             {
-                if (hidden)
+                if (hidden )
                 {
                     MakeVisible();
                     hidden = false;
@@ -838,11 +776,12 @@ namespace RRYautja
                 other = dinfo.Instigator as Pawn;
             }
             base.PostPostApplyDamage(dinfo, totalDamageDealt);
+            /*
             if (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden))
             {
                 pawn.health.RemoveHediff(pawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden));
             }
-
+            */
 
         }
 

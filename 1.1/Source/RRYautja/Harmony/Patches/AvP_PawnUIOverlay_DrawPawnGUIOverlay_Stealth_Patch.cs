@@ -22,7 +22,11 @@ namespace RRYautja
             if (pawn != null)
             {
                 bool flag_Cloaked = pawn.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked, false);
-                bool flag_HiddenXeno = pawn.isXenomorph(out Comp_Xenomorph comp) && comp.hidden;
+                bool flag_HiddenXeno = false;
+                if (pawn.isXenomorph(out Comp_Xenomorph comp))
+                {
+                    flag_HiddenXeno = comp.hidden;
+                }
                 if (flag_HiddenXeno || flag_Cloaked)
                 {
                     return false;
