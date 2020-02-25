@@ -4,14 +4,36 @@ using Verse;
 
 namespace RimWorld
 {
+    // Token: 0x02000BE7 RID: 3047
+    public static class PlayerPawnsArriveMethodExtension
+    {
+        // Token: 0x060047C2 RID: 18370 RVA: 0x00180DF5 File Offset: 0x0017EFF5
+#pragma warning disable CS0436 // Type conflicts with imported type
+        public static string ToStringHuman(this PlayerPawnsArriveMethod method)
+        {
+            if (method == PlayerPawnsArriveMethod.Standing)
+            {
+                return "PlayerPawnsArriveMethod_Standing".Translate();
+            }
+            if (method == PlayerPawnsArriveMethod.DropShip)
+            {
+                return "PlayerPawnsArriveMethod_DropShip".Translate();
+            }
+            if (method != PlayerPawnsArriveMethod.DropPods)
+            {
+                throw new NotImplementedException();
+            }
+            return "PlayerPawnsArriveMethod_DropPods".Translate();
+        }
+    }
     // Token: 0x02000BE8 RID: 3048
-    public class ScenPart_PlayerPawnsArriveMethod : ScenPart
+    public class ScenPart_PlayerPawnsArriveMethodAvP : ScenPart
     {
         // Token: 0x060047C3 RID: 18371 RVA: 0x00180E25 File Offset: 0x0017F025
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look<PlayerPawnsArriveMethod>(ref this.method, "method", (PlayerPawnsArriveMethod)RRYautja.PlayerPawnsArriveMethod.Standing, false);
+            Scribe_Values.Look<PlayerPawnsArriveMethod>(ref this.method, "method", PlayerPawnsArriveMethod.Standing, false);
         }
 
         // Token: 0x060047C4 RID: 18372 RVA: 0x00180E40 File Offset: 0x0017F040
@@ -26,7 +48,7 @@ namespace RimWorld
                     PlayerPawnsArriveMethod localM = localM2;
                     list.Add(new FloatMenuOption(localM.ToStringHuman(), delegate ()
                     {
-                        this.method = localM;
+                        this.method = (PlayerPawnsArriveMethod)localM;
                     }, MenuOptionPriority.Default, null, null, 0f, null, null));
                 }
                 Find.WindowStack.Add(new FloatMenu(list));
@@ -40,7 +62,7 @@ namespace RimWorld
             {
                 return "ScenPart_ArriveInDropPods".Translate();
             }
-            if ((int)this.method == (int)RRYautja.PlayerPawnsArriveMethod.DropShip)
+            if ((int)this.method == (int)PlayerPawnsArriveMethod.DropShip)
             {
                 return "ScenPart_ArriveInDropShip".Translate();
             }
@@ -87,10 +109,12 @@ namespace RimWorld
                     num = 0;
                 }
             }
-            if ((int)this.method == (int)RRYautja.PlayerPawnsArriveMethod.DropShip)
+            if ((int)this.method == (int)PlayerPawnsArriveMethod.DropShip)
             {
-
-                GenPlace.TryPlaceThing(SkyfallerMaker.MakeSkyfaller(USCMDefOf.RRY_USCM_DropshipUD4LIncoming, ThingMaker.MakeThing(USCMDefOf.RRY_USCM_DropshipUD4L, null)), UI.MouseCell(), Find.CurrentMap, ThingPlaceMode.Near, null, null, default(Rot4));
+                Thing thing = ThingMaker.MakeThing(USCMDefOf.RRY_USCM_DropshipUD4L, null);
+                CompUSCMDropship dropship = thing.TryGetComp<CompUSCMDropship>();
+                dropship.autodustoff = true;
+                GenPlace.TryPlaceThing(SkyfallerMaker.MakeSkyfaller(USCMDefOf.RRY_USCM_DropshipUD4LIncoming, thing), UI.MouseCell(), Find.CurrentMap, ThingPlaceMode.Near, null, null, default(Rot4));
             }
             else
             DropPodUtility.DropThingGroupsNear(MapGenerator.PlayerStartSpot, map, list, 110, Find.GameInitData.QuickStarted || this.method != PlayerPawnsArriveMethod.DropPods, true, true, true);
@@ -103,7 +127,7 @@ namespace RimWorld
             {
                 return;
             }
-            if (this.method == PlayerPawnsArriveMethod.DropPods || (int)this.method == (int)RRYautja.PlayerPawnsArriveMethod.DropShip)
+            if (this.method == PlayerPawnsArriveMethod.DropPods || (int)this.method == (int)PlayerPawnsArriveMethod.DropShip)
             {
                 PawnUtility.GiveAllStartingPlayerPawnsThought(ThoughtDefOf.CrashedTogether);
             }

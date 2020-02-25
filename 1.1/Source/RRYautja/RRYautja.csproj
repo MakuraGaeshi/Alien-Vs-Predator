@@ -237,7 +237,6 @@
     <Compile Include="util\IntergrationUtils.cs" />
     <Compile Include="Yautja\ScenPart_BadBlood.cs" />
     <Compile Include="Yautja\Recipe_Remove_Gauntlet.cs" />
-    <None Include="Yautja\RRY_Thought_SituationalSocial.cs.bak2" />
     <Compile Include="Yautja\GetReturningProjectile.cs" />
     <Compile Include="Xenomorph\XenomorphKidnapUtility.cs" />
     <Compile Include="Xenomorph\XenomorphCocoonUtility.cs" />
@@ -269,7 +268,6 @@
     <Compile Include="util\Projectile_AbilityRRY.cs" />
     <Compile Include="Yautja\Verb_Launch_Stuffable_Projectile.cs" />
     <Compile Include="Yautja\Verb_Shoot_Stuffable.cs" />
-    <None Include="Yautja\RRY_Thought_Situational.cs.bak2" />
     <Compile Include="Xenomorph\HediffComp_DamageOverTime.cs" />
     <Compile Include="Xenomorph\Thing_AddAcidDamageFilth.cs" />
     <Compile Include="Xenomorph\Thing_AddsHediffDef.cs" />
@@ -292,7 +290,6 @@
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_FacehuggerHunt.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphManhunter.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphFlee.cs" />
-    <None Include="Yautja\ThoughtWorkers_Blooded.cs.bak2" />
     <Compile Include="Xenomorph\XenomorphUtil.cs" />
     <Compile Include="util\Graphic_Invisible.cs" />
     <Compile Include="util\PawnGraphicSet_Invisible.cs" />
@@ -315,7 +312,6 @@
     <Compile Include="Xenomorph\Hives\TunnelHiveLikeSpawner.cs" />
     <Compile Include="Xenomorph\IncidentWorker_CrashedShip.cs" />
     <Compile Include="util\CrashedShip\LordJob_PawnsDefendShip.cs" />
-    <None Include="Yautja\ThoughtWorker_MarkedMood.cs.bak2" />
     <Compile Include="Yautja\YautjaThoughtDef.cs" />
     <Compile Include="Harmony\HarmonyPatches.cs" />
     <Compile Include="Yautja\Comp_Yautja.cs" />

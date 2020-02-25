@@ -22,6 +22,8 @@ namespace RimWorld
     [StaticConstructorOnStartup]
     public class CompUSCMDropship : CompLaunchable
     {
+        public int dustoffdelay = 120;
+        public bool autodustoff = false;
         // Token: 0x17000E48 RID: 3656
         // (get) Token: 0x06005000 RID: 20480 RVA: 0x001A7A80 File Offset: 0x001A5C80
         public bool Autoload
@@ -342,6 +344,19 @@ namespace RimWorld
             if (this.leaveImmediatelyWhenSatisfied && this.AllRequiredThingsLoaded)
             {
                 this.Send();
+            }
+            if (autodustoff && parent.Map !=null)
+            {
+                if (!this.Transporter.innerContainer.NullOrEmpty())
+                {
+                    this.Transporter.innerContainer.TryDropAll(parent.Position, parent.Map, ThingPlaceMode.Near);
+                }
+                dustoffdelay--;
+                if (dustoffdelay<=0)
+                {
+                    this.Send();
+                    autodustoff = false;
+                }
             }
         }
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RRYautja
+namespace RimWorld
 {
     // Token: 0x02000BE6 RID: 3046
     public enum PlayerPawnsArriveMethod

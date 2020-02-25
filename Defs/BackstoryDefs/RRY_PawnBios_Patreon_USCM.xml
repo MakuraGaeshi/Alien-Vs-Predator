@@ -1,18 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 <AlienRace.PawnBioDef>
-    <defName>OG_Grot_DaBiggestGrot</defName>
-    <childhoodDef>Grot_Base_Child</childhoodDef>
-    <adulthoodDef>Grot_TroubleMaker</adulthoodDef>
-    <gender>Either</gender> <!-- other options are Male and Female -->
+    <defName>RRY_USCM_Silentlord</defName>
+    <childhoodDef>RRY_USCM_SOJA</childhoodDef>
+    <adulthoodDef>RRY_USCM_ColonialMarine</adulthoodDef>
+    <gender>Male</gender> <!-- other options are Male and Female -->
     <name>
-      <first>Zognutt</first>
-      <last>Gittzipp</last>
-      <nick>Da Biggest Grot</nick>
+      <first>Sai</first>
+      <last>Entor</last>
+      <nick>Silentlord</nick>
     </name>
     <factionLeader>true</factionLeader>
     <validRaces>
-      <li>OG_Alien_Grot</li>
+      <li>Human</li>
+    </validRaces>
+</AlienRace.PawnBioDef>
+
+<AlienRace.PawnBioDef>
+    <defName>RRY_USCM_ThotDestroyer</defName>
+    <childhoodDef>RRY_USCM_ColonySurvivor</childhoodDef>
+    <adulthoodDef>RRY_USCM_WYLiaison</adulthoodDef>
+    <gender>Male</gender> <!-- other options are Male and Female -->
+    <name>
+      <first>Thot</first>
+      <last>Stayer</last>
+      <nick>Thot Destroyer</nick>
+    </name>
+    <factionLeader>true</factionLeader>
+    <validRaces>
+      <li>Human</li>
     </validRaces>
 </AlienRace.PawnBioDef>
 </Defs>

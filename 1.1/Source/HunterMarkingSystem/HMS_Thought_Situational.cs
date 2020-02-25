@@ -50,26 +50,32 @@ namespace RimWorld
         public Comp_Markable Markable => pawn.TryGetComp<Comp_Markable>();
         // Token: 0x170003A2 RID: 930
         // (get) Token: 0x0600197F RID: 6527 RVA: 0x0004E9F5 File Offset: 0x0004CDF5
-        
+
         public override string LabelCap
         {
             get
             {
-                string labelstring = !this.reason.NullOrEmpty() ? base.CurStage.label: base.LabelCap;
-                if (pawn!=null)
-                { 
+                string labelstring = !this.reason.NullOrEmpty() ? base.CurStage.label : base.LabelCap;
+                if (pawn != null)
+                {
                     if (Markable != null)
                     {
-                        if (Markable.markDataKill.kindDef != null)
+                        if (Markable.markDataKill != null)
                         {
-                            labelstring = labelstring.CapitalizeFirst()+" ("+ Markable.markDataKill.kindDef.LabelCap+ ")";
-                            
+                            if (Markable.markDataKill.kindDef != null)
+                            {
+                                labelstring = labelstring.CapitalizeFirst() + " (" + Markable.markDataKill.kindDef.LabelCap + ")";
+                            }
                         }
                     }
                 }
                 if (!this.reason.NullOrEmpty())
                 {
                     return string.Format(labelstring, this.reason).CapitalizeFirst();
+                }
+                if (labelstring.NullOrEmpty())
+                {
+                    labelstring = this.reason;
                 }
                 return labelstring;
             }
