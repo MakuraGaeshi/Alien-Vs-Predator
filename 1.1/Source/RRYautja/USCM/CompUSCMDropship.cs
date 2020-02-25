@@ -20,7 +20,7 @@ namespace RimWorld
     }
     // Token: 0x02000CFD RID: 3325
     [StaticConstructorOnStartup]
-    public class CompUSCMDropship : CompLaunchable
+    public class CompUSCMDropship : ThingComp
     {
         public int dustoffdelay = 120;
         public bool autodustoff = false;
@@ -33,14 +33,14 @@ namespace RimWorld
                 return this.autoload;
             }
         }
-        /*
+        
         // Token: 0x17000E49 RID: 3657
         // (get) Token: 0x06005001 RID: 20481 RVA: 0x001A7A88 File Offset: 0x001A5C88
         public bool LoadingInProgressOrReadyToLaunch
         {
             get
             {
-                return this.Transporter.LoadingInProgressOrReadyToLaunch;
+                return this.Transporter.LoadingInProgressOrReadyToLaunch || this.autodustoff;
             }
         }
 
@@ -71,10 +71,10 @@ namespace RimWorld
                 return false;
             }
         }
-        */
+        
         // Token: 0x17000E4B RID: 3659
         // (get) Token: 0x06005003 RID: 20483 RVA: 0x001A7AAD File Offset: 0x001A5CAD
-        public new CompTransporter Transporter
+        public CompTransporter Transporter
         {
             get
             {
@@ -85,14 +85,6 @@ namespace RimWorld
                 return this.cachedCompTransporter;
             }
         }
-        public new List<CompTransporter> TransportersInGroup
-        {
-            get
-            {
-                return this.Transporter.TransportersInGroup(this.parent.Map);
-            }
-        }
-
 
         // Token: 0x17000E4D RID: 3661
         // (get) Token: 0x06005005 RID: 20485 RVA: 0x001A7B1C File Offset: 0x001A5D1C
@@ -329,33 +321,43 @@ namespace RimWorld
         public override void CompTick()
         {
             base.CompTick();
-            if (this.parent.IsHashIntervalTick(120))
+            if (!autodustoff)
             {
-                this.CheckAutoload();
-            }
-            if (this.leaveASAP && this.parent.Spawned)
-            {
-                if (!this.LoadingInProgressOrReadyToLaunch)
+
+                if (this.parent.IsHashIntervalTick(120))
                 {
-                    TransporterUtility.InitiateLoading(Gen.YieldSingle<CompTransporter>(this.Transporter));
+                    this.CheckAutoload();
                 }
-                this.Send();
-            }
-            if (this.leaveImmediatelyWhenSatisfied && this.AllRequiredThingsLoaded)
-            {
-                this.Send();
-            }
-            if (autodustoff && parent.Map !=null)
-            {
-                if (!this.Transporter.innerContainer.NullOrEmpty())
+                if (this.leaveASAP && this.parent.Spawned)
                 {
-                    this.Transporter.innerContainer.TryDropAll(parent.Position, parent.Map, ThingPlaceMode.Near);
+                    if (!this.LoadingInProgressOrReadyToLaunch)
+                    {
+                        TransporterUtility.InitiateLoading(Gen.YieldSingle<CompTransporter>(this.Transporter));
+                    }
+                    this.Send();
                 }
-                dustoffdelay--;
-                if (dustoffdelay<=0)
+                if (this.leaveImmediatelyWhenSatisfied && this.AllRequiredThingsLoaded)
                 {
                     this.Send();
-                    autodustoff = false;
+                }
+            }
+            else
+            {
+                if (parent.Map!=null)
+                {
+                    dustoffdelay--;
+                    if (dustoffdelay == 60)
+                    {
+                        if (!this.Transporter.innerContainer.NullOrEmpty())
+                        {
+                            this.Transporter.innerContainer.TryDropAll(parent.Position, parent.Map, ThingPlaceMode.Near);
+                        }
+                    }
+                    if (dustoffdelay <= 0)
+                    {
+                        this.Send();
+                        autodustoff = false;
+                    }
                 }
             }
         }
@@ -497,10 +499,12 @@ namespace RimWorld
                 Log.Error("Tried to launch " + this.parent + ", but it's not in any group.", false);
                 return;
             }
-            if (!this.LoadingInProgressOrReadyToLaunch || !this.AllInGroupConnectedToFuelingPort || !this.AllFuelingPortSourcesInGroupHaveAnyFuel)
+            
+            if (!this.LoadingInProgressOrReadyToLaunch )
             {
                 return;
             }
+            
             Map map = this.parent.Map;
             int num = Find.WorldGrid.TraversalDistanceBetween(map.Tile, destinationTile, true, int.MaxValue);
             if (num > this.MaxLaunchDistance)
@@ -532,7 +536,7 @@ namespace RimWorld
             }
             CameraJumper.TryHideWorld();
         }
-        /*
+        
         // Token: 0x06004F0D RID: 20237 RVA: 0x001A3B0C File Offset: 0x001A1D0C
         public void Notify_FuelingPortSourceDeSpawned()
         {
@@ -553,9 +557,9 @@ namespace RimWorld
         {
             return 2.25f * dist;
         }
-        */
+        
         // Token: 0x06004F10 RID: 20240 RVA: 0x001A3B57 File Offset: 0x001A1D57
-        public new IEnumerable<FloatMenuOption> GetTransportPodsFloatMenuOptionsAt(int tile)
+        public IEnumerable<FloatMenuOption> GetTransportPodsFloatMenuOptionsAt(int tile)
         {
             bool anything = false;
             if (TransportPodsArrivalAction_FormCaravan.CanFormCaravanAt(this.TransportersInGroup.Cast<IThingHolder>(), tile) && !Find.WorldObjects.AnySettlementBaseAt(tile) && !Find.WorldObjects.AnySiteAt(tile))
@@ -568,6 +572,7 @@ namespace RimWorld
             }
             List<WorldObject> worldObjects = Find.WorldObjects.AllWorldObjects;
             int num;
+            /*-
             for (int i = 0; i < worldObjects.Count; i = num + 1)
             {
                 if (worldObjects[i].Tile == tile)
@@ -581,6 +586,7 @@ namespace RimWorld
                 }
                 num = i;
             }
+            */
             if (!anything && !Find.World.Impassable(tile))
             {
                 yield return new FloatMenuOption("TransportPodsContentsWillBeLost".Translate(), delegate ()
@@ -682,27 +688,38 @@ namespace RimWorld
         // Token: 0x0600500C RID: 20492 RVA: 0x001A805C File Offset: 0x001A625C
         public void Send()
         {
+            Log.Message("1 ");
             if (this.sending)
             {
                 return;
             }
+            Log.Message("2 ");
             if (!this.parent.Spawned)
             {
                 Log.Error("Tried to send " + this.parent + ", but it's unspawned.", false);
                 return;
             }
+            Log.Message("3 ");
             List<CompTransporter> transportersInGroup = this.TransportersInGroup;
-            if (transportersInGroup == null)
+            Log.Message("4 ");
+            if (!this.autodustoff)
             {
-                Log.Error("Tried to send " + this.parent + ", but it's not in any group.", false);
-                return;
+                if (transportersInGroup == null)
+                {
+                    Log.Error("Tried to send " + this.parent + ", but it's not in any group.", false);
+                    return;
+                }
             }
+            Log.Message("5 ");
             if (!this.LoadingInProgressOrReadyToLaunch)
             {
+                Log.Message("5 1");
                 return;
             }
+            Log.Message("6 ");
             if (!this.AllRequiredThingsLoaded)
             {
+                Log.Message("7 ");
                 if (this.dropEverythingIfUnsatisfied)
                 {
                     this.Transporter.CancelLoad();
@@ -724,37 +741,29 @@ namespace RimWorld
                     }
                 }
             }
+            Log.Message("8 ");
             this.sending = true;
             bool allRequiredThingsLoaded = this.AllRequiredThingsLoaded;
+            Log.Message("9 ");
             Map map = this.parent.Map;
             this.Transporter.TryRemoveLord(map);
             string signalPart = allRequiredThingsLoaded ? "SentSatisfied" : "SentUnsatisfied";
+            Log.Message("10 ");
+            /*
             for (int k = 0; k < transportersInGroup.Count; k++)
             {
                 QuestUtility.SendQuestTargetSignals(transportersInGroup[k].parent.questTags, signalPart, transportersInGroup[k].parent.Named("SUBJECT"), transportersInGroup[k].innerContainer.ToList<Thing>().Named("SENT"));
             }
+            */
             List<Pawn> list = new List<Pawn>();
-            for (int l = 0; l < transportersInGroup.Count; l++)
-            {
-                CompTransporter compTransporter = transportersInGroup[l];
-                for (int m = transportersInGroup[l].innerContainer.Count - 1; m >= 0; m--)
-                {
-                    Pawn pawn2 = transportersInGroup[l].innerContainer[m] as Pawn;
-                    if (pawn2 != null)
-                    {
-                        if (pawn2.IsColonist && !this.requiredPawns.Contains(pawn2))
-                        {
-                            list.Add(pawn2);
-                        }
-                        pawn2.ExitMap(false, Rot4.Invalid);
-                    }
-                }
-                compTransporter.innerContainer.ClearAndDestroyContentsOrPassToWorld(DestroyMode.Vanish);
-                Thing newThing = ThingMaker.MakeThing(USCMDefOf.RRY_USCM_DropshipUD4LLeaving, null);
-                compTransporter.CleanUpLoadingVars(map);
-                compTransporter.parent.Destroy(DestroyMode.QuestLogic);
-                GenSpawn.Spawn(newThing, compTransporter.parent.Position, map, WipeMode.Vanish);
-            }
+
+            Log.Message("11 ");
+            Transporter.innerContainer.ClearAndDestroyContentsOrPassToWorld(DestroyMode.Vanish);
+            Thing newThing = ThingMaker.MakeThing(USCMDefOf.RRY_USCM_DropshipUD4LLeaving, null);
+            Transporter.CleanUpLoadingVars(map);
+            Transporter.parent.Destroy(DestroyMode.QuestLogic);
+            GenSpawn.Spawn(newThing, Transporter.parent.Position, map, WipeMode.Vanish);
+            /*
             if (list.Count != 0)
             {
                 for (int n = 0; n < transportersInGroup.Count; n++)
@@ -762,6 +771,7 @@ namespace RimWorld
                     QuestUtility.SendQuestTargetSignals(transportersInGroup[n].parent.questTags, "SentWithExtraColonists", transportersInGroup[n].parent.Named("SUBJECT"), list.Named("SENTCOLONISTS"));
                 }
             }
+            */
             this.sending = false;
         }
 

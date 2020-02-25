@@ -8,7 +8,6 @@ namespace RimWorld
     public static class PlayerPawnsArriveMethodExtension
     {
         // Token: 0x060047C2 RID: 18370 RVA: 0x00180DF5 File Offset: 0x0017EFF5
-#pragma warning disable CS0436 // Type conflicts with imported type
         public static string ToStringHuman(this PlayerPawnsArriveMethod method)
         {
             if (method == PlayerPawnsArriveMethod.Standing)
@@ -78,6 +77,7 @@ namespace RimWorld
         // Token: 0x060047C7 RID: 18375 RVA: 0x00180F4C File Offset: 0x0017F14C
         public override void GenerateIntoMap(Map map)
         {
+            method = PlayerPawnsArriveMethod.DropShip;
             if (Find.GameInitData == null)
             {
                 return;
@@ -113,8 +113,12 @@ namespace RimWorld
             {
                 Thing thing = ThingMaker.MakeThing(USCMDefOf.RRY_USCM_DropshipUD4L, null);
                 CompUSCMDropship dropship = thing.TryGetComp<CompUSCMDropship>();
+                foreach (List<Thing> item in list)
+                {
+                    dropship.Transporter.innerContainer.TryAddRangeOrTransfer(item);
+                }
                 dropship.autodustoff = true;
-                GenPlace.TryPlaceThing(SkyfallerMaker.MakeSkyfaller(USCMDefOf.RRY_USCM_DropshipUD4LIncoming, thing), UI.MouseCell(), Find.CurrentMap, ThingPlaceMode.Near, null, null, default(Rot4));
+                GenPlace.TryPlaceThing(SkyfallerMaker.MakeSkyfaller(USCMDefOf.RRY_USCM_DropshipUD4LIncoming, thing), MapGenerator.PlayerStartSpot, map, ThingPlaceMode.Near, null, null, default(Rot4));
             }
             else
             DropPodUtility.DropThingGroupsNear(MapGenerator.PlayerStartSpot, map, list, 110, Find.GameInitData.QuickStarted || this.method != PlayerPawnsArriveMethod.DropPods, true, true, true);

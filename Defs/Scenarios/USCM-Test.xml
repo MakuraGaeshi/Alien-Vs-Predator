@@ -19,8 +19,8 @@
 			</li>
 			<li Class="ScenPart_PlayerPawnsArriveMethod">
 				<def>PlayerPawnsArriveMethod</def>
-				<method>DropPods</method>
-				<visible>false</visible>
+				<!-- <method>DropShip</method> -->
+				<visible>true</visible>
 			</li>
 			<li Class="ScenPart_SetNeedLevel">
 				<def>SetNeedLevel</def>

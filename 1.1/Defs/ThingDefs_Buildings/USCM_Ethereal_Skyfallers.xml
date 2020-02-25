@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
   <ThingDef Name="RRY_USCM_ShuttleSkyfallerBase" ParentName="SkyfallerBase" Abstract="True">
-    <size>(5,3)</size>
+    <size>(7,5)</size>
     <graphicData>
       <texPath>Things/Buildings/USCM/Dropship/UD4L</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>CutoutFlying</shaderType>
-      <drawSize>(6,3)</drawSize>
+      <drawSize>(9,6)</drawSize>
       <!-- <color>(162,164,149)</color> -->
     </graphicData>
     <skyfaller>
       <movementType>Decelerate</movementType>
       <shadow>Things/Skyfaller/SkyfallerShadowRectangle</shadow>
-      <shadowSize>(5.5,3.5)</shadowSize>
+       <shadowSize>(0,0)</shadowSize> 
       <motesPerCell>1</motesPerCell>
     </skyfaller>
   </ThingDef>

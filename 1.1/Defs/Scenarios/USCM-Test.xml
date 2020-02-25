@@ -17,9 +17,9 @@
 				<def>ConfigPage_ConfigureStartingPawns</def>
 				<pawnCount>6</pawnCount>
 			</li>
-			<li Class="ScenPart_PlayerPawnsArriveMethod">
+			<li Class="ScenPart_PlayerPawnsArriveMethodAvP">
 				<def>PlayerPawnsArriveMethod</def>
-				<method>DropShip</method>
+				<!-- <method>DropShip</method> -->
 				<visible>true</visible>
 			</li>
 			<li Class="ScenPart_SetNeedLevel">

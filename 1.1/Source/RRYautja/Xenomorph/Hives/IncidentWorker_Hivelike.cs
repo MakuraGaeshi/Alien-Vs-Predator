@@ -19,6 +19,8 @@ namespace RimWorld
             ThingDef thing = DefDatabase<ThingDef>.GetNamedSilentFail("O21_AntiInfestationThumper");
             if (map.listerBuildings.ColonistsHaveBuildingWithPowerOn(thing) && result)
             {
+                Thing thumper = map.listerBuildings.AllBuildingsColonistOfDef(thing).FirstOrFallback();
+                GenExplosion.DoExplosion(thumper.Position, thumper.Map, 5f, DamageDefOf.Bomb, thumper, 50000, 2f, SoundDefOf.PlanetkillerImpact);
                 IncidentDef def;
                 def = new IncidentDef
                 {

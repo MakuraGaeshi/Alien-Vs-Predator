@@ -10,11 +10,11 @@
     <blockWind>true</blockWind>
     <passability>Impassable</passability>
     <fillPercent>1.0</fillPercent>
-    <size>(5,3)</size>
+    <size>(7,5)</size>
     <graphicData>
       <texPath>Things/Buildings/USCM/Dropship/UD4L</texPath>
       <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>(6,3)</drawSize>
+      <drawSize>(9,6)</drawSize>
       <!-- <color>(162,164,149)</color> -->
       <shadowData>
         <volume>(4.1, 1.0, 1.8)</volume>
