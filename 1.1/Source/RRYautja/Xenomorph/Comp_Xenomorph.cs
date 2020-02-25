@@ -551,11 +551,14 @@ namespace RRYautja
                     MakeVisible();
                     hidden = false;
                 }
-                List<Pawn> thingList = map.mapPawns.AllPawns.Where(x => x != pawn && !x.isXenomorph() && GenSight.LineOfSight(x.Position, pawn.Position, map, true, null, 0, 0) && pawn.Position.DistanceTo(x.Position) <= MinHideDist && !x.Downed && !x.Dead).ToList();
-                if (thingList.NullOrEmpty() && lastSpottedTick < Find.TickManager.TicksGame - 125)
+                if (CanHide)
                 {
-                    MakeInvisible();
-                    hidden = true;
+                    List<Pawn> thingList = map.mapPawns.AllPawns.Where(x => x != pawn && !x.isXenomorph() && GenSight.LineOfSight(x.Position, pawn.Position, map, true, null, 0, 0) && pawn.Position.DistanceTo(x.Position) <= MinHideDist && !x.Downed && !x.Dead).ToList();
+                    if (thingList.NullOrEmpty() && lastSpottedTick < Find.TickManager.TicksGame - 125)
+                    {
+                        MakeInvisible();
+                        hidden = true;
+                    }
                 }
             }
         }
