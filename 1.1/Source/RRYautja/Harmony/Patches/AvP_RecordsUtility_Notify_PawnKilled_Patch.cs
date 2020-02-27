@@ -22,6 +22,14 @@ namespace RRYautja
         {
             if (killer!=null)
             {
+                if (killed==null)
+                {
+                    return;
+                }
+                if (killer.isXenomorph())
+                {
+                    return;
+                }
                 if (killed.isXenomorph())
                 {
                     if (killer.needs.mood.thoughts.memories.AnyMemoryConcerns(killed))

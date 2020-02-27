@@ -94,6 +94,7 @@
     <Compile Include="Harmony\Patches\AvP_VerbUtility_HarmsHealth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_WorkGiver_Tend_GoodLayingStatusForTend_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_GatheringsUtility_ShouldGuestKeepAttendingGathering_Synth_Patch.cs" />
+    <None Include="Harmony\Patches\Class1.cs.bak" />
     <Compile Include="USCM\CompUSCMDropship.cs" />
     <Compile Include="USCM\ScenPart_PlayerPawnsArriveMethod.cs" />
     <Compile Include="USCM\Comp_Stealth.cs" />

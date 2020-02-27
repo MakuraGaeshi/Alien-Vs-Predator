@@ -15,7 +15,7 @@ namespace RimWorld
 		{
             
 			Map map = (Map)parms.target;
-            bool result = base.CanFireNowSub(parms) && XenomorphHiveUtility.TotalSpawnedHiveLikesCount(map) < 30 && InfestationLikeCellFinder.TryFindCell(out intVec, out IntVec3 lc, map);
+            bool result = base.CanFireNowSub(parms) && XenomorphHiveUtility.TotalSpawnedHiveLikesCount(map) < 1 && InfestationLikeCellFinder.TryFindCell(out intVec, out IntVec3 lc, map);
             ThingDef thing = DefDatabase<ThingDef>.GetNamedSilentFail("O21_AntiInfestationThumper");
             if (map.listerBuildings.ColonistsHaveBuildingWithPowerOn(thing) && result)
             {
@@ -56,7 +56,12 @@ namespace RimWorld
 		// Token: 0x06000E64 RID: 3684 RVA: 0x0006B8B4 File Offset: 0x00069CB4
 		protected override bool TryExecuteWorker(IncidentParms parms)
 		{
+
 			Map map = (Map)parms.target;
+            if (!InfestationLikeCellFinder.TryFindCell(out intVec, out IntVec3 lc, map))
+            {
+                return false;
+            }
 			int hivelikeCount = Mathf.Max(GenMath.RoundRandom(parms.points / 220f), 1);
             if (def.tags.Contains("TunnelLike"))
             {

@@ -58,10 +58,7 @@ namespace RimWorld
                 }
             }
             this.spawnedHives.Clear();
-            for (int j = 0; j < num3; j++)
-            {
-                this.TrySpawnHive(map);
-            }
+            this.TrySpawnHive(map);
             this.spawnedHives.Clear();
         }
 

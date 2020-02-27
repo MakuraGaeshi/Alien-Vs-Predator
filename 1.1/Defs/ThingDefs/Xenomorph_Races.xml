@@ -1278,10 +1278,10 @@
     <description>Thrumbomorph Xenomorphs are significantly larger and stronger than the normal adults, being over 5 metres tall. Their body structure differs also, having no arms, although its large limbs many manipulate objects. The thrumbomorphs's head is larger than those of other adult Xenomorphs and is adorned by a large, flat blade, which is an inherited feature from its host./n/nThis thing is a total monstrosity and can easily dismantle a battle tank, do not engage lightly.</description>
     <statBases>
       <Mass>200</Mass>
-      <MoveSpeed>6.5</MoveSpeed>
-      <ArmorRating_Blunt>1.50</ArmorRating_Blunt>
-      <ArmorRating_Sharp>1.80</ArmorRating_Sharp>
-      <ArmorRating_Heat>1.30</ArmorRating_Heat>
+      <MoveSpeed>5.5</MoveSpeed>
+      <ArmorRating_Blunt>1.30</ArmorRating_Blunt>
+      <ArmorRating_Sharp>1.60</ArmorRating_Sharp>
+      <ArmorRating_Heat>1.00</ArmorRating_Heat>
       <MeatAmount>215</MeatAmount>
       <LeatherAmount>140</LeatherAmount>
     </statBases>
@@ -1392,7 +1392,7 @@
       <body>RRY_Xenomorph_QuadrupedWithHorn</body>
 	  <useMeatFrom>RRY_Xenomorph_FaceHugger</useMeatFrom>
       <baseBodySize>4</baseBodySize>
-      <baseHealthScale>9.0</baseHealthScale>
+      <baseHealthScale>8.0</baseHealthScale>
       <manhunterOnDamageChance>1.00</manhunterOnDamageChance>
       <lifeStageAges>
         <li>
@@ -1472,7 +1472,7 @@
     <defName>RRY_Xenomorph_Thrumbomorph</defName>
     <label>Thrumbomorph</label>
     <race>RRY_Xenomorph_Thrumbomorph</race>
-    <combatPower>850</combatPower>
+    <combatPower>1250</combatPower>
     <lifeStages>
       <li>
         <bodyGraphicData>
