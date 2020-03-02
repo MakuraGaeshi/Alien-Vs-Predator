@@ -38,7 +38,7 @@ namespace RimWorld
 
         // Yautja ThingDefs  Races 
         public static ThingDef RRY_Alien_Yautja;
-        public static ThingDef RRY_Yautja_Hound;
+    //    public static ThingDef RRY_Yautja_Hound;
         public static ThingDef RRY_Rynath;
 
         // Yautja ThingDefs  Equipment

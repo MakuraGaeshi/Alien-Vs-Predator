@@ -1276,9 +1276,9 @@
     <statBases>
       <Mass>200</Mass>
       <MoveSpeed>6.5</MoveSpeed>
-      <ArmorRating_Blunt>1.50</ArmorRating_Blunt>
-      <ArmorRating_Sharp>1.80</ArmorRating_Sharp>
-      <ArmorRating_Heat>1.30</ArmorRating_Heat>
+      <ArmorRating_Blunt>1.25</ArmorRating_Blunt>
+      <ArmorRating_Sharp>1.40</ArmorRating_Sharp>
+      <ArmorRating_Heat>0.50</ArmorRating_Heat>
       <MeatAmount>215</MeatAmount>
       <LeatherAmount>140</LeatherAmount>
     </statBases>

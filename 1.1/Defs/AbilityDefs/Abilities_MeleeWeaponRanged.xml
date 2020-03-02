@@ -10,7 +10,7 @@
 		</graphicData>
 		<comps>     
 			<li>
-				<compClass>CompOversizedWeapon.CompOversizedWeapon</compClass>
+				<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
 			</li>
 		</comps>
 		<projectile>

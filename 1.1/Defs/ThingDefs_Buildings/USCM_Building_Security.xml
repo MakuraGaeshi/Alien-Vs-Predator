@@ -23,7 +23,7 @@
     <uiIconPath>Things/Building/Security/TurretMini_MenuIcon</uiIconPath>
     <uiIconScale>0.90</uiIconScale>
     <minifiedDef>MinifiedThing</minifiedDef>
-    <altitudeLayer>Building</altitudeLayer>
+    <altitudeLayer>WorldClipper</altitudeLayer>
     <stealable>false</stealable>
     <rotatable>false</rotatable>
     <thingCategories>
@@ -125,7 +125,7 @@
 		<label>UA 571-C canon</label>
 		<description>The UA 571-C Automated Sentry Gun, known colloquially as the "Robot Sentry", is a tripod-mounted automated perimeter defense system employed by the United States Colonial Marine Corps to deliver pre-set automatic fire to any hostile within range or area targets. They are equipped with M30 Autocannons and automatic thermal and movement actuated AI targeting capabilities.</description>
 		<graphicData>
-			<texPath>Things/Buildings/USCM/Security/Turret/UA571CGun</texPath>
+			<texPath>Things/Buildings/USCM/Security/Turret/UA571CGun11</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
 			<drawSize>(2,2)</drawSize>

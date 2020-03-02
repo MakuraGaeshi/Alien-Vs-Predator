@@ -5,7 +5,7 @@ namespace RRYautja
 {
 
     // Token: 0x02000025 RID: 37
-    public class Verb_ShootEquipment : Verb_UseEquipment
+    public class Verb_ShootEquipment : Verb_LaunchProjectileEquipment
     {
         protected override int ShotsPerBurst
         {
@@ -36,6 +36,18 @@ namespace RRYautja
             {
                 this.CasterPawn.records.Increment(RecordDefOf.ShotsFired);
             }
+            if (flag && verbProperties.ExtraShots>0)
+            {
+                for (int i = 0; i < verbProperties.ExtraShots; i++)
+                {
+                    if (flag && this.CasterIsPawn)
+                    {
+                        base.TryCastShot();
+                        this.CasterPawn.records.Increment(RecordDefOf.ShotsFired);
+                    }
+                }
+            }
+
             return flag;
         }
     }

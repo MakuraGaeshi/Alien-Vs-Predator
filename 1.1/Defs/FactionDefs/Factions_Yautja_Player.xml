@@ -40,6 +40,10 @@
     <apparelStuffFilter>
       <thingDefs>
         <li>Synthread</li>
+        <li>RRY_Leather_Yautja</li>
+        <li>Leather_Light</li>
+        <li>Leather_Plain</li>
+        <li>Leather_Bear</li>
       </thingDefs>
     </apparelStuffFilter>
     <colorSpectrum>
@@ -98,7 +102,10 @@
     </hairTags>
     <apparelStuffFilter>
       <thingDefs>
-        <li>Synthread</li>
+        <li>RRY_Leather_Yautja</li>
+        <li>Leather_Light</li>
+        <li>Leather_Plain</li>
+        <li>Leather_Bear</li>
       </thingDefs>
     </apparelStuffFilter>
     <colorSpectrum>
@@ -140,9 +147,10 @@
     <backstoryFilters>
       <li>
         <categories>
-		  <li>Raider</li>
+		  <li>Pirate</li>
+		  <li>Outlander</li>
+		  <li>Offworlder</li>
 		  <li>Tribal</li>
-		  <li>Civil</li>
           <li>RRY_Yautja_Blooded</li>
         </categories>
       </li>
@@ -151,13 +159,18 @@
       <li>ClassicStart</li>
     </startingResearchTags>
     <hairTags>
-		<li>Civil</li>
+		<li>Urban</li>
 		<li>Rural</li>
+		<li>Punk</li>
 		<li>Tribal</li>
     </hairTags>
     <apparelStuffFilter>
       <thingDefs>
         <li>Synthread</li>
+        <li>RRY_Leather_Yautja</li>
+        <li>Leather_Light</li>
+        <li>Leather_Plain</li>
+        <li>Leather_Bear</li>
       </thingDefs>
     </apparelStuffFilter>
     <colorSpectrum>
@@ -215,6 +228,10 @@
     <apparelStuffFilter>
       <thingDefs>
         <li>Synthread</li>
+        <li>RRY_Leather_Yautja</li>
+        <li>Leather_Light</li>
+        <li>Leather_Plain</li>
+        <li>Leather_Bear</li>
       </thingDefs>
     </apparelStuffFilter>
     <colorSpectrum>

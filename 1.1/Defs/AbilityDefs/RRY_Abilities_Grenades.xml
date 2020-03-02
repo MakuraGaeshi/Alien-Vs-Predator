@@ -36,7 +36,7 @@
         <abilityClass>RRYautja.EquipmentAbility</abilityClass>
 		<cooldown>30</cooldown>
         <verbProperties Class="RRYautja.VerbProperties_EquipmentAbility">
-            <verbClass>RRYautja.Verb_UseEquipment</verbClass>
+            <verbClass>RRYautja.Verb_ShootEquipment</verbClass>
             <hasStandardCommand>true</hasStandardCommand>
 			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
 			<defaultProjectile>RRY_Bullet_M42AGrenade</defaultProjectile>
@@ -70,17 +70,16 @@
         <abilityClass>RRYautja.EquipmentAbility</abilityClass>
 		<cooldown>10</cooldown>
         <verbProperties Class="RRYautja.VerbProperties_EquipmentAbility">
-            <verbClass>RRYautja.Verb_UseEquipment</verbClass>
+            <verbClass>RRYautja.Verb_ShootEquipment</verbClass>
             <hasStandardCommand>true</hasStandardCommand>
 			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
 			<defaultProjectile>RRY_USCM_Bullet_M37A2S</defaultProjectile>
             <warmupTime>0.35</warmupTime>
-            <burstShotCount>8</burstShotCount>
-            <ticksBetweenBurstShots>0</ticksBetweenBurstShots>
+            <ExtraShots>7</ExtraShots>
 			<range>15</range>
             <soundCast>RRY_M37A2_Shot</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>9</muzzleFlashScale>
+			<muzzleFlashScale>4</muzzleFlashScale>
 			<targetParams>
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>

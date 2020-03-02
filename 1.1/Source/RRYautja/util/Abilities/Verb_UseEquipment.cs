@@ -12,7 +12,7 @@ namespace RRYautja
     // Token: 0x02000024 RID: 36
     public class VerbProperties_EquipmentAbility : VerbProperties
     {
-
+        public int ExtraShots = 0;
     }
 
     // Token: 0x02000025 RID: 37
@@ -30,6 +30,24 @@ namespace RRYautja
         public override bool ValidateTarget(LocalTargetInfo target)
         {
             return true;
+        }
+        public EquipmentAbility equipmentAbility => (EquipmentAbility)this.ability;
+
+        public new ThingWithComps EquipmentSource
+        {
+            get
+            {
+                if (equipmentAbility!=null)
+                {
+                    if (equipmentAbility.sourceEquipment!=null)
+                    {
+                    //    Log.Message(string.Format("EquipmentSource returning {0}", equipmentAbility.sourceEquipment));
+                        return equipmentAbility.sourceEquipment;
+                    }
+                }
+            //    Log.Message(string.Format("EquipmentSource returning {0}", CasterPawn));
+                return CasterPawn;
+            }
         }
 
         public virtual ThingDef Projectile

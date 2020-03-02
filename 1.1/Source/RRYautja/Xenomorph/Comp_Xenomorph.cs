@@ -452,7 +452,7 @@ namespace RRYautja
             {
                 if (!hidden)
                 {
-                    MakeInvisible();
+                    //MakeInvisible();
                     hidden = true;
                 }
                 if (pawn.Downed || pawn.Dead || (pawn.pather != null && pawn.pather.WillCollideWithPawnOnNextPathCell()))
@@ -556,7 +556,7 @@ namespace RRYautja
                     List<Pawn> thingList = map.mapPawns.AllPawns.Where(x => x != pawn && !x.isXenomorph() && GenSight.LineOfSight(x.Position, pawn.Position, map, true, null, 0, 0) && pawn.Position.DistanceTo(x.Position) <= MinHideDist && !x.Downed && !x.Dead).ToList();
                     if (thingList.NullOrEmpty() && lastSpottedTick < Find.TickManager.TicksGame - 125)
                     {
-                        MakeInvisible();
+                        //MakeInvisible();
                         hidden = true;
                     }
                 }

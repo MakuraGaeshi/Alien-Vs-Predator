@@ -66,17 +66,17 @@
 		</colorGenerator>
 	</ThingDef>
 	
-	  <!-- ====================================== tribalwear =========================================== 
+	  <!-- ====================================== tribalwear =========================================== -->
 	<ThingDef ParentName="RRY_Apparel_MakeableBase">
-		<defName>RRY_Apparel_Apparel_TribalA</defName>
-		<label>tribalwear</label>
+		<defName>RRY_Apparel_TribalCloak</defName>
+		<label>tribalcloak</label>
 		<description>A full-body garment crafted using neolithic tools. While it may look primitive, it is effective at insulating the wearer.</description>
 		<graphicData>
-			<texPath>Things/Pawn/Humanlike/Apparel/TribalA/TribalA</texPath>
+			<texPath>Things/Apparel/Yautja_Cloak/YautjaCloak</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<techLevel>Neolithic</techLevel>
-		<costStuffCount>60</costStuffCount>
+		<costStuffCount>70</costStuffCount>
 		<stuffCategories>
 			<li>Fabric</li>
 			<li>Leathery</li>
@@ -98,9 +98,9 @@
 			<bodyPartGroups>
 				<li>Torso</li>
 			</bodyPartGroups>
-			<wornGraphicPath>Things/Apparel/Yautja_Tribalwear/Yautja_Tribalwear</wornGraphicPath>
+			<wornGraphicPath>Things/Apparel/Yautja_Cloak/YautjaCloak</wornGraphicPath>
 			<layers>
-				<li>OnSkin</li>
+				<li>Shell</li>
 			</layers>
 			<tags>
 				<li>Neolithic</li>
@@ -109,6 +109,7 @@
 		<recipeMaker>
 			<recipeUsers>
 				<li>ElectricTailoringBench</li>
+				<li>RRY_TableMachining</li>
 				<li>HandTailoringBench</li>
 				<li>CraftingSpot</li>
 			</recipeUsers>
@@ -130,7 +131,7 @@
 			</options>
 		</colorGenerator>
 	</ThingDef>
--->
+
 	<!-- ========================= Yautja - Heated Mesh ========================== -->
 	<ThingDef ParentName="RRY_Apparel_MakeableBase">
 		<defName>RRY_Apparel_Mesh</defName>

@@ -34,7 +34,7 @@
     </hairTags>
     <apparelStuffFilter>
       <thingDefs>
-        <li>Synthread</li>
+        <li>RRY_Leather_Yautja</li>
       </thingDefs>
     </apparelStuffFilter>
     <colorSpectrum>
@@ -88,7 +88,10 @@
     </hairTags>
     <apparelStuffFilter>
       <thingDefs>
-        <li>Synthread</li>
+        <li>RRY_Leather_Yautja</li>
+        <li>Leather_Light</li>
+        <li>Leather_Plain</li>
+        <li>Leather_Bear</li>
       </thingDefs>
     </apparelStuffFilter>
     <colorSpectrum>
@@ -142,7 +145,11 @@
     </hairTags>
     <apparelStuffFilter>
       <thingDefs>
-        <li>Synthread</li>
+        <li>Synthread</li
+        <li>RRY_Leather_Yautja</li>
+        <li>Leather_Light</li>
+        <li>Leather_Plain</li>
+        <li>Leather_Bear</li>
       </thingDefs>
     </apparelStuffFilter>
     <colorSpectrum>
@@ -197,6 +204,10 @@
     <apparelStuffFilter>
       <thingDefs>
         <li>Synthread</li>
+        <li>RRY_Leather_Yautja</li>
+        <li>Leather_Light</li>
+        <li>Leather_Plain</li>
+        <li>Leather_Bear</li>
       </thingDefs>
     </apparelStuffFilter>
     <colorSpectrum>

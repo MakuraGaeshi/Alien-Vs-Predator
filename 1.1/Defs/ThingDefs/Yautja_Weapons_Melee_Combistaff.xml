@@ -22,7 +22,7 @@
 			</Abilities>
 		</li>
 		<li>
-			<compClass>CompOversizedWeapon.CompOversizedWeapon</compClass>
+			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
 		</li>
 	</comps>
     <soundInteract>Interact_BeatFire</soundInteract>
@@ -84,7 +84,7 @@
     </graphicData>
 	<comps>     
 		<li>
-			<compClass>CompOversizedWeapon.CompOversizedWeapon</compClass>
+			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
 		</li>
 	</comps>
     <projectile>

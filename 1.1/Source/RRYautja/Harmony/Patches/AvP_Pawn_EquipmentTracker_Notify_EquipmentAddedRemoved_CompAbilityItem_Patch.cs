@@ -2,6 +2,7 @@
 using RimWorld;
 using Verse;
 using HarmonyLib;
+using RRYautja.ExtensionMethods;
 
 namespace RRYautja
 {
@@ -19,7 +20,7 @@ namespace RRYautja
                     {
                         if (!__instance.pawn.abilities.abilities.Any(x => x.def == def))
                         {
-                            __instance.pawn.abilities.GainAbility(def);
+                            __instance.pawn.abilities.GainEquipmentAbility((EquipmentAbilityDef)def,eq);
                         }
                     }
                 }

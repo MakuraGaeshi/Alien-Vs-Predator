@@ -34,6 +34,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Harmony\Patches\AvP_FoodUtility_TryFindBestFoodSourceFor_Patch - Copy %282%29.cs" />
     <Compile Include="Harmony\Patches\AvP_SickPawnVisitUtility_CanVisit_Synth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_RecordWorker_TimeInBedForMedicalReasons_ShouldMeasureTimeNow_Synth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_IncidentWorker_DiseaseHuman_ActualVictims_Synth_Patch.cs" />
@@ -109,6 +110,7 @@
     <Compile Include="USCM\DamageWorker_FlameNoCamShake.cs" />
     <Compile Include="USCM\HediffComp_DefectiveInhibitor.cs" />
     <Compile Include="USCM\USCMDefOf.cs" />
+    <Compile Include="util\Abilities\Verb_LaunchProjectileEquipment.cs" />
     <Compile Include="util\Abilities\Verb_UseEquipment.cs" />
     <Compile Include="util\Abilities\Verb_ShootEquipment.cs" />
     <Compile Include="util\Abilities\EquipmentAbility.cs" />
@@ -334,8 +336,8 @@
     <Folder Include="Xenomorph\Jobstuff\Workers\" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="0Harmony, Version=2.0.0.5, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lib.Harmony.2.0.0.5\lib\net472\0Harmony.dll</HintPath>
+    <Reference Include="0Harmony, Version=2.0.0.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lib.Harmony.2.0.0.7\lib\net472\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="AlienRace">
       <HintPath>..\..\..\..\..\..\..\workshop\content\294100\839005762\1.1\Assemblies\AlienRace.dll</HintPath>
@@ -346,6 +348,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
     <Reference Include="Unity.TextMeshPro">
       <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\Unity.TextMeshPro.dll</HintPath>
       <Private>False</Private>

@@ -6,9 +6,10 @@
       <texPath>Things/Buildings/USCM/Dropship/UD4L</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>CutoutFlying</shaderType>
-      <drawSize>(9,6)</drawSize>
+      <drawSize>(11,6)</drawSize>
       <!-- <color>(162,164,149)</color> -->
     </graphicData>
+    <altitudeLayer>PawnUnused</altitudeLayer>
     <skyfaller>
       <movementType>Decelerate</movementType>
       <shadow>Things/Skyfaller/SkyfallerShadowRectangle</shadow>

@@ -24,6 +24,11 @@ namespace RRYautja
         {
         }
 
+        // Token: 0x06003FD2 RID: 16338 RVA: 0x00152695 File Offset: 0x00150895
+        public EquipmentAbility(Pawn pawn, AbilityDef def, ThingWithComps equipment) : base(pawn, def)
+        {
+        }
+        public ThingWithComps sourceEquipment;
         public int MaxCastingTicks => (int)(abilityDef.cooldown * GenTicks.TicksPerRealSecond);
         private int TicksUntilCasting = -1;
         public int CooldownTicksLeft
@@ -35,6 +40,7 @@ namespace RRYautja
         public new void ExposeData()
         {
             Scribe_Defs.Look<AbilityDef>(ref this.def, "def");
+            Scribe_References.Look(ref this.sourceEquipment, "sourceEquipment");
             if (this.def == null)
             {
                 return;
