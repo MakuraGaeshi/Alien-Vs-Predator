@@ -339,6 +339,22 @@
     <Reference Include="0Harmony, Version=2.0.0.7, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Lib.Harmony.2.0.0.7\lib\net472\0Harmony.dll</HintPath>
     </Reference>
+    <Reference Include="1CompActivatableEffect, Version=1.18.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\AdMechArmoury\1.1\Assemblies\1CompActivatableEffect.dll</HintPath>
+    </Reference>
+    <Reference Include="1CompOversizedWeapon, Version=1.18.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\AdMechArmoury\1.1\Assemblies\1CompOversizedWeapon.dll</HintPath>
+    </Reference>
+    <Reference Include="1CompSlotLoadable, Version=1.18.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\AdMechArmoury\1.1\Assemblies\1CompSlotLoadable.dll</HintPath>
+    </Reference>
+    <Reference Include="1CompToggleDef, Version=1.18.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\AdMechArmoury\1.1\Assemblies\1CompToggleDef.dll</HintPath>
+    </Reference>
     <Reference Include="AlienRace">
       <HintPath>..\..\..\..\..\..\..\workshop\content\294100\839005762\1.1\Assemblies\AlienRace.dll</HintPath>
       <Private>False</Private>
