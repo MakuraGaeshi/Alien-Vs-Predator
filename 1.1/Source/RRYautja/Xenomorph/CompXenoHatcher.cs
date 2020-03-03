@@ -84,7 +84,7 @@ namespace RRYautja
                             this.mutateProgress += num;
                         }
                     }
-                    else if (this.gestateProgress < 1f && (!this.EggMutating))
+                    if (this.gestateProgress < 1f && (!this.EggMutating))
                     {
                         this.gestateProgress += num;
                     }
@@ -141,7 +141,7 @@ namespace RRYautja
                     float thingmovespeed = thing.GetStatValue(StatDefOf.MoveSpeed);
                     if (selected)
                     {
-                        Log.Message(string.Format("distance between {1} @{3} and {2} @ {4}: {0}", MyPos.DistanceTo(pawn.Position), this.parent.LabelShort, pawn.Label, MyPos, pawn.Position));
+                        Log.Message(string.Format("distance between {1} @{3} and {2} @ {4}: {0}, gestateProgress: {5}, mutateProgress: {6}", MyPos.DistanceTo(pawn.Position), this.parent.LabelShort, pawn.Label, MyPos, pawn.Position , gestateProgress, mutateProgress));
                         Log.Message(string.Format("{0} thingsize: {1}, thingstealth: {2}, thingmovespeed: {3}", pawn.Label, thingsize, thingstealth, thingmovespeed));
                     }
 
@@ -300,13 +300,13 @@ namespace RRYautja
             switch (category)
             {
                 case EggState.Hyperfertile:
-                    return "Xeno_Egg_Hyperfertile".Translate() + " ";
+                    return "Xeno_Egg_Hyperfertile".Translate();
                 case EggState.Praetorian:
-                    return "Xeno_Egg_Praetorian".Translate() + " ";
+                    return "Xeno_Egg_Praetorian".Translate();
                 case EggState.Royal:
-                    return "Xeno_Egg_Royal".Translate() + " ";
+                    return "Xeno_Egg_Royal".Translate();
                 default:
-                    return "Xeno_Egg".Translate() + " ";
+                    return "Xeno_Egg".Translate();
             }
         }
 
