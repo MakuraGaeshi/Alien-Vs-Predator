@@ -32,7 +32,7 @@
         <kindDef>Combat</kindDef>
         <commonality>10</commonality>
         <options>
-          <RRY_Xenomorph_Queen>100</RRY_Xenomorph_Queen>
+          <RRY_Xenomorph_Queen>1</RRY_Xenomorph_Queen>
           <RRY_Xenomorph_Runner>150</RRY_Xenomorph_Runner>
           <RRY_Xenomorph_Drone>100</RRY_Xenomorph_Drone>
           <RRY_Xenomorph_Warrior>100</RRY_Xenomorph_Warrior>
@@ -65,7 +65,7 @@
         <kindDef>Combat</kindDef>
         <commonality>100</commonality>
         <options>
-          <RRY_Xenomorph_Queen>100</RRY_Xenomorph_Queen>
+          <RRY_Xenomorph_Queen>1</RRY_Xenomorph_Queen>
           <RRY_Xenomorph_Runner>150</RRY_Xenomorph_Runner>
           <RRY_Xenomorph_Drone>100</RRY_Xenomorph_Drone>
           <RRY_Xenomorph_Warrior>100</RRY_Xenomorph_Warrior>
