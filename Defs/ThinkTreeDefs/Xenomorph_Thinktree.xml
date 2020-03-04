@@ -29,27 +29,6 @@
           <treeDef>MentalStateCritical</treeDef>
         </li>
 		
-        <!-- Conditional Not Fully Grown -->
-        <li Class="ThinkNode_ConditionalNotGrown">
-          <subNodes>
-			<li Class="JobGiver_XenomorphFlee" />
-			<li Class="JobGiver_GetFoodXenomorph"> 
-			</li>
-			<li Class="JobGiver_WanderHiveLike">
-				<maxDanger>Deadly</maxDanger>
-			</li>
-          </subNodes>
-        </li>
-		
-        <!-- Conditional Fully Grown -->
-        <li Class="ThinkNode_ConditionalFullyGrown">
-          <subNodes>
-			<!--
-			<li Class="JobGiver_XenomorphFlee" />
-			<li Class="JobGiver_GetFoodXenomorph"> 
-			  <minCategory>Fed</minCategory>
-			</li>
-			-->
 			<!-- Face Hugger Hunting -->
 				<li Class="ThinkNode_ConditionalPawnKind">
 				  <pawnKind>RRY_Xenomorph_FaceHugger</pawnKind>
@@ -106,6 +85,27 @@
 				  </subNodes>
 				</li>
 				
+        <!-- Conditional Not Fully Grown -->
+        <li Class="ThinkNode_ConditionalNotGrown">
+          <subNodes>
+			<li Class="JobGiver_XenomorphFlee" />
+			<li Class="JobGiver_GetFoodXenomorph"> 
+			</li>
+			<li Class="JobGiver_WanderHiveLike">
+				<maxDanger>Deadly</maxDanger>
+			</li>
+          </subNodes>
+        </li>
+		
+        <!-- Conditional Fully Grown -->
+        <li Class="ThinkNode_ConditionalFullyGrown">
+          <subNodes>
+			<!--
+			<li Class="JobGiver_XenomorphFlee" />
+			<li Class="JobGiver_GetFoodXenomorph"> 
+			  <minCategory>Fed</minCategory>
+			</li>
+			-->
 				
 		<li Class="ThinkNode_ConditionalNotPawnKind">
 		  <pawnKind>RRY_Xenomorph_FaceHugger</pawnKind>

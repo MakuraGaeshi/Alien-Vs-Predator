@@ -23,7 +23,9 @@
     <permanentEnemy>true</permanentEnemy>
     <maxPawnCostPerTotalPointsCurve>
       <points>
-        <li>(1,1)</li>
+        <li>(400,200)</li>
+        <li>(900,300)</li>
+        <li>(100000,10000)</li>
       </points>
     </maxPawnCostPerTotalPointsCurve>
     <pawnGroupMakers>
@@ -36,7 +38,6 @@
           <RRY_Xenomorph_Runner>150</RRY_Xenomorph_Runner>
           <RRY_Xenomorph_Drone>100</RRY_Xenomorph_Drone>
           <RRY_Xenomorph_Warrior>100</RRY_Xenomorph_Warrior>
-          <RRY_Xenomorph_FaceHugger>50</RRY_Xenomorph_FaceHugger>
         </options>
 				<disallowedStrategies>
 					<li>Siege</li>
@@ -52,7 +53,6 @@
           <RRY_Xenomorph_Runner>150</RRY_Xenomorph_Runner>
           <RRY_Xenomorph_Drone>100</RRY_Xenomorph_Drone>
           <RRY_Xenomorph_Warrior>100</RRY_Xenomorph_Warrior>
-          <RRY_Xenomorph_FaceHugger>50</RRY_Xenomorph_FaceHugger>
         </options>
 				<disallowedStrategies>
 					<li>Siege</li>

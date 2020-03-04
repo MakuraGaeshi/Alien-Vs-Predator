@@ -766,7 +766,7 @@
 		<NorthAngle>0</NorthAngle>
 		<!-- South offsets Y is the layer height, usually you can leave this at 0, all values default to 0 if not set-->
 		<SouthXOffset>-0.001</SouthXOffset>
-		<SouthYOffset>0.0</SouthYOffset>
+		<SouthYOffset>0.010</SouthYOffset>
 		<SouthZOffset>0.0</SouthZOffset>
 		<!-- South Draw size overrides, will default to 1 if not set -->
 		<SouthXDrawSize>2</SouthXDrawSize>

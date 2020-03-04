@@ -99,18 +99,13 @@ namespace RRYautja
             Rot4 rot = bodyFacing;
             Vector3 vector3 = pawn.RaceProps.Humanlike ? __instance.BaseHeadOffsetAt(headFacing) : new Vector3();
             Vector3 s = new Vector3(pawn.BodySize * 1.75f, pawn.BodySize * 1.75f, pawn.BodySize * 1.75f);
-            bool OffsetDefExtension = (pawn.def.modExtensions.NullOrEmpty() || (!pawn.def.modExtensions.NullOrEmpty() && pawn.def.modExtensions.Any((x) => comp.parent.def.defName.Contains(((OffsetDefExtension)x).hediff.defName))) || ThingDefOf.Human.modExtensions.Any((x) => comp.parent.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)));
-            if (OffsetDefExtension)// && pawn.kindDef.race.GetModExtension<OffsetDefExtension>() is OffsetDefExtension offsetDef && comp.parent.def.defName.Contains(offsetDef.hediff.defName))
-            {
-                GetAltitudeOffset(pawn, comp.parent, rot, out float X, out float Y, out float Z, out float DsX, out float DsZ, out float ang);
-                vector3.x += X;
-                vector3.y += Y;
-                vector3.z += Z;
-                angle += ang;
-                s.x = DsX;
-                s.z = DsZ;
-
-            }
+            GetAltitudeOffset(pawn, comp.parent, rot, out float X, out float Y, out float Z, out float DsX, out float DsZ, out float ang);
+            vector3.x += X;
+            vector3.y += Y;
+            vector3.z += Z;
+            angle += ang;
+            s.x = DsX;
+            s.z = DsZ;
             if (pawn.RaceProps.Humanlike)
             {
                 vector3.x += 0.01f;
@@ -204,15 +199,41 @@ namespace RRYautja
             OffsetDefExtension myDef = null;
             if (!pawn.def.modExtensions.NullOrEmpty())
             {
-                myDef = (OffsetDefExtension)pawn.kindDef.race.modExtensions.Find((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)) ?? (OffsetDefExtension)ThingDefOf.Human.modExtensions.Find((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)) ?? new OffsetDefExtension();
+                Log.Message("!pawn.def.modExtensions.NullOrEmpty()");
+                if (pawn.def.HasModExtension<RRYautja.OffsetDefExtension>())
+                {
+                    List<DefModExtension> list = pawn.kindDef.race.modExtensions.Where((x) => x.GetType() == typeof(RRYautja.OffsetDefExtension)).ToList();
+                    Log.Message("pawn.def.HasModExtension<RRYautja.OffsetDefExtension>()");
+                    if (list.Any((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)))
+                    {
+                        Log.Message(string.Format("Race Has OffsetDefExtension for {0}", hediff.LabelCap));
+                        myDef = (OffsetDefExtension)list.First((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)) ?? null;
+                    }
+                    else
+                    {
+                        if (ThingDefOf.Human.modExtensions.Any((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)))
+                        {
+                            Log.Message("(ThingDefOf.Human.modExtensions.Any((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)))");
+                            myDef = (OffsetDefExtension)ThingDefOf.Human.modExtensions.Find((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName));
+                        }
+                        else
+                        {
+                            Log.Message("new OffsetDefExtension()");
+                            myDef = new OffsetDefExtension();
+                        }
+                    }
+                }
+                
             }
-            else if (myDef == null)
+            if (myDef == null)
             {
+                Log.Message("myDef == null");
                 myDef = (OffsetDefExtension)ThingDefOf.Human.modExtensions.Find((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)) ?? new OffsetDefExtension();
             }
             else
             {
-                myDef = new OffsetDefExtension() { hediff = hediff.def };
+            //    Log.Message("else");
+            //    myDef = new OffsetDefExtension() { hediff = hediff.def };
 
             }
 

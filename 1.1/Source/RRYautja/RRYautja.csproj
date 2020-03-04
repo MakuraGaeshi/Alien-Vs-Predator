@@ -34,7 +34,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Harmony\Patches\AvP_FoodUtility_TryFindBestFoodSourceFor_Patch - Copy %282%29.cs" />
+    <Compile Include="Harmony\Patches\AvP_RaidStrategyWorker_CanUsePawn_Xeno_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_SickPawnVisitUtility_CanVisit_Synth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_RecordWorker_TimeInBedForMedicalReasons_ShouldMeasureTimeNow_Synth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_IncidentWorker_DiseaseHuman_ActualVictims_Synth_Patch.cs" />

@@ -195,10 +195,6 @@ namespace RRYautja
 
             return true;
         }
-        public static bool isInfectablePawn(Pawn pawn)
-        {
-            return isInfectableThing(pawn.def);
-        }
 
         public static bool isInfectablePawn(Pawn pawn, bool allowinfected = false)
         {

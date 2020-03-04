@@ -30,6 +30,7 @@ namespace RRYautja
         private IEnumerable<DamageInfo> DamageInfosToApply(LocalTargetInfo target)
         {
             Pawn hitPawn = (Pawn)target;
+            DamageDef def = this.verbProps.meleeDamageDef;
             bool flag = XenomorphUtil.isInfectablePawn(hitPawn);
             float tgtmelee = 0f;
             float tgtdodge = 0f;
@@ -48,11 +49,7 @@ namespace RRYautja
                         bool flag2 = wornApparel[i].def.apparel.CoversBodyPart(Head);
                         if (flag2)
                         {
-                            armourBlunt = wornApparel[i].def.statBases.GetStatOffsetFromList(StatDefOf.ArmorRating_Blunt); // hitPawn.GetStatValue(StatDefOf.ArmorRating_Blunt, false);
-                            armourSharp = wornApparel[i].def.statBases.GetStatOffsetFromList(StatDefOf.ArmorRating_Sharp); //hitPawn.GetStatValue(StatDefOf.ArmorRating_Sharp, false);
-                            armourHeat = wornApparel[i].def.statBases.GetStatOffsetFromList(StatDefOf.ArmorRating_Heat); //hitPawn.GetStatValue(StatDefOf.ArmorRating_Heat, false);
-                            armour = (armourBlunt + armourSharp + armourHeat);
-                            //     Log.Message(string.Format("Pawn: {4}\narmourBlunt: {0}, armourSharp: {1}, armourHeat: {2}, Total Armour {3}", armourBlunt, armourSharp, armourHeat, armour, wornApparel[i].LabelShortCap));
+                            armour += wornApparel[i].def.statBases.GetStatOffsetFromList(def.armorCategory.armorRatingStat);
                         }
                     }
                 }
@@ -69,7 +66,6 @@ namespace RRYautja
             }
             float num = this.verbProps.AdjustedMeleeDamageAmount(this, this.CasterPawn);
             float armorPenetration = this.verbProps.AdjustedArmorPenetration(this, this.CasterPawn);
-            DamageDef def = this.verbProps.meleeDamageDef;
             BodyPartGroupDef bodyPartGroupDef = null;
             HediffDef hediffDef = null;
             num = Rand.Range(num * 0.8f, num * 1.2f);
