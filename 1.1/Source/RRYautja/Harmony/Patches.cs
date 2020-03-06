@@ -33,6 +33,15 @@ namespace RRYautja
                     AlienRace.RaceRestrictionSettings.apparelWhiteDict[key: def].Add(item: ((AlienRace.ThingDef_AlienRace)YautjaDefOf.RRY_Alien_Yautja));
                 }
             }
+            IEnumerable<ThingDef> pystrainers = DefDatabase<ThingDef>.AllDefs.Where(x => x.defName.Contains(NeurotrainerDefGenerator.PsytrainerDefPrefix));
+            foreach (AbilityDef item in DefDatabase<RRYautja.EquipmentAbilityDef>.AllDefs)
+            {
+                if (pystrainers.Any(x => x.defName.Contains(item.defName)))
+                {
+                    ThingDef trainer = pystrainers.First(x => x.defName.Contains(item.defName));
+                    DefDatabase<ThingDef>.AllDefsListForReading.Remove(trainer);
+                }
+            }
             Log.Message("clothes loaded");
             /*
             if (enabled_AI)
