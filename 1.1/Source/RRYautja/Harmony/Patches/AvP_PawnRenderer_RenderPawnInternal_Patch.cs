@@ -68,7 +68,6 @@ namespace RRYautja
                         HediffComp_DrawImplant comp = hd.TryGetComp<HediffComp_DrawImplant>();
                         if (comp != null)
                         {
-                            Log.Message("Drawing");
                             DrawImplant(comp, __instance, rootLoc, angle, renderBody, bodyFacing, headFacing, bodyDrawType, portrait, headStump);
                         }
                     }
@@ -199,26 +198,21 @@ namespace RRYautja
             OffsetDefExtension myDef = null;
             if (!pawn.def.modExtensions.NullOrEmpty())
             {
-                Log.Message("!pawn.def.modExtensions.NullOrEmpty()");
                 if (pawn.def.HasModExtension<RRYautja.OffsetDefExtension>())
                 {
                     List<DefModExtension> list = pawn.kindDef.race.modExtensions.Where((x) => x.GetType() == typeof(RRYautja.OffsetDefExtension)).ToList();
-                    Log.Message("pawn.def.HasModExtension<RRYautja.OffsetDefExtension>()");
                     if (list.Any((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)))
                     {
-                        Log.Message(string.Format("Race Has OffsetDefExtension for {0}", hediff.LabelCap));
                         myDef = (OffsetDefExtension)list.First((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)) ?? null;
                     }
                     else
                     {
                         if (ThingDefOf.Human.modExtensions.Any((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)))
                         {
-                            Log.Message("(ThingDefOf.Human.modExtensions.Any((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)))");
-                            myDef = (OffsetDefExtension)ThingDefOf.Human.modExtensions.Find((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName));
+                            myDef = (OffsetDefExtension)ThingDefOf.Human.modExtensions.First((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName));
                         }
                         else
                         {
-                            Log.Message("new OffsetDefExtension()");
                             myDef = new OffsetDefExtension();
                         }
                     }
@@ -227,7 +221,6 @@ namespace RRYautja
             }
             if (myDef == null)
             {
-                Log.Message("myDef == null");
                 myDef = (OffsetDefExtension)ThingDefOf.Human.modExtensions.Find((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)) ?? new OffsetDefExtension();
             }
             else

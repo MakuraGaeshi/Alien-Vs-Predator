@@ -60,7 +60,7 @@ namespace RRYautja
             }
             if (num > 0)
             {
-                base.SendStandardLetter(null, list, Array.Empty<NamedArgument>());
+                base.SendStandardLetter(parms, list, Array.Empty<NamedArgument>());
             }
             return num > 0;
         }

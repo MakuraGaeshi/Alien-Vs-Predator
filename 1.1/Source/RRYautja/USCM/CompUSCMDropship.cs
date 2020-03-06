@@ -261,10 +261,9 @@ namespace RimWorld
             }
             enumerator = null;
             yield break;
-            yield break;
         }
 
-        public new bool AllFuelingPortSourcesInGroupHaveAnyFuel
+        public bool AllFuelingPortSourcesInGroupHaveAnyFuel
         {
             get
             {
