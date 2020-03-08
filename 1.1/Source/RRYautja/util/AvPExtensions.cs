@@ -580,6 +580,19 @@ namespace RRYautja.ExtensionMethods
         {
             return p.isNeoHost() || p.isXenoHost();
         }
+        public static bool isHost(this Pawn p, out Hediff hediff)
+        {
+            bool result = p.isNeoHost() || p.isXenoHost();
+            if (result)
+            {
+                hediff = p.health.hediffSet.hediffs.Find(x => x.def.defName.Contains("morphImpregnation") || x.def.defName.Contains("FaceHuggerInfection"));
+            }
+            else
+            {
+                hediff = null;
+            }
+            return result;
+        }
         public static bool isXenoHost(this Pawn p)
         {
             return p.health.hediffSet.hediffs.Any(x => x.def.defName.Contains("XenomorphImpregnation") || x.def.defName.Contains("FaceHuggerInfection"));

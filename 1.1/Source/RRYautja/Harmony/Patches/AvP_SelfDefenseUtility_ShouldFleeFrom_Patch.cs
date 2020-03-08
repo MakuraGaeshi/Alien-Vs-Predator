@@ -15,7 +15,7 @@ using RRYautja.ExtensionMethods;
 
 namespace RRYautja
 {
-    // Marking system tick replacement
+    /*
     [HarmonyPatch(typeof(SelfDefenseUtility), "ShouldFleeFrom")]
     public static class AvP_SelfDefenseUtility_ShouldFleeFrom_Patch
     {
@@ -107,5 +107,5 @@ namespace RRYautja
             }
         }
     }
-
+    */
 }

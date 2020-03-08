@@ -695,45 +695,34 @@ namespace RRYautja
                     }
                     if (!dinfo.Def.isRanged)
                     {
-                        if (dinfo.Instigator is Pawn Instigator && Instigator != null && Instigator != pawn && Instigator.AdjacentTo8WayOrInside(pawn))
+                        if (dinfo.Instigator !=null && dinfo.Instigator is Pawn Instigator && Instigator != pawn && Instigator.AdjacentTo8WayOrInside(pawn))
                         {
-                            if (dinfo.Weapon is ThingDef WeaponDef && WeaponDef != null)
+                            if (dinfo.Def.makesBlood)
                             {
-                                if (WeaponDef.IsWeapon)
+                                if (dinfo.Weapon is ThingDef WeaponDef && WeaponDef != null)
                                 {
-                                    if (WeaponDef == Instigator.equipment.Primary.def && Instigator.equipment.Primary is ThingWithComps Weapon && Instigator.equipment.PrimaryEq is CompEquippable WeaponEQ)
+                                    if (WeaponDef.IsWeapon)
                                     {
-                                        if (WeaponDef.MadeFromStuff && Weapon.Stuff is ThingDef WeaponStuff)
+                                        if (WeaponDef == Instigator.equipment.Primary.def && Instigator.equipment.Primary is ThingWithComps Weapon && Instigator.equipment.PrimaryEq is CompEquippable WeaponEQ)
                                         {
-                                            if (WeaponStuff.defName.Contains("RRY_Xeno"))
+                                            float resistance = Weapon.GetStatValue(AvPDefOf.RRY_AcidResistance);
+                                            acidburns = resistance != 1f;
+                                            if (acidburns)
                                             {
-                                                acidburns = false;
-                                            }
-                                        }
-                                        else
-                                        {
-                                            foreach (var item in Weapon.def.costList)
-                                            {
-                                                if (item.thingDef == XenomorphDefOf.RRY_Xenomorph_TailSpike || item.thingDef == XenomorphDefOf.RRY_Xenomorph_HeadShell)
+                                                int dmg = (int)(Rand.Range(0, 5) * (1 - resistance));
+                                                Weapon.HitPoints -= dmg;
+                                                if (Weapon.HitPoints <= 0)
                                                 {
-                                                    acidburns = false;
+                                                    Weapon.Destroy();
                                                 }
-                                            }
-                                        }
-                                        if (acidburns)
-                                        {
-                                            Weapon.HitPoints -= Rand.Range(0, 5);
-                                            if (Weapon.HitPoints <= 0)
-                                            {
-                                                Weapon.Destroy();
                                             }
                                         }
                                     }
                                 }
-                            }
-                            if (Rand.Chance(0.25f) && Instigator.Map!=null)
-                            {
-                                FilthMaker.TryMakeFilth(Instigator.Position, Instigator.Map, pawn.RaceProps.BloodDef, pawn.LabelIndefinite(), 1);
+                                if (Rand.Chance(0.25f) && Instigator.Map != null)
+                                {
+                                    FilthMaker.TryMakeFilth(Instigator.Position, Instigator.Map, XenomorphDefOf.RRY_FilthBloodXenomorph_Active, pawn.LabelIndefinite(), 1);
+                                }
                             }
                         }
                     }
