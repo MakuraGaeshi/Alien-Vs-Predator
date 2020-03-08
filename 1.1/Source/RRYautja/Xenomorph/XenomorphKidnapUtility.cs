@@ -83,6 +83,18 @@ namespace RRYautja
             {
                 named = victim.RaceProps.Humanlike ? XenomorphDefOf.RRY_Xenomorph_Cocoon_Humanoid : XenomorphDefOf.RRY_Xenomorph_Cocoon_Animal;
             }
+
+            if (hiveGrid.Hivelist.NullOrEmpty())
+            {
+                Log.Warning("no hives present");
+            }
+            else
+            {
+                c = hiveGrid.Hivelist.RandomElement().Position.RandomAdjacentCell8Way();
+                return true;
+            }
+
+
             hivelikesPresent = XenomorphUtil.HivelikesPresent(map);
             hivelikesReachable = !XenomorphUtil.ClosestReachableHivelike(pawn).DestroyedOrNull();
             closestReachableHivelike = XenomorphUtil.ClosestReachableHivelike(pawn);

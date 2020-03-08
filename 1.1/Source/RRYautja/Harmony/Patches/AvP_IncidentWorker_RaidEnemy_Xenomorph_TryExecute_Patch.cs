@@ -42,7 +42,7 @@ namespace RRYautja
                             {
                                 parms.points *= 2;
                                 parms.raidArrivalMode = YautjaDefOf.EdgeWalkInGroups;
-                                if (Rand.ChanceSeeded(0.05f, AvPConstants.AvPSeed))
+                                if (Rand.Chance(0.05f))
                                 {
                                     parms.forced = true;
                                     parms.points = Mathf.Max(parms.points * new FloatRange(1f, 1.6f).RandomInRange, parms.faction.def.MinPointsToGeneratePawnGroup(PawnGroupKindDefOf.Combat));
