@@ -20,8 +20,12 @@ namespace RRYautja
         [HarmonyPostfix]
         public static void IncrementPostfix(Pawn killed, Pawn killer)
         {
-            if (killer!=null)
+            if (killer!=null && killer.RaceProps!=null)
             {
+                if (!killer.RaceProps.Humanlike)
+                {
+                    return;
+                }
                 if (killed==null)
                 {
                     return;
