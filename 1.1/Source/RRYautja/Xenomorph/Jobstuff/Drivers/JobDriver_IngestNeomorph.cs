@@ -86,21 +86,27 @@ namespace RimWorld
                 {
                     return false;
                 }
-                /*
-                Log.Message(string.Format("pawn: {0}", pawn));
-                Log.Message(string.Format("ingestibleSource.def: {0}", ingestibleSource.def));
-                Log.Message(string.Format("Nutrition: {0}", ingestibleSource.GetStatValue(StatDefOf.Nutrition, true)));
-                */
-                int num = FoodUtility.WillIngestStackCountOf(this.pawn, ingestibleSource.def, ingestibleSource.GetStatValue(StatDefOf.Nutrition, true)+1);
-                if (num >= ingestibleSource.stackCount && ingestibleSource.Spawned)
+                
+                try
                 {
-                    Pawn pawn = this.pawn;
-                    LocalTargetInfo target = ingestibleSource;
-                    Job job = this.job;
-                    if (!pawn.Reserve(target, job, 1, -1, null, errorOnFailed))
+                    int num = FoodUtility.WillIngestStackCountOf(this.pawn, ingestibleSource.def, ingestibleSource.GetStatValue(StatDefOf.Nutrition, true) + 1);
+                    if (num >= ingestibleSource.stackCount && ingestibleSource.Spawned)
                     {
-                        return false;
+                        Pawn pawn = this.pawn;
+                        LocalTargetInfo target = ingestibleSource;
+                        Job job = this.job;
+                        if (!pawn.Reserve(target, job, 1, -1, null, errorOnFailed))
+                        {
+                            return false;
+                        }
                     }
+                }
+                catch (Exception)
+                {
+                    Log.Message(string.Format("pawn: {0}", pawn));
+                    Log.Message(string.Format("ingestibleSource.def: {0}", ingestibleSource.def));
+                    Log.Message(string.Format("Nutrition: {0}", ingestibleSource.GetStatValue(StatDefOf.Nutrition, true)));
+                    return false;
                 }
             }
             return true;
