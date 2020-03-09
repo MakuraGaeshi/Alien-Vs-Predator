@@ -434,13 +434,13 @@
 	</ThinkTreeDef>
 
 	<ThinkTreeDef>
-		<defName>AnimalConstant</defName>
+		<defName>XenomorphConstant</defName>
 		<thinkRoot Class="ThinkNode_Priority">
 			<subNodes>
         <li Class="ThinkNode_ConditionalCanDoConstantThinkTreeJobNow">
           <subNodes>
             <!-- Flee enemies, tornados, meteorites, etc. -->
-            <li Class="JobGiver_AnimalFlee" />
+            <li Class="JobGiver_XenomorphFlee" />
 
             <!-- Join auto joinable caravan -->
             <li Class="ThinkNode_Subtree">
