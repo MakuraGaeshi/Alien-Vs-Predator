@@ -168,7 +168,8 @@ namespace RRYautja
                     {
                         CasterPawn.DeSpawn();
                     }
-                //    comp.GetDirectlyHeldThings().TryAdd(CasterPawn);
+                    comp.TryAcceptThing(CasterPawn);
+                    //    comp.GetDirectlyHeldThings().TryAdd(CasterPawn);
 
                     infect = false;
                 }

@@ -12,6 +12,7 @@ namespace RRYautja.ExtensionMethods
     [StaticConstructorOnStartup]
     public static class AvPExtensions
     {
+        
         public static void GainEquipmentAbility(this Pawn_AbilityTracker tracker ,EquipmentAbilityDef def, ThingWithComps thing)
         {
             if (!tracker.abilities.Any((Ability a) => a.def == def))
