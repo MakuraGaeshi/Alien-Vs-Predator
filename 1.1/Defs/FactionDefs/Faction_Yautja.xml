@@ -20,7 +20,8 @@
       <min>-100</min>
       <max>0</max>
     </startingGoodwill>
-	<factionNameMaker>NamerRRYYautjaJungleClan</factionNameMaker>
+    <fixedName>a Jungle Clan</fixedName>
+	<!--factionNameMaker>NamerRRYYautjaJungleClan</factionNameMaker-->
 	<settlementNameMaker>NamerRRYautjaBases</settlementNameMaker>
 	<techLevel>Spacer</techLevel>
     <backstoryFilters>

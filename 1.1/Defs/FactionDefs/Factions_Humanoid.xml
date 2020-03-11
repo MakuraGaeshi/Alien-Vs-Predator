@@ -87,9 +87,9 @@
       <li>
         <categories>
         <li>RRY_USCM_Backstories</li>
-		<li>Raider</li>
-		<li>Tribal</li>
-		<li>Civil</li>
+		<li>Pirate</li>
+		<li>Offworlder</li>
+		<li>Outlander</li>
         </categories>
       </li>
     </backstoryFilters>
@@ -104,22 +104,15 @@
     </naturalColonyGoodwill>
     <visitorTraderKinds>
 	
-      <li>RRY_USCM_Visitor_Official</li>
-	  <li>RRY_USCM_Visitor_Smuggler</li>
-	  
-	  
     </visitorTraderKinds>
     <caravanTraderKinds>
-   
+		<li>RRY_USCM_Visitor_Official</li>
+		<li>RRY_USCM_Visitor_Smuggler</li>
 		<li>RRY_Base_USCM_Standard</li>
 		<li>RRY_USCM_CombatSupplier</li>
-	  
     </caravanTraderKinds>
     <baseTraderKinds>
-	
-      <li>RRY_Base_USCM_Standard</li>
-	  
-	  
+		<li>RRY_Base_USCM_Standard</li>
     </baseTraderKinds>
     <allowedArrivalTemperatureRange>
       <min>-50</min>

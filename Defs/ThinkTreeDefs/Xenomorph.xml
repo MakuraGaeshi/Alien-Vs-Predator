@@ -433,30 +433,6 @@
 		</thinkRoot>
 	</ThinkTreeDef>
 
-	<ThinkTreeDef>
-		<defName>XenomorphConstant</defName>
-		<thinkRoot Class="ThinkNode_Priority">
-			<subNodes>
-        <li Class="ThinkNode_ConditionalCanDoConstantThinkTreeJobNow">
-          <subNodes>
-            <!-- Flee enemies, tornados, meteorites, etc. -->
-            <li Class="JobGiver_XenomorphFlee" />
-
-            <!-- Join auto joinable caravan -->
-            <li Class="ThinkNode_Subtree">
-              <treeDef>JoinAutoJoinableCaravan</treeDef>
-            </li>
-            
-            <!-- Lord directives -->
-            <li Class="ThinkNode_Subtree">
-              <treeDef>LordDutyConstant</treeDef>
-            </li>
-          </subNodes>
-        </li>
-      </subNodes>
-		</thinkRoot>
-	</ThinkTreeDef>
-
   <!--============= Dig out if I can't reach map edge ===========-->
   
   <ThinkTreeDef>

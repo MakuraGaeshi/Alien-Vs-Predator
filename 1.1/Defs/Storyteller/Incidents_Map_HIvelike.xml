@@ -8,7 +8,7 @@
     <targetTags>
       <li>Map_PlayerHome</li>
     </targetTags>
-    <workerClass>IncidentWorker_Hivelike</workerClass>
+    <workerClass>IncidentWorker_Xenomorph_Hivelike</workerClass>
     <letterLabel>Infestation</letterLabel>
     <letterText>Something is tunneling towards you! They will break through in a few seconds.</letterText>
     <letterDef>ThreatBig</letterDef>

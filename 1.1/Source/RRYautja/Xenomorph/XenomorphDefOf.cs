@@ -85,6 +85,7 @@ namespace RimWorld
         public static JobDef RRY_Job_Xenomorph_Construct_Hive_Roof;
         public static JobDef RRY_Job_DestroyCocoon; 
         public static JobDef RRY_Neomorph_Ingest;
+        public static JobDef RRY_Xenomorph_Ingest; 
 
         // Xenomorph DutyDefs    
         public static DutyDef RRY_Xenomorph_DefendHiveLoc;

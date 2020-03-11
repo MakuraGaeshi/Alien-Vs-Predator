@@ -75,7 +75,7 @@ namespace RRYautja
                 float ambientTemperature = this.parent.AmbientTemperature;
                 float num = 1f / (this.Props.hatcherDaystoHatch * 60000f);
 
-                if (ambientTemperature > -20f)
+                if (ambientTemperature > -20f && parent.Map!=null)
                 {
                     if (settings.SettingsHelper.latest.AllowXenoEggMetamorph)
                     {
@@ -83,6 +83,13 @@ namespace RRYautja
                         {
                             this.mutateProgress += num;
                         }
+                    }
+                    else
+                    {
+                        /*
+                        this.mutateProgress = 0;
+                        this.eggState = EggState.Normal;
+                        */
                     }
                     if (this.gestateProgress < 1f && (!this.EggMutating))
                     {

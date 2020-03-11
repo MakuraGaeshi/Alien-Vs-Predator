@@ -93,96 +93,19 @@ namespace RRYautja
                 c = hiveGrid.Hivelist.RandomElement().Position.RandomAdjacentCell8Way();
                 return true;
             }
-
-
-            hivelikesPresent = XenomorphUtil.HivelikesPresent(map);
-            hivelikesReachable = !XenomorphUtil.ClosestReachableHivelike(pawn).DestroyedOrNull();
-            closestReachableHivelike = XenomorphUtil.ClosestReachableHivelike(pawn);
-            if (c == IntVec3.Invalid)
-            {
-                if ((hivelikesPresent && hivelikesReachable))
-                {
-                    List<ThingDef_HiveLike> hivedefs = DefDatabase<ThingDef_HiveLike>.AllDefsListForReading.FindAll(x => x.Faction == pawn.Faction.def);
-
-                    if (XenomorphUtil.TotalSpawnedHivelikeCount(map) > 0)
-                    {
-                        if (XenomorphUtil.TotalSpawnedParentHivelikeCount(map) > 0)
-                        {
-                            hiveThing = XenomorphUtil.TotalSpawnedParentHivelikeCount(map) > 1 ? XenomorphUtil.SpawnedParentHivelikes(map).RandomElement() : XenomorphUtil.ClosestReachableHivelike(pawn, XenomorphUtil.SpawnedParentHives(map));
-                            c = hiveThing.Position;
-                        }
-                        /*
-                        if (XenomorphUtil.TotalSpawnedChildHivelikeCount(map) > 0)
-                        {
-                            hiveThing = XenomorphUtil.TotalSpawnedParentHivelikeCount(map) > 1 ? XenomorphUtil.SpawnedParentHivelikes(map).RandomElement() : XenomorphUtil.ClosestReachableHivelike(pawn, XenomorphUtil.SpawnedParentHivelikes(map));
-                            c = hiveThing.Position;
-                            return true;
-                        }
-                        */
-                    }
-                }
-            }
             
-            if (c == IntVec3.Invalid)
-            {
-                hiveslimepresent = XenomorphUtil.HiveSlimePresent(map);
-                hiveslimeReachable = !XenomorphUtil.ClosestReachableHiveSlime(pawn).DestroyedOrNull();
-                closestreachablehiveslime = XenomorphUtil.ClosestReachableHiveSlime(pawn);
-                if (hiveslimepresent && hiveslimeReachable)
-                {
-                    c = closestreachablehiveslime.Position;
-                }
-            }
-
-            if (c == IntVec3.Invalid)
-            {
-                if (!hiveGrid.HiveLoclist.NullOrEmpty())
-                {
-                    c = hiveGrid.HiveLoclist.RandomElement();
-                    if (c != IntVec3.Invalid)
-                    {
-                        if (c.GetFirstThing(map, XenomorphDefOf.RRY_Xenomorph_Hive_Slime).DestroyedOrNull())
-                        {
-                            GenSpawn.Spawn(XenomorphDefOf.RRY_Xenomorph_Hive_Slime, c, map);
-                        }
-                    }
-                }
-            }
-            
-            if (c == IntVec3.Invalid)
-            {
-                eggsPresent = XenomorphUtil.EggsPresent(map);
-                eggsReachable = !XenomorphUtil.ClosestReachableEgg(pawn).DestroyedOrNull();
-                closestReachableEgg = XenomorphUtil.ClosestReachableEgg(pawn);
-                if ((eggsPresent && eggsReachable && XenomorphUtil.SpawnedEggsNeedHosts(map).Count > 0) && result == false)
-                {
-                    eggThing = XenomorphUtil.SpawnedEggsNeedHosts(map).Count > 1 ? XenomorphUtil.SpawnedEggsNeedHosts(map).RandomElement() : XenomorphUtil.ClosestReachableEggNeedsHost(pawn);
-                    c = eggThing.Position;
-                }
-            }
-            /*
-            if (c == IntVec3.Invalid)
-            {
-            cocoonsPresent = XenomorphUtil.CocoonsPresent(map, named);
-            cocoonsReachable = !XenomorphUtil.ClosestReachableCocoon(pawn, named).DestroyedOrNull();
-            closestReachableCocoon = XenomorphUtil.ClosestReachableCocoon(pawn, named);
-            if (cocoonsPresent && cocoonsReachable)
-            {
-                c = closestReachableCocoon.Position;
-                if (c != IntVec3.Invalid)
-                {
-                    result =  true;
-                }
-            }
-            */
             if (c == IntVec3.Invalid)
             {
                 if (!InfestationLikeCellFinder.TryFindCell(out c, out IntVec3 lc, map, true, true, true))
                 {
                     Log.Message(string.Format("Cant find suitable hive location, defaulting to map edge"));
-                    if (!RCellFinder.TryFindBestExitSpot(pawn, out c, TraverseMode.ByPawn))
+                    if (!InfestationCellFinder.TryFindCell(out c, map))
                     {
-                        Log.Message(string.Format("Cant find spot near map edge"));
+                        Log.Message(string.Format("Cant find suitable hive location, defaulting to map edge"));
+                        if (!RCellFinder.TryFindBestExitSpot(pawn, out c, TraverseMode.ByPawn))
+                        {
+                            Log.Message(string.Format("Cant find spot near map edge"));
+                        }
                     }
                 }
             }

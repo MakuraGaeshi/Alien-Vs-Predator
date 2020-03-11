@@ -34,6 +34,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Harmony\Patches\AvP_Pawn_AgeTracker_RecalculateLifeStageIndex_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Corpse_TickRare_Gestation_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_RaidStrategyWorker_CanUsePawn_Xeno_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_SickPawnVisitUtility_CanVisit_Synth_Patch.cs" />
@@ -144,12 +145,16 @@
     <Compile Include="util\PawnsArrivalModeWorker_DropThroughRoof.cs" />
     <Compile Include="util\Projectile_Anim.cs" />
     <Compile Include="util\Projectile_Fire.cs" />
+    <Compile Include="Xenomorph\Hives\IncidentWorker_Xenomorph_WorldHive.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_Xenomorph_Ingest.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_Neomorph_Flee.cs" />
     <Compile Include="Xenomorph\XenomorphExtensions.cs" />
     <Compile Include="Xenomorph\Hives\IncidentWorker_Hivelike - Copy.cs" />
     <Compile Include="Xenomorph\XenomorphHostSystem.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_Xenomorph_Cocoon.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_Xenomorph_Cocoon.cs" />
     <Compile Include="Xenomorph\Removable_Hediff.cs" />
+    <None Include="Xenomorph\XenomorphKidnapUtility - Copy.cs.bak" />
     <Compile Include="Xenomorph\Xenomorph_Part_Hediff.cs" />
     <Compile Include="Xenomorph\XenomorphBodypartUtility.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphForceGoToHive.cs" />
@@ -175,7 +180,7 @@
     <Compile Include="util\HediffGiver_StartWithHediff.cs" />
     <Compile Include="util\TrailThrower.cs" />
     <Compile Include="util\CrashedShip\CompGooSpread.cs" />
-    <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_IngestNeomorph.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_Neomorph_Ingest.cs" />
     <Compile Include="Xenomorph\Projectile_AcidSpit.cs" />
     <Compile Include="Xenomorph\CompFungalOverlay.cs" />
     <Compile Include="Xenomorph\Comp_Neomorph.cs" />
@@ -190,12 +195,12 @@
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_DestroyCocoon.cs" />
     <Compile Include="util\CompUseEffect_Cocoon.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_XenomorphTendSelf.cs" />
-    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_GetFoodNeomorph.cs" />
-    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_GetFoodXenomorph.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_Neomorph_GetFood.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_Xenomorph_GetFood.cs" />
     <Compile Include="Xenomorph\CompHiveConversionRadius.cs" />
     <Compile Include="Xenomorph\CompHiveExpand.cs" />
     <Compile Include="util\MarkOffsetDefExtension.cs" />
-    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphFleeFire.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_Xenomorph_FleeFire.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphSelfTend.cs" />
     <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalLordPawnCount.cs" />
     <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalSky.cs" />
@@ -293,7 +298,7 @@
     <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalFinalLifeStage.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_FacehuggerHunt.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphManhunter.cs" />
-    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphFlee.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_Xenomorph_Flee.cs" />
     <Compile Include="Xenomorph\XenomorphUtil.cs" />
     <Compile Include="util\Graphic_Invisible.cs" />
     <Compile Include="util\PawnGraphicSet_Invisible.cs" />

@@ -1216,7 +1216,6 @@ namespace RRYautja
                         hiveGrid.HiveGuardlist.Add(pawn);
                     }
                 }
-
             }
         }
 

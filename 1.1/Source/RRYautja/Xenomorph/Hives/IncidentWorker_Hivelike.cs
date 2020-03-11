@@ -7,7 +7,7 @@ using RRYautja;
 namespace RimWorld
 {
     // Token: 0x02000340 RID: 832
-    public class IncidentWorker_Hivelike : IncidentWorker
+    public class IncidentWorker_Xenomorph_Hivelike : IncidentWorker
     {
         public IntVec3 intVec;
         // Token: 0x06000E63 RID: 3683 RVA: 0x0006B874 File Offset: 0x00069C74
@@ -17,33 +17,18 @@ namespace RimWorld
 			Map map = (Map)parms.target;
             bool result = base.CanFireNowSub(parms) && XenomorphHiveUtility.TotalSpawnedHiveLikesCount(map) < 1 && InfestationLikeCellFinder.TryFindCell(out intVec, out IntVec3 lc, map);
             ThingDef thing = DefDatabase<ThingDef>.GetNamedSilentFail("O21_AntiInfestationThumper");
+            /*
             if (map.listerBuildings.ColonistsHaveBuildingWithPowerOn(thing) && result)
             {
                 Thing thumper = map.listerBuildings.AllBuildingsColonistOfDef(thing).FirstOrFallback();
                 GenExplosion.DoExplosion(thumper.Position, thumper.Map, 5f, DamageDefOf.Bomb, thumper, 50000, 2f, SoundDefOf.PlanetkillerImpact);
-                IncidentDef def;
-                def = new IncidentDef
-                {
-                    defName = this.def.defName + "B",
-                    workerClass = typeof(IncidentWorker_XenomorphHive),
-                    category = this.def.category,
-                    allowedBiomes = this.def.allowedBiomes,
-                    baseChance = 0,
-                    description = this.def.description,
-                    letterDef = this.def.letterDef,
-                    letterLabel = this.def.letterLabel,
-                    letterText = this.def.letterText,
-                    targetTags = this.def.targetTags,
-                    tags = this.def.tags,
-                    tale = this.def.tale,
-                    refireCheckTags = this.def.refireCheckTags,
-                    mechClusterBuilding = this.def.mechClusterBuilding
-                };
+                IncidentDef def = DefDatabase<IncidentDef>.GetNamed("");
                 parms.points *= 3;
                 QueuedIncident qi = new QueuedIncident(new FiringIncident(def, null, parms), Find.TickManager.TicksGame+10);
                 Find.Storyteller.incidentQueue.Add(qi);
-            //    return false;
+                return false;
             }
+            */
 			return result;
             
             /*
@@ -67,7 +52,7 @@ namespace RimWorld
             {
                 //Log.Message(string.Format("TunnelLike"));
                 Thing t = this.SpawnTunnelLikeCluster(hivelikeCount, map);
-                base.SendStandardLetter(null, new TargetInfo(intVec, map, false), Array.Empty<NamedArgument>());
+                base.SendStandardLetter(parms, new TargetInfo(intVec, map, false), Array.Empty<NamedArgument>());
                 /*
                 Map map = (Map)parms.target;
                 int hiveCount = Mathf.Max(GenMath.RoundRandom(parms.points / 220f), 1);
@@ -82,7 +67,7 @@ namespace RimWorld
                 //Log.Message(string.Format("HiveLike"));
 
                 Thing t = this.SpawnHiveLikeCluster(hivelikeCount, map);
-                base.SendStandardLetter(null, new TargetInfo(intVec, map, false), Array.Empty<NamedArgument>());
+                base.SendStandardLetter(parms, new TargetInfo(intVec, map, false), Array.Empty<NamedArgument>());
             }
 			Find.TickManager.slower.SignalForceNormalSpeedShort();
 			return true;
@@ -97,13 +82,13 @@ namespace RimWorld
             HiveLike hivelike = (HiveLike)ThingMaker.MakeThing(thingDef, null);
             GenSpawn.Spawn(ThingMaker.MakeThing(hivelike.Def.TunnelDef, null), loc, map);
             hivelike.SetFaction(hivelike.OfFaction, null);
-            IncidentWorker_Hivelike.SpawnItemInstantly(hivelike);
+            IncidentWorker_Xenomorph_Hivelike.SpawnItemInstantly(hivelike);
             for (int i = 0; i < hiveCount - 1; i++)
             {
                 CompSpawnerHiveLikes c = hivelike.GetComp<CompSpawnerHiveLikes>();
                 if (hivelike.Spawned && hivelike.GetComp<CompSpawnerHiveLikes>().TrySpawnChildHiveLike(modifier, modifier, out HiveLike hivelike2, ignoreRoofedRequirement, allowUnreachable))
                 {
-                    IncidentWorker_Hivelike.SpawnItemInstantly(hivelike2);
+                    IncidentWorker_Xenomorph_Hivelike.SpawnItemInstantly(hivelike2);
                     hivelike = hivelike2;
                 }
             }
@@ -118,13 +103,13 @@ namespace RimWorld
             TunnelHiveLikeSpawner hivelike = (TunnelHiveLikeSpawner)ThingMaker.MakeThing(thingDef, null);
             GenSpawn.Spawn(ThingMaker.MakeThing(hivelike.def, null), loc, map);
             //hivelike.SetFaction(hivelike.faction, null);
-            IncidentWorker_Hivelike.SpawnItemInstantly(hivelike);
+            IncidentWorker_Xenomorph_Hivelike.SpawnItemInstantly(hivelike);
             for (int i = 0; i < hiveCount - 1; i++)
             {
                 CompSpawnerHiveLikes c = hivelike.GetComp<CompSpawnerHiveLikes>();
                 if (hivelike.Spawned && hivelike.GetComp<CompSpawnerHiveLikes>().TrySpawnChildHiveLike(modifier, modifier,out TunnelHiveLikeSpawner hivelike2, ignoreRoofedRequirement, allowUnreachable))
                 {
-                    IncidentWorker_Hivelike.SpawnItemInstantly(hivelike2);
+                    IncidentWorker_Xenomorph_Hivelike.SpawnItemInstantly(hivelike2);
                     hivelike = hivelike2;
                     //Log.Message(string.Format("7 e"));
                 }

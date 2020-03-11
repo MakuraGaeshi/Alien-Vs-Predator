@@ -112,7 +112,7 @@
         <li Class="ThinkNode_ConditionalCanDoConstantThinkTreeJobNow">
           <subNodes>
             <!-- Flee enemies, tornados, meteorites, etc. -->
-            <li Class="JobGiver_XenomorphFlee" />
+            <li Class="JobGiver_NeomorphFlee" />
 
             <!-- Join auto joinable caravan -->
             <li Class="ThinkNode_Subtree">

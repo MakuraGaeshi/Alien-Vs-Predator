@@ -43,6 +43,8 @@
       <ArmorRating_Heat>0.75</ArmorRating_Heat>
     </statBases>
     <race>
+      <thinkTreeMain>RRY_Xenomorph_ThinkTree</thinkTreeMain>
+      <thinkTreeConstant>XenomorphConstant</thinkTreeConstant>
       <!-- <deathActionWorkerClass>RRYautja.DeathActionWorker_Xenomorph</deathActionWorkerClass> -->
       <herdAnimal>false</herdAnimal>
       <predator>true</predator>
@@ -109,7 +111,6 @@
       <meatLabel>xenomorph flesh</meatLabel>
       <maxPreyBodySize>30</maxPreyBodySize>
       <intelligence>ToolUser</intelligence>
-      <thinkTreeMain>RRY_Xenomorph_ThinkTree</thinkTreeMain>
       <body>RRY_Xenomorph_FaceHugger</body>
       <baseBodySize>0.30</baseBodySize>
       <baseHealthScale>0.3</baseHealthScale>
