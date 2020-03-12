@@ -216,10 +216,6 @@ namespace RRYautja
                         {
                             isImpregnated = true;
                             previousImpregnations++;
-#if DEBUG
-                        //    Log.Message("is Impregnated", isImpregnated);
-#endif
-
                         }
                     }
                     timer = 0;

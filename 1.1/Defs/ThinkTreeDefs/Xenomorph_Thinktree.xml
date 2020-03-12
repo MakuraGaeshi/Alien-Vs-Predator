@@ -32,6 +32,7 @@
 		  <pawnKind>RRY_Xenomorph_FaceHugger</pawnKind>
 			<subNodes>
 				<li Class="JobGiver_Xenomorph_FleeFire" />
+				<li Class="JobGiver_Xenomorph_Flee" />
 			</subNodes>
         </li>
 		
@@ -49,7 +50,7 @@
 						  </subNodes>
 						</li>
 						<!-- Exit -->
-						<li Class="JobGiver_Xenomorph_Flee" />
+						<!--li Class="JobGiver_Xenomorph_Flee" /-->
 						<!-- Wander -->
 						<li Class="JobGiver_WanderAnywhere">
 						  <maxDanger>Deadly</maxDanger>
@@ -77,7 +78,7 @@
 						  </subNodes>
 						</li>
 						<!-- Exit -->
-						<li Class="JobGiver_Xenomorph_Flee" />
+						<!--li Class="JobGiver_Xenomorph_Flee" /-->
 						<!-- Wander -->
 						<li Class="JobGiver_WanderAnywhere">
 						  <maxDanger>Deadly</maxDanger>

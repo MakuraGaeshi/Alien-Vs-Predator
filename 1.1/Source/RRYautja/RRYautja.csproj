@@ -34,6 +34,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Harmony\Patches\AvP_AlienRace_HarmonyPatches_ThoughtsFromIngesting_Patch - Copy.cs" />
     <Compile Include="Harmony\Patches\AvP_Pawn_AgeTracker_RecalculateLifeStageIndex_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Corpse_TickRare_Gestation_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_RaidStrategyWorker_CanUsePawn_Xeno_Patch.cs" />
