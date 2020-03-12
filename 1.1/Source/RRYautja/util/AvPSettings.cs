@@ -29,15 +29,15 @@ namespace RRYautja.settings
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look(ref this.AllowXenomorphFaction, "AllowXenomorphFaction", true);
-            Scribe_Values.Look(ref this.AllowYautjaFaction, "AllowYautjaFaction", true);
-            Scribe_Values.Look(ref this.AllowHiddenInfections, "AllowHiddenInfections", true);
-            Scribe_Values.Look(ref this.AllowPredalienImpregnations, "AllowPredalienImpregnations", true);
-            Scribe_Values.Look(ref this.AllowXenoCocoonMetamorph, "AllowXenoCocoonMetamorph", true);
-            Scribe_Values.Look(ref this.AllowXenoEggMetamorph, "AllowXenoEggMetamorph", true);
-            Scribe_Values.Look(ref this.AllowNonHumanlikeHosts, "AllowNonHumanlikeHosts", true);
-            Scribe_Values.Look<float>(ref this.fachuggerRemovalFailureDeathChance, "fachuggerRemovalFailureDeathChance", 0.35f);
-            Scribe_Values.Look<float>(ref this.embryoRemovalFailureDeathChance, "embryoRemovalFailureDeathChance", 0.35f);
+            Scribe_Values.Look(ref this.AllowXenomorphFaction, "AllowXenomorphFaction".Translate(), true);
+            Scribe_Values.Look(ref this.AllowYautjaFaction, "AllowYautjaFaction".Translate(), true);
+            Scribe_Values.Look(ref this.AllowHiddenInfections, "AllowHiddenInfections".Translate(), true);
+            Scribe_Values.Look(ref this.AllowPredalienImpregnations, "AllowPredalienImpregnations".Translate(), true);
+            Scribe_Values.Look(ref this.AllowXenoCocoonMetamorph, "AllowXenoCocoonMetamorph".Translate(), true);
+            Scribe_Values.Look(ref this.AllowXenoEggMetamorph, "AllowXenoEggMetamorph".Translate(), true);
+            Scribe_Values.Look(ref this.AllowNonHumanlikeHosts, "AllowNonHumanlikeHosts".Translate(), true);
+            Scribe_Values.Look<float>(ref this.fachuggerRemovalFailureDeathChance, "fachuggerRemovalFailureDeathChance".Translate(), 0.35f);
+            Scribe_Values.Look<float>(ref this.embryoRemovalFailureDeathChance, "embryoRemovalFailureDeathChance".Translate(), 0.35f);
         }
     }
 

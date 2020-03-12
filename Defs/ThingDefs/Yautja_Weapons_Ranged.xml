@@ -435,6 +435,7 @@
 	  <li>YautjaRanged</li>
 	</weaponTags>
   </ThingDef> 
+  
   <ThingDef ParentName="BaseBullet">
     <defName>RRY_Bullet_SpearRifle</defName>
     <label>spear bolt</label>

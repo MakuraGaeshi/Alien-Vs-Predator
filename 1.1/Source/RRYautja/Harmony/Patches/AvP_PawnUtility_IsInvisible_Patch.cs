@@ -24,15 +24,13 @@ namespace RRYautja
         {
             if (pawn == null)
             {
-                Log.Message("Pawn is null");
                 return;
             }
             if (pawn.isXenomorph(out Comp_Xenomorph xenomorph))
             {
-                Log.Message("Pawn is Xenomorph");
                 if (xenomorph!=null)
                 {
-                    if (xenomorph.Hidden)
+                    if (xenomorph.hidden)
                     {
                         __result = true;
                     }
@@ -42,10 +40,8 @@ namespace RRYautja
             {
                 if (pawn.RaceProps.Humanlike)
                 {
-                    Log.Message("Pawn is Humanlike");
                     if (pawn.apparel.WornApparel.Any(x=> x.GetType() == typeof(Cloakgen)))
                     {
-                        Log.Message("Pawn has Cloakgen");
                         Cloakgen cloak = (Cloakgen)pawn.apparel.WornApparel.First(x => x.GetType() == typeof(Cloakgen));
                         if (cloak!=null)
                         {

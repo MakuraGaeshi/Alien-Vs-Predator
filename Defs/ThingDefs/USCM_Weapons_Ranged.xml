@@ -74,6 +74,15 @@
 				<cooldownTime>1.6</cooldownTime>
 			</li>
 		</tools>
+		<costList>
+		  <Steel>30</Steel>
+		  <ComponentIndustrial>3</ComponentIndustrial>
+		</costList>
+		<recipeMaker>
+		  <skillRequirements>
+			<Crafting>5</Crafting>
+		  </skillRequirements>
+		</recipeMaker>	
 	</ThingDef>
 
 	<!-- ==================== M4A4 ============================= -->
@@ -148,7 +157,16 @@
 				<power>8</power>
 				<cooldownTime>1.6</cooldownTime>
 			</li>
-		</tools>		
+		</tools>	
+		<costList>
+		  <Steel>30</Steel>
+		  <ComponentIndustrial>3</ComponentIndustrial>
+		</costList>
+		<recipeMaker>
+		  <skillRequirements>
+			<Crafting>5</Crafting>
+		  </skillRequirements>	
+		</recipeMaker>
 	</ThingDef>
 
 	<!-- ==================== 88 mod 4 ============================= -->
@@ -224,6 +242,15 @@
 				<cooldownTime>1.6</cooldownTime>
 			</li>
 		</tools>
+		<costList>
+		  <Steel>40</Steel>
+		  <ComponentIndustrial>3</ComponentIndustrial>
+		</costList>
+		<recipeMaker>
+		  <skillRequirements>
+			<Crafting>5</Crafting>
+		  </skillRequirements>
+		</recipeMaker>
 	</ThingDef>
 
 <!-- ====================== M240 Incinerator Unit ===================== -->
@@ -693,7 +720,12 @@
 				<power>10</power>
 				<cooldownTime>1.9</cooldownTime>
 			</li>
-		</tools>		
+		</tools>	
+		<costList>
+		  <Plasteel>20</Plasteel>
+		  <Steel>40</Steel>
+		  <ComponentSpacer>1</ComponentSpacer>
+		</costList>	
 	</ThingDef>
 		
 	<!-- =================== M5 Rocket Propelled Grenade ================== -->	
@@ -714,7 +746,7 @@
 		</projectile>
 	</ThingDef>
   
-	<ThingDef ParentName="RRY_USCM_BaseGun">
+	<ThingDef ParentName="RRY_USCM_BaseMakeableGun">
 		<defName>RRY_USCM_Gun_M5RPG</defName>
 		<label>M5 Rocket Propelled Grenade</label>
 		<description>The M5 Rocket Propelled Grenade (RPG) is a portable, shoulder-fired, reloadable, semi-automatic unguided anti-armor rocket-propelled grenade launcher used by United States Colonial Marine Corps as their standard issue RPG. Able to load up to 4 rockets, the M5 RPG is the favorite anti-infantry toy of the USCM.</description>
@@ -772,6 +804,16 @@
 				<power>10</power>
 				<cooldownTime>1.9</cooldownTime>
 			</li>
-		</tools>		
+		</tools>	
+		<costList>
+		  <Plasteel>40</Plasteel>
+		  <Chemfuel>40</Chemfuel>
+		  <ComponentSpacer>1</ComponentSpacer>
+		</costList>
+		<recipeMaker>
+		  <skillRequirements>
+			<Crafting>12</Crafting>
+		  </skillRequirements>
+		</recipeMaker>	
 	</ThingDef>
 </Defs>
