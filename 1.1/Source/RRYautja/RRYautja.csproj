@@ -34,7 +34,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Harmony\Patches\AvP_AlienRace_HarmonyPatches_ThoughtsFromIngesting_Patch - Copy.cs" />
+    <Compile Include="Harmony\Patches\AvP_PawnUtility_IsInvisible_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Pawn_AgeTracker_RecalculateLifeStageIndex_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Corpse_TickRare_Gestation_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_RaidStrategyWorker_CanUsePawn_Xeno_Patch.cs" />
@@ -127,8 +127,8 @@
     <Compile Include="util\AvPExtensions.cs" />
     <Compile Include="util\AvPConstants.cs" />
     <Compile Include="util\AvPDefOf.cs" />
-    <Compile Include="util\Class1.cs" />
-    <Compile Include="util\Class2.cs" />
+    <Compile Include="util\ExtraMeleeDamage.cs" />
+    <Compile Include="util\PlayerPawnsArriveMethod.cs" />
     <Compile Include="util\DebugTools\DebugToolsPawnAvP.cs" />
     <Compile Include="util\DebugTools\DebugToolsSpawningAvP.cs" />
     <Compile Include="util\IngestionOutcomeDoer_RemoveHediff.cs" />

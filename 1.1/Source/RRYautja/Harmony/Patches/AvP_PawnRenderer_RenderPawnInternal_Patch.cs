@@ -26,13 +26,9 @@ namespace RRYautja
         {
             Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
             //    bool selected = Find.Selector.SelectedObjects.Contains(pawn) && Prefs.DevMode;
-
-            if (pawn.isXenomorph(out Comp_Xenomorph compXeno))
+            if (invisible)
             {
-                if (compXeno.Hidden)
-                {
-                    invisible = true;
-                }
+                return;
             }
             if (!portrait)
             {

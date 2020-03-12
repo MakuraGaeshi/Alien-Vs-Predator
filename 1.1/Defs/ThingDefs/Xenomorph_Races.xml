@@ -33,8 +33,8 @@
       <MeleeHitChance>1.5</MeleeHitChance>
       <MiningSpeed>1.5</MiningSpeed>
       <ImmunityGainSpeed>2.25</ImmunityGainSpeed>
-      <PsychicSensitivity>0</PsychicSensitivity>
-      <ToxicSensitivity>0</ToxicSensitivity>
+      <PsychicSensitivity>1</PsychicSensitivity>
+      <ToxicSensitivity>0.5</ToxicSensitivity>
       <Flammability>0.5</Flammability>
       <ComfyTemperatureMin>-30</ComfyTemperatureMin>
       <ComfyTemperatureMax>150</ComfyTemperatureMax>
@@ -293,6 +293,8 @@
       </li>
     </tools>
     <race>
+      <PsychicSensitivity>0.25</PsychicSensitivity>
+      <ToxicSensitivity>0.25</ToxicSensitivity>
       <intelligence>ToolUser</intelligence>
       <thinkTreeMain>RRY_Xenomorph_ThinkTree</thinkTreeMain>
       <body>RRY_Xenomorph_Biped</body>
@@ -1400,6 +1402,8 @@
       </li>
     </tools>
     <race>
+      <PsychicSensitivity>0.5</PsychicSensitivity>
+      <ToxicSensitivity>0.25</ToxicSensitivity>
       <intelligence>ToolUser</intelligence>
       <thinkTreeMain>RRY_Xenomorph_ThinkTree</thinkTreeMain>
       <body>RRY_Xenomorph_QuadrupedWithHorn</body>
