@@ -200,6 +200,8 @@
       <ArmorRating_Heat>1.30</ArmorRating_Heat>
       <MeatAmount>115</MeatAmount>
       <LeatherAmount>90</LeatherAmount>
+      <PsychicSensitivity>0.25</PsychicSensitivity>
+      <ToxicSensitivity>0.25</ToxicSensitivity>
     </statBases>
     <tools>
       <li>
@@ -293,8 +295,6 @@
       </li>
     </tools>
     <race>
-      <PsychicSensitivity>0.25</PsychicSensitivity>
-      <ToxicSensitivity>0.25</ToxicSensitivity>
       <intelligence>ToolUser</intelligence>
       <thinkTreeMain>RRY_Xenomorph_ThinkTree</thinkTreeMain>
       <body>RRY_Xenomorph_Biped</body>
@@ -1299,6 +1299,8 @@
       <ArmorRating_Heat>1.00</ArmorRating_Heat>
       <MeatAmount>215</MeatAmount>
       <LeatherAmount>140</LeatherAmount>
+      <PsychicSensitivity>0.5</PsychicSensitivity>
+      <ToxicSensitivity>0.25</ToxicSensitivity>
     </statBases>
     <tools>
       <li>
@@ -1402,8 +1404,6 @@
       </li>
     </tools>
     <race>
-      <PsychicSensitivity>0.5</PsychicSensitivity>
-      <ToxicSensitivity>0.25</ToxicSensitivity>
       <intelligence>ToolUser</intelligence>
       <thinkTreeMain>RRY_Xenomorph_ThinkTree</thinkTreeMain>
       <body>RRY_Xenomorph_QuadrupedWithHorn</body>
