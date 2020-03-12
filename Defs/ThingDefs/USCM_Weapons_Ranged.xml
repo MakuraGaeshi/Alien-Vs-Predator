@@ -570,7 +570,6 @@
 		</projectile>
 	</ThingDef>
 
-
 	<ThingDef ParentName="RRY_USCM_BaseMakeableGun">
 		<defName>RRY_USCM_Gun_M37A2S</defName>
 		<label>M37A2 Pump Shotgun</label>
@@ -657,7 +656,7 @@
 		<projectile>
 			<flyOverhead>false</flyOverhead>
 			<damageDef>Bullet</damageDef>
-			<damageAmountBase>55</damageAmountBase>
+			<damageAmountBase>35</damageAmountBase>
 			<speed>150</speed>
 		</projectile>
 	</ThingDef>

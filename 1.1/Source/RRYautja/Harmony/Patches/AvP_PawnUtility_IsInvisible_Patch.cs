@@ -30,9 +30,15 @@ namespace RRYautja
             {
                 if (xenomorph!=null)
                 {
+                    if (xenomorph.spotted || !xenomorph.CanHide)
+                    {
+                        __result = false;
+                        return;
+                    }
                     if (xenomorph.hidden)
                     {
                         __result = true;
+                        return;
                     }
                 }
             }

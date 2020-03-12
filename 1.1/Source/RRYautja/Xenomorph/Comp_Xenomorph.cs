@@ -85,6 +85,14 @@ namespace RRYautja
             }
         }
 
+        public Lord CurLord
+        {
+            get
+            {
+                return pawn.GetLord();
+            }
+        }
+
         public Map map
         {
             get
@@ -97,6 +105,10 @@ namespace RRYautja
         {
             get
             {
+                if (pawn.Dead)
+                {
+                    return 0f;
+                }
                 return Mathf.Max((10 * pawn.BodySize) * pawn.Map.glowGrid.GameGlowAt(pawn.Position, false), (10 * pawn.BodySize));
             }
         }
@@ -104,6 +116,10 @@ namespace RRYautja
         {
             get
             {
+                if (pawn.Dead)
+                {
+                    return true;
+                }
                 List<Pawn> pawns = map.mapPawns.AllPawnsSpawned.FindAll(x => pawn.Position.DistanceTo(x.Position) < MinHideDist);
                 if (!pawns.NullOrEmpty())
                 {
@@ -119,6 +135,10 @@ namespace RRYautja
         {
             get
             {
+                if (pawn.Dead)
+                {
+                    return false;
+                }
                 if (pawn.Map.glowGrid.GameGlowAt(pawn.Position, false)<0.5f)
                 {
                     return true;
@@ -126,11 +146,54 @@ namespace RRYautja
                 return false;
             }
         }
+
+        public Lord XenoLord
+        {
+            get
+            {
+                Lord lord = null;
+                if (map==null)
+                {
+                    return lord;
+                }
+                else
+                if (CurLord!=null)
+                {
+                    bool isDefendPoint = pawn.GetLord() != null ? pawn.GetLord().LordJob is LordJob_DefendPoint : true;
+                    bool isAssaultColony = pawn.GetLord() != null ? pawn.GetLord().LordJob is LordJob_AssaultColony : true;
+                    bool hostsPresent = map.mapPawns.AllPawnsSpawned.Any(x => x.isPotentialHost() && !x.isCocooned() && IsAcceptablePreyFor(pawn, x, true) && x.Faction.HostileTo(pawn.Faction));
+                    bool LordReplaceable = (isDefendPoint || (isAssaultColony && hostsPresent && !GenHostility.AnyHostileActiveThreatTo(pawn.Map, pawn.Faction)));
+                    if (LordReplaceable)
+                    {
+                        if (!map.HiveGrid().Hivelist.NullOrEmpty())
+                        {
+                            HiveLike hive = (HiveLike)map.HiveGrid().Hivelist.RandomElement();
+                            if (hive!=null)
+                            {
+                                if (hive.Lord!=null)
+                                {
+                                    lord = hive.Lord;
+                                }
+                            }
+                        }
+                    }
+                    lord = CurLord;
+                }
+                else
+                {
+                    List<Lord> lords = pawn.Map.lordManager.lords.Where(x => x.faction == pawn.Faction).ToList();
+
+                }
+                return null;
+            }
+        }
+
         public void XenoLordTick()
         {
             Log.Message("XenoLordTick");
             if (map != null)
             {
+                Log.Message("XenoLordTick with Map");
                 IntVec3 c = IntVec3.Invalid;
                 Lord lord = null;
                 List<Lord> Hivelords = new List<Lord>();
@@ -143,6 +206,7 @@ namespace RRYautja
                 bool hostsPresent = map.mapPawns.AllPawnsSpawned.Any(x => x.isPotentialHost() && !x.isCocooned() && IsAcceptablePreyFor(pawn,x,true) && x.Faction.HostileTo(pawn.Faction));
                 bool LordReplaceable = (isDefendPoint || (isAssaultColony && hostsPresent && !GenHostility.AnyHostileActiveThreatTo(pawn.Map,pawn.Faction)));
                 //   Log.Message(string.Format("LordReplaceable: {0}, isDefendPoint: {1}, isAssaultColony: {2}, hostsPresent: {3}", LordReplaceable, isDefendPoint, isAssaultColony, !hostsPresent));
+
                 if (c == IntVec3.Invalid && XenomorphUtil.HivelikesPresent(map))
                 {
                     c = !XenomorphUtil.ClosestReachableHivelike(pawn).DestroyedOrNull() ? XenomorphUtil.ClosestReachableHivelike(pawn).Position : IntVec3.Invalid;
@@ -412,6 +476,14 @@ namespace RRYautja
 
         public override void CompTick()
         {
+            if (pawn.Dead)
+            {
+                if (hidden)
+                {
+                    hidden = false;
+                }
+                return;
+            }
             if (pawn.ageTracker.CurLifeStage!=XenomorphDefOf.RRY_XenomorphFullyFormed)
             {
                 if (pawn.CurJobDef == JobDefOf.Ingest)
@@ -457,7 +529,7 @@ namespace RRYautja
                 }
                 if (pawn.Downed || pawn.Dead || (pawn.pather != null && pawn.pather.WillCollideWithPawnOnNextPathCell()))
                 {
-                    MakeVisible();
+                 //   MakeVisible();
                     hidden = false;
                     if (pawn.pather != null)
                     {
@@ -503,7 +575,7 @@ namespace RRYautja
                                         float spotChance = 0.8f * TargetMoving / observerSight;
                                         if (Rand.Value > spotChance || spotted)
                                         {
-                                            MakeVisible();
+                                        //    MakeVisible();
                                             hidden = false;
                                             AlertXenomorph(pawn, observer);
                                         }
@@ -516,7 +588,7 @@ namespace RRYautja
                                             float spotChance = 0.99f * TargetMoving;
                                             if (Rand.Value > spotChance || spotted)
                                             {
-                                                MakeVisible();
+                                            //    MakeVisible();
                                                 hidden = false;
                                                 //pawn.health.RemoveHediff(this);
                                                 AlertXenomorph(pawn, turret);
@@ -546,9 +618,9 @@ namespace RRYautja
             }
             else
             {
-                if (hidden  )
+                if (hidden && (spotted || !CanHide))
                 {
-                    MakeVisible();
+                //    MakeVisible();
                     hidden = false;
                 }
                 if (CanHide)

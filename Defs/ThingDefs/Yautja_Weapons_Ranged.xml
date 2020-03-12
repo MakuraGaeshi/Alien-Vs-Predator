@@ -181,7 +181,7 @@
     </graphicData>
     <projectile>
 		<flyOverhead>false</flyOverhead>
-		<damageDef>Bullet</damageDef>
+		<damageDef>Burn</damageDef>
 		<damageAmountBase>25</damageAmountBase>
 		<armorPenetrationBase>0.68</armorPenetrationBase>
 		<stoppingPower>1.75</stoppingPower>

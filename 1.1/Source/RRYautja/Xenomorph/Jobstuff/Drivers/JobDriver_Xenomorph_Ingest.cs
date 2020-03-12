@@ -86,10 +86,7 @@ namespace RimWorld
                 {
                     return false;
                 }
-                if (ingestibleSource.GetType()!=typeof(Corpse))
-                {
-                    return false;
-                }
+
                 try
                 {
                     int num = FoodUtility.WillIngestStackCountOf(this.pawn, ingestibleSource.def, ingestibleSource.GetStatValue(StatDefOf.Nutrition, true) + 1);
@@ -136,10 +133,152 @@ namespace RimWorld
         // Token: 0x060003E4 RID: 996 RVA: 0x0002815B File Offset: 0x0002655B
         private IEnumerable<Toil> PrepareToIngestToils(Toil chewToil)
         {
+            // yield return this.ReserveFoodIfWillIngestWholeStack();
+            yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
+            yield break;
+            /*
+            if (this.usingNutrientPasteDispenser)
+            {
+                return this.PrepareToIngestToils_Dispenser();
+            }
+            if (this.pawn.RaceProps.ToolUser)
+            {
+                return this.PrepareToIngestToils_ToolUser(chewToil);
+            }
+            */
+            //    return this.PrepareToIngestToils_NonToolUser();
+        }
+
+        // Token: 0x060003E5 RID: 997 RVA: 0x00028194 File Offset: 0x00026594
+        private IEnumerable<Toil> PrepareToIngestToils_Dispenser()
+        {
+            yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell).FailOnDespawnedNullOrForbidden(TargetIndex.A);
+            yield return Toils_Ingest.TakeMealFromDispenser(TargetIndex.A, this.pawn);
+            yield return Toils_Ingest.CarryIngestibleToChewSpot(this.pawn, TargetIndex.A).FailOnDestroyedNullOrForbidden(TargetIndex.A);
+            yield return Toils_Ingest.FindAdjacentEatSurface(TargetIndex.B, TargetIndex.A);
+            yield break;
+        }
+
+        // Token: 0x060003E6 RID: 998 RVA: 0x000281B8 File Offset: 0x000265B8
+        private IEnumerable<Toil> PrepareToIngestToils_ToolUser(Toil chewToil)
+        {
+            if (this.eatingFromInventory)
+            {
+                yield return Toils_Misc.TakeItemFromInventoryToCarrier(this.pawn, TargetIndex.A);
+            }
+            else
+            {
+                yield return this.ReserveFoodIfWillIngestWholeStack();
+                Toil gotoToPickup = Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.ClosestTouch).FailOnDespawnedNullOrForbidden(TargetIndex.A);
+                yield return Toils_Jump.JumpIf(gotoToPickup, () => this.pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation));
+                yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch).FailOnDespawnedNullOrForbidden(TargetIndex.A);
+                yield return Toils_Jump.Jump(chewToil);
+                yield return gotoToPickup;
+                yield return Toils_Ingest.PickupIngestible(TargetIndex.A, this.pawn);
+                Toil reserveExtraFoodToCollect = Toils_Reserve.Reserve(TargetIndex.C, 1, -1, null);
+                Toil findExtraFoodToCollect = new Toil();
+                findExtraFoodToCollect.initAction = delegate ()
+                {
+                    if (this.pawn.inventory.innerContainer.TotalStackCountOfDef(this.IngestibleSource.def) < this.job.takeExtraIngestibles)
+                    {
+                        Thing thing = GenClosest.ClosestThingReachable(this.pawn.Position, this.pawn.Map, ThingRequest.ForDef(this.IngestibleSource.def), PathEndMode.Touch, TraverseParms.For(this.pawn, Danger.Deadly, TraverseMode.ByPawn, false), 12f, (Thing x) => this.pawn.CanReserve(x, 1, -1, null, false) && !x.IsForbidden(this.pawn) && x.IsSociallyProper(this.pawn), null, 0, -1, false, RegionType.Set_Passable, false);
+                        if (thing != null)
+                        {
+                            this.job.SetTarget(TargetIndex.C, thing);
+                            this.JumpToToil(reserveExtraFoodToCollect);
+                        }
+                    }
+                };
+                findExtraFoodToCollect.defaultCompleteMode = ToilCompleteMode.Instant;
+                yield return Toils_Jump.Jump(findExtraFoodToCollect);
+                yield return reserveExtraFoodToCollect;
+                yield return Toils_Goto.GotoThing(TargetIndex.C, PathEndMode.Touch);
+                yield return Toils_Haul.TakeToInventory(TargetIndex.C, () => this.job.takeExtraIngestibles - this.pawn.inventory.innerContainer.TotalStackCountOfDef(this.IngestibleSource.def));
+                yield return findExtraFoodToCollect;
+            }
+            yield return Toils_Ingest.CarryIngestibleToChewSpot(this.pawn, TargetIndex.A).FailOnDestroyedOrNull(TargetIndex.A);
+            yield return Toils_Ingest.FindAdjacentEatSurface(TargetIndex.B, TargetIndex.A);
+            yield break;
+        }
+
+        // Token: 0x060003E7 RID: 999 RVA: 0x000281E4 File Offset: 0x000265E4
+        private IEnumerable<Toil> PrepareToIngestToils_NonToolUser()
+        {
+            yield return this.ReserveFoodIfWillIngestWholeStack();
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
             yield break;
         }
-        
+
+        // Token: 0x060003E8 RID: 1000 RVA: 0x00028208 File Offset: 0x00026608
+        private Toil ReserveFoodIfWillIngestWholeStack()
+        {
+            return new Toil
+            {
+                initAction = delegate ()
+                {
+                    if (this.pawn.Faction == null)
+                    {
+                        return;
+                    }
+                    Thing thing = this.job.GetTarget(TargetIndex.A).Thing;
+                    if (this.pawn.carryTracker.CarriedThing == thing)
+                    {
+                        return;
+                    }
+                    int num = FoodUtility.WillIngestStackCountOf(this.pawn, thing.def, thing.GetStatValue(StatDefOf.Nutrition, true));
+                    if (num >= thing.stackCount)
+                    {
+                        if (!thing.Spawned)
+                        {
+                            this.pawn.jobs.EndCurrentJob(JobCondition.Incompletable, true);
+                            return;
+                        }
+                        this.pawn.Reserve(thing, this.job, 1, -1, null, true);
+                    }
+                },
+                defaultCompleteMode = ToilCompleteMode.Instant,
+                atomicWithPrevious = true
+            };
+        }
+
+        // Token: 0x060003E9 RID: 1001 RVA: 0x0002823C File Offset: 0x0002663C
+        public override bool ModifyCarriedThingDrawPos(ref Vector3 drawPos, ref bool behind, ref bool flip)
+        {
+            IntVec3 cell = this.job.GetTarget(TargetIndex.B).Cell;
+            return JobDriver_Ingest.ModifyCarriedThingDrawPosWorker(ref drawPos, ref behind, ref flip, cell, this.pawn);
+        }
+
+        // Token: 0x060003EA RID: 1002 RVA: 0x00028270 File Offset: 0x00026670
+        public static bool ModifyCarriedThingDrawPosWorker(ref Vector3 drawPos, ref bool behind, ref bool flip, IntVec3 placeCell, Pawn pawn)
+        {
+            if (pawn.pather.Moving)
+            {
+                return false;
+            }
+            Thing carriedThing = pawn.carryTracker.CarriedThing;
+            if (carriedThing == null || !carriedThing.IngestibleNow)
+            {
+                return false;
+            }
+            if (placeCell.IsValid && placeCell.AdjacentToCardinal(pawn.Position) && placeCell.HasEatSurface(pawn.Map) && carriedThing.def.ingestible.ingestHoldUsesTable)
+            {
+                drawPos = new Vector3((float)placeCell.x + 0.5f, drawPos.y, (float)placeCell.z + 0.5f);
+                return true;
+            }
+            if (carriedThing.def.ingestible.ingestHoldOffsetStanding != null)
+            {
+                HoldOffset holdOffset = carriedThing.def.ingestible.ingestHoldOffsetStanding.Pick(pawn.Rotation);
+                if (holdOffset != null)
+                {
+                    drawPos += holdOffset.offset;
+                    behind = holdOffset.behind;
+                    flip = holdOffset.flip;
+                    return true;
+                }
+            }
+            return false;
+        }
+
         // Token: 0x04000260 RID: 608
         private bool usingNutrientPasteDispenser;
 

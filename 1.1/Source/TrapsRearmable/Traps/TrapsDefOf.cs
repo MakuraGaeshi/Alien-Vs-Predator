@@ -14,7 +14,7 @@ namespace RimWorld
 		}
         
         // Yautja WorkTypeDefs 
-        public static WorkTypeDef TR_Rearm;
+    //    public static WorkTypeDef TR_Rearm;
 
         // Yautja DesignationDefs
         public static DesignationDef TR_RearmTrap;

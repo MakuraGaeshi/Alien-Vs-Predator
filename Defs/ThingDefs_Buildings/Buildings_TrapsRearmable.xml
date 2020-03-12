@@ -79,7 +79,7 @@
     <defName>TR_RearmTraps</defName>
     <label>Rearm traps</label>
     <giverClass>TrapsRearmable.WorkGiver_RearmTraps</giverClass>
-    <workType>TR_Rearm</workType>
+    <workType>BasicWorker</workType>
     <verb>Rearm</verb>
     <gerund>rearming</gerund>
     <priorityInType>50</priorityInType>
@@ -88,7 +88,7 @@
     </requiredCapacities>
   </WorkGiverDef>
   
-  <WorkTypeDef>
+  <!--WorkTypeDef>
 		<defName>TR_Rearm</defName>
 		<labelShort>Rearm</labelShort>
 		<pawnLabel>Rearmer</pawnLabel>
@@ -97,7 +97,7 @@
 		<verb>Rearm</verb>
 		<naturalPriority>1125</naturalPriority>
 		<alwaysStartActive>true</alwaysStartActive>
-	</WorkTypeDef>
+	</WorkTypeDef-->
 
   
   <RecordDef>
