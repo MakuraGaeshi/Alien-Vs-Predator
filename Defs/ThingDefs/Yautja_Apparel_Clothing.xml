@@ -95,6 +95,7 @@
 			<li>Apparel</li>
 		</thingCategories>
 		<apparel>
+		<useWornGraphicMask>true</useWornGraphicMask>
 			<bodyPartGroups>
 				<li>Torso</li>
 			</bodyPartGroups>

@@ -29,15 +29,15 @@
           <treeDef>MentalStateCritical</treeDef>
         </li>
 		
-		<li Class="JobGiver_XenomorphFleeFire" />
+		<li Class="JobGiver_Xenomorph_FleeFire" />
 		
         <!-- Conditional Not Fully Grown -->
         <li Class="ThinkNode_ConditionalNotGrown">
           <subNodes>
 		  
-			<li Class="JobGiver_XenomorphFlee" />
+			<li Class="JobGiver_Neomorph_Flee" />
 			
-			<li Class="JobGiver_GetFoodNeomorph"> 
+			<li Class="JobGiver_Neomorph_GetFood"> 
 			  <minCategory>Hungry</minCategory>
 			</li>
 			
@@ -112,7 +112,7 @@
         <li Class="ThinkNode_ConditionalCanDoConstantThinkTreeJobNow">
           <subNodes>
             <!-- Flee enemies, tornados, meteorites, etc. -->
-            <li Class="JobGiver_NeomorphFlee" />
+            <li Class="JobGiver_Neomorph_Flee" />
 
             <!-- Join auto joinable caravan -->
             <li Class="ThinkNode_Subtree">

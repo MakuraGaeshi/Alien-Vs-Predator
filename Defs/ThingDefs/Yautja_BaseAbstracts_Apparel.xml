@@ -36,7 +36,7 @@
 
 	<ThingDef Name="RRY_Apparel_MakeableBase" ParentName="RRYApparelBase" Abstract="True">
 		<recipeMaker>
-			<workSpeedStat>TailoringSpeed</workSpeedStat>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
 			<workSkill>Crafting</workSkill>
 			<effectWorking>Tailor</effectWorking>
 			<soundWorking>Recipe_Tailor</soundWorking>
@@ -51,7 +51,7 @@
 
 	<ThingDef Name="RRY_Armor_MakeableBase" ParentName="RRYApparelBase" Abstract="True">
 		<recipeMaker>
-			<workSpeedStat>SmithingSpeed</workSpeedStat>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
 			<workSkill>Crafting</workSkill>
 			<effectWorking>Smith</effectWorking>
 			<soundWorking>Recipe_Machining</soundWorking>

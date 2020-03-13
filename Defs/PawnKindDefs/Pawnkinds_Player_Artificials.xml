@@ -18,10 +18,20 @@
         </bodyGraphicData>
       </li>
     </lifeStages>
-	<backstoryCategories>
+    <backstoryFiltersOverride>
+      <li>
+        <categories>
 			<li>RRY_Synth_Backstories</li>
 			<li>RRY_Artificial_Backstories</li>
-  	</backstoryCategories>
+        </categories>
+      </li>
+    </backstoryFiltersOverride>
+	<modExtensions>
+	  <li Class="AlienRace.Info">
+		<allowHumanBios>false</allowHumanBios>
+		<maleGenderProbability>0.5</maleGenderProbability>
+	  </li>
+	</modExtensions>
   </PawnKindDef>
 
 <!--=============================================== Artificials ===============================================-->

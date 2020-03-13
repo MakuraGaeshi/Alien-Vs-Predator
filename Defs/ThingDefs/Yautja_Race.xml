@@ -141,8 +141,7 @@
     <description>.</description>
     <alienRace>
         <generalSettings>
-			<useOnlyPawnkindBackstories>true</useOnlyPawnkindBackstories>
-            <maleGenderProbability>0.5</maleGenderProbability>
+            <maleGenderProbability>0.75</maleGenderProbability>
             <immuneToAge>false</immuneToAge>
             <forcedRaceTraitEntries>
                 <li>
@@ -454,7 +453,7 @@
                 <li>Apparel_Pants</li>
                 <li>Apparel_FlakPants</li>
 				<li>Apparel_ShieldBelt</li>
-				<li>Apparel_SmokepopBelt</li>
+				<li>Apparel_ShieldBelt</li>
             </whiteApparelList>
 			<onlyUseRaceRestrictedApparel>true</onlyUseRaceRestrictedApparel>
             <recipeList>
@@ -520,12 +519,10 @@
 		<PsychicSensitivity>1</PsychicSensitivity>
 		<MiningSpeed>1.0</MiningSpeed>
         <ForagedNutritionPerDay>1.0</ForagedNutritionPerDay>
-        <UnskilledLaborSpeed>1.0</UnskilledLaborSpeed>
         <ButcheryFleshSpeed>1.0</ButcheryFleshSpeed>
         <ButcheryFleshEfficiency>1.0</ButcheryFleshEfficiency>
         <SmeltingSpeed>1.0</SmeltingSpeed>
-        <SmithingSpeed>1.0</SmithingSpeed>
-        <TailoringSpeed>1.0</TailoringSpeed>
+        <GeneralLaborSpeed>1.0</GeneralLaborSpeed>
 		<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
 		-->
     </statBases>
@@ -644,11 +641,11 @@
       <ageGenerationCurve>
         <points>
                     <li>(16,0)</li>
-                    <li>(17,25)</li>
-                    <li>(18,50)</li>
-                    <li>(20,75)</li>
-                    <li>(30,100)</li>
-                    <li>(40,125)</li>
+                    <li>(17,100)</li>
+                    <li>(18,110)</li>
+                    <li>(20,120)</li>
+                    <li>(30,130)</li>
+                    <li>(40,140)</li>
                     <li>(50,150)</li>
 					<li>(120,175)</li>
 					<li>(140,200)</li>
@@ -769,7 +766,7 @@
 		<NorthAngle>0</NorthAngle>
 		<!-- South offsets Y is the layer height, usually you can leave this at 0, all values default to 0 if not set-->
 		<SouthXOffset>-0.001</SouthXOffset>
-		<SouthYOffset>0.0</SouthYOffset>
+		<SouthYOffset>0.010</SouthYOffset>
 		<SouthZOffset>0.0</SouthZOffset>
 		<!-- South Draw size overrides, will default to 1 if not set -->
 		<SouthXDrawSize>2</SouthXDrawSize>

@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>RRYautja</RootNamespace>
     <AssemblyName>RRYautja</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>false</DebugSymbols>
@@ -21,6 +22,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,42 +31,23 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lib.Harmony.1.2.0.1\lib\net35\0Harmony.dll</HintPath>
-    </Reference>
-    <Reference Include="0JecsTools">
-      <HintPath>..\..\..\..\..\..\workshop\content\294100\932008009\Assemblies\0JecsTools.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="AbilityUser">
-      <HintPath>..\..\..\..\..\..\workshop\content\294100\932008009\Assemblies\AbilityUser.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="AlienRace">
-      <HintPath>..\..\..\..\..\..\workshop\content\294100\839005762\1.0\Assemblies\AlienRace.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\..\..\RimWorldV1.0\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="UnityEngine">
-      <HintPath>..\..\..\..\..\RimWorldV1.0\RimWorldWin64_Data\Managed\UnityEngine.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
+    <Compile Include="Harmony\Patches\AvP_PawnUtility_IsInvisible_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_Pawn_AgeTracker_RecalculateLifeStageIndex_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_Corpse_TickRare_Gestation_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_RaidStrategyWorker_CanUsePawn_Xeno_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_SickPawnVisitUtility_CanVisit_Synth_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_RecordWorker_TimeInBedForMedicalReasons_ShouldMeasureTimeNow_Synth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_IncidentWorker_DiseaseHuman_ActualVictims_Synth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_RecordsUtility_Notify_PawnKilled_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_HediffSet_CalculateBleedRate_Synth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Need_get_IsFrozen_Synth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Hediff_Injury_BleedingStoppedDueToAge_Synth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Pawn_NeedsTracker_ShouldHaveNeed_Synth_Patch.cs" />
-    <Compile Include="Harmony\Patches\AvP_Pawn_ApparelTracker_Notify_ApparelRemoved_CompAbilityItem_Patch.cs" />
-    <Compile Include="Harmony\Patches\AvP_Pawn_EquipmentTracker_Notify_EquipmentRemoved_CompAbilityItem_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_Pawn_ApparelTracker_Notify_ApparelAddedRemoved_CompAbilityItem_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_Pawn_EquipmentTracker_Notify_EquipmentAddedRemoved_CompAbilityItem_Patch.cs" />
     <Compile Include="Harmony\Patches.cs" />
     <Compile Include="Harmony\Patches\AvP_FilthMaker_MakeFilth_Xenoblood_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Verb_Shoot_TryStartCastOn_SmartGun_Patch.cs" />
@@ -114,9 +97,14 @@
     <Compile Include="Harmony\Patches\AvP_StatWorker_GetValueUnfinalized_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_VerbUtility_HarmsHealth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_WorkGiver_Tend_GoodLayingStatusForTend_Patch.cs" />
-    <Compile Include="USCM\CompSynthProps.cs" />
+    <Compile Include="Harmony\Patches\AvP_GatheringsUtility_ShouldGuestKeepAttendingGathering_Synth_Patch.cs" />
+    <None Include="Harmony\Patches\Class1.cs.bak" />
+    <Compile Include="USCM\CompUSCMDropship.cs" />
+    <Compile Include="USCM\ScenPart_PlayerPawnsArriveMethod.cs" />
+    <Compile Include="USCM\Comp_Stealth.cs" />
+    <Compile Include="USCM\CompSynth.cs" />
     <Compile Include="USCM\CompTargeterSystem.cs" />
-    <Compile Include="USCM\Projectile_ExplosiveAbility.cs" />
+    <Compile Include="USCM\HediffComp_Overheating.cs" />
     <Compile Include="USCM\UtilSynths.cs" />
     <Compile Include="USCM\HediffGiver_Synth.cs" />
     <Compile Include="USCM\CompSmartgunSystem.cs" />
@@ -124,8 +112,14 @@
     <Compile Include="USCM\Verb_ShootShotgun.cs" />
     <Compile Include="USCM\DamageWorker_FlameNoCamShake.cs" />
     <Compile Include="USCM\HediffComp_DefectiveInhibitor.cs" />
-    <Compile Include="USCM\Verb_UseEquipment.cs" />
     <Compile Include="USCM\USCMDefOf.cs" />
+    <Compile Include="util\Abilities\Verb_LaunchProjectileEquipment.cs" />
+    <Compile Include="util\Abilities\Verb_UseEquipment.cs" />
+    <Compile Include="util\Abilities\Verb_ShootEquipment.cs" />
+    <Compile Include="util\Abilities\EquipmentAbility.cs" />
+    <Compile Include="util\Abilities\EquipmentAbilityDef.cs" />
+    <Compile Include="util\Abilities\Command_EquipmentAbility.cs" />
+    <Compile Include="util\Abilities\CompAbilityEffect_Shoot.cs" />
     <Compile Include="util\AvPSettings.cs" />
     <Compile Include="Harmony\ExtraButcheringProducts.cs" />
     <Compile Include="util\Building_XenomorphCryptosleepCasket.cs" />
@@ -133,6 +127,10 @@
     <Compile Include="util\AvPExtensions.cs" />
     <Compile Include="util\AvPConstants.cs" />
     <Compile Include="util\AvPDefOf.cs" />
+    <Compile Include="util\ExtraMeleeDamage.cs" />
+    <Compile Include="util\PlayerPawnsArriveMethod.cs" />
+    <Compile Include="util\DebugTools\DebugToolsPawnAvP.cs" />
+    <Compile Include="util\DebugTools\DebugToolsSpawningAvP.cs" />
     <Compile Include="util\IngestionOutcomeDoer_RemoveHediff.cs" />
     <Compile Include="util\TunnelSpawner.cs" />
     <Compile Include="util\CompPowerPlantSolarTurret.cs" />
@@ -149,11 +147,16 @@
     <Compile Include="util\PawnsArrivalModeWorker_DropThroughRoof.cs" />
     <Compile Include="util\Projectile_Anim.cs" />
     <Compile Include="util\Projectile_Fire.cs" />
+    <Compile Include="Xenomorph\Hives\IncidentWorker_Xenomorph_WorldHive.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_Xenomorph_Ingest.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_Neomorph_Flee.cs" />
+    <Compile Include="Xenomorph\XenomorphExtensions.cs" />
     <Compile Include="Xenomorph\Hives\IncidentWorker_Hivelike - Copy.cs" />
     <Compile Include="Xenomorph\XenomorphHostSystem.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_Xenomorph_Cocoon.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_Xenomorph_Cocoon.cs" />
     <Compile Include="Xenomorph\Removable_Hediff.cs" />
+    <None Include="Xenomorph\XenomorphKidnapUtility - Copy.cs.bak" />
     <Compile Include="Xenomorph\Xenomorph_Part_Hediff.cs" />
     <Compile Include="Xenomorph\XenomorphBodypartUtility.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphForceGoToHive.cs" />
@@ -179,7 +182,7 @@
     <Compile Include="util\HediffGiver_StartWithHediff.cs" />
     <Compile Include="util\TrailThrower.cs" />
     <Compile Include="util\CrashedShip\CompGooSpread.cs" />
-    <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_IngestNeomorph.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_Neomorph_Ingest.cs" />
     <Compile Include="Xenomorph\Projectile_AcidSpit.cs" />
     <Compile Include="Xenomorph\CompFungalOverlay.cs" />
     <Compile Include="Xenomorph\Comp_Neomorph.cs" />
@@ -191,21 +194,19 @@
     <Compile Include="Xenomorph\Hives\MapComponent_HiveGrid.cs" />
     <Compile Include="util\CrashedShip\CompPlantConversionRadius.cs" />
     <Compile Include="Xenomorph\Hives\CompHiveCreep.cs" />
-    <None Include="Xenomorph\IncidentWorker_PowerCutV1.cs.bak" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_DestroyCocoon.cs" />
     <Compile Include="util\CompUseEffect_Cocoon.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_XenomorphTendSelf.cs" />
-    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_GetFoodNeomorph.cs" />
-    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_GetFoodXenomorph.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_Neomorph_GetFood.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_Xenomorph_GetFood.cs" />
     <Compile Include="Xenomorph\CompHiveConversionRadius.cs" />
     <Compile Include="Xenomorph\CompHiveExpand.cs" />
     <Compile Include="util\MarkOffsetDefExtension.cs" />
-    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphFleeFire.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_Xenomorph_FleeFire.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphSelfTend.cs" />
     <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalLordPawnCount.cs" />
     <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalSky.cs" />
     <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalHealth.cs" />
-    <None Include="Xenomorph\IncidentWorker_PowerCutV2.cs.bal" />
     <Compile Include="Xenomorph\IncidentWorker_PowerCutV3.cs" />
     <None Include="Xenomorph\Lordstuff\LordToils\LordToil_DefendAndExpandHiveLike.cs.bak" />
     <Compile Include="Xenomorph\CompUsableBuilding.cs" />
@@ -218,9 +219,8 @@
     <Compile Include="Xenomorph\Lordstuff\LordToils\LordToil_XenomrophAssaultColony.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_MaintainLike.cs" />
     <Compile Include="Xenomorph\Hives\CompMaintainableLike.cs" />
-    <Compile Include="util\RRY_Xenomorph_AbilityUser.cs" />
     <Compile Include="util\Building_Turret_Shoulder.cs" />
-    <Compile Include="util\Verb_UseAbility_RRY_Thrown.cs" />
+    <Compile Include="util\Abilities\Verb_UseEquipment_Thrown.cs" />
     <Compile Include="Xenomorph\Hediff_Hidden_Xeno.cs" />
     <Compile Include="util\Returning_Projectile.cs" />
     <Compile Include="util\Projectile_AbilityRRY_ThrownReturning.cs" />
@@ -233,7 +233,6 @@
     <Compile Include="Xenomorph\Lordstuff\LordJobs\LordJob_DefendHiveLoc.cs" />
     <Compile Include="Xenomorph\Lordstuff\LordToils\LordToil_DefendHiveLoc.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_PredalienImpregnate.cs" />
-    <None Include="Xenomorph\IncidentWorker_PowerCutV2.cs.bak" />
     <Compile Include="Xenomorph\Hives\GenStep_XenomorphCaveHives.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_PredalienImpregnate.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphHosthunter.cs" />
@@ -249,7 +248,6 @@
     <Compile Include="util\IntergrationUtils.cs" />
     <Compile Include="Yautja\ScenPart_BadBlood.cs" />
     <Compile Include="Yautja\Recipe_Remove_Gauntlet.cs" />
-    <None Include="Yautja\RRY_Thought_SituationalSocial.cs.bak2" />
     <Compile Include="Yautja\GetReturningProjectile.cs" />
     <Compile Include="Xenomorph\XenomorphKidnapUtility.cs" />
     <Compile Include="Xenomorph\XenomorphCocoonUtility.cs" />
@@ -269,7 +267,7 @@
     <Compile Include="Xenomorph\HediffComp_SpawnerXeno.cs" />
     <Compile Include="util\Recipe_RemoveFacehugger.cs" />
     <Compile Include="util\Recipe_Surgery_RRY.cs" />
-    <Compile Include="util\GenericCompAbilityItem.cs" />
+    <Compile Include="util\Abilities\CompAbilityItem.cs" />
     <Compile Include="Yautja\HealthShard\JobGiver_PatientGoToBedTendSelf.cs" />
     <Compile Include="Yautja\HealthShard\JobDriver_HealthShard.cs" />
     <Compile Include="Yautja\HealthShard\CompHealthShard.cs" />
@@ -281,8 +279,6 @@
     <Compile Include="util\Projectile_AbilityRRY.cs" />
     <Compile Include="Yautja\Verb_Launch_Stuffable_Projectile.cs" />
     <Compile Include="Yautja\Verb_Shoot_Stuffable.cs" />
-    <Compile Include="Xenomorph\XenosCorpseModification.cs" />
-    <None Include="Yautja\RRY_Thought_Situational.cs.bak2" />
     <Compile Include="Xenomorph\HediffComp_DamageOverTime.cs" />
     <Compile Include="Xenomorph\Thing_AddAcidDamageFilth.cs" />
     <Compile Include="Xenomorph\Thing_AddsHediffDef.cs" />
@@ -304,8 +300,7 @@
     <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalFinalLifeStage.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_FacehuggerHunt.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphManhunter.cs" />
-    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphFlee.cs" />
-    <None Include="Yautja\ThoughtWorkers_Blooded.cs.bak2" />
+    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_Xenomorph_Flee.cs" />
     <Compile Include="Xenomorph\XenomorphUtil.cs" />
     <Compile Include="util\Graphic_Invisible.cs" />
     <Compile Include="util\PawnGraphicSet_Invisible.cs" />
@@ -328,13 +323,11 @@
     <Compile Include="Xenomorph\Hives\TunnelHiveLikeSpawner.cs" />
     <Compile Include="Xenomorph\IncidentWorker_CrashedShip.cs" />
     <Compile Include="util\CrashedShip\LordJob_PawnsDefendShip.cs" />
-    <None Include="Yautja\ThoughtWorker_MarkedMood.cs.bak2" />
     <Compile Include="Yautja\YautjaThoughtDef.cs" />
     <Compile Include="Harmony\HarmonyPatches.cs" />
     <Compile Include="Yautja\Comp_Yautja.cs" />
     <Compile Include="Xenomorph\RoomRoleWorker_TrophyRoom.cs" />
     <Compile Include="Yautja\ThoughtWorker_HonourableVsBadBlood.cs" />
-    <Compile Include="Xenomorph\IncidentWorker_Xenomorph.cs" />
     <Compile Include="Xenomorph\Comp_Xenomorph.cs" />
     <Compile Include="util\Cloakgen.cs" />
     <Compile Include="util\Gizmo_CloakgenStatus.cs" />
@@ -351,8 +344,287 @@
     <Folder Include="Xenomorph\Jobstuff\Workers\" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="0Harmony, Version=2.0.0.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lib.Harmony.2.0.0.7\lib\net472\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="1CompActivatableEffect, Version=1.18.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\AdMechArmoury\1.1\Assemblies\1CompActivatableEffect.dll</HintPath>
+    </Reference>
+    <Reference Include="1CompOversizedWeapon, Version=1.18.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\AdMechArmoury\1.1\Assemblies\1CompOversizedWeapon.dll</HintPath>
+    </Reference>
+    <Reference Include="1CompSlotLoadable, Version=1.18.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\AdMechArmoury\1.1\Assemblies\1CompSlotLoadable.dll</HintPath>
+    </Reference>
+    <Reference Include="1CompToggleDef, Version=1.18.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\AdMechArmoury\1.1\Assemblies\1CompToggleDef.dll</HintPath>
+    </Reference>
+    <Reference Include="AlienRace">
+      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\839005762\1.1\Assemblies\AlienRace.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AccessibilityModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.AccessibilityModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AIModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.AIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AndroidJNIModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.AndroidJNIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ARModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ARModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ClothModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ClothModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterInputModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ClusterInputModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterRendererModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ClusterRendererModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CrashReportingModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.CrashReportingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.DirectorModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.DirectorModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.DSPGraphModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.DSPGraphModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.FileSystemHttpModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.FileSystemHttpModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.GameCenterModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.GameCenterModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.GridModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.GridModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.HotReloadModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.HotReloadModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.InputModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.LocalizationModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.LocalizationModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ParticleSystemModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.PerformanceReportingModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.PerformanceReportingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.Physics2DModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ProfilerModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ProfilerModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ScreenCaptureModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ScreenCaptureModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.SharedInternalsModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.SharedInternalsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteMaskModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.SpriteMaskModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteShapeModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.SpriteShapeModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.StreamingModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.StreamingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.SubstanceModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.SubstanceModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.TerrainModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainPhysicsModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.TextCoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TilemapModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.TilemapModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TLSModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.TLSModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UIElementsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UmbraModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UmbraModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UNETModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UNETModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityAnalyticsModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityConnectModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UnityConnectModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityTestProtocolModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.VehiclesModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.VehiclesModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.VFXModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.VFXModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.VideoModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.VideoModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.VRModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.VRModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.WindModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.WindModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.XRModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.XRModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\HunterMarkingSystem\HunterMarkingSystem.csproj">
-      <Project>{99F78F0B-7600-45BC-BD6E-8E935C05E66B}</Project>
+      <Project>{99f78f0b-7600-45bc-bd6e-8e935c05e66b}</Project>
       <Name>HunterMarkingSystem</Name>
       <Private>False</Private>
     </ProjectReference>

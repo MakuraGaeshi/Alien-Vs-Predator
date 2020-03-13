@@ -642,16 +642,10 @@ namespace RimWorld
             use.initAction = delegate ()
             {
                 Pawn actor = use.actor;
-                if (!TargetA.Cell.GetTerrain(actor.Map).acceptFilth)
-                {
-                    MyDef = XenomorphDefOf.RRY_Xenomorph_Hive;
-                }
+                MyDef = XenomorphDefOf.RRY_Xenomorph_Hive;
                 Thing thing = ThingMaker.MakeThing(MyDef);
-                if (!TargetA.Cell.GetTerrain(actor.Map).acceptFilth)
-                {
-                    HiveLike hive = (HiveLike)thing;
-                    hive.hasQueen = false;
-                }
+                HiveLike hive = (HiveLike)thing;
+                hive.hasQueen = false;
                 GenSpawn.Spawn(thing, TargetA.Cell, actor.Map, Rot4.South, WipeMode.FullRefund, false);
             };
             use.defaultCompleteMode = ToilCompleteMode.Instant;

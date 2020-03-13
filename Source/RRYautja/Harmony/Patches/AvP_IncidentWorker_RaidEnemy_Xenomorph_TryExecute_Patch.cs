@@ -1,6 +1,6 @@
 ﻿using RimWorld;
 using Verse;
-using Harmony;
+using HarmonyLib;
 using System.Reflection;
 using System.Collections.Generic;
 using System;
@@ -15,7 +15,7 @@ using RRYautja.ExtensionMethods;
 
 namespace RRYautja
 {
-    [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "TryExecute")]
+    [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "TryExecuteWorker")]
     public static class AvP_IncidentWorker_RaidEnemy_Xenomorph_TryExecute_Patch
     {
         [HarmonyPrefix]
@@ -42,7 +42,7 @@ namespace RRYautja
                             {
                                 parms.points *= 2;
                                 parms.raidArrivalMode = YautjaDefOf.EdgeWalkInGroups;
-                                if (Rand.ChanceSeeded(0.05f, AvPConstants.AvPSeed))
+                                if (Rand.Chance(0.05f))
                                 {
                                     parms.forced = true;
                                     parms.points = Mathf.Max(parms.points * new FloatRange(1f, 1.6f).RandomInRange, parms.faction.def.MinPointsToGeneratePawnGroup(PawnGroupKindDefOf.Combat));

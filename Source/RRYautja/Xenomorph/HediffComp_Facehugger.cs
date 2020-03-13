@@ -1,6 +1,7 @@
 ﻿using RimWorld;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using UnityEngine;
 using Verse;
@@ -215,10 +216,6 @@ namespace RRYautja
                         {
                             isImpregnated = true;
                             previousImpregnations++;
-#if DEBUG
-                        //    Log.Message("is Impregnated", isImpregnated);
-#endif
-
                         }
                     }
                     timer = 0;
@@ -238,7 +235,7 @@ namespace RRYautja
                     //    Log.Message("removing Facehugger");
 #endif
                         Pawn.health.hediffSet.hediffs.Remove(this.parent);
-                    //    this.CompPostPostRemoved();
+                        this.CompPostPostRemoved();
 
                     }
                     timer2 = 0;
@@ -286,15 +283,26 @@ namespace RRYautja
             Pawn pawn;
             if (Instigator != null)
             {
+                Log.Message("using instigator");
                 pawn = instigator;
             }
             else
             {
-                PawnGenerationRequest pawnGenerationRequest = new PawnGenerationRequest(pawnKindDef, null, PawnGenerationContext.NonPlayer, -1, true, false, true, false, true, true, 0f);
-                pawn = PawnGenerator.GeneratePawn(pawnGenerationRequest);
+                if (this.innerContainer.Any(x=>x is Pawn))
+                {
+                    Log.Message("using innerContainer");
+                    pawn = (Pawn)this.innerContainer.First(x => x is Pawn);
+                }
+                else
+                {
+                    Log.Message("using PawnGenerator");
+                    PawnGenerationRequest pawnGenerationRequest = new PawnGenerationRequest(pawnKindDef, null, PawnGenerationContext.NonPlayer, -1, true, false, true, false, true, true, 0f);
+                    pawn = PawnGenerator.GeneratePawn(pawnGenerationRequest);
+                }
             }
             if (spawnLive == true)
             {
+                Log.Message("using spawnLive");
                 Comp_Facehugger _Facehugger = pawn.TryGetComp<Comp_Facehugger>();
                 if (_Facehugger!=null)
                 {
@@ -313,6 +321,7 @@ namespace RRYautja
             }
             else
             {
+                Log.Message("using spawnDead");
                 if (!pawn.Spawned)
                 {
                     GenSpawn.Spawn(pawn, spawnLoc, spawnMap, 0);

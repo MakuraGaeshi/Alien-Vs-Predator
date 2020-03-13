@@ -20,13 +20,8 @@ namespace RimWorld
         // USCM ThingDefs  Races 
         public static ThingDef RRY_Synth;
 
-        // USCM ThingDefs  Equipment RRY_USCM_DropshipUD4LLeaving
+        // USCM ThingDefs  Equipment
         public static ThingDef RRY_Equipment_HMS;
-
-        // USCM ThingDefs  Dropship 
-        public static ThingDef RRY_USCM_DropshipUD4L;
-        public static ThingDef RRY_USCM_DropshipUD4LIncoming;
-        public static ThingDef RRY_USCM_DropshipUD4LLeaving;
 
         // USCM ThingDefs  Weapons
         //    public static ThingDef RRY_Gun_Hunting_Bow;
@@ -34,6 +29,11 @@ namespace RimWorld
 
         // USCM ThingDefs  Projectiles
         //    public static ThingDef RRY_SmartDisk_Thrown;
+
+        // USCM ThingDefs  Equipment
+        public static ThingDef RRY_USCM_DropshipUD4L;
+        public static ThingDef RRY_USCM_DropshipUD4LIncoming;
+        public static ThingDef RRY_USCM_DropshipUD4LLeaving;
 
         // USCM ThingDefs  Motes
         //    public static ThingDef RRY_SmartDisk_Mote;

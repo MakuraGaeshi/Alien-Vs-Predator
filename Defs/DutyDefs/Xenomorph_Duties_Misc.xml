@@ -183,7 +183,7 @@
 			<!-- Lay eggs you need to -->
 			<li Class="JobGiver_LayXenoEgg" />
 			
-			<li Class="JobGiver_GetFoodXenomorph"> 
+			<li Class="JobGiver_Xenomorph_GetFood"> 
 			  <minCategory>Fed</minCategory>
 			</li>
 			

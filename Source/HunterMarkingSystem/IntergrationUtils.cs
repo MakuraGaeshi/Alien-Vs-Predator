@@ -15,7 +15,7 @@ namespace HunterMarkingSystem
         {
             foreach (ModContentPack p in LoadedModManager.RunningMods)
             {
-                if (p.Identifier == "1631756268")
+                if (p.PackageId == "1631756268")
                 {
                     CombatExtended = true;
                 }
@@ -33,7 +33,7 @@ namespace HunterMarkingSystem
         {
             foreach (ModContentPack p in LoadedModManager.RunningMods)
             {
-                if (p.Identifier == "1568400124" || p.Name == "Alien Vs Predator")
+                if (p.PackageId == "1568400124" || p.Name == "Alien Vs Predator")
                 {
                     AvP = true;
                 }
@@ -69,7 +69,7 @@ namespace HunterMarkingSystem
         {
             foreach (ModContentPack p in LoadedModManager.RunningMods)
             {
-                if (p.Identifier == "1541064015" || p.Name == "ChjAndroid")
+                if (p.PackageId == "1541064015" || p.Name == "ChjAndroid")
                 {
                     ChjAndroid = true;
                 }
@@ -105,7 +105,7 @@ namespace HunterMarkingSystem
         {
             foreach (ModContentPack p in LoadedModManager.RunningMods)
             {
-                if (p.Identifier == "1386412863" || p.Name.Contains("Android tiers"))
+                if (p.PackageId == "1386412863" || p.Name.Contains("Android tiers"))
                 {
                     TieredAndroid = true;
                 }
@@ -151,7 +151,7 @@ namespace HunterMarkingSystem
         {
             foreach (ModContentPack p in LoadedModManager.RunningMods)
             {
-                if (p.Identifier == "1136958577" && p.Name.Contains("Dinosauria"))
+                if (p.PackageId == "1136958577" && p.Name.Contains("Dinosauria"))
                 {
                     Dinosauria = true;
                 }
@@ -169,7 +169,7 @@ namespace HunterMarkingSystem
         {
             foreach (ModContentPack p in LoadedModManager.RunningMods)
             {
-                if (p.Identifier == "1419618659" && p.Name.Contains("Jurassic Rimworld"))
+                if (p.PackageId == "1419618659" && p.Name.Contains("Jurassic Rimworld"))
                 {
                     JurassicRimworld = true;
                 }

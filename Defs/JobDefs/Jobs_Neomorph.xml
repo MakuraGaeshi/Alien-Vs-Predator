@@ -5,7 +5,7 @@
 
   <JobDef>
 		<defName>RRY_Neomorph_Ingest</defName>
-		<driverClass>JobDriver_IngestNeomorph</driverClass>
+		<driverClass>JobDriver_Neomorph_Ingest</driverClass>
 		<reportString>consuming TargetA.</reportString>
     <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
   </JobDef>

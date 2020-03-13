@@ -5,13 +5,13 @@
   <PawnKindDef Name="RRY_YautjaBase" Abstract="True">
     <defaultFactionType>RRY_Yautja_BadBloodFaction</defaultFactionType>
     <race>RRY_Alien_Yautja</race>
-    <backstoryFiltersOverride>
+    <backstoryFilters>
       <li>
         <categories>
-			<li>RRY_Yautja_Standard</li>
+          <li>RRY_Yautja_Standard</li>
         </categories>
       </li>
-    </backstoryFiltersOverride>
+    </backstoryFilters>
     <chemicalAddictionChance>0.05</chemicalAddictionChance>
     <baseRecruitDifficulty>1</baseRecruitDifficulty>
     <apparelAllowHeadgearChance>0.85</apparelAllowHeadgearChance>
@@ -20,6 +20,12 @@
       <li>YautjaWristblade</li>
 	  <li>YautjaHelmet</li>
     </apparelTags>
+	<modExtensions>
+	  <li Class="AlienRace.Info">
+		<allowHumanBios>false</allowHumanBios>
+		<maleGenderProbability>0.75</maleGenderProbability>
+	  </li>
+	</modExtensions>
   </PawnKindDef>
   
   <!-- ============================ Yautja Civilian Base ========================== -->
@@ -121,13 +127,14 @@
     <techHediffsTags>
       <li>Advanced</li>
     </techHediffsTags>
-    <backstoryFiltersOverride Inherit="false">
+    <backstoryFilters>
       <li>
         <categories>
-			<li>RRY_Yautja_Ancient</li>
+          <li>RRY_Yautja_Ancient</li>
+          <li>RRY_Yautja_Standard</li>
         </categories>
       </li>
-    </backstoryFiltersOverride>
+    </backstoryFilters>
 	<minGenerationAge>1000</minGenerationAge>
 	<maxGenerationAge>2000</maxGenerationAge>
   </PawnKindDef>
@@ -136,18 +143,25 @@
     <defName>YautjaTrader_RRY</defName>
     <label>Yautja trader</label>
     <trader>true</trader>
+	<backstoryCategories>
+			<li>RRY_Yautja_Standard</li>
+  	</backstoryCategories>
   </PawnKindDef>
   
   <PawnKindDef ParentName="RRY_YautjaCivBase">
     <defName>YautjaColonist_RRY</defName>
     <label>Yautja colonist</label>
-	
+	<backstoryCategories>
+			<li>RRY_Yautja_Standard</li>
+  	</backstoryCategories>
   </PawnKindDef>
   
   <PawnKindDef ParentName="RRY_YautjaCivBase">
     <defName>YautjaSlave_RRY</defName>
     <label>Yautja slave</label>
-	
+	<backstoryCategories>
+			<li>RRY_Yautja_Standard</li>
+  	</backstoryCategories>
 	<apparelTags Inherit="False">
 		<li>YautjaWebbing</li>
 	</apparelTags>	
@@ -158,14 +172,10 @@
     <defName>YautjaUnblooded_RRY</defName>
     <label>Unblooded Yautja</label>
     <combatPower>100</combatPower>
-    <maxGenerationAge>40</maxGenerationAge>
-    <backstoryFiltersOverride Inherit="false">
-      <li>
-        <categories>
+    <maxGenerationAge>20</maxGenerationAge>
+	<backstoryCategories>
 			<li>RRY_Yautja_Unblooded</li>
-        </categories>
-      </li>
-    </backstoryFiltersOverride>
+  	</backstoryCategories>
     <gearHealthRange>
       <min>0.5</min>
       <max>1.8</max>
@@ -270,13 +280,9 @@
   <PawnKindDef Name="RRY_YautjaHunter" ParentName="RRY_YautjaMilBase" Abstract="True">
     <label>yautja hunter</label>
     <combatPower>100</combatPower>
-    <backstoryFiltersOverride Inherit="false">
-      <li>
-        <categories>
+	<backstoryCategories>
 			<li>RRY_Yautja_Hunter</li>
-        </categories>
-      </li>
-    </backstoryFiltersOverride>
+  	</backstoryCategories>
     <apparelTags>
 	  <li>YautjaGreaves</li>
       <li>YautjaArmour</li>
@@ -288,13 +294,9 @@
   <PawnKindDef ParentName="RRY_YautjaHunter">
     <defName>YautjaYoungBlood_RRY</defName>
     <label>Yautja Young Blood</label>
-    <backstoryFiltersOverride Inherit="false">
-      <li>
-        <categories>
+	<backstoryCategories>
 			<li>RRY_Yautja_YoungBlood</li>
-        </categories>
-      </li>
-    </backstoryFiltersOverride>
+  	</backstoryCategories>
     <weaponTags>
 		<li>YautjaGun</li>
 		<li>YautjaMelee</li>
@@ -307,13 +309,9 @@
     <label>Yautja Blooded</label>
     <combatPower>120</combatPower>
     <minGenerationAge>20</minGenerationAge>
-    <backstoryFiltersOverride Inherit="false">
-      <li>
-        <categories>
+	<backstoryCategories>
 			<li>RRY_Yautja_Blooded</li>
-        </categories>
-      </li>
-    </backstoryFiltersOverride>
+  	</backstoryCategories>
     <weaponTags>
 		<li>YautjaGun</li>
 		<li>YautjaMelee</li>
@@ -327,13 +325,9 @@
     <combatPower>160</combatPower>
     <minGenerationAge>60</minGenerationAge>
 	<itemQuality>Excellent</itemQuality>
-    <backstoryFiltersOverride Inherit="false">
-      <li>
-        <categories>
+	<backstoryCategories>
 			<li>RRY_Yautja_Elite</li>
-        </categories>
-      </li>
-    </backstoryFiltersOverride>
+  	</backstoryCategories>
     <apparelTags Inherit="false">
 		<li>YautjaEliteArmour</li>
 		<li>YautjaEliteBioMask</li>
@@ -353,13 +347,9 @@
     <label>Yautja Elder</label>
     <combatPower>200</combatPower>
     <minGenerationAge>300</minGenerationAge>
-    <backstoryFiltersOverride Inherit="false">
-      <li>
-        <categories>
+	<backstoryCategories>
 			<li>RRY_Yautja_Elder</li>
-        </categories>
-      </li>
-    </backstoryFiltersOverride>
+  	</backstoryCategories>
     <gearHealthRange>
       <min>0.8</min>
       <max>3.5</max>

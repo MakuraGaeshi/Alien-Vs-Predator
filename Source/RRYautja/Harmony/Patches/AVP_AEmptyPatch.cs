@@ -1,6 +1,6 @@
 ﻿using RimWorld;
 using Verse;
-using Harmony;
+using HarmonyLib;
 using System.Reflection;
 using System.Collections.Generic;
 using System;
@@ -15,5 +15,5 @@ using RRYautja.ExtensionMethods;
 
 namespace RRYautja
 {
-    // FilthMaker.MakeFilth
+    // FilthMaker.TryMakeFilth
 }

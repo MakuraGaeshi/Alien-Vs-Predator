@@ -195,7 +195,7 @@ namespace RimWorld
                 ResetStaticData();
                 if (Rand.MTBEventOccurs(FilthSpawnMTB, 1f, 1.TicksToSeconds()) && CellFinder.TryFindRandomReachableCellNear(base.Position, base.Map, TunnelHiveLikeSpawner.FilthSpawnRadius, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), null, null, out IntVec3 c, 999999))
                 {
-                    FilthMaker.MakeFilth(c, base.Map, filthTypes.RandomElement<ThingDef>(), 1);
+                    FilthMaker.TryMakeFilth(c, base.Map, filthTypes.RandomElement<ThingDef>(), 1);
                 }
                 if (Rand.MTBEventOccurs(DustMoteSpawnMTB, 1f, 1.TicksToSeconds()))
                 {

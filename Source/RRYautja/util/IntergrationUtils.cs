@@ -15,7 +15,7 @@ namespace RRYautja
         {
             foreach (ModContentPack p in LoadedModManager.RunningMods)
             {
-                if (p.Identifier == "1631756268")
+                if (p.PackageId == "1631756268")
                 {
                     CombatExtended = true;
                 }
@@ -33,7 +33,7 @@ namespace RRYautja
         {
             foreach (ModContentPack p in LoadedModManager.RunningMods)
             {
-                if (p.Identifier == "1541064015" || p.Name == "ChjAndroid")
+                if (p.Name.Contains("ChjAndroid"))
                 {
                     ChjAndroid = true;
                 }
@@ -69,7 +69,7 @@ namespace RRYautja
         {
             foreach (ModContentPack p in LoadedModManager.RunningMods)
             {
-                if (p.Identifier == "1386412863" || p.Name.Contains("Android tiers"))
+                if (p.Name.Contains("Android tiers"))
                 {
                     TieredAndroid = true;
                 }
@@ -115,7 +115,7 @@ namespace RRYautja
         {
             foreach (ModContentPack p in LoadedModManager.RunningMods)
             {
-                if (p.Identifier == "1136958577" && p.Name.Contains("Dinosauria"))
+                if (p.Name.Contains("Dinosauria"))
                 {
                     Dinosauria = true;
                 }
@@ -133,7 +133,7 @@ namespace RRYautja
         {
             foreach (ModContentPack p in LoadedModManager.RunningMods)
             {
-                if (p.Identifier == "1419618659" && p.Name.Contains("Jurassic Rimworld"))
+                if (p.Name.Contains("Jurassic Rimworld"))
                 {
                     JurassicRimworld = true;
                 }

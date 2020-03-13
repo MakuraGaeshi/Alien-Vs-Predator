@@ -240,6 +240,7 @@
 		  <MedicalQualityMax>0.05</MedicalQualityMax>
 		</equippedStatOffsets>
 		<apparel>
+		<useWornGraphicMask>true</useWornGraphicMask>
 		  <wornGraphicPath>Things/Apparel/USCM/Clothing/MedicJumpsuits/MedicJumpsuit</wornGraphicPath>
 		  <tags>
 			<li>Medical_Jumpsuit</li>

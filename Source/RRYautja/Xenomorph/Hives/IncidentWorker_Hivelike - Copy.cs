@@ -33,7 +33,7 @@ namespace RimWorld
             {
                 //Log.Message(string.Format("TunnelLike"));
                 Thing t = this.SpawnTunnelLikeCluster(hivelikeCount, map);
-                base.SendStandardLetter(new TargetInfo(intVec, map, false), null, new string[0]);
+                base.SendStandardLetter(null, new TargetInfo(intVec, map, false), Array.Empty<NamedArgument>());
                 /*
                 Map map = (Map)parms.target;
                 int hiveCount = Mathf.Max(GenMath.RoundRandom(parms.points / 220f), 1);
@@ -48,7 +48,7 @@ namespace RimWorld
                 //Log.Message(string.Format("HiveLike"));
 
                 Thing t = this.SpawnHiveLikeCluster(hivelikeCount, map);
-                base.SendStandardLetter(new TargetInfo(intVec, map, false), null, new string[0]);
+                base.SendStandardLetter(null, new TargetInfo(intVec, map, false), Array.Empty<NamedArgument>());
             }
 			Find.TickManager.slower.SignalForceNormalSpeedShort();
 			return true;
@@ -59,7 +59,7 @@ namespace RimWorld
         private HiveLike SpawnHiveLikeCluster(int hiveCount, Map map, bool ignoreRoofedRequirement = false, bool allowUnreachable = false, float modifier = 1)
         {;
             IntVec3 loc = intVec;
-            ThingDef_HiveLike thingDef = (ThingDef_HiveLike)this.def.shipPart;
+            ThingDef_HiveLike thingDef = (ThingDef_HiveLike)this.def.mechClusterBuilding;
             HiveLike hivelike = (HiveLike)ThingMaker.MakeThing(thingDef, null);
             GenSpawn.Spawn(ThingMaker.MakeThing(hivelike.Def.TunnelDef, null), loc, map);
             hivelike.SetFaction(hivelike.OfFaction, null);
@@ -79,7 +79,7 @@ namespace RimWorld
         private TunnelHiveLikeSpawner SpawnTunnelLikeCluster(int hiveCount, Map map, bool ignoreRoofedRequirement = false, bool allowUnreachable = false, float modifier = 1)
         {
             IntVec3 loc = intVec;
-            ThingDef_HiveLike tD = (ThingDef_HiveLike)this.def.shipPart;
+            ThingDef_HiveLike tD = (ThingDef_HiveLike)this.def.mechClusterBuilding;
             ThingDef_TunnelHiveLikeSpawner thingDef = (ThingDef_TunnelHiveLikeSpawner)tD.TunnelDef;
             TunnelHiveLikeSpawner hivelike = (TunnelHiveLikeSpawner)ThingMaker.MakeThing(thingDef, null);
             GenSpawn.Spawn(ThingMaker.MakeThing(hivelike.def, null), loc, map);
@@ -135,11 +135,11 @@ namespace RimWorld
                 //    Log.Message(string.Format("TryFindCell: {0} From !InfestationLikeCellFinder.TryFindCell(out loc, map)", !InfestationLikeCellFinder.TryFindCell(out loc, map)));
                 return null;
             }
-            ThingDef_HiveLike thingDef = (ThingDef_HiveLike)this.def.shipPart;
+            ThingDef_HiveLike thingDef = (ThingDef_HiveLike)this.def.mechClusterBuilding;
             Thing thing = GenSpawn.Spawn(ThingMaker.MakeThing(thingDef.TunnelDef, null), loc, map, WipeMode.FullRefund);
 			for (int i = 0; i < hivelikeCount - 1; i++)
 			{
-				loc = CompSpawnerHiveLikes.FindChildHiveLocation(thing.Position, map, this.def.shipPart, this.def.shipPart.GetCompProperties<CompProperties_SpawnerHiveLikes>(), 1, 1, true, true);
+				loc = CompSpawnerHiveLikes.FindChildHiveLocation(thing.Position, map, this.def.mechClusterBuilding, this.def.mechClusterBuilding.GetCompProperties<CompProperties_SpawnerHiveLikes>(), 1, 1, true, true);
             //    Log.Message(string.Format("loc: {0} to check", !InfestationLikeCellFinder.TryFindCell(out loc, map)));
                 if (loc.IsValid)
                 {

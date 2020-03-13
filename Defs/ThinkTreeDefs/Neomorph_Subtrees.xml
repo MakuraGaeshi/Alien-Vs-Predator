@@ -8,9 +8,9 @@
       <subNodes>
         <li Class="ThinkNode_PrioritySorter">
           <subNodes>
-            <li Class="JobGiver_GetFoodNeomorph"/>
+            <li Class="JobGiver_Neomorph_GetFood"/>
 			<!--
-			<li Class="JobGiver_GetFoodNeomorph"> 
+			<li Class="JobGiver_Neomorph_GetFood"> 
 			  <minCategory>Hungry</minCategory>
 			</li>
 			-->

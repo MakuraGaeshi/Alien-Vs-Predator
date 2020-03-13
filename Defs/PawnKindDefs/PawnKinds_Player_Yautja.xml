@@ -20,15 +20,25 @@
         </bodyGraphicData>
       </li>
     </lifeStages>
+	<modExtensions>
+	  <li Class="AlienRace.Info">
+		<allowHumanBios>false</allowHumanBios>
+		<maleGenderProbability>0.75</maleGenderProbability>
+	  </li>
+	</modExtensions>
   </PawnKindDef>
 
   <PawnKindDef ParentName="BaseYautjaPawnKind">
     <defName>Colonist_Yautja_RRY</defName>
     <label>Yautja colonist</label>
     <defaultFactionType>RRY_Yautja_PlayerColony</defaultFactionType>
-    <backstoryCategories>
-			<li>RRY_Yautja_Standard</li>
-  	</backstoryCategories>
+    <backstoryFilters>
+      <li>
+        <categories>
+          <li>RRY_Yautja_Standard</li>
+        </categories>
+      </li>
+    </backstoryFilters>
     <apparelTags>
 		<li>YautjaGreaves</li>
 		<li>YautjaWebbing</li>
@@ -43,10 +53,14 @@
   <PawnKindDef ParentName="BaseYautjaPawnKind">
     <defName>Colonist_YautjaUnblooded_RRY</defName>
     <label>Yautja colonist</label>
-    <defaultFactionType>RRY_Yautja_PlayerColony</defaultFactionType>
-    <backstoryCategories>
-		<li>RRY_Yautja_Unblooded</li>
-  	</backstoryCategories>
+    <defaultFactionType>RRY_Yautja_PlayerUnblooded</defaultFactionType>
+    <backstoryFilters>
+      <li>
+        <categories>
+          <li>RRY_Yautja_Unblooded</li>
+        </categories>
+      </li>
+    </backstoryFilters>
     <apparelTags>
 		<li>YautjaLightArmour</li>
 		<li>YautjaWebbing</li>
@@ -62,10 +76,14 @@
   <PawnKindDef ParentName="BaseYautjaPawnKind">
     <defName>Colonist_YautjaBlooded_RRY</defName>
     <label>Yautja colonist</label>
-    <defaultFactionType>RRY_Yautja_PlayerColony</defaultFactionType>
-    <backstoryCategories>
-		<li>RRY_Yautja_Blooded</li>
-  	</backstoryCategories>
+    <defaultFactionType>RRY_Yautja_PlayerBlooded</defaultFactionType>
+    <backstoryFilters>
+      <li>
+        <categories>
+          <li>RRY_Yautja_Blooded</li>
+        </categories>
+      </li>
+    </backstoryFilters>
     <apparelTags>
 		<li>YautjaLightArmour</li>
 		<li>YautjaArmour</li>
@@ -78,14 +96,17 @@
     <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
   </PawnKindDef>
   
-
   <PawnKindDef ParentName="BaseYautjaPawnKind">
     <defName>Colonist_Yautja_BadBlood_RRY</defName>
     <label>Bad blood colonist</label>
     <defaultFactionType>RRY_Yautja_PlayerColony</defaultFactionType>
-    <backstoryCategories>
-			<li>RRY_Yautja_BadBlood</li>
-  	</backstoryCategories>
+    <backstoryFilters>
+      <li>
+        <categories>
+          <li>RRY_Yautja_BadBlood</li>
+        </categories>
+      </li>
+    </backstoryFilters>
     <apparelTags>
 		<li>YautjaGreaves</li>
 		<li>YautjaWebbing</li>
@@ -100,10 +121,14 @@
   <PawnKindDef ParentName="BaseYautjaPawnKind">
     <defName>Colonist_Yautja_Blooding_RRY</defName>
     <label>Yautja colonist</label>
-    <defaultFactionType>RRY_Yautja_PlayerColony</defaultFactionType>
-    <backstoryCategories>
-			<li>RRY_Yautja_Unblooded</li>
-  	</backstoryCategories>
+    <defaultFactionType>RRY_Yautja_PlayerBlooding</defaultFactionType>
+    <backstoryFilters>
+      <li>
+        <categories>
+          <li>RRY_Yautja_Unblooded</li>
+        </categories>
+      </li>
+    </backstoryFilters>
     <apparelTags>
 		<li>YautjaGreaves</li>
 		<li>YautjaWebbing</li>

@@ -67,6 +67,13 @@
     <casualInterruptible>false</casualInterruptible>
   </JobDef>
 
+  <JobDef>
+		<defName>RRY_Xenomorph_Ingest</defName>
+		<driverClass>JobDriver_Neomorph_Ingest</driverClass>
+		<reportString>consuming TargetA.</reportString>
+    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+  </JobDef>
+
   <!--
   <JobDef>
     <defName>RRY_Job_PlaceCocoon</defName>

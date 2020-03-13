@@ -76,6 +76,12 @@
       <li Class="CompProperties_UseEffect">
         <compClass>CompUseEffect_Cocoon</compClass>
       </li>
+      <li Class="CompProperties_AssignableToPawn">
+        <drawAssignmentOverlay>false</drawAssignmentOverlay>
+		
+        <compClass>CompAssignableToPawn_Bed</compClass>
+      </li>
+	  
 		<!--
       <li Class="CompProperties_UseEffect">
         <compClass>RRYautja.CompUseEffect_Cocoon</compClass>
@@ -134,6 +140,12 @@
         <useLabel>Release from cocoon</useLabel>
         <useDuration>450</useDuration>
       </li>
+      <li Class="CompProperties_AssignableToPawn">
+        <drawAssignmentOverlay>false</drawAssignmentOverlay>
+		
+        <compClass>CompAssignableToPawn_Bed</compClass>
+      </li>
+	  
       <li Class="CompProperties_UseEffect">
         <compClass>CompUseEffect_Cocoon</compClass>
       </li>

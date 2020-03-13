@@ -1,6 +1,6 @@
 ﻿using RimWorld;
 using Verse;
-using Harmony;
+using HarmonyLib;
 using System.Reflection;
 using System.Collections.Generic;
 using System;
@@ -18,13 +18,18 @@ namespace RRYautja
     // Cocoon Draw Pos fix
     // Hediff_Implant Drawer
     [HarmonyPatch(typeof(PawnRenderer), "RenderPawnInternal")]
-    [HarmonyPatch(new Type[] { typeof(Vector3), typeof(float), typeof(bool), typeof(Rot4), typeof(Rot4), typeof(RotDrawMode), typeof(bool), typeof(bool) })]
+    [HarmonyPatch(new Type[] { typeof(Vector3), typeof(float), typeof(bool), typeof(Rot4), typeof(Rot4), typeof(RotDrawMode), typeof(bool), typeof(bool), typeof(bool) })]
     static class AvP_PawnRenderer_RenderPawnInternal_Patch
     {
-        static void Prefix(PawnRenderer __instance, ref Vector3 rootLoc, ref float angle, ref bool renderBody, ref Rot4 bodyFacing, ref Rot4 headFacing, ref RotDrawMode bodyDrawType, ref bool portrait, ref bool headStump)
+        [HarmonyPrefix]
+        static void Prefix(PawnRenderer __instance, ref Vector3 rootLoc, ref float angle, ref bool renderBody, ref Rot4 bodyFacing, ref Rot4 headFacing, ref RotDrawMode bodyDrawType, ref bool portrait, ref bool headStump, ref bool invisible)
         {
             Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
             //    bool selected = Find.Selector.SelectedObjects.Contains(pawn) && Prefs.DevMode;
+            if (invisible)
+            {
+                return;
+            }
             if (!portrait)
             {
                 if (pawn.RaceProps.Humanlike && pawn.CurrentBed() != null && pawn.CurrentBed().GetType() == typeof(Building_XenomorphCocoon))
@@ -91,18 +96,13 @@ namespace RRYautja
             Rot4 rot = bodyFacing;
             Vector3 vector3 = pawn.RaceProps.Humanlike ? __instance.BaseHeadOffsetAt(headFacing) : new Vector3();
             Vector3 s = new Vector3(pawn.BodySize * 1.75f, pawn.BodySize * 1.75f, pawn.BodySize * 1.75f);
-            bool OffsetDefExtension = (pawn.def.modExtensions.NullOrEmpty() || (!pawn.def.modExtensions.NullOrEmpty() && pawn.def.modExtensions.Any((x) => comp.parent.def.defName.Contains(((OffsetDefExtension)x).hediff.defName))) || ThingDefOf.Human.modExtensions.Any((x) => comp.parent.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)));
-            if (OffsetDefExtension)// && pawn.kindDef.race.GetModExtension<OffsetDefExtension>() is OffsetDefExtension offsetDef && comp.parent.def.defName.Contains(offsetDef.hediff.defName))
-            {
-                GetAltitudeOffset(pawn, comp.parent, rot, out float X, out float Y, out float Z, out float DsX, out float DsZ, out float ang);
-                vector3.x += X;
-                vector3.y += Y;
-                vector3.z += Z;
-                angle += ang;
-                s.x = DsX;
-                s.z = DsZ;
-
-            }
+            GetAltitudeOffset(pawn, comp.parent, rot, out float X, out float Y, out float Z, out float DsX, out float DsZ, out float ang);
+            vector3.x += X;
+            vector3.y += Y;
+            vector3.z += Z;
+            angle += ang;
+            s.x = DsX;
+            s.z = DsZ;
             if (pawn.RaceProps.Humanlike)
             {
                 vector3.x += 0.01f;
@@ -196,15 +196,35 @@ namespace RRYautja
             OffsetDefExtension myDef = null;
             if (!pawn.def.modExtensions.NullOrEmpty())
             {
-                myDef = (OffsetDefExtension)pawn.kindDef.race.modExtensions.Find((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)) ?? (OffsetDefExtension)ThingDefOf.Human.modExtensions.Find((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)) ?? new OffsetDefExtension();
+                if (pawn.def.HasModExtension<RRYautja.OffsetDefExtension>())
+                {
+                    List<DefModExtension> list = pawn.kindDef.race.modExtensions.Where((x) => x.GetType() == typeof(RRYautja.OffsetDefExtension)).ToList();
+                    if (list.Any((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)))
+                    {
+                        myDef = (OffsetDefExtension)list.First((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)) ?? null;
+                    }
+                    else
+                    {
+                        if (ThingDefOf.Human.modExtensions.Any((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)))
+                        {
+                            myDef = (OffsetDefExtension)ThingDefOf.Human.modExtensions.First((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName));
+                        }
+                        else
+                        {
+                            myDef = new OffsetDefExtension();
+                        }
+                    }
+                }
+                
             }
-            else if (myDef == null)
+            if (myDef == null)
             {
                 myDef = (OffsetDefExtension)ThingDefOf.Human.modExtensions.Find((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)) ?? new OffsetDefExtension();
             }
             else
             {
-                myDef = new OffsetDefExtension() { hediff = hediff.def };
+            //    Log.Message("else");
+            //    myDef = new OffsetDefExtension() { hediff = hediff.def };
 
             }
 

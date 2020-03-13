@@ -52,7 +52,7 @@ namespace RimWorld
         }
 
         // Token: 0x06000EC0 RID: 3776 RVA: 0x0006EA07 File Offset: 0x0006CE07
-        protected override void ResolveRaidStrategy(IncidentParms parms, PawnGroupKindDef groupKind)
+        public override void ResolveRaidStrategy(IncidentParms parms, PawnGroupKindDef groupKind)
         {
             if (parms.raidStrategy != null)
             {

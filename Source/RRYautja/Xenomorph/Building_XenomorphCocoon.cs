@@ -358,12 +358,12 @@ namespace RimWorld
         
 		private void RemoveAllOwners()
 		{
-			for (int i = this.owners.Count - 1; i >= 0; i--)
+			for (int i = this.OwnersForReading.Count - 1; i >= 0; i--)
 			{
-				this.owners[i].ownership.UnclaimBed();
+				this.OwnersForReading[i].ownership.UnclaimBed();
 			}
 		}
-        
+
 		private bool alreadySetDefaultMed;
 	}
 }

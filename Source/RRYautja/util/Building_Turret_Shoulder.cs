@@ -19,10 +19,15 @@ namespace RRYautja
         {
             get
             {
-                if (Parental!=null)
+                if (Parental.apparel.WornApparel.Any(x => x.TryGetComp<CompEquippableTurret>() != null))
                 {
-                    return Parental.TryGetComp<CompEquippableTurret>();
+                    CompEquippableTurret comp = Parental.apparel.WornApparel.Find(x => x.TryGetComp<CompEquippableTurret>() != null).TryGetComp<CompEquippableTurret>();
+                    if (comp != null)
+                    {
+                        return comp;
+                    }
                 }
+                this.Destroy(DestroyMode.Vanish);
                 return null;
             }
         }
@@ -47,18 +52,27 @@ namespace RRYautja
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_References.Look<Pawn>(ref this.Parental, "Parental", true);
+            Scribe_References.Look<Pawn>(ref this.Parental, "Parental");
             Scribe_Values.Look<bool>(ref this.turretIsOn, "TurretIsOn");
         }
 
+        
         public override void Tick()
         {
             base.Tick();
-            if (this.Parental==null||(this.Parental is Pawn pawn && (pawn.Dead || pawn.Downed || this.Position!=pawn.Position) ))//||this.comp==null)
+            if (Find.TickManager.TicksGame % 30 == 0)
             {
-                
-                this.Destroy();
+                if (comp.turret!=this || Parental.Dead || Parental.Downed || Parental.InBed())
+                {
+                    this.Destroy(DestroyMode.Vanish);
+                }
             }
+            /*
+            if (this.Position != Parental.Position)
+            {
+                this.Position
+            }
+            */
             /*
             else
             {
@@ -248,9 +262,7 @@ namespace RRYautja
                 return null;
             }
         }
-
-
-        public LocalTargetInfo forcedTarget = LocalTargetInfo.Invalid;
+        
 
         //public override Verb AttackVerb => base.AttackVerb.EquipmentSource.TryGetQuality();
         //public override LocalTargetInfo CurrentTarget => Parental.TargetCurrentlyAimingAt != null ? Parental.TargetCurrentlyAimingAt : base.CurrentTarget;

@@ -1,6 +1,6 @@
-﻿using AbilityUser;
+﻿
 using AlienRace;
-using Harmony;
+using HarmonyLib;
 using RimWorld;
 using RRYautja.settings;
 using System;
@@ -19,7 +19,7 @@ namespace RRYautja
 
         static HarmonyPatches()
         {
-            HarmonyInstance harmony = HarmonyInstance.Create("rimworld.ogliss.yautja");
+            Harmony harmony = new Harmony("rimworld.ogliss.yautja");
 
             harmony.Patch(
                 AccessTools.Method(typeof(Pawn_PathFollower), "CostToMoveIntoCell",
@@ -34,23 +34,24 @@ namespace RRYautja
             {
                 typeof(Vector3),
                 typeof(RotDrawMode),
+                typeof(bool),
                 typeof(bool)
             }, null), new HarmonyMethod(typeof(HarmonyPatches), "PawnRenderer_Blur_Prefix", null), null, null);
 
             harmony.Patch(
                 original: AccessTools.Method(type: typeof(PawnRenderer), name: "DrawEquipment"),
-                prefix: new HarmonyMethod(type: typeof(HarmonyPatches), name: nameof(Pre_DrawEquipment_Cloak)),
+                prefix: new HarmonyMethod(typeof(HarmonyPatches), nameof(Pre_DrawEquipment_Cloak)),
                 postfix: null);
 
             harmony.Patch(
-                original: AccessTools.Method(type: typeof(AlienPartGenerator.BodyAddon), name: "CanDrawAddon"),
-                prefix: new HarmonyMethod(type: typeof(HarmonyPatches), name: nameof(Pre_CanDrawAddon_Cloak)),
+                original: AccessTools.Method(typeof(AlienPartGenerator.BodyAddon), "CanDrawAddon"),
+                prefix: new HarmonyMethod(typeof(HarmonyPatches), nameof(Pre_CanDrawAddon_Cloak)),
                 postfix: null);
 
             //DeathActionWorker_BigExplosion
             harmony.Patch(
-                original: AccessTools.Method(type: typeof(DeathActionWorker_BigExplosion), name: "PawnDied"),
-                prefix: new HarmonyMethod(type: typeof(HarmonyPatches), name: nameof(Pre_PawnDied_Facehugger)),
+                original: AccessTools.Method(typeof(DeathActionWorker_BigExplosion), name: "PawnDied"),
+                prefix: new HarmonyMethod(typeof(HarmonyPatches), nameof(Pre_PawnDied_Facehugger)),
                 postfix: null);
 
             harmony.Patch(
@@ -74,7 +75,7 @@ namespace RRYautja
 
             harmony.Patch(
                 original: AccessTools.Method(type: typeof(FoodUtility), name: "AddFoodPoisoningHediff"),
-                prefix: new HarmonyMethod(type: typeof(HarmonyPatches), name: nameof(Pre_AddFoodPoisoningHediff_CompCheck)),
+                prefix: new HarmonyMethod(typeof(HarmonyPatches), nameof(Pre_AddFoodPoisoningHediff_CompCheck)),
                 postfix: null);
 
         }

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
+using Verse.AI;
 using Verse.AI.Group;
 
 namespace RRYautja.ExtensionMethods
@@ -11,6 +12,20 @@ namespace RRYautja.ExtensionMethods
     [StaticConstructorOnStartup]
     public static class AvPExtensions
     {
+        
+        public static void GainEquipmentAbility(this Pawn_AbilityTracker tracker ,EquipmentAbilityDef def, ThingWithComps thing)
+        {
+            if (!tracker.abilities.Any((Ability a) => a.def == def))
+            {
+                EquipmentAbility ab = Activator.CreateInstance(def.abilityClass, new object[]
+                {
+                    tracker.pawn,
+                    def
+                }) as EquipmentAbility;
+                ab.sourceEquipment = thing;
+                tracker.abilities.Add(ab);
+            }
+        }
 
         public static MapComponent_HiveGrid HiveGrid(this Map m) 
         {
@@ -119,7 +134,7 @@ namespace RRYautja.ExtensionMethods
         }
         public static bool isXenomorph(this Pawn p, out Comp_Xenomorph comp)
         {
-            comp = p.TryGetComp<Comp_Xenomorph>();
+            comp = p.TryGetComp<Comp_Xenomorph>()?? null;
             return p.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Xenomorph;
         }
 
@@ -565,6 +580,19 @@ namespace RRYautja.ExtensionMethods
         public static bool isHost(this Pawn p)
         {
             return p.isNeoHost() || p.isXenoHost();
+        }
+        public static bool isHost(this Pawn p, out Hediff hediff)
+        {
+            bool result = p.isNeoHost() || p.isXenoHost();
+            if (result)
+            {
+                hediff = p.health.hediffSet.hediffs.Find(x => x.def.defName.Contains("morphImpregnation") || x.def.defName.Contains("FaceHuggerInfection"));
+            }
+            else
+            {
+                hediff = null;
+            }
+            return result;
         }
         public static bool isXenoHost(this Pawn p)
         {

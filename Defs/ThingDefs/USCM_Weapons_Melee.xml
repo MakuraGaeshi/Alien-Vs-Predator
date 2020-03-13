@@ -22,7 +22,7 @@
 		<equippedStatOffsets>
 			<ButcheryMechanoidSpeed>0.2</ButcheryMechanoidSpeed>
 			<ButcheryMechanoidEfficiency>0.2</ButcheryMechanoidEfficiency>
-			<SmithingSpeed>0.15</SmithingSpeed>
+			<GeneralLaborSpeed>0.15</GeneralLaborSpeed>
 			<ConstructionSpeed>0.25</ConstructionSpeed>
 			<FixBrokenDownBuildingSuccessChance>0.2</FixBrokenDownBuildingSuccessChance>
 		</equippedStatOffsets>

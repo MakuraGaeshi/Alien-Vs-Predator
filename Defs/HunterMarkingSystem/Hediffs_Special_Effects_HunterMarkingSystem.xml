@@ -8,6 +8,7 @@
     <isBad>false</isBad>
 	<makesAlert>false</makesAlert>
 	<makesSickThought>false</makesSickThought>
+	<description>a hunters mark</description>
 	</HediffDef>
 
 <!-- ==================== Blood Status HeDiffs ========================= -->

@@ -3,7 +3,6 @@
 
 
 <!--=============================================== USCM - NPC Faction ===============================================-->
-<!--=============================================== USCM - Private ===============================================-->
 
   <PawnKindDef ParentName="BaseUSCMPawnKind"> <!-- Base in PawnKinds_Player_Humanoids.xml -->
     <defName>RRY_USCM_Lieutenant</defName>

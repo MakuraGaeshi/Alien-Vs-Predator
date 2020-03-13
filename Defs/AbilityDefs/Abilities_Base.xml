@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <Defs>
-  <!-- ========================BaseDef================================== 
-  <AbilityUser.AbilityDef Name="RRY_BaseAbility" Abstract="True">
-    <uiIconPath>UI/Glow_Corrupt</uiIconPath>
-  </AbilityUser.AbilityDef>
--->
-  <!-- Projectile_AbilityRRY_ThrownReturning -->
+  <!-- ========================BaseDef================================== -->
+  <RRYautja.EquipmentAbilityDef Name="RRY_BaseAbility" Abstract="True">
+    <iconPath>UI/Glow_Corrupt</iconPath>
+  </RRYautja.EquipmentAbilityDef>
+  
  
-<ThingDef Name="RRY_BaseProjectileAbility" Class="AbilityUser.ProjectileDef_Ability" ParentName="BaseBullet" Abstract="True">
-   <thingClass>AbilityUser.Projectile_AbilityRRY</thingClass>
+<ThingDef Name="RRY_BaseProjectileAbility" Class="RRYautja.ProjectileDef_Ability" ParentName="BaseBullet" Abstract="True">
+   <thingClass>RRYautja.Projectile_AbilityRRY</thingClass>
    <label>Ability Projectile</label>
 		<graphicData>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -18,8 +17,8 @@
 		</graphicData>
  </ThingDef>
  
-<ThingDef Name="RRY_BaseThrownProjectileAbility" Class="AbilityUser.ProjectileDef_Ability" ParentName="BaseBullet" Abstract="True">
-   <thingClass>AbilityUser.Projectile_AbilityRRY_ThrownWeapon</thingClass>
+<ThingDef Name="RRY_BaseThrownProjectileAbility" Class="RRYautja.ProjectileDef_Ability" ParentName="BaseBullet" Abstract="True">
+   <thingClass>RRYautja.Projectile_AbilityRRY_ThrownWeapon</thingClass>
    <label>Ability Projectile</label>
 		<graphicData>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -29,8 +28,8 @@
  </ThingDef>
  
  
-<ThingDef Name="RRY_BaseThrownReturningProjectileAbility" Class="AbilityUser.ProjectileDef_Ability" ParentName="BaseBullet" Abstract="True">
-   <thingClass>AbilityUser.Projectile_AbilityRRY_ThrownReturning</thingClass>
+<ThingDef Name="RRY_BaseThrownReturningProjectileAbility" Class="RRYautja.ProjectileDef_Ability" ParentName="BaseBullet" Abstract="True">
+   <thingClass>RRYautja.Projectile_AbilityRRY_ThrownReturning</thingClass>
    <label>Ability Projectile</label>
 		<graphicData>
 			<graphicClass>Graphic_Single</graphicClass>

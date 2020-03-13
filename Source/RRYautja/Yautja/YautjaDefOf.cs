@@ -32,14 +32,13 @@ namespace RimWorld
         public static HediffDef HMS_Hediff_BloodedMGroTye;
         
         public static HediffDef RRY_Hediff_Cloaked;
-        public static HediffDef RRY_HeDiff_TurretIsOn;
         public static HediffDef RRY_Hediff_BouncedProjectile; 
 
         // Yautja PawnKindDefs 
 
         // Yautja ThingDefs  Races 
         public static ThingDef RRY_Alien_Yautja;
-        public static ThingDef RRY_Yautja_Hound;
+    //    public static ThingDef RRY_Yautja_Hound;
         public static ThingDef RRY_Rynath;
 
         // Yautja ThingDefs  Equipment
@@ -106,6 +105,7 @@ namespace RimWorld
         public static ResearchProjectDef RRY_YautjaRanged_Med;
         public static ResearchProjectDef RRY_YautjaRanged_Adv;
         
+
         // Yautja BodyTypeDefs
         public static BodyTypeDef RRYYautjaFemale;
         public static BodyTypeDef RRYYautjaMale;

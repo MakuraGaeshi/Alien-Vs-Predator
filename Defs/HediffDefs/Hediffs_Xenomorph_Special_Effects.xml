@@ -22,6 +22,7 @@
 	<HediffDef>
 		<defName>RRY_Hediff_Xenomorph_ProtoBodypart</defName>
 		<label>regrowing</label>
+		<description>regrowing</description>
 		<hediffClass>RRYautja.Xenomorph_Part_Hediff</hediffClass>
 		<defaultLabelColor>(0.59, 0.92, 0.69)</defaultLabelColor>
 		<isBad>false</isBad>
@@ -60,6 +61,7 @@
 	<HediffDef>
 		<defName>RRY_Hediff_Xenomorph_RestoredBodypart</defName>
 		<label>restored bodypart</label>
+		<description>restored bodypart</description>
 		<hediffClass>RRYautja.Removable_Hediff</hediffClass>
 		<defaultLabelColor>(1.0, 1.0, 1.0)</defaultLabelColor>
 		<isBad>false</isBad>
@@ -71,4 +73,25 @@
 			</li>
 		</stages>
 	</HediffDef>
+	
+  <HediffDef>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defName>RRY_EmergingChestburster</defName>
+    <label>horrified</label>
+    <description>horrified</description>
+    <labelNoun>horrified</labelNoun>
+    <battleStateLabel>blind</battleStateLabel>
+    <maxSeverity>1</maxSeverity>
+    <stages>
+      <li>
+        <partEfficiencyOffset>-0.8</partEfficiencyOffset>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_SelfHeal">
+        <healAmount>0.005</healAmount>
+      </li>
+    </comps>
+  </HediffDef>
+
 </Defs>

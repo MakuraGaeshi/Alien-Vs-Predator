@@ -1,6 +1,6 @@
 ﻿using RimWorld;
 using Verse;
-using Harmony;
+using HarmonyLib;
 using System.Reflection;
 using System.Collections.Generic;
 using System;
@@ -23,7 +23,7 @@ namespace RRYautja
         [HarmonyPostfix]
         public static void CanAddHediffToAnyPartOfDefPrefix(IncidentWorker_DiseaseHuman __instance, IncidentParms parms, ref IEnumerable<Pawn> __result)
         {
-            if (__instance!=null)
+            if (__instance != null)
             {
                 if (__instance.def != null)
                 {

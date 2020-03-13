@@ -7,7 +7,7 @@ using Verse;
 namespace RimWorld
 {
     // Token: 0x020006C7 RID: 1735
-    public class Building_CrashedShipPart_CryptosleepCasket_Xenomorph : Building_CrashedShipPart
+    public class Building_CrashedShipPart_CryptosleepCasket_Xenomorph : Building // _CrashedShipPart
     {
         public override void ExposeData()
         {

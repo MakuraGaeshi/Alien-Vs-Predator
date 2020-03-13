@@ -20,7 +20,7 @@
 		</projectile>
 		<tickerType>Normal</tickerType>
 		<comps> 
-		  <li Class="CompToggleDef.CompProperties_ToggleDef">
+		  <li Class="AdeptusMechanicus.CompProperties_ToggleDef">
             <labelKey>RRY_Toggle_Gauntlet</labelKey>
 		  </li> 
 		  <li Class="RRYautja.CompProperties_WearableExplosive">

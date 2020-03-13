@@ -1,6 +1,6 @@
 ﻿using RimWorld;
 using Verse;
-using Harmony;
+using HarmonyLib;
 using System.Reflection;
 using System.Collections.Generic;
 using System;
@@ -20,8 +20,20 @@ namespace RRYautja
         [HarmonyPostfix]
         public static void IncrementPostfix(Pawn killed, Pawn killer)
         {
-            if (killer!=null)
+            if (killer!=null && killer.RaceProps!=null)
             {
+                if (!killer.RaceProps.Humanlike)
+                {
+                    return;
+                }
+                if (killed==null)
+                {
+                    return;
+                }
+                if (killer.isXenomorph())
+                {
+                    return;
+                }
                 if (killed.isXenomorph())
                 {
                     if (killer.needs.mood.thoughts.memories.AnyMemoryConcerns(killed))

@@ -80,6 +80,10 @@ namespace HunterMarkingSystem
                         return markData.Humanlike ? markData.Name + " (" + markData.Label + ")" : markData.Label;
                     }
                 }
+                else
+                {
+                    return "Unblooded";
+                }
                 return null;
             }
         }

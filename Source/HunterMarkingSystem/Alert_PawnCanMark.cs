@@ -2,6 +2,7 @@
 using RimWorld;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Verse;
 
@@ -118,7 +119,7 @@ namespace HunterMarkingSystem
         }
 
         // Token: 0x06002BF6 RID: 11254 RVA: 0x00149A10 File Offset: 0x00147E10
-        public override string GetExplanation()
+        public override TaggedString GetExplanation()
         {
             StringBuilder stringBuilder = new StringBuilder();
             foreach (Thing thing in this.SickPawns)
@@ -135,7 +136,7 @@ namespace HunterMarkingSystem
         // Token: 0x06002BF7 RID: 11255 RVA: 0x00149B50 File Offset: 0x00147F50
         public override AlertReport GetReport()
         {
-            return AlertReport.CulpritsAre(this.SickPawns);
+            return AlertReport.CulpritsAre(this.SickPawns.ToList());
         }
     }
 }

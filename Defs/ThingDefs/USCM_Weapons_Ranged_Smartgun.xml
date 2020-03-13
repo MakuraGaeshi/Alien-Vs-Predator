@@ -12,7 +12,7 @@
     <projectile>
 		<flyOverhead>false</flyOverhead>
 		<damageDef>Bullet</damageDef>
-		<damageAmountBase>10</damageAmountBase>
+		<damageAmountBase>15</damageAmountBase>
 		<armorPenetrationBase>0.40</armorPenetrationBase>
 		<stoppingPower>1.0</stoppingPower>
 		<speed>90</speed>
@@ -40,7 +40,7 @@
 			<RangedWeapon_Cooldown>3.1</RangedWeapon_Cooldown>
 		</statBases>
 		<comps>
-			<li Class="CompOversizedWeapon.CompProperties_OversizedWeapon">
+			<li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
 				<southOffset>0.125,0,-0.15</southOffset>
 			</li> 
 			<li Class="RRYautja.CompProperties_SmartgunSystem"> 

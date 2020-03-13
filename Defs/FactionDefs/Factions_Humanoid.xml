@@ -7,8 +7,8 @@
      <colorSpectrum>
       <li>(1, 1, 1)</li>
     </colorSpectrum>
-    <homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
-    <expandingIconTexture>Ui/Icons/Icon_USCM</expandingIconTexture>
+    <settlementTexturePath>World/WorldObjects/DefaultSettlement</settlementTexturePath>
+    <factionIconPath>Ui/Icons/Icon_USCM</factionIconPath>
   </FactionDef>
   
     <FactionDef Parent="RRY_USCMPlayerFactionBase">
@@ -22,12 +22,13 @@
 		<factionNameMaker>Namer_RRY_USCM_Operations</factionNameMaker>
     <settlementNameMaker>Namer_RRY_USCM_Squads</settlementNameMaker>
     <techLevel>Spacer</techLevel>
-    <backstoryCategories>
-      <li>RRY_USCM_Backstories</li>
-	  <!--<li>Raider</li>
-      <li>Tribal</li>
-      <li>Civil</li>-->
-  	</backstoryCategories>
+    <backstoryFilters>
+      <li>
+        <categories>
+          <li>RRY_USCM_Backstories</li>
+        </categories>
+      </li>
+    </backstoryFilters>
     <startingResearchTags>
       <li>ClassicStart</li>
     </startingResearchTags>
@@ -36,7 +37,6 @@
 		<li>Tribal</li>
 		<li>Urban</li>
 		<li>Punk</li>
-		
     </hairTags>
     <apparelStuffFilter>
       <thingDefs>
@@ -55,8 +55,8 @@
         <li>(100000, 10000)</li>
       </points>
     </maxPawnCostPerTotalPointsCurve>
-    <homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
-    <expandingIconTexture>World/WorldObjects/Expanding/Town</expandingIconTexture>
+    <settlementTexturePath>World/WorldObjects/DefaultSettlement</settlementTexturePath>
+    <factionIconPath>Ui/Icons/Icon_USCM</factionIconPath>
 	</FactionDef>
 	
 	<!--============================================= USCM - NPC faction =============================================-->
@@ -83,11 +83,16 @@
 	<factionNameMaker>Namer_RRY_USCM_Operations</factionNameMaker>
 	<settlementNameMaker>Namer_RRY_USCM_Squads</settlementNameMaker>
 	<techLevel>Spacer</techLevel>
-	<backstoryCategories>
-		<li>Raider</li>
-		<li>Tribal</li>
-		<li>Civil</li>
-	</backstoryCategories>
+    <backstoryFilters>
+      <li>
+        <categories>
+        <li>RRY_USCM_Backstories</li>
+		<li>Pirate</li>
+		<li>Offworlder</li>
+		<li>Outlander</li>
+        </categories>
+      </li>
+    </backstoryFilters>
 	<hairTags>
 		<li>Civil</li>
 		<li>Rural</li>
@@ -99,22 +104,15 @@
     </naturalColonyGoodwill>
     <visitorTraderKinds>
 	
-      <li>RRY_USCM_Visitor_Official</li>
-	  <li>RRY_USCM_Visitor_Smuggler</li>
-	  
-	  
     </visitorTraderKinds>
     <caravanTraderKinds>
-   
+		<li>RRY_USCM_Visitor_Official</li>
+		<li>RRY_USCM_Visitor_Smuggler</li>
 		<li>RRY_Base_USCM_Standard</li>
 		<li>RRY_USCM_CombatSupplier</li>
-	  
     </caravanTraderKinds>
     <baseTraderKinds>
-	
-      <li>RRY_Base_USCM_Standard</li>
-	  
-	  
+		<li>RRY_Base_USCM_Standard</li>
     </baseTraderKinds>
     <allowedArrivalTemperatureRange>
       <min>-50</min>
@@ -142,8 +140,8 @@
         <kindDef>Peaceful</kindDef>
         <options>
           <RRY_USCM_Private>10</RRY_USCM_Private>
-		  <RRY_USCM_Operator>2</RRY_USCM_Operator>
           <RRY_USCM_Lieutenant>1</RRY_USCM_Lieutenant>
+		  <RRY_USCM_Operator>2</RRY_USCM_Operator>
         </options>
       </li>
 	  <li>
@@ -164,14 +162,14 @@
         <kindDef>Settlement</kindDef>
         <options>
           <RRY_USCM_Private>6</RRY_USCM_Private>
-		  <RRY_USCM_Operator>2</RRY_USCM_Operator>
           <RRY_USCM_Lieutenant>1</RRY_USCM_Lieutenant>
+		  <RRY_USCM_Operator>2</RRY_USCM_Operator>
 		  <RRY_USCM_PAO>1</RRY_USCM_PAO>
         </options>
       </li>
     </pawnGroupMakers>
-	<homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
-    <expandingIconTexture>Ui/Icons/Icon_USCM</expandingIconTexture>
+    <settlementTexturePath>World/WorldObjects/DefaultSettlement</settlementTexturePath>
+    <factionIconPath>Ui/Icons/Icon_USCM</factionIconPath>
   </FactionDef>
     
 </Defs>

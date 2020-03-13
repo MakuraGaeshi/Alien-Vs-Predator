@@ -118,6 +118,7 @@
 				<li>Torso</li>
 				<li>Shoulders</li>
 				<li>Arms</li>
+				<li>Neck</li>
 			</bodyPartGroups>
 			<wornGraphicPath>Things/Apparel/USCM/Armour/M3Pattern/USCM_M3Pattern</wornGraphicPath>
 			<layers>
@@ -180,6 +181,8 @@
 			<bodyPartGroups>
 				<li>Torso</li>
 				<li>Shoulders</li>
+				<li>Arms</li>
+				<li>Neck</li>
 			</bodyPartGroups>
 			<wornGraphicPath>Things/Apparel/USCM/Armour/M56CombatHarness/USCM_M56CombatHarness</wornGraphicPath>
 			<layers>
