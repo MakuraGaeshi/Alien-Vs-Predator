@@ -47,7 +47,7 @@
       <thinkTreeConstant>XenomorphConstant</thinkTreeConstant>
       <!-- <deathActionWorkerClass>RRYautja.DeathActionWorker_Xenomorph</deathActionWorkerClass> -->
       <herdAnimal>false</herdAnimal>
-      <predator>true</predator>
+      <!--predator>true</predator-->
       <maxPreyBodySize>3.0</maxPreyBodySize>
       <baseBodySize>1.5</baseBodySize>
       <baseHungerRate>0.0</baseHungerRate>

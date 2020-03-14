@@ -152,18 +152,16 @@ namespace RRYautja
             get
             {
                 Lord lord = null;
+                LordJob job = null;
+                List<Lord> Hivelords = new List<Lord>();
+                List<Lord> lords = pawn.Map.lordManager.lords.Where(x => x.faction == pawn.Faction).ToList();
                 if (map==null)
                 {
                     return lord;
                 }
-                else
                 if (CurLord!=null)
                 {
-                    bool isDefendPoint = pawn.GetLord() != null ? pawn.GetLord().LordJob is LordJob_DefendPoint : true;
-                    bool isAssaultColony = pawn.GetLord() != null ? pawn.GetLord().LordJob is LordJob_AssaultColony : true;
-                    bool hostsPresent = map.mapPawns.AllPawnsSpawned.Any(x => x.isPotentialHost() && !x.isCocooned() && IsAcceptablePreyFor(pawn, x, true) && x.Faction.HostileTo(pawn.Faction));
-                    bool LordReplaceable = (isDefendPoint || (isAssaultColony && hostsPresent && !GenHostility.AnyHostileActiveThreatTo(pawn.Map, pawn.Faction)));
-                    if (LordReplaceable)
+                    if (LordReplaceable(CurLord))
                     {
                         if (!map.HiveGrid().Hivelist.NullOrEmpty())
                         {
@@ -176,17 +174,106 @@ namespace RRYautja
                                 }
                             }
                         }
+                        else
+                        {
+                            foreach (Lord l in lords)
+                            {
+                                if (l != null)
+                                {
+                                    if (XenomorphUtil.HivelikesPresent(map))
+                                    {
+                                        if (l.LordJob is LordJob_DefendAndExpandHiveLike j)
+                                        {
+                                            lord = l;
+                                            job = j;
+                                            Pawn Hivequeen = null;
+                                            if (l.ownedPawns.Any(x => x.kindDef == QueenDef))
+                                            {
+                                                Hivequeen = l.ownedPawns.Find(x => x.kindDef == QueenDef);
+                                            }
+                                            if (pawn.kindDef != XenomorphDefOf.RRY_Xenomorph_Queen || (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen && Hivequeen != null))
+                                            {
+                                                Hivelords.Add(l);
+                                            }
+                                        }
+                                    }
+                                    else if (XenomorphUtil.HiveSlimePresent(map))
+                                    {
+                                        if (l.LordJob is LordJob_DefendHiveLoc j)
+                                        {
+                                            lord = l;
+                                            job = j;
+                                            Pawn Hivequeen = null;
+                                            if (l.ownedPawns.Any(x => x.kindDef == QueenDef))
+                                            {
+                                                Hivequeen = l.ownedPawns.Find(x => x.kindDef == QueenDef);
+                                            }
+                                            if (pawn.kindDef != XenomorphDefOf.RRY_Xenomorph_Queen || (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen && Hivequeen != null))
+                                            {
+                                                Hivelords.Add(l);
+                                            }
+                                        }
+                                    }
+
+                                }
+                                else
+                                {
+                                    /*
+                                    lord = l;
+                                    lord.AddPawn(pawn);
+                                    pawn.mindState.duty = lord.ownedPawns.FindAll(x => x.mindState.duty != null && x != pawn).RandomElement().mindState.duty;
+                                    break;
+                                    */
+                                }
+                            }
+                        }
                     }
                     lord = CurLord;
                 }
                 else
                 {
-                    List<Lord> lords = pawn.Map.lordManager.lords.Where(x => x.faction == pawn.Faction).ToList();
-
+                    if (!map.HiveGrid().Hivelist.NullOrEmpty())
+                    {
+                        List<HiveLike> hives = new List<HiveLike>();
+                        map.HiveGrid().Hivelist.ForEach(x=> hives.Add(((HiveLike)x)));
+                        bool anyHiveHasLord = hives.Any(x => x.Lord != null);
+                        HiveLike hive = anyHiveHasLord ? hives.Where(x=> x.Lord !=null).RandomElement() : hives.RandomElement();
+                        if (hive != null)
+                        {
+                            if (hive.Lord != null)
+                            {
+                                lord = hive.Lord;
+                                pawn.SwitchToLord(lord);
+                            }
+                            else
+                            {
+                                if (lords.Count() == 0 && hive.Position != IntVec3.Invalid)
+                                {
+                                    LordJob
+                                        newJob = new LordJob_DefendAndExpandHiveLike(false, pawn.Faction, hive.Position, 40f);
+                                    lord = pawn.CreateNewLord(hive.Position, newJob);
+                                }
+                            }
+                        }
+                    }
                 }
                 return null;
             }
         }
+
+        private bool LordReplaceable(Lord lord)
+        {
+            if (lord == null)
+            {
+                return true;
+            }
+            bool isDefendPoint = lord != null ? lord.LordJob is LordJob_DefendPoint : true;
+            bool isAssaultColony = lord != null ? lord.LordJob is LordJob_AssaultColony : true;
+            bool hostsPresent = map.mapPawns.AllPawnsSpawned.Any(x => x.isPotentialHost() && !x.isCocooned() && IsAcceptablePreyFor(pawn, x, true) && x.Faction.HostileTo(pawn.Faction));
+            bool LordReplaceable = (isDefendPoint || (isAssaultColony && hostsPresent && !GenHostility.AnyHostileActiveThreatTo(pawn.Map, pawn.Faction)));
+            return LordReplaceable;
+        }
+
 
         public void XenoLordTick()
         {

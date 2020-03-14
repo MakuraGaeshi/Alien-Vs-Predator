@@ -28,7 +28,7 @@ namespace RRYautja
             {
                 Traverse traverse = Traverse.Create(__instance);
                 Pawn pawn = (Pawn)AvP_Pawn_AgeTracker_RecalculateLifeStageIndex_Patch.pawn.GetValue(__instance);
-                if (pawn!=null)
+                if (pawn!=null && !pawn.Dead)
                 {
                     if (pawn.isXenomorph(out Comp_Xenomorph xenomorph))
                     {
@@ -36,7 +36,7 @@ namespace RRYautja
                         {
                             if (pawn.GetLord()==null)
                             {
-                                xenomorph.XenoLordTick();
+                                Lord lord = xenomorph.XenoLord;
                             }
                         }
                     }

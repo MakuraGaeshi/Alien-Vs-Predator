@@ -15,10 +15,7 @@ namespace HunterMarkingSystem
 
     public class CompProperties_Markable : CompProperties
     {
-        public CompProperties_Markable()
-        {
-            this.compClass = typeof(Comp_Markable);
-        }
+        public CompProperties_Markable() => this.compClass = typeof(Comp_Markable);
         public HunterCultureDef cultureDef = null;
         public HediffDef Unblooded = null;
         public HediffDef Unmarked = null;

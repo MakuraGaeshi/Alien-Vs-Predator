@@ -11,3 +11,4 @@ C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Rebelrots-Yautja-Rac
 C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Rebelrots-Yautja-Race\Source\TrapsRearmable\obj\Debug\TrapsRearmable.csproj.CopyComplete
 C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Rebelrots-Yautja-Race\Source\TrapsRearmable\obj\Debug\TrapsRearmable.dll
 C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Rebelrots-Yautja-Race\Source\TrapsRearmable\obj\Debug\TrapsRearmable.pdb
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Rebelrots-Yautja-Race\Source\TrapsRearmable\obj\Debug\TrapsRearmable.csprojAssemblyReference.cache
