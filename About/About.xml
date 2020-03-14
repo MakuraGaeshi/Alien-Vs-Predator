@@ -1,35 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
 	<name>Alien Vs Predator</name>
-	<author>Ogliss &amp; Rebelrot &amp; acide_bob</author>
+	<author>Ogliss</author>
 	<supportedVersions>
-		<li>1.0</li>
 		<li>1.1</li>
 	</supportedVersions>
 	<packageId>Ogliss.AlienVsPredator</packageId>
 	<description>V1.5.0.0
 	
 	Requirments
-	JecsTools (For Rimworld 1.0, NOT required for RimWorld 1.1)
 	Humanoid Alien Races 2.0
 	
 	"All right, sweethearts, what are you waiting for? Breakfast in bed? It's another glorious day in the Corps. A day in the Marine Corps is like a day on the farm: Every meal's a banquet. Every paycheck's a fortune! Every formation's a parade! I love the Corps!" - Sgt. Apone
 	Thats right, the USCM have arrived on the Rim!
 	
 	Apparel:
-	USCM Bandana - Texture by Rebelrot
-	USCM Military Cap - Texture by Rebelrot
-	USCM Fatigues - Texture by Rebelrot
-	USCM Medical jumpsuit - Texture by Rebelrot
-	USCM Engineer jumpsuit - Texture by Rebelrot
+	USCM Bandana
+	USCM Military Cap
+	USCM Fatigues
+	USCM Medical jumpsuit
+	USCM Engineer jumpsuit
 	
 	Armour:
-	M10 Ballistic Helmet - Texture by Rebelrot
-	M3 Personal Armor - Texture by Rebelrot
-	M56 Combat Harness - (Smart Gun System Component) - Texture by Rebelrot
+	M10 Ballistic Helmet
+	M3 Personal Armor
+	M56 Combat Harness - (Smart Gun System Component)
 	
 	Equipment:
-	Head Mounted Sight - (Smart Gun System Component) - Texture by Rebelrot
+	Head Mounted Sight - (Smart Gun System Component)
 	Weapons:
 	M4A3 Service Pistol
 	M4A4 Pistol
@@ -45,7 +43,7 @@
 	M5 Rocket Propelled Grenade
 	
 	Turrets:
-	UA 571-C automated sentry gun - Texture by Hiztaar
+	UA 571-C automated sentry gun
 	
 	Misc:
 
@@ -111,22 +109,26 @@
 	
 	Credits 
 	Authors and their credits:
-	Rebelrot : Yautja concepts and textures
 	Ogliss: Coding, XML, mechanics
+	Rebelrot: Yautja concepts and textures
 	acide_bob: XML &amp; balancing
+	Temmy: Texturs, concepts &amp; balancing
+	Cortanakya: textures &amp; balancing
+	SerpyDerpy: textures
 
 	Arts:
 	Rebelrot: Everything except what follow.
 	Temmy: Needler, Bladed Maul, combistaff
 	Deon: Drone, Warrior, Runner, Queen Xenomorphs.
 	Hiztarr: M4A3 Service Pistol, M4A4 Pistol, 88 Mod 4 Combat Pistol M42A Sniper Rifle.
+	Cortanakya: UD-4 "Cheyenne" Dropship, Ovomorph Container, Hellhound
 	SerpyDerpy: Rynath
 
 	Translators are welcome!
 
 	Special Thanks
 	Lore:
-	Daiki97427 &amp; acide_bob
+	Daiki97427 &amp; SilentLord 
 
 	Erdelf - For the framework and all the help in general
 	Jecrell - Those tools are awesome

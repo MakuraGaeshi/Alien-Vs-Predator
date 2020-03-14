@@ -69,7 +69,7 @@
 
   <JobDef>
 		<defName>RRY_Xenomorph_Ingest</defName>
-		<driverClass>JobDriver_Neomorph_Ingest</driverClass>
+		<driverClass>JobDriver_Xenomorph_Ingest</driverClass>
 		<reportString>consuming TargetA.</reportString>
     <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
   </JobDef>
