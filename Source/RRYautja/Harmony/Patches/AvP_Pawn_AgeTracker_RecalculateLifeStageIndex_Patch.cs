@@ -36,7 +36,7 @@ namespace RRYautja
                         {
                             if (pawn.GetLord()==null)
                             {
-                                Lord lord = xenomorph.XenoLord;
+                                xenomorph.delay = 30;
                             }
                         }
                     }

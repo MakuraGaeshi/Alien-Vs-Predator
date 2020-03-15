@@ -18,12 +18,17 @@ namespace RimWorld
 
             Predicate<IntVec3> validator = delegate (IntVec3 y)
             {
+                if (y.GetTerrain(map).HasTag("Water"))
+                {
+                    return false;
+                }
                 bool roofed = (!allowUnroofed && y.Roofed(map)) || allowUnroofed;
                 bool score = InfestationLikeCellFinder.GetScoreAt(y, map, allowFogged, allowUnroofed, allowDigging) > 0f;
                 bool XenohiveA = y.GetFirstThing(map, XenomorphDefOf.RRY_Xenomorph_Hive) == null;
                 bool XenohiveB = y.GetFirstThing(map, XenomorphDefOf.RRY_Xenomorph_Hive_Child) == null;
                 bool filled = y.Filled(map) && !allowDigging;
                 bool edifice = y.GetEdifice(map).DestroyedOrNull() || allowDigging;
+
                 if (!edifice)
                 {
                 //    Log.Message(string.Format("edifice detected: {0}", y.GetEdifice(map).LabelCap));
@@ -96,6 +101,10 @@ namespace RimWorld
         // Token: 0x0600368C RID: 13964 RVA: 0x001A0EAC File Offset: 0x0019F2AC
         private static float GetScoreAt(IntVec3 cell, Map map, bool allowFogged = false, bool allowUnroofed = false, bool allowDigging = false)
         {
+            if (cell.GetTerrain(map).HasTag("Water"))
+            {
+                return 0f;
+            }
             if ((!cell.Walkable(map) && !cell.GetFirstMineable(map).DestroyedOrNull() && !allowDigging))
             {
                 return 0f;

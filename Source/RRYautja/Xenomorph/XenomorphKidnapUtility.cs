@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using RRYautja.ExtensionMethods;
 using System;
 using System.Collections.Generic;
 using Verse;
@@ -76,6 +77,14 @@ namespace RRYautja
             Map map = pawn.Map;
             bool result = false;
             c = IntVec3.Invalid;
+            if (map == null)
+            {
+                return false;
+            }
+            if (!pawn.isXenomorph(out Comp_Xenomorph _Xenomorph))
+            {
+                return false;
+            }
             MapComponent_HiveGrid hiveGrid = pawn.Map.GetComponent<MapComponent_HiveGrid>();
             ThingDef named = null;
             bool selected = map != null ? Find.Selector.SelectedObjects.Contains(pawn) && (Prefs.DevMode) : false;
@@ -84,6 +93,11 @@ namespace RRYautja
                 named = victim.RaceProps.Humanlike ? XenomorphDefOf.RRY_Xenomorph_Cocoon_Humanoid : XenomorphDefOf.RRY_Xenomorph_Cocoon_Animal;
             }
 
+            if (_Xenomorph.HiveLoc != null)
+            {
+                c = _Xenomorph.HiveLoc;
+            }
+            else
             if (hiveGrid.Hivelist.NullOrEmpty())
             {
                 Log.Warning("no hives present");
@@ -93,7 +107,7 @@ namespace RRYautja
                 c = hiveGrid.Hivelist.RandomElement().Position.RandomAdjacentCell8Way();
                 return true;
             }
-            
+
             if (c == IntVec3.Invalid)
             {
                 if (!InfestationLikeCellFinder.TryFindCell(out c, out IntVec3 lc, map, true, true, true))

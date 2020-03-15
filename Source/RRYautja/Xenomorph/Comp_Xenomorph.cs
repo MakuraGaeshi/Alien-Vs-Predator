@@ -154,101 +154,116 @@ namespace RRYautja
                 Lord lord = null;
                 LordJob job = null;
                 List<Lord> Hivelords = new List<Lord>();
-                List<Lord> lords = pawn.Map.lordManager.lords.Where(x => x.faction == pawn.Faction).ToList();
-                if (map==null)
+                List<Lord> lords = new List<Lord>();
+                if (map == null)
                 {
+                    Log.Message("XenoLord map == null");
                     return lord;
+                }
+                if (map.lordManager.lords.Any(x => x.faction == pawn.Faction))
+                {
+                    Log.Message("XenoLord lords exist");
+                    lords = map.lordManager.lords.Where(x => x.faction == pawn.Faction).ToList();
                 }
                 if (CurLord!=null)
                 {
+                    Log.Message("XenoLord CurLord != null");
                     if (LordReplaceable(CurLord))
                     {
+                        Log.Message("XenoLord CurLord LordReplaceable");
                         if (!map.HiveGrid().Hivelist.NullOrEmpty())
                         {
+                            Log.Message("XenoLord Hives on map");
                             HiveLike hive = (HiveLike)map.HiveGrid().Hivelist.RandomElement();
                             if (hive!=null)
                             {
+                                Log.Message("XenoLord Hive");
                                 if (hive.Lord!=null)
                                 {
+                                    Log.Message("XenoLord Lord");
                                     lord = hive.Lord;
                                 }
                             }
                         }
                         else
                         {
-                            foreach (Lord l in lords)
+                            Log.Message("XenoLord NO Hives on map");
+                            for (int i = 0; i < lords.Count-1; i++)
                             {
+                                Lord l = lords[i];
+                                Log.Message(string.Format("XenoLord {0} of {1}", i+1, lords.Count));
                                 if (l != null)
                                 {
-                                    if (XenomorphUtil.HivelikesPresent(map))
+                                    Log.Message(string.Format("XenoLord {0} != null LordJob: {1}", l, l.LordJob));
+                                    if (l.LordJob is LordJob_DefendAndExpandHiveLike j)
                                     {
-                                        if (l.LordJob is LordJob_DefendAndExpandHiveLike j)
+                                        Log.Message(string.Format("XenoLord {0} LordJob_DefendAndExpandHiveLike", l, lords.Count));
+                                        lord = l;
+                                        job = j;
+                                        Pawn Hivequeen = null;
+                                        if (l.ownedPawns.Any(x => x.kindDef == QueenDef))
                                         {
-                                            lord = l;
-                                            job = j;
-                                            Pawn Hivequeen = null;
-                                            if (l.ownedPawns.Any(x => x.kindDef == QueenDef))
-                                            {
-                                                Hivequeen = l.ownedPawns.Find(x => x.kindDef == QueenDef);
-                                            }
-                                            if (pawn.kindDef != XenomorphDefOf.RRY_Xenomorph_Queen || (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen && Hivequeen != null))
-                                            {
-                                                Hivelords.Add(l);
-                                            }
+                                            Log.Message(string.Format("XenoLord {0} Hivequeen", l, lords.Count));
+                                            Hivequeen = l.ownedPawns.Find(x => x.kindDef == QueenDef);
                                         }
-                                    }
-                                    else if (XenomorphUtil.HiveSlimePresent(map))
-                                    {
-                                        if (l.LordJob is LordJob_DefendHiveLoc j)
+                                        if (pawn.kindDef != XenomorphDefOf.RRY_Xenomorph_Queen || (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen && Hivequeen != null))
                                         {
-                                            lord = l;
-                                            job = j;
-                                            Pawn Hivequeen = null;
-                                            if (l.ownedPawns.Any(x => x.kindDef == QueenDef))
-                                            {
-                                                Hivequeen = l.ownedPawns.Find(x => x.kindDef == QueenDef);
-                                            }
-                                            if (pawn.kindDef != XenomorphDefOf.RRY_Xenomorph_Queen || (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen && Hivequeen != null))
-                                            {
-                                                Hivelords.Add(l);
-                                            }
+                                            Log.Message(string.Format("XenoLord {0} Hivelords.Add", l, lords.Count));
+                                            Hivelords.Add(l);
                                         }
                                     }
 
                                 }
+
+                            }
+                            if (lord == null)
+                            {
+                                Log.Message(string.Format("XenoLord lord = null"));
+                                if (XenomorphKidnapUtility.TryFindGoodHiveLoc(pawn, out IntVec3 c))
+                                {
+                                    Log.Message(string.Format("XenoLord InfestationLikeCellFinder Cell Found: {0}", c));
+                                    LordJob newJob = new LordJob_DefendAndExpandHiveLike(false, pawn.Faction, c, 40f);
+                                    pawn.CreateNewLord(c, newJob);
+                                    this.HiveLoc = c;
+                                }
                                 else
                                 {
-                                    /*
-                                    lord = l;
-                                    lord.AddPawn(pawn);
-                                    pawn.mindState.duty = lord.ownedPawns.FindAll(x => x.mindState.duty != null && x != pawn).RandomElement().mindState.duty;
-                                    break;
-                                    */
+                                    Log.Message(string.Format("XenoLord InfestationLikeCellFinder Cell Not Found"));
                                 }
                             }
                         }
                     }
-                    lord = CurLord;
+                    else
+                    {
+                        Log.Message(string.Format("XenoLord lord = CurLord"));
+                        lord = CurLord;
+                    }
                 }
                 else
                 {
+                    Log.Message("XenoLord CurLord == null");
                     if (!map.HiveGrid().Hivelist.NullOrEmpty())
                     {
+                        Log.Message("XenoLord Hivelist");
                         List<HiveLike> hives = new List<HiveLike>();
                         map.HiveGrid().Hivelist.ForEach(x=> hives.Add(((HiveLike)x)));
                         bool anyHiveHasLord = hives.Any(x => x.Lord != null);
                         HiveLike hive = anyHiveHasLord ? hives.Where(x=> x.Lord !=null).RandomElement() : hives.RandomElement();
                         if (hive != null)
                         {
+                            Log.Message("XenoLord Hive");
                             if (hive.Lord != null)
                             {
+                                Log.Message("XenoLord Lord");
                                 lord = hive.Lord;
                                 pawn.SwitchToLord(lord);
                             }
                             else
                             {
+                                Log.Message("XenoLord no Lord");
                                 if (lords.Count() == 0 && hive.Position != IntVec3.Invalid)
                                 {
+                                    Log.Message("XenoLord no Lords");
                                     LordJob
                                         newJob = new LordJob_DefendAndExpandHiveLike(false, pawn.Faction, hive.Position, 40f);
                                     lord = pawn.CreateNewLord(hive.Position, newJob);
@@ -257,7 +272,7 @@ namespace RRYautja
                         }
                     }
                 }
-                return null;
+                return lord;
             }
         }
 
@@ -561,8 +576,21 @@ namespace RRYautja
         }
         */
 
+        public int delay = -1;
         public override void CompTick()
         {
+            if (delay>-1 && map != null)
+            {
+                delay--;
+                if (delay==0)
+                {
+                    Lord lord = XenoLord;
+                    if (lord!=null)
+                    {
+                        delay = -1;
+                    }
+                }
+            }
             if (pawn.Dead)
             {
                 if (hidden)

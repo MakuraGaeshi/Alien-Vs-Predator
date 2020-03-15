@@ -34,6 +34,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Harmony\Patches\AvP_HediffSet_CalculateBleedRate_Xenomorph_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_PawnUtility_IsInvisible_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Pawn_AgeTracker_RecalculateLifeStageIndex_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Corpse_TickRare_Gestation_Patch.cs" />
@@ -146,6 +147,7 @@
     <Compile Include="util\PawnsArrivalModeWorker_DropThroughRoof.cs" />
     <Compile Include="util\Projectile_Anim.cs" />
     <Compile Include="util\Projectile_Fire.cs" />
+    <Compile Include="Xenomorph\Hives\HiveStructure.cs" />
     <Compile Include="Xenomorph\Hives\IncidentWorker_Xenomorph_WorldHive.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_Xenomorph_Ingest.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphGetFood.cs" />
