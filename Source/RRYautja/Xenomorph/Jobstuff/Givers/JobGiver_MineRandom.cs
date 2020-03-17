@@ -1,7 +1,6 @@
 ﻿using RRYautja;
 using RRYautja.ExtensionMethods;
 using RRYautja.Xenomorph.Hives;
-using System;
 using System.Collections.Generic;
 using Verse;
 using Verse.AI;
@@ -169,13 +168,21 @@ namespace RimWorld
             {
                 return null;
             }
-            IntVec3 HiveCenter = _Xenomorph.HiveLoc == IntVec3.Invalid || _Xenomorph.HiveLoc == IntVec3.Zero || !_Xenomorph.HiveLoc.InBounds(map) ? pawn.mindState.duty.focus.Cell : _Xenomorph.HiveLoc;
-            if (HiveCenter == IntVec3.Invalid || HiveCenter == IntVec3.Zero || !HiveCenter.InBounds(map))
+            IntVec3 HiveCenter = IntVec3.Invalid;
+            if (_Xenomorph.HiveLoc.IsValid && _Xenomorph.HiveLoc.InBounds(map) && _Xenomorph.HiveLoc != IntVec3.Zero)
+            {
+                HiveCenter = _Xenomorph.HiveLoc;
+            }
+            else
             {
                 return null;
             }
 
             Region region = pawn.GetRegion(RegionType.Set_Passable);
+            if (region == null)
+            {
+                return null;
+            }
             bool flag1 = HiveCenter.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive) != null;
             bool flag2 = HiveCenter.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive_Child) != null;
             bool flag3 = HiveCenter.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive_Slime) != null;
@@ -197,10 +204,6 @@ namespace RimWorld
                     }
                 }
             }
-            if (region == null)
-            {
-                return null;
-            }
             if (flag1)
             {
                 MiningRange = 7;
@@ -214,18 +217,26 @@ namespace RimWorld
             {
                 MiningRange = 5;
             }
+            if (!pawn.CanReachMapEdge())
+            {
+                MiningRange = 10;
+            }
             for (int i = 0; i < GenRadial.NumCellsInRadius(MiningRange); i++)
             {
                 IntVec3 c = HiveCenter + GenRadial.RadialPattern[i];
                 if (!HiveStructure.HiveStruct(HiveCenter).Contains(c) && !HiveStructure.HiveWalls(HiveCenter).Contains(c) && pawn.CanReach(c,PathEndMode.ClosestTouch, Danger.Deadly))
                 {
                     Building edifice = c.GetEdifice(pawn.Map);
-                    if (edifice != null && (edifice.def.passability == Traversability.Impassable /* || edifice.def.IsDoor */) && edifice.def.size == IntVec2.One && edifice.def != ThingDefOf.CollapsedRocks && edifice.def != XenomorphDefOf.RRY_Xenomorph_Hive_Wall && pawn.CanReserve(edifice, 1, -1, null, false) && XenomorphUtil.DistanceBetween(edifice.Position, pawn.mindState.duty.focus.Cell) <= MiningRange)
+                    if (edifice != null && edifice.def.size == IntVec2.One && edifice.def != ThingDefOf.CollapsedRocks && edifice.def != XenomorphDefOf.RRY_Xenomorph_Hive_Wall && pawn.CanReserveAndReach(edifice, PathEndMode.ClosestTouch, Danger.Deadly, 1, 1) && XenomorphUtil.DistanceBetween(edifice.Position, HiveCenter) <= MiningRange)
                     {
-                        return new Job(JobDefOf.Mine, edifice)
+                        bool xenobuilding = edifice.GetType() != typeof(Building_XenoEgg) && edifice.GetType() != typeof(Building_XenomorphCocoon) && edifice.GetType() != typeof(HiveLike);
+                        if (xenobuilding)
                         {
-                            ignoreDesignations = true
-                        };
+                            return new Job(JobDefOf.Mine, edifice)
+                            {
+                                ignoreDesignations = true
+                            };
+                        }
                     }
                 }
             }

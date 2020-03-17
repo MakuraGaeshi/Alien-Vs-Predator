@@ -385,13 +385,13 @@ namespace RimWorld
                     bool Node = y.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive) == null;
                     bool Child = y.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive_Child) == null;
                     bool Wall = y.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive_Wall) == null;
-
                     bool result = Node && Child && Wall && pillarloc /* && HiveCenter.DistanceTo(y) <= MiningRange */ && pawn.CanReserveAndReach(y, PathEndMode.OnCell, Danger.Deadly, layer: ReservationLayerDefOf.Floor);
                     return result;
                 };
 
                 if (RCellFinder.TryFindRandomCellNearWith(HiveCenter, validator, pawn.Map, out IntVec3 c1, MiningRange, MiningRange+1))
                 {
+
                     if (c1.InBounds(pawn.Map) && pawn.CanReserveAndReach(c1, PathEndMode.OnCell, Danger.Deadly, layer:ReservationLayerDefOf.Floor))
                     {
                         Building edifice = c1.GetEdifice(pawn.Map);
@@ -457,11 +457,8 @@ namespace RimWorld
         // Token: 0x06000393 RID: 915 RVA: 0x000245C8 File Offset: 0x000229C8
         protected override IEnumerable<Toil> MakeNewToils()
         {
-            Log.Message("MakeNewToils");
             this.FailOnIncapable(PawnCapacityDefOf.Manipulation);
-            Log.Message("Manipulation capable");
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
-            Log.Message("Going to");
             Toil prepare = Toils_General.Wait(this.useDuration, TargetIndex.A);
             prepare.NPCWithProgressBarToilDelay(TargetIndex.A, false, -0.5f);
             prepare.FailOnDespawnedNullOrForbidden(TargetIndex.A);
@@ -469,7 +466,6 @@ namespace RimWorld
             prepare.WithEffect(EffecterDefOf.Vomit, TargetIndex.A);
             prepare.PlaySustainerOrSound(() => SoundDefOf.Vomit);
             yield return prepare;
-            Log.Message("Preparing");
             Toil use = new Toil();
             use.initAction = delegate ()
             {
@@ -479,7 +475,6 @@ namespace RimWorld
             };
             use.defaultCompleteMode = ToilCompleteMode.Instant;
             yield return use;
-            Log.Message("use");
             yield break;
         }
 

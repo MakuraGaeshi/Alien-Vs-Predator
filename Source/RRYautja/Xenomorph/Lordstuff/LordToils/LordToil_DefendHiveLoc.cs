@@ -6,7 +6,7 @@ using Verse.AI.Group;
 namespace RimWorld
 {
     // Token: 0x02000190 RID: 400
-    public class LordToil_DefendHiveLoc : LordToil
+    public class LordToil_DefendHiveLoc : LordToil_HiveLikeRelated
     {
         // Token: 0x06000861 RID: 2145 RVA: 0x00047713 File Offset: 0x00045B13
         public LordToil_DefendHiveLoc(IntVec3 baseCenter)

@@ -61,6 +61,7 @@ namespace RimWorld
                         }
                     }
                 }
+                else
                 if (lord.CurLordToil is LordToil_DefendHiveLikeAggressively hivetoilA)
                 {
                     if (hivetoilA.Data.assignedHiveLikes.TryGetValue(pawn) != null)
@@ -70,6 +71,11 @@ namespace RimWorld
                 }
             }
 
+            float summaryHealthPercent = pawn.health.summaryHealth.SummaryHealthPercent;
+            if (summaryHealthPercent < 0.5f)
+            {
+               return null;
+            }
             bool aggressive;
             Comp_Xenomorph _Xenomorph = pawn.TryGetComp<Comp_Xenomorph>();
             if (pawn.TryGetAttackVerb(null, false) == null)

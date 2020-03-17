@@ -219,16 +219,29 @@ namespace RRYautja
                             if (lord == null)
                             {
                                 Log.Message(string.Format("XenoLord lord = null"));
-                                if (XenomorphKidnapUtility.TryFindGoodHiveLoc(pawn, out IntVec3 c))
+                                IntVec3 c;
+                                if (XenomorphKidnapUtility.TryFindGoodHiveLoc(pawn, out c, null, true, false, true))
                                 {
-                                    Log.Message(string.Format("XenoLord InfestationLikeCellFinder Cell Found: {0}", c));
+                                    Log.Message(string.Format("XenoLord TryFindGoodHiveLoc for {0} Cell Found: {1}, Allow: Fogged, Digging", pawn.LabelShortCap, c));
+                                    LordJob newJob = new LordJob_DefendAndExpandHiveLike(false, pawn.Faction, c, 40f);
+                                    pawn.CreateNewLord(c, newJob);
+                                    this.HiveLoc = c;
+                                }
+                                else
+                                if (XenomorphKidnapUtility.TryFindGoodHiveLoc(pawn, out c, null, true, true, true))
+                                {
+                                    Log.Message(string.Format("XenoLord TryFindGoodHiveLoc for {0} Cell Found: {1}, Allow: Fogged, Unroofed, Digging", pawn.LabelShortCap, c));
                                     LordJob newJob = new LordJob_DefendAndExpandHiveLike(false, pawn.Faction, c, 40f);
                                     pawn.CreateNewLord(c, newJob);
                                     this.HiveLoc = c;
                                 }
                                 else
                                 {
-                                    Log.Message(string.Format("XenoLord InfestationLikeCellFinder Cell Not Found"));
+                                    Log.Message(string.Format("XenoLord TryFindGoodHiveLoc Cell Not Found"));
+                                }
+                                if (HiveLoc == c)
+                                {
+                                    Log.Message(string.Format("scoreAt {0} == {1}", HiveLoc, InfestationLikeCellFinder.GetScoreAt(HiveLoc, map, true, false, true)));
                                 }
                             }
                         }

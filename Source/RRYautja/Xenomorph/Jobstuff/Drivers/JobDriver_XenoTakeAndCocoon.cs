@@ -58,6 +58,10 @@ namespace RimWorld
                 },
                 defaultCompleteMode = ToilCompleteMode.Instant
             };
+            if (Takee == null || Takee.Dead)
+            {
+                yield break;
+            }
             yield return Toils_Haul.PlaceHauledThingInCell(TargetIndex.B, carryToCell, false);
             Toil prepare = Toils_General.Wait(this.useDuration, TargetIndex.A);
             prepare.NPCWithProgressBarToilDelay(TargetIndex.A, false, -0.5f);

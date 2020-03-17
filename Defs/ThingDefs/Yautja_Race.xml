@@ -6,7 +6,7 @@
             <alienslavekinds>
                 <li>
                     <kindDefs>
-                        <li>YautjaSlave_RRY</li>
+                        <li>Slave_RRY_Yautja</li>
                     </kindDefs>
                     <chance>100.0</chance>
                 </li>
@@ -37,7 +37,7 @@
 				<pawnKindEntries>
 					<li>
                     <kindDefs>
-                        <li>Colonist_YautjaUnblooded_RRY</li>
+                        <li>Colonist_RRY_Yautja_Unblooded</li>
                     </kindDefs>
                     <chance>10.0</chance>
 					</li>
@@ -50,7 +50,7 @@
 				<pawnKindEntries>
 					<li>
                     <kindDefs>
-                        <li>Colonist_YautjaBlooded_RRY</li>
+                        <li>Colonist_RRY_Yautja_Blooded</li>
                     </kindDefs>
                     <chance>10.0</chance>
 					</li>
@@ -66,8 +66,8 @@
                         <li>
                             <kindDefs>
 								<li>Yautja</li>
-								<li>Colonist_YautjaUnblooded_RRY</li>
-								<li>Colonist_YautjaBlooded_RRY</li>
+								<li>Colonist_RRY_Yautja_Unblooded</li>
+								<li>Colonist_RRY_Yautja_Blooded</li>
                             </kindDefs>
                             <chance>50.0</chance>
                         </li>

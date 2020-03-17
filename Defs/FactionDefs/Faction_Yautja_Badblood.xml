@@ -82,15 +82,15 @@
         <li>
         <kindDef>Peaceful</kindDef>
         <options>
-          <YautjaColonist_RRY>10</YautjaColonist_RRY>
-          <YautjaSlave_RRY>13</YautjaSlave_RRY>
+          <Colonist_RRY_Yautja>10</Colonist_RRY_Yautja>
+          <Slave_RRY_Yautja>13</Slave_RRY_Yautja>
           <YautjaAncient_RRY>1</YautjaAncient_RRY>
         </options>
       </li>
 	  <li>
       <kindDef>Trader</kindDef>
         <traders>
-          <YautjaTrader_RRY>1</YautjaTrader_RRY>
+          <Trader_RRY_Yautja>1</Trader_RRY_Yautja>
         </traders>
         <carriers>
           <Muffalo>2</Muffalo>
@@ -108,7 +108,7 @@
 	  <li>
         <kindDef>Settlement</kindDef>
         <options>
-          <YautjaColonist_RRY>5</YautjaColonist_RRY>
+          <Colonist_RRY_Yautja>5</Colonist_RRY_Yautja>
           <YautjaUnblooded_RRY>14</YautjaUnblooded_RRY>
           <YautjaYoungBlood_RRY>10</YautjaYoungBlood_RRY>
           <YautjaBlooded_RRY>8</YautjaBlooded_RRY>

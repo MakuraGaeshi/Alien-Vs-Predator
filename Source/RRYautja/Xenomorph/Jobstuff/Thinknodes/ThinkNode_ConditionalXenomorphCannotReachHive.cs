@@ -1,7 +1,5 @@
 ﻿using RRYautja;
 using RRYautja.ExtensionMethods;
-using System;
-using System.Linq;
 using Verse;
 using Verse.AI;
 
@@ -27,37 +25,43 @@ namespace RimWorld
             {
                 return false;
             }
-            Map map = pawn.Map;
-            IntVec3 c;
             if (!pawn.isXenomorph(out Comp_Xenomorph CompXeno))
             {
                 return false;
             }
-            c = pawn.mindState.duty.focus.Cell;
 
-            if (!CompXeno.HiveLoc.IsValid || CompXeno.HiveLoc == IntVec3.Zero)
+            Map map = pawn.Map;
+            IntVec3 c = IntVec3.Invalid;
+            HiveLike hive = null;
+            bool canReach = false;
+            bool Hive = false;
+            bool result = false;
+
+            if (CompXeno.HiveLoc.IsValid && CompXeno.HiveLoc != IntVec3.Zero && CompXeno.HiveLoc.InBounds(map))
             {
-                pawn.xenomorph().HiveLoc = c;
+                c = pawn.xenomorph().HiveLoc;
+                result = !pawn.CanReach(c, PathEndMode.OnCell, Danger.Deadly, false, TraverseMode.NoPassClosedDoors);
+                return result;
+            }
+            else
+            {
+                if (map.HiveGrid().Hivelist.NullOrEmpty())
+                {
+                    if (!map.HiveGrid().HiveLoclist.NullOrEmpty())
+                    {
+                        c = map.HiveGrid().HiveLoclist.RandomElement();
+                        result = !pawn.CanReach(c, PathEndMode.Touch, Danger.Deadly, true, TraverseMode.PassAllDestroyableThingsNotWater);
+                    }
+                    else
+                    {
+                        c = pawn.mindState.duty.focus.Cell;
+                        pawn.xenomorph().HiveLoc = c;
+                    }
+                }
             }
             if (!c.InBounds(map))
             {
                 return false;
-            }
-            HiveLike hive;
-            bool canReach;
-            bool Hive;
-            bool result;
-            if (map.HiveGrid().Hivelist.NullOrEmpty())
-            {
-                result = !pawn.CanReach(c, PathEndMode.Touch, Danger.Deadly, true, TraverseMode.PassAllDestroyableThingsNotWater);
-            }
-            else
-            {
-
-                hive = (HiveLike)GridsUtility.GetThingList(c, pawn.Map).First(x => x.def.defName.Contains("Xenomorph_Hive"));
-                canReach = pawn.CanReach(c, PathEndMode.Touch, Danger.Deadly, true, TraverseMode.PassAllDestroyableThingsNotWater);
-                Hive = hive != null;
-                result = !canReach && !Hive;
             }
 
             if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0}: {1} @: {2} cannot reach {3} Result: {4}", this, pawn.LabelShortCap, pawn.Position, c, result));

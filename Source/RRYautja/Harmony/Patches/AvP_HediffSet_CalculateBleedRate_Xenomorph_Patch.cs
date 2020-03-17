@@ -27,7 +27,7 @@ namespace RRYautja
             {
                 if (pawn.def.defName.Contains("Queen"))
                 {
-                    __result = __result * 0.5f;
+                    __result = __result * 0.25f;
                 }
                 else __result = __result*0.5f;
 

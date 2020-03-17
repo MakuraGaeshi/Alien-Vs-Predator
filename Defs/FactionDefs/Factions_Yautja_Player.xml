@@ -13,7 +13,7 @@
     <label>Yautja Colony</label>
     <description>Yautja Colony Start.</description>
     <isPlayer>true</isPlayer>
-    <basicMemberKind>Colonist_Yautja_RRY</basicMemberKind>
+    <basicMemberKind>Colonist_RRY_Yautja</basicMemberKind>
     <pawnsPlural>Yautja</pawnsPlural>
     <playerInitialSettlementNameMaker>NamerInitialSettlementColony</playerInitialSettlementNameMaker>
 		<factionNameMaker>NamerRRYautjaFaction</factionNameMaker>
@@ -62,7 +62,7 @@
         <kindDef>Peaceful</kindDef>
         <commonality>100</commonality>
         <options>
-          <Colonist_Yautja_RRY>100</Colonist_Yautja_RRY>
+          <Colonist_RRY_Yautja>100</Colonist_RRY_Yautja>
         </options>
       </li>
     </pawnGroupMakers>
@@ -79,7 +79,7 @@
     <settlementNameMaker>NamerRRYautjaBases</settlementNameMaker>
     <techLevel>Ultra</techLevel>
     <isPlayer>true</isPlayer>
-    <basicMemberKind>Colonist_YautjaUnblooded_RRY</basicMemberKind>
+    <basicMemberKind>Colonist_RRY_Yautja_Unblooded</basicMemberKind>
     <pawnsPlural>Yautja</pawnsPlural>
     <backstoryFilters>
       <li>
@@ -124,7 +124,7 @@
         <kindDef>Peaceful</kindDef>
         <commonality>100</commonality>
         <options>
-          <Colonist_YautjaUnblooded_RRY>100</Colonist_YautjaUnblooded_RRY>
+          <Colonist_RRY_Yautja_Unblooded>100</Colonist_RRY_Yautja_Unblooded>
         </options>
       </li>
     </pawnGroupMakers>
@@ -141,7 +141,7 @@
     <settlementNameMaker>NamerRRYautjaBases</settlementNameMaker>
     <techLevel>Ultra</techLevel>
     <isPlayer>true</isPlayer>
-    <basicMemberKind>Colonist_YautjaBlooded_RRY</basicMemberKind>
+    <basicMemberKind>Colonist_RRY_Yautja_Blooded</basicMemberKind>
     <pawnsPlural>Yautja</pawnsPlural>
     <backstoryFilters>
       <li>
@@ -189,7 +189,7 @@
         <kindDef>Peaceful</kindDef>
         <commonality>100</commonality>
         <options>
-          <Colonist_YautjaBlooded_RRY>100</Colonist_YautjaBlooded_RRY>
+          <Colonist_RRY_Yautja_Blooded>100</Colonist_RRY_Yautja_Blooded>
         </options>
       </li>
     </pawnGroupMakers>
@@ -206,7 +206,7 @@
     <settlementNameMaker>NamerRRYautjaBases</settlementNameMaker>
     <techLevel>Ultra</techLevel>
     <isPlayer>true</isPlayer>
-    <basicMemberKind>Colonist_Yautja_Blooding_RRY</basicMemberKind>
+    <basicMemberKind>Colonist_RRY_Yautja_Blooding</basicMemberKind>
     <pawnsPlural>Yautja</pawnsPlural>
     <backstoryFilters>
       <li>
@@ -250,7 +250,7 @@
         <kindDef>Peaceful</kindDef>
         <commonality>100</commonality>
         <options>
-          <Colonist_YautjaUnblooded_RRY>100</Colonist_YautjaUnblooded_RRY>
+          <Colonist_RRY_Yautja_Unblooded>100</Colonist_RRY_Yautja_Unblooded>
         </options>
       </li>
     </pawnGroupMakers>

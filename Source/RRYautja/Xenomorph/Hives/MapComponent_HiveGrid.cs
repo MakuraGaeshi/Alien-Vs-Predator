@@ -1,5 +1,6 @@
 ﻿using RimWorld;
 using RRYautja.ExtensionMethods;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
@@ -61,7 +62,25 @@ namespace RRYautja
             base.MapComponentUpdate();
             //    this.HiveGrid.Regenerate();
         }
-        
+
+
+        PawnKindDef RoyalKindDef = XenomorphDefOf.RRY_Xenomorph_RoyaleHugger;
+        public bool RoyalPresent
+        {
+            get
+            {
+                Predicate<Pawn> validator = delegate (Pawn t)
+                {
+                    bool RoyalHugger = t.kindDef == RoyalKindDef;
+                    bool RoyalHuggerInfection = (t.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_FaceHuggerInfection).TryGetComp<HediffComp_XenoFacehugger>().RoyaleHugger);
+                    bool RoyalImpregnation = (t.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_XenomorphImpregnation).TryGetComp<HediffComp_XenoSpawner>().RoyaleHugger);
+                    bool RoyalHiddenImpregnation = (t.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_HiddenXenomorphImpregnation).TryGetComp<HediffComp_XenoSpawner>().RoyaleHugger);
+                    return RoyalHugger || RoyalHuggerInfection || RoyalImpregnation || RoyalHiddenImpregnation;
+                };
+                return map.mapPawns.AllPawnsSpawned.Any(validator);
+            }
+        }
+
         public override void MapComponentTick()
         {
             base.MapComponentTick();

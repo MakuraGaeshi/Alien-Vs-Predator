@@ -150,6 +150,8 @@
     <Compile Include="Xenomorph\Hives\HiveStructure.cs" />
     <Compile Include="Xenomorph\Hives\IncidentWorker_Xenomorph_WorldHive.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_Xenomorph_Ingest.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_Xenomorph_ReachOutside.cs" />
+    <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_Xenomorph_ExitMap.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphGetFood.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_Neomorph_Flee.cs" />
     <Compile Include="Xenomorph\XenomorphExtensions.cs" />
@@ -163,7 +165,7 @@
     <Compile Include="Xenomorph\XenomorphBodypartUtility.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphForceGoToHive.cs" />
     <Compile Include="Xenomorph\Jobstuff\Thinknodes\ThinkNode_ConditionalXenomorphCannotReachHive.cs" />
-    <Compile Include="Xenomorph\XenomorphHiveCellFinder.cs" />
+    <None Include="Xenomorph\XenomorphHiveCellFinder.cs.bak" />
     <Compile Include="Xenomorph\RaidStrategyWorker_ImmediateAttackSmart_CutPower.cs" />
     <Compile Include="Xenomorph\Hives\CompHiveTunnel.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_EnterHiveTunnel.cs" />
