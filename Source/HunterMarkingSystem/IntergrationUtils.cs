@@ -8,15 +8,15 @@ namespace HunterMarkingSystem
     [StaticConstructorOnStartup]
     static class UtilCE
     {
-        private static bool logging = false;
-        private static bool initialized = false;
         public static bool CombatExtended = false;
+        public static ModContentPack modContent = null;
         static UtilCE()
         {
             foreach (ModContentPack p in LoadedModManager.RunningMods)
             {
-                if (p.PackageId == "1631756268")
+                if (p.PackageIdPlayerFacing.Contains("CETeam.CombatExtended"))
                 {
+                    modContent = p;
                     CombatExtended = true;
                 }
             }
@@ -62,51 +62,66 @@ namespace HunterMarkingSystem
 
     static class UtilChjAndroids
     {
-        private static bool logging = false;
-        private static bool initialized = false;
         public static bool ChjAndroid = false;
+        public static ModContentPack modContent = null;
         static UtilChjAndroids()
         {
             foreach (ModContentPack p in LoadedModManager.RunningMods)
             {
-                if (p.PackageId == "1541064015" || p.Name == "ChjAndroid")
+                if (p.PackageIdPlayerFacing.Contains("ChJees.Androids"))
                 {
+                    modContent = p;
+                    Log.Message(string.Format("{0}: PackageId: {1}, PackageIdPlayerFacing: {2}", p.Name, p.PackageId, p.PackageIdPlayerFacing));
                     ChjAndroid = true;
                 }
             }
+
         }
 
         public static bool isChjAndroid(PawnKindDef pawn)
         {
-            bool Result = pawn.race.comps.Any(x => x.compClass.Name.Contains("Androids.CompProperties_EnergyTracker"));
-
+            //    bool Result = pawn.race.comps.Any(x => x.compClass.Name.Contains("Androids.CompProperties_EnergyTracker"));
+            bool Result = false;
+            if (pawn.race.modContentPack == modContent)
+            {
+                Result = true;
+            }
             return Result;
         }
         public static bool isChjAndroid(Pawn pawn)
         {
-            bool Result = pawn.def.comps.Any(x => x.compClass.Name.Contains("Androids.CompProperties_EnergyTracker"));
-
+            //    bool Result = pawn.def.comps.Any(x => x.compClass.Name.Contains("Androids.CompProperties_EnergyTracker"));
+            bool Result = false;
+            if (pawn.def.modContentPack == modContent)
+            {
+                Result = true;
+            }
             return Result;
         }
         public static bool isChjAndroid(ThingDef td)
         {
-            bool Result = td.comps.Any(x => x.compClass.Name.Contains("Androids.CompProperties_EnergyTracker"));
-            
+            //    bool Result = td.comps.Any(x => x.compClass.Name.Contains("Androids.CompProperties_EnergyTracker"));
+            bool Result = false;
+            if (td.modContentPack == modContent)
+            {
+                Result = true;
+            }
             return Result;
         }
     }
 
     static class UtilTieredAndroids
     {
-        private static bool logging = false;
-        private static bool initialized = false;
         public static bool TieredAndroid = false;
+        public static ModContentPack modContent = null;
         static UtilTieredAndroids()
         {
             foreach (ModContentPack p in LoadedModManager.RunningMods)
             {
-                if (p.PackageId == "1386412863" || p.Name.Contains("Android tiers"))
+                if (p.PackageIdPlayerFacing.Contains("Atlas.AndroidTiers"))
                 {
+                    modContent = p;
+                    Log.Message(string.Format("{0}: PackageId: {1}, PackageIdPlayerFacing: {2}", p.Name, p.PackageId, p.PackageIdPlayerFacing));
                     TieredAndroid = true;
                 }
             }
@@ -116,27 +131,27 @@ namespace HunterMarkingSystem
         {
 
             bool Result = false;
-            if (pawn.race.modExtensions != null)
+            if (pawn.race.modContentPack == modContent)
             {
-                Result = pawn.race.modExtensions.Any(x => x.GetType().Name.Contains("MOARANDROIDS.AndroidTweaker"));
+                Result = true;
             }
             return Result;
         }
         public static bool isAtlasAndroid(Pawn pawn)
         {
             bool Result = false;
-            if (pawn.def.modExtensions != null)
+            if (pawn.def.modContentPack == modContent)
             {
-                Result = pawn.def.modExtensions.Any(x => x.GetType().Name.Contains("MOARANDROIDS.AndroidTweaker"));
+                Result = true;
             }
             return Result;
         }
         public static bool isAtlasAndroid(ThingDef td)
         {
             bool Result = false;
-            if (td.modExtensions != null)
+            if (td.modContentPack == modContent)
             {
-                Result = td.modExtensions.Any(x => x.GetType().Name.Contains("MOARANDROIDS.AndroidTweaker"));
+                Result = true;
             }
             return Result;
         }
@@ -144,15 +159,15 @@ namespace HunterMarkingSystem
 
     static class UtilDinosauria
     {
-        private static bool logging = false;
-        private static bool initialized = false;
         public static bool Dinosauria = false;
+        public static ModContentPack modContent = null;
         static UtilDinosauria()
         {
             foreach (ModContentPack p in LoadedModManager.RunningMods)
             {
-                if (p.PackageId == "1136958577" && p.Name.Contains("Dinosauria"))
+                if (p.Name.Contains("Dinosauria"))
                 {
+                    modContent = p;
                     Dinosauria = true;
                 }
             }
@@ -162,15 +177,15 @@ namespace HunterMarkingSystem
 
     static class UtilJurassicRimworld
     {
-        private static bool logging = false;
-        private static bool initialized = false;
         public static bool JurassicRimworld = false;
+        public static ModContentPack modContent = null;
         static UtilJurassicRimworld()
         {
             foreach (ModContentPack p in LoadedModManager.RunningMods)
             {
-                if (p.PackageId == "1419618659" && p.Name.Contains("Jurassic Rimworld"))
+                if (p.Name.Contains("Jurassic Rimworld"))
                 {
+                    modContent = p;
                     JurassicRimworld = true;
                 }
             }

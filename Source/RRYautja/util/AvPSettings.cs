@@ -23,6 +23,7 @@ namespace RRYautja.settings
         public bool AllowXenoCocoonMetamorph = true;
         public bool AllowXenoEggMetamorph = true;
         public bool AllowNonHumanlikeHosts = true;
+        public bool AllowThrumbomorphs = true;
         public bool AllowXenomorphFaction = true, AllowYautjaFaction = true, AllowHiddenInfections = true, AllowPredalienImpregnations = true;
         public float fachuggerRemovalFailureDeathChance = 0.35f, embryoRemovalFailureDeathChance = 0.35f;
 
@@ -36,6 +37,7 @@ namespace RRYautja.settings
             Scribe_Values.Look(ref this.AllowXenoCocoonMetamorph, "AllowXenoCocoonMetamorph", true);
             Scribe_Values.Look(ref this.AllowXenoEggMetamorph, "AllowXenoEggMetamorph", true);
             Scribe_Values.Look(ref this.AllowNonHumanlikeHosts, "AllowNonHumanlikeHosts", true);
+            Scribe_Values.Look(ref this.AllowThrumbomorphs, "AllowThrumbomorphs", true);
             Scribe_Values.Look<float>(ref this.fachuggerRemovalFailureDeathChance, "fachuggerRemovalFailureDeathChance", 0.35f);
             Scribe_Values.Look<float>(ref this.embryoRemovalFailureDeathChance, "embryoRemovalFailureDeathChance", 0.35f);
         }
