@@ -24,6 +24,7 @@ namespace RRYautja.settings
         public bool AllowXenoEggMetamorph = true;
         public bool AllowNonHumanlikeHosts = true;
         public bool AllowThrumbomorphs = true;
+        public bool AllowPredaliens = true;
         public bool AllowXenomorphFaction = true, AllowYautjaFaction = true, AllowHiddenInfections = true, AllowPredalienImpregnations = true;
         public float fachuggerRemovalFailureDeathChance = 0.35f, embryoRemovalFailureDeathChance = 0.35f;
 
@@ -38,6 +39,7 @@ namespace RRYautja.settings
             Scribe_Values.Look(ref this.AllowXenoEggMetamorph, "AllowXenoEggMetamorph", true);
             Scribe_Values.Look(ref this.AllowNonHumanlikeHosts, "AllowNonHumanlikeHosts", true);
             Scribe_Values.Look(ref this.AllowThrumbomorphs, "AllowThrumbomorphs", true);
+            Scribe_Values.Look(ref this.AllowPredaliens, "AllowPredaliens", true);
             Scribe_Values.Look<float>(ref this.fachuggerRemovalFailureDeathChance, "fachuggerRemovalFailureDeathChance", 0.35f);
             Scribe_Values.Look<float>(ref this.embryoRemovalFailureDeathChance, "embryoRemovalFailureDeathChance", 0.35f);
         }
@@ -114,17 +116,16 @@ namespace RRYautja.settings
                 num2 += 22f;
             }
             Widgets.EndScrollView();
-            /*
-            List<PawnKindDef> WorthyKillDefs = DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(xx => HMSUtility.WorthyKill(xx));
-            Widgets.Label(inRect.TopHalf().BottomHalf().BottomHalf().BottomHalf().RightHalf().ContractedBy(4), "RRY_WorthyKillKinds".Translate(WorthyKillDefs.Count));
-            Widgets.BeginScrollView(inRect.BottomHalf().RightHalf().ContractedBy(4), ref this.pos2, new Rect(inRect.x, inRect.y, num, WorthyKillDefs.Count * 22f), true);
-            foreach (PawnKindDef pkd in WorthyKillDefs.OrderBy(xz=> HMSUtility.GetMark(xz).stages[0].label))
-            {
-                Widgets.Label(new Rect(x, num3, num, 32f), HMSUtility.GetMark(pkd).stages[0].label + " : "+ pkd.LabelCap);
-                num3 += 22f;
-            }
+            
+            Widgets.Label(inRect.TopHalf().BottomHalf().BottomHalf().BottomHalf().RightHalf().ContractedBy(4), "RRY_XenomorphSpawningOptions".Translate());
+            Widgets.BeginScrollView(inRect.BottomHalf().RightHalf().ContractedBy(4), ref this.pos2, new Rect(inRect.x, inRect.y, num, 2 * 22f), true);
+
+            Widgets.CheckboxLabeled(new Rect(x, num3, num, 32f), "RRY_PredalienSpawning".Translate(), ref settings.AllowPredaliens);
+            num3 += 22f;
+            Widgets.CheckboxLabeled(new Rect(x, num3, num, 32f), "RRY_ThrumbomorphSpawning".Translate(), ref settings.AllowThrumbomorphs);
+            num3 += 22f;
             Widgets.EndScrollView();
-            */
+            
 
             /* 
         //    Widgets.CheckboxLabeled(inRect.TopHalf().TopHalf().BottomHalf().TopHalf().ContractedBy(4), "setting3: Desc", ref settings.setting3);
@@ -205,6 +206,10 @@ namespace RRYautja.settings
         public override void WriteSettings()
         {
             base.WriteSettings();
+            if (!settings.AllowThrumbomorphs)
+            {
+
+            }
         }
 
         private static readonly Color InactiveColor = new Color(0.37f, 0.37f, 0.37f, 0.8f);

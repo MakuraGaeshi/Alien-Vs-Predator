@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using RimWorld.Planet;
+using RRYautja.settings;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
@@ -206,7 +207,7 @@ namespace RimWorld
                 while (this.pointsLeft > 0f)
                 {
                     if (!(from def in DefDatabase<PawnKindDef>.AllDefs
-                          where ((def.defaultFactionType == faction.def && def.defaultFactionType != null) || (def.defaultFactionType == null && faction.def.pawnGroupMakers.Any(pgm => pgm.options.Any(opt => opt.kind == def) && pgm.kindDef != PawnGroupKindDefOf.Trader && pgm.kindDef != PawnGroupKindDefOf.Peaceful))) && def.isFighter && def.combatPower <= this.pointsLeft
+                          where ((def.defaultFactionType == faction.def && def.defaultFactionType != null) || (def.defaultFactionType == null && faction.def.pawnGroupMakers.Any(pgm => pgm.options.Any(opt => opt.kind == def) && pgm.kindDef != PawnGroupKindDefOf.Trader && pgm.kindDef != PawnGroupKindDefOf.Peaceful))) && def.isFighter && def.combatPower <= this.pointsLeft && (SettingsHelper.latest.AllowPredaliens || def != XenomorphDefOf.RRY_Xenomorph_Predalien) && def != XenomorphDefOf.RRY_Xenomorph_Thrumbomorph
                           //where ((def.defaultFactionType == faction.def && def.defaultFactionType != null) || (!faction.def.pawnGroupMakers.All(pgm => pgm.options.Any(opt => opt.kind == def)) && def.defaultFactionType == null)) && def.isFighter && def.combatPower <= this.pointsLeft
                           select def).TryRandomElement(out PawnKindDef kind))
                     {

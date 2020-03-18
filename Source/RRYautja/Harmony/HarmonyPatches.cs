@@ -590,6 +590,16 @@ namespace RRYautja
                 {
                     __result.gender = Gender.None;
                 }
+                if (request.KindDef == XenomorphDefOf.RRY_Xenomorph_Thrumbomorph && !SettingsHelper.latest.AllowThrumbomorphs)
+                {
+                    __result.kindDef = XenomorphDefOf.RRY_Xenomorph_Warrior;
+                    __result.def = XenomorphRacesDefOf.RRY_Xenomorph_Warrior;
+                }
+                if (request.KindDef == XenomorphDefOf.RRY_Xenomorph_Predalien && !SettingsHelper.latest.AllowPredaliens)
+                {
+                    __result.kindDef = XenomorphDefOf.RRY_Xenomorph_Warrior;
+                    __result.def = XenomorphRacesDefOf.RRY_Xenomorph_Warrior;
+                }
             }
             if (__result.kindDef.race != YautjaDefOf.RRY_Alien_Yautja && __result.RaceProps.Humanlike && (__result.story.hairDef == YautjaDefOf.RRY_Yaujta_Dreds || __result.story.hairDef == YautjaDefOf.RRY_Yaujta_Ponytail || __result.story.hairDef == YautjaDefOf.RRY_Yaujta_Bald))
             {

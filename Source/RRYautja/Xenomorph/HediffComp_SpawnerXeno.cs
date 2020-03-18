@@ -1,5 +1,6 @@
 ﻿using RimWorld;
 using RRYautja.ExtensionMethods;
+using RRYautja.settings;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -214,7 +215,7 @@ namespace RRYautja
             }
             else
             {
-                if (Pawn.kindDef.race == YautjaDefOf.RRY_Alien_Yautja)// && !predalienImpregnation)
+                if (Pawn.kindDef.race == YautjaDefOf.RRY_Alien_Yautja && SettingsHelper.latest.AllowPredaliens)// && !predalienImpregnation)
                 {
                     pawnKindDef = XenomorphDefOf.RRY_Xenomorph_Predalien;
                 }
@@ -222,7 +223,7 @@ namespace RRYautja
                 {
                     pawnKindDef = Rand.Chance(0.5f) ? XenomorphDefOf.RRY_Xenomorph_Drone : XenomorphDefOf.RRY_Xenomorph_Warrior;
                 }
-                else if (Pawn.kindDef.race == ThingDefOf.Thrumbo)
+                else if (Pawn.kindDef.race == ThingDefOf.Thrumbo && SettingsHelper.latest.AllowThrumbomorphs)
                 {
                     pawnKindDef = XenomorphDefOf.RRY_Xenomorph_Thrumbomorph;
                 }
