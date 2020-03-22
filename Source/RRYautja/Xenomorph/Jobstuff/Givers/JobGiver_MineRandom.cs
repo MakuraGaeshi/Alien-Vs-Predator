@@ -161,11 +161,13 @@ namespace RimWorld
         {
             if (pawn.Map==null)
             {
+                Log.Message("map == null");
                 return null;
             }
             Map map = pawn.Map;
             if (!pawn.isXenomorph(out Comp_Xenomorph _Xenomorph))
             {
+                Log.Message("not xenomorph");
                 return null;
             }
             IntVec3 HiveCenter = IntVec3.Invalid;
@@ -175,6 +177,7 @@ namespace RimWorld
             }
             else
             {
+                Log.Message("not _Xenomorph.HiveLoc");
                 return null;
             }
 

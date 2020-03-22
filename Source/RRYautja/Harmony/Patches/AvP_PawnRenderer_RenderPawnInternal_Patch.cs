@@ -28,7 +28,7 @@ namespace RRYautja
             //    bool selected = Find.Selector.SelectedObjects.Contains(pawn) && Prefs.DevMode;
             if (invisible)
             {
-                return;
+               return;
             }
             if (!portrait)
             {

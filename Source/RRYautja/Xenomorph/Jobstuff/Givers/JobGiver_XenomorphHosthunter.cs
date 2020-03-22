@@ -87,9 +87,21 @@ namespace RimWorld
             Pawn pawn2 = null;
             if (hive!=null)
             {
-                if (_Xenomorph != null && hive.hiveDormant)
+                if (_Xenomorph != null)
                 {
-                    pawn2 = _Xenomorph.BestPawnToHuntForPredator(pawn, false, true);
+                    if (!hive.hiveDormant)
+                    {
+                        pawn2 = _Xenomorph.BestPawnToHuntForPredator(pawn, false, true);
+                    }
+                    else
+                    {
+                        HuntingRange = 30;
+                        requireLOS = true;
+                    }
+                }
+                else
+                {
+
                 }
             }
             if (pawn2 == null)

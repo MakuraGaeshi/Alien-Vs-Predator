@@ -102,6 +102,7 @@ namespace RimWorld
                         {
                             targetA = t,
                             targetB = lc,
+                            targetC = lc.RandomAdjacentCell8Way(),
                             count = 1
                         };
                     }

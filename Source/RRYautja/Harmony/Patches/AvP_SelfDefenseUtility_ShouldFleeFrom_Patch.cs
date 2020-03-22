@@ -15,97 +15,104 @@ using RRYautja.ExtensionMethods;
 
 namespace RRYautja
 {
-    /*
+    
     [HarmonyPatch(typeof(SelfDefenseUtility), "ShouldFleeFrom")]
     public static class AvP_SelfDefenseUtility_ShouldFleeFrom_Patch
     {
         [HarmonyPostfix]
         public static void ShouldFleeFromPostfix(Thing t, Pawn pawn, bool checkDistance, bool checkLOS, ref bool __result)
         {
-            if (pawn!=null)
+            bool result = __result;
+            if (pawn!=null && t!=null)
             {
+                Pawn other = null;
+                bool XenoP = pawn.isXenomorph(out Comp_Xenomorph P_Xeno);
+                bool NeoP = pawn.isNeomorph();
                 if (t.GetType() == typeof(Pawn))
                 {
-                    Pawn other = (Pawn)t;
-                //    Log.Message(string.Format("{0} vs {1}", pawn.LabelShortCap, other.LabelShortCap));
+                    other = (Pawn)t;
+                if (Find.Selector.SelectedObjects.Contains(other)) Log.Message(string.Format("{0} vs {1}", pawn.LabelShortCap, other.LabelShortCap));
                 }
-                if (t.TryGetComp<Comp_Xenomorph>() is Comp_Xenomorph _Xeno && pawn.CanSee(t))
+                if (other == null)
                 {
-                //    Log.Message("t.TryGetComp<Comp_Xenomorph>() is Comp_Xenomorph _Xeno && pawn.CanSee(t)");
-                    if (pawn.isXenomorph())
+                    if (t.GetType() == typeof(Fire))
                     {
-                    //    Log.Message("pawn.isXenomorph() __result = false");
-                        __result = false;
-                        return;
-                    }
-                    if (pawn.isNeomorph() && pawn.ageTracker.CurLifeStage != XenomorphDefOf.RRY_NeomorphFullyFormed)
-                    {
-                    //    Log.Message("pawn.isNeomorph() && pawn.ageTracker.CurLifeStage != XenomorphDefOf.RRY_NeomorphFullyFormed __result = true");
-                        __result = true;
-                        return;
-                    }
-                    if (!pawn.isNeomorph() && !pawn.isXenomorph())
-                    {
-                    //    Log.Message("!pawn.isNeomorph() && !pawn.isXenomorph() __result = true");
-                        __result = true;
-                        return;
+                        result = XenoP || NeoP;
                     }
                 }
-                if (t.TryGetComp<Comp_Facehugger>() is Comp_Facehugger _Hugger)
+                else
                 {
-                //    Log.Message("t.TryGetComp<Comp_Facehugger>() is Comp_Facehugger _Hugger");
-                    if (pawn.isXenomorph())
+                    bool XenoOP = other.isXenomorph(out Comp_Xenomorph OP_Xeno);
+                    bool NeoOP = other.isNeomorph();
+                    if (!XenoP && !NeoP)
                     {
-                    //    Log.Message("pawn.isXenomorph() __result = false");
-                        __result = false;
-                        return;
-                    }
-                    if (pawn.isNeomorph())
-                    {
-                    //    Log.Message("pawn.isNeomorph() __result = false");
-                        __result = false;
-                        return;
-                    }
-                    if (pawn.isPotentialHost() && !pawn.isXenomorph())
-                    {
-                    //    Log.Message("pawn.isPotentialHost() && !pawn.isXenomorph() __result = true");
-                        __result = true;
-                        return;
-                    }
-                }
-                if (t.TryGetComp<Comp_Neomorph>() is Comp_Neomorph _Neo)
-                {
-                //    Log.Message("t.TryGetComp<Comp_Neomorph>() is Comp_Neomorph _Neo");
-                    if (pawn.isXenomorph() && pawn.ageTracker.CurLifeStage != XenomorphDefOf.RRY_NeomorphFullyFormed)
-                    {
-                    //    Log.Message("pawn.isXenomorph() && pawn.ageTracker.CurLifeStage != XenomorphDefOf.RRY_NeomorphFullyFormed __result = true");
-                        __result = true;
-                        return;
-                    }
-                    if (!pawn.isNeomorph() && !pawn.isXenomorph())
-                    {
-                    //    Log.Message("!pawn.isNeomorph() && !pawn.isXenomorph() __result = true");
-                        __result = true;
-                        return;
-                    }
-                }
-                if (t.GetType() == typeof(Pawn))
-                {
-                    Pawn other = (Pawn)t;
-                //    Log.Message(string.Format("{1}.GetType() == typeof(Pawn) vs {0}", pawn.LabelShortCap, other.LabelShortCap));
-                    if (other != null && pawn.CanSee(other))
-                    {
-                    //    Log.Message("other != null && pawn.CanSee(other)");
-                        if (pawn.Position.DistanceTo(other.Position) < 20 && (!other.isXenomorph() && pawn.isXenomorph(out Comp_Xenomorph comp) && comp.hidden) || (other.isNeomorph() && !pawn.isNeomorph()))
+                        if (XenoOP)
                         {
-                        //    Log.Message("pawn.Position.DistanceTo(other.Position) < 20 && (!other.isXenomorph() && pawn.isXenomorph(out Comp_Xenomorph comp) && comp.hidden) || (other.isNeomorph() && !pawn.isNeomorph()) __result = true");
-                            __result = true;
-                            return;
+                            if (pawn.RaceProps.Animal)
+                            {
+                                if (pawn.playerSettings != null)
+                                {
+                                    if (!pawn.playerSettings.animalsReleased && !pawn.playerSettings.followDrafted)
+                                    {
+                                        result = true;
+                                    }
+                                }
+                                else
+                                {
+                                    result = true;
+                                }
+                            }
+                            if (pawn.Faction == null)
+                            {
+                                result = true;
+                            }
+                        }
+                        if (NeoOP)
+                        {
+                            if (pawn.RaceProps.Animal)
+                            {
+                                if (pawn.playerSettings != null)
+                                {
+                                    if (!pawn.playerSettings.animalsReleased && !pawn.playerSettings.followDrafted)
+                                    {
+                                        result = true;
+                                    }
+                                }
+                                else
+                                {
+                                    result = true;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (NeoP && XenoOP)
+                        {
+                            if (pawn.ageTracker.CurLifeStage != XenomorphDefOf.RRY_NeomorphFullyFormed)
+                            {
+                                result = true;
+                            }
+                        }
+                        if (XenoP && NeoOP)
+                        {
+                            if (pawn.ageTracker.CurLifeStage != XenomorphDefOf.RRY_XenomorphFullyFormed || pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_FaceHugger)
+                            {
+                                result = true;
+                            }
                         }
                     }
                 }
+
             }
+            else
+            {
+                return;
+            }
+            IAttackTarget attackTarget = t as IAttackTarget;
+            bool r = attackTarget != null && !attackTarget.ThreatDisabled(pawn) && t is IAttackTargetSearcher && (!checkLOS || GenSight.LineOfSight(pawn.Position, t.Position, pawn.Map, false, null, 0, 0));
+            __result = (result && r);
         }
     }
-    */
+    
 }

@@ -39,6 +39,14 @@
   <UseHealthShardDesc>Use a Health Shard to quickly return to the hunt</UseHealthShardDesc>
   <MedicompTendSelf>Tend Self</MedicompTendSelf>
   <MedicompTendSelfDesc>Tend thier own wounds on the spot</MedicompTendSelfDesc>
+   <!-- Yautja -->
+  <RRY_Remove_Gauntlet>Surgically Remove Gauntlet</RRY_Remove_Gauntlet>
+  <!-- USCM -->
+  <USCM_Dropship_MessageArrived>Dropship has arrive on station</USCM_Dropship_MessageArrived>
+  <USCM_Dropship_CommandAddFuel>Add Fuel</USCM_Dropship_CommandAddFuel>
+  <USCM_Dropship_CommandAddFuelDesc>Add fuel to Cargo Pod Transport</USCM_Dropship_CommandAddFuelDesc>
+  <USCM_Dropship_NoFuelMsg>There is no available chemfuel.</USCM_Dropship_NoFuelMsg>
+  <USCM_Dropship_AddFuelDoneMsg>Add {0} fuel,now fuel:{1}</USCM_Dropship_AddFuelDoneMsg>
    <!-- Xenomorph -->
   <RoyalProgress>Royal hugger</RoyalProgress>
   <ColonistNeedsRescueFromCocoon>Colonist cocooned!</ColonistNeedsRescueFromCocoon>
@@ -62,14 +70,6 @@
   <Xeno_Egg_Royal>Royal</Xeno_Egg_Royal>
   <Xeno_Egg_Gestation_Progress>Facehugger Gestation</Xeno_Egg_Gestation_Progress>
   <Xeno_Egg_Mutation_Progress>Mutation</Xeno_Egg_Mutation_Progress>
-   <!-- Yautja -->
-  <RRY_Remove_Gauntlet>Surgically Remove Gauntlet</RRY_Remove_Gauntlet>
-  <!--
-  <BloodStatus_Unblooded>{0}</BloodStatus_Unblooded>
-  <BloodStatus_Unmarked>{0}</BloodStatus_Unmarked>
-  <RRY_CanMarkSelf>New Worthy Kills</RRY_CanMarkSelf>
-  <RRY_CanMarkSelfDesc>Yautja with new Worthy Kills:\n\n{0}\nMake sure that they mark themselves if desired.</RRY_CanMarkSelfDesc>
-  -->
   <!-- Hives -->
   <RRY_MessageHiveReproduced>Xenomorph tunnel network expands.</RRY_MessageHiveReproduced>
   <RRY_HiveReproducesIn>Tunnel network expands in</RRY_HiveReproducesIn>

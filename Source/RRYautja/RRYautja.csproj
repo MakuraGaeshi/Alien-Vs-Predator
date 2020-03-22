@@ -34,10 +34,14 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Abilities\ProjectileDefExtension.cs" />
+    <Compile Include="Harmony\Patches\AvP_Pawn_HealthTracker_CheckForStateChange_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_HediffSet_CalculateBleedRate_Xenomorph_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_PawnUtility_IsInvisible_Patch.cs" />
-    <Compile Include="Harmony\Patches\AvP_Pawn_AgeTracker_RecalculateLifeStageIndex_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_Pawn_HealthTracker_MakeUndowned_Xenomorph_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_Pawn_AgeTracker_RecalculateLifeStageIndex_Xenomorph_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Corpse_TickRare_Gestation_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_RaceProperties_isFlesh_Synth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_RaidStrategyWorker_CanUsePawn_Xeno_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_SickPawnVisitUtility_CanVisit_Synth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_RecordWorker_TimeInBedForMedicalReasons_ShouldMeasureTimeNow_Synth_Patch.cs" />
@@ -85,7 +89,7 @@
     <Compile Include="Harmony\Patches\AvP_Pawn_RelationsTracker_SecondaryRomanceChanceFactor_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Pawn_Strip_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Pawn_ThreatDisabled_Patch.cs" />
-    <Compile Include="Harmony\Patches\AvP_Pawn_Tick_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_PawnRenderer_OverrideMaterialIfNeeded_Xenomorph_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_PowerNet_PowerNetTick_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_RestUtility_Bed_IsValidBedFor_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_RimWorld_Apparel_GetWornGizmos_Patch.cs" />
@@ -99,9 +103,16 @@
     <Compile Include="Harmony\Patches\AvP_VerbUtility_HarmsHealth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_WorkGiver_Tend_GoodLayingStatusForTend_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_GatheringsUtility_ShouldGuestKeepAttendingGathering_Synth_Patch.cs" />
-    <None Include="Harmony\Patches\Class1.cs.bak" />
-    <Compile Include="USCM\CompUSCMDropship.cs" />
-    <Compile Include="USCM\ScenPart_PlayerPawnsArriveMethod.cs" />
+    <Compile Include="Harmony\Patches\AvP_NeurotrainerDefGenerator_ImpliedThingDefs_Filter_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_Verb_Shoot_TryCastShot_Scattershot_Patch.cs" />
+    <Compile Include="Harmony\Patches\Class1.cs" />
+    <Compile Include="USCM\DropShip\ActiveDropShip.cs" />
+    <Compile Include="USCM\DropShip\DropShipIncoming.cs" />
+    <Compile Include="USCM\DropShip\Gizmo_MapRefuelableFuelStatus.cs" />
+    <Compile Include="USCM\DropShip\DropShipLeaving.cs" />
+    <Compile Include="USCM\DropShip\DropshipArrivalActionUtility.cs" />
+    <Compile Include="USCM\DropShip\CompUSCMDropship.cs" />
+    <Compile Include="USCM\DropShip\ScenPart_PlayerPawnsArriveMethod.cs" />
     <Compile Include="USCM\Comp_Stealth.cs" />
     <Compile Include="USCM\CompSynth.cs" />
     <Compile Include="USCM\CompTargeterSystem.cs" />
@@ -114,13 +125,13 @@
     <Compile Include="USCM\DamageWorker_FlameNoCamShake.cs" />
     <Compile Include="USCM\HediffComp_DefectiveInhibitor.cs" />
     <Compile Include="USCM\USCMDefOf.cs" />
-    <Compile Include="util\Abilities\Verb_LaunchProjectileEquipment.cs" />
-    <Compile Include="util\Abilities\Verb_UseEquipment.cs" />
-    <Compile Include="util\Abilities\Verb_ShootEquipment.cs" />
-    <Compile Include="util\Abilities\EquipmentAbility.cs" />
-    <Compile Include="util\Abilities\EquipmentAbilityDef.cs" />
-    <Compile Include="util\Abilities\Command_EquipmentAbility.cs" />
-    <Compile Include="util\Abilities\CompAbilityEffect_Shoot.cs" />
+    <Compile Include="Abilities\Verb_LaunchProjectileEquipment.cs" />
+    <Compile Include="Abilities\Verb_UseEquipment.cs" />
+    <Compile Include="Abilities\Verb_ShootEquipment.cs" />
+    <Compile Include="Abilities\EquipmentAbility.cs" />
+    <Compile Include="Abilities\EquipmentAbilityDef.cs" />
+    <Compile Include="Abilities\Command_EquipmentAbility.cs" />
+    <Compile Include="Abilities\CompAbilityEffect_Shoot.cs" />
     <Compile Include="util\AvPSettings.cs" />
     <Compile Include="Harmony\ExtraButcheringProducts.cs" />
     <Compile Include="util\Building_XenomorphCryptosleepCasket.cs" />
@@ -224,7 +235,7 @@
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_MaintainLike.cs" />
     <Compile Include="Xenomorph\Hives\CompMaintainableLike.cs" />
     <Compile Include="util\Building_Turret_Shoulder.cs" />
-    <Compile Include="util\Abilities\Verb_UseEquipment_Thrown.cs" />
+    <Compile Include="Abilities\Verb_UseEquipment_Thrown.cs" />
     <Compile Include="Xenomorph\Hediff_Hidden_Xeno.cs" />
     <Compile Include="util\Returning_Projectile.cs" />
     <Compile Include="util\Projectile_AbilityRRY_ThrownReturning.cs" />
@@ -271,7 +282,7 @@
     <Compile Include="Xenomorph\HediffComp_SpawnerXeno.cs" />
     <Compile Include="util\Recipe_RemoveFacehugger.cs" />
     <Compile Include="util\Recipe_Surgery_RRY.cs" />
-    <Compile Include="util\Abilities\CompAbilityItem.cs" />
+    <Compile Include="Abilities\CompAbilityItem.cs" />
     <Compile Include="Yautja\HealthShard\JobGiver_PatientGoToBedTendSelf.cs" />
     <Compile Include="Yautja\HealthShard\JobDriver_HealthShard.cs" />
     <Compile Include="Yautja\HealthShard\CompHealthShard.cs" />

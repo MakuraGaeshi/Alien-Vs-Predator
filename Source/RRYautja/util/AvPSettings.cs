@@ -52,6 +52,8 @@ namespace RRYautja.settings
         {
             this.settings = GetSettings<AvPSettings>();
             SettingsHelper.latest = this.settings;
+            var harmony = new Harmony("com.ogliss.rimworld.mod.rryatuja");
+            harmony.PatchAll(Assembly.GetExecutingAssembly());
         }
 
         public override string SettingsCategory() => "Aliens Vs Predator";

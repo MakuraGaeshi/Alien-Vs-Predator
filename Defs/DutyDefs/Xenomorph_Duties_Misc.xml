@@ -418,10 +418,15 @@
 			<li Class="ThinkNode_ConditionalPawnKind">
 			  <pawnKind>RRY_Xenomorph_Runner</pawnKind>
 			  <subNodes>
-				<li Class="RRYautja.JobGiver_WanderCloserToHosts">
-				  <maxDanger>Deadly</maxDanger>
-				  <wanderRadius>12</wanderRadius>
-				  <locomotionUrgency>Jog</locomotionUrgency>
+				<li Class="ThinkNode_Conditional_OverHealth">
+				  <pawnHealth>0.75</pawnHealth>
+				  <subNodes>
+					<li Class="RRYautja.JobGiver_WanderCloserToHosts">
+					  <maxDanger>Deadly</maxDanger>
+					  <wanderRadius>12</wanderRadius>
+					  <locomotionUrgency>Jog</locomotionUrgency>
+					</li>
+				  </subNodes>
 				</li>
 			  </subNodes>
 			</li>

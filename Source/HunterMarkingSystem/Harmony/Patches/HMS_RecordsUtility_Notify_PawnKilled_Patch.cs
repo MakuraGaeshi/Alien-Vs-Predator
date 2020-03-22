@@ -22,25 +22,25 @@ namespace HunterMarkingSystem
         [HarmonyPostfix]
         public static void IncrementPostfix(Pawn killed, Pawn killer)
         {
-            Log.Message(string.Format("{0} killed {1}", killer.LabelShortCap, killed.LabelShortCap));
             if (killer != null && killer.IsColonist && killer.isBloodable() && killer.Markable(out Comp_Markable Markable))
             {
+                // if (Prefs.DevMode) Log.Message(string.Format("{0} killed {1}", killer.LabelShortCap, killed.LabelShortCap));
                 if (!Markable.MarkerRace)
                 {
-                    Log.Message("not a race that can mark themself");
+                    // if (Prefs.DevMode) Log.Message("not a race that can mark themself");
                     if (!killer.Map.mapPawns.FreeColonists.Any(x=> Markable.markerRaces.Contains(x.def)))
                     {
-                        Log.Message("No race that can mark in colony");
+                        // if (Prefs.DevMode) Log.Message("No race that can mark in colony");
                         return;
                     }
                     else
                     {
-                        Log.Message("Race that can mark in colony");
+                        // if (Prefs.DevMode) Log.Message("Race that can mark in colony");
                     }
                 }
                 else
                 {
-                    Log.Message("Race that can mark themself");
+                    // if (Prefs.DevMode) Log.Message("Race that can mark themself");
                 }
                 if (Markable.BloodStatus == BloodStatusMode.None )
                 {
@@ -56,7 +56,7 @@ namespace HunterMarkingSystem
                     }
                     if (use && (Markable.inductable || Markable.Inducted))
                     {
-                        Log.Message(string.Format("use: {0}, inductable || Inducted: {1}", use, Markable.inductable || Markable.Inducted));
+                        // if (Prefs.DevMode) Log.Message(string.Format("use: {0}, inductable || Inducted: {1}", use, Markable.inductable || Markable.Inducted));
                         if (killer.health.hediffSet.hediffs.Any(x => HunterMarkingSystem.UnbloodedHediffList.Contains(x.def)))
                         {
                             killer.health.RemoveHediff(killer.health.hediffSet.hediffs.First(x=> HunterMarkingSystem.UnbloodedHediffList.Contains(x.def)));
@@ -70,23 +70,23 @@ namespace HunterMarkingSystem
                         Markable.Mark = killed;
                         if (Markable.Markcorpse != null)
                         {
-                            Log.Message(string.Format("Markable.Markcorpse = {0}", Markable.Markcorpse.LabelShortCap));
+                            // if (Prefs.DevMode) Log.Message(string.Format("Markable.Markcorpse = {0}", Markable.Markcorpse.LabelShortCap));
                         }
                         Markable.markDataKillNew = markData;
                     }
                     else
                     {
-                        Log.Warning(string.Format("Failed!!! use: {0}, inductable: {1}", use, Markable.inductable));
+                        // if (Prefs.DevMode) Log.Warning(string.Format("Failed!!! use: {0}, inductable: {1}", use, Markable.inductable));
                     }
                 }
                 else
                 {
-                    Log.Warning(string.Format("Unworthy Kill: {0}",killed.LabelShortCap));
+                    // if (Prefs.DevMode) Log.Warning(string.Format("Unworthy Kill: {0}",killed.LabelShortCap));
                 }
             }
             else
             {
-                Log.Warning(string.Format("Killer: {0}, IsColonist: {1}, isBloodable: {2}", killer != null, killer.IsColonist, killer.isBloodable()));
+                // if (Prefs.DevMode) Log.Warning(string.Format("Killer: {0}, IsColonist: {1}, isBloodable: {2}", killer != null, killer.IsColonist, killer.isBloodable()));
             }
             /*
             if (killer.isYautja())

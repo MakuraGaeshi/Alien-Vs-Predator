@@ -88,6 +88,7 @@ namespace RimWorld
         {
             get
             {
+                bool hasqueen = false;
                 if (!this.innerContainer.NullOrEmpty())
                 {
                     if (this.innerContainer.Any(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen))
@@ -98,18 +99,20 @@ namespace RimWorld
                         }
                     }
                 }
+                else
                 if (!this.queenContainer.NullOrEmpty())
                 {
                     if (this.queenContainer.Any(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen))
                     {
-                        return true;
+                        hasqueen = true;
                     }
                 }
-                return false;
-            }
-            set
-            {
-                return;
+                else
+                if (!Map.HiveGrid().Queenlist.NullOrEmpty())
+                {
+                    hasqueen = Map.HiveGrid().Queenlist.Any(x=> x.xenomorph().HiveLoc == this.Position);
+                }
+                return hasqueen;
             }
         }
 
@@ -639,6 +642,21 @@ namespace RimWorld
                             }
                         };
                     }
+                }
+
+                if (!hasQueen && this.parentHiveLike == null)
+                {
+                    yield return new Command_Action
+                    {
+                        defaultLabel = "DEBUG: Spawn Queen",
+                        icon = TexCommand.Install,
+                        defaultDesc = "Adds a Queen to this hive",
+                        action = delegate ()
+                        {
+                            Pawn newQueen = PawnGenerator.GeneratePawn(new PawnGenerationRequest(XenomorphDefOf.RRY_Xenomorph_Queen, factionInt));
+                            this.queenContainer.TryAdd(newQueen);
+                        }
+                    };
                 }
 
             }

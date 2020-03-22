@@ -30,8 +30,10 @@ namespace RimWorld
         // USCM ThingDefs  Projectiles
         //    public static ThingDef RRY_SmartDisk_Thrown;
 
-        // USCM ThingDefs  Equipment
+        // USCM ThingDefs  Equipment RRY_USCM_ActiveDropshipUD4L
         public static ThingDef RRY_USCM_DropshipUD4L;
+        public static ThingDef RRY_USCM_ActiveDropshipUD4L;
+    //    public static ThingDef RRY_USCM_TravelingDropshipUD4L;
         public static ThingDef RRY_USCM_DropshipUD4LIncoming;
         public static ThingDef RRY_USCM_DropshipUD4LLeaving;
 

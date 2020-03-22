@@ -271,6 +271,11 @@
       </li>
     </modExtensions>
 	-->
+	<modExtensions>
+	  <li Class="RRYautja.ProjectileDefExtension">
+		<ExtraShots>2</ExtraShots>
+	  </li>
+	</modExtensions>
     <projectile>
 		<flyOverhead>false</flyOverhead>
 		<damageDef>RRY_Flamer</damageDef>
@@ -384,6 +389,11 @@
       </li>
     </modExtensions>
 	-->
+	<modExtensions>
+	  <li Class="RRYautja.ProjectileDefExtension">
+		<ExtraShots>4</ExtraShots>
+	  </li>
+	</modExtensions>
     <projectile>
 		<flyOverhead>false</flyOverhead>
 		<damageDef>RRY_Flamer</damageDef>
@@ -568,6 +578,11 @@
 			<damageAmountBase>6</damageAmountBase>
 			<speed>120</speed>
 		</projectile>
+	<modExtensions>
+	  <li Class="RRYautja.ProjectileDefExtension">
+		<ExtraShots>7</ExtraShots>
+	  </li>
+	</modExtensions>
 	</ThingDef>
 
 	<ThingDef ParentName="RRY_USCM_BaseMakeableGun">
@@ -610,9 +625,8 @@
 			<WorkSpeedGlobal>-0.1</WorkSpeedGlobal>
 		</equippedStatOffsets>
 		<verbs>
-			<li Class="RRyautja.VerbPropertiesOGSG">
-				<verbClass>RRYautja.Verb_ShootShotgun</verbClass>
-				<pelletCount>7</pelletCount>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>RRY_USCM_Bullet_M37A2S</defaultProjectile>
 				<warmupTime>0.45</warmupTime>

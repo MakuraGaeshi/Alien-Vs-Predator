@@ -8,16 +8,6 @@ namespace RimWorld
     // Token: 0x02000072 RID: 114
     public class JobDriver_XenosKidnap : JobDriver_XenoTakeAndCocoon
     {
-        // Token: 0x170000A4 RID: 164
-        // (get) Token: 0x06000324 RID: 804 RVA: 0x0001F257 File Offset: 0x0001D657
-        protected Pawn Takee
-        {
-            get
-            {
-                return (Pawn)this.job.GetTarget(TargetIndex.A).Thing;
-            }
-        }
-
         // Token: 0x06000325 RID: 805 RVA: 0x0001F264 File Offset: 0x0001D664
         public override string GetReport()
         {
@@ -31,7 +21,7 @@ namespace RimWorld
         // Token: 0x06000326 RID: 806 RVA: 0x0001F2B8 File Offset: 0x0001D6B8
         protected override IEnumerable<Toil> MakeNewToils()
         {
-            this.FailOn(() => this.Takee == null || (!this.Takee.Downed && this.Takee.Awake()));
+            this.FailOn(() => this.Takee == null || this.Takee.Dead || (!this.Takee.Downed && this.Takee.Awake()));
             foreach (Toil t in base.MakeNewToils())
             {
                 yield return t;

@@ -527,7 +527,6 @@ namespace RimWorld
                 Pawn actor = use.actor;
                 Thing thing = ThingMaker.MakeThing(MyDef);
                 HiveLike hive = (HiveLike)thing;
-                hive.hasQueen = false;
                 GenSpawn.Spawn(thing, TargetA.Cell, actor.Map, Rot4.South, WipeMode.FullRefund, false);
             };
             use.defaultCompleteMode = ToilCompleteMode.Instant;
@@ -640,7 +639,6 @@ namespace RimWorld
                 MyDef = XenomorphDefOf.RRY_Xenomorph_Hive;
                 Thing thing = ThingMaker.MakeThing(MyDef);
                 HiveLike hive = (HiveLike)thing;
-                hive.hasQueen = false;
                 GenSpawn.Spawn(thing, TargetA.Cell, actor.Map, Rot4.South, WipeMode.FullRefund, false);
             };
             use.defaultCompleteMode = ToilCompleteMode.Instant;

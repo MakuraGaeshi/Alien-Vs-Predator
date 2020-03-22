@@ -25,7 +25,7 @@ namespace RRYautja
                                 Ability ability = __instance.pawn.abilities.abilities.Find(x => x.def == abilityDef);
                                 __instance.pawn.abilities.abilities.Remove(ability);
                             }
-                        }
+                        } 
                     }
                 }
             }

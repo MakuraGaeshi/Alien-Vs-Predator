@@ -504,7 +504,7 @@ namespace RRYautja
                 Vector3 s = new Vector3(num, 1f, num);
                 Matrix4x4 matrix = default(Matrix4x4);
                 matrix.SetTRS(vector, Quaternion.AngleAxis(angle, Vector3.up), s);
-                Graphics.DrawMesh(MeshPool.plane10, matrix, Cloakgen.BubbleMat, 0);
+            //    Graphics.DrawMesh(MeshPool.plane10, matrix, Cloakgen.BubbleMat, 0);
             }
 
         }
@@ -581,6 +581,6 @@ namespace RRYautja
         // Things/Gas/Puff
         // Other/CloakActive
 
-        private static readonly Material BubbleMat = MaterialPool.MatFrom("Other/smokething_lightV", ShaderDatabase.Transparent);
+       
     }
 }

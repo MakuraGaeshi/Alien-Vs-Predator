@@ -22,8 +22,6 @@ namespace RRYautja
         static Main()
         {
             //    HarmonyInstance.DEBUG = true;
-            var harmony = new Harmony("com.ogliss.rimworld.mod.rryatuja");
-            harmony.PatchAll(Assembly.GetExecutingAssembly());
             foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs.Where(x=> x.apparel!=null))
             {
                 if (def.apparel.wornGraphicPath.NullOrEmpty())

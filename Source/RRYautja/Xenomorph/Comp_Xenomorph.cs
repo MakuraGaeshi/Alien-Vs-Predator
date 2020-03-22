@@ -57,8 +57,8 @@ namespace RRYautja
             Scribe_Values.Look(ref lastSpottedTick, "lastSpottedtick", -9999);
             Scribe_References.Look(ref lastCarried, "lastCarried");
             Scribe_Values.Look<int>(ref this.ticksSinceHeal, "ticksSinceHeal");
-            Scribe_Values.Look<int>(ref this.HiveX, "HiveX");
-            Scribe_Values.Look<int>(ref this.HiveZ, "HiveZ");
+            Scribe_Values.Look<int>(ref this.HiveX, "HiveX", -1);
+            Scribe_Values.Look<int>(ref this.HiveZ, "HiveZ", -1);
             Scribe_Defs.Look<PawnKindDef>(ref this.host, "hostRef");
             Scribe_Values.Look<bool>(ref this.hidden, "hidden");
             Scribe_Values.Look<bool>(ref this.Hidden, "Hidden");
@@ -68,6 +68,24 @@ namespace RRYautja
         {
             get
             {
+                if (HiveX == -1 || HiveZ == -1)
+                {
+                    if (map!=null)
+                    {
+                        if (!map.HiveGrid().Hivelist.NullOrEmpty())
+                        {
+                            HiveLike hive = (HiveLike)map.HiveGrid().Hivelist.RandomElement();
+                            HiveX = hive.Position.x;
+                            HiveZ = hive.Position.z;
+                        }
+                        else if (!map.HiveGrid().HiveLoclist.NullOrEmpty())
+                        {
+                            IntVec3 hive = map.HiveGrid().HiveLoclist.RandomElement();
+                            HiveX = hive.x;
+                            HiveZ = hive.z;
+                        }
+                    }
+                }
                 return new IntVec3(HiveX, 0, HiveZ);
             }
             set

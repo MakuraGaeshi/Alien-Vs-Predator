@@ -37,6 +37,10 @@ namespace RRYautja
                             {
                                 parasite.Tick();
                             }
+                            if (parasite.Severity>=1f)
+                            {
+                                parasite.TryGetComp<HediffComp_XenoSpawner>().Notify_PawnDied();
+                            }
                         }
                     }
                 }

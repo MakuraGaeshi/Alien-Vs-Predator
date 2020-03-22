@@ -17,24 +17,24 @@ using AlienRace;
 namespace RRYautja
 {
     
-    [HarmonyPatch(typeof(Pawn_AgeTracker), "RecalculateLifeStageIndex")]
-    public static class AvP_Pawn_AgeTracker_RecalculateLifeStageIndex_Patch
+    [HarmonyPatch(typeof(Pawn_HealthTracker), "MakeUndowned")]
+    public static class AvP_Pawn_HealthTracker_MakeUndowned_Xenomorph_Patch
     {
-        public static FieldInfo pawn = typeof(Pawn_AgeTracker).GetField("pawn", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.GetField);
+        public static FieldInfo pawn = typeof(Pawn_HealthTracker).GetField("pawn", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.GetField);
         [HarmonyPostfix]
-        public static void Post_RecalculateLifeStageIndex(Pawn_AgeTracker __instance)
+        public static void Post_MakeUndowned(Pawn_HealthTracker __instance)
         {
             if (__instance!=null)
             {
                 Traverse traverse = Traverse.Create(__instance);
-                Pawn pawn = (Pawn)AvP_Pawn_AgeTracker_RecalculateLifeStageIndex_Patch.pawn.GetValue(__instance);
-                if (pawn!=null && !pawn.Dead)
+                Pawn pawn = (Pawn)AvP_Pawn_HealthTracker_MakeUndowned_Xenomorph_Patch.pawn.GetValue(__instance);
+                if (pawn!=null && !pawn.Dead && pawn.Map!=null)
                 {
                     if (pawn.isXenomorph(out Comp_Xenomorph xenomorph))
                     {
-                        if (__instance.CurLifeStage == XenomorphDefOf.RRY_XenomorphFullyFormed)
+                        if (pawn.ageTracker.CurLifeStage == XenomorphDefOf.RRY_XenomorphFullyFormed)
                         {
-                            if (pawn.GetLord()==null)
+                            if (pawn.GetLord() == null)
                             {
                                 xenomorph.delay = 30;
                             }

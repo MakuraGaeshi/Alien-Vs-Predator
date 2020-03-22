@@ -21,8 +21,9 @@
   <ThingDef ParentName="RRY_USCM_ShuttleSkyfallerBase">
     <defName>RRY_USCM_DropshipUD4LIncoming</defName>
     <label>UD4L (incoming)</label>
+    <!--<thingClass>RRYautja.DropshipIncoming</thingClass>-->
     <skyfaller>
-      <anticipationSound>Shuttle_Landing</anticipationSound>
+      <anticipationSound>RRY_USCM_DropshipUD4L_Landing</anticipationSound>
       <anticipationSoundTicks>250</anticipationSoundTicks>
       <ticksToImpactRange>200~250</ticksToImpactRange>
       <angleCurve>
@@ -57,9 +58,10 @@
   <ThingDef ParentName="RRY_USCM_ShuttleSkyfallerBase">
     <defName>RRY_USCM_DropshipUD4LLeaving</defName>
     <label>UD4L (leaving)</label>
+    <thingClass>RRYautja.DropshipLeaving</thingClass>
     <skyfaller>
       <reversed>true</reversed>
-      <anticipationSound>Shuttle_Leaving</anticipationSound>
+      <anticipationSound>RRY_USCM_DropshipUD4L_Leaving</anticipationSound>
       <anticipationSoundTicks>-10</anticipationSoundTicks>
       <ticksToImpactRange>-40~-15</ticksToImpactRange>
       <moteSpawnTime>0.05</moteSpawnTime>

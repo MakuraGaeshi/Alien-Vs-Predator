@@ -1,13 +1,15 @@
-﻿using RimWorld.Planet;
+﻿using RimWorld;
+using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using UnityEngine;
 using Verse;
 using Verse.AI;
 
-namespace RimWorld
+namespace RRYautja
 {
     // Token: 0x02000861 RID: 2145
     public class CompProperties_USCMDropship : CompProperties
@@ -17,6 +19,8 @@ namespace RimWorld
         {
             this.compClass = typeof(CompUSCMDropship);
         }
+        public float fuelConsumptionPerHour = 10f;
+        public float tilesPerHour = 2f;
     }
     // Token: 0x02000CFD RID: 3325
     [StaticConstructorOnStartup]
@@ -24,38 +28,25 @@ namespace RimWorld
     {
         public int dustoffdelay = 120;
         public bool autodustoff = false;
-        // Token: 0x17000E48 RID: 3656
-        // (get) Token: 0x06005000 RID: 20480 RVA: 0x001A7A80 File Offset: 0x001A5C80
-        public bool Autoload
-        {
-            get
-            {
-                return this.autoload;
-            }
-        }
-        
-        // Token: 0x17000E49 RID: 3657
-        // (get) Token: 0x06005001 RID: 20481 RVA: 0x001A7A88 File Offset: 0x001A5C88
+
         public bool LoadingInProgressOrReadyToLaunch
         {
             get
             {
-                return this.Transporter.LoadingInProgressOrReadyToLaunch || this.autodustoff;
+                return this.Transporter.LoadingInProgressOrReadyToLaunch || this.autodustoff || this.Transporter.innerContainer.Any(x=> x.GetType()==typeof(Pawn) && ((Pawn)x).story!=null);
             }
         }
 
-        // Token: 0x17000E4A RID: 3658
-        // (get) Token: 0x06005002 RID: 20482 RVA: 0x001A7A95 File Offset: 0x001A5C95
         public List<CompTransporter> TransportersInGroup
         {
             get
             {
-                return this.Transporter.TransportersInGroup(this.parent.Map);
+                List<CompTransporter> result = new List<CompTransporter>();
+                result.Add(this.parent.TryGetComp<CompTransporter>());
+                return result;//this.Transporter.TransportersInGroup(this.parent.Map);
             }
         }
 
-        // Token: 0x17000E4C RID: 3660
-        // (get) Token: 0x06005004 RID: 20484 RVA: 0x001A7AD0 File Offset: 0x001A5CD0
         public bool AnyInGroupIsUnderRoof
         {
             get
@@ -72,8 +63,6 @@ namespace RimWorld
             }
         }
         
-        // Token: 0x17000E4B RID: 3659
-        // (get) Token: 0x06005003 RID: 20483 RVA: 0x001A7AAD File Offset: 0x001A5CAD
         public CompTransporter Transporter
         {
             get
@@ -86,8 +75,6 @@ namespace RimWorld
             }
         }
 
-        // Token: 0x17000E4D RID: 3661
-        // (get) Token: 0x06005005 RID: 20485 RVA: 0x001A7B1C File Offset: 0x001A5D1C
         private bool Autoloadable
         {
             get
@@ -117,8 +104,6 @@ namespace RimWorld
             }
         }
 
-        // Token: 0x17000E4E RID: 3662
-        // (get) Token: 0x06005006 RID: 20486 RVA: 0x001A7BF8 File Offset: 0x001A5DF8
         public bool AllRequiredThingsLoaded
         {
             get
@@ -184,26 +169,6 @@ namespace RimWorld
             }
         }
 
-        // Token: 0x17000E4F RID: 3663
-        // (get) Token: 0x06005007 RID: 20487 RVA: 0x001A7DEC File Offset: 0x001A5FEC
-        public TaggedString RequiredThingsLabel
-        {
-            get
-            {
-                StringBuilder stringBuilder = new StringBuilder();
-                for (int i = 0; i < this.requiredPawns.Count; i++)
-                {
-                    stringBuilder.AppendLine("  - " + this.requiredPawns[i].NameShortColored.Resolve());
-                }
-                for (int j = 0; j < this.requiredItems.Count; j++)
-                {
-                    stringBuilder.AppendLine("  - " + this.requiredItems[j].LabelCap);
-                }
-                return stringBuilder.ToString().TrimEndNewlines();
-            }
-        }
-
-        // Token: 0x06005008 RID: 20488 RVA: 0x001A7E8B File Offset: 0x001A608B
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
             foreach (Gizmo gizmo in base.CompGetGizmosExtra())
@@ -239,59 +204,31 @@ namespace RimWorld
             {
                 this.StartChoosingDestination();
             };
-            /*
 		    if (!this.AllFuelingPortSourcesInGroupHaveAnyFuel)
             {
                 command_Action.Disable("CommandLaunchGroupFailNoFuel".Translate());
             }
             else
-            */
             if (!this.LoadingInProgressOrReadyToLaunch || !this.AllRequiredThingsLoaded)
             {
                 command_Action.Disable("CommandSendShuttleFailMissingRequiredThing".Translate());
             }
-            else if (this.AnyInGroupIsUnderRoof)
+            else
+            if (this.AnyInGroupIsUnderRoof)
             {
                 command_Action.Disable("CommandSendShuttleFailUnderRoof".Translate());
             }
             yield return command_Action;
+            /*
             foreach (Gizmo gizmo2 in QuestUtility.GetQuestRelatedGizmos(this.parent))
             {
                 yield return gizmo2;
             }
+            */
             enumerator = null;
             yield break;
         }
 
-        public bool AllFuelingPortSourcesInGroupHaveAnyFuel
-        {
-            get
-            {
-                Log.Message("1");
-                List<CompTransporter> transportersInGroup = this.TransportersInGroup;
-                Log.Message("2");
-                try
-                {
-                    for (int i = 0; i < transportersInGroup.Count; i++)
-                    {
-                        Log.Message("3");
-                        if (!transportersInGroup[i].Launchable.FuelingPortSourceHasAnyFuel)
-                        {
-                            Log.Message("return false");
-                            return false;
-                        }
-                    }
-                }
-                catch (Exception)
-                {
-                    Log.Message("TransportersInGroup false");
-                    throw;
-                }
-                Log.Message("return true");
-                return true;
-            }
-        }
-        // Token: 0x06005009 RID: 20489 RVA: 0x001A7E9B File Offset: 0x001A609B
         public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
         {
             if (!selPawn.CanReach(this.parent, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.ByPawn))
@@ -316,52 +253,193 @@ namespace RimWorld
             yield break;
         }
 
-        // Token: 0x0600500A RID: 20490 RVA: 0x001A7EB4 File Offset: 0x001A60B4
-        public override void CompTick()
+        public IEnumerable<FloatMenuOption> GetTransportPodsFloatMenuOptionsAt(int tile, Caravan car = null)
         {
-            base.CompTick();
-            if (!autodustoff)
+            bool anything = false;
+            IEnumerable<IThingHolder> pods = this.TransportersInGroup.Cast<IThingHolder>();
+            if (car != null)
             {
+                List<Caravan> rliss = new List<Caravan>();
+                rliss.Add(car);
+                pods = rliss.Cast<IThingHolder>();
 
-                if (this.parent.IsHashIntervalTick(120))
+            }
+            if (car == null)
+            {
+                if (TransportPodsArrivalAction_FormCaravan.CanFormCaravanAt(pods, tile) && !Find.WorldObjects.AnySettlementBaseAt(tile) && !Find.WorldObjects.AnySiteAt(tile))
                 {
-                    this.CheckAutoload();
-                }
-                if (this.leaveASAP && this.parent.Spawned)
-                {
-                    if (!this.LoadingInProgressOrReadyToLaunch)
+                    anything = true;
+                    yield return new FloatMenuOption("FormCaravanHere".Translate(), delegate
                     {
-                        TransporterUtility.InitiateLoading(Gen.YieldSingle<CompTransporter>(this.Transporter));
-                    }
-                    this.Send();
-                }
-                if (this.leaveImmediatelyWhenSatisfied && this.AllRequiredThingsLoaded)
-                {
-                    this.Send();
+                        this.TryLaunch(tile, new TransportPodsArrivalAction_FormCaravan(), car);
+
+                    }, MenuOptionPriority.Default, null, null, 0f, null, null);
                 }
             }
             else
             {
-                if (parent.Map!=null)
+                if (!Find.WorldObjects.AnySettlementBaseAt(tile) && !Find.WorldObjects.AnySiteAt(tile) && !Find.World.Impassable(tile))
                 {
-                    dustoffdelay--;
-                    if (dustoffdelay == 60)
+                    anything = true;
+                    yield return new FloatMenuOption("FormCaravanHere".Translate(), delegate
                     {
-                        if (!this.Transporter.innerContainer.NullOrEmpty())
+                        this.TryLaunch(tile, new TransportPodsArrivalAction_FormCaravan(), car);
+
+                    }, MenuOptionPriority.Default, null, null, 0f, null, null);
+                }
+            }
+
+            List<WorldObject> worldObjects = Find.WorldObjects.AllWorldObjects;
+            for (int i = 0; i < worldObjects.Count; i++)
+            {
+                if (worldObjects[i].Tile == tile)
+                {
+                    IEnumerable<FloatMenuOption> nowre = getFM(worldObjects[i], pods, this, car);
+                    if (nowre.ToList().Count < 1)
+                    {
+                        yield return new FloatMenuOption("FormCaravanHere".Translate(), delegate
                         {
-                            this.Transporter.innerContainer.TryDropAll(parent.Position, parent.Map, ThingPlaceMode.Near);
-                        }
+                            this.TryLaunch(tile, new TransportPodsArrivalAction_FormCaravan(), car);
+                        }, MenuOptionPriority.Default, null, null, 0f, null, null);
                     }
-                    if (dustoffdelay <= 0)
+                    else
                     {
-                        this.Send();
-                        autodustoff = false;
+                        foreach (FloatMenuOption o in nowre)//worldObjects[i].GetTransportPodsFloatMenuOptions(this.TransportersInGroup.Cast<IThingHolder>(), this))
+                        {
+                            anything = true;
+                            yield return o;
+                        }
                     }
                 }
             }
+
+            if (!anything && !Find.World.Impassable(tile))
+            {
+                yield return new FloatMenuOption("TransportPodsContentsWillBeLost".Translate(), delegate
+                {
+                    this.TryLaunch(tile, null);
+                }, MenuOptionPriority.Default, null, null, 0f, null, null);
+            }
+
+            yield break;
         }
 
-        // Token: 0x0600500B RID: 20491 RVA: 0x001A7F28 File Offset: 0x001A6128
+        public static IEnumerable<FloatMenuOption> getFM(WorldObject wobj, IEnumerable<IThingHolder> ih, CompUSCMDropship comp, Caravan car)
+        {
+            if (wobj is Caravan)
+            {
+                return Enumerable.Empty<FloatMenuOption>();
+            }
+            else if (wobj is Site)
+            {
+                return GetSite(wobj as Site, ih, comp, car);
+            }
+            else if (wobj is Settlement)
+            {
+                return GetSettle(wobj as Settlement, ih, comp, car);
+            }
+            else if (wobj is MapParent)
+            {
+                return GetMapParent(wobj as MapParent, ih, comp, car);
+            }
+            else
+            {
+                return Enumerable.Empty<FloatMenuOption>();
+            }
+
+        }
+
+        public static IEnumerable<FloatMenuOption> GetMapParent(MapParent mapparent, IEnumerable<IThingHolder> pods, CompUSCMDropship representative, Caravan car)
+        {
+            /*
+            foreach (FloatMenuOption o in mapparent.GetFloatMenuOptions())
+            {
+                yield return o;
+            }
+            */
+
+
+            if (TransportPodsArrivalAction_LandInSpecificCell.CanLandInSpecificCell(pods, mapparent))
+            {
+                yield return new FloatMenuOption("LandInExistingMap".Translate(mapparent.Label), delegate
+                {
+
+                    Map myMap;
+                    if (car == null)
+                        myMap = representative.parent.Map;
+                    else
+                        myMap = null;
+
+                    Map map = mapparent.Map;
+                    Current.Game.CurrentMap = map;
+                    CameraJumper.TryHideWorld();
+                    Find.Targeter.BeginTargeting(TargetingParameters.ForDropPodsDestination(), delegate (LocalTargetInfo x)
+                    {
+                        representative.TryLaunch(mapparent.Tile, new TransportPodsArrivalAction_LandInSpecificCell(mapparent, x.Cell),car);
+                    }, null, delegate
+                    {
+
+                        if (myMap != null && Find.Maps.Contains(myMap))
+                        {
+                            Current.Game.CurrentMap = myMap;
+                        }
+
+                    }, CompLaunchable.TargeterMouseAttachment);
+                }, MenuOptionPriority.Default, null, null, 0f, null, null);
+            }
+            else
+            yield break;
+        }
+
+        public static IEnumerable<FloatMenuOption> GetSite(Site site, IEnumerable<IThingHolder> pods, CompUSCMDropship representative, Caravan car)
+        {
+            foreach (FloatMenuOption o in GetMapParent(site, pods, representative, car))
+            {
+                yield return o;
+            }
+            foreach (FloatMenuOption o2 in GetVisitSite(representative, pods, site, car))
+            {
+                yield return o2;
+            }
+            yield break;
+        }
+
+        public static IEnumerable<FloatMenuOption> GetVisitSite(CompUSCMDropship representative, IEnumerable<IThingHolder> pods, Site site, Caravan car)
+        {
+            foreach (FloatMenuOption f in DropShipArrivalActionUtility.GetFloatMenuOptions<TransportPodsArrivalAction_VisitSite>(() => TransportPodsArrivalAction_VisitSite.CanVisit(pods, site), () => new TransportPodsArrivalAction_VisitSite(site, PawnsArrivalModeDefOf.EdgeDrop), "DropAtEdge".Translate(), representative, site.Tile, car))
+            {
+                yield return f;
+            }
+            foreach (FloatMenuOption f2 in DropShipArrivalActionUtility.GetFloatMenuOptions<TransportPodsArrivalAction_VisitSite>(() => TransportPodsArrivalAction_VisitSite.CanVisit(pods, site), () => new TransportPodsArrivalAction_VisitSite(site, PawnsArrivalModeDefOf.CenterDrop), "DropInCenter".Translate(), representative, site.Tile, car))
+            {
+                yield return f2;
+            }
+            yield break;
+        }
+
+        public static IEnumerable<FloatMenuOption> GetSettle(Settlement bs, IEnumerable<IThingHolder> pods, CompUSCMDropship representative, Caravan car)
+        {
+            foreach (FloatMenuOption o in GetMapParent(bs, pods, representative, car))
+            {
+                yield return o;
+            }
+
+            foreach (FloatMenuOption f in DropShipArrivalActionUtility.GetVisitFloatMenuOptions(representative, pods, bs, car))
+            {
+                yield return f;
+            }
+
+            foreach (FloatMenuOption f2 in DropShipArrivalActionUtility.GetGIFTFloatMenuOptions(representative, pods, bs, car))
+            {
+                yield return f2;
+            }
+            foreach (FloatMenuOption f3 in DropShipArrivalActionUtility.GetATKFloatMenuOptions(representative, pods, bs, car))
+            {
+                yield return f3;
+            }
+            yield break;
+        }
+
         public override string CompInspectStringExtra()
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -390,13 +468,93 @@ namespace RimWorld
             return stringBuilder.ToString();
         }
 
-        // Token: 0x06004F0A RID: 20234 RVA: 0x001A37AC File Offset: 0x001A19AC
+        private bool ChoseWorldTarget(GlobalTargetInfo target)
+        {
+
+            if (this.carr == null)
+                if (!this.LoadingInProgressOrReadyToLaunch)
+                {
+                    return true;
+                }
+
+            if (!target.IsValid)
+            {
+                Messages.Message("MessageTransportPodsDestinationIsInvalid".Translate(), MessageTypeDefOf.RejectInput, false);
+                return false;
+            }
+            /*
+            if (!target.HasWorldObject)
+            {
+                Messages.Message("MessageTransportPodsDestinationIsInvalid".Translate(), MessageTypeDefOf.RejectInput, false);
+                return false;
+            }
+            */
+
+
+            int myTile = -2;
+            if (this.carr == null)
+            {
+                myTile = this.parent.Map.Tile;
+            }
+            else
+            {
+                myTile = carr.Tile;
+            }
+
+            int num = Find.WorldGrid.TraversalDistanceBetween(myTile, target.Tile, true, int.MaxValue);
+            if (num > this.MaxLaunchDistance)
+            {
+                Messages.Message("MessageTransportPodsDestinationIsTooFar".Translate(CompUSCMDropship.FuelNeededToLaunchAtDist((float)num).ToString("0.#")), MessageTypeDefOf.RejectInput, false);
+                return false;
+            }
+            if (Find.WorldGrid[target.Tile].biome.impassable || Find.World.Impassable(target.Tile))
+            {
+
+                Messages.Message("MessageTransportPodsDestinationIsInvalid".Translate(), MessageTypeDefOf.RejectInput, false);
+                return false;
+            }
+
+            MapParent mapParent = Find.WorldObjects.MapParentAt(target.Tile);
+
+
+            IEnumerable<FloatMenuOption> transportPodsFloatMenuOptionsAt = this.GetTransportPodsFloatMenuOptionsAt(target.Tile, carr);
+
+
+            if (!transportPodsFloatMenuOptionsAt.Any<FloatMenuOption>())
+            {
+                if (Find.WorldGrid[target.Tile].biome.impassable || Find.World.Impassable(target.Tile))
+                {
+
+                    Messages.Message("MessageTransportPodsDestinationIsInvalid".Translate(), MessageTypeDefOf.RejectInput, false);
+                    return false;
+                }
+                this.TryLaunch(target.Tile, null, null);
+                return true;
+            }
+            else
+            {
+                if (transportPodsFloatMenuOptionsAt.Count<FloatMenuOption>() == 1)
+                {
+                    if (!transportPodsFloatMenuOptionsAt.First<FloatMenuOption>().Disabled)
+                    {
+                        transportPodsFloatMenuOptionsAt.First<FloatMenuOption>().action();
+                    }
+                    return false;
+                }
+                Find.WindowStack.Add(new FloatMenu(transportPodsFloatMenuOptionsAt.ToList<FloatMenuOption>()));
+                return false;
+            }
+
+
+        }
+
         private void StartChoosingDestination()
         {
             CameraJumper.TryJump(CameraJumper.GetWorldTarget(this.parent));
             Find.WorldSelector.ClearSelection();
             int tile = this.parent.Map.Tile;
-            Find.WorldTargeter.BeginTargeting(new Func<GlobalTargetInfo, bool>(this.ChoseWorldTarget), true, CompLaunchable.TargeterMouseAttachment, true, delegate
+            this.carr = null;
+            Find.WorldTargeter.BeginTargeting(new Func<GlobalTargetInfo, bool>(this.ChoseWorldTarget), true, CompUSCMDropship.TargeterMouseAttachment, true, delegate
             {
                 GenDraw.DrawWorldRadiusRing(tile, this.MaxLaunchDistance);
             }, delegate (GlobalTargetInfo target)
@@ -420,7 +578,13 @@ namespace RimWorld
                     IEnumerable<FloatMenuOption> transportPodsFloatMenuOptionsAt = this.GetTransportPodsFloatMenuOptionsAt(target.Tile);
                     if (!transportPodsFloatMenuOptionsAt.Any<FloatMenuOption>())
                     {
-                        return "";
+                        if (Find.WorldGrid[target.Tile].biome.impassable || Find.World.Impassable(target.Tile))
+                        {
+
+                            return ("MessageTransportPodsDestinationIsInvalid".Translate());
+
+                        }
+                        return string.Empty;
                     }
                     if (transportPodsFloatMenuOptionsAt.Count<FloatMenuOption>() == 1)
                     {
@@ -440,181 +604,384 @@ namespace RimWorld
             });
         }
 
-        // Token: 0x06004F0B RID: 20235 RVA: 0x001A3830 File Offset: 0x001A1A30
-        private bool ChoseWorldTarget(GlobalTargetInfo target)
+        public void WorldStartChoosingDestination(Caravan car)
         {
-            if (!this.LoadingInProgressOrReadyToLaunch)
+            CameraJumper.TryJump(CameraJumper.GetWorldTarget(car));
+        //    Find.WorldSelector.ClearSelection();
+            int tile = car.Tile;
+            this.carr = car;
+            Find.WorldTargeter.BeginTargeting(new Func<GlobalTargetInfo, bool>(this.ChoseWorldTarget), true, CompUSCMDropship.TargeterMouseAttachment, false, delegate
             {
-                return true;
-            }
-            if (!target.IsValid)
+                GenDraw.DrawWorldRadiusRing(car.Tile, this.MaxLaunchDistance);
+            }, delegate (GlobalTargetInfo target)
             {
-                Messages.Message("MessageTransportPodsDestinationIsInvalid".Translate(), MessageTypeDefOf.RejectInput, false);
-                return false;
-            }
-            int num = Find.WorldGrid.TraversalDistanceBetween(this.parent.Map.Tile, target.Tile, true, int.MaxValue);
-            if (num > this.MaxLaunchDistance)
-            {
-                Messages.Message("MessageTransportPodsDestinationIsTooFar".Translate(CompLaunchable.FuelNeededToLaunchAtDist((float)num).ToString("0.#")), MessageTypeDefOf.RejectInput, false);
-                return false;
-            }
-            IEnumerable<FloatMenuOption> transportPodsFloatMenuOptionsAt = this.GetTransportPodsFloatMenuOptionsAt(target.Tile);
-            if (!transportPodsFloatMenuOptionsAt.Any<FloatMenuOption>())
-            {
-                if (Find.World.Impassable(target.Tile))
+                if (!target.IsValid)
                 {
-                    Messages.Message("MessageTransportPodsDestinationIsInvalid".Translate(), MessageTypeDefOf.RejectInput, false);
-                    return false;
+                    return null;
                 }
-                this.TryLaunch(target.Tile, null);
-                return true;
-            }
-            else
-            {
-                if (transportPodsFloatMenuOptionsAt.Count<FloatMenuOption>() == 1)
+                int num = Find.WorldGrid.TraversalDistanceBetween(tile, target.Tile, true, int.MaxValue);
+                if (num > this.MaxLaunchDistance)
                 {
-                    if (!transportPodsFloatMenuOptionsAt.First<FloatMenuOption>().Disabled)
+                    GUI.color = Color.red;
+                    if (num > this.MaxLaunchDistanceEverPossible)
                     {
-                        transportPodsFloatMenuOptionsAt.First<FloatMenuOption>().action();
+                        return "TransportPodDestinationBeyondMaximumRange".Translate();
                     }
-                    return false;
+                    return "TransportPodNotEnoughFuel".Translate();
                 }
-                Find.WindowStack.Add(new FloatMenu(transportPodsFloatMenuOptionsAt.ToList<FloatMenuOption>()));
-                return false;
-            }
+                else
+                {
+
+                    IEnumerable<FloatMenuOption> transportPodsFloatMenuOptionsAt = this.GetTransportPodsFloatMenuOptionsAt(target.Tile, car);
+                    if (!transportPodsFloatMenuOptionsAt.Any<FloatMenuOption>())
+                    {
+                        if (Find.WorldGrid[target.Tile].biome.impassable || Find.World.Impassable(target.Tile))
+                        {
+                            return ("MessageTransportPodsDestinationIsInvalid".Translate());
+
+                        }
+                        return string.Empty;
+                    }
+                    if (transportPodsFloatMenuOptionsAt.Count<FloatMenuOption>() == 1)
+                    {
+                        if (transportPodsFloatMenuOptionsAt.First<FloatMenuOption>().Disabled)
+                        {
+                            GUI.color = Color.red;
+                        }
+                        return transportPodsFloatMenuOptionsAt.First<FloatMenuOption>().Label;
+                    }
+                    MapParent mapParent = target.WorldObject as MapParent;
+                    if (mapParent != null)
+                    {
+                        return "ClickToSeeAvailableOrders_WorldObject".Translate(mapParent.LabelCap);
+                    }
+                    return "ClickToSeeAvailableOrders_Empty".Translate();
+
+                    //return "DI!";
+
+                }
+            });
         }
 
-        // Token: 0x06004F0C RID: 20236 RVA: 0x001A3968 File Offset: 0x001A1B68
-        public void TryLaunch(int destinationTile, TransportPodsArrivalAction arrivalAction)
+        public void TryLaunch(int destinationTile, TransportPodsArrivalAction arrivalAction, Caravan cafr = null)
         {
-            if (!this.parent.Spawned)
-            {
-                Log.Error("Tried to launch " + this.parent + ", but it's unspawned.", false);
-                return;
-            }
+            //Log.Warning("CARR:" + this.carr+"/"+cafr);
+            if (cafr == null)
+                if (!this.parent.Spawned)
+                {
+                    Log.Error("Tried to launch " + this.parent + ", but it's unspawned.", false);
+                    return;
+                }
+            /*
             List<CompTransporter> transportersInGroup = this.TransportersInGroup;
             if (transportersInGroup == null)
             {
                 Log.Error("Tried to launch " + this.parent + ", but it's not in any group.", false);
                 return;
             }
-            
-            if (!this.LoadingInProgressOrReadyToLaunch )
+            */
+            if (this.parent.Spawned)
             {
+                if (!this.LoadingInProgressOrReadyToLaunch)
+                {
+                    return;
+                }
+            }
+            if (!this.AllInGroupConnectedToFuelingPort || !this.AllFuelingPortSourcesInGroupHaveAnyFuel)
+            {
+
                 return;
             }
-            
-            Map map = this.parent.Map;
-            int num = Find.WorldGrid.TraversalDistanceBetween(map.Tile, destinationTile, true, int.MaxValue);
-            if (num > this.MaxLaunchDistance)
+            if (cafr == null)
             {
-                return;
-            }
-            this.Transporter.TryRemoveLord(map);
-            int groupID = this.Transporter.groupID;
-            float amount = Mathf.Max(CompLaunchable.FuelNeededToLaunchAtDist((float)num), 1f);
-            for (int i = 0; i < transportersInGroup.Count; i++)
-            {
-                CompTransporter compTransporter = transportersInGroup[i];
-                Building fuelingPortSource = compTransporter.Launchable.FuelingPortSource;
+                Map map = this.parent.Map;
+                int num = Find.WorldGrid.TraversalDistanceBetween(map.Tile, destinationTile, true, int.MaxValue);
+                if (num > this.MaxLaunchDistance)
+                {
+                    return;
+                }
+                this.Transporter.TryRemoveLord(map);
+                if (this.Transporter.groupID<0)
+                {
+                    this.Transporter.groupID = this.parent.thingIDNumber;
+                }
+                int groupID = this.Transporter.groupID;
+                float amount = Mathf.Max(FuelNeededToLaunchAtDist((float)num), 1f);
+                //for (int i = 0; i < transportersInGroup.Count; i++)
+
+                CompTransporter compTransporter = Transporter;//transportersInGroup[i];
+                Building fuelingPortSource = this.FuelingPortSource;//compTransporter.Launchable.FuelingPortSource;
                 if (fuelingPortSource != null)
                 {
                     fuelingPortSource.TryGetComp<CompRefuelable>().ConsumeFuel(amount);
                 }
                 ThingOwner directlyHeldThings = compTransporter.GetDirectlyHeldThings();
-                ActiveDropPod activeDropPod = (ActiveDropPod)ThingMaker.MakeThing(ThingDefOf.ActiveDropPod, null);
+
+                Thing dropship = ThingMaker.MakeThing(USCMDefOf.RRY_USCM_DropshipUD4L);
+                dropship.SetFactionDirect(Faction.OfPlayer);
+
+                CompRefuelable compr = dropship.TryGetComp<CompRefuelable>();
+                Type tcr = compr.GetType();
+                FieldInfo finfos = tcr.GetField("fuel", BindingFlags.NonPublic | BindingFlags.Instance);
+                finfos.SetValue(compr, fuelingPortSource.TryGetComp<CompRefuelable>().Fuel);
+
+                dropship.stackCount = 1;
+                directlyHeldThings.TryAddOrTransfer(dropship);
+
+                ActiveDropPod activeDropPod = (ActiveDropPod)ThingMaker.MakeThing(USCMDefOf.RRY_USCM_ActiveDropshipUD4L, null);
                 activeDropPod.Contents = new ActiveDropPodInfo();
                 activeDropPod.Contents.innerContainer.TryAddRangeOrTransfer(directlyHeldThings, true, true);
-                DropPodLeaving dropPodLeaving = (DropPodLeaving)SkyfallerMaker.MakeSkyfaller(ThingDefOf.DropPodLeaving, activeDropPod);
+                DropShipLeaving dropPodLeaving = (DropShipLeaving)SkyfallerMaker.MakeSkyfaller(USCMDefOf.RRY_USCM_DropshipUD4LLeaving, activeDropPod);
                 dropPodLeaving.groupID = groupID;
                 dropPodLeaving.destinationTile = destinationTile;
                 dropPodLeaving.arrivalAction = arrivalAction;
                 compTransporter.CleanUpLoadingVars(map);
-                compTransporter.parent.Destroy(DestroyMode.Vanish);
-                GenSpawn.Spawn(dropPodLeaving, compTransporter.parent.Position, map, WipeMode.Vanish);
+                //compTransporter.parent
+                IntVec3 poc = fuelingPortSource.Position;
+                // fuelingPortSource.Destroy(DestroyMode.Vanish);
+                DropshipDestroy(fuelingPortSource, DestroyMode.Vanish);
+                GenSpawn.Spawn(dropPodLeaving, poc, map, WipeMode.Vanish);
+
+                CameraJumper.TryHideWorld();
             }
-            CameraJumper.TryHideWorld();
-        }
-        
-        // Token: 0x06004F0D RID: 20237 RVA: 0x001A3B0C File Offset: 0x001A1D0C
-        public void Notify_FuelingPortSourceDeSpawned()
-        {
-            if (this.Transporter.CancelLoad())
+            else
             {
-                Messages.Message("MessageTransportersLoadCanceled_FuelingPortGiverDeSpawned".Translate(), this.parent, MessageTypeDefOf.NegativeEvent, true);
+                int num = Find.WorldGrid.TraversalDistanceBetween(carr.Tile, destinationTile, true, int.MaxValue);
+                if (num > this.MaxLaunchDistance)
+                {
+                    return;
+                }
+                float amount = Mathf.Max(FuelNeededToLaunchAtDist((float)num), 1f);
+                if (FuelingPortSource != null)
+                {
+                    FuelingPortSource.TryGetComp<CompRefuelable>().ConsumeFuel(amount);
+                }
+
+
+                ThingOwner<Pawn> directlyHeldThings = (ThingOwner<Pawn>)cafr.GetDirectlyHeldThings();
+                Thing dropship = null;
+                CompUSCMDropship dropship1 = null;
+                List<Pawn> lpto = directlyHeldThings.AsEnumerable<Pawn>().ToList();
+
+                /*
+                foreach (Pawn pawn in directlyHeldThings.InnerListForReading)
+                {
+                    Pawn_InventoryTracker pinv = pawn.inventory;
+                    for (int i = 0; i < pinv.innerContainer.Count; i++)
+                    {
+                        if (pinv.innerContainer[i].def == USCMDefOf.RRY_USCM_DropshipUD4L)
+                        {
+                            dropship = pinv.innerContainer[i];
+                            dropship1 = dropship.TryGetComp<CompUSCMDropship>();
+                            pinv.innerContainer[i].holdingOwner.Remove(pinv.innerContainer[i]);
+
+                            break;
+                        }
+                    }
+                }
+
+                ThingOwner<Thing> finalto = new ThingOwner<Thing>();
+                List<Pawn> lpto = directlyHeldThings.AsEnumerable<Pawn>().ToList();
+                foreach (Pawn p in lpto)
+                {
+                    finalto.TryAddOrTransfer(p);
+                }
+
+
+                if (dropship != null)
+                {
+                    // Log.Warning("TRY ADD"+helicopter);
+                    if (dropship.holdingOwner == null)
+                        //Log.Warning("NULL");
+                        //directlyHeldThings.
+                        finalto.TryAddOrTransfer(dropship, false);
+                }
+                */
+
+                ActiveDropPod activeDropPod = (ActiveDropPod)ThingMaker.MakeThing(USCMDefOf.RRY_USCM_ActiveDropshipUD4L, null);
+                activeDropPod.Contents = new ActiveDropPodInfo();
+                foreach (var item in carr.AllThings)
+                {
+                    Log.Message(string.Format("carr.AllThings: {0}", item));
+                }
+
+
+                activeDropPod.Contents.innerContainer.TryAddRangeOrTransfer(
+                    //directlyHeldThings
+                    carr.Goods, true, true);
+                foreach (Pawn p in lpto)
+                {
+                    activeDropPod.Contents.innerContainer.TryAddOrTransfer(p);
+                }
+                foreach (var item in activeDropPod.Contents.innerContainer)
+                {
+                    Log.Message(string.Format("activeDropPod: {0}", item));
+                }
+                cafr.RemoveAllPawns();
+                if (cafr.Spawned)
+                {
+                    Find.WorldObjects.Remove(cafr);
+                }
+
+                TravelingTransportPods travelingTransportPods = (TravelingTransportPods)WorldObjectMaker.MakeWorldObject(DefDatabase<WorldObjectDef>.GetNamed("RRY_USCM_TravelingDropshipUD4L", true));
+                travelingTransportPods.Tile = cafr.Tile;
+                travelingTransportPods.SetFaction(Faction.OfPlayer);
+                travelingTransportPods.destinationTile = destinationTile;
+                travelingTransportPods.arrivalAction = arrivalAction;
+                Find.WorldObjects.Add(travelingTransportPods);
+                travelingTransportPods.AddPod(activeDropPod.Contents, true);
+            //    activeDropPod.Contents = null;
+            //    activeDropPod.Destroy(DestroyMode.Vanish);
+                // CameraJumper.TryHideWorld();
+                Find.WorldTargeter.StopTargeting();
+            }
+
+        }
+
+        public static void DropshipDestroy(Thing thing, DestroyMode mode = DestroyMode.Vanish)
+        {
+            if (!Thing.allowDestroyNonDestroyable && !thing.def.destroyable)
+            {
+                Log.Error("Tried to destroy non-destroyable thing " + thing, false);
+                return;
+            }
+            if (thing.Destroyed)
+            {
+                Log.Error("Tried to destroy already-destroyed thing " + thing, false);
+                return;
+            }
+            bool spawned = thing.Spawned;
+            Map map = thing.Map;
+            if (thing.Spawned)
+            {
+                thing.DeSpawn(mode);
+            }
+            Type typ = typeof(Thing);
+            FieldInfo finfo = typ.GetField("mapIndexOrState", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            SByte sbt = -2;
+            finfo.SetValue(thing, sbt);
+
+
+
+            if (thing.def.DiscardOnDestroyed)
+            {
+                thing.Discard(false);
+            }
+
+            if (thing.holdingOwner != null)
+            {
+                thing.holdingOwner.Notify_ContainedItemDestroyed(thing);
+            }
+            MethodInfo minfo = typ.GetMethod("RemoveAllReservationsAndDesignationsOnThis", BindingFlags.NonPublic | BindingFlags.Instance);
+            minfo.Invoke(thing, null);
+
+            if (!(thing is Pawn))
+            {
+                thing.stackCount = 0;
             }
         }
 
-        // Token: 0x06004F0E RID: 20238 RVA: 0x001A3B40 File Offset: 0x001A1D40
-        public static int MaxLaunchDistanceAtFuelLevel(float fuelLevel)
+        public Building FuelingPortSource
         {
-            return Mathf.FloorToInt(fuelLevel / 2.25f);
+            get
+            {
+                return (Building)this.parent;
+            }
         }
 
-        // Token: 0x06004F0F RID: 20239 RVA: 0x001A3B4E File Offset: 0x001A1D4E
         public static float FuelNeededToLaunchAtDist(float dist)
         {
             return 2.25f * dist;
         }
-        
-        // Token: 0x06004F10 RID: 20240 RVA: 0x001A3B57 File Offset: 0x001A1D57
-        public IEnumerable<FloatMenuOption> GetTransportPodsFloatMenuOptionsAt(int tile)
-        {
-            bool anything = false;
-            if (TransportPodsArrivalAction_FormCaravan.CanFormCaravanAt(this.TransportersInGroup.Cast<IThingHolder>(), tile) && !Find.WorldObjects.AnySettlementBaseAt(tile) && !Find.WorldObjects.AnySiteAt(tile))
-            {
-                anything = true;
-                yield return new FloatMenuOption("FormCaravanHere".Translate(), delegate ()
-                {
-                    this.TryLaunch(tile, new TransportPodsArrivalAction_FormCaravan());
-                }, MenuOptionPriority.Default, null, null, 0f, null, null);
-            }
-            List<WorldObject> worldObjects = Find.WorldObjects.AllWorldObjects;
-            int num;
-            /*-
-            for (int i = 0; i < worldObjects.Count; i = num + 1)
-            {
-                if (worldObjects[i].Tile == tile)
-                {
-                    foreach (FloatMenuOption floatMenuOption in worldObjects[i].GetTransportPodsFloatMenuOptions(this.TransportersInGroup.Cast<IThingHolder>(), this))
-                    {
-                        anything = true;
-                        yield return floatMenuOption;
-                    }
-                    IEnumerator<FloatMenuOption> enumerator = null;
-                }
-                num = i;
-            }
-            */
-            if (!anything && !Find.World.Impassable(tile))
-            {
-                yield return new FloatMenuOption("TransportPodsContentsWillBeLost".Translate(), delegate ()
-                {
-                    this.TryLaunch(tile, null);
-                }, MenuOptionPriority.Default, null, null, 0f, null, null);
-            }
-            yield break;
-            yield break;
-        }
 
-        // Token: 0x17000E00 RID: 3584
-        // (get) Token: 0x06004F04 RID: 20228 RVA: 0x001A3580 File Offset: 0x001A1780
-        private float FuelInLeastFueledFuelingPortSource
+        public bool AllFuelingPortSourcesInGroupHaveAnyFuel
         {
             get
             {
                 List<CompTransporter> transportersInGroup = this.TransportersInGroup;
-                float num = 0f;
-                bool flag = false;
-                for (int i = 0; i < transportersInGroup.Count; i++)
+                try
                 {
-                    float fuelingPortSourceFuel = transportersInGroup[i].Launchable.FuelingPortSourceFuel;
-                    if (!flag || fuelingPortSourceFuel < num)
+                    for (int i = 0; i < transportersInGroup.Count; i++)
                     {
-                        num = fuelingPortSourceFuel;
-                        flag = true;
+                        CompUSCMDropship dropship = transportersInGroup[i].parent.TryGetComp<CompUSCMDropship>();
+                        if (!dropship.FuelingPortSourceHasAnyFuel)
+                        {
+                            return false;
+                        }
                     }
                 }
+                catch (Exception)
+                {
+                    Log.Message("TransportersInGroup false");
+                    throw;
+                }
+                return true;
+            }
+        }
+
+        public bool AllInGroupConnectedToFuelingPort
+        {
+            get
+            {
+                /*
+                List<CompTransporter> transportersInGroup = this.TransportersInGroup;
+                for (int i = 0; i < transportersInGroup.Count; i++)
+                {
+                    if (!transportersInGroup[i].Launchable.ConnectedToFuelingPort)
+                    {
+                        return false;
+                    }
+                }
+                */
+                return true;
+            }
+        }
+
+        public bool ConnectedToFuelingPort
+        {
+            get
+            {
+                return this.FuelingPortSource != null;
+            }
+        }
+
+        public bool FuelingPortSourceHasAnyFuel
+        {
+            get
+            {
+                return this.ConnectedToFuelingPort && this.FuelingPortSource.GetComp<CompRefuelable>().HasFuel;
+            }
+        }
+
+        public float FuelingPortSourceFuel
+        {
+            get
+            {
+                if (!this.ConnectedToFuelingPort)
+                {
+                    return 0f;
+                }
+                return this.FuelingPortSource.GetComp<CompRefuelable>().Fuel;
+            }
+        }
+
+        private float FuelInLeastFueledFuelingPortSource
+        {
+            get
+            {
+                //List<CompTransporter> transportersInGroup = this.TransportersInGroup;
+                float num = 0f;
+                bool flag = false;
+                //  for (int i = 0; i < transportersInGroup.Count; i++)
+                //  {
+                float fuelingPortSourceFuel = //transportersInGroup[i].Launchable.
+                FuelingPortSourceFuel;
+                if (!flag || fuelingPortSourceFuel < num)
+                {
+                    num = fuelingPortSourceFuel;
+                    flag = true;
+                }
+                //  }
                 if (!flag)
                 {
                     return 0f;
@@ -623,22 +990,14 @@ namespace RimWorld
             }
         }
 
-        // Token: 0x17000E01 RID: 3585
-        // (get) Token: 0x06004F05 RID: 20229 RVA: 0x001A35D7 File Offset: 0x001A17D7
         private int MaxLaunchDistance
         {
             get
             {
-                if (!this.LoadingInProgressOrReadyToLaunch)
-                {
-                    return 0;
-                }
-                return CompLaunchable.MaxLaunchDistanceAtFuelLevel(this.FuelInLeastFueledFuelingPortSource);
+                return MaxLaunchDistanceAtFuelLevel(this.FuelInLeastFueledFuelingPortSource);
             }
         }
 
-        // Token: 0x17000E02 RID: 3586
-        // (get) Token: 0x06004F06 RID: 20230 RVA: 0x001A35F0 File Offset: 0x001A17F0
         private int MaxLaunchDistanceEverPossible
         {
             get
@@ -661,8 +1020,11 @@ namespace RimWorld
             }
         }
 
-        // Token: 0x17000E03 RID: 3587
-        // (get) Token: 0x06004F07 RID: 20231 RVA: 0x001A3658 File Offset: 0x001A1858
+        public static int MaxLaunchDistanceAtFuelLevel(float fuelLevel)
+        {
+            return Mathf.FloorToInt(fuelLevel / 2.25f);
+        }
+
         private bool PodsHaveAnyPotentialCaravanOwner
         {
             get
@@ -684,7 +1046,6 @@ namespace RimWorld
             }
         }
 
-        // Token: 0x0600500C RID: 20492 RVA: 0x001A805C File Offset: 0x001A625C
         public void Send()
         {
             Log.Message("1 ");
@@ -774,7 +1135,50 @@ namespace RimWorld
             this.sending = false;
         }
 
-        // Token: 0x0600500D RID: 20493 RVA: 0x001A8360 File Offset: 0x001A6560
+        public override void CompTick()
+        {
+            base.CompTick();
+            if (!autodustoff)
+            {
+
+                if (this.parent.IsHashIntervalTick(120))
+                {
+                    this.CheckAutoload();
+                }
+                if (this.leaveASAP && this.parent.Spawned)
+                {
+                    if (!this.LoadingInProgressOrReadyToLaunch)
+                    {
+                        TransporterUtility.InitiateLoading(Gen.YieldSingle<CompTransporter>(this.Transporter));
+                    }
+                    this.Send();
+                }
+                if (this.leaveImmediatelyWhenSatisfied && this.AllRequiredThingsLoaded)
+                {
+                    this.Send();
+                }
+            }
+            else
+            {
+                if (parent.Map != null)
+                {
+                    dustoffdelay--;
+                    if (dustoffdelay == 60)
+                    {
+                        if (!this.Transporter.innerContainer.NullOrEmpty())
+                        {
+                            this.Transporter.innerContainer.TryDropAll(parent.Position, parent.Map, ThingPlaceMode.Near);
+                        }
+                    }
+                    if (dustoffdelay <= 0)
+                    {
+                        this.Send();
+                        autodustoff = false;
+                    }
+                }
+            }
+        }
+
         public override void PostExposeData()
         {
             base.PostExposeData();
@@ -794,7 +1198,6 @@ namespace RimWorld
             }
         }
 
-        // Token: 0x0600500E RID: 20494 RVA: 0x001A8464 File Offset: 0x001A6664
         private void CheckAutoload()
         {
             if (!this.autoload || !this.LoadingInProgressOrReadyToLaunch || !this.parent.Spawned)
@@ -901,7 +1304,6 @@ namespace RimWorld
             TransporterUtility.MakeLordsAsAppropriate(CompUSCMDropship.tmpRequiredPawnsPossibleToSend, this.TransportersInGroup, this.parent.Map);
         }
 
-        // Token: 0x0600500F RID: 20495 RVA: 0x001A88D0 File Offset: 0x001A6AD0
         public bool IsRequired(Thing thing)
         {
             Pawn pawn = thing as Pawn;
@@ -919,7 +1321,6 @@ namespace RimWorld
             return false;
         }
 
-        // Token: 0x06005010 RID: 20496 RVA: 0x001A8940 File Offset: 0x001A6B40
         public bool IsAllowed(Thing t)
         {
             if (this.IsRequired(t))
@@ -937,82 +1338,54 @@ namespace RimWorld
             return false;
         }
 
-        // Token: 0x06005011 RID: 20497 RVA: 0x001A89A7 File Offset: 0x001A6BA7
-        public void CleanUpLoadingVars()
-        {
-            this.autoload = false;
-        }
-
-        // Token: 0x04002C3F RID: 11327
         public List<ThingDefCount> requiredItems = new List<ThingDefCount>();
 
-        // Token: 0x04002C40 RID: 11328
         public List<Pawn> requiredPawns = new List<Pawn>();
 
-        // Token: 0x04002C41 RID: 11329
         public int requiredColonistCount;
 
-        // Token: 0x04002C42 RID: 11330
         public bool acceptColonists;
 
-        // Token: 0x04002C43 RID: 11331
         public bool onlyAcceptColonists;
 
-        // Token: 0x04002C44 RID: 11332
         public bool dropEverythingIfUnsatisfied;
 
-        // Token: 0x04002C45 RID: 11333
         public bool dropNonRequiredIfUnsatisfied = true;
 
-        // Token: 0x04002C46 RID: 11334
         public bool leaveImmediatelyWhenSatisfied;
 
-        // Token: 0x04002C47 RID: 11335
         private bool autoload;
 
-        // Token: 0x04002C48 RID: 11336
         public bool leaveASAP;
 
-        // Token: 0x04002C49 RID: 11337
         private CompTransporter cachedCompTransporter;
 
-        // Token: 0x04002C4A RID: 11338
         private List<CompTransporter> cachedTransporterList;
 
-        // Token: 0x04002C4B RID: 11339
         private bool sending;
 
-        // Token: 0x04002C4C RID: 11340
         private const int CheckAutoloadIntervalTicks = 120;
 
-        // Token: 0x04002C4D RID: 11341
         private static readonly Texture2D AutoloadToggleTex = ContentFinder<Texture2D>.Get("UI/Commands/Autoload", true);
 
-        // Token: 0x04002C4E RID: 11342
         private static readonly Texture2D SendCommandTex = CompLaunchable.LaunchCommandTex;
 
-        // Token: 0x04002C4F RID: 11343
         private static List<ThingDefCount> tmpRequiredItemsWithoutDuplicates = new List<ThingDefCount>();
 
-        // Token: 0x04002C50 RID: 11344
         private static List<string> tmpRequiredLabels = new List<string>();
 
-        // Token: 0x04002C51 RID: 11345
         private static List<ThingDefCount> tmpRequiredItems = new List<ThingDefCount>();
 
-        // Token: 0x04002C52 RID: 11346
         private static List<Pawn> tmpRequiredPawns = new List<Pawn>();
 
-        // Token: 0x04002C53 RID: 11347
         private static List<Pawn> tmpAllSendablePawns = new List<Pawn>();
 
-        // Token: 0x04002C54 RID: 11348
         private static List<Thing> tmpAllSendableItems = new List<Thing>();
 
-        // Token: 0x04002C55 RID: 11349
         private static List<Pawn> tmpRequiredPawnsPossibleToSend = new List<Pawn>();
 
-        // Token: 0x04002BB2 RID: 11186
+        private Caravan carr;
         private const float FuelPerTile = 2.25f;
+        public static readonly Texture2D TargeterMouseAttachment = ContentFinder<Texture2D>.Get("UI/Overlays/LaunchableMouseAttachment", true);
     }
 }
