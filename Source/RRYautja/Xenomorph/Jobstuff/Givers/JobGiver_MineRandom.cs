@@ -177,7 +177,7 @@ namespace RimWorld
             }
             else
             {
-                Log.Message("not _Xenomorph.HiveLoc");
+                Log.Message(string.Format("not _Xenomorph.HiveLoc({0})", _Xenomorph.HiveLoc));
                 return null;
             }
 

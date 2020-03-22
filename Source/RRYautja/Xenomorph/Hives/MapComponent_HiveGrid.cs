@@ -8,6 +8,39 @@ using static RRYautja.XenomorphHiveUtility;
 
 namespace RRYautja
 {
+    public class PotentialXenomorphHiveLocation : IExposable
+    {
+        public PotentialXenomorphHiveLocation(IntVec3 value)
+        {
+
+            this.X = value.x;
+            this.Z = value.z;
+        }
+        public IntVec3 HiveLoc
+        {
+            get
+            {
+                if (X == -1 || Z == -1)
+                {
+                    return IntVec3.Invalid;
+                }
+                return new IntVec3(X, 0, Z);
+            }
+            set
+            {
+                X = value.x;
+                Z = value.z;
+            }
+        }
+        public int X = -1;
+        public int Z = -1;
+
+        public void ExposeData()
+        {
+            Scribe_Values.Look(ref this.X, "HiveLocX");
+            Scribe_Values.Look(ref this.Z, "HiveLocZ");
+        }
+    }
     // Token: 0x02000067 RID: 103
     public class MapComponent_HiveGrid : MapComponent, IThingHolder
     {
@@ -29,6 +62,7 @@ namespace RRYautja
             this.HiveWorkerlist = new List<Pawn>();
             this.Hivelist = new List<Thing>();
             this.HiveLoclist = new List<IntVec3>();
+            this.PotentialHiveLoclist = new List<PotentialXenomorphHiveLocation>();
             this.HiveChildlist = new List<Thing>();
             this.HiveChildLoclist = new List<IntVec3>();
         }
@@ -408,6 +442,7 @@ namespace RRYautja
             Scribe_Collections.Look<Pawn>(ref this.Runnerlist, "Runnerlist", LookMode.Reference, new object[0]);
             Scribe_Collections.Look<Pawn>(ref this.Predalienlist, "Predalienlist", LookMode.Reference, new object[0]);
             Scribe_Collections.Look<Pawn>(ref this.Thrumbomorphlist, "Thrumbomorphlist", LookMode.Reference, new object[0]);
+            Scribe_Collections.Look<PotentialXenomorphHiveLocation>(ref this.PotentialHiveLoclist, "PotentialHiveLoclist", LookMode.Reference, new object[0]);
             Scribe_Collections.Look<Thing>(ref this.Hivelist, "Hivelist", LookMode.Reference, new object[0]);
             Scribe_Collections.Look<Thing>(ref this.HiveChildlist, "HiveChildlist", LookMode.Reference, new object[0]);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
@@ -455,7 +490,26 @@ namespace RRYautja
 
         public MapComponent_HiveGrid HiveGrid;
         public List<Thing> Hivelist;
-        public List<IntVec3> HiveLoclist;
+        public List<IntVec3> HiveLoclist
+        {
+            get
+            {
+                foreach (PotentialXenomorphHiveLocation item in PotentialHiveLoclist)
+                {
+                    if (!hiveLoclist.Contains(item.HiveLoc))
+                    {
+                        hiveLoclist.Add(item.HiveLoc);
+                    }
+                }
+                return hiveLoclist;
+            }
+            set
+            {
+                hiveLoclist = value;
+            }
+        }
+        public List<IntVec3> hiveLoclist;
+        public List<PotentialXenomorphHiveLocation> PotentialHiveLoclist;
         public List<Thing> HiveChildlist;
         public List<IntVec3> HiveChildLoclist;
         public List<Pawn> HiveGuardlist;

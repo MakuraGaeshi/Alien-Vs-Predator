@@ -1,5 +1,6 @@
 ﻿using RimWorld;
 using RRYautja;
+using RRYautja.ExtensionMethods;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,18 @@ namespace RimWorld
         public static bool TryFindCell(out IntVec3 cell, out IntVec3 locationC, Map map, bool allowFogged = false, bool allowUnroofed = false, bool allowDigging = false)
         {
             InfestationLikeCellFinder.CalculateLocationCandidates(map, allowFogged, allowUnroofed, allowDigging);
-
+            if (!map.HiveGrid().Hivelist.NullOrEmpty())
+            {
+                cell = map.HiveGrid().Hivelist.RandomElement().Position;
+                locationC = map.HiveGrid().Hivelist.RandomElement().Position;
+                return true;
+            }
+            if (!map.HiveGrid().HiveLoclist.NullOrEmpty())
+            {
+                cell = map.HiveGrid().HiveLoclist.RandomElement();
+                locationC = map.HiveGrid().HiveLoclist.RandomElement();
+                return true;
+            }
             Predicate<IntVec3> validator = delegate (IntVec3 y)
             {
                 if (y.GetTerrain(map).HasTag("Water"))

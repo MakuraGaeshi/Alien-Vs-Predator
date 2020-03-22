@@ -44,10 +44,12 @@ namespace RRYautja
             Scribe_Values.Look<int>(ref this.Impregnations, "Impregnations", 0);
             Scribe_Values.Look<int>(ref this.countToSpawn, "countToSpawn", 1);
             Scribe_Values.Look<bool>(ref this.royaleHugger, "royaleHugger");
+            Scribe_Values.Look<bool>(ref this.bursted, "bursted");
             Scribe_Values.Look<bool>(ref this.predalienImpregnation, "predalienImpregnation",false);
         }
 
         bool logonce = false;
+        bool bursted = false;
         public int countToSpawn = 1;
         int lastCoughTick = 0;
         int nextCoughTick = 0; 
@@ -328,16 +330,15 @@ namespace RRYautja
             Map spawnMap = !base.Pawn.Dead ? base.parent.pawn.Map : base.parent.pawn.MapHeld;
             this.Pawn.def.race.deathActionWorkerClass = typeof(DeathActionWorker_Simple);
             bool fullterm = this.parent.CurStageIndex > this.parent.def.stages.Count - 3;
-            if (!fullterm)
+            if (!fullterm || bursted)
             {
-                Log.Message(string.Format("died  before reaching fullterm, no spawning"));
                 return;
             }
             else
             {
+                bursted = true;
                 if (spawnMap == null || spawnLoc == null)
                 {
-                    Log.Message(string.Format("spawnMap or spawnLoc is null, no spawning"));
                     return;
                 }
                 else

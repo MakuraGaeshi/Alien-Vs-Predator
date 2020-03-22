@@ -48,11 +48,12 @@ namespace RRYautja.settings
     class AvPMod : Mod
     {
         private AvPSettings settings;
+        public static Harmony harmony;
         public AvPMod(ModContentPack content) : base(content)
         {
             this.settings = GetSettings<AvPSettings>();
             SettingsHelper.latest = this.settings;
-            var harmony = new Harmony("com.ogliss.rimworld.mod.rryatuja");
+            harmony = new Harmony("com.ogliss.rimworld.mod.rryatuja");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
         }
 

@@ -16,19 +16,7 @@ namespace RimWorld
             
 			Map map = (Map)parms.target;
             bool result = base.CanFireNowSub(parms) && XenomorphHiveUtility.TotalSpawnedHiveLikesCount(map) < 1 && InfestationLikeCellFinder.TryFindCell(out intVec, out IntVec3 lc, map);
-            ThingDef thing = DefDatabase<ThingDef>.GetNamedSilentFail("O21_AntiInfestationThumper");
-            /*
-            if (map.listerBuildings.ColonistsHaveBuildingWithPowerOn(thing) && result)
-            {
-                Thing thumper = map.listerBuildings.AllBuildingsColonistOfDef(thing).FirstOrFallback();
-                GenExplosion.DoExplosion(thumper.Position, thumper.Map, 5f, DamageDefOf.Bomb, thumper, 50000, 2f, SoundDefOf.PlanetkillerImpact);
-                IncidentDef def = DefDatabase<IncidentDef>.GetNamed("");
-                parms.points *= 3;
-                QueuedIncident qi = new QueuedIncident(new FiringIncident(def, null, parms), Find.TickManager.TicksGame+10);
-                Find.Storyteller.incidentQueue.Add(qi);
-                return false;
-            }
-            */
+            
 			return result;
             
             /*

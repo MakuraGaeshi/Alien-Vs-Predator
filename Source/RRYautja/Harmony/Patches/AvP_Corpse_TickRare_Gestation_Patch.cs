@@ -27,11 +27,9 @@ namespace RRYautja
             {
                 if (__instance.InnerPawn!=null)
                 {
-                    Hediff parasite;
-                    bool host = __instance.InnerPawn.isHost(out parasite);
-                    if (host)
+                    if (__instance.InnerPawn.isHost(out Hediff parasite))
                     {
-                        if (parasite!=null)
+                        if (parasite!=null && parasite.CurStageIndex>=3)
                         {
                             for (int i = 0; i < 250; i++)
                             {

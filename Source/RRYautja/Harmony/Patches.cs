@@ -18,7 +18,7 @@ namespace RRYautja
     [StaticConstructorOnStartup]
     class Main
     {
-        private static readonly Type patchType = typeof(Main);
+        public static readonly Type patchType = typeof(Main);
         static Main()
         {
             //    HarmonyInstance.DEBUG = true;
@@ -31,31 +31,22 @@ namespace RRYautja
                     AlienRace.RaceRestrictionSettings.apparelWhiteDict[key: def].Add(item: ((AlienRace.ThingDef_AlienRace)YautjaDefOf.RRY_Alien_Yautja));
                 }
             }
-            IEnumerable<ThingDef> pystrainers = DefDatabase<ThingDef>.AllDefs.Where(x => x.defName.Contains(NeurotrainerDefGenerator.PsytrainerDefPrefix));
-            foreach (AbilityDef item in DefDatabase<RRYautja.EquipmentAbilityDef>.AllDefs)
+
+
+
+            ThingDef thing = DefDatabase<ThingDef>.GetNamedSilentFail("O21_AntiInfestationThumper");
+            if (thing != null)
             {
-                if (pystrainers.Any(x => x.defName.Contains(item.defName)))
-                {
-                    ThingDef trainer = pystrainers.First(x => x.defName.Contains(item.defName));
-                    DefDatabase<ThingDef>.AllDefsListForReading.Remove(trainer);
-                }
+                ThumperPatch();
             }
-            Log.Message("clothes loaded");
-            /*
-            if (enabled_AI)
-            {
-                Log.Message("Thumper detected");
-                harmony.Patch(AccessTools.Method(typeof(IncidentWorker_Hivelike), "IncidentWorker_UniversalTryExecuteWorker_Prefix", null, null), new HarmonyMethod(Main.patchType, "AlienVsPredator_Compatibility_Prefix", null));
-            }
-            */
         }
-        public static bool AlienVsPredator_Compatibility_Prefix(IncidentWorker_Infestation __instance, IncidentParms parms, ref bool __result)
+        public static void ThumperPatch()
         {
-            if (parms.faction==null)
-            {
-                Log.Message("parms.faction == null");
-            }
-            return __result;
+            AvPMod.harmony.Patch(AccessTools.Method(typeof(Thumper.HarmonyPatches), "AlienVsPredator_Compatibility", null, null), new HarmonyMethod(Main.patchType, "AlienVsPredator_Compatibility_Prefix", null));
+        }
+        public static bool AlienVsPredator_Compatibility_Prefix()
+        {
+            return false;
         }
 
     }
