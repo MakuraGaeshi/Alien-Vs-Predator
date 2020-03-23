@@ -332,9 +332,8 @@
 		<li>RRY_USCM_RangedWeapons</li>
 	</tradeTags>
     <verbs>
-		<li Class="RRyautja.VerbPropertiesOGSG">
-			<verbClass>RRYautja.Verb_ShootShotgun</verbClass>
-			<pelletCount>3</pelletCount>
+		<li>
+			<verbClass>Verb_Shoot</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>RRY_USCM_Bullet_M240F</defaultProjectile>
 			<warmupTime>0.5</warmupTime>
@@ -447,9 +446,8 @@
 		<li>RRY_USCM_RangedWeapons</li>
 	</tradeTags>
     <verbs>
-		<li Class="RRyautja.VerbPropertiesOGSG">
-			<verbClass>RRYautja.Verb_ShootShotgun</verbClass>
-			<pelletCount>3</pelletCount>
+		<li>
+			<verbClass>Verb_Shoot</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>RRY_USCM_Bullet_M240A2F</defaultProjectile>
 			<warmupTime>2.5</warmupTime>

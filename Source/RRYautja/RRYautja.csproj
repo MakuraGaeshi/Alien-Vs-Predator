@@ -122,7 +122,7 @@
     <Compile Include="USCM\HediffGiver_Synth.cs" />
     <Compile Include="USCM\CompSmartgunSystem.cs" />
     <Compile Include="USCM\CompFireOverlay.cs" />
-    <Compile Include="USCM\Verb_ShootShotgun.cs" />
+    <None Include="USCM\Verb_ShootShotgun.cs.bak" />
     <Compile Include="USCM\DamageWorker_FlameNoCamShake.cs" />
     <Compile Include="USCM\HediffComp_DefectiveInhibitor.cs" />
     <Compile Include="USCM\USCMDefOf.cs" />
