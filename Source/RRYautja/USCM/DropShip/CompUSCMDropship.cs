@@ -1061,7 +1061,11 @@ namespace RRYautja
             }
         //    Log.Message("3 ");
             List<CompTransporter> transportersInGroup = this.TransportersInGroup;
-        //    Log.Message("4 ");
+            //    Log.Message("4 ");
+            if (this.Transporter.groupID < 0)
+            {
+                this.Transporter.groupID = this.parent.thingIDNumber;
+            }
             if (!this.autodustoff)
             {
                 if (transportersInGroup == null)

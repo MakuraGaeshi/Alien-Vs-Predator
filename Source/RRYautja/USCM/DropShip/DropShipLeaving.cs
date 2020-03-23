@@ -2,6 +2,7 @@
 using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Verse;
 using Verse.AI.Group;
@@ -24,6 +25,11 @@ namespace RRYautja
         // Token: 0x0600271E RID: 10014 RVA: 0x00129D34 File Offset: 0x00128134
         protected override void LeaveMap()
         {
+            if (this.groupID < 0 && this.destinationTile < 0)
+            {
+                this.Destroy(DestroyMode.Vanish);
+                return;
+            }
             if (this.alreadyLeft)
             {
                 base.LeaveMap();
