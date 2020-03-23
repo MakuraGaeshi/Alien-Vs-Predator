@@ -107,6 +107,7 @@
     <Compile Include="Harmony\Patches\AvP_NeurotrainerDefGenerator_ImpliedThingDefs_Filter_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Verb_Shoot_TryCastShot_Scattershot_Patch.cs" />
     <Compile Include="Harmony\Patches\Class1.cs" />
+    <Compile Include="USCM\CompSmartgunSystem.cs" />
     <Compile Include="USCM\DropShip\ActiveDropShip.cs" />
     <Compile Include="USCM\DropShip\DropShipIncoming.cs" />
     <Compile Include="USCM\DropShip\Gizmo_MapRefuelableFuelStatus.cs" />
@@ -120,7 +121,7 @@
     <Compile Include="USCM\HediffComp_Overheating.cs" />
     <Compile Include="USCM\UtilSynths.cs" />
     <Compile Include="USCM\HediffGiver_Synth.cs" />
-    <Compile Include="USCM\CompSmartgunSystem.cs" />
+    <Compile Include="util\CompSpecimenContainer.cs" />
     <Compile Include="USCM\CompFireOverlay.cs" />
     <None Include="USCM\Verb_ShootShotgun.cs.bak" />
     <Compile Include="USCM\DamageWorker_FlameNoCamShake.cs" />

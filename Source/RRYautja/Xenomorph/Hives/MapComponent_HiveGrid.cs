@@ -10,9 +10,13 @@ namespace RRYautja
 {
     public class PotentialXenomorphHiveLocation : IExposable
     {
+        public PotentialXenomorphHiveLocation()
+        {
+            this.X = -1;
+            this.Z = -1;
+        }
         public PotentialXenomorphHiveLocation(IntVec3 value)
         {
-
             this.X = value.x;
             this.Z = value.z;
         }

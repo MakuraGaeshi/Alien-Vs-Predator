@@ -295,7 +295,7 @@ namespace RimWorld
             Map map = pawn.Map;
             IntVec3 pos = pawn.Position;
             Comp_Xenomorph _Xenomorph = pawn.xenomorph();
-            IntVec3 HiveCenter = _Xenomorph.HiveLoc == IntVec3.Invalid || _Xenomorph.HiveLoc == IntVec3.Zero ? pawn.mindState.duty.focus.Cell : _Xenomorph.HiveLoc;
+            IntVec3 HiveCenter = _Xenomorph.HiveLoc;
             
             Region region = pawn.GetRegion(RegionType.Set_Passable);
             if (region == null)
@@ -339,7 +339,7 @@ namespace RimWorld
                     IntVec3 c = HiveCenter;
                     if (c.InBounds(pawn.Map) && c.Roofed(pawn.Map) && pawn.CanReserveAndReach(c, PathEndMode.OnCell, Danger.Deadly))
                     {
-                        return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Construct_Hive_Slime, c)
+                        return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Construct_Hive_Node, c)
                         {
                             ignoreDesignations = false
                         };

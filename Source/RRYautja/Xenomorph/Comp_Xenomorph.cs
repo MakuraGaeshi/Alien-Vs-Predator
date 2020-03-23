@@ -44,8 +44,8 @@ namespace RRYautja
         public bool hidden = false;
         public bool Hidden = false;
         public int healIntervalTicks = 60;
-        public int HiveX;
-        public int HiveZ;
+        public int HiveX = -1;
+        public int HiveZ = -1;
 
         public PawnKindDef HuggerKindDef = XenomorphDefOf.RRY_Xenomorph_FaceHugger;
         public PawnKindDef RoyaleKindDef = XenomorphDefOf.RRY_Xenomorph_RoyaleHugger;
@@ -72,7 +72,7 @@ namespace RRYautja
                 {
                     if (map!=null)
                     {
-                        if (!XenomorphKidnapUtility.TryFindGoodHiveLoc(pawn, out IntVec3 hive, null, true, false, true))
+                        if (XenomorphKidnapUtility.TryFindGoodHiveLoc(pawn, out IntVec3 hive, null, true, false, true))
                         {
                             HiveX = hive.x;
                             HiveZ = hive.z;
