@@ -103,9 +103,9 @@ namespace RimWorld
                 }
                 catch (Exception)
                 {
-                    Log.Message(string.Format("pawn: {0}", pawn));
-                    Log.Message(string.Format("ingestibleSource.def: {0}", ingestibleSource.def));
-                    Log.Message(string.Format("Nutrition: {0}", ingestibleSource.GetStatValue(StatDefOf.Nutrition, true)));
+                //    Log.Message(string.Format("pawn: {0}", pawn));
+                //    Log.Message(string.Format("ingestibleSource.def: {0}", ingestibleSource.def));
+                //    Log.Message(string.Format("Nutrition: {0}", ingestibleSource.GetStatValue(StatDefOf.Nutrition, true)));
                     return false;
                 }
             }

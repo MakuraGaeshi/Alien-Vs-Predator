@@ -17,6 +17,20 @@ using System.Reflection.Emit;
 
 namespace RRYautja
 {
+
+    /*
+    [HarmonyPatch(typeof(GenStep_ScatterRuinsSimple), "ScatterAt")]
+    public static class AvP_GenStep_ScatterRuinsSimple_ScatterAt_Patch
+    {
+        [HarmonyPostfix]
+        public static void ScatterAt_Postfix(GenStep_ScatterRuinsSimple __instance, IntVec3 c, Map map)
+        {
+            map.HiveGrid().PotentialHiveLoclist.Add(new PotentialXenomorphHiveLocation(c));
+        }
+    }
+    
+    */
+
     [HarmonyPatch(typeof(GenStep_ScatterRuinsSimple), "ScatterAt")]
     static class AvP_GenStep_ScatterRuinsSimple_ScatterAt_Patch
     {
@@ -28,7 +42,6 @@ namespace RRYautja
                 yield return instruction;
                 if (instruction.operand as MethodInfo == typeof(CellRect).GetMethod("get_CenterCell"))
                 {
-                    Log.Message("found get_CenterCell");
                     yield return new CodeInstruction(OpCodes.Call, typeof(AvP_GenStep_ScatterRuinsSimple_ScatterAt_Patch).GetMethod("CenterCellValue"));
                 }
 
@@ -36,10 +49,11 @@ namespace RRYautja
         }
         public static IntVec3 CenterCellValue(IntVec3 pos)
         {
-            Log.Message("x: " + pos.x);
-            Log.Message("y: " + pos.y);
-            Log.Message("center cell value: " + pos);
-
+            Map map = MapGenerator.mapBeingGenerated;
+            MapComponent_HiveGrid hiveGrid = map.HiveGrid();
+            hiveGrid.PotentialHiveLoclist.Add(new PotentialXenomorphHiveLocation(pos));
+        //    Log.Message(string.Format("Ruin spawned: {0}, adding to Maps Potential Hive locations, Total: {1}", pos, hiveGrid.PotentialHiveLoclist.Count));
+            
             return pos;
         }
     }

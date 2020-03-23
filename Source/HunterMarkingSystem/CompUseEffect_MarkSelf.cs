@@ -106,8 +106,8 @@ namespace HunterMarkingSystem
                 {
                     this.corpse = corpse;
                     /*
-                    Log.Message(string.Format("this.parent is Corpse corpse"));
-                    Log.Message(string.Format("corpse.InnerPawn.kindDef.race: {0}, def: {1}", corpse.InnerPawn.kindDef.race, def));
+                //    Log.Message(string.Format("this.parent is Corpse corpse"));
+                //    Log.Message(string.Format("corpse.InnerPawn.kindDef.race: {0}, def: {1}", corpse.InnerPawn.kindDef.race, def));
                     */
                     if (corpse.InnerPawn.kindDef.race == def || corpse == Corpse)
                     {

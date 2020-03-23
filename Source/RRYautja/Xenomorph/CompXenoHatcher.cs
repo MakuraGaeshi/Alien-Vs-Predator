@@ -134,7 +134,7 @@ namespace RRYautja
                 bool flag = XenomorphUtil.isInfectablePawn(pawn);
                 if (selected)
                 {
-                    Log.Message(string.Format("{0} isInfectable?: {1}", pawn.Label, flag));
+                //    Log.Message(string.Format("{0} isInfectable?: {1}", pawn.Label, flag));
                 }
                 if (flag)
                 {
@@ -148,8 +148,8 @@ namespace RRYautja
                     float thingmovespeed = thing.GetStatValue(StatDefOf.MoveSpeed);
                     if (selected)
                     {
-                        Log.Message(string.Format("distance between {1} @{3} and {2} @ {4}: {0}, gestateProgress: {5}, mutateProgress: {6}", MyPos.DistanceTo(pawn.Position), this.parent.LabelShort, pawn.Label, MyPos, pawn.Position , gestateProgress, mutateProgress));
-                        Log.Message(string.Format("{0} thingsize: {1}, thingstealth: {2}, thingmovespeed: {3}", pawn.Label, thingsize, thingstealth, thingmovespeed));
+                    //    Log.Message(string.Format("distance between {1} @{3} and {2} @ {4}: {0}, gestateProgress: {5}, mutateProgress: {6}", MyPos.DistanceTo(pawn.Position), this.parent.LabelShort, pawn.Label, MyPos, pawn.Position , gestateProgress, mutateProgress));
+                    //    Log.Message(string.Format("{0} thingsize: {1}, thingstealth: {2}, thingmovespeed: {3}", pawn.Label, thingsize, thingstealth, thingmovespeed));
                     }
 
                     float hatchon = ((10*thingdist) - (thingsize * 5));
@@ -160,7 +160,7 @@ namespace RRYautja
                     }
                     if (selected)
                     {
-                        Log.Message(string.Format("{0} hatchon: {1}, roll: {2}, willHatch: {3}", pawn.Label, hatchon, roll, willHatch));
+                    //    Log.Message(string.Format("{0} hatchon: {1}, roll: {2}, willHatch: {3}", pawn.Label, hatchon, roll, willHatch));
                     }
                 }
             }
@@ -168,7 +168,7 @@ namespace RRYautja
 
         public void TryMutate()
         {
-            Log.Message("TryMutate");
+        //    Log.Message("TryMutate");
             float num = 1f / (this.Props.hatcherDaystoHatch * 60000f);
             float chance = 0.1f;
             EggState state = EggState.Normal;
@@ -188,13 +188,13 @@ namespace RRYautja
             }
             if (flagMutate && Rand.Chance(chance))
             {
-                Log.Message("Mutated");
+            //    Log.Message("Mutated");
                 eggState = state;
                 this.mutateProgress += num;
             }
             else
             {
-                Log.Message("Mutation failed");
+            //    Log.Message("Mutation failed");
             }
         }
 

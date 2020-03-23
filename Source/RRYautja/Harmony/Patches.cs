@@ -32,8 +32,6 @@ namespace RRYautja
                 }
             }
 
-
-
             ThingDef thing = DefDatabase<ThingDef>.GetNamedSilentFail("O21_AntiInfestationThumper");
             if (thing != null)
             {
@@ -46,6 +44,7 @@ namespace RRYautja
         }
         public static bool AlienVsPredator_Compatibility_Prefix()
         {
+        //    Log.Message("FYT");
             return false;
         }
 

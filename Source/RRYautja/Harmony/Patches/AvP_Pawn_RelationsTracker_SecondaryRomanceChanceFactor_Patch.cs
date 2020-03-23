@@ -42,19 +42,19 @@ namespace RRYautja
                         {
                             float num = 0.25f;
                             __result *= num;
-                            Log.Message(string.Format("{0}({1}) is alien to {2}({3}), lowering compatability by {4} to {5} due to {2}'s Xenophobia", otherPawn.LabelShortCap, otherPawn.def.LabelCap, pawn.LabelShortCap, pawn.def.LabelCap, num, __result));
+                        //    Log.Message(string.Format("{0}({1}) is alien to {2}({3}), lowering compatability by {4} to {5} due to {2}'s Xenophobia", otherPawn.LabelShortCap, otherPawn.def.LabelCap, pawn.LabelShortCap, pawn.def.LabelCap, num, __result));
                         }
                         else if (degree == -1)
                         {
                             float num = 1.75f;
                             __result *= num;
-                            Log.Message(string.Format("{0}({1}) is alien to {2}({3}), increasing compatability by {4} to {5} due to {2}'s Xenophelia", otherPawn.LabelShortCap, otherPawn.def.LabelCap, pawn.LabelShortCap, pawn.def.LabelCap, num, __result));
+                        //    Log.Message(string.Format("{0}({1}) is alien to {2}({3}), increasing compatability by {4} to {5} due to {2}'s Xenophelia", otherPawn.LabelShortCap, otherPawn.def.LabelCap, pawn.LabelShortCap, pawn.def.LabelCap, num, __result));
                         }
                         else
                         {
                             float num = 0.5f;
                             __result *= num;
-                            Log.Message(string.Format("{0}({1}) is alien to {2}({3}), lowering compatability by {4} to {5}", otherPawn.LabelShortCap, otherPawn.def.LabelCap, pawn.LabelShortCap, pawn.def.LabelCap, num, __result));
+                        //    Log.Message(string.Format("{0}({1}) is alien to {2}({3}), lowering compatability by {4} to {5}", otherPawn.LabelShortCap, otherPawn.def.LabelCap, pawn.LabelShortCap, pawn.def.LabelCap, num, __result));
                         }
                     }
                     else
@@ -62,7 +62,7 @@ namespace RRYautja
                         float num = 1f;
                         __result *= num;
 
-                        Log.Message(string.Format("{0} and {1} are both {2} no action taken", otherPawn.LabelShortCap, pawn.LabelShortCap, pawn.def.LabelCap));
+                    //    Log.Message(string.Format("{0} and {1} are both {2} no action taken", otherPawn.LabelShortCap, pawn.LabelShortCap, pawn.def.LabelCap));
                     }
                     */
                 }

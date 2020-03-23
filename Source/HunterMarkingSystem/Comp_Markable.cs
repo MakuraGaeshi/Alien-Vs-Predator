@@ -79,7 +79,7 @@ namespace HunterMarkingSystem
             {
                 bool result = !Inducted && (allowedRaces.NullOrEmpty() || allowedRaces.Contains(pawn.def)) && (disallowedRaces.NullOrEmpty() || !disallowedRaces.Contains(pawn.def)) && blood >= BloodStatusMode.Unblooded;
 
-                Log.Message(string.Format(pawn.Name.ToStringShort + " inductable: {0} = {1} && {2} && {3} && {4} && {5}", result, !Inducted, (allowedRaces.NullOrEmpty() || allowedRaces.Contains(pawn.def)), (disallowedRaces.NullOrEmpty() || !disallowedRaces.Contains(pawn.def)), blood == BloodStatusMode.Unblooded, MarkableCorpse));
+            //    Log.Message(string.Format(pawn.Name.ToStringShort + " inductable: {0} = {1} && {2} && {3} && {4} && {5}", result, !Inducted, (allowedRaces.NullOrEmpty() || allowedRaces.Contains(pawn.def)), (disallowedRaces.NullOrEmpty() || !disallowedRaces.Contains(pawn.def)), blood == BloodStatusMode.Unblooded, MarkableCorpse));
                 return result;
             }
         }
@@ -133,7 +133,7 @@ namespace HunterMarkingSystem
                 /*
                 if (blood <= (BloodStatusMode)1)
                 {
-                    Log.Message("Markable missing hediff, restting to unblooded");
+                //    Log.Message("Markable missing hediff, restting to unblooded");
                     pawn.health.AddHediff(Unbloodeddef, partRecord);
                     blood = BloodStatusMode.Unblooded;
                 }
@@ -195,7 +195,7 @@ namespace HunterMarkingSystem
             /*
             if (blood <= (BloodStatusMode)1)
             {
-                Log.Message("Markable missing hediff, restting to unblooded");
+            //    Log.Message("Markable missing hediff, restting to unblooded");
                 pawn.health.AddHediff(Unbloodeddef, partRecord);
                 blood = BloodStatusMode.Unblooded;
             }
@@ -213,7 +213,7 @@ namespace HunterMarkingSystem
             }
             else
             {
-                Log.Message(string.Format("markData exists for {0} pawn {1}, {2}", BloodStatus.ToString(), pawn.Name.ToStringShort, markDataKill.Label));
+            //    Log.Message(string.Format("markData exists for {0} pawn {1}, {2}", BloodStatus.ToString(), pawn.Name.ToStringShort, markDataKill.Label));
             }
         }
         

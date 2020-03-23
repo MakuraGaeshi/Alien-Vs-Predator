@@ -319,10 +319,10 @@ namespace RRYautja
                         {
                             if (GunExt.ScattershotCount>0 && AMASettings.Instance.AllowMultiShot)
                             {
-                                Log.Message(string.Format("AllowMultiShot: {0} Projectile Count: {1}", AMASettings.Instance.AllowMultiShot, GunExt.ScattershotCount));
+                            //    Log.Message(string.Format("AllowMultiShot: {0} Projectile Count: {1}", AMASettings.Instance.AllowMultiShot, GunExt.ScattershotCount));
                                 for (int i = 0; i < GunExt.ScattershotCount; i++)
                                 {
-                                    Log.Message(string.Format("Launching extra projectile {0} / {1}", i, GunExt.ScattershotCount));
+                                //    Log.Message(string.Format("Launching extra projectile {0} / {1}", i, GunExt.ScattershotCount));
                                     TryCastExtraShot(ref __instance);
                                 }
                             }
@@ -340,7 +340,7 @@ namespace RRYautja
                                             Immunityflag = launcherPawn.def.defName.Contains(item);
                                             if (Immunityflag)
                                             {
-                                                Log.Message(string.Format("{0} is immune to their {1}'s UseEffect",launcherPawn.LabelShortCap, __instance.EquipmentSource.LabelShortCap));
+                                            //    Log.Message(string.Format("{0} is immune to their {1}'s UseEffect",launcherPawn.LabelShortCap, __instance.EquipmentSource.LabelShortCap));
                                                 return;
                                             }
                                         }

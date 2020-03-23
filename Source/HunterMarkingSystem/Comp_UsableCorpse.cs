@@ -126,7 +126,7 @@ namespace HunterMarkingSystem
         {
             if (!this.CanBeUsedBy(p, out string text))
             {
-                Log.Message(text);
+            //    Log.Message(text);
                 return;
             }
             foreach (CompUseEffect compUseEffect in from x in this.parent.GetComps<CompUseEffect>()

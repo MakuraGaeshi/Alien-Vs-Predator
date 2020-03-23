@@ -283,26 +283,26 @@ namespace RRYautja
             Pawn pawn;
             if (Instigator != null)
             {
-                Log.Message("using instigator");
+            //    Log.Message("using instigator");
                 pawn = instigator;
             }
             else
             {
                 if (this.innerContainer.Any(x=>x is Pawn))
                 {
-                    Log.Message("using innerContainer");
+                //    Log.Message("using innerContainer");
                     pawn = (Pawn)this.innerContainer.First(x => x is Pawn);
                 }
                 else
                 {
-                    Log.Message("using PawnGenerator");
+                //    Log.Message("using PawnGenerator");
                     PawnGenerationRequest pawnGenerationRequest = new PawnGenerationRequest(pawnKindDef, null, PawnGenerationContext.NonPlayer, -1, true, false, true, false, true, true, 0f);
                     pawn = PawnGenerator.GeneratePawn(pawnGenerationRequest);
                 }
             }
             if (spawnLive == true)
             {
-                Log.Message("using spawnLive");
+            //    Log.Message("using spawnLive");
                 Comp_Facehugger _Facehugger = pawn.TryGetComp<Comp_Facehugger>();
                 if (_Facehugger!=null)
                 {
@@ -321,7 +321,7 @@ namespace RRYautja
             }
             else
             {
-                Log.Message("using spawnDead");
+            //    Log.Message("using spawnDead");
                 if (!pawn.Spawned)
                 {
                     GenSpawn.Spawn(pawn, spawnLoc, spawnMap, 0);

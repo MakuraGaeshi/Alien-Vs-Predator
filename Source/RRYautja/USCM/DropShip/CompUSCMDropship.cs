@@ -802,7 +802,7 @@ namespace RRYautja
                 activeDropPod.Contents = new ActiveDropPodInfo();
                 foreach (var item in carr.AllThings)
                 {
-                    Log.Message(string.Format("carr.AllThings: {0}", item));
+                //    Log.Message(string.Format("carr.AllThings: {0}", item));
                 }
 
 
@@ -815,7 +815,7 @@ namespace RRYautja
                 }
                 foreach (var item in activeDropPod.Contents.innerContainer)
                 {
-                    Log.Message(string.Format("activeDropPod: {0}", item));
+                //    Log.Message(string.Format("activeDropPod: {0}", item));
                 }
                 cafr.RemoveAllPawns();
                 if (cafr.Spawned)
@@ -912,7 +912,7 @@ namespace RRYautja
                 }
                 catch (Exception)
                 {
-                    Log.Message("TransportersInGroup false");
+                //    Log.Message("TransportersInGroup false");
                     throw;
                 }
                 return true;
@@ -1048,20 +1048,20 @@ namespace RRYautja
 
         public void Send()
         {
-            Log.Message("1 ");
+        //    Log.Message("1 ");
             if (this.sending)
             {
                 return;
             }
-            Log.Message("2 ");
+        //    Log.Message("2 ");
             if (!this.parent.Spawned)
             {
                 Log.Error("Tried to send " + this.parent + ", but it's unspawned.", false);
                 return;
             }
-            Log.Message("3 ");
+        //    Log.Message("3 ");
             List<CompTransporter> transportersInGroup = this.TransportersInGroup;
-            Log.Message("4 ");
+        //    Log.Message("4 ");
             if (!this.autodustoff)
             {
                 if (transportersInGroup == null)
@@ -1070,16 +1070,16 @@ namespace RRYautja
                     return;
                 }
             }
-            Log.Message("5 ");
+        //    Log.Message("5 ");
             if (!this.LoadingInProgressOrReadyToLaunch)
             {
-                Log.Message("5 1");
+            //    Log.Message("5 1");
                 return;
             }
-            Log.Message("6 ");
+        //    Log.Message("6 ");
             if (!this.AllRequiredThingsLoaded)
             {
-                Log.Message("7 ");
+            //    Log.Message("7 ");
                 if (this.dropEverythingIfUnsatisfied)
                 {
                     this.Transporter.CancelLoad();
@@ -1101,14 +1101,14 @@ namespace RRYautja
                     }
                 }
             }
-            Log.Message("8 ");
+        //    Log.Message("8 ");
             this.sending = true;
             bool allRequiredThingsLoaded = this.AllRequiredThingsLoaded;
-            Log.Message("9 ");
+        //    Log.Message("9 ");
             Map map = this.parent.Map;
             this.Transporter.TryRemoveLord(map);
             string signalPart = allRequiredThingsLoaded ? "SentSatisfied" : "SentUnsatisfied";
-            Log.Message("10 ");
+        //    Log.Message("10 ");
             /*
             for (int k = 0; k < transportersInGroup.Count; k++)
             {
@@ -1117,7 +1117,7 @@ namespace RRYautja
             */
             List<Pawn> list = new List<Pawn>();
 
-            Log.Message("11 ");
+        //    Log.Message("11 ");
             Transporter.innerContainer.ClearAndDestroyContentsOrPassToWorld(DestroyMode.Vanish);
             Thing newThing = ThingMaker.MakeThing(USCMDefOf.RRY_USCM_DropshipUD4LLeaving, null);
             Transporter.CleanUpLoadingVars(map);

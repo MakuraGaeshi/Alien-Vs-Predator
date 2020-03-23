@@ -47,7 +47,7 @@ namespace RRYautja
                 }
                 else
                 {
-                    Log.Message("EquipmentSource == null");
+                //    Log.Message("EquipmentSource == null");
                 }
                 return this.verbProps.defaultProjectile;
             }

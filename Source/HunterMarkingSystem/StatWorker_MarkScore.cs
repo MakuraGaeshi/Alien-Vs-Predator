@@ -108,7 +108,7 @@ namespace RimWorld
                 }
                 catch (Exception)
                 {
-                    Log.Message(string.Format("health"));
+                //    Log.Message(string.Format("health"));
                 }
                 try
                 {
@@ -117,7 +117,7 @@ namespace RimWorld
                 }
                 catch (Exception)
                 {
-                    Log.Message(string.Format("size"));
+                //    Log.Message(string.Format("size"));
                 }
                 try
                 {
@@ -128,7 +128,7 @@ namespace RimWorld
                 }
                 catch (Exception)
                 {
-                    Log.Message(string.Format("armour"));
+                //    Log.Message(string.Format("armour"));
                 }
                 try
                 {
@@ -137,7 +137,7 @@ namespace RimWorld
                 }
                 catch (Exception)
                 {
-                    Log.Message(string.Format("melee chances"));
+                //    Log.Message(string.Format("melee chances"));
                 }
                 try
                 {
@@ -145,7 +145,7 @@ namespace RimWorld
                 }
                 catch (Exception)
                 {
-                    Log.Message(string.Format("Humanlike"));
+                //    Log.Message(string.Format("Humanlike"));
                 }
                 try
                 {
@@ -153,7 +153,7 @@ namespace RimWorld
                 }
                 catch (Exception)
                 {
-                    Log.Message(string.Format("predator"));
+                //    Log.Message(string.Format("predator"));
                 }
             }
             num = 1f;

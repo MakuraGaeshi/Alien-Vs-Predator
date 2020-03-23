@@ -214,7 +214,7 @@ namespace RRYautja
             PawnKindDef pawnKindDef = XenomorphDefOf.RRY_Xenomorph_Neomorph;
             if (Prefs.DevMode)
             {
-                 Log.Message(string.Format("spawning: {0}", pawnKindDef.label));
+             //    Log.Message(string.Format("spawning: {0}", pawnKindDef.label));
                 parent.pawn.resultingXenomorph();
             }
             PawnGenerationRequest request = new PawnGenerationRequest(pawnKindDef, Find.FactionManager.FirstFactionOfDef(pawnKindDef.defaultFactionType), PawnGenerationContext.NonPlayer, -1, true, true, false, false, true, false, 20f, fixedGender: gender);
@@ -240,14 +240,14 @@ namespace RRYautja
             bool fullterm = this.parent.CurStageIndex >= this.parent.def.stages.Count - 3;
             if (!fullterm)
             {
-                Log.Message(string.Format("died  before reaching fullterm, no spawning"));
+            //    Log.Message(string.Format("died  before reaching fullterm, no spawning"));
                 return;
             }
             else
             {
                 if (spawnMap == null || spawnLoc == null)
                 {
-                    Log.Message(string.Format("spawnMap or spawnLoc is null, no spawning"));
+                //    Log.Message(string.Format("spawnMap or spawnLoc is null, no spawning"));
                     return;
                 }
                 else

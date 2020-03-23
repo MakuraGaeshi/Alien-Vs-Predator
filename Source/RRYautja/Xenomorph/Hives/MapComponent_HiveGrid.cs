@@ -442,7 +442,7 @@ namespace RRYautja
             Scribe_Collections.Look<Pawn>(ref this.Runnerlist, "Runnerlist", LookMode.Reference, new object[0]);
             Scribe_Collections.Look<Pawn>(ref this.Predalienlist, "Predalienlist", LookMode.Reference, new object[0]);
             Scribe_Collections.Look<Pawn>(ref this.Thrumbomorphlist, "Thrumbomorphlist", LookMode.Reference, new object[0]);
-            Scribe_Collections.Look<PotentialXenomorphHiveLocation>(ref this.PotentialHiveLoclist, "PotentialHiveLoclist", LookMode.Reference, new object[0]);
+            Scribe_Collections.Look<PotentialXenomorphHiveLocation>(ref this.PotentialHiveLoclist, "PotentialHiveLoclist", LookMode.Deep);
             Scribe_Collections.Look<Thing>(ref this.Hivelist, "Hivelist", LookMode.Reference, new object[0]);
             Scribe_Collections.Look<Thing>(ref this.HiveChildlist, "HiveChildlist", LookMode.Reference, new object[0]);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
@@ -494,13 +494,6 @@ namespace RRYautja
         {
             get
             {
-                foreach (PotentialXenomorphHiveLocation item in PotentialHiveLoclist)
-                {
-                    if (!hiveLoclist.Contains(item.HiveLoc))
-                    {
-                        hiveLoclist.Add(item.HiveLoc);
-                    }
-                }
                 return hiveLoclist;
             }
             set

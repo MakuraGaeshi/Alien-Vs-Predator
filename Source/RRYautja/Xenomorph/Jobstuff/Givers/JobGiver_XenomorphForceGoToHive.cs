@@ -78,35 +78,35 @@ namespace Verse.AI
                 }
             }
             /*
-            Log.Message("TryGiveJob 6");
-            Log.Message(string.Format("TryGiveJob 6 {0}, {1}", pawn.Map, c));
+        //    Log.Message("TryGiveJob 6");
+        //    Log.Message(string.Format("TryGiveJob 6 {0}, {1}", pawn.Map, c));
             if (c.GetFirstBuilding(pawn.Map)!=null)
             {
-                Log.Message(string.Format("TryGiveJob 6 {0}, {1} Building == {2}", pawn.Map, c, c.GetFirstBuilding(pawn.Map)));
+            //    Log.Message(string.Format("TryGiveJob 6 {0}, {1} Building == {2}", pawn.Map, c, c.GetFirstBuilding(pawn.Map)));
                 if (c.GetFirstBuilding(pawn.Map).def == XenomorphDefOf.RRY_Xenomorph_Hive)
                 {
-                    Log.Message("TryGiveJob 6 1");
+                //    Log.Message("TryGiveJob 6 1");
                     return null;
                 }
             }
             else
             {
-                Log.Message(string.Format("TryGiveJob 6 {0}, {1} Building == Null", pawn.Map, c));
+            //    Log.Message(string.Format("TryGiveJob 6 {0}, {1} Building == Null", pawn.Map, c));
                 if (c.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive) != null)
                 {
-                    Log.Message(string.Format("TryGiveJob 6 {0}, {1} Building == {2}", pawn.Map, c, c.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive)));
+                //    Log.Message(string.Format("TryGiveJob 6 {0}, {1} Building == {2}", pawn.Map, c, c.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive)));
                     if (c.GetFirstBuilding(pawn.Map).def == )
                     {
-                        Log.Message("TryGiveJob 6 1");
+                    //    Log.Message("TryGiveJob 6 1");
                         return null;
                     }
                 }
                 else
                 {
-                    Log.Message(string.Format("TryGiveJob 6 {0}, {1} Building == Null", pawn.Map, c));
+                //    Log.Message(string.Format("TryGiveJob 6 {0}, {1} Building == Null", pawn.Map, c));
                 }
             }
-            Log.Message("TryGiveJob 7");
+        //    Log.Message("TryGiveJob 7");
             */
             return new Job(JobDefOf.Goto, c)
             {

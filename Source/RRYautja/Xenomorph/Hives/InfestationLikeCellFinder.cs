@@ -3,6 +3,7 @@ using RRYautja;
 using RRYautja.ExtensionMethods;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Verse;
 
@@ -12,21 +13,25 @@ namespace RimWorld
     public static class InfestationLikeCellFinder
     {
         // Token: 0x0600368B RID: 13963 RVA: 0x001A0E1C File Offset: 0x0019F21C
-        public static bool TryFindCell(out IntVec3 cell, out IntVec3 locationC, Map map, bool allowFogged = false, bool allowUnroofed = false, bool allowDigging = false)
+        public static bool TryFindCell(out IntVec3 cell, out IntVec3 locationC, Map map, bool allowFogged = false, bool allowUnroofed = false, bool allowDigging = false, bool forceNew = false)
         {
             InfestationLikeCellFinder.CalculateLocationCandidates(map, allowFogged, allowUnroofed, allowDigging);
-            if (!map.HiveGrid().Hivelist.NullOrEmpty())
+            if (!forceNew)
             {
-                cell = map.HiveGrid().Hivelist.RandomElement().Position;
-                locationC = map.HiveGrid().Hivelist.RandomElement().Position;
-                return true;
+                if (!map.HiveGrid().Hivelist.NullOrEmpty())
+                {
+                    cell = map.HiveGrid().Hivelist.RandomElement().Position;
+                    locationC = map.HiveGrid().Hivelist.RandomElement().Position;
+                    return true;
+                }
+                if (!map.HiveGrid().HiveLoclist.NullOrEmpty())
+                {
+                    cell = map.HiveGrid().HiveLoclist.RandomElement();
+                    locationC = map.HiveGrid().HiveLoclist.RandomElement();
+                    return true;
+                }
             }
-            if (!map.HiveGrid().HiveLoclist.NullOrEmpty())
-            {
-                cell = map.HiveGrid().HiveLoclist.RandomElement();
-                locationC = map.HiveGrid().HiveLoclist.RandomElement();
-                return true;
-            }
+
             Predicate<IntVec3> validator = delegate (IntVec3 y)
             {
                 if (y.GetTerrain(map).HasTag("Water"))
@@ -50,6 +55,27 @@ namespace RimWorld
                 cell = IntVec3.Invalid;
                 if (!InfestationCellFinder.TryFindCell(out cell, map))
                 {
+                    if (!map.HiveGrid().PotentialHiveLoclist.NullOrEmpty())
+                    {
+                        if (map.HiveGrid().PotentialHiveLoclist.Any(x => x.X < 50 || x.Z < 50))
+                        {
+                            cell = map.HiveGrid().PotentialHiveLoclist.Where(x => x.X < 50 || x.Z < 50).RandomElement().HiveLoc;
+                            locationC = cell;
+                        }
+                        else
+                        if (map.HiveGrid().PotentialHiveLoclist.Any(x => x.X < 75 || x.Z < 75))
+                        {
+                            cell = map.HiveGrid().PotentialHiveLoclist.Where(x => x.X < 75 || x.Z < 75).RandomElement().HiveLoc;
+                            locationC = cell;
+                        }
+                        else
+                        {
+                            cell = map.HiveGrid().PotentialHiveLoclist.RandomElement().HiveLoc;
+                            locationC = cell;
+                        }
+                        return true;
+                    }
+
                     cell = IntVec3.Invalid;
                     locationC = IntVec3.Invalid;
                     return false;
@@ -78,7 +104,7 @@ namespace RimWorld
                 bool building = y.GetFirstBuilding(map).DestroyedOrNull();
                 bool thingA = y.GetFirstThing(map, namedA).DestroyedOrNull();
                 bool thingB = y.GetFirstThing(map, namedB).DestroyedOrNull();
-                Log.Message(string.Format("Cell: {0}, score: {1}, XenohiveA: {2}, XenohiveB: {3}, !filled: {4}, edifice: {5}, building: {6}, thingA: {7}, thingB: {8}\nResult: {9}", y, GetScoreAt(y, map, allowFogged), XenohiveA, XenohiveB, !filled, edifice, building, thingA, thingB, score && XenohiveA && XenohiveB && !filled && edifice && building && thingA && thingB));
+            //    Log.Message(string.Format("Cell: {0}, score: {1}, XenohiveA: {2}, XenohiveB: {3}, !filled: {4}, edifice: {5}, building: {6}, thingA: {7}, thingB: {8}\nResult: {9}", y, GetScoreAt(y, map, allowFogged), XenohiveA, XenohiveB, !filled, edifice, building, thingA, thingB, score && XenohiveA && XenohiveB && !filled && edifice && building && thingA && thingB));
                 return score && XenohiveA && XenohiveB && !filled && edifice && building && thingA && thingB;
             };
             if (!InfestationLikeCellFinder.locationCandidates.TryRandomElementByWeight((InfestationLikeCellFinder.LocationCandidate x) => x.score, out LocationCandidate locationCandidate))
@@ -101,7 +127,7 @@ namespace RimWorld
         // Token: 0x0600368C RID: 13964 RVA: 0x001A0EAC File Offset: 0x0019F2AC
         public static float GetScoreAt(IntVec3 cell, Map map, bool allowFogged = false, bool allowUnroofed = false, bool allowDigging = false)
         {
-            if (cell.GetTerrain(map).HasTag("Water"))
+            if (cell.GetTerrain(map).HasTag("Water") || cell.GetTerrain(map).defName.Contains("Water") || cell.GetTerrain(map).defName.Contains("Marsh"))
             {
                 return 0f;
             }

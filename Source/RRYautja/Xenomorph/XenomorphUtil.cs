@@ -652,11 +652,11 @@ namespace RRYautja
                 {
                     if (XenomorphUtil.isInfectablePawnKind(item))
                     {
-                        Log.Message(string.Format("Xenomorph Host: {0}", item.LabelCap));
+                    //    Log.Message(string.Format("Xenomorph Host: {0}", item.LabelCap));
                         tmpHostKinds.Add(item);
                     }
                 }
-                Log.Message(string.Format("HostKinds count: {0}", tmpHostKinds.Count));
+            //    Log.Message(string.Format("HostKinds count: {0}", tmpHostKinds.Count));
                 return tmpHostKinds;
             }
         }

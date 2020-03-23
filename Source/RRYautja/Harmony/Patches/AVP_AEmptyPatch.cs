@@ -131,12 +131,12 @@ namespace RRYautja
     {
         public static bool Prefix(TransportPodsArrivalAction_LandInSpecificCell __instance, List<ActiveDropPodInfo> pods, int tile)
         {
-            Log.Message(string.Format("pods: {0}", pods.Count));
+        //    Log.Message(string.Format("pods: {0}", pods.Count));
             foreach (ActiveDropPodInfo info in pods)
             {
                 if (info.innerContainer.Contains(USCMDefOf.RRY_USCM_DropshipUD4L))
                 {
-                    Log.Message(string.Format("pods: {0}", info.innerContainer.ContentsString));
+                //    Log.Message(string.Format("pods: {0}", info.innerContainer.ContentsString));
                     Thing lookTarget = TransportPodsArrivalActionUtility.GetLookTarget(pods);
                     Traverse tv = Traverse.Create(__instance);
                     IntVec3 c = tv.Field("cell").GetValue<IntVec3>();

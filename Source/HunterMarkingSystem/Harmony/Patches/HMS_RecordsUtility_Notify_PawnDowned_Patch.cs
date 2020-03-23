@@ -23,25 +23,25 @@ namespace HunterMarkingSystem
         [HarmonyPostfix]
         public static void IncrementPostfix(Pawn downed, Pawn instigator)
         {
-            Log.Message(string.Format("{0} downed {1}", instigator.LabelShortCap, downed.LabelShortCap));
+        //    Log.Message(string.Format("{0} downed {1}", instigator.LabelShortCap, downed.LabelShortCap));
             if (instigator != null && instigator.IsColonist && instigator.isBloodable() && instigator.Markable() is Comp_Markable Markable)
             {
                 if (!Markable.MarkerRace)
                 {
-                    Log.Message("not a race that can mark themself");
+                //    Log.Message("not a race that can mark themself");
                     if (!instigator.Map.mapPawns.FreeColonists.Any(x => Markable.markerRaces.Contains(x.def)))
                     {
-                        Log.Message("No race that can mark in colony");
+                    //    Log.Message("No race that can mark in colony");
                         return;
                     }
                     else
                     {
-                        Log.Message("Race that can mark in colony");
+                    //    Log.Message("Race that can mark in colony");
                     }
                 }
                 else
                 {
-                    Log.Message("Race that can mark themself");
+                //    Log.Message("Race that can mark themself");
                 }
                 if (Markable.BloodStatus == BloodStatusMode.None)
                 {

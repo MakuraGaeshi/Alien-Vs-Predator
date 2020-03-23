@@ -68,19 +68,12 @@ namespace RRYautja
         {
             get
             {
-                if (HiveX == -1 || HiveZ == -1)
+                if (HiveX < 1 || HiveZ < 1)
                 {
                     if (map!=null)
                     {
-                        if (!map.HiveGrid().Hivelist.NullOrEmpty())
+                        if (!XenomorphKidnapUtility.TryFindGoodHiveLoc(pawn, out IntVec3 hive, null, true, false, true))
                         {
-                            HiveLike hive = (HiveLike)map.HiveGrid().Hivelist.RandomElement();
-                            HiveX = hive.Position.x;
-                            HiveZ = hive.Position.z;
-                        }
-                        else if (!map.HiveGrid().HiveLoclist.NullOrEmpty())
-                        {
-                            IntVec3 hive = map.HiveGrid().HiveLoclist.RandomElement();
                             HiveX = hive.x;
                             HiveZ = hive.z;
                         }
@@ -175,58 +168,58 @@ namespace RRYautja
                 List<Lord> lords = new List<Lord>();
                 if (map == null)
                 {
-                    Log.Message("XenoLord map == null");
+                //    Log.Message("XenoLord map == null");
                     return lord;
                 }
                 if (map.lordManager.lords.Any(x => x.faction == pawn.Faction))
                 {
-                    Log.Message("XenoLord lords exist");
+                //    Log.Message("XenoLord lords exist");
                     lords = map.lordManager.lords.Where(x => x.faction == pawn.Faction).ToList();
                 }
                 if (CurLord!=null)
                 {
-                    Log.Message("XenoLord CurLord != null");
+                //    Log.Message("XenoLord CurLord != null");
                     if (LordReplaceable(CurLord))
                     {
-                        Log.Message("XenoLord CurLord LordReplaceable");
+                    //    Log.Message("XenoLord CurLord LordReplaceable");
                         if (!map.HiveGrid().Hivelist.NullOrEmpty())
                         {
-                            Log.Message("XenoLord Hives on map");
+                        //    Log.Message("XenoLord Hives on map");
                             HiveLike hive = (HiveLike)map.HiveGrid().Hivelist.RandomElement();
                             if (hive!=null)
                             {
-                                Log.Message("XenoLord Hive");
+                            //    Log.Message("XenoLord Hive");
                                 if (hive.Lord!=null)
                                 {
-                                    Log.Message("XenoLord Lord");
+                                //    Log.Message("XenoLord Lord");
                                     lord = hive.Lord;
                                 }
                             }
                         }
                         else
                         {
-                            Log.Message("XenoLord NO Hives on map");
+                        //    Log.Message("XenoLord NO Hives on map");
                             for (int i = 0; i < lords.Count-1; i++)
                             {
                                 Lord l = lords[i];
-                                Log.Message(string.Format("XenoLord {0} of {1}", i+1, lords.Count));
+                            //    Log.Message(string.Format("XenoLord {0} of {1}", i+1, lords.Count));
                                 if (l != null)
                                 {
-                                    Log.Message(string.Format("XenoLord {0} != null LordJob: {1}", l, l.LordJob));
+                                //    Log.Message(string.Format("XenoLord {0} != null LordJob: {1}", l, l.LordJob));
                                     if (l.LordJob is LordJob_DefendAndExpandHiveLike j)
                                     {
-                                        Log.Message(string.Format("XenoLord {0} LordJob_DefendAndExpandHiveLike", l, lords.Count));
+                                    //    Log.Message(string.Format("XenoLord {0} LordJob_DefendAndExpandHiveLike", l, lords.Count));
                                         lord = l;
                                         job = j;
                                         Pawn Hivequeen = null;
                                         if (l.ownedPawns.Any(x => x.kindDef == QueenDef))
                                         {
-                                            Log.Message(string.Format("XenoLord {0} Hivequeen", l, lords.Count));
+                                        //    Log.Message(string.Format("XenoLord {0} Hivequeen", l, lords.Count));
                                             Hivequeen = l.ownedPawns.Find(x => x.kindDef == QueenDef);
                                         }
                                         if (pawn.kindDef != XenomorphDefOf.RRY_Xenomorph_Queen || (pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen && Hivequeen != null))
                                         {
-                                            Log.Message(string.Format("XenoLord {0} Hivelords.Add", l, lords.Count));
+                                        //    Log.Message(string.Format("XenoLord {0} Hivelords.Add", l, lords.Count));
                                             Hivelords.Add(l);
                                         }
                                     }
@@ -236,11 +229,11 @@ namespace RRYautja
                             }
                             if (lord == null)
                             {
-                                Log.Message(string.Format("XenoLord lord = null"));
+                            //    Log.Message(string.Format("XenoLord lord = null"));
                                 IntVec3 c;
                                 if (XenomorphKidnapUtility.TryFindGoodHiveLoc(pawn, out c, null, true, false, true))
                                 {
-                                    Log.Message(string.Format("XenoLord TryFindGoodHiveLoc for {0} Cell Found: {1}, Allow: Fogged, Digging", pawn.LabelShortCap, c));
+                                //    Log.Message(string.Format("XenoLord TryFindGoodHiveLoc for {0} Cell Found: {1}, Allow: Fogged, Digging", pawn.LabelShortCap, c));
                                     LordJob newJob = new LordJob_DefendAndExpandHiveLike(false, pawn.Faction, c, 40f);
                                     pawn.CreateNewLord(c, newJob);
                                     this.HiveLoc = c;
@@ -248,53 +241,53 @@ namespace RRYautja
                                 else
                                 if (XenomorphKidnapUtility.TryFindGoodHiveLoc(pawn, out c, null, true, true, true))
                                 {
-                                    Log.Message(string.Format("XenoLord TryFindGoodHiveLoc for {0} Cell Found: {1}, Allow: Fogged, Unroofed, Digging", pawn.LabelShortCap, c));
+                                //    Log.Message(string.Format("XenoLord TryFindGoodHiveLoc for {0} Cell Found: {1}, Allow: Fogged, Unroofed, Digging", pawn.LabelShortCap, c));
                                     LordJob newJob = new LordJob_DefendAndExpandHiveLike(false, pawn.Faction, c, 40f);
                                     pawn.CreateNewLord(c, newJob);
                                     this.HiveLoc = c;
                                 }
                                 else
                                 {
-                                    Log.Message(string.Format("XenoLord TryFindGoodHiveLoc Cell Not Found"));
+                                //    Log.Message(string.Format("XenoLord TryFindGoodHiveLoc Cell Not Found"));
                                 }
                                 if (HiveLoc == c)
                                 {
-                                    Log.Message(string.Format("scoreAt {0} == {1}", HiveLoc, InfestationLikeCellFinder.GetScoreAt(HiveLoc, map, true, false, true)));
+                                //    Log.Message(string.Format("scoreAt {0} == {1}", HiveLoc, InfestationLikeCellFinder.GetScoreAt(HiveLoc, map, true, false, true)));
                                 }
                             }
                         }
                     }
                     else
                     {
-                        Log.Message(string.Format("XenoLord lord = CurLord"));
+                    //    Log.Message(string.Format("XenoLord lord = CurLord"));
                         lord = CurLord;
                     }
                 }
                 else
                 {
-                    Log.Message("XenoLord CurLord == null");
+                //    Log.Message("XenoLord CurLord == null");
                     if (!map.HiveGrid().Hivelist.NullOrEmpty())
                     {
-                        Log.Message("XenoLord Hivelist");
+                    //    Log.Message("XenoLord Hivelist");
                         List<HiveLike> hives = new List<HiveLike>();
                         map.HiveGrid().Hivelist.ForEach(x=> hives.Add(((HiveLike)x)));
                         bool anyHiveHasLord = hives.Any(x => x.Lord != null);
                         HiveLike hive = anyHiveHasLord ? hives.Where(x=> x.Lord !=null).RandomElement() : hives.RandomElement();
                         if (hive != null)
                         {
-                            Log.Message("XenoLord Hive");
+                        //    Log.Message("XenoLord Hive");
                             if (hive.Lord != null)
                             {
-                                Log.Message("XenoLord Lord");
+                            //    Log.Message("XenoLord Lord");
                                 lord = hive.Lord;
                                 pawn.SwitchToLord(lord);
                             }
                             else
                             {
-                                Log.Message("XenoLord no Lord");
+                            //    Log.Message("XenoLord no Lord");
                                 if (lords.Count() == 0 && hive.Position != IntVec3.Invalid)
                                 {
-                                    Log.Message("XenoLord no Lords");
+                                //    Log.Message("XenoLord no Lords");
                                     LordJob
                                         newJob = new LordJob_DefendAndExpandHiveLike(false, pawn.Faction, hive.Position, 40f);
                                     lord = pawn.CreateNewLord(hive.Position, newJob);
@@ -323,10 +316,10 @@ namespace RRYautja
 
         public void XenoLordTick()
         {
-            Log.Message("XenoLordTick");
+        //    Log.Message("XenoLordTick");
             if (map != null)
             {
-                Log.Message("XenoLordTick with Map");
+            //    Log.Message("XenoLordTick with Map");
                 IntVec3 c = IntVec3.Invalid;
                 Lord lord = null;
                 List<Lord> Hivelords = new List<Lord>();
@@ -426,7 +419,7 @@ namespace RRYautja
                     lord = pawn.GetLord();
                     if (lord.ownedPawns.Count == 0)
                     {
-                        Log.Message(string.Format("got no pawns, wtf?"));
+                    //    Log.Message(string.Format("got no pawns, wtf?"));
                     }
                     if (lord.ownedPawns.Count == 1)
                     {
@@ -525,7 +518,7 @@ namespace RRYautja
                 }
                 else
                 {
-                    Log.Message("no pawns with lord found");
+                //    Log.Message("no pawns with lord found");
                 }
                 if (pawn.GetLord() == null)
                 {
@@ -1028,11 +1021,11 @@ namespace RRYautja
             {
                 if (pawn != null)
                 {
-                    Log.Message(string.Format("{0} hunting: {1}, @: {2}", predator.LabelShortCap, pawn.LabelShortCap, pawn.Position));
+                //    Log.Message(string.Format("{0} hunting: {1}, @: {2}", predator.LabelShortCap, pawn.LabelShortCap, pawn.Position));
                 }
                 else
                 {
-                    Log.Message(string.Format("{0} Could not find a suitable pawn to hunt", predator.LabelShortCap));
+                //    Log.Message(string.Format("{0} Could not find a suitable pawn to hunt", predator.LabelShortCap));
                 }
             }
             return pawn;
@@ -1108,10 +1101,10 @@ namespace RRYautja
                 bool selected = Find.Selector.SelectedObjects.Contains(predator) && Prefs.DevMode;
                 if (selected)
                 {
-                    Log.Message(string.Format("prey: {0} @: {1}", prey.LabelCap, prey.Position));
-                    Log.Message(string.Format("num: {0} = MeleeDPS: {1} * (baseHealthScale * SummaryHealthPercent): {2} * bodySizeFactor: {3}", num, prey.GetStatValue(StatDefOf.MeleeDPS), (prey.def.race.baseHealthScale * prey.health.summaryHealth.SummaryHealthPercent), prey.ageTracker.CurLifeStage.bodySizeFactor));
-                    Log.Message(string.Format("numa: {0} = MeleeDPS: {1} * MeleeHitChance: {2} * MeleeDodgeChance: {3}", numa, prey.GetStatValue(StatDefOf.MeleeDPS) , prey.GetStatValue(StatDefOf.MeleeHitChance) , prey.GetStatValue(StatDefOf.MeleeDodgeChance)));
-                    Log.Message(string.Format("numb: {0} = HealthScale: {1}", numb, prey.HealthScale));
+                //    Log.Message(string.Format("prey: {0} @: {1}", prey.LabelCap, prey.Position));
+                //    Log.Message(string.Format("num: {0} = MeleeDPS: {1} * (baseHealthScale * SummaryHealthPercent): {2} * bodySizeFactor: {3}", num, prey.GetStatValue(StatDefOf.MeleeDPS), (prey.def.race.baseHealthScale * prey.health.summaryHealth.SummaryHealthPercent), prey.ageTracker.CurLifeStage.bodySizeFactor));
+                //    Log.Message(string.Format("numa: {0} = MeleeDPS: {1} * MeleeHitChance: {2} * MeleeDodgeChance: {3}", numa, prey.GetStatValue(StatDefOf.MeleeDPS) , prey.GetStatValue(StatDefOf.MeleeHitChance) , prey.GetStatValue(StatDefOf.MeleeDodgeChance)));
+                //    Log.Message(string.Format("numb: {0} = HealthScale: {1}", numb, prey.HealthScale));
                 }
                 float num2 = predator.GetStatValue(StatDefOf.MeleeDPS) * (predator.def.race.baseHealthScale * predator.health.summaryHealth.SummaryHealthPercent) * predator.ageTracker.CurLifeStage.bodySizeFactor;
                 float num2a = predator.GetStatValue(StatDefOf.MeleeDPS);
@@ -1121,9 +1114,9 @@ namespace RRYautja
                 num2 = ((num2 + num2a) * num2c) * (1 - num2d) * num2b;
                 if (selected)
                 {
-                    Log.Message(string.Format("num2: {0} = MeleeDPS: {1} * SummaryHealthPercent: {2} * bodySizeFactor: {3}", num2, predator.GetStatValue(StatDefOf.MeleeDPS), (predator.def.race.baseHealthScale * predator.health.summaryHealth.SummaryHealthPercent), predator.ageTracker.CurLifeStage.bodySizeFactor));
-                    Log.Message(string.Format("num2a: {0} = MeleeDPS: {1} * MeleeHitChance: {2} * MeleeDodgeChance: {3}", num2a, predator.GetStatValue(StatDefOf.MeleeDPS), predator.GetStatValue(StatDefOf.MeleeHitChance), predator.GetStatValue(StatDefOf.MeleeDodgeChance)));
-                    Log.Message(string.Format("num2b: {0} = HealthScale: {1}", num2b, predator.HealthScale));
+                //    Log.Message(string.Format("num2: {0} = MeleeDPS: {1} * SummaryHealthPercent: {2} * bodySizeFactor: {3}", num2, predator.GetStatValue(StatDefOf.MeleeDPS), (predator.def.race.baseHealthScale * predator.health.summaryHealth.SummaryHealthPercent), predator.ageTracker.CurLifeStage.bodySizeFactor));
+                //    Log.Message(string.Format("num2a: {0} = MeleeDPS: {1} * MeleeHitChance: {2} * MeleeDodgeChance: {3}", num2a, predator.GetStatValue(StatDefOf.MeleeDPS), predator.GetStatValue(StatDefOf.MeleeHitChance), predator.GetStatValue(StatDefOf.MeleeDodgeChance)));
+                //    Log.Message(string.Format("num2b: {0} = HealthScale: {1}", num2b, predator.HealthScale));
                 }
                 if (num >= num2)
                 {
@@ -1197,7 +1190,7 @@ namespace RRYautja
             bool selected = Find.Selector.SelectedObjects.Contains(predator) && Prefs.DevMode;
             if (selected)
             {
-                Log.Message(string.Format("{0} found: {1} @: {2}\nPreyScore: {3}, BFPreyScore: {4}, isXenoHost: {5}, isNeoHost: {6}, isXenomorph: {7}, isNeomorph: {8}, isPotentialHost: {9}, Humanlike: {10}", predator.LabelShortCap, prey.LabelShortCap, prey.Position, num3, num4, prey.isXenoHost(), prey.isNeoHost(), prey.isXenomorph(), prey.isNeomorph(), prey.isPotentialHost(), prey.RaceProps.Humanlike));
+            //    Log.Message(string.Format("{0} found: {1} @: {2}\nPreyScore: {3}, BFPreyScore: {4}, isXenoHost: {5}, isNeoHost: {6}, isXenomorph: {7}, isNeomorph: {8}, isPotentialHost: {9}, Humanlike: {10}", predator.LabelShortCap, prey.LabelShortCap, prey.Position, num3, num4, prey.isXenoHost(), prey.isNeoHost(), prey.isXenomorph(), prey.isNeomorph(), prey.isPotentialHost(), prey.RaceProps.Humanlike));
             }
             return num3;
         }

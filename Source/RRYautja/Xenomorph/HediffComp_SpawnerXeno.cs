@@ -303,7 +303,7 @@ namespace RRYautja
             }
             if (Prefs.DevMode)
             {
-                 Log.Message(string.Format("spawning: {0}", pawnKindDef.label));
+             //    Log.Message(string.Format("spawning: {0}", pawnKindDef.label));
                 parent.pawn.resultingXenomorph();
             }
             bool BeViolent = pawnKindDef == XenomorphDefOf.RRY_Xenomorph_Thrumbomorph ? true : true;

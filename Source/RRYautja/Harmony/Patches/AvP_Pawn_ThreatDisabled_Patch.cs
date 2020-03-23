@@ -43,7 +43,7 @@ namespace RRYautja
                                     {
                                         if (smartgunSystem.hasTargheter && smartgunSystem.hasHarness)
                                         {
-                                            Log.Message(string.Format("{0} IgnoreCloak {1}: {2}", pawn.LabelShortCap, __instance, __result));
+                                        //    Log.Message(string.Format("{0} IgnoreCloak {1}: {2}", pawn.LabelShortCap, __instance, __result));
                                             return;
                                         }
                                     }

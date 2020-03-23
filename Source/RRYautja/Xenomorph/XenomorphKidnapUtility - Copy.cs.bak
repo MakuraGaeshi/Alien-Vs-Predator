@@ -179,10 +179,10 @@ namespace RRYautja
             {
                 if (!InfestationLikeCellFinder.TryFindCell(out c, out IntVec3 lc, map, true, true, true))
                 {
-                    Log.Message(string.Format("Cant find suitable hive location, defaulting to map edge"));
+                //    Log.Message(string.Format("Cant find suitable hive location, defaulting to map edge"));
                     if (!RCellFinder.TryFindBestExitSpot(pawn, out c, TraverseMode.ByPawn))
                     {
-                        Log.Message(string.Format("Cant find spot near map edge"));
+                    //    Log.Message(string.Format("Cant find spot near map edge"));
                     }
                 }
             }
@@ -190,11 +190,11 @@ namespace RRYautja
             {
                 if (pawn.GetLord() != null && pawn.GetLord() is Lord lord)
                 {
-                    Log.Message(string.Format("TryFindGoodHiveLoc pawn.GetLord() != null"));
+                //    Log.Message(string.Format("TryFindGoodHiveLoc pawn.GetLord() != null"));
                 }
                 else
                 {
-                    Log.Message(string.Format("TryFindGoodHiveLoc pawn.GetLord() == null"));
+                //    Log.Message(string.Format("TryFindGoodHiveLoc pawn.GetLord() == null"));
                 }
                 if (pawn.mindState.duty.def != XenomorphDefOf.RRY_Xenomorph_DefendAndExpandHive && pawn.mindState.duty.def != XenomorphDefOf.RRY_Xenomorph_DefendHiveAggressively)
                 {

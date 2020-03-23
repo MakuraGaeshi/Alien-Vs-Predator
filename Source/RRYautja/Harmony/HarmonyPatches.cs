@@ -603,7 +603,7 @@ namespace RRYautja
             }
             if (__result.kindDef.race != YautjaDefOf.RRY_Alien_Yautja && __result.RaceProps.Humanlike && (__result.story.hairDef == YautjaDefOf.RRY_Yaujta_Dreds || __result.story.hairDef == YautjaDefOf.RRY_Yaujta_Ponytail || __result.story.hairDef == YautjaDefOf.RRY_Yaujta_Bald))
             {
-                Log.Message(string.Format("Non Yautja with Yautja Hair"));
+            //    Log.Message(string.Format("Non Yautja with Yautja Hair"));
                 __result.story.hairDef = DefDatabase<HairDef>.AllDefsListForReading.FindAll(x => !x.hairTags.Contains("Yautja")).RandomElement();
             }
             if (Rand.Chance(0.005f) && XenomorphUtil.isInfectablePawn(__result) && SettingsHelper.latest.AllowHiddenInfections)

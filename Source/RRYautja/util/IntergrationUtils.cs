@@ -35,7 +35,7 @@ namespace RRYautja
                 if (p.PackageIdPlayerFacing.Contains("ChJees.Androids"))
                 {
                     modContent = p;
-                    Log.Message(string.Format("{0}: PackageId: {1}, PackageIdPlayerFacing: {2}", p.Name, p.PackageId, p.PackageIdPlayerFacing));
+                //    Log.Message(string.Format("{0}: PackageId: {1}, PackageIdPlayerFacing: {2}", p.Name, p.PackageId, p.PackageIdPlayerFacing));
                     ChjAndroid = true;
                 }
             }
@@ -85,7 +85,7 @@ namespace RRYautja
                 if (p.PackageIdPlayerFacing.Contains("Atlas.AndroidTiers"))
                 {
                     modContent = p;
-                    Log.Message(string.Format("{0}: PackageId: {1}, PackageIdPlayerFacing: {2}", p.Name, p.PackageId, p.PackageIdPlayerFacing));
+                //    Log.Message(string.Format("{0}: PackageId: {1}, PackageIdPlayerFacing: {2}", p.Name, p.PackageId, p.PackageIdPlayerFacing));
                     TieredAndroid = true;
                 }
             }

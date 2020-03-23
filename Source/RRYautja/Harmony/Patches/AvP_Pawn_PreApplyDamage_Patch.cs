@@ -41,7 +41,7 @@ namespace RRYautja
             {
                 if (dinfo.Instigator.isXenomorph())
                 {
-                    Log.Message("cause by Xenomorph");
+                //    Log.Message("cause by Xenomorph");
                 }
             }
             */

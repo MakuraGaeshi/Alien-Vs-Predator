@@ -101,17 +101,17 @@ namespace HunterMarkingSystem
                 if (td.race!=null && td.isPotentialHost())
                 {
                     string text = string.Format("{0}'s possible Xenoforms", td.LabelCap);
-                    Log.Message(text);
+                //    Log.Message(text);
 
                     foreach (var item in td.resultingXenomorph())
                     {
                         text = item.LabelCap;
-                        Log.Message(text);
+                    //    Log.Message(text);
                     }
                 }
             });
             */
-            Log.Message(string.Format("Hunter Marking System Loaded\n{0} Unblooded Hediffs, {1} Unmarked Hediffs, {2} Marked Hediffs deteched", UnbloodedHediffList.Count, BloodedUMHediffList.Count, BloodedMHediffList.Count));
+        //    Log.Message(string.Format("Hunter Marking System Loaded\n{0} Unblooded Hediffs, {1} Unmarked Hediffs, {2} Marked Hediffs deteched", UnbloodedHediffList.Count, BloodedUMHediffList.Count, BloodedMHediffList.Count));
         }
     }
 

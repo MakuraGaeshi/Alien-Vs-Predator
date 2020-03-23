@@ -184,7 +184,7 @@ namespace RRYautja
 
                     if (pawn.GetLord() != null && pawn.GetLord() is Lord lord)
                     {
-                        Log.Message(string.Format("TryFindGoodHiveLoc pawn.GetLord() != null"));
+                    //    Log.Message(string.Format("TryFindGoodHiveLoc pawn.GetLord() != null"));
                     }
                     
                     if (pawn.mindState.duty.def != OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike && pawn.mindState.duty.def != OGHiveLikeDefOf.RRY_DefendHiveLikeAggressively)
@@ -307,7 +307,7 @@ namespace RRYautja
 
                     if (pawn.GetLord() != null && pawn.GetLord() is Lord lord)
                     {
-                        Log.Message(string.Format("TryFindGoodHiveLoc pawn.GetLord() != null"));
+                    //    Log.Message(string.Format("TryFindGoodHiveLoc pawn.GetLord() != null"));
                     }
 
                     if (pawn.mindState.duty.def != OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike && pawn.mindState.duty.def != OGHiveLikeDefOf.RRY_DefendHiveLikeAggressively)

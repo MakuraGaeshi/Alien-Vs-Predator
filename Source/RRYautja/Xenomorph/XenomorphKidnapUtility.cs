@@ -109,6 +109,7 @@ namespace RRYautja
                 bool r = score && !filled && edifice && building && thing && roofed;
                 return r;
             };
+            /*
             if (validatora (_Xenomorph.HiveLoc))
             {
 
@@ -120,7 +121,7 @@ namespace RRYautja
                 Log.Warning("no hives present");
                 if (!hiveGrid.HiveLoclist.NullOrEmpty())
                 {
-                    Log.Message("hivelocs present");
+                //    Log.Message("hivelocs present");
                     c = hiveGrid.HiveLoclist.RandomElement();
                 //    return true;
                 }
@@ -131,22 +132,22 @@ namespace RRYautja
             }
             else
             {
-                Log.Message("hives present");
+            //    Log.Message("hives present");
                 c = hiveGrid.Hivelist.RandomElement().Position;
             //    return true;
             }
-
+            */
             if (c == IntVec3.Invalid || c == IntVec3.Zero || c.InNoBuildEdgeArea(map) || c.InNoZoneEdgeArea(map) || c.GetTerrain(map).HasTag("Water"))
             {
                 if (!InfestationLikeCellFinder.TryFindCell(out c, out IntVec3 lc, map, allowFogged, allowUnroofed, allowDigging))
                 {
-                    Log.Message(string.Format("Cant find suitable hive location, defaulting to map edge"));
+                //    Log.Message(string.Format("Cant find suitable hive location, defaulting to map edge"));
                     if (!InfestationCellFinder.TryFindCell(out c, map))
                     {
-                        Log.Message(string.Format("Cant find suitable hive location, defaulting to map edge"));
+                    //    Log.Message(string.Format("Cant find suitable hive location, defaulting to map edge"));
                         if (!RCellFinder.TryFindBestExitSpot(pawn, out c, TraverseMode.ByPawn))
                         {
-                            Log.Message(string.Format("Cant find spot near map edge"));
+                        //    Log.Message(string.Format("Cant find spot near map edge"));
                         }
                         else
                         {
@@ -167,20 +168,20 @@ namespace RRYautja
             {
                 if (pawn.GetLord() != null && pawn.GetLord() is Lord lord)
                 {
-                    Log.Message(string.Format("TryFindGoodHiveLoc pawn.GetLord() != null"));
+                //    Log.Message(string.Format("TryFindGoodHiveLoc pawn.GetLord() != null"));
                 }
                 else
                 {
-                    Log.Message(string.Format("TryFindGoodHiveLoc pawn.GetLord() == null"));
+                //    Log.Message(string.Format("TryFindGoodHiveLoc pawn.GetLord() == null"));
                 }
                 if (pawn.mindState.duty.def != XenomorphDefOf.RRY_Xenomorph_DefendAndExpandHive && pawn.mindState.duty.def != XenomorphDefOf.RRY_Xenomorph_DefendHiveAggressively)
                 {
-                    Log.Message(string.Format("TryFindGoodHiveLoc UpdateDuty"));
+                //    Log.Message(string.Format("TryFindGoodHiveLoc UpdateDuty"));
                     pawn.mindState.duty = new PawnDuty(XenomorphDefOf.RRY_Xenomorph_DefendAndExpandHive, c, 40f);
                 }
                 if (!hiveGrid.HiveLoclist.Contains(c))
                 {
-                    Log.Message(string.Format("TryFindGoodHiveLoc Adding to HiveLoclist"));
+                //    Log.Message(string.Format("TryFindGoodHiveLoc Adding to HiveLoclist"));
                     hiveGrid.HiveLoclist.Add(c);
                 }
                 if (victim!=null)
