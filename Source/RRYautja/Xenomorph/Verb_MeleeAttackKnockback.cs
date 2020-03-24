@@ -96,7 +96,7 @@ namespace RRYautja
             if (target.GetType() == typeof(Pawn))
             {
                 Pawn hitPawn = (Pawn)target;
-                HarmonyPatches.PushEffect(CasterPawn, hitPawn, (int)((Rand.Range(2, 3) + CasterPawn.BodySize) - hitPawn.BodySize), true);
+                Main.PushEffect(CasterPawn, hitPawn, (int)((Rand.Range(2, 3) + CasterPawn.BodySize) - hitPawn.BodySize), true);
             }
             yield break;
         }

@@ -23,19 +23,51 @@ namespace RRYautja
         [HarmonyPostfix]
         public static void OverrideMaterialIfNeeded(PawnRenderer __instance, Material original, Pawn pawn,ref Material __result)
 		{
-
-			if (pawn.IsInvisible() && pawn.isXenomorph())
+			PawnGraphicSet graphics = new PawnGraphicSet_Invisible(pawn)
 			{
-				__result.SetTexture(AvP_PawnRenderer_OverrideMaterialIfNeeded_Xenomorph_Patch.NoiseTex, TexGame.NoiseTex);
-				__result.color = AvP_PawnRenderer_OverrideMaterialIfNeeded_Xenomorph_Patch.xenomorphColor;
-			}
-			/*
-			else if (pawn.IsInvisible() && pawn.isCloaked())
+				nakedGraphic = new Graphic_Invisible(),
+				rottingGraphic = null,
+				packGraphic = null,
+				headGraphic = null,
+				desiccatedHeadGraphic = null,
+				skullGraphic = null,
+				headStumpGraphic = null,
+				desiccatedHeadStumpGraphic = null,
+				hairGraphic = null
+			};
+			if (pawn.IsInvisible())
 			{
-				__result.SetTexture(AvP_PawnRenderer_OverrideMaterialIfNeeded_Xenomorph_Patch.NoiseTex, TexGame.RippleTex);
-				__result.color = AvP_PawnRenderer_OverrideMaterialIfNeeded_Xenomorph_Patch.xenomorphColor;
+				if (pawn.CarriedBy!=null)
+				{
+					if (pawn.CarriedBy.isXenomorph())
+					{
+						__result.SetTexture(graphics.nakedGraphic.MatSingle.name, graphics.nakedGraphic.MatSingle.mainTexture);
+						__result.shader = ShaderDatabase.Cutout;
+						return;
+					}
+				}
+				else
+				if (pawn.Faction == Faction.OfPlayer)
+				{
+					__result.SetTexture(AvP_PawnRenderer_OverrideMaterialIfNeeded_Xenomorph_Patch.NoiseTex, TexGame.RippleTex);
+					__result.color = AvP_PawnRenderer_OverrideMaterialIfNeeded_Xenomorph_Patch.xenomorphColor;
+				}
+				else
+				{
+					if (pawn.isXenomorph())
+					{
+						__result.SetTexture(graphics.nakedGraphic.MatSingle.name, graphics.nakedGraphic.MatSingle.mainTexture);
+						__result.shader = ShaderDatabase.Cutout;
+					}
+					/*
+					if (pawn.isCloaked())
+					{
+						__result.SetTexture(graphics.nakedGraphic.MatSingle.name, graphics.nakedGraphic.MatSingle.mainTexture);
+						__result.shader = ShaderDatabase.Cutout;
+					}
+					*/
+				}
 			}
-			*/
 		}
 
 		// Token: 0x04001120 RID: 4384

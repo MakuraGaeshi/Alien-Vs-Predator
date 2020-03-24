@@ -26,8 +26,18 @@ namespace RRYautja
             {
                 return;
             }
+            if (pawn.CarriedBy!=null)
+            {
+                __result = pawn.CarriedBy.IsInvisible();
+                return;
+            }
             if (pawn.isXenomorph(out Comp_Xenomorph xenomorph))
             {
+                if (pawn.Dead || pawn.Downed)
+                {
+                    __result = false;
+                    return;
+                }
                 if (xenomorph!=null)
                 {
                     if (xenomorph.hidden)

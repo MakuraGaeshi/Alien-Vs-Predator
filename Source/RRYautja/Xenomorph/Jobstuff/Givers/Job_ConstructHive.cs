@@ -1,5 +1,6 @@
 ﻿using RRYautja;
 using RRYautja.ExtensionMethods;
+using RRYautja.Xenomorph.Hives;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,282 +22,20 @@ namespace RimWorld
         }
 
         private int MiningRange;
-        public List<IntVec3> HiveStruct(IntVec3 HiveCenter)
-        {
-            List<IntVec3> HiveStruct = new List<IntVec3>()
-            {
-                // Support Collums
-                // Cardinals
-                new IntVec3
-                {
-                    x = HiveCenter.x + 3,
-                    z = HiveCenter.z
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x - 3,
-                    z = HiveCenter.z
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x,
-                    z = HiveCenter.z + 3
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x,
-                    z = HiveCenter.z - 3
-                },
-                // Corners
-                new IntVec3
-                {
-                    x = HiveCenter.x + 2,
-                    z = HiveCenter.z + 2
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x - 2,
-                    z = HiveCenter.z + 2
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + 2,
-                    z = HiveCenter.z - 2
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x - 2,
-                    z = HiveCenter.z - 2
-                }
-
-            };
-            return HiveStruct;
-        }
-
-        public List<IntVec3> HiveWalls(IntVec3 HiveCenter)
-        {
-            List<IntVec3> HiveWalls = new List<IntVec3>()
-            {
-                // Exterior Walls
-                new IntVec3
-                {
-                    x = HiveCenter.x + 6,
-                    z = HiveCenter.z + 1
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + 6,
-                    z = HiveCenter.z + 2
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + 6,
-                    z = HiveCenter.z + 3
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + 6,
-                    z = HiveCenter.z + 4
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + 5,
-                    z = HiveCenter.z + 5
-                },
-                //
-                new IntVec3
-                {
-                    x = HiveCenter.x + 6,
-                    z = HiveCenter.z + -1
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + 6,
-                    z = HiveCenter.z + -2
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + 6,
-                    z = HiveCenter.z + -3
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -6,
-                    z = HiveCenter.z + -4
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -5,
-                    z = HiveCenter.z + -5
-                },
-                //
-                new IntVec3
-                {
-                    x = HiveCenter.x + -6,
-                    z = HiveCenter.z + 1
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -6,
-                    z = HiveCenter.z + 2
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -6,
-                    z = HiveCenter.z + 3
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -6,
-                    z = HiveCenter.z + 4
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -5,
-                    z = HiveCenter.z + 5
-                },
-                //
-                new IntVec3
-                {
-                    x = HiveCenter.x + -6,
-                    z = HiveCenter.z + -1
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -6,
-                    z = HiveCenter.z + -2
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -6,
-                    z = HiveCenter.z + -3
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -6,
-                    z = HiveCenter.z + -4
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -5,
-                    z = HiveCenter.z + -5
-                },
-                // 
-                new IntVec3
-                {
-                    x = HiveCenter.x + 1,
-                    z = HiveCenter.z + 6
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + 2,
-                    z = HiveCenter.z + 6
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + 3,
-                    z = HiveCenter.z + 6
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + 4,
-                    z = HiveCenter.z + 6
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + 5,
-                    z = HiveCenter.z + 5
-                },
-                //
-                new IntVec3
-                {
-                    x = HiveCenter.x + -1,
-                    z = HiveCenter.z + 6
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -2,
-                    z = HiveCenter.z + 6
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -3,
-                    z = HiveCenter.z + 6
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -4,
-                    z = HiveCenter.z + 6
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -5,
-                    z = HiveCenter.z + 5
-                },
-                //
-                new IntVec3
-                {
-                    x = HiveCenter.x + 1,
-                    z = HiveCenter.z + -6
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + 2,
-                    z = HiveCenter.z + -6
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + 3,
-                    z = HiveCenter.z + -6
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + 4,
-                    z = HiveCenter.z + -6
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -1,
-                    z = HiveCenter.z + -6
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -2,
-                    z = HiveCenter.z + -6
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -3,
-                    z = HiveCenter.z + -6
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -4,
-                    z = HiveCenter.z + -6
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -5,
-                    z = HiveCenter.z + -5
-                },
-                //
-
-            };
-            return HiveWalls;
-        }
-
         // Token: 0x0600041E RID: 1054 RVA: 0x0002CA54 File Offset: 0x0002AE54
         protected override Job TryGiveJob(Pawn pawn)
         {
-            if (pawn.def != XenomorphRacesDefOf.RRY_Xenomorph_Queen && pawn.def != XenomorphRacesDefOf.RRY_Xenomorph_Drone)
+            if (!pawn.isXenomorph(out Comp_Xenomorph _Xenomorph))
+            {
+                return null;
+            }
+            if (pawn.def != XenomorphRacesDefOf.RRY_Xenomorph_Queen && pawn.def != XenomorphRacesDefOf.RRY_Xenomorph_Drone && pawn.def != XenomorphRacesDefOf.RRY_Xenomorph_Predalien)
             {
                 return null;
             }
             Map map = pawn.Map;
             IntVec3 pos = pawn.Position;
-            Comp_Xenomorph _Xenomorph = pawn.xenomorph();
             IntVec3 HiveCenter = _Xenomorph.HiveLoc;
-            
             Region region = pawn.GetRegion(RegionType.Set_Passable);
             if (region == null)
             {
@@ -310,101 +49,69 @@ namespace RimWorld
             bool centerChild = HiveCenter.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive_Child) != null;
             bool centerSlime = HiveCenter.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive_Slime) != null;
             bool centerFilled = HiveCenter.Filled(pawn.Map);
-            if (pawn.GetLord() is Lord L && L != null)
+
+            if (!centerChild)
             {
-                if ((L.CurLordToil is LordToil_DefendAndExpandHiveLike || L.CurLordToil is LordToil_DefendHiveLikeAggressively) && L.CurLordToil is LordToil_HiveLikeRelated THL)
+                if ((!centerNode && !centerSlime))
                 {
-                    if (THL != null)
-                    {
-                        if (THL.Data != null)
-                        {
-                            HiveLike hive = THL.Data.assignedHiveLikes.TryGetValue(pawn);
-                            if (hive != null)
-                            {
-                                centerNode = hive.def == XenomorphDefOf.RRY_Xenomorph_Hive;
-                                centerChild = hive.def == XenomorphDefOf.RRY_Xenomorph_Hive_Child;
-                            }
-                        }
-                    }
-                }
-            }
-            if (centerChild)
-            {
-                return null;
-            }
-            if ((!centerNode && !centerSlime))
-            {
-                if (!centerFilled && pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Drone)
-                {
-                    IntVec3 c = HiveCenter;
-                    if (c.InBounds(pawn.Map) && c.Roofed(pawn.Map) && pawn.CanReserveAndReach(c, PathEndMode.OnCell, Danger.Deadly))
-                    {
-                        return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Construct_Hive_Node, c)
-                        {
-                            ignoreDesignations = false
-                        };
-                    }
-                }
-            }
-            else
-            {
-                if (pawn.def==XenomorphRacesDefOf.RRY_Xenomorph_Queen)
-                {
-                    if (centerSlime && !centerFilled)
+                    if (!centerFilled && pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Drone)
                     {
                         IntVec3 c = HiveCenter;
                         if (c.InBounds(pawn.Map) && c.Roofed(pawn.Map) && pawn.CanReserveAndReach(c, PathEndMode.OnCell, Danger.Deadly))
                         {
-                            return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Construct_Hive_Node, c)
+                            return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Construct_Hive_Slime, c)
                             {
                                 ignoreDesignations = false
                             };
                         }
                     }
-                    return null;
+                }
+                else if (!centerNode)
+                {
+                    if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen || pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Drone)
+                    {
+                        if (centerSlime && !centerFilled)
+                        {
+                            IntVec3 c = HiveCenter;
+                            if (c.InBounds(pawn.Map) && c.Roofed(pawn.Map) && pawn.CanReserveAndReach(c, PathEndMode.OnCell, Danger.Deadly))
+                            {
+                                return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Construct_Hive_Node, c)
+                                {
+                                    ignoreDesignations = false
+                                };
+                            }
+                        }
+                        return null;
+                    }
                 }
             }
             if (centerSlime)
             {
-                MiningRange = 5;
+                MiningRange = 4;
             }
+            else
             if (centerNode)
             {
-                MiningRange = 7;
+                MiningRange = 6;
             }
-            if (centerChild)
+            else
             {
                 MiningRange = 3;
             }
-            
-            if (centerNode)
+
+            foreach (var structure in HiveStructure.HiveStruct(HiveCenter).Where(x => x.GetThingList(map).Any(z => !z.def.defName.Contains("RRY_Xenomorph_Hive")) && x.DistanceTo(HiveCenter)<=MiningRange && pawn.CanReserveAndReach(x, PathEndMode.OnCell, Danger.Deadly, layer: ReservationLayerDefOf.Floor) && x.GetFirstBuilding(map) == null))
             {
-                Predicate<IntVec3> validator = delegate (IntVec3 y)
+                return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Construct_Hive_Wall, structure)
                 {
-                    bool pillarloc = HiveStruct(HiveCenter).Contains(y) || HiveWalls(HiveCenter).Contains(y);
-                    bool Node = y.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive) == null;
-                    bool Child = y.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive_Child) == null;
-                    bool Wall = y.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive_Wall) == null;
-                    bool result = Node && Child && Wall && pillarloc /* && HiveCenter.DistanceTo(y) <= MiningRange */ && pawn.CanReserveAndReach(y, PathEndMode.OnCell, Danger.Deadly, layer: ReservationLayerDefOf.Floor);
-                    return result;
+                    ignoreDesignations = false
                 };
-
-                if (RCellFinder.TryFindRandomCellNearWith(HiveCenter, validator, pawn.Map, out IntVec3 c1, MiningRange, MiningRange+1))
+            }
+            foreach (var structure in HiveStructure.HiveWallGen(HiveCenter,MiningRange).Where(x => x.GetThingList(map).Any(z => !z.def.defName.Contains("RRY_Xenomorph_Hive")) && x.DistanceTo(HiveCenter) <= MiningRange+2 && pawn.CanReserveAndReach(x, PathEndMode.OnCell, Danger.Deadly, layer: ReservationLayerDefOf.Floor) && x.GetFirstBuilding(map) == null))
+            {
+                return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Construct_Hive_Wall, structure)
                 {
-
-                    if (c1.InBounds(pawn.Map) && pawn.CanReserveAndReach(c1, PathEndMode.OnCell, Danger.Deadly, layer:ReservationLayerDefOf.Floor))
-                    {
-                        Building edifice = c1.GetEdifice(pawn.Map);
-                        if (edifice == null)
-                        {
-                            return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Construct_Hive_Wall, c1)
-                            {
-                                ignoreDesignations = false
-                            };
-                        }
-                    }
-                }
-                
+                    ignoreDesignations = false
+                };
             }
             Predicate<IntVec3> validator2 = delegate (IntVec3 y)
             {
@@ -527,6 +234,7 @@ namespace RimWorld
                 Pawn actor = use.actor;
                 Thing thing = ThingMaker.MakeThing(MyDef);
                 HiveLike hive = (HiveLike)thing;
+                hive.active = false;
                 GenSpawn.Spawn(thing, TargetA.Cell, actor.Map, Rot4.South, WipeMode.FullRefund, false);
             };
             use.defaultCompleteMode = ToilCompleteMode.Instant;

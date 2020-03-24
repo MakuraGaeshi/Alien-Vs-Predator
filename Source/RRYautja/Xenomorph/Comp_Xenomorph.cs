@@ -47,6 +47,8 @@ namespace RRYautja
         public int HiveX = -1;
         public int HiveZ = -1;
 
+        public ThingDef HostDef = null;
+
         public PawnKindDef HuggerKindDef = XenomorphDefOf.RRY_Xenomorph_FaceHugger;
         public PawnKindDef RoyaleKindDef = XenomorphDefOf.RRY_Xenomorph_RoyaleHugger;
 
@@ -62,6 +64,7 @@ namespace RRYautja
             Scribe_Defs.Look<PawnKindDef>(ref this.host, "hostRef");
             Scribe_Values.Look<bool>(ref this.hidden, "hidden");
             Scribe_Values.Look<bool>(ref this.Hidden, "Hidden");
+            Scribe_Deep.Look<ThingDef>(ref this.HostDef, "HostDef");
         }
 
         public IntVec3 HiveLoc

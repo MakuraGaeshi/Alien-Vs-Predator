@@ -35,7 +35,20 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Abilities\ProjectileDefExtension.cs" />
-    <Compile Include="Harmony\Patches\AvP_AlienRace_HarmonyPatches_ThoughtsFromIngesting_Patch - Copy.cs" />
+    <Compile Include="Harmony\Patches\AVP_AEmptyPatch - Copy.cs" />
+    <Compile Include="Harmony\Patches\AvP_HealthUtility_AdjustSeverity_Cocooned_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_PawnGraphicSet_HairMatAt_Invis_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_PawnGraphicSet_HeadMatAt_Invis_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_Pawn_HealthTracker_DropBloodFilth_Cocooned_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_FoodUtility_AddFoodPoisoningHediff_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_GenStep_ScatterRuinsSimple_ScatterAt_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_AlienBodyAddon_CanDrawAddon_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_DeathActionWorker_BigExplosion_PawnDied_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_PawnGenerator_GeneratePawn_USCM_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_PawnGenerator_GeneratePawn_Xenomorph_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_PawnGenerator_GeneratePawn_Yautja_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_PawnGenerator_GeneratePawn_Misc_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_PawnRenderer_DrawEquipment_Cloak_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Pawn_HealthTracker_CheckForStateChange_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_HediffSet_CalculateBleedRate_Xenomorph_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_PawnUtility_IsInvisible_Patch.cs" />
@@ -58,13 +71,13 @@
     <Compile Include="Harmony\Patches\AvP_FilthMaker_MakeFilth_Xenoblood_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Verb_Shoot_TryStartCastOn_SmartGun_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_AlienRace_HarmonyPatches_ThoughtsFromIngesting_Patch.cs" />
-    <Compile Include="Harmony\Patches\AVP_AEmptyPatch.cs" />
+    <Compile Include="Harmony\Patches\AvP_Pawn_PathFollower_CostToMoveIntoCell_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_ApparelGraphicRecordGetter_TryGetGraphicApparel_YautjaSpecificHat_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Building_Turret_Shoulder_ThreatDisabled_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Building_XenoEgg_get_DefaultGraphic_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_FactionGenerator_GenerateFactionsIntoWorld_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_FeedPatientUtility_ShouldBeFed_Patch.cs" />
-    <Compile Include="Harmony\Patches\AvP_Fire_DoComplexCalcs_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_Pawn_NativeVerbs_CheckCreateVerbProperties_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_FoodUtility_BestPawnToHuntForPredator_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_FoodUtility_TryFindBestFoodSourceFor_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_GameConditionManager_ConditionIsActive_Patch.cs" />
@@ -73,7 +86,7 @@
     <Compile Include="Harmony\Patches\AvP_IncidentWorker_RaidEnemyPatch_GetLetterText_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_IncidentWorker_RaidEnemy_Yautja_TryExecute_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_IncidentWorker_RaidEnemy_Xenomorph_TryExecute_Patch.cs" />
-    <Compile Include="Harmony\Patches\AvP_IncidentWorker_WandererJoin_TryExecute_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_AEmpty_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_JobGiver_WanderColony_GetWanderRoot_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Page_ScenarioLister_ScenariosInCategory_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_PathGrid_CalculatedCostAt_Patch.cs" />
@@ -95,7 +108,6 @@
     <Compile Include="Harmony\Patches\AvP_RestUtility_Bed_IsValidBedFor_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_RimWorld_Apparel_GetWornGizmos_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_RimWorld_Cloakgen_GetWornGizmos_Patch.cs" />
-    <Compile Include="Harmony\Patches\AvP_SelfDefenseUtility_ShouldFleeFrom_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_ShieldBelt_AllowVerbCast_YautjaWeapons_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_SnowUtility_AddSnowRadial_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_StatWorker_GetExplanationUnfinalized_Patch.cs" />
@@ -167,6 +179,7 @@
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_Xenomorph_ExitMap.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphGetFood.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_Neomorph_Flee.cs" />
+    <None Include="Xenomorph\Jobstuff\Givers\Job_ConstructHive - Copy.cs.bak" />
     <Compile Include="Xenomorph\XenomorphExtensions.cs" />
     <Compile Include="Xenomorph\XenomorphHostSystem.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_Xenomorph_Cocoon.cs" />
@@ -340,7 +353,7 @@
     <Compile Include="Xenomorph\IncidentWorker_CrashedShip.cs" />
     <Compile Include="util\CrashedShip\LordJob_PawnsDefendShip.cs" />
     <Compile Include="Yautja\YautjaThoughtDef.cs" />
-    <Compile Include="Harmony\HarmonyPatches.cs" />
+    <None Include="Harmony\HarmonyPatches.cs.bak2" />
     <Compile Include="Yautja\Comp_Yautja.cs" />
     <Compile Include="Xenomorph\RoomRoleWorker_TrophyRoom.cs" />
     <Compile Include="Yautja\ThoughtWorker_HonourableVsBadBlood.cs" />

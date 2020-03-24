@@ -267,10 +267,66 @@ namespace RRYautja.Xenomorph.Hives
                     x = HiveCenter.x + -5,
                     z = HiveCenter.z + -5
                 },
-            
+                //
+                new IntVec3
+                {
+                    x = HiveCenter.x + 1,
+                    z = HiveCenter.z + -7
+                },
+                new IntVec3
+                {
+                    x = HiveCenter.x + 2,
+                    z = HiveCenter.z + -7
+                },
+                new IntVec3
+                {
+                    x = HiveCenter.x + 3,
+                    z = HiveCenter.z + -7
+                },
+                new IntVec3
+                {
+                    x = HiveCenter.x + 4,
+                    z = HiveCenter.z + -7
+                },
+                new IntVec3
+                {
+                    x = HiveCenter.x + -1,
+                    z = HiveCenter.z + -7
+                },
+                new IntVec3
+                {
+                    x = HiveCenter.x + -2,
+                    z = HiveCenter.z + -6
+                },
+                new IntVec3
+                {
+                    x = HiveCenter.x + -3,
+                    z = HiveCenter.z + -7
+                },
+                new IntVec3
+                {
+                    x = HiveCenter.x + -4,
+                    z = HiveCenter.z + -7
+                },
+                new IntVec3
+                {
+                    x = HiveCenter.x + -5,
+                    z = HiveCenter.z + -6
+                },
 
         };
             return hiveWalls;
         }
+
+        public static List<IntVec3> HiveWallGen(IntVec3 HiveCenter, float MiningRange)
+        {
+            List<IntVec3> hiveStruct = new List<IntVec3>();
+            foreach (var item in GenRadial.RadialCellsAround(HiveCenter, MiningRange, MiningRange+2).Where(x=> x.x != HiveCenter.x && x.z != HiveCenter.z))
+            {
+                hiveStruct.Add(item);
+            }
+            return hiveStruct;
+        }
+
     }
 }

@@ -10,6 +10,7 @@
     <useHitPoints>false</useHitPoints>
 	
     <hasTooltip>true</hasTooltip>
+    <alwaysFlee>true</alwaysFlee>
     <soundImpactDefault>BulletImpact_Flesh</soundImpactDefault>
     <inspectorTabs>
         <li>ITab_Pawn_Health</li>

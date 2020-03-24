@@ -23,7 +23,7 @@ namespace RRYautja
         [HarmonyPrefix]
         public static bool Patch_Pawn_HealthTracker_DropBloodFilth(Pawn_HealthTracker __instance)
         {
-            Pawn pawn = HarmonyPatches.Pawn_HealthTracker_GetPawn(__instance);
+            Pawn pawn = Main.Pawn_HealthTracker_GetPawn(__instance);
             bool flag = pawn.isXenomorph() && (pawn.Spawned || pawn.ParentHolder is Pawn_CarryTracker) && pawn.SpawnedOrAnyParentSpawned && pawn.RaceProps.BloodDef != null;
             bool result;
             if (flag)
