@@ -199,7 +199,7 @@ namespace RRYautja
                 if (pawn.def.HasModExtension<RRYautja.OffsetDefExtension>())
                 {
                     List<DefModExtension> list = pawn.kindDef.race.modExtensions.Where((x) => x.GetType() == typeof(RRYautja.OffsetDefExtension)).ToList();
-                    if (list.Any((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)))
+                    if (list.Any((x) => hediff.def.defName.Contains(((RRYautja.OffsetDefExtension)x).hediff.defName)))
                     {
                         myDef = (OffsetDefExtension)list.First((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)) ?? null;
                     }
@@ -219,7 +219,19 @@ namespace RRYautja
             }
             if (myDef == null)
             {
-                myDef = (OffsetDefExtension)ThingDefOf.Human.modExtensions.Find((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)) ?? new OffsetDefExtension();
+                if (!ThingDefOf.Human.modExtensions.NullOrEmpty())
+                {
+                    myDef = new OffsetDefExtension() { hediff = hediff.def };
+                }
+                else
+                if (ThingDefOf.Human.modExtensions.Any((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)))
+                {
+                    myDef = (OffsetDefExtension)ThingDefOf.Human.modExtensions.First((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)) ?? new OffsetDefExtension() { hediff = hediff.def };
+                }
+                else
+                {
+                    myDef = new OffsetDefExtension() { hediff = hediff.def };
+                }
             }
             else
             {
