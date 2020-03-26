@@ -45,8 +45,10 @@ namespace RimWorld
         // Token: 0x06000420 RID: 1056 RVA: 0x0002CD30 File Offset: 0x0002B130
         protected override IntVec3 GetWanderRoot(Pawn pawn)
         {
-            if (pawn.isXenomorph())
+            if (pawn.isXenomorph(out Comp_Xenomorph xenomorph))
             {
+                return xenomorph.HiveLoc;
+                /*
                 if (!pawn.Map.HiveGrid().Hivelist.NullOrEmpty())
                 {
 
@@ -65,6 +67,7 @@ namespace RimWorld
                     }
                     if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("JobGiver_WanderHiveLike hivelike.Position: {0}", hivelike.Position));
                 }
+                */
             }
             else if (pawn.isNeomorph())
             {

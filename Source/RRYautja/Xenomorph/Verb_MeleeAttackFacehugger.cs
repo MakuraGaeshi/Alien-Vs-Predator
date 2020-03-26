@@ -150,7 +150,7 @@ namespace RRYautja
         {
             DamageWorker.DamageResult result = new DamageWorker.DamageResult();
             Pawn hitPawn = (Pawn)target;
-            if (infect && !XenomorphUtil.IsInfectedPawn(hitPawn) && !hitPawn.Dead && hitPawn.RaceProps.body.AllParts.Any(x => x.def.defName.Contains("Head") && !x.def.defName.Contains("Claw")))
+            if (infect && hitPawn != null && !XenomorphUtil.IsInfectedPawn(hitPawn) && !hitPawn.Dead && hitPawn.RaceProps.body.AllParts.Any(x => x.def.defName.Contains("Head") && !x.def.defName.Contains("Claw")))
             {
                 foreach (var part in hitPawn.RaceProps.body.AllParts.Where(x => x.def.defName.Contains("Head") && !x.def.defName.Contains("Claw")))
                 {
@@ -173,20 +173,18 @@ namespace RRYautja
 
                     infect = false;
                 }
+                return result;
             }
-            else
+            foreach (DamageInfo dinfo in this.DamageInfosToApply(target))
             {
-                foreach (DamageInfo dinfo in this.DamageInfosToApply(target))
+                if (target.ThingDestroyed)
                 {
-                    if (target.ThingDestroyed)
-                    {
-                        break;
-                    }
-                    result = target.Thing.TakeDamage(dinfo);
+                    break;
                 }
+                result = target.Thing.TakeDamage(dinfo);
             }
             return result;
-		}
+        }
 
 
         public PawnKindDef HuggerKindDef = XenomorphDefOf.RRY_Xenomorph_FaceHugger;

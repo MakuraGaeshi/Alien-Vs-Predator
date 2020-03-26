@@ -59,8 +59,8 @@ namespace RRYautja
             Scribe_Values.Look(ref lastSpottedTick, "lastSpottedtick", -9999);
             Scribe_References.Look(ref lastCarried, "lastCarried");
             Scribe_Values.Look<int>(ref this.ticksSinceHeal, "ticksSinceHeal");
-            Scribe_Values.Look<int>(ref this.HiveX, "HiveX", -1);
-            Scribe_Values.Look<int>(ref this.HiveZ, "HiveZ", -1);
+            Scribe_Deep.Look<int>(ref this.HiveX, "HiveX", new int());
+            Scribe_Deep.Look<int>(ref this.HiveZ, "HiveZ", new int());
             Scribe_Defs.Look<PawnKindDef>(ref this.host, "hostRef");
             Scribe_Values.Look<bool>(ref this.hidden, "hidden");
             Scribe_Values.Look<bool>(ref this.Hidden, "Hidden");
@@ -73,9 +73,10 @@ namespace RRYautja
             {
                 if (HiveX < 1 || HiveZ < 1)
                 {
+                //    Log.Message(string.Format("Finding new Hive loc for {0} @ {1}", pawn.NameShortColored, pawn.Position));
                     if (map!=null)
                     {
-                        if (XenomorphKidnapUtility.TryFindGoodHiveLoc(pawn, out IntVec3 hive, null, true, false, true))
+                        if (InfestationLikeCellFinder.TryFindCell(out IntVec3 hive, out IntVec3 vec3, map, true, false, true))
                         {
                             HiveX = hive.x;
                             HiveZ = hive.z;

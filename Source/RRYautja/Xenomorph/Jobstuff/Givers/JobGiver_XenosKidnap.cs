@@ -49,6 +49,7 @@ namespace RimWorld
             MapComponent_HiveGrid hiveGrid = pawn.Map.HiveGrid();
             if (XenomorphKidnapUtility.TryFindGoodKidnapVictim(pawn, Searchradius, out Pawn t, null) && !GenAI.InDangerousCombat(pawn))
             {
+                /*
                 if (xenomorph.HiveLoc.IsValid && xenomorph.HiveLoc.InBounds(map) && xenomorph.HiveLoc != IntVec3.Zero)
                 {
                     c = xenomorph.HiveLoc;
@@ -64,12 +65,7 @@ namespace RimWorld
                     c = hiveGrid.HiveLoclist.RandomElement();
                 }
                 else
-                if (!XenomorphKidnapUtility.TryFindGoodHiveLoc(pawn, out c, t, true, this.forceRoofed, this.forceCanDig))
-                {
-                    Log.Error("No hive loc found");
-                    return null;
-                    //   if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} No Cocooning spot Found", this));
-                }
+                */
                 bool selected = pawn.Map != null ? Find.Selector.SelectedObjects.Contains(pawn) && (Prefs.DevMode) : false;
                 if (c != IntVec3.Invalid && t != null && pawn.CanReach(c, PathEndMode.ClosestTouch, Danger.Deadly, true, TraverseMode.PassAllDestroyableThings))
                 {
@@ -114,7 +110,8 @@ namespace RimWorld
             }
             else
             {
-             //   if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} No Victim Found", this));
+                Log.Error("No hive loc found");
+                return null;
             }
             return null;
         }
