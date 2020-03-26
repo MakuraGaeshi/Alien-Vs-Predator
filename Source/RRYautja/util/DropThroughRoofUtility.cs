@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RRYautja;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Verse;
@@ -30,7 +31,7 @@ namespace RimWorld
             foreach (List<Thing> list in thingsGroups)
             {
                 IntVec3 intVec;
-                if (!DropCellFinder.TryFindDropSpotNear(dropCenter, map, out intVec, true, canRoofPunch))
+                if (!DropThoughRoofCellFinder.TryFindDropSpotNear(dropCenter, map, out intVec, true, canRoofPunch))
                 {
                     Log.Warning(string.Concat(new object[]
                     {
@@ -56,8 +57,31 @@ namespace RimWorld
                 else
                 {
 
+                    ActiveDropPodInfo activeDropPodInfo = new ActiveDropPodInfo();
+                    foreach (Thing item in list)
+                    {
+                        activeDropPodInfo.innerContainer.TryAddOrTransfer(item, true);
+                    }
+                    activeDropPodInfo.openDelay = openDelay;
+                    activeDropPodInfo.leaveSlag = leaveSlag;
+
+                    DropThroughRoofUtility.MakeTunnelAt(intVec, map, activeDropPodInfo);
                 }
             }
+        }
+
+        // Token: 0x06002762 RID: 10082 RVA: 0x0012C458 File Offset: 0x0012A858
+        public static void MakeTunnelAt(IntVec3 c, Map map, ActiveDropPodInfo info)
+        {
+            ThingDef TunnelDef = DefDatabase<ThingDef>.GetNamed("RRY_Tunneler");
+        //    Log.Message(string.Format("making tunnelSpawner: {0}, @: {1}, {2}, {3}", TunnelDef, c, map, info.innerContainer.ContentsString));
+            TunnelSpawner tunnelSpawner = (TunnelSpawner)ThingMaker.MakeThing(TunnelDef, null);
+            foreach (Thing item in info.innerContainer)
+            {
+                tunnelSpawner.GetDirectlyHeldThings().TryAddOrTransfer(item, false);
+            }
+            GenSpawn.Spawn(tunnelSpawner, c, map);
+            //--    SkyfallerMaker.SpawnSkyfaller(ThingDefOf.DropPodIncoming, tunnelSpawner, c, map);
         }
 
         // Token: 0x04001640 RID: 5696

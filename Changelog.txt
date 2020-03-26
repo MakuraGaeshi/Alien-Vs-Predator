@@ -1,4 +1,3 @@
-V1.0.0.0 Hotfix
 fps drop on Queen Death fix
 Xenomorph Infestations incident letter should now allow you to jump to the location of the hive
 increased facehugger Max Prey Body size from 10 to 30
@@ -24,7 +23,7 @@ added Resource Box framework (not used Yet)
 More Xenos Ai Tweaks
 probobly other little fixes ive forgotten
 
-V1.0.0.2 20/06/2019
+V1.0.0.2 
 Slight balance tweaks to some weapons
 Marking System Support Extended to Humans and other alien races (right click on the non yautja with a yautja selected and an option should appear)
 Added Textures for Yautja/Colonist Statue mod compatability
@@ -93,7 +92,7 @@ Added scatter shot effect for flamers
 Added No camera shake explosions
 Tweaked Box code - For USCM Starter Gear
 
-V1.0.0.6 09/07/2019
+V1.0.0.6
 Acid Pathfinding tweaks
 Mod settings should now default to the correct values (active for all toggles and 35% for sliders)
 Shouldercannon comp should no longer tick while in a null map
@@ -137,9 +136,37 @@ Xenomorph AI Tweaks
 Renamed Flamer projectile from Fire to AvPFlamer to avoid conflicts with other mods (Good call Pelador)
 small balance tweaks to a myriad of items
 
-V1.0.0.8 Hotfix 07/08/2019
-Fixed Error with hivetunnels when damaged/destroyed
-Fixed accidently reveted fix for WanderHivelike
-Fixed accidently reveted fix for Humanlikes ignoring terrain
-Fixed Error with JobGiver_EnterHiveTunnel when tunnel is destroyed
-Dormant Xenos Hives are now far less aggressive
+V1.5.0.0 Not Yet Released
+Rewritten large portions of the xeno AI (probably still buggy!!).
+Added USCM Faction, USCM Armour(Combat Armour, Combat Helmet, Fatigues, Medical Jumpsuit, Mechanic Jumpsuit, Combat Harness, Head Mounted Sight), Weapons(M41A Pulse Rifle, Smart Gun, SMG, Flamer, Heavy Flamer, Pump action Shotgun, Rocket Launcher).
+Added Grenade Launcher Ability to M41A Pulse Rifle.
+Added UA 571-C Automated Sentry Gun. - Textures & Sound by Hiztaar.
+Added Missing Weapons from Hiztaar's USCM Mod.
+Added several USCM Backstories, including several Synth specific.
+Added Synth Race.
+Added Synth inhibitor mechanics.
+Disabled Bleed out for Synths.
+Disabled Sleep Need for Synths.
+Disabled Food Need for Synths(They can and will still eat, but should never suffer from malnutrition).
+Implemented Smart Gun System, wearing a Head Mounted Sight reduced the warmup/aiming time for Smart Guns, wearing a Combat Harness negates the move speed penalty applied by the Smart Gun.
+Fully Equipped Smart Gun users Can target Cloaked/hidden enemies.
+Added New Flamer visual effects.
+Small tweaks and changes to Xenomorph Jobdrivers and jobgivers.
+Implemented Xenomorph terraforming creep around hives (Placeholder texture).
+Implemented Xeno Egg Mutation system, Normal egg, Royal egg and Hyperfertile egg. 
+Added Mod Option to disable Egg Mutation.
+Added Mod Option to disable Cocooned Pawn Metamorphisis.
+Added Mod Option to disable non Humanlike pawn xenomorph impregnation.
+Fixed Bug where pawns would ignore turrets.
+Fixed Bug where Xenomorphs would get stuck in a loop entering and exiting tunnels when the hive required maintenance.
+Fixed Graphical Bug on several textures where they would sometimes have a odd outline when zoomed out using Camera+ (Please report any that still experince this).
+Fixed Acid Damage restarting on load.
+Added Acid Armour Rating Stat.
+Added Acid Resistance Stat.
+Xenomorpg leather gains full acid resistance.
+Vanilla Plassteel and Silver gain acid resistance(This is mostly for testing purposes currently).
+Rewritten Power Cut incident, no longer uses a solar flare type event, and fixed issue where it would get stuck trying to find a spot to spawn.
+Rewritten Marking System.
+Implemented Xeno Fear, seeing xenomorphs will cause most pause a slight mood debuff
+Now with Added Typos!
+Lots of other small changes and tweaks since the last version I've forgotten about.

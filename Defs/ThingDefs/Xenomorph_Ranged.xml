@@ -12,7 +12,7 @@
     </graphicData>
     <projectile>
       <damageDef>RRY_AcidDamage</damageDef>
-      <damageAmountBase>15</damageAmountBase>
+      <damageAmountBase>1</damageAmountBase>
       <speed>45</speed>
     </projectile>
   </ThingDef>
@@ -48,7 +48,7 @@
         <defaultProjectile>RRY_Bullet_DroneAcidSpit</defaultProjectile>
         <warmupTime>1.25</warmupTime>
         <range>12</range>
-        <ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+        <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
         <burstShotCount>4</burstShotCount>
         <muzzleFlashScale>0</muzzleFlashScale>
       </li>

@@ -25,6 +25,8 @@ namespace RimWorld
         public static HediffDef RRY_Hediff_Cocooned;
         public static HediffDef HypothermicSlowdown;
         public static HediffDef RRY_Hediff_Anesthetic;
+        public static HediffDef RRY_Hediff_Xenomorph_ProtoBodypart;
+        public static HediffDef RRY_Hediff_Xenomorph_RestoredBodypart;
 
         // Xenomorph HefiffDefs HypothermicSlowdown
         public static HediffDef RRY_FaceHuggerInfection;
@@ -49,6 +51,13 @@ namespace RimWorld
         public static PawnKindDef RRY_Xenomorph_Drone;
         public static PawnKindDef RRY_Xenomorph_Runner;
         public static PawnKindDef RRY_Xenomorph_Predalien;
+        /*
+        public static PawnKindDef RRY_Xenomorph_Preatorian;
+        public static PawnKindDef RRY_Xenomorph_Boiler;
+        public static PawnKindDef RRY_Xenomorph_Spitter;
+        public static PawnKindDef RRY_Xenomorph_Crusher;
+        public static PawnKindDef RRY_Xenomorph_King;
+        */
 
         // Neomorph PawnKindDefs
         public static PawnKindDef RRY_Xenomorph_Neomorph;
@@ -61,34 +70,39 @@ namespace RimWorld
         public static PawnsArrivalModeDef RRY_DropThroughRoofNearPower;
         public static PawnsArrivalModeDef RRY_RandomEnterFromTunnel;
 
+        // Xenomorph RaidStrategyDefs 
         public static RaidStrategyDef RRY_PowerCut;
 
         // Xenomorph JobDefs 
-        public static JobDef RRY_Job_LayXenomorphEgg;
-        public static JobDef RRY_Job_XenomorphKidnap;
-        public static JobDef RRY_Job_PredalienImpregnate;
-        public static JobDef RRY_Job_MaintainLike;
-        public static JobDef RRY_Job_ConstructHiveWall;
+        public static JobDef RRY_Job_Xenomorph_EnterHiveTunnel;
+        public static JobDef RRY_Job_Xenomorph_LayEgg;
+        public static JobDef RRY_Job_Xenomorph_Kidnap;
+        public static JobDef RRY_Job_Xenomorph_PredalienImpregnate;
+        public static JobDef RRY_Job_Xenomorph_MaintainHive;
+        public static JobDef RRY_Job_Xenomorph_Construct_Hive_Slime;
+        public static JobDef RRY_Job_Xenomorph_Construct_Hive_Node;
+        public static JobDef RRY_Job_Xenomorph_Construct_Hive_Wall;
+        public static JobDef RRY_Job_Xenomorph_Construct_Hive_Roof;
         public static JobDef RRY_Job_DestroyCocoon; 
         public static JobDef RRY_Neomorph_Ingest;
-        public static JobDef RRY_Job_EnterHiveTunnel;
+        public static JobDef RRY_Xenomorph_Ingest; 
 
-        // Xenomorph DutyDefs   
-        public static DutyDef RRY_DefendHiveLoc;
-        public static DutyDef RRY_XenomorphAssaultColony;
-        public static DutyDef RRY_AssaultColony_CutPower;
-        public static DutyDef RRY_DefendHiveLikeAggressively;
+        // Xenomorph DutyDefs    
+        public static DutyDef RRY_Xenomorph_DefendHiveLoc;
+        public static DutyDef RRY_Xenomorph_AssaultColony;
+        public static DutyDef RRY_Xenomorph_AssaultColony_CutPower;
+        public static DutyDef RRY_Xenomorph_DefendAndExpandHive;
+        public static DutyDef RRY_Xenomorph_DefendHiveAggressively;
+        public static DutyDef RRY_Xenomorph_Kidnap; 
 
 
         // Xenomorph ThingDefs  
-        public static ThingDef RRY_Xenomorph_Humanoid_Cocoon;
-        public static ThingDef RRY_Xenomorph_Animal_Cocoon;
+        public static ThingDef RRY_Xenomorph_Cocoon_Humanoid;
+        public static ThingDef RRY_Xenomorph_Cocoon_Animal;
         public static ThingDef RRY_EggXenomorphFertilized;
         public static ThingDef RRY_Xenomorph_TailSpike;
         public static ThingDef RRY_Xenomorph_HeadShell;
         public static ThingDef RRY_Leather_Xenomorph; 
-
-        public static ThingDef RRY_Xenomorph_HiveWall;
 
         public static ThingDef RRY_Neomorph_Spores;
         public static ThingDef RRY_Neomorph_Spores_Hidden;
@@ -99,13 +113,16 @@ namespace RimWorld
         public static ThingDef RRY_XenomorphCryptosleepCasket;
 
         public static ThingDef RRY_XenomorphCrashedShipPart;
-        public static ThingDef RRY_XenomorphHive; 
-        public static ThingDef RRY_XenomorphHive_Child;
-        public static ThingDef RRY_Hive_Slime;
+        public static ThingDef TunnelHiveLikeSpawner;
+        public static ThingDef RRY_Xenomorph_Hive; 
+        public static ThingDef RRY_Xenomorph_Hive_Child;
+        public static ThingDef RRY_Xenomorph_Hive_Wall;
+        public static ThingDef RRY_Xenomorph_Hive_Slime;
 
         public static ThingDef RRY_Filth_Slime;
 
         // Xenomorph BloodDefs 
+        public static ThingDef RRY_FilthBloodXenomorph_Active;
         public static ThingDef RRY_FilthBloodXenomorph;
 
         // Xenomorph LifeStageDefs 
@@ -136,7 +153,7 @@ namespace RimWorld
         public static BodyPartDef RRY_Xeno_Shell;
 
         // Xenomorph AbilityDefs
-        public static AbilityUser.AbilityDef RRY_Ability_SpitAcid;
+        public static AbilityDef RRY_Ability_SpitAcid;
 
         // Xenomorph GameCOnditionDefs
         public static GameConditionDef RRY_Xenomorph_PowerCut;

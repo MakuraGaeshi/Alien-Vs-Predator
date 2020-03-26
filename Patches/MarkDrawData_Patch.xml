@@ -7,13 +7,19 @@
 	<!-- Human -->
 	<Operation Class="PatchOperationSequence">
 		<operations>
-			<li Class="PatchOperationAdd">
+			<li Class="PatchOperationAddModExtension">
 				<xpath>/Defs/ThingDef[defName = "Human"]</xpath>
 				<value>
-				<modExtensions>
-				  <li Class="RRYautja.OffsetDefExtension">
+				  <li Class="HunterMarkingSystem.MarkDefExtension">
+					<!-- DefName of the Marking Hediff Kills of this race give --> 
+					<hediffs>
+					<li>HMS_Hediff_BloodedMHuman</li>
+					<li>HMS_Hediff_BloodedMWorthyHuman</li>
+					</hediffs>
+				  </li>
+				  <li Class="HunterMarkingSystem.MarkOffsetDefExtension">
 				    <!-- DefName of the hediff this applies to --> 
-					<hediff>RRY_Hediff_BloodedM</hediff>
+					<hediff>HMS_Hediff_BloodedM</hediff>
 				    <!-- adds the vanillia head offset for the current rotation, not sure if this will ever be useful, defaults to false if not set--> 
 					<ApplyBaseHeadOffset>false</ApplyBaseHeadOffset>
 					<!-- North offsets Y is the layer height, usually you can leave this at 0, all values default to 0 if not set-->
@@ -95,7 +101,39 @@
 					<!-- West Angle overrides, will default to 0 if not set -->
 					<WestAngle>0</WestAngle>
 				  </li>
-				</modExtensions>
+				</value>
+			</li>
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName = "Megasloth"]</xpath>
+				<value>
+				  <li Class="HunterMarkingSystem.MarkDefExtension">
+					<!-- DefName of the Marking Hediff Kills of this race give --> 
+					<hediffs>
+					<li>HMS_Hediff_BloodedMGroTye</li>
+					</hediffs>
+				  </li>
+				</value>
+			</li>
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName = "Thrumbo"]</xpath>
+				<value>
+				  <li Class="HunterMarkingSystem.MarkDefExtension">
+					<!-- DefName of the Marking Hediff Kills of this race give --> 
+					<hediffs>
+					<li>HMS_Hediff_BloodedMThrumbo</li>
+					</hediffs>
+				  </li>
+				</value>
+			</li>
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName = "Elephant"]</xpath>
+				<value>
+				  <li Class="HunterMarkingSystem.MarkDefExtension">
+					<!-- DefName of the Marking Hediff Kills of this race give --> 
+					<hediffs>
+					<li>HMS_Hediff_BloodedMCrusher</li>
+					</hediffs>
+				  </li>
 				</value>
 			</li>
 		</operations>	

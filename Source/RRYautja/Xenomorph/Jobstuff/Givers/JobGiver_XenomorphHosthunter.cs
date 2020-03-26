@@ -61,6 +61,7 @@ namespace RimWorld
                         }
                     }
                 }
+                else
                 if (lord.CurLordToil is LordToil_DefendHiveLikeAggressively hivetoilA)
                 {
                     if (hivetoilA.Data.assignedHiveLikes.TryGetValue(pawn) != null)
@@ -70,6 +71,11 @@ namespace RimWorld
                 }
             }
 
+            float summaryHealthPercent = pawn.health.summaryHealth.SummaryHealthPercent;
+            if (summaryHealthPercent < 0.5f)
+            {
+               return null;
+            }
             bool aggressive;
             Comp_Xenomorph _Xenomorph = pawn.TryGetComp<Comp_Xenomorph>();
             if (pawn.TryGetAttackVerb(null, false) == null)
@@ -79,9 +85,24 @@ namespace RimWorld
 
 
             Pawn pawn2 = null;
-            if (_Xenomorph!=null && hive.hiveDormant)
+            if (hive!=null)
             {
-                pawn2 = _Xenomorph.BestPawnToHuntForPredator(pawn, false, true);
+                if (_Xenomorph != null)
+                {
+                    if (!hive.hiveDormant)
+                    {
+                        pawn2 = _Xenomorph.BestPawnToHuntForPredator(pawn, false, true);
+                    }
+                    else
+                    {
+                        HuntingRange = 30;
+                        requireLOS = true;
+                    }
+                }
+                else
+                {
+
+                }
             }
             if (pawn2 == null)
             {
@@ -103,6 +124,8 @@ namespace RimWorld
             {
                 using (PawnPath pawnPath = pawn.Map.pathFinder.FindPath(pawn.Position, pawn2.Position, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.PassDoors, true), PathEndMode.OnCell))
                 {
+                    if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("pawnPath.TotalCost: {0}", pawnPath.TotalCost));
+                    
                     if (!pawnPath.Found)
                     {
                         return null;
@@ -129,7 +152,7 @@ namespace RimWorld
             return new Job(JobDefOf.AttackMelee, target)
             {
                 maxNumMeleeAttacks = 1,
-                expiryInterval = Rand.Range(MinMeleeChaseTicks, MaxMeleeChaseTicks),
+                expiryInterval = Rand.Range(MinMeleeChaseTicks, MaxMeleeChaseTicks) * (int)Math.Max(1, (pawn.Position.DistanceTo(target.Position) / 5)),
                 killIncappedTarget = false,
                 attackDoorIfTargetLost = true
             };

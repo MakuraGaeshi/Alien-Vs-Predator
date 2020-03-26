@@ -355,7 +355,7 @@
   <BodyPartDef>
     <defName>RRY_Xeno_Tail</defName>
     <label>tail</label>
-    <hitPoints>10</hitPoints>
+    <hitPoints>30</hitPoints>
     <frostbiteVulnerability>0</frostbiteVulnerability>
     <skinCovered>true</skinCovered>
     <tags>
@@ -420,7 +420,7 @@
   <BodyPartDef>
     <defName>RRY_Xeno_Leg</defName>
     <label>leg</label>
-    <hitPoints>30</hitPoints>
+    <hitPoints>40</hitPoints>
     <skinCovered>true</skinCovered>
     <tags>
       <li>MovingLimbCore</li>
@@ -441,7 +441,7 @@
   <BodyPartDef>
     <defName>RRY_Xeno_TailSpike</defName>
     <label>tail spike</label>
-    <hitPoints>20</hitPoints>
+    <hitPoints>50</hitPoints>
     <skinCovered>false</skinCovered>
     <solid>true</solid>
     <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>

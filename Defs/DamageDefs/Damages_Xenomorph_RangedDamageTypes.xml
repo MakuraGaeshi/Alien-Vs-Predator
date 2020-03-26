@@ -30,7 +30,7 @@
     <externalViolence>true</externalViolence>
     <deathMessage>{0} has burned to death.</deathMessage>
     <hediff>RRY_XenoAcidBurn</hediff>
-    <armorCategory>Heat</armorCategory>
+    <armorCategory>RRY_Acid</armorCategory>
     <minDamageToFragment>15</minDamageToFragment>
     <defaultDamage>10</defaultDamage>
     <defaultArmorPenetration>0</defaultArmorPenetration>

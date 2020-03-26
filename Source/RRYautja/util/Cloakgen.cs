@@ -162,9 +162,11 @@ namespace RRYautja
             }
             if (this.cloak.DestroyedOrNull())
             {
+                /*
                 Wearer.health.AddHediff(YautjaDefOf.RRY_Hediff_Cloaked);
                 Hediff hediff = Wearer.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_Cloaked);
                 // hediff.TryGetComp<HediffComp_Blur>().blurTick = Find.TickManager.TicksGame;
+                */
             }
             this.cloakIsOn = true;
         }
@@ -176,8 +178,10 @@ namespace RRYautja
             {
                 if (Wearer.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked))
                 {
+                    /*
                     Hediff hediff = Wearer.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_Cloaked);
                     Wearer.health.RemoveHediff(hediff);
+                    */
                     this.cloakMode = CloakMode.Off;
                 }
             }
@@ -482,7 +486,7 @@ namespace RRYautja
         // Token: 0x0600005E RID: 94 RVA: 0x00004008 File Offset: 0x00002208
         public override void DrawWornExtras()
         {
-            if (this.cloakMode == CloakMode.On && this.ShouldDisplay)
+            if (this.cloakMode == CloakMode.On && this.ShouldDisplay && false)
             {
                 // Wearer.Graphic.color.a = 0.25f;
                 //Wearer.Drawer.renderer.graphics.pawn.DefaultGraphic.color.a = 0.25f;
@@ -500,7 +504,7 @@ namespace RRYautja
                 Vector3 s = new Vector3(num, 1f, num);
                 Matrix4x4 matrix = default(Matrix4x4);
                 matrix.SetTRS(vector, Quaternion.AngleAxis(angle, Vector3.up), s);
-                Graphics.DrawMesh(MeshPool.plane10, matrix, Cloakgen.BubbleMat, 0);
+            //    Graphics.DrawMesh(MeshPool.plane10, matrix, Cloakgen.BubbleMat, 0);
             }
 
         }
@@ -577,6 +581,6 @@ namespace RRYautja
         // Things/Gas/Puff
         // Other/CloakActive
 
-        private static readonly Material BubbleMat = MaterialPool.MatFrom("Other/smokething_lightV", ShaderDatabase.Transparent);
+       
     }
 }

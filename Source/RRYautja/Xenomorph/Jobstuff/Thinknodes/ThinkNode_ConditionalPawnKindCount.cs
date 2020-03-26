@@ -20,7 +20,7 @@ namespace RimWorld
         // Token: 0x060009B9 RID: 2489 RVA: 0x0004E0A3 File Offset: 0x0004C4A3
         protected override bool Satisfied(Pawn pawn)
         {
-            if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} needs < {2} {3}, Result: {1}", this, pawn.Map.mapPawns.AllPawnsSpawned.FindAll(x => x.kindDef == pawnKind).Count < this.pawnKindCount || pawn.Map.mapPawns.AllPawnsSpawned.FindAll(x => x.kindDef == pawnKind).NullOrEmpty(), pawnKindCount, pawnKind.LabelCap));
+        //    if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} needs < {2} {3}, Result: {1}", this, pawn.Map.mapPawns.AllPawnsSpawned.FindAll(x => x.kindDef == pawnKind).Count < this.pawnKindCount || pawn.Map.mapPawns.AllPawnsSpawned.FindAll(x => x.kindDef == pawnKind).NullOrEmpty(), pawnKindCount, pawnKind.LabelCap));
             return pawn.Map.mapPawns.AllPawnsSpawned.FindAll(x => x.kindDef == pawnKind).Count > this.pawnKindCount && !pawn.Map.mapPawns.AllPawnsSpawned.FindAll(x => x.kindDef == pawnKind).NullOrEmpty();
         }
 
@@ -44,7 +44,7 @@ namespace RimWorld
         // Token: 0x060009B9 RID: 2489 RVA: 0x0004E0A3 File Offset: 0x0004C4A3
         protected override bool Satisfied(Pawn pawn)
         {
-            if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} needs < {2} {3}, Result: {1}", this, pawn.Map.mapPawns.AllPawnsSpawned.FindAll(x => x.kindDef == pawnKind).Count < this.pawnKindCount || pawn.Map.mapPawns.AllPawnsSpawned.FindAll(x => x.kindDef == pawnKind).NullOrEmpty(), pawnKindCount, pawnKind.LabelCap));
+        //    if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} needs < {2} {3}, Result: {1}", this, pawn.Map.mapPawns.AllPawnsSpawned.FindAll(x => x.kindDef == pawnKind).Count < this.pawnKindCount || pawn.Map.mapPawns.AllPawnsSpawned.FindAll(x => x.kindDef == pawnKind).NullOrEmpty(), pawnKindCount, pawnKind.LabelCap));
             return pawn.Map.mapPawns.AllPawnsSpawned.FindAll(x => x.kindDef == pawnKind).Count < this.pawnKindCount || pawn.Map.mapPawns.AllPawnsSpawned.FindAll(x => x.kindDef == pawnKind).NullOrEmpty();
         }
 

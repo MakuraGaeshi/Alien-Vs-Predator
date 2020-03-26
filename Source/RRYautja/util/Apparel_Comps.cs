@@ -276,38 +276,41 @@ namespace RRYautja
         public override IEnumerable<Gizmo> CompGetGizmosWorn()
         {
             int num = 700000108;
-            yield return new Command_Action
-            {
-                action = Detonate,
-                defaultLabel = "WearableExplosives_Detonate_Label".Translate(),
-                defaultDesc = "WearableExplosives_Detonate_Desc".Translate(),
-                icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_BOOM", true),
-                activateSound = SoundDef.Named("Click"),
-                groupKey = num + 1
-            };
-            if (Armed)
+            if (GetWearer.Faction == Faction.OfPlayerSilentFail)
             {
                 yield return new Command_Action
                 {
-                    action = StopFuse,
-                    defaultLabel = "WearableExplosives_Timer_Stop_Label".Translate(),
-                    defaultDesc = "WearableExplosives_Timer_Desc".Translate(),
+                    action = Detonate,
+                    defaultLabel = "WearableExplosives_Detonate_Label".Translate(),
+                    defaultDesc = "WearableExplosives_Detonate_Desc".Translate(),
                     icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_BOOM", true),
                     activateSound = SoundDef.Named("Click"),
-                    groupKey = num + 2
+                    groupKey = num + 1
                 };
-            }
-            else
-            {
-                yield return new Command_Action
+                if (Armed)
                 {
-                    action = StartFuse,
-                    defaultLabel = "WearableExplosives_Timer_Start_Label".Translate(),
-                    defaultDesc = "WearableExplosives_Timer_Desc".Translate(),
-                    icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_BOOM", true),
-                    activateSound = SoundDef.Named("Click"),
-                    groupKey = num + 2
-                };
+                    yield return new Command_Action
+                    {
+                        action = StopFuse,
+                        defaultLabel = "WearableExplosives_Timer_Stop_Label".Translate(),
+                        defaultDesc = "WearableExplosives_Timer_Desc".Translate(),
+                        icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_BOOM", true),
+                        activateSound = SoundDef.Named("Click"),
+                        groupKey = num + 2
+                    };
+                }
+                else
+                {
+                    yield return new Command_Action
+                    {
+                        action = StartFuse,
+                        defaultLabel = "WearableExplosives_Timer_Start_Label".Translate(),
+                        defaultDesc = "WearableExplosives_Timer_Desc".Translate(),
+                        icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_BOOM", true),
+                        activateSound = SoundDef.Named("Click"),
+                        groupKey = num + 2
+                    };
+                }
             }
             yield break;
         }

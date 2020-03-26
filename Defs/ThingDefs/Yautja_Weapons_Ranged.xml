@@ -64,7 +64,7 @@
     </recipeMaker>
 	<comps>     
 		<li>
-			<compClass>CompOversizedWeapon.CompOversizedWeapon</compClass>
+			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
 		</li>
 	</comps>
   </ThingDef>
@@ -103,7 +103,7 @@
     </graphicData>
 	<comps>     
 		<li>
-			<compClass>CompOversizedWeapon.CompOversizedWeapon</compClass>
+			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
 		</li>
 	</comps>
     <soundInteract>Bow_Large</soundInteract>
@@ -374,7 +374,7 @@
     </graphicData>
 	<comps>     
 		<li>
-			<compClass>CompOversizedWeapon.CompOversizedWeapon</compClass>
+			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
 		</li>
 	</comps>
     <soundInteract>Interact_Rifle</soundInteract>
@@ -398,13 +398,14 @@
 	  <Plasteel>50</Plasteel>
       <ComponentIndustrial>6</ComponentIndustrial>
     </costList>
+	<generateCommonality>0.1</generateCommonality>
     <verbs>
       <li>
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <defaultProjectile>RRY_Bullet_SpearRifle</defaultProjectile>
         <warmupTime>3.5</warmupTime>
-        <range>55</range>
+        <range>47</range>
         <soundCast>Shot_SniperRifle</soundCast>
         <soundCastTail>GunTail_Heavy</soundCastTail>
         <muzzleFlashScale>0</muzzleFlashScale>
@@ -435,6 +436,7 @@
 	  <li>YautjaRanged</li>
 	</weaponTags>
   </ThingDef> 
+  
   <ThingDef ParentName="BaseBullet">
     <defName>RRY_Bullet_SpearRifle</defName>
     <label>spear bolt</label>
@@ -444,7 +446,7 @@
     </graphicData>
     <projectile>
       <damageDef>Bullet</damageDef>
-      <damageAmountBase>35</damageAmountBase>
+      <damageAmountBase>27</damageAmountBase>
       <stoppingPower>2.0</stoppingPower>
       <speed>120</speed>
     </projectile>
@@ -453,7 +455,7 @@
 <!-- ====================== Smart Disk ===================== -->	 
   <ThingDef ParentName="RRYBaseSimpleRanged">
     <defName>RRY_Gun_SmartDisk</defName>
-    <label>Smart Disk</label>
+    <label>Yautja Smart Disk</label>
     <description>A circular shaped, extremely sharp thrown weapon. The smart disk come equipped with a targeting system that makes it deadly accurate but with a long time to setup before throwing. But it is unwieldy in close-combat.</description>
     <graphicData>
       <texPath>Things/Equipment/Ranged/SmartDisk</texPath>

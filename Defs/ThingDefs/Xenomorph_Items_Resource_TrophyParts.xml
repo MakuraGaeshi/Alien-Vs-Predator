@@ -11,6 +11,7 @@
     </graphicData>
     <equippedAngleOffset>-20</equippedAngleOffset>
     <statBases>
+      <RRY_AcidResistance>1</RRY_AcidResistance>
       <MarketValue>400</MarketValue>
       <MaxHitPoints>150</MaxHitPoints>
       <Mass>3</Mass>
@@ -59,6 +60,7 @@
     </graphicData>
     <equippedAngleOffset>-20</equippedAngleOffset>
     <statBases>
+      <RRY_AcidResistance>1</RRY_AcidResistance>
       <MarketValue>200</MarketValue>
       <MaxHitPoints>150</MaxHitPoints>
       <Mass>3</Mass>

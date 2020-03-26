@@ -1,6 +1,6 @@
 ﻿using RimWorld;
 using Verse;
-using Harmony;
+using HarmonyLib;
 using System.Reflection;
 using System.Collections.Generic;
 using System;
@@ -25,8 +25,15 @@ namespace RRYautja
             MapComponent_HiveGrid _HiveGrid = map.GetComponent<MapComponent_HiveGrid>();
             if (_HiveGrid != null)
             {
-                //        Log.Message(string.Format("AddSnowRadial _HiveGrid != null center: {0}, radius: {1}, depth: {2}", center, radius, depth));
-                HiveUtility.AddHiveRadial(center, map, radius, depth);
+                //    Log.Message(string.Format("AddSnowRadial _HiveGrid != null center: {0}, radius: {1}, depth: {2}", center, radius, depth));
+                XenomorphHiveUtility.AddHiveRadial(center, map, radius, depth);
+            }
+            //    Log.Message(string.Format("AddSnowRadial center: {0}, radius: {1}, depth: {2}", center, radius, depth));
+            MapComponent_GooGrid _GooGrid = map.GetComponent<MapComponent_GooGrid>();
+            if (_GooGrid != null)
+            {
+                //    Log.Message(string.Format("AddSnowRadial _HiveGrid != null center: {0}, radius: {1}, depth: {2}", center, radius, depth));
+                XenomorphHiveUtility.AddGooRadial(center, map, radius, depth);
             }
         }
     }

@@ -1,6 +1,6 @@
 ﻿using RimWorld;
 using Verse;
-using Harmony;
+using HarmonyLib;
 using System.Reflection;
 using System.Collections.Generic;
 using System;
@@ -36,6 +36,15 @@ namespace RRYautja
             //    Log.Message(string.Format("absorbed"));
 #endif
             }
+            /*
+            if (dinfo.Instigator!=null)
+            {
+                if (dinfo.Instigator.isXenomorph())
+                {
+                //    Log.Message("cause by Xenomorph");
+                }
+            }
+            */
             return !absorbed;
         }
 

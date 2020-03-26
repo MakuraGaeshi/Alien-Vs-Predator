@@ -25,6 +25,7 @@ namespace RimWorld
         public HiveLike()
         {
             this.innerContainer = new ThingOwner<Thing>(this, false, LookMode.Deep);
+            this.queenContainer = new ThingOwner<Thing>(this, false, LookMode.Deep);
         }
 
         public ThingDef_HiveLike Def
@@ -81,6 +82,37 @@ namespace RimWorld
                 {
                     return true;
                 }
+            }
+        }
+        public bool hasQueen
+        {
+            get
+            {
+                bool hasqueen = false;
+                if (!this.innerContainer.NullOrEmpty())
+                {
+                    if (this.innerContainer.Any(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen))
+                    {
+                        foreach (var item in innerContainer.Where(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen))
+                        {
+                            queenContainer.TryAddOrTransfer(item);
+                        }
+                    }
+                }
+                else
+                if (!this.queenContainer.NullOrEmpty())
+                {
+                    if (this.queenContainer.Any(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen))
+                    {
+                        hasqueen = true;
+                    }
+                }
+                else
+                if (!Map.HiveGrid().Queenlist.NullOrEmpty())
+                {
+                    hasqueen = Map.HiveGrid().Queenlist.Any(x=> x.xenomorph().HiveLoc == this.Position);
+                }
+                return hasqueen;
             }
         }
 
@@ -258,7 +290,7 @@ namespace RimWorld
 		// Token: 0x06002673 RID: 9843 RVA: 0x001240D8 File Offset: 0x001224D8
 		public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
-            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Neomorphs) && this.def == XenomorphDefOf.RRY_XenomorphHive)
+            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Neomorphs) && this.def == XenomorphDefOf.RRY_Xenomorph_Hive)
             {
                 LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Neomorphs, OpportunityType.Important);
             }
@@ -268,13 +300,39 @@ namespace RimWorld
 				this.SetFaction(OfFaction, null);
 
             }
-			if (!respawningAfterLoad && this.active)
+			if (!respawningAfterLoad && this.active && this.hasQueen)
             {
                 this.SpawnInitialPawns();
             }
             else
             {
                 spawnablePawnKinds = OfPawnKinds;
+            }
+            MapComponent_HiveGrid hiveGrid = map.HiveGrid();
+            if (hiveGrid!=null)
+            {
+                if (this.def == XenomorphDefOf.RRY_Xenomorph_Hive)
+                {
+                    if (!hiveGrid.Hivelist.Contains(this))
+                    {
+                        hiveGrid.Hivelist.Add(this);
+                    }
+                    if (!hiveGrid.HiveLoclist.Contains(this.Position))
+                    {
+                        hiveGrid.HiveLoclist.Add(this.Position);
+                    }
+                }
+                if (this.def == XenomorphDefOf.RRY_Xenomorph_Hive_Child)
+                {
+                    if (!hiveGrid.Hivelist.Contains(this))
+                    {
+                        hiveGrid.Hivelist.Add(this);
+                    }
+                    if (!hiveGrid.HiveLoclist.Contains(this.Position))
+                    {
+                        hiveGrid.HiveLoclist.Add(this.Position);
+                    }
+                }
             }
 		}
 
@@ -333,33 +391,37 @@ namespace RimWorld
                 {
                     if (this.innerContainer != null)
                     {
-                        if (this.innerContainer.Count > 0)
+                        if ((this.innerContainer.Count == 1 && !this.innerContainer.Any(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen)) || this.innerContainer.Count > 1)
                         {
                             this.innerContainer.TryDropAll(this.Position, this.Map, ThingPlaceMode.Near, null, null);
                         }
+                        
                     }
                 }
-                if (this.innerContainer != null && hiveMaintainer != null)
+                if (!this.innerContainer.NullOrEmpty())
                 {
-                    if (this.innerContainer.Count > 0 && hiveMaintainer.CurStage == MaintainableStage.NeedsMaintenance)
+                    if (hiveMaintainer != null)
                     {
-                        Thing thing = this.innerContainer.RandomElement();
-                        this.innerContainer.TryDrop(thing, ThingPlaceMode.Near, out thing);
-                    }
-                }
-                if (this.innerContainer != null && Find.TickManager.TicksGame % 10000 == 0)
-                {
-                    Thing thing = GenClosest.ClosestThingReachable(this.Position, this.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), Verse.AI.PathEndMode.ClosestTouch, TraverseParms.For(TraverseMode.ByPawn, Danger.Deadly), 30f, (x => x.isPotentialHost()));
-                    if (this.innerContainer.Count > 0 && !thing.DestroyedOrNull())
-                    {
-                        Pawn p = (Pawn)thing;
-                        for (int i = 0; i < this.innerContainer.Count; i++)
+                        if (this.innerContainer.Count > 0 && hiveMaintainer.CurStage == MaintainableStage.NeedsMaintenance)
                         {
-                            Thing thing2 = this.innerContainer[i];
-                            float chance = p.RaceProps.baseBodySize * p.ageTracker.CurLifeStage.bodySizeFactor / XenomorphUtil.DistanceBetween(this.Position,p.Position) * this.innerContainer.Count;
-                            if (Rand.ChanceSeeded(chance,AvPConstants.AvPSeed))
+                            Thing thing = this.innerContainer.RandomElement();
+                            this.innerContainer.TryDrop(thing, ThingPlaceMode.Near, out thing);
+                        }
+                    }
+                    if (Find.TickManager.TicksGame % 10000 == 0)
+                    {
+                        Thing thing = GenClosest.ClosestThingReachable(this.Position, this.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), Verse.AI.PathEndMode.ClosestTouch, TraverseParms.For(TraverseMode.ByPawn, Danger.Deadly), 30f, (x => x.isPotentialHost()));
+                        if (this.innerContainer.Count > 0 && !thing.DestroyedOrNull())
+                        {
+                            Pawn p = (Pawn)thing;
+                            for (int i = 0; i < this.innerContainer.Count; i++)
                             {
-                                this.innerContainer.TryDrop(thing2, ThingPlaceMode.Near, out thing2);
+                                Thing thing2 = this.innerContainer[i];
+                                float chance = p.RaceProps.baseBodySize * p.ageTracker.CurLifeStage.bodySizeFactor / XenomorphUtil.DistanceBetween(this.Position, p.Position) * this.innerContainer.Count;
+                                if (Rand.ChanceSeeded(chance, AvPConstants.AvPSeed))
+                                {
+                                    this.innerContainer.TryDrop(thing2, ThingPlaceMode.Near, out thing2);
+                                }
                             }
                         }
                     }
@@ -390,6 +452,10 @@ namespace RimWorld
             if (this.innerContainer.Count > 0)
             {
                 this.EjectContents();
+            }
+            if (this.queenContainer.Count > 0)
+            {
+                this.EjectQueens();
             }
             base.PostApplyDamage(dinfo, totalDamageDealt);
 		}
@@ -545,17 +611,50 @@ namespace RimWorld
                         this.TrySpawnPawn(out Pawn pawn);
                     }
                 };
+                if (!this.innerContainer.NullOrEmpty())
+                {
+                    if (this.innerContainer.Count > 0)
+                    {
+                        yield return new Command_Action
+                        {
+                            defaultLabel = "DEBUG: release all pawns",
+                            icon = TexCommand.ReleaseAnimals,
+                            defaultDesc = "Release all xenos inside",
+                            action = delegate ()
+                            {
+                                this.EjectContents();
+                            }
+                        };
+                    }
+                }
+                if (!this.queenContainer.NullOrEmpty())
+                {
+                    if (hasQueen)
+                    {
+                        yield return new Command_Action
+                        {
+                            defaultLabel = "DEBUG: release all Queens",
+                            icon = TexCommand.ReleaseAnimals,
+                            defaultDesc = "Release all Queens inside",
+                            action = delegate ()
+                            {
+                                this.EjectQueens();
+                            }
+                        };
+                    }
+                }
 
-                if (this.innerContainer.Count > 0)
+                if (!hasQueen && this.parentHiveLike == null)
                 {
                     yield return new Command_Action
                     {
-                        defaultLabel = "DEBUG: release all pawns",
-                        icon = TexCommand.ReleaseAnimals,
-                        defaultDesc = "Release all xenos inside",
+                        defaultLabel = "DEBUG: Spawn Queen",
+                        icon = TexCommand.Install,
+                        defaultDesc = "Adds a Queen to this hive",
                         action = delegate ()
                         {
-                            this.EjectContents();
+                            Pawn newQueen = PawnGenerator.GeneratePawn(new PawnGenerationRequest(XenomorphDefOf.RRY_Xenomorph_Queen, factionInt));
+                            this.queenContainer.TryAdd(newQueen);
                         }
                     };
                 }
@@ -584,7 +683,7 @@ namespace RimWorld
 		{
 			return LordMaker.MakeNewLord(base.Faction, new LordJob_DefendAndExpandHiveLike(!this.caveColony), base.Map, null);
 		}
-
+        /*
         // Token: 0x060024FB RID: 9467 RVA: 0x00116DF3 File Offset: 0x001151F3
         public virtual bool Accepts(Thing thing)
         {
@@ -614,7 +713,7 @@ namespace RimWorld
             }
             return false;
         }
-
+        */
         public virtual void EjectContents()
         {
             this.innerContainer.TryDropAll(this.Position, base.Map, ThingPlaceMode.Near, null, null);
@@ -632,6 +731,24 @@ namespace RimWorld
             ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, this.GetDirectlyHeldThings());
         }
 
+
+        public virtual void EjectQueens()
+        {
+            this.queenContainer.TryDropAll(this.Position, base.Map, ThingPlaceMode.Near, null, null);
+        }
+
+        // Token: 0x060024F3 RID: 9459 RVA: 0x00116CE3 File Offset: 0x001150E3
+        public ThingOwner GetDirectlyHeldQueens()
+        {
+            return this.queenContainer;
+        }
+
+        // Token: 0x060024F4 RID: 9460 RVA: 0x00116CEB File Offset: 0x001150EB
+        public void GetQueenHolders(List<IThingHolder> outChildren)
+        {
+            ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, this.GetDirectlyHeldQueens());
+        }
+
         // Token: 0x06002677 RID: 9847 RVA: 0x00124224 File Offset: 0x00122624
         public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
         {
@@ -642,7 +759,33 @@ namespace RimWorld
             {
                 lords[i].ReceiveMemo(HiveLike.MemoDeSpawned);
             }
-            HiveLikeUtility.Notify_HiveLikeDespawned(this, map);
+            XenomorphHiveUtility.Notify_HiveLikeDespawned(this, map);
+            MapComponent_HiveGrid hiveGrid = map.HiveGrid();
+            if (hiveGrid != null)
+            {
+                if (this.def == XenomorphDefOf.RRY_Xenomorph_Hive)
+                {
+                    if (hiveGrid.Hivelist.Contains(this))
+                    {
+                        hiveGrid.Hivelist.Remove(this);
+                    }
+                    if (hiveGrid.HiveLoclist.Contains(this.Position))
+                    {
+                        hiveGrid.HiveLoclist.Remove(this.Position);
+                    }
+                }
+                if (this.def == XenomorphDefOf.RRY_Xenomorph_Hive_Child)
+                {
+                    if (hiveGrid.HiveChildlist.Contains(this))
+                    {
+                        hiveGrid.HiveChildlist.Remove(this);
+                    }
+                    if (hiveGrid.HiveChildLoclist.Contains(this.Position))
+                    {
+                        hiveGrid.HiveChildLoclist.Remove(this.Position);
+                    }
+                }
+            }
         }
 
         // Token: 0x060024FD RID: 9469 RVA: 0x00116E88 File Offset: 0x00115288
@@ -653,15 +796,25 @@ namespace RimWorld
                 this.EjectContents();
             }
             this.innerContainer.ClearAndDestroyContents(DestroyMode.Vanish);
+            if (this.queenContainer.Count > 0)
+            {
+                this.EjectQueens();
+            }
+            this.queenContainer.ClearAndDestroyContents(DestroyMode.Vanish);
             base.Destroy(mode);
         }
 
         public override void PreApplyDamage(ref DamageInfo dinfo, out bool absorbed)
         {
+            if (dinfo.Def==XenomorphDefOf.RRY_AcidBurn || dinfo.Def == XenomorphDefOf.RRY_AcidDamage)
+            {
+                absorbed = true;
+            }
             base.PreApplyDamage(ref dinfo, out absorbed);
         }
 
         protected ThingOwner innerContainer;
+        protected ThingOwner queenContainer;
         public List<PawnKindDef> PawnKinds = new List<PawnKindDef>();
         public HiveLike parentHiveLike;
         public bool active = true;
@@ -699,6 +852,10 @@ namespace RimWorld
                 this.spawnedPawns.RemoveAll((Pawn x) => x == null);
             }
             Scribe_Deep.Look<ThingOwner>(ref this.innerContainer, "innerContainer", new object[]
+            {
+                this
+            });
+            Scribe_Deep.Look<ThingOwner>(ref this.queenContainer, "queenContainer", new object[]
             {
                 this
             });

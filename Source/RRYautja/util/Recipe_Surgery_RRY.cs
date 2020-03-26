@@ -76,12 +76,12 @@ namespace RRYautja
                         }
                         else if (Rand.Chance(0.35f))
                         {
-                            GenSpawn.Spawn(ThingMaker.MakeThing(XenomorphDefOf.RRY_FilthBloodXenomorph), surgeon.Position, surgeon.Map);
+                            GenSpawn.Spawn(ThingMaker.MakeThing(XenomorphDefOf.RRY_FilthBloodXenomorph_Active), surgeon.Position, surgeon.Map);
                         }
                         int a = Rand.Range(0,5);
                         for (int i = 0; i < a; i++)
                         {
-                            GenSpawn.Spawn(ThingMaker.MakeThing(XenomorphDefOf.RRY_FilthBloodXenomorph), patientLoc.RandomAdjacentCell8Way(), surgeon.Map);
+                            GenSpawn.Spawn(ThingMaker.MakeThing(XenomorphDefOf.RRY_FilthBloodXenomorph_Active), patientLoc.RandomAdjacentCell8Way(), surgeon.Map);
                         }
                         Messages.Message("RRYMessageMedicalOperationFailureCatastrophic".Translate(surgeon.LabelShort, patient.LabelShort, surgeon.Named("SURGEON"), patient.Named("PATIENT")), patient, MessageTypeDefOf.NegativeHealthEvent, true);
                         HealthShardTendUtility.GiveInjuriesOperationFailureCatastrophic(patient, part);
@@ -93,9 +93,9 @@ namespace RRYautja
                     {
                         if (Rand.Chance(0.35f))
                         {
-                            GenSpawn.Spawn(ThingMaker.MakeThing(XenomorphDefOf.RRY_FilthBloodXenomorph), surgeon.Position, surgeon.Map);
+                            GenSpawn.Spawn(ThingMaker.MakeThing(XenomorphDefOf.RRY_FilthBloodXenomorph_Active), surgeon.Position, surgeon.Map);
                         }
-                        else GenSpawn.Spawn(ThingMaker.MakeThing(XenomorphDefOf.RRY_FilthBloodXenomorph), patientLoc.RandomAdjacentCell8Way(), surgeon.Map);
+                        else GenSpawn.Spawn(ThingMaker.MakeThing(XenomorphDefOf.RRY_FilthBloodXenomorph_Active), patientLoc.RandomAdjacentCell8Way(), surgeon.Map);
                         Messages.Message("RRYMessageMedicalOperationFailureMinorB".Translate(surgeon.LabelShort, patient.LabelShort, surgeon.Named("SURGEON"), patient.Named("PATIENT")), patient, MessageTypeDefOf.NegativeHealthEvent, true);
                         HealthShardTendUtility.GiveInjuriesOperationFailureMinor(patient, part);
                     }

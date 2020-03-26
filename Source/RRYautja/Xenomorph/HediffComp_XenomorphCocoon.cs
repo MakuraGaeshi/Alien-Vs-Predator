@@ -14,8 +14,7 @@ namespace RRYautja
         {
             this.compClass = typeof(HediffComp_XenomorphCocoon);
         }
-
-
+        
     }
 
     public class HediffComp_XenomorphCocoon : HediffComp
@@ -66,7 +65,7 @@ namespace RRYautja
         {
             get
             {
-                return Pawn.RaceProps.Humanlike ? XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon : XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon;
+                return Pawn.RaceProps.Humanlike ? XenomorphDefOf.RRY_Xenomorph_Cocoon_Humanoid : XenomorphDefOf.RRY_Xenomorph_Cocoon_Animal;
             }
         }
 
@@ -117,7 +116,19 @@ namespace RRYautja
         {
             get
             {
-                return MyMap.mapPawns.AllPawnsSpawned.Any(x => x.kindDef == QueenKindDef);
+                bool queenPresent = MyMap.mapPawns.AllPawnsSpawned.Any(x => x.kindDef == QueenKindDef);
+                if (!queenPresent && XenomorphUtil.HivelikesPresent(MyMap))
+                {
+                    foreach (HiveLike h in XenomorphUtil.SpawnedHivelikes(MyMap))
+                    {
+                        if (h.hasQueen)
+                        {
+                            queenPresent = true;
+                            break;
+                        }
+                    }
+                }
+                return queenPresent;
             }
         }
 
@@ -134,7 +145,7 @@ namespace RRYautja
         {
             get
             {
-                return MyMap.listerThings.ThingsOfDef(XenomorphDefOf.RRY_EggXenomorphFertilized).Any(x => x is Building_XenoEgg egg && egg.xenoHatcher.royalProgress>=1f);
+                return MyMap.listerThings.ThingsOfDef(eggDef).Any(x => x is Building_XenoEgg egg && egg.xenoHatcher.eggState == CompXenoHatcher.EggState.Royal);
             }
         }
         ThingDef eggDef = XenomorphDefOf.RRY_EggXenomorphFertilized;
@@ -149,12 +160,15 @@ namespace RRYautja
                 Thing thing = ThingMaker.MakeThing(MyCocoonDef);
                 GenSpawn.Spawn(thing, MyPos, MyMap, rot, WipeMode.Vanish, false);
                 Building_XenomorphCocoon thing2 = ((Building_XenomorphCocoon)thing);
+                if (thing2==null)
+                {
+                    return;
+                }
                 if (this.Pawn.IsPrisoner)
                 {
                     thing2.ForPrisoners = true;
                 }
-                this.Pawn.jobs.Notify_TuckedIntoBed(thing2);
-                this.Pawn.mindState.Notify_TuckedIntoBed();
+                   this.Pawn.jobs.Notify_TuckedIntoBed(thing2);
             }
             if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Cocoons) && Pawn.IsColonist)
             {
@@ -171,12 +185,15 @@ namespace RRYautja
         {
             bool selected = Find.Selector.SelectedObjects.Contains(Pawn) && Prefs.DevMode;
             base.CompPostTick(ref severityAdjustment);
-            if (!QueenPresent && !PredalienPresent)
+            if (settings.SettingsHelper.latest.AllowXenoCocoonMetamorph)
             {
-                float num = 1f / ((3* Pawn.BodySize) * 60000f);
-                if (this.conversionProgress < 1f)
+                if (!QueenPresent && !PredalienPresent)
                 {
-                    this.conversionProgress += num;
+                    float num = 1f / ((3 * Pawn.BodySize) * (Pawn.RaceProps.Humanlike ? 60000f : 10000f));
+                    if (this.conversionProgress < 1f)
+                    {
+                        this.conversionProgress += num;
+                    }
                 }
             }
             if (Find.TickManager.TicksGame % 300 == 0)
@@ -192,14 +209,14 @@ namespace RRYautja
                 {
                     if (this.conversionProgress >= 1f&& XenomorphUtil.TotalSpawnedEggCount(MyMap)<(cocoonedCount / 2) && !XenomorphUtil.IsInfectedPawn(Pawn))
                     {
-                        float chance = Pawn.RaceProps.Humanlike ? 0.001f+((float)EggConvertTicks/1000) : .05f + ((float)EggConvertTicks / 500);
+                        float chance = Pawn.RaceProps.Humanlike ? 0.001f+((float)EggConvertTicks/5000) : .05f + ((float)EggConvertTicks / 500);
                         EggConvertTicks++;
                         if (Rand.Chance(chance))
                         {
                             Thing thing = ThingMaker.MakeThing(eggDef, null);
                             Building_XenoEgg _XenoEgg = (Building_XenoEgg)thing;
                             CompXenoHatcher xenoHatcher = _XenoEgg.TryGetComp<CompXenoHatcher>();
-                            if (!RoyalEggPresent && !RoyalPresent) xenoHatcher.royalProgress = Pawn.BodySize;
+                            if (!RoyalEggPresent && !RoyalPresent) xenoHatcher.mutateProgress = Pawn.BodySize;
                             MyCocoon.Destroy();
                             GenPlace.TryPlaceThing(thing, Pawn.Position != null ? Pawn.Position : Pawn.PositionHeld, Pawn.Map ?? Pawn.MapHeld, ThingPlaceMode.Direct);
                         //    Pawn.health.RemoveHediff(this.parent);
@@ -213,6 +230,19 @@ namespace RRYautja
                         }
                     }
                 }
+            }
+        }
+
+        public override string CompTipStringExtra
+        {
+            get
+            {
+                string extra = string.Empty;
+                if (this.conversionProgress>0)
+                {
+                    extra += string.Format("conversionProgress: {0}", conversionProgress.ToStringPercent());
+                }
+                return extra;
             }
         }
 

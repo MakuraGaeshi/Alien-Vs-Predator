@@ -14,7 +14,7 @@
 			<Mass>0.5</Mass>
 		</statBases>
 		<resourceReadoutPriority>Middle</resourceReadoutPriority>
-		<stackLimit>10</stackLimit>
+		<stackLimit>1</stackLimit>
 		<useHitPoints>true</useHitPoints>
 		<tradeability>Buyable</tradeability>
 		<comps>
@@ -38,7 +38,7 @@
 			<MarketValue>120</MarketValue>
 			<MaxHitPoints>70</MaxHitPoints>
 		</statBases>
-		<drawGUIOverlay>true</drawGUIOverlay>
+		<drawGUIOverlay>false</drawGUIOverlay>
 		<comps>
 			<li Class="ResourceBoxes.CompProperties_UseEffect_ResourceBox">
 			<!--

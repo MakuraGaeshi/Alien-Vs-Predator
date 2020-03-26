@@ -1,6 +1,6 @@
 ﻿using RimWorld;
 using Verse;
-using Harmony;
+using HarmonyLib;
 using System.Reflection;
 using System.Collections.Generic;
 using System;
@@ -16,7 +16,7 @@ using AlienRace;
 
 namespace RRYautja
 {
-
+    /*
     [HarmonyPatch(typeof(AlienRace.HarmonyPatches), "ThoughtsFromIngestingPostfix")]
     public static class AvP_AlienRace_HarmonyPatches_ThoughtsFromIngestingPostfix_Patch
     {
@@ -72,5 +72,5 @@ namespace RRYautja
             }
         }
     }
-
+    */
 }

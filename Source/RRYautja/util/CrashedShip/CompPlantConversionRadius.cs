@@ -14,6 +14,14 @@ namespace RimWorld
         
         // Token: 0x040016EA RID: 5866
         public float harmFrequencyPerArea = 1f;
+        // Token: 0x040004CC RID: 1228
+        public float addAmount = 0.12f;
+
+        // Token: 0x040016E9 RID: 5865
+        public SimpleCurve radiusPerDayCurve;
+
+        // Token: 0x040004CD RID: 1229
+        public float maxRadius = 55f;
     }
 
     // Token: 0x02000752 RID: 1874
@@ -56,7 +64,9 @@ namespace RimWorld
             if (this.ticksToPlantHarm <= 0)
             {
                 float x = (float)this.plantHarmAge / 60000f;
-                float num = this.PlantHarmRadius.Props.radiusPerDayCurve.Evaluate(x)-3;
+                float num = (this.PlantHarmRadius != null ? this.PlantHarmRadius.Props.radiusPerDayCurve.Evaluate(x) : this.PropsPlantHarmRadius.radiusPerDayCurve.Evaluate(x))-3;
+
+            //    Log.Message(string.Format("PlantHarmRadius: {0}, {1}", num, this.PlantHarmRadius != null));
                 float num2 = 3.14159274f * num * num;
                 float num3 = num2 * this.PropsPlantHarmRadius.harmFrequencyPerArea;
                 float num4 = 60f / num3;

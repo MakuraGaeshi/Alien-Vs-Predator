@@ -25,23 +25,40 @@ namespace RRYautja
             {
                 return null;
             }
-            if (Tunnel.hiveDormant && !_HiveGrid.HiveGuardlist.Contains(pawn))
-            {
-                return new Job(XenomorphDefOf.RRY_Job_EnterHiveTunnel, Tunnel);
-            }
-            bool flag1 = Tunnel.def == XenomorphDefOf.RRY_XenomorphHive;
-            bool flag2 = Tunnel.def == XenomorphDefOf.RRY_XenomorphHive_Child;
+            bool flag1 = Tunnel.def == XenomorphDefOf.RRY_Xenomorph_Hive;
+            bool flag2 = Tunnel.def == XenomorphDefOf.RRY_Xenomorph_Hive_Child;
             bool flag3 = Tunnel.Map.mapPawns.AllPawnsSpawned.Any(x => x.isPotentialHost() && pawn.TryGetComp<Comp_Xenomorph>().IsAcceptablePreyFor(pawn, x, true));
-            if (flag3 || Tunnel == null || (Tunnel != null && Tunnel.spawnedPawns.Contains(pawn) && (Tunnel.Position.Roofed(Tunnel.Map) || flag1)) || !pawn.CanReach(Tunnel, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.ByPawn))
+            bool flag4 = _HiveGrid.HiveGuardlist.Contains(pawn) || (Tunnel.hiveMaintainer!=null && Tunnel.hiveMaintainer.CurStage != MaintainableStage.Healthy && (_HiveGrid.HiveWorkerlist.Contains(pawn) || _HiveGrid.HiveWorkerlist.NullOrEmpty()));
+
+            if (flag3 || flag4 || Tunnel == null || (Tunnel != null && Tunnel.spawnedPawns.Contains(pawn) && (Tunnel.Position.Roofed(Tunnel.Map) || flag1)) || !pawn.CanReach(Tunnel, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.ByPawn))
             {
                 return null;
             }
-            return new Job(XenomorphDefOf.RRY_Job_EnterHiveTunnel, Tunnel);
+            if (Tunnel.hiveDormant && !_HiveGrid.HiveGuardlist.Contains(pawn))
+            {
+                return new Job(XenomorphDefOf.RRY_Job_Xenomorph_EnterHiveTunnel, Tunnel);
+            }
+            return new Job(XenomorphDefOf.RRY_Job_Xenomorph_EnterHiveTunnel, Tunnel);
         }
 
         // Token: 0x060004C6 RID: 1222 RVA: 0x00030C6C File Offset: 0x0002F06C
         public static HiveLike FindMyTunnel(Pawn pawn)
         {
+            if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen)
+            {
+                if (XenomorphUtil.HivelikesPresent(pawn.Map))
+                {
+                    HiveLike hive = (HiveLike)XenomorphUtil.ClosestReachableHivelike(pawn);
+                    if (!hive.hasQueen)
+                    {
+                        if (hive.Lord!=null && hive.Lord!=pawn.GetLord())
+                        {
+                            pawn.SwitchToLord(hive.Lord);
+                        }
+                        return (HiveLike)XenomorphUtil.ClosestReachableHivelike(pawn);
+                    }
+                }
+            }
             if (pawn.GetLord() != null && pawn.GetLord() is Lord lord)
             {
                 if (lord.LordJob is LordJob_DefendAndExpandHiveLike hivejob)
@@ -54,11 +71,23 @@ namespace RRYautja
                         }
                     }
                 }
-                if (lord.CurLordToil is LordToil_DefendHiveLikeAggressively hivetoilA)
+                else if (lord.CurLordToil is LordToil_DefendHiveLikeAggressively hivetoilA)
                 {
                     if (hivetoilA.Data.assignedHiveLikes.TryGetValue(pawn) != null)
                     {
                         return hivetoilA.Data.assignedHiveLikes.TryGetValue(pawn);
+                    }
+                }
+                else
+                {
+                    if (XenomorphUtil.HivelikesPresent(pawn.Map))
+                    {
+                        HiveLike hive = (HiveLike)XenomorphUtil.ClosestReachableHivelike(pawn);
+                        if (hive.Lord != null && hive.Lord != pawn.GetLord())
+                        {
+                            pawn.SwitchToLord(hive.Lord);
+                        }
+                        return (HiveLike)XenomorphUtil.ClosestReachableHivelike(pawn);
                     }
                 }
             }

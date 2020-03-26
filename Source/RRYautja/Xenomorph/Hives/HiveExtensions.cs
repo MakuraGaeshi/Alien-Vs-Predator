@@ -26,13 +26,16 @@ namespace RRYautja.ExtensionMethods
             return _AvPHiveCreep.hiveGrid;
         }
         */
+
+
     }
 
     // Token: 0x02000C94 RID: 3220
     [Flags]
     public enum MapMeshFlag
     {
-        Hive = 84
+        Hive = 84,
+        Goo = 85
     }
 
     // Token: 0x02000FC0 RID: 4032

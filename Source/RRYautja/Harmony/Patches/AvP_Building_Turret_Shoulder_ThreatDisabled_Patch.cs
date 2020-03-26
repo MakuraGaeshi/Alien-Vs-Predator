@@ -1,6 +1,6 @@
 ﻿using RimWorld;
 using Verse;
-using Harmony;
+using HarmonyLib;
 using System.Reflection;
 using System.Collections.Generic;
 using System;
@@ -16,22 +16,19 @@ using RRYautja.ExtensionMethods;
 namespace RRYautja
 {
     // Plasmacasters ignore Cloaked things
-    [HarmonyPatch(typeof(Building_Turret_Shoulder), "ThreatDisabled")]
+    [HarmonyPatch(typeof(Building_Turret), "ThreatDisabled")]
     public static class AvP_Building_Turret_Shoulder_ThreatDisabled_Patch
     {
         [HarmonyPostfix]
-        public static void IgnoreShoulderTurret(Building_Turret_Shoulder __instance, ref bool __result, IAttackTargetSearcher disabledFor)
+        public static void IgnoreShoulderTurret(Building_Turret __instance, ref bool __result, IAttackTargetSearcher disabledFor)
         {
-            bool selected__instance = Find.Selector.SelectedObjects.Contains(__instance);
-            bool shouldturret = false;
             if (__instance != null)
             {
-                if (__instance is Building_Turret_Shoulder)
+                if (__instance.GetType() == typeof(Building_Turret_Shoulder))
                 {
-                    shouldturret = true;
+                    __result = true;
                 }
             }
-            __result = (__result || shouldturret);
 
         }
     }

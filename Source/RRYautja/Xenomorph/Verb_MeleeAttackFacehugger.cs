@@ -26,10 +26,11 @@ namespace RRYautja
             }
         }
 
-        // Token: 0x060039DE RID: 14814 RVA: 0x001B8078 File Offset: 0x001B6478
+        // Token: 0x06005F6B RID: 24427 RVA: 0x0020F288 File Offset: 0x0020D488
         private IEnumerable<DamageInfo> DamageInfosToApply(LocalTargetInfo target)
         {
             Pawn hitPawn = (Pawn)target;
+            DamageDef def = this.verbProps.meleeDamageDef;
             bool flag = XenomorphUtil.isInfectablePawn(hitPawn);
             float tgtmelee = 0f;
             float tgtdodge = 0f;
@@ -46,20 +47,16 @@ namespace RRYautja
                     for (int i = 0; i < wornApparel.Count; i++)
                     {
                         bool flag2 = wornApparel[i].def.apparel.CoversBodyPart(Head);
-                        if (flag2) 
+                        if (flag2)
                         {
-                            armourBlunt = wornApparel[i].def.statBases.GetStatOffsetFromList(StatDefOf.ArmorRating_Blunt); // hitPawn.GetStatValue(StatDefOf.ArmorRating_Blunt, false);
-                            armourSharp = wornApparel[i].def.statBases.GetStatOffsetFromList(StatDefOf.ArmorRating_Sharp); //hitPawn.GetStatValue(StatDefOf.ArmorRating_Sharp, false);
-                            armourHeat = wornApparel[i].def.statBases.GetStatOffsetFromList(StatDefOf.ArmorRating_Heat); //hitPawn.GetStatValue(StatDefOf.ArmorRating_Heat, false);
-                            armour = (armourBlunt + armourSharp + armourHeat);
-                       //     Log.Message(string.Format("Pawn: {4}\narmourBlunt: {0}, armourSharp: {1}, armourHeat: {2}, Total Armour {3}", armourBlunt, armourSharp, armourHeat, armour, wornApparel[i].LabelShortCap));
+                            armour += wornApparel[i].def.statBases.GetStatOffsetFromList(def.armorCategory.armorRatingStat);
                         }
                     }
                 }
             }
             float InfecterRoll = (Rand.Value * 100) * (1 - tgtdodge);
             float InfectionDefence = 50 + tgtmelee + (armour * 10);
-            if ((InfecterRoll > InfectionDefence || hitPawn.Downed) && flag&&hitPawn is Pawn && !hitPawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Anesthetic))
+            if ((InfecterRoll > InfectionDefence || hitPawn.Downed) && flag && hitPawn is Pawn && !hitPawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Anesthetic))
             {
                 infect = true;
             }
@@ -67,87 +64,95 @@ namespace RRYautja
             {
                 infect = false;
             }
-            float damAmount = this.verbProps.AdjustedMeleeDamageAmount(this, base.CasterPawn);
-			float armorPenetration = this.verbProps.AdjustedArmorPenetration(this, base.CasterPawn);
-			DamageDef damDef = this.verbProps.meleeDamageDef;
-			BodyPartGroupDef bodyPartGroupDef = null;
-
-			HediffDef hediffDef = null;
-			damAmount = Rand.Range(damAmount * 0.8f, damAmount * 1.2f);
-			if (base.CasterIsPawn)
-			{
-				bodyPartGroupDef = this.verbProps.AdjustedLinkedBodyPartsGroup(this.tool);
-				if (damAmount >= 1f)
-				{
-					if (base.HediffCompSource != null)
-					{
-						hediffDef = base.HediffCompSource.Def;
-					}
-				}
-				else
-				{
-					damAmount = 1f;
-					damDef = DamageDefOf.Blunt;
-				}
-			}
-			ThingDef source;
-			if (base.EquipmentSource != null)
-			{
-				source = base.EquipmentSource.def;
-			}
-			else
-			{
-				source = base.CasterPawn.def;
-			}
-			Vector3 direction = (target.Thing.Position - base.CasterPawn.Position).ToVector3();
-			DamageDef def = damDef;
-			float num = damAmount;
-			float num2 = armorPenetration;
-			Thing caster = this.caster;
-            DamageInfo mainDinfo = new DamageInfo(def, num, num2, -1f, caster, null, source, DamageInfo.SourceCategory.ThingOrUnknown, null);
-			mainDinfo.SetBodyRegion(BodyPartHeight.Undefined, BodyPartDepth.Outside);
-			mainDinfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
-			mainDinfo.SetWeaponHediff(hediffDef);
-			mainDinfo.SetAngle(direction);
-			yield return mainDinfo;
-			if (this.surpriseAttack && ((this.verbProps.surpriseAttack != null && !this.verbProps.surpriseAttack.extraMeleeDamages.NullOrEmpty<ExtraMeleeDamage>()) || (this.tool != null && this.tool.surpriseAttack != null && !this.tool.surpriseAttack.extraMeleeDamages.NullOrEmpty<ExtraMeleeDamage>())))
-			{
-				IEnumerable<ExtraMeleeDamage> extraDamages = Enumerable.Empty<ExtraMeleeDamage>();
-				if (this.verbProps.surpriseAttack != null && this.verbProps.surpriseAttack.extraMeleeDamages != null)
-				{
-					extraDamages = extraDamages.Concat(this.verbProps.surpriseAttack.extraMeleeDamages);
-				}
-				if (this.tool != null && this.tool.surpriseAttack != null && !this.tool.surpriseAttack.extraMeleeDamages.NullOrEmpty<ExtraMeleeDamage>())
-				{
-					extraDamages = extraDamages.Concat(this.tool.surpriseAttack.extraMeleeDamages);
-				}
-				foreach (ExtraMeleeDamage extraDamage in extraDamages)
-				{
-					int extraDamageAmount = GenMath.RoundRandom(extraDamage.AdjustedDamageAmount(this, base.CasterPawn));
-					float extraDamageArmorPenetration = extraDamage.AdjustedArmorPenetration(this, base.CasterPawn);
-					def = extraDamage.def;
-					num2 = (float)extraDamageAmount;
-					num = extraDamageArmorPenetration;
-					caster = this.caster;
-					DamageInfo extraDinfo = new DamageInfo(def, num2, num, -1f, caster, null, source, DamageInfo.SourceCategory.ThingOrUnknown, null);
-					extraDinfo.SetBodyRegion(BodyPartHeight.Undefined, BodyPartDepth.Outside);
-					extraDinfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
-					extraDinfo.SetWeaponHediff(hediffDef);
-					extraDinfo.SetAngle(direction);
-					yield return extraDinfo;
-				}
-			}
-			yield break;
-		}
-
+            float num = this.verbProps.AdjustedMeleeDamageAmount(this, this.CasterPawn);
+            float armorPenetration = this.verbProps.AdjustedArmorPenetration(this, this.CasterPawn);
+            BodyPartGroupDef bodyPartGroupDef = null;
+            HediffDef hediffDef = null;
+            num = Rand.Range(num * 0.8f, num * 1.2f);
+            if (this.CasterIsPawn)
+            {
+                bodyPartGroupDef = this.verbProps.AdjustedLinkedBodyPartsGroup(this.tool);
+                if (num >= 1f)
+                {
+                    if (base.HediffCompSource != null)
+                    {
+                        hediffDef = base.HediffCompSource.Def;
+                    }
+                }
+                else
+                {
+                    num = 1f;
+                    def = DamageDefOf.Blunt;
+                }
+            }
+            ThingDef source;
+            if (base.EquipmentSource != null)
+            {
+                source = base.EquipmentSource.def;
+            }
+            else
+            {
+                source = this.CasterPawn.def;
+            }
+            Vector3 direction = (target.Thing.Position - this.CasterPawn.Position).ToVector3();
+            DamageInfo damageInfo = new DamageInfo(def, num, armorPenetration, -1f, this.caster, null, source, DamageInfo.SourceCategory.ThingOrUnknown, null);
+            damageInfo.SetBodyRegion(BodyPartHeight.Undefined, BodyPartDepth.Outside);
+            damageInfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
+            damageInfo.SetWeaponHediff(hediffDef);
+            damageInfo.SetAngle(direction);
+            yield return damageInfo;
+            if (this.tool != null && this.tool.extraMeleeDamages != null)
+            {
+                foreach (ExtraDamage extraDamage in this.tool.extraMeleeDamages)
+                {
+                    if (Rand.Chance(extraDamage.chance))
+                    {
+                        num = extraDamage.amount;
+                        num = Rand.Range(num * 0.8f, num * 1.2f);
+                        damageInfo = new DamageInfo(extraDamage.def, num, extraDamage.AdjustedArmorPenetration(this, this.CasterPawn), -1f, this.caster, null, source, DamageInfo.SourceCategory.ThingOrUnknown, null);
+                        damageInfo.SetBodyRegion(BodyPartHeight.Undefined, BodyPartDepth.Outside);
+                        damageInfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
+                        damageInfo.SetWeaponHediff(hediffDef);
+                        damageInfo.SetAngle(direction);
+                        yield return damageInfo;
+                    }
+                }
+                List<ExtraDamage>.Enumerator enumerator = default(List<ExtraDamage>.Enumerator);
+            }
+            if (this.surpriseAttack && ((this.verbProps.surpriseAttack != null && !this.verbProps.surpriseAttack.extraMeleeDamages.NullOrEmpty<ExtraDamage>()) || (this.tool != null && this.tool.surpriseAttack != null && !this.tool.surpriseAttack.extraMeleeDamages.NullOrEmpty<ExtraDamage>())))
+            {
+                IEnumerable<ExtraDamage> enumerable = Enumerable.Empty<ExtraDamage>();
+                if (this.verbProps.surpriseAttack != null && this.verbProps.surpriseAttack.extraMeleeDamages != null)
+                {
+                    enumerable = enumerable.Concat(this.verbProps.surpriseAttack.extraMeleeDamages);
+                }
+                if (this.tool != null && this.tool.surpriseAttack != null && !this.tool.surpriseAttack.extraMeleeDamages.NullOrEmpty<ExtraDamage>())
+                {
+                    enumerable = enumerable.Concat(this.tool.surpriseAttack.extraMeleeDamages);
+                }
+                foreach (ExtraDamage extraDamage2 in enumerable)
+                {
+                    int num2 = GenMath.RoundRandom(extraDamage2.AdjustedDamageAmount(this, this.CasterPawn));
+                    float armorPenetration2 = extraDamage2.AdjustedArmorPenetration(this, this.CasterPawn);
+                    DamageInfo damageInfo2 = new DamageInfo(extraDamage2.def, (float)num2, armorPenetration2, -1f, this.caster, null, source, DamageInfo.SourceCategory.ThingOrUnknown, null);
+                    damageInfo2.SetBodyRegion(BodyPartHeight.Undefined, BodyPartDepth.Outside);
+                    damageInfo2.SetWeaponBodyPartGroup(bodyPartGroupDef);
+                    damageInfo2.SetWeaponHediff(hediffDef);
+                    damageInfo2.SetAngle(direction);
+                    yield return damageInfo2;
+                }
+                IEnumerator<ExtraDamage> enumerator2 = null;
+            }
+            yield break;
+        }
 		// Token: 0x060039DF RID: 14815 RVA: 0x001B80A4 File Offset: 0x001B64A4
 		protected override DamageWorker.DamageResult ApplyMeleeDamageToTarget(LocalTargetInfo target)
         {
             DamageWorker.DamageResult result = new DamageWorker.DamageResult();
             Pawn hitPawn = (Pawn)target;
-            if (infect && !XenomorphUtil.IsInfectedPawn(hitPawn) && !hitPawn.Dead && hitPawn.RaceProps.body.AllParts.Any(x => x.def.defName.Contains("Head")))
+            if (infect && !XenomorphUtil.IsInfectedPawn(hitPawn) && !hitPawn.Dead && hitPawn.RaceProps.body.AllParts.Any(x => x.def.defName.Contains("Head") && !x.def.defName.Contains("Claw")))
             {
-                foreach (var part in hitPawn.RaceProps.body.AllParts.Where(x => x.def.defName.Contains("Head")))
+                foreach (var part in hitPawn.RaceProps.body.AllParts.Where(x => x.def.defName.Contains("Head") && !x.def.defName.Contains("Claw")))
                 {
                     Hediff hediff = HediffMaker.MakeHediff(XenomorphDefOf.RRY_FaceHuggerInfection, hitPawn, null);
                     Comp_Facehugger _Facehugger = CasterPawn.TryGetComp<Comp_Facehugger>();
@@ -159,8 +164,13 @@ namespace RRYautja
                     hitPawn.health.AddHediff(hediff, part, null);
                     string text = TranslatorFormattedStringExtensions.Translate("Xeno_Facehugger_Attach", hitPawn.LabelShort, part.LabelShortCap);
                     MoteMaker.ThrowText(hitPawn.Position.ToVector3(), hitPawn.Map, text, 5f);
-                    comp.GetDirectlyHeldThings();
-                    caster.DeSpawn();
+                    if (CasterPawn.Spawned)
+                    {
+                        CasterPawn.DeSpawn();
+                    }
+                    comp.TryAcceptThing(CasterPawn);
+                    //    comp.GetDirectlyHeldThings().TryAdd(CasterPawn);
+
                     infect = false;
                 }
             }

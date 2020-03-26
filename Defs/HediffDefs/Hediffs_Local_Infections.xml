@@ -5,6 +5,7 @@
     <defName>RRY_FaceHuggerInfection</defName>
     <hediffClass>HediffWithComps</hediffClass>
     <label>Facehugger</label>
+    <description>Facehugger</description>
     <initialSeverity>0.01</initialSeverity>
     <makesSickThought>true</makesSickThought>
     <tendable>false</tendable>
@@ -85,7 +86,6 @@
 		-->
 		<li Class="RRYautja.HediffCompProperties_XenoFacehugger">
 		<severityPerDay>1</severityPerDay>
-		<pawnKindDef>RRY_Xenomorph_FaceHugger</pawnKindDef>
 		</li>
 		<li Class="RRYautja.HediffCompProperties_DrawImplant">
         <compClass>RRYautja.HediffComp_DrawImplant</compClass>
@@ -102,6 +102,7 @@
     <defName>RRY_XenomorphImpregnation</defName>
     <hediffClass>RRYautja.XenoHediffWithComps</hediffClass>
     <label>xenomorph embryo</label>
+    <description>xenomorph embryo</description>
     <labelNoun>a xenomorph impregnation</labelNoun>
     <initialSeverity>0.1</initialSeverity>
     <lethalSeverity>1</lethalSeverity>
@@ -174,6 +175,7 @@
     <defName>RRY_HiddenXenomorphImpregnation</defName>
     <hediffClass>HediffWithComps</hediffClass>
     <label>xenomorph impregnation</label>
+    <description>xenomorph impregnation</description>
     <labelNoun>a xenomorph impregnation</labelNoun>
     <initialSeverity>0.1</initialSeverity>
     <lethalSeverity>1</lethalSeverity>
@@ -248,6 +250,7 @@
     <defName>RRY_NeomorphImpregnation</defName>
     <hediffClass>HediffWithComps</hediffClass>
     <label>neomorph impregnation</label>
+    <description>neomorph impregnation</description>
     <labelNoun>a neomorph impregnation</labelNoun>
     <initialSeverity>0.1</initialSeverity>
     <lethalSeverity>1</lethalSeverity>
@@ -435,6 +438,7 @@
     <defName>RRY_HiddenNeomorphImpregnation</defName>
     <hediffClass>HediffWithComps</hediffClass>
     <label>neomorph impregnation</label>
+    <description>neomorph impregnation</description>
     <labelNoun>a neomorph impregnation</labelNoun>
     <initialSeverity>0.1</initialSeverity>
     <lethalSeverity>1</lethalSeverity>
@@ -532,7 +536,7 @@
         </capMods>
       </li>
       <li>
-        <minSeverity>0.90</minSeverity>
+        <minSeverity>0.75</minSeverity>
         <label>late gestation</label>
         <becomeVisible>false</becomeVisible>
         <vomitMtbDays>0.7</vomitMtbDays>

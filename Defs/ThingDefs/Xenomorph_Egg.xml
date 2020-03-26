@@ -10,7 +10,7 @@
     <altitudeLayer>Building</altitudeLayer>
     <passability>PassThroughOnly</passability>
     <selectable>true</selectable>
-    <fillPercent>0.20</fillPercent>
+    <fillPercent>0.25</fillPercent>
     <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
     <rotatable>false</rotatable>
     <tickerType>Normal</tickerType>
@@ -24,9 +24,9 @@
       <li>BuildingsSpecial</li>
     </thingCategories>
     <statBases>
-      <MaxHitPoints>10</MaxHitPoints>
-      <Mass>4</Mass>
-      <Flammability>1.0</Flammability>
+      <MaxHitPoints>100</MaxHitPoints>
+      <Mass>60</Mass>
+      <Flammability>10.0</Flammability>
       <MarketValue>0</MarketValue>
     </statBases>
     <comps>

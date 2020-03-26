@@ -46,7 +46,7 @@
 			-->
 			
   <ThingDef ParentName="BuildingBase">
-    <defName>RRY_Xenomorph_Humanoid_Cocoon</defName>
+    <defName>RRY_Xenomorph_Cocoon_Humanoid</defName>
     <label>humanoid cocoon</label>
     <description>Designates a spot on the ground where people should sleep. Not comfortable.</description>
     <thingClass>Building_XenomorphCocoon</thingClass>
@@ -76,6 +76,12 @@
       <li Class="CompProperties_UseEffect">
         <compClass>CompUseEffect_Cocoon</compClass>
       </li>
+      <li Class="CompProperties_AssignableToPawn">
+        <drawAssignmentOverlay>false</drawAssignmentOverlay>
+		
+        <compClass>CompAssignableToPawn_Bed</compClass>
+      </li>
+	  
 		<!--
       <li Class="CompProperties_UseEffect">
         <compClass>RRYautja.CompUseEffect_Cocoon</compClass>
@@ -108,7 +114,7 @@
   
 
   <ThingDef ParentName="BuildingBase">
-    <defName>RRY_Xenomorph_Animal_Cocoon</defName>
+    <defName>RRY_Xenomorph_Cocoon_Animal</defName>
     <label>cocoon</label>
     <description>Designates a spot on the ground where people should sleep. Not comfortable.</description>
     <thingClass>Building_XenomorphCocoon</thingClass>
@@ -134,6 +140,12 @@
         <useLabel>Release from cocoon</useLabel>
         <useDuration>450</useDuration>
       </li>
+      <li Class="CompProperties_AssignableToPawn">
+        <drawAssignmentOverlay>false</drawAssignmentOverlay>
+		
+        <compClass>CompAssignableToPawn_Bed</compClass>
+      </li>
+	  
       <li Class="CompProperties_UseEffect">
         <compClass>CompUseEffect_Cocoon</compClass>
       </li>

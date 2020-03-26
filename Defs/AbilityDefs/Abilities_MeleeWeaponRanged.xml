@@ -10,7 +10,7 @@
 		</graphicData>
 		<comps>     
 			<li>
-				<compClass>CompOversizedWeapon.CompOversizedWeapon</compClass>
+				<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
 			</li>
 		</comps>
 		<projectile>
@@ -22,32 +22,34 @@
 		</projectile>
  </ThingDef>
 
-	<AbilityUser.AbilityDef ParentName="BaseAbility">
+	<RRYautja.EquipmentAbilityDef ParentName="RRY_BaseAbility">
         <defName>RRY_Ability_Throw_CombiStick</defName>
         <label>Throw Combistick</label>
-        <uiIconPath>Things/Equipment/Melee/Yautja_Combistaff_New</uiIconPath>
+        <iconPath>Things/Equipment/Melee/Yautja_Combistaff_New</iconPath>
         <description>Throw the Combistick.</description>
-        <MainVerb Class="AbilityUser.VerbProperties_Ability">
-            <verbClass>AbilityUser.Verb_UseAbility_RRY_Thrown</verbClass>
-            <AlwaysHits>false</AlwaysHits>
-            <tooltipShowProjectileDamage>true</tooltipShowProjectileDamage>
-            <tooltipShowExtraDamages>false</tooltipShowExtraDamages>
-            <tooltipShowHediffsToApply>false</tooltipShowHediffsToApply>
-            <tooltipShowMentalStatesToApply>false</tooltipShowMentalStatesToApply>
+        <abilityClass>RRYautja.EquipmentAbility</abilityClass>
+        <verbProperties Class="RRYautja.VerbProperties_EquipmentAbility">
+            <verbClass>RRYautja.Verb_UseEquipment_Thrown</verbClass>
             <hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>RRY_Projectile_CombiStick</defaultProjectile>
-            <abilityDef>RRY_Ability_Throw_CombiStick</abilityDef>
             <warmupTime>2</warmupTime>
-            <SecondsToRecharge>10.0</SecondsToRecharge>
             <burstShotCount>1</burstShotCount>
 			<range>20</range>
 			<soundCast>Interact_BeatFire</soundCast>
-            <isPrimary>false</isPrimary>
 			<targetParams>
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
-        </MainVerb>
- </AbilityUser.AbilityDef>
+        </verbProperties>
+		<comps>
+		  <li Class="CompProperties_EffectWithDest">
+			<compClass>RRYautja.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+		  </li>
+		</comps>
+ </RRYautja.EquipmentAbilityDef>
  
 <!-- ======================== Yautja - Throw Smart Disk Ability ================================== -->
 <ThingDef ParentName="RRY_BaseThrownReturningProjectileAbility">
@@ -67,31 +69,34 @@
 		</projectile>
  </ThingDef>
 
-	<AbilityUser.AbilityDef ParentName="BaseAbility">
+	<RRYautja.EquipmentAbilityDef ParentName="RRY_BaseAbility">
         <defName>RRY_Ability_Throw_SmartDisk</defName>
         <label>Throw Smart Disk</label>
-        <uiIconPath>Things/Projectile/SmartDisk</uiIconPath>
+        <iconPath>Things/Projectile/SmartDisk</iconPath>
         <description>Throw the Smart Disk.</description>
-        <MainVerb Class="AbilityUser.VerbProperties_Ability">
-            <verbClass>AbilityUser.Verb_UseAbility_RRY_Thrown</verbClass>
-            <AlwaysHits>false</AlwaysHits>
-            <tooltipShowProjectileDamage>true</tooltipShowProjectileDamage>
-            <tooltipShowExtraDamages>false</tooltipShowExtraDamages>
-            <tooltipShowHediffsToApply>false</tooltipShowHediffsToApply>
-            <tooltipShowMentalStatesToApply>false</tooltipShowMentalStatesToApply>
+		<cooldown>10</cooldown>
+        <abilityClass>RRYautja.EquipmentAbility</abilityClass>
+        <verbProperties Class="RRYautja.VerbProperties_EquipmentAbility">
+            <verbClass>RRYautja.Verb_UseEquipment_Thrown</verbClass>
             <hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>RRY_Projectile_SmartDisk</defaultProjectile>
-            <abilityDef>RRY_Ability_Throw_SmartDisk</abilityDef>
             <warmupTime>2</warmupTime>
-            <SecondsToRecharge>10.0</SecondsToRecharge>
             <burstShotCount>1</burstShotCount>
 			<range>20</range>
 			<soundCast>Interact_BeatFire</soundCast>
-            <isPrimary>false</isPrimary>
 			<targetParams>
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
-        </MainVerb>
- </AbilityUser.AbilityDef>
+        </verbProperties>
+		<comps>
+		  <li Class="CompProperties_EffectWithDest">
+			<compClass>RRYautja.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+		  </li>
+		</comps>
+ </RRYautja.EquipmentAbilityDef>
  
  </Defs>

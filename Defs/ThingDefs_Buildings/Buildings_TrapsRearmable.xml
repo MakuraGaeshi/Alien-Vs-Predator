@@ -60,75 +60,26 @@
     </researchPrerequisites>
   </ThingDef>
 
-<!--
-  <ThingDef ParentName="BuildingBase">
-    <defName>TrapDeadfall</defName>
-    <label>deadfall trap</label>
-    <thingClass>RRYautja.Building_TrapRearmable</thingClass>
-    <graphicData>
-      <texPath>Things/Buildings/Security/DeadfallArmed</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <damageData>
-        <rect>(0,0,1,0.15)</rect>
-      </damageData>
-    </graphicData>
-    <altitudeLayer>Building</altitudeLayer>
-    <drawerType>RealtimeOnly</drawerType>
-    <rotatable>false</rotatable>
-    <tickerType>Normal</tickerType>
-    <stealable>false</stealable>
-    <statBases>
-      <MaxHitPoints>40</MaxHitPoints>
-      <WorkToBuild>2000</WorkToBuild>
-      <Beauty>-4</Beauty>
-      <TrapMeleeDamage>60</TrapMeleeDamage>
-      <TrapSpringChance>0.8</TrapSpringChance>
-    </statBases>
-    <description>A suspended spiked weight held up by a delicate trigger. When the victim disturbs the trigger, the weight is released and falls on his head or torso.</description>
-    <stuffCategories>
-      <li>Metallic</li>
-      <li>Woody</li>
-      <li>Stony</li>
-    </stuffCategories>
-    <costStuffCount>70</costStuffCount>
-    <designationCategory>RRY_Security</designationCategory>
-    <designationHotKey>Misc6</designationHotKey>
-    <building>
-      <isTrap>true</isTrap>
-      <trapDamageCategory>Sharp</trapDamageCategory>
-      <trapUnarmedGraphicData>
-        <texPath>Things/Buildings/RRY_Security/DeadfallUnarmed</texPath>
-        <graphicClass>Graphic_Single</graphicClass>
-        <shaderType>Cutout</shaderType>
-      </trapUnarmedGraphicData>
-    </building>
-    <constructionSkillPrerequisite>3</constructionSkillPrerequisite>
-  </ThingDef>
-
-  -->
-  
   <DesignationDef>
 		<defName>TR_RearmTrap</defName>
 		<texturePath>UI/Designators/RearmTrap</texturePath>
 		<targetType>Thing</targetType>
 	</DesignationDef>
-    
-	<!--
+  
   <DesignationCategoryDef>
     <defName>Security</defName>
     <label>security</label>
     <order>300</order>
     <specialDesignatorClasses>
-      <li>RRYautja.Designator_Rearm</li>
+      <li>TrapsRearmable.Designator_Rearm</li>
     </specialDesignatorClasses>
   </DesignationCategoryDef>
-	-->
   
   <WorkGiverDef>
     <defName>TR_RearmTraps</defName>
     <label>Rearm traps</label>
-    <giverClass>RRYautja.WorkGiver_RearmTraps</giverClass>
-    <workType>RRY_Rearm</workType>
+    <giverClass>TrapsRearmable.WorkGiver_RearmTraps</giverClass>
+    <workType>BasicWorker</workType>
     <verb>Rearm</verb>
     <gerund>rearming</gerund>
     <priorityInType>50</priorityInType>
@@ -137,7 +88,7 @@
     </requiredCapacities>
   </WorkGiverDef>
   
-  <WorkTypeDef>
+  <!--WorkTypeDef>
 		<defName>TR_Rearm</defName>
 		<labelShort>Rearm</labelShort>
 		<pawnLabel>Rearmer</pawnLabel>
@@ -146,7 +97,7 @@
 		<verb>Rearm</verb>
 		<naturalPriority>1125</naturalPriority>
 		<alwaysStartActive>true</alwaysStartActive>
-	</WorkTypeDef>
+	</WorkTypeDef-->
 
   
   <RecordDef>

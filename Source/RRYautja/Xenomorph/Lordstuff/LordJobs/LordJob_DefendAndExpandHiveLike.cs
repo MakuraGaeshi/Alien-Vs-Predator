@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Verse;
 using Verse.AI.Group;
 
@@ -11,12 +12,34 @@ namespace RimWorld
 		public LordJob_DefendAndExpandHiveLike()
 		{
 
-		}
+            this.RunnerList = new List<Pawn>();
+            this.DroneList = new List<Pawn>();
+            this.WarriorList = new List<Pawn>();
+            this.PreatorianList = new List<Pawn>();
+            this.PredalienList = new List<Pawn>();
+            this.QueenList = new List<Pawn>();
+            this.ThrumbomorphList = new List<Pawn>();
+            this.XenoList = new List<Pawn>();
+            this.ScoutList = new List<Pawn>();
+            this.WorkerList = new List<Pawn>();
+            this.GuardList = new List<Pawn>();
+        }
 
         // Token: 0x06000792 RID: 1938 RVA: 0x00042F2C File Offset: 0x0004132C
         public LordJob_DefendAndExpandHiveLike(bool aggressive)
         {
             this.aggressive = aggressive;
+            this.RunnerList = new List<Pawn>();
+            this.DroneList = new List<Pawn>();
+            this.WarriorList = new List<Pawn>();
+            this.PreatorianList = new List<Pawn>();
+            this.PredalienList = new List<Pawn>();
+            this.QueenList = new List<Pawn>();
+            this.ThrumbomorphList = new List<Pawn>();
+            this.XenoList = new List<Pawn>();
+            this.ScoutList = new List<Pawn>();
+            this.WorkerList = new List<Pawn>();
+            this.GuardList = new List<Pawn>();
         }
 
         // Token: 0x06000792 RID: 1938 RVA: 0x00042F2C File Offset: 0x0004132C
@@ -26,6 +49,19 @@ namespace RimWorld
             this.radius = radius;
             this.faction = faction;
             this.flagLoc = vec3;
+            this.RunnerList = new List<Pawn>();
+            this.DroneList = new List<Pawn>();
+            this.WarriorList = new List<Pawn>();
+            this.PreatorianList = new List<Pawn>();
+            this.PredalienList = new List<Pawn>();
+            this.QueenList = new List<Pawn>();
+            this.ThrumbomorphList = new List<Pawn>();
+            this.XenoList = new List<Pawn>();
+            this.ScoutList = new List<Pawn>();
+            this.WorkerList = new List<Pawn>();
+            this.GuardList = new List<Pawn>();
+
+
         }
 
         // Token: 0x17000130 RID: 304
@@ -53,6 +89,86 @@ namespace RimWorld
             base.LordJobTick();
         }
 
+        public override void Notify_PawnAdded(Pawn pawn)
+        {
+            if (pawn.def.race.FleshType == XenomorphRacesDefOf.RRY_Xenomorph)
+            {
+                if (!XenoList.Contains(pawn))
+                {
+                    XenoList.Add(pawn);
+                }
+            }
+            if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_FaceHugger)
+            {
+                /*
+                if (!hiveGrid.Dronelist.Contains(pawn))
+                {
+                    hiveGrid.Dronelist.Add(pawn);
+                }
+                */
+            }
+            else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Runner)
+            {
+                if (!RunnerList.Contains(pawn))
+                {
+                    RunnerList.Add(pawn);
+                }
+                if (!ScoutList.Contains(pawn) && ScoutList.Count<Math.Max(1, RunnerList.Count/3))
+                {
+
+                }
+            }
+            else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Drone)
+            {
+                if (!DroneList.Contains(pawn))
+                {
+                    DroneList.Add(pawn);
+                }
+            }
+            else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Warrior)
+            {
+                if (!WarriorList.Contains(pawn))
+                {
+                    WarriorList.Add(pawn);
+                }
+            }
+            /*
+            else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Preatorian)
+            {
+                if (!PreatorianList.Contains(pawn))
+                {
+                    PreatorianList.Add(pawn);
+                }
+            }
+            */
+            else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Predalien)
+            {
+                if (!PredalienList.Contains(pawn))
+                {
+                    PredalienList.Add(pawn);
+                }
+            }
+            else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen)
+            {
+                if (!QueenList.Contains(pawn))
+                {
+                    QueenList.Add(pawn);
+                }
+            }
+            else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Thrumbomorph)
+            {
+                if (!ThrumbomorphList.Contains(pawn))
+                {
+                    ThrumbomorphList.Add(pawn);
+                }
+            }
+            base.Notify_PawnAdded(pawn);
+        }
+
+        public override void Notify_PawnLost(Pawn pawn, PawnLostCondition condition)
+        {
+            base.Notify_PawnLost(pawn, condition);
+        }
 
         // Token: 0x06000795 RID: 1941 RVA: 0x00042F44 File Offset: 0x00041344
         public override StateGraph CreateGraph()
@@ -130,13 +246,35 @@ namespace RimWorld
             Scribe_Values.Look<float>(ref this.radius, "radius");
             Scribe_Values.Look<float>(ref this.aggressiveradius, "aggressiveradius");
             Scribe_Values.Look<IntVec3>(ref this.flagLoc, "flagLoc", IntVec3.Zero);
+            Scribe_Collections.Look<Pawn>(ref this.XenoList, "XenoList", LookMode.Reference, new object[0]);
+            Scribe_Collections.Look<Pawn>(ref this.ScoutList, "ScoutList", LookMode.Reference, new object[0]);
+            Scribe_Collections.Look<Pawn>(ref this.WorkerList, "WorkerList", LookMode.Reference, new object[0]);
+            Scribe_Collections.Look<Pawn>(ref this.GuardList, "GuardList", LookMode.Reference, new object[0]);
+            Scribe_Collections.Look<Pawn>(ref this.RunnerList, "RunnerList", LookMode.Reference, new object[0]);
+            Scribe_Collections.Look<Pawn>(ref this.DroneList, "DroneList", LookMode.Reference, new object[0]);
+            Scribe_Collections.Look<Pawn>(ref this.WarriorList, "WarriorList", LookMode.Reference, new object[0]);
+            Scribe_Collections.Look<Pawn>(ref this.PreatorianList, "PreatorianList", LookMode.Reference, new object[0]);
+            Scribe_Collections.Look<Pawn>(ref this.PredalienList, "PredalienList", LookMode.Reference, new object[0]);
+            Scribe_Collections.Look<Pawn>(ref this.QueenList, "QueenList", LookMode.Reference, new object[0]);
+            Scribe_Collections.Look<Pawn>(ref this.ThrumbomorphList, "ThrumbomorphList", LookMode.Reference, new object[0]);
         }
 
 		// Token: 0x04000346 RID: 838
 		private bool aggressive;
         private float radius = 40f;
-        private float aggressiveradius = 40f;
+        private float aggressiveradius = 80f;
         private Faction faction;
         private IntVec3 flagLoc;
+        public List<Pawn> XenoList;
+        public List<Pawn> ScoutList;
+        public List<Pawn> WorkerList;
+        public List<Pawn> GuardList;
+        public List<Pawn> RunnerList;
+        public List<Pawn> DroneList;
+        public List<Pawn> WarriorList;
+        public List<Pawn> PreatorianList;
+        public List<Pawn> PredalienList;
+        public List<Pawn> QueenList;
+        public List<Pawn> ThrumbomorphList;
     }
 }

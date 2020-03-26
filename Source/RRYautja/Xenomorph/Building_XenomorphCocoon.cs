@@ -169,7 +169,6 @@ namespace RimWorld
 			Scribe_Values.Look<bool>(ref this.alreadySetDefaultMed, "alreadySetDefaultMed", false, false);
             */
 		}
-
         // Token: 0x060024DE RID: 9438 RVA: 0x001189DC File Offset: 0x00116DDC
         public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn myPawn)
         {
@@ -359,12 +358,12 @@ namespace RimWorld
         
 		private void RemoveAllOwners()
 		{
-			for (int i = this.owners.Count - 1; i >= 0; i--)
+			for (int i = this.OwnersForReading.Count - 1; i >= 0; i--)
 			{
-				this.owners[i].ownership.UnclaimBed();
+				this.OwnersForReading[i].ownership.UnclaimBed();
 			}
 		}
-        
+
 		private bool alreadySetDefaultMed;
 	}
 }

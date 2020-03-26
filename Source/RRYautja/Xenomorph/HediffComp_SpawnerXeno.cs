@@ -1,5 +1,6 @@
 ﻿using RimWorld;
 using RRYautja.ExtensionMethods;
+using RRYautja.settings;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -43,10 +44,12 @@ namespace RRYautja
             Scribe_Values.Look<int>(ref this.Impregnations, "Impregnations", 0);
             Scribe_Values.Look<int>(ref this.countToSpawn, "countToSpawn", 1);
             Scribe_Values.Look<bool>(ref this.royaleHugger, "royaleHugger");
+            Scribe_Values.Look<bool>(ref this.bursted, "bursted");
             Scribe_Values.Look<bool>(ref this.predalienImpregnation, "predalienImpregnation",false);
         }
 
         bool logonce = false;
+        bool bursted = false;
         public int countToSpawn = 1;
         int lastCoughTick = 0;
         int nextCoughTick = 0; 
@@ -129,12 +132,6 @@ namespace RRYautja
             {
                 if (parent.pawn.Map != null)
                 {
-                    if (parent.def == XenomorphDefOf.RRY_HiddenNeomorphImpregnation || parent.def == XenomorphDefOf.RRY_NeomorphImpregnation && this.parent.pawn.Faction == Faction.OfPlayer)
-                    {
-                        string text = TranslatorFormattedStringExtensions.Translate("Xeno_Neospores_Added", base.parent.pawn.LabelShortCap, parent.Part.LabelShort);
-                        MoteMaker.ThrowText(base.parent.pawn.Position.ToVector3(), base.parent.pawn.Map, text, 3f);
-                    }
-
                     if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Embryo) && Pawn.Spawned && Pawn.IsColonist && (this.parent.def == XenomorphDefOf.RRY_XenomorphImpregnation || this.parent.def == XenomorphDefOf.RRY_NeomorphImpregnation) && MyMap != null)
                     {
                         LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Embryo, OpportunityType.Important);
@@ -220,7 +217,7 @@ namespace RRYautja
             }
             else
             {
-                if (Pawn.kindDef.race == YautjaDefOf.RRY_Alien_Yautja)// && !predalienImpregnation)
+                if (Pawn.kindDef.race == YautjaDefOf.RRY_Alien_Yautja && SettingsHelper.latest.AllowPredaliens)// && !predalienImpregnation)
                 {
                     pawnKindDef = XenomorphDefOf.RRY_Xenomorph_Predalien;
                 }
@@ -228,7 +225,7 @@ namespace RRYautja
                 {
                     pawnKindDef = Rand.Chance(0.5f) ? XenomorphDefOf.RRY_Xenomorph_Drone : XenomorphDefOf.RRY_Xenomorph_Warrior;
                 }
-                else if (Pawn.kindDef.race == ThingDefOf.Thrumbo)
+                else if (Pawn.kindDef.race == ThingDefOf.Thrumbo && SettingsHelper.latest.AllowThrumbomorphs)
                 {
                     pawnKindDef = XenomorphDefOf.RRY_Xenomorph_Thrumbomorph;
                 }
@@ -306,7 +303,7 @@ namespace RRYautja
             }
             if (Prefs.DevMode)
             {
-                 Log.Message(string.Format("spawning: {0}", pawnKindDef.label));
+             //    Log.Message(string.Format("spawning: {0}", pawnKindDef.label));
                 parent.pawn.resultingXenomorph();
             }
             bool BeViolent = pawnKindDef == XenomorphDefOf.RRY_Xenomorph_Thrumbomorph ? true : true;
@@ -333,16 +330,15 @@ namespace RRYautja
             Map spawnMap = !base.Pawn.Dead ? base.parent.pawn.Map : base.parent.pawn.MapHeld;
             this.Pawn.def.race.deathActionWorkerClass = typeof(DeathActionWorker_Simple);
             bool fullterm = this.parent.CurStageIndex > this.parent.def.stages.Count - 3;
-            if (!fullterm)
+            if (!fullterm || bursted)
             {
-                Log.Message(string.Format("died  before reaching fullterm, no spawning"));
                 return;
             }
             else
             {
+                bursted = true;
                 if (spawnMap == null || spawnLoc == null)
                 {
-                    Log.Message(string.Format("spawnMap or spawnLoc is null, no spawning"));
                     return;
                 }
                 else
@@ -379,7 +375,7 @@ namespace RRYautja
                         }
                         if (i % 10 == 0)
                         {
-                            FilthMaker.MakeFilth(spawnLoc + GenAdj.AdjacentCellsAndInside.RandomElement(), this.Pawn.MapHeld, this.Pawn.RaceProps.BloodDef, this.Pawn.LabelIndefinite(), 1);
+                            FilthMaker.TryMakeFilth(spawnLoc + GenAdj.AdjacentCellsAndInside.RandomElement(), this.Pawn.MapHeld, this.Pawn.RaceProps.BloodDef, this.Pawn.LabelIndefinite(), 1);
                         }
                     }
                     ThingDef motedef = DefDatabase<ThingDef>.GetNamedSilentFail("Mote_BlastExtinguisher");
@@ -387,7 +383,7 @@ namespace RRYautja
                     // GenAdj.AdjacentCellsAndInside[i];
                     for (int i2 = 0; i2 < GenAdj.AdjacentCellsAndInside.Length; i2++)
                     {
-                        FilthMaker.MakeFilth(spawnLoc + GenAdj.AdjacentCellsAndInside[i2], this.Pawn.MapHeld, this.Pawn.RaceProps.BloodDef, this.Pawn.LabelIndefinite(), 1);
+                        FilthMaker.TryMakeFilth(spawnLoc + GenAdj.AdjacentCellsAndInside[i2], this.Pawn.MapHeld, this.Pawn.RaceProps.BloodDef, this.Pawn.LabelIndefinite(), 1);
                     }
                     string text = TranslatorFormattedStringExtensions.Translate("Xeno_Chestburster_Emerge", base.parent.pawn.LabelShort, this.parent.Part.LabelShort);
                     MoteMaker.ThrowText(spawnLoc.ToVector3(), spawnMap, text, 5f);

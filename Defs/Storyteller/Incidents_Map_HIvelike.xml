@@ -8,18 +8,20 @@
     <targetTags>
       <li>Map_PlayerHome</li>
     </targetTags>
-    <workerClass>IncidentWorker_Hivelike</workerClass>
+    <workerClass>IncidentWorker_Xenomorph_Hivelike</workerClass>
     <letterLabel>Infestation</letterLabel>
     <letterText>Something is tunneling towards you! They will break through in a few seconds.</letterText>
     <letterDef>ThreatBig</letterDef>
-    <baseChance>2.7</baseChance>
+    <baseChance>0.7</baseChance>
     <minRefireDays>20</minRefireDays>
     <category>ThreatBig</category>
     <pointsScaleable>true</pointsScaleable>
     <minThreatPoints>400</minThreatPoints>
     <tale>Infestation</tale>
-    <shipPart>RRY_XenomorphHive</shipPart>
-    <tags><li>TunnelLike</li></tags>
+    <mechClusterBuilding>RRY_Xenomorph_Hive</mechClusterBuilding>
+    <tags>
+		<li>TunnelLike</li>
+	</tags>
 	<!--
     <Faction>OGChaosDeamonFaction</Faction>
     <hiveDef>HiveLike</hiveDef>

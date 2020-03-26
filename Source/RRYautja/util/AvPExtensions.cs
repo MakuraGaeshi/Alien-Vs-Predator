@@ -1,8 +1,10 @@
-﻿using RimWorld;
+﻿using HunterMarkingSystem;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
+using Verse.AI;
 using Verse.AI.Group;
 
 namespace RRYautja.ExtensionMethods
@@ -10,6 +12,20 @@ namespace RRYautja.ExtensionMethods
     [StaticConstructorOnStartup]
     public static class AvPExtensions
     {
+        
+        public static void GainEquipmentAbility(this Pawn_AbilityTracker tracker ,EquipmentAbilityDef def, ThingWithComps thing)
+        {
+            if (!tracker.abilities.Any((Ability a) => a.def == def))
+            {
+                EquipmentAbility ab = Activator.CreateInstance(def.abilityClass, new object[]
+                {
+                    tracker.pawn,
+                    def
+                }) as EquipmentAbility;
+                ab.sourceEquipment = thing;
+                tracker.abilities.Add(ab);
+            }
+        }
 
         public static MapComponent_HiveGrid HiveGrid(this Map m) 
         {
@@ -43,27 +59,27 @@ namespace RRYautja.ExtensionMethods
 
         public static bool switchLord (this Pawn p, Lord L)
         {
-            Log.Message(string.Format("trying to switch {0} to {1}", p.LabelShortCap, L));
+        //    Log.Message(string.Format("trying to switch {0} to {1}", p.LabelShortCap, L));
             if (p.GetLord() != null && p.GetLord() is Lord l)
             {
-                Log.Message(string.Format("{0} currently belongs to {1}", p.LabelShortCap, l));
+            //    Log.Message(string.Format("{0} currently belongs to {1}", p.LabelShortCap, l));
                 if (l.ownedPawns.Count > 0)
                 {
-                    Log.Message(string.Format("removing {0} from {1}", p.LabelShortCap, l));
+                //    Log.Message(string.Format("removing {0} from {1}", p.LabelShortCap, l));
                     l.ownedPawns.Remove(p);
-                    Log.Message(string.Format("removed {0} from {1}: {2}", p.LabelShortCap, l, p.GetLord() == null));
+                //    Log.Message(string.Format("removed {0} from {1}: {2}", p.LabelShortCap, l, p.GetLord() == null));
                 }
                 if (l.ownedPawns.Count == 0)
                 {
-                    Log.Message(string.Format("removed {0} final pawn, removing l", l));
+                //    Log.Message(string.Format("removed {0} final pawn, removing l", l));
                     l.lordManager.RemoveLord(l);
-                    Log.Message(string.Format("removed l: {0}", l==null));
+                //    Log.Message(string.Format("removed l: {0}", l==null));
                 }
-                Log.Message(string.Format("{0} currently has lord: {1}", p.LabelShortCap, p.GetLord() == null));
+            //    Log.Message(string.Format("{0} currently has lord: {1}", p.LabelShortCap, p.GetLord() == null));
             }
-            Log.Message(string.Format("adding {0} to {1}", p.LabelShortCap, L));
+        //    Log.Message(string.Format("adding {0} to {1}", p.LabelShortCap, L));
             L.AddPawn(p);
-            Log.Message(string.Format("addied {0} to {1} = {2}", p.LabelShortCap, L, p.GetLord() == L));
+        //    Log.Message(string.Format("addied {0} to {1} = {2}", p.LabelShortCap, L, p.GetLord() == L));
             return p.GetLord() == L;
 
         }
@@ -106,42 +122,7 @@ namespace RRYautja.ExtensionMethods
             }
             return null;
         }
-
-        public static bool isBloodable(this Pawn p)
-        {
-            return p.TryGetComp<Comp_Yautja>() != null;
-        }
-
-        public static Comp_Yautja BloodStatus(this Pawn p)
-        {
-            if (p.isBloodable())
-            {
-                return p.TryGetComp<Comp_Yautja>();
-            }
-            return null;
-        }
-
-        public static BloodStatusMode CurBloodStatus(this Pawn p)
-        {
-            if (p.isBloodable())
-            {
-                if (p.isUnblooded())
-                {
-                    return BloodStatusMode.Unblooded;
-                }
-                if (p.isBloodUnmarked())
-                {
-                    return BloodStatusMode.Unmarked;
-                }
-                if (p.isBloodMarked())
-                {
-                    return BloodStatusMode.Marked;
-                }
-                return BloodStatusMode.None;
-            }
-            return BloodStatusMode.NoComp;
-        }
-
+        
         public static bool isCocooned(this Pawn p)
         {
             return p.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned);
@@ -149,6 +130,15 @@ namespace RRYautja.ExtensionMethods
 
         public static bool isXenomorph(this Pawn p)
         {
+            return p.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Xenomorph;
+        }
+        public static bool isXenomorph(this Thing p)
+        {
+            return p.def.race?.FleshType == XenomorphRacesDefOf.RRY_Xenomorph;
+        }
+        public static bool isXenomorph(this Pawn p, out Comp_Xenomorph comp)
+        {
+            comp = p.TryGetComp<Comp_Xenomorph>()?? null;
             return p.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Xenomorph;
         }
 
@@ -319,12 +309,12 @@ namespace RRYautja.ExtensionMethods
 
         public static bool isPotentialHost(this Pawn p)
         {
-            return XenomorphUtil.isInfectablePawn(p) && !p.isXenomorph() && !p.isNeomorph() && p.health.hediffSet.HasHead;
+            return XenomorphUtil.isInfectablePawn(p) && !p.isXenomorph() && !p.isNeomorph() && p.health.hediffSet.HasHead && !p.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned);
         }
         public static bool isPotentialHost(this Thing t)
         {
             Pawn p = (Pawn)t;
-            return XenomorphUtil.isInfectablePawn(p) && !p.isXenomorph() && !p.isNeomorph() && p.health.hediffSet.HasHead;
+            return XenomorphUtil.isInfectablePawn(p) && !p.isXenomorph() && !p.isNeomorph() && p.health.hediffSet.HasHead && !p.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned);
         }
 
         public static bool isPotentialHost(this PawnKindDef p)
@@ -401,12 +391,12 @@ namespace RRYautja.ExtensionMethods
                 failReason = "TM_Minion";
                 return false;
             }
-            if (p.race.defName.Contains("TM_Demon"))
+            if (p.race.defName.Contains("Demon"))
             {
                 failReason = "TM_Demon";
                 return false;
             }
-            if (p.race.race.FleshType.defName.Contains("ChaosDeamon"))
+            if (p.race.race.FleshType.defName.Contains("Deamon"))
             {
                 failReason = "ChaosDeamon";
                 return false;
@@ -595,6 +585,19 @@ namespace RRYautja.ExtensionMethods
         {
             return p.isNeoHost() || p.isXenoHost();
         }
+        public static bool isHost(this Pawn p, out Hediff hediff)
+        {
+            bool result = p.isNeoHost() || p.isXenoHost();
+            if (result)
+            {
+                hediff = p.health.hediffSet.hediffs.Find(x => x.def.defName.Contains("morphImpregnation") || x.def.defName.Contains("FaceHuggerInfection"));
+            }
+            else
+            {
+                hediff = null;
+            }
+            return result;
+        }
         public static bool isXenoHost(this Pawn p)
         {
             return p.health.hediffSet.hediffs.Any(x => x.def.defName.Contains("XenomorphImpregnation") || x.def.defName.Contains("FaceHuggerInfection"));
@@ -603,19 +606,12 @@ namespace RRYautja.ExtensionMethods
         {
             return p.health.hediffSet.hediffs.Any(x =>  x.def.defName.Contains("NeomorphImpregnation"));
         }
-
-        public static bool isWorthyKill(this Pawn p)
+        public static List<PawnKindDef> PossibleXenoforms(this Pawn p)
         {
-            bool predatory = p.kindDef.RaceProps.predator;
-            bool fighter = p.kindDef.isFighter;
-            bool leader = p.kindDef.factionLeader;
-            bool human = p.def.defName.Contains("Human");
-            bool humanlike = p.RaceProps.Humanlike;
-            bool combatpower50 = p.kindDef.combatPower >= 50;
-            bool combatpower100 = p.kindDef.combatPower >= 100;
-            return YautjaBloodedUtility.WorthyKill(p.kindDef);
-        }
+            List<PawnKindDef> list = new List<PawnKindDef>();
 
+            return list;
+        }
         public static PawnKindDef resultingXenomorph(this Pawn p)
         {
             PawnKindDef kindDef = null;
@@ -623,10 +619,10 @@ namespace RRYautja.ExtensionMethods
             {
                 return null;
             }
-            bool human = p.def.defName.Contains("Human") || YautjaBloodedUtility.GetMark(p.kindDef) == YautjaDefOf.RRY_Hediff_BloodedMHuman;
+            bool human = p.def.defName.Contains("Human") || HMSUtility.GetMark(p.kindDef) == YautjaDefOf.HMS_Hediff_BloodedMHuman;
             bool yautja = p.def.defName.Contains("Yautja");
-            bool thrumbo = p.def.defName.Contains("Human") || YautjaBloodedUtility.GetMark(p.kindDef) == YautjaDefOf.RRY_Hediff_BloodedMThrumbo;
-            bool hound = YautjaBloodedUtility.GetMark(p.kindDef) == YautjaDefOf.RRY_Hediff_BloodedMHound;
+            bool thrumbo = p.def.defName.Contains("Human") || HMSUtility.GetMark(p.kindDef) == YautjaDefOf.HMS_Hediff_BloodedMThrumbo;
+            bool hound = HMSUtility.GetMark(p.kindDef) == YautjaDefOf.HMS_Hediff_BloodedMHound;
 
             bool humanlike = p.RaceProps.Humanlike;
 
@@ -739,7 +735,7 @@ namespace RRYautja.ExtensionMethods
             bool selected = Find.Selector.SingleSelectedThing == p;
             if (selected && Prefs.DevMode)
             {
-                Log.Message(string.Format("{0} will spawn from {1}", kindDef, p.LabelShortCap));
+            //    Log.Message(string.Format("{0} will spawn from {1}", kindDef, p.LabelShortCap));
             }
             return kindDef;
         }
@@ -751,10 +747,10 @@ namespace RRYautja.ExtensionMethods
             {
                 return null;
             }
-            bool human = p.race.defName.Contains("Human") || YautjaBloodedUtility.GetMark(p) == YautjaDefOf.RRY_Hediff_BloodedMHuman;
+            bool human = p.race.defName.Contains("Human") || HMSUtility.GetMark(p) == YautjaDefOf.HMS_Hediff_BloodedMHuman;
             bool yautja = p.race.defName.Contains("Yautja");
-            bool thrumbo = p.race.defName.Contains("Human") || YautjaBloodedUtility.GetMark(p) == YautjaDefOf.RRY_Hediff_BloodedMThrumbo;
-            bool hound = YautjaBloodedUtility.GetMark(p) == YautjaDefOf.RRY_Hediff_BloodedMHound;
+            bool thrumbo = p.race.defName.Contains("Human") || HMSUtility.GetMark(p) == YautjaDefOf.HMS_Hediff_BloodedMThrumbo;
+            bool hound = HMSUtility.GetMark(p).defName.Contains("BloodedMHound");
 
             bool humanlike = p.RaceProps.Humanlike;
 
@@ -942,9 +938,9 @@ namespace RRYautja.ExtensionMethods
             return kindDef;
         }
 
-        public static HediffDef unbloodedDef = YautjaDefOf.RRY_Hediff_Unblooded;
-        public static HediffDef unmarkedDef = YautjaDefOf.RRY_Hediff_BloodedUM;
-        public static HediffDef markedDef = YautjaDefOf.RRY_Hediff_BloodedM;
+        public static HediffDef unbloodedDef = YautjaDefOf.HMS_Hediff_Unblooded;
+        public static HediffDef unmarkedDef = YautjaDefOf.HMS_Hediff_BloodedUM;
+        public static HediffDef markedDef = YautjaDefOf.HMS_Hediff_BloodedM;
         public static AlienRace.BackstoryDef bsDefUnblooded = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_YoungBlood");
         public static AlienRace.BackstoryDef bsDefBlooded = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_Blooded");
         public static AlienRace.BackstoryDef bsDefBadbloodA = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_BadBloodA");

@@ -37,10 +37,10 @@ namespace RimWorld
             }
 			if (hivelike == null || !hivelike.Spawned)
             {
-            //    Log.Message(string.Format("JobGiver_WanderHiveLike pawn.Position: {0}", pawn.Position));
+                if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("JobGiver_WanderHiveLike pawn.Position: {0}", pawn.Position));
                 return pawn.Position;
             }
-        //    Log.Message(string.Format("JobGiver_WanderHiveLike hivelike.Position: {0}", hivelike.Position));
+            if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("JobGiver_WanderHiveLike hivelike.Position: {0}", hivelike.Position));
             return hivelike.Position;
 		}
 	}

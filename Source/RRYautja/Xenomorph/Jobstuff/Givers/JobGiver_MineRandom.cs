@@ -1,5 +1,6 @@
 ﻿using RRYautja;
-using System;
+using RRYautja.ExtensionMethods;
+using RRYautja.Xenomorph.Hives;
 using System.Collections.Generic;
 using Verse;
 using Verse.AI;
@@ -23,6 +24,7 @@ namespace RimWorld
         // Token: 0x0600041E RID: 1054 RVA: 0x0002CA54 File Offset: 0x0002AE54
         protected override Job TryGiveJob(Pawn pawn)
         {
+            IntVec3 hivec = pawn.mindState.duty.focus.Cell;
             List<IntVec3> pillarLoc = new List<IntVec3>()
             {
                 // Cardinals
@@ -73,6 +75,26 @@ namespace RimWorld
             {
                 return null;
             }
+
+            bool flag1 = hivec.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive) != null;
+            bool flag2 = hivec.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive_Child) != null;
+            bool flag3 = hivec.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive_Slime) != null;
+            bool flag4 = !flag1 && !flag2 && !flag3;
+            if (flag4 )
+            {
+                if (hivec.Filled(pawn.Map) && pawn.CanReach(hivec, PathEndMode.OnCell, Danger.Deadly))
+                {
+                    Building edifice = hivec.GetEdifice(pawn.Map);
+                    return new Job(JobDefOf.Mine, edifice)
+                    {
+                        ignoreDesignations = true
+                    };
+                }
+                if (!hivec.Filled(pawn.Map) && pawn.CanReach(hivec, PathEndMode.OnCell, Danger.Deadly))
+                {
+                    GenSpawn.Spawn(XenomorphDefOf.RRY_Xenomorph_Hive_Slime, pawn.mindState.duty.focus.Cell, pawn.Map);
+                }
+            }
             for (int i = 0; i < 40; i++)
             {
                 IntVec3 randomCell = region.RandomCell;
@@ -83,7 +105,7 @@ namespace RimWorld
                     {
 
                         Building edifice = c.GetEdifice(pawn.Map);
-                        if (edifice != null && (edifice.def.passability == Traversability.Impassable || edifice.def.IsDoor) && edifice.def.size == IntVec2.One && edifice.def != ThingDefOf.CollapsedRocks && edifice.def != XenomorphDefOf.RRY_Xenomorph_HiveWall && pawn.CanReserve(edifice, 1, -1, null, false) && XenomorphUtil.DistanceBetween(edifice.Position, pawn.mindState.duty.focus.Cell) <= MiningRange)
+                        if (edifice != null && (edifice.def.passability == Traversability.Impassable || edifice.def.IsDoor) && edifice.def.size == IntVec2.One && edifice.def != ThingDefOf.CollapsedRocks && edifice.def != XenomorphDefOf.RRY_Xenomorph_Hive_Wall && pawn.CanReserve(edifice, 1, -1, null, false) && XenomorphUtil.DistanceBetween(edifice.Position, pawn.mindState.duty.focus.Cell) <= MiningRange)
                         {
                             if (!pillarLoc.Contains(edifice.Position))
                             {
@@ -124,7 +146,7 @@ namespace RimWorld
             return jobGiver_MineOutHive;
         }
 
-        private int MiningRange = 5;
+        private int MiningRange;
 
         private float CellsInScanRadius
         {
@@ -137,56 +159,36 @@ namespace RimWorld
         // Token: 0x0600041E RID: 1054 RVA: 0x0002CA54 File Offset: 0x0002AE54
         protected override Job TryGiveJob(Pawn pawn)
         {
-            Map map = pawn.Map;
-            List<IntVec3> pillarLoc = new List<IntVec3>()
+            if (pawn.Map==null)
             {
-                // Cardinals
-                new IntVec3
-                {
-                    x = pawn.mindState.duty.focus.Cell.x + 3,
-                    z = pawn.mindState.duty.focus.Cell.z
-                },
-                new IntVec3
-                {
-                    x = pawn.mindState.duty.focus.Cell.x - 3,
-                    z = pawn.mindState.duty.focus.Cell.z
-                },
-                new IntVec3
-                {
-                    x = pawn.mindState.duty.focus.Cell.x,
-                    z = pawn.mindState.duty.focus.Cell.z + 3
-                },
-                new IntVec3
-                {
-                    x = pawn.mindState.duty.focus.Cell.x,
-                    z = pawn.mindState.duty.focus.Cell.z - 3
-                },
-                // Corners
-                new IntVec3
-                {
-                    x = pawn.mindState.duty.focus.Cell.x + 2,
-                    z = pawn.mindState.duty.focus.Cell.z + 2
-                },
-                new IntVec3
-                {
-                    x = pawn.mindState.duty.focus.Cell.x - 2,
-                    z = pawn.mindState.duty.focus.Cell.z + 2
-                },
-                new IntVec3
-                {
-                    x = pawn.mindState.duty.focus.Cell.x + 2,
-                    z = pawn.mindState.duty.focus.Cell.z - 2
-                },
-                new IntVec3
-                {
-                    x = pawn.mindState.duty.focus.Cell.x - 2,
-                    z = pawn.mindState.duty.focus.Cell.z - 2
-                }
-            };
+            //    Log.Message("map == null");
+                return null;
+            }
+            Map map = pawn.Map;
+            if (!pawn.isXenomorph(out Comp_Xenomorph _Xenomorph))
+            {
+            //    Log.Message("not xenomorph");
+                return null;
+            }
+            IntVec3 HiveCenter = IntVec3.Invalid;
+            if (_Xenomorph.HiveLoc.IsValid && _Xenomorph.HiveLoc.InBounds(map) && _Xenomorph.HiveLoc != IntVec3.Zero)
+            {
+                HiveCenter = _Xenomorph.HiveLoc;
+            }
+            else
+            {
+            //    Log.Message(string.Format("not _Xenomorph.HiveLoc({0})", _Xenomorph.HiveLoc));
+                return null;
+            }
+
             Region region = pawn.GetRegion(RegionType.Set_Passable);
-            bool flag1 = pawn.mindState.duty.focus.Cell.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_XenomorphHive) != null;
-            bool flag2 = pawn.mindState.duty.focus.Cell.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_XenomorphHive_Child) != null;
-            bool flag3 = pawn.mindState.duty.focus.Cell.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Hive_Slime) != null;
+            if (region == null)
+            {
+                return null;
+            }
+            bool flag1 = HiveCenter.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive) != null;
+            bool flag2 = HiveCenter.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive_Child) != null;
+            bool flag3 = HiveCenter.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive_Slime) != null;
             if (pawn.GetLord() is Lord L && L != null)
             {
                 if ((L.CurLordToil is LordToil_DefendAndExpandHiveLike || L.CurLordToil is LordToil_DefendHiveLikeAggressively) && L.CurLordToil is LordToil_HiveLikeRelated THL)
@@ -198,30 +200,40 @@ namespace RimWorld
                             HiveLike hive = THL.Data.assignedHiveLikes.TryGetValue(pawn);
                             if (hive!=null)
                             {
-                                flag1 = hive.def == XenomorphDefOf.RRY_XenomorphHive;
-                                flag2 = hive.def == XenomorphDefOf.RRY_XenomorphHive_Child;
+                                flag1 = hive.def == XenomorphDefOf.RRY_Xenomorph_Hive;
+                                flag2 = hive.def == XenomorphDefOf.RRY_Xenomorph_Hive_Child;
                             }
                         }
                     }
                 }
             }
-            if (region == null)
+            if (flag1)
             {
-                return null;
+                MiningRange = 7;
             }
+            else
             if (flag2)
             {
                 MiningRange = 3;
             }
+            else
+            {
+                MiningRange = 5;
+            }
+            if (!pawn.CanReachMapEdge())
+            {
+                MiningRange = 10;
+            }
             for (int i = 0; i < GenRadial.NumCellsInRadius(MiningRange); i++)
             {
-                IntVec3 c = pawn.mindState.duty.focus.Cell + GenRadial.RadialPattern[MiningRange];
-                if (!pillarLoc.Contains(c))
+                IntVec3 c = HiveCenter + GenRadial.RadialPattern[i];
+                if (!HiveStructure.HiveStruct(HiveCenter).Contains(c) && !HiveStructure.HiveWalls(HiveCenter).Contains(c) && pawn.CanReach(c,PathEndMode.ClosestTouch, Danger.Deadly))
                 {
                     Building edifice = c.GetEdifice(pawn.Map);
-                    if (edifice != null && (edifice.def.passability == Traversability.Impassable /* || edifice.def.IsDoor */) && edifice.def.size == IntVec2.One && edifice.def != ThingDefOf.CollapsedRocks && edifice.def != XenomorphDefOf.RRY_Xenomorph_HiveWall && pawn.CanReserve(edifice, 1, -1, null, false) && XenomorphUtil.DistanceBetween(edifice.Position, pawn.mindState.duty.focus.Cell) <= MiningRange)
+                    if (edifice != null && edifice.def.size == IntVec2.One && edifice.def != ThingDefOf.CollapsedRocks && edifice.def != XenomorphDefOf.RRY_Xenomorph_Hive_Wall && pawn.CanReserveAndReach(edifice, PathEndMode.ClosestTouch, Danger.Deadly, 1, 1) && XenomorphUtil.DistanceBetween(edifice.Position, HiveCenter) <= MiningRange)
                     {
-                        if (!pillarLoc.Contains(edifice.Position))
+                        bool xenobuilding = edifice.GetType() != typeof(Building_XenoEgg) && edifice.GetType() != typeof(Building_XenomorphCocoon) && edifice.GetType() != typeof(HiveLike);
+                        if (xenobuilding)
                         {
                             return new Job(JobDefOf.Mine, edifice)
                             {
@@ -253,12 +265,22 @@ namespace RimWorld
         // Token: 0x0600041E RID: 1054 RVA: 0x0002CA54 File Offset: 0x0002AE54
         protected override Job TryGiveJob(Pawn pawn)
         {
+            if (pawn.Map == null)
+            {
+                return null;
+            }
+            Map map = pawn.Map;
+            if (!pawn.isXenomorph(out Comp_Xenomorph _Xenomorph))
+            {
+                return null;
+            }
+
             Region region = pawn.GetRegion(RegionType.Set_Passable);
             if (region == null)
             {
                 return null;
             }
-            
+
             IntVec3 hiveCell;
             if (!XenomorphUtil.ClosestReachableParentHivelike(pawn).DestroyedOrNull())
             {
@@ -270,23 +292,26 @@ namespace RimWorld
             }
             else
             {
-                hiveCell = pawn.mindState.duty.focus.Cell;
+                hiveCell = _Xenomorph.HiveLoc == IntVec3.Invalid || _Xenomorph.HiveLoc == IntVec3.Zero || !_Xenomorph.HiveLoc.InBounds(map) ? pawn.mindState.duty.focus.Cell : _Xenomorph.HiveLoc;
+            }
+            if (hiveCell == IntVec3.Invalid || hiveCell == IntVec3.Zero || !hiveCell.InBounds(map))
+            {
+                return null;
             }
             foreach (var c in GenAdj.AdjacentCellsAndInside)
             {
-                if (Find.Selector.SelectedObjects.Contains(pawn) && Prefs.DevMode) Log.Message(string.Format("{0} TryGiveJob {1} @ {2}", this, pawn.LabelShortCap, (hiveCell + c)));
                 if ((hiveCell+c).GetFirstHaulable(pawn.Map) is Thing h && !(h is Pawn) && !(h is Building_XenoEgg) && !(h is Building_XenomorphCocoon))
                 {
-                    if (Find.Selector.SelectedObjects.Contains(pawn) && Prefs.DevMode) Log.Message(string.Format("{0} TryGiveJob {1} @ {2} 1", this, pawn.LabelShortCap, (hiveCell + c)));
+                    if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0} TryGiveJob {1} @ {2} 1", this, pawn.LabelShortCap, (hiveCell + c)));
                     if (pawn.CanReserve(h, 1, -1, null, false))
                     {
-                        if (Find.Selector.SelectedObjects.Contains(pawn) && Prefs.DevMode) Log.Message(string.Format("{0} TryGiveJob {1} @ {2} 2", this, pawn.LabelShortCap, (hiveCell + c)));
+                        if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0} TryGiveJob {1} @ {2} 2", this, pawn.LabelShortCap, (hiveCell + c)));
                         if (!XenomorphUtil.CanHaulAside(pawn, h, hiveCell, ClearingRange, out IntVec3 c2))
                         {
-                            if (Find.Selector.SelectedObjects.Contains(pawn) && Prefs.DevMode) Log.Message(string.Format("{0} TryGiveJob {1} @ {2} 3", this, pawn.LabelShortCap, (hiveCell + c)));
+                            if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0} TryGiveJob {1} @ {2} 3", this, pawn.LabelShortCap, (hiveCell + c)));
                             return null;
                         }
-                        if (Find.Selector.SelectedObjects.Contains(pawn) && Prefs.DevMode) Log.Message(string.Format("{0} TryGiveJob {1} @ {2} 4", this, pawn.LabelShortCap, (hiveCell + c)));
+                        if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0} TryGiveJob {1} @ {2} 4", this, pawn.LabelShortCap, (hiveCell + c)));
                         return new Job(JobDefOf.HaulToCell, h, c2)
                         {
                             count = 99999,

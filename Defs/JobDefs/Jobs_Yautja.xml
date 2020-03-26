@@ -1,27 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <JobDef>
-    <defName>RRY_Yautja_MarkSelf</defName>
-    <driverClass>RRYautja.JobDriver_MarkSelf</driverClass>
-    <reportString>marking myself.</reportString>
-    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
-  </JobDef>
-
-  <JobDef> <!-- JobDriver_MarkOther -->
-    <defName>RRY_Yautja_MarkOther</defName>
-    <driverClass>RRYautja.JobDriver_MarkOther</driverClass>
-    <reportString>marking another.</reportString>
-    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
-  </JobDef>
-  
-  <JobDef>
-    <defName>RRY_Yautja_TakeTrophy</defName>
-    <driverClass>RRYautja.JobDriver_TakeTrophy</driverClass>
-    <reportString>taking a trophy.</reportString>
-    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
-  </JobDef>
-
 	<JobDef>
 		<defName>RRY_Yautja_TendSelf</defName>
 		<driverClass>RRYautja.JobDriver_TendSelf</driverClass>
@@ -36,13 +15,8 @@
   
   <JobDef>
     <defName>RRY_Yautja_HealthShardRestock</defName>
-    <driverClass>RRYautja.JobDriver_MarkSelf</driverClass>
+    <driverClass>RRYautja.JobDriver_HealthShard</driverClass>
     <reportString>restocking health shards.</reportString>
   </JobDef>
   
-   <JobDef>
-    <defName>RRY_Yautja_RearmTrapJob</defName>
-    <driverClass>RRYautja.JobDriver_RearmTrap</driverClass>
-    <reportString>rearming Target.</reportString>
-  </JobDef>
 </Defs>

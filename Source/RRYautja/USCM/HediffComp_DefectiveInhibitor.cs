@@ -277,7 +277,7 @@ namespace RRYautja
             pawn.story.traits.allTraits.Add(trait);
             if (pawn.workSettings != null)
             {
-                pawn.workSettings.Notify_GainedTrait();
+                pawn.workSettings.Notify_DisabledWorkTypesChanged();
             }
             //    pawn.story.Notify_TraitChanged();
             if (pawn.skills != null)

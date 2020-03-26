@@ -1,6 +1,8 @@
 ﻿using RimWorld;
+using RRYautja.ExtensionMethods;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
@@ -14,11 +16,7 @@ namespace RRYautja
         public static bool eggsReachable;
         public static Thing closestReachableEgg;
         public static Thing closestReachableCocoontoEgg;
-
-        public static bool cocoonsPresent;
-        public static bool cocoonsReachable;
-        public static Thing closestReachableCocoon;
-
+        
         public static bool hivelikesPresent;
         public static bool hivelikesReachable;
         public static Thing closestReachableHivelike;
@@ -26,17 +24,12 @@ namespace RRYautja
         public static bool hiveslimepresent;
         public static bool hiveslimeReachable;
         public static Thing closestreachablehiveslime;
-
-        public static bool hiveshippresent;
-        public static bool hiveshipReachable;
-        public static Thing closestreachablehiveship;
-
-        public static Thing cocoonThing;
+        
         public static Thing eggThing;
         public static Thing hiveThing;
 
         // Token: 0x060004D2 RID: 1234 RVA: 0x00031074 File Offset: 0x0002F474
-        public static bool TryFindGoodKidnapVictim(Pawn kidnapper, float maxDist, out Pawn victim, List<Thing> disallowed = null)
+        public static bool TryFindGoodKidnapVictim(Pawn kidnapper, float maxDist, out Pawn victim, List<Thing> disallowed = null, bool roofed = false, bool allowCocooned = false, float minDistance = 0f)
         {
             if (!kidnapper.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation) || !kidnapper.Map.reachability.CanReachMapEdge(kidnapper.Position, TraverseParms.For(kidnapper, Danger.Some, TraverseMode.ByPawn, false)))
             {
@@ -46,267 +39,170 @@ namespace RRYautja
             Predicate<Thing> validator = delegate (Thing t)
             {
                 Pawn pawn = t as Pawn;
-                bool cocoonFlag = !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned);
-                bool xenoimpregnationFlag = !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation) || (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation) && pawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_XenomorphImpregnation).CurStageIndex != pawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_XenomorphImpregnation).def.stages.Count - 2);
-                bool xenohiddenimpregnationFlag = !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation) || (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation) && pawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_HiddenXenomorphImpregnation).CurStageIndex != pawn.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_HiddenXenomorphImpregnation).def.stages.Count - 2);
-                bool neoimpregnationFlag = !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_NeomorphImpregnation);
-                bool neohiddenimpregnationFlag = !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenNeomorphImpregnation);
-                bool impregnationFlag = xenoimpregnationFlag && xenohiddenimpregnationFlag && neoimpregnationFlag && neohiddenimpregnationFlag;
-                bool pawnFlag = ((XenomorphUtil.isInfectablePawn(pawn, true))) && pawn.Downed && (pawn.Faction == null || pawn.Faction.HostileTo(kidnapper.Faction));
-                return  cocoonFlag && pawnFlag && kidnapper.CanReserve(pawn, 1, -1, null, false) && (disallowed == null || !disallowed.Contains(pawn));
+                bool minFlag = minDistance==0 ? true : t.Position.DistanceTo(kidnapper.mindState.duty.focus.Cell) <= minDistance;
+                bool roofedFlag = !t.Position.Roofed(pawn.Map);
+                bool cocoonFlag = !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned) || allowCocooned;
+
+                bool xenoimpregnationFlag = pawn.health.hediffSet.hediffs.Any(x => x.def.defName.Contains("XenomorphImpregnation") && x.CurStageIndex < x.def.stages.Count - 2);
+                bool neoimpregnationFlag = pawn.health.hediffSet.hediffs.Any(x=> x.def.defName.Contains("NeomorphImpregnation"));
+                bool impregnationFlag = ((xenoimpregnationFlag && cocoonFlag) || !xenoimpregnationFlag) && !neoimpregnationFlag;
+                bool pawnFlag = ((XenomorphUtil.isInfectablePawn(pawn, true))) && pawn.Downed /* && (pawn.Faction == null || pawn.Faction.HostileTo(kidnapper.Faction)) */;
+                return  cocoonFlag && pawnFlag && impregnationFlag && minFlag && kidnapper.CanReserve(pawn, 1, -1, null, false) && (disallowed == null || !disallowed.Contains(pawn));
             };
             victim = (Pawn)GenClosest.ClosestThingReachable(kidnapper.Position, kidnapper.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Some, false), maxDist, validator, null, 0, -1, false, RegionType.Set_Passable, false);
             return victim != null;
         }
 
-        public static bool TryFindGoodHiveLoc(Pawn pawn, Pawn victim, out IntVec3 c, bool AllowHiveShip = false)
+        public static bool HiveMainPresent(Map map)
         {
-            Map map = pawn.Map;
-            c = IntVec3.Invalid;
-            bool selected = map != null ? Find.Selector.SelectedObjects.Contains(pawn) && (Prefs.DevMode) : false;
-            ThingDef named = victim.RaceProps.Humanlike ? XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon : XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon;
-
-            if (AllowHiveShip)
+            if (!map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_Xenomorph_Hive).NullOrEmpty())
             {
-                hiveshippresent = XenomorphUtil.HiveShipPresent(map);
-                hiveshipReachable = !XenomorphUtil.ClosestReachableHiveShip(pawn).DestroyedOrNull();
-                closestreachablehiveship = XenomorphUtil.ClosestReachableHiveShip(pawn);
-                if (c == IntVec3.Invalid && hiveshippresent && hiveshipReachable)
-                {
-                    if (Prefs.DevMode && DebugSettings.godMode) Log.Message(string.Format("(c == IntVec3.Invalid && hiveshippresent && hiveshipReachable)"));
-                    c = closestreachablehiveship.Position;
-                    if (Prefs.DevMode && DebugSettings.godMode) Log.Message(string.Format("(c == {0})", c));
-                    return true;
-                }
+                return true;
             }
 
-            hivelikesPresent = XenomorphUtil.HivelikesPresent(map);
-            hivelikesReachable = !XenomorphUtil.ClosestReachableHivelike(pawn).DestroyedOrNull();
-            closestReachableHivelike = XenomorphUtil.ClosestReachableHivelike(pawn);
-            if ((hivelikesPresent && hivelikesReachable))
-            {
-                List<ThingDef_HiveLike> hivedefs = DefDatabase<ThingDef_HiveLike>.AllDefsListForReading.FindAll(x => x.Faction == pawn.Faction.def);
-
-                if (XenomorphUtil.TotalSpawnedHivelikeCount(map) > 0)
-                {
-                    if (XenomorphUtil.TotalSpawnedParentHivelikeCount(map) > 0)
-                    {
-                        hiveThing = XenomorphUtil.TotalSpawnedParentHivelikeCount(map) > 1 ? XenomorphUtil.SpawnedParentHivelikes(map).RandomElement() : XenomorphUtil.ClosestReachableHivelike(pawn, XenomorphUtil.SpawnedParentHivelikes(map));
-                        c = hiveThing.Position;
-                        if (c != IntVec3.Invalid)
-                        {
-                            return true;
-                        }
-                    }
-                    /*
-                    if (XenomorphUtil.TotalSpawnedChildHivelikeCount(map) > 0)
-                    {
-                        hiveThing = XenomorphUtil.TotalSpawnedParentHivelikeCount(map) > 1 ? XenomorphUtil.SpawnedParentHivelikes(map).RandomElement() : XenomorphUtil.ClosestReachableHivelike(pawn, XenomorphUtil.SpawnedParentHivelikes(map));
-                        c = hiveThing.Position;
-                        return true;
-                    }
-                    */
-                }
-            }
-            
-            hiveslimepresent = XenomorphUtil.HiveSlimePresent(map);
-            hiveslimeReachable = !XenomorphUtil.ClosestReachableHiveSlime(pawn).DestroyedOrNull();
-            closestreachablehiveslime = XenomorphUtil.ClosestReachableHiveSlime(pawn);
-            if (c == IntVec3.Invalid && hiveslimepresent && hiveslimeReachable)
-            {
-                c = closestreachablehiveslime.Position;
-                if (c != IntVec3.Invalid)
-                {
-                    return true;
-                }
-            }
-            
-            eggsPresent = XenomorphUtil.EggsPresent(map);
-            eggsReachable = !XenomorphUtil.ClosestReachableEgg(pawn).DestroyedOrNull();
-            closestReachableEgg = XenomorphUtil.ClosestReachableEgg(pawn);
-            if (c == IntVec3.Invalid && (eggsPresent && eggsReachable && XenomorphUtil.SpawnedEggsNeedHosts(map).Count > 0))
-            {
-                eggThing = XenomorphUtil.SpawnedEggsNeedHosts(map).Count > 1 ? XenomorphUtil.SpawnedEggsNeedHosts(map).RandomElement() : XenomorphUtil.ClosestReachableEggNeedsHost(pawn);
-                c = eggThing.Position;
-                if (c != IntVec3.Invalid)
-                {
-                    return true;
-                }
-            }
-
-            cocoonsPresent = XenomorphUtil.CocoonsPresent(map, named);
-            cocoonsReachable = !XenomorphUtil.ClosestReachableCocoon(pawn, named).DestroyedOrNull();
-            closestReachableCocoon = XenomorphUtil.ClosestReachableCocoon(pawn, named);
-            if (c == IntVec3.Invalid && cocoonsPresent && cocoonsReachable)
-            {
-                c = closestReachableCocoon.Position;
-                if (c != IntVec3.Invalid)
-                {
-                    return true;
-                }
-            }
-
-            if (c == IntVec3.Invalid)
-            {
-                if (!InfestationLikeCellFinder.TryFindCell(out c, map, false))
-                {
-                    if (!RCellFinder.TryFindBestExitSpot(pawn, out c, TraverseMode.ByPawn))
-                    {
-                        return false;
-                    }
-                    if (c != IntVec3.Invalid)
-                    {
-                        return true;
-                    }
-                }
-                else
-                {
-
-                    if (pawn.GetLord() != null && pawn.GetLord() is Lord lord)
-                    {
-                        Log.Message(string.Format("TryFindGoodHiveLoc pawn.GetLord() != null"));
-                    }
-                    
-                    if (pawn.mindState.duty.def != OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike && pawn.mindState.duty.def != OGHiveLikeDefOf.RRY_DefendHiveLikeAggressively)
-                    {
-                        pawn.mindState.duty = new PawnDuty(OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike, c, 40f);
-
-                        c = RCellFinder.RandomWanderDestFor(pawn, c, 5f, null, Danger.Some);
-                        return true;
-                    }
-                    else
-                    {
-                        c = RCellFinder.RandomWanderDestFor(pawn, c, 5f, null, Danger.Some);
-                        return true;
-                    }
-                }
-            }
             return false;
         }
 
-        public static bool TryFindGoodHiveLoc(Pawn pawn, out IntVec3 c, bool allowFogged = false)
+        public static bool HiveChildPresent(Map map)
+        {
+            if (!map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_Xenomorph_Hive_Child).NullOrEmpty())
+            {
+                return true;
+            }
+            
+            return false;
+        }
+
+        public static bool TryFindGoodHiveLoc(Pawn pawn, out IntVec3 c, Pawn victim = null, bool allowFogged = false, bool allowUnroofed = false, bool allowDigging = false)
         {
             Map map = pawn.Map;
+            bool result = false;
             c = IntVec3.Invalid;
+            if (map == null)
+            {
+                return false;
+            }
+            if (!pawn.isXenomorph(out Comp_Xenomorph _Xenomorph))
+            {
+                return false;
+            }
+            MapComponent_HiveGrid hiveGrid = pawn.Map.GetComponent<MapComponent_HiveGrid>();
+            ThingDef named = null;
             bool selected = map != null ? Find.Selector.SelectedObjects.Contains(pawn) && (Prefs.DevMode) : false;
-            ThingDef named = XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon;
-
-            hivelikesPresent = XenomorphUtil.HivelikesPresent(map);
-            hivelikesReachable = !XenomorphUtil.ClosestReachableHivelike(pawn).DestroyedOrNull();
-            closestReachableHivelike = XenomorphUtil.ClosestReachableHivelike(pawn);
-            if ((hivelikesPresent && hivelikesReachable))
+            if (!victim.DestroyedOrNull())
             {
-                List<ThingDef_HiveLike> hivedefs = DefDatabase<ThingDef_HiveLike>.AllDefsListForReading.FindAll(x => x.Faction == pawn.Faction.def);
-
-                if (XenomorphUtil.TotalSpawnedHivelikeCount(map) > 0)
-                {
-                    if (XenomorphUtil.TotalSpawnedParentHivelikeCount(map) > 0)
-                    {
-                        hiveThing = XenomorphUtil.TotalSpawnedParentHivelikeCount(map) > 1 ? XenomorphUtil.SpawnedParentHivelikes(map).RandomElement() : XenomorphUtil.ClosestReachableHivelike(pawn, XenomorphUtil.SpawnedParentHivelikes(map));
-                        c = hiveThing.Position;
-                        if (c != IntVec3.Invalid)
-                        {
-                            return true;
-                        }
-                    }
-                    /*
-                    if (XenomorphUtil.TotalSpawnedChildHivelikeCount(map) > 0)
-                    {
-                        hiveThing = XenomorphUtil.TotalSpawnedParentHivelikeCount(map) > 1 ? XenomorphUtil.SpawnedParentHivelikes(map).RandomElement() : XenomorphUtil.ClosestReachableHivelike(pawn, XenomorphUtil.SpawnedParentHivelikes(map));
-                        c = hiveThing.Position;
-                        return true;
-                    }
-                    */
-                }
+                named = victim.RaceProps.Humanlike ? XenomorphDefOf.RRY_Xenomorph_Cocoon_Humanoid : XenomorphDefOf.RRY_Xenomorph_Cocoon_Animal;
             }
 
-            hiveslimepresent = XenomorphUtil.HiveSlimePresent(map);
-            hiveslimeReachable = !XenomorphUtil.ClosestReachableHiveSlime(pawn).DestroyedOrNull();
-            closestreachablehiveslime = XenomorphUtil.ClosestReachableHiveSlime(pawn);
-            if (c == IntVec3.Invalid && hiveslimepresent && hiveslimeReachable)
+            Predicate<IntVec3> validatora = delegate (IntVec3 y)
             {
-                c = closestreachablehiveslime.Position;
-                if (c != IntVec3.Invalid)
+                if (y.GetTerrain(map).HasTag("Water"))
                 {
-                    return true;
+                    return false;
                 }
-            }
+                bool roofed = (!allowUnroofed && y.Roofed(map)) || allowUnroofed;
+                bool score = InfestationLikeCellFinder.GetScoreAt(y, map, allowFogged, allowUnroofed, allowDigging) > 0f;;
+                bool filled = y.Filled(map) && !allowDigging;
+                bool edifice = y.GetEdifice(map).DestroyedOrNull() || allowDigging;
+                bool building = y.GetFirstBuilding(map).DestroyedOrNull() || allowDigging;
+                bool thing = y.GetThingList(map).All(x => x.GetType() != typeof(Building_XenomorphCocoon) && x.GetType() != typeof(Building_XenoEgg) && x.GetType() != typeof(HiveLike));
+                bool r = score && !filled && edifice && building && thing && roofed;
+                return r;
+            };
             /*
-            hiveshippresent = XenomorphUtil.HiveShipPresent(map);
-            hiveshipReachable = !XenomorphUtil.ClosestReachableHiveShip(pawn).DestroyedOrNull();
-            closestreachablehiveship = XenomorphUtil.ClosestReachableHiveShip(pawn);
-            if (c == IntVec3.Invalid && hiveshippresent && hiveshipReachable)
+            if (validatora (_Xenomorph.HiveLoc))
             {
-                c = closestreachablehiveship.Position;
-                if (c != IntVec3.Invalid)
+
+                c = _Xenomorph.HiveLoc;
+            }
+            else
+            if (hiveGrid.Hivelist.NullOrEmpty())
+            {
+                Log.Warning("no hives present");
+                if (!hiveGrid.HiveLoclist.NullOrEmpty())
                 {
-                    return true;
+                //    Log.Message("hivelocs present");
+                    c = hiveGrid.HiveLoclist.RandomElement();
+                //    return true;
                 }
+                else
+                {
+                    Log.Warning("no hivelocs present");
+                }
+            }
+            else
+            {
+            //    Log.Message("hives present");
+                c = hiveGrid.Hivelist.RandomElement().Position;
+            //    return true;
             }
             */
-            eggsPresent = XenomorphUtil.EggsPresent(map);
-            eggsReachable = !XenomorphUtil.ClosestReachableEgg(pawn).DestroyedOrNull();
-            closestReachableEgg = XenomorphUtil.ClosestReachableEgg(pawn);
-            if (c == IntVec3.Invalid && (eggsPresent && eggsReachable && XenomorphUtil.SpawnedEggsNeedHosts(map).Count > 0))
+            if (c == IntVec3.Invalid || c == IntVec3.Zero || c.InNoBuildEdgeArea(map) || c.InNoZoneEdgeArea(map) || c.GetTerrain(map).HasTag("Water"))
             {
-                eggThing = XenomorphUtil.SpawnedEggsNeedHosts(map).Count > 1 ? XenomorphUtil.SpawnedEggsNeedHosts(map).RandomElement() : XenomorphUtil.ClosestReachableEggNeedsHost(pawn);
-                c = eggThing.Position;
-                if (c != IntVec3.Invalid)
+                if (!InfestationLikeCellFinder.TryFindCell(out c, out IntVec3 lc, map, allowFogged, allowUnroofed, allowDigging))
                 {
-                    return true;
-                }
-            }
-
-            cocoonsPresent = XenomorphUtil.CocoonsPresent(map, named);
-            cocoonsReachable = !XenomorphUtil.ClosestReachableCocoon(pawn, named).DestroyedOrNull();
-            closestReachableCocoon = XenomorphUtil.ClosestReachableCocoon(pawn, named);
-            if (c == IntVec3.Invalid && cocoonsPresent && cocoonsReachable)
-            {
-                c = closestReachableCocoon.Position;
-                if (c != IntVec3.Invalid)
-                {
-                    return true;
-                }
-            }
-
-            if (c == IntVec3.Invalid)
-            {
-                if (!InfestationLikeCellFinder.TryFindCell(out c, map, false))
-                {
-                    if (!RCellFinder.TryFindBestExitSpot(pawn, out c, TraverseMode.ByPawn))
+                //    Log.Message(string.Format("Cant find suitable hive location, defaulting to map edge"));
+                    if (!InfestationCellFinder.TryFindCell(out c, map))
                     {
-                        return false;
+                    //    Log.Message(string.Format("Cant find suitable hive location, defaulting to map edge"));
+                        if (!RCellFinder.TryFindBestExitSpot(pawn, out c, TraverseMode.ByPawn))
+                        {
+                        //    Log.Message(string.Format("Cant find spot near map edge"));
+                        }
+                        else
+                        {
+                        //    Log.Message(string.Format("RCellFinder: {0}", c));
+                        }
                     }
-                    if (c != IntVec3.Invalid)
+                    else
                     {
-                        return true;
+                    //    Log.Message(string.Format("InfestationCellFinder: {0}", c));
                     }
                 }
                 else
                 {
-
-                    if (pawn.GetLord() != null && pawn.GetLord() is Lord lord)
-                    {
-                        Log.Message(string.Format("TryFindGoodHiveLoc pawn.GetLord() != null"));
-                    }
-
-                    if (pawn.mindState.duty.def != OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike && pawn.mindState.duty.def != OGHiveLikeDefOf.RRY_DefendHiveLikeAggressively)
-                    {
-                        pawn.mindState.duty = new PawnDuty(OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike, c, 40f);
-
-                        c = RCellFinder.RandomWanderDestFor(pawn, c, 5f, null, Danger.Some);
-                        return true;
-                    }
-                    else
-                    {
-                        c = RCellFinder.RandomWanderDestFor(pawn, c, 5f, null, Danger.Some);
-                        return true;
-                    }
+                //    Log.Message(string.Format("InfestationLikeCellFinder: {0}", c));
                 }
             }
-            return false;
+            if (c != IntVec3.Invalid && c != IntVec3.Zero && !c.InNoBuildEdgeArea(map) && !c.InNoZoneEdgeArea(map) && !c.GetTerrain(map).HasTag("Water"))
+            {
+                if (pawn.GetLord() != null && pawn.GetLord() is Lord lord)
+                {
+                //    Log.Message(string.Format("TryFindGoodHiveLoc pawn.GetLord() != null"));
+                }
+                else
+                {
+                //    Log.Message(string.Format("TryFindGoodHiveLoc pawn.GetLord() == null"));
+                }
+                if (pawn.mindState.duty.def != XenomorphDefOf.RRY_Xenomorph_DefendAndExpandHive && pawn.mindState.duty.def != XenomorphDefOf.RRY_Xenomorph_DefendHiveAggressively)
+                {
+                //    Log.Message(string.Format("TryFindGoodHiveLoc UpdateDuty"));
+                    pawn.mindState.duty = new PawnDuty(XenomorphDefOf.RRY_Xenomorph_DefendAndExpandHive, c, 40f);
+                }
+                if (!hiveGrid.HiveLoclist.Contains(c))
+                {
+                //    Log.Message(string.Format("TryFindGoodHiveLoc Adding to HiveLoclist"));
+                    hiveGrid.HiveLoclist.Add(c);
+                }
+                if (victim!=null)
+                {
+                    Func<Pawn, IntVec3, IntVec3, bool> validator = delegate (Pawn p, IntVec3 z, IntVec3 y)
+                    {
+                        if (y.GetTerrain(map).HasTag("Water"))
+                        {
+                            return false;
+                        }
+                        bool roofed = (!allowUnroofed && y.Roofed(map)) || allowUnroofed;
+                        bool thing = y.GetThingList(map).Any(x=> x.GetType() != typeof(Building_XenomorphCocoon) && x.GetType() != typeof(Building_XenoEgg) && x.GetType() != typeof(HiveLike) && x.GetType() != typeof(Building));
+                        bool r =  thing && roofed;
+                        //   Log.Message(string.Format("Cell: {0}, score: {1}, XenohiveA: {2}, XenohiveB: {3}, !filled: {4}, edifice: {5}, building: {6}, thingA: {7}, thingB: {8}, roofed: {9}\nResult: {10}", y, GetScoreAt(y, map, allowFogged), XenohiveA , XenohiveB , !filled , edifice , building , thingA , thingB, roofed, result));
+                        return r;
+                    };
+                    c = RCellFinder.RandomWanderDestFor(pawn, c, 5f, validator, Danger.Some);
+                }
+            }
+            return c != IntVec3.Invalid && c != IntVec3.Zero && !c.InNoBuildEdgeArea(map) && !c.InNoZoneEdgeArea(map) && !c.GetTerrain(map).HasTag("Water");
         }
-
 
 
         // Token: 0x060004D2 RID: 1234 RVA: 0x00031074 File Offset: 0x0002F474

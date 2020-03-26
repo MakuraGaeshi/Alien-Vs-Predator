@@ -6,7 +6,7 @@
             <alienslavekinds>
                 <li>
                     <kindDefs>
-                        <li>YautjaSlave_RRY</li>
+                        <li>Slave_RRY_Yautja</li>
                     </kindDefs>
                     <chance>100.0</chance>
                 </li>
@@ -37,7 +37,7 @@
 				<pawnKindEntries>
 					<li>
                     <kindDefs>
-                        <li>Colonist_YautjaUnblooded_RRY</li>
+                        <li>Colonist_RRY_Yautja_Unblooded</li>
                     </kindDefs>
                     <chance>10.0</chance>
 					</li>
@@ -50,7 +50,7 @@
 				<pawnKindEntries>
 					<li>
                     <kindDefs>
-                        <li>Colonist_YautjaBlooded_RRY</li>
+                        <li>Colonist_RRY_Yautja_Blooded</li>
                     </kindDefs>
                     <chance>10.0</chance>
 					</li>
@@ -66,8 +66,8 @@
                         <li>
                             <kindDefs>
 								<li>Yautja</li>
-								<li>Colonist_YautjaUnblooded_RRY</li>
-								<li>Colonist_YautjaBlooded_RRY</li>
+								<li>Colonist_RRY_Yautja_Unblooded</li>
+								<li>Colonist_RRY_Yautja_Blooded</li>
                             </kindDefs>
                             <chance>50.0</chance>
                         </li>
@@ -114,20 +114,20 @@
 		-->
 		<li Class="RRYautja.CompProperties_Yautja">
 			<bloodedDefs>
-			<li>RRY_Hediff_BloodedM</li>
-			<li>RRY_Hediff_BloodedMHuman</li>
-			<li>RRY_Hediff_BloodedMHumanlike</li>
-			<li>RRY_Hediff_BloodedMHound</li>
-			<li>RRY_Hediff_BloodedMCrusher</li>
-			<li>RRY_Hediff_BloodedMGroTye</li>
-			<li>RRY_Hediff_BloodedMThrumbo</li>
-			<li>RRY_Hediff_BloodedMWorthyHuman</li>
-			<li>RRY_Hediff_BloodedMWorthyHumanlike</li>
-			<li>RRY_Hediff_BloodedMMechanoid</li>
-			<li>RRY_Hediff_BloodedMBadBlood</li>
-			<li>RRY_Hediff_BloodedMXenomorph</li>
-			<li>RRY_Hediff_BloodedMPredalien</li>
-			<li>RRY_Hediff_BloodedMXenomorphQueen</li>
+			<li>HMS_Hediff_BloodedM</li>
+			<li>HMS_Hediff_BloodedMHuman</li>
+			<li>HMS_Hediff_BloodedMHumanlike</li>
+			<li>HMS_Hediff_BloodedMHound</li>
+			<li>HMS_Hediff_BloodedMCrusher</li>
+			<li>HMS_Hediff_BloodedMGroTye</li>
+			<li>HMS_Hediff_BloodedMThrumbo</li>
+			<li>HMS_Hediff_BloodedMWorthyHuman</li>
+			<li>HMS_Hediff_BloodedMWorthyHumanlike</li>
+			<li>HMS_Hediff_BloodedMMechanoid</li>
+			<li>HMS_Hediff_BloodedMBadBlood</li>
+			<li>HMS_Hediff_BloodedMXenomorph</li>
+			<li>HMS_Hediff_BloodedMPredalien</li>
+			<li>HMS_Hediff_BloodedMXenomorphQueen</li>
 			</bloodedDefs>
 			
 		</li> 
@@ -141,8 +141,7 @@
     <description>.</description>
     <alienRace>
         <generalSettings>
-			<useOnlyPawnkindBackstories>true</useOnlyPawnkindBackstories>
-            <maleGenderProbability>0.5</maleGenderProbability>
+            <maleGenderProbability>0.75</maleGenderProbability>
             <immuneToAge>false</immuneToAge>
             <forcedRaceTraitEntries>
                 <li>
@@ -275,64 +274,6 @@
                 </options>
             </alienhaircolorgen>
             <useSkincolorForHair>false</useSkincolorForHair>
-			<!--
-            <bodyAddons>
-				<li>
-					<path>Things/Addons/Blank</path>
-					<bodyPart>Head</bodyPart>
-					<useSkinColor>true</useSkinColor>
-					<inFrontOfBody>true</inFrontOfBody>
-					<layerOffset>-0.2636656</layerOffset>
-					<offsets>
-					<south>
-										<bodyTypes>
-										<RRYYautjaMale>(-0.425,0.55)</RRYYautjaMale>
-										<RRYYautjaFemale>(-0.43,0.55)</RRYYautjaFemale>
-										</bodyTypes>
-					</south>
-
-					<north>
-										<bodyTypes>
-										<RRYYautjaMale>(0,0.0)</RRYYautjaMale>
-										<RRYYautjaFemale>(0,0.0)</RRYYautjaFemale>
-										</bodyTypes>
-					</north>
-
-					<east>
-										<bodyTypes>
-										<RRYYautjaMale>(-0.48,0.55)</RRYYautjaMale>
-										<RRYYautjaFemale>(-0.48,0.55)</RRYYautjaFemale>
-										</bodyTypes>
-					</east>
-					
-					<west>
-										<bodyTypes>
-										<RRYYautjaMale>(-0.48,0.55)</RRYYautjaMale>
-										<RRYYautjaFemale>(-0.48,0.55)</RRYYautjaFemale>
-										</bodyTypes>
-					</west>
-					</offsets>
-					<hediffGraphics>
-					<RRY_Hediff_BloodedMXenomorph>Things/Addons/Blood_Marks/Xenomorph_Kills/Mark_Xenomorphkill</RRY_Hediff_BloodedMXenomorph>
-					<RRY_Hediff_BloodedMXenomorphQueen>Things/Addons/Blood_Marks/Xenomorph_Kills/Mark_QueenXenomorphkill</RRY_Hediff_BloodedMXenomorphQueen>
-					<RRY_Hediff_BloodedMPredalien>Things/Addons/Blood_Marks/Xenomorph_Kills/Mark_Predalienkill</RRY_Hediff_BloodedMPredalien>
-
-					<RRY_Hediff_BloodedMBadBlood>Things/Addons/Blood_Marks/Yautja_Kills/Mark_BadBloodkill</RRY_Hediff_BloodedMBadBlood>
-					
-					<RRY_Hediff_BloodedMHuman>Things/Addons/Blood_Marks/Human_Kills/Mark_Humankill</RRY_Hediff_BloodedMHuman>
-					<RRY_Hediff_BloodedMWorthyHuman>Things/Addons/Blood_Marks/Human_Kills/Mark_WorthyHumankill</RRY_Hediff_BloodedMWorthyHuman>
-					<RRY_Hediff_BloodedMHumanlike>Things/Addons/Blood_Marks/Human_Kills/Mark_Humanlikekill</RRY_Hediff_BloodedMHumanlike>
-					<RRY_Hediff_BloodedMWorthyHumanlike>Things/Addons/Blood_Marks/Human_Kills/Mark_WorthyHumanlikekill</RRY_Hediff_BloodedMWorthyHumanlike>
-					
-					<RRY_Hediff_BloodedMThrumbo>Things/Addons/Blood_Marks/Animal_Kills/Mark_Thrumbokill</RRY_Hediff_BloodedMThrumbo>
-					<RRY_Hediff_BloodedMHound>Things/Addons/Blood_Marks/Animal_Kills/Mark_Houndkill</RRY_Hediff_BloodedMHound>
-					<RRY_Hediff_BloodedMCrusher>Things/Addons/Blood_Marks/Animal_Kills/Mark_Crusherkill</RRY_Hediff_BloodedMCrusher>
-					<RRY_Hediff_BloodedMGroTye>Things/Addons/Blood_Marks/Animal_Kills/Mark_GroTyekill</RRY_Hediff_BloodedMGroTye>
-					<RRY_Hediff_BloodedM>Things/Addons/Blood_Marks/Mark_Generickill</RRY_Hediff_BloodedM>
-					</hediffGraphics>
-                </li>
-            </bodyAddons>
-			-->
             </alienPartGenerator>
 			<chemicalSettings>	
 		    </chemicalSettings>
@@ -402,8 +343,7 @@
             </restrictedThoughts>
 			-->
 			<cannotReceiveThoughts>
-			<!--
-				-->
+			
 				<li>AteHumanlikeMeatDirect</li>
 				<li>AteHumanlikeMeatAsIngredient</li>
 				<li>AteRawHumanlikeMeat</li>
@@ -411,6 +351,7 @@
 				<li>AteHumanlikeMeatAsIngredientCannibal</li>
 				<li>ButcheredHumanlikeCorpse</li>
 				<li>KnowButcheredHumanlikeCorpse</li>
+				
 				<li>ObservedLayingCorpse</li>
 				<li>SoldPrisoner</li>
 				<li>KnowPrisonerDiedInnocent</li>
@@ -421,6 +362,7 @@
 				<li>KnowPrisonerSold</li>
 				<li>KnowGuestOrganHarvested</li>
             </cannotReceiveThoughts>
+			
 			<butcherThoughtSpecific>
                 <li>
                     <raceList>
@@ -430,8 +372,8 @@
                     <knowThought>RRY_KnowButcheredYautjaCorpse</knowThought>
                 </li>
             </butcherThoughtSpecific>
-				<!--
-            <ateThoughtSpecific>
+            
+			<ateThoughtSpecific>
                 <li>
                     <raceList>
                         <li>RRY_Alien_Yautja</li>
@@ -440,27 +382,8 @@
 					<thoughtCannibal>RRY_AteYautjaMeatDirectCannibal</thoughtCannibal> 
                 </li>
             </ateThoughtSpecific>
-			<ateThoughtSpecific>
-                <li>
-                    <raceList>
-                        <li>RRY_Alien_Yautja</li>
-                    </raceList>
-                     <thought>RRY_AteYautjaMeatDirect</thought> 
-                     <ingredientThought>RRY_AteYautjaMeatAsIngredient</ingredientThought> 
-					 <thoughtCannibal>RRY_AteYautjaMeatDirectCannibal</thoughtCannibal> 
-					 <ingredientThoughtCannibal>RRY_AteYautjaMeatAsIngredientCannibal</ingredientThoughtCannibal> 
-                </li>
-            </ateThoughtSpecific>
-			 <butcherThoughtSpecific>
-                <li>
-                    <raceList>
-                        <li>RRY_Alien_Yautja</li>
-                    </raceList>
-                    <thought>RRY_ButcheredYautjaCorpse</thought>
-                    <knowThought>RRY_KnowButcheredYautjaCorpse</knowThought>
-                </li>
-            </butcherThoughtSpecific>
-				-->
+			
+			
         </thoughtSettings>
        
 	   <relationSettings>
@@ -511,16 +434,21 @@
 				<li>RRY_Apparel_HunterLeaderBioMask</li>
 				<li>RRY_Apparel_HunterVest</li>
 				<li>RRY_Apparel_Mesh</li>
+				<li>RRY_Apparel_TribalCloak</li>
 				
 				<li>RRY_Apparel_LeaderArmourChestplate</li>
 				<li>RRY_Apparel_LeaderArmourGreaves</li>
 				<li>RRY_Apparel_LeaderBioMask</li>
 				
-				<!-- <li>RRY_Equipment_HunterGauntlet</li> -->
+				<!-- 
+                <li>RRY_Equipment_HunterGauntlet_TOGGLEDEF_RH</li>
+                <li>RRY_Equipment_HunterGauntlet_TOGGLEDEF_LH</li>
+				-->
 				<li>RRY_Equipment_HunterShoulderCannon</li>
 			</apparelList>
             <whiteApparelList>
-                <li>RRY_Equipment_HunterGauntlet</li>
+                <li>RRY_Equipment_HunterGauntlet_TOGGLEDEF_RH</li>
+                <li>RRY_Equipment_HunterGauntlet_TOGGLEDEF_LH</li>
                 <li>Apparel_TribalA</li>
                 <li>Apparel_Pants</li>
                 <li>Apparel_FlakPants</li>
@@ -550,7 +478,8 @@
 				<li>RRY_Apparel_LeaderArmourGreaves</li>
 				<li>RRY_Apparel_LeaderBioMask</li>
 				
-				<li>RRY_Equipment_HunterGauntlet</li>
+                <li>RRY_Equipment_HunterGauntlet_TOGGLEDEF_RH</li>
+                <li>RRY_Equipment_HunterGauntlet_TOGGLEDEF_LH</li>
 				<li>RRY_Equipment_HunterShoulderCannon</li>
 				
 				<li>RRY_Melee_Combistaff</li>
@@ -573,7 +502,7 @@
 		<ComfyTemperatureMax>40</ComfyTemperatureMax>
 		<LeatherAmount>55</LeatherAmount>
         <CarryingCapacity>200</CarryingCapacity>
-		<AimingDelayFactor>-0.5</AimingDelayFactor>
+		<AimingDelayFactor>0.75</AimingDelayFactor>
 		<MentalBreakThreshold>0.025</MentalBreakThreshold>
         <ImmunityGainSpeed>1.25</ImmunityGainSpeed>
         <PainShockThreshold>0.9</PainShockThreshold>
@@ -590,12 +519,10 @@
 		<PsychicSensitivity>1</PsychicSensitivity>
 		<MiningSpeed>1.0</MiningSpeed>
         <ForagedNutritionPerDay>1.0</ForagedNutritionPerDay>
-        <UnskilledLaborSpeed>1.0</UnskilledLaborSpeed>
         <ButcheryFleshSpeed>1.0</ButcheryFleshSpeed>
         <ButcheryFleshEfficiency>1.0</ButcheryFleshEfficiency>
         <SmeltingSpeed>1.0</SmeltingSpeed>
-        <SmithingSpeed>1.0</SmithingSpeed>
-        <TailoringSpeed>1.0</TailoringSpeed>
+        <GeneralLaborSpeed>1.0</GeneralLaborSpeed>
 		<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
 		-->
     </statBases>
@@ -714,11 +641,11 @@
       <ageGenerationCurve>
         <points>
                     <li>(16,0)</li>
-                    <li>(17,25)</li>
-                    <li>(18,50)</li>
-                    <li>(20,75)</li>
-                    <li>(30,100)</li>
-                    <li>(40,125)</li>
+                    <li>(17,100)</li>
+                    <li>(18,110)</li>
+                    <li>(20,120)</li>
+                    <li>(30,130)</li>
+                    <li>(40,140)</li>
                     <li>(50,150)</li>
 					<li>(120,175)</li>
 					<li>(140,200)</li>
@@ -773,9 +700,17 @@
       <li>RRY_GauntletRemoval</li>
     </recipes>
 	<modExtensions>
-	  <li Class="RRYautja.OffsetDefExtension">
+	  <li Class="HunterMarkingSystem.MarkDefExtension">
+		<!-- DefName of the Marking Hediff Kills of this race give --> 
+		<hediffs>
+		<li>HMS_Hediff_BloodedMHumanlike</li>
+		<li>HMS_Hediff_BloodedMWorthyHumanlike</li>
+		<li>HMS_Hediff_BloodedMBadBlood</li>
+		</hediffs>
+	  </li>
+	  <li Class="HunterMarkingSystem.MarkOffsetDefExtension">
 		<!-- DefName of the hediff this applies to --> 
-		<hediff>RRY_Hediff_BloodedM</hediff>
+		<hediff>HMS_Hediff_BloodedM</hediff>
 		<!-- adds the vanillia head offset for the current rotation, not sure if this will ever be useful, defaults to false if not set--> 
 		<ApplyBaseHeadOffset>false</ApplyBaseHeadOffset>
 		<!-- North offsets Y is the layer height, usually you can leave this at 0, all values default to 0 if not set-->
@@ -831,7 +766,7 @@
 		<NorthAngle>0</NorthAngle>
 		<!-- South offsets Y is the layer height, usually you can leave this at 0, all values default to 0 if not set-->
 		<SouthXOffset>-0.001</SouthXOffset>
-		<SouthYOffset>0.0</SouthYOffset>
+		<SouthYOffset>0.010</SouthYOffset>
 		<SouthZOffset>0.0</SouthZOffset>
 		<!-- South Draw size overrides, will default to 1 if not set -->
 		<SouthXDrawSize>2</SouthXDrawSize>

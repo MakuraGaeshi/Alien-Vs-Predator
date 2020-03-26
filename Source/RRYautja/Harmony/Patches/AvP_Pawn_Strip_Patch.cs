@@ -1,6 +1,6 @@
 ﻿using RimWorld;
 using Verse;
-using Harmony;
+using HarmonyLib;
 using System.Reflection;
 using System.Collections.Generic;
 using System;
@@ -26,7 +26,7 @@ namespace RRYautja
             bool result = true;
             if (__instance.RaceProps.Humanlike)
             {
-                result = !(__instance.apparel.WornApparel.Any(x => x.def == YautjaDefOf.RRY_Equipment_HunterGauntlet) && !__instance.Dead);
+                result = !(__instance.apparel.WornApparel.Any(x => x.def.defName.Contains("RRY_Equipment_HunterGauntlet")) && !__instance.Dead);
             }
             //    Log.Message(string.Format("Pawn_StripPatch IgnoreWristblade: {0}", result));
             if (!result)
@@ -72,7 +72,7 @@ namespace RRYautja
             tmpApparelList.Clear();
             for (int i = 0; i < __instance.apparel.WornApparel.Count; i++)
             {
-                if (__instance.apparel.WornApparel[i].def != YautjaDefOf.RRY_Equipment_HunterGauntlet)
+                if (!__instance.apparel.WornApparel[i].def.defName.Contains("RRY_Equipment_HunterGauntlet"))
                 {
                     tmpApparelList.Add(__instance.apparel.WornApparel[i]);
                 }

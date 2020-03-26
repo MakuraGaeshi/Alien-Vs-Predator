@@ -103,7 +103,7 @@ namespace RimWorld
             CellRect occupiedRect = this.parent.OccupiedRect();
             CompHiveCreep.reachableCells.Clear();
         //    Log.Message(string.Format("1"));
-            this.parent.Map.floodFiller.FloodFill(this.parent.Position, (IntVec3 x) => (float)x.DistanceToSquared(this.parent.Position) <= this.hiveRadius * this.hiveRadius && (occupiedRect.Contains(x) || !x.Filled(this.parent.Map) && x.InBounds(this.parent.Map)), delegate (IntVec3 x)
+            this.parent.Map.floodFiller.FloodFill(this.parent.Position, (IntVec3 x) => (float)x.DistanceToSquared(this.parent.Position) <= this.hiveRadius * this.hiveRadius && (occupiedRect.Contains(x) || !x.Filled(this.parent.Map) && x.InBounds(this.parent.Map) && x.Roofed(this.parent.Map)), delegate (IntVec3 x)
             {
                 CompHiveCreep.reachableCells.Add(x);
             }, int.MaxValue, false, null);

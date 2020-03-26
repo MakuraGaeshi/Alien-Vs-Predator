@@ -1,6 +1,6 @@
 ﻿using RimWorld;
 using Verse;
-using Harmony;
+using HarmonyLib;
 using System.Reflection;
 using System.Collections.Generic;
 using System;
@@ -35,9 +35,9 @@ namespace RRYautja
                     {
                         Filth_AddAcidDamage acid = null;
                         list = map.thingGrid.ThingsListAtFast(c2);
-                        if (list.Any(x => x.def == XenomorphDefOf.RRY_FilthBloodXenomorph))
+                        if (list.Any(x => x.def == XenomorphDefOf.RRY_FilthBloodXenomorph_Active))
                         {
-                            list = list.FindAll(x => x.def == XenomorphDefOf.RRY_FilthBloodXenomorph);
+                            list = list.FindAll(x => x.def == XenomorphDefOf.RRY_FilthBloodXenomorph_Active);
                             for (int k = 0; k < list.Count; k++)
                             {
                                 acid = (list[k] as Filth_AddAcidDamage);

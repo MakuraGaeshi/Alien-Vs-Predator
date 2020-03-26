@@ -4,8 +4,8 @@
     <colorSpectrum>
       <li>(0, 0.737, 0.847)</li>
     </colorSpectrum>
-    <homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
-    <expandingIconTexture>World/WorldObjects/YautjaIconB</expandingIconTexture>
+    <settlementTexturePath>World/WorldObjects/DefaultSettlement</settlementTexturePath>
+    <factionIconPath>Ui/Icons/Icon_YautjaB</factionIconPath>
   </FactionDef>
   
     <FactionDef Parent="RRY_YautjaPlayerFactionBase">
@@ -13,17 +13,21 @@
     <label>Yautja Colony</label>
     <description>Yautja Colony Start.</description>
     <isPlayer>true</isPlayer>
-    <basicMemberKind>Colonist_Yautja_RRY</basicMemberKind>
+    <basicMemberKind>Colonist_RRY_Yautja</basicMemberKind>
     <pawnsPlural>Yautja</pawnsPlural>
     <playerInitialSettlementNameMaker>NamerInitialSettlementColony</playerInitialSettlementNameMaker>
 		<factionNameMaker>NamerRRYautjaFaction</factionNameMaker>
     <settlementNameMaker>NamerRRYautjaBases</settlementNameMaker>
     <techLevel>Ultra</techLevel>
-    <backstoryCategories>
-      <li>Raider</li>
-      <li>Tribal</li>
-      <li>Civil</li>
-  	</backstoryCategories>
+    <backstoryFilters>
+      <li>
+        <categories>
+		  <li>Raider</li>
+		  <li>Tribal</li>
+		  <li>Civil</li>
+        </categories>
+      </li>
+    </backstoryFilters>
     <startingResearchTags>
       <li>ClassicStart</li>
     </startingResearchTags>
@@ -35,6 +39,10 @@
     <apparelStuffFilter>
       <thingDefs>
         <li>Synthread</li>
+        <li>RRY_Leather_Yautja</li>
+        <li>Leather_Light</li>
+        <li>Leather_Plain</li>
+        <li>Leather_Bear</li>
       </thingDefs>
     </apparelStuffFilter>
     <colorSpectrum>
@@ -54,12 +62,12 @@
         <kindDef>Peaceful</kindDef>
         <commonality>100</commonality>
         <options>
-          <Colonist_Yautja_RRY>100</Colonist_Yautja_RRY>
+          <Colonist_RRY_Yautja>100</Colonist_RRY_Yautja>
         </options>
       </li>
     </pawnGroupMakers>
-    <homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
-    <expandingIconTexture>World/WorldObjects/YautjaIconB</expandingIconTexture>
+    <settlementTexturePath>World/WorldObjects/DefaultSettlement</settlementTexturePath>
+    <factionIconPath>Ui/Icons/Icon_YautjaB</factionIconPath>
     </FactionDef>
 	
     <FactionDef Parent="RRY_YautjaPlayerFactionBase">
@@ -71,13 +79,18 @@
     <settlementNameMaker>NamerRRYautjaBases</settlementNameMaker>
     <techLevel>Ultra</techLevel>
     <isPlayer>true</isPlayer>
-    <basicMemberKind>Colonist_YautjaUnblooded_RRY</basicMemberKind>
+    <basicMemberKind>Colonist_RRY_Yautja_Unblooded</basicMemberKind>
     <pawnsPlural>Yautja</pawnsPlural>
-    <backstoryCategories>
-      <li>Raider</li>
-      <li>Tribal</li>
-      <li>Civil</li>
-  	</backstoryCategories>
+    <backstoryFilters>
+      <li>
+        <categories>
+		  <li>Raider</li>
+		  <li>Tribal</li>
+		  <li>Civil</li>
+          <li>RRY_Yautja_Unblooded</li>
+        </categories>
+      </li>
+    </backstoryFilters>
     <startingResearchTags>
       <li>ClassicStart</li>
     </startingResearchTags>
@@ -88,7 +101,10 @@
     </hairTags>
     <apparelStuffFilter>
       <thingDefs>
-        <li>Synthread</li>
+        <li>RRY_Leather_Yautja</li>
+        <li>Leather_Light</li>
+        <li>Leather_Plain</li>
+        <li>Leather_Bear</li>
       </thingDefs>
     </apparelStuffFilter>
     <colorSpectrum>
@@ -108,12 +124,12 @@
         <kindDef>Peaceful</kindDef>
         <commonality>100</commonality>
         <options>
-          <Colonist_YautjaUnblooded_RRY>100</Colonist_YautjaUnblooded_RRY>
+          <Colonist_RRY_Yautja_Unblooded>100</Colonist_RRY_Yautja_Unblooded>
         </options>
       </li>
     </pawnGroupMakers>
-    <homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
-    <expandingIconTexture>World/WorldObjects/YautjaIconB</expandingIconTexture>
+    <settlementTexturePath>World/WorldObjects/DefaultSettlement</settlementTexturePath>
+    <factionIconPath>Ui/Icons/Icon_YautjaB</factionIconPath>
     </FactionDef>
 	
     <FactionDef Parent="RRY_YautjaPlayerFactionBase">
@@ -125,24 +141,35 @@
     <settlementNameMaker>NamerRRYautjaBases</settlementNameMaker>
     <techLevel>Ultra</techLevel>
     <isPlayer>true</isPlayer>
-    <basicMemberKind>Colonist_YautjaBlooded_RRY</basicMemberKind>
+    <basicMemberKind>Colonist_RRY_Yautja_Blooded</basicMemberKind>
     <pawnsPlural>Yautja</pawnsPlural>
-    <backstoryCategories>
-      <li>Raider</li>
-      <li>Tribal</li>
-      <li>Civil</li>
-  	</backstoryCategories>
+    <backstoryFilters>
+      <li>
+        <categories>
+		  <li>Pirate</li>
+		  <li>Outlander</li>
+		  <li>Offworlder</li>
+		  <li>Tribal</li>
+          <li>RRY_Yautja_Blooded</li>
+        </categories>
+      </li>
+    </backstoryFilters>
     <startingResearchTags>
       <li>ClassicStart</li>
     </startingResearchTags>
     <hairTags>
-		<li>Civil</li>
+		<li>Urban</li>
 		<li>Rural</li>
+		<li>Punk</li>
 		<li>Tribal</li>
     </hairTags>
     <apparelStuffFilter>
       <thingDefs>
         <li>Synthread</li>
+        <li>RRY_Leather_Yautja</li>
+        <li>Leather_Light</li>
+        <li>Leather_Plain</li>
+        <li>Leather_Bear</li>
       </thingDefs>
     </apparelStuffFilter>
     <colorSpectrum>
@@ -162,12 +189,12 @@
         <kindDef>Peaceful</kindDef>
         <commonality>100</commonality>
         <options>
-          <Colonist_YautjaBlooded_RRY>100</Colonist_YautjaBlooded_RRY>
+          <Colonist_RRY_Yautja_Blooded>100</Colonist_RRY_Yautja_Blooded>
         </options>
       </li>
     </pawnGroupMakers>
-    <homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
-    <expandingIconTexture>World/WorldObjects/YautjaIconB</expandingIconTexture>
+    <settlementTexturePath>World/WorldObjects/DefaultSettlement</settlementTexturePath>
+    <factionIconPath>Ui/Icons/Icon_YautjaB</factionIconPath>
     </FactionDef>
 	
 	<FactionDef Parent="RRY_YautjaPlayerFactionBase">
@@ -179,13 +206,16 @@
     <settlementNameMaker>NamerRRYautjaBases</settlementNameMaker>
     <techLevel>Ultra</techLevel>
     <isPlayer>true</isPlayer>
-    <basicMemberKind>Colonist_Yautja_Blooding_RRY</basicMemberKind>
+    <basicMemberKind>Colonist_RRY_Yautja_Blooding</basicMemberKind>
     <pawnsPlural>Yautja</pawnsPlural>
-    <backstoryCategories>
-      <li>Raider</li>
-      <li>Tribal</li>
-      <li>Civil</li>
-  	</backstoryCategories>
+    <backstoryFilters>
+      <li>
+        <categories>
+		  <li>Tribal</li>
+          <li>RRY_Yautja_Unblooded</li>
+        </categories>
+      </li>
+    </backstoryFilters>
     <startingResearchTags>
       <li>ClassicStart</li>
     </startingResearchTags>
@@ -197,6 +227,10 @@
     <apparelStuffFilter>
       <thingDefs>
         <li>Synthread</li>
+        <li>RRY_Leather_Yautja</li>
+        <li>Leather_Light</li>
+        <li>Leather_Plain</li>
+        <li>Leather_Bear</li>
       </thingDefs>
     </apparelStuffFilter>
     <colorSpectrum>
@@ -216,12 +250,12 @@
         <kindDef>Peaceful</kindDef>
         <commonality>100</commonality>
         <options>
-          <Colonist_YautjaUnblooded_RRY>100</Colonist_YautjaUnblooded_RRY>
+          <Colonist_RRY_Yautja_Unblooded>100</Colonist_RRY_Yautja_Unblooded>
         </options>
       </li>
     </pawnGroupMakers>
-    <homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
-    <expandingIconTexture>World/WorldObjects/YautjaIconB</expandingIconTexture>
+    <settlementTexturePath>World/WorldObjects/DefaultSettlement</settlementTexturePath>
+    <factionIconPath>Ui/Icons/Icon_YautjaB</factionIconPath>
     </FactionDef>
 
 </Defs>

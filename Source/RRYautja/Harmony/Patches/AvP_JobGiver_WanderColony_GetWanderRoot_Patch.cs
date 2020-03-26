@@ -1,6 +1,6 @@
 ﻿using RimWorld;
 using Verse;
-using Harmony;
+using HarmonyLib;
 using System.Reflection;
 using System.Collections.Generic;
 using System;
@@ -22,7 +22,7 @@ namespace RRYautja
         [HarmonyPostfix]
         public static void GetWanderRoot(Pawn pawn, ref IntVec3 __result)
         {
-            if (!__result.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon).DestroyedOrNull())
+            if (!__result.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Cocoon_Humanoid).DestroyedOrNull())
             {
                 __result = pawn.Position;
             }

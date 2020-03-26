@@ -1,6 +1,6 @@
 ﻿using RimWorld;
 using Verse;
-using Harmony;
+using HarmonyLib;
 using System.Reflection;
 using System.Collections.Generic;
 using System;
@@ -25,36 +25,39 @@ namespace RRYautja
         {
             Traverse traverse = Traverse.Create(__instance);
             Pawn pawn = (Pawn)AvP_PawnObserver_ObserveSurroundingThings_Patch.pawn.GetValue(__instance);
+        //    Log.Message(string.Format("ObserveSurroundingThingsPostfix {0}", pawn.LabelShortCap));
             if (!pawn.health.capacities.CapableOf(PawnCapacityDefOf.Sight))
             {
+            //    Log.Message("Blind");
                 return;
             }
+            float num = pawn.health.capacities.GetLevel(PawnCapacityDefOf.Sight);
+        //    Log.Message(string.Format("Sight: {0}", num));
             Map map = pawn.Map;
-            int num = 0;
-            while ((float)num < 100f)
+            //    List<Thing> thingList = intVec.GetThingList(map).FindAll(x => x.def.thingClass == typeof(Pawn) && (Pawn)x != pawn);
+            List<Pawn> thingList = map.mapPawns.AllPawns.Where(x => x != pawn && x.isXenomorph() && GenSight.LineOfSight(x.Position, pawn.Position, map, true, null, 0, 0) && pawn.Position.DistanceTo(x.Position) <= (20 * num)).ToList();
+
+            if (!thingList.NullOrEmpty())
             {
-                IntVec3 intVec = pawn.Position + GenRadial.RadialPattern[num];
-                if (intVec.InBounds(map))
+                for (int i = 0; i < thingList.Count; i++)
                 {
-                    if (GenSight.LineOfSight(intVec, pawn.Position, map, true, null, 0, 0))
+                    Pawn observed = (Pawn)thingList[i];
+                //    Log.Message(string.Format("{0} observed {1}", pawn.LabelShortCap, observed.LabelShortCap));
+                    Comp_Xenomorph thoughtGiver = thingList[i].TryGetComp<Comp_Xenomorph>() as Comp_Xenomorph;
+                    if (thoughtGiver != null)
                     {
-                        List<Thing> thingList = intVec.GetThingList(map).FindAll(x => x.TryGetComp<Comp_Xenomorph>() != null);
-                        for (int i = 0; i < thingList.Count; i++)
+                        Thought_Memory thought_Memory = thoughtGiver.GiveObservedThought();
+                        if (thought_Memory != null)
                         {
-                            IThoughtGiver thoughtGiver = thingList[i].TryGetComp<Comp_Xenomorph>() as IThoughtGiver;
-                            if (thoughtGiver != null)
-                            {
-                                Thought_Memory thought_Memory = thoughtGiver.GiveObservedThought();
-                                if (thought_Memory != null)
-                                {
-                                    pawn.needs.mood.thoughts.memories.TryGainMemory(thought_Memory, null);
-                                }
-                            }
+                        //    Log.Message(string.Format("{0} TryGainMemory {1}", pawn.LabelShortCap, thought_Memory.LabelCap));
+                            pawn.needs.mood.thoughts.memories.TryGainMemory(thought_Memory, observed);
                         }
+                    //    else Log.Message("thought_Memory == null");
                     }
+                //    else Log.Message(string.Format("thoughtGiver {0} == null", thingList[i].LabelShortCap));
                 }
-                num++;
             }
+        //    else Log.Message("thingList.NullOrEmpty");
         }
         public static FieldInfo pawn = typeof(PawnObserver).GetField("pawn", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.GetField);
     }

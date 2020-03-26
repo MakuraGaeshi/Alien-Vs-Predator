@@ -8,10 +8,9 @@
 	<!-- Megasloth -->
 	<Operation Class="PatchOperationSequence">
 		<operations>
-			<li Class="PatchOperationAdd">
+			<li Class="PatchOperationAddModExtension">
 				<xpath>/Defs/ThingDef[defName = "Megasloth"]</xpath>
 				<value>
-				<modExtensions>
 				  <li Class="RRYautja.OffsetDefExtension">
 				    <!-- DefName of the hediff this applies to --> 
 					<hediff>RRY_FaceHuggerInfection</hediff>
@@ -54,7 +53,6 @@
 					<!-- West Angle overrides, will default to 0 if not set -->
 					<WestAngle>20</WestAngle>
 				  </li>
-				</modExtensions>
 				</value>
 			</li>
 		</operations>	

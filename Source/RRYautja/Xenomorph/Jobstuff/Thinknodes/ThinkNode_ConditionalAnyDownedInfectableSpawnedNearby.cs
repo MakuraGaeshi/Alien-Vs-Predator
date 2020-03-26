@@ -1,4 +1,5 @@
 ﻿using RRYautja;
+using RRYautja.ExtensionMethods;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,14 +29,14 @@ namespace RimWorld
             bool result;
             if (pawn.Spawned && XenomorphUtil.IsXenomorph(pawn))
             {
-                List<Pawn> list = pawn.Map.mapPawns.AllPawns.Where((Pawn x) => x.RaceProps.FleshType != XenomorphRacesDefOf.RRY_Xenomorph && x.RaceProps.FleshType != XenomorphRacesDefOf.RRY_Neomorph && !x.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned) && x.Downed && XenomorphUtil.isInfectablePawn(x) && pawn.CanReach(x, PathEndMode.InteractionCell, Danger.Deadly, false, TraverseMode.NoPassClosedDoors)).ToList();
+                List<Pawn> list = pawn.Map.mapPawns.AllPawns.Where((Pawn x) => x.Downed && x.isPotentialHost() && pawn.CanReach(x, PathEndMode.InteractionCell, Danger.Deadly, false, TraverseMode.NoPassClosedDoors)).ToList();
                 result = !list.NullOrEmpty() ? list.Any<Pawn>(x => x.Spawned) : false;
             }
             else
             {
                 result = false;
             }
-            if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} Result: {1}", this, result));
+            if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0} Result: {1}", this, result));
             return result;
         }
 

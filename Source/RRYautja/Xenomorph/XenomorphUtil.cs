@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using RRYautja.ExtensionMethods;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,12 @@ namespace RRYautja
     {
         public static bool HiveSlimePresent(Map map)
         {
-            return map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_Hive_Slime).Count > 0;
+            return map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_Xenomorph_Hive_Slime).Count > 0;
         }
 
         public static Thing ClosestReachableHiveSlime(Pawn pawn)
         {
-            Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_Hive_Slime), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, null, null, 0, -1, false, RegionType.Set_Passable, false);
+            Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_Xenomorph_Hive_Slime), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, null, null, 0, -1, false, RegionType.Set_Passable, false);
             return thing;
         }
 
@@ -170,195 +171,40 @@ namespace RRYautja
         public static bool isInfectableThing(ThingDef thingDef)
         {
             if (thingDef.race == null) return false;
-            if (UtilChjAndroids.ChjAndroid)
+            if (!settings.SettingsHelper.latest.AllowNonHumanlikeHosts && !thingDef.race.Humanlike)
             {
-                if (thingDef.defName == "ChjAndroid" || thingDef.defName == "ChjDroid")
-                {
-                    return false;
-                }
+                return false;
             }
-            if (UtilTieredAndroids.TieredAndroid)
+            if (thingDef.isXenomorph() || thingDef.isNeomorph())
             {
-                if (thingDef.defName.Contains("Android" + "Tier"))
-                {
-                    return false;
-                }
+                return false;
             }
+            bool pawnflag = !((UtilChjAndroids.ChjAndroid && UtilChjAndroids.isChjAndroid(thingDef)) || (UtilTieredAndroids.TieredAndroid && UtilTieredAndroids.isAtlasAndroid(thingDef)) || (UtilSynths.isAvPSynth(thingDef)));
+            if (!pawnflag) return false;
             if (thingDef.race.IsMechanoid) return false;
-        //    if (thingDef.defName.Contains("")) return false;
             if (thingDef.race.body.defName.Contains("AIRobot")) return false;
-            if (thingDef.defName.Contains("Android")) return false;
-            if (thingDef.defName.Contains("Droid")) return false;
-            if (thingDef.defName.Contains("Mech")) return false;
-            if (thingDef.defName.Contains("TM_Undead")) return false;
-            if (thingDef.defName.Contains("TM_") && thingDef.defName.Contains("Minion")) return false;
-            if (thingDef.defName.Contains("TM_Demon")) return false;
-            if (thingDef.race.FleshType == XenomorphRacesDefOf.RRY_Xenomorph) return false;
-            if (thingDef.race.FleshType == XenomorphRacesDefOf.RRY_Neomorph) return false;
+            if (thingDef.defName.Contains("TM_"))
+            {
+                if (thingDef.defName.Contains("Undead") || thingDef.defName.Contains("Minion") || thingDef.defName.Contains("Demon")) return false;
+            }
             if (thingDef.race.FleshType.defName.Contains("TM_StoneFlesh")) return false;
-            if (thingDef.race.FleshType.defName.Contains("ChaosDeamon")) return false;
-            if (thingDef.race.FleshType.defName.Contains("Necron")) return false;
-            if (thingDef.race.FleshType.defName.Contains("EldarConstruct")) return false;
-            if (thingDef.race.FleshType.defName.Contains("ImperialConstruct")) return false;
-            if (thingDef.race.FleshType.defName.Contains("MechanicusConstruct")) return false;
+            if (thingDef.race.FleshType.defName.Contains("Chaos") && thingDef.race.FleshType.defName.Contains("Deamon")) return false;
+            if (thingDef.race.FleshType.defName.Contains("Construct") && thingDef.race.FleshType.defName.Contains("Flesh")) return false;
             if (thingDef.race.baseBodySize < 0.65f && !thingDef.race.Humanlike) return false;
 
 
             return true;
         }
-        public static bool isInfectablePawn(Pawn pawn)
-        {
-            if (pawn.Dead)
-            {
-            //    Log.Message(string.Format("{0} is dead", pawn.LabelShortCap));
-                return false;
-            }
-
-            if (UtilChjAndroids.ChjAndroid)
-            {
-                if (pawn.kindDef.race.defName == "ChjAndroid" || pawn.kindDef.race.defName == "ChjDroid")
-                {
-                    return false;
-                }
-            }
-            if (UtilTieredAndroids.TieredAndroid)
-            {
-                if (pawn.kindDef.race.defName.Contains("Android" + "Tier"))
-                {
-                    return false;
-                }
-            }
-            if (pawn.RaceProps.body.defName.Contains("AIRobot")) return false;
-            if (pawn.kindDef.race.defName.Contains("Android")) return false;
-            if (pawn.kindDef.race.defName.Contains("Droid")) return false;
-            if (pawn.kindDef.race.defName.Contains("Mech")) return false;
-            if (pawn.kindDef.race.defName.Contains("TM_Undead")) return false;
-            if (pawn.kindDef.race.race.FleshType.defName.Contains("TM_StoneFlesh")) return false;
-            if (pawn.kindDef.race.defName.Contains("TM_") && pawn.kindDef.race.defName.Contains("Minion")) return false;
-            if (pawn.kindDef.race.defName.Contains("TM_Demon")) return false;
-            if (pawn.kindDef.race.race.FleshType.defName.Contains("ChaosDeamon")) return false;
-            if (pawn.kindDef.race.race.FleshType.defName.Contains("Necron")) return false;
-            if (pawn.kindDef.race.race.FleshType.defName.Contains("EldarConstruct")) return false;
-            if (pawn.kindDef.race.race.FleshType.defName.Contains("ImperialConstruct")) return false;
-            if (pawn.kindDef.race.race.FleshType.defName.Contains("MechanicusConstruct")) return false;
-            if (pawn.RaceProps.IsMechanoid)
-            {
-                //    Log.Message(string.Format("{0} is Mechanoid", pawn.LabelShortCap)); TM_MinionR 
-                return false;
-            }
-            if (!pawn.RaceProps.IsFlesh)
-            {
-            //    Log.Message(string.Format("{0} not Flesh"));
-                return false;
-            }
-            if (IsXenomorph(pawn))
-            {
-            //    Log.Message(string.Format("{0} Is Xenomorph", pawn.LabelShortCap));
-                return false;
-            }
-            if (IsInfectedPawn(pawn))
-            {
-            //    Log.Message(string.Format("{0} Is Infected Pawn", pawn.LabelShortCap));
-                return false;
-            }
-            if (IsXenomorphFaction(pawn))
-            {
-            //    Log.Message(string.Format("{0} Is Xenomorph Faction", pawn.LabelShortCap));
-                return false;
-            }
-            if (pawn.BodySize < 0.65f && !pawn.RaceProps.Humanlike)
-            {
-            //    Log.Message(string.Format("{0} too small", pawn.LabelShortCap));
-                return false;
-            }
-            if (pawn.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Xenomorph)
-            {
-            //    Log.Message(string.Format("{0} FleshType RRY_Xenomorph", pawn.LabelShortCap));
-                return false;
-            }
-            //    Log.Message(string.Format("{0} Infectable", pawn.LabelShortCap));
-            return true;
-        }
 
         public static bool isInfectablePawn(Pawn pawn, bool allowinfected = false)
         {
-            if (pawn.Dead) return false;
-            
-            if (UtilChjAndroids.ChjAndroid)
-            {
-                if (pawn.kindDef.race.defName == "ChjAndroid" || pawn.kindDef.race.defName == "ChjDroid")
-                {
-                    return false;
-                }
-            }
-            if (UtilTieredAndroids.TieredAndroid)
-            {
-                if (pawn.kindDef.race.defName.Contains("Android"+"Tier"))
-                {
-                    return false;
-                }
-            }
-            if (!pawn.health.hediffSet.HasHead)
-            {
-                return false;
-            }
-            if (pawn.kindDef.race.defName.Contains("Android")) return false;
-            if (pawn.kindDef.race.defName.Contains("Droid")) return false;
-            if (pawn.kindDef.race.defName.Contains("Mech")) return false;
-            if (pawn.kindDef.race.defName.Contains("TM_Undead")) return false;
-            if (pawn.kindDef.race.race.FleshType.defName.Contains("TM_StoneFlesh")) return false;
-            if (pawn.kindDef.race.defName.Contains("TM_") && pawn.kindDef.race.defName.Contains("Minion")) return false;
-            if (pawn.kindDef.race.defName.Contains("TM_Demon")) return false;
-            if (pawn.kindDef.race.race.FleshType.defName.Contains("ChaosDeamon")) return false;
-            if (pawn.kindDef.race.race.FleshType.defName.Contains("Necron")) return false;
-            if (pawn.kindDef.race.race.FleshType.defName.Contains("EldarConstruct")) return false;
-            if (pawn.kindDef.race.race.FleshType.defName.Contains("ImperialConstruct")) return false;
-            if (pawn.kindDef.race.race.FleshType.defName.Contains("MechanicusConstruct")) return false;
-            if (pawn.RaceProps.IsMechanoid) return false;
-            if (!pawn.RaceProps.IsFlesh) return false;
-            if (pawn.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Xenomorph) return false;
-            if (!allowinfected && IsInfectedPawn(pawn)) return false;
-            if (IsXenomorph(pawn)) return false;
-            if (IsXenomorphFaction(pawn)) return false;
-            if (pawn.BodySize < 0.65f) return false;
-            return true;
+            return isInfectableThing(pawn.def) && (allowinfected || !pawn.isHost());
         }
 
         public static bool isInfectablePawnKind(PawnKindDef pawn)
         {
 
-            if (UtilChjAndroids.ChjAndroid)
-            {
-                if (pawn.race.defName == "ChjAndroid" || pawn.race.defName == "ChjDroid")
-                {
-                    return false;
-                }
-            }
-            if (UtilTieredAndroids.TieredAndroid)
-            {
-                if (pawn.race.defName.Contains("Android" + "Tier"))
-                {
-                    return false;
-                }
-            }
-
-            if (pawn.race.defName.Contains("Android")) return false;
-            if (pawn.race.defName.Contains("Droid")) return false;
-            if (pawn.race.defName.Contains("Mech")) return false;
-            if (pawn.race.defName.Contains("TM_Undead")) return false;
-            if (pawn.race.race.FleshType.defName.Contains("TM_StoneFlesh")) return false;
-            if (pawn.race.defName.Contains("TM_") && pawn.race.defName.Contains("Minion")) return false;
-            if (pawn.race.defName.Contains("TM_Demon")) return false;
-            if (pawn.race.race.FleshType.defName.Contains("ChaosDeamon")) return false;
-            if (pawn.race.race.FleshType.defName.Contains("Necron")) return false;
-            if (pawn.race.race.FleshType.defName.Contains("EldarConstruct")) return false;
-            if (pawn.race.race.FleshType.defName.Contains("ImperialConstruct")) return false;
-            if (pawn.race.race.FleshType.defName.Contains("MechanicusConstruct")) return false;
-            if (pawn.RaceProps.IsMechanoid) return false;
-            if (!pawn.RaceProps.IsFlesh) return false;
-            if (pawn.race.defName.Contains("RRY_Xenomorph_")) return false;
-            if (pawn.RaceProps.baseBodySize < 0.65f) return false;
-            return true;
+            return isInfectableThing(pawn.race);
         }
 
         public static List<Pawn> SpawnedInfectablePawns(Map map)
@@ -644,22 +490,22 @@ namespace RRYautja
         }
         public static Thing ClosestReachableCocoon(Pawn pawn, ThingDef t)
         {
-            Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, null, null, 0, -1, false, RegionType.Set_Passable, false);
+            Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_Xenomorph_Cocoon_Humanoid), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, null, null, 0, -1, false, RegionType.Set_Passable, false);
             return thing;
         }
         public static Thing ClosestReachableEmptyCocoon(Pawn pawn, ThingDef t)
         {
-            Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, (x => (x is Building_XenomorphCocoon XC && XC.AnyUnoccupiedSleepingSlot)), null, 0, -1, false, RegionType.Set_Passable, false);
+            Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_Xenomorph_Cocoon_Humanoid), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, (x => (x is Building_XenomorphCocoon XC && XC.AnyUnoccupiedSleepingSlot)), null, 0, -1, false, RegionType.Set_Passable, false);
             return thing;
         }
         public static Thing ClosestReachableCocoonToEgg(Thing egg, ThingDef t)
         {
-            Thing thing = GenClosest.ClosestThingReachable(egg.Position, egg.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 10f, null, null, 0, -1, false, RegionType.Set_Passable, false);
+            Thing thing = GenClosest.ClosestThingReachable(egg.Position, egg.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_Xenomorph_Cocoon_Humanoid), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 10f, null, null, 0, -1, false, RegionType.Set_Passable, false);
             return thing;
         }
         public static Thing ClosestReachableEmptyCocoonToEgg(Thing egg, ThingDef t)
         {
-            Thing thing = GenClosest.ClosestThingReachable(egg.Position, egg.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 10f, (x => (x is Building_XenomorphCocoon XC && XC.AnyUnoccupiedSleepingSlot && XC.owners.NullOrEmpty())), null, 0, -1, false, RegionType.Set_Passable, false);
+            Thing thing = GenClosest.ClosestThingReachable(egg.Position, egg.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_Xenomorph_Cocoon_Humanoid), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 10f, (x => (x is Building_XenomorphCocoon XC && XC.AnyUnoccupiedSleepingSlot && XC.OwnersForReading.NullOrEmpty())), null, 0, -1, false, RegionType.Set_Passable, false);
             return thing;
         }
         public static Thing ClosestReachableCocoonThatEggNeedsHost(Pawn pawn, ThingDef t)
@@ -667,7 +513,7 @@ namespace RRYautja
             Thing thing;
             List<Thing> list = SpawnedEggsNeedHosts(pawn.Map);
             thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_EggXenomorphFertilized), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, (x => list.Contains(x)), null, 0, -1, false, RegionType.Set_Passable, false);
-            thing = GenClosest.ClosestThingReachable(thing.Position, thing.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 10f, (x => (x is Building_XenomorphCocoon XC)), null, 0, -1, false, RegionType.Set_Passable, false);
+            thing = GenClosest.ClosestThingReachable(thing.Position, thing.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_Xenomorph_Cocoon_Humanoid), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 10f, (x => (x is Building_XenomorphCocoon XC)), null, 0, -1, false, RegionType.Set_Passable, false);
             return thing;
         }
         public static Thing ClosestReachableEmptyCocoonThatEggNeedsHost(Pawn pawn, ThingDef t)
@@ -677,18 +523,18 @@ namespace RRYautja
             List<Thing> cocoonlist = SpawnedEmptyCocoons(pawn.Map, t);
 
             thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_EggXenomorphFertilized), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, (x => list.Contains(x)), null, 0, -1, false, RegionType.Set_Passable, false);
-            thing = GenClosest.ClosestThingReachable(thing.Position, thing.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 10f, (x => cocoonlist.Contains(x) && (x is Building_XenomorphCocoon XC && XC.AnyUnoccupiedSleepingSlot)), null, 0, -1, false, RegionType.Set_Passable, false);
+            thing = GenClosest.ClosestThingReachable(thing.Position, thing.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_Xenomorph_Cocoon_Humanoid), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 10f, (x => cocoonlist.Contains(x) && (x is Building_XenomorphCocoon XC && XC.AnyUnoccupiedSleepingSlot)), null, 0, -1, false, RegionType.Set_Passable, false);
 
             return thing;
         }
 
         public static int TotalSpawnedCocoonCount(Map map, ThingDef t)
         {
-            return map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon).Count;
+            return map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_Xenomorph_Cocoon_Humanoid).Count;
         }
         public static List<Thing> SpawnedCocoons(Map map, ThingDef t)
         {
-            return map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon);
+            return map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_Xenomorph_Cocoon_Humanoid);
         }
         public static int TotalSpawnedEmptyCocoonCount(Map map, ThingDef t)
         {
@@ -707,7 +553,7 @@ namespace RRYautja
         }
         public static Thing ClosestReachableHivelike(Pawn pawn)
         {
-            Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, (x => XenomorphUtil.SpawnedHivelikes(pawn.Map).Contains(x)), null, 0, -1, false, RegionType.Set_Passable, false);
+            Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, (x => XenomorphUtil.SpawnedHives(pawn.Map).Contains(x)), null, 0, -1, false, RegionType.Set_Passable, false);
             return thing;
         }
         public static Thing ClosestReachableHivelike(Pawn pawn, List<Thing> Hivelikes)
@@ -717,7 +563,7 @@ namespace RRYautja
         }
         public static Thing ClosestReachableParentHivelike(Pawn pawn)
         {
-            Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, (x => XenomorphUtil.SpawnedParentHivelikes(pawn.Map).Contains(x)), null, 0, -1, false, RegionType.Set_Passable, false);
+            Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, (x => XenomorphUtil.SpawnedParentHives(pawn.Map).Contains(x)), null, 0, -1, false, RegionType.Set_Passable, false);
             return thing;
         }
         public static Thing ClosestReachableParentHivelike(Pawn pawn, List<Thing> Hivelikes)
@@ -727,7 +573,7 @@ namespace RRYautja
         }
         public static Thing ClosestReachableChildHivelike(Pawn pawn)
         {
-            Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, (x => XenomorphUtil.SpawnedChildHivelikes(pawn.Map).Contains(x)), null, 0, -1, false, RegionType.Set_Passable, false);
+            Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, (x => XenomorphUtil.SpawnedChildHives(pawn.Map).Contains(x)), null, 0, -1, false, RegionType.Set_Passable, false);
             return thing;
         }
         public static Thing ClosestReachableChildHivelike(Pawn pawn, List<Thing> Hivelikes)
@@ -735,30 +581,51 @@ namespace RRYautja
             Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, (x => Hivelikes.Contains(x)), null, 0, -1, false, RegionType.Set_Passable, false);
             return thing;
         }
+
         public static int TotalSpawnedHivelikeCount(Map map)
         {
-            List<Thing> lista = map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_XenomorphHive);
-            List<Thing> listb = map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_XenomorphHive_Child);
+            List<Thing> lista = map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_Xenomorph_Hive);
+            List<Thing> listb = map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_Xenomorph_Hive_Child);
             return lista.Count() + listb.Count();
         }
-
-        public static List<Thing> SpawnedHivelikes(Map map)
+        
+        public static List<Thing> SpawnedHives(Map map)
         {
-            List<Thing> lista = map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_XenomorphHive);
-            List<Thing> listb = map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_XenomorphHive_Child);
+            List<Thing> lista = map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_Xenomorph_Hive);
+            List<Thing> listb = map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_Xenomorph_Hive_Child);
             return lista.Concat(listb).ToList();
         }
-        public static List<Thing> SpawnedParentHivelikes(Map map)
+        public static List<HiveLike> SpawnedHivelikes(Map map)
         {
-            return map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_XenomorphHive);
+            List<HiveLike> list = new List<HiveLike>();
+            SpawnedHives(map).ForEach((x) => list.Add((HiveLike)x));
+            return list;
+        }
+
+        public static List<Thing> SpawnedParentHives(Map map)
+        {
+            return map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_Xenomorph_Hive);
+        }
+        public static List<HiveLike> SpawnedParentHivelikes(Map map)
+        {
+            List<HiveLike> list = new List<HiveLike>();
+            SpawnedParentHives(map).ForEach((x) => list.Add((HiveLike)x));
+            return list;
         }
         public static int TotalSpawnedParentHivelikeCount(Map map)
         {
             return SpawnedParentHivelikes(map).Count();
         }
-        public static List<Thing> SpawnedChildHivelikes(Map map)
+
+        public static List<Thing> SpawnedChildHives(Map map)
         {
-            return map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_XenomorphHive_Child);
+            return map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_Xenomorph_Hive_Child);
+        }
+        public static List<HiveLike> SpawnedChildHivelikes(Map map)
+        {
+            List<HiveLike> list = new List<HiveLike>();
+            SpawnedChildHives(map).ForEach((x) => list.Add((HiveLike)x));
+            return list;
         }
         public static int TotalSpawnedChildHivelikeCount(Map map)
         {
@@ -785,11 +652,11 @@ namespace RRYautja
                 {
                     if (XenomorphUtil.isInfectablePawnKind(item))
                     {
-                        Log.Message(string.Format("Xenomorph Host: {0}", item.LabelCap));
+                    //    Log.Message(string.Format("Xenomorph Host: {0}", item.LabelCap));
                         tmpHostKinds.Add(item);
                     }
                 }
-                Log.Message(string.Format("HostKinds count: {0}", tmpHostKinds.Count));
+            //    Log.Message(string.Format("HostKinds count: {0}", tmpHostKinds.Count));
                 return tmpHostKinds;
             }
         }

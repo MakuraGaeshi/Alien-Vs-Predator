@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using Verse;
 
-namespace AbilityUser
+namespace RRYautja
 {
-    public class Projectile_AbilityRRY : Projectile_AbilityBase
+    public class Projectile_AbilityRRY : Projectile
     {
         public int TicksToImpact => ticksToImpact;
         
@@ -25,20 +25,6 @@ namespace AbilityUser
         {
 
         }
-
-        public virtual bool IsInIgnoreHediffList(Hediff hediff)
-        {
-            if (hediff != null)
-                if (hediff.def != null)
-                {
-                    var compAbility = Caster.TryGetComp<CompAbilityUser>();
-                    if (compAbility != null)
-                        if (compAbility.IgnoredHediffs() != null)
-                            if (compAbility.IgnoredHediffs().Contains(hediff.def))
-                                return true;
-                }
-
-            return false;
-        }
+        
     }
 }

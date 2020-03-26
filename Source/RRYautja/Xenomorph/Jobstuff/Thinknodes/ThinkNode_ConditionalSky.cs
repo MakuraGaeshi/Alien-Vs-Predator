@@ -24,7 +24,7 @@ namespace RimWorld
         protected override bool Satisfied(Pawn pawn)
         {
             bool result = pawn.Map.skyManager.CurSkyGlow >= Brightness;
-            if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} Cur: {1} >= {2} Result: {3}", this, pawn.Map.skyManager.CurSkyGlow, Brightness, result));
+        //    if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} Cur: {1} >= {2} Result: {3}", this, pawn.Map.skyManager.CurSkyGlow, Brightness, result));
             return result;
         }
 
@@ -46,7 +46,7 @@ namespace RimWorld
         protected override bool Satisfied(Pawn pawn)
         {
             bool result = pawn.Map.skyManager.CurSkyGlow <= Brightness;
-            if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} Cur: {1} <= {2} Result: {3}", this, pawn.Map.skyManager.CurSkyGlow, Brightness, result));
+        //    if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} Cur: {1} <= {2} Result: {3}", this, pawn.Map.skyManager.CurSkyGlow, Brightness, result));
             return result;
         }
 

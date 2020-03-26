@@ -13,6 +13,9 @@ namespace RRYautja
         {
             this.compClass = typeof(CompEquippableTurret);
         }
+        public bool OnByDefault = true;
+        public bool DisableInMelee = true;
+        public ThingDef TurretDef = null;
     }
 
     // Token: 0x02000E58 RID: 3672
@@ -42,26 +45,58 @@ namespace RRYautja
 
         // Determine if this ThingComp is being worn presently. Returns True/False
         protected virtual bool IsWorn => (GetWearer != null);
-        protected virtual bool IsTurnedOn => (GetWearer != null && GetWearer.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_HeDiff_TurretIsOn) != null);
 
         public bool turretIsOn
         {
             get
             {
-                return IsTurnedOn && !GetWearer.Dead && !GetWearer.Downed && GetWearer.Awake() && !GetWearer.IsPrisoner;
+                if (!IsWorn)
+                {
+                    return false;
+                }
+                if (GetWearer.Dead || GetWearer.Downed || GetWearer.IsPrisoner)
+                {
+                    return false;
+                }
+
+                if (GetWearer.mindState.MeleeThreatStillThreat && DisableInMelee)
+                {
+                    return false;
+                }
+                return  GetWearer.Awake() && Toggled;
             }
         }
-        // Token: 0x060053DC RID: 21468 RVA: 0x00264E1B File Offset: 0x0026321B
-        public void ExposeData()
-        {// Building_Turret_Shoulder
-            parent.ExposeData();
-            Scribe_References.Look<Thing>(ref this.turret, "TurretThing", false);
-            Scribe_Deep.Look<Building_Turret_Shoulder>(ref this.turret_Shoulder, "TurretBuilding", false);
-        //    Scribe_Values.Look<bool>(ref this.turretIsOn, "TurretIsOn", IsTurnedOn);
+
+        public bool Toggled;
+        public bool DisableInMelee = true;
+
+        public bool onDefault
+        {
+            get
+            {
+                return Props.OnByDefault;
+            }
+        }
+        public bool MeleeDisable
+        {
+            get
+            {
+                return Props.DisableInMelee;
+            }
         }
 
-		// Token: 0x060053DD RID: 21469 RVA: 0x00264E3D File Offset: 0x0026323D
-		public override void CompTick()
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+
+        //    Scribe_Deep.Look<Thing>(ref this.turret, "TurretThing", false);
+
+            Scribe_Values.Look(ref Toggled, "ToggledMode", onDefault, true);
+            Scribe_Values.Look(ref DisableInMelee, "DisableInMelee", MeleeDisable, true);
+            //    Scribe_Values.Look<bool>(ref this.turretIsOn, "TurretIsOn", IsTurnedOn);
+        }
+
+        public override void CompTick()
         {
 			base.CompTick();
             if (IsWorn && GetWearer.Map!=null)
@@ -113,9 +148,9 @@ namespace RRYautja
             {
                 this.MoveTurret(intVec);
             }
-            if ((this.turret.DestroyedOrNull()|| !this.turret.Spawned) && intVec.GetFirstThing(GetWearer.Map, Util_CompEquippableTurret.EquippableTurretDef) == null)
+            if ((this.turret.DestroyedOrNull()|| !this.turret.Spawned) && intVec.GetFirstThing(GetWearer.Map, Props.TurretDef) == null)
             {
-                this.turret = GenSpawn.Spawn(Util_CompEquippableTurret.EquippableTurretDef, intVec, GetWearer.Map, WipeMode.Vanish);
+                this.turret = GenSpawn.Spawn(Props.TurretDef, intVec, GetWearer.Map, WipeMode.Vanish);
                 this.turret.SetFactionDirect(this.GetWearer.Faction);
                 ((Building_Turret_Shoulder)this.turret).Parental = GetWearer;
             }
@@ -138,69 +173,43 @@ namespace RRYautja
                 this.turret.Position = intVec;
             }
         }
-
+        
         // Token: 0x06000008 RID: 8 RVA: 0x000022A8 File Offset: 0x000004A8
         public override IEnumerable<Gizmo> CompGetGizmosWorn()
         {
+            ThingWithComps owner = IsWorn ? GetWearer : parent;
             bool flag = Find.Selector.SelectedObjects.Contains(GetWearer);
-            if (flag)
+            if (flag && GetWearer.IsColonist)
             {
+                Texture2D CommandTex;
                 int num = 700000101;
-                if (!this.turretIsOn)
+                if (Toggled)
                 {
-                    yield return new Command_Action
-                    {
-                        icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_TurretModeOff", true),
-                        defaultLabel = "Turret: off.",
-                        defaultDesc = "Switch mode.",
-                        activateSound = SoundDef.Named("Click"),
-                        action = new Action(this.SwitchTurretMode),
-                        groupKey = num + 1,
-                    };
+                    CommandTex = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_TurretModeOn", true);
                 }
-                if (this.turretIsOn)
+                else
                 {
-                    yield return new Command_Action
+                    CommandTex = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_TurretModeOff", true);
+                }
+                yield return new Command_Toggle
+                {
+
+                    icon = CommandTex,
+                    defaultLabel = Toggled ? "Turret: on." : "Turret: off.",
+                    defaultDesc = "Switch mode.",
+                    isActive = (() => Toggled),
+                    toggleAction = delegate ()
                     {
-                        icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_TurretModeOn", true),
-                        defaultLabel = "Turret: on.",
-                        defaultDesc = "Switch mode.",
-                        activateSound = SoundDef.Named("Click"),
-                        action = new Action(this.SwitchTurretMode),
-                        groupKey = num + 1,
-                    };
+                        Toggled = !Toggled;
+                        this.SwitchTurretMode();
+                    },
+                    activateSound = SoundDef.Named("Click"),
+                    groupKey = num + 1,
                     /*
-                    Command_VerbTarget attack = new Command_VerbTarget
-                    {
-                        defaultLabel = "CommandSetForceAttackTarget".Translate(),
-                        defaultDesc = "CommandSetForceAttackTargetDesc".Translate(),
-                        icon = ContentFinder<Texture2D>.Get("UI/Commands/Attack", true),
-                        verb = turret_Shoulder.AttackVerb,
-                        hotKey = KeyBindingDefOf.Misc4
-                    };
-                    yield return attack;
-                    if (turret_Shoulder.forcedTarget.IsValid)
-                    {
-                        Command_Action stop = new Command_Action
-                        {
-                            defaultLabel = "CommandStopForceAttack".Translate(),
-                            defaultDesc = "CommandStopForceAttackDesc".Translate(),
-                            icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt", true),
-                            action = delegate ()
-                            {
-                                turret_Shoulder.ResetForcedTarget();
-                                SoundDefOf.Tick_Low.PlayOneShotOnCamera(null);
-                            }
-                        };
-                        if (!turret_Shoulder.forcedTarget.IsValid)
-                        {
-                            stop.Disable("CommandStopAttackFailNotForceAttacking".Translate());
-                        }
-                        stop.hotKey = KeyBindingDefOf.Misc5;
-                        yield return stop;
-                    }
+                    disabled = GetWearer.stances.curStance.StanceBusy,
+                    disabledReason = "Busy"
                     */
-                }
+                };
             }
             yield break;
         }
@@ -209,22 +218,13 @@ namespace RRYautja
         // Token: 0x0600000A RID: 10 RVA: 0x000023A4 File Offset: 0x000005A4
         public void SwitchTurretMode()
         {
-            Hediff hediff;
             switch (this.turretIsOn)
             {
                 case true:
-                    hediff = GetWearer.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_HeDiff_TurretIsOn);
-                    if (hediff != null)
-                    {
-                        GetWearer.health.RemoveHediff(hediff);
-                    }
+                    SwitchOffTurret();
                     break;
                 case false:
-                    hediff = GetWearer.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_HeDiff_TurretIsOn);
-                    if (hediff == null)
-                    {
-                        GetWearer.health.AddHediff(YautjaDefOf.RRY_HeDiff_TurretIsOn);
-                    }
+                    SwitchOnTurret();
                     break;
             }
             this.RefreshTurretState();

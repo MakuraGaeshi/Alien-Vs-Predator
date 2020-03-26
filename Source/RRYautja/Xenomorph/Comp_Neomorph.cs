@@ -90,7 +90,7 @@ namespace RRYautja
                             bool selected = Find.Selector.SingleSelectedThing == pawn;
                             if (selected && Prefs.DevMode)
                             {
-                                Log.Message(text);
+                            //    Log.Message(text);
                             }
                         }
                     }
@@ -129,7 +129,7 @@ namespace RRYautja
             ThingDef thingDef = null;
             ThingDef foodDef2 = thingDef;
             bool allowPlant = getter == eater;
-            Thing thing2 = FoodUtility.BestFoodSourceOnMap(getter, eater, desperate, out foodDef2, FoodPreferability.MealLavish, allowPlant, flag2, allowCorpse, true, canRefillDispenser, allowForbidden, allowSociallyImproper, allowHarvest, forceScanWholeMap);
+            Thing thing2 = FoodUtility.BestFoodSourceOnMap(getter, eater, desperate, out foodDef2, FoodPreferability.Undefined, allowPlant, flag2, allowCorpse, true, canRefillDispenser, allowForbidden, allowSociallyImproper, allowHarvest, forceScanWholeMap);
             if (thing == null && thing2 == null)
             {
                 if (canUseInventory && flag)
@@ -272,7 +272,7 @@ namespace RRYautja
             bool selected = Find.Selector.SingleSelectedThing == predator && Prefs.DevMode;
             if (selected)
             {
-                Log.Message(string.Format("{0} hunting: {1}, @: {2}", predator.LabelShortCap, pawn.LabelShortCap, pawn.Position));
+            //    Log.Message(string.Format("{0} hunting: {1}, @: {2}", predator.LabelShortCap, pawn.LabelShortCap, pawn.Position));
             }
             return pawn;
         }
@@ -357,7 +357,7 @@ namespace RRYautja
             bool selected = Find.Selector.SelectedObjects.Contains(predator) && Prefs.DevMode;
             if (selected)
             {
-                Log.Message(string.Format("{0} found: {1} @: {2}\nPreyScore: {3}, BFPreyScore: {4}, isXenoHost: {5}, isNeoHost: {6}, isXenomorph: {7}, isNeomorph: {8}, isPotentialHost: {9}, Humanlike: {10}", predator.LabelShortCap, prey.LabelShortCap, prey.Position, num3, num4, prey.isXenoHost(), prey.isNeoHost(), prey.isXenomorph(), prey.isNeomorph(), prey.isPotentialHost(), prey.RaceProps.Humanlike));
+            //    Log.Message(string.Format("{0} found: {1} @: {2}\nPreyScore: {3}, BFPreyScore: {4}, isXenoHost: {5}, isNeoHost: {6}, isXenomorph: {7}, isNeomorph: {8}, isPotentialHost: {9}, Humanlike: {10}", predator.LabelShortCap, prey.LabelShortCap, prey.Position, num3, num4, prey.isXenoHost(), prey.isNeoHost(), prey.isXenomorph(), prey.isNeomorph(), prey.isPotentialHost(), prey.RaceProps.Humanlike));
             }
             return num3;
         }

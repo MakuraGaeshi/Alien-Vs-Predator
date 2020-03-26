@@ -46,13 +46,11 @@ namespace RRYautja
             base.CompExposeData();
             Scribe_Values.Look<int>(ref this.ticksUntilDamage, "ticksUntilDamage", -1, true);
             Scribe_Values.Look<int>(ref this.timesRepeated, "timesRepeated", 0, true);
-            Scribe_Deep.Look<int>(ref this.ticksUntilDamage, "ticksUntilDamageD", 0, true);
-            Scribe_Deep.Look<int>(ref this.timesRepeated, "timesRepeatedD", 0, true);
         }
 
         // Token: 0x040000CC RID: 204
-        private int ticksUntilDamage = -1;
-        public int timesRepeated = 0;
+        private int ticksUntilDamage;
+        public int timesRepeated;
 
         public int MaxRepeats
         {
@@ -84,10 +82,6 @@ namespace RRYautja
                 timesRepeated++;
                 this.ticksUntilDamage = this.Props.cycleInTicks;
                 this.MakeDamage();
-            }
-            if (timesRepeated>=MaxRepeats&&MaxRepeats!=0)
-            {
-                this.parent.comps.Remove(this.parent.TryGetComp<HediffComp_DamageOverTime>());
             }
             this.ticksUntilDamage--;
         }

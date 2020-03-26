@@ -54,9 +54,10 @@ namespace RimWorld
             {
                 return;
             }
+            this.plantHarmAge++;
             if (this.parent.IsHashIntervalTick(this.Props.expandInterval))
             {
-                this.TryExpandHive();
+                this.TryExpandGoo();
             }
         }
 
@@ -80,7 +81,7 @@ namespace RimWorld
         }
 
         // Token: 0x060029C1 RID: 10689 RVA: 0x0013C434 File Offset: 0x0013A834
-        private void TryExpandHive()
+        private void TryExpandGoo()
         {
             if (this.parent.Map.mapTemperature.OutdoorTemp > 50f)
             {
@@ -95,6 +96,7 @@ namespace RimWorld
             float numf = this.Props.radiusPerDayCurve.Evaluate(z);
 
             this.hiveRadius = numf<this.maxRadius ? numf :  this.maxRadius;// Mathf.Min(this.hiveRadius, this.maxRadius);
+        //    Log.Message(string.Format("hiveRadius: {0}", hiveRadius));
             CellRect occupiedRect = this.parent.OccupiedRect();
             CompGooSpread.reachableCells.Clear();
             this.parent.Map.floodFiller.FloodFill(this.parent.Position, (IntVec3 x) => (float)x.DistanceToSquared(this.parent.Position) <= this.hiveRadius * this.hiveRadius && (occupiedRect.Contains(x) || !x.Filled(this.parent.Map) && x.InBounds(this.parent.Map)), delegate (IntVec3 x)
@@ -121,13 +123,17 @@ namespace RimWorld
                                 num2 = 0.1f;
                             }
 
-                            if (this.parent.Map.GetComponent<MapComponent_HiveGrid>().GetDepth(intVec) <= num2)
+                            float lengthHorizontal = this.parent.Position.DistanceTo(intVec);
+                            float num3 = 1f - (1 * (lengthHorizontal / this.hiveRadius));
+                            this.parent.Map.GetComponent<MapComponent_GooGrid>().AddDepth(intVec, num3 * this.Props.addAmount /** num2*/);
+                            /*
+                            if (this.parent.Map.GetComponent<MapComponent_GooGrid>().GetDepth(intVec) <= num2)
                             {
-                                float lengthHorizontal = (intVec - this.parent.Position).LengthHorizontal;
-                                float num3 = 1f - lengthHorizontal / this.hiveRadius;
-                                this.parent.Map.GetComponent<MapComponent_HiveGrid>().AddDepth(intVec, num3 * this.Props.addAmount * num2);
+                                float lengthHorizontal = this.parent.Position.DistanceTo(intVec);
+                                float num3 = 1f * lengthHorizontal / this.hiveRadius;
+                                this.parent.Map.GetComponent<MapComponent_GooGrid>().AddDepth(intVec, num3 * this.Props.addAmount * num2);
                             }
-
+                            */
                         }
                     }
                 }

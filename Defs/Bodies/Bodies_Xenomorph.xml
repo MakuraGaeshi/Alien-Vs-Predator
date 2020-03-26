@@ -10,18 +10,6 @@
       <height>Middle</height>
       <depth>Outside</depth>
       <parts>
-        <!--
-		<li>
-          <def>RRY_Xeno_Elytra</def>
-          <customLabel>left elytra</customLabel>
-          <coverage>0.05</coverage>
-        </li>
-        <li>
-          <def>RRY_Xeno_Elytra</def>
-          <customLabel>right elytra</customLabel>
-          <coverage>0.05</coverage>
-        </li>
-		-->
         <li>
           <def>RRY_Xeno_Stomach</def>
           <coverage>0.05</coverage>

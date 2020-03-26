@@ -1,9 +1,10 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
 
-namespace RimWorld
+namespace RRYautja
 {
     // Token: 0x0200034F RID: 847
     public class IncidentWorker_CrashedShip : IncidentWorker
@@ -22,7 +23,7 @@ namespace RimWorld
         protected override bool CanFireNowSub(IncidentParms parms)
         {
             Map map = (Map)parms.target;
-            return map.listerThings.ThingsOfDef(this.def.shipPart).Count <= 0;
+            return map.listerThings.ThingsOfDef(this.def.mechClusterBuilding).Count <= 0;
         }
 
         // Token: 0x06000EA8 RID: 3752 RVA: 0x0006C2D0 File Offset: 0x0006A6D0
@@ -34,8 +35,8 @@ namespace RimWorld
             List<TargetInfo> list = new List<TargetInfo>();
             float shrapnelDirection = Rand.Range(0f, 360f);
             Faction faction = null;
-            Building_CrashedShipPart building_CrashedShipPart = null;
-            building_CrashedShipPart = (Building_CrashedShipPart)ThingMaker.MakeThing(this.def.shipPart, null);
+            Building building_CrashedShipPart = null;
+            building_CrashedShipPart = (Building)ThingMaker.MakeThing(this.def.mechClusterBuilding, null);
             if (faction == null)
             {
                 faction = building_CrashedShipPart.GetComp<CompSpawnerPawnsOnDamaged>().OfFaction;
@@ -59,7 +60,7 @@ namespace RimWorld
             }
             if (num > 0)
             {
-                base.SendStandardLetter(list, null, new string[0]);
+                base.SendStandardLetter(parms, list, Array.Empty<NamedArgument>());
             }
             return num > 0;
         }

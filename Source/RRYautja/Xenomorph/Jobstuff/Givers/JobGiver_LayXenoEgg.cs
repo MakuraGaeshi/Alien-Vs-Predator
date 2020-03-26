@@ -23,8 +23,8 @@ namespace RimWorld
             {
                 return null;
             }
-            ThingDef namedA = XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon;
-            ThingDef namedB = XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon;
+            ThingDef namedA = XenomorphDefOf.RRY_Xenomorph_Cocoon_Humanoid;
+            ThingDef namedB = XenomorphDefOf.RRY_Xenomorph_Cocoon_Animal;
             if (XenomorphKidnapUtility.TryFindGoodHiveLoc(pawn, out c))
             {
                 bool selected = pawn.Map != null ? Find.Selector.SelectedObjects.Contains(pawn) && (Prefs.DevMode) : false;
@@ -45,16 +45,16 @@ namespace RimWorld
 
                     List<Thing> egglist = pawn.Map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_EggXenomorphFertilized).FindAll(x => lc.InHorDistOf(x.Position, 9));
                     bool eggflag = egglist.CountAllowNull() < 40;
-                    return new Job(XenomorphDefOf.RRY_Job_LayXenomorphEgg, lc);
+                    return new Job(XenomorphDefOf.RRY_Job_Xenomorph_LayEgg, lc);
                 }
                 else
                 {
-                    if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} something went wrong", this));
+                    if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0} something went wrong", this));
                 }
             }
             else
             {
-                if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} No Egglaying spot Found", this));
+                if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0} No Egglaying spot Found", this));
                 c = pawn.Position;
                 Predicate<IntVec3> validator = delegate (IntVec3 y)
                 {
@@ -71,7 +71,7 @@ namespace RimWorld
 
                 List<Thing> egglist = pawn.Map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_EggXenomorphFertilized).FindAll(x => lc.InHorDistOf(x.Position, 9));
                 bool eggflag = egglist.CountAllowNull() < 40;
-                return new Job(XenomorphDefOf.RRY_Job_LayXenomorphEgg, lc);
+                return new Job(XenomorphDefOf.RRY_Job_Xenomorph_LayEgg, lc);
             }
             return null;
         }

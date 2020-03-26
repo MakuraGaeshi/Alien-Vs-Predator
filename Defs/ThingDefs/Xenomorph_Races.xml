@@ -10,42 +10,18 @@
     <useHitPoints>false</useHitPoints>
 	
     <hasTooltip>true</hasTooltip>
+    <alwaysFlee>true</alwaysFlee>
     <soundImpactDefault>BulletImpact_Flesh</soundImpactDefault>
     <inspectorTabs>
         <li>ITab_Pawn_Health</li>
         <li>ITab_Pawn_Log</li>
-		<!--
-        <li>ITab_Pawn_Training</li>
-        <li>ITab_Pawn_Character</li>
-		-->
     </inspectorTabs>
     <comps>
         <li>
             <compClass>CompAttachBase</compClass>
         </li>
-		<!--
-        <li>
-            <compClass>RRYautja.Comp_Yautja</compClass>
-        </li>
-		<li Class="RRYautja.CompProperties_Yautja">
-			<bloodedDefs>
-			<li>RRY_Hediff_BloodedM</li>
-			<li>RRY_Hediff_BloodedMHuman</li>
-			<li>RRY_Hediff_BloodedMHumanlike</li>
-			<li>RRY_Hediff_BloodedMHound</li>
-			<li>RRY_Hediff_BloodedMCrusher</li>
-			<li>RRY_Hediff_BloodedMGroTye</li>
-			<li>RRY_Hediff_BloodedMWorthyHuman</li>
-			<li>RRY_Hediff_BloodedMWorthyHumanlike</li>
-			<li>RRY_Hediff_BloodedMBadBlood</li>
-			<li>RRY_Hediff_BloodedMXenomorph</li>
-			<li>RRY_Hediff_BloodedMPredalien</li>
-			<li>RRY_Hediff_BloodedMXenomorphQueen</li>
-			</bloodedDefs>
-			
-		</li> 
-		-->
     </comps>
+    <!-- <alwaysFlee>true</alwaysFlee> -->
     <drawGUIOverlay>true</drawGUIOverlay>
 </ThingDef>
 
@@ -58,8 +34,8 @@
       <MeleeHitChance>1.5</MeleeHitChance>
       <MiningSpeed>1.5</MiningSpeed>
       <ImmunityGainSpeed>2.25</ImmunityGainSpeed>
-      <PsychicSensitivity>0</PsychicSensitivity>
-      <ToxicSensitivity>0</ToxicSensitivity>
+      <PsychicSensitivity>1</PsychicSensitivity>
+      <ToxicSensitivity>0.5</ToxicSensitivity>
       <Flammability>0.5</Flammability>
       <ComfyTemperatureMin>-30</ComfyTemperatureMin>
       <ComfyTemperatureMax>150</ComfyTemperatureMax>
@@ -68,9 +44,11 @@
       <ArmorRating_Heat>0.75</ArmorRating_Heat>
     </statBases>
     <race>
+      <thinkTreeMain>RRY_Xenomorph_ThinkTree</thinkTreeMain>
+      <thinkTreeConstant>XenomorphConstant</thinkTreeConstant>
       <!-- <deathActionWorkerClass>RRYautja.DeathActionWorker_Xenomorph</deathActionWorkerClass> -->
       <herdAnimal>false</herdAnimal>
-      <predator>false</predator>
+      <!--predator>true</predator-->
       <maxPreyBodySize>3.0</maxPreyBodySize>
       <baseBodySize>1.5</baseBodySize>
       <baseHungerRate>0.0</baseHungerRate>
@@ -79,7 +57,7 @@
       <bloodDef>RRY_FilthBloodXenomorph</bloodDef>	
       <needsRest>false</needsRest>
       <hasGenders>false</hasGenders>
-      <foodType>Corpse</foodType>
+      <foodType>Corpse,CarnivoreAnimalStrict</foodType>
       <leatherDef>RRY_Leather_Xenomorph</leatherDef>
       <lifeExpectancy>2500</lifeExpectancy>
       <hediffGiverSets>
@@ -134,7 +112,6 @@
       <meatLabel>xenomorph flesh</meatLabel>
       <maxPreyBodySize>30</maxPreyBodySize>
       <intelligence>ToolUser</intelligence>
-      <thinkTreeMain>RRY_Xenomorph_ThinkTree</thinkTreeMain>
       <body>RRY_Xenomorph_FaceHugger</body>
       <baseBodySize>0.30</baseBodySize>
       <baseHealthScale>0.3</baseHealthScale>
@@ -142,9 +119,11 @@
         <li>
           <def>RRY_XFacehuggerFullyFormed</def>
           <minAge>0</minAge>
+		  <!--
           <soundWounded>RRY_Pawn_Xenomorph_Queen_Wounded</soundWounded>
           <soundDeath>RRY_Pawn_Xenomorph_Queen_Death</soundDeath>
           <soundCall>RRY_Pawn_Xenomorph_Queen_Call</soundCall>
+		  -->
         </li>
       </lifeStageAges>
       <soundCallIntervalRange>
@@ -158,6 +137,9 @@
     <comps> 
       <li>
         <compClass>RRYautja.Comp_Facehugger</compClass>
+      </li>
+      <li>
+        <compClass>RRYautja.Comp_Xenomorph</compClass>
       </li>
     </comps>
   </ThingDef>
@@ -214,11 +196,13 @@
     <statBases>
       <Mass>160</Mass>
       <MoveSpeed>5.75</MoveSpeed>
-      <ArmorRating_Blunt>1.50</ArmorRating_Blunt>
-      <ArmorRating_Sharp>1.80</ArmorRating_Sharp>
-      <ArmorRating_Heat>1.30</ArmorRating_Heat>
+      <ArmorRating_Blunt>1.10</ArmorRating_Blunt>
+      <ArmorRating_Sharp>1.10</ArmorRating_Sharp>
+      <ArmorRating_Heat>1.10</ArmorRating_Heat>
       <MeatAmount>115</MeatAmount>
       <LeatherAmount>90</LeatherAmount>
+      <PsychicSensitivity>0.25</PsychicSensitivity>
+      <ToxicSensitivity>0.25</ToxicSensitivity>
     </statBases>
     <tools>
       <li>
@@ -317,7 +301,7 @@
       <body>RRY_Xenomorph_Biped</body>
 	  <useMeatFrom>RRY_Xenomorph_FaceHugger</useMeatFrom>
       <baseBodySize>3.0</baseBodySize>
-      <baseHealthScale>6.32</baseHealthScale>
+      <baseHealthScale>28.5</baseHealthScale>
       <lifeStageAges>
         <li>
           <def>RRY_XenomorphChestBursterBaby</def>
@@ -374,6 +358,12 @@
         <eggCountRange>1</eggCountRange>
       </li> 
     </comps>
+	<modExtensions>
+	  <li Class="HunterMarkingSystem.MarkDefExtension">
+		<!-- DefName of the Marking Hediff Kills of this race give --> 
+		<hediffs><li>HMS_Hediff_BloodedMXenomorphQueen</li></hediffs>
+	  </li>
+	</modExtensions>
 	<!--
     <butcherProducts>
       <Steel>50</Steel>
@@ -450,7 +440,7 @@
     </weaponTags>
   </PawnKindDef>
 
-  <!-- Walker (Warrior/Runner/Drone) base -->
+  <!-- Walker (Warrior/Runner/Drone/Predalien) base -->
   <ThingDef ParentName="RRY_BaseXenomorph" Name="BaseXenomorphWalker" Abstract="True">
     <race>
       <intelligence>ToolUser</intelligence>
@@ -523,8 +513,18 @@
 	-->
   </ThingDef>
 
+  <!-- Walker (Warrior/Runner/Drone) base -->
+  <ThingDef ParentName="BaseXenomorphWalker" Name="BaseXenomorphWalker_Cannon" Abstract="True">
+	<modExtensions>
+	  <li Class="HunterMarkingSystem.MarkDefExtension">
+		<!-- DefName of the Marking Hediff Kills of this race give --> 
+		<hediffs><li>HMS_Hediff_BloodedMXenomorph</li></hediffs>
+	  </li>
+	</modExtensions>
+  </ThingDef>
+
   <!-- Drone - Basic -->
-  <ThingDef ParentName="BaseXenomorphWalker">
+  <ThingDef ParentName="BaseXenomorphWalker_Cannon">
     <defName>RRY_Xenomorph_Drone</defName>
     <label>Drone</label>
     <description>Drones are an adult form of the species Xenomorph XX121, often said to be the most basic adult caste. They are loyal servants of the Queen, but essentially represents the lowliest class of Xenomorph, comparable to a worker ant. Drones construct Xenomorph Hives, using a resin-like secretion that they produce, and collect hosts for impregnation./n/n Drones are easily identified by their smooth head carapaces, among the smoothest of all Xenomorphs, and they are capable of spitting cysts of acidic blood at their enemies. They average around 8 feet tall when standing on hind legs, and about 14–15 feet long, tail included.</description>
@@ -651,7 +651,13 @@
     <label>Drone</label>
     <race>RRY_Xenomorph_Drone</race>
     <combatPower>125</combatPower>
-
+    <alternateGraphicChance>0.2</alternateGraphicChance>
+    <alternateGraphics>
+      <li><texPath>Things/Pawn/Xenomorph/Xenomorph_Drone_New_Dark</texPath></li>
+      <li><texPath>Things/Pawn/Xenomorph/Xenomorph_Drone_New_Gold</texPath></li>
+      <li><texPath>Things/Pawn/Xenomorph/Xenomorph_Drone_New_Light</texPath></li>
+      <!--<li><texPath>Things/Pawn/Xenomorph/Xenomorph_Drone_New_Red</texPath></li>-->
+    </alternateGraphics>
     <lifeStages>
       <li>
         <bodyGraphicData>
@@ -724,7 +730,7 @@
   </PawnKindDef>
   
   <!-- Warrior - Melee -->
-  <ThingDef ParentName="BaseXenomorphWalker">
+  <ThingDef ParentName="BaseXenomorphWalker_Cannon">
     <defName>RRY_Xenomorph_Warrior</defName>
     <label>Warrior</label>
     <description>Warriors, also known as Soldiers, are the primary assault caste of the Xenomorph XX121 species and as such is almost certainly the most numerous caste of Xenomorph in existence. They are fast, reasonably tough, and savage combatants./n/nEven in death the Warrior is dangerous, as its pressurized bloodstream will cause it to burst apart, drenching nearby enemies in acid blood. Warriors are identified by their ridged heads, and stand around 7–8 feet tall on their hind legs. They are about 14–16 feet long, including their tail.</description>
@@ -843,7 +849,11 @@
     <label>Warrior</label>
     <race>RRY_Xenomorph_Warrior</race>
     <combatPower>160</combatPower>
-
+    <alternateGraphicChance>0.5</alternateGraphicChance>
+    <alternateGraphics>
+      <li><texPath>Things/Pawn/Xenomorph/Xenomorph_Warrior_New</texPath></li>
+      <!--<li><texPath>Things/Pawn/Xenomorph/Xenomorph_Warrior_New_Red</texPath></li>-->
+    </alternateGraphics>
     <lifeStages>
       <li>
         <bodyGraphicData>
@@ -910,7 +920,7 @@
   </PawnKindDef>
 
   <!-- Runner - Fast Melee -->
-  <ThingDef ParentName="BaseXenomorphWalker">
+  <ThingDef ParentName="BaseXenomorphWalker_Cannon">
     <defName>RRY_Xenomorph_Runner</defName>
     <label>Runner</label>
     <description>Runners, also known as Dog Aliens or Ox Aliens, is an adult form of the species Xenomorph XX121 spawned from a quadrupedal host animal (such as a dog). Runners, as their name implies, are fast and agile, and can spit acid from their mouths./n/n Runners have variously been portrayed as being slightly larger and slightly smaller than typical human-spawned Aliens, differences that no doubt derive from the animal that hosted the creature. However, Runners average around 7 feet 5 inches tall when standing on their hind legs.</description>
@@ -1028,7 +1038,7 @@
     <defName>RRY_Xenomorph_Runner</defName>
     <label>Runner</label>
     <race>RRY_Xenomorph_Runner</race>
-    <combatPower>125</combatPower>
+    <combatPower>100</combatPower>
     <lifeStages>
       <li>
         <bodyGraphicData>
@@ -1203,6 +1213,12 @@
       <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
       <soundMeleeMiss>Pawn_Melee_Punch_Miss</soundMeleeMiss>
     </race>
+	<modExtensions>
+	  <li Class="HunterMarkingSystem.MarkDefExtension">
+		<!-- DefName of the Marking Hediff Kills of this race give --> 
+		<hediffs><li>HMS_Hediff_BloodedMPredalien</li></hediffs>
+	  </li>
+	</modExtensions>
   </ThingDef>
 
   <PawnKindDef ParentName="RRY_BaseXenomorphKind">
@@ -1278,12 +1294,14 @@
     <description>Thrumbomorph Xenomorphs are significantly larger and stronger than the normal adults, being over 5 metres tall. Their body structure differs also, having no arms, although its large limbs many manipulate objects. The thrumbomorphs's head is larger than those of other adult Xenomorphs and is adorned by a large, flat blade, which is an inherited feature from its host./n/nThis thing is a total monstrosity and can easily dismantle a battle tank, do not engage lightly.</description>
     <statBases>
       <Mass>200</Mass>
-      <MoveSpeed>6.5</MoveSpeed>
-      <ArmorRating_Blunt>1.50</ArmorRating_Blunt>
-      <ArmorRating_Sharp>1.80</ArmorRating_Sharp>
-      <ArmorRating_Heat>1.30</ArmorRating_Heat>
+      <MoveSpeed>5.5</MoveSpeed>
+      <ArmorRating_Blunt>1.30</ArmorRating_Blunt>
+      <ArmorRating_Sharp>1.60</ArmorRating_Sharp>
+      <ArmorRating_Heat>1.00</ArmorRating_Heat>
       <MeatAmount>215</MeatAmount>
       <LeatherAmount>140</LeatherAmount>
+      <PsychicSensitivity>0.5</PsychicSensitivity>
+      <ToxicSensitivity>0.25</ToxicSensitivity>
     </statBases>
     <tools>
       <li>
@@ -1392,7 +1410,7 @@
       <body>RRY_Xenomorph_QuadrupedWithHorn</body>
 	  <useMeatFrom>RRY_Xenomorph_FaceHugger</useMeatFrom>
       <baseBodySize>4</baseBodySize>
-      <baseHealthScale>9.0</baseHealthScale>
+      <baseHealthScale>8.0</baseHealthScale>
       <manhunterOnDamageChance>1.00</manhunterOnDamageChance>
       <lifeStageAges>
         <li>
@@ -1460,13 +1478,19 @@
       <ComponentIndustrial>2</ComponentIndustrial>
     </butcherProducts>
 	-->
+	<modExtensions>
+	  <li Class="HunterMarkingSystem.MarkDefExtension">
+		<!-- DefName of the Marking Hediff Kills of this race give --> 
+		<hediffs><li>HMS_Hediff_BloodedMXenomorphThrumbo</li></hediffs>
+	  </li>
+	</modExtensions>
   </ThingDef>
 
   <PawnKindDef ParentName="RRY_BaseXenomorphKind">
     <defName>RRY_Xenomorph_Thrumbomorph</defName>
     <label>Thrumbomorph</label>
     <race>RRY_Xenomorph_Thrumbomorph</race>
-    <combatPower>850</combatPower>
+    <combatPower>1250</combatPower>
     <lifeStages>
       <li>
         <bodyGraphicData>

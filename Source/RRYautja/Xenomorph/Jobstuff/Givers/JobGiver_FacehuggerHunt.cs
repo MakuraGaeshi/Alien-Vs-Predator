@@ -33,7 +33,7 @@ namespace RimWorld
             {
 
 #if DEBUG
-            //    if (selected) Log.Message(string.Format("{0}@{1} hunting {2}@{3}", pawn.Label, pawn.Position, pawn2.Label, pawn2.Position));
+            if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0}@{1} hunting {2}@{3}", pawn.Label, pawn.Position, pawn2.Label, pawn2.Position));
 #endif
                 return this.MeleeAttackJob(pawn, pawn2);
             }
@@ -47,7 +47,7 @@ namespace RimWorld
                     }
                     if (!pawnPath.TryFindLastCellBeforeBlockingDoor(pawn, out IntVec3 loc))
                     {
-                        //    Log.Error(pawn + " did TryFindLastCellBeforeDoor but found none when it should have been one. Target: " + pawn2.LabelCap, false);
+                        Log.Error(pawn + " did TryFindLastCellBeforeDoor but found none when it should have been one. Target: " + pawn2.LabelCap, false);
                         return null;
                     }
                     IntVec3 randomCell = CellFinder.RandomRegionNear(loc.GetRegion(pawn.Map, RegionType.Set_Passable), 9, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn, false), null, null, RegionType.Set_Passable).RandomCell;
@@ -79,7 +79,7 @@ namespace RimWorld
             Predicate<Thing> validator = delegate (Thing x)
             {
                 Pawn p = (Pawn)x;
-            //    Log.Message(string.Format("{0}\nisInfectablePawn: {1}, Alive: {2}", pawn.LabelShortCap, XenomorphUtil.isInfectablePawn(p), !p.Dead));
+            if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0}\nisInfectablePawn: {1}, Alive: {2}", pawn.LabelShortCap, XenomorphUtil.isInfectablePawn(p), !p.Dead));
                 return XenomorphUtil.isInfectablePawn(p);
             };
             Pawn pawn2 = (Pawn)XenomorphTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, validator, 0f, HuntingRange, pawn.Position, float.MaxValue, true, true);
@@ -93,11 +93,10 @@ namespace RimWorld
             }
             */
             if (pawn2 == null) pawn2 = BestPawnToHuntForPredator(pawn, forceScanWholeMap);
-#if DEBUG
-            bool selected = Find.Selector.SingleSelectedThing == pawn;
-            if (selected)
-            { if (pawn2 != null) Log.Message(string.Format("{0}@{1} hunting {2}@{3}", pawn.Label, pawn.Position, pawn2.Label, pawn2.Position)); }                
-#endif
+            if (pawn2 != null)
+            {
+                if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0}@{1} hunting {2}@{3}", pawn.Label, pawn.Position, pawn2.Label, pawn2.Position));
+            }
             return pawn2 ?? null;
         }
 
@@ -141,7 +140,7 @@ namespace RimWorld
                         }
                         else
                         {
-                        //    Log.Message(string.Format("{0} cannae hunt {2} XenoInfection:{1} IsXenos:{3}", predator.Label, XenomorphUtil.IsInfectedPawn(p), ((Pawn)list[j]).Label, XenomorphUtil.IsXenomorph(p)));
+                            if (predator.jobs.debugLog) predator.jobs.DebugLogEvent(string.Format("{0} cannae hunt {2} XenoInfection:{1} IsXenos:{3}", predator.Label, XenomorphUtil.IsInfectedPawn(p), ((Pawn)list[j]).Label, XenomorphUtil.IsXenomorph(p)));
                         }
                     }
                     return false;
@@ -188,15 +187,15 @@ namespace RimWorld
         public static bool IsAcceptablePreyFor(Pawn predator, Pawn prey)
         {
 
-        //    Log.Message(string.Format("{0} hunting {1}? XenoInfection:{2} IsXenos:{3}", predator.Label, prey.Label, XenomorphUtil.IsInfectedPawn(prey), XenomorphUtil.IsXenomorph(prey)));
+            if (predator.jobs.debugLog) predator.jobs.DebugLogEvent(string.Format("{0} hunting {1}? XenoInfection:{2} IsXenos:{3}", predator.Label, prey.Label, XenomorphUtil.IsInfectedPawn(prey), XenomorphUtil.IsXenomorph(prey)));
             if (XenomorphUtil.IsInfectedPawn(prey))
             {
-            //    Log.Message(string.Format("{0} cant hunt {1} cause XenoInfection:{2}", predator.Label, prey.Label, XenomorphUtil.IsInfectedPawn(prey)));
+                if (predator.jobs.debugLog) predator.jobs.DebugLogEvent(string.Format("{0} cant hunt {1} cause XenoInfection:{2}", predator.Label, prey.Label, XenomorphUtil.IsInfectedPawn(prey)));
                 return false;
             }
             if (XenomorphUtil.IsXenomorph(prey))
             {
-            //    Log.Message(string.Format("{0} cant hunt {1} cause IsXenos:{2}", predator.Label, prey.Label, XenomorphUtil.IsXenomorph(prey)));
+                if (predator.jobs.debugLog) predator.jobs.DebugLogEvent(string.Format("{0} cant hunt {1} cause IsXenos:{2}", predator.Label, prey.Label, XenomorphUtil.IsXenomorph(prey)));
                 return false;
             }
             if (!prey.RaceProps.IsFlesh)
@@ -226,7 +225,7 @@ namespace RimWorld
                 }
             }
             */
-        //    Log.Message(string.Format("{0}@{1} can hunt {2}@{3}", predator.Label, predator.Position, prey.Label, prey.Position));
+            if (predator.jobs.debugLog) predator.jobs.DebugLogEvent(string.Format("{0}@{1} can hunt {2}@{3}", predator.Label, predator.Position, prey.Label, prey.Position));
             return (predator.Faction == null || prey.Faction == null || predator.HostileTo(prey)) && (predator.Faction == null || prey.HostFaction == null || predator.HostileTo(prey)) && (predator.Faction != Faction.OfPlayer || prey.Faction != Faction.OfPlayer) && (!predator.RaceProps.herdAnimal || predator.def != prey.def) && (!prey.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection) && !prey.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation) && !prey.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation));
         }
 

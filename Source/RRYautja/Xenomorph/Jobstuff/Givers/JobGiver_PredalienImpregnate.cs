@@ -18,12 +18,12 @@ namespace RimWorld
             {
                 return null;
             }
-        //    Log.Message(string.Format("JobGiver_PredalienImpregnate TryGiveJob"));
+            if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("JobGiver_PredalienImpregnate TryGiveJob"));
             Pawn t;
             if (XenomorphKidnapUtility.TryFindGoodImpregnateVictim(pawn, 18f, out t, null) && !GenAI.InDangerousCombat(pawn))
             {
-            //    Log.Message(string.Format("victim found: {0}",t.LabelShortCap));
-                return new Job(XenomorphDefOf.RRY_Job_PredalienImpregnate)
+                if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("victim found: {0}",t.LabelShortCap));
+                return new Job(XenomorphDefOf.RRY_Job_Xenomorph_PredalienImpregnate)
                 {
                     targetA = t
                 };

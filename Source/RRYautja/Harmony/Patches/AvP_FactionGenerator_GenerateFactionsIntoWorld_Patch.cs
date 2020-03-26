@@ -1,6 +1,6 @@
 ﻿using RimWorld;
 using Verse;
-using Harmony;
+using HarmonyLib;
 using System.Reflection;
 using System.Collections.Generic;
 using System;
@@ -29,15 +29,28 @@ namespace RRYautja
                 if (!factionDef.isPlayer)
                 {
                     string defName = factionDef.defName;
-                    if (factionDef == XenomorphDefOf.RRY_Xenomorph && !SettingsHelper.latest.AllowXenomorphFaction)
+                    if (factionDef == XenomorphDefOf.RRY_Xenomorph)
                     {
-                        AvP_FactionGenerator_GenerateFactionsIntoWorld_Patch.UpdateDef(factionDef, 0);
+                        if (!SettingsHelper.latest.AllowXenomorphFaction)
+                        {
+                            AvP_FactionGenerator_GenerateFactionsIntoWorld_Patch.UpdateDef(factionDef, 0);
+                        }
+                        else
+                        {
+                            AvP_FactionGenerator_GenerateFactionsIntoWorld_Patch.UpdateDef(factionDef, 1);
+                        }
                         //    return false;
                     }
-                    if (defName.Contains("RRY_Yautja_") && !SettingsHelper.latest.AllowYautjaFaction)
+                    if (defName.Contains("RRY_Yautja_"))
                     {
-                        AvP_FactionGenerator_GenerateFactionsIntoWorld_Patch.UpdateDef(factionDef, 0);
-                        //    return false;
+                        if (!SettingsHelper.latest.AllowYautjaFaction)
+                        {
+                            AvP_FactionGenerator_GenerateFactionsIntoWorld_Patch.UpdateDef(factionDef, 0);
+                        }
+                        else
+                        {
+                            AvP_FactionGenerator_GenerateFactionsIntoWorld_Patch.UpdateDef(factionDef, 1);
+                        }
                     }
                 }
             }

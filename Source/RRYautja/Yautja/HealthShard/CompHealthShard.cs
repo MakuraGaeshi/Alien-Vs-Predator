@@ -42,7 +42,7 @@ namespace RRYautja
         // Token: 0x06002ADC RID: 10972 RVA: 0x001433C0 File Offset: 0x001417C0
         public override void DoEffect(Pawn user)
         {
-            Cloakgen injector = (Cloakgen)user.apparel.WornApparel.Find((Apparel x) => x.def == YautjaDefOf.RRY_Equipment_HunterGauntlet);
+            Cloakgen injector = (Cloakgen)user.apparel.WornApparel.Find((Apparel x) => x.def.defName.Contains("RRY_Equipment_HunterGauntlet"));
             CompMedicalInjector medicalInjector = injector.TryGetComp<CompMedicalInjector>();
             bool selected = Find.Selector.SelectedObjects.Contains(user);
             int needed = medicalInjector.Props.Uses - injector.uses;
@@ -70,10 +70,10 @@ namespace RRYautja
         public override bool CanBeUsedBy(Pawn p, out string failReason)
         {
             bool selected = Find.Selector.SelectedObjects.Contains(p);
-            bool flag = GenCollection.Any<Apparel>(p.apparel.WornApparel, (Apparel x) => x.def == YautjaDefOf.RRY_Equipment_HunterGauntlet);
+            bool flag = GenCollection.Any<Apparel>(p.apparel.WornApparel, (Apparel x) => x.def.defName.Contains("RRY_Equipment_HunterGauntlet"));
             if (flag)
             {
-                Cloakgen injector = (Cloakgen)p.apparel.WornApparel.Find((Apparel x) => x.def == YautjaDefOf.RRY_Equipment_HunterGauntlet);
+                Cloakgen injector = (Cloakgen)p.apparel.WornApparel.Find((Apparel x) => x.def.defName.Contains("RRY_Equipment_HunterGauntlet"));
                 if (injector!=null)
                 {
                     CompMedicalInjector medicalInjector = injector.TryGetComp<CompMedicalInjector>();
@@ -109,14 +109,10 @@ namespace RRYautja
 
     public class CompUsable_HealthShard : CompUsable
     {
-        // Token: 0x17000651 RID: 1617
         // (get) Token: 0x06002942 RID: 10562 RVA: 0x001394F0 File Offset: 0x001378F0
-        protected override string FloatMenuOptionLabel
+        protected override string FloatMenuOptionLabel(Pawn pawn)
         {
-            get
-            {
-                return string.Format(base.Props.useLabel, this.parent.LabelCap);
-            }
+            return string.Format(base.Props.useLabel, this.parent.LabelCap);
         }
 
         // Token: 0x06002A4A RID: 10826 RVA: 0x00138F4C File Offset: 0x0013734C
@@ -125,23 +121,23 @@ namespace RRYautja
             if (!this.CanBeUsedBy(myPawn, out string failReason))
             {
                 //    yield break;
-                yield return new FloatMenuOption(this.FloatMenuOptionLabel + ((failReason == null) ? string.Empty : (" (" + failReason + ")")), null, MenuOptionPriority.Default, null, null, 0f, null, null);
+                yield return new FloatMenuOption(this.FloatMenuOptionLabel(myPawn) + ((failReason == null) ? string.Empty : (" (" + failReason + ")")), null, MenuOptionPriority.Default, null, null, 0f, null, null);
             }
             else if (!myPawn.CanReach(this.parent, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.ByPawn))
             {
-                yield return new FloatMenuOption(this.FloatMenuOptionLabel + " (" + "NoPath".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null);
+                yield return new FloatMenuOption(this.FloatMenuOptionLabel(myPawn) + " (" + "NoPath".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null);
             }
             else if (!myPawn.CanReserve(this.parent, 1, -1, null, false))
             {
-                yield return new FloatMenuOption(this.FloatMenuOptionLabel + " (" + "Reserved".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null);
+                yield return new FloatMenuOption(this.FloatMenuOptionLabel(myPawn) + " (" + "Reserved".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null);
             }
             else if (!myPawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
             {
-                yield return new FloatMenuOption(this.FloatMenuOptionLabel + " (" + "Incapable".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null);
+                yield return new FloatMenuOption(this.FloatMenuOptionLabel(myPawn) + " (" + "Incapable".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null);
             }
             else
             {
-                FloatMenuOption useopt = new FloatMenuOption(this.FloatMenuOptionLabel, delegate ()
+                FloatMenuOption useopt = new FloatMenuOption(this.FloatMenuOptionLabel(myPawn), delegate ()
                 {
                     if (myPawn.CanReserveAndReach(this.parent, PathEndMode.Touch, Danger.Deadly, 1, -1, null, false))
                     {
@@ -152,7 +148,7 @@ namespace RRYautja
                                 return;
                             }
                         }
-                        this.TryStartUseJob(myPawn);
+                        this.TryStartUseJob(myPawn, null);
                     }
                 }, MenuOptionPriority.Default, null, null, 0f, null, null);
                 yield return useopt;
@@ -213,7 +209,7 @@ namespace RRYautja
         public override void Notify_Starting()
         {
             base.Notify_Starting();
-            this.useDuration = this.job.GetTarget(TargetIndex.A).Thing.TryGetComp<Comp_UsableCorpse>().Props.useDuration;
+            this.useDuration = this.job.GetTarget(TargetIndex.A).Thing.TryGetComp<CompUsable_HealthShard>().Props.useDuration;
         }
 
         // Token: 0x06000392 RID: 914 RVA: 0x00024590 File Offset: 0x00022990

@@ -1,6 +1,8 @@
 ﻿using RRYautja;
+using RRYautja.ExtensionMethods;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
@@ -23,6 +25,11 @@ namespace RimWorld
         {
             JobGiver_XenosKidnap jobGiver_XenosKidnap = (JobGiver_XenosKidnap)base.DeepCopy(resolve);
             jobGiver_XenosKidnap.HuntingRange = this.HuntingRange;
+            jobGiver_XenosKidnap.forceRoofed = this.forceRoofed;
+            jobGiver_XenosKidnap.canBash = this.canBash;
+            jobGiver_XenosKidnap.forceCanDig = this.forceCanDig;
+            jobGiver_XenosKidnap.forceCanDigIfAnyHostileActiveThreat = this.forceCanDigIfAnyHostileActiveThreat;
+            jobGiver_XenosKidnap.forceCanDigIfCantReachMapEdge = this.forceCanDigIfCantReachMapEdge;
             return jobGiver_XenosKidnap;
         }
 
@@ -33,50 +40,81 @@ namespace RimWorld
         protected override Job TryGiveJob(Pawn pawn)
         {
             float Searchradius = HuntingRange;
+            Map map = pawn.Map;
             IntVec3 c = IntVec3.Invalid;
+            if (!pawn.isXenomorph(out Comp_Xenomorph xenomorph) || map == null)
+            {
+                return null;
+            }
+            MapComponent_HiveGrid hiveGrid = pawn.Map.HiveGrid();
             if (XenomorphKidnapUtility.TryFindGoodKidnapVictim(pawn, Searchradius, out Pawn t, null) && !GenAI.InDangerousCombat(pawn))
             {
-                if (XenomorphKidnapUtility.TryFindGoodHiveLoc(pawn, t, out c))
+                if (xenomorph.HiveLoc.IsValid && xenomorph.HiveLoc.InBounds(map) && xenomorph.HiveLoc != IntVec3.Zero)
                 {
-                    ThingDef namedA = XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon;
-                    ThingDef namedB = XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon;
-                    bool selected = pawn.Map != null ? Find.Selector.SelectedObjects.Contains(pawn) && (Prefs.DevMode) : false;
-                    if (c != IntVec3.Invalid && t != null && pawn.CanReach(c, PathEndMode.ClosestTouch, Danger.Deadly, true, TraverseMode.PassAllDestroyableThings))
+                    c = xenomorph.HiveLoc;
+                }
+                else
+                if (!hiveGrid.Hivelist.NullOrEmpty())
+                {
+                    c = hiveGrid.Hivelist.RandomElement().Position;
+                }
+                else
+                if (!hiveGrid.HiveLoclist.NullOrEmpty())
+                {
+                    c = hiveGrid.HiveLoclist.RandomElement();
+                }
+                else
+                if (!XenomorphKidnapUtility.TryFindGoodHiveLoc(pawn, out c, t, true, this.forceRoofed, this.forceCanDig))
+                {
+                    Log.Error("No hive loc found");
+                    return null;
+                    //   if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} No Cocooning spot Found", this));
+                }
+                bool selected = pawn.Map != null ? Find.Selector.SelectedObjects.Contains(pawn) && (Prefs.DevMode) : false;
+                if (c != IntVec3.Invalid && t != null && pawn.CanReach(c, PathEndMode.ClosestTouch, Danger.Deadly, true, TraverseMode.PassAllDestroyableThings))
+                {
+                    Predicate<IntVec3> validator = delegate (IntVec3 y)
                     {
-                        Predicate<IntVec3> validator = delegate (IntVec3 y)
-                        {
-                            bool adjacent = c.AdjacentTo8WayOrInside(y);
-                            bool filled = y.Filled(pawn.Map);
-                            bool edifice = y.GetEdifice(pawn.Map).DestroyedOrNull();
-                            bool building = y.GetFirstBuilding(pawn.Map).DestroyedOrNull();
-                            bool thingA = y.GetFirstThing(pawn.Map, namedA).DestroyedOrNull();
-                            bool thingB = y.GetFirstThing(pawn.Map, namedB).DestroyedOrNull();
-                            //Log.Message(string.Format("{0} {1} {2} {3} {4} {5}", y, !adjacent, !filled, edifice, building, thing));
-                            return !adjacent && !filled && edifice && building && thingA && thingB;
-                        };
-
-                        bool b = RCellFinder.TryFindRandomCellNearWith(c, validator, pawn.Map, out IntVec3 lc,6,12);
-                        
-                        return new Job(XenomorphDefOf.RRY_Job_XenomorphKidnap)
-                        {
-                            targetA = t,
-                            targetB = lc,
-                            count = 1
-                        };
+                        bool roofed = (y.Roofed(pawn.Map) && this.forceRoofed) || !this.forceRoofed;
+                        bool adjacent = c.AdjacentTo8WayOrInside(y);
+                        bool filled = y.Filled(pawn.Map);
+                        bool edifice = y.GetEdifice(pawn.Map).DestroyedOrNull();
+                        bool building = y.GetFirstBuilding(pawn.Map).DestroyedOrNull();
+                        bool thingA = y.GetThingList(pawn.Map).Any(x => x.GetType() == typeof(Building_XenoEgg) && x.GetType() == typeof(Building_XenomorphCocoon) && x.GetType() == typeof(HiveLike));
+                        //    Log.Message(string.Format("{0}, adjacent: {1}, filled: {2}, edifice: {3}, building: {4}", y, !adjacent, !filled, edifice, building));
+                        return !adjacent && !filled && edifice && building && !thingA && roofed && pawn.CanReserveAndReach(y, PathEndMode.OnCell, Danger.Deadly, layer: ReservationLayerDefOf.Floor);
+                    };
+                    if (pawn.GetLord() != null && pawn.GetLord() is Lord lord)
+                    {
+                        //    Log.Message(string.Format("TryFindGoodHiveLoc pawn.GetLord() != null"));
                     }
                     else
                     {
-                        if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} something went wrong", this));
+                        //   Log.Message(string.Format("TryFindGoodHiveLoc pawn.GetLord() == null"));
+                    }
+                    if (pawn.mindState.duty.def != XenomorphDefOf.RRY_Xenomorph_DefendAndExpandHive && pawn.mindState.duty.def != XenomorphDefOf.RRY_Xenomorph_DefendHiveAggressively)
+                    {
+                        pawn.mindState.duty = new PawnDuty(XenomorphDefOf.RRY_Xenomorph_DefendAndExpandHive, c, 40f);
+                    }
+                    if (RCellFinder.TryFindRandomCellNearWith(c, validator, pawn.Map, out IntVec3 lc, 2, 8))
+                    {
+                        return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Kidnap)
+                        {
+                            targetA = t,
+                            targetB = lc,
+                            targetC = lc.RandomAdjacentCell8Way(),
+                            count = 1
+                        };
                     }
                 }
                 else
                 {
-                    if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} No Cocooning spot Found", this));
+                    //   if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} something went wrong", this));
                 }
             }
             else
             {
-                if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} No Victim Found", this));
+             //   if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} No Victim Found", this));
             }
             return null;
         }
@@ -109,5 +147,20 @@ namespace RimWorld
 
         // Token: 0x040002AC RID: 684
         private const float VictimSearchRadiusOngoing = 18f;
+
+        // Token: 0x040027D9 RID: 10201
+        protected bool canBash = false;
+
+        // Token: 0x040027DA RID: 10202
+        protected bool forceCanDig = true;
+
+        // Token: 0x040027DA RID: 10202
+        protected bool forceRoofed = false;
+
+        // Token: 0x040027DB RID: 10203
+        protected bool forceCanDigIfAnyHostileActiveThreat;
+
+        // Token: 0x040027DC RID: 10204
+        protected bool forceCanDigIfCantReachMapEdge = true;
     }
 }

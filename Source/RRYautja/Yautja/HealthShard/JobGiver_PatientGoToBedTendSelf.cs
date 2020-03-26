@@ -26,7 +26,7 @@ namespace RRYautja
                 }
                 else
                 {
-                    bool flag3 = !GenCollection.Any<Apparel>(pawn.apparel.WornApparel, (Apparel x) => x.def == YautjaDefOf.RRY_Equipment_HunterGauntlet);
+                    bool flag3 = !GenCollection.Any<Apparel>(pawn.apparel.WornApparel, (Apparel x) => x.def.defName.Contains("RRY_Equipment_HunterGauntlet"));
                     if (flag3)
                     {
                         result = ThinkResult.NoJob;

@@ -51,10 +51,16 @@
     </forcedHediffs>
     <spawnCategories>
       <li>RRY_Yautja_Standard</li>
-      <li>RRY_Yautja_Standard</li>
       <li>RRY_Yautja_Unblooded</li>
       <li>RRY_Yautja_BadBlood</li>
       <li>RRY_Yautja_Blooded</li>
+      <li>RRY_Yautja_Adult</li>
+      <li>RRY_Yautja_Hunter</li>
+      <li>RRY_Yautja_YoungBlood</li>
+      <li>RRY_Yautja_Unblooded</li>
+      <li>RRY_Yautja_Ancient</li>
+      <li>RRY_Yautja_Elder</li>
+      <li>RRY_Yautja_Elite</li>
     </spawnCategories>
   </AlienRace.BackstoryDef>
 
@@ -112,10 +118,15 @@
     </forcedHediffs>
     <spawnCategories>
       <li>RRY_Yautja_Standard</li>
-      <li>RRY_Yautja_Standard</li>
       <li>RRY_Yautja_Unblooded</li>
       <li>RRY_Yautja_BadBlood</li>
       <li>RRY_Yautja_Blooded</li>
+      <li>RRY_Yautja_Adult</li>
+      <li>RRY_Yautja_Hunter</li>
+      <li>RRY_Yautja_YoungBlood</li>
+      <li>RRY_Yautja_Ancient</li>
+      <li>RRY_Yautja_Elder</li>
+      <li>RRY_Yautja_Elite</li>
     </spawnCategories>
   </AlienRace.BackstoryDef>
 
@@ -154,10 +165,15 @@
     </forcedHediffs>
     <spawnCategories>
       <li>RRY_Yautja_Standard</li>
-      <li>RRY_Yautja_Standard</li>
       <li>RRY_Yautja_Unblooded</li>
       <li>RRY_Yautja_BadBlood</li>
       <li>RRY_Yautja_Blooded</li>
+      <li>RRY_Yautja_Adult</li>
+      <li>RRY_Yautja_Hunter</li>
+      <li>RRY_Yautja_YoungBlood</li>
+      <li>RRY_Yautja_Ancient</li>
+      <li>RRY_Yautja_Elder</li>
+      <li>RRY_Yautja_Elite</li>
     </spawnCategories>
   </AlienRace.BackstoryDef>
 
@@ -169,7 +185,6 @@
     <defName>RRY_Yautja_YoungBlood</defName>
     <title>Young blood</title>
     <baseDescription>[PAWN_nameDef] is a Young adult [PAWN_alienRace] who yet to be seen as "true hunters" in the eyes of [PAWN_possessive] clanmates. These hunters are refined enough to overpower a skilled human fighter, however their skill against a Xenomorph varies. Once they kill one, [PAWN_alienRace] mark themselves with Xenomorph blood, completing their initiation into Adulthood.</baseDescription>
-	<linkedBackstory>RRY_Yautja_Unblooded</linkedBackstory>
     <bodyTypeMale>Male</bodyTypeMale>
     <bodyTypeFemale>Female</bodyTypeFemale>
 	<slot>Adulthood</slot>
@@ -602,6 +617,72 @@
         <amount>4</amount>
     </li>
     </skillGains>
+    <spawnCategories>
+      <li>RRY_Yautja_Standard</li>
+      <li>RRY_Yautja_Adult</li>
+      <li>RRY_Yautja_Hunter</li>
+      <li>RRY_Yautja_Elder</li>
+      <li>RRY_Yautja_Blooded</li>
+    </spawnCategories>
+  </AlienRace.BackstoryDef>
+  
+  <!-- ================================ Yautja - Survivor ================================ -->
+  
+ <AlienRace.BackstoryDef>
+    <defName>RRY_Yautja_Survivor</defName>
+    <title>Blooded Survivor</title>
+    <titleShort>Survivor</titleShort>
+	
+    <baseDescription>[PAWN_nameDef] was sent to a distant planet with [PAWN_possessive] clan members for a hunt, but after the ship crash landed, [PAWN_pronoun] was the only Yautja left alive and had to find a way to survive until [PAWN_pronoun] could get the ship's communications systems back up and running.</baseDescription>
+    <bodyTypeMale>Male</bodyTypeMale>
+    <bodyTypeFemale>Female</bodyTypeFemale>
+    <slot>Adulthood</slot>
+    <workDisables>
+		
+	</workDisables>
+	<forcedTraits>
+		<li>
+			<defName>Industriousness</defName>
+			<degree>1</degree>
+			<chance>15</chance>
+		</li>
+		<li>
+			<defName>Industriousness</defName>
+			<degree>2</degree>
+			<chance>5</chance>
+		</li>
+		<li>
+			<defName>Neurotic</defName>
+			<degree>1</degree>
+			<chance>25</chance>
+		</li>
+		<li>
+			<defName>Neurotic</defName>
+			<degree>2</degree>
+			<chance>10</chance>
+		</li>
+	</forcedTraits>
+    <skillGains>
+    <li>
+        <defName>Cooking</defName>
+        <amount>3</amount>
+    </li>
+    <li>
+        <defName>Crafting</defName>
+        <amount>3</amount>
+    </li>
+	<li>
+        <defName>Intellectual</defName>
+        <amount>2</amount>
+    </li>
+	<li>
+        <defName>Medicine</defName>
+        <amount>2</amount>
+    </li>
+    </skillGains>
+	<!--<forcedHediffs>
+		<li>Misc</li>
+    </forcedHediffs>-->
     <spawnCategories>
       <li>RRY_Yautja_Standard</li>
       <li>RRY_Yautja_Adult</li>
