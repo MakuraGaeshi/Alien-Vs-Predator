@@ -1,6 +1,6 @@
 ﻿using RimWorld;
 using Verse;
-using Harmony;
+using HarmonyLib;
 using System.Reflection;
 using System.Collections.Generic;
 using System;
@@ -30,8 +30,11 @@ namespace RRYautja
             }
             if (predator.isXenomorph())
             {
-                Comp_Xenomorph _Xenomorph = predator.TryGetComp<Comp_Xenomorph>();
-                __result = _Xenomorph.BestPawnToHuntForPredator(predator, forceScanWholeMap);
+                if (predator.ageTracker.CurLifeStage == XenomorphDefOf.RRY_XenomorphFullyFormed)
+                {
+                    Comp_Xenomorph _Xenomorph = predator.TryGetComp<Comp_Xenomorph>();
+                    __result = _Xenomorph.BestPawnToHuntForPredator(predator, forceScanWholeMap);
+                }
             }
         }
     }

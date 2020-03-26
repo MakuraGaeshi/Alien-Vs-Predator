@@ -195,10 +195,6 @@ namespace RRYautja
 
             return true;
         }
-        public static bool isInfectablePawn(Pawn pawn)
-        {
-            return isInfectableThing(pawn.def);
-        }
 
         public static bool isInfectablePawn(Pawn pawn, bool allowinfected = false)
         {
@@ -509,7 +505,7 @@ namespace RRYautja
         }
         public static Thing ClosestReachableEmptyCocoonToEgg(Thing egg, ThingDef t)
         {
-            Thing thing = GenClosest.ClosestThingReachable(egg.Position, egg.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_Xenomorph_Cocoon_Humanoid), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 10f, (x => (x is Building_XenomorphCocoon XC && XC.AnyUnoccupiedSleepingSlot && XC.owners.NullOrEmpty())), null, 0, -1, false, RegionType.Set_Passable, false);
+            Thing thing = GenClosest.ClosestThingReachable(egg.Position, egg.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_Xenomorph_Cocoon_Humanoid), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 10f, (x => (x is Building_XenomorphCocoon XC && XC.AnyUnoccupiedSleepingSlot && XC.OwnersForReading.NullOrEmpty())), null, 0, -1, false, RegionType.Set_Passable, false);
             return thing;
         }
         public static Thing ClosestReachableCocoonThatEggNeedsHost(Pawn pawn, ThingDef t)
@@ -656,11 +652,11 @@ namespace RRYautja
                 {
                     if (XenomorphUtil.isInfectablePawnKind(item))
                     {
-                        Log.Message(string.Format("Xenomorph Host: {0}", item.LabelCap));
+                    //    Log.Message(string.Format("Xenomorph Host: {0}", item.LabelCap));
                         tmpHostKinds.Add(item);
                     }
                 }
-                Log.Message(string.Format("HostKinds count: {0}", tmpHostKinds.Count));
+            //    Log.Message(string.Format("HostKinds count: {0}", tmpHostKinds.Count));
                 return tmpHostKinds;
             }
         }

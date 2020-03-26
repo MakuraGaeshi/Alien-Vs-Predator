@@ -13,8 +13,8 @@ namespace RRYautja
         {
             this.compClass = typeof(CompEquippableTurret);
         }
-        public bool OnByDefault;
-        public bool DisableInMelee;
+        public bool OnByDefault = true;
+        public bool DisableInMelee = true;
         public ThingDef TurretDef = null;
     }
 
@@ -88,8 +88,9 @@ namespace RRYautja
         public override void PostExposeData()
         {
             base.PostExposeData();
-            Scribe_References.Look<Thing>(ref this.turret, "TurretThing", false);
-            Scribe_Deep.Look<Building_Turret_Shoulder>(ref this.turret_Shoulder, "TurretBuilding", false);
+
+        //    Scribe_Deep.Look<Thing>(ref this.turret, "TurretThing", false);
+
             Scribe_Values.Look(ref Toggled, "ToggledMode", onDefault, true);
             Scribe_Values.Look(ref DisableInMelee, "DisableInMelee", MeleeDisable, true);
             //    Scribe_Values.Look<bool>(ref this.turretIsOn, "TurretIsOn", IsTurnedOn);

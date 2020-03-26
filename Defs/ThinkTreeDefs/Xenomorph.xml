@@ -40,8 +40,8 @@
         <!-- Conditional Not Fully Grown -->
         <li Class="ThinkNode_ConditionalNotGrown">
           <subNodes>
-			<li Class="JobGiver_GetFoodXenomorph" />
-			<li Class="JobGiver_GetFoodXenomorph"> 
+			<li Class="JobGiver_Xenomorph_GetFood" />
+			<li Class="JobGiver_Xenomorph_GetFood"> 
 			  <forceScanWholeMap>false</forceScanWholeMap>
 			</li>
 			<li Class="JobGiver_WanderHiveLike">
@@ -127,7 +127,7 @@
 				  </subNodes>
 				</li>
 				<!-- Exit -->
-				<li Class="JobGiver_GetFoodXenomorph" />
+				<li Class="JobGiver_Xenomorph_GetFood" />
 				<!-- Wander -->
 				<li Class="JobGiver_WanderAnywhere">
 				  <maxDanger>Deadly</maxDanger>
@@ -155,7 +155,7 @@
 				  </subNodes>
 				</li>
 				<!-- Exit -->
-				<li Class="JobGiver_GetFoodXenomorph" />
+				<li Class="JobGiver_Xenomorph_GetFood" />
 				<!-- Wander -->
 				<li Class="JobGiver_WanderAnywhere">
 				  <maxDanger>Deadly</maxDanger>
@@ -429,30 +429,6 @@
         </li>
 
         <li Class="JobGiver_IdleError"/>
-      </subNodes>
-		</thinkRoot>
-	</ThinkTreeDef>
-
-	<ThinkTreeDef>
-		<defName>AnimalConstant</defName>
-		<thinkRoot Class="ThinkNode_Priority">
-			<subNodes>
-        <li Class="ThinkNode_ConditionalCanDoConstantThinkTreeJobNow">
-          <subNodes>
-            <!-- Flee enemies, tornados, meteorites, etc. -->
-            <li Class="JobGiver_AnimalFlee" />
-
-            <!-- Join auto joinable caravan -->
-            <li Class="ThinkNode_Subtree">
-              <treeDef>JoinAutoJoinableCaravan</treeDef>
-            </li>
-            
-            <!-- Lord directives -->
-            <li Class="ThinkNode_Subtree">
-              <treeDef>LordDutyConstant</treeDef>
-            </li>
-          </subNodes>
-        </li>
       </subNodes>
 		</thinkRoot>
 	</ThinkTreeDef>

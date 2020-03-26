@@ -46,7 +46,7 @@
 	  <ai_combatDangerous>false</ai_combatDangerous>
       <turretGunDef>RRY_Gun_ShoulderCannon</turretGunDef>
       <turretBurstCooldownTime>3.0</turretBurstCooldownTime>
-      <turretTopGraphicPath>Things/Buildings/DummyTexture</turretTopGraphicPath>
+	  
 	  <isInert>true</isInert>
       <isEdifice>false</isEdifice>
       <deconstructible>false</deconstructible>
@@ -70,12 +70,12 @@
     </projectile>
   </ThingDef>
   
-  <ThingDef ParentName="BaseHumanGun">
+  <ThingDef ParentName="BaseWeaponTurret">
     <defName>RRY_Gun_ShoulderCannon</defName>
     <label>mini-plasma gun</label>
     <description>A simple automatic gun made to be mounted on a turret.</description>
     <graphicData>
-      <texPath>Things/Item/Equipment/WeaponRanged/ChargeRifle</texPath>
+      <texPath>DummyTexture</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <soundInteract>Interact_Rifle</soundInteract>
@@ -115,7 +115,7 @@
 
   <!--
 
-  <ThingDef ParentName="BaseHumanGun">
+  <ThingDef ParentName="BaseHumanMakeableGun">
     <defName>Gun_MiniTurret</defName>
     <label>mini-turret gun</label>
     <description>A simple automatic gun made to be mounted on a turret.</description>

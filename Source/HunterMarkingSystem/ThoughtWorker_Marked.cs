@@ -62,17 +62,17 @@ namespace HunterMarkingSystem
                         stageIndex = 2;
                         break;
                     default:
-                //        Log.Message(string.Format("{0} {1} Vs {2}, Bad BloodStatusMode ActiveAtStage {3}", this, p.LabelShortCap, other.LabelShortCap, stageIndex));
+                        //    Log.Message(string.Format("{0} {1} Vs {2}, Bad BloodStatusMode ActiveAtStage {3}", this, p.LabelShortCap, other.LabelShortCap, stageIndex));
                         return false;
                 }
                 if (pMarkable.BloodStatus == BloodStatusMode.Marked)
                 {
-                //    Log.Message(string.Format("{0} {1} Vs {2}, is ActiveAtStage {3}", this, p.LabelShortCap, other.LabelShortCap, stageIndex));
+                    //    Log.Message(string.Format("{0} {1} Vs {2}, is ActiveAtStage {3}", this, p.LabelShortCap, other.LabelShortCap, stageIndex));
                     return ThoughtState.ActiveAtStage(stageIndex);
                 }
                 else
                 {
-                //    Log.Message(string.Format("{0} {1} Vs {2}, {1} is not Marked", this, p.LabelShortCap, other.LabelShortCap));
+                    //    Log.Message(string.Format("{0} {1} Vs {2}, {1} is not Marked", this, p.LabelShortCap, other.LabelShortCap));
                 }
             }
             else

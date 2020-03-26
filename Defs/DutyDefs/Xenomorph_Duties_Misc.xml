@@ -170,6 +170,32 @@
     <defName>RRY_Xenomorph_DefendAndExpandHive</defName> 
     <thinkNode Class="ThinkNode_Priority">
       <subNodes>
+	  
+		<li Class="ThinkNode_ConditionalXenomorphCannotReachHive">
+		  <subNodes>
+			<li Class="JobGiver_XenomorphForceGoToHive">
+				<forceCanDig>true</forceCanDig>
+			</li>
+		  </subNodes>
+		</li>	
+		
+		<li Class="JobGiver_MineOutHive"> 
+		</li>
+		<li Class="JobGiver_ClearHiveEggZone" />
+		<!-- Drone -->
+		<li Class="ThinkNode_ConditionalPawnKind">
+		  <pawnKind>RRY_Xenomorph_Drone</pawnKind>
+		  <subNodes>
+			<li Class="JobGiver_ConstructHive"> 
+			</li>
+			<!--
+			<li Class="JobGiver_AISapper">
+			  <canMineNonMineables>false</canMineNonMineables>
+			</li>
+			-->
+		  </subNodes>
+		</li>
+		
         <li Class="JobGiver_MaintainHiveLikes">
           <onlyIfDamagingState>true</onlyIfDamagingState>
         </li>
@@ -183,7 +209,7 @@
 			<!-- Lay eggs you need to -->
 			<li Class="JobGiver_LayXenoEgg" />
 			
-			<li Class="JobGiver_GetFoodXenomorph"> 
+			<li Class="JobGiver_Xenomorph_GetFood"> 
 			  <minCategory>Fed</minCategory>
 			</li>
 			
@@ -198,13 +224,6 @@
 		  </subNodes>
 		</li>
 		
-		<li Class="ThinkNode_ConditionalXenomorphCannotReachHive">
-		  <subNodes>
-			<li Class="JobGiver_XenomorphForceGoToHive">
-				<forceCanDig>true</forceCanDig>
-			</li>
-		  </subNodes>
-		</li>	
 		<!-- Queen -->
 		<li Class="ThinkNode_ConditionalPawnKind">
 		  <pawnKind>RRY_Xenomorph_Queen</pawnKind>
@@ -323,22 +342,6 @@
 		<li Class="ThinkNode_ConditionalNotPawnKind">
 		  <pawnKind>RRY_Xenomorph_Queen</pawnKind>
 		  <subNodes>
-			<li Class="JobGiver_MineOutHive"> 
-			</li>
-			<li Class="JobGiver_ClearHiveEggZone" />
-			<!-- Drone -->
-			<li Class="ThinkNode_ConditionalPawnKind">
-			  <pawnKind>RRY_Xenomorph_Drone</pawnKind>
-			  <subNodes>
-				<li Class="JobGiver_ConstructHive"> 
-				</li>
-				<!--
-				<li Class="JobGiver_AISapper">
-				  <canMineNonMineables>false</canMineNonMineables>
-				</li>
-				-->
-			  </subNodes>
-			</li>
 			<!-- Downed Infectable Spawned -->
 			<li Class="ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby">
 			  <subNodes>
@@ -403,7 +406,7 @@
 		<li Class="ThinkNode_ConditionalCannotReachMapEdge">
 		  <subNodes>
 			<li Class="ThinkNode_Subtree">
-			  <treeDef>DigOutIfCannotReachMapEdge</treeDef>
+			  <treeDef>RRY_DigOutIfCannotReachMapEdge</treeDef>
 			</li>
 		  </subNodes>
 		</li>
@@ -415,10 +418,15 @@
 			<li Class="ThinkNode_ConditionalPawnKind">
 			  <pawnKind>RRY_Xenomorph_Runner</pawnKind>
 			  <subNodes>
-				<li Class="RRYautja.JobGiver_WanderCloserToHosts">
-				  <maxDanger>Deadly</maxDanger>
-				  <wanderRadius>12</wanderRadius>
-				  <locomotionUrgency>Jog</locomotionUrgency>
+				<li Class="ThinkNode_Conditional_OverHealth">
+				  <pawnHealth>0.75</pawnHealth>
+				  <subNodes>
+					<li Class="RRYautja.JobGiver_WanderCloserToHosts">
+					  <maxDanger>Deadly</maxDanger>
+					  <wanderRadius>12</wanderRadius>
+					  <locomotionUrgency>Jog</locomotionUrgency>
+					</li>
+				  </subNodes>
 				</li>
 			  </subNodes>
 			</li>

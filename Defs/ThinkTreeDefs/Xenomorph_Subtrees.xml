@@ -56,8 +56,6 @@
 						  </subNodes>
 						</li>
 						
-						<li Class="AbilityUserAI.JobGiver_AIAbilityUser"/>
-						
 						<li Class="JobGiver_XenomorphFightEnemies" />
 						
 						<!-- Wander -->
@@ -102,7 +100,7 @@
         <li Class="ThinkNode_Tagger">
           <tagToGive>Misc</tagToGive>
           <subNodes>
-            <li Class="JobGiver_ExitMapBest">
+            <li Class="JobGiver_Xenomorph_ReachOutside">
               <defaultLocomotion>Walk</defaultLocomotion>
               <forceCanDig>true</forceCanDig>
               <canBash>true</canBash>

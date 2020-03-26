@@ -25,36 +25,38 @@
 		</projectile>
  </ThingDef>
 
-	<AbilityUser.AbilityDef ParentName="BaseAbility">
+	<RRYautja.EquipmentAbilityDef>
         <defName>RRY_Ability_SpitAcid</defName>
         <label>Spit Acid</label>
-        <uiIconPath>Things/Projectile/Smoke</uiIconPath>
+        <iconPath>Things/Projectile/Smoke</iconPath>
         <description>Spits Acid at the target.</description>
-        <MainVerb Class="AbilityUser.VerbProperties_Ability">
-            <verbClass>AbilityUser.Verb_UseAbility</verbClass>
-            <AlwaysHits>false</AlwaysHits>
-            <tooltipShowProjectileDamage>true</tooltipShowProjectileDamage>
-            <tooltipShowExtraDamages>false</tooltipShowExtraDamages>
-            <tooltipShowHediffsToApply>false</tooltipShowHediffsToApply>
-            <tooltipShowMentalStatesToApply>false</tooltipShowMentalStatesToApply>
+        <abilityClass>RRYautja.EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+		<verbProperties Class="RRYautja.VerbProperties_EquipmentAbility">
+            <verbClass>RRYautja.Verb_ShootEquipment</verbClass>
             <hasStandardCommand>true</hasStandardCommand>
 			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
 			<defaultProjectile>RRY_Projectile_AcidSpit</defaultProjectile>
-            <abilityDef>RRY_Ability_SpitAcid</abilityDef>
             <warmupTime>0.6</warmupTime>
-            <SecondsToRecharge>30.0</SecondsToRecharge>
             <burstShotCount>6</burstShotCount>
-            <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-			<range>18</range>
-			<forcedMissRadius>50</forcedMissRadius>
-			<!-- <soundCast>FlamerSound</soundCast> -->
+            <ticksBetweenBurstShots>0</ticksBetweenBurstShots>
+			<range>12</range>
+			<!--<soundCast>OG_Flamer_Sound</soundCast>-->
 			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>0</muzzleFlashScale>
-            <isPrimary>false</isPrimary>
+			<muzzleFlashScale>4</muzzleFlashScale>
 			<targetParams>
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
-        </MainVerb>
- </AbilityUser.AbilityDef>
+        </verbProperties>
+		<comps>
+		  <li Class="CompProperties_EffectWithDest">
+			<compClass>RRYautja.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+		  </li>
+		</comps>
+	</RRYautja.EquipmentAbilityDef>
  
 </Defs>

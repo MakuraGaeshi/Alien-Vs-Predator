@@ -23,7 +23,7 @@
     <category>ThreatBig</category>
     <pointsScaleable>true</pointsScaleable>
     <minThreatPoints>450</minThreatPoints>
-    <shipPart>RRY_XenomorphCrashedShipPart</shipPart>
+    <mechClusterBuilding>RRY_XenomorphCrashedShipPart</mechClusterBuilding>
     <tale>ShipPartCrash</tale>
   </IncidentDef>
   

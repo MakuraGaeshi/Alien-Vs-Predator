@@ -18,12 +18,12 @@ namespace HunterMarkingSystem
             Comp_Markable otherMarkable = other.TryGetComp<Comp_Markable>();
             if (pMarkable == null)
             {
-                Log.Message(string.Format("{0} {1} Vs {2} pmarkable is null", this, p.LabelShortCap, other.LabelShortCap));
+            //    Log.Message(string.Format("{0} {1} Vs {2} pmarkable is null", this, p.LabelShortCap, other.LabelShortCap));
                 return false;
             }
             if (!pMarkable.MarkerRace)
             {
-                Log.Message(string.Format("{0} {1} Vs {2}, {1} is not a MarkerRace", this, p.LabelShortCap, other.LabelShortCap));
+            //    Log.Message(string.Format("{0} {1} Vs {2}, {1} is not a MarkerRace", this, p.LabelShortCap, other.LabelShortCap));
                 return false;
             }
             HediffDef Unbloodeddef = pMarkable.Props.Unblooded ?? DefDatabase<HediffDef>.AllDefs.First(x => x.defName.Contains("Hediff_Unblooded") && x.HasComp(typeof(HediffComp_HunterMark)));
@@ -32,12 +32,12 @@ namespace HunterMarkingSystem
             HediffDef othermarked = otherMarkable.Props.MarkedBase ?? DefDatabase<HediffDef>.AllDefs.First(x => x.defName.Contains("Hediff_BloodedM"));
             if (!p.RaceProps.Humanlike)
             {
-                Log.Message(string.Format("{0} {1} Vs {2}, {1} is not a Humanlike", this, p.LabelShortCap, other.LabelShortCap));
+            //    Log.Message(string.Format("{0} {1} Vs {2}, {1} is not a Humanlike", this, p.LabelShortCap, other.LabelShortCap));
                 return false;
             }
             if (!other.RaceProps.Humanlike)
             {
-                Log.Message(string.Format("{0} {1} Vs {2}, {2} is not a Humanlike", this, p.LabelShortCap, other.LabelShortCap));
+            //    Log.Message(string.Format("{0} {1} Vs {2}, {2} is not a Humanlike", this, p.LabelShortCap, other.LabelShortCap));
                 return false;
             }
             /*
@@ -62,22 +62,22 @@ namespace HunterMarkingSystem
                         stageIndex = 2;
                         break;
                     default:
-                        Log.Message(string.Format("{0} {1} Vs {2}, Bad BloodStatusMode ActiveAtStage {3}", this, p.LabelShortCap, other.LabelShortCap, stageIndex));
+                    //    Log.Message(string.Format("{0} {1} Vs {2}, Bad BloodStatusMode ActiveAtStage {3}", this, p.LabelShortCap, other.LabelShortCap, stageIndex));
                         return false;
                 }
                 if (p.Markable().BloodStatus == BloodStatusMode.Marked)
                 {
-                    Log.Message(string.Format("{0} {1} Vs {2}, is ActiveAtStage {3}", this, p.LabelShortCap, other.LabelShortCap, stageIndex));
+                //    Log.Message(string.Format("{0} {1} Vs {2}, is ActiveAtStage {3}", this, p.LabelShortCap, other.LabelShortCap, stageIndex));
                     return ThoughtState.ActiveAtStage(stageIndex);
                 }
                 else
                 {
-                    Log.Message(string.Format("{0} {1} Vs {2}, {1} is not Marked", this, p.LabelShortCap, other.LabelShortCap));
+                //    Log.Message(string.Format("{0} {1} Vs {2}, {1} is not Marked", this, p.LabelShortCap, other.LabelShortCap));
                 }
             }
             else
             {
-                Log.Message(string.Format("{0} {1} Vs {2}, {1} is not Blooded", this, p.LabelShortCap, other.LabelShortCap));
+            //    Log.Message(string.Format("{0} {1} Vs {2}, {1} is not Blooded", this, p.LabelShortCap, other.LabelShortCap));
             }
             return false;
         }

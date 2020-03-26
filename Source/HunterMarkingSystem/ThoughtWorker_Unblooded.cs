@@ -12,6 +12,14 @@ namespace HunterMarkingSystem
         // Token: 0x06000A02 RID: 2562 RVA: 0x0004F2B0 File Offset: 0x0004D6B0
         protected override ThoughtState CurrentSocialStateInternal(Pawn p, Pawn other)
         {
+            if (p == null || other == null)
+            {
+                return false;
+            }
+            if (p.Dead || other.Dead)
+            {
+                return false;
+            }
             bool Pblooded = p.Markable(out Comp_Markable pMarkable);
             bool Oblooded = other.Markable(out Comp_Markable oMarkable);
             
@@ -63,7 +71,7 @@ namespace HunterMarkingSystem
                         stageIndex = 2;
                         break;
                     default:
-                        //        Log.Message(string.Format("{0} {1} Vs {2}, Bad BloodStatusMode ActiveAtStage {3}", this, p.LabelShortCap, other.LabelShortCap, stageIndex));
+                        //    Log.Message(string.Format("{0} {1} Vs {2}, Bad BloodStatusMode ActiveAtStage {3}", this, p.LabelShortCap, other.LabelShortCap, stageIndex));
                         return false;
                 }
                 if (pMarkable.BloodStatus == BloodStatusMode.Unblooded)

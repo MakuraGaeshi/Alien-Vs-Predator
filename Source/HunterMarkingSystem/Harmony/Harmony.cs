@@ -1,6 +1,6 @@
 ﻿using RimWorld;
 using Verse;
-using Harmony;
+using HarmonyLib;
 using System.Reflection;
 using System.Collections.Generic;
 using System;
@@ -16,12 +16,12 @@ using HunterMarkingSystem.ExtensionMethods;
 namespace HunterMarkingSystem
 {
     [StaticConstructorOnStartup]
-    class Harmony
+    class HarmonyMain
     {
-        static Harmony()
+        static HarmonyMain()
         {
             //    HarmonyInstance.DEBUG = true;
-            var harmony = HarmonyInstance.Create("com.ogliss.rimworld.mod.HunterMarkingSystem");
+            var harmony = new Harmony("com.ogliss.rimworld.mod.HunterMarkingSystem");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
         }
     }

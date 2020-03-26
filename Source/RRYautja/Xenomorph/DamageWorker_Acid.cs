@@ -27,7 +27,7 @@ namespace Verse
             {
                 foreach (IntVec3 c in victim.OccupiedRect())
                 {
-                    FilthMaker.MakeFilth(c, map, ThingDefOf.Filth_Ash, 1);
+                    FilthMaker.TryMakeFilth(c, map, ThingDefOf.Filth_Ash, 1);
                 }
                 if (victim is Plant plant && victim.def.plant.IsTree && plant.LifeStage != PlantLifeStage.Sowing && victim.def != ThingDefOf.BurnedTree)
                 {
@@ -48,14 +48,15 @@ namespace Verse
                 t.TakeDamage(dinfo);
             }
         }
-        // Token: 0x06004BA8 RID: 19368 RVA: 0x00235924 File Offset: 0x00233D24
-        public override void ExplosionAffectCell(Explosion explosion, IntVec3 c, List<Thing> damagedThings, bool canThrowMotes)
+
+        public override void ExplosionAffectCell(Explosion explosion, IntVec3 c, List<Thing> damagedThings, List<Thing> ignoredThings, bool canThrowMotes)
         {
-            base.ExplosionAffectCell(explosion, c, damagedThings, canThrowMotes);
+            base.ExplosionAffectCell(explosion, c, damagedThings, ignoredThings, canThrowMotes);
             if (this.def == XenomorphDefOf.RRY_AcidDamage && Rand.Chance(FireUtility.ChanceToStartFireIn(c, explosion.Map)))
             {
-            //    FireUtility.TryStartFireIn(c, explosion.Map, Rand.Range(0.2f, 0.6f));
+                //    FireUtility.TryStartFireIn(c, explosion.Map, Rand.Range(0.2f, 0.6f));
             }
         }
+
     }
 }

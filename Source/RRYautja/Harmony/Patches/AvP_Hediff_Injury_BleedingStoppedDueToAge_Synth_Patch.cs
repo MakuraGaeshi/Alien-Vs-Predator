@@ -1,6 +1,6 @@
 ﻿using RimWorld;
 using Verse;
-using Harmony;
+using HarmonyLib;
 using System.Reflection;
 using System.Collections.Generic;
 using System;
@@ -27,7 +27,7 @@ namespace RRYautja
             if (pawn.def == USCMDefOf.RRY_Synth)
             {
                 __result = true;
-                Log.Message(string.Format("{0} {1}", pawn.Label, __result));
+            //    Log.Message(string.Format("{0} {1}", pawn.Label, __result));
             }
         }
     }

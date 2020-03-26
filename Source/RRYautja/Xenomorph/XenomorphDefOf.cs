@@ -85,6 +85,7 @@ namespace RimWorld
         public static JobDef RRY_Job_Xenomorph_Construct_Hive_Roof;
         public static JobDef RRY_Job_DestroyCocoon; 
         public static JobDef RRY_Neomorph_Ingest;
+        public static JobDef RRY_Xenomorph_Ingest; 
 
         // Xenomorph DutyDefs    
         public static DutyDef RRY_Xenomorph_DefendHiveLoc;
@@ -152,7 +153,7 @@ namespace RimWorld
         public static BodyPartDef RRY_Xeno_Shell;
 
         // Xenomorph AbilityDefs
-        public static AbilityUser.AbilityDef RRY_Ability_SpitAcid;
+        public static AbilityDef RRY_Ability_SpitAcid;
 
         // Xenomorph GameCOnditionDefs
         public static GameConditionDef RRY_Xenomorph_PowerCut;

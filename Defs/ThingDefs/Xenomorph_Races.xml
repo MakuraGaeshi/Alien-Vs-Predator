@@ -10,6 +10,7 @@
     <useHitPoints>false</useHitPoints>
 	
     <hasTooltip>true</hasTooltip>
+    <alwaysFlee>true</alwaysFlee>
     <soundImpactDefault>BulletImpact_Flesh</soundImpactDefault>
     <inspectorTabs>
         <li>ITab_Pawn_Health</li>
@@ -33,8 +34,8 @@
       <MeleeHitChance>1.5</MeleeHitChance>
       <MiningSpeed>1.5</MiningSpeed>
       <ImmunityGainSpeed>2.25</ImmunityGainSpeed>
-      <PsychicSensitivity>0</PsychicSensitivity>
-      <ToxicSensitivity>0</ToxicSensitivity>
+      <PsychicSensitivity>1</PsychicSensitivity>
+      <ToxicSensitivity>0.5</ToxicSensitivity>
       <Flammability>0.5</Flammability>
       <ComfyTemperatureMin>-30</ComfyTemperatureMin>
       <ComfyTemperatureMax>150</ComfyTemperatureMax>
@@ -43,9 +44,11 @@
       <ArmorRating_Heat>0.75</ArmorRating_Heat>
     </statBases>
     <race>
+      <thinkTreeMain>RRY_Xenomorph_ThinkTree</thinkTreeMain>
+      <thinkTreeConstant>XenomorphConstant</thinkTreeConstant>
       <!-- <deathActionWorkerClass>RRYautja.DeathActionWorker_Xenomorph</deathActionWorkerClass> -->
       <herdAnimal>false</herdAnimal>
-      <predator>true</predator>
+      <!--predator>true</predator-->
       <maxPreyBodySize>3.0</maxPreyBodySize>
       <baseBodySize>1.5</baseBodySize>
       <baseHungerRate>0.0</baseHungerRate>
@@ -109,7 +112,6 @@
       <meatLabel>xenomorph flesh</meatLabel>
       <maxPreyBodySize>30</maxPreyBodySize>
       <intelligence>ToolUser</intelligence>
-      <thinkTreeMain>RRY_Xenomorph_ThinkTree</thinkTreeMain>
       <body>RRY_Xenomorph_FaceHugger</body>
       <baseBodySize>0.30</baseBodySize>
       <baseHealthScale>0.3</baseHealthScale>
@@ -117,9 +119,11 @@
         <li>
           <def>RRY_XFacehuggerFullyFormed</def>
           <minAge>0</minAge>
+		  <!--
           <soundWounded>RRY_Pawn_Xenomorph_Queen_Wounded</soundWounded>
           <soundDeath>RRY_Pawn_Xenomorph_Queen_Death</soundDeath>
           <soundCall>RRY_Pawn_Xenomorph_Queen_Call</soundCall>
+		  -->
         </li>
       </lifeStageAges>
       <soundCallIntervalRange>
@@ -133,6 +137,9 @@
     <comps> 
       <li>
         <compClass>RRYautja.Comp_Facehugger</compClass>
+      </li>
+      <li>
+        <compClass>RRYautja.Comp_Xenomorph</compClass>
       </li>
     </comps>
   </ThingDef>
@@ -189,11 +196,13 @@
     <statBases>
       <Mass>160</Mass>
       <MoveSpeed>5.75</MoveSpeed>
-      <ArmorRating_Blunt>1.50</ArmorRating_Blunt>
-      <ArmorRating_Sharp>1.80</ArmorRating_Sharp>
-      <ArmorRating_Heat>1.30</ArmorRating_Heat>
+      <ArmorRating_Blunt>1.10</ArmorRating_Blunt>
+      <ArmorRating_Sharp>1.10</ArmorRating_Sharp>
+      <ArmorRating_Heat>1.10</ArmorRating_Heat>
       <MeatAmount>115</MeatAmount>
       <LeatherAmount>90</LeatherAmount>
+      <PsychicSensitivity>0.25</PsychicSensitivity>
+      <ToxicSensitivity>0.25</ToxicSensitivity>
     </statBases>
     <tools>
       <li>
@@ -292,7 +301,7 @@
       <body>RRY_Xenomorph_Biped</body>
 	  <useMeatFrom>RRY_Xenomorph_FaceHugger</useMeatFrom>
       <baseBodySize>3.0</baseBodySize>
-      <baseHealthScale>6.32</baseHealthScale>
+      <baseHealthScale>28.5</baseHealthScale>
       <lifeStageAges>
         <li>
           <def>RRY_XenomorphChestBursterBaby</def>
@@ -642,7 +651,13 @@
     <label>Drone</label>
     <race>RRY_Xenomorph_Drone</race>
     <combatPower>125</combatPower>
-
+    <alternateGraphicChance>0.2</alternateGraphicChance>
+    <alternateGraphics>
+      <li><texPath>Things/Pawn/Xenomorph/Xenomorph_Drone_New_Dark</texPath></li>
+      <li><texPath>Things/Pawn/Xenomorph/Xenomorph_Drone_New_Gold</texPath></li>
+      <li><texPath>Things/Pawn/Xenomorph/Xenomorph_Drone_New_Light</texPath></li>
+      <!--<li><texPath>Things/Pawn/Xenomorph/Xenomorph_Drone_New_Red</texPath></li>-->
+    </alternateGraphics>
     <lifeStages>
       <li>
         <bodyGraphicData>
@@ -834,7 +849,11 @@
     <label>Warrior</label>
     <race>RRY_Xenomorph_Warrior</race>
     <combatPower>160</combatPower>
-
+    <alternateGraphicChance>0.5</alternateGraphicChance>
+    <alternateGraphics>
+      <li><texPath>Things/Pawn/Xenomorph/Xenomorph_Warrior_New</texPath></li>
+      <!--<li><texPath>Things/Pawn/Xenomorph/Xenomorph_Warrior_New_Red</texPath></li>-->
+    </alternateGraphics>
     <lifeStages>
       <li>
         <bodyGraphicData>
@@ -1275,12 +1294,14 @@
     <description>Thrumbomorph Xenomorphs are significantly larger and stronger than the normal adults, being over 5 metres tall. Their body structure differs also, having no arms, although its large limbs many manipulate objects. The thrumbomorphs's head is larger than those of other adult Xenomorphs and is adorned by a large, flat blade, which is an inherited feature from its host./n/nThis thing is a total monstrosity and can easily dismantle a battle tank, do not engage lightly.</description>
     <statBases>
       <Mass>200</Mass>
-      <MoveSpeed>6.5</MoveSpeed>
-      <ArmorRating_Blunt>1.50</ArmorRating_Blunt>
-      <ArmorRating_Sharp>1.80</ArmorRating_Sharp>
-      <ArmorRating_Heat>1.30</ArmorRating_Heat>
+      <MoveSpeed>5.5</MoveSpeed>
+      <ArmorRating_Blunt>1.30</ArmorRating_Blunt>
+      <ArmorRating_Sharp>1.60</ArmorRating_Sharp>
+      <ArmorRating_Heat>1.00</ArmorRating_Heat>
       <MeatAmount>215</MeatAmount>
       <LeatherAmount>140</LeatherAmount>
+      <PsychicSensitivity>0.5</PsychicSensitivity>
+      <ToxicSensitivity>0.25</ToxicSensitivity>
     </statBases>
     <tools>
       <li>
@@ -1389,7 +1410,7 @@
       <body>RRY_Xenomorph_QuadrupedWithHorn</body>
 	  <useMeatFrom>RRY_Xenomorph_FaceHugger</useMeatFrom>
       <baseBodySize>4</baseBodySize>
-      <baseHealthScale>9.0</baseHealthScale>
+      <baseHealthScale>8.0</baseHealthScale>
       <manhunterOnDamageChance>1.00</manhunterOnDamageChance>
       <lifeStageAges>
         <li>
@@ -1469,7 +1490,7 @@
     <defName>RRY_Xenomorph_Thrumbomorph</defName>
     <label>Thrumbomorph</label>
     <race>RRY_Xenomorph_Thrumbomorph</race>
-    <combatPower>850</combatPower>
+    <combatPower>1250</combatPower>
     <lifeStages>
       <li>
         <bodyGraphicData>

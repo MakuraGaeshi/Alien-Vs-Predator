@@ -4,6 +4,7 @@
   <HediffDef ParentName="InjuryBase">
     <defName>RRY_XenoAcidBurn</defName>
     <label>acid burn</label>
+    <description>acid burn</description>
     <labelNoun>an acid burn</labelNoun>
     <comps>
       <li Class="HediffCompProperties_TendDuration">
@@ -35,6 +36,7 @@
   <HediffDef ParentName="InjuryBase">
     <defName>RRY_Impaled</defName>
     <label>impaled</label>
+    <description>impaled</description>
     <labelNoun>an impalement wound</labelNoun>
     <comps>
       <li Class="HediffCompProperties_TendDuration">

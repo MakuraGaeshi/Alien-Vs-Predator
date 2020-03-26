@@ -36,7 +36,7 @@
 
 	<ThingDef Name="RRY_USCM_Apparel_MakeableBase" ParentName="RRY_USCM_ApparelBase" Abstract="True">
 		<recipeMaker>
-			<workSpeedStat>TailoringSpeed</workSpeedStat>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
 			<workSkill>Crafting</workSkill>
 			<effectWorking>Tailor</effectWorking>
 			<soundWorking>Recipe_Tailor</soundWorking>
@@ -57,13 +57,12 @@
 
 	<ThingDef Name="RRY_USCM_Armour_MakeableBase" ParentName="RRY_USCM_ApparelBase" Abstract="True">
 		<recipeMaker>
-			<workSpeedStat>SmithingSpeed</workSpeedStat>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
 			<workSkill>Crafting</workSkill>
 			<effectWorking>Smith</effectWorking>
 			<soundWorking>Recipe_Machining</soundWorking>
 			<recipeUsers>
-				<li>ElectricSmithy</li>
-				<li>FueledSmithy</li>
+				<li>TableMachining</li>
 			</recipeUsers>
 			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
 		</recipeMaker>

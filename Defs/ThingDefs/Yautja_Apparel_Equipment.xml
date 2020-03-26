@@ -20,25 +20,12 @@
 		</projectile>
 		<tickerType>Normal</tickerType>
 		<comps> 
-		  <li Class="CompToggleDef.CompProperties_ToggleDef">
+		  <li Class="AdeptusMechanicus.CompProperties_ToggleDef">
             <labelKey>RRY_Toggle_Gauntlet</labelKey>
 		  </li> 
 		  <li Class="RRYautja.CompProperties_WearableExplosive">
 			<stability>2</stability>
 		  </li> 
-		  <li Class="RRYautja.CompProperties_HediffApparel">
-			<dropOnPartLost>true</dropOnPartLost>
-			<hediffDef>RRY_WristbladeHeDiff</hediffDef>
-			<severityBasedOnDurability>false</severityBasedOnDurability>
-			<groupsToAffect>
-			  <li>RRY_Yautja_RightArm</li>
-			</groupsToAffect>
-			<!--
-			<partsToAffect>
-			  <li>Arm</li>
-			</partsToAffect>
-			-->
-		  </li>
 		  <li Class="RRYautja.CompProperties_MedicalInjector">
 			<medicine>MedicineHerbal</medicine>
 			<Uses>3</Uses>
@@ -107,6 +94,21 @@
 				<li>RightHand</li>
 			</bodyPartGroups>
         </apparel>
+		<comps> 
+		  <li Class="RRYautja.CompProperties_HediffApparel">
+			<dropOnPartLost>true</dropOnPartLost>
+			<hediffDef>RRY_WristbladeHeDiff</hediffDef>
+			<severityBasedOnDurability>false</severityBasedOnDurability>
+			<groupsToAffect>
+			  <li>RRY_Yautja_RightArm</li>
+			</groupsToAffect>
+			<!--
+			<partsToAffect>
+			  <li>Arm</li>
+			</partsToAffect>
+			-->
+		  </li>
+		</comps>
     </ThingDef>
     <ThingDef ParentName="RRY_Equipment_HunterGauntlet">
         <defName>RRY_Equipment_HunterGauntlet_TOGGLEDEF_LH</defName>
@@ -116,6 +118,21 @@
 				<li>LeftHand</li>
 			</bodyPartGroups>
         </apparel>
+		<comps> 
+		  <li Class="RRYautja.CompProperties_HediffApparel">
+			<dropOnPartLost>true</dropOnPartLost>
+			<hediffDef>RRY_WristbladeHeDiff</hediffDef>
+			<severityBasedOnDurability>false</severityBasedOnDurability>
+			<groupsToAffect>
+			  <li>RRY_Yautja_LeftArm</li>
+			</groupsToAffect>
+			<!--
+			<partsToAffect>
+			  <li>Arm</li>
+			</partsToAffect>
+			-->
+		  </li>
+		</comps>
     </ThingDef>
 	
 	<!-- ========================= Yautja - Shoulder Cannon ========================== -->

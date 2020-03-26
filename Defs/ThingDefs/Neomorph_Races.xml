@@ -58,7 +58,7 @@
       <intelligence>ToolUser</intelligence>
       <trainability>Intermediate</trainability>
       <thinkTreeMain>RRY_Neomorph_ThinkTree</thinkTreeMain>
-      <thinkTreeConstant>AnimalConstant</thinkTreeConstant>
+      <thinkTreeConstant>NeomorphConstant</thinkTreeConstant>
       <fleshType>RRY_Neomorph</fleshType>
       <bloodDef>RRY_FilthBloodNeomorph</bloodDef>	
       <leatherDef>RRY_Leather_Xenomorph</leatherDef>

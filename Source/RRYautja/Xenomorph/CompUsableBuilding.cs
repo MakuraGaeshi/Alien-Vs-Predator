@@ -49,25 +49,25 @@ namespace RimWorld
             string failReason;
             if (!this.CanBeUsedBy(myPawn, out failReason))
             {
-                yield return new FloatMenuOption(this.FloatMenuOptionLabel + ((failReason == null) ? string.Empty : (" (" + failReason + ")")), null, MenuOptionPriority.Default, null, null, 0f, null, null);
+                yield return new FloatMenuOption(this.FloatMenuOptionLabel(myPawn) + ((failReason == null) ? string.Empty : (" (" + failReason + ")")), null, MenuOptionPriority.Default, null, null, 0f, null, null);
             }
             else if (!myPawn.CanReach(this.parent, PathEndMode.InteractionCell, Danger.Deadly, false, TraverseMode.ByPawn))
             {
-                yield return new FloatMenuOption(this.FloatMenuOptionLabel + " (" + "NoPath".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null);
+                yield return new FloatMenuOption(this.FloatMenuOptionLabel(myPawn) + " (" + "NoPath".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null);
             }
             /*
             else if (!myPawn.CanReserve(this.parent, 1, -1, null, false))
             {
-                yield return new FloatMenuOption(this.FloatMenuOptionLabel + " (" + "Reserved".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null);
+                yield return new FloatMenuOption(this.FloatMenuOptionLabel(myPawn)  + " (" + "Reserved".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null);
             }
             */
             else if (!myPawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
             {
-                yield return new FloatMenuOption(this.FloatMenuOptionLabel + " (" + "Incapable".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null);
+                yield return new FloatMenuOption(this.FloatMenuOptionLabel(myPawn) + " (" + "Incapable".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null);
             }
             else
             {
-                FloatMenuOption useopt = new FloatMenuOption(this.FloatMenuOptionLabel, delegate ()
+                FloatMenuOption useopt = new FloatMenuOption(this.FloatMenuOptionLabel(myPawn), delegate ()
                 {
                     if (myPawn.CanReach(this.parent, PathEndMode.InteractionCell, Danger.Deadly, false))
                     {

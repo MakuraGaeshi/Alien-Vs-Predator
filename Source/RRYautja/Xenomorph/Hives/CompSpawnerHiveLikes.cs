@@ -349,7 +349,18 @@ namespace RimWorld
 		public override IEnumerable<Gizmo> CompGetGizmosExtra()
 		{
 			if (Prefs.DevMode)
-			{
+            {
+                if (!this.canSpawnHiveLikes)
+                {
+                    yield return new Command_Action
+                    {
+                        defaultLabel = "DEV: Wake Up",
+                        action = delegate ()
+                        {
+                            this.canSpawnHiveLikes = true;
+                        }
+                    };
+                }
                 int num = 1;
                 yield return new Command_Action
                 {

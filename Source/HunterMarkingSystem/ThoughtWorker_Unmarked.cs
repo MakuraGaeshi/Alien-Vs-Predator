@@ -62,7 +62,7 @@ namespace HunterMarkingSystem
                         stageIndex = 2;
                         break;
                     default:
-                        //        Log.Message(string.Format("{0} {1} Vs {2}, Bad BloodStatusMode ActiveAtStage {3}", this, p.LabelShortCap, other.LabelShortCap, stageIndex));
+                        //    Log.Message(string.Format("{0} {1} Vs {2}, Bad BloodStatusMode ActiveAtStage {3}", this, p.LabelShortCap, other.LabelShortCap, stageIndex));
                         return false;
                 }
                 if (pMarkable.BloodStatus == BloodStatusMode.Unmarked)

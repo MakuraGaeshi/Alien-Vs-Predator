@@ -77,11 +77,11 @@ namespace HunterMarkingSystem.ExtensionMethods
                 {
                     result = true;
                 }
-                Log.Message(string.Format("{0} Worthy Kill for {1} : {4}, Score: \n{0}: {2} Vs {1}: {3},", x.LabelShortCap, y.LabelShortCap, markDatax.MarkScore, markDatay.MarkScore, result));
+            //    Log.Message(string.Format("{0} Worthy Kill for {1} : {4}, Score: \n{0}: {2} Vs {1}: {3},", x.LabelShortCap, y.LabelShortCap, markDatax.MarkScore, markDatay.MarkScore, result));
             }
             else
             {
-                Log.Message("X == null");
+            //    Log.Message("X == null");
             }
             return result;
         }
@@ -99,11 +99,11 @@ namespace HunterMarkingSystem.ExtensionMethods
                     markData = markDatax;
                     result = true;
                 }
-                Log.Message(string.Format("{0} Worthy Kill for {1} : {4}, Score: \n{0}: {2} Vs {1}: {3},", x.LabelShortCap, y.LabelShortCap, markDatax.MarkScore, markDatay.MarkScore, result));
+            //    Log.Message(string.Format("{0} Worthy Kill for {1} : {4}, Score: \n{0}: {2} Vs {1}: {3},", x.LabelShortCap, y.LabelShortCap, markDatax.MarkScore, markDatay.MarkScore, result));
             }
             else
             {
-                Log.Message("X == null");
+            //    Log.Message("X == null");
             }
             return result;
         }

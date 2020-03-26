@@ -35,7 +35,7 @@ namespace RimWorld
             LocalTargetInfo target = this.job.targetA;
             Job job = this.job;
             this.pawn.ReserveAsManyAsPossible(this.job.GetTargetQueue(TargetIndex.A), this.job, 1, -1, null);
-            this.pawn.ReserveAsManyAsPossible(this.job.GetTargetQueue(TargetIndex.B), this.job, 1, -1, null);
+            this.pawn.ReserveAsManyAsPossible(this.job.GetTargetQueue(TargetIndex.B), this.job, 1, -1, ReservationLayerDefOf.Floor);
             return pawn.Reserve(target, job, 1, -1, null, errorOnFailed);
         }
 
@@ -45,8 +45,9 @@ namespace RimWorld
             this.FailOnIncapable(PawnCapacityDefOf.Manipulation);
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);
             yield return Toils_Haul.StartCarryThing(TargetIndex.A, false, true, false);
-            Toil carryToCell = Toils_Haul.CarryHauledThingToCell(TargetIndex.B);
+            Toil carryToCell = Toils_Haul.CarryHauledThingToCell(TargetIndex.C);
             yield return carryToCell;
+            /*
             yield return new Toil
             {
                 initAction = delegate ()
@@ -58,6 +59,12 @@ namespace RimWorld
                 },
                 defaultCompleteMode = ToilCompleteMode.Instant
             };
+            */
+        //    yield return Toils_Goto.GotoCell(TargetIndex.C, PathEndMode.OnCell);
+            if (Takee == null || Takee.Dead)
+            {
+                yield break;
+            }
             yield return Toils_Haul.PlaceHauledThingInCell(TargetIndex.B, carryToCell, false);
             Toil prepare = Toils_General.Wait(this.useDuration, TargetIndex.A);
             prepare.NPCWithProgressBarToilDelay(TargetIndex.A, false, -0.5f);

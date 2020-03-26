@@ -74,6 +74,15 @@
 				<cooldownTime>1.6</cooldownTime>
 			</li>
 		</tools>
+		<costList>
+		  <Steel>30</Steel>
+		  <ComponentIndustrial>3</ComponentIndustrial>
+		</costList>
+		<recipeMaker>
+		  <skillRequirements>
+			<Crafting>5</Crafting>
+		  </skillRequirements>
+		</recipeMaker>	
 	</ThingDef>
 
 	<!-- ==================== M4A4 ============================= -->
@@ -148,7 +157,16 @@
 				<power>8</power>
 				<cooldownTime>1.6</cooldownTime>
 			</li>
-		</tools>		
+		</tools>	
+		<costList>
+		  <Steel>30</Steel>
+		  <ComponentIndustrial>3</ComponentIndustrial>
+		</costList>
+		<recipeMaker>
+		  <skillRequirements>
+			<Crafting>5</Crafting>
+		  </skillRequirements>	
+		</recipeMaker>
 	</ThingDef>
 
 	<!-- ==================== 88 mod 4 ============================= -->
@@ -224,216 +242,17 @@
 				<cooldownTime>1.6</cooldownTime>
 			</li>
 		</tools>
-	</ThingDef>
-
-<!-- ====================== USCM - M41A Pulse Rifle ====================== -->
- <ThingDef ParentName="BaseBullet">
-	<defName>RRY_USCM_Bullet_10x24mm_PR</defName>
-    <label>10x24mm caseless</label>
-    <graphicData>
-		<texPath>Things/Projectile/Charge_Small</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile>
-		<flyOverhead>false</flyOverhead>
-		<damageDef>Bullet</damageDef>
-		<damageAmountBase>13</damageAmountBase>
-		<armorPenetrationBase>0.35</armorPenetrationBase>
-		<stoppingPower>1.3</stoppingPower>
-		<speed>80</speed>
-	</projectile>
- </ThingDef>
-
-	<ThingDef ParentName="RRY_USCM_BaseMakeableGun">
-		<defName>RRY_USCM_Gun_M41APR</defName>
-		<label>M41A pulse rifle</label>
-		<description>The Armat M41A Pulse Rifle is an American-made pulse-action assault rifle chambered for 10×24mm Caseless ammunition.</description>
-		<graphicData>
-			<texPath>Things/Equipment/USCM/Ranged/M41A_green</texPath>
-			<graphicClass>Graphic_Single</graphicClass>		
-    </graphicData>
-		<soundInteract>Interact_ChargeRifle</soundInteract>
-		<statBases>
-			<WorkToMake>25000</WorkToMake>
-			<MarketValue>500</MarketValue>
-			<Mass>5.2</Mass>
-			<AccuracyTouch>0.55</AccuracyTouch>
-			<AccuracyShort>0.55</AccuracyShort>
-			<AccuracyMedium>0.68</AccuracyMedium>
-			<AccuracyLong>0.48</AccuracyLong>
-			<RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
-		</statBases>
-	<recipeMaker>
-		<researchPrerequisite>ChargedShot</researchPrerequisite>
-		<skillRequirements>
-			<Crafting>7</Crafting>
-		</skillRequirements>
-	</recipeMaker>		
-		<verbs>
-			<li>
-				<verbClass>Verb_Shoot</verbClass>
-				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>RRY_USCM_Bullet_10x24mm_PR</defaultProjectile>
-				<warmupTime>1</warmupTime>
-				<range>31</range>
-				<burstShotCount>4</burstShotCount>
-				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-				<soundCast>RRY_M41A_Shot</soundCast>
-				<soundCastTail>GunTail_Medium</soundCastTail>
-				<muzzleFlashScale>6</muzzleFlashScale>
-			
-			</li>
-		</verbs>
-		<comps>   
-			<li Class="AbilityUser.CompProperties_AbilityItem">
-				<!-- <AbilityUserClass>AbilityUser.GenericCompAbilityItem</AbilityUserClass> -->
-				<Abilities>
-					<li>RRY_Ability_LaunchM42AGrenade</li>
-				</Abilities>
-			</li> 
-		</comps>
-    <tools>
-      <li>
-        <label>grip</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>12</power>
-        <cooldownTime>1.6</cooldownTime>
-      </li>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>12</power>
-        <cooldownTime>1.6</cooldownTime>
-      </li>
-    </tools>
-		<techLevel>Spacer</techLevel>
-		<weaponTags>
-			<li>USCM_M41A</li>
-			<li>USCM_StandardIssue_Ranged</li>
-			<li>USCM_Weapons</li>
-		</weaponTags>
-		<thingCategories>
-			<li>RRY_RangedWeapons</li>
-			<li>RRY_USCM_RangedWeapons</li>
-		</thingCategories>
-		<tradeTags>
-			<li>RRY_RangedWeapons</li>
-			<li>RRY_USCM_RangedWeapons</li>
-		</tradeTags>
-		<costList>				
-			<Steel>30</Steel>
-			<Plasteel>5</Plasteel>
-			<ComponentIndustrial>3</ComponentIndustrial>
+		<costList>
+		  <Steel>40</Steel>
+		  <ComponentIndustrial>3</ComponentIndustrial>
 		</costList>
+		<recipeMaker>
+		  <skillRequirements>
+			<Crafting>5</Crafting>
+		  </skillRequirements>
+		</recipeMaker>
 	</ThingDef>
-	
-<!-- ====================== USCM - M56 Smart Gun ====================== -->
-	<ThingDef ParentName="BaseBullet">
-	<defName>RRY_USCM_Bullet_10x28mm_SG</defName>
-    <label>10x28mm caseless</label>
-    <graphicData>
-		<texPath>Things/Projectile/Charge_Small</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile>
-		<flyOverhead>false</flyOverhead>
-		<damageDef>Bullet</damageDef>
-		<damageAmountBase>15</damageAmountBase>
-		<armorPenetrationBase>0.40</armorPenetrationBase>
-		<stoppingPower>1.0</stoppingPower>
-		<speed>90</speed>
-	</projectile>
- </ThingDef>
 
-	<ThingDef ParentName="RRY_USCM_BaseMakeableGun">
-		<defName>RRY_USCM_Gun_M56SmartGun</defName>
-		<label>M56 smartgun</label>
-		<description>The M56 Smartgun is a man-portable heavy machine gun with automatic targeting capabilities chambered for 10×28mm Caseless ammunition. The M56 is dependent on the combat harness and the HMS to be fully functional.</description>
-		<graphicData>
-			<texPath>Things/Equipment/USCM/Ranged/M56_Smartgun</texPath>
-			<graphicClass>Graphic_Single</graphicClass>		
-    </graphicData>
-		<soundInteract>Interact_Rifle</soundInteract>
-		<statBases>
-			<WorkToMake>36000</WorkToMake>
-			<MarketValue>750</MarketValue>
-			<Mass>8.2</Mass>
-			<AccuracyTouch>0.32</AccuracyTouch>
-			<AccuracyShort>0.42</AccuracyShort>
-			<AccuracyMedium>0.50</AccuracyMedium>
-			<AccuracyLong>0.26</AccuracyLong>
-			<RangedWeapon_Cooldown>3.1</RangedWeapon_Cooldown>
-		</statBases>
-		<comps>
-			<li Class="RRYautja.CompProperties_SmartgunSystem"> 
-			<WarmUpReductionQualityAffected>false</WarmUpReductionQualityAffected>
-			<TargeterDef>RRY_Equipment_HMS</TargeterDef>
-			<HarnessDef>RRY_Apparel_M56CombatHarness</HarnessDef>
-			
-			</li>
-		</comps>
-	<recipeMaker>
-		<researchPrerequisite>ChargedShot</researchPrerequisite>
-		<skillRequirements>
-			<Crafting>8</Crafting>
-		</skillRequirements>
-	</recipeMaker>
-		
-		<verbs>
-			<li>
-				<verbClass>Verb_Shoot</verbClass>
-				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>RRY_USCM_Bullet_10x28mm_SG</defaultProjectile>
-				<warmupTime>2.5</warmupTime>
-				<range>31</range>
-				<burstShotCount>25</burstShotCount>
-				<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
-				<soundCast>RRY_M56_Shot</soundCast>
-				<soundCastTail>GunTail_Medium</soundCastTail>
-				<muzzleFlashScale>9</muzzleFlashScale>
-			
-			</li>
-		</verbs>
-    <tools>
-     
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>12</power>
-        <cooldownTime>2.6</cooldownTime>
-      </li>
-    </tools>
-		<techLevel>Spacer</techLevel>
-		<weaponTags>
-			<li>USCM_M56SmartGun</li>
-			<li>USCM_StandardIssue_Ranged</li>
-			<li>USCM_M56SmartGunSystem</li>
-		</weaponTags>
-		 <equippedStatOffsets>
-			<MoveSpeed>-2.32</MoveSpeed>
-		</equippedStatOffsets>
-		<thingCategories>
-			<li>RRY_RangedWeapons</li>
-			<li>RRY_USCM_RangedWeapons</li>
-		</thingCategories>
-		<tradeTags>
-			<li>RRY_RangedWeapons</li>
-			<li>RRY_USCM_RangedWeapons</li>
-		</tradeTags>
-		<costList>				
-			<Steel>30</Steel>
-			<Plasteel>5</Plasteel>
-			<ComponentIndustrial>3</ComponentIndustrial>
-		</costList>
-	</ThingDef>
-	
 <!-- ====================== M240 Incinerator Unit ===================== -->
  <ThingDef ParentName="BaseBullet">
 	<defName>RRY_USCM_Bullet_M240F</defName>
@@ -452,11 +271,16 @@
       </li>
     </modExtensions>
 	-->
+	<modExtensions>
+	  <li Class="RRYautja.ProjectileDefExtension">
+		<ExtraShots>2</ExtraShots>
+	  </li>
+	</modExtensions>
     <projectile>
 		<flyOverhead>false</flyOverhead>
 		<damageDef>RRY_Flamer</damageDef>
 		<damageAmountBase>1</damageAmountBase>
-		<armorPenetrationBase>0.16</armorPenetrationBase>
+		<armorPenetrationBase>0.08</armorPenetrationBase>
 		<explosionRadius>0.75</explosionRadius>
 		<explosionChanceToStartFire>1.0</explosionChanceToStartFire>
 		<postExplosionSpawnThingDef>Filth_Fuel</postExplosionSpawnThingDef>
@@ -508,13 +332,12 @@
 		<li>RRY_USCM_RangedWeapons</li>
 	</tradeTags>
     <verbs>
-		<li Class="RRyautja.VerbPropertiesOGSG">
-			<verbClass>RRYautja.Verb_ShootShotgun</verbClass>
-			<pelletCount>3</pelletCount>
+		<li>
+			<verbClass>Verb_Shoot</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>RRY_USCM_Bullet_M240F</defaultProjectile>
 			<warmupTime>0.5</warmupTime>
-			<range>12</range>
+			<range>16</range>
 			<burstShotCount>24</burstShotCount>
 			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
 			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
@@ -565,6 +388,11 @@
       </li>
     </modExtensions>
 	-->
+	<modExtensions>
+	  <li Class="RRYautja.ProjectileDefExtension">
+		<ExtraShots>4</ExtraShots>
+	  </li>
+	</modExtensions>
     <projectile>
 		<flyOverhead>false</flyOverhead>
 		<damageDef>RRY_Flamer</damageDef>
@@ -618,9 +446,8 @@
 		<li>RRY_USCM_RangedWeapons</li>
 	</tradeTags>
     <verbs>
-		<li Class="RRyautja.VerbPropertiesOGSG">
-			<verbClass>RRYautja.Verb_ShootShotgun</verbClass>
-			<pelletCount>3</pelletCount>
+		<li>
+			<verbClass>Verb_Shoot</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>RRY_USCM_Bullet_M240A2F</defaultProjectile>
 			<warmupTime>2.5</warmupTime>
@@ -724,10 +551,6 @@
 			<li>USCM_StandardIssue_Ranged</li>
 			<li>USCM_Weapons</li>
 		</weaponTags>
-		<thingCategories>
-			<li>RRY_RangedWeapons</li>
-			<li>RRY_USCM_RangedWeapons</li>
-		</thingCategories>
 		<tradeTags>
 			<li>RRY_RangedWeapons</li>
 			<li>RRY_USCM_RangedWeapons</li>
@@ -742,7 +565,7 @@
 	<!-- =================== M37A2 Pump Shotgun ================== -->
 	<ThingDef ParentName="BaseBullet">
 		<defName>RRY_USCM_Bullet_M37A2S</defName>
-		<label>330mm bullet</label>
+		<label>buckshot</label>
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -753,8 +576,12 @@
 			<damageAmountBase>6</damageAmountBase>
 			<speed>120</speed>
 		</projectile>
+	<modExtensions>
+	  <li Class="RRYautja.ProjectileDefExtension">
+		<ExtraShots>7</ExtraShots>
+	  </li>
+	</modExtensions>
 	</ThingDef>
-
 
 	<ThingDef ParentName="RRY_USCM_BaseMakeableGun">
 		<defName>RRY_USCM_Gun_M37A2S</defName>
@@ -796,9 +623,8 @@
 			<WorkSpeedGlobal>-0.1</WorkSpeedGlobal>
 		</equippedStatOffsets>
 		<verbs>
-			<li Class="RRyautja.VerbPropertiesOGSG">
-				<verbClass>RRYautja.Verb_ShootShotgun</verbClass>
-				<pelletCount>7</pelletCount>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>RRY_USCM_Bullet_M37A2S</defaultProjectile>
 				<warmupTime>0.45</warmupTime>
@@ -842,7 +668,7 @@
 		<projectile>
 			<flyOverhead>false</flyOverhead>
 			<damageDef>Bullet</damageDef>
-			<damageAmountBase>55</damageAmountBase>
+			<damageAmountBase>35</damageAmountBase>
 			<speed>150</speed>
 		</projectile>
 	</ThingDef>
@@ -905,7 +731,12 @@
 				<power>10</power>
 				<cooldownTime>1.9</cooldownTime>
 			</li>
-		</tools>		
+		</tools>	
+		<costList>
+		  <Plasteel>20</Plasteel>
+		  <Steel>40</Steel>
+		  <ComponentSpacer>1</ComponentSpacer>
+		</costList>	
 	</ThingDef>
 		
 	<!-- =================== M5 Rocket Propelled Grenade ================== -->	
@@ -926,7 +757,7 @@
 		</projectile>
 	</ThingDef>
   
-	<ThingDef ParentName="RRY_USCM_BaseGun">
+	<ThingDef ParentName="RRY_USCM_BaseMakeableGun">
 		<defName>RRY_USCM_Gun_M5RPG</defName>
 		<label>M5 Rocket Propelled Grenade</label>
 		<description>The M5 Rocket Propelled Grenade (RPG) is a portable, shoulder-fired, reloadable, semi-automatic unguided anti-armor rocket-propelled grenade launcher used by United States Colonial Marine Corps as their standard issue RPG. Able to load up to 4 rockets, the M5 RPG is the favorite anti-infantry toy of the USCM.</description>
@@ -984,6 +815,16 @@
 				<power>10</power>
 				<cooldownTime>1.9</cooldownTime>
 			</li>
-		</tools>		
+		</tools>	
+		<costList>
+		  <Plasteel>40</Plasteel>
+		  <Chemfuel>40</Chemfuel>
+		  <ComponentSpacer>1</ComponentSpacer>
+		</costList>
+		<recipeMaker>
+		  <skillRequirements>
+			<Crafting>12</Crafting>
+		  </skillRequirements>
+		</recipeMaker>	
 	</ThingDef>
 </Defs>

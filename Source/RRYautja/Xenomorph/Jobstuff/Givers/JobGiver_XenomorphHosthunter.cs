@@ -61,6 +61,7 @@ namespace RimWorld
                         }
                     }
                 }
+                else
                 if (lord.CurLordToil is LordToil_DefendHiveLikeAggressively hivetoilA)
                 {
                     if (hivetoilA.Data.assignedHiveLikes.TryGetValue(pawn) != null)
@@ -70,6 +71,11 @@ namespace RimWorld
                 }
             }
 
+            float summaryHealthPercent = pawn.health.summaryHealth.SummaryHealthPercent;
+            if (summaryHealthPercent < 0.5f)
+            {
+               return null;
+            }
             bool aggressive;
             Comp_Xenomorph _Xenomorph = pawn.TryGetComp<Comp_Xenomorph>();
             if (pawn.TryGetAttackVerb(null, false) == null)
@@ -81,9 +87,21 @@ namespace RimWorld
             Pawn pawn2 = null;
             if (hive!=null)
             {
-                if (_Xenomorph != null && hive.hiveDormant)
+                if (_Xenomorph != null)
                 {
-                    pawn2 = _Xenomorph.BestPawnToHuntForPredator(pawn, false, true);
+                    if (!hive.hiveDormant)
+                    {
+                        pawn2 = _Xenomorph.BestPawnToHuntForPredator(pawn, false, true);
+                    }
+                    else
+                    {
+                        HuntingRange = 30;
+                        requireLOS = true;
+                    }
+                }
+                else
+                {
+
                 }
             }
             if (pawn2 == null)

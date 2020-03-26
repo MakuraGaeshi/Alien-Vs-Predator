@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <PawnKindDef ParentName="OutlanderBase">
+  <PawnKindDef ParentName="BaseYautjaPawnKind">
     <defName>StrangerInBlackYautja_RRY</defName>
     <label>stranger in black</label>
     <labelMale>man in black</labelMale>
@@ -14,9 +14,6 @@
     <race>RRY_Alien_Yautja</race>
     <chemicalAddictionChance>0.05</chemicalAddictionChance>
     <backstoryCryptosleepCommonality>0.05</backstoryCryptosleepCommonality>
-    <backstoryCategories Inherit="false">
-      <li>RRY_Yautja_Standard</li>
-    </backstoryCategories>
     <invNutrition>10.0</invNutrition>
     <inventoryOptions>
       <subOptionsChooseOne>

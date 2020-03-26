@@ -1,6 +1,6 @@
 ﻿using RimWorld;
 using Verse;
-using Harmony;
+using HarmonyLib;
 using System.Reflection;
 using System.Collections.Generic;
 using System;
@@ -16,19 +16,19 @@ using RRYautja.ExtensionMethods;
 namespace RRYautja
 {
     
-    // FilthMaker.MakeFilth
+    // FilthMaker.TryMakeFilth
     [HarmonyPatch(typeof(Pawn_HealthTracker), "DropBloodFilth")]
     public static class AvP_Pawn_HealthTracker_DropBloodFilth_Xenoblood_Patch
     {
         [HarmonyPrefix]
         public static bool Patch_Pawn_HealthTracker_DropBloodFilth(Pawn_HealthTracker __instance)
         {
-            Pawn pawn = HarmonyPatches.Pawn_HealthTracker_GetPawn(__instance);
+            Pawn pawn = Main.Pawn_HealthTracker_GetPawn(__instance);
             bool flag = pawn.isXenomorph() && (pawn.Spawned || pawn.ParentHolder is Pawn_CarryTracker) && pawn.SpawnedOrAnyParentSpawned && pawn.RaceProps.BloodDef != null;
             bool result;
             if (flag)
             {
-                FilthMaker.MakeFilth(pawn.PositionHeld, pawn.MapHeld, XenomorphDefOf.RRY_FilthBloodXenomorph_Active, pawn.LabelIndefinite(), 1);
+                FilthMaker.TryMakeFilth(pawn.PositionHeld, pawn.MapHeld, XenomorphDefOf.RRY_FilthBloodXenomorph_Active, pawn.LabelIndefinite(), 1);
                 result = false;
             }
             else

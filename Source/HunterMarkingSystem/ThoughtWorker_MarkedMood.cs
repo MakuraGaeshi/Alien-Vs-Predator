@@ -37,7 +37,7 @@ namespace HunterMarkingSystem
                             state = ThoughtState.ActiveAtStage(2);
                             break;
                         default:
-                    //        Log.Message(string.Format("{0}, {1}, {2} = {3} Bad BloodStatusMode", this, p.LabelShortCap, Markable.BloodStatus, state));
+                            //    Log.Message(string.Format("{0}, {1}, {2} = {3} Bad BloodStatusMode", this, p.LabelShortCap, Markable.BloodStatus, state));
                             state = ThoughtState.Inactive;
                             break;
                     }

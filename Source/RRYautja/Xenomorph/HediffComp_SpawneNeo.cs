@@ -214,7 +214,7 @@ namespace RRYautja
             PawnKindDef pawnKindDef = XenomorphDefOf.RRY_Xenomorph_Neomorph;
             if (Prefs.DevMode)
             {
-                 Log.Message(string.Format("spawning: {0}", pawnKindDef.label));
+             //    Log.Message(string.Format("spawning: {0}", pawnKindDef.label));
                 parent.pawn.resultingXenomorph();
             }
             PawnGenerationRequest request = new PawnGenerationRequest(pawnKindDef, Find.FactionManager.FirstFactionOfDef(pawnKindDef.defaultFactionType), PawnGenerationContext.NonPlayer, -1, true, true, false, false, true, false, 20f, fixedGender: gender);
@@ -240,14 +240,14 @@ namespace RRYautja
             bool fullterm = this.parent.CurStageIndex >= this.parent.def.stages.Count - 3;
             if (!fullterm)
             {
-                Log.Message(string.Format("died  before reaching fullterm, no spawning"));
+            //    Log.Message(string.Format("died  before reaching fullterm, no spawning"));
                 return;
             }
             else
             {
                 if (spawnMap == null || spawnLoc == null)
                 {
-                    Log.Message(string.Format("spawnMap or spawnLoc is null, no spawning"));
+                //    Log.Message(string.Format("spawnMap or spawnLoc is null, no spawning"));
                     return;
                 }
                 else
@@ -284,7 +284,7 @@ namespace RRYautja
                         }
                         if (i % 10 == 0)
                         {
-                            FilthMaker.MakeFilth(spawnLoc + GenAdj.AdjacentCellsAndInside.RandomElement(), this.Pawn.MapHeld, this.Pawn.RaceProps.BloodDef, this.Pawn.LabelIndefinite(), 1);
+                            FilthMaker.TryMakeFilth(spawnLoc + GenAdj.AdjacentCellsAndInside.RandomElement(), this.Pawn.MapHeld, this.Pawn.RaceProps.BloodDef, this.Pawn.LabelIndefinite(), 1);
                         }
                     }
                     ThingDef motedef = DefDatabase<ThingDef>.GetNamedSilentFail("Mote_BlastExtinguisher");
@@ -292,7 +292,7 @@ namespace RRYautja
                     // GenAdj.AdjacentCellsAndInside[i];
                     for (int i2 = 0; i2 < GenAdj.AdjacentCellsAndInside.Length; i2++)
                     {
-                        FilthMaker.MakeFilth(spawnLoc + GenAdj.AdjacentCellsAndInside[i2], this.Pawn.MapHeld, this.Pawn.RaceProps.BloodDef, this.Pawn.LabelIndefinite(), 1);
+                        FilthMaker.TryMakeFilth(spawnLoc + GenAdj.AdjacentCellsAndInside[i2], this.Pawn.MapHeld, this.Pawn.RaceProps.BloodDef, this.Pawn.LabelIndefinite(), 1);
                     }
                     string text = TranslatorFormattedStringExtensions.Translate("Xeno_Chestburster_Emerge", base.parent.pawn.LabelShort, this.parent.Part.LabelShort);
                     MoteMaker.ThrowText(spawnLoc.ToVector3(), spawnMap, text, 5f);

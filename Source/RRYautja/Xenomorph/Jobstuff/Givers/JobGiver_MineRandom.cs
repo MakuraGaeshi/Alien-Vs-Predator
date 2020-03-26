@@ -1,6 +1,6 @@
 ﻿using RRYautja;
 using RRYautja.ExtensionMethods;
-using System;
+using RRYautja.Xenomorph.Hives;
 using System.Collections.Generic;
 using Verse;
 using Verse.AI;
@@ -159,267 +159,36 @@ namespace RimWorld
         // Token: 0x0600041E RID: 1054 RVA: 0x0002CA54 File Offset: 0x0002AE54
         protected override Job TryGiveJob(Pawn pawn)
         {
+            if (pawn.Map==null)
+            {
+            //    Log.Message("map == null");
+                return null;
+            }
             Map map = pawn.Map;
-            Comp_Xenomorph _Xenomorph = pawn.xenomorph();
-            IntVec3 HiveCenter = _Xenomorph.HiveLoc == IntVec3.Invalid || _Xenomorph.HiveLoc == IntVec3.Zero ? pawn.mindState.duty.focus.Cell : _Xenomorph.HiveLoc;
-            List<IntVec3> HiveStruct = new List<IntVec3>()
+            if (!pawn.isXenomorph(out Comp_Xenomorph _Xenomorph))
             {
-                // Support Collums
-                // Cardinals
-                new IntVec3
-                {
-                    x = HiveCenter.x + 3,
-                    z = HiveCenter.z
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x - 3,
-                    z = HiveCenter.z
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x,
-                    z = HiveCenter.z + 3
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x,
-                    z = HiveCenter.z - 3
-                },
-                // Corners
-                new IntVec3
-                {
-                    x = HiveCenter.x + 2,
-                    z = HiveCenter.z + 2
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x - 2,
-                    z = HiveCenter.z + 2
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + 2,
-                    z = HiveCenter.z - 2
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x - 2,
-                    z = HiveCenter.z - 2
-                }
-
-            };
-            List<IntVec3> HiveWalls = new List<IntVec3>()
+            //    Log.Message("not xenomorph");
+                return null;
+            }
+            IntVec3 HiveCenter = IntVec3.Invalid;
+            if (_Xenomorph.HiveLoc.IsValid && _Xenomorph.HiveLoc.InBounds(map) && _Xenomorph.HiveLoc != IntVec3.Zero)
             {
-                // Exterior Walls
-                new IntVec3
-                {
-                    x = HiveCenter.x + 6,
-                    z = HiveCenter.z + 1
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + 6,
-                    z = HiveCenter.z + 2
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + 6,
-                    z = HiveCenter.z + 3
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + 6,
-                    z = HiveCenter.z + 4
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + 5,
-                    z = HiveCenter.z + 5
-                },
-                //
-                new IntVec3
-                {
-                    x = HiveCenter.x + 6,
-                    z = HiveCenter.z + -1
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + 6,
-                    z = HiveCenter.z + -2
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + 6,
-                    z = HiveCenter.z + -3
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -6,
-                    z = HiveCenter.z + -4
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -5,
-                    z = HiveCenter.z + -5
-                },
-                //
-                new IntVec3
-                {
-                    x = HiveCenter.x + -6,
-                    z = HiveCenter.z + 1
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -6,
-                    z = HiveCenter.z + 2
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -6,
-                    z = HiveCenter.z + 3
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -6,
-                    z = HiveCenter.z + 4
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -5,
-                    z = HiveCenter.z + 5
-                },
-                //
-                new IntVec3
-                {
-                    x = HiveCenter.x + -6,
-                    z = HiveCenter.z + -1
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -6,
-                    z = HiveCenter.z + -2
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -6,
-                    z = HiveCenter.z + -3
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -6,
-                    z = HiveCenter.z + -4
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -5,
-                    z = HiveCenter.z + -5
-                },
-                // 
-                new IntVec3
-                {
-                    x = HiveCenter.x + 1,
-                    z = HiveCenter.z + 6
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + 2,
-                    z = HiveCenter.z + 6
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + 3,
-                    z = HiveCenter.z + 6
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + 4,
-                    z = HiveCenter.z + 6
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + 5,
-                    z = HiveCenter.z + 5
-                },
-                //
-                new IntVec3
-                {
-                    x = HiveCenter.x + -1,
-                    z = HiveCenter.z + 6
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -2,
-                    z = HiveCenter.z + 6
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -3,
-                    z = HiveCenter.z + 6
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -4,
-                    z = HiveCenter.z + 6
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -5,
-                    z = HiveCenter.z + 5
-                },
-                //
-                new IntVec3
-                {
-                    x = HiveCenter.x + 1,
-                    z = HiveCenter.z + -6
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + 2,
-                    z = HiveCenter.z + -6
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + 3,
-                    z = HiveCenter.z + -6
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + 4,
-                    z = HiveCenter.z + -6
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -1,
-                    z = HiveCenter.z + -6
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -2,
-                    z = HiveCenter.z + -6
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -3,
-                    z = HiveCenter.z + -6
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -4,
-                    z = HiveCenter.z + -6
-                },
-                new IntVec3
-                {
-                    x = HiveCenter.x + -5,
-                    z = HiveCenter.z + -5
-                },
-                //
+                HiveCenter = _Xenomorph.HiveLoc;
+            }
+            else
+            {
+            //    Log.Message(string.Format("not _Xenomorph.HiveLoc({0})", _Xenomorph.HiveLoc));
+                return null;
+            }
 
-            };
             Region region = pawn.GetRegion(RegionType.Set_Passable);
-            bool flag1 = pawn.mindState.duty.focus.Cell.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive) != null;
-            bool flag2 = pawn.mindState.duty.focus.Cell.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive_Child) != null;
-            bool flag3 = pawn.mindState.duty.focus.Cell.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive_Slime) != null;
+            if (region == null)
+            {
+                return null;
+            }
+            bool flag1 = HiveCenter.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive) != null;
+            bool flag2 = HiveCenter.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive_Child) != null;
+            bool flag3 = HiveCenter.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive_Slime) != null;
             if (pawn.GetLord() is Lord L && L != null)
             {
                 if ((L.CurLordToil is LordToil_DefendAndExpandHiveLike || L.CurLordToil is LordToil_DefendHiveLikeAggressively) && L.CurLordToil is LordToil_HiveLikeRelated THL)
@@ -438,31 +207,33 @@ namespace RimWorld
                     }
                 }
             }
-            if (region == null)
-            {
-                return null;
-            }
             if (flag1)
             {
                 MiningRange = 7;
             }
-            if (flag3)
-            {
-                MiningRange = 5;
-            }
+            else
             if (flag2)
             {
                 MiningRange = 3;
             }
+            else
+            {
+                MiningRange = 5;
+            }
+            if (!pawn.CanReachMapEdge())
+            {
+                MiningRange = 10;
+            }
             for (int i = 0; i < GenRadial.NumCellsInRadius(MiningRange); i++)
             {
-                IntVec3 c = pawn.mindState.duty.focus.Cell + GenRadial.RadialPattern[i];
-                if (!HiveStruct.Contains(c) && !HiveWalls.Contains(c) && pawn.CanReach(c,PathEndMode.ClosestTouch, Danger.Deadly))
+                IntVec3 c = HiveCenter + GenRadial.RadialPattern[i];
+                if (!HiveStructure.HiveStruct(HiveCenter).Contains(c) && !HiveStructure.HiveWalls(HiveCenter).Contains(c) && pawn.CanReach(c,PathEndMode.ClosestTouch, Danger.Deadly))
                 {
                     Building edifice = c.GetEdifice(pawn.Map);
-                    if (edifice != null && (edifice.def.passability == Traversability.Impassable /* || edifice.def.IsDoor */) && edifice.def.size == IntVec2.One && edifice.def != ThingDefOf.CollapsedRocks && edifice.def != XenomorphDefOf.RRY_Xenomorph_Hive_Wall && pawn.CanReserve(edifice, 1, -1, null, false) && XenomorphUtil.DistanceBetween(edifice.Position, pawn.mindState.duty.focus.Cell) <= MiningRange)
+                    if (edifice != null && edifice.def.size == IntVec2.One && edifice.def != ThingDefOf.CollapsedRocks && edifice.def != XenomorphDefOf.RRY_Xenomorph_Hive_Wall && pawn.CanReserveAndReach(edifice, PathEndMode.ClosestTouch, Danger.Deadly, 1, 1) && XenomorphUtil.DistanceBetween(edifice.Position, HiveCenter) <= MiningRange)
                     {
-                        if (!HiveStruct.Contains(edifice.Position))
+                        bool xenobuilding = edifice.GetType() != typeof(Building_XenoEgg) && edifice.GetType() != typeof(Building_XenomorphCocoon) && edifice.GetType() != typeof(HiveLike);
+                        if (xenobuilding)
                         {
                             return new Job(JobDefOf.Mine, edifice)
                             {
@@ -494,12 +265,22 @@ namespace RimWorld
         // Token: 0x0600041E RID: 1054 RVA: 0x0002CA54 File Offset: 0x0002AE54
         protected override Job TryGiveJob(Pawn pawn)
         {
+            if (pawn.Map == null)
+            {
+                return null;
+            }
+            Map map = pawn.Map;
+            if (!pawn.isXenomorph(out Comp_Xenomorph _Xenomorph))
+            {
+                return null;
+            }
+
             Region region = pawn.GetRegion(RegionType.Set_Passable);
             if (region == null)
             {
                 return null;
             }
-            
+
             IntVec3 hiveCell;
             if (!XenomorphUtil.ClosestReachableParentHivelike(pawn).DestroyedOrNull())
             {
@@ -511,7 +292,11 @@ namespace RimWorld
             }
             else
             {
-                hiveCell = pawn.mindState.duty.focus.Cell;
+                hiveCell = _Xenomorph.HiveLoc == IntVec3.Invalid || _Xenomorph.HiveLoc == IntVec3.Zero || !_Xenomorph.HiveLoc.InBounds(map) ? pawn.mindState.duty.focus.Cell : _Xenomorph.HiveLoc;
+            }
+            if (hiveCell == IntVec3.Invalid || hiveCell == IntVec3.Zero || !hiveCell.InBounds(map))
+            {
+                return null;
             }
             foreach (var c in GenAdj.AdjacentCellsAndInside)
             {

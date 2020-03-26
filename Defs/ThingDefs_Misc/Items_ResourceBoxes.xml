@@ -4,6 +4,13 @@
 	<ThingDef Name="ResourceBoxBase" ParentName="ResourceBase" Abstract="True">
 		<thingClass>ThingWithComps</thingClass>
 		<techLevel>Neolithic</techLevel>
+		<graphicData>
+			<texPath>Things/Buildings/USCM/USCM_Gearbox</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<color>(69,78,70)</color>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(1.2,0.6)</drawSize>
+		</graphicData>
 		<thingCategories>
 			<li>Items</li>
 		</thingCategories>
@@ -16,7 +23,7 @@
 		<resourceReadoutPriority>Middle</resourceReadoutPriority>
 		<stackLimit>1</stackLimit>
 		<useHitPoints>true</useHitPoints>
-		<tradeability>Buyable</tradeability>
+		<tradeability>Sellable</tradeability>
 		<comps>
 			<li Class="CompProperties_Usable">
 				<useJob>OpenResourceBox</useJob>
@@ -29,11 +36,6 @@
 		<defName>RRY_USCM_StandardGear</defName>
 		<label>standard armamement of USCM</label>
 		<description>The box contains the gear for 4 privates of the USCM Corps.</description>
-		<graphicData>
-			<texPath>Things/Buildings/USCM/Gearbox</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>(0.8,0.8)</drawSize>
-		</graphicData>
 		<statBases>
 			<MarketValue>120</MarketValue>
 			<MaxHitPoints>70</MaxHitPoints>
@@ -69,11 +71,6 @@
 		<defName>RRY_USCM_OperatorGear</defName>
 		<label>M56 Battle System Operator supplies</label>
 		<description>The box contains the to equip 1 M56 Smart Gun Operator.</description>
-		<graphicData>
-			<texPath>Things/Buildings/USCM/Gearbox</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>(0.8,0.8)</drawSize>
-		</graphicData>
 		<statBases>
 			<MarketValue>120</MarketValue>
 			<MaxHitPoints>70</MaxHitPoints>

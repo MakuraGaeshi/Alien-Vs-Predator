@@ -19,10 +19,10 @@ namespace RRYautja
             Scribe_Values.Look<int>(ref this.activeTicks, "activeTicks", 0, false);
         }
 
-        public int destroyTick = 3000;
+        public int destroyTick = 900;
         public int activeTicks = 0;
-        private int Ticks = 100;
-        private int TickRate = 100;
+        private int Ticks = 60;
+        private int TickRate = 60;
         private int AcidDamage = 3;
         private List<Pawn> touchingPawns = new List<Pawn>();
         private List<Thing> touchingThings = new List<Thing>();
@@ -48,8 +48,8 @@ namespace RRYautja
         public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
         {
             Map map = base.Map;
-            base.DeSpawn(mode);
             this.RecalcPathsOnAndAroundMe(map);
+            base.DeSpawn(mode);
         }
 
         public override string Label => this.active ? base.Label + " (Active)" : base.Label + " (Inert)";
@@ -95,7 +95,9 @@ namespace RRYautja
                 this.activeTicks++;
                 if (!active)
                 {
+
                     RecalcPathsOnAndAroundMe(Map);
+                //    this.def = XenomorphDefOf.RRY_FilthBloodXenomorph;
                 }
                 else
                 {

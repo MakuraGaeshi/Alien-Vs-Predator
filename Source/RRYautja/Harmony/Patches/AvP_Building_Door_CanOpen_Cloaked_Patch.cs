@@ -6,10 +6,10 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using Harmony;
+using HarmonyLib;
 using System.Reflection;
 
-namespace RRYautja.Harmony
+namespace RRYautja
 {
     [HarmonyPatch(typeof(Building_Door), "PawnCanOpen")]
     public static class AvP_Building_Door_CanOpen_Cloaked_Patch

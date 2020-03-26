@@ -80,7 +80,7 @@ namespace HunterMarkingSystem
         public FactionDef factionDef = null;
         public Faction faction = null;
         public bool Humanlike => raceDef != null ? raceDef.race.Humanlike :false;
-        public string Label => raceDef != null ? raceDef.LabelCap : string.Empty;
+        public string Label => raceDef != null ? raceDef.LabelCap : TaggedString.Empty;
         public string Name;
         public float MarkScore;
 

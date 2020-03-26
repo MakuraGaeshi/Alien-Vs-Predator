@@ -53,6 +53,7 @@
       <color>(53,68,75)</color>
     </graphicData>
     <statBases>
+      <RRY_AcidResistance>1</RRY_AcidResistance>
       <MarketValue>3.2</MarketValue>
       <RRY_StuffPower_Armor_Acid>2</RRY_StuffPower_Armor_Acid>
       <StuffPower_Armor_Sharp>1.29</StuffPower_Armor_Sharp>

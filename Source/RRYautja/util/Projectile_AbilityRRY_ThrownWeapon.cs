@@ -2,7 +2,7 @@
 using UnityEngine;
 using Verse;
 
-namespace AbilityUser
+namespace RRYautja
 {
     public class Projectile_AbilityRRY_ThrownWeapon : Projectile_AbilityRRY
     {
@@ -17,7 +17,6 @@ namespace AbilityUser
                 var dinfo = new DamageInfo(def.projectile.damageDef, damageAmountBase, this.def.projectile.GetArmorPenetration(1f), ExactRotation.eulerAngles.y,
                     launcher, null, equipmentDef);
                 hitThing.TakeDamage(dinfo);
-                PostImpactEffects(hitThing);
             }
             if (launcher is Pawn launcherPawn)
             {

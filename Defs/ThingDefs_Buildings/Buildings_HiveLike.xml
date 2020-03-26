@@ -116,6 +116,7 @@
     <tickerType>Normal</tickerType>
     <passability>PassThroughOnly</passability>
     <drawerType>RealtimeOnly</drawerType>
+    <receivesSignals>true</receivesSignals>
     <killedLeavings>
 		<RRY_Xenomorph_Hive_Slime>1</RRY_Xenomorph_Hive_Slime> 
     </killedLeavings>
@@ -154,6 +155,9 @@
         <damagePerTickRare>10</damagePerTickRare>
       </li>
 	  -->
+      <li Class="CompProperties_SelfhealHitpoints">
+        <ticksPerHeal>3000</ticksPerHeal> <!-- 60k ticks = 1 day, 20 hp per day -->
+      </li>
       <li Class="CompProperties_MaintainableLike">
         <ticksHealthy>60000</ticksHealthy>
         <ticksNeedsMaintenance>40000</ticksNeedsMaintenance>
@@ -300,59 +304,14 @@
     <alwaysFlee>true</alwaysFlee>
   </ThingDef>
   
-  <ThingDef ParentName="RRY_Building_Hive_Base">
-    <defName>GlowPodLike</defName>
-    <label>glow pod</label>
-    <description>A bioluminescent pod produced by giant insects. Glows under its own light for a long time, then dies.</description>
-    <thingClass>Building</thingClass>
-    <minifiedDef>MinifiedThing</minifiedDef>
-    <altitudeLayer>Building</altitudeLayer>
-    <passability>PassThroughOnly</passability>
-    <selectable>true</selectable>
-    <fillPercent>0.20</fillPercent>
-    <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
-    <rotatable>false</rotatable>
-    <tickerType>Rare</tickerType>
-    <thingCategories>
-      <li>BuildingsSpecial</li>
-    </thingCategories>
-    <statBases>
-      <MaxHitPoints>50</MaxHitPoints>
-      <Mass>4</Mass>
-      <Flammability>1.0</Flammability>
-      <MarketValue>50</MarketValue>
-    </statBases>
-    <comps>
-      <li Class="CompProperties_Glower">
-        <glowRadius>6</glowRadius>
-        <glowColor>(113,141,117,0)</glowColor>
-      </li>
-      <li Class="CompProperties_Lifespan">
-        <lifespanTicks>1200000</lifespanTicks>
-      </li>
-    </comps>
-    <graphicData>
-      <texPath>Things/Building/Natural/GlowPod</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <shadowData>
-        <volume>(0.3, 0.6, 0.3)</volume>
-        <offset>(0,0,-0.1)</offset>
-      </shadowData>
-      <damageData>
-        <rect>(0.2,0.2,0.6,0.6)</rect>
-      </damageData>
-    </graphicData>
-  </ThingDef>
-
   <ThingDef ParentName="RockBase">
     <defName>RRY_Xenomorph_Hive_Wall</defName>
     <label>collapsed rocks</label>
     <description>Collapsed rocks, packed tightly enough to hold up a roof.</description>
     <graphicData>
-      <texPath>Things/Buildings/Xenomorph/XenomorphWall</texPath>
+      <texPath>Things/Buildings/Xenomorph/Linked/XenoResinWall_Atlas</texPath>
       <graphicClass>Graphic_Single</graphicClass>
-      <linkType>None</linkType>
-      <drawSize>(3,3)</drawSize>
+      <shaderType>CutoutComplex</shaderType>
     </graphicData>
     <statBases>
       <MaxHitPoints>500</MaxHitPoints>

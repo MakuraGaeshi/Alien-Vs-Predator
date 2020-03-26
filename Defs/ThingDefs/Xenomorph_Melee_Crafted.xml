@@ -17,6 +17,7 @@
     </weaponTags>
     <costStuffCount>60</costStuffCount>
     <statBases>
+      <RRY_AcidResistance>1</RRY_AcidResistance>
       <WorkToMake>12000</WorkToMake>
       <Mass>2</Mass>
     </statBases>
@@ -62,7 +63,7 @@
     </recipeMaker>
 	<comps>     
 		<li>
-			<compClass>CompOversizedWeapon.CompOversizedWeapon</compClass>
+			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
 		</li>
 	</comps>
   </ThingDef>

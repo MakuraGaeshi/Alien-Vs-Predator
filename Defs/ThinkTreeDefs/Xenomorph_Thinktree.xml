@@ -26,14 +26,77 @@
           <treeDef>BurningResponse</treeDef>
         </li>
         <li Class="ThinkNode_Subtree">
-          <treeDef>MentalStateCritical</treeDef>
+          <treeDef>BurningResponse</treeDef>
         </li>
+		<li Class="ThinkNode_ConditionalNotPawnKind">
+		  <pawnKind>RRY_Xenomorph_FaceHugger</pawnKind>
+			<subNodes>
+				<li Class="JobGiver_Xenomorph_FleeFire" />
+				<li Class="JobGiver_Xenomorph_Flee" />
+			</subNodes>
+        </li>
+		
+		<!-- Face Hugger Hunting -->
+		<li Class="ThinkNode_ConditionalPawnKind">
+		  <pawnKind>RRY_Xenomorph_FaceHugger</pawnKind>
+		  <subNodes>
+			<li Class="ThinkNode_Tagger">
+			  <tagToGive>Idle</tagToGive>
+			  <subNodes>
+				<!-- Hunt -->
+				<li Class="ThinkNode_ConditionalFacehuggerFertile">
+				  <subNodes>
+					<li Class="JobGiver_FacehuggerHunt" />
+				  </subNodes>
+				</li>
+				<!-- Exit -->
+				<li Class="JobGiver_Xenomorph_Flee" />
+				<!-- Wander -->
+				<li Class="JobGiver_WanderAnywhere">
+				  <maxDanger>Deadly</maxDanger>
+				  <ticksBetweenWandersRange>
+					<min>120</min>
+					<max>240</max>
+				  </ticksBetweenWandersRange>
+				</li>
+			  </subNodes>
+			</li>
+		  </subNodes>
+		</li>
+		
+		<!-- Royal Hugger Hunting -->
+		<li Class="ThinkNode_ConditionalPawnKind">
+		  <pawnKind>RRY_Xenomorph_RoyaleHugger</pawnKind>
+		  <subNodes>
+			<li Class="ThinkNode_Tagger">
+			  <tagToGive>Idle</tagToGive>
+			  <subNodes>
+				<!-- Hunt -->
+				<li Class="ThinkNode_ConditionalFacehuggerFertile">
+				  <subNodes>
+					<li Class="JobGiver_FacehuggerHunt" />
+				  </subNodes>
+				</li>
+				<!-- Exit -->
+				<!--li Class="JobGiver_Xenomorph_Flee" /-->
+				<!-- Wander -->
+				<li Class="JobGiver_WanderAnywhere">
+				  <maxDanger>Deadly</maxDanger>
+				  <ticksBetweenWandersRange>
+					<min>120</min>
+					<max>240</max>
+				  </ticksBetweenWandersRange>
+				</li>
+			  </subNodes>
+			</li>
+		  </subNodes>
+		</li>
 		
         <!-- Conditional Not Fully Grown -->
         <li Class="ThinkNode_ConditionalNotGrown">
           <subNodes>
-			<li Class="JobGiver_XenomorphFlee" />
-			<li Class="JobGiver_GetFoodXenomorph"> 
+			<li Class="JobGiver_Xenomorph_Flee" />
+			<li Class="JobGiver_Xenomorph_GetFood"> 
 			</li>
 			<li Class="JobGiver_WanderHiveLike">
 				<maxDanger>Deadly</maxDanger>
@@ -45,67 +108,11 @@
         <li Class="ThinkNode_ConditionalFullyGrown">
           <subNodes>
 			<!--
-			<li Class="JobGiver_XenomorphFlee" />
-			<li Class="JobGiver_GetFoodXenomorph"> 
+			<li Class="JobGiver_Xenomorph_Flee" />
+			<li Class="JobGiver_Xenomorph_GetFood"> 
 			  <minCategory>Fed</minCategory>
 			</li>
 			-->
-			<!-- Face Hugger Hunting -->
-				<li Class="ThinkNode_ConditionalPawnKind">
-				  <pawnKind>RRY_Xenomorph_FaceHugger</pawnKind>
-				  <subNodes>
-					<li Class="ThinkNode_Tagger">
-					  <tagToGive>Idle</tagToGive>
-					  <subNodes>
-						<!-- Hunt -->
-						<li Class="ThinkNode_ConditionalFacehuggerFertile">
-						  <subNodes>
-							<li Class="JobGiver_FacehuggerHunt" />
-						  </subNodes>
-						</li>
-						<!-- Exit -->
-						<li Class="JobGiver_XenomorphFlee" />
-						<!-- Wander -->
-						<li Class="JobGiver_WanderAnywhere">
-						  <maxDanger>Deadly</maxDanger>
-						  <ticksBetweenWandersRange>
-							<min>120</min>
-							<max>240</max>
-						  </ticksBetweenWandersRange>
-						</li>
-					  </subNodes>
-					</li>
-				  </subNodes>
-				</li>
-				
-				<!-- Royal Hugger Hunting -->
-				<li Class="ThinkNode_ConditionalPawnKind">
-				  <pawnKind>RRY_Xenomorph_RoyaleHugger</pawnKind>
-				  <subNodes>
-					<li Class="ThinkNode_Tagger">
-					  <tagToGive>Idle</tagToGive>
-					  <subNodes>
-						<!-- Hunt -->
-						<li Class="ThinkNode_ConditionalFacehuggerFertile">
-						  <subNodes>
-							<li Class="JobGiver_FacehuggerHunt" />
-						  </subNodes>
-						</li>
-						<!-- Exit -->
-						<li Class="JobGiver_XenomorphFlee" />
-						<!-- Wander -->
-						<li Class="JobGiver_WanderAnywhere">
-						  <maxDanger>Deadly</maxDanger>
-						  <ticksBetweenWandersRange>
-							<min>120</min>
-							<max>240</max>
-						  </ticksBetweenWandersRange>
-						</li>
-					  </subNodes>
-					</li>
-				  </subNodes>
-				</li>
-				
 				
 		<li Class="ThinkNode_ConditionalNotPawnKind">
 		  <pawnKind>RRY_Xenomorph_FaceHugger</pawnKind>
@@ -208,4 +215,28 @@
     </thinkRoot>
   </ThinkTreeDef>
   
+	<ThinkTreeDef>
+		<defName>XenomorphConstant</defName>
+		<thinkRoot Class="ThinkNode_Priority">
+			<subNodes>
+        <li Class="ThinkNode_ConditionalCanDoConstantThinkTreeJobNow">
+          <subNodes>
+            <!-- Flee enemies, tornados, meteorites, etc. -->
+            <li Class="JobGiver_Xenomorph_Flee" />
+
+            <!-- Join auto joinable caravan -->
+            <li Class="ThinkNode_Subtree">
+              <treeDef>JoinAutoJoinableCaravan</treeDef>
+            </li>
+            
+            <!-- Lord directives -->
+            <li Class="ThinkNode_Subtree">
+              <treeDef>LordDutyConstant</treeDef>
+            </li>
+          </subNodes>
+        </li>
+      </subNodes>
+		</thinkRoot>
+	</ThinkTreeDef>
+
 </Defs>

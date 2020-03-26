@@ -6,11 +6,11 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using System.Reflection;
-using Harmony;
+using HarmonyLib;
 using UnityEngine;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja.Harmony
+namespace RRYautja
 {
     [HarmonyPatch(typeof(PawnUIOverlay), "DrawPawnGUIOverlay")]
     public static class AvP_PawnUIOverlay_DrawPawnGUIOverlay_Stealth_Patch
@@ -22,7 +22,11 @@ namespace RRYautja.Harmony
             if (pawn != null)
             {
                 bool flag_Cloaked = pawn.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked, false);
-                bool flag_HiddenXeno = pawn.isXenomorph(out Comp_Xenomorph comp) && comp.hidden;
+                bool flag_HiddenXeno = false;
+                if (pawn.isXenomorph(out Comp_Xenomorph comp))
+                {
+                    flag_HiddenXeno = comp.hidden;
+                }
                 if (flag_HiddenXeno || flag_Cloaked)
                 {
                     return false;

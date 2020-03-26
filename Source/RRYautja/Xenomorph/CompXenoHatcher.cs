@@ -75,7 +75,7 @@ namespace RRYautja
                 float ambientTemperature = this.parent.AmbientTemperature;
                 float num = 1f / (this.Props.hatcherDaystoHatch * 60000f);
 
-                if (ambientTemperature > -20f)
+                if (ambientTemperature > -20f && parent.Map!=null)
                 {
                     if (settings.SettingsHelper.latest.AllowXenoEggMetamorph)
                     {
@@ -84,7 +84,14 @@ namespace RRYautja
                             this.mutateProgress += num;
                         }
                     }
-                    else if (this.gestateProgress < 1f && (!this.EggMutating))
+                    else
+                    {
+                        /*
+                        this.mutateProgress = 0;
+                        this.eggState = EggState.Normal;
+                        */
+                    }
+                    if (this.gestateProgress < 1f && (!this.EggMutating))
                     {
                         this.gestateProgress += num;
                     }
@@ -127,7 +134,7 @@ namespace RRYautja
                 bool flag = XenomorphUtil.isInfectablePawn(pawn);
                 if (selected)
                 {
-                    Log.Message(string.Format("{0} isInfectable?: {1}", pawn.Label, flag));
+                //    Log.Message(string.Format("{0} isInfectable?: {1}", pawn.Label, flag));
                 }
                 if (flag)
                 {
@@ -141,8 +148,8 @@ namespace RRYautja
                     float thingmovespeed = thing.GetStatValue(StatDefOf.MoveSpeed);
                     if (selected)
                     {
-                        Log.Message(string.Format("distance between {1} @{3} and {2} @ {4}: {0}", MyPos.DistanceTo(pawn.Position), this.parent.LabelShort, pawn.Label, MyPos, pawn.Position));
-                        Log.Message(string.Format("{0} thingsize: {1}, thingstealth: {2}, thingmovespeed: {3}", pawn.Label, thingsize, thingstealth, thingmovespeed));
+                    //    Log.Message(string.Format("distance between {1} @{3} and {2} @ {4}: {0}, gestateProgress: {5}, mutateProgress: {6}", MyPos.DistanceTo(pawn.Position), this.parent.LabelShort, pawn.Label, MyPos, pawn.Position , gestateProgress, mutateProgress));
+                    //    Log.Message(string.Format("{0} thingsize: {1}, thingstealth: {2}, thingmovespeed: {3}", pawn.Label, thingsize, thingstealth, thingmovespeed));
                     }
 
                     float hatchon = ((10*thingdist) - (thingsize * 5));
@@ -153,7 +160,7 @@ namespace RRYautja
                     }
                     if (selected)
                     {
-                        Log.Message(string.Format("{0} hatchon: {1}, roll: {2}, willHatch: {3}", pawn.Label, hatchon, roll, willHatch));
+                    //    Log.Message(string.Format("{0} hatchon: {1}, roll: {2}, willHatch: {3}", pawn.Label, hatchon, roll, willHatch));
                     }
                 }
             }
@@ -161,7 +168,7 @@ namespace RRYautja
 
         public void TryMutate()
         {
-            Log.Message("TryMutate");
+        //    Log.Message("TryMutate");
             float num = 1f / (this.Props.hatcherDaystoHatch * 60000f);
             float chance = 0.1f;
             EggState state = EggState.Normal;
@@ -181,13 +188,13 @@ namespace RRYautja
             }
             if (flagMutate && Rand.Chance(chance))
             {
-                Log.Message("Mutated");
+            //    Log.Message("Mutated");
                 eggState = state;
                 this.mutateProgress += num;
             }
             else
             {
-                Log.Message("Mutation failed");
+            //    Log.Message("Mutation failed");
             }
         }
 
@@ -198,7 +205,7 @@ namespace RRYautja
             {
                 PawnKindDef hatchKindDef = eggState==EggState.Royal ? XenomorphDefOf.RRY_Xenomorph_RoyaleHugger : this.Props.hatcherPawn;
                 int spawncount = eggState == EggState.Hyperfertile ? Rand.RangeSeeded(1,5,AvPConstants.AvPSeed) : 1;
-                PawnGenerationRequest request = new PawnGenerationRequest(hatchKindDef, this.hatcheeFaction, PawnGenerationContext.NonPlayer, -1, false, true, false, false, true, false, 1f, false, true, true, false, false, false, false, null, null, null, null, null, null, null, null);
+                PawnGenerationRequest request = new PawnGenerationRequest(hatchKindDef, this.hatcheeFaction, PawnGenerationContext.NonPlayer, -1, false, true, false, false, true, false, 1f, false, true, true, false, false, false, false);
                 for (int i = 0; i < spawncount; i++)
                 {
                     Pawn pawn = PawnGenerator.GeneratePawn(request);
@@ -224,7 +231,7 @@ namespace RRYautja
                         }
                         if (this.parent.Spawned)
                         {
-                            FilthMaker.MakeFilth(MyPos, MyMap, ThingDefOf.Filth_AmnioticFluid, 1);
+                            FilthMaker.TryMakeFilth(MyPos, MyMap, ThingDefOf.Filth_AmnioticFluid, 1);
                         }
                     }
                     else
@@ -300,13 +307,13 @@ namespace RRYautja
             switch (category)
             {
                 case EggState.Hyperfertile:
-                    return "Xeno_Egg_Hyperfertile".Translate() + " ";
+                    return "Xeno_Egg_Hyperfertile".Translate();
                 case EggState.Praetorian:
-                    return "Xeno_Egg_Praetorian".Translate() + " ";
+                    return "Xeno_Egg_Praetorian".Translate();
                 case EggState.Royal:
-                    return "Xeno_Egg_Royal".Translate() + " ";
+                    return "Xeno_Egg_Royal".Translate();
                 default:
-                    return "Xeno_Egg".Translate() + " ";
+                    return "Xeno_Egg".Translate();
             }
         }
 

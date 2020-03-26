@@ -6,12 +6,14 @@
 		<defaultLabelColor>(0.8, 0.8, 0.35)</defaultLabelColor>
     <isBad>true</isBad>
 	<makesAlert>false</makesAlert>
+	<description>.</description>
 	<makesSickThought>false</makesSickThought>
 	</HediffDef>
 	
 	<HediffDef Name="RRY_SpecialGoodHeDiff" Abstract="True">
 		<hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(0.5, 0.5, 0.9)</defaultLabelColor>
+	<description>.</description>
     <isBad>false</isBad>
 	<makesAlert>false</makesAlert>
 	<makesSickThought>false</makesSickThought>
@@ -21,6 +23,7 @@
   <HediffDef ParentName="RRY_SpecialGoodHeDiff">
     <defName>RRY_WristbladeHeDiff</defName>
     <label>wristblade</label>
+    <description>wristblade</description>
     <labelNoun>a wristblade</labelNoun>
     <stages>
       <li>
@@ -48,27 +51,9 @@
   
   <HediffDef>
     <hediffClass>HediffWithComps</hediffClass>
-    <defName>RRY_EmergingChestburster</defName>
-    <label>horrified</label>
-    <labelNoun>horrified</labelNoun>
-    <battleStateLabel>blind</battleStateLabel>
-    <maxSeverity>1</maxSeverity>
-    <stages>
-      <li>
-        <partEfficiencyOffset>-0.8</partEfficiencyOffset>
-      </li>
-    </stages>
-    <comps>
-      <li Class="HediffCompProperties_SelfHeal">
-        <healAmount>0.005</healAmount>
-      </li>
-    </comps>
-  </HediffDef>
-  
-  <HediffDef>
-    <hediffClass>HediffWithComps</hediffClass>
     <defName>RRY_Hediff_PinnedCombistaff</defName>
     <label>pinned</label>
+    <description>pinned</description>
     <labelNoun>horrified</labelNoun>
     <maxSeverity>1</maxSeverity>
     <stages>
@@ -80,20 +65,6 @@
       <li Class="HediffCompProperties_SelfHeal">
         <healAmount>0.005</healAmount>
       </li>
-    </comps>
-  </HediffDef>
-  
-  <HediffDef ParentName="RRY_SpecialGoodHeDiff">
-    <defName>RRY_HeDiff_TurretIsOn</defName>
-    <label>Shoulder Cannon status</label>
-    <labelNoun>a Shoulder Cannon</labelNoun>
-    <stages>
-      <li>
-        <becomeVisible>false</becomeVisible>
-      </li>
-    </stages>
-    <comps>
-	
     </comps>
   </HediffDef>
   
@@ -102,6 +73,7 @@
     <hediffClass>RRYautja.Hediff_Cloak</hediffClass>
     <initialSeverity>1</initialSeverity>
     <label>Stealth</label>
+    <description>Stealth</description>
     <stages>
       <li>
         <label>hidden</label>
@@ -115,6 +87,7 @@
     <hediffClass>RRYautja.Hediff_Hidden_Xeno</hediffClass>
     <initialSeverity>1</initialSeverity>
     <label>hidden</label>
+    <description>hidden</description>
     <stages>
       <li>
         <becomeVisible>false</becomeVisible>
@@ -127,6 +100,7 @@
     <hediffClass>RRYautja.Hediff_Bouncer</hediffClass>
     <initialSeverity>1</initialSeverity>
     <label>Stealth</label>
+    <description>Stealth</description>
     <stages>
       <li>
         <label>hidden</label>
@@ -138,6 +112,7 @@
     <HediffDef ParentName="RRY_SpecialBadHeDiff">
     <defName>RRY_Hediff_Cocooned</defName>
     <label>Cocooned</label>
+    <description>Cocooned</description>
     <labelNoun>Cocooned by a Xenomorph</labelNoun>
     <stages>
       <li>
@@ -161,6 +136,7 @@
   <HediffDef ParentName="DiseaseBase">
     <defName>RRY_Hediff_Anesthetic</defName>
     <label>deep sleep</label>
+    <description>deep sleep</description>
     <isBad>false</isBad>
     <comps>
       <li Class="HediffCompProperties_Disappears">
@@ -185,6 +161,7 @@
     <HediffDef ParentName="RRY_SpecialBadHeDiff">
     <defName>RRY_Hediff_Pinned</defName>
     <label>Pinned</label>
+    <description>Pinned</description>
     <labelNoun>Pinned in place </labelNoun>
     <stages>
       <li>

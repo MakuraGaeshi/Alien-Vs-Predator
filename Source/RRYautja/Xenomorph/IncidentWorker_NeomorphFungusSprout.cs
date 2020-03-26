@@ -64,7 +64,7 @@ namespace RRYautja
             }
             if (this.def == XenomorphDefOf.RRY_Neomorph_FungusSprout)
             {
-                base.SendStandardLetter(thing, null, new string[0]);
+                base.SendStandardLetter(parms, thing, Array.Empty<NamedArgument>());
             }
 			return true;
 		}

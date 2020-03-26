@@ -2,9 +2,9 @@
 using UnityEngine;
 using Verse;
 
-namespace AbilityUser
+namespace RRYautja
 {
-    public class Projectile_AbilityRRY_ThrownReturning : Projectile_AbilityBase
+    public class Projectile_AbilityRRY_ThrownReturning : Projectile_AbilityRRY
     {
         public int TicksToImpact => ticksToImpact;
 
@@ -38,20 +38,6 @@ namespace AbilityUser
             projectile2.Launch(this, base.PositionHeld.ToVector3(), launcher, launcher, ProjectileHitFlags.IntendedTarget, launcher);
         }
         
-
-        public virtual bool IsInIgnoreHediffList(Hediff hediff)
-        {
-            if (hediff != null)
-                if (hediff.def != null)
-                {
-                    var compAbility = Caster.TryGetComp<CompAbilityUser>();
-                    if (compAbility != null)
-                        if (compAbility.IgnoredHediffs() != null)
-                            if (compAbility.IgnoredHediffs().Contains(hediff.def))
-                                return true;
-                }
-
-            return false;
-        }
+        
     }
 }

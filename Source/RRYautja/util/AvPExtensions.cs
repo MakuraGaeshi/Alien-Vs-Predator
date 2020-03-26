@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
+using Verse.AI;
 using Verse.AI.Group;
 
 namespace RRYautja.ExtensionMethods
@@ -11,6 +12,20 @@ namespace RRYautja.ExtensionMethods
     [StaticConstructorOnStartup]
     public static class AvPExtensions
     {
+        
+        public static void GainEquipmentAbility(this Pawn_AbilityTracker tracker ,EquipmentAbilityDef def, ThingWithComps thing)
+        {
+            if (!tracker.abilities.Any((Ability a) => a.def == def))
+            {
+                EquipmentAbility ab = Activator.CreateInstance(def.abilityClass, new object[]
+                {
+                    tracker.pawn,
+                    def
+                }) as EquipmentAbility;
+                ab.sourceEquipment = thing;
+                tracker.abilities.Add(ab);
+            }
+        }
 
         public static MapComponent_HiveGrid HiveGrid(this Map m) 
         {
@@ -44,27 +59,27 @@ namespace RRYautja.ExtensionMethods
 
         public static bool switchLord (this Pawn p, Lord L)
         {
-            Log.Message(string.Format("trying to switch {0} to {1}", p.LabelShortCap, L));
+        //    Log.Message(string.Format("trying to switch {0} to {1}", p.LabelShortCap, L));
             if (p.GetLord() != null && p.GetLord() is Lord l)
             {
-                Log.Message(string.Format("{0} currently belongs to {1}", p.LabelShortCap, l));
+            //    Log.Message(string.Format("{0} currently belongs to {1}", p.LabelShortCap, l));
                 if (l.ownedPawns.Count > 0)
                 {
-                    Log.Message(string.Format("removing {0} from {1}", p.LabelShortCap, l));
+                //    Log.Message(string.Format("removing {0} from {1}", p.LabelShortCap, l));
                     l.ownedPawns.Remove(p);
-                    Log.Message(string.Format("removed {0} from {1}: {2}", p.LabelShortCap, l, p.GetLord() == null));
+                //    Log.Message(string.Format("removed {0} from {1}: {2}", p.LabelShortCap, l, p.GetLord() == null));
                 }
                 if (l.ownedPawns.Count == 0)
                 {
-                    Log.Message(string.Format("removed {0} final pawn, removing l", l));
+                //    Log.Message(string.Format("removed {0} final pawn, removing l", l));
                     l.lordManager.RemoveLord(l);
-                    Log.Message(string.Format("removed l: {0}", l==null));
+                //    Log.Message(string.Format("removed l: {0}", l==null));
                 }
-                Log.Message(string.Format("{0} currently has lord: {1}", p.LabelShortCap, p.GetLord() == null));
+            //    Log.Message(string.Format("{0} currently has lord: {1}", p.LabelShortCap, p.GetLord() == null));
             }
-            Log.Message(string.Format("adding {0} to {1}", p.LabelShortCap, L));
+        //    Log.Message(string.Format("adding {0} to {1}", p.LabelShortCap, L));
             L.AddPawn(p);
-            Log.Message(string.Format("addied {0} to {1} = {2}", p.LabelShortCap, L, p.GetLord() == L));
+        //    Log.Message(string.Format("addied {0} to {1} = {2}", p.LabelShortCap, L, p.GetLord() == L));
             return p.GetLord() == L;
 
         }
@@ -117,9 +132,13 @@ namespace RRYautja.ExtensionMethods
         {
             return p.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Xenomorph;
         }
+        public static bool isXenomorph(this Thing p)
+        {
+            return p.def.race?.FleshType == XenomorphRacesDefOf.RRY_Xenomorph;
+        }
         public static bool isXenomorph(this Pawn p, out Comp_Xenomorph comp)
         {
-            comp = p.TryGetComp<Comp_Xenomorph>();
+            comp = p.TryGetComp<Comp_Xenomorph>()?? null;
             return p.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Xenomorph;
         }
 
@@ -566,6 +585,19 @@ namespace RRYautja.ExtensionMethods
         {
             return p.isNeoHost() || p.isXenoHost();
         }
+        public static bool isHost(this Pawn p, out Hediff hediff)
+        {
+            bool result = p.isNeoHost() || p.isXenoHost();
+            if (result)
+            {
+                hediff = p.health.hediffSet.hediffs.Find(x => x.def.defName.Contains("morphImpregnation") || x.def.defName.Contains("FaceHuggerInfection"));
+            }
+            else
+            {
+                hediff = null;
+            }
+            return result;
+        }
         public static bool isXenoHost(this Pawn p)
         {
             return p.health.hediffSet.hediffs.Any(x => x.def.defName.Contains("XenomorphImpregnation") || x.def.defName.Contains("FaceHuggerInfection"));
@@ -703,7 +735,7 @@ namespace RRYautja.ExtensionMethods
             bool selected = Find.Selector.SingleSelectedThing == p;
             if (selected && Prefs.DevMode)
             {
-                Log.Message(string.Format("{0} will spawn from {1}", kindDef, p.LabelShortCap));
+            //    Log.Message(string.Format("{0} will spawn from {1}", kindDef, p.LabelShortCap));
             }
             return kindDef;
         }
