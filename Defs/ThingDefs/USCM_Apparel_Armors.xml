@@ -123,7 +123,6 @@
 			<wornGraphicPath>Things/Apparel/USCM/Armour/M3Pattern/USCM_M3Pattern</wornGraphicPath>
 			<layers>
 				<li>Middle</li>
-				<li>Shell</li>
 			</layers>
 			<tags>
 				<li>USCM_StandardIssue_Armour</li>
@@ -150,6 +149,7 @@
 		<graphicData>
 			<texPath>Things/Apparel/USCM/Armour/M56CombatHarness/USCM_M56CombatHarness</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
+			<color>(73,85,73)</color>
 		</graphicData>
 		<statBases>
 			<MarketValue>1000</MarketValue>
@@ -186,7 +186,6 @@
 			</bodyPartGroups>
 			<wornGraphicPath>Things/Apparel/USCM/Armour/M56CombatHarness/USCM_M56CombatHarness</wornGraphicPath>
 			<layers>
-				<li>Middle</li>
 				<li>Shell</li>
 			</layers>
 			<tags>
