@@ -42,18 +42,25 @@ namespace RimWorld
             float Searchradius = HuntingRange;
             Map map = pawn.Map;
             IntVec3 c = IntVec3.Invalid;
+            Pawn Victim = null;
             if (!pawn.isXenomorph(out Comp_Xenomorph xenomorph) || map == null)
             {
                 return null;
             }
             MapComponent_HiveGrid hiveGrid = pawn.Map.HiveGrid();
-            if (XenomorphKidnapUtility.TryFindGoodKidnapVictim(pawn, Searchradius, out Pawn t, null) && !GenAI.InDangerousCombat(pawn))
+            /*
+            if (GenAI.InDangerousCombat(pawn))
             {
-                /*
+                Log.Warning(string.Format("{0} is InDangerousCombat", pawn.NameShortColored));
+            }
+            */
+            if (XenomorphKidnapUtility.TryFindGoodKidnapVictim(pawn, Searchradius, out Victim, null) && !GenAI.InDangerousCombat(pawn))
+            {
                 if (xenomorph.HiveLoc.IsValid && xenomorph.HiveLoc.InBounds(map) && xenomorph.HiveLoc != IntVec3.Zero)
                 {
                     c = xenomorph.HiveLoc;
                 }
+                /*
                 else
                 if (!hiveGrid.Hivelist.NullOrEmpty())
                 {
@@ -67,7 +74,7 @@ namespace RimWorld
                 else
                 */
                 bool selected = pawn.Map != null ? Find.Selector.SelectedObjects.Contains(pawn) && (Prefs.DevMode) : false;
-                if (c != IntVec3.Invalid && t != null && pawn.CanReach(c, PathEndMode.ClosestTouch, Danger.Deadly, true, TraverseMode.PassAllDestroyableThings))
+                if (c != IntVec3.Invalid && Victim != null && pawn.CanReach(c, PathEndMode.ClosestTouch, Danger.Deadly, true, TraverseMode.PassAllDestroyableThings))
                 {
                     Predicate<IntVec3> validator = delegate (IntVec3 y)
                     {
@@ -96,7 +103,7 @@ namespace RimWorld
                     {
                         return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Kidnap)
                         {
-                            targetA = t,
+                            targetA = Victim,
                             targetB = lc,
                             targetC = lc.RandomAdjacentCell8Way(),
                             count = 1
@@ -105,13 +112,13 @@ namespace RimWorld
                 }
                 else
                 {
+                    Log.Error("No suitable hive location found");
                     //   if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} something went wrong", this));
                 }
             }
             else
             {
-                Log.Error("No hive loc found");
-                return null;
+            //    Log.Error("No suitable Victim found");
             }
             return null;
         }

@@ -15,9 +15,10 @@ namespace RimWorld
         // Token: 0x0600368B RID: 13963 RVA: 0x001A0E1C File Offset: 0x0019F21C
         public static bool TryFindCell(out IntVec3 cell, out IntVec3 locationC, Map map, bool allowFogged = false, bool allowUnroofed = false, bool allowDigging = false, bool forceNew = false)
         {
-            InfestationLikeCellFinder.CalculateLocationCandidates(map, allowFogged, allowUnroofed, allowDigging);
+            InfestationLikeCellFinder.CalculateLocationCandidates(map, allowFogged, allowUnroofed, allowDigging, forceNew);
             if (!forceNew)
             {
+                Log.Message("exsisting hivelocs allowed");
                 if (!map.HiveGrid().Hivelist.NullOrEmpty())
                 {
                     cell = map.HiveGrid().Hivelist.RandomElement().Position;
@@ -45,32 +46,36 @@ namespace RimWorld
                 bool filled = y.Filled(map) && !allowDigging;
                 bool edifice = y.GetEdifice(map).DestroyedOrNull() || allowDigging;
                 bool building = y.GetFirstBuilding(map).DestroyedOrNull() || allowDigging;
-                bool thing = y.GetThingList(map).Any(x => x.GetType() != typeof(Building_XenomorphCocoon) && x.GetType() != typeof(Building_XenoEgg) && x.GetType() != typeof(HiveLike));
+                bool thing = !y.GetThingList(map).Any(x => x.GetType() == typeof(Building_XenomorphCocoon) || x.GetType() == typeof(Building_XenoEgg) || x.GetType() == typeof(HiveLike)) || !forceNew;
+
                 bool result = score && XenohiveA && XenohiveB && !filled && edifice && building && thing && roofed;
                 return result;
             };
-            if (!InfestationLikeCellFinder.locationCandidates.TryRandomElementByWeight((InfestationLikeCellFinder.LocationCandidate x) => x.score, out LocationCandidate locationCandidate))
+            if (!InfestationLikeCellFinder.locationCandidates.Where(y=> validator(y.cell)).TryRandomElementByWeight((InfestationLikeCellFinder.LocationCandidate x) => x.score, out LocationCandidate locationCandidate))
             {
-            //    Log.Message(string.Format("Cant find any suitable location candidates"));
+                Log.Message(string.Format("Cant find any suitable location candidates"));
                 cell = IntVec3.Invalid;
                 if (!InfestationCellFinder.TryFindCell(out cell, map))
                 {
                     if (!map.HiveGrid().PotentialHiveLoclist.NullOrEmpty())
                     {
-                        if (map.HiveGrid().PotentialHiveLoclist.Any(x => x.X < 50 || x.Z < 50))
+                        if (map.HiveGrid().PotentialHiveLoclist.Any(x => (x.X < 50 || x.Z < 50) && (!forceNew || !x.HiveLoc.GetThingList(map).Any(y => y.GetType() == typeof(HiveLike)))))
                         {
-                            cell = map.HiveGrid().PotentialHiveLoclist.Where(x => x.X < 50 || x.Z < 50).RandomElement().HiveLoc;
+                            Log.Message(string.Format("PotentialHiveLoclist location candidates 50 {0}", forceNew));
+                            cell = map.HiveGrid().PotentialHiveLoclist.Where(x => (x.X < 50 || x.Z < 50) && (!forceNew || !x.HiveLoc.GetThingList(map).Any(y => y.GetType() == typeof(HiveLike)))).RandomElement().HiveLoc;
                             locationC = cell;
                         }
                         else
-                        if (map.HiveGrid().PotentialHiveLoclist.Any(x => x.X < 75 || x.Z < 75))
+                        if (map.HiveGrid().PotentialHiveLoclist.Any(x => (x.X < 75 || x.Z < 75) && (!forceNew || !x.HiveLoc.GetThingList(map).Any(y => y.GetType() == typeof(HiveLike)))))
                         {
-                            cell = map.HiveGrid().PotentialHiveLoclist.Where(x => x.X < 75 || x.Z < 75).RandomElement().HiveLoc;
+                            Log.Message(string.Format("PotentialHiveLoclist location candidates 75 {0}", forceNew));
+                            cell = map.HiveGrid().PotentialHiveLoclist.Where(x => (x.X < 75 || x.Z < 75) && (!forceNew || !x.HiveLoc.GetThingList(map).Any(y => y.GetType() == typeof(HiveLike)))).RandomElement().HiveLoc;
                             locationC = cell;
                         }
                         else
                         {
-                            cell = map.HiveGrid().PotentialHiveLoclist.RandomElement().HiveLoc;
+                            Log.Message(string.Format("PotentialHiveLoclist location candidates {0}", forceNew));
+                            cell = map.HiveGrid().PotentialHiveLoclist.Where(x=> (!forceNew || !x.HiveLoc.GetThingList(map).Any(y => y.GetType() == typeof(HiveLike)))).RandomElement().HiveLoc;
                             locationC = cell;
                         }
                         return true;
@@ -205,10 +210,10 @@ namespace RimWorld
         }
 
         // Token: 0x0600368E RID: 13966 RVA: 0x001A127C File Offset: 0x0019F67C
-        private static void CalculateLocationCandidates(Map map, bool allowFogged = false, bool allowUnroofed = false, bool allowDigging = false)
+        private static void CalculateLocationCandidates(Map map, bool allowFogged = false, bool allowUnroofed = false, bool allowDigging = false, bool forceNew = false)
         {
             int minscore = (allowUnroofed ? 0 : (allowDigging ? 15000 : 10000));
-            
+            MapComponent_HiveGrid hiveGrid = map.HiveGrid();
             InfestationLikeCellFinder.locationCandidates.Clear();
             InfestationLikeCellFinder.CalculateTraversalDistancesToUnroofed(map);
             InfestationLikeCellFinder.CalculateClosedAreaSizeGrid(map);
@@ -218,6 +223,10 @@ namespace RimWorld
                 for (int j = 0; j < map.Size.x; j++)
                 {
                     IntVec3 cell = new IntVec3(j, 0, i);
+                    if (!forceNew || !(hiveGrid.Hivelist.Any(x => x.Position == cell) || hiveGrid.hiveLoclist.Any(x => x == cell)))
+                    {
+
+                    }
                     float scoreAt = InfestationLikeCellFinder.GetScoreAt(cell, map, allowFogged, allowUnroofed, allowDigging); // allowFogged
                     
                     if (scoreAt > minscore)

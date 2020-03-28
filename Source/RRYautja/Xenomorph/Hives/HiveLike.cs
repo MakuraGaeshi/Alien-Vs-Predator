@@ -549,6 +549,7 @@ namespace RimWorld
             {
                 lord = this.CreateNewLord();
             }
+            pawn.xenomorph().HiveLoc = this.Position;
             lord.AddPawn(pawn);
             SoundDefOf.Hive_Spawn.PlayOneShot(this);
             return true;

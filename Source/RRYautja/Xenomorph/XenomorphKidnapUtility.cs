@@ -47,6 +47,7 @@ namespace RRYautja
                 bool neoimpregnationFlag = pawn.health.hediffSet.hediffs.Any(x=> x.def.defName.Contains("NeomorphImpregnation"));
                 bool impregnationFlag = ((xenoimpregnationFlag && cocoonFlag) || !xenoimpregnationFlag) && !neoimpregnationFlag;
                 bool pawnFlag = ((XenomorphUtil.isInfectablePawn(pawn, true))) && pawn.Downed /* && (pawn.Faction == null || pawn.Faction.HostileTo(kidnapper.Faction)) */;
+            //    Log.Message(string.Format("minFlag: {0}, roofedFlag: {1}, cocoonFlag: {2}, xenoimpregnationFlag: {3}, neoimpregnationFlag: {4}, impregnationFlag: {5}, pawnFlag: {6}, CanReserve: {7}, Allowed: {8}", minFlag, roofedFlag, cocoonFlag, xenoimpregnationFlag, neoimpregnationFlag, impregnationFlag, pawnFlag, kidnapper.CanReserve(pawn, 1, -1, null, false), (disallowed == null || !disallowed.Contains(pawn))));
                 return  cocoonFlag && pawnFlag && impregnationFlag && minFlag && kidnapper.CanReserve(pawn, 1, -1, null, false) && (disallowed == null || !disallowed.Contains(pawn));
             };
             victim = (Pawn)GenClosest.ClosestThingReachable(kidnapper.Position, kidnapper.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Some, false), maxDist, validator, null, 0, -1, false, RegionType.Set_Passable, false);

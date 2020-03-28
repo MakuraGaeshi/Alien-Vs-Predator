@@ -406,7 +406,7 @@
         <defaultProjectile>RRY_Bullet_SpearRifle</defaultProjectile>
         <warmupTime>3.5</warmupTime>
         <range>47</range>
-        <soundCast>Shot_SniperRifle</soundCast>
+        <!--soundCast>Shot_SniperRifle</soundCast-->
         <soundCastTail>GunTail_Heavy</soundCastTail>
         <muzzleFlashScale>0</muzzleFlashScale>
       </li>

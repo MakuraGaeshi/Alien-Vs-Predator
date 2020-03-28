@@ -9,13 +9,28 @@ namespace RimWorld
     // Token: 0x02000340 RID: 832
     public class IncidentWorker_Xenomorph_Hivelike : IncidentWorker
     {
-        public IntVec3 intVec;
+        public IntVec3 intVec = IntVec3.Invalid;
+        public IntVec3 lc;
         // Token: 0x06000E63 RID: 3683 RVA: 0x0006B874 File Offset: 0x00069C74
         protected override bool CanFireNowSub(IncidentParms parms)
 		{
             
 			Map map = (Map)parms.target;
-            bool result = base.CanFireNowSub(parms) && XenomorphHiveUtility.TotalSpawnedHiveLikesCount(map) < 1 && InfestationLikeCellFinder.TryFindCell(out intVec, out IntVec3 lc, map, true, true, true, true);
+
+            if (!InfestationLikeCellFinder.TryFindCell(out intVec, out lc, map, false, false, false, true))
+            {
+                if (!InfestationLikeCellFinder.TryFindCell(out intVec, out lc, map, true, false, false, true))
+                {
+                    if (!InfestationLikeCellFinder.TryFindCell(out intVec, out lc, map, true, true, false, true))
+                    {
+                        if (!InfestationLikeCellFinder.TryFindCell(out intVec, out lc, map, true, true, true, true))
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            bool result = base.CanFireNowSub(parms) && XenomorphHiveUtility.TotalSpawnedHiveLikesCount(map) < 1;
             
 			return result;
             
@@ -30,10 +45,17 @@ namespace RimWorld
 		protected override bool TryExecuteWorker(IncidentParms parms)
 		{
 
-			Map map = (Map)parms.target;
-            if (!InfestationLikeCellFinder.TryFindCell(out intVec, out IntVec3 lc, map))
+            Map map = (Map)parms.target;
+
+            if (intVec == IntVec3.Invalid)
             {
-                return false;
+                if (!InfestationLikeCellFinder.TryFindCell(out intVec, out lc, map, true, false, true, true))
+                {
+                    if (!InfestationLikeCellFinder.TryFindCell(out intVec, out lc, map, true, true, true, true))
+                    {
+                        return false;
+                    }
+                }
             }
 			int hivelikeCount = Mathf.Max(GenMath.RoundRandom(parms.points / 220f), 1);
             if (def.tags.Contains("TunnelLike"))
