@@ -36,6 +36,7 @@
   <ItemGroup>
     <Compile Include="Abilities\ProjectileDefExtension.cs" />
     <Compile Include="Harmony\Patches\AVP_AEmptyPatch - Copy.cs" />
+    <Compile Include="Harmony\Patches\AvP_Alert_StarvationColonists_StarvingColonists_Synth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_HealthUtility_AdjustSeverity_Cocooned_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_PawnGraphicSet_HairMatAt_Invis_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_PawnGraphicSet_HeadMatAt_Invis_Patch.cs" />
