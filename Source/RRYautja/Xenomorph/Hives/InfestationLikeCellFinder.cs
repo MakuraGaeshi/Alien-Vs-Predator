@@ -18,7 +18,7 @@ namespace RimWorld
             InfestationLikeCellFinder.CalculateLocationCandidates(map, allowFogged, allowUnroofed, allowDigging, forceNew);
             if (!forceNew)
             {
-                Log.Message("exsisting hivelocs allowed");
+            //    Log.Message("exsisting hivelocs allowed");
                 if (!map.HiveGrid().Hivelist.NullOrEmpty())
                 {
                     cell = map.HiveGrid().Hivelist.RandomElement().Position;
@@ -53,7 +53,7 @@ namespace RimWorld
             };
             if (!InfestationLikeCellFinder.locationCandidates.Where(y=> validator(y.cell)).TryRandomElementByWeight((InfestationLikeCellFinder.LocationCandidate x) => x.score, out LocationCandidate locationCandidate))
             {
-                Log.Message(string.Format("Cant find any suitable location candidates"));
+            //    Log.Message(string.Format("Cant find any suitable location candidates"));
                 cell = IntVec3.Invalid;
                 if (!InfestationCellFinder.TryFindCell(out cell, map))
                 {
@@ -61,20 +61,20 @@ namespace RimWorld
                     {
                         if (map.HiveGrid().PotentialHiveLoclist.Any(x => (x.X < 50 || x.Z < 50) && (!forceNew || !x.HiveLoc.GetThingList(map).Any(y => y.GetType() == typeof(HiveLike)))))
                         {
-                            Log.Message(string.Format("PotentialHiveLoclist location candidates 50 {0}", forceNew));
+                        //    Log.Message(string.Format("PotentialHiveLoclist location candidates 50 {0}", forceNew));
                             cell = map.HiveGrid().PotentialHiveLoclist.Where(x => (x.X < 50 || x.Z < 50) && (!forceNew || !x.HiveLoc.GetThingList(map).Any(y => y.GetType() == typeof(HiveLike)))).RandomElement().HiveLoc;
                             locationC = cell;
                         }
                         else
                         if (map.HiveGrid().PotentialHiveLoclist.Any(x => (x.X < 75 || x.Z < 75) && (!forceNew || !x.HiveLoc.GetThingList(map).Any(y => y.GetType() == typeof(HiveLike)))))
                         {
-                            Log.Message(string.Format("PotentialHiveLoclist location candidates 75 {0}", forceNew));
+                        //    Log.Message(string.Format("PotentialHiveLoclist location candidates 75 {0}", forceNew));
                             cell = map.HiveGrid().PotentialHiveLoclist.Where(x => (x.X < 75 || x.Z < 75) && (!forceNew || !x.HiveLoc.GetThingList(map).Any(y => y.GetType() == typeof(HiveLike)))).RandomElement().HiveLoc;
                             locationC = cell;
                         }
                         else
                         {
-                            Log.Message(string.Format("PotentialHiveLoclist location candidates {0}", forceNew));
+                        //    Log.Message(string.Format("PotentialHiveLoclist location candidates {0}", forceNew));
                             cell = map.HiveGrid().PotentialHiveLoclist.Where(x=> (!forceNew || !x.HiveLoc.GetThingList(map).Any(y => y.GetType() == typeof(HiveLike)))).RandomElement().HiveLoc;
                             locationC = cell;
                         }
