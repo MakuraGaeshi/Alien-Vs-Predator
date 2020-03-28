@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,7 @@ namespace RRYautja
         }
         public static bool isAvPSynth(ThingDef td)
         {
-            bool Result = td.race.FleshType.defName == "RRY_SynthFlesh";
+            bool Result = td.race.FleshType.defName == "RRY_SynthFlesh" || td==USCMDefOf.RRY_Synth;
 
             return Result;
         }

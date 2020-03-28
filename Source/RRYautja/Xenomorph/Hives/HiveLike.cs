@@ -150,16 +150,16 @@ namespace RimWorld
 
         // Token: 0x040015B0 RID: 5552
         
-        public float maxSpawnPointsPerHive = 0f;
+        private float maxSpawnPointsPerHive = -1f;
         public float MaxSpawnedPawnsPoints
         {
             get
             {
-                if (maxSpawnPointsPerHive!=0f)
+                if (maxSpawnPointsPerHive==-1f)
                 {
-                    return maxSpawnPointsPerHive;
+                    maxSpawnPointsPerHive = Def.maxSpawnPointsPerHive;
                 }
-                return Def.maxSpawnPointsPerHive;
+                return maxSpawnPointsPerHive;
             }
             set
             {
@@ -168,11 +168,20 @@ namespace RimWorld
         }
 
         // Token: 0x040015B1 RID: 5553
+        private float initialPawnsPoints = -1f;
         public float InitialPawnsPoints
         {
             get
             {
-                return Def.initalSpawnPointsPerHive;
+                if (initialPawnsPoints==-1f)
+                {
+                    initialPawnsPoints = Def.initalSpawnPointsPerHive;
+                }
+                return initialPawnsPoints;
+            }
+            set
+            {
+                initialPawnsPoints = value;
             }
         }
         // Token: 0x170005CD RID: 1485
@@ -300,7 +309,12 @@ namespace RimWorld
 				this.SetFaction(OfFaction, null);
 
             }
-			if (!respawningAfterLoad && this.active && this.hasQueen)
+            if (this.getsQueen)
+            {
+                Pawn newQueen = PawnGenerator.GeneratePawn(new PawnGenerationRequest(XenomorphDefOf.RRY_Xenomorph_Queen, factionInt));
+                this.queenContainer.TryAdd(newQueen);
+            }
+			if (!respawningAfterLoad && this.active && canSpawnPawns)
             {
                 this.SpawnInitialPawns();
             }
@@ -371,7 +385,7 @@ namespace RimWorld
 			if (base.Spawned)
 			{
 				this.FilterOutUnspawnedPawns();
-				if (!this.active && !base.Position.Fogged(base.Map))
+				if (!this.active && !base.Position.Fogged(base.Map) && canSpawnPawns)
 				{
 					this.Activate();
 				}
@@ -522,6 +536,10 @@ namespace RimWorld
             {
                 pawn = null;
                 return false;
+            }
+            if (!this.spawnedPawns.Any(x=> x.def!=XenomorphRacesDefOf.RRY_Xenomorph_Drone))
+            {
+                kindDef = XenomorphDefOf.RRY_Xenomorph_Drone;
             }
             pawn = PawnGenerator.GeneratePawn(kindDef, base.Faction);
             this.spawnedPawns.Add(pawn);
@@ -826,7 +844,8 @@ namespace RimWorld
         public List<Pawn> spawnedScoutPawns = new List<Pawn>();
         public bool caveColony;
 		public bool canSpawnPawns = true;
-		public const int PawnSpawnRadius = 2;
+        public bool getsQueen = true; 
+        public const int PawnSpawnRadius = 2;
 		private static readonly FloatRange PawnSpawnIntervalDays = new FloatRange(0.85f, 1.15f);
         public List<PawnKindDef> spawnablePawnKinds = new List<PawnKindDef>();
         public static readonly string MemoAttackedByEnemy = "HiveAttacked";
@@ -846,6 +865,7 @@ namespace RimWorld
             Scribe_Collections.Look<Pawn>(ref this.spawnedScoutPawns, "spawnedScoutPawns", LookMode.Reference, new object[0]);
             Scribe_Values.Look<bool>(ref this.caveColony, "caveColony", false, false);
             Scribe_Values.Look<bool>(ref this.canSpawnPawns, "canSpawnPawns", true, false);
+            Scribe_Values.Look<bool>(ref this.getsQueen, "getsQueen", true, false);
             Scribe_References.Look<HiveLike>(ref this.parentHiveLike, "parentHiveLike");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {

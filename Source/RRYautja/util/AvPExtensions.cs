@@ -175,110 +175,13 @@ namespace RRYautja.ExtensionMethods
                 failReason = "HasHead";
                 return false;
             }
-            if (p.isNeomorph())
-            {
-                failReason = "isNeomorph";
-                return false;
-            }
-            if (p.isXenomorph())
-            {
-                failReason = "isXenomorph";
-                return false;
-            }
             if (p.Dead)
             {
                 failReason = "Dead";
                 return false;
             }
-            if (UtilChjAndroids.ChjAndroid)
+            if (!XenomorphUtil.isInfectableThing(p.def, out failReason))
             {
-                if (p.kindDef.race.defName == "ChjAndroid" || p.kindDef.race.defName == "ChjDroid")
-                {
-                    failReason = "ChjAndroid";
-                    return false;
-                }
-            }
-            if (UtilTieredAndroids.TieredAndroid)
-            {
-                if (p.kindDef.race.defName.Contains("Android" + "Tier"))
-                {
-                    failReason = "TieredAndroid";
-                    return false;
-                }
-            }
-            if (p.RaceProps.body.defName.Contains("AIRobot"))
-            {
-                failReason = "AIRobot";
-                return false;
-            }
-            if (p.kindDef.race.defName.Contains("Android"))
-            {
-                failReason = "Android";
-                return false;
-            }
-            if (p.kindDef.race.defName.Contains("Droid"))
-            {
-                failReason = "Droid";
-                return false;
-            }
-            if (p.kindDef.race.defName.Contains("Mech"))
-            {
-                failReason = "Mech";
-                return false;
-            }
-            if (p.kindDef.race.defName.Contains("TM_Undead"))
-            {
-                failReason = "TM_Undead";
-                return false;
-            }
-            if (p.kindDef.race.race.FleshType.defName.Contains("TM_StoneFlesh"))
-            {
-                failReason = "TM_StoneFlesh";
-                return false;
-            }
-            if (p.kindDef.race.defName.Contains("TM_") && p.kindDef.race.defName.Contains("Minion"))
-            {
-                failReason = "TM_Minion";
-                return false;
-            }
-            if (p.kindDef.race.defName.Contains("TM_Demon"))
-            {
-                failReason = "TM_Demon";
-                return false;
-            }
-            if (p.kindDef.race.race.FleshType.defName.Contains("ChaosDeamon"))
-            {
-                failReason = "ChaosDeamon";
-                return false;
-            }
-            if (p.kindDef.race.race.FleshType.defName.Contains("Necron"))
-            {
-                failReason = "Necron";
-                return false;
-            }
-            if (p.kindDef.race.race.FleshType.defName.Contains("EldarConstruct"))
-            {
-                failReason = "EldarConstruct";
-                return false;
-            }
-            if (p.kindDef.race.race.FleshType.defName.Contains("ImperialConstruct"))
-            {
-                failReason = "ImperialConstruct";
-                return false;
-            }
-            if (p.kindDef.race.race.FleshType.defName.Contains("MechanicusConstruct"))
-            {
-                failReason = "MechanicusConstruct";
-                return false;
-            }
-            if (p.RaceProps.IsMechanoid)
-            {
-                failReason = "IsMechanoid";
-                return false;
-            }
-            if (!p.RaceProps.IsFlesh)
-            {
-                failReason = "notFlesh";
                 return false;
             }
             if (p.isHost())

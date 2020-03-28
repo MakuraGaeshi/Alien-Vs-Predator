@@ -49,6 +49,12 @@ namespace RimWorld
         // Token: 0x060005B7 RID: 1463 RVA: 0x00037A28 File Offset: 0x00035E28
         protected override Job TryGiveJob(Pawn pawn)
         {
+            Job job = null;
+            bool healthy = (pawn.health.summaryHealth.SummaryHealthPercent > 0.75f && pawn.health.hediffSet.BleedRateTotal < 0.15f);
+            if (!healthy)
+            {
+                return job;
+            }
             if (pawn.GetLord() != null && pawn.GetLord() is Lord lord)
             {
                 if (lord.LordJob is LordJob_DefendAndExpandHiveLike hivejob)
@@ -71,16 +77,11 @@ namespace RimWorld
                 }
             }
 
-            float summaryHealthPercent = pawn.health.summaryHealth.SummaryHealthPercent;
-            if (summaryHealthPercent < 0.5f)
-            {
-               return null;
-            }
             bool aggressive;
             Comp_Xenomorph _Xenomorph = pawn.TryGetComp<Comp_Xenomorph>();
             if (pawn.TryGetAttackVerb(null, false) == null)
             {
-                return null;
+                return job;
             }
 
 
@@ -108,42 +109,54 @@ namespace RimWorld
             {
                 pawn2 = this.FindPawnTarget(pawn);
             }
-            if (pawn2 == null)
-            {
-                return null;
-            }
-            if (!pawn2.isPotentialHost())
-            {
-                return null;
-            }
-            if (pawn2 != null && pawn.CanReach(pawn2, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.ByPawn))
-            {
-                return this.MeleeAttackJob(pawn, pawn2);
-            }
             if (pawn2 != null)
             {
-                using (PawnPath pawnPath = pawn.Map.pathFinder.FindPath(pawn.Position, pawn2.Position, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.PassDoors, true), PathEndMode.OnCell))
+                if (pawn2.isPotentialHost())
                 {
-                    if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("pawnPath.TotalCost: {0}", pawnPath.TotalCost));
-                    
-                    if (!pawnPath.Found)
+                    if (pawn.CanReach(pawn2, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.ByPawn))
                     {
-                        return null;
+                        job = this.MeleeAttackJob(pawn, pawn2);
                     }
-                    if (!pawnPath.TryFindLastCellBeforeBlockingDoor(pawn, out IntVec3 loc))
+                    else
                     {
-                        //    Log.Error(pawn + " did TryFindLastCellBeforeDoor but found none when it should have been one. Target: " + pawn2.LabelCap, false);
-                        return null;
+                        using (PawnPath pawnPath = pawn.Map.pathFinder.FindPath(pawn.Position, pawn2.Position, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.PassDoors, true), PathEndMode.OnCell))
+                        {
+                            if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("pawnPath.TotalCost: {0}", pawnPath.TotalCost));
+
+                            if (!pawnPath.Found)
+                            {
+                                if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("pawnPath.Found NOT Found"));
+                                job = null;
+                            }
+                            else
+                            if (!pawnPath.TryFindLastCellBeforeBlockingDoor(pawn, out IntVec3 loc))
+                            {
+                                if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("pawnPath.TryFindLastCellBeforeBlockingDoor NOT Found"));
+                                //    Log.Error(pawn + " did TryFindLastCellBeforeDoor but found none when it should have been one. Target: " + pawn2.LabelCap, false);
+                                job = null;
+                            }
+                            /*
+                            else
+                            {
+                                if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("pawnPath.TryFindLastCellBeforeBlockingDoor NOT Found"));
+                                IntVec3 randomCell = CellFinder.RandomRegionNear(loc.GetRegion(pawn.Map, RegionType.Set_Passable), 9, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn, true), null, null, RegionType.Set_Passable).RandomCell;
+                                if (randomCell == pawn.Position)
+                                {
+                                    job = new Job(JobDefOf.Wait, 30, false);
+                                }
+                                else
+                                {
+                                    job = new Job(JobDefOf.Goto, randomCell);
+                                }
+                            }
+                            */
+                        }
                     }
-                    IntVec3 randomCell = CellFinder.RandomRegionNear(loc.GetRegion(pawn.Map, RegionType.Set_Passable), 9, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn, true), null, null, RegionType.Set_Passable).RandomCell;
-                    if (randomCell == pawn.Position)
-                    {
-                        return new Job(JobDefOf.Wait, 30, false);
-                    }
-                    return new Job(JobDefOf.Goto, randomCell);
                 }
             }
-            return null;
+
+            if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0}: {1} Job Found: {2}: {3}", this, pawn, job != null, job));
+            return job;
         }
 
         // Token: 0x060005B8 RID: 1464 RVA: 0x00037B7C File Offset: 0x00035F7C
@@ -161,13 +174,34 @@ namespace RimWorld
         // Token: 0x060005B9 RID: 1465 RVA: 0x00037BC0 File Offset: 0x00035FC0
         private Pawn FindPawnTarget(Pawn pawn)
         {
+            Pawn pawnt = null;
             bool selected = Find.Selector.SingleSelectedThing == pawn;
-            List<Pawn> list = pawn.Map.mapPawns.AllPawns.Where((Pawn x) => !x.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned) && !x.Downed && XenomorphUtil.isInfectablePawn(x) && pawn.CanReach(x, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.NoPassClosedDoors) && !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Anesthetic)&& ((requireLOS && pawn.CanSee(x)) || !requireLOS) && (this.Gender == Gender.None || (this.Gender!=Gender.None && x.gender == this.Gender))).ToList();
-            if (list.NullOrEmpty())
+            if (!pawn.isXenomorph(out Comp_Xenomorph xenomorph))
             {
                 return null;
             }
-            return (Pawn)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.ClosestTouch, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), HuntingRange, (x => x is Pawn p && list.Contains(p)));//(Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn p && XenomorphUtil.isInfectablePawn(p) && !p.Downed, 0f, 9999f, default(IntVec3), float.MaxValue, true, true);
+            List<Pawn> list = pawn.Map.mapPawns.AllPawns.Where((Pawn x) => !x.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned) && !x.Downed && XenomorphUtil.isInfectablePawn(x) && pawn.CanReach(x, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.NoPassClosedDoors) && !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Anesthetic)&& ( pawn.CanSee(x) || !requireLOS) && (this.Gender == Gender.None || (this.Gender!=Gender.None && x.gender == this.Gender))).ToList();
+            if (!list.NullOrEmpty())
+            {
+                if (list.Any(x => xenomorph.IsAcceptablePreyFor(pawn, x, true)))
+                {
+                    list = list.Where(x => xenomorph.IsAcceptablePreyFor(pawn, x, true)).ToList();
+                }
+                else
+                {
+                    list = new List<Pawn>();
+                }
+            }
+            if (!list.NullOrEmpty())
+            {
+                Pawn pawn2 = (Pawn)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.ClosestTouch, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), HuntingRange, (x => x is Pawn p && list.Contains(p)));//(Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn p && XenomorphUtil.isInfectablePawn(p) && !p.Downed, 0f, 9999f, default(IntVec3), float.MaxValue, true, true);
+                pawnt = pawn2;
+            }
+            if (pawnt!=null)
+            {
+                if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("Xeno hunting {0}", pawnt));
+            }
+            return pawnt;
         }
         
         public bool forceScanWholeMap = true;

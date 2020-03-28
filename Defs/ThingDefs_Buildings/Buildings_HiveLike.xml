@@ -306,15 +306,15 @@
   
   <ThingDef ParentName="RockBase">
     <defName>RRY_Xenomorph_Hive_Wall</defName>
-    <label>collapsed rocks</label>
-    <description>Collapsed rocks, packed tightly enough to hold up a roof.</description>
+    <label>resin wall</label>
+    <description>Rock and other debries, packed tightly enough and bound in resin strong enough to hold up a roof.</description>
     <graphicData>
       <texPath>Things/Buildings/Xenomorph/Linked/XenoResinWall_Atlas</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>CutoutComplex</shaderType>
     </graphicData>
     <statBases>
-      <MaxHitPoints>500</MaxHitPoints>
+      <MaxHitPoints>300</MaxHitPoints>
     </statBases>
 		<rotatable>true</rotatable>
     <building>

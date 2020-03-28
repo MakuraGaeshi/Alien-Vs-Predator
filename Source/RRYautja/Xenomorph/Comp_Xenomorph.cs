@@ -971,7 +971,7 @@ namespace RRYautja
             if (selected) Log.Message(string.Format("Xenomorph BestPawnToHuntForPredator maxRegionsToScan: {0}", maxRegionsToScan));
             if (maxRegionsToScan < 0)
             {
-                tmpPredatorCandidates.AddRange(predator.Map.mapPawns.AllPawnsSpawned);
+                tmpPredatorCandidates.AddRange(predator.Map.mapPawns.AllPawnsSpawned.Where(x=> (x.isPotentialHost() || !findhost)));
             }
             else
             {
@@ -981,7 +981,10 @@ namespace RRYautja
                     List<Thing> list = x.ListerThings.ThingsInGroup(ThingRequestGroup.Pawn);
                     for (int j = 0; j < list.Count; j++)
                     {
-                        tmpPredatorCandidates.Add((Pawn)list[j]);
+                        if (((Pawn)list[j]).isPotentialHost() || !findhost)
+                        {
+                            tmpPredatorCandidates.Add((Pawn)list[j]);
+                        }
                     }
                     return false;
                 }, 999999, RegionType.Set_Passable);
@@ -992,6 +995,7 @@ namespace RRYautja
             for (int i = 0; i < tmpPredatorCandidates.Count; i++)
             {
                 Pawn pawn2 = tmpPredatorCandidates[i];
+                if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("predator List contains {0}", pawn2.NameShortColored));
                 if (predator.GetRoom(RegionType.Set_Passable) == pawn2.GetRoom(RegionType.Set_Passable))
                 {
                     if (predator != pawn2)

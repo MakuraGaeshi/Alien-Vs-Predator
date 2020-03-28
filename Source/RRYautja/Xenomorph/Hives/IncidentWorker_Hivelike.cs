@@ -15,7 +15,7 @@ namespace RimWorld
 		{
             
 			Map map = (Map)parms.target;
-            bool result = base.CanFireNowSub(parms) && XenomorphHiveUtility.TotalSpawnedHiveLikesCount(map) < 1 && InfestationLikeCellFinder.TryFindCell(out intVec, out IntVec3 lc, map);
+            bool result = base.CanFireNowSub(parms) && XenomorphHiveUtility.TotalSpawnedHiveLikesCount(map) < 1 && InfestationLikeCellFinder.TryFindCell(out intVec, out IntVec3 lc, map, true, true, true, true);
             
 			return result;
             
@@ -39,7 +39,7 @@ namespace RimWorld
             if (def.tags.Contains("TunnelLike"))
             {
                 //Log.Message(string.Format("TunnelLike"));
-                Thing t = this.SpawnTunnelLikeCluster(hivelikeCount, map);
+                Thing t = this.SpawnTunnelLikeCluster(hivelikeCount, map, parms);
                 base.SendStandardLetter(parms, new TargetInfo(intVec, map, false), Array.Empty<NamedArgument>());
                 /*
                 Map map = (Map)parms.target;
@@ -83,12 +83,13 @@ namespace RimWorld
             return hivelike;
         }
 
-        private TunnelHiveLikeSpawner SpawnTunnelLikeCluster(int hiveCount, Map map, bool ignoreRoofedRequirement = false, bool allowUnreachable = false, float modifier = 1)
+        private TunnelHiveLikeSpawner SpawnTunnelLikeCluster(int hiveCount, Map map, IncidentParms parms, bool ignoreRoofedRequirement = false, bool allowUnreachable = false, float modifier = 1)
         {
             IntVec3 loc = intVec;
             ThingDef_HiveLike tD = (ThingDef_HiveLike)this.def.mechClusterBuilding;
             ThingDef_TunnelHiveLikeSpawner thingDef = (ThingDef_TunnelHiveLikeSpawner)tD.TunnelDef;
             TunnelHiveLikeSpawner hivelike = (TunnelHiveLikeSpawner)ThingMaker.MakeThing(thingDef, null);
+            hivelike.hivePoints = parms.points / hiveCount;
             GenSpawn.Spawn(ThingMaker.MakeThing(hivelike.def, null), loc, map);
             //hivelike.SetFaction(hivelike.faction, null);
             IncidentWorker_Xenomorph_Hivelike.SpawnItemInstantly(hivelike);

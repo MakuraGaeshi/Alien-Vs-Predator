@@ -235,7 +235,12 @@ namespace RimWorld
                 Thing thing = ThingMaker.MakeThing(MyDef);
                 HiveLike hive = (HiveLike)thing;
                 hive.active = false;
+                hive.canSpawnPawns = false;
+                hive.getsQueen = false;
+                hive.InitialPawnsPoints = 0;
+                hive.MaxSpawnedPawnsPoints = 0;
                 GenSpawn.Spawn(thing, TargetA.Cell, actor.Map, Rot4.South, WipeMode.FullRefund, false);
+                hive.Lord.AddPawn(actor);
             };
             use.defaultCompleteMode = ToilCompleteMode.Instant;
             yield return use;

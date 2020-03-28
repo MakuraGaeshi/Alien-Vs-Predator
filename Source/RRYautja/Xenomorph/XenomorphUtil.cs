@@ -170,27 +170,58 @@ namespace RRYautja
 
         public static bool isInfectableThing(ThingDef thingDef)
         {
-            if (thingDef.race == null) return false;
+            return isInfectableThing(thingDef, out string FailReason);
+        }
+
+        public static bool isInfectableThing(ThingDef thingDef, out string FailReason)
+        {
+            FailReason = string.Empty;
+            if (thingDef.race == null)
+            {
+                FailReason = string.Format("{0} has No Race Properties", thingDef);
+                return false; 
+            }
             if (!settings.SettingsHelper.latest.AllowNonHumanlikeHosts && !thingDef.race.Humanlike)
             {
+                FailReason = string.Format("{0} is Non-Humanlike and AllowNonHumanlikeHosts is False", thingDef);
                 return false;
             }
             if (thingDef.isXenomorph() || thingDef.isNeomorph())
             {
+                string str = thingDef.isXenomorph() ? "Xenomorph" : "Neomorph";
+                FailReason = string.Format("{0} is a {1}", thingDef, str);
                 return false;
             }
             bool pawnflag = !((UtilChjAndroids.ChjAndroid && UtilChjAndroids.isChjAndroid(thingDef)) || (UtilTieredAndroids.TieredAndroid && UtilTieredAndroids.isAtlasAndroid(thingDef)) || (UtilSynths.isAvPSynth(thingDef)));
-            if (!pawnflag) return false;
-            if (thingDef.race.IsMechanoid) return false;
-            if (thingDef.race.body.defName.Contains("AIRobot")) return false;
+            if (!pawnflag)
+            {
+                string str = string.Empty;
+                if (UtilChjAndroids.ChjAndroid && UtilChjAndroids.isChjAndroid(thingDef))
+                {
+                    str = "isChjAndroid";
+                }
+                if (UtilTieredAndroids.TieredAndroid && UtilTieredAndroids.isAtlasAndroid(thingDef))
+                {
+                    str = "isAtlasAndroid";
+                }
+
+                if (UtilSynths.isAvPSynth(thingDef))
+                {
+                    str = "isAvPSynth";
+                }
+                FailReason = string.Format("{0} is a {1}", thingDef, str);
+                return false; 
+            }
+            if (thingDef.race.IsMechanoid) { FailReason = string.Format("{0} IsMechanoid", thingDef);  return false; }
+            if (thingDef.race.body.defName.Contains("AIRobot")) { FailReason = string.Format("{0} AIRobot", thingDef); return false; }
             if (thingDef.defName.Contains("TM_"))
             {
-                if (thingDef.defName.Contains("Undead") || thingDef.defName.Contains("Minion") || thingDef.defName.Contains("Demon")) return false;
+                if (thingDef.defName.Contains("Undead") || thingDef.defName.Contains("Minion") || thingDef.defName.Contains("Demon")) { FailReason = string.Format("{0} is TM_ Beastie", thingDef); return false; }
             }
-            if (thingDef.race.FleshType.defName.Contains("TM_StoneFlesh")) return false;
-            if (thingDef.race.FleshType.defName.Contains("Chaos") && thingDef.race.FleshType.defName.Contains("Deamon")) return false;
-            if (thingDef.race.FleshType.defName.Contains("Construct") && thingDef.race.FleshType.defName.Contains("Flesh")) return false;
-            if (thingDef.race.baseBodySize < 0.65f && !thingDef.race.Humanlike) return false;
+            if (thingDef.race.FleshType.defName.Contains("TM_StoneFlesh")) { FailReason = string.Format("{0} TM_StoneFlesh", thingDef); return false; }
+            if (thingDef.race.FleshType.defName.Contains("Chaos") && thingDef.race.FleshType.defName.Contains("Deamon")) { FailReason = string.Format("{0} ChaosDeamon", thingDef); return false; }
+            if (thingDef.race.FleshType.defName.Contains("Construct") && thingDef.race.FleshType.defName.Contains("Flesh")) { FailReason = string.Format("{0} ConstructFlesh", thingDef); return false; }
+            if (thingDef.race.baseBodySize < 0.65f && !thingDef.race.Humanlike) { FailReason = string.Format("{0} Non-Humanlike Too Small", thingDef); return false; }
 
 
             return true;
@@ -198,13 +229,20 @@ namespace RRYautja
 
         public static bool isInfectablePawn(Pawn pawn, bool allowinfected = false)
         {
-            return isInfectableThing(pawn.def) && (allowinfected || !pawn.isHost());
+            return isInfectablePawn(pawn, out string FailReason, allowinfected);
+        }
+        public static bool isInfectablePawn(Pawn pawn, out string FailReason, bool allowinfected = false)
+        {
+            return isInfectableThing(pawn.def, out FailReason) && (allowinfected || !pawn.isHost());
         }
 
         public static bool isInfectablePawnKind(PawnKindDef pawn)
         {
-
-            return isInfectableThing(pawn.race);
+            return isInfectableThing(pawn.race, out string FailReason);
+        }
+        public static bool isInfectablePawnKind(PawnKindDef pawn, out string FailReason)
+        {
+            return isInfectableThing(pawn.race, out FailReason);
         }
 
         public static List<Pawn> SpawnedInfectablePawns(Map map)
