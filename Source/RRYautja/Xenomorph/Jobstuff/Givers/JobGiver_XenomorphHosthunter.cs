@@ -197,11 +197,12 @@ namespace RimWorld
                 Pawn pawn2 = (Pawn)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.ClosestTouch, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), HuntingRange, (x => x is Pawn p && list.Contains(p)));//(Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn p && XenomorphUtil.isInfectablePawn(p) && !p.Downed, 0f, 9999f, default(IntVec3), float.MaxValue, true, true);
                 pawnt = pawn2;
             }
-            if (pawnt!=null)
+            if (pawnt != null)
             {
                 if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("Xeno hunting {0}", pawnt));
+                return pawnt;
             }
-            return pawnt;
+            else return null;
         }
         
         public bool forceScanWholeMap = true;

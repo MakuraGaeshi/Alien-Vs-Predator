@@ -50,24 +50,16 @@ namespace RimWorld
             bool centerSlime = HiveCenter.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive_Slime) != null;
             bool centerFilled = HiveCenter.Filled(pawn.Map);
 
-            if (!centerChild)
+            if (centerNode)
             {
-                if ((!centerNode && !centerSlime))
+                MiningRange = 6;
+            }
+            else
+            {
+                MiningRange = 3;
+                if (!centerChild)
                 {
-                    if (!centerFilled && pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Drone)
-                    {
-                        IntVec3 c = HiveCenter;
-                        if (c.InBounds(pawn.Map) && c.Roofed(pawn.Map) && pawn.CanReserveAndReach(c, PathEndMode.OnCell, Danger.Deadly))
-                        {
-                            return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Construct_Hive_Slime, c)
-                            {
-                                ignoreDesignations = false
-                            };
-                        }
-                    }
-                }
-                else if (!centerNode)
-                {
+
                     if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen || pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Drone)
                     {
                         if (centerSlime && !centerFilled)
@@ -84,19 +76,6 @@ namespace RimWorld
                         return null;
                     }
                 }
-            }
-            if (centerSlime)
-            {
-                MiningRange = 4;
-            }
-            else
-            if (centerNode)
-            {
-                MiningRange = 6;
-            }
-            else
-            {
-                MiningRange = 3;
             }
 
             foreach (var structure in HiveStructure.HiveStruct(HiveCenter).Where(x => x.GetThingList(map).Any(z => !z.def.defName.Contains("RRY_Xenomorph_Hive")) && x.DistanceTo(HiveCenter)<=MiningRange && pawn.CanReserveAndReach(x, PathEndMode.OnCell, Danger.Deadly, layer: ReservationLayerDefOf.Floor) && x.GetFirstBuilding(map) == null))

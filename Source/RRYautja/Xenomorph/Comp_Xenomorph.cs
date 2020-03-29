@@ -968,7 +968,7 @@ namespace RRYautja
             }
             tmpPredatorCandidates.Clear();
             int maxRegionsToScan = GetMaxRegionsToScan(predator, forceScanWholeMap);
-            if (selected) Log.Message(string.Format("Xenomorph BestPawnToHuntForPredator maxRegionsToScan: {0}", maxRegionsToScan));
+            if (predator.jobs.debugLog) predator.jobs.DebugLogEvent(string.Format("Xenomorph BestPawnToHuntForPredator maxRegionsToScan: {0}", maxRegionsToScan));
             if (maxRegionsToScan < 0)
             {
                 tmpPredatorCandidates.AddRange(predator.Map.mapPawns.AllPawnsSpawned.Where(x=> (x.isPotentialHost() || !findhost)));
@@ -995,7 +995,7 @@ namespace RRYautja
             for (int i = 0; i < tmpPredatorCandidates.Count; i++)
             {
                 Pawn pawn2 = tmpPredatorCandidates[i];
-                if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("predator List contains {0}", pawn2.NameShortColored));
+                if (predator.jobs.debugLog) predator.jobs.DebugLogEvent(string.Format("predator List contains {0}", pawn2.NameShortColored));
                 if (predator.GetRoom(RegionType.Set_Passable) == pawn2.GetRoom(RegionType.Set_Passable))
                 {
                     if (predator != pawn2)

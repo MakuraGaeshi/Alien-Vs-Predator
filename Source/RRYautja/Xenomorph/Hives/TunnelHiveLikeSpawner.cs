@@ -224,6 +224,8 @@ namespace RimWorld
                         }
                         hive = (HiveLike)GenSpawn.Spawn(ThingMaker.MakeThing(hiveDef, null), position, map, WipeMode.Vanish);
                         hive.SetFaction(faction, null);
+                        hive.InitialPawnsPoints = hivePoints/2;
+                        hive.MaxSpawnedPawnsPoints = hivePoints;
                         if (parentHiveLike != null)
                         {
                             parentHiveLike.childHiveLikes.Add(hive);

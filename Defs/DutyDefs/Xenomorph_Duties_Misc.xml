@@ -199,6 +199,12 @@
         <li Class="JobGiver_MaintainHiveLikes">
           <onlyIfDamagingState>true</onlyIfDamagingState>
         </li>
+		
+		<li Class="JobGiver_XenosKidnap"> 
+          <HuntingRange>12</HuntingRange>
+          <allowHosts>true</allowHosts>
+        </li>
+		
 		<li Class="ThinkNode_Conditional_UnderHealth">
 		  <pawnHealth>0.25</pawnHealth>
 		  <subNodes>

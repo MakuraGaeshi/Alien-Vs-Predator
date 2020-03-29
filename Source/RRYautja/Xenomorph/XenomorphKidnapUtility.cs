@@ -29,7 +29,7 @@ namespace RRYautja
         public static Thing hiveThing;
 
         // Token: 0x060004D2 RID: 1234 RVA: 0x00031074 File Offset: 0x0002F474
-        public static bool TryFindGoodKidnapVictim(Pawn kidnapper, float maxDist, out Pawn victim, List<Thing> disallowed = null, bool roofed = false, bool allowCocooned = false, float minDistance = 0f)
+        public static bool TryFindGoodKidnapVictim(Pawn kidnapper, float maxDist, out Pawn victim, List<Thing> disallowed = null, bool roofed = false, bool allowCocooned = false, float minDistance = 0f, bool allowHost = false)
         {
             if (!kidnapper.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation) || !kidnapper.Map.reachability.CanReachMapEdge(kidnapper.Position, TraverseParms.For(kidnapper, Danger.Some, TraverseMode.ByPawn, false)))
             {
@@ -46,7 +46,7 @@ namespace RRYautja
                 bool xenoimpregnationFlag = pawn.health.hediffSet.hediffs.Any(x => x.def.defName.Contains("XenomorphImpregnation") && x.CurStageIndex < x.def.stages.Count - 2);
                 bool neoimpregnationFlag = pawn.health.hediffSet.hediffs.Any(x=> x.def.defName.Contains("NeomorphImpregnation"));
                 bool impregnationFlag = ((xenoimpregnationFlag && cocoonFlag) || !xenoimpregnationFlag) && !neoimpregnationFlag;
-                bool pawnFlag = ((XenomorphUtil.isInfectablePawn(pawn, true))) && pawn.Downed /* && (pawn.Faction == null || pawn.Faction.HostileTo(kidnapper.Faction)) */;
+                bool pawnFlag = ((XenomorphUtil.isInfectablePawn(pawn, allowHost))) && pawn.Downed;
             //    Log.Message(string.Format("minFlag: {0}, roofedFlag: {1}, cocoonFlag: {2}, xenoimpregnationFlag: {3}, neoimpregnationFlag: {4}, impregnationFlag: {5}, pawnFlag: {6}, CanReserve: {7}, Allowed: {8}", minFlag, roofedFlag, cocoonFlag, xenoimpregnationFlag, neoimpregnationFlag, impregnationFlag, pawnFlag, kidnapper.CanReserve(pawn, 1, -1, null, false), (disallowed == null || !disallowed.Contains(pawn))));
                 return  cocoonFlag && pawnFlag && impregnationFlag && minFlag && kidnapper.CanReserve(pawn, 1, -1, null, false) && (disallowed == null || !disallowed.Contains(pawn));
             };

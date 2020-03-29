@@ -28,6 +28,9 @@ namespace RimWorld
             jobGiver_XenosKidnap.forceRoofed = this.forceRoofed;
             jobGiver_XenosKidnap.canBash = this.canBash;
             jobGiver_XenosKidnap.forceCanDig = this.forceCanDig;
+            jobGiver_XenosKidnap.allowCocooned = this.allowCocooned;
+            jobGiver_XenosKidnap.allowHosts = this.allowHosts;
+            jobGiver_XenosKidnap.minRadius = this.minRadius;
             jobGiver_XenosKidnap.forceCanDigIfAnyHostileActiveThreat = this.forceCanDigIfAnyHostileActiveThreat;
             jobGiver_XenosKidnap.forceCanDigIfCantReachMapEdge = this.forceCanDigIfCantReachMapEdge;
             return jobGiver_XenosKidnap;
@@ -54,7 +57,7 @@ namespace RimWorld
                 Log.Warning(string.Format("{0} is InDangerousCombat", pawn.NameShortColored));
             }
             */
-            if (XenomorphKidnapUtility.TryFindGoodKidnapVictim(pawn, Searchradius, out Victim, null) && !GenAI.InDangerousCombat(pawn))
+            if (XenomorphKidnapUtility.TryFindGoodKidnapVictim(pawn, Searchradius, out Victim, null,forceRoofed, allowCocooned, minRadius, allowHosts) && !GenAI.InDangerousCombat(pawn))
             {
                 if (xenomorph.HiveLoc.IsValid && xenomorph.HiveLoc.InBounds(map) && xenomorph.HiveLoc != IntVec3.Zero)
                 {
@@ -146,25 +149,20 @@ namespace RimWorld
             return true;
         }
         
-        // Token: 0x040002AB RID: 683
         public const float VictimSearchRadiusInitial = 8f;
 
-        // Token: 0x040002AC RID: 684
         private const float VictimSearchRadiusOngoing = 18f;
 
-        // Token: 0x040027D9 RID: 10201
         protected bool canBash = false;
 
-        // Token: 0x040027DA RID: 10202
         protected bool forceCanDig = true;
 
-        // Token: 0x040027DA RID: 10202
         protected bool forceRoofed = false;
-
-        // Token: 0x040027DB RID: 10203
+        protected bool allowHosts = false;
+        protected bool allowCocooned = false;
+        protected int minRadius = 0;
         protected bool forceCanDigIfAnyHostileActiveThreat;
 
-        // Token: 0x040027DC RID: 10204
         protected bool forceCanDigIfCantReachMapEdge = true;
     }
 }
