@@ -120,6 +120,7 @@
     <Compile Include="Harmony\Patches\AvP_NeurotrainerDefGenerator_ImpliedThingDefs_Filter_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Verb_Shoot_TryCastShot_Scattershot_Patch.cs" />
     <Compile Include="Harmony\Patches\Class1.cs" />
+    <Compile Include="Harmony\Patches\AvP_Verb_MeleeAttackDamage_DamageInfosToApply_Facehugger_Patch.cs" />
     <Compile Include="USCM\CompSmartgunSystem.cs" />
     <Compile Include="USCM\DropShip\ActiveDropShip.cs" />
     <Compile Include="USCM\DropShip\DropShipIncoming.cs" />
