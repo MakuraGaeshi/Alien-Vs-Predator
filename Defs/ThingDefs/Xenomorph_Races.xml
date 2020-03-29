@@ -119,11 +119,10 @@
         <li>
           <def>RRY_XFacehuggerFullyFormed</def>
           <minAge>0</minAge>
-		  <!--
-          <soundWounded>RRY_Pawn_Xenomorph_Queen_Wounded</soundWounded>
-          <soundDeath>RRY_Pawn_Xenomorph_Queen_Death</soundDeath>
-          <soundCall>RRY_Pawn_Xenomorph_Queen_Call</soundCall>
-		  -->
+          <soundWounded>Pawn_Megascarab_Wounded</soundWounded>
+          <soundDeath>Pawn_Megascarab_Death</soundDeath>
+          <soundCall>Pawn_Megascarab_Call</soundCall>
+          <soundAngry>Pawn_Megascarab_Angry</soundAngry>
         </li>
       </lifeStageAges>
       <soundCallIntervalRange>

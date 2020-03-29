@@ -16,8 +16,6 @@ using RRYautja.ExtensionMethods;
 namespace RRYautja
 {
     /*
-    // FoodUtility.BestPawnToHuntForPredator(getter, forceScanWholeMap)  BestPawnToHuntForPredator(Pawn predator, bool forceScanWholeMap)
-    // Xeno/Neomorph Hunting patch
     [HarmonyPatch(typeof(RaceProperties), "get_isFlesh")]
     public static class AvP_RaceProperties_isFlesh_Synth_Patch
     {

@@ -370,7 +370,7 @@
     <Compile Include="util\CompHediffWeapon.cs" />
     <Compile Include="util\CompHediffApparel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Xenomorph\Verb_MeleeAttackFacehugger.cs" />
+    <None Include="Xenomorph\Verb_MeleeAttackFacehugger.cs.back" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Xenomorph\Jobstuff\Workers\" />
