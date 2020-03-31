@@ -36,6 +36,7 @@
   <ItemGroup>
     <Compile Include="Abilities\ProjectileDefExtension.cs" />
     <Compile Include="Harmony\Patches\AVP_AEmptyPatch - Copy.cs" />
+    <Compile Include="Harmony\Patches\AvP_AEmpty_Patch - Copy.cs" />
     <Compile Include="Harmony\Patches\AvP_Alert_StarvationColonists_StarvingColonists_Synth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_HealthUtility_AdjustSeverity_Cocooned_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_PawnGraphicSet_HairMatAt_Invis_Patch.cs" />
@@ -119,7 +120,7 @@
     <Compile Include="Harmony\Patches\AvP_GatheringsUtility_ShouldGuestKeepAttendingGathering_Synth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_NeurotrainerDefGenerator_ImpliedThingDefs_Filter_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Verb_Shoot_TryCastShot_Scattershot_Patch.cs" />
-    <Compile Include="Harmony\Patches\Class1.cs" />
+    <Compile Include="Harmony\Patches\AvP_RecordsUtility_Notify_PawnDowned_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Verb_MeleeAttackDamage_DamageInfosToApply_Facehugger_Patch.cs" />
     <Compile Include="USCM\CompSmartgunSystem.cs" />
     <Compile Include="USCM\DropShip\ActiveDropShip.cs" />

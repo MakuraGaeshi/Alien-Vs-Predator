@@ -33,46 +33,23 @@ namespace RimWorld
             {
                 return false;
             }
-            Faction faction = Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph);
-            if (faction == null)
-            {
-                return false;
-            }
             int @int = Rand.Int;
             IncidentParms raidParms = StorytellerUtility.DefaultParmsNow(IncidentCategoryDefOf.ThreatBig, map);
             raidParms.forced = true;
-            raidParms.faction = faction;
-            raidParms.raidStrategy = RaidStrategyDefOf.ImmediateAttack;
-            raidParms.raidArrivalMode = PawnsArrivalModeDefOf.EdgeWalkIn;
-            raidParms.spawnCenter = spawnSpot;
-            raidParms.generateFightersOnly = true;
-            raidParms.points = Mathf.Max(raidParms.points * IncidentWorker_PowerCut.RaidPointsFactorRange.RandomInRange, faction.def.MinPointsToGeneratePawnGroup(PawnGroupKindDefOf.Combat));
-            raidParms.pawnGroupMakerSeed = new int?(@int);
-            PawnGroupMakerParms defaultPawnGroupMakerParms = IncidentParmsUtility.GetDefaultPawnGroupMakerParms(PawnGroupKindDefOf.Combat, raidParms, false);
-            defaultPawnGroupMakerParms.points = IncidentWorker_Raid.AdjustedRaidPoints(defaultPawnGroupMakerParms.points, raidParms.raidArrivalMode, raidParms.raidStrategy, defaultPawnGroupMakerParms.faction, PawnGroupKindDefOf.Combat);
-            IEnumerable<PawnKindDef> pawnKinds = PawnGroupMakerUtility.GeneratePawnKindsExample(defaultPawnGroupMakerParms);
-            base.SendStandardLetter(parms, null);
-            QueuedIncident qi = new QueuedIncident(new FiringIncident(IncidentDefOf.RaidEnemy, null, raidParms), 0, 0);
-            Find.Storyteller.incidentQueue.Add(qi);
-
-            @int = Rand.Int;
-            raidParms = StorytellerUtility.DefaultParmsNow(IncidentCategoryDefOf.ThreatBig, map);
-            raidParms.forced = true;
-            raidParms.faction = faction;
+            raidParms.faction = parms.faction;
             raidParms.raidStrategy = XenomorphDefOf.RRY_PowerCut;
             raidParms.raidArrivalMode = XenomorphDefOf.RRY_DropThroughRoofNearPower;
             raidParms.spawnCenter = spawnSpot;
             raidParms.generateFightersOnly = true;
             raidParms.points = Mathf.Max((raidParms.points / 5) * IncidentWorker_PowerCut.RaidPointsFactorRange.RandomInRange, 500f);
             raidParms.pawnGroupMakerSeed = new int?(@int);
-            defaultPawnGroupMakerParms = IncidentParmsUtility.GetDefaultPawnGroupMakerParms(PawnGroupKindDefOf.Combat, raidParms, true);
+            PawnGroupMakerParms defaultPawnGroupMakerParms = IncidentParmsUtility.GetDefaultPawnGroupMakerParms(PawnGroupKindDefOf.Combat, raidParms, true);
             defaultPawnGroupMakerParms.points = IncidentWorker_Raid.AdjustedRaidPoints(defaultPawnGroupMakerParms.points, XenomorphDefOf.RRY_DropThroughRoofNearPower, XenomorphDefOf.RRY_PowerCut, defaultPawnGroupMakerParms.faction, PawnGroupKindDefOf.Combat);
-            pawnKinds = PawnGroupMakerUtility.GeneratePawnKindsExample(defaultPawnGroupMakerParms);
-            
-            qi = new QueuedIncident(new FiringIncident(IncidentDefOf.RaidEnemy, null, raidParms), Find.TickManager.TicksGame + IncidentWorker_PowerCut.RaidDelay.RandomInRange, 0);
-            Find.Storyteller.incidentQueue.Add(qi);
+            IEnumerable<PawnKindDef> pawnKinds = PawnGroupMakerUtility.GeneratePawnKindsExample(defaultPawnGroupMakerParms);
 
-            
+            base.SendStandardLetter(parms, null);
+            QueuedIncident qi = new QueuedIncident(new FiringIncident(IncidentDefOf.RaidEnemy, null, raidParms), 0, 0);
+            Find.Storyteller.incidentQueue.Add(qi);
             return true;
         }
         
@@ -92,7 +69,7 @@ namespace RimWorld
         }
 
         // Token: 0x04000949 RID: 2377
-        private static readonly IntRange RaidDelay = new IntRange(1000, 4000);
+        private static readonly IntRange RaidDelay = new IntRange(900, 1500);
 
         // Token: 0x0400094A RID: 2378
         private static readonly FloatRange RaidPointsFactorRange = new FloatRange(1f, 1.6f);

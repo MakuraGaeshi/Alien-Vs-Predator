@@ -42,7 +42,7 @@ namespace RRYautja
                     {
                         if (Attacker.def == XenomorphRacesDefOf.RRY_Xenomorph_FaceHugger)
                         {
-                            if (!hitPawn.isPotentialHost())
+                            if (!hitPawn.isPotentialHost() || Head(hitPawn) == null)
                             {
                                 return;
                             }
@@ -50,9 +50,6 @@ namespace RRYautja
                             DamageDef def = __instance.verbProps.meleeDamageDef;
                             float tgtmelee = 0f;
                             float tgtdodge = 0f;
-                            float armourBlunt = 0f;
-                            float armourSharp = 0f;
-                            float armourHeat = 0f;
                             float armour = 0f;
                             if (hitPawn.RaceProps.Humanlike) tgtmelee = hitPawn.skills.GetSkill(SkillDefOf.Melee).Level;
                             if (hitPawn.RaceProps.Humanlike) tgtdodge = hitPawn.GetStatValue(StatDefOf.MeleeDodgeChance);
@@ -62,7 +59,7 @@ namespace RRYautja
                                 {
                                     for (int i = 0; i < wornApparel.Count; i++)
                                     {
-                                        bool flag2 = wornApparel[i].def.apparel.CoversBodyPart(Head(hitPawn));
+                                        bool flag2 = wornApparel[i].def.apparel.CoversBodyPart(Head(hitPawn)) || wornApparel[i].def.apparel.bodyPartGroups.Contains(BodyPartGroupDefOf.FullHead);
                                         if (flag2)
                                         {
                                             armour += wornApparel[i].def.statBases.GetStatOffsetFromList(def.armorCategory.armorRatingStat);
@@ -74,27 +71,22 @@ namespace RRYautja
                             float InfectionDefence = 50 + tgtmelee + (armour * 10);
                             if ((InfecterRoll > InfectionDefence || hitPawn.Downed) && !hitPawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Anesthetic))
                             {
-
-                                foreach (var part in hitPawn.RaceProps.body.AllParts.Where(x => x.def.defName.Contains("Head") && !x.def.defName.Contains("Claw")))
+                                Hediff hediff = HediffMaker.MakeHediff(XenomorphDefOf.RRY_FaceHuggerInfection, hitPawn, null);
+                                Comp_Facehugger _Facehugger = Attacker.TryGetComp<Comp_Facehugger>();
+                                HediffComp_XenoFacehugger comp = hediff.TryGetComp<HediffComp_XenoFacehugger>();
+                                comp.instigator = Attacker;
+                                comp.instigatorKindDef = Attacker.kindDef;
+                                comp.royaleHugger = _Facehugger.RoyaleHugger;
+                                comp.previousImpregnations = _Facehugger.Impregnations;
+                                hitPawn.health.AddHediff(hediff, Head(hitPawn), null);
+                                string text = TranslatorFormattedStringExtensions.Translate("Xeno_Facehugger_Attach", hitPawn.LabelShort, Head(hitPawn).LabelShortCap);
+                                MoteMaker.ThrowText(hitPawn.Position.ToVector3(), hitPawn.Map, text, 5f);
+                                if (Attacker.Spawned)
                                 {
-                                    Hediff hediff = HediffMaker.MakeHediff(XenomorphDefOf.RRY_FaceHuggerInfection, hitPawn, null);
-                                    Comp_Facehugger _Facehugger = Attacker.TryGetComp<Comp_Facehugger>();
-                                    HediffComp_XenoFacehugger comp = hediff.TryGetComp<HediffComp_XenoFacehugger>();
-                                    comp.instigator = Attacker;
-                                    comp.instigatorKindDef = Attacker.kindDef;
-                                    comp.royaleHugger = _Facehugger.RoyaleHugger;
-                                    comp.previousImpregnations = _Facehugger.Impregnations;
-                                    hitPawn.health.AddHediff(hediff, part, null);
-                                    string text = TranslatorFormattedStringExtensions.Translate("Xeno_Facehugger_Attach", hitPawn.LabelShort, part.LabelShortCap);
-                                    MoteMaker.ThrowText(hitPawn.Position.ToVector3(), hitPawn.Map, text, 5f);
-                                    if (Attacker.Spawned)
-                                    {
-                                        Attacker.DeSpawn();
-                                    }
-                                    comp.TryAcceptThing(Attacker);
-                                    //    comp.GetDirectlyHeldThings().TryAdd(CasterPawn);
-
+                                    Attacker.DeSpawn();
                                 }
+                                comp.TryAcceptThing(Attacker);
+                                //    comp.GetDirectlyHeldThings().TryAdd(CasterPawn);
                             }
 
                         }
@@ -105,7 +97,7 @@ namespace RRYautja
 
         public static BodyPartRecord Head(Pawn hitPawn)
         {
-            return hitPawn.RaceProps.body.AllParts.Where(x => x.def.defName.Contains("Head")).First();
+            return hitPawn.RaceProps.body.AllParts.Where(x => x.def.defName.Contains("Head") && !x.def.defName.Contains("Claw") && x.groups.Contains(DefDatabase<BodyPartGroupDef>.GetNamed("HeadAttackTool"))).First();
         }
 
     }

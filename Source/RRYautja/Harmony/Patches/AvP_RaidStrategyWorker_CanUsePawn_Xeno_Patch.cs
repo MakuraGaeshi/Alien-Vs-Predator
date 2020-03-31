@@ -16,8 +16,6 @@ using RRYautja.ExtensionMethods;
 namespace RRYautja
 {
     
-    // FoodUtility.BestPawnToHuntForPredator(getter, forceScanWholeMap)  BestPawnToHuntForPredator(Pawn predator, bool forceScanWholeMap)
-    // Xeno/Neomorph Hunting patch
     [HarmonyPatch(typeof(RaidStrategyWorker), "CanUsePawn")]
     public static class AvP_RaidStrategyWorker_CanUsePawn_Xeno_Patch
     {
@@ -26,12 +24,7 @@ namespace RRYautja
         {
             if (p.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen)
             {
-                if (otherPawns.Any(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen))
-                {
-                    __result = false;
-                    Log.Warning(string.Format("Excess {0} detected:  there are {1} already in the raid, Disallowing", p.LabelShortCap, otherPawns.Where(x => x.def == p.def).Count()));
-                    return;
-                }
+                __result = otherPawns.Any(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen);
             }
         }
     }
