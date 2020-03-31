@@ -27,7 +27,8 @@ namespace RRYautja
             {
                 if (__instance.InnerPawn!=null)
                 {
-                    if (__instance.InnerPawn.isHost(out Hediff parasite))
+                    Pawn pawn = __instance.InnerPawn;
+                    if (pawn.isHost(out Hediff parasite))
                     {
                         if (parasite!=null && parasite.CurStageIndex>=3)
                         {
@@ -51,6 +52,7 @@ namespace RRYautja
                 }
             }
         }
+        
     }
     
 }

@@ -625,4 +625,23 @@
 		</li>
     </comps>
   </HediffDef>
+  
+  
+  <HediffDef ParentName="InjuryBase">
+    <defName>RRY_PostBurstWound</defName>
+    <label>gaping wound</label>
+    <labelNoun>a gaping wound</labelNoun>
+    <description>A Gaping wound that looks like its been shredded and torn from the inside out.</description>
+    <comps>
+	
+    </comps>
+    <injuryProps>
+      <painPerSeverity>0.0125</painPerSeverity>
+      <averagePainPerSeverityPermanent>0.00625</averagePainPerSeverityPermanent>
+      <bleedRate>0.06</bleedRate>
+      <canMerge>true</canMerge>
+      <destroyedLabel>Torn off</destroyedLabel>
+      <destroyedOutLabel>Torn out</destroyedOutLabel>
+    </injuryProps>
+  </HediffDef>
 </Defs>

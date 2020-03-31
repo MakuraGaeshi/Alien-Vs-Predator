@@ -25,7 +25,7 @@ namespace RimWorld
         public SimpleCurve radiusPerDayCurve;
 
         // Token: 0x040004CD RID: 1229
-        public float maxRadius = 55f;
+        public float maxRadius = 50f;
     }
 
     // Token: 0x02000762 RID: 1890
@@ -65,7 +65,7 @@ namespace RimWorld
         {
             get
             {
-                if (Props.maxRadius != 0f && Props.maxRadius > GenRadial.MaxRadialPatternRadius)
+                if (Props.maxRadius != 0f && Props.maxRadius <= GenRadial.MaxRadialPatternRadius)
                 {
                     return Props.maxRadius;
                 }
@@ -146,9 +146,6 @@ namespace RimWorld
 
         // Token: 0x04001727 RID: 5927
         private ModuleBase snowNoise;
-
-        // Token: 0x04001728 RID: 5928
-        private const float MaxOutdoorTemp = 10f;
 
         // Token: 0x04001729 RID: 5929
         private static HashSet<IntVec3> reachableCells = new HashSet<IntVec3>();

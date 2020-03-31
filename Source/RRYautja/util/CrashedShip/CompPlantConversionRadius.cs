@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RRYautja.ExtensionMethods;
+using System;
 using Verse;
 
 namespace RimWorld
@@ -100,7 +101,7 @@ namespace RimWorld
             bool flag = c.GetThingList(this.parent.Map).Any(x=> x.def.defName.Contains("RRY_Plant_Neomorph_Fungus"));
             if (plant != null && !flag)
             {
-                if (Rand.Value < this.LeaflessPlantKillChance)
+                if (Rand.Value < this.LeaflessPlantKillChance && this.parent.Map.GooGrid().GetDepth(c) >= 1f)
                 {
                     Thing thing2;
 

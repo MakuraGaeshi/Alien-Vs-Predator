@@ -27,9 +27,13 @@ namespace RRYautja.ExtensionMethods
             }
         }
 
-        public static MapComponent_HiveGrid HiveGrid(this Map m) 
+        public static MapComponent_HiveGrid HiveGrid(this Map m)
         {
             return m.GetComponent<MapComponent_HiveGrid>();
+        }
+        public static MapComponent_GooGrid GooGrid(this Map m)
+        {
+            return m.GetComponent<MapComponent_GooGrid>();
         }
 
         public static bool isYautja(this Pawn p)

@@ -300,6 +300,8 @@ namespace RRYautja
                     {
                         LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Chestbursters, OpportunityType.Important);
                     }
+                    Pawn.health.AddHediff(DefDatabase<HediffDef>.GetNamedSilentFail("RRY_PostBurstWound"), this.parent.Part);
+                    Pawn.health.RemoveHediff(this.parent);
                 }
             }
              

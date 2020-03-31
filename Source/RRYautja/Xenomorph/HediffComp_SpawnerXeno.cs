@@ -36,11 +36,6 @@ namespace RRYautja
         public override void CompExposeData()
         {
             base.CompExposeData();
-            Scribe_Values.Look<int>(ref this.lastCoughTick, "thislastCoughTick");
-            Scribe_Values.Look<int>(ref this.lastCoughStage, "thislastCoughStage");
-            Scribe_Values.Look<int>(ref this.timesCoughed, "thistimesCoughed");
-            Scribe_Values.Look<int>(ref this.timesCoughedBlood, "thistimesCoughedBlood");
-            Scribe_Values.Look<float>(ref this.lastCoughSeverity, "thislastCoughSeverity");
             Scribe_Values.Look<int>(ref this.Impregnations, "Impregnations", 0);
             Scribe_Values.Look<int>(ref this.countToSpawn, "countToSpawn", 1);
             Scribe_Values.Look<bool>(ref this.royaleHugger, "royaleHugger");
@@ -51,12 +46,6 @@ namespace RRYautja
         bool logonce = false;
         bool bursted = false;
         public int countToSpawn = 1;
-        int lastCoughTick = 0;
-        int nextCoughTick = 0; 
-        int lastCoughStage=0;
-        int timesCoughed = 0;
-        int timesCoughedBlood = 0;
-        float lastCoughSeverity=0;
         public bool royaleHugger;
         public bool predalienImpregnation;
         public int Impregnations;
@@ -392,6 +381,8 @@ namespace RRYautja
                     {
                         LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Chestbursters, OpportunityType.Important);
                     }
+                    Pawn.health.AddHediff(DefDatabase<HediffDef>.GetNamedSilentFail("RRY_PostBurstWound"), this.parent.Part);
+                    Pawn.health.RemoveHediff(this.parent);
                 }
             }
              
