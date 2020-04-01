@@ -5,6 +5,7 @@ using HarmonyLib;
 using HunterMarkingSystem;
 using RimWorld;
 using RRYautja.ExtensionMethods;
+using RRYautja.Xenomorph;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
@@ -98,14 +99,12 @@ namespace RRYautja.settings
             TextFieldNumericLabeled<float>(rectShowXenoOptions.BottomHalf().BottomHalf().RightHalf().ContractedBy(4), "RRY_EmbryoRemovalDeathChance".Translate(this.settings.embryoRemovalFailureDeathChance * 100), ref settings.embryoRemovalFailureDeathChance, ref settings.embryoRemovalFailureDeathChanceBuffer, 0f, 1f);
 
 
-            float num = 400f;
             float x = inRect.x;
             float num2 = inRect.y;
-            float num3 = inRect.y;
-            List<ThingDef> suitablehostDefs = DefDatabase<ThingDef>.AllDefsListForReading.FindAll(xx => XenomorphUtil.isInfectableThing(xx));
-            Widgets.Label(inRect.TopHalf().BottomHalf().BottomHalf().BottomHalf().LeftHalf().ContractedBy(4), "RRY_SuitableHostKinds".Translate(suitablehostDefs.Count));
-            Widgets.BeginScrollView(inRect.BottomHalf().LeftHalf().ContractedBy(4), ref this.pos, new Rect(inRect.x, inRect.y, num, suitablehostDefs.Count * 22f), true);
-            foreach (ThingDef pkd in suitablehostDefs.OrderBy(xy=> xy.label))
+            Widgets.Label(inRect.TopHalf().BottomHalf().BottomHalf().BottomHalf().LeftHalf().LeftHalf().ContractedBy(4), "RRY_HostKinds".Translate(XenomorphHostSystem.HostList.Count));
+            Rect hostRect = new Rect(inRect.x, inRect.y, inRect.BottomHalf().LeftHalf().LeftHalf().ContractedBy(4).width - 20, XenomorphHostSystem.HostList.Count * 20f);
+            Widgets.BeginScrollView(inRect.BottomHalf().LeftHalf().LeftHalf().ContractedBy(4), ref this.pos, hostRect, true);
+            foreach (ThingDef pkd in XenomorphHostSystem.HostList.OrderBy(xy => xy.label))
             {
                 string text = pkd.LabelCap;
                 /*
@@ -115,20 +114,37 @@ namespace RRYautja.settings
                     text += " "+item.LabelCap;
                 }
                 */
-                Widgets.Label(new Rect(x, num2, num, 32f), text);
-                num2 += 22f;
+                Widgets.Label(new Rect(x, num2, hostRect.width, 20f), text);
+                num2 += 20f;
             }
             Widgets.EndScrollView();
-            
-            Widgets.Label(inRect.TopHalf().BottomHalf().BottomHalf().BottomHalf().RightHalf().ContractedBy(4), "RRY_XenomorphSpawningOptions".Translate());
-            Widgets.BeginScrollView(inRect.BottomHalf().RightHalf().ContractedBy(4), ref this.pos2, new Rect(inRect.x, inRect.y, num, 2 * 22f), true);
 
-            Widgets.CheckboxLabeled(new Rect(x, num3, num, 32f), "RRY_PredalienSpawning".Translate(), ref settings.AllowPredaliens);
-            num3 += 22f;
-            Widgets.CheckboxLabeled(new Rect(x, num3, num, 32f), "RRY_ThrumbomorphSpawning".Translate(), ref settings.AllowThrumbomorphs);
-            num3 += 22f;
+            float num3 = inRect.y;
+            Widgets.Label(inRect.TopHalf().BottomHalf().BottomHalf().BottomHalf().LeftHalf().RightHalf().ContractedBy(4), "RRY_NonHostKinds".Translate(XenomorphHostSystem.NotHostList.Count));
+            Rect nothostRect = new Rect(inRect.x, inRect.y, inRect.BottomHalf().LeftHalf().RightHalf().ContractedBy(4).width - 20, XenomorphHostSystem.NotHostList.Count * 40f);
+            Widgets.BeginScrollView(inRect.BottomHalf().LeftHalf().RightHalf().ContractedBy(4), ref this.pos2, nothostRect, true);
+            foreach (ThingDef pkd in XenomorphHostSystem.NotHostList.OrderBy(xy => xy.label))
+            {
+                XenomorphUtil.isInfectableThing(pkd, out string fr);
+                string text = pkd.LabelCap + ":\n" + fr;
+                Widgets.Label(new Rect(x, num3, nothostRect.width, 40f), text);
+                num3 += 40f;
+            }
             Widgets.EndScrollView();
-            
+
+
+            float width = 400f;
+            float num4 = inRect.y;
+            Widgets.Label(inRect.TopHalf().BottomHalf().BottomHalf().BottomHalf().RightHalf().ContractedBy(4), "RRY_XenomorphSpawningOptions".Translate());
+            Widgets.BeginScrollView(inRect.BottomHalf().RightHalf().ContractedBy(4), ref this.pos3, new Rect(inRect.x, inRect.y, width, 2 * 22f), true);
+
+            Widgets.CheckboxLabeled(new Rect(x, num4, width, 32f), "RRY_PredalienSpawning".Translate(), ref settings.AllowPredaliens);
+            num4 += 22f;
+            Widgets.CheckboxLabeled(new Rect(x, num4, width, 32f), "RRY_ThrumbomorphSpawning".Translate(), ref settings.AllowThrumbomorphs);
+            num4 += 22f;
+            Widgets.EndScrollView();
+
+
 
             /* 
         //    Widgets.CheckboxLabeled(inRect.TopHalf().TopHalf().BottomHalf().TopHalf().ContractedBy(4), "setting3: Desc", ref settings.setting3);
@@ -218,6 +234,7 @@ namespace RRYautja.settings
         private static readonly Color InactiveColor = new Color(0.37f, 0.37f, 0.37f, 0.8f);
         private Vector2 pos = new Vector2(0f, 0f);
         private Vector2 pos2 = new Vector2(0f, 0f);
+        private Vector2 pos3 = new Vector2(0f, 0f);
 
     }
     

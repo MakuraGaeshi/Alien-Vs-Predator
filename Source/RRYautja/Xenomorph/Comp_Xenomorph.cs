@@ -32,14 +32,7 @@ namespace RRYautja
                 return (CompProperties_Xenomorph)this.props;
             }
         }
-
-        private FieldInfo _shadowGraphic;
-        private FieldInfo _graphicInt;
-        private FieldInfo _lastCell;
-        private PawnGraphicSet oldGraphics;
-        private Graphic_Shadow oldShadow;
         private int lastSpottedTick = -9999;
-        private Graphic lastCarriedGraphic;
         private Thing lastCarried;
         public bool hidden = false;
         public bool Hidden = false;
@@ -135,6 +128,10 @@ namespace RRYautja
         {
             get
             {
+                if (pawn.Map == null)
+                {
+                    return true;
+                }
                 if (pawn.Dead || pawn.Downed || GenAI.InDangerousCombat(pawn))
                 {
                     return false;
@@ -146,6 +143,10 @@ namespace RRYautja
         {
             get
             {
+                if (pawn.Map == null)
+                {
+                    return false;
+                }
                 if (!CanHide)
                 {
                     return true;

@@ -156,7 +156,7 @@
     <Compile Include="util\AvPExtensions.cs" />
     <Compile Include="util\AvPConstants.cs" />
     <Compile Include="util\AvPDefOf.cs" />
-    <Compile Include="util\DebugTools\Class1.cs" />
+    <Compile Include="util\DebugTools\DebugActionsMiscAvP.cs" />
     <Compile Include="util\ExtraMeleeDamage.cs" />
     <Compile Include="util\PlayerPawnsArriveMethod.cs" />
     <Compile Include="util\DebugTools\DebugToolsPawnAvP.cs" />

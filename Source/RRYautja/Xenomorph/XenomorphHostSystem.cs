@@ -13,7 +13,9 @@ namespace RRYautja.Xenomorph
     [StaticConstructorOnStartup]
     public class XenomorphHostSystem
     {
-        protected static List<ThingDef> XenomorphHostList = DefDatabase<ThingDef>.AllDefs.Where(x => x.race!=null && x.isPotentialHost()).ToList();
+        protected static List<ThingDef> AllRaces = DefDatabase<ThingDef>.AllDefs.Where(x => x.race != null).ToList();
+        public static List<ThingDef> HostList = AllRaces.Where(x => x.isPotentialHost()).ToList();
+        public static List<ThingDef> NotHostList = AllRaces.Where(x => !x.isPotentialHost()).ToList();
         static XenomorphHostSystem()
         {
         //    Log.Message(string.Format("Xenomorph Host System Loaded\n{0} Possible Host Races detected", XenomorphHostList.Count));
