@@ -24,7 +24,7 @@ namespace RRYautja
         {
             if (p.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen)
             {
-                __result = otherPawns.Any(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen);
+                __result = !otherPawns.Any(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen);
             }
         }
     }
