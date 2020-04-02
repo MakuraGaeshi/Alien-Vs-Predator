@@ -435,6 +435,7 @@
 	  <li>YautjaGun</li>
 	  <li>YautjaRanged</li>
 	</weaponTags>
+	<generateCommonality>0.05</generateCommonality>
   </ThingDef> 
   
   <ThingDef ParentName="BaseBullet">
@@ -520,6 +521,7 @@
          <cooldownTime>2</cooldownTime>
       </li>
     </tools>
+	<generateCommonality>0.05</generateCommonality>
   </ThingDef>
   <!-- Returning_Projectile --> 
   <ThingDef ParentName="BaseProjectileNeolithic">
