@@ -90,7 +90,7 @@
 <!-- ====================== USCM - M41A Pulse Rifle ====================== -->
 	<ThingDef ParentName="RRY_M41Base">
 		<defName>RRY_USCM_Gun_M41APR</defName>
-		<label>M41A pulse rifle</label>
+		<label>M41A pulse rifle (Grenade)</label>
 		<description>The Armat M41A Pulse Rifle is an American-made pulse-action assault rifle chambered for 10×24mm Caseless ammunition.</description>
 		<graphicData>
 			<texPath>Things/Equipment/USCM/Ranged/M41A_green</texPath>
@@ -112,7 +112,7 @@
 
 	<ThingDef ParentName="RRY_M41Base">
 		<defName>RRY_USCM_Gun_M41BPR</defName>
-		<label>M41A pulse rifle</label>
+		<label>M41A pulse rifle (Shotgun)</label>
 		<description>The Armat M41B Pulse Rifle is an American-made pulse-action assault rifle chambered for 10×24mm Caseless ammunition.</description>
 		<graphicData>
 			<texPath>Things/Equipment/USCM/Ranged/M41A</texPath>
