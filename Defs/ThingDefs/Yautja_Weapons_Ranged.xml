@@ -398,7 +398,6 @@
 	  <Plasteel>50</Plasteel>
       <ComponentIndustrial>6</ComponentIndustrial>
     </costList>
-	<generateCommonality>0.1</generateCommonality>
     <verbs>
       <li>
         <verbClass>Verb_Shoot</verbClass>
