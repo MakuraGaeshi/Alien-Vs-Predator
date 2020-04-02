@@ -176,6 +176,7 @@ namespace RRYautja
         public static bool isInfectableThing(ThingDef thingDef, out string FailReason)
         {
             FailReason = string.Empty;
+            string NonBio = "Inorganic";
             if (thingDef.race == null)
             {
                 FailReason = string.Format("{0} has No Race Properties", thingDef);
@@ -183,13 +184,13 @@ namespace RRYautja
             }
             if (!settings.SettingsHelper.latest.AllowNonHumanlikeHosts && !thingDef.race.Humanlike)
             {
-                FailReason = string.Format("{0} is Non-Humanlike and AllowNonHumanlikeHosts is False", thingDef);
+                FailReason = string.Format("Non-Humanlike");
                 return false;
             }
             if (thingDef.isXenomorph() || thingDef.isNeomorph())
             {
                 string str = thingDef.isXenomorph() ? "Xenomorph" : "Neomorph";
-                FailReason = string.Format("{0} is a {1}", thingDef, str);
+                FailReason = string.Format("{0}", str);
                 return false;
             }
             bool pawnflag = !((UtilChjAndroids.ChjAndroid && UtilChjAndroids.isChjAndroid(thingDef)) || (UtilTieredAndroids.TieredAndroid && UtilTieredAndroids.isAtlasAndroid(thingDef)) || (UtilSynths.isAvPSynth(thingDef)));
@@ -198,30 +199,30 @@ namespace RRYautja
                 string str = string.Empty;
                 if (UtilChjAndroids.ChjAndroid && UtilChjAndroids.isChjAndroid(thingDef))
                 {
-                    str = "isChjAndroid";
+                    str = NonBio;
                 }
                 if (UtilTieredAndroids.TieredAndroid && UtilTieredAndroids.isAtlasAndroid(thingDef))
                 {
-                    str = "isAtlasAndroid";
+                    str = NonBio;
                 }
 
                 if (UtilSynths.isAvPSynth(thingDef))
                 {
-                    str = "isAvPSynth";
+                    str = NonBio;
                 }
-                FailReason = string.Format("{0} is a {1}", thingDef, str);
+                FailReason = string.Format("{0}", str);
                 return false; 
             }
-            if (thingDef.race.IsMechanoid) { FailReason = string.Format("{0} IsMechanoid", thingDef);  return false; }
-            if (thingDef.race.body.defName.Contains("AIRobot")) { FailReason = string.Format("{0} AIRobot", thingDef); return false; }
+            if (thingDef.race.IsMechanoid) { FailReason = NonBio;  return false; }
+            if (thingDef.race.body.defName.Contains("AIRobot")) { FailReason = NonBio; return false; }
             if (thingDef.defName.Contains("TM_"))
             {
-                if (thingDef.defName.Contains("Undead") || thingDef.defName.Contains("Minion") || thingDef.defName.Contains("Demon")) { FailReason = string.Format("{0} is TM_ Beastie", thingDef); return false; }
+                if (thingDef.defName.Contains("Undead") || thingDef.defName.Contains("Minion") || thingDef.defName.Contains("Demon")) { FailReason = NonBio; return false; }
             }
-            if (thingDef.race.FleshType.defName.Contains("TM_StoneFlesh")) { FailReason = string.Format("{0} TM_StoneFlesh", thingDef); return false; }
-            if (thingDef.race.FleshType.defName.Contains("Chaos") && thingDef.race.FleshType.defName.Contains("Deamon")) { FailReason = string.Format("{0} ChaosDeamon", thingDef); return false; }
-            if (thingDef.race.FleshType.defName.Contains("Construct") && thingDef.race.FleshType.defName.Contains("Flesh")) { FailReason = string.Format("{0} ConstructFlesh", thingDef); return false; }
-            if (thingDef.race.baseBodySize < 0.65f && !thingDef.race.Humanlike) { FailReason = string.Format("{0} Non-Humanlike Too Small", thingDef); return false; }
+            if (thingDef.race.FleshType.defName.Contains("TM_StoneFlesh")) { FailReason = NonBio; return false; }
+            if (thingDef.race.FleshType.defName.Contains("Chaos") && thingDef.race.FleshType.defName.Contains("Deamon")) { FailReason = NonBio; return false; }
+            if (thingDef.race.FleshType.defName.Contains("Construct") && thingDef.race.FleshType.defName.Contains("Flesh")) { FailReason = NonBio; return false; }
+            if (thingDef.race.baseBodySize < 0.65f && !thingDef.race.Humanlike) { FailReason = string.Format("Too Small", thingDef); return false; }
 
 
             return true;
