@@ -142,7 +142,7 @@ namespace RRYautja.settings
                 }
                 */
                 settings.RaceKeyPairs.TryGetValue(td.defName, out bool setting);
-                Widgets.CheckboxLabeled(new Rect(x, num2, hostRect.width, 20f), text, ref setting);
+                Widgets.CheckboxLabeled(new Rect(x, num2, hostRect.width, 20f), text, ref setting, (td == ThingDefOf.Human|| td == YautjaDefOf.RRY_Alien_Yautja));
                 settings.RaceKeyPairs.SetOrAdd(td.defName, setting);
                 num2 += 20f;
             }
