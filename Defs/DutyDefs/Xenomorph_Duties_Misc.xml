@@ -344,6 +344,20 @@
 		</li>
 		
 
+        <li Class="JobGiver_HiveLikeDefense">
+          <needLOSToAcquireNonPawnTargets>true</needLOSToAcquireNonPawnTargets>
+          <targetAcquireRadius>30</targetAcquireRadius>
+          <chaseTarget>false</chaseTarget>
+        </li>
+        <li Class="ThinkNode_ChancePerHour_Constant">
+          <mtbHours>5</mtbHours>
+          <subNodes>
+            <li Class="JobGiver_MaintainHiveLikes" />
+          </subNodes>
+        </li>
+        <li Class="JobGiver_MaintainHiveLikes">
+          <onlyIfDamagingState>true</onlyIfDamagingState>
+        </li>
 		<!-- Not Queen -->
 		<li Class="ThinkNode_ConditionalNotPawnKind">
 		  <pawnKind>RRY_Xenomorph_Queen</pawnKind>
@@ -363,6 +377,7 @@
 				  <subNodes>
 					<li Class="JobGiver_XenomorphHosthunter"> 
 						<HuntingRange>40</HuntingRange>
+						<!--requireLOS>false</requireLOS-->
 					</li>
 				  </subNodes>
 				</li>
@@ -370,20 +385,6 @@
 			</li>
 		  </subNodes>
 		</li>
-        <li Class="JobGiver_HiveLikeDefense">
-          <needLOSToAcquireNonPawnTargets>true</needLOSToAcquireNonPawnTargets>
-          <targetAcquireRadius>30</targetAcquireRadius>
-          <chaseTarget>false</chaseTarget>
-        </li>
-        <li Class="ThinkNode_ChancePerHour_Constant">
-          <mtbHours>5</mtbHours>
-          <subNodes>
-            <li Class="JobGiver_MaintainHiveLikes" />
-          </subNodes>
-        </li>
-        <li Class="JobGiver_MaintainHiveLikes">
-          <onlyIfDamagingState>true</onlyIfDamagingState>
-        </li>
         <li Class="ThinkNode_ConditionalBodySize">
           <min>0.7</min>
           <subNodes>

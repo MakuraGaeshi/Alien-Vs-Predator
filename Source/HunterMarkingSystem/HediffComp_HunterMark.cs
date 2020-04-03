@@ -55,7 +55,7 @@ namespace HunterMarkingSystem
         public Pawn pawn => this.Markable != null ? this.Markable.Mark : null;
         public PawnKindDef pawnKindDef => Markable.markDataKill.kindDef ?? null;
         public string MarkHedifftype;
-
+        public override bool CompShouldRemove => base.CompShouldRemove;
         /*
         public override string CompLabelInBracketsExtra
         {
@@ -129,6 +129,8 @@ namespace HunterMarkingSystem
         }
         
     }
+
+
 
     public enum MarkDrawerType
     {

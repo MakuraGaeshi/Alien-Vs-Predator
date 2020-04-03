@@ -24,7 +24,7 @@ namespace RRYautja
         {
             bool flag = bedThing is Building_XenomorphCocoon;
             bool flag2 = traveler != null ? traveler.kindDef.race.defName.Contains("RRY_Xenomorph") : false;
-            bool flag3 = XenomorphUtil.isInfectablePawn(sleeper);
+            bool flag3 = sleeper.isPotentialHost();
             __result = __result && !flag || (__result && flag && flag2);
             //    Log.Message(string.Format("RestUtility_Bed_IsValidBedFor sleeper: {0} traveler: {1} result: {2} = !flag: {3} && flag2: {4}", sleeper, traveler, __result, !flag , flag2));
             return;

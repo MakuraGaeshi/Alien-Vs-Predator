@@ -1,4 +1,5 @@
-﻿using RRYautja.ExtensionMethods;
+﻿using RRYautja;
+using RRYautja.ExtensionMethods;
 using System;
 using Verse;
 using Verse.AI;
@@ -17,9 +18,9 @@ namespace RimWorld
             }
 			else
 			{
-				if (true)
+				if (pawn.isXenomorph(out Comp_Xenomorph xenomorph))
 				{
-
+					return xenomorph.HiveLoc;
 				}
 			}
             return pawn.Position;

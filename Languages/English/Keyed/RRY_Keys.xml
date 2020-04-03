@@ -10,7 +10,7 @@
   <RRY_AllowXenoCocoonMetamorph>Allow Cocooned pawns to be converted to Eggs if there are no Queens present</RRY_AllowXenoCocoonMetamorph>
   <RRY_AllowXenoEggMetamorph>Allows Ovimorph mutation</RRY_AllowXenoEggMetamorph>
   <RRY_AllowNonHumanlikeHosts>Allows Xenomorph Impregnations of Non-Humanlikes</RRY_AllowNonHumanlikeHosts>
-  <RRY_HostKinds>Suitable Hosts: {0}</RRY_HostKinds>
+  <RRY_HostKinds>Suitable Hosts: {1}/{0} enabled</RRY_HostKinds>
   <RRY_NonHostKinds>Unsuitable Hosts: {0}</RRY_NonHostKinds>
   <!-- Non Canonical Xeno Spawning Options -->
   <RRY_XenomorphSpawningOptions>Spawning options for Noncanonical Xenoforms</RRY_XenomorphSpawningOptions>

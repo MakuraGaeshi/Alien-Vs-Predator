@@ -44,7 +44,7 @@ namespace RimWorld
 						if (hivelike != null && pawn.CanReserve(hivelike, 1, -1, null, false))
 						{
 							CompMaintainableLike compMaintainable = hivelike.TryGetComp<CompMaintainableLike>();
-							if (compMaintainable.CurStage != MaintainableStage.Healthy)
+							if (compMaintainable!= null && compMaintainable.CurStage != MaintainableStage.Healthy)
 							{
 								if (!this.onlyIfDamagingState || compMaintainable.CurStage == MaintainableStage.Damaging)
 								{

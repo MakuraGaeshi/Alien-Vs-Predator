@@ -24,7 +24,7 @@ namespace RRYautja
         {
             if (__instance.Pawn.isXenomorph() && __instance.Pawn.def != XenomorphRacesDefOf.RRY_Xenomorph_FaceHugger && target is Pawn pawn)
             {
-                if (XenomorphUtil.isInfectablePawn(pawn))
+                if (pawn.isPotentialHost())
                 {
                     bool flag = Rand.Chance(0.04f);
                     List<VerbEntry> updatedAvailableVerbsList = __instance.GetUpdatedAvailableVerbsList(flag);

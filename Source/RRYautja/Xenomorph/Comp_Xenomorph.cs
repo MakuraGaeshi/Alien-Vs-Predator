@@ -689,7 +689,8 @@ namespace RRYautja
             if (predator.jobs.debugLog) predator.jobs.DebugLogEvent(string.Format("Xenomorph BestPawnToHuntForPredator maxRegionsToScan: {0}", maxRegionsToScan));
             if (maxRegionsToScan < 0)
             {
-                tmpPredatorCandidates.AddRange(predator.Map.mapPawns.AllPawnsSpawned.Where(x=> (x.isPotentialHost() || !findhost)));
+                tmpPredatorCandidates.AddRange(predator.Map.mapPawns.AllPawnsSpawned.Where(x=> (x.isPotentialHost(out string fail) || !findhost)));
+
             }
             else
             {
@@ -770,7 +771,7 @@ namespace RRYautja
             }
             if (findhost)
             {
-                if (prey.Downed)
+                if (prey.Downed && prey.Awake())
                 {
                     return false;
                 }
@@ -929,12 +930,19 @@ namespace RRYautja
             ConceptDef conceptDef = null;
             ThoughtDef thoughtDef = null;
             Thought_MemoryObservation observation = null;
-            thoughtDef = DefDatabase<ThoughtDef>.GetNamed(thought);
-            conceptDef = DefDatabase<ConceptDef>.GetNamed(concept);
+            thoughtDef = DefDatabase<ThoughtDef>.GetNamedSilentFail(thought);
+            conceptDef = DefDatabase<ConceptDef>.GetNamedSilentFail(concept);
             lastSpottedTick = Find.TickManager.TicksGame;
             if (thoughtDef != null)
             {
                 observation = (Thought_MemoryObservation)ThoughtMaker.MakeThought(thoughtDef);
+            }
+            if (conceptDef != null)
+            {
+                if (true)
+                {
+
+                }
             }
             if (observation != null)
             {

@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using HunterMarkingSystem.ExtensionMethods;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -142,6 +143,47 @@ namespace HunterMarkingSystem
                     //    Log.Error("Error in CompUseEffect: " + arg, false);
                 }
             }
+        }
+
+        public override void PostSpawnSetup(bool respawningAfterLoad)
+        {
+            base.PostSpawnSetup(respawningAfterLoad);
+            if (PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_Colonists.Any(x=> x.Markable(out Comp_Markable markable) && markable.MarkableCorpse && markable.markcorpse == this.parent) &&!respawningAfterLoad)
+            {
+                this.parent.SetForbidden(true, false);
+            }
+        }
+
+        public override void PostDeSpawn(Map map)
+        {
+            base.PostDeSpawn(map);
+            if (PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_Colonists.Any(x => x.Markable(out Comp_Markable markable) && markable.MarkableCorpse && markable.markcorpse == this.parent))
+            {
+                foreach (Pawn p in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_Colonists.Where(x => x.Markable(out Comp_Markable markable) && markable.MarkableCorpse && markable.markcorpse == this.parent))
+                {
+                    Hediff marked = null;
+                    if (p.Markable(out Comp_Markable markable))
+                    {
+                        if (!p.Marked(out marked) && marked != null)
+                        {
+                            p.health.RemoveHediff(marked);
+                            if (markable.MarkerRace)
+                            {
+                                p.health.AddHediff(markable.Props.cultureDef.UnbloodedHediff);
+                            }
+                        }
+                        else if (p.Marked(out marked, out Hediff unmarked) && unmarked != null)
+                        {
+                            p.health.RemoveHediff(unmarked);
+                        }
+                    }
+                }
+            }
+        }
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+
         }
     }
 }

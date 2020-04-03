@@ -46,7 +46,7 @@ namespace RRYautja
                 bool xenoimpregnationFlag = pawn.health.hediffSet.hediffs.Any(x => x.def.defName.Contains("XenomorphImpregnation") && x.CurStageIndex < x.def.stages.Count - 2);
                 bool neoimpregnationFlag = pawn.health.hediffSet.hediffs.Any(x=> x.def.defName.Contains("NeomorphImpregnation"));
                 bool impregnationFlag = ((xenoimpregnationFlag && cocoonFlag) || !xenoimpregnationFlag) && !neoimpregnationFlag;
-                bool pawnFlag = ((XenomorphUtil.isInfectablePawn(pawn, allowHost))) && pawn.Downed;
+                bool pawnFlag = pawn.isPotentialHost(allowImpreg: allowHost) && pawn.Downed;
             //    Log.Message(string.Format("minFlag: {0}, roofedFlag: {1}, cocoonFlag: {2}, xenoimpregnationFlag: {3}, neoimpregnationFlag: {4}, impregnationFlag: {5}, pawnFlag: {6}, CanReserve: {7}, Allowed: {8}", minFlag, roofedFlag, cocoonFlag, xenoimpregnationFlag, neoimpregnationFlag, impregnationFlag, pawnFlag, kidnapper.CanReserve(pawn, 1, -1, null, false), (disallowed == null || !disallowed.Contains(pawn))));
                 return  cocoonFlag && pawnFlag && impregnationFlag && minFlag && kidnapper.CanReserve(pawn, 1, -1, null, false) && (disallowed == null || !disallowed.Contains(pawn));
             };
@@ -219,7 +219,7 @@ namespace RRYautja
             {
                 Pawn pawn = t as Pawn;
                 bool cocoonFlag = !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned);
-                bool pawnFlag = ((XenomorphUtil.isInfectablePawn(pawn))) && !XenomorphUtil.IsXenomorph(pawn) && pawn.gender == Gender.Female && pawn.Downed && (pawn.Faction == null || pawn.Faction.HostileTo(kidnapper.Faction) || kidnapper.Faction == null);
+                bool pawnFlag = ((pawn.isPotentialHost())) && !XenomorphUtil.IsXenomorph(pawn) && pawn.gender == Gender.Female && pawn.Downed && (pawn.Faction == null || pawn.Faction.HostileTo(kidnapper.Faction) || kidnapper.Faction == null);
             //    Log.Message(string.Format(" cocoonFlag; {0} \n pawnFlag: {1}", cocoonFlag, pawnFlag));
                 return (cocoonFlag && pawnFlag) && (kidnapper.CanReserve(pawn, 1, -1, null, false) && (disallowed == null || !disallowed.Contains(pawn))) && pawn != kidnapper && pawn.gender == Gender.Female;
             };

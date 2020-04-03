@@ -20,11 +20,15 @@ namespace RRYautja
     public static class AvP_RaidStrategyWorker_CanUsePawn_Xeno_Patch
     {
         [HarmonyPostfix]
-        public static void CanUse_XenoQueen_Postfix(RaidStrategyWorker __instance, Pawn p, List<Pawn> otherPawns, ref bool __result)
+        public static void CanUse_XenoQueen_Postfix(RaidStrategyWorker __instance,ref Pawn p, List<Pawn> otherPawns, ref bool __result)
         {
             if (p.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen)
             {
-                __result = !otherPawns.Any(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen);
+                if (otherPawns.Any(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen))
+                {
+                    p.def = XenomorphRacesDefOf.RRY_Xenomorph_Warrior;
+                    p.kindDef = XenomorphDefOf.RRY_Xenomorph_Warrior;
+                }
             }
         }
     }

@@ -21,7 +21,7 @@ namespace RRYautja
     {
         public static void Postfix(PawnGenerationRequest request, ref Pawn __result)
         {
-            if (Rand.Chance(0.005f) && XenomorphUtil.isInfectablePawn(__result) && SettingsHelper.latest.AllowHiddenInfections)
+            if (Rand.Chance(0.005f) && __result.isPotentialHost() && SettingsHelper.latest.AllowHiddenInfections)
             {
                 HediffDef def = Rand.Chance(0.75f) ? XenomorphDefOf.RRY_HiddenXenomorphImpregnation : XenomorphDefOf.RRY_HiddenNeomorphImpregnation;
                 __result.health.AddHediff(def, __result.RaceProps.body.corePart, null);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using RimWorld;
 using RimWorld.Planet;
+using RRYautja.ExtensionMethods;
 using UnityEngine;
 using Verse;
 using Verse.AI;
@@ -124,14 +125,14 @@ namespace RRYautja
                 TryMutate();
             }
             Thing thing = null;
-            if (MyMap !=null && MyPos.InBounds(MyMap)) thing = GenClosest.ClosestThingReachable(MyPos, MyMap, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), Props.triggerRadius, x => XenomorphUtil.isInfectablePawn(((Pawn)x)), null, 0, -1, false, RegionType.Set_Passable, false);
+            if (MyMap !=null && MyPos.InBounds(MyMap)) thing = GenClosest.ClosestThingReachable(MyPos, MyMap, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), Props.triggerRadius, x => x.isPotentialHost(), null, 0, -1, false, RegionType.Set_Passable, false);
             int huggercount = thing != null ? XenomorphUtil.TotalSpawnedFacehuggerPawnCount(MyMap, 10, (Pawn)thing) : 0;
             int hostcount = thing != null ? XenomorphUtil.TotalSpawnedInfectablePawnCount(MyMap, 10, this.MyPos) : 0;
             bool shouldHatch = huggercount < hostcount;
             if (thing != null && ambientTemperature > -20f)
             {
                 Pawn pawn = (Pawn)thing;
-                bool flag = XenomorphUtil.isInfectablePawn(pawn);
+                bool flag = pawn.isPotentialHost();
                 if (selected)
                 {
                 //    Log.Message(string.Format("{0} isInfectable?: {1}", pawn.Label, flag));

@@ -35,7 +35,7 @@ namespace RimWorld
 
             Predicate<IntVec3> validator = delegate (IntVec3 y)
             {
-                if (y.GetTerrain(map).HasTag("Water"))
+                if (y.GetTerrain(map).HasTag("Water") || y.InNoBuildEdgeArea(map))
                 {
                     return false;
                 }

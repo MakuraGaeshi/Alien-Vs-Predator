@@ -23,6 +23,7 @@ namespace RimWorld
 
         private int MiningRange;
         // Token: 0x0600041E RID: 1054 RVA: 0x0002CA54 File Offset: 0x0002AE54
+
         protected override Job TryGiveJob(Pawn pawn)
         {
             if (!pawn.isXenomorph(out Comp_Xenomorph _Xenomorph))
@@ -62,7 +63,7 @@ namespace RimWorld
 
                     if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen || pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Drone)
                     {
-                        if (centerSlime && !centerFilled)
+                        if (!centerNode)
                         {
                             IntVec3 c = HiveCenter;
                             if (c.InBounds(pawn.Map) && c.Roofed(pawn.Map) && pawn.CanReserveAndReach(c, PathEndMode.OnCell, Danger.Deadly))

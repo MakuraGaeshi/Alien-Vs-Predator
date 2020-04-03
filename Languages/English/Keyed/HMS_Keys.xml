@@ -10,7 +10,9 @@
   <HMS_BloodStatus_Unmarked>Blooded with a {1}({2}, {3}) kill, but still needs to Mark themself.\nScore: {4}</HMS_BloodStatus_Unmarked>
   <HMS_BloodStatus_Marked>Marked with a {1}({2}) kill.\nScore: {3}</HMS_BloodStatus_Marked>
   <RRY_CanMarkSelf>New Worthy Kills</RRY_CanMarkSelf>
-  <RRY_CanMarkSelfDesc>Yautja with new Worthy Kills:\n\n{0}\nMake sure that they mark themselves if desired.</RRY_CanMarkSelfDesc>
+  <HMS_CanMarkThemself>Can Mark themself on</HMS_CanMarkThemself>
+  <HMS_CanbeMarked>Can be Marked on</HMS_CanbeMarked>
+  <RRY_CanMarkSelfDesc>Colonists with new Worthy Kills:\n\n{0}\nMake sure that they get marked if desired. Unmarked colonists that are not part of a Hunter culture will need to be marked by a member of the race noted after their name.</RRY_CanMarkSelfDesc>
   <!-- Hives -->
   <HMS_MarkScore_Base>Base Score: {0}</HMS_MarkScore_Base>
   <HMS_MarkScore_Melee>Melee Score: {0}</HMS_MarkScore_Melee>

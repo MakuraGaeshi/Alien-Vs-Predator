@@ -30,6 +30,11 @@ namespace RRYautja.settings
         public bool AllowXenomorphFaction = true, AllowYautjaFaction = true, AllowHiddenInfections = true, AllowPredalienImpregnations = true;
         public float fachuggerRemovalFailureDeathChance = 0.35f, embryoRemovalFailureDeathChance = 0.35f;
 
+        public Dictionary<string, bool> RaceKeyPairs;
+        
+        public List<ThingDef> RaceKeyWorkingList = new List<ThingDef>();
+        public List<bool> RaceValueWorkingList = new List<bool>();
+        
         public override void ExposeData()
         {
             base.ExposeData();
@@ -44,6 +49,11 @@ namespace RRYautja.settings
             Scribe_Values.Look(ref this.AllowPredaliens, "AllowPredaliens", true);
             Scribe_Values.Look<float>(ref this.fachuggerRemovalFailureDeathChance, "fachuggerRemovalFailureDeathChance", 0.35f);
             Scribe_Values.Look<float>(ref this.embryoRemovalFailureDeathChance, "embryoRemovalFailureDeathChance", 0.35f);
+            Scribe_Collections.Look<string, bool>(ref this.RaceKeyPairs, "RaceKeyPairs"/*, LookMode.Def, LookMode.Value, ref RaceKeyWorkingList, ref RaceValueWorkingList*/);
+            /*
+            Scribe_Collections.Look(ref this.RaceKeyWorkingList, "RaceKeyPairs", LookMode.Def, new object[0]);
+            Scribe_Collections.Look(ref this.RaceValueWorkingList, "RaceKeyPairs", LookMode.Value);
+            */
         }
     }
 
@@ -76,6 +86,7 @@ namespace RRYautja.settings
             Widgets.CheckboxLabeled(inRect.TopHalf().TopHalf().BottomHalf().BottomHalf().LeftHalf().ContractedBy(4), "RRY_AllowHiddenInfections".Translate(), ref settings.AllowHiddenInfections);
             Widgets.CheckboxLabeled(inRect.TopHalf().TopHalf().BottomHalf().BottomHalf().RightHalf().ContractedBy(4), "RRY_AllowPredalienImpregnations".Translate(), ref settings.AllowPredalienImpregnations);
 
+
             this.settings.fachuggerRemovalFailureDeathChance = Widgets.HorizontalSlider(inRect.TopHalf().BottomHalf().TopHalf().TopHalf().ContractedBy(4),
                 this.settings.fachuggerRemovalFailureDeathChance, 0f, 1f, true,
                 "RRY_FacehuggerRemovalDeathChance".Translate(this.settings.fachuggerRemovalFailureDeathChance * 100)
@@ -103,12 +114,26 @@ namespace RRYautja.settings
 
             float x = inRect.x;
             float num2 = inRect.y;
-            Widgets.Label(inRect.TopHalf().BottomHalf().BottomHalf().BottomHalf().LeftHalf().LeftHalf().ContractedBy(4), "RRY_HostKinds".Translate(XenomorphHostSystem.HostList.Count));
-            Rect hostRect = new Rect(inRect.x, inRect.y, inRect.BottomHalf().LeftHalf().LeftHalf().ContractedBy(4).width - 20, XenomorphHostSystem.HostList.Count * 20f);
-            Widgets.BeginScrollView(inRect.BottomHalf().LeftHalf().LeftHalf().ContractedBy(4), ref this.pos, hostRect, true);
-            foreach (ThingDef pkd in XenomorphHostSystem.HostList.OrderBy(xy => xy.label))
+            if (settings.RaceKeyPairs == null)
             {
-                string text = pkd.LabelCap;
+                settings.RaceKeyPairs = new Dictionary<string, bool>();
+                foreach (ThingDef t in XenomorphHostSystem.AllRaces)
+                {
+                    if (!settings.RaceKeyPairs.ContainsKey(t.defName))
+                    {
+                        settings.RaceKeyPairs.SetOrAdd(t.defName, t.isPotentialHost(true));
+                    }
+                }
+            }
+            int potentialhostcount = XenomorphHostSystem.AllRaces.Where(z => z.isPotentialHost(true)).Count();
+            int enabledhostcount = XenomorphHostSystem.AllRaces.Where(z => z.isPotentialHost()).Count();
+            int unsuitablehostcount = XenomorphHostSystem.AllRaces.Where(z => !z.isPotentialHost(true)).Count();
+            Widgets.Label(inRect.TopHalf().BottomHalf().BottomHalf().BottomHalf().LeftHalf().LeftHalf().ContractedBy(4), "RRY_HostKinds".Translate(potentialhostcount, enabledhostcount));
+            Rect hostRect = new Rect(inRect.x, inRect.y, inRect.BottomHalf().LeftHalf().LeftHalf().ContractedBy(4).width - 20, potentialhostcount * 20f);
+            Widgets.BeginScrollView(inRect.BottomHalf().LeftHalf().LeftHalf().ContractedBy(4), ref this.pos, hostRect, true);
+            foreach (ThingDef td in XenomorphHostSystem.AllRaces.Where(z => z.isPotentialHost(true)).OrderBy(xy => xy.label))
+            {
+                string text = td.LabelCap;
                 /*
                 text += " possible Xenoforms:";
                 foreach (var item in pkd.resultingXenomorph())
@@ -116,24 +141,26 @@ namespace RRYautja.settings
                     text += " "+item.LabelCap;
                 }
                 */
-                Widgets.Label(new Rect(x, num2, hostRect.width, 20f), text);
+                settings.RaceKeyPairs.TryGetValue(td.defName, out bool setting);
+                Widgets.CheckboxLabeled(new Rect(x, num2, hostRect.width, 20f), text, ref setting);
+                settings.RaceKeyPairs.SetOrAdd(td.defName, setting);
                 num2 += 20f;
             }
             Widgets.EndScrollView();
-
+            
             float num3 = inRect.y;
-            Widgets.Label(inRect.TopHalf().BottomHalf().BottomHalf().BottomHalf().LeftHalf().RightHalf().ContractedBy(4), "RRY_NonHostKinds".Translate(XenomorphHostSystem.NotHostList.Count));
-            Rect nothostRect = new Rect(inRect.x, inRect.y, inRect.BottomHalf().LeftHalf().RightHalf().ContractedBy(4).width - 20, XenomorphHostSystem.NotHostList.Count * 40f);
+            Widgets.Label(inRect.TopHalf().BottomHalf().BottomHalf().BottomHalf().LeftHalf().RightHalf().ContractedBy(4), "RRY_NonHostKinds".Translate(unsuitablehostcount));
+            Rect nothostRect = new Rect(inRect.x, inRect.y, inRect.BottomHalf().LeftHalf().RightHalf().ContractedBy(4).width - 20, unsuitablehostcount * 40f);
             Widgets.BeginScrollView(inRect.BottomHalf().LeftHalf().RightHalf().ContractedBy(4), ref this.pos2, nothostRect, true);
-            foreach (ThingDef pkd in XenomorphHostSystem.NotHostList.OrderBy(xy => xy.label))
+            foreach (ThingDef td in XenomorphHostSystem.AllRaces.Where(z => !z.isPotentialHost(true)).OrderBy(xy => xy.label))
             {
-                XenomorphUtil.isInfectableThing(pkd, out string fr);
-                string text = pkd.LabelCap + ":\n" + fr;
+                td.isPotentialHost(out string fr, true);
+                string text = td.LabelCap + ":\n" + fr;
                 Widgets.Label(new Rect(x, num3, nothostRect.width, 40f), text);
                 num3 += 40f;
             }
             Widgets.EndScrollView();
-
+            
 
             float width = 400f;
             float num4 = inRect.y;

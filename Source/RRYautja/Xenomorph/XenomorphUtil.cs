@@ -163,10 +163,10 @@ namespace RRYautja
             }
             return true;
         }
-
         // Token: 0x0400030C RID: 780
         private static List<IntVec3> candidates = new List<IntVec3>();
         // Token: 0x060000A8 RID: 168 RVA: 0x00007234 File Offset: 0x00005434
+        /*
 
         public static bool isInfectableThing(ThingDef thingDef)
         {
@@ -245,10 +245,10 @@ namespace RRYautja
         {
             return isInfectableThing(pawn.race, out FailReason);
         }
-
+        */
         public static List<Pawn> SpawnedInfectablePawns(Map map)
         {
-            return map.mapPawns.AllPawnsSpawned.FindAll(x => XenomorphUtil.isInfectablePawn(x));
+            return map.mapPawns.AllPawnsSpawned.FindAll(x => x.isPotentialHost());
         }
 
         public static int TotalSpawnedInfectablePawnCount(Map map)
@@ -258,7 +258,7 @@ namespace RRYautja
 
         public static List<Pawn> SpawnedInfectablePawns(Map map, int radius, IntVec3 position)
         {
-            return map.mapPawns.AllPawnsSpawned.FindAll(x => XenomorphUtil.isInfectablePawn(x) && XenomorphUtil.DistanceBetween(x.Position, position) < radius);
+            return map.mapPawns.AllPawnsSpawned.FindAll(x => x.isPotentialHost() && XenomorphUtil.DistanceBetween(x.Position, position) < radius);
         }
 
         public static int TotalSpawnedInfectablePawnCount(Map map, int radius, IntVec3 position)
@@ -269,7 +269,7 @@ namespace RRYautja
 
         public static List<Pawn> SpawnedInfectablePawns(Map map, int radius, IntVec3 position, IntVec3 otherposition)
         {
-            return map.mapPawns.AllPawnsSpawned.FindAll(x => XenomorphUtil.isInfectablePawn(x) && XenomorphUtil.DistanceBetween(otherposition, position) < radius);
+            return map.mapPawns.AllPawnsSpawned.FindAll(x => x.isPotentialHost() && XenomorphUtil.DistanceBetween(otherposition, position) < radius);
         }
 
         public static int TotalSpawnedInfectablePawnCount(Map map, int radius, IntVec3 position, IntVec3 otherposition)
@@ -509,7 +509,7 @@ namespace RRYautja
             List<Thing> list = new List<Thing>();
             foreach (var item in SpawnedEggs(map))
             {
-                Pawn host = (Pawn)GenClosest.ClosestThingReachable(item.Position, item.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 1, x => XenomorphUtil.isInfectablePawn(((Pawn)x)), null, 0, -1, false, RegionType.Set_Passable, false);
+                Pawn host = (Pawn)GenClosest.ClosestThingReachable(item.Position, item.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 1, x => x.isPotentialHost(), null, 0, -1, false, RegionType.Set_Passable, false);
                 if (host == null)
                 {
                     list.Add(item);
@@ -682,23 +682,6 @@ namespace RRYautja
             return Math.Sqrt(Math.Pow((x2 - x1), 2) + Math.Pow((y2 - y1), 2));
         }
 
-        public static List<PawnKindDef> HostKinds
-        {
-            get
-            {
-                List<PawnKindDef> tmpHostKinds = new List<PawnKindDef>();
-                foreach (var item in DefDatabase<PawnKindDef>.AllDefsListForReading)
-                {
-                    if (XenomorphUtil.isInfectablePawnKind(item))
-                    {
-                    //    Log.Message(string.Format("Xenomorph Host: {0}", item.LabelCap));
-                        tmpHostKinds.Add(item);
-                    }
-                }
-            //    Log.Message(string.Format("HostKinds count: {0}", tmpHostKinds.Count));
-                return tmpHostKinds;
-            }
-        }
     }
 
     [StaticConstructorOnStartup]

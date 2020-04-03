@@ -93,11 +93,12 @@ namespace RimWorld
                     if (!hive.hiveDormant)
                     {
                         pawn2 = _Xenomorph.BestPawnToHuntForPredator(pawn, false, true);
+                        requireLOS = false;
+                        HuntingRange = 40;
                     }
                     else
                     {
-                        HuntingRange = 30;
-                        requireLOS = true;
+                        HuntingRange = 20;
                     }
                 }
                 else
@@ -153,9 +154,13 @@ namespace RimWorld
                         }
                     }
                 }
+                if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0}: {1} Job Found: {2}: {3}", this, pawn, job != null, job));
+            }
+            else
+            {
+                if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0}: {1} No target Found: {2}: {3}", this, pawn, job != null, job));
             }
 
-            if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0}: {1} Job Found: {2}: {3}", this, pawn, job != null, job));
             return job;
         }
 
@@ -175,34 +180,62 @@ namespace RimWorld
         private Pawn FindPawnTarget(Pawn pawn)
         {
             Pawn pawnt = null;
+            float HuntingRange = this.HuntingRange;
+            bool requireLOS = this.requireLOS; 
             bool selected = Find.Selector.SingleSelectedThing == pawn;
             if (!pawn.isXenomorph(out Comp_Xenomorph xenomorph))
             {
                 return null;
             }
-            List<Pawn> list = pawn.Map.mapPawns.AllPawns.Where((Pawn x) => !x.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned) && !x.Downed && XenomorphUtil.isInfectablePawn(x) && pawn.CanReach(x, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.NoPassClosedDoors) && !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Anesthetic)&& ( pawn.CanSee(x) || !requireLOS) && (this.Gender == Gender.None || (this.Gender!=Gender.None && x.gender == this.Gender))).ToList();
+            if (pawn.Map.skyManager.CurSkyGlow<0.5f)
+            {
+                HuntingRange = HuntingRange * 2;
+                requireLOS = false;
+            }
+            List<Pawn> list = pawn.Map.mapPawns.AllPawns.Where((Pawn x) => !x.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned) && (!x.Downed || !x.Awake()) && x.isPotentialHost() && pawn.CanReach(x, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.NoPassClosedDoors) && !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Anesthetic) && (this.Gender == Gender.None || (this.Gender!=Gender.None && x.gender == this.Gender))).ToList();
             if (!list.NullOrEmpty())
             {
+                if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("Xeno found {0} possible targets", list.Count));
                 if (list.Any(x => xenomorph.IsAcceptablePreyFor(pawn, x, true)))
                 {
-                    list = list.Where(x => xenomorph.IsAcceptablePreyFor(pawn, x, true)).ToList();
+                    list = list.Where(x => xenomorph.IsAcceptablePreyFor(pawn, x, true) && (pawn.CanSee(x) || !requireLOS)).ToList();
                 }
                 else
                 {
                     list = new List<Pawn>();
                 }
+                if (!list.NullOrEmpty())
+                {
+                    if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("Xeno found {0} Acceptable Prey", list.Count));
+                    Pawn pawn2 = (Pawn)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.ClosestTouch, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), HuntingRange, (x => x is Pawn p && list.Contains(p)));//(Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn p && XenomorphUtil.isInfectablePawn(p) && !p.Downed, 0f, 9999f, default(IntVec3), float.MaxValue, true, true);
+                    if (pawn2!=null)
+                    {
+                        pawnt = pawn2;
+                    }
+                    else
+                    {
+                        if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("Xeno found no reachable targets in range\nrequireLOS: {0}, Gender: {1}, Range: {2}", requireLOS, Gender, HuntingRange));
+                    }
+                }
+                else
+                {
+                    if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("Xeno found no Acceptable Prey to hunt\nrequireLOS: {0}, Gender: {1}, Range: {2}", requireLOS, Gender, HuntingRange));
+                }
             }
-            if (!list.NullOrEmpty())
+            else
             {
-                Pawn pawn2 = (Pawn)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.ClosestTouch, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), HuntingRange, (x => x is Pawn p && list.Contains(p)));//(Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn p && XenomorphUtil.isInfectablePawn(p) && !p.Downed, 0f, 9999f, default(IntVec3), float.MaxValue, true, true);
-                pawnt = pawn2;
+                if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("Xeno found no targets hunt\nrequireLOS: {0}, Gender: {1}, Range: {2}", requireLOS, Gender, HuntingRange));
             }
             if (pawnt != null)
             {
                 if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("Xeno hunting {0}", pawnt));
                 return pawnt;
             }
-            else return null;
+            else
+            {
+                if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("Xeno found no target hunt"));
+                return null;
+            }
         }
         
         public bool forceScanWholeMap = true;

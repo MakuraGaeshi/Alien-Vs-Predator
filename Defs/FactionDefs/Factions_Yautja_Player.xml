@@ -22,9 +22,10 @@
     <backstoryFilters>
       <li>
         <categories>
-		  <li>Raider</li>
+          <li>Offworld</li>
+          <li>Pirate</li>
 		  <li>Tribal</li>
-		  <li>Civil</li>
+		  <li>Outlander</li>
         </categories>
       </li>
     </backstoryFilters>
@@ -43,6 +44,7 @@
         <li>Leather_Light</li>
         <li>Leather_Plain</li>
         <li>Leather_Bear</li>
+        <li>Steel</li>
       </thingDefs>
     </apparelStuffFilter>
     <colorSpectrum>

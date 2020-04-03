@@ -322,11 +322,11 @@
       <claimable>false</claimable>
     </building>
     <comps>
-      <li Class="CompProperties_SpawnerFilth">
-        <filthDef>RRY_Filth_Slime</filthDef>
-        <spawnCountOnSpawn>10</spawnCountOnSpawn>
-        <spawnMtbHours>4</spawnMtbHours>
-        <spawnRadius>5</spawnRadius>
+	
+      <li Class="CompProperties_MaintainableLike">
+        <ticksHealthy>60000</ticksHealthy>
+        <ticksNeedsMaintenance>40000</ticksNeedsMaintenance>
+        <damagePerTickRare>10</damagePerTickRare>
       </li>
     </comps>
   </ThingDef>
