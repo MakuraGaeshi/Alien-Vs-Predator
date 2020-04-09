@@ -214,7 +214,11 @@ namespace RimWorld
                     }
                     else
                     {
-                        if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("Xeno found no reachable targets in range\nrequireLOS: {0}, Gender: {1}, Range: {2}", requireLOS, Gender, HuntingRange));
+                        if (pawn.jobs.debugLog)
+                        {
+                            Pawn pawn3 = (Pawn)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.ClosestTouch, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, (x => x is Pawn p && list.Contains(p)));//(Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, (Thing x) => x is Pawn p && XenomorphUtil.isInfectablePawn(p) && !p.Downed, 0f, 9999f, default(IntVec3), float.MaxValue, true, true);
+                            pawn.jobs.DebugLogEvent(string.Format("Xeno found no reachable targets in range\nrequireLOS: {0}, Gender: {1}, Range: {2}, Closest: {3}", requireLOS, Gender, HuntingRange, pawn3.Position.DistanceTo(pawn.Position)));
+                        }
                     }
                 }
                 else

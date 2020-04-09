@@ -88,12 +88,7 @@ namespace RRYautja
                 return false;
             }
             MapComponent_HiveGrid hiveGrid = pawn.Map.GetComponent<MapComponent_HiveGrid>();
-            ThingDef named = null;
             bool selected = map != null ? Find.Selector.SelectedObjects.Contains(pawn) && (Prefs.DevMode) : false;
-            if (!victim.DestroyedOrNull())
-            {
-                named = victim.RaceProps.Humanlike ? XenomorphDefOf.RRY_Xenomorph_Cocoon_Humanoid : XenomorphDefOf.RRY_Xenomorph_Cocoon_Animal;
-            }
 
             Predicate<IntVec3> validatora = delegate (IntVec3 y)
             {
@@ -138,7 +133,7 @@ namespace RRYautja
             //    return true;
             }
             */
-            if (c == IntVec3.Invalid || c == IntVec3.Zero || c.InNoBuildEdgeArea(map) || c.InNoZoneEdgeArea(map) || c.GetTerrain(map).HasTag("Water"))
+            if (c == IntVec3.Invalid || c.x < 1 || c.z < 1 || c == IntVec3.Zero || c.InNoBuildEdgeArea(map) || c.InNoZoneEdgeArea(map) || c.GetTerrain(map).HasTag("Water"))
             {
                 if (!InfestationLikeCellFinder.TryFindCell(out c, out IntVec3 lc, map, allowFogged, allowUnroofed, allowDigging))
                 {
@@ -165,27 +160,27 @@ namespace RRYautja
                 //    Log.Message(string.Format("InfestationLikeCellFinder: {0}", c));
                 }
             }
-            if (c != IntVec3.Invalid && c != IntVec3.Zero && !c.InNoBuildEdgeArea(map) && !c.InNoZoneEdgeArea(map) && !c.GetTerrain(map).HasTag("Water"))
+            if (c != IntVec3.Invalid && c.x > 1 && c.z > 1 && !c.InNoBuildEdgeArea(map) && !c.InNoZoneEdgeArea(map) && !c.GetTerrain(map).HasTag("Water"))
             {
                 if (pawn.GetLord() != null && pawn.GetLord() is Lord lord)
                 {
-                //    Log.Message(string.Format("TryFindGoodHiveLoc pawn.GetLord() != null"));
+                    //    Log.Message(string.Format("TryFindGoodHiveLoc pawn.GetLord() != null"));
                 }
                 else
                 {
-                //    Log.Message(string.Format("TryFindGoodHiveLoc pawn.GetLord() == null"));
+                    //    Log.Message(string.Format("TryFindGoodHiveLoc pawn.GetLord() == null"));
                 }
                 if (pawn.mindState.duty.def != XenomorphDefOf.RRY_Xenomorph_DefendAndExpandHive && pawn.mindState.duty.def != XenomorphDefOf.RRY_Xenomorph_DefendHiveAggressively)
                 {
-                //    Log.Message(string.Format("TryFindGoodHiveLoc UpdateDuty"));
+                    //    Log.Message(string.Format("TryFindGoodHiveLoc UpdateDuty"));
                     pawn.mindState.duty = new PawnDuty(XenomorphDefOf.RRY_Xenomorph_DefendAndExpandHive, c, 40f);
                 }
-                if (!hiveGrid.HiveLoclist.Contains(c))
+                if (hiveGrid.HiveLoclist.NullOrEmpty() || !hiveGrid.HiveLoclist.Contains(c))
                 {
-                //    Log.Message(string.Format("TryFindGoodHiveLoc Adding to HiveLoclist"));
+                    //    Log.Message(string.Format("TryFindGoodHiveLoc Adding to HiveLoclist"));
                     hiveGrid.HiveLoclist.Add(c);
                 }
-                if (victim!=null)
+                if (!victim.DestroyedOrNull())
                 {
                     Func<Pawn, IntVec3, IntVec3, bool> validator = delegate (Pawn p, IntVec3 z, IntVec3 y)
                     {
@@ -194,14 +189,16 @@ namespace RRYautja
                             return false;
                         }
                         bool roofed = (!allowUnroofed && y.Roofed(map)) || allowUnroofed;
-                        bool thing = y.GetThingList(map).Any(x=> x.GetType() != typeof(Building_XenomorphCocoon) && x.GetType() != typeof(Building_XenoEgg) && x.GetType() != typeof(HiveLike) && x.GetType() != typeof(Building));
-                        bool r =  thing && roofed;
+                        bool thing = y.GetThingList(map).Any(x => x.GetType() != typeof(Building_XenomorphCocoon) && x.GetType() != typeof(Building_XenoEgg) && x.GetType() != typeof(HiveLike) && x.GetType() != typeof(Building));
+                        bool r = thing && roofed;
                         //   Log.Message(string.Format("Cell: {0}, score: {1}, XenohiveA: {2}, XenohiveB: {3}, !filled: {4}, edifice: {5}, building: {6}, thingA: {7}, thingB: {8}, roofed: {9}\nResult: {10}", y, GetScoreAt(y, map, allowFogged), XenohiveA , XenohiveB , !filled , edifice , building , thingA , thingB, roofed, result));
                         return r;
                     };
                     c = RCellFinder.RandomWanderDestFor(pawn, c, 5f, validator, Danger.Some);
                 }
+                return true;
             }
+            else return false;
             return c != IntVec3.Invalid && c != IntVec3.Zero && !c.InNoBuildEdgeArea(map) && !c.InNoZoneEdgeArea(map) && !c.GetTerrain(map).HasTag("Water");
         }
 

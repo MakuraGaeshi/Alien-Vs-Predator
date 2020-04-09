@@ -14,8 +14,10 @@ namespace RimWorld
             int forceMeleeRange = 7;
             bool allowManualCastWeapons = !pawn.IsColonist;
             bool canReach = (pawn.CanReach(enemyTarget, PathEndMode.Touch, Danger.Deadly, false));
-            bool meleeRange = (pawn.Position.InHorDistOf(enemyTarget.Position, 7));
-            bool allowRanged = (Rand.Chance(0.75f) && (canReach && !meleeRange)) || !canReach;
+            bool meleeRange = (pawn.Position.InHorDistOf(enemyTarget.Position, forceMeleeRange));
+            Pawn tPawn = enemyTarget as Pawn;
+            bool targetPawn = (tPawn != null && tPawn.Awake())|| tPawn==null;
+            bool allowRanged = (Rand.Chance(0.25f) && targetPawn && (canReach && !meleeRange)) || !canReach;
             Verb verb = allowRanged ? pawn.TryGetAttackVerb(enemyTarget, allowManualCastWeapons) : pawn.meleeVerbs.TryGetMeleeVerb(enemyTarget);
             if (verb == null)
             {

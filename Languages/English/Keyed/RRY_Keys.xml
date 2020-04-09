@@ -69,8 +69,13 @@
   <Xeno_Egg_Hyperfertile>Hyperfertile</Xeno_Egg_Hyperfertile>
   <Xeno_Egg_Praetorian>Praetorian</Xeno_Egg_Praetorian>
   <Xeno_Egg_Royal>Royal</Xeno_Egg_Royal>
-  <Xeno_Egg_Gestation_Progress>Facehugger Gestation</Xeno_Egg_Gestation_Progress>
+  <Xeno_Egg_Gestation_Progress>Gestation</Xeno_Egg_Gestation_Progress>
+  <Xeno_Egg_Halted>Halted</Xeno_Egg_Halted>
+  <Xeno_Egg_Progressing>Progressing</Xeno_Egg_Progressing>
+  <Xeno_Egg_Finished>Finished</Xeno_Egg_Finished>
   <Xeno_Egg_Mutation_Progress>Mutation</Xeno_Egg_Mutation_Progress>
+  <Xeno_Egg_Mutating>Mutation</Xeno_Egg_Mutating>
+  <Xeno_Egg_Mutated>Mutated</Xeno_Egg_Mutated>
   <!-- Hives -->
   <RRY_MessageHiveReproduced>Xenomorph tunnel network expands.</RRY_MessageHiveReproduced>
   <RRY_HiveReproducesIn>Tunnel network expands in</RRY_HiveReproducesIn>

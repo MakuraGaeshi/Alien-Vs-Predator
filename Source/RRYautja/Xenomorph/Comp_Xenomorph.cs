@@ -376,7 +376,10 @@ namespace RRYautja
                 //    Traverse.Create(hediff_Injury).Property(name: "BleedRate").SetValue(hediff_Injury.BleedRate*0.95);
                 }
             }
-
+            if (!true)
+            {
+                return;
+            }
             if (Hidden)
             {
                 if (!hidden)

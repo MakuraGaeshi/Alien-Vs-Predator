@@ -378,7 +378,7 @@ namespace RRYautja
 
         public static List<Pawn> SpawnedFacehuggerPawns(Map map, int radius, IntVec3 position)
         {
-            return map.mapPawns.AllPawnsSpawned.FindAll(x => XenomorphUtil.IsXenomorphFacehugger(x) && XenomorphUtil.DistanceBetween(x.Position, position) < radius);
+            return map.mapPawns.AllPawnsSpawned.FindAll(x => XenomorphUtil.IsXenomorphFacehugger(x) && position.InHorDistOf(x.Position, radius));
         }
 
         public static List<Pawn> SpawnedFacehuggerPawns(Map map, int radius, IntVec3 position, IntVec3 otherposition)
@@ -416,9 +416,9 @@ namespace RRYautja
             return map.mapPawns.AllPawnsSpawned.FindAll(x => XenomorphUtil.IsXenomorphFacehugger(x) && XenomorphUtil.DistanceBetween(x.Position, pawn.Position) < radius && x.CanReach(pawn, PathEndMode.ClosestTouch, Danger.Deadly));
         }
 
-        public static int TotalSpawnedFacehuggerPawnCount(Map map, int radius, Pawn pawn)
+        public static int TotalSpawnedFacehuggerPawnCount(Map map, int radius, Thing thing)
         {
-            return SpawnedFacehuggerPawns(map, radius, pawn.Position).Count;
+            return SpawnedFacehuggerPawns(map, radius, thing.Position).Count;
         }
 
         public static bool IsXenomorphCorpse(Corpse corpse)

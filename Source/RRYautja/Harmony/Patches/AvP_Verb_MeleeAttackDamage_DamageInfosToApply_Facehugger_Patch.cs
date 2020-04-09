@@ -67,9 +67,10 @@ namespace RRYautja
                                     }
                                 }
                             }
-                            float InfecterRoll = (Rand.Value * 100) * (1 - tgtdodge);
                             float InfectionDefence = 50 + tgtmelee + (armour * 10);
-                            if ((InfecterRoll > InfectionDefence || hitPawn.Downed) && !hitPawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Anesthetic))
+                            float InfecterRoll = (Rand.Value * 100) * (1 - tgtdodge);
+
+                            if ((InfecterRoll > InfectionDefence || (hitPawn.Downed || !hitPawn.Awake())) && !hitPawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Anesthetic))
                             {
                                 Hediff hediff = HediffMaker.MakeHediff(XenomorphDefOf.RRY_FaceHuggerInfection, hitPawn, null);
                                 Comp_Facehugger _Facehugger = Attacker.TryGetComp<Comp_Facehugger>();
@@ -89,6 +90,15 @@ namespace RRYautja
                                 //    comp.GetDirectlyHeldThings().TryAdd(CasterPawn);
                             }
 
+                        }
+                        else
+                        {
+                            if (!hitPawn.isPotentialHost() || hitPawn.Awake())
+                            {
+                                return;
+                            }
+
+                            HealthUtility.DamageUntilDowned(hitPawn, false);
                         }
                     }
                 }

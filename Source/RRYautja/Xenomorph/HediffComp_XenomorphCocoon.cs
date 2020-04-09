@@ -145,7 +145,7 @@ namespace RRYautja
         {
             get
             {
-                return MyMap.listerThings.ThingsOfDef(eggDef).Any(x => x is Building_XenoEgg egg && egg.xenoHatcher.eggState == CompXenoHatcher.EggState.Royal);
+                return MyMap.listerThings.ThingsOfDef(eggDef).Any(x => x is Building_XenoEgg egg && egg.eggType == Building_XenoEgg.EggType.Royal);
             }
         }
         ThingDef eggDef = XenomorphDefOf.RRY_EggXenomorphFertilized;
@@ -214,9 +214,8 @@ namespace RRYautja
                         if (Rand.Chance(chance))
                         {
                             Thing thing = ThingMaker.MakeThing(eggDef, null);
-                            Building_XenoEgg _XenoEgg = (Building_XenoEgg)thing;
-                            CompXenoHatcher xenoHatcher = _XenoEgg.TryGetComp<CompXenoHatcher>();
-                            if (!RoyalEggPresent && !RoyalPresent) xenoHatcher.mutateProgress = Pawn.BodySize;
+                            Building_XenoEgg _XenoEgg = thing as Building_XenoEgg;
+                            if (!RoyalEggPresent && !RoyalPresent) _XenoEgg.mutateProgress = Pawn.BodySize;
                             MyCocoon.Destroy();
                             GenPlace.TryPlaceThing(thing, Pawn.Position != null ? Pawn.Position : Pawn.PositionHeld, Pawn.Map ?? Pawn.MapHeld, ThingPlaceMode.Direct);
                         //    Pawn.health.RemoveHediff(this.parent);

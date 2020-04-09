@@ -401,32 +401,38 @@
       </li>
       <li>
         <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_Queen</texPath>
+          <texPath>Things/Pawn/Xenomorph/QueenYoung</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>1</drawSize>
           <shadowData>
             <volume>(0.6, 0.8, 0.6)</volume>
           </shadowData>
+          <shaderType>CutoutComplex</shaderType>
+          <color>(59,82,118)</color>
         </bodyGraphicData>
       </li>
       <li>
         <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_Queen</texPath>
+          <texPath>Things/Pawn/Xenomorph/QueenYoung</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>2</drawSize>
           <shadowData>
             <volume>(0.6, 0.8, 0.6)</volume>
           </shadowData>
+          <shaderType>CutoutComplex</shaderType>
+          <color>(59,82,118)</color>
         </bodyGraphicData>
       </li>
       <li>
         <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_Queen</texPath>
+          <texPath>Things/Pawn/Xenomorph/Queen</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>3.3</drawSize>
           <shadowData>
             <volume>(0.6, 0.8, 0.6)</volume>
           </shadowData>
+          <shaderType>CutoutComplex</shaderType>
+          <color>(59,82,118)</color>
         </bodyGraphicData>
       </li>
     </lifeStages>

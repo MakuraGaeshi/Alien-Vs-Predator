@@ -19,7 +19,7 @@ namespace RRYautja
             Scribe_Values.Look<int>(ref this.activeTicks, "activeTicks", 0, false);
         }
 
-        public int destroyTick = 900;
+        public int destroyTick = 0;
         public int activeTicks = 0;
         private int Ticks = 60;
         private int TickRate = 60;

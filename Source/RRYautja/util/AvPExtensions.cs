@@ -181,11 +181,11 @@ namespace RRYautja.ExtensionMethods
             return p.isPotentialHost(out string FailReason, setDefaults, allowImpreg);
         }
 
-        public static bool isPotentialHost(this Pawn p, bool setDefaults = false, bool allowImpreg = false)
+        public static bool isPotentialHost(this Pawn p, bool setDefaults = false, bool allowImpreg = false, bool allowHugged = true)
         {
             return p.isPotentialHost(out string FailReason, setDefaults, allowImpreg);
         }
-        public static bool isPotentialHost(this Pawn p, out string FailReason, bool setDefaults = false, bool allowImpreg = false)
+        public static bool isPotentialHost(this Pawn p, out string FailReason, bool setDefaults = false, bool allowImpreg = false, bool allowHugged = true)
         {
             if (!p.health.hediffSet.HasHead)
             {
@@ -647,7 +647,7 @@ namespace RRYautja.ExtensionMethods
             bool result = p.isNeoHost() || p.isXenoHost();
             if (result)
             {
-                hediff = p.health.hediffSet.hediffs.Find(x => x.def.defName.Contains("morphImpregnation") || x.def.defName.Contains("FaceHuggerInfection"));
+                hediff = p.health.hediffSet.hediffs.Find(x => x.def.defName.Contains("morphImpregnation") || x.def == XenomorphDefOf.RRY_FaceHuggerInfection);
             }
             else
             {
@@ -657,7 +657,7 @@ namespace RRYautja.ExtensionMethods
         }
         public static bool isXenoHost(this Pawn p)
         {
-            return p.health.hediffSet.hediffs.Any(x => x.def.defName.Contains("XenomorphImpregnation") || x.def.defName.Contains("FaceHuggerInfection"));
+            return p.health.hediffSet.hediffs.Any(x => x.def.defName.Contains("XenomorphImpregnation") || x.def==XenomorphDefOf.RRY_FaceHuggerInfection);
         }
         public static bool isNeoHost(this Pawn p)
         {

@@ -7,7 +7,7 @@ using Verse.AI;
 namespace RimWorld
 {
 	// Token: 0x020000A2 RID: 162
-	public class JobGiver_HiveLikeDefense : JobGiver_AIFightEnemies
+	public class JobGiver_HiveLikeDefense : JobGiver_XenomorphFightEnemies
 	{
 		// Token: 0x06000416 RID: 1046 RVA: 0x0002C898 File Offset: 0x0002AC98
 		protected override IntVec3 GetFlagPosition(Pawn pawn)

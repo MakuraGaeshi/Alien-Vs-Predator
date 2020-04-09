@@ -138,7 +138,7 @@ namespace RRYautja
                 this.fertilizationCount = Mathf.Max(0, this.fertilizationCount - randomInRange);
             
             thing.stackCount = randomInRange;
-            CompXenoHatcher compHatcher = thing.TryGetComp<CompXenoHatcher>();
+            Building_XenoEgg compHatcher = thing as Building_XenoEgg;
             if (compHatcher != null)
             {
                 compHatcher.hatcheeFaction = this.parent.Faction;
