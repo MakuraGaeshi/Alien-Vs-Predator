@@ -16,6 +16,7 @@
   <RRY_XenomorphSpawningOptions>Spawning options for Noncanonical Xenoforms</RRY_XenomorphSpawningOptions>
   <RRY_PredalienSpawning>Allow Predaliens: Allow Predaliens to Spawn</RRY_PredalienSpawning>
   <RRY_ThrumbomorphSpawning>Allow Thrumbomorphs: Allow Thrumbomorphs to Spawn</RRY_ThrumbomorphSpawning>
+  <RRY_NeomorphSpawning>Allow Neomorphs: Enables Neomorphs</RRY_NeomorphSpawning>
   <!-- Rearmable Traps -->
   <DesignatorRearmTrap>Rearm trap</DesignatorRearmTrap>
   <DesignatorRearmTrapDesc>Rearm a sprung trap so it can be triggered again.</DesignatorRearmTrapDesc>
@@ -66,7 +67,7 @@
   <Xeno_Chestburster_Appears>a Chestburster has been spotted</Xeno_Chestburster_Appears>
   <Xeno_Chestburster_Matures>the Chestburster has matured into a fully grown {0}</Xeno_Chestburster_Matures>
   <Xeno_Egg>Facehugger</Xeno_Egg>
-  <Xeno_Egg_Hyperfertile>Hyperfertile</Xeno_Egg_Hyperfertile>
+  <Xeno_Egg_Hyperfertile>Hyperfertile X{0}</Xeno_Egg_Hyperfertile>
   <Xeno_Egg_Praetorian>Praetorian</Xeno_Egg_Praetorian>
   <Xeno_Egg_Royal>Royal</Xeno_Egg_Royal>
   <Xeno_Egg_Gestation_Progress>Gestation</Xeno_Egg_Gestation_Progress>

@@ -11,7 +11,7 @@ namespace RRYautja
 		// Token: 0x06000E22 RID: 3618 RVA: 0x00069D20 File Offset: 0x00068120
 		protected override bool CanFireNowSub(IncidentParms parms)
 		{
-			if (!base.CanFireNowSub(parms))
+			if (!base.CanFireNowSub(parms) || !settings.SettingsHelper.latest.AllowNeomorphs)
 			{
 				return false;
 			}

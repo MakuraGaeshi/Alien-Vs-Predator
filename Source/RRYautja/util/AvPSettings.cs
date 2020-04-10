@@ -26,6 +26,7 @@ namespace RRYautja.settings
         public bool AllowXenoEggMetamorph = true;
         public bool AllowNonHumanlikeHosts = true;
         public bool AllowThrumbomorphs = true;
+        public bool AllowNeomorphs = true; 
         public bool AllowPredaliens = true;
         public bool AllowXenomorphFaction = true, AllowYautjaFaction = true, AllowHiddenInfections = true, AllowPredalienImpregnations = true;
         public float fachuggerRemovalFailureDeathChance = 0.35f, embryoRemovalFailureDeathChance = 0.35f;
@@ -46,6 +47,7 @@ namespace RRYautja.settings
             Scribe_Values.Look(ref this.AllowXenoEggMetamorph, "AllowXenoEggMetamorph", true);
             Scribe_Values.Look(ref this.AllowNonHumanlikeHosts, "AllowNonHumanlikeHosts", true);
             Scribe_Values.Look(ref this.AllowThrumbomorphs, "AllowThrumbomorphs", true);
+            Scribe_Values.Look(ref this.AllowNeomorphs, "AllowNeomorphs", true);
             Scribe_Values.Look(ref this.AllowPredaliens, "AllowPredaliens", true);
             Scribe_Values.Look<float>(ref this.fachuggerRemovalFailureDeathChance, "fachuggerRemovalFailureDeathChance", 0.35f);
             Scribe_Values.Look<float>(ref this.embryoRemovalFailureDeathChance, "embryoRemovalFailureDeathChance", 0.35f);
@@ -170,6 +172,8 @@ namespace RRYautja.settings
             Widgets.CheckboxLabeled(new Rect(x, num4, width, 32f), "RRY_PredalienSpawning".Translate(), ref settings.AllowPredaliens);
             num4 += 22f;
             Widgets.CheckboxLabeled(new Rect(x, num4, width, 32f), "RRY_ThrumbomorphSpawning".Translate(), ref settings.AllowThrumbomorphs);
+            num4 += 22f;
+            Widgets.CheckboxLabeled(new Rect(x, num4, width, 32f), "RRY_NeomorphSpawning".Translate(), ref settings.AllowNeomorphs);
             num4 += 22f;
             Widgets.EndScrollView();
 

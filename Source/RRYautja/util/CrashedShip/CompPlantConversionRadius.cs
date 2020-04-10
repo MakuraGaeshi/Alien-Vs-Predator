@@ -103,19 +103,25 @@ namespace RimWorld
             {
                 if (Rand.Value < this.LeaflessPlantKillChance && this.parent.Map.GooGrid().GetDepth(c) >= 1f)
                 {
-                    Thing thing2;
-
-                    if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Fungus))
+                    if (RRYautja.settings.SettingsHelper.latest.AllowNeomorphs)
                     {
-                        thing2 = ThingMaker.MakeThing(XenomorphDefOf.RRY_Plant_Neomorph_Fungus_Hidden);
+                        Thing thing2;
+
+                        if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Fungus))
+                        {
+                            thing2 = ThingMaker.MakeThing(XenomorphDefOf.RRY_Plant_Neomorph_Fungus_Hidden);
+                        }
+                        else
+                        {
+                            thing2 = ThingMaker.MakeThing(XenomorphDefOf.RRY_Plant_Neomorph_Fungus);
+                        }
+                        IntVec3 vec3 = plant.Position;
+                        GenSpawn.Spawn(thing2, vec3, plant.Map, WipeMode.Vanish);
                     }
                     else
                     {
-                        thing2 = ThingMaker.MakeThing(XenomorphDefOf.RRY_Plant_Neomorph_Fungus);
+                           plant.Destroy();
                     }
-                    IntVec3 vec3 = plant.Position;
-                    GenSpawn.Spawn(thing2, vec3, plant.Map, WipeMode.Vanish);
-                    //    plant.Destroy();
                     //    GenSpawn.Spawn(ThingMaker.MakeThing(this.def), vec3, this.Map);
                 }
             }

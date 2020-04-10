@@ -70,6 +70,13 @@ namespace RimWorld
             }
         }
 
+        public bool hiveNode
+        {
+            get
+            {
+                return this.def == XenomorphDefOf.RRY_Xenomorph_Hive;
+            }
+        }
         public bool hiveDormant
         {
             get
@@ -309,7 +316,7 @@ namespace RimWorld
 				this.SetFaction(OfFaction, null);
 
             }
-            if (this.getsQueen)
+            if (this.getsQueen && hiveNode)
             {
                 Pawn newQueen = PawnGenerator.GeneratePawn(new PawnGenerationRequest(XenomorphDefOf.RRY_Xenomorph_Queen, factionInt));
                 this.queenContainer.TryAdd(newQueen);
@@ -467,9 +474,12 @@ namespace RimWorld
             {
                 this.EjectContents();
             }
-            if (this.queenContainer.Count > 0)
+            if (hiveNode)
             {
-                this.EjectQueens();
+                if (this.queenContainer.Count > 0)
+                {
+                    this.EjectQueens();
+                }
             }
             base.PostApplyDamage(dinfo, totalDamageDealt);
 		}

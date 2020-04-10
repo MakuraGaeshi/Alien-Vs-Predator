@@ -255,12 +255,12 @@
         <ticksNeedsMaintenance>40000</ticksNeedsMaintenance>
         <damagePerTickRare>10</damagePerTickRare>
       </li>
-	  -->
       <li Class="CompProperties_MaintainableLike">
         <ticksHealthy>60000</ticksHealthy>
         <ticksNeedsMaintenance>40000</ticksNeedsMaintenance>
         <damagePerTickRare>10</damagePerTickRare>
       </li>
+	  -->
       <li Class="CompProperties_SpawnerFilth">
         <filthDef>RRY_Filth_Slime</filthDef>
         <spawnCountOnSpawn>10</spawnCountOnSpawn>
