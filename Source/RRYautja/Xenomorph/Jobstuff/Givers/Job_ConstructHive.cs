@@ -76,39 +76,41 @@ namespace RimWorld
                         }
                         return null;
                     }
-                    foreach (var structure in HiveStructure.HiveStruct(HiveCenter).Where(x => x.GetThingList(map).Any(z => !z.def.defName.Contains("RRY_Xenomorph_Hive")) && x.DistanceTo(HiveCenter) <= MiningRange && pawn.CanReserveAndReach(x, PathEndMode.OnCell, Danger.Deadly, layer: ReservationLayerDefOf.Floor) && x.GetFirstBuilding(map) == null))
+                }
+            }
+            if (!centerChild)
+            {
+                foreach (var structure in HiveStructure.HiveStruct(HiveCenter).Where(x => x.GetThingList(map).Any(z => !z.def.defName.Contains("RRY_Xenomorph_Hive")) && x.DistanceTo(HiveCenter) <= MiningRange && pawn.CanReserveAndReach(x, PathEndMode.OnCell, Danger.Deadly, layer: ReservationLayerDefOf.Floor) && x.GetFirstBuilding(map) == null))
+                {
+                    return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Construct_Hive_Wall, structure)
                     {
-                        return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Construct_Hive_Wall, structure)
-                        {
-                            ignoreDesignations = false
-                        };
-                    }
-                    foreach (var structure in HiveStructure.HiveWallGen(HiveCenter, MiningRange).Where(x => x.GetThingList(map).Any(z => !z.def.defName.Contains("RRY_Xenomorph_Hive")) && x.DistanceTo(HiveCenter) <= MiningRange + 2 && pawn.CanReserveAndReach(x, PathEndMode.OnCell, Danger.Deadly, layer: ReservationLayerDefOf.Floor) && x.GetFirstBuilding(map) == null))
-                    {
-                        return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Construct_Hive_Wall, structure)
-                        {
-                            ignoreDesignations = false
-                        };
-                    }
-                    Predicate<IntVec3> validator2 = delegate (IntVec3 y)
-                    {
-                        bool roofed = (y.Roofed(pawn.Map));
-                        bool result = !roofed && XenomorphUtil.DistanceBetween(y, HiveCenter) <= MiningRange && pawn.CanReserveAndReach(y, PathEndMode.OnCell, Danger.Deadly, layer: ReservationLayerDefOf.Ceiling);
-                        return result;
+                        ignoreDesignations = false
                     };
-                    if (RCellFinder.TryFindRandomCellNearWith(HiveCenter, validator2, pawn.Map, out IntVec3 c2, MiningRange, MiningRange))
+                }
+                foreach (var structure in HiveStructure.HiveWallGen(HiveCenter, MiningRange).Where(x => x.GetThingList(map).Any(z => !z.def.defName.Contains("RRY_Xenomorph_Hive")) && x.DistanceTo(HiveCenter) <= MiningRange + 2 && pawn.CanReserveAndReach(x, PathEndMode.OnCell, Danger.Deadly, layer: ReservationLayerDefOf.Floor) && x.GetFirstBuilding(map) == null))
+                {
+                    return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Construct_Hive_Wall, structure)
                     {
-                        if (c2.InBounds(pawn.Map) && pawn.CanReserveAndReach(c2, PathEndMode.OnCell, Danger.Deadly))
+                        ignoreDesignations = false
+                    };
+                }
+                Predicate<IntVec3> validator2 = delegate (IntVec3 y)
+                {
+                    bool roofed = (y.Roofed(pawn.Map));
+                    bool result = !roofed && XenomorphUtil.DistanceBetween(y, HiveCenter) <= MiningRange && pawn.CanReserveAndReach(y, PathEndMode.OnCell, Danger.Deadly, layer: ReservationLayerDefOf.Ceiling);
+                    return result;
+                };
+                if (RCellFinder.TryFindRandomCellNearWith(HiveCenter, validator2, pawn.Map, out IntVec3 c2, MiningRange, MiningRange))
+                {
+                    if (c2.InBounds(pawn.Map) && pawn.CanReserveAndReach(c2, PathEndMode.OnCell, Danger.Deadly))
+                    {
+                        return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Construct_Hive_Roof, c2)
                         {
-                            return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Construct_Hive_Roof, c2)
-                            {
-                                ignoreDesignations = false
-                            };
-                        }
+                            ignoreDesignations = false
+                        };
                     }
                 }
             }
-
             return null;
         }
 
