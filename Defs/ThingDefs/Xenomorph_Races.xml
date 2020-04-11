@@ -666,23 +666,26 @@
     <lifeStages>
       <li>
         <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
+          <texPath>Things/Pawn/Xenomorph/ChestBursterBloody</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>0.5</drawSize>
           <shadowData>
             <volume><!--(0.6, 0.8, 0.6)-->(0.0, 0.0, 0.0)</volume>
           </shadowData>
+          <color>(234,212,137)</color>
+          <colorTwo>(234,212,137)</colorTwo>
           <shaderType>CutoutComplex</shaderType>
         </bodyGraphicData>
       </li>
       <li>
         <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
+          <texPath>Things/Pawn/Xenomorph/ChestBurster</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>0.75</drawSize>
           <shadowData>
             <volume><!--(0.6, 0.8, 0.6)-->(0.0, 0.0, 0.0)</volume>
           </shadowData>
+          <color>(234,212,137)</color>
         </bodyGraphicData>
       </li>
       <li>
@@ -854,64 +857,72 @@
     <label>Warrior</label>
     <race>RRY_Xenomorph_Warrior</race>
     <combatPower>160</combatPower>
+	<!--
     <alternateGraphicChance>0.5</alternateGraphicChance>
     <alternateGraphics>
-      <li><texPath>Things/Pawn/Xenomorph/Xenomorph_Warrior_New</texPath></li>
-      <!--<li><texPath>Things/Pawn/Xenomorph/Xenomorph_Warrior_New_Red</texPath></li>-->
+      <li><texPath>Things/Pawn/Xenomorph/Xenomorph_Warrior_New</texPath></li
+      <li><texPath>Things/Pawn/Xenomorph/Xenomorph_Warrior_New_Red</texPath></li>
     </alternateGraphics>
+	-->
     <lifeStages>
       <li>
         <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
+          <texPath>Things/Pawn/Xenomorph/ChestBursterBloody</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>0.5</drawSize>
           <shadowData>
             <volume><!--(0.6, 0.8, 0.6)-->(0.0, 0.0, 0.0)</volume>
           </shadowData>
+          <color>(234,212,137)</color>
+          <colorTwo>(234,212,137)</colorTwo>
           <shaderType>CutoutComplex</shaderType>
         </bodyGraphicData>
       </li>
       <li>
         <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
+          <texPath>Things/Pawn/Xenomorph/ChestBurster</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>0.75</drawSize>
           <shadowData>
             <volume><!--(0.6, 0.8, 0.6)-->(0.0, 0.0, 0.0)</volume>
           </shadowData>
+          <color>(234,212,137)</color>
         </bodyGraphicData>
       </li>
       <li>
         <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_Warrior</texPath>
+          <texPath>Things/Pawn/Xenomorph/Warrior</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
-          <color>(180,180,180)</color>
+          <shaderType>CutoutComplex</shaderType>
           <drawSize>0.95</drawSize>
           <shadowData>
             <volume>(0.4, 0.8, 0.4)</volume>
           </shadowData>
+          <color>(59,82,118)</color>
         </bodyGraphicData>
       </li>
       <li>
         <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_Warrior</texPath>
+          <texPath>Things/Pawn/Xenomorph/Warrior</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
-          <color>(180,180,180)</color>
+          <shaderType>CutoutComplex</shaderType>
           <drawSize>1.35</drawSize>
           <shadowData>
             <volume>(0.4, 0.8, 0.4)</volume>
           </shadowData>
+          <color>(59,82,118)</color>
         </bodyGraphicData>
       </li>
       <li>
         <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_Warrior</texPath>
+          <texPath>Things/Pawn/Xenomorph/Warrior</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
-          <color>(180,180,180)</color>
+          <shaderType>CutoutComplex</shaderType>
           <drawSize>1.75</drawSize>
           <shadowData>
             <volume>(0.4, 0.8, 0.4)</volume>
           </shadowData>
+          <color>(59,82,118)</color>
         </bodyGraphicData>
       </li>
     </lifeStages>

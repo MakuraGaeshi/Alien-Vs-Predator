@@ -148,7 +148,7 @@ namespace HunterMarkingSystem
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
-            if (PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_Colonists.Any(x=> x.Markable(out Comp_Markable markable) && markable.MarkableCorpse && markable.markcorpse == this.parent) &&!respawningAfterLoad)
+            if (PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_Colonists.Any(x=> x.Markable(out Comp_Markable markable) && x.health.hediffSet.HasHediff(markable.Unmarkeddef) && markable.MarkableCorpse && markable.markcorpse == this.parent) &&!respawningAfterLoad)
             {
                 this.parent.SetForbidden(true, false);
             }
@@ -157,24 +157,31 @@ namespace HunterMarkingSystem
         public override void PostDeSpawn(Map map)
         {
             base.PostDeSpawn(map);
-            if (PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_Colonists.Any(x => x.Markable(out Comp_Markable markable) && markable.MarkableCorpse && markable.markcorpse == this.parent))
+            if (PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_Colonists.Any(x => x.Markable(out Comp_Markable markable) && x.health.hediffSet.HasHediff(markable.Unmarkeddef)))
             {
-                foreach (Pawn p in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_Colonists.Where(x => x.Markable(out Comp_Markable markable) && markable.MarkableCorpse && markable.markcorpse == this.parent))
+                foreach (Pawn p in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_Colonists.Where(x => x.Markable(out Comp_Markable markable) && x.health.hediffSet.HasHediff(markable.Unmarkeddef)))
                 {
                     Hediff marked = null;
                     if (p.Markable(out Comp_Markable markable))
                     {
-                        if (!p.Marked(out marked) && marked != null)
+                        if (markable.markcorpse != null)
                         {
-                            p.health.RemoveHediff(marked);
-                            if (markable.MarkerRace)
+                            if (markable.markcorpse == this.parent && this.parent.DestroyedOrNull())
                             {
-                                p.health.AddHediff(markable.Props.cultureDef.UnbloodedHediff);
+
+                                if (!p.Marked(out marked) && marked != null)
+                                {
+                                    p.health.RemoveHediff(marked);
+                                    if (markable.MarkerRace)
+                                    {
+                                        p.health.AddHediff(markable.Props.cultureDef.UnbloodedHediff);
+                                    }
+                                }
+                                else if (p.Marked(out marked, out Hediff unmarked) && unmarked != null)
+                                {
+                                    p.health.RemoveHediff(unmarked);
+                                }
                             }
-                        }
-                        else if (p.Marked(out marked, out Hediff unmarked) && unmarked != null)
-                        {
-                            p.health.RemoveHediff(unmarked);
                         }
                     }
                 }

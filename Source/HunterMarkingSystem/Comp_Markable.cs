@@ -52,8 +52,11 @@ namespace HunterMarkingSystem
                 {
                     if (Mark.Dead && markcorpse == null)
                     {
-                        markcorpse = Mark.Corpse;
-                        CorpseId = markcorpse.thingIDNumber;
+                        if (Mark.Corpse!=null)
+                        {
+                            markcorpse = Mark.Corpse;
+                            CorpseId = markcorpse.thingIDNumber;
+                        }
                     }
                 }
                 else

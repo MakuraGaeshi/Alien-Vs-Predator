@@ -307,7 +307,7 @@ namespace RRYautja
         {
             get
             {
-                Color color = base.parent.pawn.def.race.BloodDef.graphic.color;
+                Color color = Pawn.RaceProps.BloodDef.graphic.color;
                 color.a = 1f;
                 return color;
             }
@@ -319,7 +319,7 @@ namespace RRYautja
             Map spawnMap = !base.Pawn.Dead ? base.parent.pawn.Map : base.parent.pawn.MapHeld;
             this.Pawn.def.race.deathActionWorkerClass = typeof(DeathActionWorker_Simple);
             bool fullterm = this.parent.CurStageIndex > this.parent.def.stages.Count - 3;
-            if (!fullterm || bursted)
+            if (!fullterm || bursted || spawnMap == null || spawnLoc == null)
             {
                 return;
             }
@@ -336,8 +336,8 @@ namespace RRYautja
                     for (int i = 0; i < countToSpawn; i++)
                     {
                         Pawn pawn = XenomorphSpawnRequest();
-                    //    Log.Message(string.Format("Xenomorph to hatch: {0}", pawn.LabelShortCap));
-                        pawn.ageTracker.CurKindLifeStage.bodyGraphicData.color = HostBloodColour;
+                        //    Log.Message(string.Format("Xenomorph to hatch: {0}", pawn.LabelShortCap));
+                        pawn.ageTracker.CurKindLifeStage.bodyGraphicData.colorTwo = HostBloodColour;
                         pawn.Notify_ColorChanged();
                         pawn.ageTracker.AgeBiologicalTicks = 0;
                         pawn.ageTracker.AgeChronologicalTicks = 0;
@@ -356,7 +356,7 @@ namespace RRYautja
                             MoteMaker.ThrowDustPuffThick(new Vector3(vector.x, 0f, vector.z)
                             {
                                 y = AltitudeLayer.MoteOverhead.AltitudeFor()
-                            }, spawnMap, 1.5f, new Color(HostBloodColour.r, HostBloodColour.g, HostBloodColour.b, HostBloodColour.a));
+                            }, spawnMap, 1.5f, HostBloodColour);
                         }
                         if (i == 100)
                         {
