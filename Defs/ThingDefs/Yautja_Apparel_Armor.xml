@@ -55,6 +55,7 @@
 		<apparel>
 			<bodyPartGroups>
 				<li>Torso</li>
+				<li>Neck</li>
 				<li>Shoulders</li>
 				<li>Arms</li>
 			</bodyPartGroups>
@@ -188,9 +189,9 @@
 		<apparel>
 			<bodyPartGroups>
 				<li>Torso</li>
+				<li>Neck</li>
 				<li>Shoulders</li>
 				<li>Arms</li>
-				
 			</bodyPartGroups>
 			<wornGraphicPath>Things/Apparel/Yautja_Armour/Yautja_HunterArmor</wornGraphicPath>
 			<layers>
@@ -459,6 +460,7 @@
 		<apparel>
 			<bodyPartGroups>
 				<li>Torso</li>
+				<li>Neck</li>
 				<li>Shoulders</li>
 				<li>Arms</li>
 			</bodyPartGroups>
@@ -663,6 +665,7 @@
 		<apparel>
 			<bodyPartGroups>
 				<li>Torso</li>
+				<li>Neck</li>
 				<li>Shoulders</li>
 				<li>Arms</li>
 			</bodyPartGroups>
