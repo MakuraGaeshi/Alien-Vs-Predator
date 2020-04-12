@@ -77,7 +77,7 @@ namespace RimWorld
                 }
             }
 
-            bool aggressive;
+        //    bool aggressive;
             Comp_Xenomorph _Xenomorph = pawn.TryGetComp<Comp_Xenomorph>();
             if (pawn.TryGetAttackVerb(null, false) == null)
             {

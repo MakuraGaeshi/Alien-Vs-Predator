@@ -97,6 +97,15 @@ namespace RRYautja.ExtensionMethods
             return null;
         }
 
+        public static Comp_Xenomorph xenomorph(this Thing p)
+        {
+            if (p.isXenomorph())
+            {
+                return p.TryGetComp<Comp_Xenomorph>();
+            }
+            return null;
+        }
+
         /*
         public static HiveLike hive(this Pawn p)
         {

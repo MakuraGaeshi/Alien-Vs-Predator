@@ -77,7 +77,6 @@ namespace RRYautja
         public static bool TryFindGoodHiveLoc(Pawn pawn, out IntVec3 c, Pawn victim = null, bool allowFogged = false, bool allowUnroofed = false, bool allowDigging = false)
         {
             Map map = pawn.Map;
-            bool result = false;
             c = IntVec3.Invalid;
             if (map == null)
             {
@@ -199,7 +198,7 @@ namespace RRYautja
                 return true;
             }
             else return false;
-            return c != IntVec3.Invalid && c != IntVec3.Zero && !c.InNoBuildEdgeArea(map) && !c.InNoZoneEdgeArea(map) && !c.GetTerrain(map).HasTag("Water");
+            //return c != IntVec3.Invalid && c != IntVec3.Zero && !c.InNoBuildEdgeArea(map) && !c.InNoZoneEdgeArea(map) && !c.GetTerrain(map).HasTag("Water");
         }
 
 

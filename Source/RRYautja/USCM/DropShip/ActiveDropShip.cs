@@ -81,7 +81,7 @@ namespace RimWorld
 		}
 
 		// Token: 0x04004DE3 RID: 19939
-		public int age;
+		public new int age;
 
 		// Token: 0x04004DE4 RID: 19940
 		private ActiveDropPodInfo contents;

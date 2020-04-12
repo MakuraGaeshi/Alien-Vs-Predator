@@ -120,15 +120,16 @@ namespace Verse.AI
                 else
                 {
                     bool flag2 = false;
-                    CellRect.CellRectIterator iterator = thing.OccupiedRect().GetIterator();
-                    while (!iterator.Done())
+                    using (CellRect.Enumerator enumerator = thing.OccupiedRect().GetEnumerator())
                     {
-                        if (!iterator.Current.Fogged(thing.Map))
+                        while (enumerator.MoveNext())
                         {
-                            flag2 = true;
-                            break;
+                            if (!enumerator.Current.Fogged(thing.Map))
+                            {
+                                flag2 = true;
+                                break;
+                            }
                         }
-                        iterator.MoveNext();
                     }
                     if (!flag2)
                     {

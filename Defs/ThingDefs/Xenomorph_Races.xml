@@ -2,7 +2,7 @@
 <Defs>
 
 <ThingDef Name="RRY_BaseXenomorphPawn" Abstract="True">
-    <thingClass>Pawn</thingClass>
+    <thingClass>RRYautja.XenomorphPawn</thingClass>
     <category>Pawn</category>
     <selectable>true</selectable>
     <tickerType>Normal</tickerType>
@@ -380,23 +380,26 @@
     <lifeStages>
       <li>
         <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
+          <texPath>Things/Pawn/Xenomorph/ChestBursterBloody</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>0.5</drawSize>
           <shadowData>
             <volume><!--(0.6, 0.8, 0.6)-->(0.0, 0.0, 0.0)</volume>
           </shadowData>
+          <color>(146,147,127)</color>
+          <colorTwo>(255,255,255)</colorTwo>
           <shaderType>CutoutComplex</shaderType>
         </bodyGraphicData>
       </li>
       <li>
         <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
+          <texPath>Things/Pawn/Xenomorph/ChestBurster</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>0.75</drawSize>
           <shadowData>
             <volume><!--(0.6, 0.8, 0.6)-->(0.0, 0.0, 0.0)</volume>
           </shadowData>
+          <color>(146,147,127)</color>
         </bodyGraphicData>
       </li>
       <li>
@@ -673,7 +676,7 @@
             <volume><!--(0.6, 0.8, 0.6)-->(0.0, 0.0, 0.0)</volume>
           </shadowData>
           <color>(234,212,137)</color>
-          <colorTwo>(234,212,137)</colorTwo>
+          <colorTwo>(255,255,255)</colorTwo>
           <shaderType>CutoutComplex</shaderType>
         </bodyGraphicData>
       </li>
@@ -874,7 +877,7 @@
             <volume><!--(0.6, 0.8, 0.6)-->(0.0, 0.0, 0.0)</volume>
           </shadowData>
           <color>(234,212,137)</color>
-          <colorTwo>(234,212,137)</colorTwo>
+          <colorTwo>(255,255,255)</colorTwo>
           <shaderType>CutoutComplex</shaderType>
         </bodyGraphicData>
       </li>

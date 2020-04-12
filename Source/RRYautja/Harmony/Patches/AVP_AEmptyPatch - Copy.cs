@@ -47,7 +47,7 @@ namespace RRYautja
         {
             Thing dropship = null;
             CompUSCMDropship cargo = null;
-            CompTransporter comp2 = null;
+        //    CompTransporter comp2 = null;
             for (int index = 0; index < info.innerContainer.Count; index++)
             {
                 if (info.innerContainer[index].TryGetComp<CompUSCMDropship>() != null)

@@ -185,6 +185,7 @@
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphGetFood.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_Neomorph_Flee.cs" />
     <None Include="Xenomorph\Jobstuff\Givers\Job_ConstructHive - Copy.cs.bak" />
+    <Compile Include="Xenomorph\XenomorphPawn.cs" />
     <Compile Include="Xenomorph\XenomorphExtensions.cs" />
     <Compile Include="Xenomorph\XenomorphHostSystem.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_Xenomorph_Cocoon.cs" />

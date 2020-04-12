@@ -62,6 +62,7 @@ namespace RRYautja
 									bool value2 = traverse.Method("ShouldBeDowned", Array.Empty<object>()).GetValue<bool>();
 									if (value2)
 									{
+										/*
 										bool flag5 = !__instance.forceIncap && dinfo != null && dinfo.Value.Def.ExternalViolenceFor(pawn) && !WildManUtility.IsWildMan(pawn) && (pawn.Faction == null || !pawn.Faction.IsPlayer) && (pawn.HostFaction == null || !pawn.HostFaction.IsPlayer);
 										if (flag5)
 										{
@@ -72,6 +73,7 @@ namespace RRYautja
 												num = 0f;
 											}
 										}
+										*/
 										__instance.forceIncap = false;
 										methodBase.Invoke(__instance, new object[]
 										{

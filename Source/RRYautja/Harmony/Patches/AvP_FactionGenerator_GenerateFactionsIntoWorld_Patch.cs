@@ -22,14 +22,12 @@ namespace RRYautja
         // Token: 0x06000012 RID: 18 RVA: 0x000027D0 File Offset: 0x000017D0
         public static bool Prefix()
         {
-            int i = 0;
-            int num = 0;
             foreach (FactionDef factionDef in DefDatabase<FactionDef>.AllDefs)
             {
                 if (!factionDef.isPlayer)
                 {
                     string defName = factionDef.defName;
-                    if (factionDef == XenomorphDefOf.RRY_Xenomorph)
+                    if (defName.Contains("RRY") && defName.Contains("Xenomorph"))
                     {
                         if (!SettingsHelper.latest.AllowXenomorphFaction)
                         {
@@ -41,7 +39,7 @@ namespace RRYautja
                         }
                         //    return false;
                     }
-                    if (defName.Contains("RRY_Yautja_"))
+                    if (defName.Contains("RRY") && defName.Contains("Yautja"))
                     {
                         if (!SettingsHelper.latest.AllowYautjaFaction)
                         {
@@ -52,6 +50,19 @@ namespace RRYautja
                             AvP_FactionGenerator_GenerateFactionsIntoWorld_Patch.UpdateDef(factionDef, 1);
                         }
                     }
+                    /*
+                    if (defName.Contains("RRY") && defName.Contains("USCM"))
+                    {
+                        if (!SettingsHelper.latest.AllowUSCMFaction)
+                        {
+                            AvP_FactionGenerator_GenerateFactionsIntoWorld_Patch.UpdateDef(factionDef, 0);
+                        }
+                        else
+                        {
+                            AvP_FactionGenerator_GenerateFactionsIntoWorld_Patch.UpdateDef(factionDef, 1);
+                        }
+                    }
+                    */
                 }
             }
             return true;

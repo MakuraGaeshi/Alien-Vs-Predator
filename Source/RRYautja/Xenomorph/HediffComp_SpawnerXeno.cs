@@ -299,7 +299,17 @@ namespace RRYautja
             PawnGenerationRequest request = new PawnGenerationRequest(pawnKindDef, Find.FactionManager.FirstFactionOfDef(pawnKindDef.defaultFactionType), PawnGenerationContext.NonPlayer, -1, true, true, false, false, true, false, 20f, fixedGender: gender);
 
             Pawn pawn = PawnGenerator.GeneratePawn(request);
-
+            XenomorphPawn XP = pawn as XenomorphPawn;
+            if (XP!=null)
+            {
+                XP.HostRace = Pawn.def;
+            }
+            /*
+            XP.Drawer.renderer.graphics.nakedGraphic.colorTwo = HostBloodColour;
+            pawn.Notify_ColorChanged();
+            */
+            pawn.ageTracker.CurKindLifeStage.bodyGraphicData.colorTwo = HostBloodColour;
+            XP.Drawer.renderer.graphics.ResolveAllGraphics();
             return pawn;
         }
 
@@ -307,7 +317,7 @@ namespace RRYautja
         {
             get
             {
-                Color color = Pawn.RaceProps.BloodDef.graphic.color;
+                Color color = Pawn.def.race.BloodDef.graphic.color;
                 color.a = 1f;
                 return color;
             }
@@ -337,8 +347,6 @@ namespace RRYautja
                     {
                         Pawn pawn = XenomorphSpawnRequest();
                         //    Log.Message(string.Format("Xenomorph to hatch: {0}", pawn.LabelShortCap));
-                        pawn.ageTracker.CurKindLifeStage.bodyGraphicData.colorTwo = HostBloodColour;
-                        pawn.Notify_ColorChanged();
                         pawn.ageTracker.AgeBiologicalTicks = 0;
                         pawn.ageTracker.AgeChronologicalTicks = 0;
                         Comp_Xenomorph _Xenomorph = pawn.TryGetComp<Comp_Xenomorph>();

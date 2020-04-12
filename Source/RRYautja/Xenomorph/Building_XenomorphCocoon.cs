@@ -363,7 +363,5 @@ namespace RimWorld
 				this.OwnersForReading[i].ownership.UnclaimBed();
 			}
 		}
-
-		private bool alreadySetDefaultMed;
-	}
+    }
 }

@@ -97,7 +97,5 @@ namespace RimWorld
         // Token: 0x040016EC RID: 5868
         private int ticksToHiveConversion;
 
-        // Token: 0x040016ED RID: 5869
-        private float LeaflessPlantKillChance = 0.09f;
     }
 }

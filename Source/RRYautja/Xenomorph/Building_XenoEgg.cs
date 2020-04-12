@@ -192,7 +192,7 @@ namespace RRYautja
                 graphic.path = path;
                 graphic.drawSize = DrawSize;
                 return graphic.GetCopy(DrawSize);
-                return graphic.GetColoredVersion(ShaderTypeDefOf.Cutout.Shader, color, colortwo);
+            //    return graphic.GetColoredVersion(ShaderTypeDefOf.Cutout.Shader, color, colortwo);
             }
         }
 

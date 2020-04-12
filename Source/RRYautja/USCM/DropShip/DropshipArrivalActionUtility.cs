@@ -57,6 +57,7 @@ namespace RRYautja
         public static IEnumerable<FloatMenuOption> GetGIFTFloatMenuOptions(CompUSCMDropship representative, IEnumerable<IThingHolder> pods, Settlement settlement, Caravan car)
         {
             return Enumerable.Empty<FloatMenuOption>();
+            /*
             if (settlement.Faction == Faction.OfPlayer)
             {
                 return Enumerable.Empty<FloatMenuOption>();
@@ -64,6 +65,7 @@ namespace RRYautja
             return DropShipArrivalActionUtility.GetFloatMenuOptions<TransportPodsArrivalAction_GiveGift>(() => TransportPodsArrivalAction_GiveGift.CanGiveGiftTo(pods, settlement),
                 () => new TransportPodsArrivalAction_GiveGift(settlement), "GiveGiftViaTransportPods".Translate(settlement.Faction.Name,
                 FactionGiftUtility.GetGoodwillChange(pods, settlement).ToStringWithSign()), representative, settlement.Tile, car);
+            */
         }
 
         public static IEnumerable<FloatMenuOption> GetVisitFloatMenuOptions(CompUSCMDropship representative, IEnumerable<IThingHolder> pods, Settlement settlement, Caravan car)

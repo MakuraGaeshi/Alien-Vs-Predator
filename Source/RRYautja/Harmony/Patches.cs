@@ -168,7 +168,7 @@ namespace RRYautja
 
         private const BindingFlags allFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.GetProperty | BindingFlags.SetProperty;
 
-        public static FieldInfo _jobsGivenRecentTicksTextual;
+    //    public static FieldInfo _jobsGivenRecentTicksTextual;
 
         public static FieldInfo _cachedVerbProperties;
 

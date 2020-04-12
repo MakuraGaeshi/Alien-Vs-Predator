@@ -31,15 +31,15 @@
 		
 		<li Class="JobGiver_Xenomorph_FleeFire" />
 		
+		<li Class="JobGiver_Neomorph_GetFood"> 
+		  <minCategory>Hungry</minCategory>
+		</li>
         <!-- Conditional Not Fully Grown -->
         <li Class="ThinkNode_ConditionalNotGrown">
           <subNodes>
 		  
 			<li Class="JobGiver_Neomorph_Flee" />
 			
-			<li Class="JobGiver_Neomorph_GetFood"> 
-			  <minCategory>Hungry</minCategory>
-			</li>
 			
 			<li Class="JobGiver_WanderHiveLike">
 				<maxDanger>Deadly</maxDanger>

@@ -26,17 +26,20 @@ namespace HunterMarkingSystem
 
     static class UtilAvPSynths
     {
-        private static bool logging = false;
         private static bool initialized = false;
         public static bool AvP = false;
         static UtilAvPSynths()
         {
-            foreach (ModContentPack p in LoadedModManager.RunningMods)
+            if (!initialized)
             {
-                if (p.PackageId == "1568400124" || p.Name == "Alien Vs Predator")
+                foreach (ModContentPack p in LoadedModManager.RunningMods)
                 {
-                    AvP = true;
+                    if (p.PackageId == "Ogliss.AlienVsPredator" || p.Name == "Alien Vs Predator")
+                    {
+                        AvP = true;
+                    }
                 }
+                initialized = true;
             }
         }
 

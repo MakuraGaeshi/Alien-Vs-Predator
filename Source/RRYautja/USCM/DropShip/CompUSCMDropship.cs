@@ -175,7 +175,6 @@ namespace RRYautja
             {
                 yield return gizmo;
             }
-            IEnumerator<Gizmo> enumerator = null;
             if (this.Autoloadable)
             {
                 yield return new Command_Toggle
@@ -225,7 +224,6 @@ namespace RRYautja
                 yield return gizmo2;
             }
             */
-            enumerator = null;
             yield break;
         }
 
@@ -759,8 +757,8 @@ namespace RRYautja
 
 
                 ThingOwner<Pawn> directlyHeldThings = (ThingOwner<Pawn>)cafr.GetDirectlyHeldThings();
-                Thing dropship = null;
-                CompUSCMDropship dropship1 = null;
+            //    Thing dropship = null;
+            //    CompUSCMDropship dropship1 = null;
                 List<Pawn> lpto = directlyHeldThings.AsEnumerable<Pawn>().ToList();
 
                 /*

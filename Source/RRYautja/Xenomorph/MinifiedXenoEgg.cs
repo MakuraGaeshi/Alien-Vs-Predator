@@ -164,7 +164,6 @@ namespace RRYautja
         private const float CrateToGraphicScale = 1.16f;
 
         private int ticksTillInstall = 1000;
-        private int TillInstalltick = 0;
         // Token: 0x0400144D RID: 5197
         private Graphic cachedGraphic;
 

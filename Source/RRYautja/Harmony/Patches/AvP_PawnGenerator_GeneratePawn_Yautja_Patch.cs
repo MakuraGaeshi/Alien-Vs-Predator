@@ -94,7 +94,9 @@ namespace RRYautja
             {
                 if (request.Faction.leader == null && request.Faction != Faction.OfPlayerSilentFail && request.KindDef.race == YautjaDefOf.RRY_Alien_Yautja)
                 {
+                    Rand.PushState();
                     bool upgradeWeapon = Rand.Chance(0.5f);
+                    Rand.PopState();
                     if (__result.equipment.Primary != null && upgradeWeapon)
                     {
                         __result.equipment.Primary.TryGetQuality(out QualityCategory weaponQuality);
@@ -115,7 +117,9 @@ namespace RRYautja
                         {
                             item.TryGetQuality(out QualityCategory gearQuality);
                             float upgradeChance = 0.5f;
-                            bool upgradeGear = Rand.Chance(0.5f);
+                            Rand.PushState();
+                            bool upgradeGear = Rand.Chance(upgradeChance);
+                            Rand.PopState();
                             if (gearQuality != QualityCategory.Legendary)
                             {
                                 CompQuality Gear_Quality = item.TryGetComp<CompQuality>();

@@ -133,12 +133,5 @@ namespace RimWorld
             }
         }
         // Token: 0x04000F33 RID: 3891
-        private int curStageIndex = 0;
-
-        String desc = string.Format("I've proven myself by killing a Worthy foe and marked myself with its blood. I feel amazing.");
-
-        String desc1 = string.Format("I've proven myself by killing a Worthy foe");
-
-        String desc2 = string.Format(" and marked myself with its blood. I feel amazing.");
     }
 }
