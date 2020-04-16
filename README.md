@@ -85,14 +85,14 @@ __incidents__:
  __[Xenomorphs](https://rimworldavp.gamepedia.com/Xenomorphs/)__ from the Alien film franchise join the RimWorld as a new threat to your colony. Experience their full life cycle, Learn to fear their infestations. Be wary of those spaceship parts that fall down, you never know what they may contain.
 
 __Pawns__:
-- Facehugger
-- Drone
-- Runner
-- Warrior
-- Queen
-- Neomorph
-- Predalien -Optional
-- Thrumbomorph -Optional
+- [Facehugger](https://rimworldavp.gamepedia.com/Xenomorphs#Face_Hugger/)
+- [Drone](https://rimworldavp.gamepedia.com/Drones/)
+- [Runner](https://rimworldavp.gamepedia.com/Runners/)
+- [Warrior](https://rimworldavp.gamepedia.com/Warroirs/)
+- [Queen](https://rimworldavp.gamepedia.com/Xenomorph_Queen/)
+- [Neomorph](https://rimworldavp.gamepedia.com/Creatures#Neomorphs/)
+- [Predalien](https://rimworldavp.gamepedia.com/Predaliens/) -Optional
+- [Thrumbomorph](https://rimworldavp.gamepedia.com/Creatures#Thrumbomorphs/) -Optional
 
 __Mechanics__:
 - Stealth: Xenomorphs are adept at remaining unseen in the dark, and will disappear from sight when in low light conditions and out of direct line of sight to any hostile pawn
