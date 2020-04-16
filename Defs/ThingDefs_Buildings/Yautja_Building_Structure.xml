@@ -65,7 +65,7 @@
     <designationCategory>Structure</designationCategory>
     <constructionSkillPrerequisite>8</constructionSkillPrerequisite>
     <researchPrerequisites>
-      <li>RRY_YautjaTechBase</li>
+      <li>AvP_Tech_Yautja_T1</li>
     </researchPrerequisites>
     <stuffCategories>
       <li>Metallic</li>

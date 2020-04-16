@@ -14,14 +14,14 @@ using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 using AlienRace;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     [HarmonyPatch(typeof(AlienPartGenerator.BodyAddon), "CanDrawAddon")]
     public static class AvP_AlienBodyAddon_CanDrawAddon_Patch
     {
         public static bool Prefix(Pawn pawn)
         {
-            bool flag = pawn.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked, false);
+            bool flag = pawn.health.hediffSet.HasHediff(YautjaDefOf.AvP_Hediff_Cloaked, false);
             if (flag)
             {
                 //Log.Message(string.Format("tetet"));

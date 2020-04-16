@@ -28,7 +28,7 @@ namespace HunterMarkingSystem.Settings
         {
             this.settings.MinWorthyKill = Widgets.HorizontalSlider(inRect.TopHalf().BottomHalf().TopHalf().BottomHalf().ContractedBy(4),
                 this.settings.MinWorthyKill, 0f, 3f, true,
-                "HMS_MinScoreFactor".Translate(this.settings.MinWorthyKill * 100)
+                "HMS_MinScoreFactor".Translate(this.settings.MinWorthyKill * 100, 10 *this.settings.MinWorthyKill)
                 , "0%", "300%");
 
             Widgets.TextFieldNumeric<float>(inRect.TopHalf().TopHalf().TopHalf().BottomHalf().LeftHalf().LeftHalf().ContractedBy(4), ref settings.MinWorthyKill, ref settings.MinWorthyKillBuffer, 0.001f, 10f);

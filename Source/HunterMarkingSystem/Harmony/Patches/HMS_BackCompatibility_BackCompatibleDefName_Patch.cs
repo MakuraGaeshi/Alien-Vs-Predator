@@ -64,14 +64,6 @@ namespace HunterMarkingSystem
                         __result = DefDatabase<HediffDef>.AllDefs.Where(x=> x.defName.Contains(strlist[2])).First().defName;
                     }
                 }
-                if (defName == __result)
-                {
-                    Log.Warning(string.Format("RRY No replacement found for: {0} T:{1}", defName, defType));
-                }
-                else
-                {
-                //    Log.Message(string.Format("Replacement found: {0} T:{1}", __result, defType));
-                }
             }
         }
     }

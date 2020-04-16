@@ -2,7 +2,7 @@
 <Defs>
 
   <PawnKindDef Abstract="True" Name="BaseYautjaPawnKind">
-    <race>RRY_Alien_Yautja</race>
+    <race>AvP_Alien_Yautja</race>
     <combatPower>40</combatPower>
     <baseRecruitDifficulty>1.0</baseRecruitDifficulty>
     <isFighter>true</isFighter>

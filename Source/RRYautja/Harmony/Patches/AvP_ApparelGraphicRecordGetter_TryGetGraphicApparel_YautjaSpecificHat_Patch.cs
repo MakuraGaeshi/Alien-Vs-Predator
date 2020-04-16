@@ -13,7 +13,7 @@ using UnityEngine;
 using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     [HarmonyPatch(typeof(ApparelGraphicRecordGetter), "TryGetGraphicApparel")]
     public static class AvP_ApparelGraphicRecordGetter_TryGetGraphicApparel_YautjaSpecificHat_Patch

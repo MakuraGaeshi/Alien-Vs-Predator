@@ -42,7 +42,7 @@ namespace RRYautja
         // Token: 0x06002ADC RID: 10972 RVA: 0x001433C0 File Offset: 0x001417C0
         public override void DoEffect(Pawn user)
         {
-            Cloakgen injector = (Cloakgen)user.apparel.WornApparel.Find((Apparel x) => x.def.defName.Contains("RRY_Equipment_HunterGauntlet"));
+            Cloakgen injector = (Cloakgen)user.apparel.WornApparel.Find((Apparel x) => x == this.parent);
             CompMedicalInjector medicalInjector = injector.TryGetComp<CompMedicalInjector>();
             bool selected = Find.Selector.SelectedObjects.Contains(user);
             int needed = medicalInjector.Props.Uses - injector.uses;

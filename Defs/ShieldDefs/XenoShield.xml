@@ -58,7 +58,7 @@
 			<RRY_Xenomorph_HeadShell>1</RRY_Xenomorph_HeadShell>
  		</costList>
 		<recipeMaker>
-      <researchPrerequisite>RRY_XenomorphCrafting</researchPrerequisite>
+      <researchPrerequisite>AvP_Tech_Common_XenomorphCrafting</researchPrerequisite>
 		<recipeUsers>
 			<li>ElectricSmithy</li>
 			<li>FueledSmithy</li>

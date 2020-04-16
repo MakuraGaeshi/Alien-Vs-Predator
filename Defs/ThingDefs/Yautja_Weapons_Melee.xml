@@ -40,7 +40,7 @@
 				<li>ElectricSmithy</li>
 				<li>FueledSmithy</li>
 			</recipeUsers>
-			<researchPrerequisite>RRY_YautjaTechBase</researchPrerequisite>
+			<researchPrerequisite>AvP_Tech_Yautja_T1</researchPrerequisite>
 		</recipeMaker>
 		<costList>
 			<Steel>10</Steel>
@@ -61,7 +61,7 @@
   
 	<!-- ==================== Yautja  - Bladed Maul ========================= -->
   <ThingDef ParentName="RRY_BaseMeleeWeapon_Sharp_Quality">
-    <defName>RRY_Melee_BladedMaul</defName>
+    <defName>AvP_Yautja_Melee_BladedMaul</defName>
     <label>Yautja Bladed Maul</label>
     <description>Yautja close-combat weapon. It is a large, weighted cutting blade affixed to a handle that runs perpendicular to the blade.</description>
     <graphicData>
@@ -115,7 +115,7 @@
 				<li>FueledSmithy</li>
 				-->
 			</recipeUsers>
-			<researchPrerequisite>RRY_YautjaMelee_Basic</researchPrerequisite>
+			<researchPrerequisite>AvP_Tech_Yautja_Melee_T1</researchPrerequisite>
 		</recipeMaker>
 		<weaponTags>
 			<li>YautjaMelee</li>

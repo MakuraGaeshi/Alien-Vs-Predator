@@ -13,7 +13,7 @@ using UnityEngine;
 using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     // Stuffable Projectile StatWorker patch
     [HarmonyPatch(typeof(StatWorker), "GetValueUnfinalized")]
@@ -25,7 +25,7 @@ namespace RRYautja
             if (__instance != null)
             {
                 StatDef value = Traverse.Create(__instance).Field("stat").GetValue<StatDef>();
-                if (req != null && req.Thing != null && req.Def != null && (req.Def == YautjaDefOf.RRY_Gun_Hunting_Bow || req.Def == YautjaDefOf.RRY_Gun_Compound_Bow) && value == StatDefOf.RangedWeapon_DamageMultiplier)
+                if (req != null && req.Thing != null && req.Def != null && (req.Def == YautjaDefOf.AvP_Yautja_Gun_Hunting_Bow || req.Def == YautjaDefOf.AvP_Yautja_Gun_Compound_Bow) && value == StatDefOf.RangedWeapon_DamageMultiplier)
                 {
                     //    Log.Message(string.Format("GetValueUnfinalized value: {0}, Def: {1}, Empty: {2}, HasThing: {3}, QualityCategory: {4}, StuffDef: {5}, Thing: {6}", value, req.Def, req.Empty, req.HasThing, req.QualityCategory, req.StuffDef, req.Thing));
                     //    Log.Message(string.Format("GetValueUnfinalized Original __result: {0}", __result));

@@ -135,8 +135,8 @@
     <drawGUIOverlay>true</drawGUIOverlay>
 </ThingDef>
 
-<AlienRace.ThingDef_AlienRace ParentName="RRY_BaseYautjaPawn" Name="RRY_Alien_YautjaBase">
-    <defName>RRY_Alien_Yautja</defName>
+<AlienRace.ThingDef_AlienRace ParentName="RRY_BaseYautjaPawn" Name="AvP_Alien_YautjaBase">
+    <defName>AvP_Alien_Yautja</defName>
     <label>Yautja</label>
     <description>.</description>
     <alienRace>
@@ -366,7 +366,7 @@
 			<butcherThoughtSpecific>
                 <li>
                     <raceList>
-                        <li>RRY_Alien_Yautja</li>
+                        <li>AvP_Alien_Yautja</li>
                     </raceList>
                     <thought>RRY_ButcheredYautjaCorpse</thought>
                     <knowThought>RRY_KnowButcheredYautjaCorpse</knowThought>
@@ -376,7 +376,7 @@
 			<ateThoughtSpecific>
                 <li>
                     <raceList>
-                        <li>RRY_Alien_Yautja</li>
+                        <li>AvP_Alien_Yautja</li>
                     </raceList>
                     <thought>RRY_AteYautjaMeatDirect</thought>
 					<thoughtCannibal>RRY_AteYautjaMeatDirectCannibal</thoughtCannibal> 
@@ -402,94 +402,94 @@
             <researchList>
                 <li>
                     <projects>
-						<li>RRY_YautjaTechBase</li>
-						<li>RRY_YautjaTechMid</li>
-						<li>RRY_YautjaTechHigh</li>
+						<li>AvP_Tech_Yautja_T1</li>
+						<li>AvP_Tech_Yautja_T2</li>
+						<li>AvP_Tech_Yautja_T3</li>
 						<li>RRY_YautjaArmour</li>
-						<li>RRY_YautjaMelee_Basic</li>
-						<li>RRY_YautjaMelee_Special</li>
-						<li>RRY_YautjaRanged_Basic</li>
-						<li>RRY_YautjaRanged_Med</li>
-						<li>RRY_YautjaRanged_Adv</li>
-						<li>RRY_YautjaMediComp</li>
-						<li>RRY_YautjaHealthShard</li>
-						<li>RRY_YautjaCloakGenerator</li>
-						<li>RRY_Yautja_Traps</li>
+						<li>AvP_Tech_Yautja_Melee_T1</li>
+						<li>AvP_Tech_Yautja_Melee_T2</li>
+						<li>AvP_Tech_Yautja_Ranged_T1</li>
+						<li>AvP_Tech_Yautja_Ranged_T2</li>
+						<li>AvP_Tech_Yautja_Ranged_T3</li>
+						<li>AvP_Tech_Yautja_MediComp</li>
+						<li>AvP_Tech_Yautja_HealthShard</li>
+						<li>AvP_Tech_Yautja_CloakGenerator</li>
+						<li>AvP_Yautja_Traps</li>
                     </projects>
                 </li>
             </researchList>
 			<apparelList>
-				<li>RRY_Apparel_HunterLightArmourChestplate</li>
-				<li>RRY_Apparel_HunterLightArmourGreaves</li>
-				<li>RRY_Apparel_HunterArmourChestplate</li>
-				<li>RRY_Apparel_HunterArmourGreaves</li>
-				<li>RRY_Apparel_HunterHeavyArmourChestplate</li>
-				<li>RRY_Apparel_HunterHeavyArmourGreaves</li>
-				<li>RRY_Apparel_HunterBioMask</li>
-				<li>RRY_Apparel_HunterEliteArmourChestplate</li>
-				<li>RRY_Apparel_HunterEliteArmourGreaves</li>
-				<li>RRY_Apparel_HunterEliteBioMask</li>
-				<li>RRY_Apparel_HunterLeaderArmourChestplate</li>
-				<li>RRY_Apparel_HunterLeaderArmourGreaves</li>
-				<li>RRY_Apparel_HunterLeaderBioMask</li>
-				<li>RRY_Apparel_HunterVest</li>
-				<li>RRY_Apparel_Mesh</li>
-				<li>RRY_Apparel_TribalCloak</li>
+				<li>AvP_Yautja_Armour_BioMaskLight</li>
+				<li>AvP_Yautja_Armour_ChestplateLight</li>
+				<li>AvP_Yautja_Armour_GreavesLight</li>
 				
-				<li>RRY_Apparel_LeaderArmourChestplate</li>
-				<li>RRY_Apparel_LeaderArmourGreaves</li>
-				<li>RRY_Apparel_LeaderBioMask</li>
+				<li>AvP_Yautja_Armour_BioMask</li>
+				<li>AvP_Yautja_Armour_Chestplate</li>
+				<li>AvP_Yautja_Armour_Greaves</li>
+				
+				<li>AvP_Yautja_Armour_ChestplateHeavy</li>
+				<li>AvP_Yautja_Armour_GreavesHeavy</li>
+				<li>AvP_Yautja_Armour_BioMaskHeavy</li>
+				
+				<li>AvP_Yautja_Armour_BioMaskElite</li>
+				<li>AvP_Yautja_Armour_ChestplateElite</li>
+				<li>AvP_Yautja_Armour_GreavesElite</li>
+				
+				<li>AvP_Yautja_Armour_BioMaskOrnate</li>
+				<li>AvP_Yautja_Armour_ChestplateOrnate</li>
+				<li>AvP_Yautja_Armour_GreavesOrnate</li>
+				
+				<li>AvP_Yautja_Apparel_HunterVest</li>
+				<li>AvP_Yautja_Apparel_ThermalMesh</li>
+				<li>AvP_Yautja_Apparel_TribalCloak</li>
 				
 				<!-- 
-                <li>RRY_Equipment_HunterGauntlet_TOGGLEDEF_RH</li>
-                <li>RRY_Equipment_HunterGauntlet_TOGGLEDEF_LH</li>
+                <li>AvP_Yautja_Equipment_Gauntlet_TOGGLEDEF_RH</li>
+                <li>AvP_Yautja_Equipment_Gauntlet_TOGGLEDEF_LH</li>
 				-->
-				<li>RRY_Equipment_HunterShoulderCannon</li>
+				<li>AvP_Yautja_Equipment_PlasmaCaster</li>
 			</apparelList>
             <whiteApparelList>
-                <li>RRY_Equipment_HunterGauntlet_TOGGLEDEF_RH</li>
-                <li>RRY_Equipment_HunterGauntlet_TOGGLEDEF_LH</li>
+                <li>AvP_Yautja_Equipment_Gauntlet_TOGGLEDEF_RH</li>
+                <li>AvP_Yautja_Equipment_Gauntlet_TOGGLEDEF_LH</li>
                 <li>Apparel_TribalA</li>
                 <li>Apparel_Pants</li>
                 <li>Apparel_FlakPants</li>
-				<li>Apparel_ShieldBelt</li>
-				<li>Apparel_ShieldBelt</li>
             </whiteApparelList>
 			<onlyUseRaceRestrictedApparel>true</onlyUseRaceRestrictedApparel>
             <recipeList>
-				<li>RRY_Apparel_HunterLightArmourChestplate</li>
-				<li>RRY_Apparel_HunterLightArmourGreaves</li>
-				<li>RRY_Apparel_HunterArmourChestplate</li>
-				<li>RRY_Apparel_HunterArmourGreaves</li>
-				<li>RRY_Apparel_HunterHeavyArmourChestplate</li>
-				<li>RRY_Apparel_HunterHeavyArmourGreaves</li>
-				<li>RRY_Apparel_HunterBioMask</li>
-				<li>RRY_Apparel_HunterEliteArmourChestplate</li>
-				<li>RRY_Apparel_HunterEliteArmourGreaves</li>
-				<li>RRY_Apparel_HunterEliteBioMask</li>
-				<li>RRY_Apparel_HunterLeaderArmourChestplate</li>
-				<li>RRY_Apparel_HunterLeaderArmourGreaves</li>
-				<li>RRY_Apparel_HunterLeaderBioMask</li>
-				<li>RRY_Apparel_HunterVest</li>
-				<li>RRY_Apparel_Mesh</li>
-				<!-- <li>RRY_Apparel_Apparel_TribalA</li> -->
+				<li>AvP_Yautja_Armour_ChestplateLight</li>
+				<li>AvP_Yautja_Armour_GreavesLight</li>
+				<li>AvP_Yautja_Armour_Chestplate</li>
+				<li>AvP_Yautja_Armour_Greaves</li>
+				<li>AvP_Yautja_Armour_ChestplateHeavy</li>
+				<li>AvP_Yautja_Armour_GreavesHeavy</li>
+				<li>AvP_Yautja_Armour_BioMask</li>
+				<li>AvP_Yautja_Armour_ChestplateElite</li>
+				<li>AvP_Yautja_Armour_GreavesElite</li>
+				<li>AvP_Yautja_Armour_BioMaskElite</li>
+				<li>AvP_Yautja_Armour_ChestplateOrnate</li>
+				<li>AvP_Yautja_Armour_GreavesOrnate</li>
+				<li>AvP_Yautja_Armour_BioMaskOrnate</li>
+				<li>AvP_Yautja_Apparel_HunterVest</li>
+				<li>AvP_Yautja_Apparel_ThermalMesh</li>
 				
 				<li>RRY_Apparel_LeaderArmourChestplate</li>
 				<li>RRY_Apparel_LeaderArmourGreaves</li>
 				<li>RRY_Apparel_LeaderBioMask</li>
 				
-                <li>RRY_Equipment_HunterGauntlet_TOGGLEDEF_RH</li>
-                <li>RRY_Equipment_HunterGauntlet_TOGGLEDEF_LH</li>
-				<li>RRY_Equipment_HunterShoulderCannon</li>
+                <li>AvP_Yautja_Equipment_Gauntlet_TOGGLEDEF_RH</li>
+                <li>AvP_Yautja_Equipment_Gauntlet_TOGGLEDEF_LH</li>
+				<li>AvP_Yautja_Equipment_PlasmaCaster</li>
 				
-				<li>RRY_Melee_Combistaff</li>
-				<li>RRY_Melee_BladedMaul</li>
-				<li>RRY_Gun_SmartDisk</li>
-				<li>RRY_Gun_Hunting_Bow</li>
-				<li>RRY_Gun_Compound_Bow</li>
-				<li>RRY_Gun_NeedlerRifle</li>
-				<li>RRY_Gun_SpearRifle</li>
-				<li>RRY_Gun_YautjaBlaster</li>
+				<li>AvP_Yautja_Melee_Combistaff</li>
+				<li>AvP_Yautja_Melee_BladedMaul</li>
+				<li>AvP_Yautja_Gun_SmartDisk</li>
+				<li>AvP_Yautja_Gun_Hunting_Bow</li>
+				<li>AvP_Yautja_Gun_Compound_Bow</li>
+				<li>AvP_Yautja_Gun_Needler</li>
+				<li>AvP_Yautja_Gun_SpearRifle</li>
+				<li>AvP_Yautja_Gun_Blaster</li>
             </recipeList>
         </raceRestriction>
     </alienRace>
@@ -578,22 +578,22 @@
 		</capacities>
         <power>15</power>
         <cooldownTime>2.2</cooldownTime>
-        <linkedBodyPartsGroup>RRY_Yautja_Mandibles</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>AvP_Yautja_Mandibles</linkedBodyPartsGroup>
         <chanceFactor>0.1</chanceFactor>
       </li>
     </tools>
     <race>
-	  <fleshType>RRY_YautjaFlesh</fleshType>
+	  <fleshType>AvP_Flesh_Yautja</fleshType>
       <thinkTreeMain>Humanlike</thinkTreeMain>
       <thinkTreeConstant>HumanlikeConstant</thinkTreeConstant>
       <intelligence>Humanlike</intelligence>
       <makesFootprints>true</makesFootprints>
       <lifeExpectancy>2000</lifeExpectancy>
-      <leatherDef>RRY_Leather_Yautja</leatherDef>
-      <nameGenerator>RRY_NamerPersonYautji_Male</nameGenerator>
-      <nameGeneratorFemale>RRY_NamerPersonYautji_Female</nameGeneratorFemale>
-      <body>RRY_Yautja_Biped</body>
-      <bloodDef>RRY_FilthBloodYautja</bloodDef>	
+      <leatherDef>AvP_Leather_Yautja</leatherDef>
+      <nameGenerator>AvP_NamerPerson_Yautja_Male</nameGenerator>
+      <nameGeneratorFemale>AvP_NamerPerson_Yautja_Female</nameGeneratorFemale>
+      <body>AvP_Yautja_Biped</body>
+      <bloodDef>AvP_FilthBlood_Yautja</bloodDef>	
 	  <!-- RGB in the photoshop is (R=196  G= 192  B=124) -->
       <meatColor>(194,217,124)</meatColor>
       <baseBodySize>1.25</baseBodySize>
@@ -611,23 +611,23 @@
       </litterSizeCurve>
       <lifeStageAges>
         <li>
-          <def>RRY_Yautja_Baby</def>
+          <def>AvP_Yautja_Baby</def>
           <minAge>0</minAge>
         </li>
         <li>
-          <def>RRY_Yautja_Toddler</def>
+          <def>AvP_Yautja_Toddler</def>
           <minAge>1.2</minAge>
         </li>
         <li>
-          <def>RRY_Yautja_Child</def>
+          <def>AvP_Yautja_Child</def>
           <minAge>4</minAge>
         </li>
         <li>
-          <def>RRY_Yautja_Teenager</def>
+          <def>AvP_Yautja_Teenager</def>
           <minAge>14</minAge>
         </li>
         <li>
-          <def>RRY_Yautja_Adult</def>
+          <def>AvP_Yautja_Adult</def>
           <minAge>18</minAge>
         </li>
       </lifeStageAges>

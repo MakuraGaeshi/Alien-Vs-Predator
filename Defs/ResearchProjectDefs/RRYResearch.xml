@@ -3,7 +3,7 @@
 	<!--OG==================== Rebelrot's Yautja Mod - Research Tech =========================OG-->
 	<ResearchProjectDef>
 		<tab>RRY_RTab</tab>
-		<defName>RRY_XenomorphCrafting</defName>
+		<defName>AvP_Tech_Common_XenomorphCrafting</defName>
 		<label>Xenomorph Crafting</label>
 		<description>Allows you to create basic Weapons and Armours out of parts of Xenomorphs</description>
 		<baseCost>1500</baseCost>
@@ -37,7 +37,7 @@
 	<!--OG==================== Rebelrot's Yautja Mod - Research Tech =========================OG-->
 	<ResearchProjectDef>
 		<tab>RRY_RTab</tab>
-		<defName>RRY_YautjaTechBase</defName>
+		<defName>AvP_Tech_Yautja_T1</defName>
 		<label>Yautja Basic tech</label>
 		<description>Allows you to create basic level Yautja tech</description>
 		<baseCost>1000</baseCost>
@@ -52,12 +52,12 @@
 	
 	<ResearchProjectDef>
 		<tab>RRY_RTab</tab>
-		<defName>RRY_YautjaTechMid</defName>
+		<defName>AvP_Tech_Yautja_T2</defName>
 		<label>Yautja Common tech</label>
 		<description>Allows you to create mid level Yautja tech</description>
 		<baseCost>2000</baseCost>
 		<prerequisites>
-			<li>RRY_YautjaTechBase</li>
+			<li>AvP_Tech_Yautja_T1</li>
 		</prerequisites>
 		<techLevel>Industrial</techLevel>
 		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
@@ -67,12 +67,12 @@
 	
 	<ResearchProjectDef>
 		<tab>RRY_RTab</tab>
-		<defName>RRY_YautjaTechHigh</defName>
+		<defName>AvP_Tech_Yautja_T3</defName>
 		<label>Yautja Advanced tech</label>
 		<description>Allows you to create high level Yautja tech</description>
 		<baseCost>4000</baseCost>
 		<prerequisites>
-			<li>RRY_YautjaTechMid</li>
+			<li>AvP_Tech_Yautja_T2</li>
 		</prerequisites>
 		<techLevel>Industrial</techLevel>
 		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
@@ -87,12 +87,12 @@
 	<!--OG==================== Rebelrot's Yautja Mod - Melee Weapons =========================OG-->
 	<ResearchProjectDef>
 		<tab>RRY_RTab</tab>
-		<defName>RRY_YautjaMelee_Basic</defName>
+		<defName>AvP_Tech_Yautja_Melee_T1</defName>
 		<label>Simple Melee Weapons</label>
 		<description>Allows you to create basic Yautja Melee Weapons</description>
 		<baseCost>500</baseCost>
 		<prerequisites>
-			<li>RRY_YautjaTechBase</li>
+			<li>AvP_Tech_Yautja_T1</li>
 		</prerequisites>
 		<techLevel>Industrial</techLevel>
 		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
@@ -102,13 +102,13 @@
 
 	<ResearchProjectDef>
 		<tab>RRY_RTab</tab>
-		<defName>RRY_YautjaMelee_Special</defName>
+		<defName>AvP_Tech_Yautja_Melee_T2</defName>
 		<label>Special Melee Weapons</label>
 		<description>Allows you to create Special Yautja Melee Weapons</description>
 		<baseCost>1000</baseCost>
 		<prerequisites>
-			<li>RRY_YautjaTechMid</li>
-			<li>RRY_YautjaMelee_Basic</li>
+			<li>AvP_Tech_Yautja_T2</li>
+			<li>AvP_Tech_Yautja_Melee_T1</li>
 		</prerequisites>
 		<techLevel>Industrial</techLevel>
 		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
@@ -119,12 +119,12 @@
 	<!--OG==================== Rebelrot's Yautja Mod - Ranged Weapons =========================OG-->
 	<ResearchProjectDef>
 		<tab>RRY_RTab</tab>
-		<defName>RRY_YautjaRanged_Basic</defName>
+		<defName>AvP_Tech_Yautja_Ranged_T1</defName>
 		<label>Simple Ranged Weapons</label>
 		<description>Allows you to create basic Yautja Ranged Weapons</description>
 		<baseCost>500</baseCost>
 		<prerequisites>
-			<li>RRY_YautjaTechBase</li>
+			<li>AvP_Tech_Yautja_T1</li>
 		</prerequisites>
 		<techLevel>Industrial</techLevel>
 		<researchViewX>1</researchViewX>
@@ -133,13 +133,13 @@
 	
 	<ResearchProjectDef>
 		<tab>RRY_RTab</tab>
-		<defName>RRY_YautjaRanged_Med</defName>
+		<defName>AvP_Tech_Yautja_Ranged_T2</defName>
 		<label>Ranged Weapons</label>
 		<description>Allows you to create common Yautja Ranged Weapons</description>
 		<baseCost>1000</baseCost>
 		<prerequisites>
-			<li>RRY_YautjaTechMid</li>
-			<li>RRY_YautjaRanged_Basic</li>
+			<li>AvP_Tech_Yautja_T2</li>
+			<li>AvP_Tech_Yautja_Ranged_T1</li>
 		</prerequisites>
 		<techLevel>Industrial</techLevel>
 		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
@@ -149,13 +149,13 @@
 	
 	<ResearchProjectDef>
 		<tab>RRY_RTab</tab>
-		<defName>RRY_YautjaRanged_Adv</defName>
+		<defName>AvP_Tech_Yautja_Ranged_T3</defName>
 		<label>Advanced Ranged Weapons</label>
 		<description>Allows you to create advanced Yautja Ranged Weapons</description>
 		<baseCost>2000</baseCost>
 		<prerequisites>
-			<li>RRY_YautjaTechHigh</li>
-			<li>RRY_YautjaRanged_Med</li>
+			<li>AvP_Tech_Yautja_T3</li>
+			<li>AvP_Tech_Yautja_Ranged_T2</li>
 		</prerequisites>
 		<techLevel>Industrial</techLevel>
 		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
@@ -169,13 +169,13 @@
 	<!--OG==================== Rebelrot's Yautja Mod - Research Upgrades =========================OG-->
 	<ResearchProjectDef>
 		<tab>RRY_RTab</tab>
-		<defName>RRY_YautjaMediComp</defName>
+		<defName>AvP_Tech_Yautja_MediComp</defName>
 		<label>Medi Comp</label>
 		<description>Adds a Medi Comp to the Wristblade Gauntlet</description>
 		<baseCost>1000</baseCost>
 		<prerequisites>
-			<li>RRY_YautjaTechMid</li>
-			<!-- <li>RRY_YautjaMelee_Special</li> -->
+			<li>AvP_Tech_Yautja_T2</li>
+			<!-- <li>AvP_Tech_Yautja_Melee_T2</li> -->
 		</prerequisites>
 		<techLevel>Industrial</techLevel>
 		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
@@ -185,14 +185,14 @@
 	
 	<ResearchProjectDef>
 		<tab>RRY_RTab</tab>
-		<defName>RRY_YautjaHealthShard</defName>
+		<defName>AvP_Tech_Yautja_HealthShard</defName>
 		<label>Shard Injector</label>
 		<description>Adds a Shard Injector to the Wristblade Gauntlet's Medicomp</description>
 		<baseCost>2000</baseCost>
 		<prerequisites>
-			<li>RRY_YautjaTechHigh</li>
-			<li>RRY_YautjaMediComp</li>
-			<li>RRY_YautjaMelee_Special</li>
+			<li>AvP_Tech_Yautja_T3</li>
+			<li>AvP_Tech_Yautja_MediComp</li>
+			<li>AvP_Tech_Yautja_Melee_T2</li>
 		</prerequisites>
 		<techLevel>Industrial</techLevel>
 		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
@@ -205,13 +205,13 @@
 	
 	<ResearchProjectDef>
 		<tab>RRY_RTab</tab>
-		<defName>RRY_YautjaCloakGenerator</defName>
+		<defName>AvP_Tech_Yautja_CloakGenerator</defName>
 		<label>Cloaking Generator</label>
 		<description>Adds a Cloaking Generator to the Wristblade Gauntlet</description>
 		<baseCost>4000</baseCost>
 		<prerequisites>
-			<li>RRY_YautjaTechHigh</li>
-			<li>RRY_YautjaMelee_Special</li>
+			<li>AvP_Tech_Yautja_T3</li>
+			<li>AvP_Tech_Yautja_Melee_T2</li>
 		</prerequisites>
 		<techLevel>Industrial</techLevel>
 		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
@@ -225,12 +225,12 @@
 	<!--OG==================== Rebelrot's Yautja Mod - Rearmable Traps =========================OG-->
 	<ResearchProjectDef>
 		<tab>RRY_RTab</tab>
-		<defName>RRY_Yautja_Traps</defName>
+		<defName>AvP_Yautja_Traps</defName>
 		<label>Basic Yautja Traps</label>
 		<description>Allows you to create basic (Rearmable) Yautja Traps</description>
 		<baseCost>1500</baseCost>
 		<prerequisites>
-			<li>RRY_YautjaTechMid</li>
+			<li>AvP_Tech_Yautja_T2</li>
 		</prerequisites>
 		<techLevel>Industrial</techLevel>
 		<researchViewX>1.75</researchViewX>
@@ -241,7 +241,7 @@
 
 	<ResearchProjectDef>
 		<tab>Main</tab>
-		<defName>RRY_USCM_CarapaceArmor</defName>
+		<defName>AvP_USCM_CarapaceArmor</defName>
 		<label>Carapace Armours</label>
 		<description>Allows you to create advanced personal armours.</description>
 		<baseCost>1750</baseCost>

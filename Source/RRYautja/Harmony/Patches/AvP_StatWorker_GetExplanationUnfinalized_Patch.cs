@@ -13,7 +13,7 @@ using UnityEngine;
 using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     // Stuffable Projectile Explanation patch
     [HarmonyPatch(typeof(StatWorker), "GetExplanationUnfinalized")]
@@ -25,7 +25,7 @@ namespace RRYautja
             if (__instance != null)
             {
                 StatDef value = Traverse.Create(__instance).Field("stat").GetValue<StatDef>();
-                if (req != null && req.Thing != null && req.Def != null && (req.Def == YautjaDefOf.RRY_Gun_Hunting_Bow || req.Def == YautjaDefOf.RRY_Gun_Compound_Bow) && value == StatDefOf.RangedWeapon_DamageMultiplier)
+                if (req != null && req.Thing != null && req.Def != null && (req.Def == YautjaDefOf.AvP_Yautja_Gun_Hunting_Bow || req.Def == YautjaDefOf.AvP_Yautja_Gun_Compound_Bow) && value == StatDefOf.RangedWeapon_DamageMultiplier)
                 {
                     DamageArmorCategoryDef CategoryOfDamage = ((ThingDef)req.Def).Verbs[0].defaultProjectile.projectile.damageDef.armorCategory;
                     StringBuilder stringBuilder = new StringBuilder();

@@ -14,7 +14,7 @@ using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 using AlienRace;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     [HarmonyPatch(typeof(RecordWorker_TimeInBedForMedicalReasons), "ShouldMeasureTimeNow")]
     public static class AvP_RecordWorker_TimeInBedForMedicalReasons_ShouldMeasureTimeNow_Synth_Patch

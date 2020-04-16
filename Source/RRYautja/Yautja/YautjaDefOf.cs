@@ -14,39 +14,22 @@ namespace RimWorld
 		}
 
         // Yautja HefiffDefs
-        public static HediffDef HMS_Hediff_Unblooded;
-        public static HediffDef HMS_Hediff_BloodedUM;
-        public static HediffDef HMS_Hediff_BloodedM;
-        public static HediffDef HMS_Hediff_BloodedMHuman;
-        public static HediffDef HMS_Hediff_BloodedMWorthyHuman;
-        public static HediffDef HMS_Hediff_BloodedMHumanlike;
-        public static HediffDef HMS_Hediff_BloodedMWorthyHumanlike;
-        public static HediffDef HMS_Hediff_BloodedMMechanoid;
-        public static HediffDef HMS_Hediff_BloodedMXenomorph;
-        public static HediffDef HMS_Hediff_BloodedMXenomorphQueen;
-        public static HediffDef HMS_Hediff_BloodedMPredalien;
-        public static HediffDef HMS_Hediff_BloodedMBadBlood;
-        public static HediffDef HMS_Hediff_BloodedMHound;
-        public static HediffDef HMS_Hediff_BloodedMThrumbo;
-        public static HediffDef HMS_Hediff_BloodedMCrusher;
-        public static HediffDef HMS_Hediff_BloodedMGroTye;
         
-        public static HediffDef RRY_Hediff_Cloaked;
-        public static HediffDef RRY_Hediff_BouncedProjectile; 
+        public static HediffDef AvP_Hediff_Cloaked;
+        public static HediffDef AvP_Hediff_BouncedProjectile; 
 
         // Yautja PawnKindDefs 
 
         // Yautja ThingDefs  Races 
-        public static ThingDef RRY_Alien_Yautja;
+        public static ThingDef AvP_Alien_Yautja;
     //    public static ThingDef RRY_Yautja_Hound;
-        public static ThingDef RRY_Rynath;
 
         // Yautja ThingDefs  Equipment
-    //    public static ThingDef RRY_Equipment_HunterGauntlet;
+        public static ThingDef AvP_Yautja_HealthShard;
 
         // Yautja ThingDefs  Weapons
-        public static ThingDef RRY_Gun_Hunting_Bow;
-        public static ThingDef RRY_Gun_Compound_Bow;
+        public static ThingDef AvP_Yautja_Gun_Hunting_Bow;
+        public static ThingDef AvP_Yautja_Gun_Compound_Bow;
 
         // Yautja ThingDefs  Projectiles
         public static ThingDef RRY_SmartDisk_Thrown;
@@ -97,13 +80,13 @@ namespace RimWorld
         public static FactionDef RRY_Yautja_JungleClan;
 
         // Yautja ResearchProjectDefs 
-        public static ResearchProjectDef RRY_YautjaMediComp;
-        public static ResearchProjectDef RRY_YautjaHealthShard;
-        public static ResearchProjectDef RRY_YautjaCloakGenerator;
+        public static ResearchProjectDef AvP_Tech_Yautja_MediComp;
+        public static ResearchProjectDef AvP_Tech_Yautja_HealthShard;
+        public static ResearchProjectDef AvP_Tech_Yautja_CloakGenerator;
 
-        public static ResearchProjectDef RRY_YautjaRanged_Basic;
-        public static ResearchProjectDef RRY_YautjaRanged_Med;
-        public static ResearchProjectDef RRY_YautjaRanged_Adv;
+        public static ResearchProjectDef AvP_Tech_Yautja_Ranged_T1;
+        public static ResearchProjectDef AvP_Tech_Yautja_Ranged_T2;
+        public static ResearchProjectDef AvP_Tech_Yautja_Ranged_T3;
         
 
         // Yautja BodyTypeDefs

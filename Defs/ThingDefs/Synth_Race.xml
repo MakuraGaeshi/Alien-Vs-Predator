@@ -103,7 +103,7 @@
 	<drawGUIOverlay>true</drawGUIOverlay>
 </ThingDef>
 
-<AlienRace.ThingDef_AlienRace Name="RRY_Synth" ParentName="RRY_Artificial_Synths">
+<AlienRace.ThingDef_AlienRace ParentName="RRY_Artificial_Synths">
     <defName>RRY_Synth</defName>
     <label>Synth</label>
     <description>A synthetic being.</description>
@@ -228,6 +228,9 @@
 					<li>Male</li>
 					<li>Female</li>
 				</alienbodytypes>
+                <bodyAddons>
+				
+				</bodyAddons>
 			</alienPartGenerator>
 			<chemicalSettings>	
 		    </chemicalSettings>

@@ -9,18 +9,18 @@
     </li>
       <li Class="PatchOperationConditional">
         <xpath>
-          /Defs/AlienRace.ThingDef_AlienRace [defName = "RRY_Alien_Yautja"]/comps
+          /Defs/AlienRace.ThingDef_AlienRace [defName = "AvP_Alien_Yautja"]/comps
         </xpath>
         <success>Always</success>
         <nomatch Class="PatchOperationAdd">
-          <xpath>/Defs/AlienRace.ThingDef_AlienRace [defName = "RRY_Alien_Yautja"]</xpath>
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace [defName = "AvP_Alien_Yautja"]</xpath>
           <value>
             <comps />
           </value>
         </nomatch>
       </li>
       <li Class="PatchOperationAdd">
-        <xpath>/Defs/AlienRace.ThingDef_AlienRace [defName = "RRY_Alien_Yautja"]/comps</xpath>
+        <xpath>/Defs/AlienRace.ThingDef_AlienRace [defName = "AvP_Alien_Yautja"]/comps</xpath>
         <value>
           <li Class = "FacialStuff.CompProperties_BodyAnimator">
             <bipedWithHands>true</bipedWithHands>
@@ -50,7 +50,7 @@
       <value>
 		
   <BodyAnimDef>
-    <thingTarget>RRY_Alien_Yautja</thingTarget>
+    <thingTarget>AvP_Alien_Yautja</thingTarget>
     <bodyDrawers>
       <li Class="AlienFaces.AlienBipedDrawer">
         <Graphics IsNull="True" />
@@ -136,12 +136,12 @@
     <WalkCycleType>Biped</WalkCycleType>
     <poseCycles />
     <PoseCycleType IsNull="True" />
-    <defName>BodyAnimDef_RRY_Alien_Yautja_Female</defName>
-    <label>BodyAnimDef_RRY_Alien_Yautja_Female</label>
+    <defName>BodyAnimDef_AvP_Alien_Yautja_Female</defName>
+    <label>BodyAnimDef_AvP_Alien_Yautja_Female</label>
   </BodyAnimDef>
   
   <BodyAnimDef>
-    <thingTarget>RRY_Alien_Yautja</thingTarget>
+    <thingTarget>AvP_Alien_Yautja</thingTarget>
     <bodyDrawers>
       <li Class="AlienFaces.AlienBipedDrawer">
         <Graphics IsNull="True" />
@@ -227,12 +227,12 @@
     <WalkCycleType>Biped</WalkCycleType>
     <poseCycles />
     <PoseCycleType IsNull="True" />
-    <defName>BodyAnimDef_RRY_Alien_Yautja_Fat</defName>
-    <label>BodyAnimDef_RRY_Alien_Yautja_Fat</label>
+    <defName>BodyAnimDef_AvP_Alien_Yautja_Fat</defName>
+    <label>BodyAnimDef_AvP_Alien_Yautja_Fat</label>
   </BodyAnimDef>
   
   <BodyAnimDef>
-    <thingTarget>RRY_Alien_Yautja</thingTarget>
+    <thingTarget>AvP_Alien_Yautja</thingTarget>
     <bodyDrawers>
       <li Class="AlienFaces.AlienBipedDrawer">
         <Graphics IsNull="True" />
@@ -318,12 +318,12 @@
     <WalkCycleType>Biped</WalkCycleType>
     <poseCycles />
     <PoseCycleType IsNull="True" />
-    <defName>BodyAnimDef_RRY_Alien_Yautja_Thin</defName>
-    <label>BodyAnimDef_RRY_Alien_Yautja_Thin</label>
+    <defName>BodyAnimDef_AvP_Alien_Yautja_Thin</defName>
+    <label>BodyAnimDef_AvP_Alien_Yautja_Thin</label>
   </BodyAnimDef>
   
   <BodyAnimDef>
-    <thingTarget>RRY_Alien_Yautja</thingTarget>
+    <thingTarget>AvP_Alien_Yautja</thingTarget>
     <bodyDrawers>
       <li Class="AlienFaces.AlienBipedDrawer">
         <Graphics IsNull="True" />
@@ -409,12 +409,12 @@
     <WalkCycleType>Biped</WalkCycleType>
     <poseCycles />
     <PoseCycleType IsNull="True" />
-    <defName>BodyAnimDef_RRY_Alien_Yautja_Male</defName>
-    <label>BodyAnimDef_RRY_Alien_Yautja_Male</label>
+    <defName>BodyAnimDef_AvP_Alien_Yautja_Male</defName>
+    <label>BodyAnimDef_AvP_Alien_Yautja_Male</label>
   </BodyAnimDef>
   
   <BodyAnimDef>
-    <thingTarget>RRY_Alien_Yautja</thingTarget>
+    <thingTarget>AvP_Alien_Yautja</thingTarget>
     <bodyDrawers>
       <li Class="AlienFaces.AlienBipedDrawer">
         <Graphics IsNull="True" />
@@ -500,8 +500,8 @@
     <WalkCycleType>Biped</WalkCycleType>
     <poseCycles />
     <PoseCycleType IsNull="True" />
-    <defName>BodyAnimDef_RRY_Alien_Yautja_Hulk</defName>
-    <label>BodyAnimDef_RRY_Alien_Yautja_Hulk</label>
+    <defName>BodyAnimDef_AvP_Alien_Yautja_Hulk</defName>
+    <label>BodyAnimDef_AvP_Alien_Yautja_Hulk</label>
   </BodyAnimDef>
       </value>
       </li>

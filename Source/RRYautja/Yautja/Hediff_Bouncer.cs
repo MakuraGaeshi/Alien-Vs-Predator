@@ -36,7 +36,7 @@ namespace RRYautja
         {
             get
             {
-                if (OriginalPawn.kindDef.race!=YautjaDefOf.RRY_Alien_Yautja)
+                if (OriginalPawn.kindDef.race!=YautjaDefOf.AvP_Alien_Yautja)
                 {
                     return (DefDatabase<ThingDef>.GetNamed("RRY_SmartDisk_Thrown"));
                 }
@@ -57,15 +57,15 @@ namespace RRYautja
                 bool enablebounce = false;
                 if (OriginalPawn.Faction == Faction.OfPlayer)
                 {
-                    if (YautjaDefOf.RRY_YautjaRanged_Basic.IsFinished)
+                    if (YautjaDefOf.AvP_Tech_Yautja_Ranged_T1.IsFinished)
                     {
                         count++;
                     }
-                    if (YautjaDefOf.RRY_YautjaRanged_Med.IsFinished)
+                    if (YautjaDefOf.AvP_Tech_Yautja_Ranged_T2.IsFinished)
                     {
                         count++;
                     }
-                    if (YautjaDefOf.RRY_YautjaRanged_Adv.IsFinished)
+                    if (YautjaDefOf.AvP_Tech_Yautja_Ranged_T3.IsFinished)
                     {
                         count++;
                     }

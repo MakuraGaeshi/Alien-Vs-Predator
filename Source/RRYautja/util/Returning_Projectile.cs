@@ -37,15 +37,15 @@ namespace RimWorld
                 bool enablebounce = false;
                 if (OriginalPawn.Faction == Faction.OfPlayer)
                 {
-                    if (YautjaDefOf.RRY_YautjaRanged_Basic.IsFinished)
+                    if (YautjaDefOf.AvP_Tech_Yautja_Ranged_T1.IsFinished)
                     {
                         count++;
                     }
-                    if (YautjaDefOf.RRY_YautjaRanged_Med.IsFinished)
+                    if (YautjaDefOf.AvP_Tech_Yautja_Ranged_T2.IsFinished)
                     {
                         count++;
                     }
-                    if (YautjaDefOf.RRY_YautjaRanged_Adv.IsFinished)
+                    if (YautjaDefOf.AvP_Tech_Yautja_Ranged_T3.IsFinished)
                     {
                         count++;
                     }
@@ -118,7 +118,7 @@ namespace RimWorld
             if (OriginalPawn!=null)
             {
 
-                if (OriginalPawn.kindDef.race != YautjaDefOf.RRY_Alien_Yautja && Rand.Chance(0.5f))
+                if (OriginalPawn.kindDef.race != YautjaDefOf.AvP_Alien_Yautja && Rand.Chance(0.5f))
                 {
                     ReturnDef = YautjaDefOf.RRY_SmartDisk_Thrown;
                 }
@@ -155,7 +155,7 @@ namespace RimWorld
                 {
                 //    Log.Message(string.Format("OriginalPawn null {0}", OriginalPawn));
                 }
-                Hediff hediff = HediffMaker.MakeHediff(YautjaDefOf.RRY_Hediff_BouncedProjectile, hitPawn);
+                Hediff hediff = HediffMaker.MakeHediff(YautjaDefOf.AvP_Hediff_BouncedProjectile, hitPawn);
                 Hediff_Bouncer bouncer = (Hediff_Bouncer)hediff;
                 bouncer.OriginalPawn = this.OriginalPawn;
                 bouncer.OriginalWeapon = this.OriginalWeapon;
@@ -187,7 +187,7 @@ namespace RimWorld
                 if (OriginalPawn != null)
                 {
                 //    Log.Message(string.Format("OriginalPawn {0}", OriginalPawn, OriginalPawn.kindDef.race));
-                    if (OriginalPawn.kindDef.race != YautjaDefOf.RRY_Alien_Yautja && Rand.Chance(0.5f))
+                    if (OriginalPawn.kindDef.race != YautjaDefOf.AvP_Alien_Yautja && Rand.Chance(0.5f))
                     {
                         ReturnDef = YautjaDefOf.RRY_SmartDisk_Thrown;
                     }

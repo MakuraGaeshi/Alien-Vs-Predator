@@ -3,8 +3,8 @@
 
   <StatDef>
     <defName>RRY_StuffPower_Armor_Acid</defName>
-    <label>Armor - Acid</label>
-    <description>Armor against Acid-related damage like burns.</description>
+    <label>Armour - Acid</label>
+    <description>Armour against Acid-related damage like burns.</description>
     <category>StuffStatFactors</category>
     <defaultBaseValue>0</defaultBaseValue>
     <minValue>0</minValue>

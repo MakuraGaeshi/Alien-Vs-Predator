@@ -13,38 +13,8 @@ using UnityEngine;
 using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
-	/*
-    [HarmonyPatch(typeof(Pawn_NativeVerbs), "CheckCreateVerbProperties")]
-    public static class AvP_Pawn_NativeVerbs_CheckCreateVerbProperties_Patch
-    {
-        public static bool Prefix(ref Pawn_NativeVerbs __instance)
-        {
-            bool flag = Main._cachedVerbProperties.GetValue(__instance) != null;
-            bool result;
-            if (flag)
-            {
-                result = true;
-            }
-            else
-            {
-                bool flag2 = XenomorphUtil.IsXenomorph(Main.pawnPawnNativeVerbs(__instance));
-                if (flag2)
-                {
-                    Main._cachedVerbProperties.SetValue(__instance, new List<VerbProperties>());
-                    Main.cachedVerbProperties(__instance).Add(NativeVerbPropertiesDatabase.VerbWithCategory((VerbCategory)1));
-                    result = false;
-                }
-                else
-                {
-                    result = true;
-                }
-            }
-            return result;
-        }
-    }
-	*/
 	// Token: 0x0200005B RID: 91
 	[HarmonyPatch(typeof(Pawn_NativeVerbs))]
 	[HarmonyPatch("CheckCreateVerbProperties")]
@@ -78,11 +48,41 @@ namespace RRYautja
 			}
 			return true;
 		}
-		
+
 		// Token: 0x040000C7 RID: 199
 		private static FieldInfo FI_pawn = typeof(Pawn_NativeVerbs).GetField("pawn", BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.GetProperty | BindingFlags.SetProperty);
 
 		// Token: 0x040000C8 RID: 200
 		private static FieldInfo FI_cachedVerbProperties = typeof(Pawn_NativeVerbs).GetField("cachedVerbProperties", BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.GetProperty | BindingFlags.SetProperty);
 	}
+	/*
+    [HarmonyPatch(typeof(Pawn_NativeVerbs), "CheckCreateVerbProperties")]
+    public static class AvP_Pawn_NativeVerbs_CheckCreateVerbProperties_Patch
+    {
+        public static bool Prefix(ref Pawn_NativeVerbs __instance)
+        {
+            bool flag = Main._cachedVerbProperties.GetValue(__instance) != null;
+            bool result;
+            if (flag)
+            {
+                result = true;
+            }
+            else
+            {
+                bool flag2 = XenomorphUtil.IsXenomorph(Main.pawnPawnNativeVerbs(__instance));
+                if (flag2)
+                {
+                    Main._cachedVerbProperties.SetValue(__instance, new List<VerbProperties>());
+                    Main.cachedVerbProperties(__instance).Add(NativeVerbPropertiesDatabase.VerbWithCategory((VerbCategory)1));
+                    result = false;
+                }
+                else
+                {
+                    result = true;
+                }
+            }
+            return result;
+        }
+    }
+	*/
 }

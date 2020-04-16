@@ -3,7 +3,7 @@
 
 <!--============================================= Artificials Overheating - Copied heatstroke and gave bonus to move and maniplation instead and added one last step =============================================-->
 
-<HediffDef  ParentName="RRY_SpecialBadHeDiff">
+<HediffDef  ParentName="AvP_SpecialBadHeDiff">
     <defName>RRY_Synth_Overheating</defName>
     <defaultLabelColor>(0.35, 0.5, 0.35)</defaultLabelColor>
     <label>overheating</label>

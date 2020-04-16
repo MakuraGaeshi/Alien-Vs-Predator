@@ -13,7 +13,7 @@ using UnityEngine;
 using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     [HarmonyPatch(typeof(DeathActionWorker_BigExplosion), "PawnDied")]
     public static class AvP_DeathActionWorker_BigExplosion_PawnDied_Patch

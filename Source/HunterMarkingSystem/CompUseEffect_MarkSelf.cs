@@ -50,6 +50,7 @@ namespace HunterMarkingSystem
                         }
                         if (trophy != null)
                         {
+                            Rand.PushState();
                             if (Rand.Chance(basechance))
                             {
                                 partRecord = item;
@@ -58,14 +59,15 @@ namespace HunterMarkingSystem
                                 GenSpawn.Spawn(ThingMaker.MakeThing(thingDef), user.Position, user.Map);
 
                             }
+                            Rand.PopState();
                         }
                     }
                 }
-                if (user.story.adulthood.identifier == null || user.story.adulthood.identifier == "RRY_Yautja_YoungBlood")
+                if (user.story.adulthood.identifier == null || user.story.adulthood.identifier.Contains("Yautja_YoungBlood"))
                 {
                     if (marked.def == HMSDefOf.HMS_Hediff_BloodedMXenomorph)
                     {
-                        AlienRace.BackstoryDef backstoryDef = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_Blooded");
+                        AlienRace.BackstoryDef backstoryDef = DefDatabase<AlienRace.BackstoryDef>.AllDefs.First(x=> x.defName.Contains("Yautja_Blooded"));
                         user.story.adulthood = backstoryDef.backstory;
                     }
                 }

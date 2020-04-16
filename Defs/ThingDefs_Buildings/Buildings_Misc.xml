@@ -175,7 +175,7 @@
     <description>This cryptosleep casket contains the rewards for a blooding.</description>
     <thingClass>RRYautja.Building_XenomorphCryptosleepCasket</thingClass>
 	
-	<spawnThing>RRY_Equipment_HunterShoulderCannon</spawnThing>
+	<spawnThing>AvP_Yautja_Equipment_PlasmaCaster</spawnThing>
     	
 	<graphicData>
       <texPath>Things/Building/Ship/ShipCryptosleepCasket</texPath>

@@ -14,7 +14,7 @@ using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 using AlienRace;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     [HarmonyPatch(typeof(Pawn_HealthTracker), "CheckForStateChange")]
     public static class AvP_Pawn_HealthTracker_CheckForStateChange_Patch

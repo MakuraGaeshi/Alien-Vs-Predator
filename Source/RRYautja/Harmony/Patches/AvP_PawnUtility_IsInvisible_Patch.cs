@@ -14,7 +14,7 @@ using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 using AlienRace;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     [HarmonyPatch(typeof(PawnUtility), "IsInvisible")]
     public static class AvP_PawnUtility_IsInvisible_Patch

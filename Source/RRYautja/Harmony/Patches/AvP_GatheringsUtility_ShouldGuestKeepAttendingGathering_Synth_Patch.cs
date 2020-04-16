@@ -3,7 +3,7 @@ using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     // Token: 0x02000056 RID: 86
     [HarmonyPatch(typeof(GatheringsUtility), "ShouldGuestKeepAttendingGathering")]

@@ -13,7 +13,7 @@ using UnityEngine;
 using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
 
     // ObserveSurroundingThings
@@ -26,7 +26,7 @@ namespace RRYautja
             Traverse traverse = Traverse.Create(__instance);
             Pawn pawn = (Pawn)AvP_PawnObserver_ObserveSurroundingThings_Patch.pawn.GetValue(__instance);
         //    Log.Message(string.Format("ObserveSurroundingThingsPostfix {0}", pawn.LabelShortCap));
-            if (!pawn.health.capacities.CapableOf(PawnCapacityDefOf.Sight) || pawn.isBloodMarked() || pawn.def == YautjaDefOf.RRY_Alien_Yautja)
+            if (!pawn.health.capacities.CapableOf(PawnCapacityDefOf.Sight) || pawn.isBloodMarked() || pawn.def == YautjaDefOf.AvP_Alien_Yautja)
             {
             //    Log.Message("Blind");
                 return;

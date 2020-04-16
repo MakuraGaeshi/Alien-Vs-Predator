@@ -13,7 +13,7 @@ using UnityEngine;
 using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     // Disables Stuffable Projectiles Firing while wearing vanillia Shield Belts
     [HarmonyPatch(typeof(ShieldBelt), "AllowVerbCast")]

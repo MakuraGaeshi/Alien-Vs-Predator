@@ -6,7 +6,7 @@
 		<label>Yautja Badbloods</label>
     <description>The Bad Bloods are traitors, pariah and, worst of all, dishonored members of the Yautja society. They are banned from their parents clan and hunted out of spite. They live in chaos with no rules or lord except the will to live and to hunt. They do not obey to any code of Honor known to yautja society and their existence is considered an insult to the Clans.</description>
 	<pawnSingular>Badblood yautja</pawnSingular>
-    <pawnsPlural>Badblood yautji</pawnsPlural>
+    <pawnsPlural>Badblood yautja</pawnsPlural>
     <basicMemberKind>YautjaYoungBlood_RRY</basicMemberKind>
     <listOrderPriority>20</listOrderPriority>
     <earliestRaidDays>45</earliestRaidDays>
@@ -15,7 +15,7 @@
     <canMakeRandomly>true</canMakeRandomly>
     <canSiege>false</canSiege>
     <canStageAttacks>true</canStageAttacks>
-    <leaderTitle>Badblood Yautji</leaderTitle>
+    <leaderTitle>Badblood Yautja</leaderTitle>
     <startingGoodwill>
       <min>-100</min>
       <max>0</max>

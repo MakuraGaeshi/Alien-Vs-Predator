@@ -72,7 +72,7 @@
 	</RulePackDef>
 
 	<RulePackDef>
-		<defName>RRY_NamerPersonYautji_Male</defName>
+		<defName>AvP_NamerPerson_Yautja_Male</defName>
 		<include>
 		  <li>RRY_NamerYautjaUtility</li>
 		  <li>TribalWordUtility</li>
@@ -99,7 +99,7 @@
 	</RulePackDef>
 
 	<RulePackDef>
-		<defName>RRY_NamerPersonYautji_Female</defName>
+		<defName>AvP_NamerPerson_Yautja_Female</defName>
 		<include>
 		  <li>RRY_NamerYautjaUtility</li>
 		  <li>TribalWordUtility</li>

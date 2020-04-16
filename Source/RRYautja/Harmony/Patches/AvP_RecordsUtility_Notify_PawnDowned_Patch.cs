@@ -12,7 +12,7 @@ using RimWorld.Planet;
 using UnityEngine;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     
     [HarmonyPatch(typeof(RecordsUtility), "Notify_PawnDowned")]

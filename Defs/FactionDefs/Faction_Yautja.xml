@@ -6,7 +6,7 @@
 		<label>Yautja Jungle Clan</label>
     <description>The Jungle Clan is perhaps the most common and the most seen of all the Yautja clans. They are ruthless hunters with a strict code of honor. Their quest for glory is endless and inoxerable. Few survive their bloodlust.</description>
 	<pawnSingular>Yautja</pawnSingular>
-    <pawnsPlural>Yautji</pawnsPlural>
+    <pawnsPlural>Yautja</pawnsPlural>
     <listOrderPriority>20</listOrderPriority>
     <earliestRaidDays>45</earliestRaidDays>
     <settlementGenerationWeight>1</settlementGenerationWeight>

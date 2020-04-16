@@ -19,7 +19,7 @@
 	<ThingDef ParentName="RRY_USCM_HeadgearBase">
 		<defName>RRY_Headgear_M10PAttern</defName>
 		<label>M10 Pattern Ballistic Helmet</label>
-		<description>The M10 Pattern Ballistic Helmet is a helmet used primarily by the United States Colonial Marine Corps in conjunction with the M3 Pattern Personal Armor. In addition to providing head protection, it features an integrated video camera, infrared sight, transmitter and microphone.</description>
+		<description>The M10 Pattern Ballistic Helmet is a helmet used primarily by the United States Colonial Marine Corps in conjunction with the M3 Pattern Personal Armour. In addition to providing head protection, it features an integrated video camera, infrared sight, transmitter and microphone.</description>
 		<graphicData>
 		<texPath>Things/Apparel/USCM/Helmets/M10Pattern/ColonialMarineHelmet</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
@@ -47,7 +47,7 @@
 			<ComponentSpacer>1</ComponentSpacer>
 		</costList>
 		<recipeMaker>
-			<researchPrerequisite>RRY_USCM_CarapaceArmor</researchPrerequisite>
+			<researchPrerequisite>AvP_USCM_CarapaceArmor</researchPrerequisite>
 			<skillRequirements>
 				<Crafting>7</Crafting>
 			</skillRequirements>
@@ -78,11 +78,11 @@
 		</tradeTags>
 	</ThingDef>
 	
-<!-- ========================= USCM - M3 Pattern Personal Armor ========================== -->
+<!-- ========================= USCM - M3 Pattern Personal Armour ========================== -->
 	<ThingDef ParentName="RRY_USCM_Armour_MakeableBase">
 		<defName>RRY_Apparel_M3Pattern</defName>
-		<label>M3 Pattern Personal Armor</label>
-		<description>The M3 Pattern Personal Armor is the standard ballistic protective armor system employed by the United States Colonial Marine Corps. Manufactured by Armat Battlefield Systems, it is designed to balance lightness and comfort with optimum protection. The M3 system is primarily concerned with protecting the user's torso only.</description>
+		<label>M3 Pattern Personal Armour</label>
+		<description>The M3 Pattern Personal Armour is the standard ballistic protective armour system employed by the United States Colonial Marine Corps. Manufactured by Armat Battlefield Systems, it is designed to balance lightness and comfort with optimum protection. The M3 system is primarily concerned with protecting the user's torso only.</description>
 		<graphicData>
 			<texPath>Things/Apparel/USCM/Armour/M3Pattern/USCM_M3Pattern</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -108,7 +108,7 @@
 			<ComponentIndustrial>1</ComponentIndustrial>
 		</costList>
 		<recipeMaker>
-			<researchPrerequisite>RRY_USCM_CarapaceArmor</researchPrerequisite>
+			<researchPrerequisite>AvP_USCM_CarapaceArmor</researchPrerequisite>
 			<skillRequirements>
 				<Crafting>5</Crafting>
 			</skillRequirements>
@@ -172,7 +172,7 @@
 			<ComponentIndustrial>2</ComponentIndustrial>
 		</costList>
 		<recipeMaker>
-			<researchPrerequisite>RRY_USCM_CarapaceArmor</researchPrerequisite>
+			<researchPrerequisite>AvP_USCM_CarapaceArmor</researchPrerequisite>
 			<skillRequirements>
 				<Crafting>6</Crafting>
 			</skillRequirements>

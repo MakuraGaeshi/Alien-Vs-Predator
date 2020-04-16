@@ -53,7 +53,7 @@
 			</li>
 			<li Class="ScenPart_StartingThing_Defined">
 				<def>StartingThing_Defined</def>
-				<thingDef>RRY_Gun_Hunting_Bow</thingDef>
+				<thingDef>AvP_Yautja_Gun_Hunting_Bow</thingDef>
 				<stuff>WoodLog</stuff>
 			</li>
 			<li Class="ScenPart_StartingThing_Defined">
@@ -166,17 +166,17 @@
 			</li>
 			<li Class="ScenPart_StartingThing_Defined">
 				<def>StartingThing_Defined</def>
-				<thingDef>RRY_Gun_Hunting_Bow</thingDef>
+				<thingDef>AvP_Yautja_Gun_Hunting_Bow</thingDef>
 				<stuff>WoodLog</stuff>
 			</li>
 			<li Class="ScenPart_StartingThing_Defined">
 				<def>StartingThing_Defined</def>
-				<thingDef>RRY_Melee_BladedMaul</thingDef>
+				<thingDef>AvP_Yautja_Melee_BladedMaul</thingDef>
 				<stuff>Steel</stuff>
 			</li>
 			<li Class="ScenPart_StartingThing_Defined">
 				<def>StartingThing_Defined</def>
-				<thingDef>RRY_Gun_YautjaBlaster</thingDef>
+				<thingDef>AvP_Yautja_Gun_Blaster</thingDef>
 			</li>
 			<li Class="ScenPart_ScatterThingsNearPlayerStart">
 				<def>ScatterThingsNearPlayerStart</def>

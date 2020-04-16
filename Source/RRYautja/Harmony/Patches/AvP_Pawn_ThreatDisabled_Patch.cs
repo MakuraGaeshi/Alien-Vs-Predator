@@ -13,7 +13,7 @@ using UnityEngine;
 using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     // Pawns ignore Cloaked things
     [HarmonyPatch(typeof(Pawn), "ThreatDisabled")]
@@ -66,7 +66,7 @@ namespace RRYautja
                 if (__instance != null)
                 {
 
-                    bool cloaked = __instance.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked);
+                    bool cloaked = __instance.health.hediffSet.HasHediff(YautjaDefOf.AvP_Hediff_Cloaked);
                     bool hidden = __instance.isXenomorph(out Comp_Xenomorph comp) && comp.hidden;
                     bool Stealth = cloaked || hidden;
                     __result = __result || Stealth;

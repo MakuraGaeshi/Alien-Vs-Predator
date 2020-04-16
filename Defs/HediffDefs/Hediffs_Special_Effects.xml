@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 <!-- ==================== Base HeDiffs ========================= -->
-	<HediffDef Name="RRY_SpecialBadHeDiff" Abstract="True">
+	<HediffDef Name="AvP_SpecialBadHeDiff" Abstract="True">
 		<hediffClass>HediffWithComps</hediffClass>
 		<defaultLabelColor>(0.8, 0.8, 0.35)</defaultLabelColor>
     <isBad>true</isBad>
@@ -10,7 +10,7 @@
 	<makesSickThought>false</makesSickThought>
 	</HediffDef>
 	
-	<HediffDef Name="RRY_SpecialGoodHeDiff" Abstract="True">
+	<HediffDef Name="AvP_SpecialGoodHeDiff" Abstract="True">
 		<hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(0.5, 0.5, 0.9)</defaultLabelColor>
 	<description>.</description>
@@ -20,8 +20,8 @@
 	</HediffDef>
 
 	
-  <HediffDef ParentName="RRY_SpecialGoodHeDiff">
-    <defName>RRY_WristbladeHeDiff</defName>
+  <HediffDef ParentName="AvP_SpecialGoodHeDiff">
+    <defName>AvP_Yautja_Wristblade</defName>
     <label>wristblade</label>
     <description>wristblade</description>
     <labelNoun>a wristblade</labelNoun>
@@ -69,7 +69,7 @@
   </HediffDef>
   
   <HediffDef>
-    <defName>RRY_Hediff_Cloaked</defName>
+    <defName>AvP_Hediff_Cloaked</defName>
     <hediffClass>RRYautja.Hediff_Cloak</hediffClass>
     <initialSeverity>1</initialSeverity>
     <label>Stealth</label>
@@ -96,7 +96,7 @@
   </HediffDef>
   
   <HediffDef>
-    <defName>RRY_Hediff_BouncedProjectile</defName>
+    <defName>AvP_Hediff_BouncedProjectile</defName>
     <hediffClass>RRYautja.Hediff_Bouncer</hediffClass>
     <initialSeverity>1</initialSeverity>
     <label>Stealth</label>
@@ -109,7 +109,7 @@
     </stages>
   </HediffDef>
   
-    <HediffDef ParentName="RRY_SpecialBadHeDiff">
+    <HediffDef ParentName="AvP_SpecialBadHeDiff">
     <defName>RRY_Hediff_Cocooned</defName>
     <label>Cocooned</label>
     <description>Cocooned</description>
@@ -158,7 +158,7 @@
     </stages>
   </HediffDef>
 
-    <HediffDef ParentName="RRY_SpecialBadHeDiff">
+    <HediffDef ParentName="AvP_SpecialBadHeDiff">
     <defName>RRY_Hediff_Pinned</defName>
     <label>Pinned</label>
     <description>Pinned</description>

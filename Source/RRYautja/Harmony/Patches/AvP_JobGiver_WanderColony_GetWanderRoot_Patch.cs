@@ -13,7 +13,7 @@ using UnityEngine;
 using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     // stop Pawns trying to wander near Cocooned colonists
     [HarmonyPatch(typeof(JobGiver_WanderColony), "GetWanderRoot")]

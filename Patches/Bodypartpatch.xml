@@ -11,6 +11,27 @@
 					<li>RRY_NeomorphImpregnationRemoval</li>
 				</value>
 			</li>
+			<!--li Class="PatchOperationConditional">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Human"]/alienRace/raceRestriction</xpath>
+				<match Class="PatchOperationAdd">
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Human"]/alienRace/raceRestriction/researchList/li/projects</xpath>
+					<value>
+						<li>AvP_USCM_CarapaceArmor</li>
+					</value>
+				</match>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Human"]/alienRace/raceRestriction</xpath>
+					<value>
+						<researchList>
+							<li>
+								<projects>
+									<li>AvP_USCM_CarapaceArmor</li>
+								</projects>
+							</li>
+						</researchList>
+					</value>
+				</nomatch>
+			</li-->
 		</operations>	
 	</Operation>
 	

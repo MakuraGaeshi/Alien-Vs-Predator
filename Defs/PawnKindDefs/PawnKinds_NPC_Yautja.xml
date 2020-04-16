@@ -4,7 +4,7 @@
   <!-- ============================ Yautja Base ========================== -->
   <PawnKindDef Name="RRY_YautjaBase" Abstract="True">
     <defaultFactionType>RRY_Yautja_BadBloodFaction</defaultFactionType>
-    <race>RRY_Alien_Yautja</race>
+    <race>AvP_Alien_Yautja</race>
     <backstoryFiltersOverride Inherit="false">
       <li>
         <categories>
@@ -212,7 +212,7 @@
   <PawnKindDef Name="RRY_YautjaMilBase" ParentName="RRY_YautjaBase" Abstract="True">
     <chemicalAddictionChance>0</chemicalAddictionChance>
     <isFighter>true</isFighter>
-	<race>RRY_Alien_Yautja</race>
+	<race>AvP_Alien_Yautja</race>
     <invNutrition>2.55</invNutrition>
     <itemQuality>Normal</itemQuality>
 	<minGenerationAge>10</minGenerationAge>

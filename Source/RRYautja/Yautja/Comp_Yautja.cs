@@ -1,4 +1,5 @@
 ﻿using AlienRace;
+using HunterMarkingSystem;
 using RimWorld;
 using RRYautja;
 using System;
@@ -31,14 +32,12 @@ namespace RRYautja
             }
         }
 
-        AlienRace.BackstoryDef bsDefUnblooded = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_YoungBlood");
-        AlienRace.BackstoryDef bsDefBlooded = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_Blooded");
-        AlienRace.BackstoryDef bsDefBadbloodA = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_BadBloodA");
-        AlienRace.BackstoryDef bsDefBadblooBd = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_BadBloodB");
-        
-        public HediffDef unbloodedDef = YautjaDefOf.HMS_Hediff_Unblooded;
-        public HediffDef unmarkedDef = YautjaDefOf.HMS_Hediff_BloodedUM;
-        public HediffDef GenericmarkedDef = YautjaDefOf.HMS_Hediff_BloodedM;
+        public static AlienRace.BackstoryDef bsDefUnblooded = DefDatabase<AlienRace.BackstoryDef>.AllDefsListForReading.Find(x => x.defName.Contains("Yautja_YoungBlood"));
+        public static AlienRace.BackstoryDef bsDefBlooded = DefDatabase<AlienRace.BackstoryDef>.AllDefsListForReading.Find(x => x.defName.Contains("Yautja_Blooded"));
+        public static AlienRace.BackstoryDef bsDefBadbloodA = DefDatabase<AlienRace.BackstoryDef>.AllDefsListForReading.Find(x => x.defName.Contains("Yautja_BadBloodA"));
+        public static AlienRace.BackstoryDef bsDefBadblooBd = DefDatabase<AlienRace.BackstoryDef>.AllDefsListForReading.Find(x => x.defName.Contains("Yautja_BadBloodB"));
+
+        public Comp_Markable markable => this.parent.TryGetComp<Comp_Markable>();
 
         public BodyPartRecord partRecord
         {
@@ -76,11 +75,11 @@ namespace RRYautja
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
-            if (Pawn.kindDef.race == YautjaDefOf.RRY_Alien_Yautja&&(Pawn.story.hairDef != YautjaDefOf.RRY_Yaujta_Dreds && Pawn.story.hairDef != YautjaDefOf.RRY_Yaujta_Ponytail && Pawn.story.hairDef != YautjaDefOf.RRY_Yaujta_Bald))
+            if (Pawn.kindDef.race == YautjaDefOf.AvP_Alien_Yautja&&(Pawn.story.hairDef != YautjaDefOf.RRY_Yaujta_Dreds && Pawn.story.hairDef != YautjaDefOf.RRY_Yaujta_Ponytail && Pawn.story.hairDef != YautjaDefOf.RRY_Yaujta_Bald))
             {
                 Pawn.story.hairDef = Rand.Chance(0.5f) ? YautjaDefOf.RRY_Yaujta_Dreds : YautjaDefOf.RRY_Yaujta_Ponytail;
             }
-            if (Pawn.kindDef.race != YautjaDefOf.RRY_Alien_Yautja)
+            if (Pawn.kindDef.race != YautjaDefOf.AvP_Alien_Yautja)
             {
 
             }

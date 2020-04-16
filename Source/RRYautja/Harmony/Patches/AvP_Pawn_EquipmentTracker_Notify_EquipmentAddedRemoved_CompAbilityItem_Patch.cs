@@ -4,7 +4,7 @@ using Verse;
 using HarmonyLib;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     [HarmonyPatch(typeof(Pawn_EquipmentTracker), "Notify_EquipmentAdded")]
     public static class AvP_Pawn_EquipmentTracker_Notify_EquipmentAdded_CompAbilityItem_Patch

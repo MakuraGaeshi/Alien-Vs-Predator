@@ -11,7 +11,7 @@ using Verse.Sound;
 using UnityEngine;
 using System.Reflection;
 
-namespace RRYautja 
+namespace RRYautja.HarmonyInstance
 {
     [HarmonyPatch(typeof(Verb_Shoot), "TryCastShot")]
     public static class AvP_Verb_Shoot_TryCastShot_Scattershot_Patch

@@ -13,7 +13,7 @@ using UnityEngine;
 using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     // Protects Cocooned Pawns from wound infections
     [HarmonyPatch(typeof(HediffComp_Infecter), "CheckMakeInfection")]

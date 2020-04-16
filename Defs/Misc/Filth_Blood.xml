@@ -2,7 +2,7 @@
 <Defs>
 
   <ThingDef ParentName="BaseFilth">
-    <defName>RRY_FilthBloodYautja</defName>
+    <defName>AvP_FilthBlood_Yautja</defName>
     <label>blood</label>
     <statBases>
       <Beauty>-14</Beauty>

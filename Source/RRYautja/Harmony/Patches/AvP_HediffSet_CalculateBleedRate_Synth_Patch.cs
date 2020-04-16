@@ -13,7 +13,7 @@ using UnityEngine;
 using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     [HarmonyPatch(typeof(HediffSet), "CalculateBleedRate")]
     public static class AvP_HediffSet_CalculateBleedRate_Synth_Patch

@@ -2,7 +2,7 @@
 <Defs>
     <!--========================= Yautja - Apparel Base ==========================-->
 
-	<ThingDef Name="RRYApparelBase" Abstract="True">
+	<ThingDef Name="AvP_Apparel_Base" Abstract="True">
 		<thingClass>Apparel</thingClass>
 		<category>Item</category>
 		<selectable>True</selectable>
@@ -34,7 +34,7 @@
 	
     <!--========================= Yautja - Clothes Base - Apparel Makable Base ==========================-->
 
-	<ThingDef Name="RRY_Apparel_MakeableBase" ParentName="RRYApparelBase" Abstract="True">
+	<ThingDef Name="AvP_Apparel_Base_Makeable" ParentName="AvP_Apparel_Base" Abstract="True">
 		<recipeMaker>
 			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
 			<workSkill>Crafting</workSkill>
@@ -47,9 +47,9 @@
 		</recipeMaker>
 	</ThingDef>
 
-    <!--========================= Yautja - Apparel Armor Makable Base ==========================-->
+    <!--========================= Yautja - Apparel Armour Makable Base ==========================-->
 
-	<ThingDef Name="RRY_Armor_MakeableBase" ParentName="RRYApparelBase" Abstract="True">
+	<ThingDef Name="AvP_Armour_Base_Makeable" ParentName="AvP_Apparel_Base" Abstract="True">
 		<recipeMaker>
 			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
 			<workSkill>Crafting</workSkill>

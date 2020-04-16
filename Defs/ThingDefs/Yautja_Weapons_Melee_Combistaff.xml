@@ -2,7 +2,7 @@
 <Defs>
 	<!-- ==================== Yautja  - Combistaff Base ========================= -->
   <ThingDef ParentName="RRY_BaseMeleeWeapon_Sharp_Quality">
-    <defName>RRY_Melee_Combistaff</defName>
+    <defName>AvP_Yautja_Melee_Combistaff</defName>
     <label>Combistaff</label>
     <description>A collapsible combat staff. It can be thrown to pin a target.</description>
     <graphicData>
@@ -48,7 +48,7 @@
 			<li>RRY_MeleeWeapons</li>
 		</thingCategories>
     <recipeMaker>
-			<researchPrerequisite>RRY_YautjaMelee_Special</researchPrerequisite>
+			<researchPrerequisite>AvP_Tech_Yautja_Melee_T2</researchPrerequisite>
       <skillRequirements>
         <Crafting>3</Crafting>
       </skillRequirements>

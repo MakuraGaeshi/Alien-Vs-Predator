@@ -13,7 +13,7 @@ using UnityEngine;
 using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     // Stuffable Projectile hunting weapon fix
     [HarmonyPatch(typeof(VerbUtility), "HarmsHealth")]

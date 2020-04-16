@@ -13,7 +13,7 @@ using UnityEngine;
 using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     // Stops Cocooned Pawns taking damage from Xeno blood
     [HarmonyPatch(typeof(Pawn), "PreApplyDamage")]

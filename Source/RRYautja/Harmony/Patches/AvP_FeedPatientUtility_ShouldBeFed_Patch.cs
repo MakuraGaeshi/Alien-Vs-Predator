@@ -13,7 +13,7 @@ using UnityEngine;
 using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     // Stop Doctors trying to feed cocooned Pawns
     [HarmonyPatch(typeof(FeedPatientUtility), "ShouldBeFed")]

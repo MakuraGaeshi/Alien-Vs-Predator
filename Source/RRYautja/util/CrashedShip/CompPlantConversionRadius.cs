@@ -107,7 +107,7 @@ namespace RimWorld
                     {
                         Thing thing2;
 
-                        if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Fungus))
+                        if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_SporeSac))
                         {
                             thing2 = ThingMaker.MakeThing(XenomorphDefOf.RRY_Plant_Neomorph_Fungus_Hidden);
                         }

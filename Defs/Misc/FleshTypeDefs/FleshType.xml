@@ -2,7 +2,7 @@
 
 <Defs>
   <FleshTypeDef>
-    <defName>RRY_YautjaFlesh</defName>
+    <defName>AvP_Flesh_Yautja</defName>
     <ateDirect>AteHumanlikeMeatDirect</ateDirect>
     <ateAsIngredient>AteHumanlikeMeatAsIngredient</ateAsIngredient>
     <corpseCategory>RRY_Corpses_Yautja</corpseCategory>

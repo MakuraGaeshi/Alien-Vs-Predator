@@ -13,7 +13,7 @@ using UnityEngine;
 using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     // Xeno/Neomorph Hypothermic slowdown
     [HarmonyPatch(typeof(HediffGiver_Hypothermia), "OnIntervalPassed")]

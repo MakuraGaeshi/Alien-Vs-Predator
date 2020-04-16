@@ -206,7 +206,7 @@ namespace RRYautja
             }
             else
             {
-                if (Pawn.kindDef.race == YautjaDefOf.RRY_Alien_Yautja && SettingsHelper.latest.AllowPredaliens)// && !predalienImpregnation)
+                if (Pawn.kindDef.race == YautjaDefOf.AvP_Alien_Yautja && SettingsHelper.latest.AllowPredaliens)// && !predalienImpregnation)
                 {
                     pawnKindDef = XenomorphDefOf.RRY_Xenomorph_Predalien;
                 }

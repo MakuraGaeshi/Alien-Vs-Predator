@@ -3,7 +3,7 @@ using RimWorld;
 using Verse;
 using HarmonyLib;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     [HarmonyPatch(typeof(Pawn_ApparelTracker), "Notify_ApparelRemoved")]
     public static class AvP_Pawn_ApparelTracker_Notify_ApparelRemoved_CompAbilityItem_Patch

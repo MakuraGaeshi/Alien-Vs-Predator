@@ -3,7 +3,7 @@
 <Defs>
 
   <BodyPartDef>
-    <defName>RRY_Yautja_Mandible</defName>
+    <defName>AvP_Yautja_Mandible</defName>
     <label>mandible</label>
     <hitPoints>8</hitPoints>
     <frostbiteVulnerability>0</frostbiteVulnerability>

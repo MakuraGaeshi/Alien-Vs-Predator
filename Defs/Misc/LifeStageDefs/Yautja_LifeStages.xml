@@ -2,7 +2,7 @@
 <Defs>
 
   <LifeStageDef>
-    <defName>RRY_Yautja_Baby</defName>
+    <defName>AvP_Yautja_Baby</defName>
     <label>baby</label>
     <bodySizeFactor>0.2</bodySizeFactor>
 		<foodMaxFactor>1.5</foodMaxFactor>
@@ -16,7 +16,7 @@
   </LifeStageDef>
 
   <LifeStageDef>
-    <defName>RRY_Yautja_Toddler</defName>
+    <defName>AvP_Yautja_Toddler</defName>
     <label>toddler</label>
     <bodySizeFactor>0.32</bodySizeFactor>
 		<foodMaxFactor>1.5</foodMaxFactor>
@@ -30,7 +30,7 @@
   </LifeStageDef>
 
   <LifeStageDef>
-    <defName>RRY_Yautja_Child</defName>
+    <defName>AvP_Yautja_Child</defName>
     <label>child</label>
     <bodySizeFactor>0.5</bodySizeFactor>
     <healthScaleFactor>0.5</healthScaleFactor>
@@ -43,7 +43,7 @@
   </LifeStageDef>
 
   <LifeStageDef>
-    <defName>RRY_Yautja_Teenager</defName>
+    <defName>AvP_Yautja_Teenager</defName>
     <label>teenager</label>
     <adjective>teenage</adjective>
     <reproductive>true</reproductive>
@@ -56,7 +56,7 @@
   </LifeStageDef>
   
   <LifeStageDef>
-    <defName>RRY_Yautja_Adult</defName>
+    <defName>AvP_Yautja_Adult</defName>
     <label>adult</label>
     <visible>false</visible>
     <reproductive>true</reproductive>

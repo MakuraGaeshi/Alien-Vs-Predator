@@ -8,7 +8,7 @@
     <highlightTags>
       
     </highlightTags>
-    <helpText>Basic Equipment taken into the field by almost all Yautja when hunting.\n\nthe most basic versions of which contain just the Wristblade and Self Destruct decive carried by all hunters, it can only be removed by the wearer willfully.\n\nIt can be upgraded via reseach to also contain the MediComp, Shard Injector and Cloaking Device.</helpText>
+    <helpText>Basic Equipment taken into the field by almost all Yautja when hunting.\n\nThe most basic version of the gauntlet only contains a Wristblade and Self Destruct Device. The gauntlet can only be removed by the wearer.\n\nIt can be upgraded via reseach to also contain the MediComp, Shard Injector and Cloaking Device.</helpText>
   </ConceptDef>  
   
   <ConceptDef>
@@ -30,7 +30,7 @@
     <highlightTags>
       
     </highlightTags>
-    <helpText>Yautja will go to extreme lengths to prevent their technology being scavenged by 'lesser' races, this device is one of the most extreme solutions.\n\nThe Device has two modes, a ten second timer and an instant trigger.\n\nThe Timer button acts as a toggle, so you can disarm it by clicking it again.\n\n WARNING!! There is No safty on the instant detonation trigger!.</helpText>
+    <helpText>Yautja will go to extreme lengths to prevent their technology being scavenged by 'lesser' races, this device is one of the most extreme solutions.\n\nThe Device has two modes, a ten second timer and an instant trigger.\n\nThe timer button acts as a toggle, so you can disarm it by clicking it again.\n\n WARNING!! There is No safty on the instant detonation trigger!.</helpText>
   </ConceptDef>  
   
   <ConceptDef>
@@ -41,7 +41,7 @@
     <highlightTags>
       
     </highlightTags>
-    <helpText>With the MediComp Upgrade.\n\nallows the wearer to tend to his own wounds in the field.\n\nThe tend quaility is the same as herbal medice.\n\nThere are no limits to how many time this can be used.</helpText>
+    <helpText>The MediComp upgrade to the gauntlet allows the wearer to tend to their own wounds in the field.\n\nThe tend quaility is the same as herbal medice.\n\nAn unlimited number of wounds can be tended.</helpText>
   </ConceptDef>  
   
   <ConceptDef>
@@ -52,7 +52,7 @@
     <highlightTags>
       
     </highlightTags>
-    <helpText>With the Shard Injector Upgrade.\n\nAllows the wearer to store and ustilize Health Shards to inject themself.\n\nWhen used, a Health Shard heals one of the worst untended wounds on the pawn, but it will not replace lost or destroyed parts.\n\nIt can store a naximum of three Health Shards.</helpText>
+    <helpText>The Shard Injector upgrade to the gauntlet allows for the storage and self-administration of a maximum of three Health Shards.\n\nWhen used, a Health Shard heals one of the worst untended wounds on the pawn, but it will not replace lost or destroyed parts.</helpText>
   </ConceptDef>  
   
   <ConceptDef>
@@ -63,7 +63,7 @@
     <highlightTags>
       
     </highlightTags>
-    <helpText>One of the most well known and coverted peices of Yautja technology, Active Optical Cammoflage, it bends light around the user rendering them invisible.\n\nWhen active, the cloaking device renders the user almost perfectly invisible.\n\nHowever it can be disrupted by the wearer taking sufficent damage and rain can give away the wearers position.\n\n Rain and water Disruption planned but not yet implemented.</helpText>
+    <helpText>One of the most well known and coveted peices of Yautja technology, Active Optical Camouflage bends light around the user rendering them invisible.\n\nHowever it can be disrupted by the wearer taking sufficent damage and rain can give away the wearers position.\n\n Rain and water Disruption planned but not yet implemented.</helpText>
   </ConceptDef>  
   
   <ConceptDef>
@@ -85,7 +85,7 @@
     <highlightTags>
       
     </highlightTags>
-    <helpText>When a Yautja kill a worthy prey, they will have the option to mark themself with the blood of the kill.\n\nFind the creature the pawn killed in its health tab. Then right-click the creature and choose the option to mark yourself with it. Once done, the Yautja will get a permanent boost to mood.\n\n As the Yautja kill stronger games, they will be able to mark themsleves again and get a better permanent mood bonus.\n\n If the creature the Yautja killed is accidently destroyed before they can amrk themself, you can use the blood of a similar prey to mark the Yautja.</helpText>
+    <helpText>The Smart Disc, also known as the Smart Weapon, Cutting Disk or simply the Disc, is a primarily thrown Yautja weapon.\n\nIt is an extremely sharp circular cutting device that is typically thrown like a discus and yet returns to the user like a boomerang. It also features a hand grip for use as a melee slashing weapon</helpText>
   </ConceptDef>  
   
   <ConceptDef>
@@ -96,7 +96,7 @@
     <highlightTags>
       
     </highlightTags>
-    <helpText>When a Yautja kill a worthy prey, they will have the option to mark themself with the blood of the kill.\n\nFind the creature the pawn killed in its health tab. Then right-click the creature and choose the option to mark yourself with it. Once done, the Yautja will get a permanent boost to mood.\n\n As the Yautja kill stronger games, they will be able to mark themsleves again and get a better permanent mood bonus.\n\n If the creature the Yautja killed is accidently destroyed before they can amrk themself, you can use the blood of a similar prey to mark the Yautja.</helpText>
+    <helpText>Combistaffs are Yautja Melee weapons that can be thrown at a target to pin it in place.</helpText>
   </ConceptDef>  
   
  </Defs>  

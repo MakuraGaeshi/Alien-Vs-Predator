@@ -8,7 +8,7 @@ using Verse.AI;
 using Verse.AI.Group;
 using HarmonyLib;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     /*
     [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "TryExecute")]

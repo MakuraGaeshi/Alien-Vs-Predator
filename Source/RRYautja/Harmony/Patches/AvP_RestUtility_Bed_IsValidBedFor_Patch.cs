@@ -13,7 +13,7 @@ using UnityEngine;
 using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     // Ignore Cocoons as Beds
     [HarmonyPatch(typeof(RestUtility), "IsValidBedFor")]

@@ -81,7 +81,7 @@
     </building>
     <constructEffect>ConstructMetal</constructEffect>
     <researchPrerequisites>
-      <li>RRY_YautjaTechBase</li>
+      <li>AvP_Tech_Yautja_T1</li>
     </researchPrerequisites>
     <designationHotKey>Misc7</designationHotKey>
     <placeWorkers>

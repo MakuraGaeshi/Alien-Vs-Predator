@@ -2,7 +2,7 @@
 <Defs>
 <!-- ====================== Hunting Bow ===================== -->
   <ThingDef ParentName="RRYBaseSimpleRanged">
-    <defName>RRY_Gun_Hunting_Bow</defName>
+    <defName>AvP_Yautja_Gun_Hunting_Bow</defName>
     <label>yautja hunting bow</label>
     <description>The traditional Yautja Hunting is a large powerful bow that can be made out of almost any materials.</description>
     <graphicData>
@@ -57,7 +57,7 @@
 			<li>FueledSmithy</li>
 			<li>CraftingSpot</li>
 		</recipeUsers>
-      <researchPrerequisite>RRY_YautjaRanged_Basic</researchPrerequisite>
+      <researchPrerequisite>AvP_Tech_Yautja_Ranged_T1</researchPrerequisite>
       <skillRequirements>
         <Crafting>3</Crafting>
       </skillRequirements>
@@ -92,7 +92,7 @@
   
 <!-- ====================== Compound Bow ===================== -->
   <ThingDef ParentName="RRYBaseSimpleRanged">
-    <defName>RRY_Gun_Compound_Bow</defName>
+    <defName>AvP_Yautja_Gun_Compound_Bow</defName>
     <label>yautja compound bow</label>
     <description>A powerful Compound bow. Fires a heavy arrow long distances.</description>
     <graphicData>
@@ -147,7 +147,7 @@
 			<li>Metallic</li>
 		</stuffCategories>
     <recipeMaker>
-      <researchPrerequisite>RRY_YautjaRanged_Med</researchPrerequisite>
+      <researchPrerequisite>AvP_Tech_Yautja_Ranged_T2</researchPrerequisite>
       <skillRequirements>
         <Crafting>6</Crafting>
       </skillRequirements>
@@ -189,46 +189,44 @@
 	</projectile>
  </ThingDef>
 
-	<ThingDef ParentName="RRYBaseMakeableGun">
-		<defName>RRY_Gun_YautjaBlaster</defName>
-		<label>Plasma Pistol</label>
-		<description>The Plasma Pistol, also known as the Plasma Handgun, is a handheld version of the Yautja Plasmacaster.</description>
-		<graphicData>
-			<texPath>Things/Equipment/Ranged/PredatorBlaster</texPath>
-			<graphicClass>Graphic_Single</graphicClass>		
-    </graphicData>
-		<soundInteract>Interact_Autopistol</soundInteract>
-		<statBases>
-			<WorkToMake>20000</WorkToMake>
-			<MarketValue>750</MarketValue>
-			<Mass>2</Mass>
-			<AccuracyTouch>0.80</AccuracyTouch>
-			<AccuracyShort>0.85</AccuracyShort>
-			<AccuracyMedium>0.60</AccuracyMedium>
-			<AccuracyLong>0.35</AccuracyLong>
-			<RangedWeapon_Cooldown>1.35</RangedWeapon_Cooldown>
-		</statBases>
+ <ThingDef ParentName="RRYBaseMakeableGun">
+	<defName>AvP_Yautja_Gun_Blaster</defName>
+	<label>Plasma Pistol</label>
+	<description>The Plasma Pistol, also known as the Plasma Handgun, is a handheld version of the Yautja Plasmacaster.</description>
+	<graphicData>
+		<texPath>Things/Equipment/Ranged/PredatorBlaster</texPath>
+		<graphicClass>Graphic_Single</graphicClass>		
+	</graphicData>
+	<soundInteract>Interact_Autopistol</soundInteract>
+	<statBases>
+		<WorkToMake>20000</WorkToMake>
+		<MarketValue>750</MarketValue>
+		<Mass>2</Mass>
+		<AccuracyTouch>0.80</AccuracyTouch>
+		<AccuracyShort>0.85</AccuracyShort>
+		<AccuracyMedium>0.60</AccuracyMedium>
+		<AccuracyLong>0.35</AccuracyLong>
+		<RangedWeapon_Cooldown>1.35</RangedWeapon_Cooldown>
+	</statBases>
 	<recipeMaker>
-		<researchPrerequisite>RRY_YautjaRanged_Med</researchPrerequisite>
+		<researchPrerequisite>AvP_Tech_Yautja_Ranged_T2</researchPrerequisite>
 		<skillRequirements>
 			<Crafting>6</Crafting>
 		</skillRequirements>
 	</recipeMaker>
-		
-		<verbs>
-			<li>
-				<verbClass>Verb_Shoot</verbClass>
-				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>RRY_Bullet_Plasma</defaultProjectile>
-				<warmupTime>1</warmupTime>
-				<range>23</range>
-				<soundCast>RRY_Shot_ShoulderCannon</soundCast>
-				<!-- <forcedMissRadius>0.1</forcedMissRadius> -->
-				<soundCastTail>GunTail_Light</soundCastTail>
-				<muzzleFlashScale>8</muzzleFlashScale>
-			
-			</li>
-		</verbs>
+	<verbs>
+		<li>
+			<verbClass>Verb_Shoot</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>RRY_Bullet_Plasma</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>23</range>
+			<soundCast>RRY_Shot_ShoulderCannon</soundCast>
+			<!-- <forcedMissRadius>0.1</forcedMissRadius> -->
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>8</muzzleFlashScale>
+		</li>
+	</verbs>
     <tools>
       <li>
         <label>grip</label>
@@ -248,26 +246,26 @@
         <cooldownTime>1.6</cooldownTime>
       </li>
     </tools>
-		<techLevel>Spacer</techLevel>
-		<weaponTags>
-			<li>Yautja</li>
-			<li>YautjaGun</li>
-			<li>YautjaBlaster</li>
-			<li>YautjaRanged</li>
-		</weaponTags>
-		<thingCategories>
-			<li>RRY_RangedWeapons</li>
-		</thingCategories>
-		<tradeTags>
-			<li>RRY_RangedWeapons</li>
-		</tradeTags>
-		<costList>				
-			<Steel>30</Steel>
-			<Plasteel>40</Plasteel>
-			<ComponentIndustrial>3</ComponentIndustrial>
-			<Gold>4</Gold>
-		</costList>
-	</ThingDef>
+	<techLevel>Spacer</techLevel>
+	<weaponTags>
+		<li>Yautja</li>
+		<li>YautjaGun</li>
+		<li>YautjaBlaster</li>
+		<li>YautjaRanged</li>
+	</weaponTags>
+	<thingCategories>
+		<li>RRY_RangedWeapons</li>
+	</thingCategories>
+	<tradeTags>
+		<li>RRY_RangedWeapons</li>
+	</tradeTags>
+	<costList>				
+		<Steel>30</Steel>
+		<Plasteel>40</Plasteel>
+		<ComponentIndustrial>3</ComponentIndustrial>
+		<Gold>4</Gold>
+	</costList>
+ </ThingDef>
 	
 <!-- ====================== Needler Rifle ===================== -->
  <ThingDef ParentName="BaseBullet">
@@ -286,9 +284,9 @@
 	</projectile>
  </ThingDef>
 	<ThingDef ParentName="RRYBaseMakeableGun">
-		<defName>RRY_Gun_NeedlerRifle</defName>
+		<defName>AvP_Yautja_Gun_Needler</defName>
 		<label>Needler</label>
-		<description>Regardless of the exact form of the weapon, all Needlers serve as projectile weapons firing metal spears. How these projectiles are fired is not clear, as the weapon produces no discernible muzzle flash and often little noise, yet fires spears with tremendous velocity and accuracy. Regardless of physical appearance, the Needler is mid-ranged and very powerful, capable of pinning victims to solid surfaces like a nail gun.\n\nDespite the weapon's name, the projectiles fired by the Speargun are not typically spear-shaped; the most common form seems to be a U-shaped projectile with a weighted tail and two serrated prongs pointing forwards. They are made from an unknown metal that is incredibly lightweight yet able to cut like hardened steel. They spears often have a blood groove down the middle, designed to cause a target to bleed out if they become stuck in the flesh.</description>
+		<description>Regardless of the exact form of the weapon, all Needlers serve as projectile weapons firing a hail of razor thin metal spears. How these projectiles are fired is not clear, as the weapon produces no discernible muzzle flash and often little noise, yet fires these needles with tremendous velocity and accuracy. Regardless of physical appearance, the Needler is mid-ranged and very powerful, capable of pinning victims to solid surfaces like a nail gun.\n\nThey are made from an unknown metal that is incredibly lightweight yet able to cut like hardened steel. They spears often have a blood groove down the middle, designed to cause a target to bleed out if they become stuck in the flesh.</description>
 		<graphicData>
 			<texPath>Things/Equipment/Ranged/NeedleRifle</texPath>
 			<graphicClass>Graphic_Single</graphicClass>		
@@ -305,7 +303,7 @@
 			<RangedWeapon_Cooldown>1.35</RangedWeapon_Cooldown>
 		</statBases>
 	<recipeMaker>
-		<researchPrerequisite>RRY_YautjaRanged_Med</researchPrerequisite>
+		<researchPrerequisite>AvP_Tech_Yautja_Ranged_T2</researchPrerequisite>
 	</recipeMaker>
 		<verbs>
 			<li>
@@ -364,9 +362,9 @@
 	
 <!-- ====================== Spear Rifle ===================== -->
   <ThingDef ParentName="RRYBaseMakeableGun">
-    <defName>RRY_Gun_SpearRifle</defName>
+    <defName>AvP_Yautja_Gun_SpearRifle</defName>
     <label>spear rifle</label>
-		<description>Regardless of the exact form of the weapon, all Spearguns serve as projectile weapons firing metal spears. How these projectiles are fired is not clear, as the weapon produces no discernible muzzle flash and often little noise, yet fires spears with tremendous velocity and accuracy. Regardless of physical appearance, the Speargun is long-ranged and very powerful, capable of pinning victims to solid surfaces like a nail gun. Some have been seen with integrated computerized scopes further increasing their range. A common tactic, particularly with young and inexperienced hunters, is to use the Netgun to immobilize prey before finishing it off with the Speargun.\n\nDespite the weapon's name, the projectiles fired by the Speargun are not typically spear-shaped; the most common form seems to be a U-shaped projectile with a weighted tail and two serrated prongs pointing forwards. They are made from an unknown metal that is incredibly lightweight yet able to cut like hardened steel. They spears often have a blood groove down the middle, designed to cause a target to bleed out if they become stuck in the flesh.</description>
+		<description>Regardless of the exact form of the weapon, all Spearguns serve as projectile weapons firing metal spears. How these projectiles are fired is not clear, as the weapon produces no discernible muzzle flash and often little noise, yet fires spears with tremendous velocity and accuracy. Regardless of physical appearance, the Speargun is long-ranged and very powerful, capable of pinning victims to solid surfaces like a nail gun. Some have been seen with integrated computerized scopes further increasing their range. A common tactic, particularly with young and inexperienced hunters, is to use the Netgun to immobilize prey before finishing it off with the Speargun.\n\nDespite the weapon's name, the projectiles fired by the Speargun are not typically spear-shaped; the most common form seems to be a U-shaped projectile with a weighted tail and two serrated prongs pointing forwards. They are made from an unknown metal that is incredibly lightweight yet able to cut like hardened steel. The spears often have a blood groove down the middle, designed to cause a target to bleed out if they become stuck in the flesh.</description>
     <graphicData>
 			<texPath>Things/Equipment/Ranged/Yautja_Sniper_Spear_Rifle</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -379,7 +377,7 @@
 	</comps>
     <soundInteract>Interact_Rifle</soundInteract>
     <recipeMaker>
-      <researchPrerequisite>RRY_YautjaRanged_Adv</researchPrerequisite>
+      <researchPrerequisite>AvP_Tech_Yautja_Ranged_T3</researchPrerequisite>
       <skillRequirements>
         <Crafting>7</Crafting>
       </skillRequirements>
@@ -454,7 +452,7 @@
 
 <!-- ====================== Smart Disk ===================== -->	 
   <ThingDef ParentName="RRYBaseSimpleRanged">
-    <defName>RRY_Gun_SmartDisk</defName>
+    <defName>AvP_Yautja_Gun_SmartDisk</defName>
     <label>Yautja Smart Disk</label>
     <description>A circular shaped, extremely sharp thrown weapon. The smart disk come equipped with a targeting system that makes it deadly accurate but with a long time to setup before throwing. But it is unwieldy in close-combat.</description>
     <graphicData>
@@ -482,7 +480,7 @@
 			<li>YautjaRanged</li>
     </weaponTags>
     <recipeMaker>
-	  <researchPrerequisite>RRY_YautjaRanged_Basic</researchPrerequisite>
+	  <researchPrerequisite>AvP_Tech_Yautja_Ranged_T1</researchPrerequisite>
       <skillRequirements>
         <Crafting>6</Crafting>
       </skillRequirements>

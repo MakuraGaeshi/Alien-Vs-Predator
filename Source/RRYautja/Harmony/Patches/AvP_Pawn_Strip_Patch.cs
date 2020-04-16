@@ -13,7 +13,7 @@ using UnityEngine;
 using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     // Disallows stripping of the Wristblade
     [HarmonyPatch(typeof(Pawn), "Strip")]
@@ -26,7 +26,7 @@ namespace RRYautja
             bool result = true;
             if (__instance.RaceProps.Humanlike)
             {
-                result = !(__instance.apparel.WornApparel.Any(x => x.def.defName.Contains("RRY_Equipment_HunterGauntlet")) && !__instance.Dead);
+                result = !(__instance.apparel.WornApparel.Any(x => x.def.HasModExtension<UnstrippableExtension>() && !x.def.GetModExtension<UnstrippableExtension>().otherStrip) && !__instance.Dead);
             }
             //    Log.Message(string.Format("Pawn_StripPatch IgnoreWristblade: {0}", result));
             if (!result)
@@ -72,13 +72,16 @@ namespace RRYautja
             tmpApparelList.Clear();
             for (int i = 0; i < __instance.apparel.WornApparel.Count; i++)
             {
-                if (!__instance.apparel.WornApparel[i].def.defName.Contains("RRY_Equipment_HunterGauntlet"))
+                if (__instance.apparel.WornApparel[i].def.HasModExtension<UnstrippableExtension>())
                 {
-                    tmpApparelList.Add(__instance.apparel.WornApparel[i]);
+                    if (__instance.apparel.WornApparel[i].def.GetModExtension<UnstrippableExtension>().otherStrip)
+                    {
+                        tmpApparelList.Add(__instance.apparel.WornApparel[i]);
+                    }
                 }
                 else
                 {
-                    //    Log.Message(string.Format("Ignoring Wristblade"));
+                    tmpApparelList.Add(__instance.apparel.WornApparel[i]);
                 }
             }
             for (int j = 0; j < tmpApparelList.Count; j++)
@@ -87,4 +90,5 @@ namespace RRYautja
             }
         }
     }
+
 }

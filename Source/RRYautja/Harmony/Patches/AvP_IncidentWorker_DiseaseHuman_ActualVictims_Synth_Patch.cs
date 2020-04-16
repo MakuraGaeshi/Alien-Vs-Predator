@@ -14,7 +14,7 @@ using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 using AlienRace;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     [HarmonyPatch(typeof(IncidentWorker_DiseaseHuman), "ActualVictims")]
     public static class AvP_IncidentWorker_DiseaseHuman_ActualVictims_Synth_Patch

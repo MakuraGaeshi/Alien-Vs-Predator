@@ -218,6 +218,6 @@ namespace RimWorld
         public static ConceptDef RRY_Concept_HiveLike;
         public static ConceptDef RRY_Concept_ShipPart;
         public static ConceptDef RRY_Concept_Eggs;
-        public static ConceptDef RRY_Concept_Fungus;
+        public static ConceptDef RRY_Concept_SporeSac;
     }
 }

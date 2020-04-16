@@ -13,7 +13,7 @@ using UnityEngine;
 using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     [HarmonyPatch(typeof(SnowUtility), "AddSnowRadial")]
     public static class AvP_SnowUtility_AddSnowRadial_Patch

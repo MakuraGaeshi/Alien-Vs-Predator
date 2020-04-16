@@ -23,6 +23,10 @@ namespace RRYautja
 		// Token: 0x06000E23 RID: 3619 RVA: 0x00069D68 File Offset: 0x00068168
 		protected override bool TryExecuteWorker(IncidentParms parms)
 		{
+			if (!settings.SettingsHelper.latest.AllowNeomorphs)
+			{
+				return false;
+			}
             ThingDef thingDef = null;
             if (this.def == XenomorphDefOf.RRY_Neomorph_FungusSprout)
             {

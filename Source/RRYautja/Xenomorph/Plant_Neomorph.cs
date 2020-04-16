@@ -31,7 +31,7 @@ namespace RRYautja
                     Thing thing2;
 
 
-                    if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Fungus))
+                    if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_SporeSac))
                     {
                         thing2 = ThingMaker.MakeThing(XenomorphDefOf.RRY_Neomorph_Spores_Hidden);
                     }
@@ -78,7 +78,7 @@ namespace RRYautja
                 {
                     Thing thing2;
 
-                    if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Fungus))
+                    if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_SporeSac))
                     {
                         thing2 = ThingMaker.MakeThing(XenomorphDefOf.RRY_Plant_Neomorph_Fungus_Hidden);
                     }
@@ -136,7 +136,7 @@ namespace RRYautja
             {
                 if (p.Faction == Faction.OfPlayer)
                 {
-                    if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Fungus) && p.Spawned && p.IsColonist)
+                    if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_SporeSac) && p.Spawned && p.IsColonist)
                     {
                         return base.PathFindCostFor(p);
                     }

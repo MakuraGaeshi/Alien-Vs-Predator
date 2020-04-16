@@ -13,7 +13,7 @@ using UnityEngine;
 using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
 
     [HarmonyPatch(typeof(PawnGenerator), "GeneratePawn", new[] { typeof(PawnGenerationRequest) })]
@@ -21,11 +21,13 @@ namespace RRYautja
     {
         public static void Postfix(PawnGenerationRequest request, ref Pawn __result)
         {
+            Rand.PushState();
             if (Rand.Chance(0.005f) && __result.isPotentialHost() && SettingsHelper.latest.AllowHiddenInfections)
             {
-                HediffDef def = Rand.Chance(0.75f) ? XenomorphDefOf.RRY_HiddenXenomorphImpregnation : XenomorphDefOf.RRY_HiddenNeomorphImpregnation;
+                HediffDef def = Rand.Chance(0.75f) || !SettingsHelper.latest.AllowNeomorphs ? XenomorphDefOf.RRY_HiddenXenomorphImpregnation : XenomorphDefOf.RRY_HiddenNeomorphImpregnation;
                 __result.health.AddHediff(def, __result.RaceProps.body.corePart, null);
             }
+            Rand.PopState();
             var hediffGiverSet = __result?.def?.race?.hediffGiverSets;
             if (hediffGiverSet == null) return;
             foreach (var item in hediffGiverSet)

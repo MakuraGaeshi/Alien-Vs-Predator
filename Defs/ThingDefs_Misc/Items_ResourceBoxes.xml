@@ -26,16 +26,17 @@
 		<tradeability>Sellable</tradeability>
 		<comps>
 			<li Class="CompProperties_Usable">
+				<compClass>CompUsableBox</compClass>
 				<useJob>OpenResourceBox</useJob>
-				<useLabel>Open box</useLabel>
+				<useLabel>Open {0} box</useLabel>
 			</li>
 		</comps>
 	</ThingDef>
 
 	<ThingDef ParentName="ResourceBoxBase">
 		<defName>RRY_USCM_StandardGear</defName>
-		<label>standard armamement of USCM</label>
-		<description>The box contains the gear for 4 privates of the USCM Corps.</description>
+		<label>USCM standard armamement</label>
+		<description>The box contains equipment for four privates of the USCM Corps.</description>
 		<statBases>
 			<MarketValue>120</MarketValue>
 			<MaxHitPoints>70</MaxHitPoints>
@@ -62,6 +63,7 @@
             <spawnAll>true</spawnAll>
             <destoryOnUse>true</destoryOnUse>
             <destroyChance>1.0</destroyChance>
+            <fixedQuality>Good</fixedQuality>
             <maxUses>1</maxUses>
 			</li>
 		</comps>
@@ -69,8 +71,8 @@
 	
 	<ThingDef ParentName="ResourceBoxBase">
 		<defName>RRY_USCM_OperatorGear</defName>
-		<label>M56 Battle System Operator supplies</label>
-		<description>The box contains the to equip 1 M56 Smart Gun Operator.</description>
+		<label>M56 Operator supplies</label>
+		<description>The box contains equipment for a single M56 Smart Gun Operator.</description>
 		<statBases>
 			<MarketValue>120</MarketValue>
 			<MaxHitPoints>70</MaxHitPoints>
@@ -89,6 +91,7 @@
             <spawnAll>true</spawnAll>
             <destoryOnUse>true</destoryOnUse>
             <destroyChance>1.0</destroyChance>
+            <fixedQuality>Good</fixedQuality>
             <maxUses>1</maxUses>
 			</li>
 		</comps>

@@ -53,7 +53,7 @@
 		</apparel>
 	</ThingDef>
 
-    <!--========================= USCM - Apparel Armor Makable Base ==========================-->
+    <!--========================= USCM - Apparel Armour Makable Base ==========================-->
 
 	<ThingDef Name="RRY_USCM_Armour_MakeableBase" ParentName="RRY_USCM_ApparelBase" Abstract="True">
 		<recipeMaker>

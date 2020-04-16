@@ -7,7 +7,7 @@ using Verse;
 using HarmonyLib;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     [HarmonyPatch(typeof(ThingSelectionUtility), "SelectableByMapClick")]
     public static class AvP_ThingSelectionUtility_SelectableByMapClick_HostileStealth_Patch
@@ -23,7 +23,7 @@ namespace RRYautja
                     if (pawn != null)
                     {
                         bool flag_Faction = pawn.Faction != Faction.OfPlayer;
-                        bool flag_Cloaked = pawn.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked, false) && pawn.Faction != Faction.OfPlayer;
+                        bool flag_Cloaked = pawn.health.hediffSet.HasHediff(YautjaDefOf.AvP_Hediff_Cloaked, false) && pawn.Faction != Faction.OfPlayer;
                         bool flag_HiddenXeno = pawn.isXenomorph(out Comp_Xenomorph comp) && comp.hidden;
                         if ((flag_HiddenXeno || flag_Cloaked) && flag_Faction)
                         {

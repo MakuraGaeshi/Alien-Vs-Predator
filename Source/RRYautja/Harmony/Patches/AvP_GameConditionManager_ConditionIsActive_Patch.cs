@@ -13,7 +13,7 @@ using UnityEngine;
 using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     [HarmonyPatch(typeof(GameConditionManager), "ConditionIsActive")]
     internal static class AvP_GameConditionManager_ConditionIsActive_Patch

@@ -46,7 +46,7 @@
 		
 		<defName>RRY_Synth_Farmhand</defName>
 		<title>Farmhand Synth</title>
-		<baseDescription>[PAWN_nameDef] is a farmhnad unit.</baseDescription>
+		<baseDescription>[PAWN_nameDef] is a farmhand unit.</baseDescription>
 		<bodyTypeMale>Male</bodyTypeMale>
 		<bodyTypeFemale>Female</bodyTypeFemale>
 		<slot>Childhood</slot>
@@ -242,7 +242,7 @@
 	<AlienRace.BackstoryDef>
 		<defName>RRY_Artificials_Refurbished</defName>
 		<title>Refurbished Synth</title>
-		<baseDescription>[PAWN_nameDef] was sent for refurbishing. Over the years, [PAWN_nameDef] suffered lot of damages that left permanent flaws in this unit, along with unexpected behaviors and knowledges.</baseDescription>
+		<baseDescription>[PAWN_nameDef] was sent for refurbishing. Over the years, [PAWN_nameDef] suffered lot of damage, leaving permanent flaws in this unit along with unexpected behaviors and knowledge.</baseDescription>
 		<bodyTypeMale>Male</bodyTypeMale>
 		<bodyTypeFemale>Female</bodyTypeFemale>
 		<slot>Childhood</slot>
@@ -301,7 +301,7 @@
 	<AlienRace.BackstoryDef>
 		<defName>RRY_Artificials_Military</defName>
 		<title>Military Synth</title>
-		<baseDescription>[PAWN_nameDef] was sent to USCM conditioning department. [PAWN_pronoun] went through basic training and assigned to a squad.</baseDescription>
+		<baseDescription>[PAWN_nameDef] was sent to a USCM conditioning department. [PAWN_pronoun] went through basic training and was assigned to a squad.</baseDescription>
 		<bodyTypeMale>Male</bodyTypeMale>
 		<bodyTypeFemale>Female</bodyTypeFemale>
 		<slot>Childhood</slot>

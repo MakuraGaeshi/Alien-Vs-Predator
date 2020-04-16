@@ -13,7 +13,7 @@ using UnityEngine;
 using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "GetLetterText")]
     public static class AvP_IncidentWorker_RaidEnemyPatch_GetLetterText_Patch
@@ -23,7 +23,7 @@ namespace RRYautja
         {
             if (parms.target is Map && (parms.target as Map).IsPlayerHome)
             {
-                if (parms.faction != null && ((parms.faction.leader != null && parms.faction.leader.kindDef.race == YautjaDefOf.RRY_Alien_Yautja) || (parms.faction.def.basicMemberKind != null && parms.faction.def.basicMemberKind.race == YautjaDefOf.RRY_Alien_Yautja)))
+                if (parms.faction != null && ((parms.faction.leader != null && parms.faction.leader.kindDef.race == YautjaDefOf.AvP_Alien_Yautja) || (parms.faction.def.basicMemberKind != null && parms.faction.def.basicMemberKind.race == YautjaDefOf.AvP_Alien_Yautja)))
                 {
 #if DEBUG
                 //    Log.Message(string.Format("PostGetLetterText Yautja Raid"));

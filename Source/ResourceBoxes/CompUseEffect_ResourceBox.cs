@@ -28,6 +28,9 @@ namespace ResourceBoxes
         public bool spawnAll = false;
         public float destroyChance = 1f;
         public int maxWorth = -1;
+        public string fixedQuality = string.Empty;
+        public QualityCategory minQuality = QualityCategory.Awful;
+        public QualityCategory maxQuality = QualityCategory.Legendary;
     }
 
     // Token: 0x02000002 RID: 2
@@ -70,6 +73,10 @@ namespace ResourceBoxes
             }
         }
 
+        public override bool CanBeUsedBy(Pawn p, out string failReason)
+        {
+            return base.CanBeUsedBy(p, out failReason);
+        }
 
         // Token: 0x06000003 RID: 3 RVA: 0x0000209C File Offset: 0x0000029C
         protected virtual void OpenBox(Pawn usedBy)
@@ -101,7 +108,6 @@ namespace ResourceBoxes
             {
                 ThingDef named = null;
                 int PerItemCount;
-                int j = 0;
                 if (PropsResourceBox.PerItemCount != 0)
                 {
                     PerItemCount = PropsResourceBox.PerItemCount;
@@ -128,7 +134,7 @@ namespace ResourceBoxes
                     CompQuality compQuality = ThingCompUtility.TryGetComp<CompQuality>(thing);
                     if (compQuality != null)
                     {
-                        QualityCategory qualityCategory = QualityUtility.GenerateQualityCreatedByPawn(Rand.RangeInclusive(0, 19), false);
+                        QualityCategory qualityCategory = this.Quality;
                         compQuality.SetQuality(qualityCategory, 0);
                     }
                     CompArt compArt = ThingCompUtility.TryGetComp<CompArt>(thing);
@@ -140,6 +146,34 @@ namespace ResourceBoxes
                 }
             }
             return list;
+        }
+
+        public QualityCategory Quality
+        {
+            get
+            {
+                switch (PropsResourceBox.fixedQuality)
+                {
+                    case "Awful":
+                        return QualityCategory.Awful;
+                    case "Poor":
+                        return QualityCategory.Poor;
+                    case "Normal":
+                        return QualityCategory.Normal;
+                    case "Good":
+                        return QualityCategory.Good;
+                    case "Excellent":
+                        return QualityCategory.Excellent;
+                    case "Masterwork":
+                        return QualityCategory.Masterwork;
+                    case "Legendary":
+                        return QualityCategory.Legendary;
+                    default:
+                        QualityCategory Quality = (QualityCategory)Rand.RangeInclusive((int)PropsResourceBox.minQuality, (int)PropsResourceBox.maxQuality);
+                        return Quality;
+                }
+
+            }
         }
 
         // Token: 0x06000005 RID: 5 RVA: 0x000023F8 File Offset: 0x000005F8

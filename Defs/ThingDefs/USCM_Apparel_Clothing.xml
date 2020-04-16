@@ -5,7 +5,7 @@
 	<ThingDef ParentName="RRY_USCM_Apparel_MakeableBase">
     <defName>RRY_USCM_Bandana</defName>
     <label>war bandana</label>
-    <description>A badass bandana. Doesn't offer much protection, but the ego boost will make you win unsurmontable odds.</description>
+    <description>A badass bandana. Doesn't offer much protection, but the ego boost will let you overcome impossible odds.</description>
     <techLevel>Neolithic</techLevel>
     <graphicData>
       <texPath>Things/Apparel/USCM/Clothing/Headband/ColonialMarineHeadband</texPath>

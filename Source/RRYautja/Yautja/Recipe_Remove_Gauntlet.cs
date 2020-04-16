@@ -2,6 +2,7 @@
 using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Verse;
 
 namespace RRYautja
@@ -9,6 +10,26 @@ namespace RRYautja
     // Token: 0x0200047F RID: 1151
     public class Recipe_Remove_Gauntlet : Recipe_Surgery
     {
+        public bool HasGauntlet(Pawn pawn, Hediff hediff, BodyPartRecord part)
+        {
+            foreach (Apparel app in pawn.apparel.WornApparel)
+            {
+                CompHediffApparel hdApp = app.TryGetComp<CompHediffApparel>();
+                if (hdApp!=null)
+                {
+                    if (app.def.apparel.CoversBodyPart(part) || hdApp.MyGetPartsToAffect(pawn).Contains(part))
+                    {
+                        if (hdApp.MyGetHediffs(pawn).Any(x => x == hediff))
+                        {
+                            Gauntlet = app;
+                            break;
+                        }
+                    }
+                }
+            }
+            return Gauntlet != null;
+        }
+        private Apparel Gauntlet;
         // Token: 0x06001462 RID: 5218 RVA: 0x0009DD30 File Offset: 0x0009C130
         public override IEnumerable<BodyPartRecord> GetPartsToApplyOn(Pawn pawn, RecipeDef recipe)
         {
@@ -17,7 +38,7 @@ namespace RRYautja
             {
                 if (allHediffs[i].Part != null)
                 {
-                    if (allHediffs[i].def == recipe.removesHediff)
+                    if (allHediffs[i].def == recipe.removesHediff && HasGauntlet(pawn, allHediffs[i], allHediffs[i].Part))
                     {
                         yield return allHediffs[i].Part;
                     }
@@ -60,6 +81,16 @@ namespace RRYautja
             Hediff hediff = pawn.health.hediffSet.hediffs.Find((Hediff x) => x.def == this.recipe.removesHediff && x.Part == part);
             if (hediff != null)
             {
+                if (Gauntlet!=null)
+                {
+                    Rand.PushState();
+                    Gauntlet.HitPoints -= Rand.RangeInclusive(0, Gauntlet.MaxHitPoints);
+                    Rand.PopState();
+                    if (Gauntlet.HitPoints>0)
+                        pawn.apparel.TryDrop(Gauntlet);
+                    else
+                        pawn.apparel.Remove(Gauntlet);
+                }
                 pawn.health.RemoveHediff(hediff);
                 DamageDef surgicalCut = DamageDefOf.SurgicalCut;
                 float amount = 99999f;
@@ -134,5 +165,6 @@ namespace RRYautja
             }
             return "RRY_Remove_Gauntlet".Translate();
         }
+
     }
 }

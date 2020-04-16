@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 <!-- ==================== Base HeDiffs =========================
-	<HediffDef Name="RRY_SpecialBadHeDiff" Abstract="True">
+	<HediffDef Name="AvP_SpecialBadHeDiff" Abstract="True">
 		<hediffClass>HediffWithComps</hediffClass>
 		<defaultLabelColor>(0.8, 0.8, 0.35)</defaultLabelColor>
     <isBad>true</isBad>
@@ -9,7 +9,7 @@
 	<makesSickThought>false</makesSickThought>
 	</HediffDef>
 	
-	<HediffDef Name="RRY_SpecialGoodHeDiff" Abstract="True">
+	<HediffDef Name="AvP_SpecialGoodHeDiff" Abstract="True">
 		<hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(0.5, 0.5, 0.9)</defaultLabelColor>
     <isBad>false</isBad>

@@ -189,7 +189,7 @@
 	<ThingDef ParentName="RRY_USCM_BaseMakeableGun">
 		<defName>RRY_USCM_Gun_88mod4P</defName>
 		<label>88 Mod 4 Combat Pistol</label>
-		<description>The 88 Mod 4 Combat Pistol, also known simply as the Combat Pistol, is a 9mm, 18-round, blowback-operated, striker-fired, double action only, semi-automatic, pistol manufactured by Weyland-Yutani. Made completely of nano-bound hard impact plastic and other synthetic materials its low power damages are balanced by a fast fire rate.</description>
+		<description>The 88 Mod 4 Combat Pistol, also known simply as the Combat Pistol, is a 9mm, 18-round, blowback-operated, striker-fired, double action only, semi-automatic, pistol manufactured by Weyland-Yutani. Made completely of nano-bound hard impact plastic and other synthetic materials its low damage is balanced by a high rate of fire.</description>
 		<graphicData>
 			<texPath>Things/Equipment/USCM/Ranged/88MOD4</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -413,7 +413,7 @@
  <ThingDef ParentName="RRY_USCM_BaseMakeableGun">
     <defName>RRY_USCM_M240A2Incinerator_Heavy</defName>
     <label>M2402 heavy incinerator</label>
-    <description>The Heavy varaint of the M240 Incinerator unit, the M240A2 "Cleaner" Incenerator Unit need a portable fuel tank being strapped to the back of the user to make it effective.</description>
+    <description>The Heavy varaint of the M240 Incinerator unit, the M240A2 "Cleaner" Incenerator Unit requires a portable fuel tank strapped to the user’s back to be effective.</description>
     <graphicData>
 		<texPath>Things/Equipment/USCM/Ranged/M240_incinerator_unit</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
@@ -769,7 +769,7 @@
 	<ThingDef ParentName="RRY_USCM_BaseMakeableGun">
 		<defName>RRY_USCM_Gun_M5RPG</defName>
 		<label>M5 Rocket Propelled Grenade</label>
-		<description>The M5 Rocket Propelled Grenade (RPG) is a portable, shoulder-fired, reloadable, semi-automatic unguided anti-armor rocket-propelled grenade launcher used by United States Colonial Marine Corps as their standard issue RPG. Able to load up to 4 rockets, the M5 RPG is the favorite anti-infantry toy of the USCM.</description>
+		<description>The M5 Rocket Propelled Grenade (RPG) is a portable, shoulder-fired, reloadable, semi-automatic unguided anti-armour rocket-propelled grenade launcher used by United States Colonial Marine Corps as their standard issue RPG. Able to load up to 4 rockets, the M5 RPG is the favorite anti-infantry toy of the USCM.</description>
 		<graphicData>
 			<texPath>Things/Equipment/USCM/Ranged/uscm_rocket_launcher_Ver</texPath>
 			<graphicClass>Graphic_Single</graphicClass>

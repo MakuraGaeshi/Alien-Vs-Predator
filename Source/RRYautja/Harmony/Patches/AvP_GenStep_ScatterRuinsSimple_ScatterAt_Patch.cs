@@ -15,7 +15,7 @@ using RRYautja.ExtensionMethods;
 using AlienRace;
 using System.Reflection.Emit;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
 
     /*

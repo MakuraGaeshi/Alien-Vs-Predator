@@ -13,7 +13,7 @@ using UnityEngine;
 using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     [HarmonyPatch(typeof(PawnGenerator), "GenerateBodyType")]
     public static class AvP_PawnGenerator_GenerateBodyType_Yautja_Patch
@@ -21,7 +21,7 @@ namespace RRYautja
         [HarmonyPostfix]
         public static void Yautja_GenerateBodyTypePatch(ref Pawn pawn)
         {
-            bool flag = pawn.def == YautjaDefOf.RRY_Alien_Yautja;
+            bool flag = pawn.def == YautjaDefOf.AvP_Alien_Yautja;
             if (flag)
             {
                 pawn.story.bodyType = (pawn.gender != Gender.Female) ? YautjaDefOf.RRYYautjaMale : YautjaDefOf.RRYYautjaFemale;

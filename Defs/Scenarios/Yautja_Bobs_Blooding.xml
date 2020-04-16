@@ -51,34 +51,34 @@
 			</li>
 			<li Class="ScenPart_StartingThing_Defined">
 				<def>StartingThing_Defined</def>
-				<thingDef>RRY_Melee_Combistaff</thingDef>
+				<thingDef>AvP_Yautja_Melee_Combistaff</thingDef>
 				<count>1</count>
 			</li>
 			<li Class="ScenPart_StartingThing_Defined">
 				<def>StartingThing_Defined</def>
-				<thingDef>RRY_Gun_Compound_Bow</thingDef>
+				<thingDef>AvP_Yautja_Gun_Compound_Bow</thingDef>
 				<count>1</count>
 				<stuff>Steel</stuff>
 			</li>
 			<li Class="ScenPart_StartingThing_Defined">
 				<def>StartingThing_Defined</def>
-				<thingDef>RRY_Gun_NeedlerRifle</thingDef>
+				<thingDef>AvP_Yautja_Gun_Needler</thingDef>
 				<count>1</count>
 			</li>
 			
 			<li Class="ScenPart_StartingThing_Defined">
 				<def>StartingThing_Defined</def>
-				<thingDef>RRY_Gun_SpearRifle</thingDef>
+				<thingDef>AvP_Yautja_Gun_SpearRifle</thingDef>
 				<count>1</count>
 			</li>
 			<li Class="ScenPart_StartingThing_Defined">
 				<def>StartingThing_Defined</def>
-				<thingDef>RRY_Gun_SmartDisk</thingDef>
+				<thingDef>AvP_Yautja_Gun_SmartDisk</thingDef>
 				<count>1</count>
 			</li>
 			<li Class="ScenPart_StartingThing_Defined">
 				<def>StartingThing_Defined</def>
-				<thingDef>RRY_Melee_BladedMaul</thingDef>
+				<thingDef>AvP_Yautja_Melee_BladedMaul</thingDef>
 				<count>1</count>
 				<stuff>Steel</stuff>
 			</li>

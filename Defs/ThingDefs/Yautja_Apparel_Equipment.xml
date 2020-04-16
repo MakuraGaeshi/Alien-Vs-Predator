@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 	<!-- ========================= Yautja - Equipment base ========================== -->
-	<ThingDef Name="RRY_Yautja_EquipmentBase" ParentName="RRY_Armor_MakeableBase" Abstract="true">
+	<ThingDef Name="AvP_Yautja_Equipment_Base" ParentName="AvP_Armour_Base_Makeable" Abstract="true">
 	<description>Advanced equipment of the Yautja</description>
 	</ThingDef>
 	<!-- ========================= Yautja - Hunter Gauntlet ========================== -->
-	<ThingDef ParentName="RRY_Yautja_EquipmentBase" Name="RRY_Equipment_HunterGauntlet"  Abstract="True">
-		<defName>RRY_Equipment_HunterGauntlet</defName>
+	<ThingDef ParentName="AvP_Yautja_Equipment_Base" Name="AvP_Yautja_Equipment_Gauntlet"  Abstract="True">
+		<defName>AvP_Yautja_Equipment_Gauntlet</defName>
 		<label>Yautja Hunter Gauntlet</label>
-		<description>This wrist mounted gauntlet is the most basic piece of equipment a Hunter carries. They come in infinite variations. At its base it contains extendable claws and a self destruction device. Can be upgraded to store a first aid kit, meds and activate cloaking capabilities.</description>
+		<description>This wrist mounted gauntlet is the most basic piece of equipment a Hunter carries. They come in infinite variations. At its base it contains extendable claws and a self destruction device. Can be upgraded with a MediComp, Shard Injector and Cloaking device.</description>
 		<thingClass>RRYautja.Cloakgen</thingClass>
 		<graphicData>
 			<texPath>Things/Apparel/Yautja_Gauntlet/Yautja_Gauntlet</texPath>
@@ -59,7 +59,7 @@
 			<ComponentIndustrial>2</ComponentIndustrial>
 		</costList>
 		<recipeMaker>
-			<researchPrerequisite>RRY_YautjaMelee_Basic</researchPrerequisite>
+			<researchPrerequisite>AvP_Tech_Yautja_Melee_T1</researchPrerequisite>
 		</recipeMaker>
 		<apparel>
 			<bodyPartGroups>
@@ -84,10 +84,15 @@
 		<tradeTags>
 			<li>Apparel</li>
 		</tradeTags>
+	<modExtensions>
+	  <li Class="RRYautja.UnstrippableExtension">
+		<!-- Apparel with this Extension are unabled to be stripped by --> 
+	  </li>
+	</modExtensions>
 	</ThingDef>
 	
-    <ThingDef ParentName="RRY_Equipment_HunterGauntlet">
-        <defName>RRY_Equipment_HunterGauntlet_TOGGLEDEF_RH</defName>
+    <ThingDef ParentName="AvP_Yautja_Equipment_Gauntlet">
+        <defName>AvP_Yautja_Equipment_Gauntlet_TOGGLEDEF_RH</defName>
         <label>Hunter Gauntlet (R)</label>
         <apparel>
 			<bodyPartGroups>
@@ -97,21 +102,20 @@
 		<comps> 
 		  <li Class="RRYautja.CompProperties_HediffApparel">
 			<dropOnPartLost>true</dropOnPartLost>
-			<hediffDef>RRY_WristbladeHeDiff</hediffDef>
-			<severityBasedOnDurability>false</severityBasedOnDurability>
+			<hediffDef>AvP_Yautja_Wristblade</hediffDef>
+			<partsToAffect>
+			  <li>right arm</li>
+			</partsToAffect>
+			<!--
 			<groupsToAffect>
 			  <li>RRY_Yautja_RightArm</li>
 			</groupsToAffect>
-			<!--
-			<partsToAffect>
-			  <li>Arm</li>
-			</partsToAffect>
 			-->
 		  </li>
 		</comps>
     </ThingDef>
-    <ThingDef ParentName="RRY_Equipment_HunterGauntlet">
-        <defName>RRY_Equipment_HunterGauntlet_TOGGLEDEF_LH</defName>
+    <ThingDef ParentName="AvP_Yautja_Equipment_Gauntlet">
+        <defName>AvP_Yautja_Equipment_Gauntlet_TOGGLEDEF_LH</defName>
         <label>Hunter Gauntlet (L)</label>
         <apparel>
 			<bodyPartGroups>
@@ -121,25 +125,24 @@
 		<comps> 
 		  <li Class="RRYautja.CompProperties_HediffApparel">
 			<dropOnPartLost>true</dropOnPartLost>
-			<hediffDef>RRY_WristbladeHeDiff</hediffDef>
-			<severityBasedOnDurability>false</severityBasedOnDurability>
+			<hediffDef>AvP_Yautja_Wristblade</hediffDef>
+			<partsToAffect>
+			  <li>left arm</li>
+			</partsToAffect>
+			<!--
 			<groupsToAffect>
 			  <li>RRY_Yautja_LeftArm</li>
 			</groupsToAffect>
-			<!--
-			<partsToAffect>
-			  <li>Arm</li>
-			</partsToAffect>
 			-->
 		  </li>
 		</comps>
     </ThingDef>
 	
 	<!-- ========================= Yautja - Shoulder Cannon ========================== -->
-	<ThingDef ParentName="RRY_Yautja_EquipmentBase">
-		<defName>RRY_Equipment_HunterShoulderCannon</defName>
+	<ThingDef ParentName="AvP_Yautja_Equipment_Base">
+		<defName>AvP_Yautja_Equipment_PlasmaCaster</defName>
 		<label>Yautja Shoulder Plasmacaster</label>
-		<description>Also known as the Shoulder Canon, this shoulder mounted high-energy weapon enable the Yautja to have long-range capabilities while wielding another weapon of his choice. The canon can be activated and deactivated as seen fit and has it's own targeting system making it completely independent.</description>
+		<description>Also known as the Shoulder Canon, this shoulder mounted high-energy weapon enables the Yautja to have long-range capabilities while wielding another weapon. The cannon can be activated and deactivated as seen fit and has its own targeting system making it completely independent.</description>
 		<graphicData>
 			<texPath>Things/Equipment/Yautja_ShoulderCannon</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -170,7 +173,7 @@
 			<ComponentSpacer>1</ComponentSpacer>
 		</costList>
 		<recipeMaker>
-			<researchPrerequisite>RRY_YautjaRanged_Adv</researchPrerequisite>
+			<researchPrerequisite>AvP_Tech_Yautja_Ranged_T3</researchPrerequisite>
 		</recipeMaker>
 		<apparel>
 			<bodyPartGroups>

@@ -2,7 +2,7 @@
 <Defs>
 <!-- ==== Yautja ==== -->
   <BodyDef>
-    <defName>RRY_Yautja_Biped</defName>
+    <defName>AvP_Yautja_Biped</defName>
 	<ignoreConfigErrors>true</ignoreConfigErrors>
     <label>yautja</label>
     <corePart>
@@ -191,42 +191,42 @@
 					<depth>Inside</depth>
 					<parts>
                     <li>
-                      <def>RRY_Yautja_Mandible</def>
+                      <def>AvP_Yautja_Mandible</def>
                       <customLabel>left upper mandible</customLabel>
                       <coverage>0.07</coverage>
                       <groups>
                         <li>Mouth</li>
-                        <li>RRY_Yautja_Mandibles</li>
+                        <li>AvP_Yautja_Mandibles</li>
 						<li>FullHead</li>
                       </groups>
                     </li>
                     <li>
-                      <def>RRY_Yautja_Mandible</def>
+                      <def>AvP_Yautja_Mandible</def>
                       <customLabel>left lower mandible</customLabel>
                       <coverage>0.07</coverage>
                       <groups>
                         <li>Mouth</li>
-                        <li>RRY_Yautja_Mandibles</li>
+                        <li>AvP_Yautja_Mandibles</li>
 						<li>FullHead</li>
                       </groups>
                     </li>
                     <li>
-                      <def>RRY_Yautja_Mandible</def>
+                      <def>AvP_Yautja_Mandible</def>
                       <customLabel>right upper mandible</customLabel>
                       <coverage>0.07</coverage>
                       <groups>
                         <li>Mouth</li>
-                        <li>RRY_Yautja_Mandibles</li>
+                        <li>AvP_Yautja_Mandibles</li>
 						<li>FullHead</li>
                       </groups>
                     </li>
                     <li>
-                      <def>RRY_Yautja_Mandible</def>
+                      <def>AvP_Yautja_Mandible</def>
                       <customLabel>right lower mandible</customLabel>
                       <coverage>0.07</coverage>
                       <groups>
                         <li>Mouth</li>
-                        <li>RRY_Yautja_Mandibles</li>
+                        <li>AvP_Yautja_Mandibles</li>
 						<li>FullHead</li>
                       </groups>
                     </li>

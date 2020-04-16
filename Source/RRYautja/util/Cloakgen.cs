@@ -59,21 +59,20 @@ namespace RRYautja
         // Token: 0x06000010 RID: 16 RVA: 0x000022D2 File Offset: 0x000004D2
         public override IEnumerable<Gizmo> GetGizmos()
         {
-            bool HealthshardReseached = (YautjaDefOf.RRY_YautjaHealthShard.IsFinished);
+            bool HealthshardReseached = (YautjaDefOf.AvP_Tech_Yautja_HealthShard.IsFinished);
             if (HealthshardReseached)
             {
                 yield return new Gizmo_InjectorStatus
                 {
                     kit = this
                 };
-                foreach (Gizmo item in base.GetGizmos())
-                {
-                    yield return item;
-                    //    item = null;
-                }
-            //    IEnumerator<Gizmo> enumerator = null;
+                //    IEnumerator<Gizmo> enumerator = null;
             }
-            base.GetGizmos();
+            foreach (Gizmo item in base.GetGizmos())
+            {
+                yield return item;
+                //    item = null;
+            }
             yield break;
         }
         // Token: 0x1700000A RID: 10
@@ -176,7 +175,7 @@ namespace RRYautja
         {
             if (Wearer != null)
             {
-                if (Wearer.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked))
+                if (Wearer.health.hediffSet.HasHediff(YautjaDefOf.AvP_Hediff_Cloaked))
                 {
                     /*
                     Hediff hediff = Wearer.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_Cloaked);
@@ -225,7 +224,7 @@ namespace RRYautja
             base.GetWornGizmos();
             if (Find.Selector.SelectedObjects.Contains(base.Wearer) && base.Wearer.Faction == Faction.OfPlayer)
             {// this.uses
-                bool MedicompReseached = (YautjaDefOf.RRY_YautjaMediComp.IsFinished);
+                bool MedicompReseached = (YautjaDefOf.AvP_Tech_Yautja_MediComp.IsFinished);
                 if (MedicompReseached)
                 {
                     yield return new Command_Action
@@ -236,7 +235,7 @@ namespace RRYautja
                         hotKey = KeyBindingDefOf.Misc3,
                         icon = ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_TendSelfB", true)
                     };
-                    bool HealthshardReseached = (YautjaDefOf.RRY_YautjaHealthShard.IsFinished);
+                    bool HealthshardReseached = (YautjaDefOf.AvP_Tech_Yautja_HealthShard.IsFinished);
                     if (HealthshardReseached)
                     {
                         if (Find.Selector.SingleSelectedObject == (base.Wearer))
@@ -264,7 +263,7 @@ namespace RRYautja
                         }
                     }
                 }
-                bool CloakReseached = (YautjaDefOf.RRY_YautjaCloakGenerator.IsFinished);
+                bool CloakReseached = (YautjaDefOf.AvP_Tech_Yautja_CloakGenerator.IsFinished);
                 if (CloakReseached)
                 {
                     if (Find.Selector.SingleSelectedObject == (base.Wearer))
@@ -354,15 +353,15 @@ namespace RRYautja
                 {
                     LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.RRY_Concept_SelfDestruct, OpportunityType.GoodToKnow);
                 }
-                if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.RRY_Concept_MediComp) && Wearer.IsColonist && YautjaDefOf.RRY_YautjaMediComp.IsFinished)
+                if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.RRY_Concept_MediComp) && Wearer.IsColonist && YautjaDefOf.AvP_Tech_Yautja_MediComp.IsFinished)
                 {
                     LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.RRY_Concept_MediComp, OpportunityType.GoodToKnow);
                 }
-                if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.RRY_Concept_ShardInjector) && Wearer.IsColonist && YautjaDefOf.RRY_YautjaHealthShard.IsFinished)
+                if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.RRY_Concept_ShardInjector) && Wearer.IsColonist && YautjaDefOf.AvP_Tech_Yautja_HealthShard.IsFinished)
                 {
                     LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.RRY_Concept_ShardInjector, OpportunityType.GoodToKnow);
                 }
-                if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.RRY_Concept_Cloak) && Wearer.IsColonist && YautjaDefOf.RRY_YautjaCloakGenerator.IsFinished)
+                if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.RRY_Concept_Cloak) && Wearer.IsColonist && YautjaDefOf.AvP_Tech_Yautja_CloakGenerator.IsFinished)
                 {
                     LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.RRY_Concept_Cloak, OpportunityType.GoodToKnow);
                 }

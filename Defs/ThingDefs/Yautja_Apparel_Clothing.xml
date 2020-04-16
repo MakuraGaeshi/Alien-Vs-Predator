@@ -2,8 +2,8 @@
 <Defs>
 	<!-- ========================= Yautja - Apparel ========================== -->
 	<!-- ========================= Yautja - Hunter Vest ========================== -->
-	<ThingDef ParentName="RRY_Apparel_MakeableBase">
-		<defName>RRY_Apparel_HunterVest</defName>
+	<ThingDef ParentName="AvP_Apparel_Base_Makeable">
+		<defName>AvP_Yautja_Apparel_HunterVest</defName>
 		<label>Yautja Vest</label>
 		<description>It's a vest godarnit! XD</description>
 		<graphicData>
@@ -43,7 +43,7 @@
 			</tags>
 		</apparel>
 		<recipeMaker>
-			<researchPrerequisite>RRY_YautjaTechBase</researchPrerequisite>
+			<researchPrerequisite>AvP_Tech_Yautja_T1</researchPrerequisite>
 			<recipeUsers>
 				<li>RRY_TableMachining</li>
 			</recipeUsers>
@@ -67,8 +67,8 @@
 	</ThingDef>
 	
 	  <!-- ====================================== tribalwear =========================================== -->
-	<ThingDef ParentName="RRY_Apparel_MakeableBase">
-		<defName>RRY_Apparel_TribalCloak</defName>
+	<ThingDef ParentName="AvP_Apparel_Base_Makeable">
+		<defName>AvP_Yautja_Apparel_TribalCloak</defName>
 		<label>tribalcloak</label>
 		<description>A full-body garment crafted using neolithic tools. While it may look primitive, it is effective at insulating the wearer.</description>
 		<graphicData>
@@ -139,10 +139,10 @@
 	</ThingDef>
 
 	<!-- ========================= Yautja - Heated Mesh ========================== -->
-	<ThingDef ParentName="RRY_Apparel_MakeableBase">
-		<defName>RRY_Apparel_Mesh</defName>
+	<ThingDef ParentName="AvP_Apparel_Base_Makeable">
+		<defName>AvP_Yautja_Apparel_ThermalMesh</defName>
 		<label>Yautja Survival Mesh</label>
-		<description>A heated mesh to help the Yautja fight external elements. It mixes natural fiber eith self-regulating palsteel mesh.</description>
+		<description>A heated mesh to help the Yautja fight external elements. It mixes natural fibres with a self-regulating, plasteel mesh.</description>
 		<graphicData>
 			<texPath>Things/Apparel/Yautja_Vest/Yautja_Vest</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -188,7 +188,7 @@
 			</tags>
 		</apparel>
 		<recipeMaker>
-			<researchPrerequisite>RRY_YautjaTechMid</researchPrerequisite>
+			<researchPrerequisite>AvP_Tech_Yautja_T2</researchPrerequisite>
 			<recipeUsers>
 				<li>RRY_TableMachining</li>
 			</recipeUsers>

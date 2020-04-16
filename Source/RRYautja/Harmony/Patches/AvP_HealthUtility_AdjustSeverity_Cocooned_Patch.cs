@@ -13,7 +13,7 @@ using UnityEngine;
 using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     [HarmonyPatch(typeof(HealthUtility), "AdjustSeverity")]
     public static class AvP_HealthUtility_AdjustSeverity_Cocooned_Patch

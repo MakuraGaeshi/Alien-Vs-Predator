@@ -38,7 +38,12 @@ namespace RRYautja.ExtensionMethods
 
         public static bool isYautja(this Pawn p)
         {
-            return p.def == YautjaDefOf.RRY_Alien_Yautja;
+            return p.def == YautjaDefOf.AvP_Alien_Yautja;
+        }
+        public static bool isYautja(this Pawn p, out Comp_Yautja _Yautja)
+        {
+            _Yautja = p.TryGetComp<Comp_Yautja>();
+            return p.def == YautjaDefOf.AvP_Alien_Yautja;
         }
 
         public static bool isUnblooded(this Pawn p)
@@ -685,10 +690,10 @@ namespace RRYautja.ExtensionMethods
             {
                 return null;
             }
-            bool human = p.def.defName.Contains("Human") || HMSUtility.GetMark(p.kindDef) == YautjaDefOf.HMS_Hediff_BloodedMHuman;
+            bool human = p.def.defName.Contains("Human") || HMSUtility.GetMark(p.kindDef) == HMSDefOf.HMS_Hediff_BloodedMHuman;
             bool yautja = p.def.defName.Contains("Yautja");
-            bool thrumbo = p.def.defName.Contains("Human") || HMSUtility.GetMark(p.kindDef) == YautjaDefOf.HMS_Hediff_BloodedMThrumbo;
-            bool hound = HMSUtility.GetMark(p.kindDef) == YautjaDefOf.HMS_Hediff_BloodedMHound;
+            bool thrumbo = p.def.defName.Contains("Human") || HMSUtility.GetMark(p.kindDef) == HMSDefOf.HMS_Hediff_BloodedMThrumbo;
+            bool hound = HMSUtility.GetMark(p.kindDef) == HMSDefOf.HMS_Hediff_BloodedMHound;
 
             bool humanlike = p.RaceProps.Humanlike;
 
@@ -813,9 +818,9 @@ namespace RRYautja.ExtensionMethods
             {
                 return null;
             }
-            bool human = p.race.defName.Contains("Human") || HMSUtility.GetMark(p) == YautjaDefOf.HMS_Hediff_BloodedMHuman;
+            bool human = p.race.defName.Contains("Human") || HMSUtility.GetMark(p) == HMSDefOf.HMS_Hediff_BloodedMHuman;
             bool yautja = p.race.defName.Contains("Yautja");
-            bool thrumbo = p.race.defName.Contains("Human") || HMSUtility.GetMark(p) == YautjaDefOf.HMS_Hediff_BloodedMThrumbo;
+            bool thrumbo = p.race.defName.Contains("Human") || HMSUtility.GetMark(p) == HMSDefOf.HMS_Hediff_BloodedMThrumbo;
             bool hound = HMSUtility.GetMark(p).defName.Contains("BloodedMHound");
 
             bool humanlike = p.RaceProps.Humanlike;
@@ -1004,13 +1009,10 @@ namespace RRYautja.ExtensionMethods
             return kindDef;
         }
 
-        public static HediffDef unbloodedDef = YautjaDefOf.HMS_Hediff_Unblooded;
-        public static HediffDef unmarkedDef = YautjaDefOf.HMS_Hediff_BloodedUM;
-        public static HediffDef markedDef = YautjaDefOf.HMS_Hediff_BloodedM;
-        public static AlienRace.BackstoryDef bsDefUnblooded = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_YoungBlood");
-        public static AlienRace.BackstoryDef bsDefBlooded = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_Blooded");
-        public static AlienRace.BackstoryDef bsDefBadbloodA = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_BadBloodA");
-        public static AlienRace.BackstoryDef bsDefBadblooBd = DefDatabase<AlienRace.BackstoryDef>.GetNamed("RRY_Yautja_BadBloodB");
+        public static AlienRace.BackstoryDef bsDefUnblooded = DefDatabase<AlienRace.BackstoryDef>.AllDefsListForReading.Find(x=> x.defName.Contains("Yautja_YoungBlood"));
+        public static AlienRace.BackstoryDef bsDefBlooded = DefDatabase<AlienRace.BackstoryDef>.AllDefsListForReading.Find(x => x.defName.Contains("Yautja_Blooded"));
+        public static AlienRace.BackstoryDef bsDefBadbloodA = DefDatabase<AlienRace.BackstoryDef>.AllDefsListForReading.Find(x => x.defName.Contains("Yautja_BadBloodA"));
+        public static AlienRace.BackstoryDef bsDefBadblooBd = DefDatabase<AlienRace.BackstoryDef>.AllDefsListForReading.Find(x => x.defName.Contains("Yautja_BadBloodB"));
 
         // Token: 0x02000D68 RID: 3432
         public enum BloodStatusMode

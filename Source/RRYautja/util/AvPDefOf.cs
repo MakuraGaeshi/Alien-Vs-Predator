@@ -36,6 +36,7 @@ namespace RimWorld
         // DutyDef
 
         // ThingDef
+        public static ThingDef AvP_Rhynth;
 
         // LifeStageDef
 

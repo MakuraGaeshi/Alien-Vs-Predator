@@ -203,11 +203,18 @@ namespace HunterMarkingSystem
                 blood = BloodStatusMode.Unblooded;
             }
             */
+            if (!respawningAfterLoad)
+            {
+
+            }
             if (markDataKill == null)
             {
                 if (BloodStatus == BloodStatusMode.Marked)
                 {
-                    markDataKill = HunterMarkingSystem.RaceDefaultMarkDict.Values.Where(x => pawn.health.hediffSet.HasHediff(x.MarkDef)).RandomElement();
+                    Rand.PushState();
+                    int rand = Rand.RangeInclusive(0, HunterMarkingSystem.RaceDefaultMarkDict.Count - 1);
+                    Rand.PopState();
+                    markDataKill = HunterMarkingSystem.RaceDefaultMarkDict.ElementAt(rand).Value;
                     if (markDataKill == null)
                     {
                         Log.Warning(string.Format("markData null for {0} pawn {1}", BloodStatus.ToString(), pawn.Name.ToStringShort));
@@ -221,7 +228,7 @@ namespace HunterMarkingSystem
         }
         
         public JobDef useJob = HMSDefOf.HMS_Job_MarkOther;
-        public string useLabel = "Use {1}'s {0} kill to mark them as an honourary Blooded";
+        public string useLabel = "HMS_MarkOtherLabel".Translate();
         // (get) Token: 0x06002942 RID: 10562 RVA: 0x001394F0 File Offset: 0x001378F0
         protected string FloatMenuOptionLabel
         {

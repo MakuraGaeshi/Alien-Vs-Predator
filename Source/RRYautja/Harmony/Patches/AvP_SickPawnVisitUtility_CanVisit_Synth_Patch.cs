@@ -14,7 +14,7 @@ using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 using AlienRace;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     [HarmonyPatch(typeof(SickPawnVisitUtility), "CanVisit")]
     public static class AvP_SickPawnVisitUtility_CanVisit_Synth_Patch

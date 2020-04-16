@@ -13,9 +13,8 @@ using UnityEngine;
 using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
-    
     [HarmonyPatch(typeof(FoodUtility), "AddFoodPoisoningHediff")]
     public static class AvP_FoodUtility_AddFoodPoisoningHediff_Patch
     {

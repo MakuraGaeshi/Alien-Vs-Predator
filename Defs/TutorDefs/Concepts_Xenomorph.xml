@@ -8,7 +8,7 @@
       <li>SidearmPrimary</li>
     </highlightTags>
     <!-- <helpText>Xenomorphs will kidnap downed pawn and bring them back to a safe place and cocoon them.\n\n The cocoon will keep the pawn alive and healthy until a Facehugger can impregnate the pawn. You can save the pawn by right-clicking the cocoon and selecting the option.\n\n If no Facehugger can impregnate the pawn, after a while the cocoon will disolve the colonist and transform into an egg.</helpText> -->
-    <helpText>Xenomorphs will kidnap downed pawn and bring them back to a safe place and cocoon them.\n\n The cocoon will keep the pawn alive and healthy until a Facehugger can impregnate the pawn. You can save the pawn by selecting the cocoon and clicking the deconstruct button.\n\n If no Facehugger can impregnate the pawn, after a while the cocoon will disolve the colonist and transform into an egg.</helpText>
+    <helpText>Xenomorphs will kidnap downed pawns and bring them back to a safe place and cocoon them.\n\n The cocoon will keep the pawn alive and healthy until a Facehugger can impregnate the pawn. You can save the pawn by selecting the cocoon and clicking the deconstruct button.\n\n If no Facehugger can impregnate the pawn, after a while the cocoon will disolve the colonist and transform into an egg.</helpText>
   </ConceptDef>
   
   <ConceptDef>
@@ -31,7 +31,7 @@
     <highlightTags>
       
     </highlightTags>
-    <helpText>Facehuggers will attach themselves to pawns and any animal larger than a labradour in order to reproduce. It is possible to remove a Facehugger through a very risky surgery.\n\n Do so at your own risk!</helpText>
+    <helpText>Facehuggers will attach themselves to pawns and any animal larger than a labrador in order to reproduce. It is possible to remove a Facehugger through a dangerous surgical procedure, that is highly likely to kill the host.\n\n Do so at your own risk!</helpText>
   </ConceptDef>
   
   <ConceptDef>
@@ -64,7 +64,7 @@
     <highlightTags>
       <li></li>
     </highlightTags>
-    <helpText>When a Chestburster bursts, it will flee any hostile presences. As soon as it reaches a certain distance, he will disappear in the surrounding, becoming completely invisible unless a hostile pawn is inside 6 squares of the Chestburster.</helpText>
+    <helpText>When a Chestburster bursts, it will flee any hostile presences. As soon as it reaches a certain distance, it will disappear in the surrounding, becoming completely invisible unless a hostile pawn goes within 6 squares of the Chestburster.</helpText>
   </ConceptDef>	
   
   <ConceptDef>
@@ -75,7 +75,7 @@
     <highlightTags>
       <li></li>
     </highlightTags>
-    <helpText>Runners are the lowest castes of Xenomorph.\n\nUsually the product of a smaller inhuman host, usually quadrepedal and less intelligent as a side effect of the combination of Xenomorph and host DNA.</helpText>
+    <helpText>Runners are the lowest caste of Xenomorph.\n\nUsually the product of a smaller inhuman host, quadrepedal and less intelligent as a side effect of the combination of Xenomorph and host DNA.</helpText>
   </ConceptDef>	
   
   <ConceptDef>
@@ -86,7 +86,8 @@
     <highlightTags>
       <li></li>
     </highlightTags>
-    <helpText>Drones are the most common castes of xenomorph and spawned when a facehugger impregnates a humanlike or human sized host.\n\nThey posses the abbility to spit acid a short distance, they are also the main worker for a Xenomorph hive.</helpText>
+    <helpText>Drones are the most common caste of Xenomorph and spawned when a facehugger impregnates a humanlike or human sized host.they can spit acid a short distance and are the main workers of a Xenomorph hive
+</helpText>
   </ConceptDef>	
   
   <ConceptDef>
@@ -97,7 +98,7 @@
     <highlightTags>
       <li></li>
     </highlightTags>
-    <helpText>Warriors are the second most common caste of Xenomorph spawned from a humanoid host.\n\nFaster, Stronger and harder to kill than drones, warriors are the mainstay of a hives forces.</helpText>
+    <helpText>Warriors are the second most common caste of Xenomorph spawned from a humanoid host.\n\nFaster, Stronger and harder to kill than drones, warriors are the mainstay of a hive’s forces.</helpText>
   </ConceptDef>	
   
   <ConceptDef>
@@ -119,7 +120,7 @@
     <highlightTags>
       <li></li>
     </highlightTags>
-    <helpText>Queens only spawn from a royal facehuggers first impregnation, which will always spawn a queen regardless of the host.(Unless its a yautja, then a predalien is spawned instead).\n\nQueens are Tough as nails and pack a hell of a punch, a signle queen can take on two thrumbos at once and come out on top.\n\nQueens will lay eggs</helpText>
+    <helpText>Queens only spawn from a royal facehugger’s first impregnation, which will always spawn a queen regardless of the host.(Unless it’s a yautja, then a predalien is spawned instead).\n\nQueens are tough as nails and pack a hell of a punch, a single queen can take on two thrumbos at once and come out on top.\n\nQueens will lay eggs</helpText>
   </ConceptDef>
   
   <ConceptDef>
@@ -130,7 +131,7 @@
     <highlightTags>
       <li></li>
     </highlightTags>
-    <helpText>Neomorphs are the result of exsposure to an unknown spore like pathogen from a strange fungal growth.\n\nThey are weaker than most 'normal' xenomorphs, not possesing the spiked tail, but have a shorter gestation time.</helpText>
+    <helpText>Neomorphs are the result of exposure to motes released by a Neomorph Spore Sac.\n\nThey are weaker than adult Xenomorphs, not possesing the spiked tail, but have a shorter gestation time.</helpText>
   </ConceptDef>
   
   <!--
@@ -152,7 +153,7 @@
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
     <highlightTags>
-      <li>SidearmPrimary</li>
+      <li></li>
     </highlightTags>
     <helpText>Xenomorph Tunnels are similar to vanilla insect hives.\n\n Large tunnels serve as a hub, this is where potential hosts will be taken and will produce eggs and small tunnels.\n\n Small Tunnels are points from which they will attack from.</helpText>
   </ConceptDef>	
@@ -163,20 +164,20 @@
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
     <highlightTags>
-      <li>SidearmPrimary</li>
+      <li></li>
     </highlightTags>
     <helpText>Xenomorph Ship Parts are similar to vanilla Ship Parts.\n\n However their contents is different.\n\n They can drop Cryptotubes on destruction.</helpText>
   </ConceptDef>
   
   <ConceptDef>
-    <defName>RRY_Concept_Fungus</defName>
-    <label>AvP: Neo Fungus</label>
+    <defName>RRY_Concept_SporeSac</defName>
+    <label>AvP: Neo Spore Sacs</label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
     <highlightTags>
-      <li>SidearmPrimary</li>
+      <li></li>
     </highlightTags>
-    <helpText>Neo Fungus is an agressive plant speicies and is the result of exsposure to the 'Black Goo' used by the Engineers.\n\nwhen fully grown it will .\n\n If no Facehugger can impregnate the pawn, after a while the cocoon will disolve the colonist and transform into an egg.</helpText>
+    <helpText>The first stage of the Neomorph life cycle\n\nWhen mature, releases tiny “motes” to infect nearby animal life.\n\nAn infected creature will gestate a neomorph which will tear itself out of the host after a short time.</helpText>
   </ConceptDef>
   
  </Defs>  

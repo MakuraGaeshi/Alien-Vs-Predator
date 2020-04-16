@@ -13,7 +13,7 @@ using UnityEngine;
 using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     //helicopter's mass will not appear in trade window
     [HarmonyPatch(typeof(Dialog_Trade), "SetupPlayerCaravanVariables", new Type[] { })]

@@ -13,7 +13,7 @@ using UnityEngine;
 using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
 
     [HarmonyPatch(typeof(PawnRenderer), "DrawEquipment")]
@@ -22,7 +22,7 @@ namespace RRYautja
         public static bool Prefix(PawnRenderer __instance)
         {
             Pawn pawn = Main.PawnRenderer_GetPawn(__instance);
-            bool flag = pawn.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked, false);
+            bool flag = pawn.health.hediffSet.HasHediff(YautjaDefOf.AvP_Hediff_Cloaked, false);
             if (flag)
             {
                 return false;

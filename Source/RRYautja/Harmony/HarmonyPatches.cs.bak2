@@ -11,7 +11,7 @@ using UnityEngine;
 using Verse;
 using Verse.AI;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     [StaticConstructorOnStartup]
     static class HarmonyPatches

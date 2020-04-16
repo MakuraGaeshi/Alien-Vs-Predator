@@ -13,7 +13,7 @@ using UnityEngine;
 using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     //helicopter's mass will not appear in trade window
     [HarmonyPatch(typeof(Pawn_PathFollower), "CostToMoveIntoCell", new[] { typeof(Pawn), typeof(IntVec3) })]
@@ -21,7 +21,7 @@ namespace RRYautja
     {
         public static void Prefix(Pawn_PathFollower __instance, Pawn pawn, IntVec3 c, ref int __result)
         {
-            if (pawn.def == YautjaDefOf.RRY_Alien_Yautja || pawn?.GetComp<Comp_Xenomorph>() is Comp_Xenomorph comp_Xenomorph)
+            if (pawn.def == YautjaDefOf.AvP_Alien_Yautja || pawn?.GetComp<Comp_Xenomorph>() is Comp_Xenomorph comp_Xenomorph)
             {
                 int num;
                 if (c.x == pawn.Position.x || c.z == pawn.Position.z)

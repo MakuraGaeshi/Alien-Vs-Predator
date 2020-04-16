@@ -13,12 +13,14 @@ using UnityEngine;
 using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     [StaticConstructorOnStartup]
     class Main
     {
         public static readonly Type patchType = typeof(Main);
+        public static List<ResearchProjectDef> YautjaReseach => DefDatabase<ResearchProjectDef>.AllDefs.Where(x => x.defName.Contains("AvP_Yautja_Tech_")).ToList();
+        public static List<ResearchProjectDef> USCMReseach => DefDatabase<ResearchProjectDef>.AllDefs.Where(x => x.defName.Contains("AvP_USCM_Tech_")).ToList();
         static Main()
         {
             Type pawnRenderer = typeof(PawnRenderer);
@@ -29,21 +31,67 @@ namespace RRYautja
             Main.int_Pawn_HealthTracker_GetPawn = pawn_HealthTracker.GetField("pawn", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.GetField);
             Main._cachedVerbProperties = pawn_NativeVerbs.GetField("cachedVerbProperties", BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.GetProperty | BindingFlags.SetProperty);
             Main._pawnPawnNativeVerbs = pawn_NativeVerbs.GetField("pawn", BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.GetProperty | BindingFlags.SetProperty);
-            //    HarmonyInstance.DEBUG = true;
+
+            AlienRace.ThingDef_AlienRace human = ThingDefOf.Human as AlienRace.ThingDef_AlienRace;
+            foreach (ResearchProjectDef def in USCMReseach)
+            {
+                if (!AlienRace.RaceRestrictionSettings.researchRestrictionDict.ContainsKey(key: def))
+                    AlienRace.RaceRestrictionSettings.researchRestrictionDict.Add(key: def, value: new List<AlienRace.ThingDef_AlienRace>());
+                AlienRace.RaceRestrictionSettings.researchRestrictionDict[key: def].Add(item: human);
+            }
             foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs.Where(x=> x.apparel!=null))
             {
                 if (def.apparel.wornGraphicPath.NullOrEmpty())
                 {
                     if (!AlienRace.RaceRestrictionSettings.apparelWhiteDict.ContainsKey(key: def))
                         AlienRace.RaceRestrictionSettings.apparelWhiteDict.Add(key: def, value: new List<AlienRace.ThingDef_AlienRace>());
-                    AlienRace.RaceRestrictionSettings.apparelWhiteDict[key: def].Add(item: ((AlienRace.ThingDef_AlienRace)YautjaDefOf.RRY_Alien_Yautja));
+                    AlienRace.RaceRestrictionSettings.apparelWhiteDict[key: def].Add(item: ((AlienRace.ThingDef_AlienRace)YautjaDefOf.AvP_Alien_Yautja));
                 }
             }
-
+            AlienRace.ThingDef_AlienRace yautja = YautjaDefOf.AvP_Alien_Yautja as AlienRace.ThingDef_AlienRace;
+            foreach (ResearchProjectDef def in YautjaReseach)
+            {
+                if (!AlienRace.RaceRestrictionSettings.researchRestrictionDict.ContainsKey(key: def))
+                    AlienRace.RaceRestrictionSettings.researchRestrictionDict.Add(key: def, value: new List<AlienRace.ThingDef_AlienRace>());
+                AlienRace.RaceRestrictionSettings.researchRestrictionDict[key: def].Add(item: yautja);
+            }
+            TryAddRacialRestrictions(yautja, "Yautja");
             ThingDef thing = DefDatabase<ThingDef>.GetNamedSilentFail("O21_AntiInfestationThumper");
             if (thing != null)
             {
                 ThumperPatch();
+            }
+        }
+        public static void ChangeBodyType(Pawn pawn, BodyTypeDef bt)
+        {
+            var storyTrv = Traverse.Create(pawn.story);
+            var newStory = new Pawn_StoryTracker(pawn);
+            var newStoryTrv = Traverse.Create(newStory);
+            AccessTools.GetFieldNames(typeof(Pawn_StoryTracker))
+                    .ForEach(f => newStoryTrv.Field(f).SetValue(storyTrv.Field(f).GetValue()));
+            newStory.bodyType = bt;
+            pawn.story = newStory;
+            pawn.Drawer.renderer.graphics.ResolveAllGraphics();
+        }
+
+
+        public static void TryAddRacialRestrictions(AlienRace.ThingDef_AlienRace race, string Tag)
+        {
+            List<RecipeDef> recpies = DefDatabase<RecipeDef>.AllDefsListForReading.FindAll(x => (x.defName.Contains(AvPConstants.ModPrefix + Tag + "_Gun_") || x.defName.Contains(AvPConstants.ModPrefix + Tag + "_Melee_") || x.defName.Contains(AvPConstants.ModPrefix + Tag + "_Apparel_") || x.defName.Contains(AvPConstants.ModPrefix + Tag + "_Armour_") || x.defName.Contains(AvPConstants.ModPrefix + Tag + "_Equipment_")) && (!x.defName.Contains("TOGGLEDEF_") || x.defName.Contains("TOGGLEDEF_S")));
+
+            foreach (RecipeDef def in recpies)
+            {
+                if (!AlienRace.RaceRestrictionSettings.recipeRestrictionDict.ContainsKey(key: def)) 
+                    AlienRace.RaceRestrictionSettings.recipeRestrictionDict.Add(key: def, value: new List<AlienRace.ThingDef_AlienRace>());
+                AlienRace.RaceRestrictionSettings.recipeRestrictionDict[key: def].Add(item: race);
+            }
+
+            List<ThingDef> apparel = DefDatabase<ThingDef>.AllDefsListForReading.FindAll(x => x.apparel != null && (x.defName.Contains(AvPConstants.ModPrefix + Tag + "_Apparel_") || x.defName.Contains(AvPConstants.ModPrefix + Tag + "_Armour_") || x.defName.Contains(AvPConstants.ModPrefix + Tag + "_Equipment_")) && (!x.defName.Contains("TOGGLEDEF_") || x.defName.Contains("TOGGLEDEF_S")));
+            foreach (ThingDef def in apparel)
+            {
+                if (!AlienRace.RaceRestrictionSettings.apparelRestrictionDict.ContainsKey(key: def))
+                    AlienRace.RaceRestrictionSettings.apparelRestrictionDict.Add(key: def, value: new List<AlienRace.ThingDef_AlienRace>());
+                AlienRace.RaceRestrictionSettings.apparelRestrictionDict[key: def].Add(item: race);
             }
         }
         public static void ThumperPatch()
@@ -177,6 +225,11 @@ namespace RRYautja
     
     public abstract class CompWearable : ThingComp
     {
+        public Apparel Apparel => this.parent as Apparel;
+
+        public bool IsWorn => Apparel != null && Apparel.Wearer != null;
+
+        public Pawn Wearer => IsWorn ? Apparel.Wearer : null;
         public virtual IEnumerable<Gizmo> CompGetGizmosWorn() {
             // return no Gizmos
             return new List<Gizmo>();

@@ -42,12 +42,8 @@
     <Compile Include="Traps\TrapsDefOf.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref">
-      <Version>1.1.2571</Version>
+      <Version>1.1.2604</Version>
     </PackageReference>
     <PackageReference Include="Lib.Harmony">
       <Version>2.0.0.7</Version>

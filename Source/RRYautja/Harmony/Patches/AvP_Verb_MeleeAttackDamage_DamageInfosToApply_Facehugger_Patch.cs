@@ -12,7 +12,7 @@ using System.Reflection;
 using UnityEngine;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     [HarmonyPatch(typeof(Verb_MeleeAttackDamage), "DamageInfosToApply")]
     public static class AvP_Verb_MeleeAttackDamage_DamageInfosToApply_Facehugger_Patch

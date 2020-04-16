@@ -13,7 +13,7 @@ using UnityEngine;
 using RRYautja.settings;
 using RRYautja.ExtensionMethods;
 
-namespace RRYautja
+namespace RRYautja.HarmonyInstance
 {
     
     [HarmonyPatch(typeof(Alert_StarvationColonists), "get_StarvingColonists")]
