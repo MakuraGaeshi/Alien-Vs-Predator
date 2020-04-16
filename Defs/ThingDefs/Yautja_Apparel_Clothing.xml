@@ -74,6 +74,7 @@
 		<graphicData>
 			<texPath>Things/Apparel/Yautja_Cloak/YautjaCloak</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
+		  <shaderType>CutoutComplex</shaderType>
 		</graphicData>
 		<techLevel>Neolithic</techLevel>
 		<costStuffCount>70</costStuffCount>
@@ -98,6 +99,10 @@
 		<useWornGraphicMask>true</useWornGraphicMask>
 			<bodyPartGroups>
 				<li>Torso</li>
+				<li>Neck</li>
+				<li>Shoulders</li>
+				<li>Arms</li>
+				<li>Legs</li>
 			</bodyPartGroups>
 			<wornGraphicPath>Things/Apparel/Yautja_Cloak/YautjaCloak</wornGraphicPath>
 			<layers>
@@ -168,6 +173,10 @@
 		<apparel>
 			<bodyPartGroups>
 				<li>Torso</li>
+				<li>Neck</li>
+				<li>Shoulders</li>
+				<li>Arms</li>
+				<li>Legs</li>
 			</bodyPartGroups>
 			<wornGraphicPath>Things/Apparel/Yautja_Vest/Yautja_Vest</wornGraphicPath>
 			<layers>

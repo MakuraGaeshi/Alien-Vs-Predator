@@ -19,7 +19,7 @@ namespace RimWorld
     // Token: 0x02000774 RID: 1908
     public class CompUsableBuilding : CompUsable
     {
-        public CompProperties_UsableBuilding Props
+        public new CompProperties_UsableBuilding Props
         {
             get
             {
@@ -28,7 +28,7 @@ namespace RimWorld
         }
 
         // Token: 0x06002A4B RID: 10827 RVA: 0x00138F78 File Offset: 0x00137378
-        public new void TryStartUseJob(Pawn user)
+        public  void TryStartUseJob(Pawn user)
         {
             if (!user.CanReach(this.parent, PathEndMode.Touch, Danger.Deadly, false))
             {

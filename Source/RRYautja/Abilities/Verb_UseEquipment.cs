@@ -175,7 +175,7 @@ namespace RRYautja
                 this.ThrowDebugText("Hit\nDest", shootLine.Dest);
             }
             return true;
-            return this.ability.Activate(this.currentTarget, this.currentDestination);
+        //    return this.ability.Activate(this.currentTarget, this.currentDestination);
         }
         // Token: 0x06002196 RID: 8598 RVA: 0x000CBF53 File Offset: 0x000CA153
         private void ThrowDebugText(string text)

@@ -32,9 +32,9 @@ namespace RimWorld
 
             Map map = pawn.Map;
             IntVec3 c = IntVec3.Invalid;
-            HiveLike hive = null;
-            bool canReach = false;
-            bool Hive = false;
+        //    HiveLike hive = null;
+        //    bool canReach = false;
+        //    bool Hive = false;
             bool result = false;
 
             if (CompXeno.HiveLoc.IsValid && CompXeno.HiveLoc != IntVec3.Zero && CompXeno.HiveLoc.InBounds(map))

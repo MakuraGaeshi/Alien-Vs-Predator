@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 using Verse;
 
 namespace HunterMarkingSystem
@@ -29,10 +30,26 @@ namespace HunterMarkingSystem
                                 if (Markable.MarkableCorpse)
                                 {
                                     yield return p;
-                                    Markable.Markcorpse.SetForbidden(true);
                                     if (Find.Selector.SingleSelectedThing == p)
                                     {
                                         yield return Markable.Markcorpse;
+                                        
+                                        if (!(Markable.MarkerRace || Markable.Inducted))
+                                        {
+                                            List<string> vs = new List<string>();
+                                            foreach (ThingDef race in Markable.markerRaces)
+                                            {
+                                                IEnumerable<Thing> pawns = PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_Colonists.Where(y => y.def == race && y.Map == p.Map);
+                                                if (!pawns.EnumerableNullOrEmpty())
+                                                {
+                                                    foreach (Thing item in pawns)
+                                                    {
+                                                        yield return item;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        
                                     }
                                     else
                                     {
@@ -122,12 +139,35 @@ namespace HunterMarkingSystem
         public override TaggedString GetExplanation()
         {
             StringBuilder stringBuilder = new StringBuilder();
-            foreach (Thing thing in this.SickPawns)
+            foreach (Thing thing in this.SickPawns.Where(x=> x.GetType() == typeof(Pawn)))
             {
-                if (thing is Pawn pawn)
+                Pawn pawn = thing as Pawn;
+                if (pawn!=null)
                 {
-                    Comp_Markable _Yautja = pawn.TryGetComp<Comp_Markable>();
-                    stringBuilder.AppendLine("    " + thing.LabelShort + " on :" + _Yautja.Markcorpse.LabelShortCap);
+                    Comp_Markable _Markable = pawn.TryGetComp<Comp_Markable>();
+                    if (_Markable != null)
+                    {
+                        if (pawn.health.hediffSet.HasHediff(_Markable.Props.cultureDef.UnmarkedHediff))
+                        {
+                            if ((_Markable.MarkerRace || _Markable.Inducted))
+                            {
+                                stringBuilder.AppendLine("    " + pawn.LabelShort + " " + "HMS_CanMarkThemself".Translate() + ":" + _Markable.Markcorpse.InnerPawn.NameShortColored);
+                            }
+                            else
+                            {
+                                List<string> vs = new List<string>();
+                                foreach (ThingDef race in _Markable.markerRaces)
+                                {
+                                    string rl = race.LabelCap + ": ";
+                                    string rc = string.Empty;
+                                    PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_Colonists.Where(y => y.def == race).ToList().ForEach(z => rc += (rc == string.Empty ? z.NameShortColored : " ," + z.NameShortColored));
+                                    vs.Add(rc.NullOrEmpty() ? rl : rc);
+
+                                }
+                                stringBuilder.AppendLine("    " + pawn.LabelShort + " " + "HMS_CanbeMarked".Translate() + ":" + _Markable.Markcorpse.InnerPawn.NameShortColored + " By: " + vs.ToCommaList());
+                            }
+                        }
+                    }
                 }
             }
             return "RRY_CanMarkSelfDesc".Translate(stringBuilder.ToString());
@@ -138,5 +178,13 @@ namespace HunterMarkingSystem
         {
             return AlertReport.CulpritsAre(this.SickPawns.ToList());
         }
+
+        protected override void OnClick()
+        {
+            base.OnClick();
+
+        }
+
+        protected override Color BGColor => base.BGColor;
     }
 }

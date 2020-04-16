@@ -398,7 +398,6 @@
 	  <Plasteel>50</Plasteel>
       <ComponentIndustrial>6</ComponentIndustrial>
     </costList>
-	<generateCommonality>0.1</generateCommonality>
     <verbs>
       <li>
         <verbClass>Verb_Shoot</verbClass>
@@ -406,7 +405,7 @@
         <defaultProjectile>RRY_Bullet_SpearRifle</defaultProjectile>
         <warmupTime>3.5</warmupTime>
         <range>47</range>
-        <soundCast>Shot_SniperRifle</soundCast>
+        <!--soundCast>Shot_SniperRifle</soundCast-->
         <soundCastTail>GunTail_Heavy</soundCastTail>
         <muzzleFlashScale>0</muzzleFlashScale>
       </li>
@@ -435,6 +434,7 @@
 	  <li>YautjaGun</li>
 	  <li>YautjaRanged</li>
 	</weaponTags>
+	<generateCommonality>0.05</generateCommonality>
   </ThingDef> 
   
   <ThingDef ParentName="BaseBullet">
@@ -520,6 +520,7 @@
          <cooldownTime>2</cooldownTime>
       </li>
     </tools>
+	<generateCommonality>0.05</generateCommonality>
   </ThingDef>
   <!-- Returning_Projectile --> 
   <ThingDef ParentName="BaseProjectileNeolithic">

@@ -41,7 +41,8 @@
 		</statBases>
 		<comps>
 			<li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
-				<southOffset>0.125,0,-0.15</southOffset>
+				<southOffset>0.125,0.1,-0.15</southOffset>
+				<eastOffset>0.0,0.1,-0.0</eastOffset>
 			</li> 
 			<li Class="RRYautja.CompProperties_SmartgunSystem"> 
 			<WarmUpReductionQualityAffected>false</WarmUpReductionQualityAffected>

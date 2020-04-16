@@ -29,7 +29,7 @@ namespace RimWorld
             LocalTargetInfo targetA = this.job.targetA;
             Job job = this.job;
             return true;
-            return pawn.Reserve(targetA, job, 1, -1, null, false);
+        //    return pawn.Reserve(targetA, job, 1, -1, null, false);
         }
 
         // Token: 0x06000393 RID: 915 RVA: 0x000245C8 File Offset: 0x000229C8

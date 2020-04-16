@@ -23,6 +23,7 @@ namespace RimWorld
 
         private int MiningRange;
         // Token: 0x0600041E RID: 1054 RVA: 0x0002CA54 File Offset: 0x0002AE54
+
         protected override Job TryGiveJob(Pawn pawn)
         {
             if (!pawn.isXenomorph(out Comp_Xenomorph _Xenomorph))
@@ -50,27 +51,19 @@ namespace RimWorld
             bool centerSlime = HiveCenter.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive_Slime) != null;
             bool centerFilled = HiveCenter.Filled(pawn.Map);
 
-            if (!centerChild)
+            if (centerNode)
             {
-                if ((!centerNode && !centerSlime))
+                MiningRange = 6;
+            }
+            else
+            {
+                MiningRange = 3;
+                if (!centerChild)
                 {
-                    if (!centerFilled && pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Drone)
-                    {
-                        IntVec3 c = HiveCenter;
-                        if (c.InBounds(pawn.Map) && c.Roofed(pawn.Map) && pawn.CanReserveAndReach(c, PathEndMode.OnCell, Danger.Deadly))
-                        {
-                            return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Construct_Hive_Slime, c)
-                            {
-                                ignoreDesignations = false
-                            };
-                        }
-                    }
-                }
-                else if (!centerNode)
-                {
+
                     if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen || pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Drone)
                     {
-                        if (centerSlime && !centerFilled)
+                        if (!centerNode)
                         {
                             IntVec3 c = HiveCenter;
                             if (c.InBounds(pawn.Map) && c.Roofed(pawn.Map) && pawn.CanReserveAndReach(c, PathEndMode.OnCell, Danger.Deadly))
@@ -85,48 +78,37 @@ namespace RimWorld
                     }
                 }
             }
-            if (centerSlime)
+            if (!centerChild)
             {
-                MiningRange = 4;
-            }
-            else
-            if (centerNode)
-            {
-                MiningRange = 6;
-            }
-            else
-            {
-                MiningRange = 3;
-            }
-
-            foreach (var structure in HiveStructure.HiveStruct(HiveCenter).Where(x => x.GetThingList(map).Any(z => !z.def.defName.Contains("RRY_Xenomorph_Hive")) && x.DistanceTo(HiveCenter)<=MiningRange && pawn.CanReserveAndReach(x, PathEndMode.OnCell, Danger.Deadly, layer: ReservationLayerDefOf.Floor) && x.GetFirstBuilding(map) == null))
-            {
-                return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Construct_Hive_Wall, structure)
+                foreach (var structure in HiveStructure.HiveStruct(HiveCenter).Where(x => x.GetThingList(map).Any(z => !z.def.defName.Contains("RRY_Xenomorph_Hive")) && x.DistanceTo(HiveCenter) <= MiningRange && pawn.CanReserveAndReach(x, PathEndMode.OnCell, Danger.Deadly, layer: ReservationLayerDefOf.Floor) && x.GetFirstBuilding(map) == null))
                 {
-                    ignoreDesignations = false
-                };
-            }
-            foreach (var structure in HiveStructure.HiveWallGen(HiveCenter,MiningRange).Where(x => x.GetThingList(map).Any(z => !z.def.defName.Contains("RRY_Xenomorph_Hive")) && x.DistanceTo(HiveCenter) <= MiningRange+2 && pawn.CanReserveAndReach(x, PathEndMode.OnCell, Danger.Deadly, layer: ReservationLayerDefOf.Floor) && x.GetFirstBuilding(map) == null))
-            {
-                return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Construct_Hive_Wall, structure)
-                {
-                    ignoreDesignations = false
-                };
-            }
-            Predicate<IntVec3> validator2 = delegate (IntVec3 y)
-            {
-                bool roofed = (y.Roofed(pawn.Map));
-                bool result = !roofed && XenomorphUtil.DistanceBetween(y, HiveCenter) <= MiningRange && pawn.CanReserveAndReach(y, PathEndMode.OnCell, Danger.Deadly, layer: ReservationLayerDefOf.Ceiling);
-            return result;
-            };
-            if (RCellFinder.TryFindRandomCellNearWith(HiveCenter, validator2, pawn.Map, out IntVec3 c2, MiningRange, MiningRange))
-            {
-                if (c2.InBounds(pawn.Map) && pawn.CanReserveAndReach(c2, PathEndMode.OnCell, Danger.Deadly))
-                {
-                    return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Construct_Hive_Roof, c2)
+                    return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Construct_Hive_Wall, structure)
                     {
                         ignoreDesignations = false
                     };
+                }
+                foreach (var structure in HiveStructure.HiveWallGen(HiveCenter, MiningRange).Where(x => x.GetThingList(map).Any(z => !z.def.defName.Contains("RRY_Xenomorph_Hive")) && x.DistanceTo(HiveCenter) <= MiningRange + 2 && pawn.CanReserveAndReach(x, PathEndMode.OnCell, Danger.Deadly, layer: ReservationLayerDefOf.Floor) && x.GetFirstBuilding(map) == null))
+                {
+                    return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Construct_Hive_Wall, structure)
+                    {
+                        ignoreDesignations = false
+                    };
+                }
+                Predicate<IntVec3> validator2 = delegate (IntVec3 y)
+                {
+                    bool roofed = (y.Roofed(pawn.Map));
+                    bool result = !roofed && XenomorphUtil.DistanceBetween(y, HiveCenter) <= MiningRange && pawn.CanReserveAndReach(y, PathEndMode.OnCell, Danger.Deadly, layer: ReservationLayerDefOf.Ceiling);
+                    return result;
+                };
+                if (RCellFinder.TryFindRandomCellNearWith(HiveCenter, validator2, pawn.Map, out IntVec3 c2, MiningRange, MiningRange))
+                {
+                    if (c2.InBounds(pawn.Map) && pawn.CanReserveAndReach(c2, PathEndMode.OnCell, Danger.Deadly))
+                    {
+                        return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Construct_Hive_Roof, c2)
+                        {
+                            ignoreDesignations = false
+                        };
+                    }
                 }
             }
             return null;
@@ -235,7 +217,12 @@ namespace RimWorld
                 Thing thing = ThingMaker.MakeThing(MyDef);
                 HiveLike hive = (HiveLike)thing;
                 hive.active = false;
+                hive.canSpawnPawns = false;
+                hive.getsQueen = false;
+                hive.InitialPawnsPoints = 0;
+                hive.MaxSpawnedPawnsPoints = 0;
                 GenSpawn.Spawn(thing, TargetA.Cell, actor.Map, Rot4.South, WipeMode.FullRefund, false);
+                hive.Lord.AddPawn(actor);
             };
             use.defaultCompleteMode = ToilCompleteMode.Instant;
             yield return use;

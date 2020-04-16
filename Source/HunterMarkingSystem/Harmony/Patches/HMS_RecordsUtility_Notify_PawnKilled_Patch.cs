@@ -73,6 +73,7 @@ namespace HunterMarkingSystem
                             // if (Prefs.DevMode) Log.Message(string.Format("Markable.Markcorpse = {0}", Markable.Markcorpse.LabelShortCap));
                         }
                         Markable.markDataKillNew = markData;
+                        killed.Corpse.SetForbidden(true, false);
                     }
                     else
                     {

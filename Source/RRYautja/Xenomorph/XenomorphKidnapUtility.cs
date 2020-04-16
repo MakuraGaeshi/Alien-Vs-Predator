@@ -29,7 +29,7 @@ namespace RRYautja
         public static Thing hiveThing;
 
         // Token: 0x060004D2 RID: 1234 RVA: 0x00031074 File Offset: 0x0002F474
-        public static bool TryFindGoodKidnapVictim(Pawn kidnapper, float maxDist, out Pawn victim, List<Thing> disallowed = null, bool roofed = false, bool allowCocooned = false, float minDistance = 0f)
+        public static bool TryFindGoodKidnapVictim(Pawn kidnapper, float maxDist, out Pawn victim, List<Thing> disallowed = null, bool roofed = false, bool allowCocooned = false, float minDistance = 0f, bool allowHost = false)
         {
             if (!kidnapper.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation) || !kidnapper.Map.reachability.CanReachMapEdge(kidnapper.Position, TraverseParms.For(kidnapper, Danger.Some, TraverseMode.ByPawn, false)))
             {
@@ -46,7 +46,8 @@ namespace RRYautja
                 bool xenoimpregnationFlag = pawn.health.hediffSet.hediffs.Any(x => x.def.defName.Contains("XenomorphImpregnation") && x.CurStageIndex < x.def.stages.Count - 2);
                 bool neoimpregnationFlag = pawn.health.hediffSet.hediffs.Any(x=> x.def.defName.Contains("NeomorphImpregnation"));
                 bool impregnationFlag = ((xenoimpregnationFlag && cocoonFlag) || !xenoimpregnationFlag) && !neoimpregnationFlag;
-                bool pawnFlag = ((XenomorphUtil.isInfectablePawn(pawn, true))) && pawn.Downed /* && (pawn.Faction == null || pawn.Faction.HostileTo(kidnapper.Faction)) */;
+                bool pawnFlag = pawn.isPotentialHost(allowImpreg: allowHost) && pawn.Downed;
+            //    Log.Message(string.Format("minFlag: {0}, roofedFlag: {1}, cocoonFlag: {2}, xenoimpregnationFlag: {3}, neoimpregnationFlag: {4}, impregnationFlag: {5}, pawnFlag: {6}, CanReserve: {7}, Allowed: {8}", minFlag, roofedFlag, cocoonFlag, xenoimpregnationFlag, neoimpregnationFlag, impregnationFlag, pawnFlag, kidnapper.CanReserve(pawn, 1, -1, null, false), (disallowed == null || !disallowed.Contains(pawn))));
                 return  cocoonFlag && pawnFlag && impregnationFlag && minFlag && kidnapper.CanReserve(pawn, 1, -1, null, false) && (disallowed == null || !disallowed.Contains(pawn));
             };
             victim = (Pawn)GenClosest.ClosestThingReachable(kidnapper.Position, kidnapper.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Some, false), maxDist, validator, null, 0, -1, false, RegionType.Set_Passable, false);
@@ -76,7 +77,6 @@ namespace RRYautja
         public static bool TryFindGoodHiveLoc(Pawn pawn, out IntVec3 c, Pawn victim = null, bool allowFogged = false, bool allowUnroofed = false, bool allowDigging = false)
         {
             Map map = pawn.Map;
-            bool result = false;
             c = IntVec3.Invalid;
             if (map == null)
             {
@@ -87,12 +87,7 @@ namespace RRYautja
                 return false;
             }
             MapComponent_HiveGrid hiveGrid = pawn.Map.GetComponent<MapComponent_HiveGrid>();
-            ThingDef named = null;
             bool selected = map != null ? Find.Selector.SelectedObjects.Contains(pawn) && (Prefs.DevMode) : false;
-            if (!victim.DestroyedOrNull())
-            {
-                named = victim.RaceProps.Humanlike ? XenomorphDefOf.RRY_Xenomorph_Cocoon_Humanoid : XenomorphDefOf.RRY_Xenomorph_Cocoon_Animal;
-            }
 
             Predicate<IntVec3> validatora = delegate (IntVec3 y)
             {
@@ -137,7 +132,7 @@ namespace RRYautja
             //    return true;
             }
             */
-            if (c == IntVec3.Invalid || c == IntVec3.Zero || c.InNoBuildEdgeArea(map) || c.InNoZoneEdgeArea(map) || c.GetTerrain(map).HasTag("Water"))
+            if (c == IntVec3.Invalid || c.x < 1 || c.z < 1 || c == IntVec3.Zero || c.InNoBuildEdgeArea(map) || c.InNoZoneEdgeArea(map) || c.GetTerrain(map).HasTag("Water"))
             {
                 if (!InfestationLikeCellFinder.TryFindCell(out c, out IntVec3 lc, map, allowFogged, allowUnroofed, allowDigging))
                 {
@@ -164,27 +159,27 @@ namespace RRYautja
                 //    Log.Message(string.Format("InfestationLikeCellFinder: {0}", c));
                 }
             }
-            if (c != IntVec3.Invalid && c != IntVec3.Zero && !c.InNoBuildEdgeArea(map) && !c.InNoZoneEdgeArea(map) && !c.GetTerrain(map).HasTag("Water"))
+            if (c != IntVec3.Invalid && c.x > 1 && c.z > 1 && !c.InNoBuildEdgeArea(map) && !c.InNoZoneEdgeArea(map) && !c.GetTerrain(map).HasTag("Water"))
             {
                 if (pawn.GetLord() != null && pawn.GetLord() is Lord lord)
                 {
-                //    Log.Message(string.Format("TryFindGoodHiveLoc pawn.GetLord() != null"));
+                    //    Log.Message(string.Format("TryFindGoodHiveLoc pawn.GetLord() != null"));
                 }
                 else
                 {
-                //    Log.Message(string.Format("TryFindGoodHiveLoc pawn.GetLord() == null"));
+                    //    Log.Message(string.Format("TryFindGoodHiveLoc pawn.GetLord() == null"));
                 }
                 if (pawn.mindState.duty.def != XenomorphDefOf.RRY_Xenomorph_DefendAndExpandHive && pawn.mindState.duty.def != XenomorphDefOf.RRY_Xenomorph_DefendHiveAggressively)
                 {
-                //    Log.Message(string.Format("TryFindGoodHiveLoc UpdateDuty"));
+                    //    Log.Message(string.Format("TryFindGoodHiveLoc UpdateDuty"));
                     pawn.mindState.duty = new PawnDuty(XenomorphDefOf.RRY_Xenomorph_DefendAndExpandHive, c, 40f);
                 }
-                if (!hiveGrid.HiveLoclist.Contains(c))
+                if (hiveGrid.HiveLoclist.NullOrEmpty() || !hiveGrid.HiveLoclist.Contains(c))
                 {
-                //    Log.Message(string.Format("TryFindGoodHiveLoc Adding to HiveLoclist"));
+                    //    Log.Message(string.Format("TryFindGoodHiveLoc Adding to HiveLoclist"));
                     hiveGrid.HiveLoclist.Add(c);
                 }
-                if (victim!=null)
+                if (!victim.DestroyedOrNull())
                 {
                     Func<Pawn, IntVec3, IntVec3, bool> validator = delegate (Pawn p, IntVec3 z, IntVec3 y)
                     {
@@ -193,15 +188,17 @@ namespace RRYautja
                             return false;
                         }
                         bool roofed = (!allowUnroofed && y.Roofed(map)) || allowUnroofed;
-                        bool thing = y.GetThingList(map).Any(x=> x.GetType() != typeof(Building_XenomorphCocoon) && x.GetType() != typeof(Building_XenoEgg) && x.GetType() != typeof(HiveLike) && x.GetType() != typeof(Building));
-                        bool r =  thing && roofed;
+                        bool thing = y.GetThingList(map).Any(x => x.GetType() != typeof(Building_XenomorphCocoon) && x.GetType() != typeof(Building_XenoEgg) && x.GetType() != typeof(HiveLike) && x.GetType() != typeof(Building));
+                        bool r = thing && roofed;
                         //   Log.Message(string.Format("Cell: {0}, score: {1}, XenohiveA: {2}, XenohiveB: {3}, !filled: {4}, edifice: {5}, building: {6}, thingA: {7}, thingB: {8}, roofed: {9}\nResult: {10}", y, GetScoreAt(y, map, allowFogged), XenohiveA , XenohiveB , !filled , edifice , building , thingA , thingB, roofed, result));
                         return r;
                     };
                     c = RCellFinder.RandomWanderDestFor(pawn, c, 5f, validator, Danger.Some);
                 }
+                return true;
             }
-            return c != IntVec3.Invalid && c != IntVec3.Zero && !c.InNoBuildEdgeArea(map) && !c.InNoZoneEdgeArea(map) && !c.GetTerrain(map).HasTag("Water");
+            else return false;
+            //return c != IntVec3.Invalid && c != IntVec3.Zero && !c.InNoBuildEdgeArea(map) && !c.InNoZoneEdgeArea(map) && !c.GetTerrain(map).HasTag("Water");
         }
 
 
@@ -218,7 +215,7 @@ namespace RRYautja
             {
                 Pawn pawn = t as Pawn;
                 bool cocoonFlag = !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned);
-                bool pawnFlag = ((XenomorphUtil.isInfectablePawn(pawn))) && !XenomorphUtil.IsXenomorph(pawn) && pawn.gender == Gender.Female && pawn.Downed && (pawn.Faction == null || pawn.Faction.HostileTo(kidnapper.Faction) || kidnapper.Faction == null);
+                bool pawnFlag = ((pawn.isPotentialHost())) && !XenomorphUtil.IsXenomorph(pawn) && pawn.gender == Gender.Female && pawn.Downed && (pawn.Faction == null || pawn.Faction.HostileTo(kidnapper.Faction) || kidnapper.Faction == null);
             //    Log.Message(string.Format(" cocoonFlag; {0} \n pawnFlag: {1}", cocoonFlag, pawnFlag));
                 return (cocoonFlag && pawnFlag) && (kidnapper.CanReserve(pawn, 1, -1, null, false) && (disallowed == null || !disallowed.Contains(pawn))) && pawn != kidnapper && pawn.gender == Gender.Female;
             };

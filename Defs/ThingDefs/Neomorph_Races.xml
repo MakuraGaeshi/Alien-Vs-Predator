@@ -68,7 +68,7 @@
       <predator>true</predator>
       <maxPreyBodySize>5.0</maxPreyBodySize>
       <baseBodySize>1.5</baseBodySize>
-      <baseHungerRate>0.35</baseHungerRate>
+      <baseHungerRate>2.35</baseHungerRate>
       <baseHealthScale>1.5</baseHealthScale>
       <foodType>Corpse, CarnivoreAnimalStrict</foodType>
       <lifeExpectancy>30</lifeExpectancy>

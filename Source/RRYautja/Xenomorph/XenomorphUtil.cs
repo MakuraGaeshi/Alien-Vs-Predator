@@ -163,34 +163,66 @@ namespace RRYautja
             }
             return true;
         }
-
         // Token: 0x0400030C RID: 780
         private static List<IntVec3> candidates = new List<IntVec3>();
         // Token: 0x060000A8 RID: 168 RVA: 0x00007234 File Offset: 0x00005434
+        /*
 
         public static bool isInfectableThing(ThingDef thingDef)
         {
-            if (thingDef.race == null) return false;
+            return isInfectableThing(thingDef, out string FailReason);
+        }
+
+        public static bool isInfectableThing(ThingDef thingDef, out string FailReason)
+        {
+            FailReason = string.Empty;
+            string NonBio = "Inorganic";
+            if (thingDef.race == null)
+            {
+                FailReason = string.Format("{0} has No Race Properties", thingDef);
+                return false; 
+            }
             if (!settings.SettingsHelper.latest.AllowNonHumanlikeHosts && !thingDef.race.Humanlike)
             {
+                FailReason = string.Format("Non-Humanlike");
                 return false;
             }
             if (thingDef.isXenomorph() || thingDef.isNeomorph())
             {
+                string str = thingDef.isXenomorph() ? "Xenomorph" : "Neomorph";
+                FailReason = string.Format("{0}", str);
                 return false;
             }
             bool pawnflag = !((UtilChjAndroids.ChjAndroid && UtilChjAndroids.isChjAndroid(thingDef)) || (UtilTieredAndroids.TieredAndroid && UtilTieredAndroids.isAtlasAndroid(thingDef)) || (UtilSynths.isAvPSynth(thingDef)));
-            if (!pawnflag) return false;
-            if (thingDef.race.IsMechanoid) return false;
-            if (thingDef.race.body.defName.Contains("AIRobot")) return false;
+            if (!pawnflag)
+            {
+                string str = string.Empty;
+                if (UtilChjAndroids.ChjAndroid && UtilChjAndroids.isChjAndroid(thingDef))
+                {
+                    str = NonBio;
+                }
+                if (UtilTieredAndroids.TieredAndroid && UtilTieredAndroids.isAtlasAndroid(thingDef))
+                {
+                    str = NonBio;
+                }
+
+                if (UtilSynths.isAvPSynth(thingDef))
+                {
+                    str = NonBio;
+                }
+                FailReason = string.Format("{0}", str);
+                return false; 
+            }
+            if (thingDef.race.IsMechanoid) { FailReason = NonBio;  return false; }
+            if (thingDef.race.body.defName.Contains("AIRobot")) { FailReason = NonBio; return false; }
             if (thingDef.defName.Contains("TM_"))
             {
-                if (thingDef.defName.Contains("Undead") || thingDef.defName.Contains("Minion") || thingDef.defName.Contains("Demon")) return false;
+                if (thingDef.defName.Contains("Undead") || thingDef.defName.Contains("Minion") || thingDef.defName.Contains("Demon")) { FailReason = NonBio; return false; }
             }
-            if (thingDef.race.FleshType.defName.Contains("TM_StoneFlesh")) return false;
-            if (thingDef.race.FleshType.defName.Contains("Chaos") && thingDef.race.FleshType.defName.Contains("Deamon")) return false;
-            if (thingDef.race.FleshType.defName.Contains("Construct") && thingDef.race.FleshType.defName.Contains("Flesh")) return false;
-            if (thingDef.race.baseBodySize < 0.65f && !thingDef.race.Humanlike) return false;
+            if (thingDef.race.FleshType.defName.Contains("TM_StoneFlesh")) { FailReason = NonBio; return false; }
+            if (thingDef.race.FleshType.defName.Contains("Chaos") && thingDef.race.FleshType.defName.Contains("Deamon")) { FailReason = NonBio; return false; }
+            if (thingDef.race.FleshType.defName.Contains("Construct") && thingDef.race.FleshType.defName.Contains("Flesh")) { FailReason = NonBio; return false; }
+            if (thingDef.race.baseBodySize < 0.65f && !thingDef.race.Humanlike) { FailReason = string.Format("Too Small", thingDef); return false; }
 
 
             return true;
@@ -198,18 +230,25 @@ namespace RRYautja
 
         public static bool isInfectablePawn(Pawn pawn, bool allowinfected = false)
         {
-            return isInfectableThing(pawn.def) && (allowinfected || !pawn.isHost());
+            return isInfectablePawn(pawn, out string FailReason, allowinfected);
+        }
+        public static bool isInfectablePawn(Pawn pawn, out string FailReason, bool allowinfected = false)
+        {
+            return isInfectableThing(pawn.def, out FailReason) && (allowinfected || !pawn.isHost());
         }
 
         public static bool isInfectablePawnKind(PawnKindDef pawn)
         {
-
-            return isInfectableThing(pawn.race);
+            return isInfectableThing(pawn.race, out string FailReason);
         }
-
+        public static bool isInfectablePawnKind(PawnKindDef pawn, out string FailReason)
+        {
+            return isInfectableThing(pawn.race, out FailReason);
+        }
+        */
         public static List<Pawn> SpawnedInfectablePawns(Map map)
         {
-            return map.mapPawns.AllPawnsSpawned.FindAll(x => XenomorphUtil.isInfectablePawn(x));
+            return map.mapPawns.AllPawnsSpawned.FindAll(x => x.isPotentialHost());
         }
 
         public static int TotalSpawnedInfectablePawnCount(Map map)
@@ -219,7 +258,7 @@ namespace RRYautja
 
         public static List<Pawn> SpawnedInfectablePawns(Map map, int radius, IntVec3 position)
         {
-            return map.mapPawns.AllPawnsSpawned.FindAll(x => XenomorphUtil.isInfectablePawn(x) && XenomorphUtil.DistanceBetween(x.Position, position) < radius);
+            return map.mapPawns.AllPawnsSpawned.FindAll(x => x.isPotentialHost() && XenomorphUtil.DistanceBetween(x.Position, position) < radius);
         }
 
         public static int TotalSpawnedInfectablePawnCount(Map map, int radius, IntVec3 position)
@@ -230,7 +269,7 @@ namespace RRYautja
 
         public static List<Pawn> SpawnedInfectablePawns(Map map, int radius, IntVec3 position, IntVec3 otherposition)
         {
-            return map.mapPawns.AllPawnsSpawned.FindAll(x => XenomorphUtil.isInfectablePawn(x) && XenomorphUtil.DistanceBetween(otherposition, position) < radius);
+            return map.mapPawns.AllPawnsSpawned.FindAll(x => x.isPotentialHost() && XenomorphUtil.DistanceBetween(otherposition, position) < radius);
         }
 
         public static int TotalSpawnedInfectablePawnCount(Map map, int radius, IntVec3 position, IntVec3 otherposition)
@@ -339,7 +378,7 @@ namespace RRYautja
 
         public static List<Pawn> SpawnedFacehuggerPawns(Map map, int radius, IntVec3 position)
         {
-            return map.mapPawns.AllPawnsSpawned.FindAll(x => XenomorphUtil.IsXenomorphFacehugger(x) && XenomorphUtil.DistanceBetween(x.Position, position) < radius);
+            return map.mapPawns.AllPawnsSpawned.FindAll(x => XenomorphUtil.IsXenomorphFacehugger(x) && position.InHorDistOf(x.Position, radius));
         }
 
         public static List<Pawn> SpawnedFacehuggerPawns(Map map, int radius, IntVec3 position, IntVec3 otherposition)
@@ -377,9 +416,9 @@ namespace RRYautja
             return map.mapPawns.AllPawnsSpawned.FindAll(x => XenomorphUtil.IsXenomorphFacehugger(x) && XenomorphUtil.DistanceBetween(x.Position, pawn.Position) < radius && x.CanReach(pawn, PathEndMode.ClosestTouch, Danger.Deadly));
         }
 
-        public static int TotalSpawnedFacehuggerPawnCount(Map map, int radius, Pawn pawn)
+        public static int TotalSpawnedFacehuggerPawnCount(Map map, int radius, Thing thing)
         {
-            return SpawnedFacehuggerPawns(map, radius, pawn.Position).Count;
+            return SpawnedFacehuggerPawns(map, radius, thing.Position).Count;
         }
 
         public static bool IsXenomorphCorpse(Corpse corpse)
@@ -470,7 +509,7 @@ namespace RRYautja
             List<Thing> list = new List<Thing>();
             foreach (var item in SpawnedEggs(map))
             {
-                Pawn host = (Pawn)GenClosest.ClosestThingReachable(item.Position, item.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 1, x => XenomorphUtil.isInfectablePawn(((Pawn)x)), null, 0, -1, false, RegionType.Set_Passable, false);
+                Pawn host = (Pawn)GenClosest.ClosestThingReachable(item.Position, item.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 1, x => x.isPotentialHost(), null, 0, -1, false, RegionType.Set_Passable, false);
                 if (host == null)
                 {
                     list.Add(item);
@@ -643,23 +682,6 @@ namespace RRYautja
             return Math.Sqrt(Math.Pow((x2 - x1), 2) + Math.Pow((y2 - y1), 2));
         }
 
-        public static List<PawnKindDef> HostKinds
-        {
-            get
-            {
-                List<PawnKindDef> tmpHostKinds = new List<PawnKindDef>();
-                foreach (var item in DefDatabase<PawnKindDef>.AllDefsListForReading)
-                {
-                    if (XenomorphUtil.isInfectablePawnKind(item))
-                    {
-                    //    Log.Message(string.Format("Xenomorph Host: {0}", item.LabelCap));
-                        tmpHostKinds.Add(item);
-                    }
-                }
-            //    Log.Message(string.Format("HostKinds count: {0}", tmpHostKinds.Count));
-                return tmpHostKinds;
-            }
-        }
     }
 
     [StaticConstructorOnStartup]

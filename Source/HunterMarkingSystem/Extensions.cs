@@ -65,6 +65,11 @@ namespace HunterMarkingSystem.ExtensionMethods
             comp = p.TryGetComp<Comp_Markable>();
             return comp != null;
         }
+        public static bool Markable(this Thing p, out Comp_Markable comp)
+        {
+            comp = p.TryGetComp<Comp_Markable>();
+            return comp != null;
+        }
 
         public static bool isWorthyKillFor(this Pawn x, Pawn y)
         {

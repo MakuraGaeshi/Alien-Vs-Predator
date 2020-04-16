@@ -36,11 +36,6 @@ namespace RRYautja
         public override void CompExposeData()
         {
             base.CompExposeData();
-            Scribe_Values.Look<int>(ref this.lastCoughTick, "thislastCoughTick");
-            Scribe_Values.Look<int>(ref this.lastCoughStage, "thislastCoughStage");
-            Scribe_Values.Look<int>(ref this.timesCoughed, "thistimesCoughed");
-            Scribe_Values.Look<int>(ref this.timesCoughedBlood, "thistimesCoughedBlood");
-            Scribe_Values.Look<float>(ref this.lastCoughSeverity, "thislastCoughSeverity");
             Scribe_Values.Look<int>(ref this.Impregnations, "Impregnations", 0);
             Scribe_Values.Look<int>(ref this.countToSpawn, "countToSpawn", 1);
             Scribe_Values.Look<bool>(ref this.royaleHugger, "royaleHugger");
@@ -51,12 +46,6 @@ namespace RRYautja
         bool logonce = false;
         bool bursted = false;
         public int countToSpawn = 1;
-        int lastCoughTick = 0;
-        int nextCoughTick = 0; 
-        int lastCoughStage=0;
-        int timesCoughed = 0;
-        int timesCoughedBlood = 0;
-        float lastCoughSeverity=0;
         public bool royaleHugger;
         public bool predalienImpregnation;
         public int Impregnations;
@@ -310,7 +299,17 @@ namespace RRYautja
             PawnGenerationRequest request = new PawnGenerationRequest(pawnKindDef, Find.FactionManager.FirstFactionOfDef(pawnKindDef.defaultFactionType), PawnGenerationContext.NonPlayer, -1, true, true, false, false, true, false, 20f, fixedGender: gender);
 
             Pawn pawn = PawnGenerator.GeneratePawn(request);
-
+            XenomorphPawn XP = pawn as XenomorphPawn;
+            if (XP!=null)
+            {
+                XP.HostRace = Pawn.def;
+            }
+            /*
+            XP.Drawer.renderer.graphics.nakedGraphic.colorTwo = HostBloodColour;
+            pawn.Notify_ColorChanged();
+            */
+            pawn.ageTracker.CurKindLifeStage.bodyGraphicData.colorTwo = HostBloodColour;
+            XP.Drawer.renderer.graphics.ResolveAllGraphics();
             return pawn;
         }
 
@@ -318,7 +317,7 @@ namespace RRYautja
         {
             get
             {
-                Color color = base.parent.pawn.def.race.BloodDef.graphic.color;
+                Color color = Pawn.def.race.BloodDef.graphic.color;
                 color.a = 1f;
                 return color;
             }
@@ -330,7 +329,7 @@ namespace RRYautja
             Map spawnMap = !base.Pawn.Dead ? base.parent.pawn.Map : base.parent.pawn.MapHeld;
             this.Pawn.def.race.deathActionWorkerClass = typeof(DeathActionWorker_Simple);
             bool fullterm = this.parent.CurStageIndex > this.parent.def.stages.Count - 3;
-            if (!fullterm || bursted)
+            if (!fullterm || bursted || spawnMap == null || spawnLoc == null)
             {
                 return;
             }
@@ -347,9 +346,7 @@ namespace RRYautja
                     for (int i = 0; i < countToSpawn; i++)
                     {
                         Pawn pawn = XenomorphSpawnRequest();
-                    //    Log.Message(string.Format("Xenomorph to hatch: {0}", pawn.LabelShortCap));
-                        pawn.ageTracker.CurKindLifeStage.bodyGraphicData.color = HostBloodColour;
-                        pawn.Notify_ColorChanged();
+                        //    Log.Message(string.Format("Xenomorph to hatch: {0}", pawn.LabelShortCap));
                         pawn.ageTracker.AgeBiologicalTicks = 0;
                         pawn.ageTracker.AgeChronologicalTicks = 0;
                         Comp_Xenomorph _Xenomorph = pawn.TryGetComp<Comp_Xenomorph>();
@@ -367,7 +364,7 @@ namespace RRYautja
                             MoteMaker.ThrowDustPuffThick(new Vector3(vector.x, 0f, vector.z)
                             {
                                 y = AltitudeLayer.MoteOverhead.AltitudeFor()
-                            }, spawnMap, 1.5f, new Color(HostBloodColour.r, HostBloodColour.g, HostBloodColour.b, HostBloodColour.a));
+                            }, spawnMap, 1.5f, HostBloodColour);
                         }
                         if (i == 100)
                         {
@@ -392,6 +389,8 @@ namespace RRYautja
                     {
                         LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Chestbursters, OpportunityType.Important);
                     }
+                    Pawn.health.AddHediff(DefDatabase<HediffDef>.GetNamedSilentFail("RRY_PostBurstWound"), this.parent.Part);
+                    Pawn.health.RemoveHediff(this.parent);
                 }
             }
              

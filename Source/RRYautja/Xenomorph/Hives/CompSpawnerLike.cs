@@ -1,5 +1,7 @@
-﻿using System;
+﻿using RRYautja.ExtensionMethods;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Verse;
 
 namespace RimWorld
@@ -112,7 +114,7 @@ namespace RimWorld
                 {
                     return;
                 }
-                if (!hive.hasQueen)
+                if (!hive.GetDirectlyHeldThings().Any(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen && x.xenomorph().HiveLoc == this.parent.Position))
                 {
                     return;
                 }

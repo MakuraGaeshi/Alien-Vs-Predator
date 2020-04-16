@@ -27,7 +27,7 @@ namespace RimWorld
         protected override bool Satisfied(Pawn pawn)
         {
             bool result;
-            if (pawn.Spawned && XenomorphUtil.IsXenomorph(pawn))
+            if (pawn.Spawned && XenomorphUtil.IsXenomorph(pawn) && pawn.Map.mapPawns.AllPawns.Any((Pawn x) => x.Downed && x.isPotentialHost() && pawn.CanReach(x, PathEndMode.InteractionCell, Danger.Deadly, false, TraverseMode.NoPassClosedDoors)))
             {
                 List<Pawn> list = pawn.Map.mapPawns.AllPawns.Where((Pawn x) => x.Downed && x.isPotentialHost() && pawn.CanReach(x, PathEndMode.InteractionCell, Danger.Deadly, false, TraverseMode.NoPassClosedDoors)).ToList();
                 result = !list.NullOrEmpty() ? list.Any<Pawn>(x => x.Spawned) : false;

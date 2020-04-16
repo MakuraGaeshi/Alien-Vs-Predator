@@ -7,16 +7,18 @@ using System.Linq;
 using HunterMarkingSystem.Settings;
 using HunterMarkingSystem.ExtensionMethods;
 using RRYautja.ExtensionMethods;
+using RRYautja.settings;
 
 namespace RRYautja.Xenomorph
 {
     [StaticConstructorOnStartup]
     public class XenomorphHostSystem
     {
-        protected static List<ThingDef> XenomorphHostList = DefDatabase<ThingDef>.AllDefs.Where(x => x.race!=null && x.isPotentialHost()).ToList();
+        public static List<ThingDef> AllRaces = DefDatabase<ThingDef>.AllDefs.Where(x => x.race != null).ToList();
+
         static XenomorphHostSystem()
         {
-        //    Log.Message(string.Format("Xenomorph Host System Loaded\n{0} Possible Host Races detected", XenomorphHostList.Count));
+            Log.Message(string.Format("Xenomorph Host System Loaded\n{0} Possible Hosts out of {1} Races detected: Race Setting init", AllRaces.Where(x => x.isPotentialHost()).Count(), AllRaces.Count));
             /*
             DefDatabase<ThingDef>.AllDefsListForReading.ForEach(action: td => 
             {

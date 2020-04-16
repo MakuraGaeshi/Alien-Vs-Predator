@@ -70,6 +70,16 @@ namespace HunterMarkingSystem
                     }
                 }
                 Markable.markDataKill = Markable.markDataKillNew;
+                if (this.parent.IsForbidden(user))
+                {
+                    this.parent.SetForbidden(false);
+                }
+                
+                if (user.Markable(out Comp_Markable markable))
+                {
+                    markable.markcorpse = null;
+                    markable.Mark = null;
+                }
             }
         }
 

@@ -52,8 +52,8 @@ namespace RRYautja
                             _Xenomorph = pawn.TryGetComp<Comp_Facehugger>();
                             if (_Xenomorph != null)
                             {
-                                __result = __result || !XenomorphUtil.isInfectablePawn(__instance);
-                                //    Log.Message(string.Format("__instance: {0}, __result: {1}, _Xenomorph: {2}, Infectable?: {3}", __instance, __result, _Xenomorph, XenomorphUtil.isInfectablePawn(__instance)));
+                                __result = __result || !__instance.isPotentialHost();
+                                //    Log.Message(string.Format("__instance: {0}, __result: {1}, _Xenomorph: {2}, Infectable?: {3}", __instance, __result, _Xenomorph, __instance.isPotentialHost()));
                             }
                         }
 

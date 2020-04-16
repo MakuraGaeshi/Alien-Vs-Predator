@@ -27,9 +27,13 @@ namespace RRYautja.ExtensionMethods
             }
         }
 
-        public static MapComponent_HiveGrid HiveGrid(this Map m) 
+        public static MapComponent_HiveGrid HiveGrid(this Map m)
         {
             return m.GetComponent<MapComponent_HiveGrid>();
+        }
+        public static MapComponent_GooGrid GooGrid(this Map m)
+        {
+            return m.GetComponent<MapComponent_GooGrid>();
         }
 
         public static bool isYautja(this Pawn p)
@@ -85,6 +89,15 @@ namespace RRYautja.ExtensionMethods
         }
 
         public static Comp_Xenomorph xenomorph(this Pawn p)
+        {
+            if (p.isXenomorph())
+            {
+                return p.TryGetComp<Comp_Xenomorph>();
+            }
+            return null;
+        }
+
+        public static Comp_Xenomorph xenomorph(this Thing p)
         {
             if (p.isXenomorph())
             {
@@ -167,6 +180,144 @@ namespace RRYautja.ExtensionMethods
             return p.race.FleshType == XenomorphRacesDefOf.RRY_Neomorph;
         }
 
+        public static bool isPotentialHost(this Thing t, bool setDefaults = false, bool allowImpreg = false)
+        {
+            Pawn p = t as Pawn;
+            if (p==null)
+            {
+                return false;
+            }
+            return p.isPotentialHost(out string FailReason, setDefaults, allowImpreg);
+        }
+
+        public static bool isPotentialHost(this Pawn p, bool setDefaults = false, bool allowImpreg = false, bool allowHugged = true)
+        {
+            return p.isPotentialHost(out string FailReason, setDefaults, allowImpreg);
+        }
+        public static bool isPotentialHost(this Pawn p, out string FailReason, bool setDefaults = false, bool allowImpreg = false, bool allowHugged = true)
+        {
+            if (!p.health.hediffSet.HasHead)
+            {
+                FailReason = "HasHead";
+                return false;
+            }
+            if (p.Dead)
+            {
+                FailReason = "Dead";
+                return false;
+            }
+            if (!p.health.capacities.CapableOf(PawnCapacityDefOf.Breathing) || !p.health.capacities.CapableOf(PawnCapacityDefOf.Eating))
+            {
+                FailReason = "Doesnt Eat or Breath";
+                return false;
+            }
+            if (p.isHost())
+            {
+                FailReason = "Host";
+                if (p.isNeoHost())
+                {
+                    FailReason = "Neo " + FailReason;
+                }
+                if (p.isXenoHost() && !allowImpreg)
+                {
+                    FailReason = "Xeno " + FailReason;
+                }
+                return false;
+            }
+            if (XenomorphUtil.IsXenomorphFaction(p))
+            {
+                FailReason = "Xenomorph Faction Member";
+                return false;
+            }
+            if (p.BodySize < 0.65f && !p.RaceProps.Humanlike)
+            {
+                FailReason = "NonhumanlikeTooSmall";
+                return false;
+            }
+            if (!p.def.isPotentialHost(out FailReason, setDefaults))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public static bool isPotentialHost(this PawnKindDef p, bool setDefaults = false)
+        {
+            return p.isPotentialHost(out string FailReason, setDefaults);
+        }
+
+        public static bool isPotentialHost(this PawnKindDef p, out string FailReason, bool setDefaults = false)
+        {
+            return p.race.isPotentialHost(out FailReason, setDefaults);
+        }
+
+        public static bool isPotentialHost(this ThingDef thingDef, bool setDefaults = false)
+        {
+            return thingDef.isPotentialHost(out string FailReason, setDefaults);
+        }
+        public static bool isPotentialHost(this ThingDef thingDef, out string FailReason, bool setDefaults = false)
+        {
+            FailReason = string.Empty;
+            if (thingDef.race == null)
+            {
+                FailReason = string.Format("{0} has No Race Properties", thingDef);
+                return false;
+            }
+            if (!settings.SettingsHelper.latest.AllowNonHumanlikeHosts && !thingDef.race.Humanlike)
+            {
+                FailReason = string.Format("Non-Humanlike Not Allowed");
+                return false;
+            }
+            if (!setDefaults && settings.SettingsHelper.latest.RaceKeyPairs != null)
+            {
+                if (settings.SettingsHelper.latest.RaceKeyPairs.ContainsKey(thingDef.defName))
+                {
+                    FailReason = string.Format("Not Allowed");
+                    return settings.SettingsHelper.latest.RaceKeyPairs.GetValueOrDefault(thingDef.defName);
+                }
+            }
+            string NonBio = "Inorganic";
+            if (thingDef.isXenomorph() || thingDef.isNeomorph())
+            {
+                string str = thingDef.isXenomorph() ? "Xenomorph" : "Neomorph";
+                FailReason = string.Format("{0}", str);
+                return false;
+            }
+            bool pawnflag = !((UtilChjAndroids.ChjAndroid && UtilChjAndroids.isChjAndroid(thingDef)) || (UtilTieredAndroids.TieredAndroid && UtilTieredAndroids.isAtlasAndroid(thingDef)) || (UtilSynths.isAvPSynth(thingDef)));
+            if (!pawnflag)
+            {
+                string str = string.Empty;
+                if (UtilChjAndroids.ChjAndroid && UtilChjAndroids.isChjAndroid(thingDef))
+                {
+                    str = NonBio;
+                }
+                if (UtilTieredAndroids.TieredAndroid && UtilTieredAndroids.isAtlasAndroid(thingDef))
+                {
+                    str = NonBio;
+                }
+
+                if (UtilSynths.isAvPSynth(thingDef))
+                {
+                    str = NonBio;
+                }
+                FailReason = string.Format("{0}", str);
+                return false;
+            }
+            if (thingDef.race.IsMechanoid) { FailReason = NonBio; return false; }
+            if (thingDef.race.body.defName.Contains("AIRobot")) { FailReason = NonBio; return false; }
+            if (thingDef.defName.Contains("TM_"))
+            {
+                if (thingDef.defName.Contains("Undead") || thingDef.defName.Contains("Minion") || thingDef.defName.Contains("Demon")) { FailReason = NonBio; return false; }
+            }
+            if (thingDef.race.FleshType.defName.Contains("TM_StoneFlesh")) { FailReason = NonBio; return false; }
+            if (thingDef.race.FleshType.defName.Contains("Chaos") && thingDef.race.FleshType.defName.Contains("Deamon")) { FailReason = NonBio; return false; }
+            if (thingDef.race.FleshType.defName.Contains("Construct") && thingDef.race.FleshType.defName.Contains("Flesh")) { FailReason = NonBio; return false; }
+            if (thingDef.race.baseBodySize < 0.65f && !thingDef.race.Humanlike) { FailReason = string.Format("Too Small", thingDef); return false; }
+
+
+            return true;
+        }
+        /*
         public static bool isPotentialHost(this Pawn p, out string failReason)
         {
             failReason = string.Empty;
@@ -175,128 +326,36 @@ namespace RRYautja.ExtensionMethods
                 failReason = "HasHead";
                 return false;
             }
-            if (p.isNeomorph())
-            {
-                failReason = "isNeomorph";
-                return false;
-            }
-            if (p.isXenomorph())
-            {
-                failReason = "isXenomorph";
-                return false;
-            }
             if (p.Dead)
             {
                 failReason = "Dead";
                 return false;
             }
-            if (UtilChjAndroids.ChjAndroid)
+            if (!XenomorphUtil.isInfectableThing(p.def, out failReason))
             {
-                if (p.kindDef.race.defName == "ChjAndroid" || p.kindDef.race.defName == "ChjDroid")
-                {
-                    failReason = "ChjAndroid";
-                    return false;
-                }
-            }
-            if (UtilTieredAndroids.TieredAndroid)
-            {
-                if (p.kindDef.race.defName.Contains("Android" + "Tier"))
-                {
-                    failReason = "TieredAndroid";
-                    return false;
-                }
-            }
-            if (p.RaceProps.body.defName.Contains("AIRobot"))
-            {
-                failReason = "AIRobot";
                 return false;
             }
-            if (p.kindDef.race.defName.Contains("Android"))
+            if (!p.health.capacities.CapableOf(PawnCapacityDefOf.Breathing) || !p.health.capacities.CapableOf(PawnCapacityDefOf.Eating))
             {
-                failReason = "Android";
-                return false;
-            }
-            if (p.kindDef.race.defName.Contains("Droid"))
-            {
-                failReason = "Droid";
-                return false;
-            }
-            if (p.kindDef.race.defName.Contains("Mech"))
-            {
-                failReason = "Mech";
-                return false;
-            }
-            if (p.kindDef.race.defName.Contains("TM_Undead"))
-            {
-                failReason = "TM_Undead";
-                return false;
-            }
-            if (p.kindDef.race.race.FleshType.defName.Contains("TM_StoneFlesh"))
-            {
-                failReason = "TM_StoneFlesh";
-                return false;
-            }
-            if (p.kindDef.race.defName.Contains("TM_") && p.kindDef.race.defName.Contains("Minion"))
-            {
-                failReason = "TM_Minion";
-                return false;
-            }
-            if (p.kindDef.race.defName.Contains("TM_Demon"))
-            {
-                failReason = "TM_Demon";
-                return false;
-            }
-            if (p.kindDef.race.race.FleshType.defName.Contains("ChaosDeamon"))
-            {
-                failReason = "ChaosDeamon";
-                return false;
-            }
-            if (p.kindDef.race.race.FleshType.defName.Contains("Necron"))
-            {
-                failReason = "Necron";
-                return false;
-            }
-            if (p.kindDef.race.race.FleshType.defName.Contains("EldarConstruct"))
-            {
-                failReason = "EldarConstruct";
-                return false;
-            }
-            if (p.kindDef.race.race.FleshType.defName.Contains("ImperialConstruct"))
-            {
-                failReason = "ImperialConstruct";
-                return false;
-            }
-            if (p.kindDef.race.race.FleshType.defName.Contains("MechanicusConstruct"))
-            {
-                failReason = "MechanicusConstruct";
-                return false;
-            }
-            if (p.RaceProps.IsMechanoid)
-            {
-                failReason = "IsMechanoid";
-                return false;
-            }
-            if (!p.RaceProps.IsFlesh)
-            {
-                failReason = "notFlesh";
+                failReason = "Doesnt Eat or Breath";
                 return false;
             }
             if (p.isHost())
             {
-                failReason = "isHost";
+                failReason = "Host";
                 if (p.isNeoHost())
                 {
-                    failReason = "isHostNeo";
+                    failReason = "Neo "+ failReason;
                 }
                 if (p.isXenoHost())
                 {
-                    failReason = "isHostXeno";
+                    failReason = "Xeno "+ failReason;
                 }
                 return false;
             }
             if (XenomorphUtil.IsXenomorphFaction(p))
             {
-                failReason = "IsXenomorphFaction";
+                failReason = "Xenomorph Faction Member";
                 return false;
             }
             if (p.BodySize < 0.65f && !p.RaceProps.Humanlike)
@@ -444,8 +503,15 @@ namespace RRYautja.ExtensionMethods
             return true;
         }
 
-        public static bool isPotentialHost(this ThingDef p)
+        public static bool isPotentialHost(this ThingDef p, bool setDefaults = false)
         {
+            if (!setDefaults && settings.SettingsHelper.latest.RaceKeyPairs!=null)
+            {
+                if (settings.SettingsHelper.latest.RaceKeyPairs.ContainsKey(p.defName))
+                {
+                    return settings.SettingsHelper.latest.RaceKeyPairs.GetValueOrDefault(p.defName);
+                }
+            }
             return XenomorphUtil.isInfectableThing(p) && !p.isXenomorph() && !p.isNeomorph();
         }
 
@@ -565,7 +631,7 @@ namespace RRYautja.ExtensionMethods
             }
             return true;
         }
-
+        */
         public static List<Pawn> ViableHosts(this Map m)
         {
             return m.mapPawns.AllPawnsSpawned.FindAll(x => x.isPotentialHost());
@@ -590,7 +656,7 @@ namespace RRYautja.ExtensionMethods
             bool result = p.isNeoHost() || p.isXenoHost();
             if (result)
             {
-                hediff = p.health.hediffSet.hediffs.Find(x => x.def.defName.Contains("morphImpregnation") || x.def.defName.Contains("FaceHuggerInfection"));
+                hediff = p.health.hediffSet.hediffs.Find(x => x.def.defName.Contains("morphImpregnation") || x.def == XenomorphDefOf.RRY_FaceHuggerInfection);
             }
             else
             {
@@ -600,7 +666,7 @@ namespace RRYautja.ExtensionMethods
         }
         public static bool isXenoHost(this Pawn p)
         {
-            return p.health.hediffSet.hediffs.Any(x => x.def.defName.Contains("XenomorphImpregnation") || x.def.defName.Contains("FaceHuggerInfection"));
+            return p.health.hediffSet.hediffs.Any(x => x.def.defName.Contains("XenomorphImpregnation") || x.def==XenomorphDefOf.RRY_FaceHuggerInfection);
         }
         public static bool isNeoHost(this Pawn p)
         {

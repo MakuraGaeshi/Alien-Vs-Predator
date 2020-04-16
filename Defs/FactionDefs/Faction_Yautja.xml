@@ -27,7 +27,10 @@
     <backstoryFilters>
       <li>
         <categories>
-          <li>RRY_Yautja_Standard</li>
+          <li>Offworld</li>
+          <li>Pirate</li>
+		  <li>Tribal</li>
+		  <li>Outlander</li>
         </categories>
       </li>
     </backstoryFilters>

@@ -6,7 +6,7 @@ namespace RRYautja
 {
     public class Projectile_AbilityRRY_ThrownReturning : Projectile_AbilityRRY
     {
-        public int TicksToImpact => ticksToImpact;
+        public new int TicksToImpact => ticksToImpact;
 
         protected override void Impact(Thing hitThing)
         {
@@ -22,10 +22,12 @@ namespace RRYautja
             }
             PostPostImpactEffects(hitThing);
         }
-        
 
 
+
+#pragma warning disable CS0114 // Member hides inherited member; missing override keyword
         public virtual void PostImpactEffects(Thing hitThing)
+#pragma warning restore CS0114 // Member hides inherited member; missing override keyword
         {
 
         }

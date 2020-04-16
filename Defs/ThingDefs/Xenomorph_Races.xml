@@ -2,7 +2,7 @@
 <Defs>
 
 <ThingDef Name="RRY_BaseXenomorphPawn" Abstract="True">
-    <thingClass>Pawn</thingClass>
+    <thingClass>RRYautja.XenomorphPawn</thingClass>
     <category>Pawn</category>
     <selectable>true</selectable>
     <tickerType>Normal</tickerType>
@@ -88,7 +88,7 @@
         <label>Face grab</label>
         <capacities>
           <!-- <li>RRY_FaceHuggerGrab</li> -->
-          <li>RRY_FaceHuggerGrab</li>
+          <li>Blunt</li>
         </capacities>
         <power>3</power>
         <cooldownTime>2</cooldownTime>
@@ -119,11 +119,10 @@
         <li>
           <def>RRY_XFacehuggerFullyFormed</def>
           <minAge>0</minAge>
-		  <!--
-          <soundWounded>RRY_Pawn_Xenomorph_Queen_Wounded</soundWounded>
-          <soundDeath>RRY_Pawn_Xenomorph_Queen_Death</soundDeath>
-          <soundCall>RRY_Pawn_Xenomorph_Queen_Call</soundCall>
-		  -->
+          <soundWounded>Pawn_Megascarab_Wounded</soundWounded>
+          <soundDeath>Pawn_Megascarab_Death</soundDeath>
+          <soundCall>Pawn_Megascarab_Call</soundCall>
+          <soundAngry>Pawn_Megascarab_Angry</soundAngry>
         </li>
       </lifeStageAges>
       <soundCallIntervalRange>
@@ -381,53 +380,62 @@
     <lifeStages>
       <li>
         <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
+          <texPath>Things/Pawn/Xenomorph/ChestBursterBloody</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>0.5</drawSize>
           <shadowData>
             <volume><!--(0.6, 0.8, 0.6)-->(0.0, 0.0, 0.0)</volume>
           </shadowData>
+          <color>(146,147,127)</color>
+          <colorTwo>(255,255,255)</colorTwo>
           <shaderType>CutoutComplex</shaderType>
         </bodyGraphicData>
       </li>
       <li>
         <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
+          <texPath>Things/Pawn/Xenomorph/ChestBurster</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>0.75</drawSize>
           <shadowData>
             <volume><!--(0.6, 0.8, 0.6)-->(0.0, 0.0, 0.0)</volume>
           </shadowData>
+          <color>(146,147,127)</color>
         </bodyGraphicData>
       </li>
       <li>
         <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_Queen</texPath>
+          <texPath>Things/Pawn/Xenomorph/QueenYoung</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>1</drawSize>
           <shadowData>
             <volume>(0.6, 0.8, 0.6)</volume>
           </shadowData>
+          <shaderType>CutoutComplex</shaderType>
+          <color>(59,82,118)</color>
         </bodyGraphicData>
       </li>
       <li>
         <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_Queen</texPath>
+          <texPath>Things/Pawn/Xenomorph/QueenYoung</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>2</drawSize>
           <shadowData>
             <volume>(0.6, 0.8, 0.6)</volume>
           </shadowData>
+          <shaderType>CutoutComplex</shaderType>
+          <color>(59,82,118)</color>
         </bodyGraphicData>
       </li>
       <li>
         <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_Queen</texPath>
+          <texPath>Things/Pawn/Xenomorph/Queen</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>3.3</drawSize>
           <shadowData>
             <volume>(0.6, 0.8, 0.6)</volume>
           </shadowData>
+          <shaderType>CutoutComplex</shaderType>
+          <color>(59,82,118)</color>
         </bodyGraphicData>
       </li>
     </lifeStages>
@@ -661,23 +669,26 @@
     <lifeStages>
       <li>
         <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
+          <texPath>Things/Pawn/Xenomorph/ChestBursterBloody</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>0.5</drawSize>
           <shadowData>
             <volume><!--(0.6, 0.8, 0.6)-->(0.0, 0.0, 0.0)</volume>
           </shadowData>
+          <color>(234,212,137)</color>
+          <colorTwo>(255,255,255)</colorTwo>
           <shaderType>CutoutComplex</shaderType>
         </bodyGraphicData>
       </li>
       <li>
         <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
+          <texPath>Things/Pawn/Xenomorph/ChestBurster</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>0.75</drawSize>
           <shadowData>
             <volume><!--(0.6, 0.8, 0.6)-->(0.0, 0.0, 0.0)</volume>
           </shadowData>
+          <color>(234,212,137)</color>
         </bodyGraphicData>
       </li>
       <li>
@@ -849,64 +860,72 @@
     <label>Warrior</label>
     <race>RRY_Xenomorph_Warrior</race>
     <combatPower>160</combatPower>
+	<!--
     <alternateGraphicChance>0.5</alternateGraphicChance>
     <alternateGraphics>
-      <li><texPath>Things/Pawn/Xenomorph/Xenomorph_Warrior_New</texPath></li>
-      <!--<li><texPath>Things/Pawn/Xenomorph/Xenomorph_Warrior_New_Red</texPath></li>-->
+      <li><texPath>Things/Pawn/Xenomorph/Xenomorph_Warrior_New</texPath></li
+      <li><texPath>Things/Pawn/Xenomorph/Xenomorph_Warrior_New_Red</texPath></li>
     </alternateGraphics>
+	-->
     <lifeStages>
       <li>
         <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
+          <texPath>Things/Pawn/Xenomorph/ChestBursterBloody</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>0.5</drawSize>
           <shadowData>
             <volume><!--(0.6, 0.8, 0.6)-->(0.0, 0.0, 0.0)</volume>
           </shadowData>
+          <color>(234,212,137)</color>
+          <colorTwo>(255,255,255)</colorTwo>
           <shaderType>CutoutComplex</shaderType>
         </bodyGraphicData>
       </li>
       <li>
         <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_ChestBurster</texPath>
+          <texPath>Things/Pawn/Xenomorph/ChestBurster</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>0.75</drawSize>
           <shadowData>
             <volume><!--(0.6, 0.8, 0.6)-->(0.0, 0.0, 0.0)</volume>
           </shadowData>
+          <color>(234,212,137)</color>
         </bodyGraphicData>
       </li>
       <li>
         <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_Warrior</texPath>
+          <texPath>Things/Pawn/Xenomorph/Warrior</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
-          <color>(180,180,180)</color>
+          <shaderType>CutoutComplex</shaderType>
           <drawSize>0.95</drawSize>
           <shadowData>
             <volume>(0.4, 0.8, 0.4)</volume>
           </shadowData>
+          <color>(59,82,118)</color>
         </bodyGraphicData>
       </li>
       <li>
         <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_Warrior</texPath>
+          <texPath>Things/Pawn/Xenomorph/Warrior</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
-          <color>(180,180,180)</color>
+          <shaderType>CutoutComplex</shaderType>
           <drawSize>1.35</drawSize>
           <shadowData>
             <volume>(0.4, 0.8, 0.4)</volume>
           </shadowData>
+          <color>(59,82,118)</color>
         </bodyGraphicData>
       </li>
       <li>
         <bodyGraphicData>
-          <texPath>Things/Pawn/Xenomorph/Xenomorph_Warrior</texPath>
+          <texPath>Things/Pawn/Xenomorph/Warrior</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
-          <color>(180,180,180)</color>
+          <shaderType>CutoutComplex</shaderType>
           <drawSize>1.75</drawSize>
           <shadowData>
             <volume>(0.4, 0.8, 0.4)</volume>
           </shadowData>
+          <color>(59,82,118)</color>
         </bodyGraphicData>
       </li>
     </lifeStages>

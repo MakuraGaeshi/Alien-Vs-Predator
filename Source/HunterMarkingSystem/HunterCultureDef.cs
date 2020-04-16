@@ -15,8 +15,6 @@ namespace RimWorld
             return DefDatabase<HunterCultureDef>.GetNamed(defName, true);
         }
         
-        [MustTranslate]
-        public string label;
         
         [MustTranslate]
         public string pawnSingular = "member";

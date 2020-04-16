@@ -28,6 +28,9 @@ namespace RimWorld
             jobGiver_XenosKidnap.forceRoofed = this.forceRoofed;
             jobGiver_XenosKidnap.canBash = this.canBash;
             jobGiver_XenosKidnap.forceCanDig = this.forceCanDig;
+            jobGiver_XenosKidnap.allowCocooned = this.allowCocooned;
+            jobGiver_XenosKidnap.allowHosts = this.allowHosts;
+            jobGiver_XenosKidnap.minRadius = this.minRadius;
             jobGiver_XenosKidnap.forceCanDigIfAnyHostileActiveThreat = this.forceCanDigIfAnyHostileActiveThreat;
             jobGiver_XenosKidnap.forceCanDigIfCantReachMapEdge = this.forceCanDigIfCantReachMapEdge;
             return jobGiver_XenosKidnap;
@@ -42,17 +45,25 @@ namespace RimWorld
             float Searchradius = HuntingRange;
             Map map = pawn.Map;
             IntVec3 c = IntVec3.Invalid;
+            Pawn Victim = null;
             if (!pawn.isXenomorph(out Comp_Xenomorph xenomorph) || map == null)
             {
                 return null;
             }
             MapComponent_HiveGrid hiveGrid = pawn.Map.HiveGrid();
-            if (XenomorphKidnapUtility.TryFindGoodKidnapVictim(pawn, Searchradius, out Pawn t, null) && !GenAI.InDangerousCombat(pawn))
+            /*
+            if (GenAI.InDangerousCombat(pawn))
+            {
+                Log.Warning(string.Format("{0} is InDangerousCombat", pawn.NameShortColored));
+            }
+            */
+            if (XenomorphKidnapUtility.TryFindGoodKidnapVictim(pawn, Searchradius, out Victim, null,forceRoofed, allowCocooned, minRadius, allowHosts) && !GenAI.InDangerousCombat(pawn))
             {
                 if (xenomorph.HiveLoc.IsValid && xenomorph.HiveLoc.InBounds(map) && xenomorph.HiveLoc != IntVec3.Zero)
                 {
                     c = xenomorph.HiveLoc;
                 }
+                /*
                 else
                 if (!hiveGrid.Hivelist.NullOrEmpty())
                 {
@@ -64,14 +75,9 @@ namespace RimWorld
                     c = hiveGrid.HiveLoclist.RandomElement();
                 }
                 else
-                if (!XenomorphKidnapUtility.TryFindGoodHiveLoc(pawn, out c, t, true, this.forceRoofed, this.forceCanDig))
-                {
-                    Log.Error("No hive loc found");
-                    return null;
-                    //   if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} No Cocooning spot Found", this));
-                }
+                */
                 bool selected = pawn.Map != null ? Find.Selector.SelectedObjects.Contains(pawn) && (Prefs.DevMode) : false;
-                if (c != IntVec3.Invalid && t != null && pawn.CanReach(c, PathEndMode.ClosestTouch, Danger.Deadly, true, TraverseMode.PassAllDestroyableThings))
+                if (c != IntVec3.Invalid && Victim != null && pawn.CanReach(c, PathEndMode.ClosestTouch, Danger.Deadly, true, TraverseMode.PassAllDestroyableThings))
                 {
                     Predicate<IntVec3> validator = delegate (IntVec3 y)
                     {
@@ -100,7 +106,7 @@ namespace RimWorld
                     {
                         return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Kidnap)
                         {
-                            targetA = t,
+                            targetA = Victim,
                             targetB = lc,
                             targetC = lc.RandomAdjacentCell8Way(),
                             count = 1
@@ -109,12 +115,13 @@ namespace RimWorld
                 }
                 else
                 {
+                    Log.Error("No suitable hive location found");
                     //   if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} something went wrong", this));
                 }
             }
             else
             {
-             //   if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message(string.Format("{0} No Victim Found", this));
+            //    Log.Error("No suitable Victim found");
             }
             return null;
         }
@@ -142,25 +149,20 @@ namespace RimWorld
             return true;
         }
         
-        // Token: 0x040002AB RID: 683
         public const float VictimSearchRadiusInitial = 8f;
 
-        // Token: 0x040002AC RID: 684
         private const float VictimSearchRadiusOngoing = 18f;
 
-        // Token: 0x040027D9 RID: 10201
         protected bool canBash = false;
 
-        // Token: 0x040027DA RID: 10202
         protected bool forceCanDig = true;
 
-        // Token: 0x040027DA RID: 10202
         protected bool forceRoofed = false;
-
-        // Token: 0x040027DB RID: 10203
+        protected bool allowHosts = false;
+        protected bool allowCocooned = false;
+        protected int minRadius = 0;
         protected bool forceCanDigIfAnyHostileActiveThreat;
 
-        // Token: 0x040027DC RID: 10204
         protected bool forceCanDigIfCantReachMapEdge = true;
     }
 }

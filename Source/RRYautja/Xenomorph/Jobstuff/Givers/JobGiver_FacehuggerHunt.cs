@@ -1,4 +1,5 @@
 ﻿using RRYautja;
+using RRYautja.ExtensionMethods;
 using System;
 using System.Collections.Generic;
 using Verse;
@@ -29,7 +30,7 @@ namespace RimWorld
             }
             Pawn pawn2 = FindPawnTarget(pawn);
         //    Pawn pawn2 = BestPawnToHuntForPredator(pawn, forceScanWholeMap);
-            if (pawn2 != null && !pawn2.Dead && _Facehugger.Impregnations<_Facehugger.maxImpregnations && XenomorphUtil.isInfectablePawn(pawn2) && pawn.CanReach(pawn2, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.ByPawn))
+            if (pawn2 != null && !pawn2.Dead && _Facehugger.Impregnations<_Facehugger.maxImpregnations && pawn2.isPotentialHost() && pawn.CanReach(pawn2, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.ByPawn))
             {
 
 #if DEBUG
@@ -37,7 +38,7 @@ namespace RimWorld
 #endif
                 return this.MeleeAttackJob(pawn, pawn2);
             }
-            if (pawn2 != null && XenomorphUtil.isInfectablePawn(pawn2))
+            if (pawn2 != null && pawn2.isPotentialHost())
             {
                 using (PawnPath pawnPath = pawn.Map.pathFinder.FindPath(pawn.Position, pawn2.Position, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.PassDoors, false), PathEndMode.OnCell))
                 {
@@ -79,8 +80,8 @@ namespace RimWorld
             Predicate<Thing> validator = delegate (Thing x)
             {
                 Pawn p = (Pawn)x;
-            if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0}\nisInfectablePawn: {1}, Alive: {2}", pawn.LabelShortCap, XenomorphUtil.isInfectablePawn(p), !p.Dead));
-                return XenomorphUtil.isInfectablePawn(p);
+            if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0}\nisInfectablePawn: {1}, Alive: {2}", pawn.LabelShortCap, p.isPotentialHost(), !p.Dead));
+                return p.isPotentialHost();
             };
             Pawn pawn2 = (Pawn)XenomorphTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, validator, 0f, HuntingRange, pawn.Position, float.MaxValue, true, true);
             /*
@@ -134,7 +135,7 @@ namespace RimWorld
                     for (int j = 0; j < list.Count; j++)
                     {
                         Pawn p = ((Pawn)list[j]);
-                        if (XenomorphUtil.isInfectablePawn(p))
+                        if (p.isPotentialHost())
                         {
                             tmpPredatorCandidates.Add(p);
                         }

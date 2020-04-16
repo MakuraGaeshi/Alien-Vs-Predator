@@ -322,11 +322,16 @@ namespace RRYautja
         private bool CanHaveHive(int ind)
         {
             Building building = this.map.edificeGrid[ind];
+
             if (building != null && !MapComponent_HiveGrid.CanCoexistWithHive(building.def))
             {
                 return false;
             }
             TerrainDef terrainDef = this.map.terrainGrid.TerrainAt(ind);
+            if (terrainDef.HasTag("Water"))
+            {
+                return false;
+            }
             return terrainDef.passability != Traversability.Impassable && this.map.roofGrid.RoofAt(ind)!=null;// terrainDef == null || terrainDef.holdSnow;
         }
 

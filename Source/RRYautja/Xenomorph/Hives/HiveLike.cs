@@ -20,14 +20,8 @@ namespace RimWorld
         public float initalSpawnPointsPerHive = 250f;
     }
     // Token: 0x020006EC RID: 1772
-    public class HiveLike : ThingWithComps, IThingHolder
+    public class HiveLike : ThingWithComps
     {
-        public HiveLike()
-        {
-            this.innerContainer = new ThingOwner<Thing>(this, false, LookMode.Deep);
-            this.queenContainer = new ThingOwner<Thing>(this, false, LookMode.Deep);
-        }
-
         public ThingDef_HiveLike Def
         {
             get
@@ -70,6 +64,13 @@ namespace RimWorld
             }
         }
 
+        public bool hiveNode
+        {
+            get
+            {
+                return this.def == XenomorphDefOf.RRY_Xenomorph_Hive;
+            }
+        }
         public bool hiveDormant
         {
             get
@@ -91,21 +92,7 @@ namespace RimWorld
                 bool hasqueen = false;
                 if (!this.innerContainer.NullOrEmpty())
                 {
-                    if (this.innerContainer.Any(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen))
-                    {
-                        foreach (var item in innerContainer.Where(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen))
-                        {
-                            queenContainer.TryAddOrTransfer(item);
-                        }
-                    }
-                }
-                else
-                if (!this.queenContainer.NullOrEmpty())
-                {
-                    if (this.queenContainer.Any(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen))
-                    {
-                        hasqueen = true;
-                    }
+                    hasqueen = this.innerContainer.Any(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen && x.xenomorph().HiveLoc == this.Position);
                 }
                 else
                 if (!Map.HiveGrid().Queenlist.NullOrEmpty())
@@ -150,16 +137,16 @@ namespace RimWorld
 
         // Token: 0x040015B0 RID: 5552
         
-        public float maxSpawnPointsPerHive = 0f;
+        private float maxSpawnPointsPerHive = -1f;
         public float MaxSpawnedPawnsPoints
         {
             get
             {
-                if (maxSpawnPointsPerHive!=0f)
+                if (maxSpawnPointsPerHive==-1f)
                 {
-                    return maxSpawnPointsPerHive;
+                    maxSpawnPointsPerHive = Def.maxSpawnPointsPerHive;
                 }
-                return Def.maxSpawnPointsPerHive;
+                return maxSpawnPointsPerHive;
             }
             set
             {
@@ -168,11 +155,20 @@ namespace RimWorld
         }
 
         // Token: 0x040015B1 RID: 5553
+        private float initialPawnsPoints = -1f;
         public float InitialPawnsPoints
         {
             get
             {
-                return Def.initalSpawnPointsPerHive;
+                if (initialPawnsPoints==-1f)
+                {
+                    initialPawnsPoints = Def.initalSpawnPointsPerHive;
+                }
+                return initialPawnsPoints;
+            }
+            set
+            {
+                initialPawnsPoints = value;
             }
         }
         // Token: 0x170005CD RID: 1485
@@ -290,9 +286,9 @@ namespace RimWorld
 		// Token: 0x06002673 RID: 9843 RVA: 0x001240D8 File Offset: 0x001224D8
 		public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
-            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Neomorphs) && this.def == XenomorphDefOf.RRY_Xenomorph_Hive)
+            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_HiveLike) && this.def == XenomorphDefOf.RRY_Xenomorph_Hive)
             {
-                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Neomorphs, OpportunityType.Important);
+                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_HiveLike, OpportunityType.Important);
             }
             base.SpawnSetup(map, respawningAfterLoad);
 			if (base.Faction == null)
@@ -300,7 +296,12 @@ namespace RimWorld
 				this.SetFaction(OfFaction, null);
 
             }
-			if (!respawningAfterLoad && this.active && this.hasQueen)
+            if (this.getsQueen && hiveNode)
+            {
+                Pawn newQueen = PawnGenerator.GeneratePawn(new PawnGenerationRequest(XenomorphDefOf.RRY_Xenomorph_Queen, factionInt));
+                this.innerContainer.TryAdd(newQueen);
+            }
+			if (!respawningAfterLoad && this.active && canSpawnPawns)
             {
                 this.SpawnInitialPawns();
             }
@@ -371,7 +372,7 @@ namespace RimWorld
 			if (base.Spawned)
 			{
 				this.FilterOutUnspawnedPawns();
-				if (!this.active && !base.Position.Fogged(base.Map))
+				if (!this.active && !base.Position.Fogged(base.Map) && canSpawnPawns)
 				{
 					this.Activate();
 				}
@@ -453,9 +454,12 @@ namespace RimWorld
             {
                 this.EjectContents();
             }
-            if (this.queenContainer.Count > 0)
+            if (hiveNode)
             {
-                this.EjectQueens();
+                if (this.innerContainer.Count > 0)
+                {
+                    this.EjectQueens();
+                }
             }
             base.PostApplyDamage(dinfo, totalDamageDealt);
 		}
@@ -523,6 +527,10 @@ namespace RimWorld
                 pawn = null;
                 return false;
             }
+            if (!this.spawnedPawns.Any(x=> x.def!=XenomorphRacesDefOf.RRY_Xenomorph_Drone))
+            {
+                kindDef = XenomorphDefOf.RRY_Xenomorph_Drone;
+            }
             pawn = PawnGenerator.GeneratePawn(kindDef, base.Faction);
             this.spawnedPawns.Add(pawn);
             GenSpawn.Spawn(pawn, CellFinder.RandomClosewalkCellNear(base.Position, base.Map, 2, null), base.Map, WipeMode.Vanish);
@@ -531,6 +539,7 @@ namespace RimWorld
             {
                 lord = this.CreateNewLord();
             }
+            pawn.xenomorph().HiveLoc = this.Position;
             lord.AddPawn(pawn);
             SoundDefOf.Hive_Spawn.PlayOneShot(this);
             return true;
@@ -613,7 +622,7 @@ namespace RimWorld
                 };
                 if (!this.innerContainer.NullOrEmpty())
                 {
-                    if (this.innerContainer.Count > 0)
+                    if (this.innerContainer.Any(x => x.def != XenomorphRacesDefOf.RRY_Xenomorph_Queen && x.xenomorph().HiveLoc == this.Position))
                     {
                         yield return new Command_Action
                         {
@@ -626,10 +635,7 @@ namespace RimWorld
                             }
                         };
                     }
-                }
-                if (!this.queenContainer.NullOrEmpty())
-                {
-                    if (hasQueen)
+                    if (this.innerContainer.Any(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen && x.xenomorph().HiveLoc == this.Position))
                     {
                         yield return new Command_Action
                         {
@@ -654,7 +660,7 @@ namespace RimWorld
                         action = delegate ()
                         {
                             Pawn newQueen = PawnGenerator.GeneratePawn(new PawnGenerationRequest(XenomorphDefOf.RRY_Xenomorph_Queen, factionInt));
-                            this.queenContainer.TryAdd(newQueen);
+                            this.innerContainer.TryAdd(newQueen);
                         }
                     };
                 }
@@ -714,11 +720,6 @@ namespace RimWorld
             return false;
         }
         */
-        public virtual void EjectContents()
-        {
-            this.innerContainer.TryDropAll(this.Position, base.Map, ThingPlaceMode.Near, null, null);
-        }
-
         // Token: 0x060024F3 RID: 9459 RVA: 0x00116CE3 File Offset: 0x001150E3
         public ThingOwner GetDirectlyHeldThings()
         {
@@ -732,22 +733,36 @@ namespace RimWorld
         }
 
 
+        public virtual void EjectContents()
+        {
+            if (this.innerContainer.Any(x => x.def != XenomorphRacesDefOf.RRY_Xenomorph_Queen && x.xenomorph().HiveLoc == this.Position))
+            {
+                List<Thing> contents = this.innerContainer.Where(x => x.def != XenomorphRacesDefOf.RRY_Xenomorph_Queen && x.xenomorph().HiveLoc == this.Position).ToList();
+                foreach (Thing t in contents)
+                {
+                    this.innerContainer.Remove(t);
+                    GenSpawn.Spawn(t, this.Position, base.Map);
+                }
+            }
+            //    this.innerContainer.TryDropAll(this.Position, base.Map, ThingPlaceMode.Near, null, null);
+        }
+
         public virtual void EjectQueens()
         {
-            this.queenContainer.TryDropAll(this.Position, base.Map, ThingPlaceMode.Near, null, null);
+            if (this.def == XenomorphDefOf.RRY_Xenomorph_Hive || (this.def == XenomorphDefOf.RRY_Xenomorph_Hive_Child && this.parentHiveLike.DestroyedOrNull()))
+            {
+                if (this.innerContainer.Any(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen && x.xenomorph().HiveLoc == this.Position))
+                {
+                    List<Thing> queens = this.innerContainer.Where(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen && x.xenomorph().HiveLoc == this.Position).ToList();
+                    foreach (Thing queen in queens)
+                    {
+                        this.innerContainer.Remove(queen);
+                        GenSpawn.Spawn(queen, this.Position, base.Map);
+                    }
+                }
+            }
         }
 
-        // Token: 0x060024F3 RID: 9459 RVA: 0x00116CE3 File Offset: 0x001150E3
-        public ThingOwner GetDirectlyHeldQueens()
-        {
-            return this.queenContainer;
-        }
-
-        // Token: 0x060024F4 RID: 9460 RVA: 0x00116CEB File Offset: 0x001150EB
-        public void GetQueenHolders(List<IThingHolder> outChildren)
-        {
-            ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, this.GetDirectlyHeldQueens());
-        }
 
         // Token: 0x06002677 RID: 9847 RVA: 0x00124224 File Offset: 0x00122624
         public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
@@ -794,13 +809,9 @@ namespace RimWorld
             if (this.innerContainer.Count > 0)
             {
                 this.EjectContents();
-            }
-            this.innerContainer.ClearAndDestroyContents(DestroyMode.Vanish);
-            if (this.queenContainer.Count > 0)
-            {
                 this.EjectQueens();
             }
-            this.queenContainer.ClearAndDestroyContents(DestroyMode.Vanish);
+            this.innerContainer.ClearAndDestroyContents(DestroyMode.Vanish);
             base.Destroy(mode);
         }
 
@@ -813,8 +824,7 @@ namespace RimWorld
             base.PreApplyDamage(ref dinfo, out absorbed);
         }
 
-        protected ThingOwner innerContainer;
-        protected ThingOwner queenContainer;
+        protected ThingOwner innerContainer => Map.HiveGrid().GetDirectlyHeldThings();
         public List<PawnKindDef> PawnKinds = new List<PawnKindDef>();
         public HiveLike parentHiveLike;
         public bool active = true;
@@ -826,7 +836,8 @@ namespace RimWorld
         public List<Pawn> spawnedScoutPawns = new List<Pawn>();
         public bool caveColony;
 		public bool canSpawnPawns = true;
-		public const int PawnSpawnRadius = 2;
+        public bool getsQueen = true; 
+        public const int PawnSpawnRadius = 2;
 		private static readonly FloatRange PawnSpawnIntervalDays = new FloatRange(0.85f, 1.15f);
         public List<PawnKindDef> spawnablePawnKinds = new List<PawnKindDef>();
         public static readonly string MemoAttackedByEnemy = "HiveAttacked";
@@ -846,19 +857,12 @@ namespace RimWorld
             Scribe_Collections.Look<Pawn>(ref this.spawnedScoutPawns, "spawnedScoutPawns", LookMode.Reference, new object[0]);
             Scribe_Values.Look<bool>(ref this.caveColony, "caveColony", false, false);
             Scribe_Values.Look<bool>(ref this.canSpawnPawns, "canSpawnPawns", true, false);
+            Scribe_Values.Look<bool>(ref this.getsQueen, "getsQueen", true, false);
             Scribe_References.Look<HiveLike>(ref this.parentHiveLike, "parentHiveLike");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 this.spawnedPawns.RemoveAll((Pawn x) => x == null);
             }
-            Scribe_Deep.Look<ThingOwner>(ref this.innerContainer, "innerContainer", new object[]
-            {
-                this
-            });
-            Scribe_Deep.Look<ThingOwner>(ref this.queenContainer, "queenContainer", new object[]
-            {
-                this
-            });
         }
     }
 }

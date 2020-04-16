@@ -36,6 +36,8 @@
   <ItemGroup>
     <Compile Include="Abilities\ProjectileDefExtension.cs" />
     <Compile Include="Harmony\Patches\AVP_AEmptyPatch - Copy.cs" />
+    <Compile Include="Harmony\Patches\AvP_AEmpty_Patch - Copy.cs" />
+    <Compile Include="Harmony\Patches\AvP_Alert_StarvationColonists_StarvingColonists_Synth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_HealthUtility_AdjustSeverity_Cocooned_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_PawnGraphicSet_HairMatAt_Invis_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_PawnGraphicSet_HeadMatAt_Invis_Patch.cs" />
@@ -68,7 +70,7 @@
     <Compile Include="Harmony\Patches\AvP_Pawn_ApparelTracker_Notify_ApparelAddedRemoved_CompAbilityItem_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Pawn_EquipmentTracker_Notify_EquipmentAddedRemoved_CompAbilityItem_Patch.cs" />
     <Compile Include="Harmony\Patches.cs" />
-    <Compile Include="Harmony\Patches\AvP_FilthMaker_MakeFilth_Xenoblood_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_Pawn_HealthTracker_DropBloodFilth_Xenoblood_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Verb_Shoot_TryStartCastOn_SmartGun_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_AlienRace_HarmonyPatches_ThoughtsFromIngesting_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Pawn_PathFollower_CostToMoveIntoCell_Patch.cs" />
@@ -118,7 +120,8 @@
     <Compile Include="Harmony\Patches\AvP_GatheringsUtility_ShouldGuestKeepAttendingGathering_Synth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_NeurotrainerDefGenerator_ImpliedThingDefs_Filter_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Verb_Shoot_TryCastShot_Scattershot_Patch.cs" />
-    <Compile Include="Harmony\Patches\Class1.cs" />
+    <Compile Include="Harmony\Patches\AvP_RecordsUtility_Notify_PawnDowned_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_Verb_MeleeAttackDamage_DamageInfosToApply_Facehugger_Patch.cs" />
     <Compile Include="USCM\CompSmartgunSystem.cs" />
     <Compile Include="USCM\DropShip\ActiveDropShip.cs" />
     <Compile Include="USCM\DropShip\DropShipIncoming.cs" />
@@ -153,6 +156,7 @@
     <Compile Include="util\AvPExtensions.cs" />
     <Compile Include="util\AvPConstants.cs" />
     <Compile Include="util\AvPDefOf.cs" />
+    <Compile Include="util\DebugTools\DebugActionsMiscAvP.cs" />
     <Compile Include="util\ExtraMeleeDamage.cs" />
     <Compile Include="util\PlayerPawnsArriveMethod.cs" />
     <Compile Include="util\DebugTools\DebugToolsPawnAvP.cs" />
@@ -175,11 +179,13 @@
     <Compile Include="Xenomorph\Hives\HiveStructure.cs" />
     <Compile Include="Xenomorph\Hives\IncidentWorker_Xenomorph_WorldHive.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_Xenomorph_Ingest.cs" />
+    <None Include="Xenomorph\Jobstuff\Givers\Class1.cs.bak" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_Xenomorph_ReachOutside.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_Xenomorph_ExitMap.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_XenomorphGetFood.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_Neomorph_Flee.cs" />
     <None Include="Xenomorph\Jobstuff\Givers\Job_ConstructHive - Copy.cs.bak" />
+    <Compile Include="Xenomorph\XenomorphPawn.cs" />
     <Compile Include="Xenomorph\XenomorphExtensions.cs" />
     <Compile Include="Xenomorph\XenomorphHostSystem.cs" />
     <Compile Include="Xenomorph\Jobstuff\Drivers\JobDriver_Xenomorph_Cocoon.cs" />
@@ -367,7 +373,7 @@
     <Compile Include="util\CompHediffWeapon.cs" />
     <Compile Include="util\CompHediffApparel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Xenomorph\Verb_MeleeAttackFacehugger.cs" />
+    <None Include="Xenomorph\Verb_MeleeAttackFacehugger.cs.back" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Xenomorph\Jobstuff\Workers\" />

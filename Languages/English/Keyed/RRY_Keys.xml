@@ -10,11 +10,13 @@
   <RRY_AllowXenoCocoonMetamorph>Allow Cocooned pawns to be converted to Eggs if there are no Queens present</RRY_AllowXenoCocoonMetamorph>
   <RRY_AllowXenoEggMetamorph>Allows Ovimorph mutation</RRY_AllowXenoEggMetamorph>
   <RRY_AllowNonHumanlikeHosts>Allows Xenomorph Impregnations of Non-Humanlikes</RRY_AllowNonHumanlikeHosts>
-  <RRY_SuitableHostKinds>Potential Hosts: {0}</RRY_SuitableHostKinds>
+  <RRY_HostKinds>Suitable Hosts: {1}/{0} enabled</RRY_HostKinds>
+  <RRY_NonHostKinds>Unsuitable Hosts: {0}</RRY_NonHostKinds>
   <!-- Non Canonical Xeno Spawning Options -->
   <RRY_XenomorphSpawningOptions>Spawning options for Noncanonical Xenoforms</RRY_XenomorphSpawningOptions>
   <RRY_PredalienSpawning>Allow Predaliens: Allow Predaliens to Spawn</RRY_PredalienSpawning>
   <RRY_ThrumbomorphSpawning>Allow Thrumbomorphs: Allow Thrumbomorphs to Spawn</RRY_ThrumbomorphSpawning>
+  <RRY_NeomorphSpawning>Allow Neomorphs: Enables Neomorphs</RRY_NeomorphSpawning>
   <!-- Rearmable Traps -->
   <DesignatorRearmTrap>Rearm trap</DesignatorRearmTrap>
   <DesignatorRearmTrapDesc>Rearm a sprung trap so it can be triggered again.</DesignatorRearmTrapDesc>
@@ -65,11 +67,16 @@
   <Xeno_Chestburster_Appears>a Chestburster has been spotted</Xeno_Chestburster_Appears>
   <Xeno_Chestburster_Matures>the Chestburster has matured into a fully grown {0}</Xeno_Chestburster_Matures>
   <Xeno_Egg>Facehugger</Xeno_Egg>
-  <Xeno_Egg_Hyperfertile>Hyperfertile</Xeno_Egg_Hyperfertile>
+  <Xeno_Egg_Hyperfertile>Hyperfertile X{0}</Xeno_Egg_Hyperfertile>
   <Xeno_Egg_Praetorian>Praetorian</Xeno_Egg_Praetorian>
   <Xeno_Egg_Royal>Royal</Xeno_Egg_Royal>
-  <Xeno_Egg_Gestation_Progress>Facehugger Gestation</Xeno_Egg_Gestation_Progress>
+  <Xeno_Egg_Gestation_Progress>Gestation</Xeno_Egg_Gestation_Progress>
+  <Xeno_Egg_Halted>Halted</Xeno_Egg_Halted>
+  <Xeno_Egg_Progressing>Progressing</Xeno_Egg_Progressing>
+  <Xeno_Egg_Finished>Finished</Xeno_Egg_Finished>
   <Xeno_Egg_Mutation_Progress>Mutation</Xeno_Egg_Mutation_Progress>
+  <Xeno_Egg_Mutating>Mutation</Xeno_Egg_Mutating>
+  <Xeno_Egg_Mutated>Mutated</Xeno_Egg_Mutated>
   <!-- Hives -->
   <RRY_MessageHiveReproduced>Xenomorph tunnel network expands.</RRY_MessageHiveReproduced>
   <RRY_HiveReproducesIn>Tunnel network expands in</RRY_HiveReproducesIn>

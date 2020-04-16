@@ -27,7 +27,8 @@ namespace RRYautja
             {
                 if (__instance.InnerPawn!=null)
                 {
-                    if (__instance.InnerPawn.isHost(out Hediff parasite))
+                    Pawn pawn = __instance.InnerPawn;
+                    if (pawn.isHost(out Hediff parasite))
                     {
                         if (parasite!=null && parasite.CurStageIndex>=3)
                         {
@@ -37,13 +38,21 @@ namespace RRYautja
                             }
                             if (parasite.Severity>=1f)
                             {
-                                parasite.TryGetComp<HediffComp_XenoSpawner>().Notify_PawnDied();
+                                if (parasite.def.defName.Contains("Neomorph"))
+                                {
+                                    parasite.TryGetComp<HediffComp_NeoSpawner>().Notify_PawnDied();
+                                }
+                                else
+                                {
+                                    parasite.TryGetComp<HediffComp_XenoSpawner>().Notify_PawnDied();
+                                }
                             }
                         }
                     }
                 }
             }
         }
+        
     }
     
 }

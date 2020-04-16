@@ -91,8 +91,6 @@ namespace RRYautja
 
             Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
             bool selected = Find.Selector.SelectedObjects.Contains(pawn) && Prefs.DevMode;
-            string direction = "";
-            float offset = 0f;
             Rot4 rot = bodyFacing;
             Vector3 vector3 = pawn.RaceProps.Humanlike ? __instance.BaseHeadOffsetAt(headFacing) : new Vector3();
             Vector3 s = new Vector3(pawn.BodySize * 1.75f, pawn.BodySize * 1.75f, pawn.BodySize * 1.75f);
@@ -245,7 +243,6 @@ namespace RRYautja
             {
                 //    Log.Message(string.Format("{0}'s drawdata for hediff {1} OffsetDefExtension.hediff {2}", pawn.LabelShortCap, hediff.LabelCap, myDef.hediff.label));
             }
-            string direction;
             if (pawn.RaceProps.Humanlike)
             {
                 if (rotation == Rot4.North)
@@ -256,7 +253,6 @@ namespace RRYautja
                     DrawSizeX = myDef.NorthXDrawSize;
                     DrawSizeZ = myDef.NorthZDrawSize;
                     ang = myDef.NorthAngle;
-                    direction = "North";
                 }
                 else if (rotation == Rot4.West)
                 {
@@ -266,7 +262,6 @@ namespace RRYautja
                     DrawSizeX = myDef.WestXDrawSize;
                     DrawSizeZ = myDef.WestZDrawSize;
                     ang = myDef.WestAngle;
-                    direction = "West";
                 }
                 else if (rotation == Rot4.East)
                 {
@@ -276,7 +271,6 @@ namespace RRYautja
                     DrawSizeX = myDef.EastXDrawSize;
                     DrawSizeZ = myDef.EastZDrawSize;
                     ang = myDef.EastAngle;
-                    direction = "East";
                 }
                 else if (rotation == Rot4.South)
                 {
@@ -286,7 +280,6 @@ namespace RRYautja
                     DrawSizeX = myDef.SouthXDrawSize;
                     DrawSizeZ = myDef.SouthZDrawSize;
                     ang = myDef.SouthAngle;
-                    direction = "South";
                 }
                 else
                 {
@@ -296,7 +289,6 @@ namespace RRYautja
                     DrawSizeX = 1f;
                     DrawSizeZ = 1f;
                     ang = 0f;
-                    direction = "Unknown";
                 }
                 if (myDef.ApplyBaseHeadOffset)
                 {
@@ -315,7 +307,6 @@ namespace RRYautja
                     DrawSizeX = myDef.NorthXDrawSize;
                     DrawSizeZ = myDef.NorthZDrawSize;
                     ang = myDef.NorthAngle;
-                    direction = "North";
                 }
                 else if (rotation == Rot4.West)
                 {
@@ -325,7 +316,6 @@ namespace RRYautja
                     DrawSizeX = myDef.WestXDrawSize;
                     DrawSizeZ = myDef.WestZDrawSize;
                     ang = myDef.WestAngle;
-                    direction = "West";
                 }
                 else if (rotation == Rot4.East)
                 {
@@ -335,7 +325,6 @@ namespace RRYautja
                     DrawSizeX = myDef.EastXDrawSize;
                     DrawSizeZ = myDef.EastZDrawSize;
                     ang = myDef.EastAngle;
-                    direction = "East";
                 }
                 else if (rotation == Rot4.South)
                 {
@@ -345,7 +334,6 @@ namespace RRYautja
                     DrawSizeX = myDef.SouthXDrawSize;
                     DrawSizeZ = myDef.SouthZDrawSize;
                     ang = myDef.SouthAngle;
-                    direction = "South";
                 }
                 else
                 {
@@ -355,7 +343,6 @@ namespace RRYautja
                     DrawSizeX = 1f;
                     DrawSizeZ = 1f;
                     ang = 0f;
-                    direction = "Unknown";
                 }
             }
         }

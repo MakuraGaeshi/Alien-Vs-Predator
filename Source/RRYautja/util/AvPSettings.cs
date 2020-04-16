@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using HarmonyLib;
 using HunterMarkingSystem;
 using RimWorld;
 using RRYautja.ExtensionMethods;
+using RRYautja.Xenomorph;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
@@ -24,10 +26,16 @@ namespace RRYautja.settings
         public bool AllowXenoEggMetamorph = true;
         public bool AllowNonHumanlikeHosts = true;
         public bool AllowThrumbomorphs = true;
+        public bool AllowNeomorphs = true; 
         public bool AllowPredaliens = true;
         public bool AllowXenomorphFaction = true, AllowYautjaFaction = true, AllowHiddenInfections = true, AllowPredalienImpregnations = true;
         public float fachuggerRemovalFailureDeathChance = 0.35f, embryoRemovalFailureDeathChance = 0.35f;
 
+        public Dictionary<string, bool> RaceKeyPairs;
+        
+        public List<ThingDef> RaceKeyWorkingList = new List<ThingDef>();
+        public List<bool> RaceValueWorkingList = new List<bool>();
+        
         public override void ExposeData()
         {
             base.ExposeData();
@@ -39,9 +47,15 @@ namespace RRYautja.settings
             Scribe_Values.Look(ref this.AllowXenoEggMetamorph, "AllowXenoEggMetamorph", true);
             Scribe_Values.Look(ref this.AllowNonHumanlikeHosts, "AllowNonHumanlikeHosts", true);
             Scribe_Values.Look(ref this.AllowThrumbomorphs, "AllowThrumbomorphs", true);
+            Scribe_Values.Look(ref this.AllowNeomorphs, "AllowNeomorphs", true);
             Scribe_Values.Look(ref this.AllowPredaliens, "AllowPredaliens", true);
             Scribe_Values.Look<float>(ref this.fachuggerRemovalFailureDeathChance, "fachuggerRemovalFailureDeathChance", 0.35f);
             Scribe_Values.Look<float>(ref this.embryoRemovalFailureDeathChance, "embryoRemovalFailureDeathChance", 0.35f);
+            Scribe_Collections.Look<string, bool>(ref this.RaceKeyPairs, "RaceKeyPairs"/*, LookMode.Def, LookMode.Value, ref RaceKeyWorkingList, ref RaceValueWorkingList*/);
+            /*
+            Scribe_Collections.Look(ref this.RaceKeyWorkingList, "RaceKeyPairs", LookMode.Def, new object[0]);
+            Scribe_Collections.Look(ref this.RaceValueWorkingList, "RaceKeyPairs", LookMode.Value);
+            */
         }
     }
 
@@ -55,6 +69,7 @@ namespace RRYautja.settings
             SettingsHelper.latest = this.settings;
             harmony = new Harmony("com.ogliss.rimworld.mod.rryatuja");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
+            if (Prefs.DevMode) Log.Message(string.Format("Alien Vs Predator: successfully completed {0} harmony patches.", harmony.GetPatchedMethods().Select(new Func<MethodBase, Patches>(Harmony.GetPatchInfo)).SelectMany((Patches p) => p.Prefixes.Concat(p.Postfixes).Concat(p.Transpilers)).Count((Patch p) => p.owner.Contains(harmony.Id))), false);
         }
 
         public override string SettingsCategory() => "Aliens Vs Predator";
@@ -72,6 +87,7 @@ namespace RRYautja.settings
             Widgets.CheckboxLabeled(inRect.TopHalf().TopHalf().BottomHalf().TopHalf().ContractedBy(4), "RRY_AllowXenomorphFaction".Translate(), ref settings.AllowXenomorphFaction);
             Widgets.CheckboxLabeled(inRect.TopHalf().TopHalf().BottomHalf().BottomHalf().LeftHalf().ContractedBy(4), "RRY_AllowHiddenInfections".Translate(), ref settings.AllowHiddenInfections);
             Widgets.CheckboxLabeled(inRect.TopHalf().TopHalf().BottomHalf().BottomHalf().RightHalf().ContractedBy(4), "RRY_AllowPredalienImpregnations".Translate(), ref settings.AllowPredalienImpregnations);
+
 
             this.settings.fachuggerRemovalFailureDeathChance = Widgets.HorizontalSlider(inRect.TopHalf().BottomHalf().TopHalf().TopHalf().ContractedBy(4),
                 this.settings.fachuggerRemovalFailureDeathChance, 0f, 1f, true,
@@ -98,16 +114,28 @@ namespace RRYautja.settings
             TextFieldNumericLabeled<float>(rectShowXenoOptions.BottomHalf().BottomHalf().RightHalf().ContractedBy(4), "RRY_EmbryoRemovalDeathChance".Translate(this.settings.embryoRemovalFailureDeathChance * 100), ref settings.embryoRemovalFailureDeathChance, ref settings.embryoRemovalFailureDeathChanceBuffer, 0f, 1f);
 
 
-            float num = 400f;
             float x = inRect.x;
             float num2 = inRect.y;
-            float num3 = inRect.y;
-            List<ThingDef> suitablehostDefs = DefDatabase<ThingDef>.AllDefsListForReading.FindAll(xx => XenomorphUtil.isInfectableThing(xx));
-            Widgets.Label(inRect.TopHalf().BottomHalf().BottomHalf().BottomHalf().LeftHalf().ContractedBy(4), "RRY_SuitableHostKinds".Translate(suitablehostDefs.Count));
-            Widgets.BeginScrollView(inRect.BottomHalf().LeftHalf().ContractedBy(4), ref this.pos, new Rect(inRect.x, inRect.y, num, suitablehostDefs.Count * 22f), true);
-            foreach (ThingDef pkd in suitablehostDefs.OrderBy(xy=> xy.label))
+            if (settings.RaceKeyPairs == null)
             {
-                string text = pkd.LabelCap;
+                settings.RaceKeyPairs = new Dictionary<string, bool>();
+                foreach (ThingDef t in XenomorphHostSystem.AllRaces)
+                {
+                    if (!settings.RaceKeyPairs.ContainsKey(t.defName))
+                    {
+                        settings.RaceKeyPairs.SetOrAdd(t.defName, t.isPotentialHost(true));
+                    }
+                }
+            }
+            int potentialhostcount = XenomorphHostSystem.AllRaces.Where(z => z.isPotentialHost(true)).Count();
+            int enabledhostcount = XenomorphHostSystem.AllRaces.Where(z => z.isPotentialHost()).Count();
+            int unsuitablehostcount = XenomorphHostSystem.AllRaces.Where(z => !z.isPotentialHost(true)).Count();
+            Widgets.Label(inRect.TopHalf().BottomHalf().BottomHalf().BottomHalf().LeftHalf().LeftHalf().ContractedBy(4), "RRY_HostKinds".Translate(potentialhostcount, enabledhostcount));
+            Rect hostRect = new Rect(inRect.x, inRect.y, inRect.BottomHalf().LeftHalf().LeftHalf().ContractedBy(4).width - 20, potentialhostcount * 20f);
+            Widgets.BeginScrollView(inRect.BottomHalf().LeftHalf().LeftHalf().ContractedBy(4), ref this.pos, hostRect, true);
+            foreach (ThingDef td in XenomorphHostSystem.AllRaces.Where(z => z.isPotentialHost(true)).OrderBy(xy => xy.label))
+            {
+                string text = td.LabelCap;
                 /*
                 text += " possible Xenoforms:";
                 foreach (var item in pkd.resultingXenomorph())
@@ -115,20 +143,41 @@ namespace RRYautja.settings
                     text += " "+item.LabelCap;
                 }
                 */
-                Widgets.Label(new Rect(x, num2, num, 32f), text);
-                num2 += 22f;
+                settings.RaceKeyPairs.TryGetValue(td.defName, out bool setting);
+                Widgets.CheckboxLabeled(new Rect(x, num2, hostRect.width, 20f), text, ref setting, (td == ThingDefOf.Human|| td == YautjaDefOf.RRY_Alien_Yautja));
+                settings.RaceKeyPairs.SetOrAdd(td.defName, setting || (td == ThingDefOf.Human || td == YautjaDefOf.RRY_Alien_Yautja));
+                num2 += 20f;
             }
             Widgets.EndScrollView();
             
-            Widgets.Label(inRect.TopHalf().BottomHalf().BottomHalf().BottomHalf().RightHalf().ContractedBy(4), "RRY_XenomorphSpawningOptions".Translate());
-            Widgets.BeginScrollView(inRect.BottomHalf().RightHalf().ContractedBy(4), ref this.pos2, new Rect(inRect.x, inRect.y, num, 2 * 22f), true);
-
-            Widgets.CheckboxLabeled(new Rect(x, num3, num, 32f), "RRY_PredalienSpawning".Translate(), ref settings.AllowPredaliens);
-            num3 += 22f;
-            Widgets.CheckboxLabeled(new Rect(x, num3, num, 32f), "RRY_ThrumbomorphSpawning".Translate(), ref settings.AllowThrumbomorphs);
-            num3 += 22f;
+            float num3 = inRect.y;
+            Widgets.Label(inRect.TopHalf().BottomHalf().BottomHalf().BottomHalf().LeftHalf().RightHalf().ContractedBy(4), "RRY_NonHostKinds".Translate(unsuitablehostcount));
+            Rect nothostRect = new Rect(inRect.x, inRect.y, inRect.BottomHalf().LeftHalf().RightHalf().ContractedBy(4).width - 20, unsuitablehostcount * 40f);
+            Widgets.BeginScrollView(inRect.BottomHalf().LeftHalf().RightHalf().ContractedBy(4), ref this.pos2, nothostRect, true);
+            foreach (ThingDef td in XenomorphHostSystem.AllRaces.Where(z => !z.isPotentialHost(true)).OrderBy(xy => xy.label))
+            {
+                td.isPotentialHost(out string fr, true);
+                string text = td.LabelCap + ":\n" + fr;
+                Widgets.Label(new Rect(x, num3, nothostRect.width, 40f), text);
+                num3 += 40f;
+            }
             Widgets.EndScrollView();
             
+
+            float width = 400f;
+            float num4 = inRect.y;
+            Widgets.Label(inRect.TopHalf().BottomHalf().BottomHalf().BottomHalf().RightHalf().ContractedBy(4), "RRY_XenomorphSpawningOptions".Translate());
+            Widgets.BeginScrollView(inRect.BottomHalf().RightHalf().ContractedBy(4), ref this.pos3, new Rect(inRect.x, inRect.y, width, 2 * 22f), true);
+
+            Widgets.CheckboxLabeled(new Rect(x, num4, width, 32f), "RRY_PredalienSpawning".Translate(), ref settings.AllowPredaliens);
+            num4 += 22f;
+            Widgets.CheckboxLabeled(new Rect(x, num4, width, 32f), "RRY_ThrumbomorphSpawning".Translate(), ref settings.AllowThrumbomorphs);
+            num4 += 22f;
+            Widgets.CheckboxLabeled(new Rect(x, num4, width, 32f), "RRY_NeomorphSpawning".Translate(), ref settings.AllowNeomorphs);
+            num4 += 22f;
+            Widgets.EndScrollView();
+
+
 
             /* 
         //    Widgets.CheckboxLabeled(inRect.TopHalf().TopHalf().BottomHalf().TopHalf().ContractedBy(4), "setting3: Desc", ref settings.setting3);
@@ -218,6 +267,7 @@ namespace RRYautja.settings
         private static readonly Color InactiveColor = new Color(0.37f, 0.37f, 0.37f, 0.8f);
         private Vector2 pos = new Vector2(0f, 0f);
         private Vector2 pos2 = new Vector2(0f, 0f);
+        private Vector2 pos3 = new Vector2(0f, 0f);
 
     }
     

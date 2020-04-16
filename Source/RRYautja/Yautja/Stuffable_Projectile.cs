@@ -371,10 +371,9 @@ namespace RRYautja
                 return false;
             }
             bool flag = false;
-            CellRect.CellRectIterator iterator = thing.OccupiedRect().GetIterator();
-            while (!iterator.Done())
+            foreach (IntVec3 c in thing.OccupiedRect())
             {
-                List<Thing> thingList = iterator.Current.GetThingList(base.Map);
+                List<Thing> thingList = c.GetThingList(base.Map);
                 bool flag2 = false;
                 for (int i = 0; i < thingList.Count; i++)
                 {
@@ -389,7 +388,6 @@ namespace RRYautja
                     flag = true;
                     break;
                 }
-                iterator.MoveNext();
             }
             if (!flag)
             {

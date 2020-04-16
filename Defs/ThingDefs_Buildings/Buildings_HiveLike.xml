@@ -158,11 +158,6 @@
       <li Class="CompProperties_SelfhealHitpoints">
         <ticksPerHeal>3000</ticksPerHeal> <!-- 60k ticks = 1 day, 20 hp per day -->
       </li>
-      <li Class="CompProperties_MaintainableLike">
-        <ticksHealthy>60000</ticksHealthy>
-        <ticksNeedsMaintenance>40000</ticksNeedsMaintenance>
-        <damagePerTickRare>10</damagePerTickRare>
-      </li>
       <li Class="CompProperties_SpawnerFilth">
         <filthDef>RRY_Filth_Slime</filthDef>
         <spawnCountOnSpawn>10</spawnCountOnSpawn>
@@ -260,6 +255,11 @@
         <ticksNeedsMaintenance>40000</ticksNeedsMaintenance>
         <damagePerTickRare>10</damagePerTickRare>
       </li>
+      <li Class="CompProperties_MaintainableLike">
+        <ticksHealthy>60000</ticksHealthy>
+        <ticksNeedsMaintenance>40000</ticksNeedsMaintenance>
+        <damagePerTickRare>10</damagePerTickRare>
+      </li>
 	  -->
       <li Class="CompProperties_SpawnerFilth">
         <filthDef>RRY_Filth_Slime</filthDef>
@@ -306,15 +306,15 @@
   
   <ThingDef ParentName="RockBase">
     <defName>RRY_Xenomorph_Hive_Wall</defName>
-    <label>collapsed rocks</label>
-    <description>Collapsed rocks, packed tightly enough to hold up a roof.</description>
+    <label>resin wall</label>
+    <description>Rock and other debries, packed tightly enough and bound in resin strong enough to hold up a roof.</description>
     <graphicData>
       <texPath>Things/Buildings/Xenomorph/Linked/XenoResinWall_Atlas</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>CutoutComplex</shaderType>
     </graphicData>
     <statBases>
-      <MaxHitPoints>500</MaxHitPoints>
+      <MaxHitPoints>300</MaxHitPoints>
     </statBases>
 		<rotatable>true</rotatable>
     <building>
@@ -322,11 +322,11 @@
       <claimable>false</claimable>
     </building>
     <comps>
-      <li Class="CompProperties_SpawnerFilth">
-        <filthDef>RRY_Filth_Slime</filthDef>
-        <spawnCountOnSpawn>10</spawnCountOnSpawn>
-        <spawnMtbHours>4</spawnMtbHours>
-        <spawnRadius>5</spawnRadius>
+	
+      <li Class="CompProperties_MaintainableLike">
+        <ticksHealthy>60000</ticksHealthy>
+        <ticksNeedsMaintenance>40000</ticksNeedsMaintenance>
+        <damagePerTickRare>10</damagePerTickRare>
       </li>
     </comps>
   </ThingDef>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using RimWorld;
 using RRYautja;
+using RRYautja.ExtensionMethods;
 using UnityEngine;
 using Verse;
 using Verse.AI;
@@ -23,7 +24,7 @@ namespace RRYautja
             bool selected = Find.Selector.SingleSelectedThing == this;
             if (!this.IsBurning()&& !this.Destroyed && this.Map!=null)
             {
-                Thing thing = GenClosest.ClosestThingReachable(this.Position, this.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), radius, x => XenomorphUtil.isInfectablePawn(((Pawn)x)), null, 0, -1, false, RegionType.Set_Passable, false);
+                Thing thing = GenClosest.ClosestThingReachable(this.Position, this.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), radius, x => x.isPotentialHost(), null, 0, -1, false, RegionType.Set_Passable, false);
                 if (thing != null && this.Growth > 0.95f && !thing.Destroyed && !((Pawn)thing).Dead)
                 {
                     List<Thing> thingList = GridsUtility.GetThingList(thing.Position, this.Map);

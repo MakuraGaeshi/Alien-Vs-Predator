@@ -184,7 +184,7 @@ namespace RRYautja
             if (flag)
             {
                 Pawn pawn = this.usedTarget as Pawn;
-                bool flag2 = pawn != null && PawnUtility.GetPosture(pawn) != null && GenGeo.MagnitudeHorizontalSquared(this.origin - this.destination) >= 20.25f && Rand.Value > 0.2f;
+                bool flag2 = pawn != null /* && PawnUtility.GetPosture(pawn) != null */ && GenGeo.MagnitudeHorizontalSquared(this.origin - this.destination) >= 20.25f && Rand.Value > 0.2f;
                 if (flag2)
                 {
                     this.Impact(null);

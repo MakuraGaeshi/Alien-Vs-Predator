@@ -26,7 +26,7 @@ namespace RRYautja
             Traverse traverse = Traverse.Create(__instance);
             Pawn pawn = (Pawn)AvP_PawnObserver_ObserveSurroundingThings_Patch.pawn.GetValue(__instance);
         //    Log.Message(string.Format("ObserveSurroundingThingsPostfix {0}", pawn.LabelShortCap));
-            if (!pawn.health.capacities.CapableOf(PawnCapacityDefOf.Sight))
+            if (!pawn.health.capacities.CapableOf(PawnCapacityDefOf.Sight) || pawn.isBloodMarked() || pawn.def == YautjaDefOf.RRY_Alien_Yautja)
             {
             //    Log.Message("Blind");
                 return;
@@ -42,14 +42,21 @@ namespace RRYautja
                 for (int i = 0; i < thingList.Count; i++)
                 {
                     Pawn observed = (Pawn)thingList[i];
+                    if (observed==null)
+                    {
+                        return;
+                    }
+                    if (!observed.isXenomorph(out Comp_Xenomorph thoughtGiver))
+                    {
+                        return;
+                    }
                 //    Log.Message(string.Format("{0} observed {1}", pawn.LabelShortCap, observed.LabelShortCap));
-                    Comp_Xenomorph thoughtGiver = thingList[i].TryGetComp<Comp_Xenomorph>() as Comp_Xenomorph;
                     if (thoughtGiver != null)
                     {
                         Thought_Memory thought_Memory = thoughtGiver.GiveObservedThought();
                         if (thought_Memory != null)
                         {
-                        //    Log.Message(string.Format("{0} TryGainMemory {1}", pawn.LabelShortCap, thought_Memory.LabelCap));
+                            //Log.Message(string.Format("{0} TryGainMemory {1}", pawn.LabelShortCap, thought_Memory.LabelCap));
                             pawn.needs.mood.thoughts.memories.TryGainMemory(thought_Memory, observed);
                         }
                     //    else Log.Message("thought_Memory == null");

@@ -1,4 +1,5 @@
-﻿using Verse;
+﻿using RRYautja.ExtensionMethods;
+using Verse;
 
 namespace RRYautja
 {
@@ -15,7 +16,7 @@ namespace RRYautja
 
         public void GiveHediff(Pawn pawn)
         {
-            if (!XenomorphUtil.isInfectablePawn(pawn)) return;
+            if (!pawn.isPotentialHost()) return;
             //If the random number is not within the chance range, exit.
             if (!(chance >= Rand.Range(0.0f, 100.0f))) return;
             //If the gender is male, check the male commonality chance, and if it fails, exit.

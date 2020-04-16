@@ -67,7 +67,7 @@ namespace RRYautja
                         yield return damageInfo;
                     }
                 }
-                List<ExtraDamage>.Enumerator enumerator = default(List<ExtraDamage>.Enumerator);
+            //    List<ExtraDamage>.Enumerator enumerator = default(List<ExtraDamage>.Enumerator);
             }
             if (this.surpriseAttack && ((this.verbProps.surpriseAttack != null && !this.verbProps.surpriseAttack.extraMeleeDamages.NullOrEmpty<ExtraDamage>()) || (this.tool != null && this.tool.surpriseAttack != null && !this.tool.surpriseAttack.extraMeleeDamages.NullOrEmpty<ExtraDamage>())))
             {
@@ -91,7 +91,7 @@ namespace RRYautja
                     damageInfo2.SetAngle(direction);
                     yield return damageInfo2;
                 }
-                IEnumerator<ExtraDamage> enumerator2 = null;
+            //    IEnumerator<ExtraDamage> enumerator2 = null;
             }
             if (target.GetType() == typeof(Pawn))
             {

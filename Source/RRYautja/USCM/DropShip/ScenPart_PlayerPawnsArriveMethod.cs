@@ -9,6 +9,7 @@ namespace RimWorld
     public static class PlayerPawnsArriveMethodExtension
     {
         // Token: 0x060047C2 RID: 18370 RVA: 0x00180DF5 File Offset: 0x0017EFF5
+#pragma warning disable CS0436 // Type conflicts with imported type
         public static string ToStringHuman(this PlayerPawnsArriveMethod method)
         {
             if (method == PlayerPawnsArriveMethod.Standing)
@@ -146,4 +147,5 @@ namespace RimWorld
         // Token: 0x040028C7 RID: 10439
         private PlayerPawnsArriveMethod method;
     }
+#pragma warning restore CS0436 // Type conflicts with imported type
 }
