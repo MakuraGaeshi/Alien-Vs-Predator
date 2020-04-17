@@ -8,6 +8,7 @@ using Verse.AI;
 using Verse.AI.Group;
 using HarmonyLib;
 using Verse.Sound;
+using System.Text.RegularExpressions;
 
 namespace RRYautja.HarmonyInstance
 {
@@ -19,7 +20,22 @@ namespace RRYautja.HarmonyInstance
         {
             if (GenDefDatabase.GetDefSilentFail(defType, defName, false) == null)
             {
+                if (defName.Contains("RRY_Yautja_"))
+                {
+                    __result = Regex.Replace(defName, "^RRY", "AvP");
+                }
+                if (GenDefDatabase.GetDefSilentFail(defType, __result, false) != null)
+                {
+                    return;
+                }
                 //    Log.Message(string.Format("Checking for replacement for {0} Type: {1}", defName, defType));
+                if (defType == typeof(AlienRace.BackstoryDef))
+                {
+                    if (defName.Contains("RRY_Yautja_"))
+                    {
+                        __result = Regex.Replace(defName, "^RRY", "AvP");
+                    }
+                }
                 if (defType == typeof(ThingDef))
                 {
                     if (defName.Contains("RRY_Melee_Combistaff"))

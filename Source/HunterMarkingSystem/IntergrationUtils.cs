@@ -24,6 +24,7 @@ namespace HunterMarkingSystem
 
     }
 
+    [StaticConstructorOnStartup]
     static class UtilAvPSynths
     {
         private static bool initialized = false;
@@ -63,18 +64,20 @@ namespace HunterMarkingSystem
         }
     }
 
+    [StaticConstructorOnStartup]
     static class UtilChjAndroids
     {
+        public static string tag = "ChJees.Androids";
         public static bool ChjAndroid = false;
         public static ModContentPack modContent = null;
         static UtilChjAndroids()
         {
             foreach (ModContentPack p in LoadedModManager.RunningMods)
             {
-                if (p.PackageIdPlayerFacing.Contains("ChJees.Androids"))
+                if (p.PackageIdPlayerFacing == tag || p.PackageId == tag)
                 {
                     modContent = p;
-                //    Log.Message(string.Format("{0}: PackageId: {1}, PackageIdPlayerFacing: {2}", p.Name, p.PackageId, p.PackageIdPlayerFacing));
+                    //    Log.Message(string.Format("{0}: PackageId: {1}, PackageIdPlayerFacing: {2}", p.Name, p.PackageId, p.PackageIdPlayerFacing));
                     ChjAndroid = true;
                 }
             }
@@ -84,47 +87,41 @@ namespace HunterMarkingSystem
         public static bool isChjAndroid(PawnKindDef pawn)
         {
             //    bool Result = pawn.race.comps.Any(x => x.compClass.Name.Contains("Androids.CompProperties_EnergyTracker"));
-            bool Result = false;
-            if (pawn.race.modContentPack == modContent)
-            {
-                Result = true;
-            }
-            return Result;
+            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.race.modContentPack.PackageId));
+            return pawn.race.modContentPack == modContent;
         }
         public static bool isChjAndroid(Pawn pawn)
         {
             //    bool Result = pawn.def.comps.Any(x => x.compClass.Name.Contains("Androids.CompProperties_EnergyTracker"));
-            bool Result = false;
-            if (pawn.def.modContentPack == modContent)
-            {
-                Result = true;
-            }
-            return Result;
+            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.def.modContentPack.PackageId));
+            return pawn.def.modContentPack == modContent;
         }
         public static bool isChjAndroid(ThingDef td)
         {
-            //    bool Result = td.comps.Any(x => x.compClass.Name.Contains("Androids.CompProperties_EnergyTracker"));
-            bool Result = false;
-            if (td.modContentPack == modContent)
+            Log.Message(string.Format("{0}: {1}", td.LabelCap, td));
+            if (td.modContentPack == null)
             {
-                Result = true;
+                return false;
             }
-            return Result;
+            Log.Message(string.Format("{0}: {1}", td.LabelCap, td.modContentPack.PackageId));
+            return !td.modContentPack.PackageId.NullOrEmpty() ? td.modContentPack == modContent : false;
         }
     }
 
+    [StaticConstructorOnStartup]
     static class UtilTieredAndroids
     {
+        public static string tag = "Atlas.AndroidTiers";
         public static bool TieredAndroid = false;
         public static ModContentPack modContent = null;
         static UtilTieredAndroids()
         {
             foreach (ModContentPack p in LoadedModManager.RunningMods)
             {
-                if (p.PackageIdPlayerFacing.Contains("Atlas.AndroidTiers"))
+                if (p.PackageIdPlayerFacing == tag || p.PackageId == tag)
                 {
                     modContent = p;
-                //    Log.Message(string.Format("{0}: PackageId: {1}, PackageIdPlayerFacing: {2}", p.Name, p.PackageId, p.PackageIdPlayerFacing));
+                    //    Log.Message(string.Format("{0}: PackageId: {1}, PackageIdPlayerFacing: {2}", p.Name, p.PackageId, p.PackageIdPlayerFacing)); Haplo.Miscellaneous.Robots
                     TieredAndroid = true;
                 }
             }
@@ -132,43 +129,118 @@ namespace HunterMarkingSystem
 
         public static bool isAtlasAndroid(PawnKindDef pawn)
         {
-
-            bool Result = false;
-            if (pawn.race.modContentPack == modContent)
-            {
-                Result = true;
-            }
-            return Result;
+            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.race.modContentPack.PackageId));
+            return pawn.race.modContentPack == modContent;
         }
         public static bool isAtlasAndroid(Pawn pawn)
         {
-            bool Result = false;
-            if (pawn.def.modContentPack == modContent)
-            {
-                Result = true;
-            }
-            return Result;
+            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.def.modContentPack.PackageId));
+            return pawn.def.modContentPack == modContent;
         }
         public static bool isAtlasAndroid(ThingDef td)
         {
-            bool Result = false;
-            if (td.modContentPack == modContent)
+            Log.Message(string.Format("{0}: {1}", td.LabelCap, td));
+            if (td.modContentPack == null)
             {
-                Result = true;
+                return false;
             }
-            return Result;
+            Log.Message(string.Format("{0}: {1}", td.LabelCap, td.modContentPack.PackageId));
+            return !td.modContentPack.PackageId.NullOrEmpty() ? td.modContentPack == modContent : false;
         }
     }
 
+    [StaticConstructorOnStartup]
+    static class UtilMiscRobots
+    {
+        public static string tag = "Haplo.Miscellaneous.Robots";
+        public static bool TieredAndroid = false;
+        public static ModContentPack modContent = null;
+        static UtilMiscRobots()
+        {
+            foreach (ModContentPack p in LoadedModManager.RunningMods)
+            {
+                if (p.PackageIdPlayerFacing == tag || p.PackageId == tag)
+                {
+                    modContent = p;
+                    //    Log.Message(string.Format("{0}: PackageId: {1}, PackageIdPlayerFacing: {2}", p.Name, p.PackageId, p.PackageIdPlayerFacing)); Alaestor.MiscRobots.PlusPlus
+                    TieredAndroid = true;
+                }
+            }
+        }
+
+        public static bool isMiscRobot(PawnKindDef pawn)
+        {
+            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.race.modContentPack.PackageId));
+            return pawn.race.modContentPack == modContent;
+        }
+        public static bool isMiscRobot(Pawn pawn)
+        {
+            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.def.modContentPack.PackageId));
+            return pawn.def.modContentPack == modContent;
+        }
+        public static bool isMiscRobot(ThingDef td)
+        {
+            Log.Message(string.Format("{0}: {1}", td.LabelCap, td));
+            if (td.modContentPack == null)
+            {
+                return false;
+            }
+            Log.Message(string.Format("{0}: {1}", td.LabelCap, td.modContentPack.PackageId));
+            return !td.modContentPack.PackageId.NullOrEmpty() ? td.modContentPack == modContent : false;
+        }
+    }
+    [StaticConstructorOnStartup]
+    static class UtilMiscRobotsPP
+    {
+        public static string tag = "Alaestor.MiscRobots.PlusPlus";
+        public static bool TieredAndroid = false;
+        public static ModContentPack modContent = null;
+        static UtilMiscRobotsPP()
+        {
+            foreach (ModContentPack p in LoadedModManager.RunningMods)
+            {
+                if (p.PackageIdPlayerFacing == tag || p.PackageId == tag)
+                {
+                    modContent = p;
+                    //    Log.Message(string.Format("{0}: PackageId: {1}, PackageIdPlayerFacing: {2}", p.Name, p.PackageId, p.PackageIdPlayerFacing)); Alaestor.MiscRobots.PlusPlus
+                    TieredAndroid = true;
+                }
+            }
+        }
+
+        public static bool isMiscRobot(PawnKindDef pawn)
+        {
+            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.race.modContentPack.PackageId));
+            return pawn.race.modContentPack == modContent;
+        }
+        public static bool isMiscRobot(Pawn pawn)
+        {
+            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.def.modContentPack.PackageId));
+            return pawn.def.modContentPack == modContent;
+        }
+        public static bool isMiscRobot(ThingDef td)
+        {
+            Log.Message(string.Format("{0}: {1}", td.LabelCap, td));
+            if (td.modContentPack == null)
+            {
+                return false;
+            }
+            Log.Message(string.Format("{0}: {1}", td.LabelCap, td.modContentPack.PackageId));
+            return !td.modContentPack.PackageId.NullOrEmpty() ? td.modContentPack == modContent : false;
+        }
+    }
+
+    [StaticConstructorOnStartup]
     static class UtilDinosauria
     {
+        public static string tag = "spincrus.dinosauria";
         public static bool Dinosauria = false;
         public static ModContentPack modContent = null;
         static UtilDinosauria()
         {
             foreach (ModContentPack p in LoadedModManager.RunningMods)
             {
-                if (p.Name.Contains("Dinosauria"))
+                if (p.PackageIdPlayerFacing == tag || p.PackageId == tag)
                 {
                     modContent = p;
                     Dinosauria = true;
@@ -176,17 +248,35 @@ namespace HunterMarkingSystem
             }
         }
 
+        public static bool isDinosauria(PawnKindDef pawn)
+        {
+            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.race.modContentPack.PackageId));
+            return pawn.race.modContentPack == modContent;
+        }
+        public static bool isDinosauria(Pawn pawn)
+        {
+            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.def.modContentPack.PackageId));
+            return pawn.def.modContentPack == modContent;
+        }
+        public static bool isDinosauria(ThingDef td)
+        {
+            Log.Message(string.Format("{0}: {1}", td.LabelCap, td.modContentPack.PackageId));
+            return td.modContentPack != null ? td.modContentPack == modContent : false ;
+        }
+
     }
 
+    [StaticConstructorOnStartup]
     static class UtilJurassicRimworld
     {
+        public static string tag = "Serpy.JurassicRimworld";
         public static bool JurassicRimworld = false;
         public static ModContentPack modContent = null;
         static UtilJurassicRimworld()
         {
             foreach (ModContentPack p in LoadedModManager.RunningMods)
             {
-                if (p.Name.Contains("Jurassic Rimworld"))
+                if (p.PackageIdPlayerFacing == tag || p.PackageId == tag)
                 {
                     modContent = p;
                     JurassicRimworld = true;
@@ -194,5 +284,20 @@ namespace HunterMarkingSystem
             }
         }
 
+        public static bool isJurassic(PawnKindDef pawn)
+        {
+            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.race.modContentPack.PackageId));
+            return pawn.race.modContentPack == modContent;
+        }
+        public static bool isJurassic(Pawn pawn)
+        {
+            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.def.modContentPack.PackageId));
+            return pawn.def.modContentPack == modContent;
+        }
+        public static bool isJurassic(ThingDef td)
+        {
+            Log.Message(string.Format("{0}: {1}", td.LabelCap, td.modContentPack.PackageId));
+            return td.modContentPack != null ? td.modContentPack == modContent : false ;
+        }
     }
 }

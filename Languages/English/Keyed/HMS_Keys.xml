@@ -3,6 +3,11 @@
   <!-- Mod Settings -->
   <HMS_MinScoreFactor>Minimum Relative Pawn Power: {0}% of Killers Score\nExample Killer with Combat Score 10 requires a kill with a Combat Score of {1} or greater</HMS_MinScoreFactor>
   <HMS_KillMarksScores>Kill Marks &amp; Scores: {0}</HMS_KillMarksScores>
+  <HMS_MarkableScores>Markable Races: {0}</HMS_MarkableScores>
+  
+  <HMS_KillMarksScore>{0}: Score: {1}, Mark: {2}</HMS_KillMarksScore>
+  <HMS_MarkableScore>{0} Score for Inital Marking: {1}</HMS_MarkableScore>
+  
    <!-- Info -->
   <HMS_BloodStatus_Uninitalised></HMS_BloodStatus_Uninitalised>
   <HMS_BloodStatus_Unblooded>Unblooded, needs to make a worth kill\nMinimum worth kill score: {1}</HMS_BloodStatus_Unblooded>

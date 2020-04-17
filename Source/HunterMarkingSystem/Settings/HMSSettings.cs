@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using HunterMarkingSystem.ExtensionMethods;
+using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using HarmonyLib;
-using HunterMarkingSystem.ExtensionMethods;
 using UnityEngine;
 using Verse;
 
@@ -20,6 +18,7 @@ namespace HunterMarkingSystem.Settings
         {
             this.settings = GetSettings<HMSSettings>();
             SettingsHelper.latest = this.settings;
+
         }
 
         public override string SettingsCategory() => "Hunter Marking System";
@@ -33,24 +32,40 @@ namespace HunterMarkingSystem.Settings
 
             Widgets.TextFieldNumeric<float>(inRect.TopHalf().TopHalf().TopHalf().BottomHalf().LeftHalf().LeftHalf().ContractedBy(4), ref settings.MinWorthyKill, ref settings.MinWorthyKillBuffer, 0.001f, 10f);
 
-            float num = 800f;
-            float x = inRect.x;
-            float num2 = inRect.y;
-            float num3 = inRect.y;
             List<ThingDef> WorthyKillDefs = HunterMarkingSystem.RaceDefaultMarkDict.Keys.ToList();
             List<string> listed = new List<string>();
-            Widgets.Label(inRect.TopHalf().BottomHalf().BottomHalf().BottomHalf().ContractedBy(4), "HMS_KillMarksScores".Translate(WorthyKillDefs.Count));
-            Widgets.BeginScrollView(inRect.BottomHalf().ContractedBy(4), ref this.pos2, new Rect(inRect.x, inRect.y, num, WorthyKillDefs.Count * 22f), true);
-            foreach (ThingDef td in WorthyKillDefs.OrderBy(xz=> HunterMarkingSystem.RaceDefaultMarkDict.TryGetValue(xz).MarkDef.stages[0].label))
+            Rect listrect = inRect.BottomHalf();
+            Rect markablerect = listrect.LeftHalf();
+            Rect defscorerect = listrect.RightHalf();
+            Widgets.Label(inRect.TopHalf().BottomHalf().BottomHalf().BottomHalf().RightHalf().ContractedBy(4), "HMS_KillMarksScores".Translate(WorthyKillDefs.Count));
+            Widgets.BeginScrollView(defscorerect, ref this.pos2, new Rect(defscorerect.x, defscorerect.y, defscorerect.width, WorthyKillDefs.Count * 22f), true);
+            float num1 = defscorerect.y;
+            foreach (ThingDef td in WorthyKillDefs.OrderBy(xz=> xz.label))
             {
                 if (!listed.Contains(td.label))
                 {
                     listed.Add(td.label);
                     MarkData markData = HunterMarkingSystem.RaceDefaultMarkDict.TryGetValue(td);
-                    Widgets.Label(new Rect(x, num3, num, 32f), markData.MarkDef.stages[0].label + " : " + markData.Label + " Score: " + markData.MarkScore);
-                    num3 += 22f;
+                    Widgets.Label(new Rect(defscorerect.x, num1, defscorerect.ContractedBy(4).width, 22f), "HMS_KillMarksScore".Translate(markData.Label, markData.MarkScore, markData.MarkDef.stages[0].label));
+                    num1 += 22f;
                 }
             }
+            Widgets.EndScrollView();
+            Widgets.Label(inRect.TopHalf().BottomHalf().BottomHalf().BottomHalf().LeftHalf().ContractedBy(4), "HMS_MarkableScores".Translate(HunterMarkingSystem.MarkableRaceDict.Count));
+            Widgets.BeginScrollView(markablerect.ContractedBy(4), ref this.pos, new Rect(markablerect.LeftHalf().x, markablerect.LeftHalf().y, markablerect.LeftHalf().width, HunterMarkingSystem.MarkableRaceDict.Count * 22f), true);
+            float num2 = markablerect.y;
+            foreach (ThingDef td in HunterMarkingSystem.MarkableRaceDict.OrderBy(xz => xz.label))
+            {
+                MarkData markData = HunterMarkingSystem.RaceDefaultMarkDict.TryGetValue(td);
+                if (markData == null)
+                {
+                    markData = HunterMarkingSystem.RaceDefaultMarkDict.TryGetValue(td);
+                }
+                 Widgets.Label(new Rect(markablerect.x, num2, markablerect.ContractedBy(4).width, 22f), "HMS_MarkableScore".Translate(td.LabelCap, markData.MarkScore * this.settings.MinWorthyKill, td.defName));
+                
+                num2 += 22f;
+            }
+
             Widgets.EndScrollView();
 
             /* 

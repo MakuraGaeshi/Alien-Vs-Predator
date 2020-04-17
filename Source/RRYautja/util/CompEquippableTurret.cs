@@ -44,8 +44,6 @@ namespace RRYautja
             }
         }
 
-        // Determine if this ThingComp is being worn presently. Returns True/False
-        protected virtual bool IsWorn => (GetWearer != null);
 
         public bool turretIsOn
         {

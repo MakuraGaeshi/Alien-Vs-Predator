@@ -20,6 +20,7 @@ namespace HunterMarkingSystem
         public static List<HediffDef> BloodedMHediffList = DefDatabase<HediffDef>.AllDefs.Where(x => x.defName.Contains(Markedkey)).ToList();
         public static List<HunterCultureDef> CultureDefList = DefDatabase<HunterCultureDef>.AllDefs.ToList();
         public static Dictionary<ThingDef, MarkData> RaceDefaultMarkDict = new Dictionary<ThingDef, MarkData>();
+        public static List<ThingDef> MarkableRaceDict = new List<ThingDef>(); //DefDatabase<ThingDef>.AllDefs.Where(x => x.Markable()).ToList();
         //    public static List<HediffDef> HunterMarkList = UnbloodedHediffList.Concat(BloodedUMHediffList)
         static HunterMarkingSystem()
         {
@@ -45,6 +46,7 @@ namespace HunterMarkingSystem
                 {
                     if (td.race.Humanlike)
                     {
+                        bool pawnflag = !((UtilChjAndroids.ChjAndroid && UtilChjAndroids.isChjAndroid(td)) || (UtilTieredAndroids.TieredAndroid && UtilTieredAndroids.isAtlasAndroid(td)) || (UtilAvPSynths.AvP && UtilAvPSynths.isAvPSynth(td)));
                         bool marker = DefDatabase<HunterCultureDef>.AllDefs.Any(X => X.markerRaceDefs.Contains(td) || X.markerRaceDefs.NullOrEmpty());
                         bool allowed = DefDatabase<HunterCultureDef>.AllDefs.Any(X => X.allowedRaceDefs.Contains(td) || X.allowedRaceDefs.NullOrEmpty());
                         bool disallowed = DefDatabase<HunterCultureDef>.AllDefs.Any(X => !X.disallowedRaceDefs.Contains(td));
@@ -58,8 +60,10 @@ namespace HunterMarkingSystem
                                 {
                                     if (cultureDef != null)
                                     {
-                                        bool pawnflag = !((UtilChjAndroids.ChjAndroid && UtilChjAndroids.isChjAndroid(td)) || (UtilTieredAndroids.TieredAndroid && UtilTieredAndroids.isAtlasAndroid(td)) || (UtilAvPSynths.AvP && UtilAvPSynths.isAvPSynth(td)));
-                                        //    Log.Message(string.Format("Checking: {0}", td.label));
+                                        if (!MarkableRaceDict.Contains(td))
+                                        {
+                                            MarkableRaceDict.Add(td);
+                                        }
                                         if (!td.HasComp(typeof(Comp_Markable)) && (pawnflag || cultureDef.AllowMechanicalMarking))
                                         {
                                             td.comps.Add(new CompProperties_Markable()
@@ -79,9 +83,9 @@ namespace HunterMarkingSystem
                                             //    Log.Message(string.Format("Added Comp_Markable to: {0}, cultureDef: {1}, markerRaceDefs: {2}, allowedRaceDefs: {3}, disallowedRaceDefs: {4}", td.label, markable.cultureDef.label, markerRaceDefs, allowedRaceDefs, disallowedRaceDefs));
                                             }
                                         }
-                                        else
+                                        if (td.HasComp(typeof(Comp_Markable)) && !MarkableRaceDict.Contains(td))
                                         {
-
+                                            MarkableRaceDict.Add(td);
                                         }
                                     }
                                 }

@@ -22,6 +22,10 @@ namespace RRYautja.HarmonyInstance
 		[HarmonyPostfix]
 		public static void Notify_LostBodyPart_Postfix(Pawn_ApparelTracker __instance)
 		{
+			if (__instance == null || __instance.WornApparel == null || __instance.WornApparel.Count == 0)
+			{
+				return;
+			}
 			AvP_Pawn_ApparelTracker_Notify_LostBodyPart_Patch.tmpApparel.Clear();
 			for (int i = 0; i < __instance.pawn.apparel.WornApparel.Count; i++)
 			{
