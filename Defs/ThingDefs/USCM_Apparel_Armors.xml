@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 	<!-- ========================= USCM - Armour base ========================== -->
-	<ThingDef Name="RRY_USCM_ArmorBase" ParentName="RRY_USCM_Armour_MakeableBase" Abstract="true">
+	<ThingDef Name="AvP_USCM_ArmorBase" ParentName="AvP_USCM_Armour_MakeableBase" Abstract="true">
 	<description>Standard issue USCM battlegear</description>
 		<statBases>
 			<Flammability>0.4</Flammability>
@@ -10,14 +10,14 @@
 	
 	
 	<!-- ========================= USCM - Headgear base ========================== -->
-	<ThingDef Name="RRY_USCM_HeadgearBase" ParentName="RRY_USCM_Armour_MakeableBase" Abstract="true">
+	<ThingDef Name="AvP_USCM_HeadgearBase" ParentName="AvP_USCM_Armour_MakeableBase" Abstract="true">
 	<description>Standard issue USCM headgear.</description>
 	</ThingDef>	
 	
 	
 	<!-- ========================= USCM - M10 Pattern Ballistic Helmet ========================== -->
-	<ThingDef ParentName="RRY_USCM_HeadgearBase">
-		<defName>RRY_Headgear_M10PAttern</defName>
+	<ThingDef ParentName="AvP_USCM_HeadgearBase">
+		<defName>AvP_Headgear_M10PAttern</defName>
 		<label>M10 Pattern Ballistic Helmet</label>
 		<description>The M10 Pattern Ballistic Helmet is a helmet used primarily by the United States Colonial Marine Corps in conjunction with the M3 Pattern Personal Armour. In addition to providing head protection, it features an integrated video camera, infrared sight, transmitter and microphone.</description>
 		<graphicData>
@@ -71,7 +71,7 @@
 			</defaultOutfitTags>
 		</apparel>
 		<thingCategories>
-			<li>RRY_Headgear</li>
+			<li>AvP_Headgear</li>
 		</thingCategories>
 		<tradeTags>
 			<li>Headgear</li>
@@ -79,8 +79,8 @@
 	</ThingDef>
 	
 <!-- ========================= USCM - M3 Pattern Personal Armour ========================== -->
-	<ThingDef ParentName="RRY_USCM_Armour_MakeableBase">
-		<defName>RRY_Apparel_M3Pattern</defName>
+	<ThingDef ParentName="AvP_USCM_Armour_MakeableBase">
+		<defName>AvP_Apparel_M3Pattern</defName>
 		<label>M3 Pattern Personal Armour</label>
 		<description>The M3 Pattern Personal Armour is the standard ballistic protective armour system employed by the United States Colonial Marine Corps. Manufactured by Armat Battlefield Systems, it is designed to balance lightness and comfort with optimum protection. The M3 system is primarily concerned with protecting the user's torso only.</description>
 		<graphicData>
@@ -134,7 +134,7 @@
 			</defaultOutfitTags>
 		</apparel>
 		<thingCategories>
-			<li>RRY_Armour</li>
+			<li>AvP_Armour</li>
 		</thingCategories>
 		<tradeTags>
 			<li>Apparel</li>
@@ -142,8 +142,8 @@
 	</ThingDef>
 	
 <!-- ========================= USCM - M56 Combat Harness ========================== -->
-	<ThingDef ParentName="RRY_USCM_Armour_MakeableBase">
-		<defName>RRY_Apparel_M56CombatHarness</defName>
+	<ThingDef ParentName="AvP_USCM_Armour_MakeableBase">
+		<defName>AvP_Apparel_M56CombatHarness</defName>
 		<label>M56 Combat Harness</label>
 		<description>The M56 combat harness is the harness worn by the operator of an M56 Smartgun. The harness negates the bulkiness of the Smartgun while providing added armour but decreasing mobility a bit.</description>
 		<graphicData>
@@ -198,7 +198,7 @@
 			</defaultOutfitTags>
 		</apparel>
 		<thingCategories>
-			<li>RRY_Armour</li>
+			<li>AvP_Armour</li>
 		</thingCategories>
 		<tradeTags>
 			<li>Apparel</li>

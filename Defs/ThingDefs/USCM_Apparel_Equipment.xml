@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 	<!-- ========================= USCM - Equipment base ========================== -->
-	<ThingDef Name="RRY_USCM_EquipmentBase" ParentName="RRY_USCM_Armour_MakeableBase" Abstract="true">
+	<ThingDef Name="AvP_USCM_EquipmentBase" ParentName="AvP_USCM_Armour_MakeableBase" Abstract="true">
 	<description>Advanced equipment of the USCM</description>
 	</ThingDef>
 	
 	
 	<!-- ========================= USCM - HMS ========================== -->
-	<ThingDef ParentName="RRY_USCM_EquipmentBase">
-		<defName>RRY_Equipment_HMS</defName>
+	<ThingDef ParentName="AvP_USCM_EquipmentBase">
+		<defName>AvP_Equipment_HMS</defName>
 		<label>Head Mounted Sight</label>
 		<description>The Head Mounted Sight (HMS) is a headset-like device worn by the operator of an M56 Smartgun. Incorporating an eyepiece, camera and microphone, the HMS allows users to see targets detected by the Smartgun's infrared tracker.</description>
 		<graphicData>
@@ -58,7 +58,7 @@
 			</defaultOutfitTags>
 		</apparel>
 		<thingCategories>
-			<li>RRY_Equipment</li>
+			<li>AvP_Equipment</li>
 		</thingCategories>
 		<tradeTags>
 			<li>Apparel</li>

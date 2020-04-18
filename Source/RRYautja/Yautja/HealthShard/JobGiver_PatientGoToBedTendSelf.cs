@@ -26,7 +26,7 @@ namespace RRYautja
                 }
                 else
                 {
-                    bool flag3 = !GenCollection.Any<Apparel>(pawn.apparel.WornApparel, (Apparel x) => x.def.defName.Contains("RRY_Equipment_HunterGauntlet"));
+                    bool flag3 = !GenCollection.Any<Apparel>(pawn.apparel.WornApparel, (Apparel x) => x.def.defName.Contains("AvP_Equipment_HunterGauntlet"));
                     if (flag3)
                     {
                         result = ThinkResult.NoJob;
@@ -51,11 +51,11 @@ namespace RRYautja
                             Job job;
                             if (flag6)
                             {
-                                job = new Job(YautjaDefOf.RRY_Yautja_TendSelf, thing, thing2);
+                                job = new Job(YautjaDefOf.AvP_Yautja_TendSelf, thing, thing2);
                             }
                             else
                             {
-                                job = new Job(YautjaDefOf.RRY_Yautja_TendSelf, thing);
+                                job = new Job(YautjaDefOf.AvP_Yautja_TendSelf, thing);
                             }
                             result = new ThinkResult(job, this, null, false);
                         }

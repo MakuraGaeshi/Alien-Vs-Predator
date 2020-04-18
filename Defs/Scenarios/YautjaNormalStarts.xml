@@ -3,14 +3,14 @@
 
 	
 	<ScenarioDef>
-	<defName>RRY_YautjaScenarioUnblooded</defName>
+	<defName>AvP_YautjaScenarioUnblooded</defName>
 		<label>Unblooded Yautja hunters</label>
 		<description>The five of you are sent to an unknown planet as Pups. You have to build everything from scratch and face the competition of the other Hunters. The Elders expect you to return to your clan as true Hunters.</description>
 <scenario>
 <summary>Five Unblooded Yautja attempt to survive a hunt to earn their blood status. Difficult.</summary>
 		<playerFaction>
 			<def>PlayerFaction</def>
-			<factionDef>RRY_Yautja_PlayerUnblooded</factionDef>
+			<factionDef>AvP_Yautja_PlayerUnblooded</factionDef>
 		</playerFaction>
 		<parts>
 			<li Class="ScenPart_ConfigPage_ConfigureStartingPawns">
@@ -116,14 +116,14 @@
 	</ScenarioDef>
 	
 	<ScenarioDef>
-	<defName>RRY_YautjaScenarioBlooded</defName>
+	<defName>AvP_YautjaScenarioBlooded</defName>
 		<label>Blooded Yautja hunters</label>
 		<description>After decades of hunting, your Pack decided to go and claim new hunting grounds for the Glory of the Clan.</description>
 <scenario>
 <summary>Five Yautja attempt to build a clan.</summary>
 		<playerFaction>
 			<def>PlayerFaction</def>
-			<factionDef>RRY_Yautja_PlayerBlooded</factionDef>
+			<factionDef>AvP_Yautja_PlayerBlooded</factionDef>
 		</playerFaction>
 		<parts>
 			<li Class="ScenPart_ConfigPage_ConfigureStartingPawns">

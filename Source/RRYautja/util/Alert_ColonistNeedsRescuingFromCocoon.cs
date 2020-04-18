@@ -19,7 +19,7 @@ namespace RimWorld
                 this.colonistsNeedingRescueResult.Clear();
                 foreach (Pawn pawn in PawnsFinder.AllMaps_FreeColonistsSpawned)
                 {
-                    if (pawn.isCocooned())
+                    if (pawn.Cocooned())
                     {
                         this.colonistsNeedingRescueResult.Add(pawn);
                     }
@@ -31,7 +31,7 @@ namespace RimWorld
         // Token: 0x060052BE RID: 21182 RVA: 0x001B32CC File Offset: 0x001B14CC
         public static bool NeedsRescue(Pawn p)
         {
-            return p.Downed && p.isCocooned() && !(p.ParentHolder is Pawn_CarryTracker) && (p.jobs.jobQueue == null || p.jobs.jobQueue.Count <= 0 || !p.jobs.jobQueue.Peek().job.CanBeginNow(p, false));
+            return p.Downed && p.Cocooned() && !(p.ParentHolder is Pawn_CarryTracker) && (p.jobs.jobQueue == null || p.jobs.jobQueue.Count <= 0 || !p.jobs.jobQueue.Peek().job.CanBeginNow(p, false));
         }
 
         // Token: 0x060052BF RID: 21183 RVA: 0x001B3339 File Offset: 0x001B1539

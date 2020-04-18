@@ -34,7 +34,7 @@
 	</ThingDef>
 
 	<ThingDef ParentName="ResourceBoxBase">
-		<defName>RRY_USCM_StandardGear</defName>
+		<defName>AvP_USCM_StandardGear</defName>
 		<label>USCM standard armamement</label>
 		<description>The box contains equipment for four privates of the USCM Corps.</description>
 		<statBases>
@@ -46,18 +46,18 @@
 			<li Class="ResourceBoxes.CompProperties_UseEffect_ResourceBox">
 			
             <possibleItems>
-				<li>RRY_Headgear_M10PAttern</li>
-				<li>RRY_Apparel_M3Pattern</li>
-				<li>RRY_Headgear_M10PAttern</li>
-				<li>RRY_Apparel_M3Pattern</li>
-				<li>RRY_Headgear_M10PAttern</li>
-				<li>RRY_Apparel_M3Pattern</li>
-				<li>RRY_Headgear_M10PAttern</li>
-				<li>RRY_Apparel_M3Pattern</li>
-				<li>RRY_USCM_Gun_M41APR</li>
-				<li>RRY_USCM_Gun_M41APR</li>
-				<li>RRY_USCM_Gun_M39SMG</li>
-				<li>RRY_USCM_Gun_M240Incinerator</li>
+				<li>AvP_Headgear_M10PAttern</li>
+				<li>AvP_Apparel_M3Pattern</li>
+				<li>AvP_Headgear_M10PAttern</li>
+				<li>AvP_Apparel_M3Pattern</li>
+				<li>AvP_Headgear_M10PAttern</li>
+				<li>AvP_Apparel_M3Pattern</li>
+				<li>AvP_Headgear_M10PAttern</li>
+				<li>AvP_Apparel_M3Pattern</li>
+				<li>AvP_USCM_Gun_M41APR</li>
+				<li>AvP_USCM_Gun_M41APR</li>
+				<li>AvP_USCM_Gun_M39SMG</li>
+				<li>AvP_USCM_Gun_M240Incinerator</li>
 			</possibleItems>
             <PerItemCount>1</PerItemCount>
             <spawnAll>true</spawnAll>
@@ -70,7 +70,7 @@
 	</ThingDef>
 	
 	<ThingDef ParentName="ResourceBoxBase">
-		<defName>RRY_USCM_OperatorGear</defName>
+		<defName>AvP_USCM_OperatorGear</defName>
 		<label>M56 Operator supplies</label>
 		<description>The box contains equipment for a single M56 Smart Gun Operator.</description>
 		<statBases>
@@ -82,10 +82,10 @@
 			<li Class="ResourceBoxes.CompProperties_UseEffect_ResourceBox">
 			
             <possibleItems>
-				<li>RRY_Apparel_M56CombatHarness</li>
-				<li>RRY_Apparel_M3Pattern</li>
-				<li>RRY_USCM_Gun_M56SmartGun</li>
-				<li>RRY_Equipment_HMS</li>
+				<li>AvP_Apparel_M56CombatHarness</li>
+				<li>AvP_Apparel_M3Pattern</li>
+				<li>AvP_USCM_Gun_M56SmartGun</li>
+				<li>AvP_Equipment_HMS</li>
 			</possibleItems>
             <PerItemCount>1</PerItemCount>
             <spawnAll>true</spawnAll>

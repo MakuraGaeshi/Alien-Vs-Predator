@@ -13,10 +13,10 @@
   <HMS_BloodStatus_Unblooded>Unblooded, needs to make a worth kill\nMinimum worth kill score: {1}</HMS_BloodStatus_Unblooded>
   <HMS_BloodStatus_Unmarked>Blooded with a {1}({2}, {3}) kill, but still needs to Mark themself.\nScore: {4}</HMS_BloodStatus_Unmarked>
   <HMS_BloodStatus_Marked>Marked with a {1}({2}) kill.\nScore: {3}</HMS_BloodStatus_Marked>
-  <RRY_CanMarkSelf>New Worthy Kills</RRY_CanMarkSelf>
+  <AvP_CanMarkSelf>New Worthy Kills</AvP_CanMarkSelf>
   <HMS_CanMarkThemself>Can Mark themself on</HMS_CanMarkThemself>
   <HMS_CanbeMarked>Can be Marked on</HMS_CanbeMarked>
-  <RRY_CanMarkSelfDesc>Colonists with new Worthy Kills:\n\n{0}\nMake sure that they get marked if desired. Unmarked colonists that are not part of a Hunter culture will need to be marked by a member of the race noted after their name.</RRY_CanMarkSelfDesc>
+  <AvP_CanMarkSelfDesc>Colonists with new Worthy Kills:\n\n{0}\nMake sure that they get marked if desired. Unmarked colonists that are not part of a Hunter culture will need to be marked by a member of the race noted after their name.</AvP_CanMarkSelfDesc>
   
   <HMS_MarkSelfLabel>Can be Marked on</HMS_MarkSelfLabel>
   <HMS_MarkOtherLabel>Use {1}'s {0} kill to mark them as an honourary Blooded</HMS_MarkOtherLabel>

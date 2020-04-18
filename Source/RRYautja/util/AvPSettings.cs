@@ -69,9 +69,26 @@ namespace RRYautja.settings
             SettingsHelper.latest = this.settings;
             harmony = new Harmony("com.ogliss.rimworld.mod.rryatuja");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
+            /*
+            harmony.Patch(original: AccessTools.Property(type: typeof(RaceProperties), name: nameof(RaceProperties.IsFlesh)).GetGetMethod(),
+                postfix: new HarmonyMethod(typeof(AvPMod),
+                nameof(isFlesh_Synth)));
+            */
             if (Prefs.DevMode) Log.Message(string.Format("Alien Vs Predator: successfully completed {0} harmony patches.", harmony.GetPatchedMethods().Select(new Func<MethodBase, Patches>(Harmony.GetPatchInfo)).SelectMany((Patches p) => p.Prefixes.Concat(p.Postfixes).Concat(p.Transpilers)).Count((Patch p) => p.owner.Contains(harmony.Id))), false);
+
         }
 
+        public static void isFlesh_Synth(ref bool __result, RaceProperties __instance)
+        {
+            if (__result)
+            {
+
+                if (__instance.FleshType == USCMDefOf.AvP_Synth.race.FleshType)
+                {
+                    __result = false;
+                }
+            }
+        }
         public override string SettingsCategory() => "Aliens Vs Predator";
 
         public override void DoSettingsWindowContents(Rect inRect)
@@ -82,36 +99,36 @@ namespace RRYautja.settings
             Rect rect = new Rect(inRect.x, inRect.y + 50, numa, numa2);
             Widgets.Label(inRect.TopHalf().TopHalf().TopHalf().TopHalf().ContractedBy(4),
                 "Restart before playing to ensure your changes take effect.");
-            Widgets.CheckboxLabeled(inRect.TopHalf().TopHalf().TopHalf().BottomHalf().ContractedBy(4), "RRY_AllowYautjaFaction".Translate(), ref settings.AllowYautjaFaction);
+            Widgets.CheckboxLabeled(inRect.TopHalf().TopHalf().TopHalf().BottomHalf().ContractedBy(4), "AvP_AllowYautjaFaction".Translate(), ref settings.AllowYautjaFaction);
             /*
-            Widgets.CheckboxLabeled(inRect.TopHalf().TopHalf().BottomHalf().TopHalf().ContractedBy(4), "RRY_AllowXenomorphFaction".Translate(), ref settings.AllowXenomorphFaction);
-            Widgets.CheckboxLabeled(inRect.TopHalf().TopHalf().BottomHalf().BottomHalf().LeftHalf().ContractedBy(4), "RRY_AllowHiddenInfections".Translate(), ref settings.AllowHiddenInfections);
-            Widgets.CheckboxLabeled(inRect.TopHalf().TopHalf().BottomHalf().BottomHalf().RightHalf().ContractedBy(4), "RRY_AllowPredalienImpregnations".Translate(), ref settings.AllowPredalienImpregnations);
+            Widgets.CheckboxLabeled(inRect.TopHalf().TopHalf().BottomHalf().TopHalf().ContractedBy(4), "AvP_AllowXenomorphFaction".Translate(), ref settings.AllowXenomorphFaction);
+            Widgets.CheckboxLabeled(inRect.TopHalf().TopHalf().BottomHalf().BottomHalf().LeftHalf().ContractedBy(4), "AvP_AllowHiddenInfections".Translate(), ref settings.AllowHiddenInfections);
+            Widgets.CheckboxLabeled(inRect.TopHalf().TopHalf().BottomHalf().BottomHalf().RightHalf().ContractedBy(4), "AvP_AllowPredalienImpregnations".Translate(), ref settings.AllowPredalienImpregnations);
 
 
             this.settings.fachuggerRemovalFailureDeathChance = Widgets.HorizontalSlider(inRect.TopHalf().BottomHalf().TopHalf().TopHalf().ContractedBy(4),
                 this.settings.fachuggerRemovalFailureDeathChance, 0f, 1f, true,
-                "RRY_FacehuggerRemovalDeathChance".Translate(this.settings.fachuggerRemovalFailureDeathChance * 100)
+                "AvP_FacehuggerRemovalDeathChance".Translate(this.settings.fachuggerRemovalFailureDeathChance * 100)
                 , "0%", "100%");
 
             this.settings.embryoRemovalFailureDeathChance = Widgets.HorizontalSlider(inRect.TopHalf().BottomHalf().TopHalf().BottomHalf().ContractedBy(4),
                 this.settings.embryoRemovalFailureDeathChance, 0f, 1f, true,
-                "RRY_EmbryoRemovalDeathChance".Translate(this.settings.embryoRemovalFailureDeathChance * 100)
+                "AvP_EmbryoRemovalDeathChance".Translate(this.settings.embryoRemovalFailureDeathChance * 100)
                 , "0%", "100%");
 
             //    Widgets.BeginScrollView(inRect.BottomHalf().BottomHalf().BottomHalf().LeftHalf().ContractedBy(4), ref );
             */
             Rect rectShowXenoOptions = new Rect(rect.x, rect.y + 10, numa, 180f);
-            Widgets.CheckboxLabeled(rectShowXenoOptions.TopHalf().TopHalf().LeftHalf().ContractedBy(4), "RRY_AllowXenomorphFaction".Translate(), ref settings.AllowXenomorphFaction);
-            Widgets.CheckboxLabeled(rectShowXenoOptions.TopHalf().BottomHalf().LeftHalf().ContractedBy(4), "RRY_AllowHiddenInfections".Translate(), ref settings.AllowHiddenInfections);
-            Widgets.CheckboxLabeled(rectShowXenoOptions.TopHalf().TopHalf().RightHalf().ContractedBy(4), "RRY_AllowPredalienImpregnations".Translate(), ref settings.AllowPredalienImpregnations);
+            Widgets.CheckboxLabeled(rectShowXenoOptions.TopHalf().TopHalf().LeftHalf().ContractedBy(4), "AvP_AllowXenomorphFaction".Translate(), ref settings.AllowXenomorphFaction);
+            Widgets.CheckboxLabeled(rectShowXenoOptions.TopHalf().BottomHalf().LeftHalf().ContractedBy(4), "AvP_AllowHiddenInfections".Translate(), ref settings.AllowHiddenInfections);
+            Widgets.CheckboxLabeled(rectShowXenoOptions.TopHalf().TopHalf().RightHalf().ContractedBy(4), "AvP_AllowPredalienImpregnations".Translate(), ref settings.AllowPredalienImpregnations);
 
-            Widgets.CheckboxLabeled(rectShowXenoOptions.TopHalf().BottomHalf().RightHalf().ContractedBy(4), "RRY_AllowXenoCocoonMetamorph".Translate(), ref settings.AllowXenoCocoonMetamorph);
-            Widgets.CheckboxLabeled(rectShowXenoOptions.BottomHalf().TopHalf().LeftHalf().ContractedBy(4), "RRY_AllowXenoEggMetamorph".Translate(), ref settings.AllowXenoEggMetamorph);
-            Widgets.CheckboxLabeled(rectShowXenoOptions.BottomHalf().BottomHalf().LeftHalf().ContractedBy(4), "RRY_AllowNonHumanlikeHosts".Translate(), ref settings.AllowNonHumanlikeHosts);
-            TextFieldNumericLabeled<float>(rectShowXenoOptions.BottomHalf().TopHalf().RightHalf().ContractedBy(4), "RRY_FacehuggerRemovalDeathChance".Translate(this.settings.fachuggerRemovalFailureDeathChance * 100), ref settings.fachuggerRemovalFailureDeathChance, ref settings.fachuggerRemovalFailureDeathChanceBuffer, 0f, 1f);
+            Widgets.CheckboxLabeled(rectShowXenoOptions.TopHalf().BottomHalf().RightHalf().ContractedBy(4), "AvP_AllowXenoCocoonMetamorph".Translate(), ref settings.AllowXenoCocoonMetamorph);
+            Widgets.CheckboxLabeled(rectShowXenoOptions.BottomHalf().TopHalf().LeftHalf().ContractedBy(4), "AvP_AllowXenoEggMetamorph".Translate(), ref settings.AllowXenoEggMetamorph);
+            Widgets.CheckboxLabeled(rectShowXenoOptions.BottomHalf().BottomHalf().LeftHalf().ContractedBy(4), "AvP_AllowNonHumanlikeHosts".Translate(), ref settings.AllowNonHumanlikeHosts);
+            TextFieldNumericLabeled<float>(rectShowXenoOptions.BottomHalf().TopHalf().RightHalf().ContractedBy(4), "AvP_FacehuggerRemovalDeathChance".Translate(this.settings.fachuggerRemovalFailureDeathChance * 100), ref settings.fachuggerRemovalFailureDeathChance, ref settings.fachuggerRemovalFailureDeathChanceBuffer, 0f, 1f);
 
-            TextFieldNumericLabeled<float>(rectShowXenoOptions.BottomHalf().BottomHalf().RightHalf().ContractedBy(4), "RRY_EmbryoRemovalDeathChance".Translate(this.settings.embryoRemovalFailureDeathChance * 100), ref settings.embryoRemovalFailureDeathChance, ref settings.embryoRemovalFailureDeathChanceBuffer, 0f, 1f);
+            TextFieldNumericLabeled<float>(rectShowXenoOptions.BottomHalf().BottomHalf().RightHalf().ContractedBy(4), "AvP_EmbryoRemovalDeathChance".Translate(this.settings.embryoRemovalFailureDeathChance * 100), ref settings.embryoRemovalFailureDeathChance, ref settings.embryoRemovalFailureDeathChanceBuffer, 0f, 1f);
 
 
             float x = inRect.x;
@@ -130,7 +147,7 @@ namespace RRYautja.settings
             int potentialhostcount = XenomorphHostSystem.AllRaces.Where(z => z.isPotentialHost(true)).Count();
             int enabledhostcount = XenomorphHostSystem.AllRaces.Where(z => z.isPotentialHost()).Count();
             int unsuitablehostcount = XenomorphHostSystem.AllRaces.Where(z => !z.isPotentialHost(true)).Count();
-            Widgets.Label(inRect.TopHalf().BottomHalf().BottomHalf().BottomHalf().LeftHalf().LeftHalf().ContractedBy(4), "RRY_HostKinds".Translate(potentialhostcount, enabledhostcount));
+            Widgets.Label(inRect.TopHalf().BottomHalf().BottomHalf().BottomHalf().LeftHalf().LeftHalf().ContractedBy(4), "AvP_HostKinds".Translate(potentialhostcount, enabledhostcount));
             Rect hostRect = new Rect(inRect.x, inRect.y, inRect.BottomHalf().LeftHalf().LeftHalf().ContractedBy(4).width - 20, potentialhostcount * 20f);
             Widgets.BeginScrollView(inRect.BottomHalf().LeftHalf().LeftHalf().ContractedBy(4), ref this.pos, hostRect, true);
             foreach (ThingDef td in XenomorphHostSystem.AllRaces.Where(z => z.isPotentialHost(true)).OrderBy(xy => xy.label))
@@ -151,7 +168,7 @@ namespace RRYautja.settings
             Widgets.EndScrollView();
             
             float num3 = inRect.y;
-            Widgets.Label(inRect.TopHalf().BottomHalf().BottomHalf().BottomHalf().LeftHalf().RightHalf().ContractedBy(4), "RRY_NonHostKinds".Translate(unsuitablehostcount));
+            Widgets.Label(inRect.TopHalf().BottomHalf().BottomHalf().BottomHalf().LeftHalf().RightHalf().ContractedBy(4), "AvP_NonHostKinds".Translate(unsuitablehostcount));
             Rect nothostRect = new Rect(inRect.x, inRect.y, inRect.BottomHalf().LeftHalf().RightHalf().ContractedBy(4).width - 20, unsuitablehostcount * 40f);
             Widgets.BeginScrollView(inRect.BottomHalf().LeftHalf().RightHalf().ContractedBy(4), ref this.pos2, nothostRect, true);
             foreach (ThingDef td in XenomorphHostSystem.AllRaces.Where(z => !z.isPotentialHost(true)).OrderBy(xy => xy.label))
@@ -166,14 +183,14 @@ namespace RRYautja.settings
 
             float width = 400f;
             float num4 = inRect.y;
-            Widgets.Label(inRect.TopHalf().BottomHalf().BottomHalf().BottomHalf().RightHalf().ContractedBy(4), "RRY_XenomorphSpawningOptions".Translate());
+            Widgets.Label(inRect.TopHalf().BottomHalf().BottomHalf().BottomHalf().RightHalf().ContractedBy(4), "AvP_XenomorphSpawningOptions".Translate());
             Widgets.BeginScrollView(inRect.BottomHalf().RightHalf().ContractedBy(4), ref this.pos3, new Rect(inRect.x, inRect.y, width, 2 * 22f), true);
 
-            Widgets.CheckboxLabeled(new Rect(x, num4, width, 32f), "RRY_PredalienSpawning".Translate(), ref settings.AllowPredaliens);
+            Widgets.CheckboxLabeled(new Rect(x, num4, width, 32f), "AvP_PredalienSpawning".Translate(), ref settings.AllowPredaliens);
             num4 += 22f;
-            Widgets.CheckboxLabeled(new Rect(x, num4, width, 32f), "RRY_ThrumbomorphSpawning".Translate(), ref settings.AllowThrumbomorphs);
+            Widgets.CheckboxLabeled(new Rect(x, num4, width, 32f), "AvP_ThrumbomorphSpawning".Translate(), ref settings.AllowThrumbomorphs);
             num4 += 22f;
-            Widgets.CheckboxLabeled(new Rect(x, num4, width, 32f), "RRY_NeomorphSpawning".Translate(), ref settings.AllowNeomorphs);
+            Widgets.CheckboxLabeled(new Rect(x, num4, width, 32f), "AvP_NeomorphSpawning".Translate(), ref settings.AllowNeomorphs);
             num4 += 22f;
             Widgets.EndScrollView();
 

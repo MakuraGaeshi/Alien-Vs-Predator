@@ -189,7 +189,7 @@ namespace RRYautja
             yield return this;
             if (this.groupID != -1)
             {
-                foreach (Thing t in base.Map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_XenomorphCryptosleepCasket))
+                foreach (Thing t in base.Map.listerThings.ThingsOfDef(XenomorphDefOf.AvP_XenomorphCryptosleepCasket))
                 {
                     Building_XenomorphCryptosleepCasket casket = t as Building_XenomorphCryptosleepCasket;
                     if (casket.groupID == this.groupID && !casket.contentsKnown)
@@ -281,7 +281,7 @@ namespace RRYautja
             if (Rand.Chance(0.25f))
             {
                 BodyPartRecord part = pawn.RaceProps.body.AllParts.Find(x => x.def == BodyPartDefOf.Head);
-                pawn.health.AddHediff(XenomorphDefOf.RRY_FaceHuggerInfection, part);
+                pawn.health.AddHediff(XenomorphDefOf.AvP_FaceHuggerInfection, part);
             }
             bool flag = !pod.TryAcceptThing(pawn, false);
             if (flag)
@@ -300,7 +300,7 @@ namespace RRYautja
             if (Rand.Chance(0.5f))
             {
                 BodyPartRecord part = pawn.RaceProps.body.AllParts.Find(x => x.def == BodyPartDefOf.Head);
-                pawn.health.AddHediff(XenomorphDefOf.RRY_FaceHuggerInfection, part);
+                pawn.health.AddHediff(XenomorphDefOf.AvP_FaceHuggerInfection, part);
             }
             bool flag = !pod.TryAcceptThing(pawn, false);
             if (flag)
@@ -312,7 +312,7 @@ namespace RRYautja
         // Token: 0x0600000F RID: 15 RVA: 0x00002F8C File Offset: 0x0000118C
         private static void GenerateUnfriendlyXenomorph(Building_XenomorphCryptosleepCasket pod)
         {
-            Faction faction = Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph);
+            Faction faction = Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.AvP_Xenomorph);
             PawnGenerationRequest pawnGenerationRequest;
             pawnGenerationRequest = new PawnGenerationRequest(Building_XenomorphCryptosleepCasket.FindRandomXenomorphForSpawn(), faction, (PawnGenerationContext)2, (pod.Map != null ? pod.Map.Tile : pod.MapHeld.Tile), false, false, false, false, true, false, 1f, false, true, true, false, true, false, false);
             Pawn pawn = PawnGenerator.GeneratePawn(pawnGenerationRequest);
@@ -332,12 +332,12 @@ namespace RRYautja
             if (Rand.Chance(0.25f))
             {
                 BodyPartRecord part = pawn.RaceProps.body.AllParts.Find(x => x.def == BodyPartDefOf.Head);
-                pawn.health.AddHediff(XenomorphDefOf.RRY_FaceHuggerInfection, part);
+                pawn.health.AddHediff(XenomorphDefOf.AvP_FaceHuggerInfection, part);
             }
             else if (Rand.Chance(0.25f))
             {
                 BodyPartRecord part = pawn.RaceProps.body.AllParts.Find(x => x.def == BodyPartDefOf.Torso);
-                HediffDef hediff = Rand.Chance(0.75f) ? XenomorphDefOf.RRY_HiddenXenomorphImpregnation : XenomorphDefOf.RRY_HiddenNeomorphImpregnation;
+                HediffDef hediff = Rand.Chance(0.75f) ? XenomorphDefOf.AvP_HiddenXenomorphImpregnation : XenomorphDefOf.AvP_HiddenNeomorphImpregnation;
                 pawn.health.AddHediff(hediff, part);
             }
 
@@ -359,12 +359,12 @@ namespace RRYautja
             if (Rand.Chance(0.25f))
             {
                 BodyPartRecord part = pawn.RaceProps.body.AllParts.Find(x => x.def == BodyPartDefOf.Head);
-                pawn.health.AddHediff(XenomorphDefOf.RRY_FaceHuggerInfection, part);
+                pawn.health.AddHediff(XenomorphDefOf.AvP_FaceHuggerInfection, part);
             }
             else if (Rand.Chance(0.25f))
             {
                 BodyPartRecord part = pawn.RaceProps.body.AllParts.Find(x => x.def == BodyPartDefOf.Torso);
-                HediffDef hediff = Rand.Chance(0.75f) ? XenomorphDefOf.RRY_HiddenXenomorphImpregnation : XenomorphDefOf.RRY_HiddenNeomorphImpregnation;
+                HediffDef hediff = Rand.Chance(0.75f) ? XenomorphDefOf.AvP_HiddenXenomorphImpregnation : XenomorphDefOf.AvP_HiddenNeomorphImpregnation;
                 pawn.health.AddHediff(hediff, part);
             }
             Building_XenomorphCryptosleepCasket.GiveRandomLootInventoryForTombPawn(pawn);
@@ -385,7 +385,7 @@ namespace RRYautja
             if (Rand.Chance(0.75f))
             {
                 BodyPartRecord part = pawn.RaceProps.body.AllParts.Find(x => x.def == BodyPartDefOf.Head);
-                pawn.health.AddHediff(XenomorphDefOf.RRY_FaceHuggerInfection, part);
+                pawn.health.AddHediff(XenomorphDefOf.AvP_FaceHuggerInfection, part);
             }
             Building_XenomorphCryptosleepCasket.GiveRandomLootInventoryForTombPawn(pawn);
             bool flag = Rand.Value < 0.5f;
@@ -409,12 +409,12 @@ namespace RRYautja
             if (Rand.Chance(0.15f))
             {
                 BodyPartRecord part = pawn.RaceProps.body.AllParts.Find(x => x.def == BodyPartDefOf.Head);
-                pawn.health.AddHediff(XenomorphDefOf.RRY_FaceHuggerInfection, part);
+                pawn.health.AddHediff(XenomorphDefOf.AvP_FaceHuggerInfection, part);
             }
             else if (Rand.Chance(0.15f))
             {
                 BodyPartRecord part = pawn.RaceProps.body.AllParts.Find(x => x.def == BodyPartDefOf.Torso);
-                HediffDef hediff = Rand.Chance(0.75f) ? XenomorphDefOf.RRY_HiddenXenomorphImpregnation : XenomorphDefOf.RRY_HiddenNeomorphImpregnation;
+                HediffDef hediff = Rand.Chance(0.75f) ? XenomorphDefOf.AvP_HiddenXenomorphImpregnation : XenomorphDefOf.AvP_HiddenNeomorphImpregnation;
                 pawn.health.AddHediff(hediff, part);
             }
             Building_XenomorphCryptosleepCasket.GiveRandomLootInventoryForTombPawn(pawn);
@@ -447,12 +447,12 @@ namespace RRYautja
             if (Rand.Chance(0.75f))
             {
                 BodyPartRecord part = pawn.RaceProps.body.AllParts.Find(x => x.def == BodyPartDefOf.Head);
-                pawn.health.AddHediff(XenomorphDefOf.RRY_FaceHuggerInfection, part);
+                pawn.health.AddHediff(XenomorphDefOf.AvP_FaceHuggerInfection, part);
             }
             else if (Rand.Chance(0.5f))
             {
                 BodyPartRecord part = pawn.RaceProps.body.AllParts.Find(x => x.def == BodyPartDefOf.Torso);
-                HediffDef hediff = Rand.Chance(0.75f) ? XenomorphDefOf.RRY_HiddenXenomorphImpregnation : XenomorphDefOf.RRY_HiddenNeomorphImpregnation;
+                HediffDef hediff = Rand.Chance(0.75f) ? XenomorphDefOf.AvP_HiddenXenomorphImpregnation : XenomorphDefOf.AvP_HiddenNeomorphImpregnation;
                 pawn.health.AddHediff(hediff, part);
             }
             Building_XenomorphCryptosleepCasket.GiveRandomLootInventoryForTombPawn(pawn);
@@ -462,7 +462,7 @@ namespace RRYautja
             int num4;
             if (flag)
             {
-                list.Add(PawnGenerator.GeneratePawn(XenomorphDefOf.RRY_Xenomorph_Warrior, null));
+                list.Add(PawnGenerator.GeneratePawn(XenomorphDefOf.AvP_Xenomorph_Warrior, null));
                 num4 = 1;
             }
             else
@@ -470,7 +470,7 @@ namespace RRYautja
                 bool flag2 = (double)value < 0.35;
                 if (flag2)
                 {
-                    list.Add(PawnGenerator.GeneratePawn(XenomorphDefOf.RRY_Xenomorph_Drone, null));
+                    list.Add(PawnGenerator.GeneratePawn(XenomorphDefOf.AvP_Xenomorph_Drone, null));
                     num4 = 1;
                 }
                 else
@@ -478,7 +478,7 @@ namespace RRYautja
                     num4 = Rand.Range(3, 6);
                     for (int j = 0; j < num4; j++)
                     {
-                        list.Add(PawnGenerator.GeneratePawn(XenomorphDefOf.RRY_Xenomorph_FaceHugger , null));
+                        list.Add(PawnGenerator.GeneratePawn(XenomorphDefOf.AvP_Xenomorph_FaceHugger , null));
                     }
                 }
             }
@@ -504,11 +504,11 @@ namespace RRYautja
             if (Def.infectionDef!=null)
             {
                 BodyPartRecord part = null;
-                if (Def.infectionDef == XenomorphDefOf.RRY_FaceHuggerInfection)
+                if (Def.infectionDef == XenomorphDefOf.AvP_FaceHuggerInfection)
                 {
                     part = pawn.RaceProps.body.AllParts.Find(x => x.def == BodyPartDefOf.Head);
                 }
-                else if (Def.infectionDef != null && (Def.infectionDef == XenomorphDefOf.RRY_HiddenNeomorphImpregnation || Def.infectionDef == XenomorphDefOf.RRY_HiddenXenomorphImpregnation|| Def.infectionDef == XenomorphDefOf.RRY_XenomorphImpregnation))
+                else if (Def.infectionDef != null && (Def.infectionDef == XenomorphDefOf.AvP_HiddenNeomorphImpregnation || Def.infectionDef == XenomorphDefOf.AvP_HiddenXenomorphImpregnation|| Def.infectionDef == XenomorphDefOf.AvP_XenomorphImpregnation))
                 {
                     part = pawn.RaceProps.body.AllParts.Find(x => x.def == BodyPartDefOf.Torso);
                 }
@@ -620,7 +620,7 @@ namespace RRYautja
         private static PawnKindDef FindRandomXenomorphForSpawn()
         {
             GenCollection.TryRandomElement<PawnKindDef>(from td in DefDatabase<PawnKindDef>.AllDefs
-                                                        where td.race.defName.Contains("RRY_Xenomorph") && td.combatPower < 200f
+                                                        where td.race.defName.Contains("AvP_Xenomorph") && td.combatPower < 200f
                                                         select td, out PawnKindDef result);
             return result;
         }

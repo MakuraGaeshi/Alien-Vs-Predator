@@ -11,8 +11,8 @@ namespace RimWorld
         // Token: 0x0600368D RID: 13965 RVA: 0x001A0FCC File Offset: 0x0019F3CC
         public static bool TryFindCell(out IntVec3 cell, Map map, bool allowFogged = false, bool allowMining = false, bool allowUnroofed = false)
         {
-            ThingDef namedA = XenomorphDefOf.RRY_Xenomorph_Cocoon_Humanoid;
-            ThingDef namedB = XenomorphDefOf.RRY_Xenomorph_Cocoon_Animal;
+            ThingDef namedA = XenomorphDefOf.AvP_Xenomorph_Cocoon_Humanoid;
+            ThingDef namedB = XenomorphDefOf.AvP_Xenomorph_Cocoon_Animal;
             XenomorphHiveCellFinder.CalculateLocationCandidates(map, allowFogged, allowMining, allowUnroofed);
             XenomorphHiveCellFinder.LocationCandidate locationCandidate;
             Predicate<IntVec3> validator = delegate (IntVec3 y)
@@ -23,8 +23,8 @@ namespace RimWorld
                 }
                 bool roofed = (!allowUnroofed && y.Roofed(map)) || allowUnroofed;
                 bool score = XenomorphHiveCellFinder.GetScoreAt(y, map, allowFogged, allowUnroofed, allowMining) > 0f;
-                bool XenohiveA = y.GetFirstThing(map, XenomorphDefOf.RRY_Xenomorph_Hive) == null;
-                bool XenohiveB = y.GetFirstThing(map, XenomorphDefOf.RRY_Xenomorph_Hive_Child) == null;
+                bool XenohiveA = y.GetFirstThing(map, XenomorphDefOf.AvP_Xenomorph_Hive) == null;
+                bool XenohiveB = y.GetFirstThing(map, XenomorphDefOf.AvP_Xenomorph_Hive_Child) == null;
                 bool filled = y.Filled(map) && !allowMining;
                 bool edifice = y.GetEdifice(map).DestroyedOrNull() || allowMining;
 
@@ -49,8 +49,8 @@ namespace RimWorld
                 return false;
             }
 
-            cell = CellFinder.FindNoWipeSpawnLocNear(locationCandidate.cell, map, XenomorphDefOf.RRY_Xenomorph_Hive, Rot4.North, 2, validator);
-            //   cell = CellFinder.FindNoWipeSpawnLocNear(locationCandidate.cell, map, XenomorphDefOf.RRY_Xenomorph_Hive, Rot4.North, 2, (IntVec3 x) => XenomorphHiveCellFinder.GetScoreAt(x, map, allowFogged, allowMining, allowUnroofed) > 0f && x.GetFirstThing(map, XenomorphDefOf.RRY_Xenomorph_Hive) == null);
+            cell = CellFinder.FindNoWipeSpawnLocNear(locationCandidate.cell, map, XenomorphDefOf.AvP_Xenomorph_Hive, Rot4.North, 2, validator);
+            //   cell = CellFinder.FindNoWipeSpawnLocNear(locationCandidate.cell, map, XenomorphDefOf.AvP_Xenomorph_Hive, Rot4.North, 2, (IntVec3 x) => XenomorphHiveCellFinder.GetScoreAt(x, map, allowFogged, allowMining, allowUnroofed) > 0f && x.GetFirstThing(map, XenomorphDefOf.AvP_Xenomorph_Hive) == null);
             return true;
         }
 

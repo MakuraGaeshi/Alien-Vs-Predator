@@ -41,7 +41,7 @@ namespace RRYautja
                 Pawn pawn = t as Pawn;
                 bool minFlag = minDistance==0 ? true : t.Position.DistanceTo(kidnapper.mindState.duty.focus.Cell) <= minDistance;
                 bool roofedFlag = !t.Position.Roofed(pawn.Map);
-                bool cocoonFlag = !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned) || allowCocooned;
+                bool cocoonFlag = !pawn.health.hediffSet.HasHediff(XenomorphDefOf.AvP_Hediff_Cocooned) || allowCocooned;
 
                 bool xenoimpregnationFlag = pawn.health.hediffSet.hediffs.Any(x => x.def.defName.Contains("XenomorphImpregnation") && x.CurStageIndex < x.def.stages.Count - 2);
                 bool neoimpregnationFlag = pawn.health.hediffSet.hediffs.Any(x=> x.def.defName.Contains("NeomorphImpregnation"));
@@ -56,7 +56,7 @@ namespace RRYautja
 
         public static bool HiveMainPresent(Map map)
         {
-            if (!map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_Xenomorph_Hive).NullOrEmpty())
+            if (!map.listerThings.ThingsOfDef(XenomorphDefOf.AvP_Xenomorph_Hive).NullOrEmpty())
             {
                 return true;
             }
@@ -66,7 +66,7 @@ namespace RRYautja
 
         public static bool HiveChildPresent(Map map)
         {
-            if (!map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_Xenomorph_Hive_Child).NullOrEmpty())
+            if (!map.listerThings.ThingsOfDef(XenomorphDefOf.AvP_Xenomorph_Hive_Child).NullOrEmpty())
             {
                 return true;
             }
@@ -169,10 +169,10 @@ namespace RRYautja
                 {
                     //    Log.Message(string.Format("TryFindGoodHiveLoc pawn.GetLord() == null"));
                 }
-                if (pawn.mindState.duty.def != XenomorphDefOf.RRY_Xenomorph_DefendAndExpandHive && pawn.mindState.duty.def != XenomorphDefOf.RRY_Xenomorph_DefendHiveAggressively)
+                if (pawn.mindState.duty.def != XenomorphDefOf.AvP_Xenomorph_DefendAndExpandHive && pawn.mindState.duty.def != XenomorphDefOf.AvP_Xenomorph_DefendHiveAggressively)
                 {
                     //    Log.Message(string.Format("TryFindGoodHiveLoc UpdateDuty"));
-                    pawn.mindState.duty = new PawnDuty(XenomorphDefOf.RRY_Xenomorph_DefendAndExpandHive, c, 40f);
+                    pawn.mindState.duty = new PawnDuty(XenomorphDefOf.AvP_Xenomorph_DefendAndExpandHive, c, 40f);
                 }
                 if (hiveGrid.HiveLoclist.NullOrEmpty() || !hiveGrid.HiveLoclist.Contains(c))
                 {
@@ -214,7 +214,7 @@ namespace RRYautja
             Predicate<Thing> validator = delegate (Thing t)
             {
                 Pawn pawn = t as Pawn;
-                bool cocoonFlag = !pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned);
+                bool cocoonFlag = !pawn.health.hediffSet.HasHediff(XenomorphDefOf.AvP_Hediff_Cocooned);
                 bool pawnFlag = ((pawn.isPotentialHost())) && !XenomorphUtil.IsXenomorph(pawn) && pawn.gender == Gender.Female && pawn.Downed && (pawn.Faction == null || pawn.Faction.HostileTo(kidnapper.Faction) || kidnapper.Faction == null);
             //    Log.Message(string.Format(" cocoonFlag; {0} \n pawnFlag: {1}", cocoonFlag, pawnFlag));
                 return (cocoonFlag && pawnFlag) && (kidnapper.CanReserve(pawn, 1, -1, null, false) && (disallowed == null || !disallowed.Contains(pawn))) && pawn != kidnapper && pawn.gender == Gender.Female;

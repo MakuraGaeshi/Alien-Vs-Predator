@@ -24,7 +24,7 @@ namespace RRYautja.HarmonyInstance
             if (def == GameConditionDefOf.SolarFlare)
             {
                 //    Log.Message(string.Format("GameConditionManager_ConditionIsActive_Patch SolarFlare: {0}", __result));
-                __result = __result || __instance.ConditionIsActive(XenomorphDefOf.RRY_Xenomorph_PowerCut);
+                __result = __result || __instance.ConditionIsActive(XenomorphDefOf.AvP_Xenomorph_PowerCut);
 #if DEBUG
             //    Log.Message(string.Format("GameConditionManager_ConditionIsActive_Patch Xenomorph_PowerCut: {0}", __result));
 #endif

@@ -2,7 +2,7 @@
 <Defs>
 
   <PawnsArrivalModeDef>
-    <defName>RRY_DropThroughRoofNearPower</defName>
+    <defName>AvP_DropThroughRoofNearPower</defName>
     <workerClass>PawnsArrivalModeWorker_DropThroughRoofNearPower</workerClass>
     <selectionWeightCurve>
       <points>
@@ -14,7 +14,7 @@
   </PawnsArrivalModeDef>
 
   <PawnsArrivalModeDef>
-    <defName>RRY_RandomDropThroughRoof</defName>
+    <defName>AvP_RandomDropThroughRoof</defName>
     <workerClass>PawnsArrivalModeWorker_RandomDropThroughRoof</workerClass>
     <selectionWeightCurve>
       <points>
@@ -26,7 +26,7 @@
   </PawnsArrivalModeDef>
 
   <PawnsArrivalModeDef>
-    <defName>RRY_RandomEnterFromTunnel</defName>
+    <defName>AvP_RandomEnterFromTunnel</defName>
     <workerClass>PawnsArrivalModeWorker_RandomEnterFromTunnel</workerClass>
     <selectionWeightCurve>
       <points>

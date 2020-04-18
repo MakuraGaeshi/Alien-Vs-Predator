@@ -22,7 +22,7 @@ namespace RRYautja.HarmonyInstance
         [HarmonyPrefix]
         public static bool OnIntervalPassedPrefix(Pawn pawn, Hediff cause)
         {
-            if (pawn.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Xenomorph)
+            if (pawn.RaceProps.FleshType == XenomorphRacesDefOf.AvP_Xenomorph)
             {
                 float ambientTemperature = pawn.AmbientTemperature;
                 FloatRange floatRange = pawn.ComfortableTemperatureRange();
@@ -49,7 +49,7 @@ namespace RRYautja.HarmonyInstance
                         num3 = Mathf.Clamp(num3, 0.0015f, 0.015f);
                         firstHediffOfDef.Severity -= num3;
                     }
-                    else if (pawn.RaceProps.FleshType != XenomorphRacesDefOf.RRY_Xenomorph && ambientTemperature < 0f && firstHediffOfDef.Severity > 0.37f)
+                    else if (pawn.RaceProps.FleshType != XenomorphRacesDefOf.AvP_Xenomorph && ambientTemperature < 0f && firstHediffOfDef.Severity > 0.37f)
                     {
                         float num4 = 0.025f * firstHediffOfDef.Severity;
                         if (Rand.Value < num4)

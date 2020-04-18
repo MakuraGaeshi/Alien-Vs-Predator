@@ -4,14 +4,14 @@
   <!--============ Need satisfaction ============-->
 
   <JobDef>
-		<defName>RRY_Neomorph_Ingest</defName>
+		<defName>AvP_Neomorph_Ingest</defName>
 		<driverClass>JobDriver_Neomorph_Ingest</driverClass>
 		<reportString>consuming TargetA.</reportString>
     <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
   </JobDef>
 
   <JobDef>
-    <defName>RRY_Neomorph_LayDown</defName>
+    <defName>AvP_Neomorph_LayDown</defName>
     <driverClass>JobDriver_LayDown</driverClass>
     <reportString>lying down.</reportString>
     <casualInterruptible>false</casualInterruptible>

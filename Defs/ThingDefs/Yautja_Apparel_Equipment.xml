@@ -16,12 +16,12 @@
 		</graphicData>
 		<projectile>
 			<explosionRadius>10</explosionRadius>
-			<damageDef>RRY_BombSuper</damageDef>
+			<damageDef>AvP_BombSuper</damageDef>
 		</projectile>
 		<tickerType>Normal</tickerType>
 		<comps> 
 		  <li Class="AdeptusMechanicus.CompProperties_ToggleDef">
-            <labelKey>RRY_Toggle_Gauntlet</labelKey>
+            <labelKey>AvP_Toggle_Gauntlet</labelKey>
 		  </li> 
 		  <li Class="RRYautja.CompProperties_WearableExplosive">
 			<stability>2</stability>
@@ -79,7 +79,7 @@
 			</defaultOutfitTags>
 		</apparel>
 		<thingCategories>
-			<li>RRY_Equipment</li>
+			<li>AvP_Equipment</li>
 		</thingCategories>
 		<tradeTags>
 			<li>Apparel</li>
@@ -102,13 +102,13 @@
 		<comps> 
 		  <li Class="RRYautja.CompProperties_HediffApparel">
 			<dropOnPartLost>true</dropOnPartLost>
-			<hediffDef>AvP_Yautja_Wristblade</hediffDef>
+			<hediffDef>AvP_Hediff_Yautja_Wristblade</hediffDef>
 			<partsToAffect>
 			  <li>right arm</li>
 			</partsToAffect>
 			<!--
 			<groupsToAffect>
-			  <li>RRY_Yautja_RightArm</li>
+			  <li>AvP_Yautja_RightArm</li>
 			</groupsToAffect>
 			-->
 		  </li>
@@ -125,13 +125,13 @@
 		<comps> 
 		  <li Class="RRYautja.CompProperties_HediffApparel">
 			<dropOnPartLost>true</dropOnPartLost>
-			<hediffDef>AvP_Yautja_Wristblade</hediffDef>
+			<hediffDef>AvP_Hediff_Yautja_Wristblade</hediffDef>
 			<partsToAffect>
 			  <li>left arm</li>
 			</partsToAffect>
 			<!--
 			<groupsToAffect>
-			  <li>RRY_Yautja_LeftArm</li>
+			  <li>AvP_Yautja_LeftArm</li>
 			</groupsToAffect>
 			-->
 		  </li>
@@ -150,7 +150,7 @@
 		<tickerType>Normal</tickerType>
 		<comps>  
 	      <li Class="RRYautja.CompProperties_EquippableTurret"> 
-			<TurretDef>RRY_EquippableTurret</TurretDef>
+			<TurretDef>AvP_EquippableTurret</TurretDef>
 		  </li>
 		</comps>
 		<statBases>
@@ -193,7 +193,7 @@
 			</defaultOutfitTags>
 		</apparel>
 		<thingCategories>
-			<li>RRY_Equipment</li>
+			<li>AvP_Equipment</li>
 		</thingCategories>
 		<tradeTags>
 			<li>Apparel</li>

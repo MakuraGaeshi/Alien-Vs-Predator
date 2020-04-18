@@ -3,8 +3,8 @@
 	
   
 	<!-- ==================== USCM  - Maintenance Jack ========================= -->
-  <ThingDef ParentName="RRY_USCM_BaseMeleeWeapon_Blunt_Quality">
-    <defName>RRY_USCM_MaintenanceJack</defName>
+  <ThingDef ParentName="AvP_USCM_BaseMeleeWeapon_Blunt_Quality">
+    <defName>AvP_USCM_MaintenanceJack</defName>
     <label>Maintenance Jack</label>
     <description>The Maintenance Jack was a tool manufactured by Seegson.</description>
     <graphicData>
@@ -71,7 +71,7 @@
 			<li>USCM_MaintenanceJack</li>
 		</weaponTags>
 		<thingCategories>
-			<li>RRY_MeleeWeapons</li>
+			<li>AvP_MeleeWeapons</li>
 		</thingCategories>
     <tradeTags>
 		<li>ExoticMisc</li>

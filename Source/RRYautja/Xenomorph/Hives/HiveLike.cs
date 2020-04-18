@@ -68,7 +68,7 @@ namespace RimWorld
         {
             get
             {
-                return this.def == XenomorphDefOf.RRY_Xenomorph_Hive;
+                return this.def == XenomorphDefOf.AvP_Xenomorph_Hive;
             }
         }
         public bool hiveDormant
@@ -92,7 +92,7 @@ namespace RimWorld
                 bool hasqueen = false;
                 if (!this.innerContainer.NullOrEmpty())
                 {
-                    hasqueen = this.innerContainer.Any(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen && x.xenomorph().HiveLoc == this.Position);
+                    hasqueen = this.innerContainer.Any(x => x.def == XenomorphRacesDefOf.AvP_Xenomorph_Queen && x.xenomorph().HiveLoc == this.Position);
                 }
                 else
                 if (!Map.HiveGrid().Queenlist.NullOrEmpty())
@@ -286,9 +286,9 @@ namespace RimWorld
 		// Token: 0x06002673 RID: 9843 RVA: 0x001240D8 File Offset: 0x001224D8
 		public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
-            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_HiveLike) && this.def == XenomorphDefOf.RRY_Xenomorph_Hive)
+            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.AvP_Concept_HiveLike) && this.def == XenomorphDefOf.AvP_Xenomorph_Hive)
             {
-                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_HiveLike, OpportunityType.Important);
+                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.AvP_Concept_HiveLike, OpportunityType.Important);
             }
             base.SpawnSetup(map, respawningAfterLoad);
 			if (base.Faction == null)
@@ -298,7 +298,7 @@ namespace RimWorld
             }
             if (this.getsQueen && hiveNode)
             {
-                Pawn newQueen = PawnGenerator.GeneratePawn(new PawnGenerationRequest(XenomorphDefOf.RRY_Xenomorph_Queen, factionInt));
+                Pawn newQueen = PawnGenerator.GeneratePawn(new PawnGenerationRequest(XenomorphDefOf.AvP_Xenomorph_Queen, factionInt));
                 this.innerContainer.TryAdd(newQueen);
             }
 			if (!respawningAfterLoad && this.active && canSpawnPawns)
@@ -312,7 +312,7 @@ namespace RimWorld
             MapComponent_HiveGrid hiveGrid = map.HiveGrid();
             if (hiveGrid!=null)
             {
-                if (this.def == XenomorphDefOf.RRY_Xenomorph_Hive)
+                if (this.def == XenomorphDefOf.AvP_Xenomorph_Hive)
                 {
                     if (!hiveGrid.Hivelist.Contains(this))
                     {
@@ -323,7 +323,7 @@ namespace RimWorld
                         hiveGrid.HiveLoclist.Add(this.Position);
                     }
                 }
-                if (this.def == XenomorphDefOf.RRY_Xenomorph_Hive_Child)
+                if (this.def == XenomorphDefOf.AvP_Xenomorph_Hive_Child)
                 {
                     if (!hiveGrid.Hivelist.Contains(this))
                     {
@@ -392,7 +392,7 @@ namespace RimWorld
                 {
                     if (this.innerContainer != null)
                     {
-                        if ((this.innerContainer.Count == 1 && !this.innerContainer.Any(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen)) || this.innerContainer.Count > 1)
+                        if ((this.innerContainer.Count == 1 && !this.innerContainer.Any(x => x.def == XenomorphRacesDefOf.AvP_Xenomorph_Queen)) || this.innerContainer.Count > 1)
                         {
                             this.innerContainer.TryDropAll(this.Position, this.Map, ThingPlaceMode.Near, null, null);
                         }
@@ -527,9 +527,9 @@ namespace RimWorld
                 pawn = null;
                 return false;
             }
-            if (!this.spawnedPawns.Any(x=> x.def!=XenomorphRacesDefOf.RRY_Xenomorph_Drone))
+            if (!this.spawnedPawns.Any(x=> x.def!=XenomorphRacesDefOf.AvP_Xenomorph_Drone))
             {
-                kindDef = XenomorphDefOf.RRY_Xenomorph_Drone;
+                kindDef = XenomorphDefOf.AvP_Xenomorph_Drone;
             }
             pawn = PawnGenerator.GeneratePawn(kindDef, base.Faction);
             this.spawnedPawns.Add(pawn);
@@ -622,7 +622,7 @@ namespace RimWorld
                 };
                 if (!this.innerContainer.NullOrEmpty())
                 {
-                    if (this.innerContainer.Any(x => x.def != XenomorphRacesDefOf.RRY_Xenomorph_Queen && x.xenomorph().HiveLoc == this.Position))
+                    if (this.innerContainer.Any(x => x.def != XenomorphRacesDefOf.AvP_Xenomorph_Queen && x.xenomorph().HiveLoc == this.Position))
                     {
                         yield return new Command_Action
                         {
@@ -635,7 +635,7 @@ namespace RimWorld
                             }
                         };
                     }
-                    if (this.innerContainer.Any(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen && x.xenomorph().HiveLoc == this.Position))
+                    if (this.innerContainer.Any(x => x.def == XenomorphRacesDefOf.AvP_Xenomorph_Queen && x.xenomorph().HiveLoc == this.Position))
                     {
                         yield return new Command_Action
                         {
@@ -659,7 +659,7 @@ namespace RimWorld
                         defaultDesc = "Adds a Queen to this hive",
                         action = delegate ()
                         {
-                            Pawn newQueen = PawnGenerator.GeneratePawn(new PawnGenerationRequest(XenomorphDefOf.RRY_Xenomorph_Queen, factionInt));
+                            Pawn newQueen = PawnGenerator.GeneratePawn(new PawnGenerationRequest(XenomorphDefOf.AvP_Xenomorph_Queen, factionInt));
                             this.innerContainer.TryAdd(newQueen);
                         }
                     };
@@ -735,9 +735,9 @@ namespace RimWorld
 
         public virtual void EjectContents()
         {
-            if (this.innerContainer.Any(x => x.def != XenomorphRacesDefOf.RRY_Xenomorph_Queen && x.xenomorph().HiveLoc == this.Position))
+            if (this.innerContainer.Any(x => x.def != XenomorphRacesDefOf.AvP_Xenomorph_Queen && x.xenomorph().HiveLoc == this.Position))
             {
-                List<Thing> contents = this.innerContainer.Where(x => x.def != XenomorphRacesDefOf.RRY_Xenomorph_Queen && x.xenomorph().HiveLoc == this.Position).ToList();
+                List<Thing> contents = this.innerContainer.Where(x => x.def != XenomorphRacesDefOf.AvP_Xenomorph_Queen && x.xenomorph().HiveLoc == this.Position).ToList();
                 foreach (Thing t in contents)
                 {
                     this.innerContainer.Remove(t);
@@ -749,11 +749,11 @@ namespace RimWorld
 
         public virtual void EjectQueens()
         {
-            if (this.def == XenomorphDefOf.RRY_Xenomorph_Hive || (this.def == XenomorphDefOf.RRY_Xenomorph_Hive_Child && this.parentHiveLike.DestroyedOrNull()))
+            if (this.def == XenomorphDefOf.AvP_Xenomorph_Hive || (this.def == XenomorphDefOf.AvP_Xenomorph_Hive_Child && this.parentHiveLike.DestroyedOrNull()))
             {
-                if (this.innerContainer.Any(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen && x.xenomorph().HiveLoc == this.Position))
+                if (this.innerContainer.Any(x => x.def == XenomorphRacesDefOf.AvP_Xenomorph_Queen && x.xenomorph().HiveLoc == this.Position))
                 {
-                    List<Thing> queens = this.innerContainer.Where(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen && x.xenomorph().HiveLoc == this.Position).ToList();
+                    List<Thing> queens = this.innerContainer.Where(x => x.def == XenomorphRacesDefOf.AvP_Xenomorph_Queen && x.xenomorph().HiveLoc == this.Position).ToList();
                     foreach (Thing queen in queens)
                     {
                         this.innerContainer.Remove(queen);
@@ -778,7 +778,7 @@ namespace RimWorld
             MapComponent_HiveGrid hiveGrid = map.HiveGrid();
             if (hiveGrid != null)
             {
-                if (this.def == XenomorphDefOf.RRY_Xenomorph_Hive)
+                if (this.def == XenomorphDefOf.AvP_Xenomorph_Hive)
                 {
                     if (hiveGrid.Hivelist.Contains(this))
                     {
@@ -789,7 +789,7 @@ namespace RimWorld
                         hiveGrid.HiveLoclist.Remove(this.Position);
                     }
                 }
-                if (this.def == XenomorphDefOf.RRY_Xenomorph_Hive_Child)
+                if (this.def == XenomorphDefOf.AvP_Xenomorph_Hive_Child)
                 {
                     if (hiveGrid.HiveChildlist.Contains(this))
                     {
@@ -817,7 +817,7 @@ namespace RimWorld
 
         public override void PreApplyDamage(ref DamageInfo dinfo, out bool absorbed)
         {
-            if (dinfo.Def==XenomorphDefOf.RRY_AcidBurn || dinfo.Def == XenomorphDefOf.RRY_AcidDamage)
+            if (dinfo.Def==XenomorphDefOf.AvP_AcidBurn || dinfo.Def == XenomorphDefOf.AvP_AcidDamage)
             {
                 absorbed = true;
             }

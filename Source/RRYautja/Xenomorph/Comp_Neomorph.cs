@@ -60,7 +60,7 @@ namespace RRYautja
             /*
             if (parent.Faction == null)
             {
-                parent.SetFaction(Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph));
+                parent.SetFaction(Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.AvP_Xenomorph));
             }
             */
             base.CompTick();

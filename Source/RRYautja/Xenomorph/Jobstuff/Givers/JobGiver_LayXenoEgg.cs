@@ -23,8 +23,8 @@ namespace RimWorld
             {
                 return null;
             }
-            ThingDef namedA = XenomorphDefOf.RRY_Xenomorph_Cocoon_Humanoid;
-            ThingDef namedB = XenomorphDefOf.RRY_Xenomorph_Cocoon_Animal;
+            ThingDef namedA = XenomorphDefOf.AvP_Xenomorph_Cocoon_Humanoid;
+            ThingDef namedB = XenomorphDefOf.AvP_Xenomorph_Cocoon_Animal;
             if (XenomorphKidnapUtility.TryFindGoodHiveLoc(pawn, out c))
             {
                 bool selected = pawn.Map != null ? Find.Selector.SelectedObjects.Contains(pawn) && (Prefs.DevMode) : false;
@@ -43,9 +43,9 @@ namespace RimWorld
 
                     bool b = RCellFinder.TryFindRandomCellNearWith(c, validator, pawn.Map, out IntVec3 lc, 6, 12);
 
-                    List<Thing> egglist = pawn.Map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_EggXenomorphFertilized).FindAll(x => lc.InHorDistOf(x.Position, 9));
+                    List<Thing> egglist = pawn.Map.listerThings.ThingsOfDef(XenomorphDefOf.AvP_EggXenomorphFertilized).FindAll(x => lc.InHorDistOf(x.Position, 9));
                     bool eggflag = egglist.CountAllowNull() < 40;
-                    return new Job(XenomorphDefOf.RRY_Job_Xenomorph_LayEgg, lc);
+                    return new Job(XenomorphDefOf.AvP_Job_Xenomorph_LayEgg, lc);
                 }
                 else
                 {
@@ -69,9 +69,9 @@ namespace RimWorld
 
                 bool b = RCellFinder.TryFindRandomCellNearWith(c, validator, pawn.Map, out IntVec3 lc, 6, 12);
 
-                List<Thing> egglist = pawn.Map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_EggXenomorphFertilized).FindAll(x => lc.InHorDistOf(x.Position, 9));
+                List<Thing> egglist = pawn.Map.listerThings.ThingsOfDef(XenomorphDefOf.AvP_EggXenomorphFertilized).FindAll(x => lc.InHorDistOf(x.Position, 9));
                 bool eggflag = egglist.CountAllowNull() < 40;
-                return new Job(XenomorphDefOf.RRY_Job_Xenomorph_LayEgg, lc);
+                return new Job(XenomorphDefOf.AvP_Job_Xenomorph_LayEgg, lc);
             }
             return null;
         }

@@ -28,7 +28,7 @@ namespace RRYautja.HarmonyInstance
             bool result;
             if (flag)
             {
-				AvP_Pawn_HealthTracker_DropBloodFilth_Xenoblood_Patch.TryMakeFilth(pawn.PositionHeld, pawn.MapHeld, XenomorphDefOf.RRY_FilthBloodXenomorph_Active, pawn.LabelIndefinite(), 1);
+				AvP_Pawn_HealthTracker_DropBloodFilth_Xenoblood_Patch.TryMakeFilth(pawn.PositionHeld, pawn.MapHeld, XenomorphDefOf.AvP_FilthBloodXenomorph_Active, pawn.LabelIndefinite(), 1);
                 result = false;
             }
             else

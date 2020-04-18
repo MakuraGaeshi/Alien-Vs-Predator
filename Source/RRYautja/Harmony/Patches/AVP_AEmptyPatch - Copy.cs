@@ -29,7 +29,7 @@ namespace RRYautja.HarmonyInstance
             for (int i = 0; i < contents.Count; i++)
             {
 
-                if (contents[i].def != USCMDefOf.RRY_USCM_DropshipUD4L)
+                if (contents[i].def != USCMDefOf.AvP_USCM_DropshipUD4L)
                 {
                     newResult.Add(contents[i]);
                 }
@@ -53,14 +53,14 @@ namespace RRYautja.HarmonyInstance
                 if (info.innerContainer[index].TryGetComp<CompUSCMDropship>() != null)
                 {
                     dropship = info.innerContainer[index];
-                    ActiveDropPod activeDropPod = (ActiveDropPod)ThingMaker.MakeThing(USCMDefOf.RRY_USCM_ActiveDropshipUD4L, null);
+                    ActiveDropPod activeDropPod = (ActiveDropPod)ThingMaker.MakeThing(USCMDefOf.AvP_USCM_ActiveDropshipUD4L, null);
 
                     activeDropPod.Contents = info;
                     EnsureInBounds(ref c, info.innerContainer[index].def, map);
                     info.innerContainer.Remove(dropship);
                     cargo = dropship.TryGetComp<CompUSCMDropship>();
                     cargo.Transporter.innerContainer = info.innerContainer;
-                    SkyfallerMaker.SpawnSkyfaller(USCMDefOf.RRY_USCM_DropshipUD4LIncoming, dropship, c, map);
+                    SkyfallerMaker.SpawnSkyfaller(USCMDefOf.AvP_USCM_DropshipUD4LIncoming, dropship, c, map);
                     return false;
                 }
             }
@@ -134,7 +134,7 @@ namespace RRYautja.HarmonyInstance
         //    Log.Message(string.Format("pods: {0}", pods.Count));
             foreach (ActiveDropPodInfo info in pods)
             {
-                if (info.innerContainer.Contains(USCMDefOf.RRY_USCM_DropshipUD4L))
+                if (info.innerContainer.Contains(USCMDefOf.AvP_USCM_DropshipUD4L))
                 {
                 //    Log.Message(string.Format("pods: {0}", info.innerContainer.ContentsString));
                     Thing lookTarget = TransportPodsArrivalActionUtility.GetLookTarget(pods);
@@ -169,7 +169,7 @@ namespace RRYautja.HarmonyInstance
 
                 for (int j = 0; j < pawn.inventory.innerContainer.Count; j++)
                 {
-                    if (pawn.inventory.innerContainer[j].def != USCMDefOf.RRY_USCM_DropshipUD4L)
+                    if (pawn.inventory.innerContainer[j].def != USCMDefOf.AvP_USCM_DropshipUD4L)
                         masss += (pawn.inventory.innerContainer[j].def.BaseMass * pawn.inventory.innerContainer[j].stackCount);
                 }
             }
@@ -179,7 +179,7 @@ namespace RRYautja.HarmonyInstance
                 Pawn_InventoryTracker pinv = pawn.inventory;
                 for (int i = 0; i < pinv.innerContainer.Count; i++)
                 {
-                    if (pinv.innerContainer[i].def == USCMDefOf.RRY_USCM_DropshipUD4L)
+                    if (pinv.innerContainer[i].def == USCMDefOf.AvP_USCM_DropshipUD4L)
                     {
                         Command_Action launch = new Command_Action();
                         launch.defaultLabel = "CommandSendShuttle".Translate();

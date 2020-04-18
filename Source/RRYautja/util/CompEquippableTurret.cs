@@ -100,9 +100,9 @@ namespace RRYautja
 			base.CompTick();
             if (IsWorn && GetWearer.Map!=null)
             {
-                if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.RRY_Concept_Plasmacaster) && GetWearer.IsColonist)
+                if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.AvP_Concept_Plasmacaster) && GetWearer.IsColonist)
                 {
-                    LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.RRY_Concept_Plasmacaster, OpportunityType.GoodToKnow);
+                    LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.AvP_Concept_Plasmacaster, OpportunityType.GoodToKnow);
                 }
                 if (this.turretIsOn || Find.TickManager.TicksGame >= this.nextUpdateTick)
                 {

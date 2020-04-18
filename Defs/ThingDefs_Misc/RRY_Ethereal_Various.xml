@@ -2,7 +2,7 @@
 <Defs>
 
   <ThingDef ParentName="EtherealThingBase">
-    <defName>RRY_Tunneler</defName>
+    <defName>AvP_Tunneler</defName>
     <label>tunnel</label>
     <thingClass>RRYautja.TunnelSpawner</thingClass>
     <tickerType>Normal</tickerType>

@@ -25,8 +25,8 @@ namespace RRYautja
             {
                 return null;
             }
-            bool flag1 = Tunnel.def == XenomorphDefOf.RRY_Xenomorph_Hive;
-            bool flag2 = Tunnel.def == XenomorphDefOf.RRY_Xenomorph_Hive_Child;
+            bool flag1 = Tunnel.def == XenomorphDefOf.AvP_Xenomorph_Hive;
+            bool flag2 = Tunnel.def == XenomorphDefOf.AvP_Xenomorph_Hive_Child;
             bool flag3 = Tunnel.Map.mapPawns.AllPawnsSpawned.Any(x => x.isPotentialHost() && pawn.TryGetComp<Comp_Xenomorph>().IsAcceptablePreyFor(pawn, x, true));
             bool flag4 = _HiveGrid.HiveGuardlist.Contains(pawn) || (Tunnel.hiveMaintainer!=null && Tunnel.hiveMaintainer.CurStage != MaintainableStage.Healthy && (_HiveGrid.HiveWorkerlist.Contains(pawn) || _HiveGrid.HiveWorkerlist.NullOrEmpty()));
 
@@ -36,15 +36,15 @@ namespace RRYautja
             }
             if (Tunnel.hiveDormant && !_HiveGrid.HiveGuardlist.Contains(pawn))
             {
-                return new Job(XenomorphDefOf.RRY_Job_Xenomorph_EnterHiveTunnel, Tunnel);
+                return new Job(XenomorphDefOf.AvP_Job_Xenomorph_EnterHiveTunnel, Tunnel);
             }
-            return new Job(XenomorphDefOf.RRY_Job_Xenomorph_EnterHiveTunnel, Tunnel);
+            return new Job(XenomorphDefOf.AvP_Job_Xenomorph_EnterHiveTunnel, Tunnel);
         }
 
         // Token: 0x060004C6 RID: 1222 RVA: 0x00030C6C File Offset: 0x0002F06C
         public static HiveLike FindMyTunnel(Pawn pawn)
         {
-            if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen)
+            if (pawn.def == XenomorphRacesDefOf.AvP_Xenomorph_Queen)
             {
                 if (XenomorphUtil.HivelikesPresent(pawn.Map))
                 {

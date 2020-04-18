@@ -20,7 +20,7 @@ namespace HunterMarkingSystem
         public static List<HediffDef> BloodedMHediffList = DefDatabase<HediffDef>.AllDefs.Where(x => x.defName.Contains(Markedkey)).ToList();
         public static List<HunterCultureDef> CultureDefList = DefDatabase<HunterCultureDef>.AllDefs.ToList();
         public static Dictionary<ThingDef, MarkData> RaceDefaultMarkDict = new Dictionary<ThingDef, MarkData>();
-        public static List<ThingDef> MarkableRaceDict = new List<ThingDef>(); //DefDatabase<ThingDef>.AllDefs.Where(x => x.Markable()).ToList();
+        public static List<ThingDef> MarkableRaceDict = DefDatabase<ThingDef>.AllDefs.Where(x => x.Markable()).ToList();
         //    public static List<HediffDef> HunterMarkList = UnbloodedHediffList.Concat(BloodedUMHediffList)
         static HunterMarkingSystem()
         {
@@ -60,10 +60,6 @@ namespace HunterMarkingSystem
                                 {
                                     if (cultureDef != null)
                                     {
-                                        if (!MarkableRaceDict.Contains(td))
-                                        {
-                                            MarkableRaceDict.Add(td);
-                                        }
                                         if (!td.HasComp(typeof(Comp_Markable)) && (pawnflag || cultureDef.AllowMechanicalMarking))
                                         {
                                             td.comps.Add(new CompProperties_Markable()

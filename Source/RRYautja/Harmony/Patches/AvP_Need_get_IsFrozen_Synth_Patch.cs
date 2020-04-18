@@ -22,7 +22,7 @@ namespace RRYautja.HarmonyInstance
         public static void get_IsFrozen_Postfix(Need __instance, ref bool __result)
         {
             Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
-            if (pawn.def == USCMDefOf.RRY_Synth)
+            if (pawn.def == USCMDefOf.AvP_Synth)
             {
                 if (__instance.def == NeedDefOf.Food && __instance.CurLevelPercentage<0.1f)
                 {

@@ -2,14 +2,14 @@
 <Defs>
 
 	<ScenarioDef>
-	<defName>RRY_YautjaScenarioBobsBlooding</defName>
+	<defName>AvP_YautjaScenarioBobsBlooding</defName>
 		<label>Yautja Blooding Ritual</label>
 		<description>Five Unblooded Yautja are given eight cryptocaskets containing Xenomorph eggs and human sacrifices for them. It is your mission to build a temple worthy of this hunt and become full fledged Hunters.\n\nNote: The Sacrifices will try to run away once the caskets are open. </description>
 <scenario>
 <summary>Five Unblooded Yautja must build a temple for the Blooding. Difficult.</summary>
 		<playerFaction>
 			<def>PlayerFaction</def>
-			<factionDef>RRY_Yautja_PlayerBlooding</factionDef>
+			<factionDef>AvP_Yautja_PlayerBlooding</factionDef>
 		</playerFaction>
 		<parts>
 			<li Class="ScenPart_ConfigPage_ConfigureStartingPawns">
@@ -84,7 +84,7 @@
 			</li>
 			<li Class="ScenPart_ScatterThingsNearPlayerStart">
 				<def>ScatterThingsNearPlayerStart</def>
-				<thingDef>RRY_Yautja_CryptosleepCasket_Tribute_XenoEgg</thingDef>
+				<thingDef>AvP_Yautja_CryptosleepCasket_Tribute_XenoEgg</thingDef>
 				<count>8</count>
 			</li>
 			

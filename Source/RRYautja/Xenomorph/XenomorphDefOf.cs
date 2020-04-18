@@ -14,152 +14,152 @@ namespace RimWorld
             DefOfHelper.EnsureInitializedInCtor(typeof(XenomorphDefOf));
         }
         // Xenomorph DamageDefs 
-        public static DamageDef RRY_AcidDamage;
-        public static DamageDef RRY_AcidBurn;
+        public static DamageDef AvP_AcidDamage;
+        public static DamageDef AvP_AcidBurn;
 
         // Xenomorph DamageDefs Special
-        public static DamageDef RRY_EmergingChestbursterDD;
+        public static DamageDef AvP_EmergingChestbursterDD;
 
         // Xenomorph HefiffDefs 
-        public static HediffDef RRY_Hediff_Xenomorph_Hidden;
-        public static HediffDef RRY_Hediff_Cocooned;
+    //    public static HediffDef AvP_Hediff_Xenomorph_Hidden;
+        public static HediffDef AvP_Hediff_Cocooned;
         public static HediffDef HypothermicSlowdown;
-        public static HediffDef RRY_Hediff_Anesthetic;
-        public static HediffDef RRY_Hediff_Xenomorph_ProtoBodypart;
-        public static HediffDef RRY_Hediff_Xenomorph_RestoredBodypart;
+        public static HediffDef AvP_Hediff_Anesthetic;
+        public static HediffDef AvP_Hediff_Xenomorph_ProtoBodypart;
+        public static HediffDef AvP_Hediff_Xenomorph_RestoredBodypart;
 
         // Xenomorph HefiffDefs HypothermicSlowdown
-        public static HediffDef RRY_FaceHuggerInfection;
-        public static HediffDef RRY_XenomorphImpregnation;
-        public static HediffDef RRY_HiddenXenomorphImpregnation;
+        public static HediffDef AvP_FaceHuggerInfection;
+        public static HediffDef AvP_XenomorphImpregnation;
+        public static HediffDef AvP_HiddenXenomorphImpregnation;
 
         // Neomorph HefiffDefs
-        public static HediffDef RRY_NeomorphImpregnation;
-        public static HediffDef RRY_HiddenNeomorphImpregnation;
+        public static HediffDef AvP_NeomorphImpregnation;
+        public static HediffDef AvP_HiddenNeomorphImpregnation;
 
         // Surgical RecipeDefs
-        public static RecipeDef RRY_FaceHuggerRemoval;
-        public static RecipeDef RRY_XenomorphImpregnationRemoval;
-        public static RecipeDef RRY_NeomorphImpregnationRemoval;
+        public static RecipeDef AvP_FaceHuggerRemoval;
+        public static RecipeDef AvP_XenomorphImpregnationRemoval;
+        public static RecipeDef AvP_NeomorphImpregnationRemoval;
 
         // Xenomorph PawnKindDefs
-        public static PawnKindDef RRY_Xenomorph_FaceHugger;
-        public static PawnKindDef RRY_Xenomorph_RoyaleHugger;
-        public static PawnKindDef RRY_Xenomorph_Queen;
-        public static PawnKindDef RRY_Xenomorph_Thrumbomorph;
-        public static PawnKindDef RRY_Xenomorph_Warrior;
-        public static PawnKindDef RRY_Xenomorph_Drone;
-        public static PawnKindDef RRY_Xenomorph_Runner;
-        public static PawnKindDef RRY_Xenomorph_Predalien;
+        public static PawnKindDef AvP_Xenomorph_FaceHugger;
+        public static PawnKindDef AvP_Xenomorph_RoyaleHugger;
+        public static PawnKindDef AvP_Xenomorph_Queen;
+        public static PawnKindDef AvP_Xenomorph_Thrumbomorph;
+        public static PawnKindDef AvP_Xenomorph_Warrior;
+        public static PawnKindDef AvP_Xenomorph_Drone;
+        public static PawnKindDef AvP_Xenomorph_Runner;
+        public static PawnKindDef AvP_Xenomorph_Predalien;
         /*
-        public static PawnKindDef RRY_Xenomorph_Preatorian;
-        public static PawnKindDef RRY_Xenomorph_Boiler;
-        public static PawnKindDef RRY_Xenomorph_Spitter;
-        public static PawnKindDef RRY_Xenomorph_Crusher;
-        public static PawnKindDef RRY_Xenomorph_King;
+        public static PawnKindDef AvP_Xenomorph_Preatorian;
+        public static PawnKindDef AvP_Xenomorph_Boiler;
+        public static PawnKindDef AvP_Xenomorph_Spitter;
+        public static PawnKindDef AvP_Xenomorph_Crusher;
+        public static PawnKindDef AvP_Xenomorph_King;
         */
 
         // Neomorph PawnKindDefs
-        public static PawnKindDef RRY_Xenomorph_Neomorph;
+        public static PawnKindDef AvP_Xenomorph_Neomorph;
 
         // Xenomorph FactionDefs
-        public static FactionDef RRY_Xenomorph;
+        public static FactionDef AvP_Xenomorph;
 
         // Xenomorph PawnsArrivalModeDefs 
-        public static PawnsArrivalModeDef RRY_RandomDropThroughRoof;
-        public static PawnsArrivalModeDef RRY_DropThroughRoofNearPower;
-        public static PawnsArrivalModeDef RRY_RandomEnterFromTunnel;
+        public static PawnsArrivalModeDef AvP_RandomDropThroughRoof;
+        public static PawnsArrivalModeDef AvP_DropThroughRoofNearPower;
+        public static PawnsArrivalModeDef AvP_RandomEnterFromTunnel;
 
         // Xenomorph RaidStrategyDefs 
-        public static RaidStrategyDef RRY_PowerCut;
+        public static RaidStrategyDef AvP_PowerCut;
 
         // Xenomorph JobDefs 
-        public static JobDef RRY_Job_Xenomorph_EnterHiveTunnel;
-        public static JobDef RRY_Job_Xenomorph_LayEgg;
-        public static JobDef RRY_Job_Xenomorph_Kidnap;
-        public static JobDef RRY_Job_Xenomorph_PredalienImpregnate;
-        public static JobDef RRY_Job_Xenomorph_MaintainHive;
-        public static JobDef RRY_Job_Xenomorph_Construct_Hive_Slime;
-        public static JobDef RRY_Job_Xenomorph_Construct_Hive_Node;
-        public static JobDef RRY_Job_Xenomorph_Construct_Hive_Wall;
-        public static JobDef RRY_Job_Xenomorph_Construct_Hive_Roof;
-        public static JobDef RRY_Job_DestroyCocoon; 
-        public static JobDef RRY_Neomorph_Ingest;
-        public static JobDef RRY_Xenomorph_Ingest; 
+        public static JobDef AvP_Job_Xenomorph_EnterHiveTunnel;
+        public static JobDef AvP_Job_Xenomorph_LayEgg;
+        public static JobDef AvP_Job_Xenomorph_Kidnap;
+        public static JobDef AvP_Job_Xenomorph_PredalienImpregnate;
+        public static JobDef AvP_Job_Xenomorph_MaintainHive;
+        public static JobDef AvP_Job_Xenomorph_Construct_Hive_Slime;
+        public static JobDef AvP_Job_Xenomorph_Construct_Hive_Node;
+        public static JobDef AvP_Job_Xenomorph_Construct_Hive_Wall;
+        public static JobDef AvP_Job_Xenomorph_Construct_Hive_Roof;
+        public static JobDef AvP_Job_DestroyCocoon; 
+        public static JobDef AvP_Neomorph_Ingest;
+        public static JobDef AvP_Xenomorph_Ingest; 
 
         // Xenomorph DutyDefs    
-        public static DutyDef RRY_Xenomorph_DefendHiveLoc;
-        public static DutyDef RRY_Xenomorph_AssaultColony;
-        public static DutyDef RRY_Xenomorph_AssaultColony_CutPower;
-        public static DutyDef RRY_Xenomorph_DefendAndExpandHive;
-        public static DutyDef RRY_Xenomorph_DefendHiveAggressively;
-        public static DutyDef RRY_Xenomorph_Kidnap; 
+        public static DutyDef AvP_Xenomorph_DefendHiveLoc;
+        public static DutyDef AvP_Xenomorph_AssaultColony;
+        public static DutyDef AvP_Xenomorph_AssaultColony_CutPower;
+        public static DutyDef AvP_Xenomorph_DefendAndExpandHive;
+        public static DutyDef AvP_Xenomorph_DefendHiveAggressively;
+        public static DutyDef AvP_Xenomorph_Kidnap; 
 
 
         // Xenomorph ThingDefs  
-        public static ThingDef RRY_Xenomorph_Cocoon_Humanoid;
-        public static ThingDef RRY_Xenomorph_Cocoon_Animal;
-        public static ThingDef RRY_EggXenomorphFertilized;
-        public static ThingDef RRY_Xenomorph_TailSpike;
-        public static ThingDef RRY_Xenomorph_HeadShell;
-        public static ThingDef RRY_Leather_Xenomorph; 
+        public static ThingDef AvP_Xenomorph_Cocoon_Humanoid;
+        public static ThingDef AvP_Xenomorph_Cocoon_Animal;
+        public static ThingDef AvP_EggXenomorphFertilized;
+        public static ThingDef AvP_Xenomorph_TailSpike;
+        public static ThingDef AvP_Xenomorph_HeadShell;
+        public static ThingDef AvP_Leather_Xenomorph; 
 
-        public static ThingDef RRY_Neomorph_Spores;
-        public static ThingDef RRY_Neomorph_Spores_Hidden;
+        public static ThingDef AvP_Neomorph_Spores;
+        public static ThingDef AvP_Neomorph_Spores_Hidden;
         
-        public static ThingDef RRY_Plant_Neomorph_Fungus;
-        public static ThingDef RRY_Plant_Neomorph_Fungus_Hidden;
+        public static ThingDef AvP_Plant_Neomorph_Fungus;
+        public static ThingDef AvP_Plant_Neomorph_Fungus_Hidden;
 
-        public static ThingDef RRY_XenomorphCryptosleepCasket;
+        public static ThingDef AvP_XenomorphCryptosleepCasket;
 
-        public static ThingDef RRY_XenomorphCrashedShipPart;
+        public static ThingDef AvP_XenomorphCrashedShipPart;
         public static ThingDef TunnelHiveLikeSpawner;
-        public static ThingDef RRY_Xenomorph_Hive; 
-        public static ThingDef RRY_Xenomorph_Hive_Child;
-        public static ThingDef RRY_Xenomorph_Hive_Wall;
-        public static ThingDef RRY_Xenomorph_Hive_Slime;
+        public static ThingDef AvP_Xenomorph_Hive; 
+        public static ThingDef AvP_Xenomorph_Hive_Child;
+        public static ThingDef AvP_Xenomorph_Hive_Wall;
+        public static ThingDef AvP_Xenomorph_Hive_Slime;
 
-        public static ThingDef RRY_Filth_Slime;
+        public static ThingDef AvP_Filth_Slime;
 
         // Xenomorph BloodDefs 
-        public static ThingDef RRY_FilthBloodXenomorph_Active;
-        public static ThingDef RRY_FilthBloodXenomorph;
+        public static ThingDef AvP_FilthBloodXenomorph_Active;
+        public static ThingDef AvP_FilthBloodXenomorph;
 
         // Xenomorph LifeStageDefs 
-        public static LifeStageDef RRY_XFacehuggerFullyFormed;
-        public static LifeStageDef RRY_XenomorphChestBursterBaby;
-        public static LifeStageDef RRY_XenomorphChestBursterBig;
-        public static LifeStageDef RRY_XenomorphFormedBaby;
-        public static LifeStageDef RRY_XenomorphFormedMid;
-        public static LifeStageDef RRY_XenomorphFullyFormed;
+        public static LifeStageDef AvP_XFacehuggerFullyFormed;
+        public static LifeStageDef AvP_XenomorphChestBursterBaby;
+        public static LifeStageDef AvP_XenomorphChestBursterBig;
+        public static LifeStageDef AvP_XenomorphFormedBaby;
+        public static LifeStageDef AvP_XenomorphFormedMid;
+        public static LifeStageDef AvP_XenomorphFullyFormed;
 
         // Neomorph LifeStageDefs 
-        public static LifeStageDef RRY_NeomorphBloodBursterBaby;
-        public static LifeStageDef RRY_NeomorphBloodBursterBig;
-        public static LifeStageDef RRY_NeomorphFormedBaby;
-        public static LifeStageDef RRY_NeomorphFormedMid;
-        public static LifeStageDef RRY_NeomorphFullyFormed;
+        public static LifeStageDef AvP_NeomorphBloodBursterBaby;
+        public static LifeStageDef AvP_NeomorphBloodBursterBig;
+        public static LifeStageDef AvP_NeomorphFormedBaby;
+        public static LifeStageDef AvP_NeomorphFormedMid;
+        public static LifeStageDef AvP_NeomorphFullyFormed;
 
-        // Xenomorph IncidentDefs RRY_XenomorphInfestation
-        public static IncidentDef RRY_Neomorph_FungusSprout;
-        public static IncidentDef RRY_Neomorph_FungusSprout_Hidden;
-        public static IncidentDef RRY_XenomorphInfestation;
-        public static IncidentDef RRY_XenomorphCrashedShipPartCrash;
-    //    public static IncidentDef RRY_RaidEnemy_PowerCut_Xenomorph;
-        public static IncidentDef RRY_PowerCut_Xenomorph;
+        // Xenomorph IncidentDefs AvP_XenomorphInfestation
+        public static IncidentDef AvP_Neomorph_FungusSprout;
+        public static IncidentDef AvP_Neomorph_FungusSprout_Hidden;
+        public static IncidentDef AvP_XenomorphInfestation;
+        public static IncidentDef AvP_XenomorphCrashedShipPartCrash;
+    //    public static IncidentDef AvP_RaidEnemy_PowerCut_Xenomorph;
+        public static IncidentDef AvP_PowerCut_Xenomorph;
 
         // Xenomorph BodyPartDefs
-        public static BodyPartDef RRY_Xeno_TailSpike;
-        public static BodyPartDef RRY_Xeno_Shell;
+        public static BodyPartDef AvP_Xeno_TailSpike;
+        public static BodyPartDef AvP_Xeno_Shell;
 
         // Xenomorph AbilityDefs
-        public static AbilityDef RRY_Ability_SpitAcid;
+        public static AbilityDef AvP_Ability_SpitAcid;
 
         // Xenomorph GameCOnditionDefs
-        public static GameConditionDef RRY_Xenomorph_PowerCut;
+        public static GameConditionDef AvP_Xenomorph_PowerCut;
 
-        // Xenomorph LifeStageDefs RRY_Xeno_Shell 
-        //   public static LifeStageDef RRY_EggXenomorphFertilized;
+        // Xenomorph LifeStageDefs AvP_Xeno_Shell 
+        //   public static LifeStageDef AvP_EggXenomorphFertilized;
 /*
 #if DEBUG
             if (Prefs.DevMode)
@@ -179,20 +179,20 @@ namespace RimWorld
             DefOfHelper.EnsureInitializedInCtor(typeof(XenomorphRacesDefOf));
         }
         // Xenomorph ThingDefs Races
-        public static ThingDef RRY_Xenomorph_FaceHugger;
-        public static ThingDef RRY_Xenomorph_Queen;
-        public static ThingDef RRY_Xenomorph_Warrior;
-        public static ThingDef RRY_Xenomorph_Drone;
-        public static ThingDef RRY_Xenomorph_Runner;
-        public static ThingDef RRY_Xenomorph_Predalien;
-        public static ThingDef RRY_Xenomorph_Thrumbomorph;
+        public static ThingDef AvP_Xenomorph_FaceHugger;
+        public static ThingDef AvP_Xenomorph_Queen;
+        public static ThingDef AvP_Xenomorph_Warrior;
+        public static ThingDef AvP_Xenomorph_Drone;
+        public static ThingDef AvP_Xenomorph_Runner;
+        public static ThingDef AvP_Xenomorph_Predalien;
+        public static ThingDef AvP_Xenomorph_Thrumbomorph;
 
         // Neomorph ThingDefs Races
-        public static ThingDef RRY_Xenomorph_Neomorph;
+        public static ThingDef AvP_Xenomorph_Neomorph;
 
         // Xenomorph FleshTypeDefs
-        public static FleshTypeDef RRY_Xenomorph;
-        public static FleshTypeDef RRY_Neomorph;
+        public static FleshTypeDef AvP_Xenomorph;
+        public static FleshTypeDef AvP_Neomorph;
     }
     [DefOf]
     public static class XenomorphConceptDefOf
@@ -203,21 +203,21 @@ namespace RimWorld
             DefOfHelper.EnsureInitializedInCtor(typeof(XenomorphRacesDefOf));
         }
         // Xenomorph ConceptDefs  
-        public static ConceptDef RRY_Concept_Cocoons;
-        public static ConceptDef RRY_Concept_Facehuggers;
-        public static ConceptDef RRY_Concept_Royalehuggers;
-        public static ConceptDef RRY_Concept_Embryo;
-        public static ConceptDef RRY_Concept_Chestbursters;
-        public static ConceptDef RRY_Concept_Runners;
-        public static ConceptDef RRY_Concept_Drones;
-        public static ConceptDef RRY_Concept_Warriors;
-        public static ConceptDef RRY_Concept_Predaliens;
-        public static ConceptDef RRY_Concept_Queens;
-        public static ConceptDef RRY_Concept_Neomorphs;
+        public static ConceptDef AvP_Concept_Cocoons;
+        public static ConceptDef AvP_Concept_Facehuggers;
+        public static ConceptDef AvP_Concept_Royalehuggers;
+        public static ConceptDef AvP_Concept_Embryo;
+        public static ConceptDef AvP_Concept_Chestbursters;
+        public static ConceptDef AvP_Concept_Runners;
+        public static ConceptDef AvP_Concept_Drones;
+        public static ConceptDef AvP_Concept_Warriors;
+        public static ConceptDef AvP_Concept_Predaliens;
+        public static ConceptDef AvP_Concept_Queens;
+        public static ConceptDef AvP_Concept_Neomorphs;
 
-        public static ConceptDef RRY_Concept_HiveLike;
-        public static ConceptDef RRY_Concept_ShipPart;
-        public static ConceptDef RRY_Concept_Eggs;
-        public static ConceptDef RRY_Concept_SporeSac;
+        public static ConceptDef AvP_Concept_HiveLike;
+        public static ConceptDef AvP_Concept_ShipPart;
+        public static ConceptDef AvP_Concept_Eggs;
+        public static ConceptDef AvP_Concept_SporeSac;
     }
 }

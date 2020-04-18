@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <FactionDef ParentName="RRY_Yautja_NPCFactionBase">
-		<defName>RRY_Yautja_JungleClan</defName>
+  <FactionDef ParentName="AvP_Yautja_NPCFactionBase">
+		<defName>AvP_Yautja_JungleClan</defName>
 		<label>Yautja Jungle Clan</label>
     <description>The Jungle Clan is perhaps the most common and the most seen of all the Yautja clans. They are ruthless hunters with a strict code of honor. Their quest for glory is endless and inoxerable. Few survive their bloodlust.</description>
 	<pawnSingular>Yautja</pawnSingular>
@@ -43,19 +43,19 @@
     </naturalColonyGoodwill>
     <visitorTraderKinds>
 	
-      <li>RRY_Visitor_Yautja_Standard</li>
+      <li>AvP_Visitor_Yautja_Standard</li>
 	  
     </visitorTraderKinds>
    <caravanTraderKinds>
    
-      <li>RRY_Caravan_Yautja_BulkGoods</li>
-      <li>RRY_Caravan_Yautja_CombatSupplier</li>
-      <li>RRY_Caravan_Yautja_Exotic</li>
+      <li>AvP_Caravan_Yautja_BulkGoods</li>
+      <li>AvP_Caravan_Yautja_CombatSupplier</li>
+      <li>AvP_Caravan_Yautja_Exotic</li>
 	  
     </caravanTraderKinds>
     <baseTraderKinds>
 	
-      <li>RRY_Base_Yautja_Standard</li>
+      <li>AvP_Base_Yautja_Standard</li>
 	  
     </baseTraderKinds>
     <allowedArrivalTemperatureRange>
@@ -86,7 +86,7 @@
       <li>
         <kindDef>Peaceful</kindDef>
         <options>
-          <Colonist_RRY_Yautja>10</Colonist_RRY_Yautja>
+          <Colonist_AvP_Yautja>10</Colonist_AvP_Yautja>
           <YautjaUnblooded_RRY>13</YautjaUnblooded_RRY>
           <YautjaYoungBlood_RRY>10</YautjaYoungBlood_RRY>
           <YautjaBlooded_RRY>8</YautjaBlooded_RRY>
@@ -98,7 +98,7 @@
 	  <li>
       <kindDef>Trader</kindDef>
         <traders>
-          <Trader_RRY_Yautja>1</Trader_RRY_Yautja>
+          <Trader_AvP_Yautja>1</Trader_AvP_Yautja>
         </traders>
         <carriers>
           <Muffalo>2</Muffalo>
@@ -114,7 +114,7 @@
 	  <li>
         <kindDef>Settlement</kindDef>
         <options>
-          <Colonist_RRY_Yautja>5</Colonist_RRY_Yautja>
+          <Colonist_AvP_Yautja>5</Colonist_AvP_Yautja>
           <YautjaUnblooded_RRY>14</YautjaUnblooded_RRY>
           <YautjaYoungBlood_RRY>10</YautjaYoungBlood_RRY>
           <YautjaBlooded_RRY>8</YautjaBlooded_RRY>

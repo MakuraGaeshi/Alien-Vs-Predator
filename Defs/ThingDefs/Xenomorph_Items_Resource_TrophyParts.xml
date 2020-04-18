@@ -2,7 +2,7 @@
 <Defs>
 
   <ThingDef ParentName="ResourceVerbBase">
-    <defName>RRY_Xenomorph_TailSpike</defName>
+    <defName>AvP_Xenomorph_TailSpike</defName>
     <label>xenomorph tailspike</label>
     <description>A xenomorph's tailspike. It's razor-sharp, rock-hard, and priceless in most markets. This is a true trophy, as well as a deadly melee weapon.</description>
     <graphicData>
@@ -11,7 +11,7 @@
     </graphicData>
     <equippedAngleOffset>-20</equippedAngleOffset>
     <statBases>
-      <RRY_AcidResistance>1</RRY_AcidResistance>
+      <AvP_AcidResistance>1</AvP_AcidResistance>
       <MarketValue>400</MarketValue>
       <MaxHitPoints>150</MaxHitPoints>
       <Mass>3</Mass>
@@ -51,7 +51,7 @@
   </ThingDef>
   
   <ThingDef ParentName="ResourceBase">
-    <defName>RRY_Xenomorph_HeadShell</defName>
+    <defName>AvP_Xenomorph_HeadShell</defName>
     <label>xenomorph carapace</label>
     <description>The carapace from a xenomorph's head. It's polarized silica making it immune to acidic effects, and priceless in most markets. This is a true trophy.</description>
     <graphicData>
@@ -60,7 +60,7 @@
     </graphicData>
     <equippedAngleOffset>-20</equippedAngleOffset>
     <statBases>
-      <RRY_AcidResistance>1</RRY_AcidResistance>
+      <AvP_AcidResistance>1</AvP_AcidResistance>
       <MarketValue>200</MarketValue>
       <MaxHitPoints>150</MaxHitPoints>
       <Mass>3</Mass>

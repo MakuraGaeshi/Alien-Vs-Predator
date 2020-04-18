@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-  <ThingDef Name="RRY_USCM_ShuttleSkyfallerBase" ParentName="SkyfallerBase" Abstract="True">
+  <ThingDef Name="AvP_USCM_ShuttleSkyfallerBase" ParentName="SkyfallerBase" Abstract="True">
     <size>(7,5)</size>
     <graphicData>
       <texPath>Things/Buildings/USCM/Dropship/UD4L</texPath>
@@ -18,12 +18,12 @@
     </skyfaller>
   </ThingDef>
   
-  <ThingDef ParentName="RRY_USCM_ShuttleSkyfallerBase">
-    <defName>RRY_USCM_DropshipUD4LIncoming</defName>
+  <ThingDef ParentName="AvP_USCM_ShuttleSkyfallerBase">
+    <defName>AvP_USCM_DropshipUD4LIncoming</defName>
     <label>UD4L (incoming)</label>
     <!--<thingClass>RRYautja.DropshipIncoming</thingClass>-->
     <skyfaller>
-      <anticipationSound>RRY_USCM_DropshipUD4L_Landing</anticipationSound>
+      <anticipationSound>AvP_USCM_DropshipUD4L_Landing</anticipationSound>
       <anticipationSoundTicks>250</anticipationSoundTicks>
       <ticksToImpactRange>200~250</ticksToImpactRange>
       <angleCurve>
@@ -55,13 +55,13 @@
     </skyfaller>
   </ThingDef>
 
-  <ThingDef ParentName="RRY_USCM_ShuttleSkyfallerBase">
-    <defName>RRY_USCM_DropshipUD4LLeaving</defName>
+  <ThingDef ParentName="AvP_USCM_ShuttleSkyfallerBase">
+    <defName>AvP_USCM_DropshipUD4LLeaving</defName>
     <label>UD4L (leaving)</label>
     <thingClass>RRYautja.DropshipLeaving</thingClass>
     <skyfaller>
       <reversed>true</reversed>
-      <anticipationSound>RRY_USCM_DropshipUD4L_Leaving</anticipationSound>
+      <anticipationSound>AvP_USCM_DropshipUD4L_Leaving</anticipationSound>
       <anticipationSoundTicks>-10</anticipationSoundTicks>
       <ticksToImpactRange>-40~-15</ticksToImpactRange>
       <moteSpawnTime>0.05</moteSpawnTime>

@@ -26,7 +26,7 @@ namespace RimWorld
             {
                 return false;
             }
-            if (p.story.adulthood.identifier.Contains("RRY_Yautja_BadBlood"))
+            if (p.story.adulthood.identifier.Contains("AvP_Yautja_BadBlood"))
             {
                 return false;
             }
@@ -38,7 +38,7 @@ namespace RimWorld
             {
                 return false;
             }
-            if (other.story.adulthood.identifier.Contains("RRY_Yautja_BadBlood"))
+            if (other.story.adulthood.identifier.Contains("AvP_Yautja_BadBlood"))
             {
                 return true;
             }
@@ -68,7 +68,7 @@ namespace RimWorld
             {
                 return false;
             }
-            if (other.story.adulthood.identifier.Contains("RRY_Yautja_BadBlood"))
+            if (other.story.adulthood.identifier.Contains("AvP_Yautja_BadBlood"))
             {
                 return false;
             }
@@ -80,7 +80,7 @@ namespace RimWorld
             {
                 return false;
             }
-            if (p.story.adulthood.identifier.Contains("RRY_Yautja_BadBlood"))
+            if (p.story.adulthood.identifier.Contains("AvP_Yautja_BadBlood"))
             {
                 return true;
             }

@@ -4,7 +4,7 @@
   <!--=============== Pure stuffs: Basics ==================== -->
 <!--
   <ThingDef ParentName="ResourceBase">
-    <defName>RRY_YautjaAlloy</defName>
+    <defName>AvP_YautjaAlloy</defName>
     <label>yautja alloy</label>
     <description>Advanced spacer tech structural material. Yautja alloy is extremely strong due to its unique molecular structure, which also allows it resistance to the acidic effects of xenomorph blood</description>
     <graphicData>

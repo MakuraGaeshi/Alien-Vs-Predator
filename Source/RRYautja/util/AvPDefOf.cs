@@ -14,8 +14,8 @@ namespace RimWorld
             DefOfHelper.EnsureInitializedInCtor(typeof(XenomorphDefOf));
         }
         // DamageDef
-        //    public static DamageDef RRY_AcidDamage;
-        //    public static DamageDef RRY_AcidBurn;
+        //    public static DamageDef AvP_AcidDamage;
+        //    public static DamageDef AvP_AcidBurn;
 
         // HefiffDef 
 
@@ -49,7 +49,7 @@ namespace RimWorld
         // GameCOnditionDef
 
         // StatDef
-        public static StatDef RRY_AcidResistance;
+        public static StatDef AvP_AcidResistance;
     }
 
 }

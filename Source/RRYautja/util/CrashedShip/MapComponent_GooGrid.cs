@@ -58,7 +58,7 @@ namespace RRYautja
 
         public static bool CanCoexistWithGoo(ThingDef def)
         {
-            return def.category != ThingCategory.Building || def.Fillage != FillCategory.Full || def == XenomorphDefOf.RRY_XenomorphCrashedShipPart;
+            return def.category != ThingCategory.Building || def.Fillage != FillCategory.Full || def == XenomorphDefOf.AvP_XenomorphCrashedShipPart;
         }
 
         public void AddDepth(IntVec3 c, float depthToAdd)

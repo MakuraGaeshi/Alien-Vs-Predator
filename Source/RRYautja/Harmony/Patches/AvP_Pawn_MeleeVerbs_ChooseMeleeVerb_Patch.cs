@@ -22,7 +22,7 @@ namespace RRYautja.HarmonyInstance
         [HarmonyPostfix]
         public static void HarmsHealthPostfix(Pawn_MeleeVerbs __instance, Thing target, ref Verb ___curMeleeVerb)
         {
-            if (__instance.Pawn.isXenomorph() && __instance.Pawn.def != XenomorphRacesDefOf.RRY_Xenomorph_FaceHugger && target is Pawn pawn)
+            if (__instance.Pawn.isXenomorph() && __instance.Pawn.def != XenomorphRacesDefOf.AvP_Xenomorph_FaceHugger && target is Pawn pawn)
             {
                 if (pawn.isPotentialHost())
                 {

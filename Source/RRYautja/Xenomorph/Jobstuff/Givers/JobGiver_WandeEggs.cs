@@ -24,7 +24,7 @@ namespace RimWorld
 
         private HiveLike FindClosestEgg(Pawn pawn)
         {
-            return (HiveLike)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_EggXenomorphFertilized), PathEndMode.Touch, TraverseParms.For(pawn, Danger.Some, TraverseMode.ByPawn, false), 30f, (Thing x) => x.Faction == pawn.Faction, null, 0, 30, false, RegionType.Set_Passable, false);
+            return (HiveLike)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.AvP_EggXenomorphFertilized), PathEndMode.Touch, TraverseParms.For(pawn, Danger.Some, TraverseMode.ByPawn, false), 30f, (Thing x) => x.Faction == pawn.Faction, null, 0, 30, false, RegionType.Set_Passable, false);
         }
 
         // Token: 0x06000420 RID: 1056 RVA: 0x0002CD30 File Offset: 0x0002B130

@@ -38,7 +38,7 @@ namespace RRYautja
 
             if (Severity >= 1f)
             {
-                XenomorphBodypartUtility.ReplaceHediffFromBodypart(pawn, Part, HediffDefOf.MissingBodyPart, XenomorphDefOf.RRY_Hediff_Xenomorph_RestoredBodypart);
+                XenomorphBodypartUtility.ReplaceHediffFromBodypart(pawn, Part, HediffDefOf.MissingBodyPart, XenomorphDefOf.AvP_Hediff_Xenomorph_RestoredBodypart);
             }
         }
     }

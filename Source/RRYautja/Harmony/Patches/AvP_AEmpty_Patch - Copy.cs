@@ -22,7 +22,7 @@ namespace RRYautja.HarmonyInstance
         {
             if (__result)
             {
-                if (parms.faction.def == XenomorphDefOf.RRY_Xenomorph && parms.raidStrategy != XenomorphDefOf.RRY_PowerCut)
+                if (parms.faction.def == XenomorphDefOf.AvP_Xenomorph && parms.raidStrategy != XenomorphDefOf.AvP_PowerCut)
                 {
 
                     Map map = (Map)parms.target;
@@ -37,8 +37,8 @@ namespace RRYautja.HarmonyInstance
                             IncidentParms raidParms = StorytellerUtility.DefaultParmsNow(IncidentCategoryDefOf.ThreatBig, map);
                             raidParms.forced = true;
                             raidParms.faction = parms.faction;
-                            raidParms.raidStrategy = XenomorphDefOf.RRY_PowerCut;
-                            raidParms.raidArrivalMode = XenomorphDefOf.RRY_DropThroughRoofNearPower;
+                            raidParms.raidStrategy = XenomorphDefOf.AvP_PowerCut;
+                            raidParms.raidArrivalMode = XenomorphDefOf.AvP_DropThroughRoofNearPower;
                             raidParms.spawnCenter = intVec;
                             raidParms.generateFightersOnly = true;
                             Rand.PushState();
@@ -46,10 +46,10 @@ namespace RRYautja.HarmonyInstance
                             Rand.PopState();
                             raidParms.pawnGroupMakerSeed = new int?(@int);
                             PawnGroupMakerParms defaultPawnGroupMakerParms = IncidentParmsUtility.GetDefaultPawnGroupMakerParms(PawnGroupKindDefOf.Combat, raidParms, true);
-                            defaultPawnGroupMakerParms.points = IncidentWorker_Raid.AdjustedRaidPoints(defaultPawnGroupMakerParms.points, XenomorphDefOf.RRY_DropThroughRoofNearPower, XenomorphDefOf.RRY_PowerCut, defaultPawnGroupMakerParms.faction, PawnGroupKindDefOf.Combat);
+                            defaultPawnGroupMakerParms.points = IncidentWorker_Raid.AdjustedRaidPoints(defaultPawnGroupMakerParms.points, XenomorphDefOf.AvP_DropThroughRoofNearPower, XenomorphDefOf.AvP_PowerCut, defaultPawnGroupMakerParms.faction, PawnGroupKindDefOf.Combat);
                             IEnumerable<PawnKindDef> pawnKinds = PawnGroupMakerUtility.GeneratePawnKindsExample(defaultPawnGroupMakerParms);
 
-                            QueuedIncident qi = new QueuedIncident(new FiringIncident(XenomorphDefOf.RRY_PowerCut_Xenomorph, null, raidParms), Find.TickManager.TicksGame + AvP_IncidentWorker_RaidEnemy_TryExecute_PowerCut_Patch.RaidDelay.RandomInRange, 0);
+                            QueuedIncident qi = new QueuedIncident(new FiringIncident(XenomorphDefOf.AvP_PowerCut_Xenomorph, null, raidParms), Find.TickManager.TicksGame + AvP_IncidentWorker_RaidEnemy_TryExecute_PowerCut_Patch.RaidDelay.RandomInRange, 0);
                             Find.Storyteller.incidentQueue.Add(qi);
                         }
                     }

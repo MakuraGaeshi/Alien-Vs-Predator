@@ -8,14 +8,13 @@ namespace RRYautja
     [StaticConstructorOnStartup]
     static class UtilCE
     {
-        public static string tag = "CETeam.CombatExtended";
         public static bool CombatExtended = false;
-        public static ModContentPack modContent=null;
+        public static ModContentPack modContent = null;
         static UtilCE()
         {
             foreach (ModContentPack p in LoadedModManager.RunningMods)
             {
-                if (p.PackageIdPlayerFacing == tag || p.PackageId == tag)
+                if (p.PackageIdPlayerFacing.Contains("CETeam.CombatExtended"))
                 {
                     modContent = p;
                     CombatExtended = true;
@@ -24,7 +23,48 @@ namespace RRYautja
         }
 
     }
-    
+
+    [StaticConstructorOnStartup]
+    static class UtilAvPSynths
+    {
+        private static bool initialized = false;
+        public static bool AvP = false;
+        static UtilAvPSynths()
+        {
+            if (!initialized)
+            {
+                foreach (ModContentPack p in LoadedModManager.RunningMods)
+                {
+                    if (p.PackageId == "Ogliss.AlienVsPredator" || p.Name == "Alien Vs Predator")
+                    {
+                        AvP = true;
+                    }
+                }
+                initialized = true;
+            }
+        }
+
+        public static bool isAvPSynth(PawnKindDef pawn)
+        {
+            bool Result = pawn.RaceProps.FleshType.defName == "AvP_SynthFlesh";
+
+            return Result;
+        }
+        public static bool isAvPSynth(Pawn pawn)
+        {
+            bool Result = pawn.def.race.FleshType.defName == "AvP_SynthFlesh";
+
+            return Result;
+        }
+        public static bool isAvPSynth(ThingDef td)
+        {
+            bool Result = td.race.FleshType.defName == "AvP_SynthFlesh";
+
+            return Result;
+        }
+    }
+
+    [StaticConstructorOnStartup]
     static class UtilChjAndroids
     {
         public static string tag = "ChJees.Androids";
@@ -37,7 +77,6 @@ namespace RRYautja
                 if (p.PackageIdPlayerFacing == tag || p.PackageId == tag)
                 {
                     modContent = p;
-                //    Log.Message(string.Format("{0}: PackageId: {1}, PackageIdPlayerFacing: {2}", p.Name, p.PackageId, p.PackageIdPlayerFacing));
                     ChjAndroid = true;
                 }
             }
@@ -46,24 +85,24 @@ namespace RRYautja
 
         public static bool isChjAndroid(PawnKindDef pawn)
         {
-            //    bool Result = pawn.race.comps.Any(x => x.compClass.Name.Contains("Androids.CompProperties_EnergyTracker"));
-            Log.Message(string.Format("{0}: {1}", pawn.LabelCap ,pawn.race.modContentPack.PackageId));
             return pawn.race.modContentPack == modContent;
         }
         public static bool isChjAndroid(Pawn pawn)
         {
-            //    bool Result = pawn.def.comps.Any(x => x.compClass.Name.Contains("Androids.CompProperties_EnergyTracker"));
-            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.def.modContentPack.PackageId));
             return pawn.def.modContentPack == modContent;
         }
         public static bool isChjAndroid(ThingDef td)
         {
-            //    bool Result = td.comps.Any(x => x.compClass.Name.Contains("Androids.CompProperties_EnergyTracker"));
-            Log.Message(string.Format("{0}: {1}", td.LabelCap, td.modContentPack.PackageId));
-            return td.modContentPack == modContent;
+            if (td.modContentPack == null)
+            {
+            //    Log.Warning(string.Format("{0}: modContentPack = NULL", td.LabelCap));
+                return false;
+            }
+            return !td.modContentPack.PackageId.NullOrEmpty() ? td.modContentPack == modContent : false;
         }
     }
 
+    [StaticConstructorOnStartup]
     static class UtilTieredAndroids
     {
         public static string tag = "Atlas.AndroidTiers";
@@ -84,21 +123,24 @@ namespace RRYautja
 
         public static bool isAtlasAndroid(PawnKindDef pawn)
         {
-            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.race.modContentPack.PackageId));
             return pawn.race.modContentPack == modContent;
         }
         public static bool isAtlasAndroid(Pawn pawn)
         {
-            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.def.modContentPack.PackageId));
             return pawn.def.modContentPack == modContent;
         }
         public static bool isAtlasAndroid(ThingDef td)
         {
-            Log.Message(string.Format("{0}: {1}", td.LabelCap, td.modContentPack.PackageId));
-            return td.modContentPack == modContent;
+            if (td.modContentPack == null)
+            {
+            //    Log.Warning(string.Format("{0}: modContentPack = NULL", td.LabelCap));
+                return false;
+            }
+            return !td.modContentPack.PackageId.NullOrEmpty() ? td.modContentPack == modContent : false;
         }
     }
 
+    [StaticConstructorOnStartup]
     static class UtilMiscRobots
     {
         public static string tag = "Haplo.Miscellaneous.Robots";
@@ -119,20 +161,23 @@ namespace RRYautja
 
         public static bool isMiscRobot(PawnKindDef pawn)
         {
-            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.race.modContentPack.PackageId));
             return pawn.race.modContentPack == modContent;
         }
         public static bool isMiscRobot(Pawn pawn)
         {
-            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.def.modContentPack.PackageId));
             return pawn.def.modContentPack == modContent;
         }
         public static bool isMiscRobot(ThingDef td)
         {
-            Log.Message(string.Format("{0}: {1}", td.LabelCap, td.modContentPack.PackageId));
-            return td.modContentPack == modContent;
+            if (td.modContentPack == null)
+            {
+            //    Log.Warning(string.Format("{0}: modContentPack = NULL", td.LabelCap));
+                return false;
+            }
+            return !td.modContentPack.PackageId.NullOrEmpty() ? td.modContentPack == modContent : false;
         }
     }
+    [StaticConstructorOnStartup]
     static class UtilMiscRobotsPP
     {
         public static string tag = "Alaestor.MiscRobots.PlusPlus";
@@ -153,21 +198,24 @@ namespace RRYautja
 
         public static bool isMiscRobot(PawnKindDef pawn)
         {
-            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.race.modContentPack.PackageId));
             return pawn.race.modContentPack == modContent;
         }
         public static bool isMiscRobot(Pawn pawn)
         {
-            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.def.modContentPack.PackageId));
             return pawn.def.modContentPack == modContent;
         }
         public static bool isMiscRobot(ThingDef td)
         {
-            Log.Message(string.Format("{0}: {1}", td.LabelCap, td.modContentPack.PackageId));
-            return td.modContentPack == modContent;
+            if (td.modContentPack == null)
+            {
+            //    Log.Warning(string.Format("{0}: modContentPack = NULL", td.LabelCap));
+                return false;
+            }
+            return !td.modContentPack.PackageId.NullOrEmpty() ? td.modContentPack == modContent : false;
         }
     }
 
+    [StaticConstructorOnStartup]
     static class UtilDinosauria
     {
         public static string tag = "spincrus.dinosauria";
@@ -187,22 +235,25 @@ namespace RRYautja
 
         public static bool isDinosauria(PawnKindDef pawn)
         {
-            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.race.modContentPack.PackageId));
             return pawn.race.modContentPack == modContent;
         }
         public static bool isDinosauria(Pawn pawn)
         {
-            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.def.modContentPack.PackageId));
             return pawn.def.modContentPack == modContent;
         }
         public static bool isDinosauria(ThingDef td)
         {
-            Log.Message(string.Format("{0}: {1}", td.LabelCap, td.modContentPack.PackageId));
-            return td.modContentPack == modContent;
+            if (td.modContentPack == null)
+            {
+            //    Log.Warning(string.Format("{0}: modContentPack = NULL", td.LabelCap));
+                return false;
+            }
+            return !td.modContentPack.PackageId.NullOrEmpty() ? td.modContentPack == modContent : false;
         }
 
     }
 
+    [StaticConstructorOnStartup]
     static class UtilJurassicRimworld
     {
         public static string tag = "Serpy.JurassicRimworld";
@@ -222,18 +273,20 @@ namespace RRYautja
 
         public static bool isJurassic(PawnKindDef pawn)
         {
-            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.race.modContentPack.PackageId));
             return pawn.race.modContentPack == modContent;
         }
         public static bool isJurassic(Pawn pawn)
         {
-            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.def.modContentPack.PackageId));
             return pawn.def.modContentPack == modContent;
         }
         public static bool isJurassic(ThingDef td)
         {
-            Log.Message(string.Format("{0}: {1}", td.LabelCap, td.modContentPack.PackageId));
-            return td.modContentPack == modContent;
+            if (td.modContentPack == null)
+            {
+            //    Log.Warning(string.Format("{0}: modContentPack = NULL", td.LabelCap));
+                return false;
+            }
+            return !td.modContentPack.PackageId.NullOrEmpty() ? td.modContentPack == modContent : false;
         }
     }
 }

@@ -2,14 +2,14 @@
 <Defs>
 
   <JobDef>
-    <defName>RRY_Job_Xenomorph_EnterHiveTunnel</defName>
+    <defName>AvP_Job_Xenomorph_EnterHiveTunnel</defName>
     <driverClass>RRYautja.JobDriver_EnterHiveTunnel</driverClass>
     <reportString>entering TargetA.</reportString>
     <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
   </JobDef>
   
   <JobDef>
-    <defName>RRY_Job_Xenomorph_LayEgg</defName>
+    <defName>AvP_Job_Xenomorph_LayEgg</defName>
     <driverClass>JobDriver_LayXenoEgg</driverClass>
     <reportString>laying egg.</reportString>
     <casualInterruptible>false</casualInterruptible>
@@ -17,7 +17,7 @@
   </JobDef>
   
   <JobDef>
-    <defName>RRY_Job_Xenomorph_Kidnap</defName>
+    <defName>AvP_Job_Xenomorph_Kidnap</defName>
     <driverClass>JobDriver_XenosKidnap</driverClass>
     <reportString>kidnapping TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
@@ -25,14 +25,14 @@
   </JobDef>
   
   <JobDef>
-    <defName>RRY_Job_Xenomorph_PredalienImpregnate</defName>
+    <defName>AvP_Job_Xenomorph_PredalienImpregnate</defName>
     <driverClass>JobDriver_PredalienImpregnate</driverClass>
     <reportString>Impregnating TargetA.</reportString>
     <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
   </JobDef>
   
   <JobDef>
-    <defName>RRY_Job_Xenomorph_MaintainHive</defName>
+    <defName>AvP_Job_Xenomorph_MaintainHive</defName>
     <driverClass>JobDriver_MaintainLike</driverClass>
     <reportString>maintaining TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
@@ -40,35 +40,35 @@
   </JobDef>
   
   <JobDef>
-    <defName>RRY_Job_Xenomorph_Construct_Hive_Slime</defName>
+    <defName>AvP_Job_Xenomorph_Construct_Hive_Slime</defName>
     <driverClass>JobDriver_ConstructHive_Slime</driverClass>
     <reportString>constructing hive slime.</reportString>
     <casualInterruptible>false</casualInterruptible>
   </JobDef>
 
   <JobDef>
-    <defName>RRY_Job_Xenomorph_Construct_Hive_Node</defName>
+    <defName>AvP_Job_Xenomorph_Construct_Hive_Node</defName>
     <driverClass>JobDriver_ConstructHive_Node</driverClass>
     <reportString>constructing hive node.</reportString>
     <casualInterruptible>false</casualInterruptible>
   </JobDef>
 
   <JobDef>
-    <defName>RRY_Job_Xenomorph_Construct_Hive_Wall</defName>
+    <defName>AvP_Job_Xenomorph_Construct_Hive_Wall</defName>
     <driverClass>JobDriver_ConstructHive_Wall</driverClass>
     <reportString>constructing hive wall.</reportString>
     <casualInterruptible>false</casualInterruptible>
   </JobDef>
 
   <JobDef>
-    <defName>RRY_Job_Xenomorph_Construct_Hive_Roof</defName>
+    <defName>AvP_Job_Xenomorph_Construct_Hive_Roof</defName>
     <driverClass>JobDriver_ConstructHive_Roof</driverClass>
     <reportString>constructing hive roof.</reportString>
     <casualInterruptible>false</casualInterruptible>
   </JobDef>
 
   <JobDef>
-		<defName>RRY_Xenomorph_Ingest</defName>
+		<defName>AvP_Xenomorph_Ingest</defName>
 		<driverClass>JobDriver_Xenomorph_Ingest</driverClass>
 		<reportString>consuming TargetA.</reportString>
     <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
@@ -76,14 +76,14 @@
 
   <!--
   <JobDef>
-    <defName>RRY_Job_PlaceCocoon</defName>
+    <defName>AvP_Job_PlaceCocoon</defName>
     <driverClass>RRYautja.JobDriver_SpinWeb</driverClass>
     <reportString>spinning web.</reportString>
     <casualInterruptible>false</casualInterruptible>
   </JobDef>
 
   <JobDef>
-    <defName>RRY_Job_CocoonHost</defName>
+    <defName>AvP_Job_CocoonHost</defName>
     <driverClass>RRYautja.JobDriver_CocoonHost</driverClass>
     <reportString>trapping TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>

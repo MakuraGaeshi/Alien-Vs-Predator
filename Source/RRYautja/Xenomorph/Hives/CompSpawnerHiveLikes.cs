@@ -64,7 +64,7 @@ namespace RimWorld
             get
             {
                 List<HiveLike> hives = new List<HiveLike>();
-                foreach (var item in parent.Map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_Xenomorph_Hive_Child))
+                foreach (var item in parent.Map.listerThings.ThingsOfDef(XenomorphDefOf.AvP_Xenomorph_Hive_Child))
                 {
                     hives.Add((HiveLike)item);
                 }
@@ -122,7 +122,7 @@ namespace RimWorld
 		{
 			base.CompTick();
             int extra = 0;
-            if (hiveLike.def == XenomorphDefOf.RRY_Xenomorph_Hive && canSpawnHiveLikes)
+            if (hiveLike.def == XenomorphDefOf.AvP_Xenomorph_Hive && canSpawnHiveLikes)
             {
                 extra += hiveLike.GetDirectlyHeldThings().Count;
                 foreach (var item in hiveLike.childHiveLikes)
@@ -136,7 +136,7 @@ namespace RimWorld
 			{
                 if (this.TrySpawnChildHiveLike(MinTunnelSpawnPreferredDist, MaxTunnelSpawnRadius, out HiveLike t))
                 {
-                    Messages.Message("RRY_MessageHiveReproduced".Translate(), t, MessageTypeDefOf.NegativeEvent, true);
+                    Messages.Message("AvP_MessageHiveReproduced".Translate(), t, MessageTypeDefOf.NegativeEvent, true);
                 }
                 else
                 {
@@ -148,7 +148,7 @@ namespace RimWorld
             {
                 if (this.TrySpawnChildHiveLike(MinTunnelSpawnPreferredDist, MaxTunnelSpawnRadius, out TunnelHiveLikeSpawner t))
                 {
-                    Messages.Message("RRY_MessageHiveReproduced".Translate(), t, MessageTypeDefOf.NegativeEvent, true);
+                    Messages.Message("AvP_MessageHiveReproduced".Translate(), t, MessageTypeDefOf.NegativeEvent, true);
                 }
                 else
                 {
@@ -162,7 +162,7 @@ namespace RimWorld
 		{
 			if (!this.canSpawnHiveLikes)
 			{
-				return "RRY_DormantHiveNotReproducing".Translate();
+				return "AvP_DormantHiveNotReproducing".Translate();
 			}
 			if (this.CanSpawnChildHiveLike)
             {
@@ -171,7 +171,7 @@ namespace RimWorld
                     this.parent.HitPoints++;
                 }
                 int extra = 0;
-                if (hiveLike.def == XenomorphDefOf.RRY_Xenomorph_Hive && canSpawnHiveLikes)
+                if (hiveLike.def == XenomorphDefOf.AvP_Xenomorph_Hive && canSpawnHiveLikes)
                 {
                     extra += hiveLike.GetDirectlyHeldThings().Count;
                     foreach (var item in hiveLike.childHiveLikes)
@@ -181,9 +181,9 @@ namespace RimWorld
                 }
                 if (extra > 0)
                 {
-                    return "RRY_HiveReproducesIn".Translate() + ": " + ((this.nextHiveSpawnTick) / extra).ToStringTicksToPeriod();
+                    return "AvP_HiveReproducesIn".Translate() + ": " + ((this.nextHiveSpawnTick) / extra).ToStringTicksToPeriod();
                 }
-                return "RRY_HiveReproducesIn".Translate() + ": " + ((this.nextHiveSpawnTick)).ToStringTicksToPeriod();
+                return "AvP_HiveReproducesIn".Translate() + ": " + ((this.nextHiveSpawnTick)).ToStringTicksToPeriod();
 			}
 			return null;
 		}

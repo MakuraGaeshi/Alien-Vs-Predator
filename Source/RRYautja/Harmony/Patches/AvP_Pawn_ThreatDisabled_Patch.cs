@@ -72,7 +72,7 @@ namespace RRYautja.HarmonyInstance
                     __result = __result || Stealth;
 
                 }
-            } // XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden
+            } // XenomorphDefOf.AvP_Hediff_Xenomorph_Hidden
 
         }
     }

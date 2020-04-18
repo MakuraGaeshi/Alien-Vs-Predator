@@ -3,7 +3,7 @@
 	<!-- ============================== Big threats ============================== -->  
 
   <IncidentDef>
-    <defName>RRY_XenomorphCrashedShipPartCrash</defName>
+    <defName>AvP_XenomorphCrashedShipPartCrash</defName>
     <label>Unknown Ship impact</label>
     <targetTags>
       <li>Map_PlayerHome</li>
@@ -23,7 +23,7 @@
     <category>ThreatBig</category>
     <pointsScaleable>true</pointsScaleable>
     <minThreatPoints>450</minThreatPoints>
-    <mechClusterBuilding>RRY_XenomorphCrashedShipPart</mechClusterBuilding>
+    <mechClusterBuilding>AvP_XenomorphCrashedShipPart</mechClusterBuilding>
     <tale>ShipPartCrash</tale>
   </IncidentDef>
   

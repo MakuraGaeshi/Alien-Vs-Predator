@@ -31,19 +31,19 @@ namespace RRYautja
                     Thing thing2;
 
 
-                    if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_SporeSac))
+                    if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.AvP_Concept_SporeSac))
                     {
-                        thing2 = ThingMaker.MakeThing(XenomorphDefOf.RRY_Neomorph_Spores_Hidden);
+                        thing2 = ThingMaker.MakeThing(XenomorphDefOf.AvP_Neomorph_Spores_Hidden);
                     }
                     else
                     {
-                        thing2 = ThingMaker.MakeThing(XenomorphDefOf.RRY_Neomorph_Spores);
+                        thing2 = ThingMaker.MakeThing(XenomorphDefOf.AvP_Neomorph_Spores);
                     }
 
                     float Chance = ((0.5f * Growth) * ((Pawn)thing).BodySize) / DistanceBetween(this.Position, thing.Position);
                     //    if (selected) Log.Message(string.Format("Chance: {0}", Chance));
                     
-                    if (Rand.Chance(Chance) && !thingList.Exists(x => x.def == XenomorphDefOf.RRY_Neomorph_Spores) && this.CanSee(thing))
+                    if (Rand.Chance(Chance) && !thingList.Exists(x => x.def == XenomorphDefOf.AvP_Neomorph_Spores) && this.CanSee(thing))
                     {
                         if (thing.Faction == Faction.OfPlayer)
                         {
@@ -70,7 +70,7 @@ namespace RRYautja
                 return;
             }
             Plant plant = c.GetPlant(this.Map);
-            bool flag = c.GetThingList(this.Map).Any(x => x.def == XenomorphDefOf.RRY_Plant_Neomorph_Fungus_Hidden || x.def == XenomorphDefOf.RRY_Plant_Neomorph_Fungus);
+            bool flag = c.GetThingList(this.Map).Any(x => x.def == XenomorphDefOf.AvP_Plant_Neomorph_Fungus_Hidden || x.def == XenomorphDefOf.AvP_Plant_Neomorph_Fungus);
             if (plant != null && !flag)
             {
                 //   Log.Message(string.Format("this.CanSee(plant): {0}", this.CanSee(plant)));
@@ -78,13 +78,13 @@ namespace RRYautja
                 {
                     Thing thing2;
 
-                    if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_SporeSac))
+                    if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.AvP_Concept_SporeSac))
                     {
-                        thing2 = ThingMaker.MakeThing(XenomorphDefOf.RRY_Plant_Neomorph_Fungus_Hidden);
+                        thing2 = ThingMaker.MakeThing(XenomorphDefOf.AvP_Plant_Neomorph_Fungus_Hidden);
                     }
                     else
                     {
-                        thing2 = ThingMaker.MakeThing(XenomorphDefOf.RRY_Plant_Neomorph_Fungus);
+                        thing2 = ThingMaker.MakeThing(XenomorphDefOf.AvP_Plant_Neomorph_Fungus);
                     }
                     IntVec3 vec3 = plant.Position;
                     GenSpawn.Spawn(thing2, vec3, plant.Map, WipeMode.Vanish);
@@ -136,7 +136,7 @@ namespace RRYautja
             {
                 if (p.Faction == Faction.OfPlayer)
                 {
-                    if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_SporeSac) && p.Spawned && p.IsColonist)
+                    if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.AvP_Concept_SporeSac) && p.Spawned && p.IsColonist)
                     {
                         return base.PathFindCostFor(p);
                     }

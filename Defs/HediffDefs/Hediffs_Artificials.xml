@@ -4,7 +4,7 @@
 <!--============================================= Artificials Overheating - Copied heatstroke and gave bonus to move and maniplation instead and added one last step =============================================-->
 
 <HediffDef  ParentName="AvP_SpecialBadHeDiff">
-    <defName>RRY_Synth_Overheating</defName>
+    <defName>AvP_Synth_Overheating</defName>
     <defaultLabelColor>(0.35, 0.5, 0.35)</defaultLabelColor>
     <label>overheating</label>
     <description>overheating</description>
@@ -96,7 +96,7 @@
   <!--============================================= Artificials Hypothermic Slowdown - Copied from the vanilla insect =============================================-->
   
   <HediffDef>
-    <defName>RRY_Synth_HypothermicSlowdown</defName>
+    <defName>AvP_Synth_HypothermicSlowdown</defName>
     <defaultLabelColor>(0.8, 0.8, 1)</defaultLabelColor>
     <label>hypothermic slowdown</label>
     <description>hypothermic slowdown</description>
@@ -174,7 +174,7 @@
   <!--============================================= Artificials Bleedout - Copied vanilla bleeding, removed consciousness max =============================================-->
   
   <HediffDef>
-    <defName>RRY_Synth_BloodLoss</defName>
+    <defName>AvP_Synth_BloodLoss</defName>
     <label>blood loss</label>
     <description>blood loss</description>
     <lethalSeverity>1</lethalSeverity>
@@ -218,7 +218,7 @@
 <!--============================================= Artificials Defective/Damaged inhibitor =============================================-->
 
 	<HediffDef ParentName="DiseaseBase">
-        <defName>RRY_Defective_Inhibitor</defName>
+        <defName>AvP_Defective_Inhibitor</defName>
         <hediffClass>HediffWithComps</hediffClass>
         <label>defective inhibitor</label>
         <description>defective inhibitor</description>
@@ -297,7 +297,7 @@
     </HediffDef>
 	
 	<HediffDef ParentName="DiseaseBase">
-        <defName>RRY_Damaged_Inhibitor</defName>
+        <defName>AvP_Damaged_Inhibitor</defName>
         <hediffClass>HediffWithComps</hediffClass>
         <label>damaged inhibitor</label>
         <description>damaged inhibitor</description>

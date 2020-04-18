@@ -4,7 +4,7 @@ using Verse;
 
 namespace RRYautja
 {
-    public class Projectile_AbilityRRY_ThrownReturning : Projectile_AbilityRRY
+    public class Projectile_AbilityAvP_ThrownReturning : Projectile_AbilityRRY
     {
         public new int TicksToImpact => ticksToImpact;
 

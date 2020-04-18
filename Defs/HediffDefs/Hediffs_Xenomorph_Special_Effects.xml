@@ -20,7 +20,7 @@
 	
 	<!-- Proto bodypart -->
 	<HediffDef>
-		<defName>RRY_Hediff_Xenomorph_ProtoBodypart</defName>
+		<defName>AvP_Hediff_Xenomorph_ProtoBodypart</defName>
 		<label>regrowing</label>
 		<description>regrowing</description>
 		<hediffClass>RRYautja.Xenomorph_Part_Hediff</hediffClass>
@@ -59,7 +59,7 @@
 
 	<!-- Dummy Hediff used to replace MissingPart Hediff -->
 	<HediffDef>
-		<defName>RRY_Hediff_Xenomorph_RestoredBodypart</defName>
+		<defName>AvP_Hediff_Xenomorph_RestoredBodypart</defName>
 		<label>restored bodypart</label>
 		<description>restored bodypart</description>
 		<hediffClass>RRYautja.Removable_Hediff</hediffClass>
@@ -76,7 +76,7 @@
 	
   <HediffDef>
     <hediffClass>HediffWithComps</hediffClass>
-    <defName>RRY_EmergingChestburster</defName>
+    <defName>AvP_EmergingChestburster</defName>
     <label>horrified</label>
     <description>horrified</description>
     <labelNoun>horrified</labelNoun>

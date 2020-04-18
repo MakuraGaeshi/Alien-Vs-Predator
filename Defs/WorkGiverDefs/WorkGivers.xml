@@ -4,13 +4,13 @@
 	<!--==================== Imperial  - Work Giver - Machining Table =========================-->
 	
 	<WorkGiverDef>
-		<defName>RRY_DoBillsYautjaMachining</defName>
+		<defName>AvP_DoBillsYautjaMachining</defName>
 		<label>Fabricate Yautja Resources</label>
 		<giverClass>WorkGiver_DoBill</giverClass>
 		<workType>Crafting</workType>
 		<priorityInType>45</priorityInType>
 		<fixedBillGiverDefs>
-			<li>RRY_TableMachining</li>
+			<li>AvP_TableMachining</li>
 		</fixedBillGiverDefs>
 		<verb>Fabricate Resources</verb>
 		<gerund>Fabricating Resources at</gerund>

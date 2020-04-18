@@ -5,7 +5,7 @@
 <!--=============================================== Artificials - Player Faction ===============================================-->
 <!--=============================================== Artificials - Synths Base ===============================================-->
   <PawnKindDef Abstract="True" Name="BaseArtificialPawnKind">
-    <race>RRY_Synth</race>
+    <race>AvP_Synth</race>
     <combatPower>40</combatPower>
     <baseRecruitDifficulty>0.5</baseRecruitDifficulty>
     <isFighter>true</isFighter>
@@ -21,8 +21,8 @@
     <backstoryFiltersOverride>
       <li>
         <categories>
-			<li>RRY_Synth_Backstories</li>
-			<li>RRY_Artificial_Backstories</li>
+			<li>AvP_Synth_Backstories</li>
+			<li>AvP_Artificial_Backstories</li>
         </categories>
       </li>
     </backstoryFiltersOverride>
@@ -37,9 +37,9 @@
 <!--=============================================== Artificials ===============================================-->
 
   <PawnKindDef ParentName="BaseArtificialPawnKind">
-    <defName>RRY_Player_Synth</defName>
+    <defName>AvP_Player_Synth</defName>
     <label>Synth</label>
-    <defaultFactionType>RRY_USCM_PlayerColony</defaultFactionType>
+    <defaultFactionType>AvP_USCM_PlayerColony</defaultFactionType>
     
     <apparelTags>
 		<li>USCM_StandardIssue_Apparel</li>

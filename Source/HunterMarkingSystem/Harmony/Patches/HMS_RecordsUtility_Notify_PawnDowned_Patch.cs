@@ -74,12 +74,12 @@ namespace HunterMarkingSystem
             //
             if (instigator.isYautja())
             {
-                List<Thought_Memory> _Memories = instigator.needs.mood.thoughts.memories.Memories.FindAll(x => x.def == YautjaDefOf.RRY_Thought_ThrillOfTheHunt);
-                if (_Memories.Count < HMSDefOf.RRY_Thought_ThrillOfTheHunt.stackLimit)
+                List<Thought_Memory> _Memories = instigator.needs.mood.thoughts.memories.Memories.FindAll(x => x.def == YautjaDefOf.AvP_Thought_ThrillOfTheHunt);
+                if (_Memories.Count < HMSDefOf.AvP_Thought_ThrillOfTheHunt.stackLimit)
                 {
                     instigator.needs.mood.thoughts.memories.Memories.Add(new Thought_Memory()
                     {
-                        def = HMSDefOf.RRY_Thought_ThrillOfTheHunt
+                        def = HMSDefOf.AvP_Thought_ThrillOfTheHunt
                     });
                 }
             }

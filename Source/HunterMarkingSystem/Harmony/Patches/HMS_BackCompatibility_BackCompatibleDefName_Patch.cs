@@ -38,19 +38,19 @@ namespace HunterMarkingSystem
                 }
                 if (defType == typeof(HediffDef))
                 {
-                    if (defName.Contains("RRY_Hediff_Unblooded"))
+                    if (defName.Contains("AvP_Hediff_Unblooded"))
                     {
                         __result = "HMS_Hediff_Unblooded";
                     }
-                    if (defName.Contains("RRY_Hediff_BloodedUM"))
+                    if (defName.Contains("AvP_Hediff_BloodedUM"))
                     {
                         __result = "HMS_Hediff_BloodedUM";
                     }
-                    if (defName == ("RRY_Hediff_BloodedM"))
+                    if (defName == ("AvP_Hediff_BloodedM"))
                     {
                         __result = "HMS_Hediff_BloodedM";
                     }
-                    else if (defName.Contains("RRY_Hediff_BloodedM"))
+                    else if (defName.Contains("AvP_Hediff_BloodedM"))
                     {
                         // Taking a string 
                         String str = defName;

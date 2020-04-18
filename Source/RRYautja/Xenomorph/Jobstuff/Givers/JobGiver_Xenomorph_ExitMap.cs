@@ -45,14 +45,14 @@ namespace Verse.AI
 				{
 					IntVec3 cellBeforeBlocker;
 					Thing thing = pawnPath.FirstBlockingBuilding(out cellBeforeBlocker, pawn);
-					if (thing.def == XenomorphDefOf.RRY_Xenomorph_Hive_Wall)
+					if (thing.def == XenomorphDefOf.AvP_Xenomorph_Hive_Wall)
 					{
 						CellRect rect = new CellRect(thing.Position.x - 1, thing.Position.y - 1, 3,3);
 						foreach (IntVec3 cell in rect)
 						{
 							if (cell.InBounds(thing.Map))
 							{
-								if (cell.GetThingList(thing.Map).All(x=> x.def!= XenomorphDefOf.RRY_Xenomorph_Hive_Wall))
+								if (cell.GetThingList(thing.Map).All(x=> x.def!= XenomorphDefOf.AvP_Xenomorph_Hive_Wall))
 								{
 									thing = cell.GetFirstMineable(thing.Map);
 									break;
@@ -61,7 +61,7 @@ namespace Verse.AI
 						}
 
 					}
-					if (thing != null && thing.def!=XenomorphDefOf.RRY_Xenomorph_Hive_Wall)
+					if (thing != null && thing.def!=XenomorphDefOf.AvP_Xenomorph_Hive_Wall)
 					{
 						Job job = DigUtility.PassBlockerJob(pawn, thing, cellBeforeBlocker, true, true);
 						if (job != null)

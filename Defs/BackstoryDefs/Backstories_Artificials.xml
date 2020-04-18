@@ -6,7 +6,7 @@
   
 	<AlienRace.BackstoryDef>
 		
-		<defName>RRY_Synth_Medical</defName>
+		<defName>AvP_Synth_Medical</defName>
 		<title>Medical Synth</title>
 		<baseDescription>[PAWN_nameDef] is a medical unit.</baseDescription>
 		<bodyTypeMale>Male</bodyTypeMale>
@@ -35,7 +35,7 @@
        
 		</forcedHediffs>
 		<spawnCategories>
-			<li>RRY_Synth_Backstories</li>
+			<li>AvP_Synth_Backstories</li>
 		</spawnCategories>
 	
 	</AlienRace.BackstoryDef>
@@ -44,7 +44,7 @@
   
 	<AlienRace.BackstoryDef>
 		
-		<defName>RRY_Synth_Farmhand</defName>
+		<defName>AvP_Synth_Farmhand</defName>
 		<title>Farmhand Synth</title>
 		<baseDescription>[PAWN_nameDef] is a farmhand unit.</baseDescription>
 		<bodyTypeMale>Male</bodyTypeMale>
@@ -85,7 +85,7 @@
        
 		</forcedHediffs>
 		<spawnCategories>
-			<li>RRY_Synth_Backstories</li>
+			<li>AvP_Synth_Backstories</li>
 		</spawnCategories>
 	
 	</AlienRace.BackstoryDef>
@@ -93,7 +93,7 @@
 	<!-- ================================ Synth - Service ================================ -->
 	<AlienRace.BackstoryDef>
 		
-		<defName>RRY_Synth_Service</defName>
+		<defName>AvP_Synth_Service</defName>
 		<title>Service Synth</title>
 		<baseDescription>[PAWN_nameDef] is a service unit.</baseDescription>
 		<bodyTypeMale>Male</bodyTypeMale>
@@ -131,7 +131,7 @@
 		</forcedHediffs>
 		
 		<spawnCategories>
-			<li>RRY_Synth_Backstories</li>
+			<li>AvP_Synth_Backstories</li>
 		</spawnCategories>
 	
 	</AlienRace.BackstoryDef>	
@@ -139,7 +139,7 @@
 <!-- ================================ Synth - Worker ================================ -->	
 	<AlienRace.BackstoryDef>
 		
-		<defName>RRY_Synth_Worker</defName>
+		<defName>AvP_Synth_Worker</defName>
 		<title>Worker Synth</title>
 		<baseDescription>[PAWN_nameDef] is a worker unit.</baseDescription>
 		<bodyTypeMale>Male</bodyTypeMale>
@@ -183,7 +183,7 @@
 		</forcedHediffs>
 		
 		<spawnCategories>
-			<li>RRY_Synth_Backstories</li>
+			<li>AvP_Synth_Backstories</li>
 		</spawnCategories>
 	
 	</AlienRace.BackstoryDef>
@@ -191,7 +191,7 @@
 	<!-- ================================ Synth - Social ================================ -->
 	<AlienRace.BackstoryDef>
 		
-		<defName>RRY_Synth_Social</defName>
+		<defName>AvP_Synth_Social</defName>
 		<title>Social Synth</title>
 		<baseDescription>[PAWN_nameDef] is a social unit.</baseDescription>
 		<bodyTypeMale>Male</bodyTypeMale>
@@ -232,7 +232,7 @@
 		</forcedHediffs>
     
 		<spawnCategories>
-			<li>RRY_Synth_Backstories</li>
+			<li>AvP_Synth_Backstories</li>
 		</spawnCategories>
 	
 	</AlienRace.BackstoryDef>
@@ -240,7 +240,7 @@
 	<!-- ================================ Artificial - Age-specific Backstories ================================ -->
 	<!-- ================================ Synth - Refurbished ================================ -->
 	<AlienRace.BackstoryDef>
-		<defName>RRY_Artificials_Refurbished</defName>
+		<defName>AvP_Artificials_Refurbished</defName>
 		<title>Refurbished Synth</title>
 		<baseDescription>[PAWN_nameDef] was sent for refurbishing. Over the years, [PAWN_nameDef] suffered lot of damage, leaving permanent flaws in this unit along with unexpected behaviors and knowledge.</baseDescription>
 		<bodyTypeMale>Male</bodyTypeMale>
@@ -284,11 +284,11 @@
 		</skillGains>
 	
 		<forcedHediffs>
-			<li>RRY_Defective_Inhibitor</li>	
+			<li>AvP_Defective_Inhibitor</li>	
 		</forcedHediffs>
 
 		<spawnCategories>
-			<li>RRY_Synth_Backstories</li>
+			<li>AvP_Synth_Backstories</li>
 		</spawnCategories>
 		
 		<bioAgeRange>
@@ -299,7 +299,7 @@
   
   <!-- ================================ Synth - Military ================================ -->
 	<AlienRace.BackstoryDef>
-		<defName>RRY_Artificials_Military</defName>
+		<defName>AvP_Artificials_Military</defName>
 		<title>Military Synth</title>
 		<baseDescription>[PAWN_nameDef] was sent to a USCM conditioning department. [PAWN_pronoun] went through basic training and was assigned to a squad.</baseDescription>
 		<bodyTypeMale>Male</bodyTypeMale>
@@ -362,7 +362,7 @@
 		</forcedHediffs>
 
 		<spawnCategories>
-			<li>RRY_Synth_Backstories</li>
+			<li>AvP_Synth_Backstories</li>
 		</spawnCategories>
 		
 		<bioAgeRange>

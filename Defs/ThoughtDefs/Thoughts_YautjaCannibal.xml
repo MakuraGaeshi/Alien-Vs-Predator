@@ -4,7 +4,7 @@
   <!--=========== Special nature thoughts ============-->
 
 	<ThoughtDef>
-		<defName>RRY_AteYautjaMeatDirect</defName>
+		<defName>AvP_AteYautjaMeatDirect</defName>
 		<showBubble>true</showBubble>
 		<icon>Things/Mote/ThoughtSymbol/Food</icon>
 		<durationDays>1</durationDays>
@@ -21,7 +21,7 @@
 	</ThoughtDef>
 	
 	<ThoughtDef>
-		<defName>RRY_AteYautjaMeatAsIngredient</defName>
+		<defName>AvP_AteYautjaMeatAsIngredient</defName>
 		<showBubble>true</showBubble>
 		<icon>Things/Mote/ThoughtSymbol/Food</icon>
 		<durationDays>1</durationDays>
@@ -38,7 +38,7 @@
 	</ThoughtDef>
 
   <ThoughtDef>
-    <defName>RRY_AteYautjaMeatDirectCannibal</defName>
+    <defName>AvP_AteYautjaMeatDirectCannibal</defName>
 		<showBubble>true</showBubble>
 		<icon>Things/Mote/ThoughtSymbol/Food</icon>
 		<durationDays>1</durationDays>
@@ -55,7 +55,7 @@
   </ThoughtDef>
   
 	<ThoughtDef>
-    <defName>RRY_AteYautjaMeatAsIngredientCannibal</defName>
+    <defName>AvP_AteYautjaMeatAsIngredientCannibal</defName>
 		<showBubble>true</showBubble>
 		<icon>Things/Mote/ThoughtSymbol/Food</icon>
 		<durationDays>1</durationDays>
@@ -74,7 +74,7 @@
 <!--=========== Yautja eating Yautja meat ============ 
 
 	<ThoughtDef>
-			<defName>RRY_AteYautjaMeatDirect</defName>
+			<defName>AvP_AteYautjaMeatDirect</defName>
 			<showBubble>true</showBubble>
 			<icon>Things/Mote/ThoughtSymbol/Food</icon>
 			<durationDays>1</durationDays>
@@ -91,7 +91,7 @@
 	</ThoughtDef>
 
 	<ThoughtDef>
-		<defName>RRY_AteYautjaMeatAsIngredient</defName>
+		<defName>AvP_AteYautjaMeatAsIngredient</defName>
 		<showBubble>true</showBubble>
 		<icon>Things/Mote/ThoughtSymbol/Food</icon>
 		<durationDays>1</durationDays>
@@ -110,7 +110,7 @@
 <!--=========== Yautja Cannibal eating Yautja meat ============ 	
 
 	<ThoughtDef>
-		<defName>RRY_AteYautjaMeatDirectCannibal</defName>
+		<defName>AvP_AteYautjaMeatDirectCannibal</defName>
 			<showBubble>true</showBubble>
 			<icon>Things/Mote/ThoughtSymbol/Food</icon>
 			<durationDays>1</durationDays>
@@ -127,7 +127,7 @@
 	</ThoughtDef>
 	
 	<ThoughtDef>
-		<defName>RRY_AteYautjaMeatAsIngredientCannibal</defName>
+		<defName>AvP_AteYautjaMeatAsIngredientCannibal</defName>
 			<showBubble>true</showBubble>
 			<icon>Things/Mote/ThoughtSymbol/Food</icon>
 			<durationDays>1</durationDays>
@@ -146,7 +146,7 @@
 	  <!--=========== Yautja Butchering Yautja ============-->	
 
 	<ThoughtDef>
-		<defName>RRY_ButcheredYautjaCorpse</defName>
+		<defName>AvP_ButcheredYautjaCorpse</defName>
 		<durationDays>6</durationDays>
 		<stackLimit>10</stackLimit>
 		<stackedEffectMultiplier>0.75</stackedEffectMultiplier>
@@ -165,7 +165,7 @@
 	</ThoughtDef>
 	
 	<ThoughtDef>
-		<defName>RRY_KnowButcheredYautjaCorpse</defName>
+		<defName>AvP_KnowButcheredYautjaCorpse</defName>
 		<durationDays>6</durationDays>
 		<stackLimit>1</stackLimit>
 		<nullifyingTraits>

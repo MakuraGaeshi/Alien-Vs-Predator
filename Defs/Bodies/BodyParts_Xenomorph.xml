@@ -4,7 +4,7 @@
 
  <!-- Humanoid -->
   <BodyPartDef>
-    <defName>RRY_Xeno_Torso</defName>
+    <defName>AvP_Xeno_Torso</defName>
     <label>torso</label>
     <hitPoints>40</hitPoints>
     <skinCovered>true</skinCovered>
@@ -12,7 +12,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Shoulder</defName>
+    <defName>AvP_Xeno_Shoulder</defName>
     <label>shoulder</label>
     <hitPoints>30</hitPoints>
     <skinCovered>true</skinCovered>
@@ -22,7 +22,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Arm</defName>
+    <defName>AvP_Xeno_Arm</defName>
     <label>arm</label>
     <hitPoints>30</hitPoints>
     <skinCovered>true</skinCovered>
@@ -32,7 +32,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Hand</defName>
+    <defName>AvP_Xeno_Hand</defName>
     <label>hand</label>
     <hitPoints>20</hitPoints>
     <frostbiteVulnerability>0.0</frostbiteVulnerability>
@@ -43,7 +43,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Finger</defName>
+    <defName>AvP_Xeno_Finger</defName>
     <label>finger</label>
     <hitPoints>8</hitPoints>
     <frostbiteVulnerability>0</frostbiteVulnerability>
@@ -55,7 +55,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Mandible</defName>
+    <defName>AvP_Xeno_Mandible</defName>
     <label>mandible</label>
     <hitPoints>8</hitPoints>
     <frostbiteVulnerability>0</frostbiteVulnerability>
@@ -68,13 +68,13 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Waist</defName>
+    <defName>AvP_Xeno_Waist</defName>
     <label>waist</label>
     <conceptual>true</conceptual>
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Toe</defName>
+    <defName>AvP_Xeno_Toe</defName>
     <label>toe</label>
     <hitPoints>8</hitPoints>
     <frostbiteVulnerability>0</frostbiteVulnerability>
@@ -88,7 +88,7 @@
   <!-- Bones -->
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Clavicle</defName>
+    <defName>AvP_Xeno_Clavicle</defName>
     <label>clavicle</label>
     <hitPoints>25</hitPoints>
     <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
@@ -102,7 +102,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Sternum</defName>
+    <defName>AvP_Xeno_Sternum</defName>
     <label>sternum</label>
     <hitPoints>20</hitPoints>
     <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
@@ -116,7 +116,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Humerus</defName>
+    <defName>AvP_Xeno_Humerus</defName>
     <label>humerus</label>
     <hitPoints>25</hitPoints>
     <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
@@ -129,7 +129,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Radius</defName>
+    <defName>AvP_Xeno_Radius</defName>
     <label>radius</label>
     <hitPoints>20</hitPoints>
     <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
@@ -142,7 +142,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Pelvis</defName>
+    <defName>AvP_Xeno_Pelvis</defName>
     <label>pelvis</label>
     <hitPoints>25</hitPoints>
     <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
@@ -156,7 +156,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Femur</defName>
+    <defName>AvP_Xeno_Femur</defName>
     <label>femur</label>
     <hitPoints>25</hitPoints>
     <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
@@ -169,7 +169,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Tibia</defName>
+    <defName>AvP_Xeno_Tibia</defName>
     <label>tibia</label>
     <hitPoints>25</hitPoints>
     <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
@@ -183,7 +183,7 @@
 
 <!-- Organs -->
   <BodyPartDef>
-    <defName>RRY_Xeno_Heart</defName>
+    <defName>AvP_Xeno_Heart</defName>
     <label>heart</label>
     <hitPoints>15</hitPoints>
     <bleedRate>5</bleedRate>
@@ -196,7 +196,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Lung</defName>
+    <defName>AvP_Xeno_Lung</defName>
     <label>lung</label>
     <hitPoints>15</hitPoints>
     <skinCovered>false</skinCovered>
@@ -207,7 +207,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Kidney</defName>
+    <defName>AvP_Xeno_Kidney</defName>
     <label>kidney</label>
     <hitPoints>15</hitPoints>
     <skinCovered>false</skinCovered>
@@ -218,7 +218,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Liver</defName>
+    <defName>AvP_Xeno_Liver</defName>
     <label>liver</label>
     <hitPoints>20</hitPoints>
     <skinCovered>false</skinCovered>
@@ -230,7 +230,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Stomach</defName>
+    <defName>AvP_Xeno_Stomach</defName>
     <label>stomach</label>
     <hitPoints>20</hitPoints>
     <skinCovered>false</skinCovered>
@@ -243,7 +243,7 @@
   <!-- General -->
   
   <BodyPartDef>
-    <defName>RRY_Xeno_Head</defName>
+    <defName>AvP_Xeno_Head</defName>
     <label>head</label>
     <hitPoints>25</hitPoints>
     <skinCovered>true</skinCovered>
@@ -252,7 +252,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Skull</defName>
+    <defName>AvP_Xeno_Skull</defName>
     <label>skull</label>
     <hitPoints>25</hitPoints>
     <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
@@ -264,7 +264,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Brain</defName>
+    <defName>AvP_Xeno_Brain</defName>
     <label>brain</label>
     <hitPoints>10</hitPoints>
     <permanentInjuryChanceFactor>9999999</permanentInjuryChanceFactor>
@@ -277,7 +277,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Eye</defName>
+    <defName>AvP_Xeno_Eye</defName>
     <label>eye</label>
     <hitPoints>10</hitPoints>
     <permanentInjuryChanceFactor>15</permanentInjuryChanceFactor>
@@ -297,7 +297,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Ear</defName>
+    <defName>AvP_Xeno_Ear</defName>
     <label>auditory sensor</label>
     <hitPoints>12</hitPoints>
     <frostbiteVulnerability>0</frostbiteVulnerability>
@@ -309,7 +309,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Nose</defName>
+    <defName>AvP_Xeno_Nose</defName>
     <label>nose</label>
     <hitPoints>10</hitPoints>
     <frostbiteVulnerability>0</frostbiteVulnerability>
@@ -321,7 +321,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Jaw</defName>
+    <defName>AvP_Xeno_Jaw</defName>
     <label>mouth</label>
     <hitPoints>20</hitPoints>
     <frostbiteVulnerability>0</frostbiteVulnerability>
@@ -337,7 +337,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_InnerJaw</defName>
+    <defName>AvP_Xeno_InnerJaw</defName>
     <label>inner mouth</label>
     <hitPoints>20</hitPoints>
     <frostbiteVulnerability>0</frostbiteVulnerability>
@@ -353,7 +353,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Tail</defName>
+    <defName>AvP_Xeno_Tail</defName>
     <label>tail</label>
     <hitPoints>30</hitPoints>
     <frostbiteVulnerability>0</frostbiteVulnerability>
@@ -364,7 +364,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Neck</defName>
+    <defName>AvP_Xeno_Neck</defName>
     <label>neck</label>
     <hitPoints>25</hitPoints>
     <bleedRate>4</bleedRate>
@@ -378,7 +378,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Ribcage</defName>
+    <defName>AvP_Xeno_Ribcage</defName>
     <label>ribcage</label>
     <hitPoints>30</hitPoints>
     <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
@@ -392,7 +392,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Spine</defName>
+    <defName>AvP_Xeno_Spine</defName>
     <label>spine</label>
     <hitPoints>25</hitPoints>
     <permanentInjuryChanceFactor>6</permanentInjuryChanceFactor>
@@ -406,7 +406,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_FrontLeg</defName>
+    <defName>AvP_Xeno_FrontLeg</defName>
     <label>leg</label>
     <hitPoints>30</hitPoints>
     <skinCovered>true</skinCovered>
@@ -418,7 +418,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Leg</defName>
+    <defName>AvP_Xeno_Leg</defName>
     <label>leg</label>
     <hitPoints>40</hitPoints>
     <skinCovered>true</skinCovered>
@@ -428,7 +428,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Foot</defName>
+    <defName>AvP_Xeno_Foot</defName>
     <label>foot</label>
     <hitPoints>25</hitPoints>
     <frostbiteVulnerability>0.0</frostbiteVulnerability>
@@ -439,7 +439,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_TailSpike</defName>
+    <defName>AvP_Xeno_TailSpike</defName>
     <label>tail spike</label>
     <hitPoints>50</hitPoints>
     <skinCovered>false</skinCovered>
@@ -452,14 +452,14 @@
   <!--===================== Misc =====================-->
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Body</defName>
+    <defName>AvP_Xeno_Body</defName>
     <label>body</label>
     <hitPoints>40</hitPoints>
     <skinCovered>true</skinCovered>
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Beak</defName>
+    <defName>AvP_Xeno_Beak</defName>
     <label>beak</label>
     <hitPoints>20</hitPoints>
     <frostbiteVulnerability>1.5</frostbiteVulnerability>
@@ -476,7 +476,7 @@
   </BodyPartDef>
   
   <BodyPartDef>
-    <defName>RRY_Xeno_InsectHead</defName>
+    <defName>AvP_Xeno_InsectHead</defName>
     <label>head</label>
     <hitPoints>30</hitPoints>
     <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
@@ -484,7 +484,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_SnakeBody</defName>
+    <defName>AvP_Xeno_SnakeBody</defName>
     <label>body</label>
     <hitPoints>30</hitPoints>
     <skinCovered>true</skinCovered>
@@ -494,7 +494,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_SnakeHead</defName>
+    <defName>AvP_Xeno_SnakeHead</defName>
     <label>head</label>
     <hitPoints>30</hitPoints>
     <skinCovered>true</skinCovered>
@@ -504,7 +504,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_SnakeMouth</defName>
+    <defName>AvP_Xeno_SnakeMouth</defName>
     <label>mouth</label>
     <hitPoints>20</hitPoints>
     <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
@@ -517,7 +517,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_InsectHeart</defName>
+    <defName>AvP_Xeno_InsectHeart</defName>
     <label>heart</label>
     <hitPoints>20</hitPoints>
     <bleedRate>5</bleedRate>
@@ -531,7 +531,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_InsectNostril</defName>
+    <defName>AvP_Xeno_InsectNostril</defName>
     <label>nostril</label>
     <hitPoints>10</hitPoints>
     <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
@@ -539,7 +539,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_InsectMouth</defName>
+    <defName>AvP_Xeno_InsectMouth</defName>
     <label>mouth</label>
     <hitPoints>10</hitPoints>
     <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
@@ -551,7 +551,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Pronotum</defName>
+    <defName>AvP_Xeno_Pronotum</defName>
     <label>pronotum</label>
     <hitPoints>20</hitPoints>
     <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
@@ -566,7 +566,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Shell</defName>
+    <defName>AvP_Xeno_Shell</defName>
     <label>shell</label>
     <hitPoints>100</hitPoints>
     <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
@@ -577,7 +577,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Xeno_Elytra</defName>
+    <defName>AvP_Xeno_Elytra</defName>
     <label>elytra</label>
     <hitPoints>30</hitPoints>
     <frostbiteVulnerability>0.0</frostbiteVulnerability>
@@ -588,7 +588,7 @@
   </BodyPartDef>
 
   <BodyPartDef ParentName="ClawBase">
-    <defName>RRY_Xeno_FrontClaw</defName>
+    <defName>AvP_Xeno_FrontClaw</defName>
     <label>front claw</label>
     <labelShort>claw</labelShort>
     <tags>
@@ -598,7 +598,7 @@
   </BodyPartDef>
   
   <BodyPartDef ParentName="ClawBase">
-    <defName>RRY_Xeno_RearClaw</defName>
+    <defName>AvP_Xeno_RearClaw</defName>
     <label>rear claw</label>
     <labelShort>claw</labelShort>
     <tags>

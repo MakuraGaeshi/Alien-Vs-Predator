@@ -4,7 +4,7 @@
 	<!-- ============================== Big threats ==============================-->
 	
   <IncidentDef Class="IncidentDef_FactionSpecific">
-    <defName>RRY_RaidEnemy_FactionSpecific</defName>
+    <defName>AvP_RaidEnemy_FactionSpecific</defName>
     <label>enemy raid (FactionSpecific)</label>
     <targetTags>
       <li>Map_PlayerHome</li>
@@ -15,16 +15,16 @@
     <pointsScaleable>true</pointsScaleable>
     <tale>Raid</tale>
 	<!--
-    <Faction>RRY_Xenomorph</Faction>
+    <Faction>AvP_Xenomorph</Faction>
 	-->
     <Factions>
-      <li>RRY_Xenomorph</li>
-      <li>RRY_Yautja_BadBloodFaction</li>
+      <li>AvP_Xenomorph</li>
+      <li>AvP_Yautja_BadBloodFaction</li>
     </Factions>
   </IncidentDef>
   <!--
   <IncidentDef Class="IncidentDef_FactionSpecific">
-    <defName>RRY_RaidEnemy_PowerCut_Xenomorph</defName>
+    <defName>AvP_RaidEnemy_PowerCut_Xenomorph</defName>
     <label>enemy raid</label>
     <targetTags>
       <li>Map_PlayerHome</li>
@@ -34,7 +34,7 @@
     <category>ThreatBig</category>
     <pointsScaleable>true</pointsScaleable>
     <tale>Raid</tale>
-    <Faction>RRY_Xenomorph</Faction>
+    <Faction>AvP_Xenomorph</Faction>
     <minRefireDays>30</minRefireDays>
 	<earliestDay>90</earliestDay>
   </IncidentDef>

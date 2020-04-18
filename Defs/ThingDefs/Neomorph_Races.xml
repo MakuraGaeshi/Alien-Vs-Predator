@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs> 
-<ThingDef Name="RRY_BaseNeomorphPawn" Abstract="True">
+<ThingDef Name="AvP_BaseNeomorphPawn" Abstract="True">
     <thingClass>Pawn</thingClass>
     <category>Pawn</category>
     <selectable>true</selectable>
@@ -35,7 +35,7 @@
     <alwaysFlee>true</alwaysFlee>
 </ThingDef>
 
-  <ThingDef ParentName="RRY_BaseNeomorphPawn" Name="RRY_BaseNeomorph" Abstract="True">
+  <ThingDef ParentName="AvP_BaseNeomorphPawn" Name="AvP_BaseNeomorph" Abstract="True">
     <soundImpactDefault>BulletImpact_Flesh</soundImpactDefault>
     <statBases>
       <Mass>70</Mass>
@@ -57,11 +57,11 @@
       <!-- <deathActionWorkerClass>RRYautja.DeathActionWorker_Xenomorph</deathActionWorkerClass> -->
       <intelligence>ToolUser</intelligence>
       <trainability>Intermediate</trainability>
-      <thinkTreeMain>RRY_Neomorph_ThinkTree</thinkTreeMain>
+      <thinkTreeMain>AvP_Neomorph_ThinkTree</thinkTreeMain>
       <thinkTreeConstant>NeomorphConstant</thinkTreeConstant>
-      <fleshType>RRY_Neomorph</fleshType>
-      <bloodDef>RRY_FilthBloodNeomorph</bloodDef>	
-      <leatherDef>RRY_Leather_Xenomorph</leatherDef>
+      <fleshType>AvP_Neomorph</fleshType>
+      <bloodDef>AvP_FilthBloodNeomorph</bloodDef>	
+      <leatherDef>AvP_Leather_Xenomorph</leatherDef>
       <needsRest>true</needsRest>
       <hasGenders>false</hasGenders>
       <herdAnimal>true</herdAnimal>
@@ -75,57 +75,57 @@
       <manhunterOnTameFailChance>1</manhunterOnTameFailChance>
       <manhunterOnDamageChance>1</manhunterOnDamageChance>
       <hediffGiverSets>
-        <li>RRY_Xenomorph_Standard</li>
+        <li>AvP_Xenomorph_Standard</li>
       </hediffGiverSets>
     </race>
   </ThingDef>
 
-  <PawnKindDef Name="RRY_BaseNeomorphKind" Abstract="True">
+  <PawnKindDef Name="AvP_BaseNeomorphKind" Abstract="True">
 	<!--
-    <defaultFactionType>RRY_Xenomorph</defaultFactionType>
+    <defaultFactionType>AvP_Xenomorph</defaultFactionType>
 	-->
     <aiAvoidCover>true</aiAvoidCover>
   </PawnKindDef>
 
  <!-- Walker (Neomorph) base -->
-  <ThingDef ParentName="RRY_BaseNeomorph" Name="BaseNeomorphWalker" Abstract="True">
+  <ThingDef ParentName="AvP_BaseNeomorph" Name="BaseNeomorphWalker" Abstract="True">
     <race>
       <baseBodySize>1.2</baseBodySize>
       <lifeStageAges>
         <li>
-          <def>RRY_NeomorphBloodBursterBaby</def>
+          <def>AvP_NeomorphBloodBursterBaby</def>
           <minAge>0</minAge>
-          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
-          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
-          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
+          <soundWounded>AvP_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>AvP_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>AvP_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
         <li>
-          <def>RRY_NeomorphBloodBursterBig</def>
+          <def>AvP_NeomorphBloodBursterBig</def>
           <minAge>0.0041666666666666</minAge>
-          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
-          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
-          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
+          <soundWounded>AvP_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>AvP_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>AvP_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
         <li>
-          <def>RRY_NeomorphFormedBaby</def>
+          <def>AvP_NeomorphFormedBaby</def>
           <minAge>0.0083333333333332</minAge>
-          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
-          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
-          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
+          <soundWounded>AvP_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>AvP_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>AvP_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
         <li>
-          <def>RRY_NeomorphFormedMid</def>
+          <def>AvP_NeomorphFormedMid</def>
           <minAge>0.0124999999999998</minAge>
-          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
-          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
-          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
+          <soundWounded>AvP_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>AvP_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>AvP_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
         <li>
-          <def>RRY_NeomorphFullyFormed</def>
+          <def>AvP_NeomorphFullyFormed</def>
           <minAge>0.0166666666666667</minAge>
-          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
-          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
-          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
+          <soundWounded>AvP_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>AvP_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>AvP_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
       </lifeStageAges>
       <soundCallIntervalRange>
@@ -142,7 +142,7 @@
 
   <!-- Neomorph - Basic -->
   <ThingDef ParentName="BaseNeomorphWalker">
-    <defName>RRY_Xenomorph_Neomorph</defName>
+    <defName>AvP_Xenomorph_Neomorph</defName>
     <label>Neomorph</label>
     <description>Neomorphs are the result of the local ecosystem by the black liquid. Specifically, the liquid caused small, black, spherical, fungus-like egg sacks to form on the ground. When disturbed, these egg sacks would release a cloud of microscopic insect-like spores (motes) into the air that would then enter a host organism through any open orifice — such as the nostrils or ear canal. Once a host is infected with the airborne contagion, the spores would enter the bloodstream and proceed to cause a Bloodburster to grow inside of them until they violently puncture the skin and claw their way out of the host's body. This process is notably similar to the Xenomorph Chestburster, although the exact point of emergence varies depending on how the host was infected. As with Xenomorphs, the appearance and characteristics of the Neomorph depend on what sort of animal it was spawned from.</description>
     <statBases>
@@ -161,7 +161,7 @@
         </capacities>
         <power>8.2</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RRY_Xeno_LeftHand</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>AvP_Xeno_LeftHand</linkedBodyPartsGroup>
         <surpriseAttack>
           <extraMeleeDamages>
             <li>
@@ -179,7 +179,7 @@
         </capacities>
         <power>8.2</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RRY_Xeno_RightHand</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>AvP_Xeno_RightHand</linkedBodyPartsGroup>
         <surpriseAttack>
           <extraMeleeDamages>
             <li>
@@ -214,16 +214,16 @@
         <label>tail</label>
         <capacities>
           <li>Blunt</li>
-          <li>RRY_TailWhip</li>
+          <li>AvP_TailWhip</li>
         </capacities>
         <power>5</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RRY_Xeno_Tail_AttackTool</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>AvP_Xeno_Tail_AttackTool</linkedBodyPartsGroup>
         <chanceFactor>0.2</chanceFactor>
       </li>
     </tools>
     <race>
-      <body>RRY_Xenomorph_Neomorph</body>
+      <body>AvP_Xenomorph_Neomorph</body>
       <baseHealthScale>1.72</baseHealthScale>
       <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
       <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
@@ -231,10 +231,10 @@
     </race>
   </ThingDef>
 
-  <PawnKindDef ParentName="RRY_BaseNeomorphKind">
-    <defName>RRY_Xenomorph_Neomorph</defName>
+  <PawnKindDef ParentName="AvP_BaseNeomorphKind">
+    <defName>AvP_Xenomorph_Neomorph</defName>
     <label>Neomorph</label>
-    <race>RRY_Xenomorph_Neomorph</race>
+    <race>AvP_Xenomorph_Neomorph</race>
     <combatPower>140</combatPower>
     <lifeStages>
       <li>

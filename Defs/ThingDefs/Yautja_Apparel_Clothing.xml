@@ -27,7 +27,7 @@
       <EquipDelay>1.5</EquipDelay>
 		</statBases>
 		<thingCategories>
-			<li>RRY_Apparel</li>
+			<li>AvP_Apparel</li>
 		</thingCategories>
 		<apparel>
 			<bodyPartGroups>
@@ -45,7 +45,7 @@
 		<recipeMaker>
 			<researchPrerequisite>AvP_Tech_Yautja_T1</researchPrerequisite>
 			<recipeUsers>
-				<li>RRY_TableMachining</li>
+				<li>AvP_TableMachining</li>
 			</recipeUsers>
 		</recipeMaker>
 		<colorGenerator Class="ColorGenerator_Options">
@@ -115,7 +115,7 @@
 		<recipeMaker>
 			<recipeUsers>
 				<li>ElectricTailoringBench</li>
-				<li>RRY_TableMachining</li>
+				<li>AvP_TableMachining</li>
 				<li>HandTailoringBench</li>
 				<li>CraftingSpot</li>
 			</recipeUsers>
@@ -168,7 +168,7 @@
       <EquipDelay>2.5</EquipDelay>
 		</statBases>
 		<thingCategories>
-			<li>RRY_Apparel</li>
+			<li>AvP_Apparel</li>
 		</thingCategories>
 		<apparel>
 			<bodyPartGroups>
@@ -190,7 +190,7 @@
 		<recipeMaker>
 			<researchPrerequisite>AvP_Tech_Yautja_T2</researchPrerequisite>
 			<recipeUsers>
-				<li>RRY_TableMachining</li>
+				<li>AvP_TableMachining</li>
 			</recipeUsers>
 			<skillRequirements>
 				<Crafting>4</Crafting>

@@ -2,7 +2,7 @@
 <Defs>
 
   <ThingDef ParentName="BaseMeleeWeapon_Sharp_Quality">
-    <defName>RRY_MeleeWeapon_XenoSpear</defName>
+    <defName>AvP_MeleeWeapon_XenoSpear</defName>
     <label>xenomorph-tail spear</label>
     <description>A primitive spear made with the tail of a Xenomorph, making its tip immune to the acidic effects of the Xenomorph blood.</description>
     <graphicData>
@@ -17,7 +17,7 @@
     </weaponTags>
     <costStuffCount>60</costStuffCount>
     <statBases>
-      <RRY_AcidResistance>1</RRY_AcidResistance>
+      <AvP_AcidResistance>1</AvP_AcidResistance>
       <WorkToMake>12000</WorkToMake>
       <Mass>2</Mass>
     </statBases>
@@ -27,7 +27,7 @@
 		<li>Metallic</li>
     </stuffCategories>
 		<costList>			
-			<RRY_Xenomorph_TailSpike>1</RRY_Xenomorph_TailSpike>
+			<AvP_Xenomorph_TailSpike>1</AvP_Xenomorph_TailSpike>
 		</costList>
     <tools>
       <li>

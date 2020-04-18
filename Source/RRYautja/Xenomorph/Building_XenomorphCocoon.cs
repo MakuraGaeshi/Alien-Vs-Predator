@@ -71,9 +71,9 @@ namespace RimWorld
                         {
                             this.def.building.bed_showSleeperBody = false;
                         }
-                        if (!p.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned))
+                        if (!p.health.hediffSet.HasHediff(XenomorphDefOf.AvP_Hediff_Cocooned))
                         {
-                            p.health.AddHediff(XenomorphDefOf.RRY_Hediff_Cocooned);
+                            p.health.AddHediff(XenomorphDefOf.AvP_Hediff_Cocooned);
                         }
                         if (p.Dead)
                         {
@@ -91,7 +91,7 @@ namespace RimWorld
                     {
                         if (cell.GetFirstPawn(this.Map) != null && cell.GetFirstPawn(this.Map) is Pawn p)
                         {
-                            if (p.Downed && !p.Dead && !p.InBed() && !(p.kindDef.race.defName.Contains("RRY_Xenomorph_")))
+                            if (p.Downed && !p.Dead && !p.InBed() && !(p.kindDef.race.defName.Contains("AvP_Xenomorph_")))
                             {
                                 p.jobs.Notify_TuckedIntoBed(this);
                                 p.mindState.Notify_TuckedIntoBed();

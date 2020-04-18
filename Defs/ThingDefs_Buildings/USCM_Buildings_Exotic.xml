@@ -2,7 +2,7 @@
 <Defs>
 
   <ThingDef ParentName="BuildingBase">
-    <defName>RRY_USCM_DropshipUD4L</defName>
+    <defName>AvP_USCM_DropshipUD4L</defName>
     <label>UD-4L Cheyenne Dropship</label>
     <description>The UD-4 Utility Dropship, better known colloquially as the "Cheyenne", is a type of combat utility spacecraft manufactured by UA Northridge and primarily used by the United States Colonial Marine Corps. The Cheyenne is designed for rapid troop deployment, dropping from the belly of USCM spacecraft in orbit and delivering Marines and equipment quickly to a planet's surface. They typically carry the M577 Armored Personnel Carrier, although they can also be used to transport other equipment and even Marines directly in the field.</description>
     <altitudeLayer>PawnUnused</altitudeLayer>
@@ -79,7 +79,7 @@
   </ThingDef>
 
   <ThingDef>
-    <defName>RRY_USCM_ActiveDropshipUD4L</defName>
+    <defName>AvP_USCM_ActiveDropshipUD4L</defName>
     <label>UD-4L Cheyenne Dropship(Active)</label>
     <category>Item</category>
     <thingClass>ActiveDropShip</thingClass>
@@ -107,7 +107,7 @@
   </ThingDef>
   
   <WorldObjectDef>
-    <defName>RRY_USCM_TravelingDropshipUD4L</defName>
+    <defName>AvP_USCM_TravelingDropshipUD4L</defName>
     <label>UD-4L Cheyenne Dropship</label>
     <description>Dropships in flight.</description>
     <worldObjectClass>TravelingTransportPods</worldObjectClass>

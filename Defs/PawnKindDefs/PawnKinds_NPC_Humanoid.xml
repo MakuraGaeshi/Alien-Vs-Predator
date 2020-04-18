@@ -5,9 +5,9 @@
 <!--=============================================== USCM - NPC Faction ===============================================-->
 
   <PawnKindDef ParentName="BaseUSCMPawnKind"> <!-- Base in PawnKinds_Player_Humanoids.xml -->
-    <defName>RRY_USCM_Lieutenant</defName>
+    <defName>AvP_USCM_Lieutenant</defName>
     <label>marine Lt</label>
-    <defaultFactionType>RRY_USCM_Faction</defaultFactionType>
+    <defaultFactionType>AvP_USCM_Faction</defaultFactionType>
     <chemicalAddictionChance>0.08</chemicalAddictionChance>
     <factionLeader>true</factionLeader>
     <gearHealthRange>
@@ -65,17 +65,17 @@
       </subOptionsChooseOne>
     </inventoryOptions>
 	<apparelRequired>
-        <li>RRY_Apparel_M3Pattern</li>
-        <li>RRY_USCM_Cap</li>
+        <li>AvP_Apparel_M3Pattern</li>
+        <li>AvP_USCM_Cap</li>
 	</apparelRequired>
   </PawnKindDef>
   
 <!--=============================================== USCM - Private ===============================================-->
 
   <PawnKindDef ParentName="BaseUSCMPawnKind"> <!-- Base in PawnKinds_Player_Humanoids.xml -->
-    <defName>RRY_USCM_Private</defName>
+    <defName>AvP_USCM_Private</defName>
     <label>marine</label>
-    <defaultFactionType>RRY_USCM_Faction</defaultFactionType>
+    <defaultFactionType>AvP_USCM_Faction</defaultFactionType>
     <chemicalAddictionChance>0.08</chemicalAddictionChance>
     <gearHealthRange>
       <min>0.4</min>
@@ -135,9 +135,9 @@
   
   <!--=============================================== USCM - M56 Smart Gun Operator ===============================================-->
   <PawnKindDef ParentName="BaseUSCMPawnKind"> <!-- Base in PawnKinds_Player_Humanoids.xml -->
-    <defName>RRY_USCM_Operator</defName>
+    <defName>AvP_USCM_Operator</defName>
     <label>operator</label>
-    <defaultFactionType>RRY_USCM_Faction</defaultFactionType>
+    <defaultFactionType>AvP_USCM_Faction</defaultFactionType>
     <chemicalAddictionChance>0.08</chemicalAddictionChance>
     <gearHealthRange>
       <min>0.4</min>
@@ -197,9 +197,9 @@
   
   <!--=============================================== USCM - Public Affairs Officer ===============================================-->
   <PawnKindDef ParentName="BaseUSCMPawnKind"> <!-- Base in PawnKinds_Player_Humanoids.xml -->
-    <defName>RRY_USCM_PAO</defName>
+    <defName>AvP_USCM_PAO</defName>
     <label>public relation officer</label>
-    <defaultFactionType>RRY_USCM_Faction</defaultFactionType>
+    <defaultFactionType>AvP_USCM_Faction</defaultFactionType>
     <chemicalAddictionChance>0.1</chemicalAddictionChance>
 	<trader>true</trader>
     <gearHealthRange>

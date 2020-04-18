@@ -29,7 +29,7 @@ namespace RimWorld
         {
             for (int i = 0; i < this.lord.ownedPawns.Count; i++)
             {
-                this.lord.ownedPawns[i].mindState.duty = new PawnDuty(XenomorphDefOf.RRY_Xenomorph_DefendHiveLoc, this.baseCenter, -1f);
+                this.lord.ownedPawns[i].mindState.duty = new PawnDuty(XenomorphDefOf.AvP_Xenomorph_DefendHiveLoc, this.baseCenter, -1f);
             }
         }
 

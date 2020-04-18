@@ -30,7 +30,7 @@ namespace RimWorld
             {
                 return null;
             }
-            if (pawn.def != XenomorphRacesDefOf.RRY_Xenomorph_Queen && pawn.def != XenomorphRacesDefOf.RRY_Xenomorph_Drone && pawn.def != XenomorphRacesDefOf.RRY_Xenomorph_Predalien)
+            if (pawn.def != XenomorphRacesDefOf.AvP_Xenomorph_Queen && pawn.def != XenomorphRacesDefOf.AvP_Xenomorph_Drone && pawn.def != XenomorphRacesDefOf.AvP_Xenomorph_Predalien)
             {
                 return null;
             }
@@ -46,9 +46,9 @@ namespace RimWorld
             {
                 return null;
             }
-            bool centerNode = HiveCenter.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive) != null;
-            bool centerChild = HiveCenter.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive_Child) != null;
-            bool centerSlime = HiveCenter.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive_Slime) != null;
+            bool centerNode = HiveCenter.GetFirstThing(pawn.Map, XenomorphDefOf.AvP_Xenomorph_Hive) != null;
+            bool centerChild = HiveCenter.GetFirstThing(pawn.Map, XenomorphDefOf.AvP_Xenomorph_Hive_Child) != null;
+            bool centerSlime = HiveCenter.GetFirstThing(pawn.Map, XenomorphDefOf.AvP_Xenomorph_Hive_Slime) != null;
             bool centerFilled = HiveCenter.Filled(pawn.Map);
 
             if (centerNode)
@@ -61,14 +61,14 @@ namespace RimWorld
                 if (!centerChild)
                 {
 
-                    if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen || pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Drone)
+                    if (pawn.def == XenomorphRacesDefOf.AvP_Xenomorph_Queen || pawn.def == XenomorphRacesDefOf.AvP_Xenomorph_Drone)
                     {
                         if (!centerNode)
                         {
                             IntVec3 c = HiveCenter;
                             if (c.InBounds(pawn.Map) && c.Roofed(pawn.Map) && pawn.CanReserveAndReach(c, PathEndMode.OnCell, Danger.Deadly))
                             {
-                                return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Construct_Hive_Node, c)
+                                return new Job(XenomorphDefOf.AvP_Job_Xenomorph_Construct_Hive_Node, c)
                                 {
                                     ignoreDesignations = false
                                 };
@@ -80,16 +80,16 @@ namespace RimWorld
             }
             if (!centerChild)
             {
-                foreach (var structure in HiveStructure.HiveStruct(HiveCenter).Where(x => x.GetThingList(map).Any(z => !z.def.defName.Contains("RRY_Xenomorph_Hive")) && x.DistanceTo(HiveCenter) <= MiningRange && pawn.CanReserveAndReach(x, PathEndMode.OnCell, Danger.Deadly, layer: ReservationLayerDefOf.Floor) && x.GetFirstBuilding(map) == null))
+                foreach (var structure in HiveStructure.HiveStruct(HiveCenter).Where(x => x.GetThingList(map).Any(z => !z.def.defName.Contains("AvP_Xenomorph_Hive")) && x.DistanceTo(HiveCenter) <= MiningRange && pawn.CanReserveAndReach(x, PathEndMode.OnCell, Danger.Deadly, layer: ReservationLayerDefOf.Floor) && x.GetFirstBuilding(map) == null))
                 {
-                    return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Construct_Hive_Wall, structure)
+                    return new Job(XenomorphDefOf.AvP_Job_Xenomorph_Construct_Hive_Wall, structure)
                     {
                         ignoreDesignations = false
                     };
                 }
-                foreach (var structure in HiveStructure.HiveWallGen(HiveCenter, MiningRange).Where(x => x.GetThingList(map).Any(z => !z.def.defName.Contains("RRY_Xenomorph_Hive")) && x.DistanceTo(HiveCenter) <= MiningRange + 2 && pawn.CanReserveAndReach(x, PathEndMode.OnCell, Danger.Deadly, layer: ReservationLayerDefOf.Floor) && x.GetFirstBuilding(map) == null))
+                foreach (var structure in HiveStructure.HiveWallGen(HiveCenter, MiningRange).Where(x => x.GetThingList(map).Any(z => !z.def.defName.Contains("AvP_Xenomorph_Hive")) && x.DistanceTo(HiveCenter) <= MiningRange + 2 && pawn.CanReserveAndReach(x, PathEndMode.OnCell, Danger.Deadly, layer: ReservationLayerDefOf.Floor) && x.GetFirstBuilding(map) == null))
                 {
-                    return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Construct_Hive_Wall, structure)
+                    return new Job(XenomorphDefOf.AvP_Job_Xenomorph_Construct_Hive_Wall, structure)
                     {
                         ignoreDesignations = false
                     };
@@ -104,7 +104,7 @@ namespace RimWorld
                 {
                     if (c2.InBounds(pawn.Map) && pawn.CanReserveAndReach(c2, PathEndMode.OnCell, Danger.Deadly))
                     {
-                        return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Construct_Hive_Roof, c2)
+                        return new Job(XenomorphDefOf.AvP_Job_Xenomorph_Construct_Hive_Roof, c2)
                         {
                             ignoreDesignations = false
                         };
@@ -141,7 +141,7 @@ namespace RimWorld
             return pawn.Reserve(targetA, job, 1, -1, ReservationLayerDefOf.Floor, errorOnFailed);
         }
 
-        public ThingDef MyDef = XenomorphDefOf.RRY_Xenomorph_Hive_Wall;
+        public ThingDef MyDef = XenomorphDefOf.AvP_Xenomorph_Hive_Wall;
 
         // Token: 0x06000393 RID: 915 RVA: 0x000245C8 File Offset: 0x000229C8
         protected override IEnumerable<Toil> MakeNewToils()
@@ -196,7 +196,7 @@ namespace RimWorld
             return pawn.Reserve(targetA, job, 1, -1, null, errorOnFailed);
         }
 
-        public ThingDef MyDef = XenomorphDefOf.RRY_Xenomorph_Hive;
+        public ThingDef MyDef = XenomorphDefOf.AvP_Xenomorph_Hive;
 
         // Token: 0x06000393 RID: 915 RVA: 0x000245C8 File Offset: 0x000229C8
         protected override IEnumerable<Toil> MakeNewToils()
@@ -258,7 +258,7 @@ namespace RimWorld
             return pawn.Reserve(targetA, job, 1, -1, null, errorOnFailed);
         }
 
-        public ThingDef MyDef = XenomorphDefOf.RRY_Xenomorph_Hive_Child;
+        public ThingDef MyDef = XenomorphDefOf.AvP_Xenomorph_Hive_Child;
 
         // Token: 0x06000393 RID: 915 RVA: 0x000245C8 File Offset: 0x000229C8
         protected override IEnumerable<Toil> MakeNewToils()
@@ -313,7 +313,7 @@ namespace RimWorld
             return pawn.Reserve(targetA, job, 1, -1, null, errorOnFailed);
         }
 
-        public ThingDef MyDef = XenomorphDefOf.RRY_Xenomorph_Hive_Slime;
+        public ThingDef MyDef = XenomorphDefOf.AvP_Xenomorph_Hive_Slime;
 
         // Token: 0x06000393 RID: 915 RVA: 0x000245C8 File Offset: 0x000229C8
         protected override IEnumerable<Toil> MakeNewToils()
@@ -331,7 +331,7 @@ namespace RimWorld
             use.initAction = delegate ()
             {
                 Pawn actor = use.actor;
-                MyDef = XenomorphDefOf.RRY_Xenomorph_Hive;
+                MyDef = XenomorphDefOf.AvP_Xenomorph_Hive;
                 Thing thing = ThingMaker.MakeThing(MyDef);
                 HiveLike hive = (HiveLike)thing;
                 GenSpawn.Spawn(thing, TargetA.Cell, actor.Map, Rot4.South, WipeMode.FullRefund, false);

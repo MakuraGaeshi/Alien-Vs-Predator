@@ -46,16 +46,16 @@
   </ThingDef>
 
     <ThingDef ParentName="LeatherBase">
-    <defName>RRY_Leather_Xenomorph</defName>
+    <defName>AvP_Leather_Xenomorph</defName>
     <label>Xenomorph leather</label>
     <description>Tanned, dried, scraped Xenomorph skin. It is exceptionally durable in combat, and provides ample protection from weather.</description>
     <graphicData>
       <color>(53,68,75)</color>
     </graphicData>
     <statBases>
-      <RRY_AcidResistance>1</RRY_AcidResistance>
+      <AvP_AcidResistance>1</AvP_AcidResistance>
       <MarketValue>3.2</MarketValue>
-      <RRY_StuffPower_Armor_Acid>2</RRY_StuffPower_Armor_Acid>
+      <AvP_StuffPower_Armor_Acid>2</AvP_StuffPower_Armor_Acid>
       <StuffPower_Armor_Sharp>1.29</StuffPower_Armor_Sharp>
       <StuffPower_Insulation_Cold>24</StuffPower_Insulation_Cold>
       <StuffPower_Insulation_Heat>24</StuffPower_Insulation_Heat>
@@ -64,14 +64,14 @@
       <color>(53,68,75)</color>
       <commonality>0.025</commonality>
       <statFactors>
-        <RRY_AcidResistance>1</RRY_AcidResistance>
+        <AvP_AcidResistance>1</AvP_AcidResistance>
         <MaxHitPoints>1.5</MaxHitPoints>
       </statFactors>
     </stuffProps>
   </ThingDef>
   
   <ThingDef ParentName="LeatherBase">
-    <defName>RRY_Synthetic_Skin</defName>
+    <defName>AvP_Synthetic_Skin</defName>
     <label>artificial skin</label>
     <description>The artifical skin used on most artificial persons. It is supple and durable, but provide no protection from the cold or the heat.</description>
     <graphicData>

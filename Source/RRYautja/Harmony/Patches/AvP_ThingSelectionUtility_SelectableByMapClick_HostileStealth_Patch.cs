@@ -14,7 +14,7 @@ namespace RRYautja.HarmonyInstance
     {
         [HarmonyPostfix]
         public static void ThiefException(ref bool __result, Thing t)
-        { // (pawn.health.hediffSet.HasHediff(YautjaDefOf.RRY_Hediff_Cloaked)|| pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Xenomorph_Hidden))
+        { // (pawn.health.hediffSet.HasHediff(YautjaDefOf.AvP_Hediff_Cloaked)|| pawn.health.hediffSet.HasHediff(XenomorphDefOf.AvP_Hediff_Xenomorph_Hidden))
             if (t!=null)
             {
                 if (t.GetType() == typeof(Pawn))

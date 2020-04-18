@@ -98,7 +98,7 @@ namespace RimWorld
                 return;
             }
             Plant plant = c.GetPlant(this.parent.Map);
-            bool flag = c.GetThingList(this.parent.Map).Any(x=> x.def.defName.Contains("RRY_Plant_Neomorph_Fungus"));
+            bool flag = c.GetThingList(this.parent.Map).Any(x=> x.def.defName.Contains("AvP_Plant_Neomorph_Fungus"));
             if (plant != null && !flag)
             {
                 if (Rand.Value < this.LeaflessPlantKillChance && this.parent.Map.GooGrid().GetDepth(c) >= 1f)
@@ -107,13 +107,13 @@ namespace RimWorld
                     {
                         Thing thing2;
 
-                        if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_SporeSac))
+                        if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.AvP_Concept_SporeSac))
                         {
-                            thing2 = ThingMaker.MakeThing(XenomorphDefOf.RRY_Plant_Neomorph_Fungus_Hidden);
+                            thing2 = ThingMaker.MakeThing(XenomorphDefOf.AvP_Plant_Neomorph_Fungus_Hidden);
                         }
                         else
                         {
-                            thing2 = ThingMaker.MakeThing(XenomorphDefOf.RRY_Plant_Neomorph_Fungus);
+                            thing2 = ThingMaker.MakeThing(XenomorphDefOf.AvP_Plant_Neomorph_Fungus);
                         }
                         IntVec3 vec3 = plant.Position;
                         GenSpawn.Spawn(thing2, vec3, plant.Map, WipeMode.Vanish);

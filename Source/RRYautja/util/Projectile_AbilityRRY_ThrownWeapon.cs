@@ -4,7 +4,7 @@ using Verse;
 
 namespace RRYautja
 {
-    public class Projectile_AbilityRRY_ThrownWeapon : Projectile_AbilityRRY
+    public class Projectile_AbilityAvP_ThrownWeapon : Projectile_AbilityRRY
     {
 
         protected override void Impact(Thing hitThing)

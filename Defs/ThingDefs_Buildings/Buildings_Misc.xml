@@ -54,7 +54,7 @@
 -->
 
   <ThingDef Class="RRYautja.ThingDef_CryptosleepCasket" ParentName="BuildingBase">
-    <defName>RRY_XenomorphCryptosleepCasket</defName>
+    <defName>AvP_XenomorphCryptosleepCasket</defName>
     <label>ancient cryptosleep casket</label>
     <description>This cryptosleep casket looks like it has been here for a very long time. Who knows what it might contain?</description>
     <thingClass>RRYautja.Building_XenomorphCryptosleepCasket</thingClass>
@@ -108,17 +108,17 @@
   </ThingDef>
 
   <ThingDef Class="RRYautja.ThingDef_CryptosleepCasket" ParentName="BuildingBase">
-    <defName>RRY_Yautja_CryptosleepCasket_Tribute_XenoEgg</defName>
+    <defName>AvP_Yautja_CryptosleepCasket_Tribute_XenoEgg</defName>
     <label>Yautja Blooding casket</label>
     <description>This cryptosleep casket contains a prospective Host and a Xenomorph Egg.</description>
     <thingClass>RRYautja.Building_XenomorphCryptosleepCasket</thingClass>
-		<!-- <Faction>RRY_Xenomorph</Faction> -->
+		<!-- <Faction>AvP_Xenomorph</Faction> -->
 		<PawnKinds>
 		  <li>WildMan</li>
 		  <!-- <li>Slave</li> -->
 		</PawnKinds>
-		<!-- <infectionDef>RRY_FaceHuggerInfection</infectionDef> -->
-		<spawnThing>RRY_EggXenomorphFertilized</spawnThing>
+		<!-- <infectionDef>AvP_FaceHuggerInfection</infectionDef> -->
+		<spawnThing>AvP_EggXenomorphFertilized</spawnThing>
     <graphicData>
       <texPath>Things/Building/Ship/ShipCryptosleepCasket</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
@@ -170,7 +170,7 @@
   </ThingDef>
 
 <!--<ThingDef Class="RRYautja.ThingDef_CryptosleepCasket" ParentName="BuildingBase">
-    <defName>RRY_Yautja_CryptosleepCasket_Tribute_Rewards</defName>
+    <defName>AvP_Yautja_CryptosleepCasket_Tribute_Rewards</defName>
     <label>Yautja Blooding reward casket</label>
     <description>This cryptosleep casket contains the rewards for a blooding.</description>
     <thingClass>RRYautja.Building_XenomorphCryptosleepCasket</thingClass>

@@ -4,63 +4,63 @@
 	<!-- ========================= Yautja - Gear Catagories ========================== -->
 	<!-- ========================= Yautja - Weapon Catagories ========================== -->
 	<ThingCategoryDef>
-		<defName>RRY_Weapons</defName>
+		<defName>AvP_Weapons</defName>
 		<label>Weapons</label>
 		<parent>Weapons</parent>
 	</ThingCategoryDef>
 	
 	<ThingCategoryDef>
-		<defName>RRY_RangedWeapons</defName>
+		<defName>AvP_RangedWeapons</defName>
 		<label>Ranged Weapons</label>
-		<parent>RRY_Weapons</parent>
+		<parent>AvP_Weapons</parent>
 	</ThingCategoryDef>
 	
 	<ThingCategoryDef>
-		<defName>RRY_MeleeWeapons</defName>
+		<defName>AvP_MeleeWeapons</defName>
 		<label>Melee Weapons</label>
-		<parent>RRY_Weapons</parent>
+		<parent>AvP_Weapons</parent>
 	</ThingCategoryDef>
 			
 	<!-- ========================= Yautja - Armour Catagories ========================== -->
 	<ThingCategoryDef>
-		<defName>RRY_Apparel</defName>
+		<defName>AvP_Apparel</defName>
 		<label>Apparel</label>
 		<parent>Apparel</parent>
 	</ThingCategoryDef>
 	
 		<ThingCategoryDef>
-		<defName>RRY_Armour</defName>
+		<defName>AvP_Armour</defName>
 		<label>Armour</label>
 		<parent>Apparel</parent>
 	</ThingCategoryDef>
 	
 	<ThingCategoryDef>
-		<defName>RRY_Headgear</defName>
+		<defName>AvP_Headgear</defName>
 		<label>Headgear</label>
 		<parent>Apparel</parent>
 	</ThingCategoryDef>
 	  	
 	<ThingCategoryDef>
-		<defName>RRY_Addons</defName>
+		<defName>AvP_Addons</defName>
 		<label>Armour Addons</label>
 		<parent>Apparel</parent>
 	</ThingCategoryDef>
 	  	
 	<ThingCategoryDef>
-		<defName>RRY_Equipment</defName>
+		<defName>AvP_Equipment</defName>
 		<label>Equipment</label>
 		<parent>Apparel</parent>
 	</ThingCategoryDef>
 	
 	<!-- ========================= Yautja - Corpse Catagories ========================== -->
     <ThingCategoryDef>
-    <defName>RRY_Corpses_Yautja</defName>
+    <defName>AvP_Corpses_Yautja</defName>
     <label>yautja corpses</label>
       <parent>CorpsesHumanlike</parent>
     </ThingCategoryDef>
 
     <ThingCategoryDef>
-    <defName>RRY_Corpses_Xenomorph</defName>
+    <defName>AvP_Corpses_Xenomorph</defName>
     <label>Xenomorph corpses</label>
       <parent>Corpses</parent>
     </ThingCategoryDef>

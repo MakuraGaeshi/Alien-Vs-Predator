@@ -12,20 +12,19 @@ using RimWorld.Planet;
 using UnityEngine;
 using RRYautja.settings;
 using RRYautja.ExtensionMethods;
+using System.Text.RegularExpressions;
 
 namespace RRYautja.HarmonyInstance
 {
-    [HarmonyPatch(typeof(HediffSet), "CalculateBleedRate")]
-    public static class AvP_HediffSet_CalculateBleedRate_Synth_Patch
+    
+    [HarmonyPatch(typeof(BackstoryDatabase), "GetIdentifierClosestMatch")]
+    public static class AvP_BackstoryDatabase_GetIdentifierClosestMatch_Patch
     {
-        [HarmonyPostfix]
-        public static void postfix(HediffSet __instance, ref float __result)
+        public static void Prefix(ref string identifier)
         {
-            Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
-
-            if (pawn.def == USCMDefOf.AvP_Synth)
+            if (identifier.Contains("RRY"))
             {
-                __result = 0f;
+                identifier = Regex.Replace(identifier, "^RRY", "AvP");
             }
         }
     }

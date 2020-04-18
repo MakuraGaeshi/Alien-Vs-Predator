@@ -75,9 +75,9 @@ namespace RRYautja
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
-            if (Pawn.kindDef.race == YautjaDefOf.AvP_Alien_Yautja&&(Pawn.story.hairDef != YautjaDefOf.RRY_Yaujta_Dreds && Pawn.story.hairDef != YautjaDefOf.RRY_Yaujta_Ponytail && Pawn.story.hairDef != YautjaDefOf.RRY_Yaujta_Bald))
+            if (Pawn.kindDef.race == YautjaDefOf.AvP_Alien_Yautja&&(Pawn.story.hairDef != YautjaDefOf.AvP_Yautja_Dreds && Pawn.story.hairDef != YautjaDefOf.AvP_Yautja_Ponytail && Pawn.story.hairDef != YautjaDefOf.AvP_Yautja_Bald))
             {
-                Pawn.story.hairDef = Rand.Chance(0.5f) ? YautjaDefOf.RRY_Yaujta_Dreds : YautjaDefOf.RRY_Yaujta_Ponytail;
+                Pawn.story.hairDef = Rand.Chance(0.5f) ? YautjaDefOf.AvP_Yautja_Dreds : YautjaDefOf.AvP_Yautja_Ponytail;
             }
             if (Pawn.kindDef.race != YautjaDefOf.AvP_Alien_Yautja)
             {

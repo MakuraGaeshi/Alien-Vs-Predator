@@ -715,7 +715,7 @@ namespace RRYautja
                 }
                 ThingOwner directlyHeldThings = compTransporter.GetDirectlyHeldThings();
 
-                Thing dropship = ThingMaker.MakeThing(USCMDefOf.RRY_USCM_DropshipUD4L);
+                Thing dropship = ThingMaker.MakeThing(USCMDefOf.AvP_USCM_DropshipUD4L);
                 dropship.SetFactionDirect(Faction.OfPlayer);
 
                 CompRefuelable compr = dropship.TryGetComp<CompRefuelable>();
@@ -726,10 +726,10 @@ namespace RRYautja
                 dropship.stackCount = 1;
                 directlyHeldThings.TryAddOrTransfer(dropship);
 
-                ActiveDropPod activeDropPod = (ActiveDropPod)ThingMaker.MakeThing(USCMDefOf.RRY_USCM_ActiveDropshipUD4L, null);
+                ActiveDropPod activeDropPod = (ActiveDropPod)ThingMaker.MakeThing(USCMDefOf.AvP_USCM_ActiveDropshipUD4L, null);
                 activeDropPod.Contents = new ActiveDropPodInfo();
                 activeDropPod.Contents.innerContainer.TryAddRangeOrTransfer(directlyHeldThings, true, true);
-                DropShipLeaving dropPodLeaving = (DropShipLeaving)SkyfallerMaker.MakeSkyfaller(USCMDefOf.RRY_USCM_DropshipUD4LLeaving, activeDropPod);
+                DropShipLeaving dropPodLeaving = (DropShipLeaving)SkyfallerMaker.MakeSkyfaller(USCMDefOf.AvP_USCM_DropshipUD4LLeaving, activeDropPod);
                 dropPodLeaving.groupID = groupID;
                 dropPodLeaving.destinationTile = destinationTile;
                 dropPodLeaving.arrivalAction = arrivalAction;
@@ -767,7 +767,7 @@ namespace RRYautja
                     Pawn_InventoryTracker pinv = pawn.inventory;
                     for (int i = 0; i < pinv.innerContainer.Count; i++)
                     {
-                        if (pinv.innerContainer[i].def == USCMDefOf.RRY_USCM_DropshipUD4L)
+                        if (pinv.innerContainer[i].def == USCMDefOf.AvP_USCM_DropshipUD4L)
                         {
                             dropship = pinv.innerContainer[i];
                             dropship1 = dropship.TryGetComp<CompUSCMDropship>();
@@ -796,7 +796,7 @@ namespace RRYautja
                 }
                 */
 
-                ActiveDropPod activeDropPod = (ActiveDropPod)ThingMaker.MakeThing(USCMDefOf.RRY_USCM_ActiveDropshipUD4L, null);
+                ActiveDropPod activeDropPod = (ActiveDropPod)ThingMaker.MakeThing(USCMDefOf.AvP_USCM_ActiveDropshipUD4L, null);
                 activeDropPod.Contents = new ActiveDropPodInfo();
                 foreach (var item in carr.AllThings)
                 {
@@ -821,7 +821,7 @@ namespace RRYautja
                     Find.WorldObjects.Remove(cafr);
                 }
 
-                TravelingTransportPods travelingTransportPods = (TravelingTransportPods)WorldObjectMaker.MakeWorldObject(DefDatabase<WorldObjectDef>.GetNamed("RRY_USCM_TravelingDropshipUD4L", true));
+                TravelingTransportPods travelingTransportPods = (TravelingTransportPods)WorldObjectMaker.MakeWorldObject(DefDatabase<WorldObjectDef>.GetNamed("AvP_USCM_TravelingDropshipUD4L", true));
                 travelingTransportPods.Tile = cafr.Tile;
                 travelingTransportPods.SetFaction(Faction.OfPlayer);
                 travelingTransportPods.destinationTile = destinationTile;
@@ -1121,7 +1121,7 @@ namespace RRYautja
 
         //    Log.Message("11 ");
             Transporter.innerContainer.ClearAndDestroyContentsOrPassToWorld(DestroyMode.Vanish);
-            Thing newThing = ThingMaker.MakeThing(USCMDefOf.RRY_USCM_DropshipUD4LLeaving, null);
+            Thing newThing = ThingMaker.MakeThing(USCMDefOf.AvP_USCM_DropshipUD4LLeaving, null);
             Transporter.CleanUpLoadingVars(map);
             Transporter.parent.Destroy(DestroyMode.QuestLogic);
             GenSpawn.Spawn(newThing, Transporter.parent.Position, map, WipeMode.Vanish);

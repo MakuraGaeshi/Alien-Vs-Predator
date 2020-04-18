@@ -21,9 +21,9 @@ namespace RRYautja.HarmonyInstance
     {
         public static void Postfix(PawnGenerationRequest request, ref Pawn __result)
         {
-            if (__result.kindDef.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Xenomorph)
+            if (__result.kindDef.RaceProps.FleshType == XenomorphRacesDefOf.AvP_Xenomorph)
             {
-                if (request.KindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
+                if (request.KindDef == XenomorphDefOf.AvP_Xenomorph_Queen)
                 {
                     __result.gender = Gender.Female;
                     /*
@@ -31,7 +31,7 @@ namespace RRYautja.HarmonyInstance
                     
                     foreach (var p in Find.AnyPlayerHomeMap.mapPawns.AllPawns)
                     {
-                        if (p.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
+                        if (p.kindDef == XenomorphDefOf.AvP_Xenomorph_Queen)
                         {
                         //    Log.Message(string.Format("Queen Found"));
                             QueenPresent = true;
@@ -40,7 +40,7 @@ namespace RRYautja.HarmonyInstance
                     }
                     if (QueenPresent)
                     {
-                        request = new PawnGenerationRequest(XenomorphDefOf.RRY_Xenomorph_Warrior, request.Faction, request.Context, -1, true, false, false, false, false, true, 0f, fixedGender: Gender.None, allowGay: false);
+                        request = new PawnGenerationRequest(XenomorphDefOf.AvP_Xenomorph_Warrior, request.Faction, request.Context, -1, true, false, false, false, false, true, 0f, fixedGender: Gender.None, allowGay: false);
                         __result = PawnGenerator.GeneratePawn(request);
                         __result.gender = Gender.None;
                         return;
@@ -55,15 +55,15 @@ namespace RRYautja.HarmonyInstance
                 {
                     __result.gender = Gender.None;
                 }
-                if (request.KindDef == XenomorphDefOf.RRY_Xenomorph_Thrumbomorph && !SettingsHelper.latest.AllowThrumbomorphs)
+                if (request.KindDef == XenomorphDefOf.AvP_Xenomorph_Thrumbomorph && !SettingsHelper.latest.AllowThrumbomorphs)
                 {
-                    __result.kindDef = XenomorphDefOf.RRY_Xenomorph_Warrior;
-                    __result.def = XenomorphRacesDefOf.RRY_Xenomorph_Warrior;
+                    __result.kindDef = XenomorphDefOf.AvP_Xenomorph_Warrior;
+                    __result.def = XenomorphRacesDefOf.AvP_Xenomorph_Warrior;
                 }
-                if (request.KindDef == XenomorphDefOf.RRY_Xenomorph_Predalien && !SettingsHelper.latest.AllowPredaliens)
+                if (request.KindDef == XenomorphDefOf.AvP_Xenomorph_Predalien && !SettingsHelper.latest.AllowPredaliens)
                 {
-                    __result.kindDef = XenomorphDefOf.RRY_Xenomorph_Warrior;
-                    __result.def = XenomorphRacesDefOf.RRY_Xenomorph_Warrior;
+                    __result.kindDef = XenomorphDefOf.AvP_Xenomorph_Warrior;
+                    __result.def = XenomorphRacesDefOf.AvP_Xenomorph_Warrior;
                 }
             }
         }

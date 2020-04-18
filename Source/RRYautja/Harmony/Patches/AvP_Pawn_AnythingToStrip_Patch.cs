@@ -22,7 +22,7 @@ namespace RRYautja.HarmonyInstance
         [HarmonyPostfix]
         public static void IgnoreWristblade(Pawn __instance, ref bool __result)
         {
-            __result = __result && !(__instance.apparel != null && __instance.apparel.WornApparelCount == 1 && __instance.apparel.WornApparel.Any(x => x.def.HasModExtension<UnstrippableExtension>() && !x.def.GetModExtension<UnstrippableExtension>().otherStrip) && __instance.Faction != Faction.OfPlayerSilentFail) && !(__instance.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned));
+            __result = __result && !(__instance.apparel != null && __instance.apparel.WornApparelCount == 1 && __instance.apparel.WornApparel.Any(x => x.def.HasModExtension<UnstrippableExtension>() && !x.def.GetModExtension<UnstrippableExtension>().otherStrip) && __instance.Faction != Faction.OfPlayerSilentFail) && !(__instance.health.hediffSet.HasHediff(XenomorphDefOf.AvP_Hediff_Cocooned));
 
         }
     }

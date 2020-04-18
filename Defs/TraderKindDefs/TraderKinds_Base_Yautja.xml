@@ -2,7 +2,7 @@
 <Defs>
 
   <TraderKindDef>
-    <defName>RRY_Base_Yautja_Standard</defName>
+    <defName>AvP_Base_Yautja_Standard</defName>
     <stockGenerators>
 
       <!-- Resources -->

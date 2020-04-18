@@ -132,7 +132,7 @@ namespace HunterMarkingSystem
         // Token: 0x06002BF5 RID: 11253 RVA: 0x00149A04 File Offset: 0x00147E04
         public override string GetLabel()
         {
-            return "RRY_CanMarkSelf".Translate();
+            return "AvP_CanMarkSelf".Translate();
         }
 
         // Token: 0x06002BF6 RID: 11254 RVA: 0x00149A10 File Offset: 0x00147E10
@@ -170,7 +170,7 @@ namespace HunterMarkingSystem
                     }
                 }
             }
-            return "RRY_CanMarkSelfDesc".Translate(stringBuilder.ToString());
+            return "AvP_CanMarkSelfDesc".Translate(stringBuilder.ToString());
         }
 
         // Token: 0x06002BF7 RID: 11255 RVA: 0x00149B50 File Offset: 0x00147F50

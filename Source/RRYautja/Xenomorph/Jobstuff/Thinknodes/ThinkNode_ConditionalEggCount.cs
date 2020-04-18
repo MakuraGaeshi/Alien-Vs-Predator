@@ -19,7 +19,7 @@ namespace RimWorld
         // Token: 0x060009B9 RID: 2489 RVA: 0x0004E0A3 File Offset: 0x0004C4A3
         protected override bool Satisfied(Pawn pawn)
         {
-            return pawn.Map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_EggXenomorphFertilized).Count > this.eggCount;
+            return pawn.Map.listerThings.ThingsOfDef(XenomorphDefOf.AvP_EggXenomorphFertilized).Count > this.eggCount;
         }
 
         // Token: 0x040003F6 RID: 1014

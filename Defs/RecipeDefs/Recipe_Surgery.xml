@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
   <RecipeDef ParentName="SurgeryFlesh">
-    <defName>RRY_GauntletRemoval</defName>
+    <defName>AvP_GauntletRemoval</defName>
     <label>Attempt Gauntlet removal</label>
     <description>Gauntlet removal</description>
     <workerClass>RRYautja.Recipe_Remove_Gauntlet</workerClass>
     <jobString>Attempting to remove yautja gauntlet</jobString>
     <workAmount>1500</workAmount>
-    <removesHediff>AvP_Yautja_Wristblade</removesHediff>
+    <removesHediff>AvP_Hediff_Yautja_Wristblade</removesHediff>
     <successfullyRemovedHediffMessage>{0} has successfully removed the gauntlet from {1}'s arm.</successfullyRemovedHediffMessage>
     <deathOnFailedSurgeryChance>0.0</deathOnFailedSurgeryChance>
     <surgerySuccessChanceFactor>1</surgerySuccessChanceFactor>
@@ -24,24 +24,24 @@
         <count>1</count>
       </li>
     </ingredients>
-    <!--fixedIngredientFilter>
+    <fixedIngredientFilter>
       <categories>
         <li>Medicine</li>
       </categories>
       <disallowedThingDefs>
         <li>MedicineHerbal</li>
       </disallowedThingDefs>
-    </fixedIngredientFilter-->
+    </fixedIngredientFilter>
   </RecipeDef>
 
   <RecipeDef ParentName="SurgeryFlesh">
-    <defName>RRY_FaceHuggerRemoval</defName>
+    <defName>AvP_FaceHuggerRemoval</defName>
     <label>Attempt Facehugger removal</label>
     <description>Facehugger removal</description>
     <workerClass>RRYautja.Recipe_RemoveHugger</workerClass>
     <jobString>Attempting to remove xenomorph parasite</jobString>
     <workAmount>1500</workAmount>
-    <removesHediff>RRY_FaceHuggerInfection</removesHediff>
+    <removesHediff>AvP_FaceHuggerInfection</removesHediff>
     <successfullyRemovedHediffMessage>{0} has successfully removed the parasite from {1}'s head.</successfullyRemovedHediffMessage>
     <deathOnFailedSurgeryChance>0.350</deathOnFailedSurgeryChance>
     <surgerySuccessChanceFactor>0.35</surgerySuccessChanceFactor>
@@ -69,13 +69,13 @@
   </RecipeDef>
 
   <RecipeDef ParentName="SurgeryFlesh">
-    <defName>RRY_XenomorphImpregnationRemoval</defName>
+    <defName>AvP_XenomorphImpregnationRemoval</defName>
     <label>Attempt embyro removal</label>
     <description>Embyro removal</description>
     <workerClass>Recipe_RemoveHediff</workerClass>
     <jobString>Attempting to remove xenomorph parasite</jobString>
     <workAmount>1500</workAmount>
-    <removesHediff>RRY_XenomorphImpregnation</removesHediff>
+    <removesHediff>AvP_XenomorphImpregnation</removesHediff>
     <successfullyRemovedHediffMessage>{0} has successfully removed Embyro {1}.</successfullyRemovedHediffMessage>
     <deathOnFailedSurgeryChance>0.750</deathOnFailedSurgeryChance>
     <surgerySuccessChanceFactor>0.35</surgerySuccessChanceFactor>
@@ -103,13 +103,13 @@
   </RecipeDef>
   
   <RecipeDef ParentName="SurgeryFlesh">
-    <defName>RRY_NeomorphImpregnationRemoval</defName>
+    <defName>AvP_NeomorphImpregnationRemoval</defName>
     <label>Attempt embyro removal</label>
     <description>Embyro removal</description>
     <workerClass>Recipe_RemoveHediff</workerClass>
     <jobString>Attempting to remove neomorph parasite</jobString>
     <workAmount>1500</workAmount>
-    <removesHediff>RRY_NeomorphImpregnation</removesHediff>
+    <removesHediff>AvP_NeomorphImpregnation</removesHediff>
     <successfullyRemovedHediffMessage>{0} has successfully removed Embyro {1}.</successfullyRemovedHediffMessage>
     <deathOnFailedSurgeryChance>0.750</deathOnFailedSurgeryChance>
     <surgerySuccessChanceFactor>0.35</surgerySuccessChanceFactor>

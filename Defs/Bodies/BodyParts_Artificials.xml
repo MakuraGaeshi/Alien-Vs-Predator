@@ -3,7 +3,7 @@
 <Defs>
 
   <BodyPartDef>
-    <defName>RRY_BehavorialInhibitor</defName>
+    <defName>AvP_BehavorialInhibitor</defName>
     <label>behavorial inhibitor</label>
     <hitPoints>4</hitPoints>
     <frostbiteVulnerability>0.5</frostbiteVulnerability>

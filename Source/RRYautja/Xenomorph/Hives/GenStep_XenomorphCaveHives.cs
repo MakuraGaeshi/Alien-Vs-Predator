@@ -71,8 +71,8 @@ namespace RimWorld
                 return;
             }
             this.possibleSpawnCells.Remove(intVec);
-            HiveLike hive = (HiveLike)GenSpawn.Spawn(ThingMaker.MakeThing(XenomorphDefOf.RRY_Xenomorph_Hive, null), intVec, map, WipeMode.Vanish);
-            hive.SetFaction(Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph), null);
+            HiveLike hive = (HiveLike)GenSpawn.Spawn(ThingMaker.MakeThing(XenomorphDefOf.AvP_Xenomorph_Hive, null), intVec, map, WipeMode.Vanish);
+            hive.SetFaction(Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.AvP_Xenomorph), null);
             hive.caveColony = true;
             /*
             (from x in hive.GetComps<CompSpawner>()

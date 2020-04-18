@@ -46,15 +46,15 @@ namespace RimWorld
             {
                 if (pawn.mindState.duty!=null)
                 {
-                    if (pawn.mindState.duty.focus.Cell.GetThingList(pawn.Map).Any(x => x.def == XenomorphDefOf.RRY_Xenomorph_Hive))
+                    if (pawn.mindState.duty.focus.Cell.GetThingList(pawn.Map).Any(x => x.def == XenomorphDefOf.AvP_Xenomorph_Hive))
                     {
                         Searchradius = 7f;
                     }
-                    if (pawn.mindState.duty.focus.Cell.GetThingList(pawn.Map).Any(x => x.def == XenomorphDefOf.RRY_Xenomorph_Hive_Child))
+                    if (pawn.mindState.duty.focus.Cell.GetThingList(pawn.Map).Any(x => x.def == XenomorphDefOf.AvP_Xenomorph_Hive_Child))
                     {
                         Searchradius = 3f;
                     }
-                    if (pawn.mindState.duty.focus.Cell.GetThingList(pawn.Map).Any(x => x.def == XenomorphDefOf.RRY_Xenomorph_Hive_Slime))
+                    if (pawn.mindState.duty.focus.Cell.GetThingList(pawn.Map).Any(x => x.def == XenomorphDefOf.AvP_Xenomorph_Hive_Slime))
                     {
                         Searchradius = 5f;
                     }
@@ -64,8 +64,8 @@ namespace RimWorld
             {
                 if (XenomorphKidnapUtility.TryFindGoodHiveLoc(pawn, out c, t, true, !this.forceRoofed, this.forceCanDig))
                 {
-                    ThingDef namedA = XenomorphDefOf.RRY_Xenomorph_Cocoon_Humanoid;
-                    ThingDef namedB = XenomorphDefOf.RRY_Xenomorph_Cocoon_Animal;
+                    ThingDef namedA = XenomorphDefOf.AvP_Xenomorph_Cocoon_Humanoid;
+                    ThingDef namedB = XenomorphDefOf.AvP_Xenomorph_Cocoon_Animal;
                     bool selected = pawn.Map != null ? Find.Selector.SelectedObjects.Contains(pawn) && (Prefs.DevMode) : false;
                     if (c != IntVec3.Invalid && t != null && pawn.CanReach(c, PathEndMode.ClosestTouch, Danger.Deadly, true, TraverseMode.PassAllDestroyableThings))
                     {
@@ -89,13 +89,13 @@ namespace RimWorld
                         {
                             if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("TryFindGoodHiveLoc pawn.GetLord() == null"));
                         }
-                        if (pawn.mindState.duty.def != XenomorphDefOf.RRY_Xenomorph_DefendAndExpandHive && pawn.mindState.duty.def != XenomorphDefOf.RRY_Xenomorph_DefendHiveAggressively)
+                        if (pawn.mindState.duty.def != XenomorphDefOf.AvP_Xenomorph_DefendAndExpandHive && pawn.mindState.duty.def != XenomorphDefOf.AvP_Xenomorph_DefendHiveAggressively)
                         {
-                            pawn.mindState.duty = new PawnDuty(XenomorphDefOf.RRY_Xenomorph_DefendAndExpandHive, c, 40f);
+                            pawn.mindState.duty = new PawnDuty(XenomorphDefOf.AvP_Xenomorph_DefendAndExpandHive, c, 40f);
                         }
                         if (RCellFinder.TryFindRandomCellNearWith(c, validator, pawn.Map, out IntVec3 lc, 2, 6))
                         {
-                            return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Kidnap)
+                            return new Job(XenomorphDefOf.AvP_Job_Xenomorph_Kidnap)
                             {
                                 targetA = t,
                                 targetB = lc,

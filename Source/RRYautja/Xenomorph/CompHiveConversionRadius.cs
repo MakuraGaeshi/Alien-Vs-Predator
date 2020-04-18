@@ -83,7 +83,7 @@ namespace RimWorld
             }
             TerrainDef terrain = c.GetTerrain(map);
             Thing thing = c.GetEdifice(map);
-            bool flith = c.GetThingList(map).Any((Thing x) => x.def == XenomorphDefOf.RRY_Filth_Slime);
+            bool flith = c.GetThingList(map).Any((Thing x) => x.def == XenomorphDefOf.AvP_Filth_Slime);
             bool wall = thing!=null;
             if (flith)
             {

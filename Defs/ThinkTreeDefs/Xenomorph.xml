@@ -2,7 +2,7 @@
 <Defs>
 
 	<ThinkTreeDef>
-		<defName>RRY_Xenomorph</defName>
+		<defName>AvP_Xenomorph</defName>
 		<thinkRoot Class="ThinkNode_Priority">
       <subNodes>
 		<!-- Has no lord, Brood -->
@@ -115,7 +115,7 @@
         
 		<!-- Face Hugger Hunting -->
 		<li Class="ThinkNode_ConditionalPawnKind">
-		  <pawnKind>RRY_Xenomorph_FaceHugger</pawnKind>
+		  <pawnKind>AvP_Xenomorph_FaceHugger</pawnKind>
 		  <subNodes>
 			<li Class="ThinkNode_Tagger">
 			  <tagToGive>Idle</tagToGive>
@@ -143,7 +143,7 @@
 		
 		<!-- Royal Hugger Hunting -->
 		<li Class="ThinkNode_ConditionalPawnKind">
-		  <pawnKind>RRY_Xenomorph_RoyaleHugger</pawnKind>
+		  <pawnKind>AvP_Xenomorph_RoyaleHugger</pawnKind>
 		  <subNodes>
 			<li Class="ThinkNode_Tagger">
 			  <tagToGive>Idle</tagToGive>
@@ -175,7 +175,7 @@
 				
 			<!-- Drone Gather Infectable Hunting -->
 			<li Class="ThinkNode_ConditionalPawnKind">
-			  <pawnKind>RRY_Xenomorph_Drone</pawnKind>
+			  <pawnKind>AvP_Xenomorph_Drone</pawnKind>
 			  <subNodes>
 					<li Class="ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby">
 					  <subNodes>
@@ -436,7 +436,7 @@
   <!--============= Dig out if I can't reach map edge ===========-->
   
   <ThinkTreeDef>
-    <defName>RRY_Xenomorph_DigOutIfCannotReachMapEdge</defName>
+    <defName>AvP_Xenomorph_DigOutIfCannotReachMapEdge</defName>
     <thinkRoot Class="ThinkNode_ConditionalCannotReachMapEdge">
       <subNodes>
         <li Class="ThinkNode_Tagger">

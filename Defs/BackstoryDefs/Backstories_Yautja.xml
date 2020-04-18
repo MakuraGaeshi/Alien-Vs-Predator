@@ -3,7 +3,7 @@
 <!-- ================================ Yautja - Childhood ================================ -->
 <!-- ================================ Yautja - Unblooded ================================ -->
   <AlienRace.BackstoryDef>
-    <defName>RRY_Yautja_Unblooded</defName>
+    <defName>AvP_Yautja_Unblooded</defName>
     <title>Unblooded</title>
     <baseDescription>[PAWN_nameDef] was an Unblooded, one of the unrefined hunters of the future. Unblooded [PAWN_alienRace] are young predators who haven't completed basic training. They are, or are close to, physically mature adults.
 	</baseDescription>
@@ -50,24 +50,24 @@
        
     </forcedHediffs>
     <spawnCategories>
-      <li>RRY_Yautja_Standard</li>
-      <li>RRY_Yautja_Unblooded</li>
-      <li>RRY_Yautja_BadBlood</li>
-      <li>RRY_Yautja_Blooded</li>
-      <li>RRY_Yautja_Adult</li>
-      <li>RRY_Yautja_Hunter</li>
-      <li>RRY_Yautja_YoungBlood</li>
-      <li>RRY_Yautja_Unblooded</li>
-      <li>RRY_Yautja_Ancient</li>
-      <li>RRY_Yautja_Elder</li>
-      <li>RRY_Yautja_Elite</li>
+      <li>AvP_Yautja_Standard</li>
+      <li>AvP_Yautja_Unblooded</li>
+      <li>AvP_Yautja_BadBlood</li>
+      <li>AvP_Yautja_Blooded</li>
+      <li>AvP_Yautja_Adult</li>
+      <li>AvP_Yautja_Hunter</li>
+      <li>AvP_Yautja_YoungBlood</li>
+      <li>AvP_Yautja_Unblooded</li>
+      <li>AvP_Yautja_Ancient</li>
+      <li>AvP_Yautja_Elder</li>
+      <li>AvP_Yautja_Elite</li>
     </spawnCategories>
   </AlienRace.BackstoryDef>
 
 <!-- ================================ Yautja - Gutter Pup ================================ -->
   
   <AlienRace.BackstoryDef>
-    <defName>RRY_Yautja_Unblooded_GutterPup</defName>
+    <defName>AvP_Yautja_Unblooded_GutterPup</defName>
     <title>Unblooded Gutter Pup</title>
     <baseDescription>[PAWN_nameDef] was part of the trash of the [PAWN_alienRace] race. Growing up in the low pits is no easy task. [PAWN_pronoun] had to toughen [PAWN_objective]self and learn to survive on nothing. [PAWN_pronoun] learned to get the most out of nothing, moving during the night so as not to be caught.</baseDescription>
 
@@ -117,23 +117,23 @@
        
     </forcedHediffs>
     <spawnCategories>
-      <li>RRY_Yautja_Standard</li>
-      <li>RRY_Yautja_Unblooded</li>
-      <li>RRY_Yautja_BadBlood</li>
-      <li>RRY_Yautja_Blooded</li>
-      <li>RRY_Yautja_Adult</li>
-      <li>RRY_Yautja_Hunter</li>
-      <li>RRY_Yautja_YoungBlood</li>
-      <li>RRY_Yautja_Ancient</li>
-      <li>RRY_Yautja_Elder</li>
-      <li>RRY_Yautja_Elite</li>
+      <li>AvP_Yautja_Standard</li>
+      <li>AvP_Yautja_Unblooded</li>
+      <li>AvP_Yautja_BadBlood</li>
+      <li>AvP_Yautja_Blooded</li>
+      <li>AvP_Yautja_Adult</li>
+      <li>AvP_Yautja_Hunter</li>
+      <li>AvP_Yautja_YoungBlood</li>
+      <li>AvP_Yautja_Ancient</li>
+      <li>AvP_Yautja_Elder</li>
+      <li>AvP_Yautja_Elite</li>
     </spawnCategories>
   </AlienRace.BackstoryDef>
 
 <!-- ================================ Yautja - Highborn ================================ -->
   
   <AlienRace.BackstoryDef>
-    <defName>RRY_Yautja_Unblooded_Highborn</defName>
+    <defName>AvP_Yautja_Unblooded_Highborn</defName>
     <title>Unblooded Highborn</title>
     <baseDescription>[PAWN_nameDef] was the child of one of the most prolific hunters of the Clan. [PAWN_possessive] mother raised [PAWN_objective] with the hope that [PAWN_pronoun] would become the next Clan Leader.</baseDescription>
 
@@ -164,16 +164,16 @@
        
     </forcedHediffs>
     <spawnCategories>
-      <li>RRY_Yautja_Standard</li>
-      <li>RRY_Yautja_Unblooded</li>
-      <li>RRY_Yautja_BadBlood</li>
-      <li>RRY_Yautja_Blooded</li>
-      <li>RRY_Yautja_Adult</li>
-      <li>RRY_Yautja_Hunter</li>
-      <li>RRY_Yautja_YoungBlood</li>
-      <li>RRY_Yautja_Ancient</li>
-      <li>RRY_Yautja_Elder</li>
-      <li>RRY_Yautja_Elite</li>
+      <li>AvP_Yautja_Standard</li>
+      <li>AvP_Yautja_Unblooded</li>
+      <li>AvP_Yautja_BadBlood</li>
+      <li>AvP_Yautja_Blooded</li>
+      <li>AvP_Yautja_Adult</li>
+      <li>AvP_Yautja_Hunter</li>
+      <li>AvP_Yautja_YoungBlood</li>
+      <li>AvP_Yautja_Ancient</li>
+      <li>AvP_Yautja_Elder</li>
+      <li>AvP_Yautja_Elite</li>
     </spawnCategories>
   </AlienRace.BackstoryDef>
 
@@ -182,7 +182,7 @@
 <!-- ================================ Yautja - Young Blood ================================ -->
   
   <AlienRace.BackstoryDef>
-    <defName>RRY_Yautja_YoungBlood</defName>
+    <defName>AvP_Yautja_YoungBlood</defName>
     <title>Young blood</title>
     <baseDescription>[PAWN_nameDef] is a Young adult [PAWN_alienRace] who is yet to be seen as a true hunter in the eyes of [PAWN_possessive] clanmates. These hunters are competent enough to overpower a skilled human fighter, however their skill against a Xenomorph varies. Once they kill one, [PAWN_alienRace] mark themselves with Xenomorph blood, completing their initiation into Adulthood.</baseDescription>
     <bodyTypeMale>Male</bodyTypeMale>
@@ -210,18 +210,18 @@
 	<forcedHediffs>
     </forcedHediffs>
     <spawnCategories>
-      <li>RRY_Yautja_Standard</li>
-      <li>RRY_Yautja_Adult</li>
-      <li>RRY_Yautja_Hunter</li>
-      <li>RRY_Yautja_YoungBlood</li>
-      <li>RRY_Yautja_Unblooded</li>
+      <li>AvP_Yautja_Standard</li>
+      <li>AvP_Yautja_Adult</li>
+      <li>AvP_Yautja_Hunter</li>
+      <li>AvP_Yautja_YoungBlood</li>
+      <li>AvP_Yautja_Unblooded</li>
     </spawnCategories>
   </AlienRace.BackstoryDef>
 
 <!-- ================================ Yautja - Blooded ================================ -->
 
   <AlienRace.BackstoryDef>
-    <defName>RRY_Yautja_Blooded</defName>
+    <defName>AvP_Yautja_Blooded</defName>
     <title>Blooded Hunter</title>
     <titleShort>Blooded</titleShort>
 	
@@ -246,16 +246,16 @@
       </li>
     </skillGains>
     <spawnCategories>
-      <li>RRY_Yautja_Standard</li>
-      <li>RRY_Yautja_Adult</li>
-      <li>RRY_Yautja_Hunter</li>
-      <li>RRY_Yautja_Blooded</li>
+      <li>AvP_Yautja_Standard</li>
+      <li>AvP_Yautja_Adult</li>
+      <li>AvP_Yautja_Hunter</li>
+      <li>AvP_Yautja_Blooded</li>
     </spawnCategories>
   </AlienRace.BackstoryDef>
   
 <!-- ================================ Yautja - Elite ================================ -->
   <AlienRace.BackstoryDef>
-    <defName>RRY_Yautja_Elite</defName>
+    <defName>AvP_Yautja_Elite</defName>
     <title>Yautja Elite</title>
     <titleShort>Elite</titleShort>
 	
@@ -280,17 +280,17 @@
       </li>
     </skillGains>
     <spawnCategories>
-      <li>RRY_Yautja_Standard</li>
-      <li>RRY_Yautja_Adult</li>
-      <li>RRY_Yautja_Hunter</li>
-      <li>RRY_Yautja_Elite</li>
-      <li>RRY_Yautja_Blooded</li>
+      <li>AvP_Yautja_Standard</li>
+      <li>AvP_Yautja_Adult</li>
+      <li>AvP_Yautja_Hunter</li>
+      <li>AvP_Yautja_Elite</li>
+      <li>AvP_Yautja_Blooded</li>
     </spawnCategories>
   </AlienRace.BackstoryDef>
   
 <!-- ================================ Yautja - Elder ================================ -->
   <AlienRace.BackstoryDef>
-    <defName>RRY_Yautja_Elder</defName>
+    <defName>AvP_Yautja_Elder</defName>
     <title>Yautja Elder</title>
     <titleShort>Elder</titleShort>
 	
@@ -320,17 +320,17 @@
       </li>
     </skillGains>
     <spawnCategories>
-      <li>RRY_Yautja_Standard</li>
-      <li>RRY_Yautja_Adult</li>
-      <li>RRY_Yautja_Hunter</li>
-      <li>RRY_Yautja_Elder</li>
-      <li>RRY_Yautja_Blooded</li>
+      <li>AvP_Yautja_Standard</li>
+      <li>AvP_Yautja_Adult</li>
+      <li>AvP_Yautja_Hunter</li>
+      <li>AvP_Yautja_Elder</li>
+      <li>AvP_Yautja_Blooded</li>
     </spawnCategories>
   </AlienRace.BackstoryDef>
   
 <!-- ================================ Yautja - Ancient ================================ -->
   <AlienRace.BackstoryDef>
-    <defName>RRY_Yautja_Ancient</defName>
+    <defName>AvP_Yautja_Ancient</defName>
     <title>Yautja Ancient</title>
     <titleShort>Ancient</titleShort>
 	
@@ -356,16 +356,16 @@
       </li>
     </skillGains>
     <spawnCategories>
-      <li>RRY_Yautja_Standard</li>
-      <li>RRY_Yautja_Adult</li>
-      <li>RRY_Yautja_Ancient</li>
-      <li>RRY_Yautja_Blooded</li>
+      <li>AvP_Yautja_Standard</li>
+      <li>AvP_Yautja_Adult</li>
+      <li>AvP_Yautja_Ancient</li>
+      <li>AvP_Yautja_Blooded</li>
     </spawnCategories>
   </AlienRace.BackstoryDef>
   
   <!-- ================================ Yautja - Houndmaster ================================ -->
   <AlienRace.BackstoryDef>
-    <defName>RRY_Yautja_Houndmaster</defName>
+    <defName>AvP_Yautja_Houndmaster</defName>
     <title>Houndmaster</title>
     <titleShort>Houndmaster</titleShort>
 	<baseDescription>[PAWN_nameDef] spent [PAWN_possessive] Blooded life keeping and training animals. Instead of relying solely on [PAWN_possessive] gear, [PAWN_nameDef] prefers to hunt [PAWN_possessive] prey alongside [PAWN_possessive] pets.</baseDescription>
@@ -394,18 +394,18 @@
 	</li>
     </skillGains>
     <spawnCategories>
-      <li>RRY_Yautja_Standard</li>
-      <li>RRY_Yautja_Adult</li>
-      <li>RRY_Yautja_Hunter</li>
-      <li>RRY_Yautja_Elder</li>
-      <li>RRY_Yautja_Blooded</li>
+      <li>AvP_Yautja_Standard</li>
+      <li>AvP_Yautja_Adult</li>
+      <li>AvP_Yautja_Hunter</li>
+      <li>AvP_Yautja_Elder</li>
+      <li>AvP_Yautja_Blooded</li>
     </spawnCategories>
   </AlienRace.BackstoryDef>
   
     <!-- ================================ Yautja - Pit Fighter ================================ -->
   
   <AlienRace.BackstoryDef>
-    <defName>RRY_Yautja_PitChampion</defName>
+    <defName>AvP_Yautja_PitChampion</defName>
     <title>Pit Fighter</title>
     <titleShort>Fighter</titleShort>
 	
@@ -438,18 +438,18 @@
       
     </skillGains>
     <spawnCategories>
-      <li>RRY_Yautja_Standard</li>
-      <li>RRY_Yautja_Adult</li>
-      <li>RRY_Yautja_Hunter</li>
-      <li>RRY_Yautja_Elder</li>
-      <li>RRY_Yautja_Blooded</li>
+      <li>AvP_Yautja_Standard</li>
+      <li>AvP_Yautja_Adult</li>
+      <li>AvP_Yautja_Hunter</li>
+      <li>AvP_Yautja_Elder</li>
+      <li>AvP_Yautja_Blooded</li>
     </spawnCategories>
   </AlienRace.BackstoryDef>
   
       <!-- ================================ Yautja - ETA ================================ -->
   
   <AlienRace.BackstoryDef>
-    <defName>RRY_Yautja_ETA</defName>
+    <defName>AvP_Yautja_ETA</defName>
     <title>Eta</title>
     <titleShort>Eta</titleShort>
 	
@@ -496,18 +496,18 @@
 		</li>
     </skillGains>
     <spawnCategories>
-      <li>RRY_Yautja_Standard</li>
-      <li>RRY_Yautja_Adult</li>
-      <li>RRY_Yautja_Hunter</li>
-      <li>RRY_Yautja_Elder</li>
-      <li>RRY_Yautja_Blooded</li>
+      <li>AvP_Yautja_Standard</li>
+      <li>AvP_Yautja_Adult</li>
+      <li>AvP_Yautja_Hunter</li>
+      <li>AvP_Yautja_Elder</li>
+      <li>AvP_Yautja_Blooded</li>
     </spawnCategories>
   </AlienRace.BackstoryDef>
   
         <!-- ================================ Yautja - Smith ================================ -->
   
   <AlienRace.BackstoryDef>
-    <defName>RRY_Yautja_BlackSmith</defName>
+    <defName>AvP_Yautja_BlackSmith</defName>
     <title>Black Smith</title>
     <titleShort>Smith</titleShort>
 	
@@ -559,18 +559,18 @@
     </li>
     </skillGains>
     <spawnCategories>
-      <li>RRY_Yautja_Standard</li>
-      <li>RRY_Yautja_Adult</li>
-      <li>RRY_Yautja_Hunter</li>
-      <li>RRY_Yautja_Elder</li>
-      <li>RRY_Yautja_Blooded</li>
+      <li>AvP_Yautja_Standard</li>
+      <li>AvP_Yautja_Adult</li>
+      <li>AvP_Yautja_Hunter</li>
+      <li>AvP_Yautja_Elder</li>
+      <li>AvP_Yautja_Blooded</li>
     </spawnCategories>
   </AlienRace.BackstoryDef>
   
    <!-- ================================ Yautja - Widow ================================ -->
   
   <AlienRace.BackstoryDef>
-    <defName>RRY_Yautja_Widow</defName>
+    <defName>AvP_Yautja_Widow</defName>
     <title>Widow</title>
     <titleShort>Widow</titleShort>
 	<baseDescription>[PAWN_nameDef] lost [PAWN_possessive] mate. [PAWN_pronoun] chose the best partner, raised [PAWN_possessive] mate's Suckling. All [PAWN_pronoun] got for it was pain. The grief process was long and arduous. Many [PAWN_alienRace] lose their minds. [PAWN_nameDef] swore vengeance and now hunts as brutally, if not more so, than the other Hunters.</baseDescription>
@@ -618,18 +618,18 @@
     </li>
     </skillGains>
     <spawnCategories>
-      <li>RRY_Yautja_Standard</li>
-      <li>RRY_Yautja_Adult</li>
-      <li>RRY_Yautja_Hunter</li>
-      <li>RRY_Yautja_Elder</li>
-      <li>RRY_Yautja_Blooded</li>
+      <li>AvP_Yautja_Standard</li>
+      <li>AvP_Yautja_Adult</li>
+      <li>AvP_Yautja_Hunter</li>
+      <li>AvP_Yautja_Elder</li>
+      <li>AvP_Yautja_Blooded</li>
     </spawnCategories>
   </AlienRace.BackstoryDef>
   
   <!-- ================================ Yautja - Survivor ================================ -->
   
  <AlienRace.BackstoryDef>
-    <defName>RRY_Yautja_Survivor</defName>
+    <defName>AvP_Yautja_Survivor</defName>
     <title>Blooded Survivor</title>
     <titleShort>Survivor</titleShort>
 	
@@ -684,18 +684,18 @@
 		<li>Misc</li>
     </forcedHediffs>-->
     <spawnCategories>
-      <li>RRY_Yautja_Standard</li>
-      <li>RRY_Yautja_Adult</li>
-      <li>RRY_Yautja_Hunter</li>
-      <li>RRY_Yautja_Elder</li>
-      <li>RRY_Yautja_Blooded</li>
+      <li>AvP_Yautja_Standard</li>
+      <li>AvP_Yautja_Adult</li>
+      <li>AvP_Yautja_Hunter</li>
+      <li>AvP_Yautja_Elder</li>
+      <li>AvP_Yautja_Blooded</li>
     </spawnCategories>
   </AlienRace.BackstoryDef>
   
   <!-- ================================ Yautja - Bad Blood ================================ -->
   
   <AlienRace.BackstoryDef>
-    <defName>RRY_Yautja_BadBloodA</defName>
+    <defName>AvP_Yautja_BadBloodA</defName>
     <title>Bad Blood</title>
     <titleShort>Bad Blood</titleShort>
 	
@@ -750,13 +750,13 @@
       </li>
     </skillGains>
     <spawnCategories>
-      <li>RRY_Yautja_BadBlood</li>
+      <li>AvP_Yautja_BadBlood</li>
     </spawnCategories>
   </AlienRace.BackstoryDef>
  
  <!-- ================================ Yautja - Exile ================================ -->
   <AlienRace.BackstoryDef>
-    <defName>RRY_Yautja_BadBloodB</defName>
+    <defName>AvP_Yautja_BadBloodB</defName>
     <title>Exile</title>
     <titleShort>Exile</titleShort>
 	
@@ -819,7 +819,7 @@
       </li>
     </skillGains>
     <spawnCategories>
-      <li>RRY_Yautja_BadBlood</li>
+      <li>AvP_Yautja_BadBlood</li>
     </spawnCategories>
   </AlienRace.BackstoryDef>
 

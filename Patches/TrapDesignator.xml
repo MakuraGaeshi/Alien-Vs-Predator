@@ -21,7 +21,7 @@
 			<li Class="PatchOperationAdd">
 				<xpath>/Defs/MapGeneratorDef[defName = "Base_Player"]/genSteps</xpath>
 				<value>
-					<li>RRY_Xenomorph_CaveHives</li>
+					<li>AvP_Xenomorph_CaveHives</li>
 				</value>
 			</li>
 		</operations>	

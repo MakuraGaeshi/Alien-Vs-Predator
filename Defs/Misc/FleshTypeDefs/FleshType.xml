@@ -5,7 +5,7 @@
     <defName>AvP_Flesh_Yautja</defName>
     <ateDirect>AteHumanlikeMeatDirect</ateDirect>
     <ateAsIngredient>AteHumanlikeMeatAsIngredient</ateAsIngredient>
-    <corpseCategory>RRY_Corpses_Yautja</corpseCategory>
+    <corpseCategory>AvP_Corpses_Yautja</corpseCategory>
 	<!-- RGB in the photoshop is (R=196  G= 192  B=124) -->
     <wounds>
       <li>
@@ -24,10 +24,10 @@
   </FleshTypeDef>
   
   <FleshTypeDef>
-    <defName>RRY_Xenomorph</defName>
+    <defName>AvP_Xenomorph</defName>
     <ateDirect>AteInsectMeatDirect</ateDirect>
     <ateAsIngredient>AteInsectMeatAsIngredient</ateAsIngredient>
-    <corpseCategory>RRY_Corpses_Xenomorph</corpseCategory>
+    <corpseCategory>AvP_Corpses_Xenomorph</corpseCategory>
 	<!-- RGB in the photoshop is (R=196  G= 192  B=124) -->
     <wounds>
       <li>
@@ -46,10 +46,10 @@
   </FleshTypeDef>
   
   <FleshTypeDef>
-    <defName>RRY_Neomorph</defName>
+    <defName>AvP_Neomorph</defName>
     <ateDirect>AteInsectMeatDirect</ateDirect>
     <ateAsIngredient>AteInsectMeatAsIngredient</ateAsIngredient>
-    <corpseCategory>RRY_Corpses_Xenomorph</corpseCategory>
+    <corpseCategory>AvP_Corpses_Xenomorph</corpseCategory>
 	<!-- RGB in the photoshop is (R=196  G= 192  B=124) -->
     <wounds>
       <li>
@@ -68,10 +68,10 @@
   </FleshTypeDef>
   
   <FleshTypeDef>
-    <defName>RRY_SynthFlesh</defName>
+    <defName>AvP_SynthFlesh</defName>
     <ateDirect>AteInsectMeatDirect</ateDirect>
     <ateAsIngredient>AteInsectMeatAsIngredient</ateAsIngredient>
-    <corpseCategory>RRY_Corpses_Xenomorph</corpseCategory>
+    <corpseCategory>AvP_Corpses_Xenomorph</corpseCategory>
 	<!-- RGB in the photoshop is (R=224  G= 224  B=224) -->
     <wounds>
       <li>

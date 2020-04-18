@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
   <!-- Mod Settings -->
-  <RRY_AllowYautjaFaction>Enable Yautja: this Should enable all Yautja factions, Scenarios, related incidents and events</RRY_AllowYautjaFaction>
-  <RRY_AllowXenomorphFaction>Enable Xenomorphs:\n1this Should enable all Xenomorph related incidents and events</RRY_AllowXenomorphFaction>
-  <RRY_AllowHiddenInfections>Allow Hidden Impregnations:\nDisable this to stop pawns spawning impregnated</RRY_AllowHiddenInfections>
-  <RRY_AllowPredalienImpregnations>Allow Predalien Impregnations: Disable this to Predaliens from being able to impregnate female pawns</RRY_AllowPredalienImpregnations>
-  <RRY_FacehuggerRemovalDeathChance>Facehugger Removal Death Chance:\n{0}% of patient death on fail</RRY_FacehuggerRemovalDeathChance>
-  <RRY_EmbryoRemovalDeathChance>Embryo Removal Death Chance:\n{0}% of patient death on fail</RRY_EmbryoRemovalDeathChance>
-  <RRY_AllowXenoCocoonMetamorph>Allow Cocooned pawns to be converted to Eggs if there are no Queens present</RRY_AllowXenoCocoonMetamorph>
-  <RRY_AllowXenoEggMetamorph>Allows Ovimorph mutation</RRY_AllowXenoEggMetamorph>
-  <RRY_AllowNonHumanlikeHosts>Allows Xenomorph Impregnations of Non-Humanlikes</RRY_AllowNonHumanlikeHosts>
-  <RRY_HostKinds>Suitable Hosts: {1}/{0} enabled</RRY_HostKinds>
-  <RRY_NonHostKinds>Unsuitable Hosts: {0}</RRY_NonHostKinds>
+  <AvP_AllowYautjaFaction>Enable Yautja: this Should enable all Yautja factions, Scenarios, related incidents and events</AvP_AllowYautjaFaction>
+  <AvP_AllowXenomorphFaction>Enable Xenomorphs:\n1this Should enable all Xenomorph related incidents and events</AvP_AllowXenomorphFaction>
+  <AvP_AllowHiddenInfections>Allow Hidden Impregnations:\nDisable this to stop pawns spawning impregnated</AvP_AllowHiddenInfections>
+  <AvP_AllowPredalienImpregnations>Allow Predalien Impregnations: Disable this to Predaliens from being able to impregnate female pawns</AvP_AllowPredalienImpregnations>
+  <AvP_FacehuggerRemovalDeathChance>Facehugger Removal Death Chance:\n{0}% of patient death on fail</AvP_FacehuggerRemovalDeathChance>
+  <AvP_EmbryoRemovalDeathChance>Embryo Removal Death Chance:\n{0}% of patient death on fail</AvP_EmbryoRemovalDeathChance>
+  <AvP_AllowXenoCocoonMetamorph>Allow Cocooned pawns to be converted to Eggs if there are no Queens present</AvP_AllowXenoCocoonMetamorph>
+  <AvP_AllowXenoEggMetamorph>Allows Ovimorph mutation</AvP_AllowXenoEggMetamorph>
+  <AvP_AllowNonHumanlikeHosts>Allows Xenomorph Impregnations of Non-Humanlikes</AvP_AllowNonHumanlikeHosts>
+  <AvP_HostKinds>Suitable Hosts: {1}/{0} enabled</AvP_HostKinds>
+  <AvP_NonHostKinds>Unsuitable Hosts: {0}</AvP_NonHostKinds>
   <!-- Non Canonical Xeno Spawning Options -->
-  <RRY_XenomorphSpawningOptions>Spawning options for Noncanonical Xenoforms</RRY_XenomorphSpawningOptions>
-  <RRY_PredalienSpawning>Allow Predaliens: Allow Predaliens to Spawn</RRY_PredalienSpawning>
-  <RRY_ThrumbomorphSpawning>Allow Thrumbomorphs: Allow Thrumbomorphs to Spawn</RRY_ThrumbomorphSpawning>
-  <RRY_NeomorphSpawning>Allow Neomorphs: Enables Neomorphs</RRY_NeomorphSpawning>
+  <AvP_XenomorphSpawningOptions>Spawning options for Noncanonical Xenoforms</AvP_XenomorphSpawningOptions>
+  <AvP_PredalienSpawning>Allow Predaliens: Allow Predaliens to Spawn</AvP_PredalienSpawning>
+  <AvP_ThrumbomorphSpawning>Allow Thrumbomorphs: Allow Thrumbomorphs to Spawn</AvP_ThrumbomorphSpawning>
+  <AvP_NeomorphSpawning>Allow Neomorphs: Enables Neomorphs</AvP_NeomorphSpawning>
   <!-- Rearmable Traps -->
   <DesignatorRearmTrap>Rearm trap</DesignatorRearmTrap>
   <DesignatorRearmTrapDesc>Rearm a sprung trap so it can be triggered again.</DesignatorRearmTrapDesc>
@@ -42,7 +42,7 @@
   <MedicompTendSelf>Tend Self</MedicompTendSelf>
   <MedicompTendSelfDesc>Tend thier own wounds on the spot</MedicompTendSelfDesc>
    <!-- Yautja -->
-  <RRY_Remove_Gauntlet>Surgically Remove Gauntlet</RRY_Remove_Gauntlet>
+  <AvP_Remove_Gauntlet>Surgically Remove Gauntlet</AvP_Remove_Gauntlet>
   <!-- USCM -->
   <USCM_Dropship_MessageArrived>Dropship has arrive on station</USCM_Dropship_MessageArrived>
   <USCM_Dropship_CommandAddFuel>Add Fuel</USCM_Dropship_CommandAddFuel>
@@ -78,7 +78,7 @@
   <Xeno_Egg_Mutating>Mutation</Xeno_Egg_Mutating>
   <Xeno_Egg_Mutated>Mutated</Xeno_Egg_Mutated>
   <!-- Hives -->
-  <RRY_MessageHiveReproduced>Xenomorph tunnel network expands.</RRY_MessageHiveReproduced>
-  <RRY_HiveReproducesIn>Tunnel network expands in</RRY_HiveReproducesIn>
-  <RRY_DormantHiveNotReproducing>Dormant: Not expanding.</RRY_DormantHiveNotReproducing>
+  <AvP_MessageHiveReproduced>Xenomorph tunnel network expands.</AvP_MessageHiveReproduced>
+  <AvP_HiveReproducesIn>Tunnel network expands in</AvP_HiveReproducesIn>
+  <AvP_DormantHiveNotReproducing>Dormant: Not expanding.</AvP_DormantHiveNotReproducing>
 </LanguageData>

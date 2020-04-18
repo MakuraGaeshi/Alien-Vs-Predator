@@ -26,8 +26,8 @@ namespace RRYautja.HarmonyInstance
             bool flag = pawn != null;
             if (flag)
             {
-                bool flag2 = (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned));
-                bool flag3 = (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection) && Find.TickManager.TicksGame % 5 != 0);
+                bool flag2 = (pawn.health.hediffSet.HasHediff(XenomorphDefOf.AvP_Hediff_Cocooned));
+                bool flag3 = (pawn.health.hediffSet.HasHediff(XenomorphDefOf.AvP_FaceHuggerInfection) && Find.TickManager.TicksGame % 5 != 0);
                 if (flag2 || flag3)
                 {
                     return false;

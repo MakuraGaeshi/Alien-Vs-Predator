@@ -2,7 +2,7 @@
 <Defs>
 
   <TraderKindDef>
-    <defName>RRY_Visitor_Yautja_Standard</defName>
+    <defName>AvP_Visitor_Yautja_Standard</defName>
     <label>trader</label>
     <stockGenerators>
       

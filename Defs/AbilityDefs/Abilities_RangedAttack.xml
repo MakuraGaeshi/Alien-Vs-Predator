@@ -2,8 +2,8 @@
 <Defs>
 <!-- ======================== Ranged Attack Ability Defs ================================== -->
 <!-- ======================== Xenomorphm - Spit Acid Ability ================================== -->
-<ThingDef ParentName="RRY_BaseProjectileAbility">
-   <defName>RRY_Projectile_AcidSpit</defName>
+<ThingDef ParentName="AvP_BaseProjectileAbility">
+   <defName>AvP_Projectile_AcidSpit</defName>
     <tickerType>Normal</tickerType>
     <graphicData>
       <texPath>Things/Projectile/Smoke</texPath>
@@ -12,12 +12,12 @@
       <shaderType>TransparentPostLight</shaderType>
     </graphicData>
 		<projectile>
-			<damageDef>RRY_AcidDamage</damageDef>
+			<damageDef>AvP_AcidDamage</damageDef>
 			<damageAmountBase>3</damageAmountBase>
 			<armorPenetrationBase>0.16</armorPenetrationBase>
 			<explosionRadius>0.50</explosionRadius>
 			<explosionChanceToStartFire>1.0</explosionChanceToStartFire>
-			<postExplosionSpawnThingDef>RRY_FilthBloodXenomorph</postExplosionSpawnThingDef>
+			<postExplosionSpawnThingDef>AvP_FilthBloodXenomorph</postExplosionSpawnThingDef>
 			<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
 			<stoppingPower>0.75</stoppingPower>
 			<speed>30</speed>
@@ -26,7 +26,7 @@
  </ThingDef>
 
 	<RRYautja.EquipmentAbilityDef>
-        <defName>RRY_Ability_SpitAcid</defName>
+        <defName>AvP_Ability_SpitAcid</defName>
         <label>Spit Acid</label>
         <iconPath>Things/Projectile/Smoke</iconPath>
         <description>Spits Acid at the target.</description>
@@ -36,7 +36,7 @@
             <verbClass>RRYautja.Verb_ShootEquipment</verbClass>
             <hasStandardCommand>true</hasStandardCommand>
 			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
-			<defaultProjectile>RRY_Projectile_AcidSpit</defaultProjectile>
+			<defaultProjectile>AvP_Projectile_AcidSpit</defaultProjectile>
             <warmupTime>0.6</warmupTime>
             <burstShotCount>6</burstShotCount>
             <ticksBetweenBurstShots>0</ticksBetweenBurstShots>

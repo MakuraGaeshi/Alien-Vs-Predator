@@ -36,22 +36,22 @@ namespace RimWorld
                     HiveLike hiveFor = base.GetHiveLikeFor(this.lord.ownedPawns[i]);
                     if (hiveFor.parentHiveLike != null)
                     {
-                        duty = new PawnDuty(XenomorphDefOf.RRY_Xenomorph_DefendHiveAggressively, hiveFor.parentHiveLike, this.distToHiveToAttack);
+                        duty = new PawnDuty(XenomorphDefOf.AvP_Xenomorph_DefendHiveAggressively, hiveFor.parentHiveLike, this.distToHiveToAttack);
                     }
                     else
                     {
-                        duty = new PawnDuty(XenomorphDefOf.RRY_Xenomorph_DefendHiveAggressively, hiveFor, this.distToHiveToAttack);
+                        duty = new PawnDuty(XenomorphDefOf.AvP_Xenomorph_DefendHiveAggressively, hiveFor, this.distToHiveToAttack);
                     }
                 }
                 else if (!hive.HiveLoclist.NullOrEmpty())
                 {
                     IntVec3 hiveloc = hive.HiveLoclist.RandomElement();
 
-                    duty = new PawnDuty(XenomorphDefOf.RRY_Xenomorph_DefendHiveAggressively, hiveloc, this.distToHiveToAttack);
+                    duty = new PawnDuty(XenomorphDefOf.AvP_Xenomorph_DefendHiveAggressively, hiveloc, this.distToHiveToAttack);
                 }
                 else
                 {
-                    duty = new PawnDuty(XenomorphDefOf.RRY_Xenomorph_AssaultColony_CutPower);
+                    duty = new PawnDuty(XenomorphDefOf.AvP_Xenomorph_AssaultColony_CutPower);
                 }
                 this.lord.ownedPawns[i].mindState.duty = duty;
             }

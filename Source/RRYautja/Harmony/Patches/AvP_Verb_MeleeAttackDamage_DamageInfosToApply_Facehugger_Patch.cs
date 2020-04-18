@@ -40,7 +40,7 @@ namespace RRYautja.HarmonyInstance
                     Pawn hitPawn = target.Pawn;
                     if (__instance.CasterPawn.isXenomorph())
                     {
-                        if (Attacker.def == XenomorphRacesDefOf.RRY_Xenomorph_FaceHugger)
+                        if (Attacker.def == XenomorphRacesDefOf.AvP_Xenomorph_FaceHugger)
                         {
                             if (!hitPawn.isPotentialHost() || Head(hitPawn) == null)
                             {
@@ -70,9 +70,9 @@ namespace RRYautja.HarmonyInstance
                             float InfectionDefence = 50 + tgtmelee + (armour * 10);
                             float InfecterRoll = (Rand.Value * 100) * (1 - tgtdodge);
 
-                            if ((InfecterRoll > InfectionDefence || (hitPawn.Downed || !hitPawn.Awake())) && !hitPawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Anesthetic))
+                            if ((InfecterRoll > InfectionDefence || (hitPawn.Downed || !hitPawn.Awake())) && !hitPawn.health.hediffSet.HasHediff(XenomorphDefOf.AvP_Hediff_Anesthetic))
                             {
-                                Hediff hediff = HediffMaker.MakeHediff(XenomorphDefOf.RRY_FaceHuggerInfection, hitPawn, null);
+                                Hediff hediff = HediffMaker.MakeHediff(XenomorphDefOf.AvP_FaceHuggerInfection, hitPawn, null);
                                 Comp_Facehugger _Facehugger = Attacker.TryGetComp<Comp_Facehugger>();
                                 HediffComp_XenoFacehugger comp = hediff.TryGetComp<HediffComp_XenoFacehugger>();
                                 comp.instigator = Attacker;

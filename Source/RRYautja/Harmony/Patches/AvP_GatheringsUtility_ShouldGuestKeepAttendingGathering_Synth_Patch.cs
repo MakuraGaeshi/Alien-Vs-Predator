@@ -13,7 +13,7 @@ namespace RRYautja.HarmonyInstance
         [HarmonyPrefix]
         public static bool Prefix(Pawn p, ref bool __result)
         {
-            if (p.def != USCMDefOf.RRY_Synth)
+            if (p.def != USCMDefOf.AvP_Synth)
             {
                 return true;
             }

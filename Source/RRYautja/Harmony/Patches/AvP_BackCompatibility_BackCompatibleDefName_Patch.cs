@@ -20,22 +20,29 @@ namespace RRYautja.HarmonyInstance
         {
             if (GenDefDatabase.GetDefSilentFail(defType, defName, false) == null)
             {
-                if (defName.Contains("RRY_Yautja_"))
+                if (defName.Contains("RRY"))
                 {
-                    __result = Regex.Replace(defName, "^RRY", "AvP");
+                    if (defName.Contains("Corpse_"))
+                    {
+                        __result = Regex.Replace(defName, "RRY", "AvP");
+                        __result = __result.Substring(7);
+                    }
+                    else
+                    if (defName.Contains("Meat_"))
+                    {
+                        __result = Regex.Replace(defName, "RRY", "AvP");
+                        __result = __result.Substring(5);
+                    }
+                    else 
+                        __result = Regex.Replace(defName, "RRY", "AvP");
+
                 }
                 if (GenDefDatabase.GetDefSilentFail(defType, __result, false) != null)
                 {
+                //    Log.Message(string.Format("{0}'s replacement found: {1}", defName, __result));
                     return;
                 }
                 //    Log.Message(string.Format("Checking for replacement for {0} Type: {1}", defName, defType));
-                if (defType == typeof(AlienRace.BackstoryDef))
-                {
-                    if (defName.Contains("RRY_Yautja_"))
-                    {
-                        __result = Regex.Replace(defName, "^RRY", "AvP");
-                    }
-                }
                 if (defType == typeof(ThingDef))
                 {
                     if (defName.Contains("RRY_Melee_Combistaff"))
@@ -96,7 +103,7 @@ namespace RRYautja.HarmonyInstance
                         }
                         if (defName.Contains("_TOGGLEDEF_LH"))
                         {
-                            __result = "_TOGGLEDEF_LH";
+                            __result += "_TOGGLEDEF_LH";
                         }
                     }
 
@@ -167,13 +174,26 @@ namespace RRYautja.HarmonyInstance
                     
 
 
-                    if (defName.Contains("RRY_Rynath"))
+                    if (defName.Contains("Rynath"))
                     {
+                        if (defName.Contains("Leather"))
+                        {
+                            __result = "AvP_Leather_Rhynth";
+                        }
+                        else
+                        if (defName.Contains("Meat"))
+                        {
+                            __result = "Meat_AvP_Rhynth";
+                            __result = __result.Substring(5);
+                        }
+                        else
+                        if (defName.Contains("Corpse"))
+                        {
+                            __result = "Corpse_AvP_Rhynth";
+                            __result = __result.Substring(7);
+                        }
+                        else
                         __result = "AvP_Rhynth";
-                    }
-                    if (defName.Contains("RRY_Leather_Rynath"))
-                    {
-                        __result = "AvP_Leather_Rhynth";
                     }
                     
 
@@ -187,6 +207,17 @@ namespace RRYautja.HarmonyInstance
                 if (defType == typeof(FactionDef))
                 {
 
+                }
+                if (defType == typeof(HairDef))
+                {
+                    if (defName.Contains("RRY_Yaujta_Ponytail"))
+                    {
+                        __result = "AvP_Yautja_Ponytail";
+                    }
+                    if (defName.Contains("RRY_Yaujta_Dreds"))
+                    {
+                        __result = "AvP_Yautja_Dreds";
+                    }
                 }
                 if (defType == typeof(PawnKindDef))
                 {
@@ -266,6 +297,12 @@ namespace RRYautja.HarmonyInstance
                     {
                         __result = "AvP_Hediff_Cloaked";
                     }
+
+                    if (defName.Contains("RRY_WristbladeHeDiff") || defName.Contains("AvP_Yautja_Wristblade"))
+                    {
+                        __result = "AvP_Hediff_Yautja_Wristblade";
+                    }
+
                     if (defName.Contains("RRY_Hediff_BouncedProjectile"))
                     {
                         __result = "AvP_Hediff_BouncedProjectile";

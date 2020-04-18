@@ -1,6 +1,6 @@
 <Defs>
   <ConceptDef>
-    <defName>RRY_Concept_Cocoons</defName>
+    <defName>AvP_Concept_Cocoons</defName>
     <label>AvP: Cocoons</label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
@@ -12,7 +12,7 @@
   </ConceptDef>
   
   <ConceptDef>
-    <defName>RRY_Concept_Eggs</defName>
+    <defName>AvP_Concept_Eggs</defName>
     <label>AvP: Ovomorph (Eggs)</label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
@@ -24,7 +24,7 @@
   </ConceptDef>
   
   <ConceptDef>
-    <defName>RRY_Concept_Facehuggers</defName>
+    <defName>AvP_Concept_Facehuggers</defName>
     <label>AvP: Facehuggers</label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
@@ -35,7 +35,7 @@
   </ConceptDef>
   
   <ConceptDef>
-    <defName>RRY_Concept_Royalehuggers</defName>
+    <defName>AvP_Concept_Royalehuggers</defName>
     <label>AvP: Royal Facehuggers</label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
@@ -46,7 +46,7 @@
   </ConceptDef>
   
   <ConceptDef>
-    <defName>RRY_Concept_Embryo</defName>
+    <defName>AvP_Concept_Embryo</defName>
     <label>AvP: Xenomorph Embryos</label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
@@ -57,7 +57,7 @@
   </ConceptDef>
   
   <ConceptDef>
-    <defName>RRY_Concept_Chestbursters</defName>
+    <defName>AvP_Concept_Chestbursters</defName>
     <label>AvP: Xenomorph Chestbursters</label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
@@ -68,7 +68,7 @@
   </ConceptDef>	
   
   <ConceptDef>
-    <defName>RRY_Concept_Runners</defName>
+    <defName>AvP_Concept_Runners</defName>
     <label>AvP: Xenomorph Runners</label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
@@ -79,7 +79,7 @@
   </ConceptDef>	
   
   <ConceptDef>
-    <defName>RRY_Concept_Drones</defName>
+    <defName>AvP_Concept_Drones</defName>
     <label>AvP: Xenomorph Drones</label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
@@ -91,7 +91,7 @@
   </ConceptDef>	
   
   <ConceptDef>
-    <defName>RRY_Concept_Warriors</defName>
+    <defName>AvP_Concept_Warriors</defName>
     <label>AvP: Xenomorph Warriors</label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
@@ -102,7 +102,7 @@
   </ConceptDef>	
   
   <ConceptDef>
-    <defName>RRY_Concept_Predaliens</defName>
+    <defName>AvP_Concept_Predaliens</defName>
     <label>AvP: Xenomorph Predaliens</label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
@@ -113,7 +113,7 @@
   </ConceptDef>	
   
   <ConceptDef>
-    <defName>RRY_Concept_Queens</defName>
+    <defName>AvP_Concept_Queens</defName>
     <label>AvP: Xenomorph Queens</label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
@@ -124,7 +124,7 @@
   </ConceptDef>
   
   <ConceptDef>
-    <defName>RRY_Concept_Neomorphs</defName>
+    <defName>AvP_Concept_Neomorphs</defName>
     <label>AvP: Neomorph</label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
@@ -136,7 +136,7 @@
   
   <!--
   <ConceptDef>
-    <defName>RRY_Concept_/defName>
+    <defName>AvP_Concept_/defName>
     <label>AvP: Xenomorph </label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
@@ -148,7 +148,7 @@
   -->
   
   <ConceptDef>
-    <defName>RRY_Concept_HiveLike</defName>
+    <defName>AvP_Concept_HiveLike</defName>
     <label>AvP: Tunnels</label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
@@ -159,7 +159,7 @@
   </ConceptDef>	
   
   <ConceptDef>
-    <defName>RRY_Concept_ShipPart</defName>
+    <defName>AvP_Concept_ShipPart</defName>
     <label>AvP: Ship Parts</label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
@@ -170,7 +170,7 @@
   </ConceptDef>
   
   <ConceptDef>
-    <defName>RRY_Concept_SporeSac</defName>
+    <defName>AvP_Concept_SporeSac</defName>
     <label>AvP: Neo Spore Sacs</label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>

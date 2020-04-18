@@ -41,10 +41,10 @@ namespace RRYautja
         private Thing lastCarried;
         public bool hidden = false;
         public bool Hidden = false;
-        public PawnKindDef HuggerKindDef = XenomorphDefOf.RRY_Xenomorph_FaceHugger;
-        public PawnKindDef RoyaleKindDef = XenomorphDefOf.RRY_Xenomorph_RoyaleHugger;
+        public PawnKindDef HuggerKindDef = XenomorphDefOf.AvP_Xenomorph_FaceHugger;
+        public PawnKindDef RoyaleKindDef = XenomorphDefOf.AvP_Xenomorph_RoyaleHugger;
 
-        public PawnKindDef QueenDef = XenomorphDefOf.RRY_Xenomorph_Queen;
+        public PawnKindDef QueenDef = XenomorphDefOf.AvP_Xenomorph_Queen;
         public override void PostExposeData()
         {
             base.PostExposeData();
@@ -91,7 +91,7 @@ namespace RRYautja
 
         public override void CompTick()
         {
-            if (pawn.ageTracker.CurLifeStage != XenomorphDefOf.RRY_XenomorphFullyFormed)
+            if (pawn.ageTracker.CurLifeStage != XenomorphDefOf.AvP_XenomorphFullyFormed)
             {
                 if (pawn.CurJobDef == JobDefOf.Ingest)
                 {
@@ -104,9 +104,9 @@ namespace RRYautja
             }
             if (pawn.Faction == null)
             {
-                if (Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph) != null)
+                if (Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.AvP_Xenomorph) != null)
                 {
-                    pawn.SetFaction(Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph));
+                    pawn.SetFaction(Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.AvP_Xenomorph));
                 }
             }
             base.CompTick();
@@ -267,8 +267,8 @@ namespace RRYautja
         
         public Thought_Memory GiveObservedThought()
         {
-            string concept = string.Format("RRY_Concept_{0}s", pawn.def.label);
-            string thought = string.Format("RRY_Observed_{0}", pawn.def.label);
+            string concept = string.Format("AvP_Concept_{0}s", pawn.def.label);
+            string thought = string.Format("AvP_Observed_{0}", pawn.def.label);
             ConceptDef conceptDef = null;
             ThoughtDef thoughtDef = null;
             Thought_MemoryObservation observation = null;
@@ -384,9 +384,9 @@ namespace RRYautja
             {
                 Find.Selector.SelectedObjects.Remove(pawn);
             }
-            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Chestbursters))
+            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.AvP_Concept_Chestbursters))
             {
-                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Chestbursters, OpportunityType.Important);
+                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.AvP_Concept_Chestbursters, OpportunityType.Important);
             }
         }
 
@@ -406,29 +406,29 @@ namespace RRYautja
             pawn.Drawer.renderer.graphics.ResolveAllGraphics();
             //     Log.Message(string.Format("removing xeno hidden from {0}", pawn.LabelShortCap));
 
-            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Runners) && pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Runner)
+            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.AvP_Concept_Runners) && pawn.kindDef == XenomorphDefOf.AvP_Xenomorph_Runner)
             {
-                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Runners, OpportunityType.Important);
+                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.AvP_Concept_Runners, OpportunityType.Important);
             }
-            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Drones) && pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Drone)
+            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.AvP_Concept_Drones) && pawn.kindDef == XenomorphDefOf.AvP_Xenomorph_Drone)
             {
-                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Drones, OpportunityType.Important);
+                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.AvP_Concept_Drones, OpportunityType.Important);
             }
-            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Warriors) && pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Warrior)
+            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.AvP_Concept_Warriors) && pawn.kindDef == XenomorphDefOf.AvP_Xenomorph_Warrior)
             {
-                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Warriors, OpportunityType.Important);
+                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.AvP_Concept_Warriors, OpportunityType.Important);
             }
-            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Predaliens) && pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Predalien)
+            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.AvP_Concept_Predaliens) && pawn.kindDef == XenomorphDefOf.AvP_Xenomorph_Predalien)
             {
-                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Predaliens, OpportunityType.Important);
+                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.AvP_Concept_Predaliens, OpportunityType.Important);
             }
-            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Queens) && pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
+            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.AvP_Concept_Queens) && pawn.kindDef == XenomorphDefOf.AvP_Xenomorph_Queen)
             {
-                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Queens, OpportunityType.Important);
+                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.AvP_Concept_Queens, OpportunityType.Important);
             }
-            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Neomorphs) && pawn.kindDef == XenomorphDefOf.RRY_Xenomorph_Neomorph)
+            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.AvP_Concept_Neomorphs) && pawn.kindDef == XenomorphDefOf.AvP_Xenomorph_Neomorph)
             {
-                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Neomorphs, OpportunityType.Important);
+                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.AvP_Concept_Neomorphs, OpportunityType.Important);
             }
         }
         private static List<Pawn> tmpPredatorCandidates = new List<Pawn>();

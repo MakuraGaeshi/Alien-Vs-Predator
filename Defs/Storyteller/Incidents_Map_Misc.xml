@@ -4,7 +4,7 @@
 	<!-- =========================== Good ============================-->
 	<!--
 	<IncidentDef>
-		<defName>RRY_WandererJoinXenomorph</defName>
+		<defName>AvP_WandererJoinXenomorph</defName>
 		<label>wanderer join</label>
 		<category>Misc</category>
     <targetTags>
@@ -19,7 +19,7 @@
 	</IncidentDef>
 
 	<IncidentDef>
-		<defName>RRY_RefugeePodCrashXenomorph</defName>
+		<defName>AvP_RefugeePodCrashXenomorph</defName>
 		<label>transport pod crash</label>
 		<category>Misc</category>
     <targetTags>
@@ -33,7 +33,7 @@
 	<!-- =========================== Neutral ============================-->
 	<!--
   <IncidentDef>
-    <defName>RRY_RefugeeChasedXenomorph</defName>
+    <defName>AvP_RefugeeChasedXenomorph</defName>
     <label>chased refugee</label>
 		<category>Misc</category>
     <targetTags>
@@ -47,7 +47,7 @@
   </IncidentDef>
 
 	<IncidentDef>
-		<defName>RRY_WildManWandersInXenomorph</defName>
+		<defName>AvP_WildManWandersInXenomorph</defName>
 		<label>wild man wanders in</label>
 		<category>Misc</category>
 		<targetTags>
@@ -64,7 +64,7 @@
 	<!-- =========================== Bad ============================-->
 
 	<IncidentDef>
-		<defName>RRY_Neomorph_FungusSprout</defName>
+		<defName>AvP_Neomorph_FungusSprout</defName>
 		<label>strange fungus sprouts</label>
 		<category>Misc</category>
     <targetTags>
@@ -86,7 +86,7 @@
 	</IncidentDef>
 
 	<IncidentDef>
-		<defName>RRY_Neomorph_FungusSprout_Hidden</defName>
+		<defName>AvP_Neomorph_FungusSprout_Hidden</defName>
 		<label>strange fungus sprouts</label>
 		<category>Misc</category>
     <targetTags>

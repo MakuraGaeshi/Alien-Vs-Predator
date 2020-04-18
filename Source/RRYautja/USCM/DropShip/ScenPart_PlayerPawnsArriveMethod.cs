@@ -113,19 +113,19 @@ namespace RimWorld
             }
             if ((int)this.method == (int)PlayerPawnsArriveMethod.DropShip)
             {
-                Thing thing = ThingMaker.MakeThing(USCMDefOf.RRY_USCM_DropshipUD4L, null);
+                Thing thing = ThingMaker.MakeThing(USCMDefOf.AvP_USCM_DropshipUD4L, null);
                 CompUSCMDropship dropship = thing.TryGetComp<CompUSCMDropship>();
                 foreach (List<Thing> item in list)
                 {
                     dropship.Transporter.innerContainer.TryAddRangeOrTransfer(item);
                 }
                 dropship.autodustoff = true;
-                if (DropCellFinder.TryFindDropSpotNear(MapGenerator.PlayerStartSpot, map, out IntVec3 spot, false, false, false, USCMDefOf.RRY_USCM_DropshipUD4L.Size))
+                if (DropCellFinder.TryFindDropSpotNear(MapGenerator.PlayerStartSpot, map, out IntVec3 spot, false, false, false, USCMDefOf.AvP_USCM_DropshipUD4L.Size))
                 {
-                    GenPlace.TryPlaceThing(SkyfallerMaker.MakeSkyfaller(USCMDefOf.RRY_USCM_DropshipUD4LIncoming, thing), spot, map, ThingPlaceMode.Near, null, null, default(Rot4));
+                    GenPlace.TryPlaceThing(SkyfallerMaker.MakeSkyfaller(USCMDefOf.AvP_USCM_DropshipUD4LIncoming, thing), spot, map, ThingPlaceMode.Near, null, null, default(Rot4));
                 }
                 else
-                GenPlace.TryPlaceThing(SkyfallerMaker.MakeSkyfaller(USCMDefOf.RRY_USCM_DropshipUD4LIncoming, thing), MapGenerator.PlayerStartSpot, map, ThingPlaceMode.Near, null, null, default(Rot4));
+                GenPlace.TryPlaceThing(SkyfallerMaker.MakeSkyfaller(USCMDefOf.AvP_USCM_DropshipUD4LIncoming, thing), MapGenerator.PlayerStartSpot, map, ThingPlaceMode.Near, null, null, default(Rot4));
             }
             else
             DropPodUtility.DropThingGroupsNear(MapGenerator.PlayerStartSpot, map, list, 110, Find.GameInitData.QuickStarted || this.method != PlayerPawnsArriveMethod.DropPods, true, true, true);

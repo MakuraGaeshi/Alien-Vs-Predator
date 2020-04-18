@@ -12,42 +12,42 @@ namespace RimWorld
 		}
 
         // USCM HefiffDefs
-        public static HediffDef RRY_Damaged_Inhibitor;
-        public static HediffDef RRY_Defective_Inhibitor;
+        public static HediffDef AvP_Damaged_Inhibitor;
+        public static HediffDef AvP_Defective_Inhibitor;
 
         // USCM PawnKindDefs 
 
         // USCM ThingDefs  Races 
-        public static ThingDef RRY_Synth;
+        public static ThingDef AvP_Synth;
 
         // USCM ThingDefs  Equipment
-        public static ThingDef RRY_Equipment_HMS;
+        public static ThingDef AvP_Equipment_HMS;
 
         // USCM ThingDefs  Weapons
-        //    public static ThingDef RRY_Gun_Hunting_Bow;
-        //    public static ThingDef RRY_Gun_Compound_Bow;
+        //    public static ThingDef AvP_Gun_Hunting_Bow;
+        //    public static ThingDef AvP_Gun_Compound_Bow;
 
         // USCM ThingDefs  Projectiles
-        //    public static ThingDef RRY_SmartDisk_Thrown;
+        //    public static ThingDef AvP_SmartDisk_Thrown;
 
-        // USCM ThingDefs  Equipment RRY_USCM_ActiveDropshipUD4L
-        public static ThingDef RRY_USCM_DropshipUD4L;
-        public static ThingDef RRY_USCM_ActiveDropshipUD4L;
-    //    public static ThingDef RRY_USCM_TravelingDropshipUD4L;
-        public static ThingDef RRY_USCM_DropshipUD4LIncoming;
-        public static ThingDef RRY_USCM_DropshipUD4LLeaving;
+        // USCM ThingDefs  Equipment AvP_USCM_ActiveDropshipUD4L
+        public static ThingDef AvP_USCM_DropshipUD4L;
+        public static ThingDef AvP_USCM_ActiveDropshipUD4L;
+    //    public static ThingDef AvP_USCM_TravelingDropshipUD4L;
+        public static ThingDef AvP_USCM_DropshipUD4LIncoming;
+        public static ThingDef AvP_USCM_DropshipUD4LLeaving;
 
         // USCM ThingDefs  Motes
-        //    public static ThingDef RRY_SmartDisk_Mote;
+        //    public static ThingDef AvP_SmartDisk_Mote;
 
         // USCM PawnsArrivalModeDefs 
         //    public static PawnsArrivalModeDef EdgeWalkInGroups;
 
         // USCM ThoughtDefs
-        //    public static ThoughtDef RRY_HonourableVsBadBlood;
+        //    public static ThoughtDef AvP_HonourableVsBadBlood;
 
         // USCM ThoughtDefs Memories
-        //    public static ThoughtDef RRY_Thought_ThrillOfTheHunt;
+        //    public static ThoughtDef AvP_Thought_ThrillOfTheHunt;
 
     }
     [DefOf]
@@ -59,6 +59,6 @@ namespace RimWorld
             DefOfHelper.EnsureInitializedInCtor(typeof(USCMConceptDefOf));
         }
         // USCM ConceptDefs
-        public static ConceptDef RRY_Concept_Gauntlet;
+        public static ConceptDef AvP_Concept_Gauntlet;
     }
 }

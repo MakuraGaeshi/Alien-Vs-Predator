@@ -114,7 +114,7 @@ namespace RimWorld
                 {
                     return;
                 }
-                if (!hive.GetDirectlyHeldThings().Any(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen && x.xenomorph().HiveLoc == this.parent.Position))
+                if (!hive.GetDirectlyHeldThings().Any(x => x.def == XenomorphRacesDefOf.AvP_Xenomorph_Queen && x.xenomorph().HiveLoc == this.parent.Position))
                 {
                     return;
                 }

@@ -36,6 +36,7 @@
   <ItemGroup>
     <Compile Include="Abilities\ProjectileDefExtension.cs" />
     <Compile Include="Harmony\Patches\AVP_AEmptyPatch - Copy.cs" />
+    <Compile Include="Harmony\Patches\AvP_BackstoryDatabase_GetIdentifierClosestMatch_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_AEmpty_Patch - Copy.cs" />
     <Compile Include="Harmony\Patches\AvP_Alert_StarvationColonists_StarvingColonists_Synth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_HealthUtility_AdjustSeverity_Cocooned_Patch.cs" />
@@ -59,7 +60,6 @@
     <Compile Include="Harmony\Patches\AvP_Pawn_HealthTracker_MakeUndowned_Xenomorph_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Pawn_AgeTracker_RecalculateLifeStageIndex_Xenomorph_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Corpse_TickRare_Gestation_Patch.cs" />
-    <Compile Include="Harmony\Patches\AvP_RaceProperties_isFlesh_Synth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_RaidStrategyWorker_CanUsePawn_Xeno_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_SickPawnVisitUtility_CanVisit_Synth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_RecordWorker_TimeInBedForMedicalReasons_ShouldMeasureTimeNow_Synth_Patch.cs" />
@@ -107,7 +107,6 @@
     <Compile Include="Harmony\Patches\AvP_Pawn_Strip_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Pawn_ThreatDisabled_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_PawnRenderer_OverrideMaterialIfNeeded_Xenomorph_Patch.cs" />
-    <Compile Include="Harmony\Patches\AvP_PowerNet_PowerNetTick_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_RestUtility_Bed_IsValidBedFor_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_RimWorld_Apparel_GetWornGizmos_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_RimWorld_Cloakgen_GetWornGizmos_Patch.cs" />

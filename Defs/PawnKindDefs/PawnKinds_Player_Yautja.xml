@@ -23,7 +23,7 @@
     <backstoryFiltersOverride Inherit="false">
       <li>
         <categories>
-          <li>RRY_Yautja_Standard</li>
+          <li>AvP_Yautja_Standard</li>
         </categories>
       </li>
     </backstoryFiltersOverride>
@@ -36,9 +36,9 @@
   </PawnKindDef>
 
   <PawnKindDef ParentName="BaseYautjaPawnKind">
-    <defName>Colonist_RRY_Yautja</defName>
+    <defName>Colonist_AvP_Yautja</defName>
     <label>Yautja colonist</label>
-    <defaultFactionType>RRY_Yautja_PlayerColony</defaultFactionType>
+    <defaultFactionType>AvP_Yautja_PlayerColony</defaultFactionType>
     <apparelTags>
 		<li>YautjaGreaves</li>
 		<li>YautjaWebbing</li>
@@ -51,13 +51,13 @@
   </PawnKindDef>
   
   <PawnKindDef ParentName="BaseYautjaPawnKind">
-    <defName>Colonist_RRY_Yautja_Unblooded</defName>
+    <defName>Colonist_AvP_Yautja_Unblooded</defName>
     <label>Yautja colonist</label>
-    <defaultFactionType>RRY_Yautja_PlayerUnblooded</defaultFactionType>
+    <defaultFactionType>AvP_Yautja_PlayerUnblooded</defaultFactionType>
     <backstoryFiltersOverride Inherit="false">
       <li>
         <categories>
-          <li>RRY_Yautja_Unblooded</li>
+          <li>AvP_Yautja_Unblooded</li>
         </categories>
       </li>
     </backstoryFiltersOverride>
@@ -74,13 +74,13 @@
   </PawnKindDef>
   
   <PawnKindDef ParentName="BaseYautjaPawnKind">
-    <defName>Colonist_RRY_Yautja_Blooded</defName>
+    <defName>Colonist_AvP_Yautja_Blooded</defName>
     <label>Yautja colonist</label>
-    <defaultFactionType>RRY_Yautja_PlayerBlooded</defaultFactionType>
+    <defaultFactionType>AvP_Yautja_PlayerBlooded</defaultFactionType>
     <backstoryFiltersOverride Inherit="false">
       <li>
         <categories>
-          <li>RRY_Yautja_Blooded</li>
+          <li>AvP_Yautja_Blooded</li>
         </categories>
       </li>
     </backstoryFiltersOverride>
@@ -97,13 +97,13 @@
   </PawnKindDef>
   
   <PawnKindDef ParentName="BaseYautjaPawnKind">
-    <defName>Colonist_RRY_Yautja_BadBlooded</defName>
+    <defName>Colonist_AvP_Yautja_BadBlooded</defName>
     <label>Bad blood colonist</label>
-    <defaultFactionType>RRY_Yautja_PlayerColony</defaultFactionType>
+    <defaultFactionType>AvP_Yautja_PlayerColony</defaultFactionType>
     <backstoryFiltersOverride Inherit="false">
       <li>
         <categories>
-          <li>RRY_Yautja_BadBlood</li>
+          <li>AvP_Yautja_BadBlood</li>
         </categories>
       </li>
     </backstoryFiltersOverride>
@@ -119,13 +119,13 @@
   </PawnKindDef>
   
   <PawnKindDef ParentName="BaseYautjaPawnKind">
-    <defName>Colonist_RRY_Yautja_Blooding</defName>
+    <defName>Colonist_AvP_Yautja_Blooding</defName>
     <label>Yautja colonist</label>
-    <defaultFactionType>RRY_Yautja_PlayerBlooding</defaultFactionType>
+    <defaultFactionType>AvP_Yautja_PlayerBlooding</defaultFactionType>
     <backstoryFiltersOverride Inherit="false">
       <li>
         <categories>
-          <li>RRY_Yautja_Unblooded</li>
+          <li>AvP_Yautja_Unblooded</li>
         </categories>
       </li>
     </backstoryFiltersOverride>

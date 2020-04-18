@@ -100,7 +100,7 @@ namespace RimWorld
                 };
             }
             float nutrition = FoodUtility.GetNutrition(thing, thingDef);
-            return new Job(XenomorphDefOf.RRY_Neomorph_Ingest, thing)
+            return new Job(XenomorphDefOf.AvP_Neomorph_Ingest, thing)
             {
                 count = FoodUtility.WillIngestStackCountOf(pawn, thingDef, nutrition)
             };

@@ -2,7 +2,7 @@
 <Defs>
     <!--========================= USCM - Apparel Base ==========================-->
 
-	<ThingDef Name="RRY_USCM_ApparelBase" Abstract="True">
+	<ThingDef Name="AvP_USCM_ApparelBase" Abstract="True">
 		<thingClass>Apparel</thingClass>
 		<category>Item</category>
 		<selectable>True</selectable>
@@ -34,7 +34,7 @@
 	
     <!--========================= USCM - Clothes Base - Apparel Makable Base ==========================-->
 
-	<ThingDef Name="RRY_USCM_Apparel_MakeableBase" ParentName="RRY_USCM_ApparelBase" Abstract="True">
+	<ThingDef Name="AvP_USCM_Apparel_MakeableBase" ParentName="AvP_USCM_ApparelBase" Abstract="True">
 		<recipeMaker>
 			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
 			<workSkill>Crafting</workSkill>
@@ -48,14 +48,14 @@
 		</recipeMaker>
 		<apparel>
 			<tags>
-				<li>RRY_USCM_Apparel</li>
+				<li>AvP_USCM_Apparel</li>
 			</tags>
 		</apparel>
 	</ThingDef>
 
     <!--========================= USCM - Apparel Armour Makable Base ==========================-->
 
-	<ThingDef Name="RRY_USCM_Armour_MakeableBase" ParentName="RRY_USCM_ApparelBase" Abstract="True">
+	<ThingDef Name="AvP_USCM_Armour_MakeableBase" ParentName="AvP_USCM_ApparelBase" Abstract="True">
 		<recipeMaker>
 			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
 			<workSkill>Crafting</workSkill>
@@ -68,7 +68,7 @@
 		</recipeMaker>
 		<apparel>
 			<tags>
-				<li>RRY_USCM_Armour</li>
+				<li>AvP_USCM_Armour</li>
 			</tags>
 		</apparel>
 	</ThingDef>

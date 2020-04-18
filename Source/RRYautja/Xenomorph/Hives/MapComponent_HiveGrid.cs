@@ -102,7 +102,7 @@ namespace RRYautja
         }
 
 
-        PawnKindDef RoyalKindDef = XenomorphDefOf.RRY_Xenomorph_RoyaleHugger;
+        PawnKindDef RoyalKindDef = XenomorphDefOf.AvP_Xenomorph_RoyaleHugger;
         public bool RoyalPresent
         {
             get
@@ -110,9 +110,9 @@ namespace RRYautja
                 Predicate<Pawn> validator = delegate (Pawn t)
                 {
                     bool RoyalHugger = t.kindDef == RoyalKindDef;
-                    bool RoyalHuggerInfection = (t.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_FaceHuggerInfection).TryGetComp<HediffComp_XenoFacehugger>().RoyaleHugger);
-                    bool RoyalImpregnation = (t.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_XenomorphImpregnation).TryGetComp<HediffComp_XenoSpawner>().RoyaleHugger);
-                    bool RoyalHiddenImpregnation = (t.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_HiddenXenomorphImpregnation).TryGetComp<HediffComp_XenoSpawner>().RoyaleHugger);
+                    bool RoyalHuggerInfection = (t.health.hediffSet.HasHediff(XenomorphDefOf.AvP_FaceHuggerInfection) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.AvP_FaceHuggerInfection).TryGetComp<HediffComp_XenoFacehugger>().RoyaleHugger);
+                    bool RoyalImpregnation = (t.health.hediffSet.HasHediff(XenomorphDefOf.AvP_XenomorphImpregnation) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.AvP_XenomorphImpregnation).TryGetComp<HediffComp_XenoSpawner>().RoyaleHugger);
+                    bool RoyalHiddenImpregnation = (t.health.hediffSet.HasHediff(XenomorphDefOf.AvP_HiddenXenomorphImpregnation) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.AvP_HiddenXenomorphImpregnation).TryGetComp<HediffComp_XenoSpawner>().RoyaleHugger);
                     return RoyalHugger || RoyalHuggerInfection || RoyalImpregnation || RoyalHiddenImpregnation;
                 };
                 return map.mapPawns.AllPawnsSpawned.Any(validator);
@@ -157,35 +157,35 @@ namespace RRYautja
                         {
                             if (p.isXenomorph())
                             {
-                                if (p.def == XenomorphRacesDefOf.RRY_Xenomorph_Runner)
+                                if (p.def == XenomorphRacesDefOf.AvP_Xenomorph_Runner)
                                 {
                                     if (!Runnerlist.Contains(p))
                                     {
                                         Runnerlist.Add(p);
                                     }
                                 }
-                                if (p.def == XenomorphRacesDefOf.RRY_Xenomorph_Drone)
+                                if (p.def == XenomorphRacesDefOf.AvP_Xenomorph_Drone)
                                 {
                                     if (!Dronelist.Contains(p))
                                     {
                                         Dronelist.Add(p);
                                     }
                                 }
-                                if (p.def == XenomorphRacesDefOf.RRY_Xenomorph_Warrior)
+                                if (p.def == XenomorphRacesDefOf.AvP_Xenomorph_Warrior)
                                 {
                                     if (!Warriorlist.Contains(p))
                                     {
                                         Warriorlist.Add(p);
                                     }
                                 }
-                                if (p.def == XenomorphRacesDefOf.RRY_Xenomorph_Drone)
+                                if (p.def == XenomorphRacesDefOf.AvP_Xenomorph_Drone)
                                 {
                                     if (!Dronelist.Contains(p))
                                     {
                                         Dronelist.Add(p);
                                     }
                                 }
-                                if (p.def == XenomorphRacesDefOf.RRY_Xenomorph_Drone)
+                                if (p.def == XenomorphRacesDefOf.AvP_Xenomorph_Drone)
                                 {
                                     if (!Dronelist.Contains(p))
                                     {
@@ -203,14 +203,14 @@ namespace RRYautja
             //    Log.Message(string.Format("MapComponentTick update lists"));
                 potentialHosts = map.ViableHosts();
                 nonpotentialHosts = map.InviableHosts();
-                Queenlist = map.mapPawns.AllPawnsSpawned.FindAll(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen);
-                Dronelist = map.mapPawns.AllPawnsSpawned.FindAll(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Drone);
-                Warriorlist = map.mapPawns.AllPawnsSpawned.FindAll(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Warrior);
-                Runnerlist = map.mapPawns.AllPawnsSpawned.FindAll(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Runner);
-                Predalienlist = map.mapPawns.AllPawnsSpawned.FindAll(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Predalien);
-                Thrumbomorphlist = map.mapPawns.AllPawnsSpawned.FindAll(x => x.def == XenomorphRacesDefOf.RRY_Xenomorph_Thrumbomorph);
-                Hivelist = map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_XenomorphHive);
-                HiveChildlist = map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_XenomorphHive_Child);
+                Queenlist = map.mapPawns.AllPawnsSpawned.FindAll(x => x.def == XenomorphRacesDefOf.AvP_Xenomorph_Queen);
+                Dronelist = map.mapPawns.AllPawnsSpawned.FindAll(x => x.def == XenomorphRacesDefOf.AvP_Xenomorph_Drone);
+                Warriorlist = map.mapPawns.AllPawnsSpawned.FindAll(x => x.def == XenomorphRacesDefOf.AvP_Xenomorph_Warrior);
+                Runnerlist = map.mapPawns.AllPawnsSpawned.FindAll(x => x.def == XenomorphRacesDefOf.AvP_Xenomorph_Runner);
+                Predalienlist = map.mapPawns.AllPawnsSpawned.FindAll(x => x.def == XenomorphRacesDefOf.AvP_Xenomorph_Predalien);
+                Thrumbomorphlist = map.mapPawns.AllPawnsSpawned.FindAll(x => x.def == XenomorphRacesDefOf.AvP_Xenomorph_Thrumbomorph);
+                Hivelist = map.listerThings.ThingsOfDef(XenomorphDefOf.AvP_XenomorphHive);
+                HiveChildlist = map.listerThings.ThingsOfDef(XenomorphDefOf.AvP_XenomorphHive_Child);
                 foreach (HiveLike item in HiveChildlist)
                 {
                     if (!item.GetDirectlyHeldThings().NullOrEmpty())
@@ -224,7 +224,7 @@ namespace RRYautja
                             HiveLike main = (HiveLike)Hivelist.RandomElement();
                             foreach (Pawn i in l)
                             {
-                                if (i.def == XenomorphRacesDefOf.RRY_Xenomorph_Runner)
+                                if (i.def == XenomorphRacesDefOf.AvP_Xenomorph_Runner)
                                 {
                                     runner++;
                                     if (runner > 2)
@@ -232,7 +232,7 @@ namespace RRYautja
                                         main.GetDirectlyHeldThings().TryAddOrTransfer(i);
                                     }
                                 }
-                                if (i.def == XenomorphRacesDefOf.RRY_Xenomorph_Drone)
+                                if (i.def == XenomorphRacesDefOf.AvP_Xenomorph_Drone)
                                 {
                                     drone++;
                                     if (drone > 2)
@@ -240,7 +240,7 @@ namespace RRYautja
                                         main.GetDirectlyHeldThings().TryAddOrTransfer(i);
                                     }
                                 }
-                                if (i.def == XenomorphRacesDefOf.RRY_Xenomorph_Warrior)
+                                if (i.def == XenomorphRacesDefOf.AvP_Xenomorph_Warrior)
                                 {
                                     warrior++;
                                     if (warrior > 2)
@@ -248,15 +248,15 @@ namespace RRYautja
                                         main.GetDirectlyHeldThings().TryAddOrTransfer(i);
                                     }
                                 }
-                                if (i.def == XenomorphRacesDefOf.RRY_Xenomorph_Predalien)
+                                if (i.def == XenomorphRacesDefOf.AvP_Xenomorph_Predalien)
                                 {
                                     main.GetDirectlyHeldThings().TryAddOrTransfer(i);
                                 }
-                                if (i.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen)
+                                if (i.def == XenomorphRacesDefOf.AvP_Xenomorph_Queen)
                                 {
                                     main.GetDirectlyHeldThings().TryAddOrTransfer(i);
                                 }
-                                if (i.def == XenomorphRacesDefOf.RRY_Xenomorph_Thrumbomorph)
+                                if (i.def == XenomorphRacesDefOf.AvP_Xenomorph_Thrumbomorph)
                                 {
                                     main.GetDirectlyHeldThings().TryAddOrTransfer(i);
                                 }
@@ -337,7 +337,7 @@ namespace RRYautja
 
         public static bool CanCoexistWithHive(ThingDef def)
         {
-            return def.category != ThingCategory.Building || def.Fillage != FillCategory.Full || def == XenomorphDefOf.RRY_Xenomorph_Hive || def == XenomorphDefOf.RRY_Xenomorph_Hive_Child || def == XenomorphDefOf.RRY_Xenomorph_Hive_Wall;
+            return def.category != ThingCategory.Building || def.Fillage != FillCategory.Full || def == XenomorphDefOf.AvP_Xenomorph_Hive || def == XenomorphDefOf.AvP_Xenomorph_Hive_Child || def == XenomorphDefOf.AvP_Xenomorph_Hive_Wall;
         }
 
         public void AddDepth(IntVec3 c, float depthToAdd)

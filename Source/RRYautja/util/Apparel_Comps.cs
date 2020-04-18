@@ -81,7 +81,7 @@ namespace RRYautja
             base.CompTick();
             if (IsWorn)
             {
-                if ((GetWearer.Downed && GetWearer.Awake() && !GetWearer.InBed()) || (GetWearer.IsPrisonerOfColony) && !GetWearer.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection))
+                if ((GetWearer.Downed && GetWearer.Awake() && !GetWearer.InBed()) || (GetWearer.IsPrisonerOfColony) && !GetWearer.health.hediffSet.HasHediff(XenomorphDefOf.AvP_FaceHuggerInfection))
                 {
                     if (Find.TickManager.TicksGame >= this.nextUpdateTick && !Armed)
                     {

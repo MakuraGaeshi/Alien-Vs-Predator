@@ -31,7 +31,7 @@ namespace RRYautja
                 this.Destroy(0);
             }
         //    Log.Message(string.Format("Returning_Projectile Impact 1"));
-            Projectile projectile2 = (Projectile)ThingMaker.MakeThing(YautjaDefOf.RRY_SmartDisk_Returning, null);
+            Projectile projectile2 = (Projectile)ThingMaker.MakeThing(YautjaDefOf.AvP_SmartDisk_Returning, null);
         //    Log.Message(string.Format("Returning_Projectile Impact 2"));
             GenSpawn.Spawn(projectile2, base.Position, base.Map, 0);
         //    Log.Message(string.Format("Returning_Projectile Impact 3 redirecting to {0}", OriginalPawn));

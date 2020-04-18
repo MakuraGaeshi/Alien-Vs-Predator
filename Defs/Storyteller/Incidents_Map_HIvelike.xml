@@ -3,7 +3,7 @@
 	<!-- ============================== Big threats ============================== -->  
 
   <IncidentDef>
-    <defName>RRY_XenomorphInfestation</defName>
+    <defName>AvP_XenomorphInfestation</defName>
     <label>xenomorph infestation</label>
     <targetTags>
       <li>Map_PlayerHome</li>
@@ -18,7 +18,7 @@
     <pointsScaleable>true</pointsScaleable>
     <minThreatPoints>2000</minThreatPoints>
     <tale>Infestation</tale>
-    <mechClusterBuilding>RRY_Xenomorph_Hive</mechClusterBuilding>
+    <mechClusterBuilding>AvP_Xenomorph_Hive</mechClusterBuilding>
     <tags>
 		<li>TunnelLike</li>
 	</tags>

@@ -29,7 +29,7 @@ namespace RRYautja.HarmonyInstance
                 {
                     if (__instance.def.diseaseIncident != null)
                     {
-                        __result = __result.Where(x => x.def != USCMDefOf.RRY_Synth || (x.TryGetComp<CompSynthProps>() != null && x.TryGetComp<CompSynthProps>().AllowedDiseases.Contains(__instance.def.diseaseIncident)));
+                        __result = __result.Where(x => x.def != USCMDefOf.AvP_Synth || (x.TryGetComp<CompSynthProps>() != null && x.TryGetComp<CompSynthProps>().AllowedDiseases.Contains(__instance.def.diseaseIncident)));
                     }
                 }
             }

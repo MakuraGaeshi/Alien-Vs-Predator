@@ -23,7 +23,7 @@ namespace RimWorld
             if (XenomorphKidnapUtility.TryFindGoodImpregnateVictim(pawn, 18f, out t, null) && !GenAI.InDangerousCombat(pawn))
             {
                 if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("victim found: {0}",t.LabelShortCap));
-                return new Job(XenomorphDefOf.RRY_Job_Xenomorph_PredalienImpregnate)
+                return new Job(XenomorphDefOf.AvP_Job_Xenomorph_PredalienImpregnate)
                 {
                     targetA = t
                 };

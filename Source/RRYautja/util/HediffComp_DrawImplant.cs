@@ -31,7 +31,7 @@ namespace RRYautja
             get
             {
                 Pawn wearer = base.Pawn;
-                return wearer.Spawned && !wearer.Dead && wearer.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection);
+                return wearer.Spawned && !wearer.Dead && wearer.health.hediffSet.HasHediff(XenomorphDefOf.AvP_FaceHuggerInfection);
             }
         }
 

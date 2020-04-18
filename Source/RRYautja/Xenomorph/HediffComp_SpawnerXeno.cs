@@ -103,9 +103,9 @@ namespace RRYautja
                 Predicate<Pawn> validator = delegate (Pawn t)
                 {
                     bool SelfFlag = t != Pawn;
-                    bool RoyalHuggerInfection = (t.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_FaceHuggerInfection).TryGetComp<HediffComp_XenoFacehugger>().RoyaleHugger);
-                    bool RoyalImpregnation = (t.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_XenomorphImpregnation).TryGetComp<HediffComp_XenoSpawner>().RoyaleHugger);
-                    bool RoyalHiddenImpregnation = (t.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_HiddenXenomorphImpregnation).TryGetComp<HediffComp_XenoSpawner>().RoyaleHugger);
+                    bool RoyalHuggerInfection = (t.health.hediffSet.HasHediff(XenomorphDefOf.AvP_FaceHuggerInfection) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.AvP_FaceHuggerInfection).TryGetComp<HediffComp_XenoFacehugger>().RoyaleHugger);
+                    bool RoyalImpregnation = (t.health.hediffSet.HasHediff(XenomorphDefOf.AvP_XenomorphImpregnation) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.AvP_XenomorphImpregnation).TryGetComp<HediffComp_XenoSpawner>().RoyaleHugger);
+                    bool RoyalHiddenImpregnation = (t.health.hediffSet.HasHediff(XenomorphDefOf.AvP_HiddenXenomorphImpregnation) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.AvP_HiddenXenomorphImpregnation).TryGetComp<HediffComp_XenoSpawner>().RoyaleHugger);
                     return SelfFlag || RoyalHuggerInfection || RoyalImpregnation || RoyalHiddenImpregnation;
                 };
                 return MyMap.mapPawns.AllPawnsSpawned.Any(validator);
@@ -121,9 +121,9 @@ namespace RRYautja
             {
                 if (parent.pawn.Map != null)
                 {
-                    if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Embryo) && Pawn.Spawned && Pawn.IsColonist && (this.parent.def == XenomorphDefOf.RRY_XenomorphImpregnation || this.parent.def == XenomorphDefOf.RRY_NeomorphImpregnation) && MyMap != null)
+                    if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.AvP_Concept_Embryo) && Pawn.Spawned && Pawn.IsColonist && (this.parent.def == XenomorphDefOf.AvP_XenomorphImpregnation || this.parent.def == XenomorphDefOf.AvP_NeomorphImpregnation) && MyMap != null)
                     {
-                        LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Embryo, OpportunityType.Important);
+                        LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.AvP_Concept_Embryo, OpportunityType.Important);
                     }
                 }
 
@@ -194,7 +194,7 @@ namespace RRYautja
             int ind = 0;
             foreach (var p in MyMap.mapPawns.AllPawnsSpawned)
             {
-                if (p.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
+                if (p.kindDef == XenomorphDefOf.AvP_Xenomorph_Queen)
                 {
                     QueenPresent = true;
                     break;
@@ -202,25 +202,25 @@ namespace RRYautja
             }
             if (RoyaleEmbryo)
             {
-                pawnKindDef = XenomorphDefOf.RRY_Xenomorph_Queen;
+                pawnKindDef = XenomorphDefOf.AvP_Xenomorph_Queen;
             }
             else
             {
                 if (Pawn.kindDef.race == YautjaDefOf.AvP_Alien_Yautja && SettingsHelper.latest.AllowPredaliens)// && !predalienImpregnation)
                 {
-                    pawnKindDef = XenomorphDefOf.RRY_Xenomorph_Predalien;
+                    pawnKindDef = XenomorphDefOf.AvP_Xenomorph_Predalien;
                 }
                 else if (Pawn.RaceProps.Humanlike)
                 {
-                    pawnKindDef = Rand.Chance(0.5f) ? XenomorphDefOf.RRY_Xenomorph_Drone : XenomorphDefOf.RRY_Xenomorph_Warrior;
+                    pawnKindDef = Rand.Chance(0.5f) ? XenomorphDefOf.AvP_Xenomorph_Drone : XenomorphDefOf.AvP_Xenomorph_Warrior;
                 }
                 else if (Pawn.kindDef.race == ThingDefOf.Thrumbo && SettingsHelper.latest.AllowThrumbomorphs)
                 {
-                    pawnKindDef = XenomorphDefOf.RRY_Xenomorph_Thrumbomorph;
+                    pawnKindDef = XenomorphDefOf.AvP_Xenomorph_Thrumbomorph;
                 }
                 else if (!Pawn.RaceProps.Humanlike&&Pawn.BodySize<0.9f)
                 {
-                    pawnKindDef = XenomorphDefOf.RRY_Xenomorph_Runner;
+                    pawnKindDef = XenomorphDefOf.AvP_Xenomorph_Runner;
                 }
                 else
                 {
@@ -232,7 +232,7 @@ namespace RRYautja
                             bool hostHumanlike = base.parent.pawn.RaceProps.Humanlike;
                             float spawnRoll = ((Rand.Range(1, 100)) * hostSize);
 
-                            if (PKDef == XenomorphDefOf.RRY_Xenomorph_Queen)
+                            if (PKDef == XenomorphDefOf.AvP_Xenomorph_Queen)
                             {
                                 if ((QueenPresent || predalienImpregnation || RoyalPresent))
                                 {
@@ -246,26 +246,26 @@ namespace RRYautja
                             else if (predalienImpregnation)
                             {
                                 spawnRoll = 0;
-                                if (PKDef == XenomorphDefOf.RRY_Xenomorph_Runner)
+                                if (PKDef == XenomorphDefOf.AvP_Xenomorph_Runner)
                                 {
                                     spawnRoll *= 2;
                                 }
-                                else if (PKDef == XenomorphDefOf.RRY_Xenomorph_Drone)
+                                else if (PKDef == XenomorphDefOf.AvP_Xenomorph_Drone)
                                 {
                                     spawnRoll *= 2;
                                 }
                             }
                             else if (hostHumanlike)
                             {
-                                if (PKDef == XenomorphDefOf.RRY_Xenomorph_Runner)
+                                if (PKDef == XenomorphDefOf.AvP_Xenomorph_Runner)
                                 {
                                     spawnRoll = 0;
                                 }
-                                if (PKDef == XenomorphDefOf.RRY_Xenomorph_Warrior)
+                                if (PKDef == XenomorphDefOf.AvP_Xenomorph_Warrior)
                                 {
                                     spawnRoll *= 2;
                                 }
-                                else if (PKDef == XenomorphDefOf.RRY_Xenomorph_Drone)
+                                else if (PKDef == XenomorphDefOf.AvP_Xenomorph_Drone)
                                 {
                                     spawnRoll *= 2;
                                 }
@@ -282,7 +282,7 @@ namespace RRYautja
                 }
             }
             
-            if (pawnKindDef == XenomorphDefOf.RRY_Xenomorph_Queen)
+            if (pawnKindDef == XenomorphDefOf.AvP_Xenomorph_Queen)
             {
                 gender = Gender.Female;
             }
@@ -295,7 +295,7 @@ namespace RRYautja
              //    Log.Message(string.Format("spawning: {0}", pawnKindDef.label));
                 parent.pawn.resultingXenomorph();
             }
-            bool BeViolent = pawnKindDef == XenomorphDefOf.RRY_Xenomorph_Thrumbomorph ? true : true;
+            bool BeViolent = pawnKindDef == XenomorphDefOf.AvP_Xenomorph_Thrumbomorph ? true : true;
             PawnGenerationRequest request = new PawnGenerationRequest(pawnKindDef, Find.FactionManager.FirstFactionOfDef(pawnKindDef.defaultFactionType), PawnGenerationContext.NonPlayer, -1, true, true, false, false, true, false, 20f, fixedGender: gender);
 
             Pawn pawn = PawnGenerator.GeneratePawn(request);
@@ -385,11 +385,11 @@ namespace RRYautja
                     string text = TranslatorFormattedStringExtensions.Translate("Xeno_Chestburster_Emerge", base.parent.pawn.LabelShort, this.parent.Part.LabelShort);
                     MoteMaker.ThrowText(spawnLoc.ToVector3(), spawnMap, text, 5f);
 
-                    if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Chestbursters) && MyMap != null)
+                    if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.AvP_Concept_Chestbursters) && MyMap != null)
                     {
-                        LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Chestbursters, OpportunityType.Important);
+                        LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.AvP_Concept_Chestbursters, OpportunityType.Important);
                     }
-                    Pawn.health.AddHediff(DefDatabase<HediffDef>.GetNamedSilentFail("RRY_PostBurstWound"), this.parent.Part);
+                    Pawn.health.AddHediff(DefDatabase<HediffDef>.GetNamedSilentFail("AvP_PostBurstWound"), this.parent.Part);
                     Pawn.health.RemoveHediff(this.parent);
                 }
             }

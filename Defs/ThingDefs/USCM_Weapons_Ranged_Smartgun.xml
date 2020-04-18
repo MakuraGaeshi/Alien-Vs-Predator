@@ -3,7 +3,7 @@
 
 <!-- ====================== USCM - M56 Smart Gun ====================== -->
 	<ThingDef ParentName="BaseBullet">
-	<defName>RRY_USCM_Bullet_10x28mm_SG</defName>
+	<defName>AvP_USCM_Bullet_10x28mm_SG</defName>
     <label>10x28mm caseless</label>
     <graphicData>
 		<texPath>Things/Projectile/Charge_Small</texPath>
@@ -19,8 +19,8 @@
 	</projectile>
  </ThingDef>
 
-	<ThingDef ParentName="RRY_USCM_BaseMakeableGun">
-		<defName>RRY_USCM_Gun_M56SmartGun</defName>
+	<ThingDef ParentName="AvP_USCM_BaseMakeableGun">
+		<defName>AvP_USCM_Gun_M56SmartGun</defName>
 		<label>M56 smartgun</label>
 		<description>The M56 Smartgun is a man-portable heavy machine gun with automatic targeting capabilities chambered for 10×28mm Caseless ammunition. The M56 is dependent on the combat harness and the HMS to be fully functional.</description>
 		<graphicData>
@@ -46,8 +46,8 @@
 			</li> 
 			<li Class="RRYautja.CompProperties_SmartgunSystem"> 
 			<WarmUpReductionQualityAffected>false</WarmUpReductionQualityAffected>
-			<TargeterDef>RRY_Equipment_HMS</TargeterDef>
-			<HarnessDef>RRY_Apparel_M56CombatHarness</HarnessDef>
+			<TargeterDef>AvP_Equipment_HMS</TargeterDef>
+			<HarnessDef>AvP_Apparel_M56CombatHarness</HarnessDef>
 			
 			</li>
 		</comps>
@@ -62,12 +62,12 @@
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>RRY_USCM_Bullet_10x28mm_SG</defaultProjectile>
+				<defaultProjectile>AvP_USCM_Bullet_10x28mm_SG</defaultProjectile>
 				<warmupTime>2.5</warmupTime>
 				<range>31</range>
 				<burstShotCount>25</burstShotCount>
 				<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
-				<soundCast>RRY_M56_Shot</soundCast>
+				<soundCast>AvP_M56_Shot</soundCast>
 				<soundCastTail>GunTail_Medium</soundCastTail>
 				<muzzleFlashScale>9</muzzleFlashScale>
 			
@@ -94,8 +94,8 @@
 			<MoveSpeed>-2.32</MoveSpeed>
 		</equippedStatOffsets>
 		<tradeTags>
-			<li>RRY_RangedWeapons</li>
-			<li>RRY_USCM_RangedWeapons</li>
+			<li>AvP_RangedWeapons</li>
+			<li>AvP_USCM_RangedWeapons</li>
 		</tradeTags>
 		<costList>				
 			<Steel>30</Steel>

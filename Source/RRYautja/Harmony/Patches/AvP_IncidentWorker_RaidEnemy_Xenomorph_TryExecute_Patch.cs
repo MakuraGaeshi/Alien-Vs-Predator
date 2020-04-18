@@ -23,7 +23,7 @@ namespace RRYautja.HarmonyInstance
         {
             if (parms.target is Map && (parms.target as Map).IsPlayerHome)
             {
-                if (parms.faction != null && (parms.faction.def == XenomorphDefOf.RRY_Xenomorph))
+                if (parms.faction != null && (parms.faction.def == XenomorphDefOf.AvP_Xenomorph))
                 {
                     if ((parms.target is Map map))
                     {
@@ -36,7 +36,7 @@ namespace RRYautja.HarmonyInstance
                             parms.points = Mathf.Max(parms.points * new FloatRange(1f, 1.6f).RandomInRange, parms.faction.def.MinPointsToGeneratePawnGroup(PawnGroupKindDefOf.Combat));
                             
                         }
-                        if (parms.raidStrategy != XenomorphDefOf.RRY_PowerCut)
+                        if (parms.raidStrategy != XenomorphDefOf.AvP_PowerCut)
                         {
                             if ((parms.target as Map).skyManager.CurSkyGlow <= 0.5f)
                             {
@@ -51,11 +51,11 @@ namespace RRYautja.HarmonyInstance
                             if (extTunnels && Rand.ChanceSeeded(0.10f + (map.GetComponent<MapComponent_HiveGrid>().HiveChildlist.Count / 100f), AvPConstants.AvPSeed))
                             {
                                 parms.raidStrategy = RaidStrategyDefOf.ImmediateAttack;
-                                parms.raidArrivalMode = XenomorphDefOf.RRY_RandomEnterFromTunnel;
+                                parms.raidArrivalMode = XenomorphDefOf.AvP_RandomEnterFromTunnel;
                             }
                             else
                             {
-                                if (parms.raidArrivalMode != XenomorphDefOf.RRY_RandomEnterFromTunnel && parms.raidArrivalMode != XenomorphDefOf.RRY_DropThroughRoofNearPower)
+                                if (parms.raidArrivalMode != XenomorphDefOf.AvP_RandomEnterFromTunnel && parms.raidArrivalMode != XenomorphDefOf.AvP_DropThroughRoofNearPower)
                                 {
                                     parms.raidArrivalMode = PawnsArrivalModeDefOf.EdgeWalkIn;
                                 }

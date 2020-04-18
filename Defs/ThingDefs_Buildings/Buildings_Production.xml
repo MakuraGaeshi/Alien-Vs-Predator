@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-	<ThingDef Name="RRY_BenchBase" ParentName="BuildingBase" Abstract="True">
+	<ThingDef Name="AvP_BenchBase" ParentName="BuildingBase" Abstract="True">
 		<castEdgeShadows>false</castEdgeShadows>
 		<staticSunShadowHeight>0.00</staticSunShadowHeight>
 		<thingCategories>
@@ -13,8 +13,8 @@
 	<minifiedDef>MinifiedThing</minifiedDef>
 	</ThingDef>
 
-  <ThingDef ParentName="RRY_BenchBase">
-    <defName>RRY_TableMachining</defName>
+  <ThingDef ParentName="AvP_BenchBase">
+    <defName>AvP_TableMachining</defName>
     <label>Yautja machining table</label>
     <description>A Yautja work station for assembling or breaking down machinery like components, armour, guns and ammunition, or dead mechanoids.</description>
     <thingClass>Building_WorkTable</thingClass>

@@ -85,16 +85,16 @@ namespace RRYautja
         }
         public int Impregnations;
 
-        public PawnKindDef HuggerKindDef = XenomorphDefOf.RRY_Xenomorph_FaceHugger;
-        public PawnKindDef RoyaleKindDef = XenomorphDefOf.RRY_Xenomorph_RoyaleHugger;
+        public PawnKindDef HuggerKindDef = XenomorphDefOf.AvP_Xenomorph_FaceHugger;
+        public PawnKindDef RoyaleKindDef = XenomorphDefOf.AvP_Xenomorph_RoyaleHugger;
 
         public int healIntervalTicks = 100;
         public int deathIntervalTicks = 300 * Rand.RangeInclusive(1,5);
         public override void CompTick()
         {
-            if (Facehugger.Faction==null && Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph)!=null)
+            if (Facehugger.Faction==null && Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.AvP_Xenomorph)!=null)
             {
-                Facehugger.SetFaction(Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph));
+                Facehugger.SetFaction(Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.AvP_Xenomorph));
             }
             base.CompTick();
             this.ticksSinceHeal++;

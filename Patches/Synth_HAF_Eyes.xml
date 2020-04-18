@@ -11,7 +11,7 @@
 					<operations>
 						
          <li Class="PatchOperationAdd">
-            <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="RRY_Synth"]/alienRace/generalSettings/alienPartGenerator/bodyAddons</xpath>
+            <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="AvP_Synth"]/alienRace/generalSettings/alienPartGenerator/bodyAddons</xpath>
             <value>
                <!-- Male Eyes -->
                <li>

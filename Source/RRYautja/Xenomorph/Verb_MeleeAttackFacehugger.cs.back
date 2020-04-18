@@ -56,7 +56,7 @@ namespace RRYautja
             }
             float InfecterRoll = (Rand.Value * 100) * (1 - tgtdodge);
             float InfectionDefence = 50 + tgtmelee + (armour * 10);
-            if ((InfecterRoll > InfectionDefence || hitPawn.Downed) && flag && hitPawn is Pawn && !hitPawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Anesthetic))
+            if ((InfecterRoll > InfectionDefence || hitPawn.Downed) && flag && hitPawn is Pawn && !hitPawn.health.hediffSet.HasHediff(XenomorphDefOf.AvP_Hediff_Anesthetic))
             {
                 infect = true;
             }
@@ -154,7 +154,7 @@ namespace RRYautja
             {
                 foreach (var part in hitPawn.RaceProps.body.AllParts.Where(x => x.def.defName.Contains("Head") && !x.def.defName.Contains("Claw")))
                 {
-                    Hediff hediff = HediffMaker.MakeHediff(XenomorphDefOf.RRY_FaceHuggerInfection, hitPawn, null);
+                    Hediff hediff = HediffMaker.MakeHediff(XenomorphDefOf.AvP_FaceHuggerInfection, hitPawn, null);
                     Comp_Facehugger _Facehugger = CasterPawn.TryGetComp<Comp_Facehugger>();
                     HediffComp_XenoFacehugger comp = hediff.TryGetComp<HediffComp_XenoFacehugger>();
                     comp.instigator = CasterPawn;
@@ -187,8 +187,8 @@ namespace RRYautja
         }
 
 
-        public PawnKindDef HuggerKindDef = XenomorphDefOf.RRY_Xenomorph_FaceHugger;
-        public PawnKindDef RoyaleKindDef = XenomorphDefOf.RRY_Xenomorph_RoyaleHugger;
+        public PawnKindDef HuggerKindDef = XenomorphDefOf.AvP_Xenomorph_FaceHugger;
+        public PawnKindDef RoyaleKindDef = XenomorphDefOf.AvP_Xenomorph_RoyaleHugger;
         // Token: 0x0400253C RID: 9532
         private const float MeleeDamageRandomFactorMin = 0.8f;
 

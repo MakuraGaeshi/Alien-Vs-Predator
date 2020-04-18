@@ -438,7 +438,7 @@ namespace RRYautja
                 {
                     break;
                 }
-                DamageDef damageDef = XenomorphDefOf.RRY_AcidBurn;
+                DamageDef damageDef = XenomorphDefOf.AvP_AcidBurn;
                 Thing p2 = p;
                 DamageDef def = damageDef;
                 float amount = (float)num;

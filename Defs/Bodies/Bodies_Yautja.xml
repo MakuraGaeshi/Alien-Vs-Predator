@@ -186,7 +186,7 @@
                   </groups>
                 </li>
                 <li>
-					<def>RRY_Yautja_Mouth</def>
+					<def>AvP_Yautja_Mouth</def>
 					<coverage>0.10</coverage>
 					<depth>Inside</depth>
 					<parts>
@@ -264,7 +264,7 @@
               <coverage>0.77</coverage>
               <groups>
                 <li>Arms</li>
-                <li>RRY_Yautja_LeftArm</li>
+                <li>AvP_Yautja_LeftArm</li>
               </groups>
               <parts>
                 <li>
@@ -369,7 +369,7 @@
               <coverage>0.77</coverage>
               <groups>
                 <li>Arms</li>
-                <li>RRY_Yautja_RightArm</li>
+                <li>AvP_Yautja_RightArm</li>
               </groups>
               <parts>
                 <li>

@@ -47,11 +47,11 @@ namespace RRYautja
         private string FacehuggerTexpath = "Things/Pawn/Xenomorph/Xenomorph_FaceHugger_Mask";
         private string RoyalhuggerTexpath = "Things/Pawn/Xenomorph/Xenomorph_FaceHuggerRoyal_Mask";
 
-        public PawnKindDef HuggerKindDef = XenomorphDefOf.RRY_Xenomorph_FaceHugger;
-        public PawnKindDef RoyaleKindDef = XenomorphDefOf.RRY_Xenomorph_RoyaleHugger;
+        public PawnKindDef HuggerKindDef = XenomorphDefOf.AvP_Xenomorph_FaceHugger;
+        public PawnKindDef RoyaleKindDef = XenomorphDefOf.AvP_Xenomorph_RoyaleHugger;
 
         public PawnKindDef instigatorKindDef;
-        public HediffDef heDiffDeff = XenomorphDefOf.RRY_XenomorphImpregnation;
+        public HediffDef heDiffDeff = XenomorphDefOf.AvP_XenomorphImpregnation;
         public int timer = 0;
         public int timer2 = 0;
         public int previousImpregnations;
@@ -252,9 +252,9 @@ namespace RRYautja
         public override void CompPostPostAdd(DamageInfo? dinfo)
         {
             base.CompPostPostAdd(dinfo);
-            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Facehuggers) && Pawn.Spawned && Pawn.IsColonist)
+            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.AvP_Concept_Facehuggers) && Pawn.Spawned && Pawn.IsColonist)
             {
-                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Facehuggers, OpportunityType.Important);
+                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.AvP_Concept_Facehuggers, OpportunityType.Important);
             }
         }
 
@@ -274,8 +274,8 @@ namespace RRYautja
                 }
             }
             bool spawnLive = this.spawnLive;
-            hostPawn.health.AddHediff(XenomorphDefOf.RRY_Hediff_Anesthetic);
-        //    if ((hostPawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation) && !hasImpregnated))
+            hostPawn.health.AddHediff(XenomorphDefOf.AvP_Hediff_Anesthetic);
+        //    if ((hostPawn.health.hediffSet.HasHediff(XenomorphDefOf.AvP_XenomorphImpregnation) && !hasImpregnated))
             if (!hasImpregnated)
             {
             spawnLive = true;

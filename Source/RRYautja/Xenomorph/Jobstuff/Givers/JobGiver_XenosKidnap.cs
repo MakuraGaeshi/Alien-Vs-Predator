@@ -98,13 +98,13 @@ namespace RimWorld
                     {
                         //   Log.Message(string.Format("TryFindGoodHiveLoc pawn.GetLord() == null"));
                     }
-                    if (pawn.mindState.duty.def != XenomorphDefOf.RRY_Xenomorph_DefendAndExpandHive && pawn.mindState.duty.def != XenomorphDefOf.RRY_Xenomorph_DefendHiveAggressively)
+                    if (pawn.mindState.duty.def != XenomorphDefOf.AvP_Xenomorph_DefendAndExpandHive && pawn.mindState.duty.def != XenomorphDefOf.AvP_Xenomorph_DefendHiveAggressively)
                     {
-                        pawn.mindState.duty = new PawnDuty(XenomorphDefOf.RRY_Xenomorph_DefendAndExpandHive, c, 40f);
+                        pawn.mindState.duty = new PawnDuty(XenomorphDefOf.AvP_Xenomorph_DefendAndExpandHive, c, 40f);
                     }
                     if (RCellFinder.TryFindRandomCellNearWith(c, validator, pawn.Map, out IntVec3 lc, 2, 8))
                     {
-                        return new Job(XenomorphDefOf.RRY_Job_Xenomorph_Kidnap)
+                        return new Job(XenomorphDefOf.AvP_Job_Xenomorph_Kidnap)
                         {
                             targetA = Victim,
                             targetB = lc,

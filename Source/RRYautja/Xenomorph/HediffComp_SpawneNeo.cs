@@ -100,15 +100,15 @@ namespace RRYautja
             {
                 if (parent.pawn.Map != null)
                 {
-                    if (parent.def == XenomorphDefOf.RRY_HiddenNeomorphImpregnation || parent.def == XenomorphDefOf.RRY_NeomorphImpregnation && this.parent.pawn.Faction == Faction.OfPlayer)
+                    if (parent.def == XenomorphDefOf.AvP_HiddenNeomorphImpregnation || parent.def == XenomorphDefOf.AvP_NeomorphImpregnation && this.parent.pawn.Faction == Faction.OfPlayer)
                     {
                         string text = TranslatorFormattedStringExtensions.Translate("Xeno_Neospores_Added", base.parent.pawn.LabelShortCap, parent.Part.LabelShort);
                         MoteMaker.ThrowText(base.parent.pawn.Position.ToVector3(), base.parent.pawn.Map, text, 3f);
                     }
 
-                    if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Embryo) && Pawn.Spawned && Pawn.IsColonist && (this.parent.def == XenomorphDefOf.RRY_XenomorphImpregnation || this.parent.def == XenomorphDefOf.RRY_NeomorphImpregnation) && MyMap != null)
+                    if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.AvP_Concept_Embryo) && Pawn.Spawned && Pawn.IsColonist && (this.parent.def == XenomorphDefOf.AvP_XenomorphImpregnation || this.parent.def == XenomorphDefOf.AvP_NeomorphImpregnation) && MyMap != null)
                     {
-                        LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Embryo, OpportunityType.Important);
+                        LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.AvP_Concept_Embryo, OpportunityType.Important);
                     }
                 }
 
@@ -211,7 +211,7 @@ namespace RRYautja
         {
             bool selected = Find.Selector.SingleSelectedThing == parent.pawn && Prefs.DevMode;
             Gender gender = Gender.None;
-            PawnKindDef pawnKindDef = XenomorphDefOf.RRY_Xenomorph_Neomorph;
+            PawnKindDef pawnKindDef = XenomorphDefOf.AvP_Xenomorph_Neomorph;
             if (Prefs.DevMode)
             {
              //    Log.Message(string.Format("spawning: {0}", pawnKindDef.label));
@@ -296,11 +296,11 @@ namespace RRYautja
                     }
                     string text = TranslatorFormattedStringExtensions.Translate("Xeno_Chestburster_Emerge", base.parent.pawn.LabelShort, this.parent.Part.LabelShort);
                     MoteMaker.ThrowText(spawnLoc.ToVector3(), spawnMap, text, 5f);
-                    if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Chestbursters) && MyMap != null)
+                    if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.AvP_Concept_Chestbursters) && MyMap != null)
                     {
-                        LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Chestbursters, OpportunityType.Important);
+                        LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.AvP_Concept_Chestbursters, OpportunityType.Important);
                     }
-                    Pawn.health.AddHediff(DefDatabase<HediffDef>.GetNamedSilentFail("RRY_PostBurstWound"), this.parent.Part);
+                    Pawn.health.AddHediff(DefDatabase<HediffDef>.GetNamedSilentFail("AvP_PostBurstWound"), this.parent.Part);
                     Pawn.health.RemoveHediff(this.parent);
                 }
             }

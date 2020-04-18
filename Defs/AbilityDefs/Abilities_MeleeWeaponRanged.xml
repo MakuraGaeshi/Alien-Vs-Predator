@@ -2,8 +2,8 @@
 <Defs>
 <!-- ======================== Melee Weapon Ranged Ability Defs ================================== -->
 <!-- ======================== Yautja - Throw Spear Ability ================================== -->
-<ThingDef ParentName="RRY_BaseThrownProjectileAbility">
-   <defName>RRY_Projectile_CombiStick</defName>
+<ThingDef ParentName="AvP_BaseThrownProjectileAbility">
+   <defName>AvP_Projectile_CombiStick</defName>
 		<graphicData>
 			<texPath>Things/Projectile/Yautja_Combistaff_New</texPath>
 			<drawSize>2.40</drawSize>			
@@ -14,7 +14,7 @@
 			</li>
 		</comps>
 		<projectile>
-			  <damageDef>RRY_RangedStab_Combi</damageDef>
+			  <damageDef>AvP_RangedStab_Combi</damageDef>
 			  <armorPenetrationBase>0.5</armorPenetrationBase>
 			  <damageAmountBase>15</damageAmountBase>
 			  <speed>30</speed>
@@ -22,8 +22,8 @@
 		</projectile>
  </ThingDef>
 
-	<RRYautja.EquipmentAbilityDef ParentName="RRY_BaseAbility">
-        <defName>RRY_Ability_Throw_CombiStick</defName>
+	<RRYautja.EquipmentAbilityDef ParentName="AvP_BaseAbility">
+        <defName>AvP_Ability_Throw_CombiStick</defName>
         <label>Throw Combistick</label>
         <iconPath>Things/Equipment/Melee/Yautja_Combistaff_New</iconPath>
         <description>Throw the Combistick.</description>
@@ -31,7 +31,7 @@
         <verbProperties Class="RRYautja.VerbProperties_EquipmentAbility">
             <verbClass>RRYautja.Verb_UseEquipment_Thrown</verbClass>
             <hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>RRY_Projectile_CombiStick</defaultProjectile>
+			<defaultProjectile>AvP_Projectile_CombiStick</defaultProjectile>
             <warmupTime>2</warmupTime>
             <burstShotCount>1</burstShotCount>
 			<range>20</range>
@@ -52,8 +52,8 @@
  </RRYautja.EquipmentAbilityDef>
  
 <!-- ======================== Yautja - Throw Smart Disk Ability ================================== -->
-<ThingDef ParentName="RRY_BaseThrownReturningProjectileAbility">
-   <defName>RRY_Projectile_SmartDisk</defName>
+<ThingDef ParentName="AvP_BaseThrownReturningProjectileAbility">
+   <defName>AvP_Projectile_SmartDisk</defName>
 		<graphicData>
 			<texPath>Things/Projectile/SmartDisk</texPath>	
 		</graphicData>
@@ -61,7 +61,7 @@
 		
 		</comps>
 		<projectile>
-			  <damageDef>RRY_RangedCut</damageDef>
+			  <damageDef>AvP_RangedCut</damageDef>
 			  <armorPenetrationBase>1</armorPenetrationBase>
 			  <damageAmountBase>30</damageAmountBase>
 			  <speed>26</speed>
@@ -69,8 +69,8 @@
 		</projectile>
  </ThingDef>
 
-	<RRYautja.EquipmentAbilityDef ParentName="RRY_BaseAbility">
-        <defName>RRY_Ability_Throw_SmartDisk</defName>
+	<RRYautja.EquipmentAbilityDef ParentName="AvP_BaseAbility">
+        <defName>AvP_Ability_Throw_SmartDisk</defName>
         <label>Throw Smart Disk</label>
         <iconPath>Things/Projectile/SmartDisk</iconPath>
         <description>Throw the Smart Disk.</description>
@@ -79,7 +79,7 @@
         <verbProperties Class="RRYautja.VerbProperties_EquipmentAbility">
             <verbClass>RRYautja.Verb_UseEquipment_Thrown</verbClass>
             <hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>RRY_Projectile_SmartDisk</defaultProjectile>
+			<defaultProjectile>AvP_Projectile_SmartDisk</defaultProjectile>
             <warmupTime>2</warmupTime>
             <burstShotCount>1</burstShotCount>
 			<range>20</range>

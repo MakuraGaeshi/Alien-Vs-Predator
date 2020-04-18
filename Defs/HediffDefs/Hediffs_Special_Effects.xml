@@ -21,7 +21,7 @@
 
 	
   <HediffDef ParentName="AvP_SpecialGoodHeDiff">
-    <defName>AvP_Yautja_Wristblade</defName>
+    <defName>AvP_Hediff_Yautja_Wristblade</defName>
     <label>wristblade</label>
     <description>wristblade</description>
     <labelNoun>a wristblade</labelNoun>
@@ -51,7 +51,7 @@
   
   <HediffDef>
     <hediffClass>HediffWithComps</hediffClass>
-    <defName>RRY_Hediff_PinnedCombistaff</defName>
+    <defName>AvP_Hediff_PinnedCombistaff</defName>
     <label>pinned</label>
     <description>pinned</description>
     <labelNoun>horrified</labelNoun>
@@ -83,19 +83,6 @@
   </HediffDef>
   
   <HediffDef>
-    <defName>RRY_Hediff_Xenomorph_Hidden</defName>
-    <hediffClass>RRYautja.Hediff_Hidden_Xeno</hediffClass>
-    <initialSeverity>1</initialSeverity>
-    <label>hidden</label>
-    <description>hidden</description>
-    <stages>
-      <li>
-        <becomeVisible>false</becomeVisible>
-      </li>
-    </stages>
-  </HediffDef>
-  
-  <HediffDef>
     <defName>AvP_Hediff_BouncedProjectile</defName>
     <hediffClass>RRYautja.Hediff_Bouncer</hediffClass>
     <initialSeverity>1</initialSeverity>
@@ -110,7 +97,7 @@
   </HediffDef>
   
     <HediffDef ParentName="AvP_SpecialBadHeDiff">
-    <defName>RRY_Hediff_Cocooned</defName>
+    <defName>AvP_Hediff_Cocooned</defName>
     <label>Cocooned</label>
     <description>Cocooned</description>
     <labelNoun>Cocooned by a Xenomorph</labelNoun>
@@ -134,7 +121,7 @@
   </HediffDef>
 
   <HediffDef ParentName="DiseaseBase">
-    <defName>RRY_Hediff_Anesthetic</defName>
+    <defName>AvP_Hediff_Anesthetic</defName>
     <label>deep sleep</label>
     <description>deep sleep</description>
     <isBad>false</isBad>
@@ -159,7 +146,7 @@
   </HediffDef>
 
     <HediffDef ParentName="AvP_SpecialBadHeDiff">
-    <defName>RRY_Hediff_Pinned</defName>
+    <defName>AvP_Hediff_Pinned</defName>
     <label>Pinned</label>
     <description>Pinned</description>
     <labelNoun>Pinned in place </labelNoun>

@@ -2,7 +2,7 @@
 <Defs>
 <!--============================================= Yautja =============================================-->
   <TraitDef>
-    <defName>RRY_Berserker</defName>
+    <defName>AvP_Berserker</defName>
         <ignoreConfigErrors>true</ignoreConfigErrors>
 	<!-- 0.08 -->
     <commonality>0.00</commonality>
@@ -48,7 +48,7 @@
    
   
   <TraitDef>
-    <defName>RRY_DefectiveInhibitor</defName>
+    <defName>AvP_DefectiveInhibitor</defName>
         <ignoreConfigErrors>true</ignoreConfigErrors>
 	<!-- 0.08 -->
     <commonality>0.00</commonality>

@@ -22,7 +22,7 @@ namespace RRYautja.HarmonyInstance
         public static void Postfix(PawnGenerationRequest request, ref Pawn __result)
         {
             /*
-            if (__result.Faction.def.defName.Contains("RRY_USCM"))
+            if (__result.Faction.def.defName.Contains("AvP_USCM"))
             {
 
             }

@@ -2,7 +2,7 @@
 <Defs>
   
   <ThinkTreeDef>
-    <defName>RRY_SatisfyNeomorphNeeds</defName>
+    <defName>AvP_SatisfyNeomorphNeeds</defName>
     <thinkRoot Class="ThinkNode_Tagger">
       <tagToGive>SatisfyingNeeds</tagToGive>
       <subNodes>

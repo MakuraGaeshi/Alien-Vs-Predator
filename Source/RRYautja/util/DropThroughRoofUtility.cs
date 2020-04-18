@@ -73,7 +73,7 @@ namespace RimWorld
         // Token: 0x06002762 RID: 10082 RVA: 0x0012C458 File Offset: 0x0012A858
         public static void MakeTunnelAt(IntVec3 c, Map map, ActiveDropPodInfo info)
         {
-            ThingDef TunnelDef = DefDatabase<ThingDef>.GetNamed("RRY_Tunneler");
+            ThingDef TunnelDef = DefDatabase<ThingDef>.GetNamed("AvP_Tunneler");
         //    Log.Message(string.Format("making tunnelSpawner: {0}, @: {1}, {2}, {3}", TunnelDef, c, map, info.innerContainer.ContentsString));
             TunnelSpawner tunnelSpawner = (TunnelSpawner)ThingMaker.MakeThing(TunnelDef, null);
             foreach (Thing item in info.innerContainer)

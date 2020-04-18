@@ -22,7 +22,7 @@ namespace RRYautja.HarmonyInstance
         public static bool Prefix(Pawn_HealthTracker __instance)
         { 
             Pawn pawn = Main.Pawn_HealthTracker_GetPawn(__instance);
-            bool flag = (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned));
+            bool flag = (pawn.health.hediffSet.HasHediff(XenomorphDefOf.AvP_Hediff_Cocooned));
             bool result;
             if (flag)
             {

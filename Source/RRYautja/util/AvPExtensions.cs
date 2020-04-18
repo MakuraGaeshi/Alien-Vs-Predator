@@ -38,7 +38,7 @@ namespace RRYautja.ExtensionMethods
 
         public static bool isYautja(this Pawn p)
         {
-            return p.def == YautjaDefOf.AvP_Alien_Yautja;
+            return p.def == YautjaDefOf.AvP_Alien_Yautja ;
         }
         public static bool isYautja(this Pawn p, out Comp_Yautja _Yautja)
         {
@@ -46,24 +46,35 @@ namespace RRYautja.ExtensionMethods
             return p.def == YautjaDefOf.AvP_Alien_Yautja;
         }
 
+        public static bool isYautja(this Pawn p, out Comp_Yautja _Yautja, out Comp_Markable _Markable)
+        {
+            _Yautja = p.TryGetComp<Comp_Yautja>();
+            _Markable = p.TryGetComp<Comp_Markable>();
+            return p.def == YautjaDefOf.AvP_Alien_Yautja;
+        }
+
+        public static bool isSynth(this Pawn p)
+        {
+            return p.RaceProps.FleshType == USCMDefOf.AvP_Synth.race.FleshType;
+        }
         public static bool isUnblooded(this Pawn p)
         {
-            return p.health.hediffSet.hediffs.Any(x => x.def.defName.Contains("RRY_Hediff_Unblooded"));
+            return p.health.hediffSet.hediffs.Any(x => x.def.defName.Contains("AvP_Hediff_Unblooded"));
         }
 
         public static bool isBlooded(this Pawn p)
         {
-            return p.health.hediffSet.hediffs.Any(x => x.def.defName.Contains("RRY_Hediff_Blooded"));
+            return p.health.hediffSet.hediffs.Any(x => x.def.defName.Contains("AvP_Hediff_Blooded"));
         }
 
         public static bool isBloodUnmarked(this Pawn p)
         {
-            return p.health.hediffSet.hediffs.Any(x => x.def.defName.Contains("RRY_Hediff_BloodedUM"));
+            return p.health.hediffSet.hediffs.Any(x => x.def.defName.Contains("AvP_Hediff_BloodedUM"));
         }
 
         public static bool isBloodMarked(this Pawn p)
         {
-            return p.health.hediffSet.hediffs.Any(x => x.def.defName.Contains("RRY_Hediff_BloodedM"));
+            return p.health.hediffSet.hediffs.Any(x => x.def.defName.Contains("AvP_Hediff_BloodedM"));
         }
 
         public static bool switchLord (this Pawn p, Lord L)
@@ -140,49 +151,58 @@ namespace RRYautja.ExtensionMethods
             }
             return null;
         }
-        
-        public static bool isCocooned(this Pawn p)
+
+        public static bool Cocooned(this Pawn p)
         {
-            return p.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned);
+            return p.health.hediffSet.HasHediff(XenomorphDefOf.AvP_Hediff_Cocooned);
+        }
+        public static bool Cocooned(this Thing t)
+        {
+            Pawn p = t as Pawn;
+            if (p==null)
+            {
+                return false;
+            }
+            return p.Cocooned();
         }
 
         public static bool isXenomorph(this Pawn p)
         {
-            return p.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Xenomorph;
+            return p.RaceProps.FleshType == XenomorphRacesDefOf.AvP_Xenomorph;
         }
         public static bool isXenomorph(this Thing p)
         {
-            return p.def.race?.FleshType == XenomorphRacesDefOf.RRY_Xenomorph;
+            return p.def.race?.FleshType == XenomorphRacesDefOf.AvP_Xenomorph;
         }
         public static bool isXenomorph(this Pawn p, out Comp_Xenomorph comp)
         {
             comp = p.TryGetComp<Comp_Xenomorph>()?? null;
-            return p.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Xenomorph;
+            return p.RaceProps.FleshType == XenomorphRacesDefOf.AvP_Xenomorph;
         }
 
         public static bool isNeomorph(this Pawn p)
         {
-            return p.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Neomorph;
+            return p.RaceProps.FleshType == XenomorphRacesDefOf.AvP_Neomorph;
         }
 
         public static bool isXenomorph(this PawnKindDef p)
         {
-            return p.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Xenomorph;
+            return p.RaceProps.FleshType == XenomorphRacesDefOf.AvP_Xenomorph;
         }
 
         public static bool isNeomorph(this PawnKindDef p)
         {
-            return p.RaceProps.FleshType == XenomorphRacesDefOf.RRY_Neomorph;
+            return p.RaceProps.FleshType == XenomorphRacesDefOf.AvP_Neomorph;
         }
 
         public static bool isXenomorph(this ThingDef p)
         {
-            return p.race.FleshType == XenomorphRacesDefOf.RRY_Xenomorph;
+            return p.race.FleshType == XenomorphRacesDefOf.AvP_Xenomorph;
         }
 
         public static bool isNeomorph(this ThingDef p)
         {
-            return p.race.FleshType == XenomorphRacesDefOf.RRY_Neomorph;
+            return p.race.FleshType == XenomorphRacesDefOf.AvP_Neomorph;
         }
 
         public static bool isPotentialHost(this Thing t, bool setDefaults = false, bool allowImpreg = false)
@@ -373,12 +393,12 @@ namespace RRYautja.ExtensionMethods
 
         public static bool isPotentialHost(this Pawn p)
         {
-            return XenomorphUtil.isInfectablePawn(p) && !p.isXenomorph() && !p.isNeomorph() && p.health.hediffSet.HasHead && !p.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned);
+            return XenomorphUtil.isInfectablePawn(p) && !p.isXenomorph() && !p.isNeomorph() && p.health.hediffSet.HasHead && !p.health.hediffSet.HasHediff(XenomorphDefOf.AvP_Hediff_Cocooned);
         }
         public static bool isPotentialHost(this Thing t)
         {
             Pawn p = (Pawn)t;
-            return XenomorphUtil.isInfectablePawn(p) && !p.isXenomorph() && !p.isNeomorph() && p.health.hediffSet.HasHead && !p.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned);
+            return XenomorphUtil.isInfectablePawn(p) && !p.isXenomorph() && !p.isNeomorph() && p.health.hediffSet.HasHead && !p.health.hediffSet.HasHediff(XenomorphDefOf.AvP_Hediff_Cocooned);
         }
 
         public static bool isPotentialHost(this PawnKindDef p)
@@ -495,7 +515,7 @@ namespace RRYautja.ExtensionMethods
                 failReason = "IsFlesh";
                 return false;
             }
-            if (p.defaultFactionType==XenomorphDefOf.RRY_Xenomorph)
+            if (p.defaultFactionType==XenomorphDefOf.AvP_Xenomorph)
             {
                 failReason = "IsXenomorphFaction";
                 return false;
@@ -649,7 +669,7 @@ namespace RRYautja.ExtensionMethods
 
         public static List<Pawn> CocoonedPawns(this Map m)
         {
-            return m.mapPawns.AllPawnsSpawned.FindAll(x => x.isCocooned());
+            return m.mapPawns.AllPawnsSpawned.FindAll(x => x.Cocooned());
         }
 
         public static bool isHost(this Pawn p)
@@ -661,7 +681,7 @@ namespace RRYautja.ExtensionMethods
             bool result = p.isNeoHost() || p.isXenoHost();
             if (result)
             {
-                hediff = p.health.hediffSet.hediffs.Find(x => x.def.defName.Contains("morphImpregnation") || x.def == XenomorphDefOf.RRY_FaceHuggerInfection);
+                hediff = p.health.hediffSet.hediffs.Find(x => x.def.defName.Contains("morphImpregnation") || x.def == XenomorphDefOf.AvP_FaceHuggerInfection);
             }
             else
             {
@@ -671,7 +691,7 @@ namespace RRYautja.ExtensionMethods
         }
         public static bool isXenoHost(this Pawn p)
         {
-            return p.health.hediffSet.hediffs.Any(x => x.def.defName.Contains("XenomorphImpregnation") || x.def==XenomorphDefOf.RRY_FaceHuggerInfection);
+            return p.health.hediffSet.hediffs.Any(x => x.def.defName.Contains("XenomorphImpregnation") || x.def==XenomorphDefOf.AvP_FaceHuggerInfection);
         }
         public static bool isNeoHost(this Pawn p)
         {
@@ -709,29 +729,29 @@ namespace RRYautja.ExtensionMethods
                 {
                     if (predalienEmbryo)
                     {
-                        kindDef = p.kindDef.isFighter ? XenomorphDefOf.RRY_Xenomorph_Warrior : XenomorphDefOf.RRY_Xenomorph_Drone;
+                        kindDef = p.kindDef.isFighter ? XenomorphDefOf.AvP_Xenomorph_Warrior : XenomorphDefOf.AvP_Xenomorph_Drone;
                     }
                     else
                     {
                         if (royaleEmbryo)
                         {
-                            kindDef = XenomorphDefOf.RRY_Xenomorph_Queen;
+                            kindDef = XenomorphDefOf.AvP_Xenomorph_Queen;
                         }
                         else
                         {
                             if (large)
                             {
-                                kindDef = XenomorphDefOf.RRY_Xenomorph_Warrior;
+                                kindDef = XenomorphDefOf.AvP_Xenomorph_Warrior;
                             }
                             else
                             {
                                 if (small)
                                 {
-                                    kindDef = XenomorphDefOf.RRY_Xenomorph_Drone;
+                                    kindDef = XenomorphDefOf.AvP_Xenomorph_Drone;
                                 }
                                 else
                                 {
-                                    kindDef = p.kindDef.isFighter ? XenomorphDefOf.RRY_Xenomorph_Warrior : XenomorphDefOf.RRY_Xenomorph_Drone;
+                                    kindDef = p.kindDef.isFighter ? XenomorphDefOf.AvP_Xenomorph_Warrior : XenomorphDefOf.AvP_Xenomorph_Drone;
                                 }
                             }
                         }
@@ -741,29 +761,29 @@ namespace RRYautja.ExtensionMethods
                 {
                     if (yautja)
                     {
-                        kindDef = XenomorphDefOf.RRY_Xenomorph_Predalien;
+                        kindDef = XenomorphDefOf.AvP_Xenomorph_Predalien;
                     }
                     else
                     {
                         if (royaleEmbryo)
                         {
-                            kindDef = XenomorphDefOf.RRY_Xenomorph_Queen;
+                            kindDef = XenomorphDefOf.AvP_Xenomorph_Queen;
                         }
                         else
                         {
                             if (large)
                             {
-                                kindDef = XenomorphDefOf.RRY_Xenomorph_Warrior;
+                                kindDef = XenomorphDefOf.AvP_Xenomorph_Warrior;
                             }
                             else
                             {
                                 if (small)
                                 {
-                                    kindDef = XenomorphDefOf.RRY_Xenomorph_Drone;
+                                    kindDef = XenomorphDefOf.AvP_Xenomorph_Drone;
                                 }
                                 else
                                 {
-                                    kindDef = p.kindDef.RaceProps.predator ? XenomorphDefOf.RRY_Xenomorph_Warrior : XenomorphDefOf.RRY_Xenomorph_Drone;
+                                    kindDef = p.kindDef.RaceProps.predator ? XenomorphDefOf.AvP_Xenomorph_Warrior : XenomorphDefOf.AvP_Xenomorph_Drone;
                                 }
                             }
                         }
@@ -776,28 +796,28 @@ namespace RRYautja.ExtensionMethods
                 {
                     if (thrumbo)
                     {
-                        kindDef = XenomorphDefOf.RRY_Xenomorph_Thrumbomorph;
+                        kindDef = XenomorphDefOf.AvP_Xenomorph_Thrumbomorph;
                     }
                     else
                     {
-                        kindDef = XenomorphDefOf.RRY_Xenomorph_Warrior;
+                        kindDef = XenomorphDefOf.AvP_Xenomorph_Warrior;
                     }
                 }
                 else
                 {
                     if (hound)
                     {
-                        kindDef = XenomorphDefOf.RRY_Xenomorph_Runner;
+                        kindDef = XenomorphDefOf.AvP_Xenomorph_Runner;
                     }
                     else
                     {
                         if (small)
                         {
-                            kindDef = XenomorphDefOf.RRY_Xenomorph_Runner;
+                            kindDef = XenomorphDefOf.AvP_Xenomorph_Runner;
                         }
                         else
                         {
-                            kindDef = XenomorphDefOf.RRY_Xenomorph_Drone;
+                            kindDef = XenomorphDefOf.AvP_Xenomorph_Drone;
                         }
                     }
                 }
@@ -834,17 +854,17 @@ namespace RRYautja.ExtensionMethods
                 {
                     if (large)
                     {
-                        kindDef = XenomorphDefOf.RRY_Xenomorph_Warrior;
+                        kindDef = XenomorphDefOf.AvP_Xenomorph_Warrior;
                     }
                     else
                     {
                         if (small)
                         {
-                            kindDef = XenomorphDefOf.RRY_Xenomorph_Drone;
+                            kindDef = XenomorphDefOf.AvP_Xenomorph_Drone;
                         }
                         else
                         {
-                            kindDef = p.isFighter ? XenomorphDefOf.RRY_Xenomorph_Warrior : XenomorphDefOf.RRY_Xenomorph_Drone;
+                            kindDef = p.isFighter ? XenomorphDefOf.AvP_Xenomorph_Warrior : XenomorphDefOf.AvP_Xenomorph_Drone;
                         }
                     }
                 }
@@ -852,23 +872,23 @@ namespace RRYautja.ExtensionMethods
                 {
                     if (yautja)
                     {
-                        kindDef = XenomorphDefOf.RRY_Xenomorph_Predalien;
+                        kindDef = XenomorphDefOf.AvP_Xenomorph_Predalien;
                     }
                     else
                     {
                         if (large)
                         {
-                            kindDef = XenomorphDefOf.RRY_Xenomorph_Warrior;
+                            kindDef = XenomorphDefOf.AvP_Xenomorph_Warrior;
                         }
                         else
                         {
                             if (small)
                             {
-                                kindDef = XenomorphDefOf.RRY_Xenomorph_Drone;
+                                kindDef = XenomorphDefOf.AvP_Xenomorph_Drone;
                             }
                             else
                             {
-                                kindDef = p.RaceProps.predator ? XenomorphDefOf.RRY_Xenomorph_Warrior : XenomorphDefOf.RRY_Xenomorph_Drone;
+                                kindDef = p.RaceProps.predator ? XenomorphDefOf.AvP_Xenomorph_Warrior : XenomorphDefOf.AvP_Xenomorph_Drone;
                             }
                         }
                     }
@@ -880,28 +900,28 @@ namespace RRYautja.ExtensionMethods
                 {
                     if (thrumbo)
                     {
-                        kindDef = XenomorphDefOf.RRY_Xenomorph_Thrumbomorph;
+                        kindDef = XenomorphDefOf.AvP_Xenomorph_Thrumbomorph;
                     }
                     else
                     {
-                        kindDef = XenomorphDefOf.RRY_Xenomorph_Warrior;
+                        kindDef = XenomorphDefOf.AvP_Xenomorph_Warrior;
                     }
                 }
                 else
                 {
                     if (hound)
                     {
-                        kindDef = XenomorphDefOf.RRY_Xenomorph_Runner;
+                        kindDef = XenomorphDefOf.AvP_Xenomorph_Runner;
                     }
                     else
                     {
                         if (small)
                         {
-                            kindDef = XenomorphDefOf.RRY_Xenomorph_Runner;
+                            kindDef = XenomorphDefOf.AvP_Xenomorph_Runner;
                         }
                         else
                         {
-                            kindDef = XenomorphDefOf.RRY_Xenomorph_Drone;
+                            kindDef = XenomorphDefOf.AvP_Xenomorph_Drone;
                         }
                     }
                 }
@@ -932,18 +952,18 @@ namespace RRYautja.ExtensionMethods
                 {
                     if (large)
                     {
-                        kindDef.Add(XenomorphDefOf.RRY_Xenomorph_Warrior);
+                        kindDef.Add(XenomorphDefOf.AvP_Xenomorph_Warrior);
                     }
                     else
                     {
                         if (small)
                         {
-                            kindDef.Add(XenomorphDefOf.RRY_Xenomorph_Drone);
+                            kindDef.Add(XenomorphDefOf.AvP_Xenomorph_Drone);
                         }
                         else
                         {
-                            kindDef.Add(XenomorphDefOf.RRY_Xenomorph_Warrior);
-                            kindDef.Add(XenomorphDefOf.RRY_Xenomorph_Drone);
+                            kindDef.Add(XenomorphDefOf.AvP_Xenomorph_Warrior);
+                            kindDef.Add(XenomorphDefOf.AvP_Xenomorph_Drone);
                         }
                     }
                 }
@@ -951,24 +971,24 @@ namespace RRYautja.ExtensionMethods
                 {
                     if (yautja)
                     {
-                        kindDef.Add(XenomorphDefOf.RRY_Xenomorph_Predalien);
+                        kindDef.Add(XenomorphDefOf.AvP_Xenomorph_Predalien);
                     }
                     else
                     {
                         if (large)
                         {
-                            kindDef.Add(XenomorphDefOf.RRY_Xenomorph_Warrior);
+                            kindDef.Add(XenomorphDefOf.AvP_Xenomorph_Warrior);
                         }
                         else
                         {
                             if (small)
                             {
-                                kindDef.Add(XenomorphDefOf.RRY_Xenomorph_Drone);
+                                kindDef.Add(XenomorphDefOf.AvP_Xenomorph_Drone);
                             }
                             else
                             {
-                                kindDef.Add(XenomorphDefOf.RRY_Xenomorph_Warrior);
-                                kindDef.Add(XenomorphDefOf.RRY_Xenomorph_Drone);
+                                kindDef.Add(XenomorphDefOf.AvP_Xenomorph_Warrior);
+                                kindDef.Add(XenomorphDefOf.AvP_Xenomorph_Drone);
                             }
                         }
                     }
@@ -980,28 +1000,28 @@ namespace RRYautja.ExtensionMethods
                 {
                     if (thrumbo)
                     {
-                        kindDef.Add(XenomorphDefOf.RRY_Xenomorph_Thrumbomorph);
+                        kindDef.Add(XenomorphDefOf.AvP_Xenomorph_Thrumbomorph);
                     }
                     else
                     {
-                        kindDef.Add(XenomorphDefOf.RRY_Xenomorph_Warrior);
+                        kindDef.Add(XenomorphDefOf.AvP_Xenomorph_Warrior);
                     }
                 }
                 else
                 {
                     if (hound)
                     {
-                        kindDef.Add(XenomorphDefOf.RRY_Xenomorph_Runner);
+                        kindDef.Add(XenomorphDefOf.AvP_Xenomorph_Runner);
                     }
                     else
                     {
                         if (small)
                         {
-                            kindDef.Add(XenomorphDefOf.RRY_Xenomorph_Runner);
+                            kindDef.Add(XenomorphDefOf.AvP_Xenomorph_Runner);
                         }
                         else
                         {
-                            kindDef.Add(XenomorphDefOf.RRY_Xenomorph_Drone);
+                            kindDef.Add(XenomorphDefOf.AvP_Xenomorph_Drone);
                         }
                     }
                 }

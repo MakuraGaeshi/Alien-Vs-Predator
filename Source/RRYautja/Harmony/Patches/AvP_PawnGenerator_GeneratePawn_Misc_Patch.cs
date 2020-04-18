@@ -24,7 +24,7 @@ namespace RRYautja.HarmonyInstance
             Rand.PushState();
             if (Rand.Chance(0.005f) && __result.isPotentialHost() && SettingsHelper.latest.AllowHiddenInfections)
             {
-                HediffDef def = Rand.Chance(0.75f) || !SettingsHelper.latest.AllowNeomorphs ? XenomorphDefOf.RRY_HiddenXenomorphImpregnation : XenomorphDefOf.RRY_HiddenNeomorphImpregnation;
+                HediffDef def = Rand.Chance(0.75f) || !SettingsHelper.latest.AllowNeomorphs ? XenomorphDefOf.AvP_HiddenXenomorphImpregnation : XenomorphDefOf.AvP_HiddenNeomorphImpregnation;
                 __result.health.AddHediff(def, __result.RaceProps.body.corePart, null);
             }
             Rand.PopState();

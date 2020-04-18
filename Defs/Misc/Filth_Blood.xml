@@ -20,7 +20,7 @@
   </ThingDef>  
    
   <ThingDef Class="RRYautja.Filth_AddAcidDamageDef" ParentName="BaseFilth">
-    <defName>RRY_FilthBloodXenomorph_Active</defName>
+    <defName>AvP_FilthBloodXenomorph_Active</defName>
     <label>acidic blood</label>
     <statBases>
       <Beauty>-14</Beauty>
@@ -40,7 +40,7 @@
   </ThingDef>  
   
   <ThingDef ParentName="BaseFilth">
-    <defName>RRY_FilthBloodXenomorph</defName>
+    <defName>AvP_FilthBloodXenomorph</defName>
     <label>blood</label>
     <statBases>
       <Beauty>-14</Beauty>
@@ -58,7 +58,7 @@
   </ThingDef>  
   
 	<ThingDef ParentName="BaseFilth">
-    <defName>RRY_FilthBloodSynth</defName>
+    <defName>AvP_FilthBloodSynth</defName>
     <label>blood</label>
     <statBases>
       <Beauty>-15</Beauty>
@@ -76,7 +76,7 @@
   </ThingDef>    
   
   <ThingDef ParentName="BaseFilth">
-    <defName>RRY_FilthBloodNeomorph</defName>
+    <defName>AvP_FilthBloodNeomorph</defName>
     <label>blood</label>
     <statBases>
       <Beauty>-14</Beauty>

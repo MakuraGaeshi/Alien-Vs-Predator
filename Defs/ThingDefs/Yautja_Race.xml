@@ -6,7 +6,7 @@
             <alienslavekinds>
                 <li>
                     <kindDefs>
-                        <li>Slave_RRY_Yautja</li>
+                        <li>Slave_AvP_Yautja</li>
                     </kindDefs>
                     <chance>100.0</chance>
                 </li>
@@ -30,33 +30,33 @@
 					</li>
 				</pawnKindEntries>
 					<factionDefs>
-						<li>RRY_Yautja_PlayerColony</li> 
+						<li>AvP_Yautja_PlayerColony</li> 
 					</factionDefs>
 				</li>
 				<li>
 				<pawnKindEntries>
 					<li>
                     <kindDefs>
-                        <li>Colonist_RRY_Yautja_Unblooded</li>
+                        <li>Colonist_AvP_Yautja_Unblooded</li>
                     </kindDefs>
                     <chance>10.0</chance>
 					</li>
 				</pawnKindEntries>
 					<factionDefs>
-						<li>RRY_Yautja_PlayerUnblooded</li> 
+						<li>AvP_Yautja_PlayerUnblooded</li> 
 					</factionDefs>
 				</li>
 				<li>
 				<pawnKindEntries>
 					<li>
                     <kindDefs>
-                        <li>Colonist_RRY_Yautja_Blooded</li>
+                        <li>Colonist_AvP_Yautja_Blooded</li>
                     </kindDefs>
                     <chance>10.0</chance>
 					</li>
 				</pawnKindEntries>
 					<factionDefs>
-						<li>RRY_Yautja_PlayerBlooded</li> 
+						<li>AvP_Yautja_PlayerBlooded</li> 
 					</factionDefs>
 				</li>
 			</startingColonists>
@@ -66,23 +66,23 @@
                         <li>
                             <kindDefs>
 								<li>Yautja</li>
-								<li>Colonist_RRY_Yautja_Unblooded</li>
-								<li>Colonist_RRY_Yautja_Blooded</li>
+								<li>Colonist_AvP_Yautja_Unblooded</li>
+								<li>Colonist_AvP_Yautja_Blooded</li>
                             </kindDefs>
                             <chance>50.0</chance>
                         </li>
                     </pawnKindEntries>
                     <factionDefs>
-						<li>RRY_Yautja_PlayerUnblooded</li> 
-						<li>RRY_Yautja_PlayerBlooded</li> 
-						<li>RRY_Yautja_PlayerColony</li> 
+						<li>AvP_Yautja_PlayerUnblooded</li> 
+						<li>AvP_Yautja_PlayerBlooded</li> 
+						<li>AvP_Yautja_PlayerColony</li> 
                     </factionDefs>
                 </li>
             </alienwandererkinds>
         </pawnKindSettings>
   </AlienRace.RaceSettings>
 
-<ThingDef Name="RRY_BaseYautjaPawn" Abstract="True">
+<ThingDef Name="AvP_BaseYautjaPawn" Abstract="True">
     <thingClass>Pawn</thingClass>
     <category>Pawn</category>
     <selectable>true</selectable>
@@ -135,7 +135,7 @@
     <drawGUIOverlay>true</drawGUIOverlay>
 </ThingDef>
 
-<AlienRace.ThingDef_AlienRace ParentName="RRY_BaseYautjaPawn" Name="AvP_Alien_YautjaBase">
+<AlienRace.ThingDef_AlienRace ParentName="AvP_BaseYautjaPawn" Name="AvP_Alien_YautjaBase">
     <defName>AvP_Alien_Yautja</defName>
     <label>Yautja</label>
     <description>.</description>
@@ -284,10 +284,10 @@
 		<factionRelations>
                 <li>
                     <factions>
-                       <li>RRY_Yautja_JungleClan</li>
-                       <li>RRY_Yautja_PlayerUnblooded</li>
-					   <li>RRY_Yautja_PlayerBlooded</li>
-					   <li>RRY_Yautja_PlayerColony</li>
+                       <li>AvP_Yautja_JungleClan</li>
+                       <li>AvP_Yautja_PlayerUnblooded</li>
+					   <li>AvP_Yautja_PlayerBlooded</li>
+					   <li>AvP_Yautja_PlayerColony</li>
                     </factions>
                     <goodwill>
                        <min>-10</min>
@@ -306,7 +306,7 @@
                 </li>
 				<li>
                     <factions>
-                       <li>RRY_Yautja_BadBloodFaction</li>
+                       <li>AvP_Yautja_BadBloodFaction</li>
                     </factions>
                     <goodwill>
                        <min>-100</min>
@@ -327,19 +327,19 @@
             <hasHair>true</hasHair>
             <getsGreyAt>1750</getsGreyAt> 
             <hairTags>
-				<li>YaujtaHair</li>
+				<li>YautjaHair</li>
             </hairTags>
         </hairSettings>
         <thoughtSettings>
 			<replacerList>
                 <li>
                     <original>Disfigured</original>
-                    <replacer>RRY_Disfigured</replacer> 
+                    <replacer>AvP_Disfigured</replacer> 
                 </li>
             </replacerList>
 			<!--
             <restrictedThoughts>
-                <li>RRY_Thought_ThrillOfTheHunt</li>
+                <li>AvP_Thought_ThrillOfTheHunt</li>
             </restrictedThoughts>
 			-->
 			<cannotReceiveThoughts>
@@ -368,8 +368,8 @@
                     <raceList>
                         <li>AvP_Alien_Yautja</li>
                     </raceList>
-                    <thought>RRY_ButcheredYautjaCorpse</thought>
-                    <knowThought>RRY_KnowButcheredYautjaCorpse</knowThought>
+                    <thought>AvP_ButcheredYautjaCorpse</thought>
+                    <knowThought>AvP_KnowButcheredYautjaCorpse</knowThought>
                 </li>
             </butcherThoughtSpecific>
             
@@ -378,8 +378,8 @@
                     <raceList>
                         <li>AvP_Alien_Yautja</li>
                     </raceList>
-                    <thought>RRY_AteYautjaMeatDirect</thought>
-					<thoughtCannibal>RRY_AteYautjaMeatDirectCannibal</thoughtCannibal> 
+                    <thought>AvP_AteYautjaMeatDirect</thought>
+					<thoughtCannibal>AvP_AteYautjaMeatDirectCannibal</thoughtCannibal> 
                 </li>
             </ateThoughtSpecific>
 			
@@ -405,7 +405,7 @@
 						<li>AvP_Tech_Yautja_T1</li>
 						<li>AvP_Tech_Yautja_T2</li>
 						<li>AvP_Tech_Yautja_T3</li>
-						<li>RRY_YautjaArmour</li>
+						<li>AvP_YautjaArmour</li>
 						<li>AvP_Tech_Yautja_Melee_T1</li>
 						<li>AvP_Tech_Yautja_Melee_T2</li>
 						<li>AvP_Tech_Yautja_Ranged_T1</li>
@@ -474,9 +474,9 @@
 				<li>AvP_Yautja_Apparel_HunterVest</li>
 				<li>AvP_Yautja_Apparel_ThermalMesh</li>
 				
-				<li>RRY_Apparel_LeaderArmourChestplate</li>
-				<li>RRY_Apparel_LeaderArmourGreaves</li>
-				<li>RRY_Apparel_LeaderBioMask</li>
+				<li>AvP_Apparel_LeaderArmourChestplate</li>
+				<li>AvP_Apparel_LeaderArmourGreaves</li>
+				<li>AvP_Apparel_LeaderBioMask</li>
 				
                 <li>AvP_Yautja_Equipment_Gauntlet_TOGGLEDEF_RH</li>
                 <li>AvP_Yautja_Equipment_Gauntlet_TOGGLEDEF_LH</li>
@@ -663,7 +663,7 @@
         </points>
       </ageGenerationCurve>
       <hediffGiverSets>
-        <li>RRY_Organic_Yautja</li>
+        <li>AvP_Organic_Yautja</li>
       </hediffGiverSets>
     </race>
     <recipes>
@@ -694,10 +694,10 @@
       <li>RemoveBodyPart</li>
       <li>Euthanize</li>
       <li>Anesthetize</li>
-      <li>RRY_FaceHuggerRemoval</li>
-      <li>RRY_XenomorphImpregnationRemoval</li>
-      <li>RRY_NeomorphImpregnationRemoval</li>
-      <li>RRY_GauntletRemoval</li>
+      <li>AvP_FaceHuggerRemoval</li>
+      <li>AvP_XenomorphImpregnationRemoval</li>
+      <li>AvP_NeomorphImpregnationRemoval</li>
+      <li>AvP_GauntletRemoval</li>
     </recipes>
 	<modExtensions>
 	  <li Class="HunterMarkingSystem.MarkDefExtension">
@@ -752,7 +752,7 @@
 	  </li>
 	  <li Class="RRYautja.OffsetDefExtension">
 		<!-- DefName of the hediff this applies to --> 
-		<hediff>RRY_FaceHuggerInfection</hediff>
+		<hediff>AvP_FaceHuggerInfection</hediff>
 		<!-- adds the vanillia head offset for the current rotation, not sure if this will ever be useful, defaults to false if not set--> 
 		<ApplyBaseHeadOffset>false</ApplyBaseHeadOffset>
 		<!-- North offsets Y is the layer height, usually you can leave this at 0, all values default to 0 if not set-->

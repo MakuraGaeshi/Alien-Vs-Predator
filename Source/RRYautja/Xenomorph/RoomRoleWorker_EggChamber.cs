@@ -14,7 +14,7 @@ namespace RimWorld
             List<Thing> containedAndAdjacentThings = room.ContainedAndAdjacentThings;
             for (int i = 0; i < containedAndAdjacentThings.Count; i++)
             {
-                if (containedAndAdjacentThings[i].def == XenomorphDefOf.RRY_EggXenomorphFertilized)
+                if (containedAndAdjacentThings[i].def == XenomorphDefOf.AvP_EggXenomorphFertilized)
                 {
                     num++;
                 }

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-  <FactionDef Abstract="True" Name="RRY_YautjaPlayerFactionBase">
+  <FactionDef Abstract="True" Name="AvP_YautjaPlayerFactionBase">
     <colorSpectrum>
       <li>(0, 0.737, 0.847)</li>
     </colorSpectrum>
@@ -8,12 +8,12 @@
     <factionIconPath>Ui/Icons/Icon_YautjaB</factionIconPath>
   </FactionDef>
   
-    <FactionDef Parent="RRY_YautjaPlayerFactionBase">
-    <defName>RRY_Yautja_PlayerColony</defName>
+    <FactionDef Parent="AvP_YautjaPlayerFactionBase">
+    <defName>AvP_Yautja_PlayerColony</defName>
     <label>Yautja Colony</label>
     <description>Yautja Colony Start.</description>
     <isPlayer>true</isPlayer>
-    <basicMemberKind>Colonist_RRY_Yautja</basicMemberKind>
+    <basicMemberKind>Colonist_AvP_Yautja</basicMemberKind>
     <pawnsPlural>Yautja</pawnsPlural>
     <playerInitialSettlementNameMaker>NamerInitialSettlementColony</playerInitialSettlementNameMaker>
 		<factionNameMaker>NamerRRYautjaFaction</factionNameMaker>
@@ -64,7 +64,7 @@
         <kindDef>Peaceful</kindDef>
         <commonality>100</commonality>
         <options>
-          <Colonist_RRY_Yautja>100</Colonist_RRY_Yautja>
+          <Colonist_AvP_Yautja>100</Colonist_AvP_Yautja>
         </options>
       </li>
     </pawnGroupMakers>
@@ -72,8 +72,8 @@
     <factionIconPath>Ui/Icons/Icon_YautjaB</factionIconPath>
     </FactionDef>
 	
-    <FactionDef Parent="RRY_YautjaPlayerFactionBase">
-    <defName>RRY_Yautja_PlayerUnblooded</defName>
+    <FactionDef Parent="AvP_YautjaPlayerFactionBase">
+    <defName>AvP_Yautja_PlayerUnblooded</defName>
     <label>Yautja Unblooded</label>
     <description>Considered ready for your first autonomous hunt, you are sent on an unknown world to make your first hunts and come back to your clan by your own mean. Death before dishonor.</description>
     <playerInitialSettlementNameMaker>NamerInitialSettlementColony</playerInitialSettlementNameMaker>
@@ -81,7 +81,7 @@
     <settlementNameMaker>NamerRRYautjaBases</settlementNameMaker>
     <techLevel>Ultra</techLevel>
     <isPlayer>true</isPlayer>
-    <basicMemberKind>Colonist_RRY_Yautja_Unblooded</basicMemberKind>
+    <basicMemberKind>Colonist_AvP_Yautja_Unblooded</basicMemberKind>
     <pawnsPlural>Yautja</pawnsPlural>
     <backstoryFilters>
       <li>
@@ -89,7 +89,7 @@
 		  <li>Raider</li>
 		  <li>Tribal</li>
 		  <li>Civil</li>
-          <li>RRY_Yautja_Unblooded</li>
+          <li>AvP_Yautja_Unblooded</li>
         </categories>
       </li>
     </backstoryFilters>
@@ -126,7 +126,7 @@
         <kindDef>Peaceful</kindDef>
         <commonality>100</commonality>
         <options>
-          <Colonist_RRY_Yautja_Unblooded>100</Colonist_RRY_Yautja_Unblooded>
+          <Colonist_AvP_Yautja_Unblooded>100</Colonist_AvP_Yautja_Unblooded>
         </options>
       </li>
     </pawnGroupMakers>
@@ -134,8 +134,8 @@
     <factionIconPath>Ui/Icons/Icon_YautjaB</factionIconPath>
     </FactionDef>
 	
-    <FactionDef Parent="RRY_YautjaPlayerFactionBase">
-    <defName>RRY_Yautja_PlayerBlooded</defName>
+    <FactionDef Parent="AvP_YautjaPlayerFactionBase">
+    <defName>AvP_Yautja_PlayerBlooded</defName>
     <label>Yautja Blooded</label>
     <description>On a scouting mission to find new hunting grounds, something disastrous happened to your ship and you are possibly the only 5 survivors. Without a choice, you landed in unknown territory and have to face new dangers while you try to make your way back to your Clan.</description>
     <playerInitialSettlementNameMaker>NamerInitialSettlementColony</playerInitialSettlementNameMaker>
@@ -143,7 +143,7 @@
     <settlementNameMaker>NamerRRYautjaBases</settlementNameMaker>
     <techLevel>Ultra</techLevel>
     <isPlayer>true</isPlayer>
-    <basicMemberKind>Colonist_RRY_Yautja_Blooded</basicMemberKind>
+    <basicMemberKind>Colonist_AvP_Yautja_Blooded</basicMemberKind>
     <pawnsPlural>Yautja</pawnsPlural>
     <backstoryFilters>
       <li>
@@ -152,7 +152,7 @@
 		  <li>Outlander</li>
 		  <li>Offworlder</li>
 		  <li>Tribal</li>
-          <li>RRY_Yautja_Blooded</li>
+          <li>AvP_Yautja_Blooded</li>
         </categories>
       </li>
     </backstoryFilters>
@@ -191,7 +191,7 @@
         <kindDef>Peaceful</kindDef>
         <commonality>100</commonality>
         <options>
-          <Colonist_RRY_Yautja_Blooded>100</Colonist_RRY_Yautja_Blooded>
+          <Colonist_AvP_Yautja_Blooded>100</Colonist_AvP_Yautja_Blooded>
         </options>
       </li>
     </pawnGroupMakers>
@@ -199,8 +199,8 @@
     <factionIconPath>Ui/Icons/Icon_YautjaB</factionIconPath>
     </FactionDef>
 	
-	<FactionDef Parent="RRY_YautjaPlayerFactionBase">
-    <defName>RRY_Yautja_PlayerBlooding</defName>
+	<FactionDef Parent="AvP_YautjaPlayerFactionBase">
+    <defName>AvP_Yautja_PlayerBlooding</defName>
     <label>Yautja Unblooded</label>
     <description>Considered ready for your first autonomous hunt, you are sent on an unknown world to make your first hunts and come back to your clan by your own mean. Death before dishonor.</description>
     <playerInitialSettlementNameMaker>NamerInitialSettlementColony</playerInitialSettlementNameMaker>
@@ -208,13 +208,13 @@
     <settlementNameMaker>NamerRRYautjaBases</settlementNameMaker>
     <techLevel>Ultra</techLevel>
     <isPlayer>true</isPlayer>
-    <basicMemberKind>Colonist_RRY_Yautja_Blooding</basicMemberKind>
+    <basicMemberKind>Colonist_AvP_Yautja_Blooding</basicMemberKind>
     <pawnsPlural>Yautja</pawnsPlural>
     <backstoryFilters>
       <li>
         <categories>
 		  <li>Tribal</li>
-          <li>RRY_Yautja_Unblooded</li>
+          <li>AvP_Yautja_Unblooded</li>
         </categories>
       </li>
     </backstoryFilters>
@@ -252,7 +252,7 @@
         <kindDef>Peaceful</kindDef>
         <commonality>100</commonality>
         <options>
-          <Colonist_RRY_Yautja_Unblooded>100</Colonist_RRY_Yautja_Unblooded>
+          <Colonist_AvP_Yautja_Unblooded>100</Colonist_AvP_Yautja_Unblooded>
         </options>
       </li>
     </pawnGroupMakers>

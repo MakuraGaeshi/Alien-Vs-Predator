@@ -22,7 +22,7 @@ namespace RRYautja.HarmonyInstance
         [HarmonyPrefix]
         public static bool ThoughtsFromIngestingPostPrefix(Pawn pawn, Pawn sick, JoyCategory maxPatientJoy, bool __result)
         {
-            if (sick.def == USCMDefOf.RRY_Synth)
+            if (sick.def == USCMDefOf.AvP_Synth)
             {
                 __result = false;
                 return __result;

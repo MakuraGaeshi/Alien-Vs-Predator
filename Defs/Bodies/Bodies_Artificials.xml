@@ -3,7 +3,7 @@
 
 
   <BodyDef>
-    <defName>RRY_Artificials_Synths_Body</defName>
+    <defName>AvP_Artificials_Synths_Body</defName>
     <label>synth</label>
     <corePart>
       <def>Torso</def>
@@ -141,7 +141,7 @@
                       </groups>
 						<parts>
 							<li>
-							  <def>RRY_BehavorialInhibitor</def>
+							  <def>AvP_BehavorialInhibitor</def>
 							  <coverage>0.5</coverage>
 							  <groups>
 								<li>UpperHead</li>

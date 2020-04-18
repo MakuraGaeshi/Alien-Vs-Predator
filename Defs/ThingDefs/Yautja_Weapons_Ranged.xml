@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 <!-- ====================== Hunting Bow ===================== -->
+  <ThingDef ParentName="BaseProjectileNeolithic">
+    <defName>Arrow_Yautja_Hunting_Bow</defName>
+    <label>yautja arrow</label>
+    <thingClass>RRYautja.Stuffable_Bullet</thingClass>
+    <graphicData>
+      <texPath>Things/Projectile/Arrow_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <flyOverhead>false</flyOverhead>
+      <damageDef>Arrow</damageDef>
+      <damageAmountBase>25</damageAmountBase>
+      <stoppingPower>1.5</stoppingPower>
+      <armorPenetrationBase>0.25</armorPenetrationBase>
+      <speed>60</speed>
+    </projectile>
+	<comps>     
+	
+	</comps>
+  </ThingDef>
+  
   <ThingDef ParentName="RRYBaseSimpleRanged">
     <defName>AvP_Yautja_Gun_Hunting_Bow</defName>
     <label>yautja hunting bow</label>
@@ -68,10 +89,12 @@
 		</li>
 	</comps>
   </ThingDef>
+
+<!-- ====================== Compound Bow ===================== -->
   <ThingDef ParentName="BaseProjectileNeolithic">
-    <defName>Arrow_Yautja_Hunting_Bow</defName>
-    <label>yautja arrow</label>
+    <defName>Arrow_Yautja_Compound_Bow</defName>
     <thingClass>RRYautja.Stuffable_Bullet</thingClass>
+    <label>yautja arrow</label>
     <graphicData>
       <texPath>Things/Projectile/Arrow_Small</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -79,18 +102,13 @@
     <projectile>
       <flyOverhead>false</flyOverhead>
       <damageDef>Arrow</damageDef>
-      <damageAmountBase>25</damageAmountBase>
-      <stoppingPower>1.5</stoppingPower>
-      <armorPenetrationBase>0.25</armorPenetrationBase>
-      <speed>60</speed>
+      <damageAmountBase>30</damageAmountBase>
+      <stoppingPower>2.5</stoppingPower>
+      <armorPenetrationBase>0.5</armorPenetrationBase>
+      <speed>70</speed>
     </projectile>
-	
-	<comps>     
-	
-	</comps>
   </ThingDef>
   
-<!-- ====================== Compound Bow ===================== -->
   <ThingDef ParentName="RRYBaseSimpleRanged">
     <defName>AvP_Yautja_Gun_Compound_Bow</defName>
     <label>yautja compound bow</label>
@@ -153,27 +171,10 @@
       </skillRequirements>
     </recipeMaker>
   </ThingDef>
-  <ThingDef ParentName="BaseProjectileNeolithic">
-    <defName>Arrow_Yautja_Compound_Bow</defName>
-    <thingClass>RRYautja.Stuffable_Bullet</thingClass>
-    <label>yautja arrow</label>
-    <graphicData>
-      <texPath>Things/Projectile/Arrow_Small</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile>
-      <flyOverhead>false</flyOverhead>
-      <damageDef>Arrow</damageDef>
-      <damageAmountBase>30</damageAmountBase>
-      <stoppingPower>2.5</stoppingPower>
-      <armorPenetrationBase>0.5</armorPenetrationBase>
-      <speed>70</speed>
-    </projectile>
-  </ThingDef>
   
 <!-- ====================== Plasma Blaster ===================== -->
  <ThingDef ParentName="BaseBullet">
-	<defName>RRY_Bullet_Plasma</defName>
+	<defName>AvP_Bullet_Plasma</defName>
     <label>Plasma Bolt</label>
     <graphicData>
 		<texPath>Things/Projectile/PlamsShotSml</texPath>
@@ -218,10 +219,10 @@
 		<li>
 			<verbClass>Verb_Shoot</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>RRY_Bullet_Plasma</defaultProjectile>
+			<defaultProjectile>AvP_Bullet_Plasma</defaultProjectile>
 			<warmupTime>1</warmupTime>
 			<range>23</range>
-			<soundCast>RRY_Shot_ShoulderCannon</soundCast>
+			<soundCast>AvP_Shot_ShoulderCannon</soundCast>
 			<!-- <forcedMissRadius>0.1</forcedMissRadius> -->
 			<soundCastTail>GunTail_Light</soundCastTail>
 			<muzzleFlashScale>8</muzzleFlashScale>
@@ -254,10 +255,10 @@
 		<li>YautjaRanged</li>
 	</weaponTags>
 	<thingCategories>
-		<li>RRY_RangedWeapons</li>
+		<li>AvP_RangedWeapons</li>
 	</thingCategories>
 	<tradeTags>
-		<li>RRY_RangedWeapons</li>
+		<li>AvP_RangedWeapons</li>
 	</tradeTags>
 	<costList>				
 		<Steel>30</Steel>
@@ -269,7 +270,7 @@
 	
 <!-- ====================== Needler Rifle ===================== -->
  <ThingDef ParentName="BaseBullet">
-	<defName>RRY_Bullet_NeedlerRifle</defName>
+	<defName>AvP_Bullet_NeedlerRifle</defName>
     <label>Needler Bolt</label>
     <graphicData>
 		<texPath>Things/Projectile/NeedlerShotSml</texPath>
@@ -283,6 +284,7 @@
 		<speed>75</speed>
 	</projectile>
  </ThingDef>
+ 
 	<ThingDef ParentName="RRYBaseMakeableGun">
 		<defName>AvP_Yautja_Gun_Needler</defName>
 		<label>Needler</label>
@@ -309,7 +311,7 @@
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>RRY_Bullet_NeedlerRifle</defaultProjectile>
+				<defaultProjectile>AvP_Bullet_NeedlerRifle</defaultProjectile>
 				<warmupTime>1</warmupTime>
 				<range>30</range>
 				<burstShotCount>3</burstShotCount>
@@ -347,10 +349,10 @@
 			<li>YautjaRanged</li>
 		</weaponTags>
 		<thingCategories>
-			<li>RRY_RangedWeapons</li>
+			<li>AvP_RangedWeapons</li>
 		</thingCategories>
 		<tradeTags>
-			<li>RRY_RangedWeapons</li>
+			<li>AvP_RangedWeapons</li>
 		</tradeTags>
 		<costList>				
 			<Steel>20</Steel>
@@ -361,6 +363,21 @@
 	</ThingDef>
 	
 <!-- ====================== Spear Rifle ===================== -->
+  <ThingDef ParentName="BaseBullet">
+    <defName>AvP_Bullet_SpearRifle</defName>
+    <label>spear bolt</label>
+    <graphicData>
+      <texPath>Things/Projectile/NeedlerShot</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>27</damageAmountBase>
+      <stoppingPower>2.0</stoppingPower>
+      <speed>120</speed>
+    </projectile>
+  </ThingDef>
+
   <ThingDef ParentName="RRYBaseMakeableGun">
     <defName>AvP_Yautja_Gun_SpearRifle</defName>
     <label>spear rifle</label>
@@ -400,7 +417,7 @@
       <li>
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
-        <defaultProjectile>RRY_Bullet_SpearRifle</defaultProjectile>
+        <defaultProjectile>AvP_Bullet_SpearRifle</defaultProjectile>
         <warmupTime>3.5</warmupTime>
         <range>47</range>
         <!--soundCast>Shot_SniperRifle</soundCast-->
@@ -435,21 +452,6 @@
 	<generateCommonality>0.05</generateCommonality>
   </ThingDef> 
   
-  <ThingDef ParentName="BaseBullet">
-    <defName>RRY_Bullet_SpearRifle</defName>
-    <label>spear bolt</label>
-    <graphicData>
-      <texPath>Things/Projectile/NeedlerShot</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile>
-      <damageDef>Bullet</damageDef>
-      <damageAmountBase>27</damageAmountBase>
-      <stoppingPower>2.0</stoppingPower>
-      <speed>120</speed>
-    </projectile>
-  </ThingDef>
-
 <!-- ====================== Smart Disk ===================== -->	 
   <ThingDef ParentName="RRYBaseSimpleRanged">
     <defName>AvP_Yautja_Gun_SmartDisk</defName>
@@ -490,7 +492,7 @@
       <li>
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
-        <defaultProjectile>RRY_SmartDisk_Thrown</defaultProjectile>
+        <defaultProjectile>AvP_SmartDisk_Thrown</defaultProjectile>
         <warmupTime>4</warmupTime>
         <range>20</range>
         <soundCast>Interact_BeatFire</soundCast>
@@ -522,7 +524,7 @@
   </ThingDef>
   <!-- Returning_Projectile --> 
   <ThingDef ParentName="BaseProjectileNeolithic">
-    <defName>RRY_SmartDisk_Thrown</defName>
+    <defName>AvP_SmartDisk_Thrown</defName>
     <thingClass>Returning_Projectile</thingClass>
     <label>SmartDisk</label>
     <graphicData>
@@ -531,7 +533,7 @@
     </graphicData>
     <projectile>
       <flyOverhead>false</flyOverhead>
-      <damageDef>RRY_RangedCut</damageDef>
+      <damageDef>AvP_RangedCut</damageDef>
       <damageAmountBase>25</damageAmountBase>
       <stoppingPower>2.5</stoppingPower>
       <armorPenetrationBase>0.10</armorPenetrationBase>
@@ -540,7 +542,7 @@
   </ThingDef>
 	
   <ThingDef ParentName="BaseProjectileNeolithic">
-    <defName>RRY_SmartDisk_Returning</defName>
+    <defName>AvP_SmartDisk_Returning</defName>
     <label>SmartDisk</label>
     <graphicData>
       <texPath>Things/Projectile/SmartDisk</texPath>
@@ -548,7 +550,7 @@
     </graphicData>
     <projectile>
       <flyOverhead>false</flyOverhead>
-      <damageDef>RRY_RangedCut</damageDef>
+      <damageDef>AvP_RangedCut</damageDef>
       <damageAmountBase>0</damageAmountBase>
       <stoppingPower>0</stoppingPower>
       <armorPenetrationBase>0</armorPenetrationBase>
@@ -557,7 +559,7 @@
   </ThingDef>
 	
   <ThingDef ParentName="MoteBase">
-    <defName>RRY_SmartDisk_Mote</defName>
+    <defName>AvP_SmartDisk_Mote</defName>
     <thingClass>RRYautja.GetReturningProjectile</thingClass>
     <graphicData>
       <texPath>DummyTexture</texPath>

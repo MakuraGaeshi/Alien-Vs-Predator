@@ -2,7 +2,7 @@
 <Defs>
 
   <ThinkTreeDef>
-    <defName>RRY_Xenomorph_ThinkTree</defName>
+    <defName>AvP_Xenomorph_ThinkTree</defName>
     <thinkRoot Class="ThinkNode_Priority">
       <subNodes>
         <!-- Keep lying down if we have to -->
@@ -29,7 +29,7 @@
           <treeDef>BurningResponse</treeDef>
         </li>
 		<li Class="ThinkNode_ConditionalNotPawnKind">
-		  <pawnKind>RRY_Xenomorph_FaceHugger</pawnKind>
+		  <pawnKind>AvP_Xenomorph_FaceHugger</pawnKind>
 			<subNodes>
 				<li Class="JobGiver_Xenomorph_FleeFire" />
 				<li Class="JobGiver_Xenomorph_Flee" />
@@ -38,7 +38,7 @@
 		
 		<!-- Face Hugger Hunting -->
 		<li Class="ThinkNode_ConditionalPawnKind">
-		  <pawnKind>RRY_Xenomorph_FaceHugger</pawnKind>
+		  <pawnKind>AvP_Xenomorph_FaceHugger</pawnKind>
 		  <subNodes>
 			<li Class="ThinkNode_Tagger">
 			  <tagToGive>Idle</tagToGive>
@@ -66,7 +66,7 @@
 		
 		<!-- Royal Hugger Hunting -->
 		<li Class="ThinkNode_ConditionalPawnKind">
-		  <pawnKind>RRY_Xenomorph_RoyaleHugger</pawnKind>
+		  <pawnKind>AvP_Xenomorph_RoyaleHugger</pawnKind>
 		  <subNodes>
 			<li Class="ThinkNode_Tagger">
 			  <tagToGive>Idle</tagToGive>
@@ -115,7 +115,7 @@
 			-->
 				
 		<li Class="ThinkNode_ConditionalNotPawnKind">
-		  <pawnKind>RRY_Xenomorph_FaceHugger</pawnKind>
+		  <pawnKind>AvP_Xenomorph_FaceHugger</pawnKind>
 		  <subNodes>
 				<!-- React to close melee threat -->
 				<li Class="JobGiver_ReactToCloseMeleeThreat" />
@@ -150,7 +150,7 @@
 				
 				<!-- Drone Gather Infectable Hunting -->
 				<li Class="ThinkNode_ConditionalPawnKind">
-				  <pawnKind>RRY_Xenomorph_Drone</pawnKind>
+				  <pawnKind>AvP_Xenomorph_Drone</pawnKind>
 				  <subNodes>
 						<li Class="ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby">
 						  <subNodes>
@@ -162,7 +162,7 @@
 				
 				<!-- Drone Gather Infectable Hunting -->
 				<li Class="ThinkNode_ConditionalPawnKind">
-				  <pawnKind>RRY_Xenomorph_Predalien</pawnKind>
+				  <pawnKind>AvP_Xenomorph_Predalien</pawnKind>
 				  <subNodes>
 						<li Class="ThinkNode_ConditionalAnyDownedInfectableSpawnedNearby">
 						  <subNodes>
@@ -183,7 +183,7 @@
 				
 				<!-- Satisfy very urgent needs -->
 				<li Class="ThinkNode_Subtree">
-				  <treeDef>RRY_SatisfyXenomorphNeeds</treeDef>
+				  <treeDef>AvP_SatisfyXenomorphNeeds</treeDef>
 				</li>
 				
 		  </subNodes>
@@ -205,7 +205,7 @@
 
         <!-- Satisfy basic needs -->
         <li Class="ThinkNode_Subtree">
-          <treeDef>RRY_SatisfyXenomorphNeeds</treeDef>
+          <treeDef>AvP_SatisfyXenomorphNeeds</treeDef>
         </li>
 		
         <!-- Idle error -->

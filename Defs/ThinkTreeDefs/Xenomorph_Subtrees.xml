@@ -4,13 +4,13 @@
   <!--============= Dig out if I can't reach map edge ===========-->
   
   <ThinkTreeDef>
-    <defName>RRY_SatisfyXenomorphNeeds</defName>
+    <defName>AvP_SatisfyXenomorphNeeds</defName>
     <thinkRoot Class="ThinkNode_ConditionalFullyGrown">
       <subNodes>
 				
 				<!-- Face Hugger Hunting -->
 				<li Class="ThinkNode_ConditionalPawnKind">
-				  <pawnKind>RRY_Xenomorph_Queen</pawnKind>
+				  <pawnKind>AvP_Xenomorph_Queen</pawnKind>
 				  <subNodes>
 				  
 					<li Class="ThinkNode_Tagger">
@@ -42,7 +42,7 @@
 				
 				<!-- Drone Hunting -->
 				<li Class="ThinkNode_ConditionalPawnKind">
-				  <pawnKind>RRY_Xenomorph_Drone</pawnKind>
+				  <pawnKind>AvP_Xenomorph_Drone</pawnKind>
 				  <subNodes>
 				  
 					<li Class="ThinkNode_Tagger">
@@ -75,7 +75,7 @@
 				
 			<!-- Idle -->
 			<li Class="ThinkNode_ConditionalNotPawnKind">
-			  <pawnKind>RRY_Xenomorph_FaceHugger</pawnKind>
+			  <pawnKind>AvP_Xenomorph_FaceHugger</pawnKind>
 			  <subNodes>
 			  
                 <li Class="JobGiver_XenomorphManhunter" />
@@ -94,7 +94,7 @@
   <!--============= Dig out if I can't reach map edge ===========-->
   
   <ThinkTreeDef>
-    <defName>RRY_DigOutIfCannotReachMapEdge</defName>
+    <defName>AvP_DigOutIfCannotReachMapEdge</defName>
     <thinkRoot Class="ThinkNode_ConditionalCannotReachMapEdge">
       <subNodes>
         <li Class="ThinkNode_Tagger">

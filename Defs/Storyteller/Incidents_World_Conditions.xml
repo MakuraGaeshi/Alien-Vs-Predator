@@ -2,7 +2,7 @@
 <Defs>
 
   <IncidentDef>
-    <defName>RRY_PowerCut_Xenomorph</defName>
+    <defName>AvP_PowerCut_Xenomorph</defName>
     <label>power cut</label>
 		<category>Misc</category>
     <targetTags>

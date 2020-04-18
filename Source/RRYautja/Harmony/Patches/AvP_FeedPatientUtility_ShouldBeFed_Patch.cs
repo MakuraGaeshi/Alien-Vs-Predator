@@ -22,7 +22,7 @@ namespace RRYautja.HarmonyInstance
         [HarmonyPostfix]
         public static void IgnoreCocooned(Pawn p, ref bool __result)
         {
-            __result = __result && !(p.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned));
+            __result = __result && !(p.health.hediffSet.HasHediff(XenomorphDefOf.AvP_Hediff_Cocooned));
         }
     }
 }

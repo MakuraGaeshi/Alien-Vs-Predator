@@ -4,50 +4,50 @@
 	<!-- ========================= USCM - Gear Catagories ========================== -->
 	<!-- ========================= USCM - Weapon Categories ========================== -->
 	<ThingCategoryDef>
-		<defName>RRY_USCM_Weapons</defName>
+		<defName>AvP_USCM_Weapons</defName>
 		<label>Weapons</label>
 		<parent>Weapons</parent>
 	</ThingCategoryDef>
 	
 	<ThingCategoryDef>
-		<defName>RRY_USCM_RangedWeapons</defName>
+		<defName>AvP_USCM_RangedWeapons</defName>
 		<label>Ranged Weapons</label>
-		<parent>RRY_Weapons</parent>
+		<parent>AvP_Weapons</parent>
 	</ThingCategoryDef>
 	
 	<ThingCategoryDef>
-		<defName>RRY_USCM_MeleeWeapons</defName>
+		<defName>AvP_USCM_MeleeWeapons</defName>
 		<label>Melee Weapons</label>
-		<parent>RRY_Weapons</parent>
+		<parent>AvP_Weapons</parent>
 	</ThingCategoryDef>
 			
 	<!-- ========================= USCM - Armour Categories ========================== -->
 	<ThingCategoryDef>
-		<defName>RRY_USCM_Apparel</defName>
+		<defName>AvP_USCM_Apparel</defName>
 		<label>Apparel</label>
 		<parent>Apparel</parent>
 	</ThingCategoryDef>
 	
 		<ThingCategoryDef>
-		<defName>RRY_USCM_Armour</defName>
+		<defName>AvP_USCM_Armour</defName>
 		<label>Armour</label>
 		<parent>Apparel</parent>
 	</ThingCategoryDef>
 	
 	<ThingCategoryDef>
-		<defName>RRY_USCM_Headgear</defName>
+		<defName>AvP_USCM_Headgear</defName>
 		<label>Headgear</label>
 		<parent>Apparel</parent>
 	</ThingCategoryDef>
 	  	
 	<ThingCategoryDef>
-		<defName>RRY_USCM_Addons</defName>
+		<defName>AvP_USCM_Addons</defName>
 		<label>Armour Addons</label>
 		<parent>Apparel</parent>
 	</ThingCategoryDef>
 	  	
 	<ThingCategoryDef>
-		<defName>RRY_USCM_Equipment</defName>
+		<defName>AvP_USCM_Equipment</defName>
 		<label>Equipment</label>
 		<parent>Apparel</parent>
 	</ThingCategoryDef>

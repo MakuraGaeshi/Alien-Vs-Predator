@@ -18,7 +18,7 @@ namespace Verse
 		{
 			foreach (Thing thing in Find.CurrentMap.listerThings.AllThings.ToList<Thing>())
 			{
-				if (thing is Plant && thing.def.defName.Contains(XenomorphDefOf.RRY_Plant_Neomorph_Fungus.defName))
+				if (thing is Plant && thing.def.defName.Contains(XenomorphDefOf.AvP_Plant_Neomorph_Fungus.defName))
 				{
 					thing.Destroy(DestroyMode.Vanish);
 				}

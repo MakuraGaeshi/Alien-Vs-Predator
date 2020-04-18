@@ -83,7 +83,7 @@ namespace Verse.AI
             if (c.GetFirstBuilding(pawn.Map)!=null)
             {
             //    Log.Message(string.Format("TryGiveJob 6 {0}, {1} Building == {2}", pawn.Map, c, c.GetFirstBuilding(pawn.Map)));
-                if (c.GetFirstBuilding(pawn.Map).def == XenomorphDefOf.RRY_Xenomorph_Hive)
+                if (c.GetFirstBuilding(pawn.Map).def == XenomorphDefOf.AvP_Xenomorph_Hive)
                 {
                 //    Log.Message("TryGiveJob 6 1");
                     return null;
@@ -92,9 +92,9 @@ namespace Verse.AI
             else
             {
             //    Log.Message(string.Format("TryGiveJob 6 {0}, {1} Building == Null", pawn.Map, c));
-                if (c.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive) != null)
+                if (c.GetFirstThing(pawn.Map, XenomorphDefOf.AvP_Xenomorph_Hive) != null)
                 {
-                //    Log.Message(string.Format("TryGiveJob 6 {0}, {1} Building == {2}", pawn.Map, c, c.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive)));
+                //    Log.Message(string.Format("TryGiveJob 6 {0}, {1} Building == {2}", pawn.Map, c, c.GetFirstThing(pawn.Map, XenomorphDefOf.AvP_Xenomorph_Hive)));
                     if (c.GetFirstBuilding(pawn.Map).def == )
                     {
                     //    Log.Message("TryGiveJob 6 1");

@@ -18,11 +18,11 @@ namespace Verse
             List<DebugMenuOption> list = new List<DebugMenuOption>();
             list.Add(new DebugMenuOption("Incoming", DebugMenuOptionMode.Tool, delegate ()
             {
-                GenPlace.TryPlaceThing(SkyfallerMaker.MakeSkyfaller(USCMDefOf.RRY_USCM_DropshipUD4LIncoming, ThingMaker.MakeThing(USCMDefOf.RRY_USCM_DropshipUD4L, null)), UI.MouseCell(), Find.CurrentMap, ThingPlaceMode.Near, null, null, default(Rot4));
+                GenPlace.TryPlaceThing(SkyfallerMaker.MakeSkyfaller(USCMDefOf.AvP_USCM_DropshipUD4LIncoming, ThingMaker.MakeThing(USCMDefOf.AvP_USCM_DropshipUD4L, null)), UI.MouseCell(), Find.CurrentMap, ThingPlaceMode.Near, null, null, default(Rot4));
             }));
             list.Add(new DebugMenuOption("Stationary", DebugMenuOptionMode.Tool, delegate ()
             {
-                GenPlace.TryPlaceThing(ThingMaker.MakeThing(USCMDefOf.RRY_USCM_DropshipUD4L, null), UI.MouseCell(), Find.CurrentMap, ThingPlaceMode.Near, null, null, default(Rot4));
+                GenPlace.TryPlaceThing(ThingMaker.MakeThing(USCMDefOf.AvP_USCM_DropshipUD4L, null), UI.MouseCell(), Find.CurrentMap, ThingPlaceMode.Near, null, null, default(Rot4));
             }));
             List<DebugMenuOption> options = list;
             Find.WindowStack.Add(new Dialog_DebugOptionListLister(options));

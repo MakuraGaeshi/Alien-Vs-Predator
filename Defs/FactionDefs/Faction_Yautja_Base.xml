@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <FactionDef Abstract="True" Name="RRY_Yautja_NPCFactionBase">
+  <FactionDef Abstract="True" Name="AvP_Yautja_NPCFactionBase">
     <colorSpectrum>
       <li>(0, 0.737, 0.847)</li>
     </colorSpectrum>

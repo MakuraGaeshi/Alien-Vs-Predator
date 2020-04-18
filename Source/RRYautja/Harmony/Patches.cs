@@ -196,7 +196,7 @@ namespace RRYautja.HarmonyInstance
                 {
                     bool drafted = pawn.Drafted;
                     Vector3 vector = Main.PushResult(Caster, target, distance, out bool flag2);
-                    RRY_FlyingObject flyingObject = (RRY_FlyingObject)GenSpawn.Spawn(ThingDef.Named("JT_FlyingObject"), pawn.PositionHeld, pawn.MapHeld, 0);
+                    AvP_FlyingObject flyingObject = (AvP_FlyingObject)GenSpawn.Spawn(ThingDef.Named("JT_FlyingObject"), pawn.PositionHeld, pawn.MapHeld, 0);
                     bool flag3 = flag2 & damageOnCollision;
                     if (flag3)
                     {

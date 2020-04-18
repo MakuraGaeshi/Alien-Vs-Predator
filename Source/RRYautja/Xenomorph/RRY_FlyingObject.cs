@@ -7,7 +7,7 @@ using Verse;
 namespace RRYautja
 {
     // Token: 0x02000013 RID: 19
-    public class RRY_FlyingObject : ThingWithComps
+    public class AvP_FlyingObject : ThingWithComps
     {
         // Token: 0x17000011 RID: 17
         // (get) Token: 0x0600005B RID: 91 RVA: 0x00003EE8 File Offset: 0x000020E8

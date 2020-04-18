@@ -22,9 +22,9 @@ namespace RRYautja.HarmonyInstance
         [HarmonyPrefix]
         public static bool Ignore_Acid_Damage(Pawn __instance, ref DamageInfo dinfo, out bool absorbed)
         {
-            if (__instance.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned) || __instance.isXenomorph())
+            if (__instance.health.hediffSet.HasHediff(XenomorphDefOf.AvP_Hediff_Cocooned) || __instance.isXenomorph())
             {
-                absorbed = dinfo.Def == XenomorphDefOf.RRY_AcidBurn || dinfo.Def == XenomorphDefOf.RRY_AcidDamage;
+                absorbed = dinfo.Def == XenomorphDefOf.AvP_AcidBurn || dinfo.Def == XenomorphDefOf.AvP_AcidDamage;
             }
             else
             {

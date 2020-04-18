@@ -70,10 +70,10 @@ namespace RRYautja
         public override bool CanBeUsedBy(Pawn p, out string failReason)
         {
             bool selected = Find.Selector.SelectedObjects.Contains(p);
-            bool flag = GenCollection.Any<Apparel>(p.apparel.WornApparel, (Apparel x) => x.def.defName.Contains("RRY_Equipment_HunterGauntlet"));
+            bool flag = GenCollection.Any<Apparel>(p.apparel.WornApparel, (Apparel x) => x.def.defName.Contains("AvP_Equipment_HunterGauntlet"));
             if (flag)
             {
-                Cloakgen injector = (Cloakgen)p.apparel.WornApparel.Find((Apparel x) => x.def.defName.Contains("RRY_Equipment_HunterGauntlet"));
+                Cloakgen injector = (Cloakgen)p.apparel.WornApparel.Find((Apparel x) => x.def.defName.Contains("AvP_Equipment_HunterGauntlet"));
                 if (injector!=null)
                 {
                     CompMedicalInjector medicalInjector = injector.TryGetComp<CompMedicalInjector>();

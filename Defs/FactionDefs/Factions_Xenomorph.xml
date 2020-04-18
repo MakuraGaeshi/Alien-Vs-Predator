@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-  <FactionDef Name="RRY_Xenomorph_Faction_Base" Abstract="true">
+  <FactionDef Name="AvP_Xenomorph_Faction_Base" Abstract="true">
     <label>Xenomorph hive</label>
     <pawnSingular>Xenomorph</pawnSingular>
     <pawnsPlural>Xenomorphs</pawnsPlural>
@@ -34,15 +34,15 @@
         <kindDef>Combat</kindDef>
         <commonality>10</commonality>
         <options>
-          <RRY_Xenomorph_Queen>1</RRY_Xenomorph_Queen>
-          <RRY_Xenomorph_Runner>150</RRY_Xenomorph_Runner>
-          <RRY_Xenomorph_Drone>100</RRY_Xenomorph_Drone>
-          <RRY_Xenomorph_Warrior>100</RRY_Xenomorph_Warrior>
+          <AvP_Xenomorph_Queen>1</AvP_Xenomorph_Queen>
+          <AvP_Xenomorph_Runner>150</AvP_Xenomorph_Runner>
+          <AvP_Xenomorph_Drone>100</AvP_Xenomorph_Drone>
+          <AvP_Xenomorph_Warrior>100</AvP_Xenomorph_Warrior>
         </options>
 				<disallowedStrategies>
 					<li>Siege</li>
 					<li>ImmediateAttackSappers</li>
-					<li>RRY_PowerCut</li>
+					<li>AvP_PowerCut</li>
 				</disallowedStrategies>
       </li>
       <li>
@@ -50,14 +50,14 @@
         <kindDef>Combat</kindDef>
         <commonality>100</commonality>
         <options>
-          <RRY_Xenomorph_Runner>150</RRY_Xenomorph_Runner>
-          <RRY_Xenomorph_Drone>100</RRY_Xenomorph_Drone>
-          <RRY_Xenomorph_Warrior>100</RRY_Xenomorph_Warrior>
+          <AvP_Xenomorph_Runner>150</AvP_Xenomorph_Runner>
+          <AvP_Xenomorph_Drone>100</AvP_Xenomorph_Drone>
+          <AvP_Xenomorph_Warrior>100</AvP_Xenomorph_Warrior>
         </options>
 				<disallowedStrategies>
 					<li>Siege</li>
 					<li>ImmediateAttackSappers</li>
-					<li>RRY_PowerCut</li>
+					<li>AvP_PowerCut</li>
 				</disallowedStrategies>
       </li>
       <li>
@@ -65,15 +65,15 @@
         <kindDef>Combat</kindDef>
         <commonality>100</commonality>
         <options>
-          <RRY_Xenomorph_Queen>1</RRY_Xenomorph_Queen>
-          <RRY_Xenomorph_Runner>150</RRY_Xenomorph_Runner>
-          <RRY_Xenomorph_Drone>100</RRY_Xenomorph_Drone>
-          <RRY_Xenomorph_Warrior>100</RRY_Xenomorph_Warrior>
+          <AvP_Xenomorph_Queen>1</AvP_Xenomorph_Queen>
+          <AvP_Xenomorph_Runner>150</AvP_Xenomorph_Runner>
+          <AvP_Xenomorph_Drone>100</AvP_Xenomorph_Drone>
+          <AvP_Xenomorph_Warrior>100</AvP_Xenomorph_Warrior>
         </options>
 				<disallowedStrategies>
 					<li>Siege</li>
 					<li>ImmediateAttackSappers</li>
-					<li>RRY_PowerCut</li>
+					<li>AvP_PowerCut</li>
 				</disallowedStrategies>
       </li>
       <li>
@@ -81,9 +81,9 @@
         <kindDef>Combat</kindDef>
         <commonality>100</commonality>
         <options>
-          <RRY_Xenomorph_Runner>150</RRY_Xenomorph_Runner>
-          <RRY_Xenomorph_Drone>100</RRY_Xenomorph_Drone>
-          <RRY_Xenomorph_Warrior>100</RRY_Xenomorph_Warrior>
+          <AvP_Xenomorph_Runner>150</AvP_Xenomorph_Runner>
+          <AvP_Xenomorph_Drone>100</AvP_Xenomorph_Drone>
+          <AvP_Xenomorph_Warrior>100</AvP_Xenomorph_Warrior>
         </options>
 				<disallowedStrategies>
 					<li>Siege</li>
@@ -99,8 +99,8 @@
     </allowedArrivalTemperatureRange>
   </FactionDef>
   
-  <FactionDef ParentName="RRY_Xenomorph_Faction_Base">
-    <defName>RRY_Xenomorph</defName>
+  <FactionDef ParentName="AvP_Xenomorph_Faction_Base">
+    <defName>AvP_Xenomorph</defName>
     <label>Xenomorph hive</label>
   </FactionDef>
   

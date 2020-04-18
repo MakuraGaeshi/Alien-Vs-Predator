@@ -2,7 +2,7 @@
 <Defs>
 
   <StatDef>
-    <defName>RRY_AcidResistance</defName>
+    <defName>AvP_AcidResistance</defName>
     <label>acid resistance</label>
     <description>How well an object resists the corrosive effects of Xenomorph blood.</description>
     <category>BasicsNonPawn</category>

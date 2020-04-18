@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
   <ManeuverDef>
-    <defName>RRY_TailWhip</defName>
-    <requiredCapacity>RRY_TailWhip</requiredCapacity>
+    <defName>AvP_TailWhip</defName>
+    <requiredCapacity>AvP_TailWhip</requiredCapacity>
     <verb>
       <verbClass>RRYautja.Verb_MeleeAttackKnockback</verbClass>
-      <meleeDamageDef>RRY_XenoTailWhipBlunt</meleeDamageDef>
+      <meleeDamageDef>AvP_XenoTailWhipBlunt</meleeDamageDef>
     </verb>
     <logEntryDef>MeleeAttack</logEntryDef>
     <combatLogRulesHit>Maneuver_Smash_MeleeHit</combatLogRulesHit>

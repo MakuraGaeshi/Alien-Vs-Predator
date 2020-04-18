@@ -118,12 +118,12 @@ namespace HunterMarkingSystem
             {
                 return false;
             }
-            if (p.def.defName != "RRY_Alien_Yautja")
+            if (p.def.defName != "AvP_Alien_Yautja")
             {
                 return false;
             }
             /*
-            if (other.kindDef.race != YautjaDefOf.RRY_Alien_Yautja)
+            if (other.kindDef.race != YautjaDefOf.AvP_Alien_Yautja)
             {
                 return false;
             }
@@ -157,7 +157,7 @@ namespace HunterMarkingSystem
             else
                 foreach (var hd in other.health.hediffSet.hediffs)
                 {
-                    if (hd.def.defName.Contains("RRY_Hediff_BloodedM"))
+                    if (hd.def.defName.Contains("AvP_Hediff_BloodedM"))
                     {
                         otherMarked = hd;
                         othermarked = hd.def;
@@ -221,12 +221,12 @@ namespace HunterMarkingSystem
             {
                 return false;
             }
-            if (p.def.defName != "RRY_Alien_Yautja")
+            if (p.def.defName != "AvP_Alien_Yautja")
             {
                 return false;
             }
             /*
-            if (other.kindDef.race != YautjaDefOf.RRY_Alien_Yautja)
+            if (other.kindDef.race != YautjaDefOf.AvP_Alien_Yautja)
             {
                 return false;
             }
@@ -260,7 +260,7 @@ namespace HunterMarkingSystem
             else
                 foreach (var hd in other.health.hediffSet.hediffs)
                 {
-                    if (hd.def.defName.Contains("RRY_Hediff_BloodedM"))
+                    if (hd.def.defName.Contains("AvP_Hediff_BloodedM"))
                     {
                         List<Thought> list = new List<Thought>();
                         otherMarked = hd;

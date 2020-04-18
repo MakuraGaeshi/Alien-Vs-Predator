@@ -91,14 +91,14 @@ namespace RimWorld
 
         public override void Notify_PawnAdded(Pawn pawn)
         {
-            if (pawn.def.race.FleshType == XenomorphRacesDefOf.RRY_Xenomorph)
+            if (pawn.def.race.FleshType == XenomorphRacesDefOf.AvP_Xenomorph)
             {
                 if (!XenoList.Contains(pawn))
                 {
                     XenoList.Add(pawn);
                 }
             }
-            if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_FaceHugger)
+            if (pawn.def == XenomorphRacesDefOf.AvP_Xenomorph_FaceHugger)
             {
                 /*
                 if (!hiveGrid.Dronelist.Contains(pawn))
@@ -107,7 +107,7 @@ namespace RimWorld
                 }
                 */
             }
-            else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Runner)
+            else if (pawn.def == XenomorphRacesDefOf.AvP_Xenomorph_Runner)
             {
                 if (!RunnerList.Contains(pawn))
                 {
@@ -118,14 +118,14 @@ namespace RimWorld
 
                 }
             }
-            else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Drone)
+            else if (pawn.def == XenomorphRacesDefOf.AvP_Xenomorph_Drone)
             {
                 if (!DroneList.Contains(pawn))
                 {
                     DroneList.Add(pawn);
                 }
             }
-            else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Warrior)
+            else if (pawn.def == XenomorphRacesDefOf.AvP_Xenomorph_Warrior)
             {
                 if (!WarriorList.Contains(pawn))
                 {
@@ -133,7 +133,7 @@ namespace RimWorld
                 }
             }
             /*
-            else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Preatorian)
+            else if (pawn.def == XenomorphRacesDefOf.AvP_Xenomorph_Preatorian)
             {
                 if (!PreatorianList.Contains(pawn))
                 {
@@ -141,21 +141,21 @@ namespace RimWorld
                 }
             }
             */
-            else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Predalien)
+            else if (pawn.def == XenomorphRacesDefOf.AvP_Xenomorph_Predalien)
             {
                 if (!PredalienList.Contains(pawn))
                 {
                     PredalienList.Add(pawn);
                 }
             }
-            else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen)
+            else if (pawn.def == XenomorphRacesDefOf.AvP_Xenomorph_Queen)
             {
                 if (!QueenList.Contains(pawn))
                 {
                     QueenList.Add(pawn);
                 }
             }
-            else if (pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Thrumbomorph)
+            else if (pawn.def == XenomorphRacesDefOf.AvP_Xenomorph_Thrumbomorph)
             {
                 if (!ThrumbomorphList.Contains(pawn))
                 {

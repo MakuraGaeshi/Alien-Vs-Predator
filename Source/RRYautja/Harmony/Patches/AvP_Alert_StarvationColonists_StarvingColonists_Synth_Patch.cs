@@ -21,7 +21,7 @@ namespace RRYautja.HarmonyInstance
     {
         public static void Postfix(ref List<Pawn> __result)
         {
-            List<Pawn> list = __result.Where(x=> x.def != USCMDefOf.RRY_Synth).ToList();
+            List<Pawn> list = __result.Where(x=> x.def != USCMDefOf.AvP_Synth).ToList();
             __result = list;
         }
     }

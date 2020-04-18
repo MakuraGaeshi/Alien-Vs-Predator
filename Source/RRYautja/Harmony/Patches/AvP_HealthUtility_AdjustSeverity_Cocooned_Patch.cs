@@ -20,8 +20,8 @@ namespace RRYautja.HarmonyInstance
     {
         public static bool Prefix(Pawn pawn, HediffDef hdDef, float sevOffset)
         { 
-            bool preflag = hdDef != XenomorphDefOf.RRY_FaceHuggerInfection || hdDef != XenomorphDefOf.RRY_XenomorphImpregnation || hdDef != XenomorphDefOf.RRY_HiddenXenomorphImpregnation || hdDef != XenomorphDefOf.RRY_NeomorphImpregnation || hdDef != XenomorphDefOf.RRY_HiddenNeomorphImpregnation;
-            bool flag = (pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned)) && preflag;
+            bool preflag = hdDef != XenomorphDefOf.AvP_FaceHuggerInfection || hdDef != XenomorphDefOf.AvP_XenomorphImpregnation || hdDef != XenomorphDefOf.AvP_HiddenXenomorphImpregnation || hdDef != XenomorphDefOf.AvP_NeomorphImpregnation || hdDef != XenomorphDefOf.AvP_HiddenNeomorphImpregnation;
+            bool flag = (pawn.health.hediffSet.HasHediff(XenomorphDefOf.AvP_Hediff_Cocooned)) && preflag;
             return !flag;
         }
     }

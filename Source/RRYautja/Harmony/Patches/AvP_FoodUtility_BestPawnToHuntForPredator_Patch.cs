@@ -30,7 +30,7 @@ namespace RRYautja.HarmonyInstance
             }
             if (predator.isXenomorph())
             {
-                if (predator.ageTracker.CurLifeStage == XenomorphDefOf.RRY_XenomorphFullyFormed)
+                if (predator.ageTracker.CurLifeStage == XenomorphDefOf.AvP_XenomorphFullyFormed)
                 {
                     Comp_Xenomorph _Xenomorph = predator.TryGetComp<Comp_Xenomorph>();
                     __result = _Xenomorph.BestPawnToHuntForPredator(predator, forceScanWholeMap);

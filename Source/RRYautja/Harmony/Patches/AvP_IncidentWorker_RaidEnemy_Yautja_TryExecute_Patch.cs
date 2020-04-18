@@ -43,7 +43,7 @@ namespace RRYautja.HarmonyInstance
         {
             if (__result && parms.target is Map && (parms.target as Map).IsPlayerHome)
             {
-                if (parms.faction != null && parms.faction.leader.kindDef.race == YautjaDefOf.RRY_Alien_Yautja)
+                if (parms.faction != null && parms.faction.leader.kindDef.race == YautjaDefOf.AvP_Alien_Yautja)
                 {
 
                     if ((parms.target as Map).GameConditionManager.ConditionIsActive(GameConditionDefOf.HeatWave))

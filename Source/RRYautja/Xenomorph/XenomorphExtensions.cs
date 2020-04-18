@@ -33,7 +33,7 @@ namespace RRYautja.ExtensionMethods
         public static Lord CreateNewLord(this Pawn pawn)
         {
             IntVec3 c;
-            Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.RRY_Xenomorph_Hive_Slime), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, null, null, 0, -1, false, RegionType.Set_Passable, false);
+            Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.AvP_Xenomorph_Hive_Slime), PathEndMode.OnCell, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), 9999f, null, null, 0, -1, false, RegionType.Set_Passable, false);
             if (thing != null)
             {
                 c = RCellFinder.RandomWanderDestFor(pawn, thing.Position, 5f, null, Danger.Some);
@@ -44,7 +44,7 @@ namespace RRYautja.ExtensionMethods
                 {
                     if (Prefs.DevMode && Find.Selector.SelectedObjects.Contains(pawn))
                     {
-                        ThingDef td = XenomorphDefOf.RRY_Xenomorph_Hive_Slime;
+                        ThingDef td = XenomorphDefOf.AvP_Xenomorph_Hive_Slime;
                         GenSpawn.Spawn(td, c, pawn.Map);
                         Find.LetterStack.ReceiveLetter(string.Format("Lord Created"), string.Format("@: {0} ", c), LetterDefOf.NegativeEvent, c.GetFirstThing(pawn.Map, td), null, null);
                     }

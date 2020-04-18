@@ -2,14 +2,14 @@
 <Defs>
 
   <HediffDef ParentName="InfectionBase">
-    <defName>RRY_FaceHuggerInfection</defName>
+    <defName>AvP_FaceHuggerInfection</defName>
     <hediffClass>HediffWithComps</hediffClass>
     <label>Facehugger</label>
     <description>Facehugger</description>
     <initialSeverity>0.01</initialSeverity>
     <makesSickThought>true</makesSickThought>
     <tendable>false</tendable>
-    <spawnThingOnRemoved>RRY_Xenomorph_FaceHugger</spawnThingOnRemoved>
+    <spawnThingOnRemoved>AvP_Xenomorph_FaceHugger</spawnThingOnRemoved>
     <stages>
       <li>
         <label>pre impregnation</label>
@@ -43,7 +43,7 @@
 		<!--
         <hediffGivers>
           <li Class="HediffGiver_Random">
-            <hediff>RRY_XenomorphImpregnation</hediff>
+            <hediff>AvP_XenomorphImpregnation</hediff>
             <mtbDays>1</mtbDays> 
             <partsToAffect>
               <li>Torso</li>
@@ -99,7 +99,7 @@
 
  
   <HediffDef ParentName="DiseaseBase">
-    <defName>RRY_XenomorphImpregnation</defName>
+    <defName>AvP_XenomorphImpregnation</defName>
     <hediffClass>RRYautja.XenoHediffWithComps</hediffClass>
     <label>xenomorph embryo</label>
     <description>xenomorph embryo</description>
@@ -156,10 +156,10 @@
 		<li Class="RRYautja.HediffCompProperties_XenoSpawner">
 		<severityPerDay>1</severityPerDay>
 		<pawnKindDefs>
-			<li>RRY_Xenomorph_Queen</li>
-			<li>RRY_Xenomorph_Warrior</li>
-			<li>RRY_Xenomorph_Drone</li>
-			<li>RRY_Xenomorph_Runner</li>
+			<li>AvP_Xenomorph_Queen</li>
+			<li>AvP_Xenomorph_Warrior</li>
+			<li>AvP_Xenomorph_Drone</li>
+			<li>AvP_Xenomorph_Runner</li>
 		</pawnKindDefs>
 		<pawnKindWeights>
 			<li>05</li>
@@ -172,7 +172,7 @@
   </HediffDef>
    
   <HediffDef ParentName="DiseaseBase">
-    <defName>RRY_HiddenXenomorphImpregnation</defName>
+    <defName>AvP_HiddenXenomorphImpregnation</defName>
     <hediffClass>HediffWithComps</hediffClass>
     <label>xenomorph impregnation</label>
     <description>xenomorph impregnation</description>
@@ -231,10 +231,10 @@
 		<li Class="RRYautja.HediffCompProperties_XenoSpawner">
 		<severityPerDay>0.5</severityPerDay>
 		<pawnKindDefs>
-			<li>RRY_Xenomorph_Queen</li>
-			<li>RRY_Xenomorph_Warrior</li>
-			<li>RRY_Xenomorph_Drone</li>
-			<li>RRY_Xenomorph_Runner</li>
+			<li>AvP_Xenomorph_Queen</li>
+			<li>AvP_Xenomorph_Warrior</li>
+			<li>AvP_Xenomorph_Drone</li>
+			<li>AvP_Xenomorph_Runner</li>
 		</pawnKindDefs>
 		<pawnKindWeights>
 			<li>05</li>
@@ -247,7 +247,7 @@
   </HediffDef>
  
   <HediffDef ParentName="DiseaseBase">
-    <defName>RRY_NeomorphImpregnation</defName>
+    <defName>AvP_NeomorphImpregnation</defName>
     <hediffClass>HediffWithComps</hediffClass>
     <label>neomorph impregnation</label>
     <description>neomorph impregnation</description>
@@ -426,7 +426,7 @@
     </stages>
     <comps>
 		<li Class="RRYautja.HediffCompProperties_NeoSpawner">
-		<pawnKindDef>RRY_Xenomorph_Neomorph</pawnKindDef>
+		<pawnKindDef>AvP_Xenomorph_Neomorph</pawnKindDef>
 		</li>
 		<li Class="HediffCompProperties_SeverityPerDay">
 		<severityPerDay>1</severityPerDay>
@@ -435,7 +435,7 @@
   </HediffDef>
     
   <HediffDef ParentName="DiseaseBase">
-    <defName>RRY_HiddenNeomorphImpregnation</defName>
+    <defName>AvP_HiddenNeomorphImpregnation</defName>
     <hediffClass>HediffWithComps</hediffClass>
     <label>neomorph impregnation</label>
     <description>neomorph impregnation</description>
@@ -621,14 +621,14 @@
     <comps>
 		<li Class="RRYautja.HediffCompProperties_NeoSpawner">
 		<severityPerDay>0.3</severityPerDay>
-		<pawnKindDef>RRY_Xenomorph_Neomorph</pawnKindDef>
+		<pawnKindDef>AvP_Xenomorph_Neomorph</pawnKindDef>
 		</li>
     </comps>
   </HediffDef>
   
   
   <HediffDef ParentName="InjuryBase">
-    <defName>RRY_PostBurstWound</defName>
+    <defName>AvP_PostBurstWound</defName>
     <label>gaping wound</label>
     <labelNoun>a gaping wound</labelNoun>
     <description>A Gaping wound that looks like its been shredded and torn from the inside out.</description>

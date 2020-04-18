@@ -5,11 +5,11 @@
 <!--============================================= Common =============================================-->
   
   <HediffGiverSetDef>
-    <defName>RRY_Xenomorph_Infection_Humanlike</defName>
+    <defName>AvP_Xenomorph_Infection_Humanlike</defName>
     <hediffGivers>
       
       <li Class="RRYautja.HediffGiver_StartWithXenomorphHediff">
-        <hediff>RRY_HiddenXenomorphImpregnation</hediff>
+        <hediff>AvP_HiddenXenomorphImpregnation</hediff>
 		<partsToAffect>
 		<li>Torso</li>
 		</partsToAffect>
@@ -17,7 +17,7 @@
       </li>
 	  
       <li Class="RRYautja.HediffGiver_StartWithXenomorphHediff">
-        <hediff>RRY_HiddenNeomorphImpregnation</hediff>
+        <hediff>AvP_HiddenNeomorphImpregnation</hediff>
 		<partsToAffect>
 		<li>Torso</li>
 		</partsToAffect>
@@ -30,7 +30,7 @@
 <!--============================================= Yautja =============================================-->
 
   <HediffGiverSetDef>
-    <defName>RRY_Organic_Yautja</defName>
+    <defName>AvP_Organic_Yautja</defName>
     <hediffGivers>
       
       <!-- Environmental -->
@@ -61,7 +61,7 @@
 <!--============================================= Xenomorph =============================================-->
 
   <HediffGiverSetDef>
-    <defName>RRY_Xenomorph_Standard</defName>
+    <defName>AvP_Xenomorph_Standard</defName>
     <hediffGivers>
       
       <!-- Environmental -->
@@ -81,30 +81,30 @@
     <!--============================================= Artificials =============================================-->
   
 	<HediffGiverSetDef>
-    <defName>RRY_Artificials_Synth_Hediffgiver</defName>
+    <defName>AvP_Artificials_Synth_Hediffgiver</defName>
 	<hediffGivers>
       
 		<li Class="RRYautja.HediffGiver_Synth">
-			<hediff>RRY_Damaged_Inhibitor</hediff>
+			<hediff>AvP_Damaged_Inhibitor</hediff>
 			<partsToAffect>
-			  <li>RRY_BehavorialInhibitor</li>
+			  <li>AvP_BehavorialInhibitor</li>
 			</partsToAffect>
 			<mtbDays>3</mtbDays>
 		</li>
 	<!-- Environmental -->
 		<li Class="HediffGiver_Bleeding">
-			<hediff>RRY_Synth_BloodLoss</hediff>
+			<hediff>AvP_Synth_BloodLoss</hediff>
 		</li>
 		<li Class="HediffGiver_Hypothermia">
-			<hediff>RRY_Synth_HypothermicSlowdown</hediff>
+			<hediff>AvP_Synth_HypothermicSlowdown</hediff>
 		</li>
 		<li Class="HediffGiver_Heat">
-			<hediff>RRY_Synth_Overheating</hediff>
+			<hediff>AvP_Synth_Overheating</hediff>
 		</li>
 		<li Class="RRYautja.HediffGiver_StartWithHediff">
-        <hediff>RRY_Defective_Inhibitor</hediff>
+        <hediff>AvP_Defective_Inhibitor</hediff>
 		<partsToAffect>
-          <li>RRY_BehavorialInhibitor</li>
+          <li>AvP_BehavorialInhibitor</li>
         </partsToAffect>
         <chance>5</chance>
 		</li>
@@ -113,12 +113,12 @@
 	</HediffGiverSetDef>
 	
 	<HediffGiverSetDef>
-		<defName>RRY_Artificials_Inhibitor_Hediffgiver</defName>
+		<defName>AvP_Artificials_Inhibitor_Hediffgiver</defName>
 		<hediffGivers>
 		  <li Class="HediffGiver_BrainInjury">
-			<hediff>RRY_Damaged_Inhibitor</hediff>
+			<hediff>AvP_Damaged_Inhibitor</hediff>
 			<partsToAffect>
-			  <li>RRY_BehavorialInhibitor</li>
+			  <li>AvP_BehavorialInhibitor</li>
 			</partsToAffect>
 			<chancePerDamagePct>0.85</chancePerDamagePct>
 			<letterLabel>Damaged Inhibitor</letterLabel>

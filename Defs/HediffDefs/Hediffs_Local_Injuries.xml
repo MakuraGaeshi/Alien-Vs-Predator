@@ -2,7 +2,7 @@
 <Defs>
 
   <HediffDef ParentName="InjuryBase">
-    <defName>RRY_XenoAcidBurn</defName>
+    <defName>AvP_XenoAcidBurn</defName>
     <label>acid burn</label>
     <description>acid burn</description>
     <labelNoun>an acid burn</labelNoun>
@@ -19,7 +19,7 @@
         <permanentLabel>acid burn scar</permanentLabel>
       </li>
       <li Class="RRYautja.HediffCompProperties_DamageOverTime">
-        <cycleDamage>RRY_AcidBurn</cycleDamage>
+        <cycleDamage>AvP_AcidBurn</cycleDamage>
         <maxCycleAmt>5</maxCycleAmt>
         <repeatChance>0.50</repeatChance>
       </li>
@@ -34,7 +34,7 @@
   </HediffDef>
 
   <HediffDef ParentName="InjuryBase">
-    <defName>RRY_Impaled</defName>
+    <defName>AvP_Impaled</defName>
     <label>impaled</label>
     <description>impaled</description>
     <labelNoun>an impalement wound</labelNoun>

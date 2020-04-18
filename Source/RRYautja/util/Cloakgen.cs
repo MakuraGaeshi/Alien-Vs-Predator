@@ -162,8 +162,8 @@ namespace RRYautja
             if (this.cloak.DestroyedOrNull())
             {
                 /*
-                Wearer.health.AddHediff(YautjaDefOf.RRY_Hediff_Cloaked);
-                Hediff hediff = Wearer.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_Cloaked);
+                Wearer.health.AddHediff(YautjaDefOf.AvP_Hediff_Cloaked);
+                Hediff hediff = Wearer.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.AvP_Hediff_Cloaked);
                 // hediff.TryGetComp<HediffComp_Blur>().blurTick = Find.TickManager.TicksGame;
                 */
             }
@@ -178,7 +178,7 @@ namespace RRYautja
                 if (Wearer.health.hediffSet.HasHediff(YautjaDefOf.AvP_Hediff_Cloaked))
                 {
                     /*
-                    Hediff hediff = Wearer.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_Cloaked);
+                    Hediff hediff = Wearer.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.AvP_Hediff_Cloaked);
                     Wearer.health.RemoveHediff(hediff);
                     */
                     this.cloakMode = CloakMode.Off;
@@ -207,14 +207,14 @@ namespace RRYautja
         public void TendSelf()
         {
             SoundStarter.PlayOneShotOnCamera(SoundDefOf.Click, null);
-            Job job = new Job(YautjaDefOf.RRY_Yautja_TendSelf);
+            Job job = new Job(YautjaDefOf.AvP_Yautja_TendSelf);
             base.Wearer.jobs.TryTakeOrderedJob(job, 0);
         }
 
         public void UseShard()
         {
             SoundStarter.PlayOneShotOnCamera(SoundDefOf.Click, null);
-            Job job = new Job(YautjaDefOf.RRY_Yautja_HealthShard);
+            Job job = new Job(YautjaDefOf.AvP_Yautja_HealthShardUse);
             base.Wearer.jobs.TryTakeOrderedJob(job, 0);
         }
 
@@ -341,29 +341,29 @@ namespace RRYautja
             }
             else if (Wearer.Faction == Faction.OfPlayer)
             {
-                if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.RRY_Concept_Gauntlet) && Wearer.IsColonist)
+                if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.AvP_Concept_Gauntlet) && Wearer.IsColonist)
                 {
-                    LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.RRY_Concept_Gauntlet, OpportunityType.GoodToKnow);
+                    LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.AvP_Concept_Gauntlet, OpportunityType.GoodToKnow);
                 }
-                if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.RRY_Concept_Wistblade) && Wearer.IsColonist)
+                if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.AvP_Concept_Wistblade) && Wearer.IsColonist)
                 {
-                    LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.RRY_Concept_Wistblade, OpportunityType.GoodToKnow);
+                    LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.AvP_Concept_Wistblade, OpportunityType.GoodToKnow);
                 }
-                if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.RRY_Concept_SelfDestruct) && (Wearer.IsColonist || Wearer.IsPrisoner))
+                if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.AvP_Concept_SelfDestruct) && (Wearer.IsColonist || Wearer.IsPrisoner))
                 {
-                    LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.RRY_Concept_SelfDestruct, OpportunityType.GoodToKnow);
+                    LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.AvP_Concept_SelfDestruct, OpportunityType.GoodToKnow);
                 }
-                if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.RRY_Concept_MediComp) && Wearer.IsColonist && YautjaDefOf.AvP_Tech_Yautja_MediComp.IsFinished)
+                if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.AvP_Concept_MediComp) && Wearer.IsColonist && YautjaDefOf.AvP_Tech_Yautja_MediComp.IsFinished)
                 {
-                    LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.RRY_Concept_MediComp, OpportunityType.GoodToKnow);
+                    LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.AvP_Concept_MediComp, OpportunityType.GoodToKnow);
                 }
-                if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.RRY_Concept_ShardInjector) && Wearer.IsColonist && YautjaDefOf.AvP_Tech_Yautja_HealthShard.IsFinished)
+                if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.AvP_Concept_ShardInjector) && Wearer.IsColonist && YautjaDefOf.AvP_Tech_Yautja_HealthShard.IsFinished)
                 {
-                    LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.RRY_Concept_ShardInjector, OpportunityType.GoodToKnow);
+                    LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.AvP_Concept_ShardInjector, OpportunityType.GoodToKnow);
                 }
-                if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.RRY_Concept_Cloak) && Wearer.IsColonist && YautjaDefOf.AvP_Tech_Yautja_CloakGenerator.IsFinished)
+                if (!PlayerKnowledgeDatabase.IsComplete(YautjaConceptDefOf.AvP_Concept_Cloak) && Wearer.IsColonist && YautjaDefOf.AvP_Tech_Yautja_CloakGenerator.IsFinished)
                 {
-                    LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.RRY_Concept_Cloak, OpportunityType.GoodToKnow);
+                    LessonAutoActivator.TeachOpportunity(YautjaConceptDefOf.AvP_Concept_Cloak, OpportunityType.GoodToKnow);
                 }
             }
             if (this.cloakState == Cloakgen.CloakState.Resetting)

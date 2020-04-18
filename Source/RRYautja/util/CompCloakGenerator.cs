@@ -162,7 +162,7 @@ namespace RRYautja
                 if (Wearer.health.hediffSet.HasHediff(YautjaDefOf.AvP_Hediff_Cloaked))
                 {
                     /*
-                    Hediff hediff = Wearer.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.RRY_Hediff_Cloaked);
+                    Hediff hediff = Wearer.health.hediffSet.GetFirstHediffOfDef(YautjaDefOf.AvP_Hediff_Cloaked);
                     Wearer.health.RemoveHediff(hediff);
                     */
                     this.cloakMode = CloakMode.Off;

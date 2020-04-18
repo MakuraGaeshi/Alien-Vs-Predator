@@ -31,16 +31,16 @@ namespace RRYautja
         public int TimesBounced = 0;
         public int disaapearsIn = 5;
 
-        public ThingDef BounceDef = (DefDatabase<ThingDef>.GetNamed("RRY_SmartDisk_Thrown"));
+        public ThingDef BounceDef = (DefDatabase<ThingDef>.GetNamed("AvP_SmartDisk_Thrown"));
         public ThingDef ReturnDef
         {
             get
             {
                 if (OriginalPawn.kindDef.race!=YautjaDefOf.AvP_Alien_Yautja)
                 {
-                    return (DefDatabase<ThingDef>.GetNamed("RRY_SmartDisk_Thrown"));
+                    return (DefDatabase<ThingDef>.GetNamed("AvP_SmartDisk_Thrown"));
                 }
-                return (DefDatabase<ThingDef>.GetNamed("RRY_SmartDisk_Returning"));
+                return (DefDatabase<ThingDef>.GetNamed("AvP_SmartDisk_Returning"));
             }
         }
 
@@ -75,7 +75,7 @@ namespace RRYautja
                 {
                     foreach (var item in OriginalPawn.apparel.WornApparel)
                     {
-                        if (item.def.defName.Contains("RRY_Apparel_") && item.def.defName.Contains("BioMask"))
+                        if (item.def.defName.Contains("AvP_Apparel_") && item.def.defName.Contains("BioMask"))
                         {
                             enablebounce = true;
                             this.canBounce = enablebounce;

@@ -8,7 +8,7 @@
 	
 <!--==================== Flamer Damage Type =========================-->
 	<DamageDef ParentName="RRYLocalRangedInjuryBaseFlameNoCamShake">
-    <defName>RRY_Flamer</defName>
+    <defName>AvP_Flamer</defName>
     <label>flame</label>
     <hasForcefulImpact>false</hasForcefulImpact>
     <makesBlood>false</makesBlood>

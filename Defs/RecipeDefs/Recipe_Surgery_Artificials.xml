@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
   <RecipeDef ParentName="SurgeryFlesh">
-    <defName>RRY_RepairInhibitor</defName>
+    <defName>AvP_RepairInhibitor</defName>
     <label>Attempt repairing a behavorial inhibitor</label>
     <description>Inhibitor repair</description>
     <workerClass>Recipe_InstallNaturalBodyPart</workerClass>
     <jobString>Attempting to repair a behavorial inhibitor</jobString>
     <workAmount>2200</workAmount>
-    <removesHediff>RRY_Defective_Inhibitor</removesHediff>
+    <removesHediff>AvP_Defective_Inhibitor</removesHediff>
     <successfullyRemovedHediffMessage>{0} has successfully repaired {1}'s behavorial inhibitor.</successfullyRemovedHediffMessage>
     <deathOnFailedSurgeryChance>2.0</deathOnFailedSurgeryChance>
     <surgerySuccessChanceFactor>1</surgerySuccessChanceFactor>
@@ -36,7 +36,7 @@
       </disallowedThingDefs>
     </fixedIngredientFilter>
 	<appliedOnFixedBodyParts>
-      <li>RRY_BehavorialInhibitor</li>
+      <li>AvP_BehavorialInhibitor</li>
     </appliedOnFixedBodyParts>
   </RecipeDef>
  </Defs>

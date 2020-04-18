@@ -59,9 +59,10 @@ namespace HunterMarkingSystem.Settings
                 MarkData markData = HunterMarkingSystem.RaceDefaultMarkDict.TryGetValue(td);
                 if (markData == null)
                 {
-                    markData = HunterMarkingSystem.RaceDefaultMarkDict.TryGetValue(td);
+                    markData = new MarkData(td);
+                    HunterMarkingSystem.RaceDefaultMarkDict.SetOrAdd(td, markData);
                 }
-                 Widgets.Label(new Rect(markablerect.x, num2, markablerect.ContractedBy(4).width, 22f), "HMS_MarkableScore".Translate(td.LabelCap, markData.MarkScore * this.settings.MinWorthyKill, td.defName));
+                 Widgets.Label(new Rect(markablerect.x, num2, markablerect.ContractedBy(4).width, 22f), "HMS_MarkableScore".Translate(td.LabelCap+(td.LabelCap=="Human"? "(" + td.defName + ")" : ""), markData.MarkScore * this.settings.MinWorthyKill, td.defName));
                 
                 num2 += 22f;
             }

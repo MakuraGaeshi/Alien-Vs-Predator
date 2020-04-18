@@ -4,7 +4,7 @@
   <!--============================== Cocoons ==============================-->
 	<!--
   <ThingDef ParentName="BuildingBase">
-    <defName>RRY_Xenomorph_Humanoid_Cocoon</defName>
+    <defName>AvP_Xenomorph_Humanoid_Cocoon</defName>
     <label>humanoid cocoon</label>
     <description>Designates a spot on the ground where people should sleep. Not comfortable.</description>
     <thingClass>Building_XenomorphCocoon</thingClass>
@@ -46,7 +46,7 @@
 			-->
 			
   <ThingDef ParentName="BuildingBase">
-    <defName>RRY_Xenomorph_Cocoon_Humanoid</defName>
+    <defName>AvP_Xenomorph_Cocoon_Humanoid</defName>
     <label>humanoid cocoon</label>
     <description>Designates a spot on the ground where people should sleep. Not comfortable.</description>
     <thingClass>Building_XenomorphCocoon</thingClass>
@@ -69,7 +69,7 @@
     </statBases>
     <comps>
       <li Class="CompProperties_UsableBuilding">
-        <useJob>RRY_Job_DestroyCocoon</useJob>
+        <useJob>AvP_Job_DestroyCocoon</useJob>
         <useLabel>Release from cocoon</useLabel>
         <useDuration>450</useDuration>
       </li>
@@ -91,7 +91,7 @@
 			</li>
 			-->
       <li Class="CompProperties_SpawnerFilth">
-        <filthDef>RRY_Filth_Slime</filthDef>
+        <filthDef>AvP_Filth_Slime</filthDef>
         <spawnCountOnSpawn>10</spawnCountOnSpawn>
         <spawnMtbHours>4</spawnMtbHours>
         <spawnRadius>1</spawnRadius>
@@ -114,7 +114,7 @@
   
 
   <ThingDef ParentName="BuildingBase">
-    <defName>RRY_Xenomorph_Cocoon_Animal</defName>
+    <defName>AvP_Xenomorph_Cocoon_Animal</defName>
     <label>cocoon</label>
     <description>Designates a spot on the ground where people should sleep. Not comfortable.</description>
     <thingClass>Building_XenomorphCocoon</thingClass>
@@ -136,7 +136,7 @@
     </statBases>
     <comps>
       <li Class="CompProperties_UsableBuilding">
-        <useJob>RRY_Job_DestroyCocoon</useJob>
+        <useJob>AvP_Job_DestroyCocoon</useJob>
         <useLabel>Release from cocoon</useLabel>
         <useDuration>450</useDuration>
       </li>
@@ -150,7 +150,7 @@
         <compClass>CompUseEffect_Cocoon</compClass>
       </li>
       <li Class="CompProperties_SpawnerFilth">
-        <filthDef>RRY_Filth_Slime</filthDef>
+        <filthDef>AvP_Filth_Slime</filthDef>
         <spawnCountOnSpawn>10</spawnCountOnSpawn>
         <spawnMtbHours>4</spawnMtbHours>
         <spawnRadius>1</spawnRadius>
@@ -173,7 +173,7 @@
   </ThingDef>
 
 	<JobDef>
-		<defName>RRY_Job_DestroyCocoon</defName>
+		<defName>AvP_Job_DestroyCocoon</defName>
 		<driverClass>JobDriver_DestroyCocoon</driverClass>
 		<reportString>opening TargetA.</reportString>
 		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>

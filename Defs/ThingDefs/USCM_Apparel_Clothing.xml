@@ -2,8 +2,8 @@
 <Defs>
 	<!-- ========================= USCM - Headband ========================== -->
 	
-	<ThingDef ParentName="RRY_USCM_Apparel_MakeableBase">
-    <defName>RRY_USCM_Bandana</defName>
+	<ThingDef ParentName="AvP_USCM_Apparel_MakeableBase">
+    <defName>AvP_USCM_Bandana</defName>
     <label>war bandana</label>
     <description>A badass bandana. Doesn't offer much protection, but the ego boost will let you overcome impossible odds.</description>
     <techLevel>Neolithic</techLevel>
@@ -49,7 +49,7 @@
     <recipeMaker>
     </recipeMaker>
 		<thingCategories>
-			<li>RRY_Apparel</li>
+			<li>AvP_Apparel</li>
 		</thingCategories>
 		<tradeTags>
 			<li>Apparel</li>
@@ -58,8 +58,8 @@
 	
 <!-- ========================= USCM - Military Cap ========================== -->
 	
-	<ThingDef ParentName="RRY_USCM_Apparel_MakeableBase">
-		<defName>RRY_USCM_Cap</defName>
+	<ThingDef ParentName="AvP_USCM_Apparel_MakeableBase">
+		<defName>AvP_USCM_Cap</defName>
 		<label>Military Cap</label>
 		<description>Standard issue sun specific personal protection.</description>
 		<graphicData>
@@ -106,7 +106,7 @@
 		  </defaultOutfitTags>
 		</apparel>
 		<thingCategories>
-			<li>RRY_Apparel</li>
+			<li>AvP_Apparel</li>
 		</thingCategories>
 		<tradeTags>
 			<li>Apparel</li>
@@ -115,8 +115,8 @@
 	
 	<!-- ========================= USCM - Military Fatigues ========================== -->
 	
-	<ThingDef ParentName="RRY_USCM_Apparel_MakeableBase">
-    <defName>RRY_USCM_Fatigues</defName>
+	<ThingDef ParentName="AvP_USCM_Apparel_MakeableBase">
+    <defName>AvP_USCM_Fatigues</defName>
     <description>Sturdy and durable work clothes for menial tasks. USCM standard issue.</description>
     <label>USCM fatigues</label>
     <recipeMaker>
@@ -132,7 +132,7 @@
       <li>Fabric</li>
     </stuffCategories>
     <thingCategories>
-      <li>RRY_Apparel</li>
+      <li>AvP_Apparel</li>
     </thingCategories>
     <statBases>
 			<MaxHitPoints>125</MaxHitPoints>
@@ -171,8 +171,8 @@
 
 <!-- ========================= USCM - Jumpsuit Base ========================== -->
 	
-	<ThingDef Name="RRY_USCM_JumpsuitBase" ParentName="RRY_USCM_Apparel_MakeableBase" Abstract="True">
-    <defName>RRY_USCM_Jumpsuit</defName>
+	<ThingDef Name="AvP_USCM_JumpsuitBase" ParentName="AvP_USCM_Apparel_MakeableBase" Abstract="True">
+    <defName>AvP_USCM_Jumpsuit</defName>
     <description>Sturdy and durable work clothes for menial tasks. Lined with a thin layer of isolating material.</description>
     <label>Standard jumpsuit</label>
     <recipeMaker>
@@ -187,7 +187,7 @@
       <li>Fabric</li>
     </stuffCategories>
     <thingCategories>
-      <li>RRY_Apparel</li>
+      <li>AvP_Apparel</li>
     </thingCategories>
     <statBases>
 			<MaxHitPoints>125</MaxHitPoints>
@@ -227,8 +227,8 @@
   
   <!-- ========================= USCM - Medic Jumpsuit ========================== -->
 	
-	<ThingDef ParentName="RRY_USCM_JumpsuitBase">
-		<defName>RRY_USCM_MedicalJumpsuit</defName>
+	<ThingDef ParentName="AvP_USCM_JumpsuitBase">
+		<defName>AvP_USCM_MedicalJumpsuit</defName>
 		<label>Medical jumpsuit</label>
 		<graphicData>
 		  <texPath>Things/Apparel/USCM/Clothing/MedicJumpsuits/MedicJumpsuit</texPath>
@@ -250,8 +250,8 @@
   
   <!-- ========================= USCM - Engineer Jumpsuit ========================== -->
 	
-	<ThingDef ParentName="RRY_USCM_JumpsuitBase">
-		<defName>RRY_USCM_Jumpsuit</defName>
+	<ThingDef ParentName="AvP_USCM_JumpsuitBase">
+		<defName>AvP_USCM_Jumpsuit</defName>
 		<label>Engineer jumpsuit</label>
 		<equippedStatOffsets>
 		  <FixBrokenDownBuildingSuccessChance>0.1</FixBrokenDownBuildingSuccessChance>

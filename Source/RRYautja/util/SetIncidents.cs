@@ -13,7 +13,7 @@ namespace RRYautja
         {
             foreach (IncidentDef incidentDef in DefDatabase<IncidentDef>.AllDefsListForReading)
             {
-                if (incidentDef == XenomorphDefOf.RRY_Neomorph_FungusSprout)
+                if (incidentDef == XenomorphDefOf.AvP_Neomorph_FungusSprout)
                 {
                     if (SettingsHelper.latest.AllowXenomorphFaction)
                     {
@@ -24,7 +24,7 @@ namespace RRYautja
                         incidentDef.baseChance = 0f;
                     }
                 }
-                if (incidentDef == XenomorphDefOf.RRY_Neomorph_FungusSprout_Hidden)
+                if (incidentDef == XenomorphDefOf.AvP_Neomorph_FungusSprout_Hidden)
                 {
                     if (SettingsHelper.latest.AllowXenomorphFaction || SettingsHelper.latest.AllowXenomorphFaction)
                     {
@@ -35,7 +35,7 @@ namespace RRYautja
                         incidentDef.baseChance = 0f;
                     }
                 }
-                if (incidentDef == XenomorphDefOf.RRY_XenomorphCrashedShipPartCrash)
+                if (incidentDef == XenomorphDefOf.AvP_XenomorphCrashedShipPartCrash)
                 {
                     if (SettingsHelper.latest.AllowXenomorphFaction)
                     {
@@ -46,7 +46,7 @@ namespace RRYautja
                         incidentDef.baseChance = 0f;
                     }
                 }
-                if (incidentDef == XenomorphDefOf.RRY_XenomorphInfestation)
+                if (incidentDef == XenomorphDefOf.AvP_XenomorphInfestation)
                 {
                     if (SettingsHelper.latest.AllowXenomorphFaction)
                     {

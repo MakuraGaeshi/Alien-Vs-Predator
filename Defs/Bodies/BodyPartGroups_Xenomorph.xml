@@ -2,38 +2,38 @@
 <Defs>
 
   <BodyPartGroupDef>
-    <defName>RRY_Xeno_Tail_SpikeAttackTool</defName>
+    <defName>AvP_Xeno_Tail_SpikeAttackTool</defName>
     <label>tail spike</label>
   </BodyPartGroupDef>
   
   <BodyPartGroupDef>
-    <defName>RRY_Xeno_Tail_AttackTool</defName>
+    <defName>AvP_Xeno_Tail_AttackTool</defName>
     <label>tail</label>
   </BodyPartGroupDef>
   
   <BodyPartGroupDef>
-    <defName>RRY_Xeno_InnerTeeth</defName>
+    <defName>AvP_Xeno_InnerTeeth</defName>
     <label>inner teeth</label>
   </BodyPartGroupDef>
   
   <BodyPartGroupDef>
-    <defName>RRY_Xeno_Mandibles</defName>
+    <defName>AvP_Xeno_Mandibles</defName>
     <label>mandibles</label>
   </BodyPartGroupDef>
 
   <BodyPartGroupDef>
-    <defName>RRY_Xeno_Hands</defName>
+    <defName>AvP_Xeno_Hands</defName>
     <label>hands</label>
   </BodyPartGroupDef>
   
   <BodyPartGroupDef>
-    <defName>RRY_Xeno_LeftHand</defName>
+    <defName>AvP_Xeno_LeftHand</defName>
     <label>left claws</label>
     <labelShort>claws</labelShort>
   </BodyPartGroupDef>
   
   <BodyPartGroupDef>
-    <defName>RRY_Xeno_RightHand</defName>
+    <defName>AvP_Xeno_RightHand</defName>
     <label>right claws</label>
     <labelShort>claws</labelShort>
   </BodyPartGroupDef>

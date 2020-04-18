@@ -15,8 +15,8 @@ namespace Verse
         [DebugAction("Pawns", null, actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void XenomorphFacehugger(Pawn p)
         {
-            HediffDef hediffDef = XenomorphDefOf.RRY_FaceHuggerInfection;
-            PawnKindDef kindDef = XenomorphDefOf.RRY_Xenomorph_FaceHugger;
+            HediffDef hediffDef = XenomorphDefOf.AvP_FaceHuggerInfection;
+            PawnKindDef kindDef = XenomorphDefOf.AvP_Xenomorph_FaceHugger;
             if (!p.isPotentialHost(out string fail))
             {
                 if (!fail.NullOrEmpty())
@@ -32,7 +32,7 @@ namespace Verse
                 p.health.AddHediff(hediffDef, bodyPartRecord, null, null);
                 Hediff hediff = p.health.hediffSet.GetFirstHediffOfDef(hediffDef);
                 HediffComp_XenoFacehugger hediffcomp = hediff.TryGetComp<HediffComp_XenoFacehugger>();
-                Pawn hugger = PawnGenerator.GeneratePawn(new PawnGenerationRequest(kindDef, Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph), PawnGenerationContext.NonPlayer, newborn: true));
+                Pawn hugger = PawnGenerator.GeneratePawn(new PawnGenerationRequest(kindDef, Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.AvP_Xenomorph), PawnGenerationContext.NonPlayer, newborn: true));
                 hediffcomp.instigator = hugger;
                 hediffcomp.TryAcceptThing(hugger);
             }
@@ -45,8 +45,8 @@ namespace Verse
         [DebugAction("Pawns", null, actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void XenomorphFacehuggerRoyale(Pawn p)
         {
-            HediffDef hediffDef = XenomorphDefOf.RRY_FaceHuggerInfection;
-            PawnKindDef kindDef = XenomorphDefOf.RRY_Xenomorph_RoyaleHugger;
+            HediffDef hediffDef = XenomorphDefOf.AvP_FaceHuggerInfection;
+            PawnKindDef kindDef = XenomorphDefOf.AvP_Xenomorph_RoyaleHugger;
             if (!p.isPotentialHost(out string fail))
             {
                 if (!fail.NullOrEmpty())
@@ -62,7 +62,7 @@ namespace Verse
                 p.health.AddHediff(hediffDef, bodyPartRecord, null, null);
                 Hediff hediff = p.health.hediffSet.GetFirstHediffOfDef(hediffDef);
                 HediffComp_XenoFacehugger hediffcomp = hediff.TryGetComp<HediffComp_XenoFacehugger>();
-                Pawn hugger = PawnGenerator.GeneratePawn(new PawnGenerationRequest(kindDef, Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph), PawnGenerationContext.NonPlayer, newborn: true));
+                Pawn hugger = PawnGenerator.GeneratePawn(new PawnGenerationRequest(kindDef, Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.AvP_Xenomorph), PawnGenerationContext.NonPlayer, newborn: true));
                 hediffcomp.instigator = hugger;
                 hediffcomp.royaleHugger = true;
                 hediffcomp.TryAcceptThing(hugger);
@@ -76,7 +76,7 @@ namespace Verse
         [DebugAction("Pawns", null, actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void XenomorphImpregnation(Pawn p)
         {
-            HediffDef hediffDef = XenomorphDefOf.RRY_XenomorphImpregnation;
+            HediffDef hediffDef = XenomorphDefOf.AvP_XenomorphImpregnation;
             if (!p.isPotentialHost(out string fail))
             {
                 if (!fail.NullOrEmpty())
@@ -102,7 +102,7 @@ namespace Verse
         [DebugAction("Pawns", null, actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void XenomorphImpregnationRoyale(Pawn p)
         {
-            HediffDef hediffDef = XenomorphDefOf.RRY_XenomorphImpregnation;
+            HediffDef hediffDef = XenomorphDefOf.AvP_XenomorphImpregnation;
             if (!p.isPotentialHost(out string fail))
             {
                 if (!fail.NullOrEmpty())
@@ -130,7 +130,7 @@ namespace Verse
         [DebugAction("Pawns", null, actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void NeomorphImpregnation(Pawn p)
         {
-            HediffDef hediffDef = XenomorphDefOf.RRY_NeomorphImpregnation;
+            HediffDef hediffDef = XenomorphDefOf.AvP_NeomorphImpregnation;
             if (!p.isPotentialHost(out string fail))
             {
                 if (!fail.NullOrEmpty())

@@ -2,7 +2,7 @@
 <Defs>
 
   <LifeStageDef>
-    <defName>RRY_NeomorphBloodBursterBaby</defName>
+    <defName>AvP_NeomorphBloodBursterBaby</defName>
     <label>newborn</label>
     <bodySizeFactor>0.2</bodySizeFactor>
 	<foodMaxFactor>5</foodMaxFactor>
@@ -17,7 +17,7 @@
   </LifeStageDef>
 
   <LifeStageDef>
-    <defName>RRY_NeomorphBloodBursterBig</defName>
+    <defName>AvP_NeomorphBloodBursterBig</defName>
     <label>shedling</label>
     <bodySizeFactor>0.32</bodySizeFactor>
 	<foodMaxFactor>4</foodMaxFactor>
@@ -32,7 +32,7 @@
   </LifeStageDef>
 
   <LifeStageDef>
-    <defName>RRY_NeomorphFormedBaby</defName>
+    <defName>AvP_NeomorphFormedBaby</defName>
     <label>young</label>
     <bodySizeFactor>0.5</bodySizeFactor>
 	<foodMaxFactor>3</foodMaxFactor>
@@ -47,7 +47,7 @@
   </LifeStageDef>
 
   <LifeStageDef>
-    <defName>RRY_NeomorphFormedMid</defName>
+    <defName>AvP_NeomorphFormedMid</defName>
     <label>adolecant</label>
     <adjective>teenage</adjective>
     <bodySizeFactor>0.85</bodySizeFactor>
@@ -62,7 +62,7 @@
   </LifeStageDef>
   
   <LifeStageDef>
-    <defName>RRY_NeomorphFullyFormed</defName>
+    <defName>AvP_NeomorphFullyFormed</defName>
     <label>adult</label>
     <visible>false</visible>
     <reproductive>false</reproductive>

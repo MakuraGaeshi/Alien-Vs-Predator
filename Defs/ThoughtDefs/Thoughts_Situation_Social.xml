@@ -2,7 +2,7 @@
 <Defs>
   <!-- affecting opinion -->
 	<ThoughtDef>
-		<defName>RRY_HonourableVsBadBlood</defName>
+		<defName>AvP_HonourableVsBadBlood</defName>
 		<thoughtClass>Thought_SituationalSocial</thoughtClass>
 		<workerClass>ThoughtWorker_HonourableVsBadBlood</workerClass>
     <validWhileDespawned>true</validWhileDespawned>
@@ -15,7 +15,7 @@
 	</ThoughtDef>
 
 	<ThoughtDef>
-		<defName>RRY_BadBloodVsHonourable</defName>
+		<defName>AvP_BadBloodVsHonourable</defName>
 		<thoughtClass>Thought_SituationalSocial</thoughtClass>
 		<workerClass>ThoughtWorker_BadBloodVsHonourable</workerClass>
     <validWhileDespawned>true</validWhileDespawned>

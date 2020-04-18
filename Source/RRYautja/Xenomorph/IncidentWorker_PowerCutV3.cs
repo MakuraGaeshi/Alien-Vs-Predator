@@ -18,7 +18,7 @@ namespace RimWorld
             if (map.listerBuildings.allBuildingsColonist.Any(x=> x.TryGetComp<CompPowerPlant>()!=null))
             {
                 IntVec3 intVec;
-                Faction faction = Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph);
+                Faction faction = Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.AvP_Xenomorph);
                 return this.TryFindSpawnSpot(map, out intVec) && faction != null;
             }
             return false;
@@ -37,14 +37,14 @@ namespace RimWorld
             IncidentParms raidParms = StorytellerUtility.DefaultParmsNow(IncidentCategoryDefOf.ThreatBig, map);
             raidParms.forced = true;
             raidParms.faction = parms.faction;
-            raidParms.raidStrategy = XenomorphDefOf.RRY_PowerCut;
-            raidParms.raidArrivalMode = XenomorphDefOf.RRY_DropThroughRoofNearPower;
+            raidParms.raidStrategy = XenomorphDefOf.AvP_PowerCut;
+            raidParms.raidArrivalMode = XenomorphDefOf.AvP_DropThroughRoofNearPower;
             raidParms.spawnCenter = spawnSpot;
             raidParms.generateFightersOnly = true;
             raidParms.points = Mathf.Max((raidParms.points / 5) * IncidentWorker_PowerCut.RaidPointsFactorRange.RandomInRange, 500f);
             raidParms.pawnGroupMakerSeed = new int?(@int);
             PawnGroupMakerParms defaultPawnGroupMakerParms = IncidentParmsUtility.GetDefaultPawnGroupMakerParms(PawnGroupKindDefOf.Combat, raidParms, true);
-            defaultPawnGroupMakerParms.points = IncidentWorker_Raid.AdjustedRaidPoints(defaultPawnGroupMakerParms.points, XenomorphDefOf.RRY_DropThroughRoofNearPower, XenomorphDefOf.RRY_PowerCut, defaultPawnGroupMakerParms.faction, PawnGroupKindDefOf.Combat);
+            defaultPawnGroupMakerParms.points = IncidentWorker_Raid.AdjustedRaidPoints(defaultPawnGroupMakerParms.points, XenomorphDefOf.AvP_DropThroughRoofNearPower, XenomorphDefOf.AvP_PowerCut, defaultPawnGroupMakerParms.faction, PawnGroupKindDefOf.Combat);
             IEnumerable<PawnKindDef> pawnKinds = PawnGroupMakerUtility.GeneratePawnKindsExample(defaultPawnGroupMakerParms);
 
             base.SendStandardLetter(parms, null);

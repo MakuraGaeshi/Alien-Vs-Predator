@@ -22,7 +22,7 @@ namespace RRYautja.HarmonyInstance
         [HarmonyPostfix]
         public static void PawnInCocoon(WorkGiver_Tend __instance, Pawn patient, Pawn doctor, ref bool __result)
         {
-            __result = __result && (!patient.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned) && !(patient.CurrentBed() is Building_XenomorphCocoon));
+            __result = __result && (!patient.health.hediffSet.HasHediff(XenomorphDefOf.AvP_Hediff_Cocooned) && !(patient.CurrentBed() is Building_XenomorphCocoon));
             //    Log.Message(string.Format("WorkGiver_Tend_GoodLayingStatusForTend_Patch patient: {0}, doctor: {1}, __Result: {2}", patient, doctor, __result));
 
         }

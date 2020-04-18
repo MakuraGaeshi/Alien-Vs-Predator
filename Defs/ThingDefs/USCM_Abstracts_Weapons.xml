@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 <!--====================  USCM - Base Weapon Template =========================-->	
-	<ThingDef Abstract="True" Name="RRY_USCM_BaseWeapon">
+	<ThingDef Abstract="True" Name="AvP_USCM_BaseWeapon">
 		<thingClass>ThingWithComps</thingClass>
 		<category>Item</category>
 		<drawGUIOverlay>true</drawGUIOverlay>
@@ -31,14 +31,14 @@
 	</ThingDef>
 	
 
-  <ThingDef Name="RRY_USCM_BaseSimpleRanged" Abstract="True" ParentName="RRY_USCM_BaseWeapon">
+  <ThingDef Name="AvP_USCM_BaseSimpleRanged" Abstract="True" ParentName="AvP_USCM_BaseWeapon">
     <techLevel>Neolithic</techLevel>
     <weaponTags>
 	
     </weaponTags>
     <thingCategories>
       <li>WeaponsRanged</li>
-	  <li>RRY_USCM_Weapons</li>
+	  <li>AvP_USCM_Weapons</li>
     </thingCategories>
     <comps>
       <li>
@@ -49,7 +49,7 @@
       <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
       <workSkill>Crafting</workSkill>
       <recipeUsers>
-        <li>RRY_TableMachining</li>
+        <li>AvP_TableMachining</li>
 		
       </recipeUsers>
       <effectWorking>Smelt</effectWorking>
@@ -68,7 +68,7 @@
   
 
 	<!-- ==================== USCM - Base Gun Weapon Template ========================= -->		
-	<ThingDef Name="RRY_USCM_BaseGun" Abstract="True" ParentName="RRY_USCM_BaseWeapon">
+	<ThingDef Name="AvP_USCM_BaseGun" Abstract="True" ParentName="AvP_USCM_BaseWeapon">
 		<techLevel>Industrial</techLevel>
 		<smeltable>true</smeltable>
     <inspectorTabs>
@@ -89,12 +89,12 @@
     </weaponTags>
 	<thingCategories>
 		<li>WeaponsRanged</li>
-		<li>RRY_USCM_RangedWeapons</li>
+		<li>AvP_USCM_RangedWeapons</li>
 	</thingCategories>
 	</ThingDef>
 	
 	<!-- ==================== USCM - Base Makeable Gun Weapon Template ========================= -->
-	<ThingDef Name="RRY_USCM_BaseMakeableGun" ParentName="RRY_USCM_BaseGun" Abstract="True">
+	<ThingDef Name="AvP_USCM_BaseMakeableGun" ParentName="AvP_USCM_BaseGun" Abstract="True">
     <recipeMaker>
       <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
       <workSkill>Crafting</workSkill>
@@ -109,7 +109,7 @@
   </ThingDef>
   
   <!--==================== Mod - USCM - Base Melee Weapon Template =========================-->
-	<ThingDef Name="RRY_USCM_BaseMeleeWeapon" Abstract="True" ParentName="RRY_USCM_BaseWeapon">
+	<ThingDef Name="AvP_USCM_BaseMeleeWeapon" Abstract="True" ParentName="AvP_USCM_BaseWeapon">
     <techLevel>Industrial</techLevel>
 		<smeltable>true</smeltable>
     <thingCategories>
@@ -148,7 +148,7 @@
   </ThingDef>
   
 	<!--==================== Mod - USCM - Base Sharp Melee Weapon Template =========================-->
-	<ThingDef Name="RRY_USCM_BaseMeleeWeapon_Sharp" ParentName="RRY_USCM_BaseMeleeWeapon" Abstract="True">
+	<ThingDef Name="AvP_USCM_BaseMeleeWeapon_Sharp" ParentName="AvP_USCM_BaseMeleeWeapon" Abstract="True">
     <recipeMaker>
     <defaultIngredientFilter>
       <categories>
@@ -164,7 +164,7 @@
   </ThingDef>
   
 	<!--==================== Mod - USCM - Base Blunt Melee Weapon Template =========================-->
-	<ThingDef Name="RRY_USCM_BaseMeleeWeapon_Blunt" ParentName="RRY_USCM_BaseMeleeWeapon" Abstract="True">
+	<ThingDef Name="AvP_USCM_BaseMeleeWeapon_Blunt" ParentName="AvP_USCM_BaseMeleeWeapon" Abstract="True">
     <recipeMaker>
       <defaultIngredientFilter>
         <categories>
@@ -179,7 +179,7 @@
   </ThingDef>
   
 	<!--==================== Mod - USCM - Base Sharp Quality Melee Weapon Template =========================-->
-	<ThingDef Name="RRY__USCM_BaseMeleeWeapon_Sharp_Quality" Abstract="True" ParentName="RRY_USCM_BaseMeleeWeapon_Sharp">
+	<ThingDef Name="AvP__USCM_BaseMeleeWeapon_Sharp_Quality" Abstract="True" ParentName="AvP_USCM_BaseMeleeWeapon_Sharp">
 		<comps>
 			<li>
 				<compClass>CompQuality</compClass>
@@ -193,7 +193,7 @@
 	</ThingDef>
 
 	<!--==================== Mod - USCM - Base Blunt Melee Quality Weapon Template =========================-->
-	<ThingDef Name="RRY_USCM_BaseMeleeWeapon_Blunt_Quality" Abstract="True" ParentName="RRY_USCM_BaseMeleeWeapon_Blunt">
+	<ThingDef Name="AvP_USCM_BaseMeleeWeapon_Blunt_Quality" Abstract="True" ParentName="AvP_USCM_BaseMeleeWeapon_Blunt">
 		<comps>
 			<li>
 				<compClass>CompQuality</compClass>

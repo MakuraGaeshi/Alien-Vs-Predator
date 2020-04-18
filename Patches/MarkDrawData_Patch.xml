@@ -61,7 +61,7 @@
 				  </li>
 				  <li Class="RRYautja.OffsetDefExtension">
 				    <!-- DefName of the hediff this applies to --> 
-					<hediff>RRY_FaceHuggerInfection</hediff>
+					<hediff>AvP_FaceHuggerInfection</hediff>
 				    <!-- adds the vanillia head offset for the current rotation, not sure if this will ever be useful, defaults to false if not set--> 
 					<ApplyBaseHeadOffset>false</ApplyBaseHeadOffset>
 					<!-- North offsets Y is the layer height, usually you can leave this at 0, all values default to 0 if not set-->

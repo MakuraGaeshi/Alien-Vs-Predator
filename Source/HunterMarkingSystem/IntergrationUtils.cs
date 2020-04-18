@@ -46,19 +46,19 @@ namespace HunterMarkingSystem
 
         public static bool isAvPSynth(PawnKindDef pawn)
         {
-            bool Result = pawn.RaceProps.FleshType.defName == "RRY_SynthFlesh";
+            bool Result = pawn.RaceProps.FleshType.defName == "AvP_SynthFlesh";
 
             return Result;
         }
         public static bool isAvPSynth(Pawn pawn)
         {
-            bool Result = pawn.def.race.FleshType.defName == "RRY_SynthFlesh";
+            bool Result = pawn.def.race.FleshType.defName == "AvP_SynthFlesh";
 
             return Result;
         }
         public static bool isAvPSynth(ThingDef td)
         {
-            bool Result = td.race.FleshType.defName == "RRY_SynthFlesh";
+            bool Result = td.race.FleshType.defName == "AvP_SynthFlesh";
 
             return Result;
         }
@@ -77,7 +77,6 @@ namespace HunterMarkingSystem
                 if (p.PackageIdPlayerFacing == tag || p.PackageId == tag)
                 {
                     modContent = p;
-                    //    Log.Message(string.Format("{0}: PackageId: {1}, PackageIdPlayerFacing: {2}", p.Name, p.PackageId, p.PackageIdPlayerFacing));
                     ChjAndroid = true;
                 }
             }
@@ -86,24 +85,19 @@ namespace HunterMarkingSystem
 
         public static bool isChjAndroid(PawnKindDef pawn)
         {
-            //    bool Result = pawn.race.comps.Any(x => x.compClass.Name.Contains("Androids.CompProperties_EnergyTracker"));
-            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.race.modContentPack.PackageId));
             return pawn.race.modContentPack == modContent;
         }
         public static bool isChjAndroid(Pawn pawn)
         {
-            //    bool Result = pawn.def.comps.Any(x => x.compClass.Name.Contains("Androids.CompProperties_EnergyTracker"));
-            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.def.modContentPack.PackageId));
             return pawn.def.modContentPack == modContent;
         }
         public static bool isChjAndroid(ThingDef td)
         {
-            Log.Message(string.Format("{0}: {1}", td.LabelCap, td));
             if (td.modContentPack == null)
             {
+            //    Log.Warning(string.Format("{0}: modContentPack = NULL", td.LabelCap));
                 return false;
             }
-            Log.Message(string.Format("{0}: {1}", td.LabelCap, td.modContentPack.PackageId));
             return !td.modContentPack.PackageId.NullOrEmpty() ? td.modContentPack == modContent : false;
         }
     }
@@ -129,22 +123,19 @@ namespace HunterMarkingSystem
 
         public static bool isAtlasAndroid(PawnKindDef pawn)
         {
-            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.race.modContentPack.PackageId));
             return pawn.race.modContentPack == modContent;
         }
         public static bool isAtlasAndroid(Pawn pawn)
         {
-            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.def.modContentPack.PackageId));
             return pawn.def.modContentPack == modContent;
         }
         public static bool isAtlasAndroid(ThingDef td)
         {
-            Log.Message(string.Format("{0}: {1}", td.LabelCap, td));
             if (td.modContentPack == null)
             {
+            //    Log.Warning(string.Format("{0}: modContentPack = NULL", td.LabelCap));
                 return false;
             }
-            Log.Message(string.Format("{0}: {1}", td.LabelCap, td.modContentPack.PackageId));
             return !td.modContentPack.PackageId.NullOrEmpty() ? td.modContentPack == modContent : false;
         }
     }
@@ -170,22 +161,19 @@ namespace HunterMarkingSystem
 
         public static bool isMiscRobot(PawnKindDef pawn)
         {
-            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.race.modContentPack.PackageId));
             return pawn.race.modContentPack == modContent;
         }
         public static bool isMiscRobot(Pawn pawn)
         {
-            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.def.modContentPack.PackageId));
             return pawn.def.modContentPack == modContent;
         }
         public static bool isMiscRobot(ThingDef td)
         {
-            Log.Message(string.Format("{0}: {1}", td.LabelCap, td));
             if (td.modContentPack == null)
             {
+            //    Log.Warning(string.Format("{0}: modContentPack = NULL", td.LabelCap));
                 return false;
             }
-            Log.Message(string.Format("{0}: {1}", td.LabelCap, td.modContentPack.PackageId));
             return !td.modContentPack.PackageId.NullOrEmpty() ? td.modContentPack == modContent : false;
         }
     }
@@ -210,22 +198,19 @@ namespace HunterMarkingSystem
 
         public static bool isMiscRobot(PawnKindDef pawn)
         {
-            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.race.modContentPack.PackageId));
             return pawn.race.modContentPack == modContent;
         }
         public static bool isMiscRobot(Pawn pawn)
         {
-            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.def.modContentPack.PackageId));
             return pawn.def.modContentPack == modContent;
         }
         public static bool isMiscRobot(ThingDef td)
         {
-            Log.Message(string.Format("{0}: {1}", td.LabelCap, td));
             if (td.modContentPack == null)
             {
+            //    Log.Warning(string.Format("{0}: modContentPack = NULL", td.LabelCap));
                 return false;
             }
-            Log.Message(string.Format("{0}: {1}", td.LabelCap, td.modContentPack.PackageId));
             return !td.modContentPack.PackageId.NullOrEmpty() ? td.modContentPack == modContent : false;
         }
     }
@@ -250,18 +235,20 @@ namespace HunterMarkingSystem
 
         public static bool isDinosauria(PawnKindDef pawn)
         {
-            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.race.modContentPack.PackageId));
             return pawn.race.modContentPack == modContent;
         }
         public static bool isDinosauria(Pawn pawn)
         {
-            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.def.modContentPack.PackageId));
             return pawn.def.modContentPack == modContent;
         }
         public static bool isDinosauria(ThingDef td)
         {
-            Log.Message(string.Format("{0}: {1}", td.LabelCap, td.modContentPack.PackageId));
-            return td.modContentPack != null ? td.modContentPack == modContent : false ;
+            if (td.modContentPack == null)
+            {
+            //    Log.Warning(string.Format("{0}: modContentPack = NULL", td.LabelCap));
+                return false;
+            }
+            return !td.modContentPack.PackageId.NullOrEmpty() ? td.modContentPack == modContent : false;
         }
 
     }
@@ -286,18 +273,20 @@ namespace HunterMarkingSystem
 
         public static bool isJurassic(PawnKindDef pawn)
         {
-            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.race.modContentPack.PackageId));
             return pawn.race.modContentPack == modContent;
         }
         public static bool isJurassic(Pawn pawn)
         {
-            Log.Message(string.Format("{0}: {1}", pawn.LabelCap, pawn.def.modContentPack.PackageId));
             return pawn.def.modContentPack == modContent;
         }
         public static bool isJurassic(ThingDef td)
         {
-            Log.Message(string.Format("{0}: {1}", td.LabelCap, td.modContentPack.PackageId));
-            return td.modContentPack != null ? td.modContentPack == modContent : false ;
+            if (td.modContentPack == null)
+            {
+            //    Log.Warning(string.Format("{0}: modContentPack = NULL", td.LabelCap));
+                return false;
+            }
+            return !td.modContentPack.PackageId.NullOrEmpty() ? td.modContentPack == modContent : false;
         }
     }
 }

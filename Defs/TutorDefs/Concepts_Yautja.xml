@@ -1,7 +1,7 @@
 <Defs>
 
   <ConceptDef>
-    <defName>RRY_Concept_Gauntlet</defName>
+    <defName>AvP_Concept_Gauntlet</defName>
     <label>AvP: Gauntlet</label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
@@ -12,7 +12,7 @@
   </ConceptDef>  
   
   <ConceptDef>
-    <defName>RRY_Concept_Wistblade</defName>
+    <defName>AvP_Concept_Wistblade</defName>
     <label>AvP: Gauntlet - Wristblade</label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
@@ -23,7 +23,7 @@
   </ConceptDef>  
   
   <ConceptDef>
-    <defName>RRY_Concept_SelfDestruct</defName>
+    <defName>AvP_Concept_SelfDestruct</defName>
     <label>AvP: Gauntlet - Self Destruct</label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
@@ -34,7 +34,7 @@
   </ConceptDef>  
   
   <ConceptDef>
-    <defName>RRY_Concept_MediComp</defName>
+    <defName>AvP_Concept_MediComp</defName>
     <label>AvP: Gauntlet - MediComp</label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
@@ -45,7 +45,7 @@
   </ConceptDef>  
   
   <ConceptDef>
-    <defName>RRY_Concept_ShardInjector</defName>
+    <defName>AvP_Concept_ShardInjector</defName>
     <label>AvP: Gauntlet - Health Shards</label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
@@ -56,7 +56,7 @@
   </ConceptDef>  
   
   <ConceptDef>
-    <defName>RRY_Concept_Cloak</defName>
+    <defName>AvP_Concept_Cloak</defName>
     <label>AvP: Gauntlet - Cloaking Device</label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
@@ -67,7 +67,7 @@
   </ConceptDef>  
   
   <ConceptDef>
-    <defName>RRY_Concept_Plasmacaster</defName>
+    <defName>AvP_Concept_Plasmacaster</defName>
     <label>AvP: Plasmacaster</label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
@@ -78,7 +78,7 @@
   </ConceptDef>  
   
   <ConceptDef>
-    <defName>RRY_Concept_SmartDisk</defName>
+    <defName>AvP_Concept_SmartDisk</defName>
     <label>AvP: Smart Disk</label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>
@@ -89,7 +89,7 @@
   </ConceptDef>  
   
   <ConceptDef>
-    <defName>RRY_Concept_CombiStaff</defName>
+    <defName>AvP_Concept_CombiStaff</defName>
     <label>AvP: Combistaff</label>
     <needsOpportunity>True</needsOpportunity>
     <priority>50</priority>

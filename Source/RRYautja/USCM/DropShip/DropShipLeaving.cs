@@ -52,7 +52,7 @@ namespace RRYautja
             {
                 base.Map.lordManager.RemoveLord(lord);
             }
-            TravelingTransportPods travelingTransportPods = (TravelingTransportPods)WorldObjectMaker.MakeWorldObject(DefDatabase<WorldObjectDef>.GetNamed("RRY_USCM_TravelingDropshipUD4L", true));
+            TravelingTransportPods travelingTransportPods = (TravelingTransportPods)WorldObjectMaker.MakeWorldObject(DefDatabase<WorldObjectDef>.GetNamed("AvP_USCM_TravelingDropshipUD4L", true));
             travelingTransportPods.Tile = base.Map.Tile;
             travelingTransportPods.SetFaction(Faction.OfPlayer);
             travelingTransportPods.destinationTile = this.destinationTile;

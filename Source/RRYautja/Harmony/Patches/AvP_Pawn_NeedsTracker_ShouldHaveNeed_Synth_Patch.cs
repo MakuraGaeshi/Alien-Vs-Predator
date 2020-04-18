@@ -24,7 +24,7 @@ namespace RRYautja.HarmonyInstance
         {
             Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
 
-            if (pawn.def == USCMDefOf.RRY_Synth)
+            if (pawn.def == USCMDefOf.AvP_Synth)
             {
                 if (nd == NeedDefOf.Rest)
                 {

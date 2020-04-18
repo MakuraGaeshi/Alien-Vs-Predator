@@ -12,7 +12,7 @@ namespace RRYautja
         // Token: 0x06002688 RID: 9864 RVA: 0x00124A2B File Offset: 0x00122E2B
         public static int TotalSpawnedHiveLikesCount(Map map)
         {
-            return map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_Xenomorph_Hive).Count;
+            return map.listerThings.ThingsOfDef(XenomorphDefOf.AvP_Xenomorph_Hive).Count;
         }
 
         // Token: 0x06002689 RID: 9865 RVA: 0x00124A44 File Offset: 0x00122E44

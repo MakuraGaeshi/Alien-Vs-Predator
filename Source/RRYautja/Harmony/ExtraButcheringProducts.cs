@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using HarmonyLib;
 using RimWorld;
 using Verse;
@@ -28,28 +29,22 @@ namespace RRYautja
                 //    Log.Message(string.Format("{0} Pawn pawn is Xenomorph", __instance));
                     foreach (var item in pawn.health.hediffSet.GetNotMissingParts())
                     {
-                        if (item.def == XenomorphDefOf.RRY_Xeno_TailSpike)
+                        if (item.def == XenomorphDefOf.AvP_Xeno_TailSpike || item.def == XenomorphDefOf.AvP_Xeno_Shell)
                         {
+                            char c;
+                            Char.TryParse("_", out c);
+                            string[] it = item.def.defName.Split(c);
+                            ThingDef def = DefDatabase<ThingDef>.GetNamed("AvP_Xenomorph_"+it.Last());
                             ThingDefCountClass thingDefCountClass = new ThingDefCountClass
                             {
-                                thingDef = XenomorphDefOf.RRY_Xenomorph_TailSpike,
+                                thingDef = def,
                                 count = 1
                             };
                             Thing thing = ThingMaker.MakeThing(thingDefCountClass.thingDef, null);
                             thing.stackCount = thingDefCountClass.count;
                             __result = __result.AddItem(thing);
                         }
-                        if (item.def == XenomorphDefOf.RRY_Xeno_Shell)
-                        {
-                            ThingDefCountClass thingDefCountClass = new ThingDefCountClass
-                            {
-                                thingDef = XenomorphDefOf.RRY_Xenomorph_HeadShell,
-                                count = 1
-                            };
-                            Thing thing = ThingMaker.MakeThing(thingDefCountClass.thingDef, null);
-                            thing.stackCount = thingDefCountClass.count;
-                            __result = __result.AddItem(thing);
-                        }
+
                     }
                 }
             }

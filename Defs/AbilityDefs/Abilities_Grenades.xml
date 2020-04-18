@@ -12,7 +12,7 @@
  </ThingDef>
 <!-- ======================== Grenade Ability Defs ================================== -->
 	<ThingDef ParentName="BaseGrenadeProjectile">
-		<defName>RRY_Bullet_M42AGrenade</defName>
+		<defName>AvP_Bullet_M42AGrenade</defName>
 		<graphicData>
 			<texPath>Things/Projectile/Grenade</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -28,8 +28,8 @@
 		</projectile>
 	</ThingDef>
 
-	<RRYautja.EquipmentAbilityDef ParentName="RRY_BaseAbility">
-        <defName>RRY_Ability_LaunchM42AGrenade</defName>
+	<RRYautja.EquipmentAbilityDef ParentName="AvP_BaseAbility">
+        <defName>AvP_Ability_LaunchM42AGrenade</defName>
         <label>Underslung Grenade</label>
         <iconPath>Things/Projectile/Grenade</iconPath>
         <description>Launches a Grenade.</description>
@@ -39,7 +39,7 @@
             <verbClass>RRYautja.Verb_ShootEquipment</verbClass>
             <hasStandardCommand>true</hasStandardCommand>
 			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
-			<defaultProjectile>RRY_Bullet_M42AGrenade</defaultProjectile>
+			<defaultProjectile>AvP_Bullet_M42AGrenade</defaultProjectile>
             <warmupTime>0.75</warmupTime>
             <burstShotCount>1</burstShotCount>
             <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
@@ -62,8 +62,8 @@
 		</comps>
 	</RRYautja.EquipmentAbilityDef>
  
-	<RRYautja.EquipmentAbilityDef ParentName="RRY_BaseAbility">
-        <defName>RRY_Ability_LaunchM42BShotgun</defName>
+	<RRYautja.EquipmentAbilityDef ParentName="AvP_BaseAbility">
+        <defName>AvP_Ability_LaunchM42BShotgun</defName>
         <label>Underslung Shotgun</label>
         <iconPath>Things/Projectile/Bullet_Shotgun</iconPath>
         <description>Fires the Underslung Shotgun.</description>
@@ -73,11 +73,11 @@
             <verbClass>RRYautja.Verb_ShootEquipment</verbClass>
             <hasStandardCommand>true</hasStandardCommand>
 			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
-			<defaultProjectile>RRY_USCM_Bullet_M37A2S</defaultProjectile>
+			<defaultProjectile>AvP_USCM_Bullet_M37A2S</defaultProjectile>
             <warmupTime>0.35</warmupTime>
             <ExtraShots>7</ExtraShots>
 			<range>15</range>
-            <soundCast>RRY_M37A2_Shot</soundCast>
+            <soundCast>AvP_M37A2_Shot</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>4</muzzleFlashScale>
 			<targetParams>

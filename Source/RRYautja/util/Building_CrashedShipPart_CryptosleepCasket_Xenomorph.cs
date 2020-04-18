@@ -31,7 +31,7 @@ namespace RimWorld
         {
             Map map = this.Map;
             IntVec3 position = this.Position;
-            ThingDef named = XenomorphDefOf.RRY_XenomorphCryptosleepCasket;
+            ThingDef named = XenomorphDefOf.AvP_XenomorphCryptosleepCasket;
             int num = (named.Size.x > named.Size.z) ? named.Size.x : named.Size.z;
         //    int num2 = 0;
             base.Destroy(mode);

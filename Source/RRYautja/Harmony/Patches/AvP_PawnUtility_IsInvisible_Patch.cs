@@ -33,7 +33,7 @@ namespace RRYautja.HarmonyInstance
             }
             if (pawn.isXenomorph(out Comp_Xenomorph xenomorph))
             {
-                if (pawn.Dead || pawn.Downed || pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Queen || pawn.def == XenomorphRacesDefOf.RRY_Xenomorph_Thrumbomorph)
+                if (pawn.Dead || pawn.Downed || pawn.def == XenomorphRacesDefOf.AvP_Xenomorph_Queen || pawn.def == XenomorphRacesDefOf.AvP_Xenomorph_Thrumbomorph)
                 {
                     __result = false;
                     return;

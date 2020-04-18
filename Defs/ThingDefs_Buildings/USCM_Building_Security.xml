@@ -3,7 +3,7 @@
 <!--=============== USCM Self-Sufficient Mini-turret ===============-->
   
   <ThingDef ParentName="BuildingBase">
-    <defName>RRY_USCM_UA571C_Turret</defName>
+    <defName>AvP_USCM_UA571C_Turret</defName>
 	<label>UA 571-C automated sentry gun</label>
     <description>The UA 571-C Automated Sentry Gun, known colloquially as the "Robot Sentry", is a tripod-mounted automated perimeter defense system employed by the United States Colonial Marine Corps to deliver pre-set automatic fire to any hostile within range or area targets. They are equipped with M30 Autocannons and automatic thermal and movement actuated AI targeting capabilities.</description>
     <thingClass>Building_TurretGun</thingClass>
@@ -91,7 +91,7 @@
     <building>
       <combatPower>75</combatPower>   <!-- same as a scavenger -->
       <ai_combatDangerous>true</ai_combatDangerous>
-      <turretGunDef>RRY_Gun_UA571C_USCM</turretGunDef>
+      <turretGunDef>AvP_Gun_UA571C_USCM</turretGunDef>
       <turretBurstCooldownTime>4.8</turretBurstCooldownTime>
     </building>
     <placeWorkers>
@@ -105,7 +105,7 @@
   </ThingDef>
 
 	<ThingDef ParentName="BaseBullet">
-		<defName>RRY_Bullet_UA571C_USCM</defName>
+		<defName>AvP_Bullet_UA571C_USCM</defName>
 		<label>10×28mm Caseless bullet</label>
 		<graphicData>
 		<texPath>Things/Projectile/Bullet_Small</texPath>
@@ -121,7 +121,7 @@
 	
 
 	<ThingDef ParentName="BaseWeaponTurret">
-		<defName>RRY_Gun_UA571C_USCM</defName>
+		<defName>AvP_Gun_UA571C_USCM</defName>
 		<label>UA 571-C canon</label>
 		<description>The UA 571-C Automated Sentry Gun, known colloquially as the "Robot Sentry", is a tripod-mounted automated perimeter defense system employed by the United States Colonial Marine Corps to deliver pre-set automatic fire to any hostile within range or area targets. They are equipped with M30 Autocannons and automatic thermal and movement actuated AI targeting capabilities.</description>
 		<graphicData>
@@ -153,12 +153,12 @@
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>RRY_Bullet_UA571C_USCM</defaultProjectile>
+				<defaultProjectile>AvP_Bullet_UA571C_USCM</defaultProjectile>
 				<warmupTime>120</warmupTime>
 				<range>34</range>
 				<burstShotCount>15</burstShotCount>
 				<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
-				<soundCast>RRY_UA571C_Shot</soundCast>
+				<soundCast>AvP_UA571C_Shot</soundCast>
 				<soundCastTail>GunTail_Light</soundCastTail>
         		<muzzleFlashScale>14</muzzleFlashScale>
 				<consumeFuelPerShot>1</consumeFuelPerShot>

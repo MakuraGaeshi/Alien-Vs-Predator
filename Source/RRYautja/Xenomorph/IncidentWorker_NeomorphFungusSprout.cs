@@ -28,13 +28,13 @@ namespace RRYautja
 				return false;
 			}
             ThingDef thingDef = null;
-            if (this.def == XenomorphDefOf.RRY_Neomorph_FungusSprout)
+            if (this.def == XenomorphDefOf.AvP_Neomorph_FungusSprout)
             {
-                thingDef = XenomorphDefOf.RRY_Plant_Neomorph_Fungus;
+                thingDef = XenomorphDefOf.AvP_Plant_Neomorph_Fungus;
             }
-            if (this.def == XenomorphDefOf.RRY_Neomorph_FungusSprout_Hidden)
+            if (this.def == XenomorphDefOf.AvP_Neomorph_FungusSprout_Hidden)
             {
-                thingDef = XenomorphDefOf.RRY_Plant_Neomorph_Fungus_Hidden;
+                thingDef = XenomorphDefOf.AvP_Plant_Neomorph_Fungus_Hidden;
             }
 			Map map = (Map)parms.target;
 			IntVec3 root;
@@ -66,7 +66,7 @@ namespace RRYautja
 			{
 				return false;
             }
-            if (this.def == XenomorphDefOf.RRY_Neomorph_FungusSprout)
+            if (this.def == XenomorphDefOf.AvP_Neomorph_FungusSprout)
             {
                 base.SendStandardLetter(parms, thing, Array.Empty<NamedArgument>());
             }
@@ -82,7 +82,7 @@ namespace RRYautja
 		// Token: 0x06000E25 RID: 3621 RVA: 0x00069E88 File Offset: 0x00068288
 		private bool CanSpawnAt(IntVec3 c, Map map)
 		{
-			if (!c.Standable(map) || c.Fogged(map) || map.fertilityGrid.FertilityAt(c) < XenomorphDefOf.RRY_Plant_Neomorph_Fungus.plant.fertilityMin || !c.GetRoom(map, RegionType.Set_Passable).PsychologicallyOutdoors || c.GetEdifice(map) != null || !PlantUtility.GrowthSeasonNow(c, map, false))
+			if (!c.Standable(map) || c.Fogged(map) || map.fertilityGrid.FertilityAt(c) < XenomorphDefOf.AvP_Plant_Neomorph_Fungus.plant.fertilityMin || !c.GetRoom(map, RegionType.Set_Passable).PsychologicallyOutdoors || c.GetEdifice(map) != null || !PlantUtility.GrowthSeasonNow(c, map, false))
 			{
 				return false;
 			}
@@ -94,7 +94,7 @@ namespace RRYautja
 			List<Thing> thingList = c.GetThingList(map);
 			for (int i = 0; i < thingList.Count; i++)
 			{
-				if (thingList[i].def == XenomorphDefOf.RRY_Plant_Neomorph_Fungus || thingList[i].def == XenomorphDefOf.RRY_Plant_Neomorph_Fungus_Hidden)
+				if (thingList[i].def == XenomorphDefOf.AvP_Plant_Neomorph_Fungus || thingList[i].def == XenomorphDefOf.AvP_Plant_Neomorph_Fungus_Hidden)
 				{
 					return false;
 				}

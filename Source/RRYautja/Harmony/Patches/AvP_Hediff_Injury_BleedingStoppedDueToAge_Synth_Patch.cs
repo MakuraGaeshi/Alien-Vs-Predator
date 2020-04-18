@@ -24,7 +24,7 @@ namespace RRYautja.HarmonyInstance
         {
             Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
 
-            if (pawn.def == USCMDefOf.RRY_Synth)
+            if (pawn.def == USCMDefOf.AvP_Synth)
             {
                 __result = true;
             //    Log.Message(string.Format("{0} {1}", pawn.Label, __result));
@@ -41,7 +41,7 @@ namespace RRYautja.HarmonyInstance
         {
             Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
 
-            if (pawn.def == USCMDefOf.RRY_Synth || pawn.isXenomorph())
+            if (pawn.def == USCMDefOf.AvP_Synth || pawn.isXenomorph())
             {
                 __result = 0f;
             //    Log.Message(string.Format("{0} {1}", pawn.Label, __result));

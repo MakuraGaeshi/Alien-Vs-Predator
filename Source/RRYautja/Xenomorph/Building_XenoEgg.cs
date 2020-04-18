@@ -15,7 +15,7 @@ namespace RRYautja
         public Map MyMap => this.Map ?? this.MapHeld;
         public IntVec3 MyPos => this.Position != null ? this.Position : this.PositionHeld;
         bool selected => Find.Selector.SelectedObjects.Contains(this) && Prefs.DevMode && DebugSettings.godMode;
-        public bool QueenPresent => MyMap.mapPawns.AllPawnsSpawned.Any(x => x.kindDef == XenomorphDefOf.RRY_Xenomorph_Queen) || (XenomorphUtil.HivelikesPresent(MyMap) && ((XenomorphUtil.SpawnedHivelikes(MyMap)).Any<HiveLike>((HiveLike y) => y.hasQueen)));
+        public bool QueenPresent => MyMap.mapPawns.AllPawnsSpawned.Any(x => x.kindDef == XenomorphDefOf.AvP_Xenomorph_Queen) || (XenomorphUtil.HivelikesPresent(MyMap) && ((XenomorphUtil.SpawnedHivelikes(MyMap)).Any<HiveLike>((HiveLike y) => y.hasQueen)));
         public float hatchRange => xenoHatcher?.Props.triggerRadius ?? 5f;
         public float minGestationTemp => xenoHatcher?.Props.minGestationTemp ?? -30f;
         public bool NormalEgg => this.eggType == EggType.Normal;
@@ -124,9 +124,9 @@ namespace RRYautja
                 Predicate<Pawn> validator = delegate (Pawn t)
                 {
                     bool RoyalHugger = t.kindDef == RoyalKindDef;
-                    bool RoyalHuggerInfection = (t.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_FaceHuggerInfection).TryGetComp<HediffComp_XenoFacehugger>().RoyaleHugger);
-                    bool RoyalImpregnation = (t.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_XenomorphImpregnation).TryGetComp<HediffComp_XenoSpawner>().RoyaleHugger);
-                    bool RoyalHiddenImpregnation = (t.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_HiddenXenomorphImpregnation).TryGetComp<HediffComp_XenoSpawner>().RoyaleHugger);
+                    bool RoyalHuggerInfection = (t.health.hediffSet.HasHediff(XenomorphDefOf.AvP_FaceHuggerInfection) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.AvP_FaceHuggerInfection).TryGetComp<HediffComp_XenoFacehugger>().RoyaleHugger);
+                    bool RoyalImpregnation = (t.health.hediffSet.HasHediff(XenomorphDefOf.AvP_XenomorphImpregnation) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.AvP_XenomorphImpregnation).TryGetComp<HediffComp_XenoSpawner>().RoyaleHugger);
+                    bool RoyalHiddenImpregnation = (t.health.hediffSet.HasHediff(XenomorphDefOf.AvP_HiddenXenomorphImpregnation) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.AvP_HiddenXenomorphImpregnation).TryGetComp<HediffComp_XenoSpawner>().RoyaleHugger);
                     return RoyalHugger || RoyalHuggerInfection || RoyalImpregnation || RoyalHiddenImpregnation || QueenPresent;
                 };
                 return MyMap.mapPawns.AllPawnsSpawned.Any(validator);
@@ -211,7 +211,7 @@ namespace RRYautja
             {
                 if (this.Faction==null)
                 {
-                    this.SetFaction(Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph));
+                    this.SetFaction(Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.AvP_Xenomorph));
                 }
             }
 
@@ -615,7 +615,7 @@ namespace RRYautja
         public override void PostGeneratedForTrader(TraderKindDef trader, int forTile, Faction forFaction)
         {
             base.PostGeneratedForTrader(trader, forTile, forFaction);
-            this.hatcheeFaction = Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.RRY_Xenomorph);
+            this.hatcheeFaction = Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.AvP_Xenomorph);
         }
 
         public Pawn hatcheeParent;
@@ -699,7 +699,7 @@ namespace RRYautja
         }
 
 
-        private static PawnKindDef RoyalKindDef = XenomorphDefOf.RRY_Xenomorph_RoyaleHugger;
-        private static PawnKindDef NormalKindDef = XenomorphDefOf.RRY_Xenomorph_FaceHugger;
+        private static PawnKindDef RoyalKindDef = XenomorphDefOf.AvP_Xenomorph_RoyaleHugger;
+        private static PawnKindDef NormalKindDef = XenomorphDefOf.AvP_Xenomorph_FaceHugger;
     }
 }

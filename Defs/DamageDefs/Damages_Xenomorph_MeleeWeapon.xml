@@ -2,7 +2,7 @@
 <Defs>
 
   <DamageDef Name="BluntBase">
-    <defName>RRY_XenoTailWhipBlunt</defName>
+    <defName>AvP_XenoTailWhipBlunt</defName>
     <label>blunt</label>
     <workerClass>DamageWorker_Blunt</workerClass>
     <externalViolence>true</externalViolence>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Defs>
 
   <SoundDef>
-    <defName>RRY_Pawn_Xenomorph_Queen_Wounded</defName>  
+    <defName>AvP_Pawn_Xenomorph_Queen_Wounded</defName>  
     <context>MapOnly</context>
     <eventNames />  
     <maxVoices>1</maxVoices>  
@@ -31,7 +31,7 @@
   </SoundDef>
 
   <SoundDef>
-    <defName>RRY_Pawn_Xenomorph_Queen_Death</defName>  
+    <defName>AvP_Pawn_Xenomorph_Queen_Death</defName>  
     <context>MapOnly</context>
     <eventNames />  
     <subSounds>
@@ -59,7 +59,7 @@
   </SoundDef>
 
   <SoundDef>
-    <defName>RRY_Pawn_Xenomorph_Queen_Call</defName>  
+    <defName>AvP_Pawn_Xenomorph_Queen_Call</defName>  
     <context>MapOnly</context>
     <eventNames />  
     <subSounds>
@@ -87,7 +87,7 @@
   </SoundDef>
 
   <SoundDef>
-    <defName>RRY_Pawn_Xenomorph_Normal_Wounded</defName>  
+    <defName>AvP_Pawn_Xenomorph_Normal_Wounded</defName>  
     <context>MapOnly</context>
     <eventNames />  
     <maxVoices>1</maxVoices>  
@@ -117,7 +117,7 @@
   </SoundDef>
 
   <SoundDef>
-    <defName>RRY_Pawn_Xenomorph_Normal_Death</defName>  
+    <defName>AvP_Pawn_Xenomorph_Normal_Death</defName>  
     <context>MapOnly</context>
     <eventNames />  
     <subSounds>
@@ -145,7 +145,7 @@
   </SoundDef>
 
   <SoundDef>
-    <defName>RRY_Pawn_Xenomorph_Normal_Call</defName>  
+    <defName>AvP_Pawn_Xenomorph_Normal_Call</defName>  
     <context>MapOnly</context>
     <eventNames />  
     <subSounds>

@@ -75,7 +75,7 @@ namespace RRYautja
             {
                 if (p.Faction == Faction.OfPlayer)
                 {
-                    if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Fungus) && p.Spawned && p.IsColonist)
+                    if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.AvP_Concept_Fungus) && p.Spawned && p.IsColonist)
                     {
                         return base.PathFindCostFor(p);
                     }
@@ -97,7 +97,7 @@ namespace RRYautja
                 {
 
                     RecalcPathsOnAndAroundMe(Map);
-                //    this.def = XenomorphDefOf.RRY_FilthBloodXenomorph;
+                //    this.def = XenomorphDefOf.AvP_FilthBloodXenomorph;
                 }
                 else
                 {
@@ -130,8 +130,8 @@ namespace RRYautja
 
                         Thing thing = thingList[i];
                         Pawn pawn = thingList[i] as Pawn;
-                        bool flaga = thing.def.useHitPoints && !this.touchingThings.Contains(thing) && thing.def != XenomorphDefOf.RRY_FilthBloodXenomorph_Active && thing.GetType() != typeof(Pawn);
-                        bool flag2 = thing != null && !this.touchingThings.Contains(thing) && thing.def != XenomorphDefOf.RRY_FilthBloodXenomorph_Active && thing.GetType() != typeof(Mote) && thing.GetType() != typeof(MoteThrown) && thing.GetType() != typeof(Bullet) && thing.GetType() != typeof(Pawn);
+                        bool flaga = thing.def.useHitPoints && !this.touchingThings.Contains(thing) && thing.def != XenomorphDefOf.AvP_FilthBloodXenomorph_Active && thing.GetType() != typeof(Pawn);
+                        bool flag2 = thing != null && !this.touchingThings.Contains(thing) && thing.def != XenomorphDefOf.AvP_FilthBloodXenomorph_Active && thing.GetType() != typeof(Mote) && thing.GetType() != typeof(MoteThrown) && thing.GetType() != typeof(Bullet) && thing.GetType() != typeof(Pawn);
                         bool flag2a = !(thing is Corpse corpse && XenomorphUtil.IsXenoCorpse(corpse));
                         bool flag2b = !(thing is Pawn && XenomorphUtil.IsXenomorph((Pawn)thing));
                         if (flaga && flag2a && flag2b)
@@ -202,17 +202,17 @@ namespace RRYautja
                 amt *= 10;
             }
             DamageInfo damageInfo;
-            damageInfo = new DamageInfo(XenomorphDefOf.RRY_AcidBurn, (float)amt, 0f, -1f, null, null, null, 0, null);
+            damageInfo = new DamageInfo(XenomorphDefOf.AvP_AcidBurn, (float)amt, 0f, -1f, null, null, null, 0, null);
             bool flag = e != null;
             if (!flag || e.Stuff != null)
             {
-                if (e.Stuff != XenomorphDefOf.RRY_Leather_Xenomorph) return;
+                if (e.Stuff != XenomorphDefOf.AvP_Leather_Xenomorph) return;
             }
             if (e.def.costList != null)
             {
                 foreach (var cost in e.def.costList)
                 {
-                    if (cost.thingDef == XenomorphDefOf.RRY_Xenomorph_TailSpike || cost.thingDef == XenomorphDefOf.RRY_Xenomorph_HeadShell)
+                    if (cost.thingDef == XenomorphDefOf.AvP_Xenomorph_TailSpike || cost.thingDef == XenomorphDefOf.AvP_Xenomorph_HeadShell)
                     {
                         return;
                     }
@@ -236,12 +236,12 @@ namespace RRYautja
                 Building firstBuilding = GridsUtility.GetFirstBuilding(intVec, base.Map);
                 DamageInfo damageInfo;
                 /*
-                if (firstBuilding.GetStatValue(AvPDefOf.RRY_AcidResistance)>0)
+                if (firstBuilding.GetStatValue(AvPDefOf.AvP_AcidResistance)>0)
                 {
 
                 }
                 */
-                damageInfo = new DamageInfo(XenomorphDefOf.RRY_AcidBurn, (float)amt, 0f, -1f, null, null, null, 0, null);
+                damageInfo = new DamageInfo(XenomorphDefOf.AvP_AcidBurn, (float)amt, 0f, -1f, null, null, null, 0, null);
                 bool flag3 = firstBuilding != null;
                 bool flag4 = flag3;
                 if (flag4)
@@ -290,7 +290,7 @@ namespace RRYautja
             }
             for (int k = 0; k < list.Count; k++)
             {
-                damageInfo = new DamageInfo(XenomorphDefOf.RRY_AcidBurn, (float)Mathf.RoundToInt(((float)num * list[k].coverage) * 10), 0f, -1f, this, list[k], null, 0, null);
+                damageInfo = new DamageInfo(XenomorphDefOf.AvP_AcidBurn, (float)Mathf.RoundToInt(((float)num * list[k].coverage) * 10), 0f, -1f, this, list[k], null, 0, null);
                 if (Rand.Chance(list[k].coverage))
                 {
 

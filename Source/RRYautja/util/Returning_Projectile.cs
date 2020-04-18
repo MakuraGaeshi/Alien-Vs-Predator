@@ -55,7 +55,7 @@ namespace RimWorld
                 {
                     foreach (var item in OriginalPawn.apparel.WornApparel)
                     {
-                        if (item.def.defName.Contains("RRY_Apparel_") && item.def.defName.Contains("BioMask"))
+                        if (item.def.defName.Contains("AvP_Apparel_") && item.def.defName.Contains("BioMask"))
                         {
                             enablebounce = true;
                             this.canBounce = enablebounce;
@@ -71,7 +71,7 @@ namespace RimWorld
             }
         }
 
-        public ThingDef BounceDef = (DefDatabase<ThingDef>.GetNamed("RRY_SmartDisk_Thrown"));
+        public ThingDef BounceDef = (DefDatabase<ThingDef>.GetNamed("AvP_SmartDisk_Thrown"));
         public ThingDef ReturnDef;
 
         public Pawn OriginalPawn;
@@ -120,11 +120,11 @@ namespace RimWorld
 
                 if (OriginalPawn.kindDef.race != YautjaDefOf.AvP_Alien_Yautja && Rand.Chance(0.5f))
                 {
-                    ReturnDef = YautjaDefOf.RRY_SmartDisk_Thrown;
+                    ReturnDef = YautjaDefOf.AvP_SmartDisk_Thrown;
                 }
                 else
                 {
-                    ReturnDef = YautjaDefOf.RRY_SmartDisk_Returning;
+                    ReturnDef = YautjaDefOf.AvP_SmartDisk_Returning;
                 }
             }
             PostPostImpactEffects(hitThing);
@@ -189,11 +189,11 @@ namespace RimWorld
                 //    Log.Message(string.Format("OriginalPawn {0}", OriginalPawn, OriginalPawn.kindDef.race));
                     if (OriginalPawn.kindDef.race != YautjaDefOf.AvP_Alien_Yautja && Rand.Chance(0.5f))
                     {
-                        ReturnDef = YautjaDefOf.RRY_SmartDisk_Thrown;
+                        ReturnDef = YautjaDefOf.AvP_SmartDisk_Thrown;
                     }
                     else
                     {
-                        ReturnDef = YautjaDefOf.RRY_SmartDisk_Returning;
+                        ReturnDef = YautjaDefOf.AvP_SmartDisk_Returning;
                     }
                 //    Log.Message(string.Format("hit ReturnDef: {0}", ReturnDef));
                 }

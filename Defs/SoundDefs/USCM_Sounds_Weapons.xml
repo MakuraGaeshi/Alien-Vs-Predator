@@ -3,7 +3,7 @@
 	
 <!-- ==================== UA 571-C Automated Sentry Gun ============================= -->
 	<SoundDef>
-		<defName>RRY_UA571C_Shot</defName>
+		<defName>AvP_UA571C_Shot</defName>
 		<context>MapOnly</context>
 		<eventNames/>
 		<maxSimultaneous>1</maxSimultaneous>
@@ -24,7 +24,7 @@
 	
 <!-- ==================== M41A Shot ============================= -->
 	<SoundDef>
-		<defName>RRY_M41A_Shot</defName>  
+		<defName>AvP_M41A_Shot</defName>  
 		<context>MapOnly</context>
 		<eventNames />  
 		<maxSimultaneous>1</maxSimultaneous>  
@@ -46,7 +46,7 @@
 	
 	<!--==================== Flamer Sound =========================-->
 	<SoundDef>
-		<defName>RRY_Flamer_Sound</defName>
+		<defName>AvP_Flamer_Sound</defName>
 		<context>MapOnly</context>
 		<eventNames />  
 		<maxSimultaneous>10</maxSimultaneous>  
@@ -72,7 +72,7 @@
 	
 <!-- ==================== Flamer Explosion ============================= -->
 	<SoundDef>
-        <defName>RRY_Flamer_Explosion</defName>
+        <defName>AvP_Flamer_Explosion</defName>
         <context>MapOnly</context>
         <eventNames />  
         <maxSimultaneous>1</maxSimultaneous>  
@@ -98,7 +98,7 @@
 	
 	<!-- ==================== M4A3 ================================ -->
 	<SoundDef>
-		<defName>RRY_M4A3_Shot</defName>
+		<defName>AvP_M4A3_Shot</defName>
 		<context>MapOnly</context>
 		<eventNames />  
 		<maxSimultaneous>2</maxSimultaneous>
@@ -119,7 +119,7 @@
 	
 	<!-- ==================== M4A4 ================================ -->
 	<SoundDef>
-		<defName>RRY_M4A4_Shot</defName>
+		<defName>AvP_M4A4_Shot</defName>
 		<context>MapOnly</context>
 		<eventNames />
 		<maxSimultaneous>2</maxSimultaneous>
@@ -144,7 +144,7 @@
 	
 	<!-- ==================== 88mod4 ================================ -->
 	<SoundDef>
-		<defName>RRY_88mod4_Shot</defName>
+		<defName>AvP_88mod4_Shot</defName>
 		<context>MapOnly</context>
 		<eventNames />
 		<maxSimultaneous>2</maxSimultaneous>
@@ -169,7 +169,7 @@
 	
 	<!-- ==================== M37A2 Pump Shotgun ============================= -->
 	<SoundDef>
-		<defName>RRY_M37A2_Shot</defName>
+		<defName>AvP_M37A2_Shot</defName>
 		<context>MapOnly</context>
 		<eventNames/>
 		<maxSimultaneous>1</maxSimultaneous>
@@ -194,7 +194,7 @@
 	
 	<!-- ==================== M56 Smartgun ============================= -->
 	<SoundDef>
-		<defName>RRY_M56_Shot</defName>
+		<defName>AvP_M56_Shot</defName>
 		<context>MapOnly</context>
 		<eventNames/>
 		<maxSimultaneous>2</maxSimultaneous>
@@ -219,7 +219,7 @@
 	
 	<!-- ==================== M42A Sniper Rifle ============================= -->
 	<SoundDef>
-		<defName>RRY_M42A_Shot</defName>
+		<defName>AvP_M42A_Shot</defName>
 		<context>MapOnly</context>
 		<eventNames/>
 		<maxSimultaneous>2</maxSimultaneous>
@@ -244,7 +244,7 @@
 	
 	<!-- ==================== M240 Incinerator Unit ============================= -->
 	<SoundDef>
-		<defName>RRY_M240_Shot</defName>
+		<defName>AvP_M240_Shot</defName>
 		<context>MapOnly</context>
 		<eventNames/>
 		<maxSimultaneous>2</maxSimultaneous>
@@ -269,7 +269,7 @@
 	
 	<!-- ==================== M5 Rocket Propelled Grenade ============================= -->
 	<SoundDef>
-		<defName>RRY_M5_Shot</defName>
+		<defName>AvP_M5_Shot</defName>
 		<context>MapOnly</context>
 		<eventNames/>
 		<maxSimultaneous>2</maxSimultaneous>

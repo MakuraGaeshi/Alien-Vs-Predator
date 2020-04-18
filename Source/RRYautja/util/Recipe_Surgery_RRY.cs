@@ -36,7 +36,7 @@ namespace RRYautja
             if (!Rand.Chance(num))
             {
                 float faildeathchance;
-                if (this.recipe == XenomorphDefOf.RRY_FaceHuggerRemoval)
+                if (this.recipe == XenomorphDefOf.AvP_FaceHuggerRemoval)
                 {
                     faildeathchance = SettingsHelper.latest.fachuggerRemovalFailureDeathChance;
                 }
@@ -58,9 +58,9 @@ namespace RRYautja
                     if (Rand.Chance(0.1f))
                     {
                         /*
-                        surgeon.health.AddHediff(patient.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_FaceHuggerInfection), patient.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_FaceHuggerInfection).Part);
+                        surgeon.health.AddHediff(patient.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.AvP_FaceHuggerInfection), patient.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.AvP_FaceHuggerInfection).Part);
                         */
-                        patient.health.RemoveHediff(patient.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_FaceHuggerInfection));
+                        patient.health.RemoveHediff(patient.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.AvP_FaceHuggerInfection));
                         Messages.Message("RRYMessageMedicalOperationFailureRidiculous".Translate(surgeon.LabelShort, patient.LabelShort, surgeon.Named("SURGEON"), patient.Named("PATIENT")), patient, MessageTypeDefOf.NegativeHealthEvent, true);
                         HealthShardTendUtility.GiveInjuriesOperationFailureRidiculous(patient);
 
@@ -70,18 +70,18 @@ namespace RRYautja
                         if (Rand.Chance(0.15f))
                         {
                             /*
-                            surgeon.health.AddHediff(patient.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_FaceHuggerInfection), patient.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_FaceHuggerInfection).Part);
+                            surgeon.health.AddHediff(patient.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.AvP_FaceHuggerInfection), patient.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.AvP_FaceHuggerInfection).Part);
                             */
-                            patient.health.RemoveHediff(patient.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_FaceHuggerInfection));
+                            patient.health.RemoveHediff(patient.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.AvP_FaceHuggerInfection));
                         }
                         else if (Rand.Chance(0.35f))
                         {
-                            GenSpawn.Spawn(ThingMaker.MakeThing(XenomorphDefOf.RRY_FilthBloodXenomorph_Active), surgeon.Position, surgeon.Map);
+                            GenSpawn.Spawn(ThingMaker.MakeThing(XenomorphDefOf.AvP_FilthBloodXenomorph_Active), surgeon.Position, surgeon.Map);
                         }
                         int a = Rand.Range(0,5);
                         for (int i = 0; i < a; i++)
                         {
-                            GenSpawn.Spawn(ThingMaker.MakeThing(XenomorphDefOf.RRY_FilthBloodXenomorph_Active), patientLoc.RandomAdjacentCell8Way(), surgeon.Map);
+                            GenSpawn.Spawn(ThingMaker.MakeThing(XenomorphDefOf.AvP_FilthBloodXenomorph_Active), patientLoc.RandomAdjacentCell8Way(), surgeon.Map);
                         }
                         Messages.Message("RRYMessageMedicalOperationFailureCatastrophic".Translate(surgeon.LabelShort, patient.LabelShort, surgeon.Named("SURGEON"), patient.Named("PATIENT")), patient, MessageTypeDefOf.NegativeHealthEvent, true);
                         HealthShardTendUtility.GiveInjuriesOperationFailureCatastrophic(patient, part);
@@ -93,9 +93,9 @@ namespace RRYautja
                     {
                         if (Rand.Chance(0.35f))
                         {
-                            GenSpawn.Spawn(ThingMaker.MakeThing(XenomorphDefOf.RRY_FilthBloodXenomorph_Active), surgeon.Position, surgeon.Map);
+                            GenSpawn.Spawn(ThingMaker.MakeThing(XenomorphDefOf.AvP_FilthBloodXenomorph_Active), surgeon.Position, surgeon.Map);
                         }
-                        else GenSpawn.Spawn(ThingMaker.MakeThing(XenomorphDefOf.RRY_FilthBloodXenomorph_Active), patientLoc.RandomAdjacentCell8Way(), surgeon.Map);
+                        else GenSpawn.Spawn(ThingMaker.MakeThing(XenomorphDefOf.AvP_FilthBloodXenomorph_Active), patientLoc.RandomAdjacentCell8Way(), surgeon.Map);
                         Messages.Message("RRYMessageMedicalOperationFailureMinorB".Translate(surgeon.LabelShort, patient.LabelShort, surgeon.Named("SURGEON"), patient.Named("PATIENT")), patient, MessageTypeDefOf.NegativeHealthEvent, true);
                         HealthShardTendUtility.GiveInjuriesOperationFailureMinor(patient, part);
                     }

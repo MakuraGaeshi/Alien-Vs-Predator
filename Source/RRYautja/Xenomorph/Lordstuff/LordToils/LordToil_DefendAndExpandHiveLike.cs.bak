@@ -52,17 +52,17 @@ namespace RimWorld
                     if (hiveFor.parentHiveLike != null)
                     {
                     //    Log.Message(string.Format("hiveForParentPresent: {0}", hiveFor.parentHiveLike.Position));
-                        duty = new PawnDuty(OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike, hiveFor.parentHiveLike, this.distToHiveToAttack);
+                        duty = new PawnDuty(OGHiveLikeDefOf.AvP_DefendAndExpandHiveLike, hiveFor.parentHiveLike, this.distToHiveToAttack);
                     }
                     else
                     {
                     //    Log.Message(string.Format("hiveForPresent: {0}", hiveFor.Position));
-                        duty = new PawnDuty(OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike, hiveFor, this.distToHiveToAttack);
+                        duty = new PawnDuty(OGHiveLikeDefOf.AvP_DefendAndExpandHiveLike, hiveFor, this.distToHiveToAttack);
                     }
                 }
                 else
                 {
-                    ThingDef named = pawn.RaceProps.Humanlike ? XenomorphDefOf.RRY_Xenomorph_Humanoid_Cocoon : XenomorphDefOf.RRY_Xenomorph_Animal_Cocoon;
+                    ThingDef named = pawn.RaceProps.Humanlike ? XenomorphDefOf.AvP_Xenomorph_Humanoid_Cocoon : XenomorphDefOf.AvP_Xenomorph_Animal_Cocoon;
 
                     cocoonsPresent = XenomorphUtil.CocoonsPresent(pawn.Map, named);
                     eggsReachable = !XenomorphUtil.ClosestReachableEgg(pawn).DestroyedOrNull();
@@ -80,27 +80,27 @@ namespace RimWorld
                     if (eggsPresent)
                     {
                     //    Log.Message(string.Format("eggsPresent: {0}", closestReachableEgg.Position));
-                        duty = new PawnDuty(OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike, closestReachableEgg, this.distToHiveToAttack);
+                        duty = new PawnDuty(OGHiveLikeDefOf.AvP_DefendAndExpandHiveLike, closestReachableEgg, this.distToHiveToAttack);
                     }
                     else if (cocoonsPresent)
                     {
                     //    Log.Message(string.Format("cocoonsPresent: {0}", closestReachableCocoon.Position));
-                        duty = new PawnDuty(OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike, closestReachableCocoon, this.distToHiveToAttack);
+                        duty = new PawnDuty(OGHiveLikeDefOf.AvP_DefendAndExpandHiveLike, closestReachableCocoon, this.distToHiveToAttack);
                     }
                     else if (myFocus.Cell != IntVec3.Zero)
                     {
                     //    Log.Message(string.Format("myFocus {0}", myFocus.Cell));
-                        duty = new PawnDuty(OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike, myFocus, this.distToHiveToAttack);
+                        duty = new PawnDuty(OGHiveLikeDefOf.AvP_DefendAndExpandHiveLike, myFocus, this.distToHiveToAttack);
                     }
                     else if (InfestationLikeCellFinder.TryFindCell(out IntVec3 c, Map, false))
                     {
                     //    Log.Message(string.Format("InfestationLikeCellFinder: {0}", c));
-                        duty = new PawnDuty(OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike, c, this.distToHiveToAttack);
+                        duty = new PawnDuty(OGHiveLikeDefOf.AvP_DefendAndExpandHiveLike, c, this.distToHiveToAttack);
                     }
                     else
                     {
                     //    Log.Message(string.Format("pawn: {0}", pawn.Position));
-                        duty = new PawnDuty(OGHiveLikeDefOf.RRY_DefendAndExpandHiveLike, pawn, this.distToHiveToAttack);
+                        duty = new PawnDuty(OGHiveLikeDefOf.AvP_DefendAndExpandHiveLike, pawn, this.distToHiveToAttack);
                     }
                     myFocus = duty.focus;
                 }

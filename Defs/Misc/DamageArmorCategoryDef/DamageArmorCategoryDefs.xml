@@ -3,8 +3,8 @@
 <Defs>
 
   <DamageArmorCategoryDef>
-    <defName>RRY_Acid</defName>
-    <armorRatingStat>RRY_ArmorRating_Acid</armorRatingStat>
+    <defName>AvP_Acid</defName>
+    <armorRatingStat>AvP_ArmorRating_Acid</armorRatingStat>
   </DamageArmorCategoryDef>
 
 </Defs>

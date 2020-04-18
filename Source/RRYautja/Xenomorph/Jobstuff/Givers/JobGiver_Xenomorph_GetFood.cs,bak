@@ -24,7 +24,7 @@ namespace RimWorld
             Need_Food food = pawn.needs.food;
             if (pawn.isXenomorph())
             {
-                if (pawn.ageTracker.CurLifeStage != XenomorphDefOf.RRY_XenomorphFullyFormed)
+                if (pawn.ageTracker.CurLifeStage != XenomorphDefOf.AvP_XenomorphFullyFormed)
                 {
                     return 9.5f;
                 }
@@ -91,7 +91,7 @@ namespace RimWorld
             }
             */
             float nutrition = FoodUtility.GetNutrition(thing, thingDef);
-            return new Job(XenomorphDefOf.RRY_Xenomorph_Ingest, thing)
+            return new Job(XenomorphDefOf.AvP_Xenomorph_Ingest, thing)
             {
                 count = FoodUtility.WillIngestStackCountOf(pawn, thingDef, nutrition)
             };

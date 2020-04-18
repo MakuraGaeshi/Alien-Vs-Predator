@@ -2,7 +2,7 @@
 <Defs>
 
   <ThinkTreeDef>
-    <defName>RRY_Neomorph_ThinkTree</defName>
+    <defName>AvP_Neomorph_ThinkTree</defName>
     <thinkRoot Class="ThinkNode_Priority">
       <subNodes>
         <!-- Keep lying down if we have to -->
@@ -65,7 +65,7 @@
 
 				<!-- Satisfy basic needs -->
 				<li Class="ThinkNode_Subtree">
-				  <treeDef>RRY_SatisfyNeomorphNeeds</treeDef>
+				  <treeDef>AvP_SatisfyNeomorphNeeds</treeDef>
 				</li>
 				
 				<!-- Forced goto -->

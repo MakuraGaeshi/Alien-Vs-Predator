@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-  <ThingDef Name="RRY_Plant_Base" Abstract="True">
+  <ThingDef Name="AvP_Plant_Base" Abstract="True">
     <category>Plant</category>
     <thingClass>Plant</thingClass>
     <altitudeLayer>FloorEmplacement</altitudeLayer>
@@ -37,8 +37,8 @@
   </ThingDef>
   
   
-	<ThingDef ParentName="RRY_Plant_Base">
-		<defName>RRY_Plant_Neomorph_Fungus</defName>
+	<ThingDef ParentName="AvP_Plant_Base">
+		<defName>AvP_Plant_Neomorph_Fungus</defName>
 		<thingClass>RRYautja.Plant_Neomorph</thingClass>
 		<label>strange fungus</label>
 		<description>small, black, spherical, egg-like fungus sacks formed on the ground. When disturbed, these egg sacks would release a cloud of microscopic insect-like spores into the air.</description>
@@ -55,7 +55,7 @@
     <ingestible>
       <outcomeDoers>
         <li Class="IngestionOutcomeDoer_GiveHediff">
-          <hediffDef>RRY_NeomorphImpregnation</hediffDef>
+          <hediffDef>AvP_NeomorphImpregnation</hediffDef>
           <severity>0.001</severity>
 		</li>
       </outcomeDoers>
@@ -81,7 +81,7 @@
 	</ThingDef>
 	
     <ThingDef Class="RRYautja.Thing_AddsHediffDef" ParentName="BaseGas">
-    <defName>RRY_Neomorph_Spores</defName>
+    <defName>AvP_Neomorph_Spores</defName>
     <label>spore gas</label>
     <graphicData>
       <texPath>Things/Gas/Puff</texPath>
@@ -90,7 +90,7 @@
     </graphicData>
     <size>(1,1)</size>
 	<thingClass>RRYautja.Thing_AddsHediff</thingClass>
-	<addHediff>RRY_NeomorphImpregnation</addHediff>
+	<addHediff>AvP_NeomorphImpregnation</addHediff>
 	<hediffAddChance>0.750</hediffAddChance>
     <hediffSeverity>0.01</hediffSeverity>
 	<onlyAffectLungs>true</onlyAffectLungs> 
@@ -106,8 +106,8 @@
     </gas>
   </ThingDef>
   
-	<ThingDef ParentName="RRY_Plant_Base">
-		<defName>RRY_Plant_Neomorph_Fungus_Hidden</defName>
+	<ThingDef ParentName="AvP_Plant_Base">
+		<defName>AvP_Plant_Neomorph_Fungus_Hidden</defName>
 		<thingClass>RRYautja.Plant_Neomorph</thingClass>
 		<label>strange fungus</label>
 		<description>small, black, spherical, egg-like fungus sacks formed on the ground. When disturbed, these egg sacks would release a cloud of microscopic insect-like spores into the air.</description>
@@ -124,7 +124,7 @@
     <ingestible>
       <outcomeDoers>
         <li Class="IngestionOutcomeDoer_GiveHediff">
-          <hediffDef>RRY_HiddenNeomorphImpregnation</hediffDef>
+          <hediffDef>AvP_HiddenNeomorphImpregnation</hediffDef>
           <severity>0.001</severity>
 		</li>
       </outcomeDoers>
@@ -150,7 +150,7 @@
 	</ThingDef>
 	
     <ThingDef Class="RRYautja.Thing_AddsHediffDef" ParentName="BaseGas">
-    <defName>RRY_Neomorph_Spores_Hidden</defName>
+    <defName>AvP_Neomorph_Spores_Hidden</defName>
     <label>strange gas</label>
     <graphicData>
       <texPath>Things/Gas/Puff</texPath>
@@ -158,7 +158,7 @@
       <color>(0.1,0.1,0.1,0.2)</color>
     </graphicData>
 	<thingClass>RRYautja.Thing_AddsHediff</thingClass>
-	<addHediff>RRY_HiddenNeomorphImpregnation</addHediff>
+	<addHediff>AvP_HiddenNeomorphImpregnation</addHediff>
 	<hediffAddChance>0.750</hediffAddChance>
     <hediffSeverity>0.01</hediffSeverity>
 	<onlyAffectLungs>true</onlyAffectLungs> 

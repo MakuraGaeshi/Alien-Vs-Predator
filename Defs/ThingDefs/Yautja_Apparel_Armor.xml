@@ -70,7 +70,7 @@
 			</defaultOutfitTags>
 		</apparel>
 		<thingCategories>
-			<li>RRY_Armour</li>
+			<li>AvP_Armour</li>
 		</thingCategories>
 		<tradeTags>
 			<li>Apparel</li>
@@ -141,7 +141,7 @@
 			</defaultOutfitTags>
 		</apparel>
 		<thingCategories>
-			<li>RRY_Armour</li>
+			<li>AvP_Armour</li>
 		</thingCategories>
 		<tradeTags>
 			<li>Apparel</li>
@@ -212,7 +212,7 @@
 			</defaultOutfitTags>
 		</apparel>
 		<thingCategories>
-			<li>RRY_Armour</li>
+			<li>AvP_Armour</li>
 		</thingCategories>
 		<tradeTags>
 			<li>Apparel</li>
@@ -284,7 +284,7 @@
 			</defaultOutfitTags>
 		</apparel>
 		<thingCategories>
-			<li>RRY_Armour</li>
+			<li>AvP_Armour</li>
 		</thingCategories>
 		<tradeTags>
 			<li>Apparel</li>
@@ -359,7 +359,7 @@
 			</defaultOutfitTags>
 		</apparel>
 		<thingCategories>
-			<li>RRY_Armour</li>
+			<li>AvP_Armour</li>
 		</thingCategories>
 		<tradeTags>
 			<li>Apparel</li>
@@ -425,7 +425,7 @@
 			<wornGraphicPath>Things/Apparel/Yautja_Undersuit/Yautja_HunterArmorUndersuit</wornGraphicPath>
 		</apparel>
 		<thingCategories>
-			<li>RRY_Armour</li>
+			<li>AvP_Armour</li>
 		</thingCategories>
 		<tradeTags>
 			<li>Apparel</li>

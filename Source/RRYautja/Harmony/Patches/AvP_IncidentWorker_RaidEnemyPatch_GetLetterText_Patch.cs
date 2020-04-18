@@ -37,12 +37,12 @@ namespace RRYautja.HarmonyInstance
                         __result = text;
                     }
                 }
-                if (parms.faction != null && (parms.faction.def == XenomorphDefOf.RRY_Xenomorph))
+                if (parms.faction != null && (parms.faction.def == XenomorphDefOf.AvP_Xenomorph))
                 {
 #if DEBUG
                     //    Log.Message(string.Format("PostGetLetterText Xenomorph Raid CurSkyGlow: {0}", (parms.target as Map).skyManager.CurSkyGlow));
 #endif
-                    if (parms.raidStrategy != XenomorphDefOf.RRY_PowerCut)
+                    if (parms.raidStrategy != XenomorphDefOf.AvP_PowerCut)
                     {
                         if ((parms.target as Map).skyManager.CurSkyGlow <= 0.5f)
                         {
@@ -66,7 +66,7 @@ namespace RRYautja.HarmonyInstance
         {
             if (parms.target is Map && (parms.target as Map).IsPlayerHome)
             {
-                if (parms.faction != null && (parms.faction.def == XenomorphDefOf.RRY_Xenomorph))
+                if (parms.faction != null && (parms.faction.def == XenomorphDefOf.AvP_Xenomorph))
                 {
 #if DEBUG
                 //    Log.Message(string.Format("PostGetLetterText Xenomorph Raid CurSkyGlow: {0}", (parms.target as Map).skyManager.CurSkyGlow));

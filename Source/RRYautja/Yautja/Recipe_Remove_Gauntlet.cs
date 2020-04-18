@@ -163,7 +163,7 @@ namespace RRYautja
             {
                 return RecipeDefOf.RemoveBodyPart.label;
             }
-            return "RRY_Remove_Gauntlet".Translate();
+            return "AvP_Remove_Gauntlet".Translate();
         }
 
     }

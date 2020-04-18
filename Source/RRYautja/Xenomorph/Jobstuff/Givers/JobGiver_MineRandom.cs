@@ -76,9 +76,9 @@ namespace RimWorld
                 return null;
             }
 
-            bool flag1 = hivec.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive) != null;
-            bool flag2 = hivec.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive_Child) != null;
-            bool flag3 = hivec.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive_Slime) != null;
+            bool flag1 = hivec.GetFirstThing(pawn.Map, XenomorphDefOf.AvP_Xenomorph_Hive) != null;
+            bool flag2 = hivec.GetFirstThing(pawn.Map, XenomorphDefOf.AvP_Xenomorph_Hive_Child) != null;
+            bool flag3 = hivec.GetFirstThing(pawn.Map, XenomorphDefOf.AvP_Xenomorph_Hive_Slime) != null;
             bool flag4 = !flag1 && !flag2 && !flag3;
             if (flag4 )
             {
@@ -92,7 +92,7 @@ namespace RimWorld
                 }
                 if (!hivec.Filled(pawn.Map) && pawn.CanReach(hivec, PathEndMode.OnCell, Danger.Deadly))
                 {
-                    GenSpawn.Spawn(XenomorphDefOf.RRY_Xenomorph_Hive_Slime, pawn.mindState.duty.focus.Cell, pawn.Map);
+                    GenSpawn.Spawn(XenomorphDefOf.AvP_Xenomorph_Hive_Slime, pawn.mindState.duty.focus.Cell, pawn.Map);
                 }
             }
             for (int i = 0; i < 40; i++)
@@ -105,7 +105,7 @@ namespace RimWorld
                     {
 
                         Building edifice = c.GetEdifice(pawn.Map);
-                        if (edifice != null && (edifice.def.passability == Traversability.Impassable || edifice.def.IsDoor) && edifice.def.size == IntVec2.One && edifice.def != ThingDefOf.CollapsedRocks && edifice.def != XenomorphDefOf.RRY_Xenomorph_Hive_Wall && pawn.CanReserve(edifice, 1, -1, null, false) && XenomorphUtil.DistanceBetween(edifice.Position, pawn.mindState.duty.focus.Cell) <= MiningRange)
+                        if (edifice != null && (edifice.def.passability == Traversability.Impassable || edifice.def.IsDoor) && edifice.def.size == IntVec2.One && edifice.def != ThingDefOf.CollapsedRocks && edifice.def != XenomorphDefOf.AvP_Xenomorph_Hive_Wall && pawn.CanReserve(edifice, 1, -1, null, false) && XenomorphUtil.DistanceBetween(edifice.Position, pawn.mindState.duty.focus.Cell) <= MiningRange)
                         {
                             if (!pillarLoc.Contains(edifice.Position))
                             {
@@ -186,9 +186,9 @@ namespace RimWorld
             {
                 return null;
             }
-            bool flag1 = HiveCenter.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive) != null;
-            bool flag2 = HiveCenter.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive_Child) != null;
-            bool flag3 = HiveCenter.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Hive_Slime) != null;
+            bool flag1 = HiveCenter.GetFirstThing(pawn.Map, XenomorphDefOf.AvP_Xenomorph_Hive) != null;
+            bool flag2 = HiveCenter.GetFirstThing(pawn.Map, XenomorphDefOf.AvP_Xenomorph_Hive_Child) != null;
+            bool flag3 = HiveCenter.GetFirstThing(pawn.Map, XenomorphDefOf.AvP_Xenomorph_Hive_Slime) != null;
             if (pawn.GetLord() is Lord L && L != null)
             {
                 if ((L.CurLordToil is LordToil_DefendAndExpandHiveLike || L.CurLordToil is LordToil_DefendHiveLikeAggressively) && L.CurLordToil is LordToil_HiveLikeRelated THL)
@@ -200,8 +200,8 @@ namespace RimWorld
                             HiveLike hive = THL.Data.assignedHiveLikes.TryGetValue(pawn);
                             if (hive!=null)
                             {
-                                flag1 = hive.def == XenomorphDefOf.RRY_Xenomorph_Hive;
-                                flag2 = hive.def == XenomorphDefOf.RRY_Xenomorph_Hive_Child;
+                                flag1 = hive.def == XenomorphDefOf.AvP_Xenomorph_Hive;
+                                flag2 = hive.def == XenomorphDefOf.AvP_Xenomorph_Hive_Child;
                             }
                         }
                     }
@@ -230,7 +230,7 @@ namespace RimWorld
                 if (!HiveStructure.HiveStruct(HiveCenter).Contains(c) && !HiveStructure.HiveWalls(HiveCenter).Contains(c) && pawn.CanReach(c,PathEndMode.ClosestTouch, Danger.Deadly))
                 {
                     Building edifice = c.GetEdifice(pawn.Map);
-                    if (edifice != null && edifice.def.size == IntVec2.One && edifice.def != ThingDefOf.CollapsedRocks && edifice.def != XenomorphDefOf.RRY_Xenomorph_Hive_Wall && pawn.CanReserveAndReach(edifice, PathEndMode.ClosestTouch, Danger.Deadly, 1, 1) && XenomorphUtil.DistanceBetween(edifice.Position, HiveCenter) <= MiningRange)
+                    if (edifice != null && edifice.def.size == IntVec2.One && edifice.def != ThingDefOf.CollapsedRocks && edifice.def != XenomorphDefOf.AvP_Xenomorph_Hive_Wall && pawn.CanReserveAndReach(edifice, PathEndMode.ClosestTouch, Danger.Deadly, 1, 1) && XenomorphUtil.DistanceBetween(edifice.Position, HiveCenter) <= MiningRange)
                     {
                         bool xenobuilding = edifice.GetType() != typeof(Building_XenoEgg) && edifice.GetType() != typeof(Building_XenomorphCocoon) && edifice.GetType() != typeof(HiveLike);
                         if (xenobuilding)

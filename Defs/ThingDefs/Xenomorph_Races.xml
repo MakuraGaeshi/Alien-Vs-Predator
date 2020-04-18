@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-<ThingDef Name="RRY_BaseXenomorphPawn" Abstract="True">
+<ThingDef Name="AvP_BaseXenomorphPawn" Abstract="True">
     <thingClass>RRYautja.XenomorphPawn</thingClass>
     <category>Pawn</category>
     <selectable>true</selectable>
@@ -25,7 +25,7 @@
     <drawGUIOverlay>true</drawGUIOverlay>
 </ThingDef>
 
-  <ThingDef ParentName="RRY_BaseXenomorphPawn" Name="RRY_BaseXenomorph" Abstract="True">
+  <ThingDef ParentName="AvP_BaseXenomorphPawn" Name="AvP_BaseXenomorph" Abstract="True">
     <soundImpactDefault>BulletImpact_Flesh</soundImpactDefault>
     <statBases>
       <Mass>70</Mass>
@@ -44,7 +44,7 @@
       <ArmorRating_Heat>0.75</ArmorRating_Heat>
     </statBases>
     <race>
-      <thinkTreeMain>RRY_Xenomorph_ThinkTree</thinkTreeMain>
+      <thinkTreeMain>AvP_Xenomorph_ThinkTree</thinkTreeMain>
       <thinkTreeConstant>XenomorphConstant</thinkTreeConstant>
       <!-- <deathActionWorkerClass>RRYautja.DeathActionWorker_Xenomorph</deathActionWorkerClass> -->
       <herdAnimal>false</herdAnimal>
@@ -53,28 +53,28 @@
       <baseBodySize>1.5</baseBodySize>
       <baseHungerRate>0.0</baseHungerRate>
       <baseHealthScale>1.5</baseHealthScale>
-      <fleshType>RRY_Xenomorph</fleshType>
-      <bloodDef>RRY_FilthBloodXenomorph</bloodDef>	
+      <fleshType>AvP_Xenomorph</fleshType>
+      <bloodDef>AvP_FilthBloodXenomorph</bloodDef>	
       <needsRest>false</needsRest>
       <hasGenders>false</hasGenders>
       <foodType>Corpse,CarnivoreAnimalStrict</foodType>
-      <leatherDef>RRY_Leather_Xenomorph</leatherDef>
+      <leatherDef>AvP_Leather_Xenomorph</leatherDef>
       <lifeExpectancy>2500</lifeExpectancy>
       <hediffGiverSets>
-        <li>RRY_Xenomorph_Standard</li>
+        <li>AvP_Xenomorph_Standard</li>
       </hediffGiverSets>
     </race>
   </ThingDef>
 
-  <PawnKindDef Name="RRY_BaseXenomorphKind" Abstract="True">
-    <defaultFactionType>RRY_Xenomorph</defaultFactionType>
+  <PawnKindDef Name="AvP_BaseXenomorphKind" Abstract="True">
+    <defaultFactionType>AvP_Xenomorph</defaultFactionType>
     <aiAvoidCover>true</aiAvoidCover>
     <destroyGearOnDrop>true</destroyGearOnDrop>
   </PawnKindDef>
 
   <!-- Face Hugger - fast melee -->
-  <ThingDef ParentName="RRY_BaseXenomorph">
-    <defName>RRY_Xenomorph_FaceHugger</defName>
+  <ThingDef ParentName="AvP_BaseXenomorph">
+    <defName>AvP_Xenomorph_FaceHugger</defName>
     <label>Facehugger</label>
     <description>Facehuggers are the second stage in the Xenomorph's life cycle. It has eight long, finger-like legs, which allow it to crawl rapidly, and a long tail adapted for making great leaps. These particular appendages give it an appearance somewhat comparable to chelicerate arthropods such as arachnids and horseshoe crabs./n/nThe facehugger is a parasitoid; its only purpose is to make contact with the host's mouth for the implantation process by gripping its legs around the victim's head and wrapping its tail around the host's neck. Upon making contact, the facehugger administers a cynose-based paralytic in order to render it unconscious and immobile. During a successful attachment, the facehugger will insert a proboscis down the host's throat while simultaneously implanting an embryo. The host is kept alive, and the creature breathes for the host. Attempts to remove facehuggers generally prove fatal, as the parasitoid will respond by tightening its tail around the host's neck, and its acidic blood prevents it from being cut away. In addition, its grip on the host's head is strong enough to tear the host's face off if it is forcibly removed./n/nOnce the embryo is implanted, the facehugger will remain attached until the implant is secure, which can take anywhere from less than a minute to 16 hours. Once this happens, the parasite detaches, crawls away, and dies. The victim awakens with no awareness of the implantation, believing themselves to have been asleep, and appears to have a normal, healthy bodily function.</description>
     <statBases>
@@ -87,7 +87,7 @@
       <li>
         <label>Face grab</label>
         <capacities>
-          <!-- <li>RRY_FaceHuggerGrab</li> -->
+          <!-- <li>AvP_FaceHuggerGrab</li> -->
           <li>Blunt</li>
         </capacities>
         <power>3</power>
@@ -112,12 +112,12 @@
       <meatLabel>xenomorph flesh</meatLabel>
       <maxPreyBodySize>30</maxPreyBodySize>
       <intelligence>ToolUser</intelligence>
-      <body>RRY_Xenomorph_FaceHugger</body>
+      <body>AvP_Xenomorph_FaceHugger</body>
       <baseBodySize>0.30</baseBodySize>
       <baseHealthScale>0.3</baseHealthScale>
       <lifeStageAges>
         <li>
-          <def>RRY_XFacehuggerFullyFormed</def>
+          <def>AvP_XFacehuggerFullyFormed</def>
           <minAge>0</minAge>
           <soundWounded>Pawn_Megascarab_Wounded</soundWounded>
           <soundDeath>Pawn_Megascarab_Death</soundDeath>
@@ -143,10 +143,10 @@
     </comps>
   </ThingDef>
   
-  <PawnKindDef ParentName="RRY_BaseXenomorphKind">
-    <defName>RRY_Xenomorph_FaceHugger</defName>
+  <PawnKindDef ParentName="AvP_BaseXenomorphKind">
+    <defName>AvP_Xenomorph_FaceHugger</defName>
     <label>Face Hugger</label>
-    <race>RRY_Xenomorph_FaceHugger</race>
+    <race>AvP_Xenomorph_FaceHugger</race>
     <combatPower>50</combatPower>
     <lifeStages>
       <li>
@@ -165,10 +165,10 @@
     </weaponTags>
   </PawnKindDef>
 
-  <PawnKindDef ParentName="RRY_BaseXenomorphKind">
-    <defName>RRY_Xenomorph_RoyaleHugger</defName>
+  <PawnKindDef ParentName="AvP_BaseXenomorphKind">
+    <defName>AvP_Xenomorph_RoyaleHugger</defName>
     <label>Face Hugger</label>
-    <race>RRY_Xenomorph_FaceHugger</race>
+    <race>AvP_Xenomorph_FaceHugger</race>
     <combatPower>70</combatPower>
     <lifeStages>
       <li>
@@ -188,8 +188,8 @@
   </PawnKindDef>
 
   <!-- Queen -->
-  <ThingDef ParentName="RRY_BaseXenomorph">
-    <defName>RRY_Xenomorph_Queen</defName>
+  <ThingDef ParentName="AvP_BaseXenomorph">
+    <defName>AvP_Xenomorph_Queen</defName>
     <label>Queen</label>
     <description>Queen Xenomorphs are significantly larger and stronger than the normal adults, being approximately 4.5 metres (15 ft) tall. Their body structure differs also, having two pairs of arms, one large and one small. The queen's head is larger than those of other adult Xenomorphs and is protected by a large, flat crest, like a crown, which varies from queen to queen. Unlike other Xenomorphs, the queen's external mouth is separately segmented from the rest of her head, allowing her to turn her mouth left and right almost to the point where it is facing perpendicular to the direction of the rest of her head./n/nEgg-laying Xenomorph queens possess an immense ovipositor attached to their lower torso, similar to a queen termite's. Unlike insect queens, there appears to be no need for an Xenomorph queen's eggs to be fertilized. When attached to her ovipositor, the queen is supported by a "biomechanical throne" that consists of a lattice of struts resembling massive insect legs.</description>
     <statBases>
@@ -212,7 +212,7 @@
         </capacities>
         <power>15</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RRY_Xeno_LeftHand</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>AvP_Xeno_LeftHand</linkedBodyPartsGroup>
         <surpriseAttack>
           <extraMeleeDamages>
             <li>
@@ -230,7 +230,7 @@
         </capacities>
         <power>15</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RRY_Xeno_RightHand</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>AvP_Xeno_RightHand</linkedBodyPartsGroup>
         <surpriseAttack>
           <extraMeleeDamages>
             <li>
@@ -275,11 +275,11 @@
         <label>tail</label>
         <capacities>
           <li>Blunt</li>
-          <li>RRY_TailWhip</li>
+          <li>AvP_TailWhip</li>
         </capacities>
         <power>10</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RRY_Xeno_Tail_AttackTool</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>AvP_Xeno_Tail_AttackTool</linkedBodyPartsGroup>
         <chanceFactor>0.2</chanceFactor>
       </li>
       <li>
@@ -290,52 +290,52 @@
         </capacities>
         <power>40</power>
         <cooldownTime>2.5</cooldownTime>
-        <linkedBodyPartsGroup>RRY_Xeno_Tail_SpikeAttackTool</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>AvP_Xeno_Tail_SpikeAttackTool</linkedBodyPartsGroup>
         <chanceFactor>0.2</chanceFactor>
       </li>
     </tools>
     <race>
       <intelligence>ToolUser</intelligence>
-      <thinkTreeMain>RRY_Xenomorph_ThinkTree</thinkTreeMain>
-      <body>RRY_Xenomorph_Biped</body>
-	  <useMeatFrom>RRY_Xenomorph_FaceHugger</useMeatFrom>
+      <thinkTreeMain>AvP_Xenomorph_ThinkTree</thinkTreeMain>
+      <body>AvP_Xenomorph_Biped</body>
+	  <useMeatFrom>AvP_Xenomorph_FaceHugger</useMeatFrom>
       <baseBodySize>3.0</baseBodySize>
       <baseHealthScale>28.5</baseHealthScale>
       <lifeStageAges>
         <li>
-          <def>RRY_XenomorphChestBursterBaby</def>
+          <def>AvP_XenomorphChestBursterBaby</def>
           <minAge>0</minAge>
-          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
-          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
-          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
+          <soundWounded>AvP_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>AvP_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>AvP_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
         <li>
-          <def>RRY_XenomorphChestBursterBig</def>
+          <def>AvP_XenomorphChestBursterBig</def>
           <minAge>0.0041666666666666</minAge>
-          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
-          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
-          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
+          <soundWounded>AvP_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>AvP_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>AvP_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
         <li>
-          <def>RRY_XenomorphFormedBaby</def>
+          <def>AvP_XenomorphFormedBaby</def>
           <minAge>0.0083333333333332</minAge>
-          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
-          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
-          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
+          <soundWounded>AvP_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>AvP_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>AvP_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
         <li>
-          <def>RRY_XenomorphFormedMid</def>
+          <def>AvP_XenomorphFormedMid</def>
           <minAge>0.0124999999999998</minAge>
-          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
-          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
-          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
+          <soundWounded>AvP_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>AvP_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>AvP_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
         <li>
-          <def>RRY_XenomorphFullyFormed</def>
+          <def>AvP_XenomorphFullyFormed</def>
           <minAge>0.0166666666666667</minAge>
-          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
-          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
-          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
+          <soundWounded>AvP_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>AvP_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>AvP_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
       </lifeStageAges>
       <soundCallIntervalRange>
@@ -351,7 +351,7 @@
         <compClass>RRYautja.Comp_Xenomorph</compClass>
       </li>
       <li Class="RRYautja.CompProperties_XenoEggLayer">
-        <eggDef>RRY_EggXenomorphFertilized</eggDef>
+        <eggDef>AvP_EggXenomorphFertilized</eggDef>
         <eggCountMax>1</eggCountMax>
         <eggLayIntervalDays>0.1</eggLayIntervalDays>
         <eggCountRange>1</eggCountRange>
@@ -372,10 +372,10 @@
 	-->
   </ThingDef>
 
-  <PawnKindDef ParentName="RRY_BaseXenomorphKind">
-    <defName>RRY_Xenomorph_Queen</defName>
+  <PawnKindDef ParentName="AvP_BaseXenomorphKind">
+    <defName>AvP_Xenomorph_Queen</defName>
     <label>Queen</label>
-    <race>RRY_Xenomorph_Queen</race>
+    <race>AvP_Xenomorph_Queen</race>
     <combatPower>750</combatPower>
     <lifeStages>
       <li>
@@ -449,46 +449,46 @@
   </PawnKindDef>
 
   <!-- Walker (Warrior/Runner/Drone/Predalien) base -->
-  <ThingDef ParentName="RRY_BaseXenomorph" Name="BaseXenomorphWalker" Abstract="True">
+  <ThingDef ParentName="AvP_BaseXenomorph" Name="BaseXenomorphWalker" Abstract="True">
     <race>
       <intelligence>ToolUser</intelligence>
-      <thinkTreeMain>RRY_Xenomorph_ThinkTree</thinkTreeMain>
+      <thinkTreeMain>AvP_Xenomorph_ThinkTree</thinkTreeMain>
       <baseBodySize>1.0</baseBodySize>
       <lifeStageAges>
         <li>
-          <def>RRY_XenomorphChestBursterBaby</def>
+          <def>AvP_XenomorphChestBursterBaby</def>
           <minAge>0</minAge>
-          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
-          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
-          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
+          <soundWounded>AvP_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>AvP_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>AvP_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
         <li>
-          <def>RRY_XenomorphChestBursterBig</def>
+          <def>AvP_XenomorphChestBursterBig</def>
           <minAge>0.0041666666666666</minAge>
-          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
-          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
-          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
+          <soundWounded>AvP_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>AvP_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>AvP_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
         <li>
-          <def>RRY_XenomorphFormedBaby</def>
+          <def>AvP_XenomorphFormedBaby</def>
           <minAge>0.0083333333333332</minAge>
-          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
-          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
-          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
+          <soundWounded>AvP_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>AvP_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>AvP_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
         <li>
-          <def>RRY_XenomorphFormedMid</def>
+          <def>AvP_XenomorphFormedMid</def>
           <minAge>0.0124999999999998</minAge>
-          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
-          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
-          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
+          <soundWounded>AvP_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>AvP_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>AvP_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
         <li>
-          <def>RRY_XenomorphFullyFormed</def>
+          <def>AvP_XenomorphFullyFormed</def>
           <minAge>0.0166666666666667</minAge>
-          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
-          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
-          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
+          <soundWounded>AvP_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>AvP_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>AvP_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
       </lifeStageAges>
       <soundCallIntervalRange>
@@ -533,7 +533,7 @@
 
   <!-- Drone - Basic -->
   <ThingDef ParentName="BaseXenomorphWalker_Cannon">
-    <defName>RRY_Xenomorph_Drone</defName>
+    <defName>AvP_Xenomorph_Drone</defName>
     <label>Drone</label>
     <description>Drones are an adult form of the species Xenomorph XX121, often said to be the most basic adult caste. They are loyal servants of the Queen, but essentially represents the lowliest class of Xenomorph, comparable to a worker ant. Drones construct Xenomorph Hives, using a resin-like secretion that they produce, and collect hosts for impregnation./n/n Drones are easily identified by their smooth head carapaces, among the smoothest of all Xenomorphs, and they are capable of spitting cysts of acidic blood at their enemies. They average around 8 feet tall when standing on hind legs, and about 14–15 feet long, tail included.</description>
     <statBases>
@@ -555,7 +555,7 @@
         </capacities>
         <power>11.5</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RRY_Xeno_LeftHand</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>AvP_Xeno_LeftHand</linkedBodyPartsGroup>
         <surpriseAttack>
           <extraMeleeDamages>
             <li>
@@ -573,7 +573,7 @@
         </capacities>
         <power>11.5</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RRY_Xeno_RightHand</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>AvP_Xeno_RightHand</linkedBodyPartsGroup>
         <surpriseAttack>
           <extraMeleeDamages>
             <li>
@@ -600,7 +600,7 @@
         </capacities>
         <power>18.2</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RRY_Xeno_InnerTeeth</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>AvP_Xeno_InnerTeeth</linkedBodyPartsGroup>
         <chanceFactor>0.07</chanceFactor>
       </li>
       <li>
@@ -618,11 +618,11 @@
         <label>tail</label>
         <capacities>
           <li>Blunt</li>
-          <li>RRY_TailWhip</li>
+          <li>AvP_TailWhip</li>
         </capacities>
         <power>10</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RRY_Xeno_Tail_AttackTool</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>AvP_Xeno_Tail_AttackTool</linkedBodyPartsGroup>
         <chanceFactor>0.2</chanceFactor>
       </li>
       <li>
@@ -633,13 +633,13 @@
         </capacities>
         <power>20</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RRY_Xeno_Tail_SpikeAttackTool</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>AvP_Xeno_Tail_SpikeAttackTool</linkedBodyPartsGroup>
         <chanceFactor>0.2</chanceFactor>
       </li>
     </tools>
     <race>
-      <body>RRY_Xenomorph_Biped</body>
-	  <useMeatFrom>RRY_Xenomorph_FaceHugger</useMeatFrom>
+      <body>AvP_Xenomorph_Biped</body>
+	  <useMeatFrom>AvP_Xenomorph_FaceHugger</useMeatFrom>
       <baseHealthScale>0.72</baseHealthScale>
       <baseBodySize>1.6</baseBodySize>
       <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
@@ -649,15 +649,15 @@
     <comps> 
 	<!---
       <li Class="AbilityUser.CompProperties_AbilityUser">
-        <compClass>RRYautja.RRY_Xenomorph_AbilityUser</compClass>
+        <compClass>RRYautja.AvP_Xenomorph_AbilityUser</compClass>
 	  -->
     </comps>
   </ThingDef>
 
-  <PawnKindDef ParentName="RRY_BaseXenomorphKind">
-    <defName>RRY_Xenomorph_Drone</defName>
+  <PawnKindDef ParentName="AvP_BaseXenomorphKind">
+    <defName>AvP_Xenomorph_Drone</defName>
     <label>Drone</label>
-    <race>RRY_Xenomorph_Drone</race>
+    <race>AvP_Xenomorph_Drone</race>
     <combatPower>125</combatPower>
     <alternateGraphicChance>0.2</alternateGraphicChance>
     <alternateGraphics>
@@ -742,7 +742,7 @@
   
   <!-- Warrior - Melee -->
   <ThingDef ParentName="BaseXenomorphWalker_Cannon">
-    <defName>RRY_Xenomorph_Warrior</defName>
+    <defName>AvP_Xenomorph_Warrior</defName>
     <label>Warrior</label>
     <description>Warriors, also known as Soldiers, are the primary assault caste of the Xenomorph XX121 species and as such is almost certainly the most numerous caste of Xenomorph in existence. They are fast, reasonably tough, and savage combatants./n/nEven in death the Warrior is dangerous, as its pressurized bloodstream will cause it to burst apart, drenching nearby enemies in acid blood. Warriors are identified by their ridged heads, and stand around 7–8 feet tall on their hind legs. They are about 14–16 feet long, including their tail.</description>
     <statBases>
@@ -762,7 +762,7 @@
         </capacities>
         <power>16.2</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RRY_Xeno_LeftHand</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>AvP_Xeno_LeftHand</linkedBodyPartsGroup>
         <surpriseAttack>
           <extraMeleeDamages>
             <li>
@@ -780,7 +780,7 @@
         </capacities>
         <power>16.2</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RRY_Xeno_RightHand</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>AvP_Xeno_RightHand</linkedBodyPartsGroup>
         <surpriseAttack>
           <extraMeleeDamages>
             <li>
@@ -825,11 +825,11 @@
         <label>tail</label>
         <capacities>
           <li>Blunt</li>
-          <li>RRY_TailWhip</li>
+          <li>AvP_TailWhip</li>
         </capacities>
         <power>9</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RRY_Xeno_Tail_AttackTool</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>AvP_Xeno_Tail_AttackTool</linkedBodyPartsGroup>
         <chanceFactor>0.2</chanceFactor>
       </li>
       <li>
@@ -840,13 +840,13 @@
         </capacities>
         <power>25</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RRY_Xeno_Tail_SpikeAttackTool</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>AvP_Xeno_Tail_SpikeAttackTool</linkedBodyPartsGroup>
         <chanceFactor>0.2</chanceFactor>
       </li>
     </tools>
     <race>
-      <body>RRY_Xenomorph_Biped</body>
-	  <useMeatFrom>RRY_Xenomorph_FaceHugger</useMeatFrom>
+      <body>AvP_Xenomorph_Biped</body>
+	  <useMeatFrom>AvP_Xenomorph_FaceHugger</useMeatFrom>
       <baseHealthScale>1.72</baseHealthScale>
       <baseBodySize>2.0</baseBodySize>
       <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
@@ -855,10 +855,10 @@
     </race>
   </ThingDef>
 
-  <PawnKindDef ParentName="RRY_BaseXenomorphKind">
-    <defName>RRY_Xenomorph_Warrior</defName>
+  <PawnKindDef ParentName="AvP_BaseXenomorphKind">
+    <defName>AvP_Xenomorph_Warrior</defName>
     <label>Warrior</label>
-    <race>RRY_Xenomorph_Warrior</race>
+    <race>AvP_Xenomorph_Warrior</race>
     <combatPower>160</combatPower>
 	<!--
     <alternateGraphicChance>0.5</alternateGraphicChance>
@@ -940,7 +940,7 @@
 
   <!-- Runner - Fast Melee -->
   <ThingDef ParentName="BaseXenomorphWalker_Cannon">
-    <defName>RRY_Xenomorph_Runner</defName>
+    <defName>AvP_Xenomorph_Runner</defName>
     <label>Runner</label>
     <description>Runners, also known as Dog Aliens or Ox Aliens, is an adult form of the species Xenomorph XX121 spawned from a quadrupedal host animal (such as a dog). Runners, as their name implies, are fast and agile, and can spit acid from their mouths./n/n Runners have variously been portrayed as being slightly larger and slightly smaller than typical human-spawned Aliens, differences that no doubt derive from the animal that hosted the creature. However, Runners average around 7 feet 5 inches tall when standing on their hind legs.</description>
     <statBases>
@@ -960,7 +960,7 @@
         </capacities>
         <power>10.2</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RRY_Xeno_LeftHand</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>AvP_Xeno_LeftHand</linkedBodyPartsGroup>
         <surpriseAttack>
           <extraMeleeDamages>
             <li>
@@ -978,7 +978,7 @@
         </capacities>
         <power>10.2</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RRY_Xeno_RightHand</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>AvP_Xeno_RightHand</linkedBodyPartsGroup>
         <surpriseAttack>
           <extraMeleeDamages>
             <li>
@@ -1005,7 +1005,7 @@
         </capacities>
         <power>20.2</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RRY_Xeno_InnerTeeth</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>AvP_Xeno_InnerTeeth</linkedBodyPartsGroup>
         <chanceFactor>0.07</chanceFactor>
       </li>
       <li>
@@ -1023,11 +1023,11 @@
         <label>tail</label>
         <capacities>
           <li>Blunt</li>
-          <li>RRY_TailWhip</li>
+          <li>AvP_TailWhip</li>
         </capacities>
         <power>7</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RRY_Xeno_Tail_AttackTool</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>AvP_Xeno_Tail_AttackTool</linkedBodyPartsGroup>
         <chanceFactor>0.2</chanceFactor>
       </li>
       <li>
@@ -1038,13 +1038,13 @@
         </capacities>
         <power>25</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RRY_Xeno_Tail_SpikeAttackTool</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>AvP_Xeno_Tail_SpikeAttackTool</linkedBodyPartsGroup>
         <chanceFactor>0.2</chanceFactor>
       </li>
     </tools>
     <race>
-      <body>RRY_Xenomorph_Quadruped</body>
-	  <useMeatFrom>RRY_Xenomorph_FaceHugger</useMeatFrom>
+      <body>AvP_Xenomorph_Quadruped</body>
+	  <useMeatFrom>AvP_Xenomorph_FaceHugger</useMeatFrom>
       <baseBodySize>1.4</baseBodySize>
       <baseHealthScale>1.32</baseHealthScale>
       <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
@@ -1053,10 +1053,10 @@
     </race>
   </ThingDef>
 
-  <PawnKindDef ParentName="RRY_BaseXenomorphKind">
-    <defName>RRY_Xenomorph_Runner</defName>
+  <PawnKindDef ParentName="AvP_BaseXenomorphKind">
+    <defName>AvP_Xenomorph_Runner</defName>
     <label>Runner</label>
-    <race>RRY_Xenomorph_Runner</race>
+    <race>AvP_Xenomorph_Runner</race>
     <combatPower>100</combatPower>
     <lifeStages>
       <li>
@@ -1121,7 +1121,7 @@
 
   <!-- Preadalien - Advanced Melee -->
   <ThingDef ParentName="BaseXenomorphWalker">
-    <defName>RRY_Xenomorph_Predalien</defName>
+    <defName>AvP_Xenomorph_Predalien</defName>
     <label>Predalien</label>
     <description>Predaliens are Xenomorphs spawned from a Yautja. A more obvious result of the Xenomorph's DNA Reflex, the Predalien takes more clearly after its Yautja host, sharing physical features such as dreadlocks, mandibles and lighter skin coloration./n/n They are lethal combatants, often seen to possess strength far in excess of human-spawned Xenomorphs owing to the greater physical prowess of their hosts, a trait the Predalien subsequently inherits and enhances. They are apparently rare and are regarded by the Yautja as abominations and an insult to their species.</description>
     <statBases>
@@ -1141,7 +1141,7 @@
         </capacities>
         <power>17.2</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RRY_Xeno_LeftHand</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>AvP_Xeno_LeftHand</linkedBodyPartsGroup>
         <surpriseAttack>
           <extraMeleeDamages>
             <li>
@@ -1159,7 +1159,7 @@
         </capacities>
         <power>17.2</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RRY_Xeno_RightHand</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>AvP_Xeno_RightHand</linkedBodyPartsGroup>
         <surpriseAttack>
           <extraMeleeDamages>
             <li>
@@ -1204,11 +1204,11 @@
         <label>tail</label>
         <capacities>
           <li>Blunt</li>
-          <li>RRY_TailWhip</li>
+          <li>AvP_TailWhip</li>
         </capacities>
         <power>12</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RRY_Xeno_Tail_AttackTool</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>AvP_Xeno_Tail_AttackTool</linkedBodyPartsGroup>
         <chanceFactor>0.2</chanceFactor>
       </li>
       <li>
@@ -1219,13 +1219,13 @@
         </capacities>
         <power>30</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RRY_Xeno_Tail_SpikeAttackTool</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>AvP_Xeno_Tail_SpikeAttackTool</linkedBodyPartsGroup>
         <chanceFactor>0.2</chanceFactor>
       </li>
     </tools>
     <race>
-      <body>RRY_Xenomorph_Biped_Predalien</body>
-	  <useMeatFrom>RRY_Xenomorph_FaceHugger</useMeatFrom>
+      <body>AvP_Xenomorph_Biped_Predalien</body>
+	  <useMeatFrom>AvP_Xenomorph_FaceHugger</useMeatFrom>
       <baseHealthScale>2.72</baseHealthScale>
       <baseBodySize>2.4</baseBodySize>
       <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
@@ -1240,10 +1240,10 @@
 	</modExtensions>
   </ThingDef>
 
-  <PawnKindDef ParentName="RRY_BaseXenomorphKind">
-    <defName>RRY_Xenomorph_Predalien</defName>
+  <PawnKindDef ParentName="AvP_BaseXenomorphKind">
+    <defName>AvP_Xenomorph_Predalien</defName>
     <label>Predalien</label>
-    <race>RRY_Xenomorph_Predalien</race>
+    <race>AvP_Xenomorph_Predalien</race>
     <combatPower>230</combatPower>
     <lifeStages>
       <li>
@@ -1307,8 +1307,8 @@
   </PawnKindDef>
 
   <!-- Thrumbomorph -->
-  <ThingDef ParentName="RRY_BaseXenomorph">
-    <defName>RRY_Xenomorph_Thrumbomorph</defName>
+  <ThingDef ParentName="AvP_BaseXenomorph">
+    <defName>AvP_Xenomorph_Thrumbomorph</defName>
     <label>Thrumbomorph</label>
     <description>Thrumbomorph Xenomorphs are significantly larger and stronger than the normal adults, being over 5 metres tall. Their body structure differs also, having no arms, although its large limbs many manipulate objects. The thrumbomorphs's head is larger than those of other adult Xenomorphs and is adorned by a large, flat blade, which is an inherited feature from its host./n/nThis thing is a total monstrosity and can easily dismantle a battle tank, do not engage lightly.</description>
     <statBases>
@@ -1341,7 +1341,7 @@
         </capacities>
         <power>15</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RRY_Xeno_LeftHand</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>AvP_Xeno_LeftHand</linkedBodyPartsGroup>
         <surpriseAttack>
           <extraMeleeDamages>
             <li>
@@ -1359,7 +1359,7 @@
         </capacities>
         <power>15</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RRY_Xeno_RightHand</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>AvP_Xeno_RightHand</linkedBodyPartsGroup>
         <surpriseAttack>
           <extraMeleeDamages>
             <li>
@@ -1404,11 +1404,11 @@
         <label>tail</label>
         <capacities>
           <li>Blunt</li>
-          <li>RRY_TailWhip</li>
+          <li>AvP_TailWhip</li>
         </capacities>
         <power>15</power>
         <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>RRY_Xeno_Tail_AttackTool</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>AvP_Xeno_Tail_AttackTool</linkedBodyPartsGroup>
         <chanceFactor>0.2</chanceFactor>
       </li>
       <li>
@@ -1419,53 +1419,53 @@
         </capacities>
         <power>40</power>
         <cooldownTime>2.5</cooldownTime>
-        <linkedBodyPartsGroup>RRY_Xeno_Tail_SpikeAttackTool</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>AvP_Xeno_Tail_SpikeAttackTool</linkedBodyPartsGroup>
         <chanceFactor>0.2</chanceFactor>
       </li>
     </tools>
     <race>
       <intelligence>ToolUser</intelligence>
-      <thinkTreeMain>RRY_Xenomorph_ThinkTree</thinkTreeMain>
-      <body>RRY_Xenomorph_QuadrupedWithHorn</body>
-	  <useMeatFrom>RRY_Xenomorph_FaceHugger</useMeatFrom>
+      <thinkTreeMain>AvP_Xenomorph_ThinkTree</thinkTreeMain>
+      <body>AvP_Xenomorph_QuadrupedWithHorn</body>
+	  <useMeatFrom>AvP_Xenomorph_FaceHugger</useMeatFrom>
       <baseBodySize>4</baseBodySize>
       <baseHealthScale>8.0</baseHealthScale>
       <manhunterOnDamageChance>1.00</manhunterOnDamageChance>
       <lifeStageAges>
         <li>
-          <def>RRY_XenomorphChestBursterBaby</def>
+          <def>AvP_XenomorphChestBursterBaby</def>
           <minAge>0</minAge>
-          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
-          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
-          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
+          <soundWounded>AvP_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>AvP_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>AvP_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
         <li>
-          <def>RRY_XenomorphChestBursterBig</def>
+          <def>AvP_XenomorphChestBursterBig</def>
           <minAge>0.0041666666666666</minAge>
-          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
-          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
-          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
+          <soundWounded>AvP_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>AvP_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>AvP_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
         <li>
-          <def>RRY_XenomorphFormedBaby</def>
+          <def>AvP_XenomorphFormedBaby</def>
           <minAge>0.0083333333333332</minAge>
-          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
-          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
-          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
+          <soundWounded>AvP_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>AvP_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>AvP_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
         <li>
-          <def>RRY_XenomorphFormedMid</def>
+          <def>AvP_XenomorphFormedMid</def>
           <minAge>0.0124999999999998</minAge>
-          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
-          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
-          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
+          <soundWounded>AvP_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>AvP_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>AvP_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
         <li>
-          <def>RRY_XenomorphFullyFormed</def>
+          <def>AvP_XenomorphFullyFormed</def>
           <minAge>0.0166666666666667</minAge>
-          <soundWounded>RRY_Pawn_Xenomorph_Normal_Wounded</soundWounded>
-          <soundDeath>RRY_Pawn_Xenomorph_Normal_Death</soundDeath>
-          <soundCall>RRY_Pawn_Xenomorph_Normal_Call</soundCall>
+          <soundWounded>AvP_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>AvP_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>AvP_Pawn_Xenomorph_Normal_Call</soundCall>
         </li>
       </lifeStageAges>
       <soundCallIntervalRange>
@@ -1483,7 +1483,7 @@
 	  
 	<!--
       <li Class="RRYautja.CompProperties_XenoEggLayer">
-        <eggDef>RRY_EggXenomorphFertilized</eggDef>
+        <eggDef>AvP_EggXenomorphFertilized</eggDef>
         <eggCountMax>1</eggCountMax>
         <eggLayIntervalDays>0.1</eggLayIntervalDays>
         <eggCountRange>1</eggCountRange>
@@ -1505,10 +1505,10 @@
 	</modExtensions>
   </ThingDef>
 
-  <PawnKindDef ParentName="RRY_BaseXenomorphKind">
-    <defName>RRY_Xenomorph_Thrumbomorph</defName>
+  <PawnKindDef ParentName="AvP_BaseXenomorphKind">
+    <defName>AvP_Xenomorph_Thrumbomorph</defName>
     <label>Thrumbomorph</label>
-    <race>RRY_Xenomorph_Thrumbomorph</race>
+    <race>AvP_Xenomorph_Thrumbomorph</race>
     <combatPower>1250</combatPower>
     <lifeStages>
       <li>

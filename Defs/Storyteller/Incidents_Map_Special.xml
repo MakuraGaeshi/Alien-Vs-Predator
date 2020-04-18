@@ -16,11 +16,11 @@
 		<baseChance>3.0</baseChance>
 		<pointsScaleable>true</pointsScaleable>
 		<!--
-		<Faction>RRY_Xenomorph</Faction>
+		<Faction>AvP_Xenomorph</Faction>
 		-->
 		<Factions>
-		  <li>RRY_Xenomorph</li>
-		  <li>RRY_Yautja_BadBloodFaction</li>
+		  <li>AvP_Xenomorph</li>
+		  <li>AvP_Yautja_BadBloodFaction</li>
 		</Factions>
 	</IncidentDef>
 

@@ -17,7 +17,7 @@ namespace Verse
                 Find.TickManager.slower.SignalForceNormalSpeedShort();
             }
             Map map = victim.Map;
-            dinfo.SetAmount((dinfo.Amount * (1 - victim.GetStatValue(DefDatabase<StatDef>.GetNamed("RRY_AcidResistance")))));
+            dinfo.SetAmount((dinfo.Amount * (1 - victim.GetStatValue(DefDatabase<StatDef>.GetNamed("AvP_AcidResistance")))));
             DamageWorker.DamageResult damageResult = base.Apply(dinfo, victim);
             if (!damageResult.deflected && !dinfo.InstantPermanentInjury)
             {
@@ -52,7 +52,7 @@ namespace Verse
         public override void ExplosionAffectCell(Explosion explosion, IntVec3 c, List<Thing> damagedThings, List<Thing> ignoredThings, bool canThrowMotes)
         {
             base.ExplosionAffectCell(explosion, c, damagedThings, ignoredThings, canThrowMotes);
-            if (this.def == XenomorphDefOf.RRY_AcidDamage && Rand.Chance(FireUtility.ChanceToStartFireIn(c, explosion.Map)))
+            if (this.def == XenomorphDefOf.AvP_AcidDamage && Rand.Chance(FireUtility.ChanceToStartFireIn(c, explosion.Map)))
             {
                 //    FireUtility.TryStartFireIn(c, explosion.Map, Rand.Range(0.2f, 0.6f));
             }

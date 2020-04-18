@@ -2,8 +2,8 @@
 <Defs>
 
 
-	<ThingDef ParentName="BaseMeleeWeapon_Blunt_Quality" Name="RRY_ShieldBase" Abstract="True">
-		<defName>RRY_ShieldBase</defName>
+	<ThingDef ParentName="BaseMeleeWeapon_Blunt_Quality" Name="AvP_ShieldBase" Abstract="True">
+		<defName>AvP_ShieldBase</defName>
 		<label>Shield</label>
 		<equipmentType>None</equipmentType>
 		<techLevel>Neolithic</techLevel>
@@ -28,8 +28,8 @@
 		</tools>
 	</ThingDef>
 	
-	<ThingDef ParentName="RRY_ShieldBase">
-		<defName>RRY_Shield_Xenomorph_Drone</defName>
+	<ThingDef ParentName="AvP_ShieldBase">
+		<defName>AvP_Shield_Xenomorph_Drone</defName>
 		<label>Simple Xenomorph Shield (Drone)</label>
 		<description>Shield made from a Xenomorph head. It protects the wearer from both melee and ranged attacks, and is immune to the acidic effect of the Xenomorph's blood.</description>
 		<graphicData>
@@ -55,7 +55,7 @@
 		</stuffCategories>
 		<costList>
 			<WoodLog>5</WoodLog>
-			<RRY_Xenomorph_HeadShell>1</RRY_Xenomorph_HeadShell>
+			<AvP_Xenomorph_HeadShell>1</AvP_Xenomorph_HeadShell>
  		</costList>
 		<recipeMaker>
       <researchPrerequisite>AvP_Tech_Common_XenomorphCrafting</researchPrerequisite>

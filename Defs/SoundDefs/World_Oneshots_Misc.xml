@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Defs>
 
   <SoundDef>
-    <defName>RRY_USCM_DropshipUD4L_Landing</defName>  
+    <defName>AvP_USCM_DropshipUD4L_Landing</defName>  
     <context>MapOnly</context>
     <maxSimultaneous>1</maxSimultaneous>  
     <subSounds>
@@ -17,7 +17,7 @@
   </SoundDef>
 
   <SoundDef>
-    <defName>RRY_USCM_DropshipUD4L_Leaving</defName>  
+    <defName>AvP_USCM_DropshipUD4L_Leaving</defName>  
     <context>MapOnly</context>
     <maxSimultaneous>1</maxSimultaneous>  
     <subSounds>

@@ -199,7 +199,7 @@ namespace RRYautja
             {
                 foreach (var item in base.pawn.apparel.WornApparel)
                 {
-                    if (item.def.defName.Contains("RRY_Equipment_HunterGauntlet"))
+                    if (item.def.defName.Contains("AvP_Equipment_HunterGauntlet"))
                     {
                         if (((Cloakgen)item).cloakIsOn)
                         {

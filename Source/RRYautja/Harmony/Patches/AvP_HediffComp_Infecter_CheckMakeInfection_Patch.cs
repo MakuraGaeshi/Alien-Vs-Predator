@@ -22,7 +22,7 @@ namespace RRYautja.HarmonyInstance
         [HarmonyPrefix]
         public static bool preCheckMakeInfection(HediffComp_Infecter __instance)
         {
-            if (__instance.Pawn.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned) || (__instance.Pawn.InBed() && __instance.Pawn.CurrentBed() is Building_XenomorphCocoon) || __instance.Pawn.RaceProps.FleshType.defName.Contains("RRY_SynthFlesh"))
+            if (__instance.Pawn.health.hediffSet.HasHediff(XenomorphDefOf.AvP_Hediff_Cocooned) || (__instance.Pawn.InBed() && __instance.Pawn.CurrentBed() is Building_XenomorphCocoon) || __instance.Pawn.RaceProps.FleshType.defName.Contains("AvP_SynthFlesh"))
             {
                 return false;
             }

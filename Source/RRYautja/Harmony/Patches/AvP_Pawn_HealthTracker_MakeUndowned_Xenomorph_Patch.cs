@@ -32,7 +32,7 @@ namespace RRYautja.HarmonyInstance
                 {
                     if (pawn.isXenomorph(out Comp_Xenomorph xenomorph))
                     {
-                        if (pawn.ageTracker.CurLifeStage == XenomorphDefOf.RRY_XenomorphFullyFormed)
+                        if (pawn.ageTracker.CurLifeStage == XenomorphDefOf.AvP_XenomorphFullyFormed)
                         {
                             if (pawn.GetLord() == null)
                             {

@@ -16,7 +16,7 @@
   </BodyPartDef>
 
   <BodyPartDef>
-    <defName>RRY_Yautja_Mouth</defName>
+    <defName>AvP_Yautja_Mouth</defName>
     <label>mouth</label>
     <hitPoints>20</hitPoints>
     <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>

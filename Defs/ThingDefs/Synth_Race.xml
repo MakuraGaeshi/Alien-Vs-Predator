@@ -4,12 +4,12 @@
 <!--============================================= Synth =============================================-->
 
 <AlienRace.RaceSettings>
-    <defName>RRY_Synth_Settings</defName>
+    <defName>AvP_Synth_Settings</defName>
     <pawnKindSettings>
             <alienslavekinds>
                 <li>
                     <kindDefs>
-						<li>RRY_Player_Synth</li>
+						<li>AvP_Player_Synth</li>
 					</kindDefs>
                     <chance>15.0</chance>
                 </li>
@@ -17,7 +17,7 @@
             <alienrefugeekinds>
                 <li>
                     <kindDefs>
-						<li>RRY_Player_Synth</li>
+						<li>AvP_Player_Synth</li>
 					</kindDefs>
                     <chance>10.0</chance>
                 </li>
@@ -27,13 +27,13 @@
 				<pawnKindEntries>
 					<li>
                     <kindDefs>
-                        <li>RRY_Player_Synth</li>
+                        <li>AvP_Player_Synth</li>
 					</kindDefs>
                     <chance>10.0</chance> <!-- Change it back to 10 after testing -->
 					</li>
 				</pawnKindEntries>
 				<factionDefs>
-					<li>RRY_USCM_PlayerColony</li> 
+					<li>AvP_USCM_PlayerColony</li> 
 				</factionDefs>
 				</li>
 			</startingColonists>
@@ -42,20 +42,20 @@
                     <pawnKindEntries>
 					<li>
                     <kindDefs>
-						<li>RRY_Player_Synth</li>
+						<li>AvP_Player_Synth</li>
 					</kindDefs>
                     <chance>5.0</chance>
 					</li>
 					</pawnKindEntries>
 					<factionDefs>
-                        <li>RRY_USCM_PlayerColony</li> 
+                        <li>AvP_USCM_PlayerColony</li> 
 					</factionDefs>
                 </li>
             </alienwandererkinds>
         </pawnKindSettings>
   </AlienRace.RaceSettings>
 
-<ThingDef Name="RRY_Artificial_Synths" Abstract="True">
+<ThingDef Name="AvP_Artificial_Synths" Abstract="True">
     <thingClass>Pawn</thingClass>
     <category>Pawn</category>
     <selectable>true</selectable>
@@ -103,8 +103,8 @@
 	<drawGUIOverlay>true</drawGUIOverlay>
 </ThingDef>
 
-<AlienRace.ThingDef_AlienRace ParentName="RRY_Artificial_Synths">
-    <defName>RRY_Synth</defName>
+<AlienRace.ThingDef_AlienRace ParentName="AvP_Artificial_Synths">
+    <defName>AvP_Synth</defName>
     <label>Synth</label>
     <description>A synthetic being.</description>
     <alienRace>
@@ -241,8 +241,8 @@
 		<factionRelations>
                 <li>
                     <factions>
-                       <li>RRY_USCM_PlayerColony</li>
-                       <li>RRY_USCM_Faction</li>
+                       <li>AvP_USCM_PlayerColony</li>
+                       <li>AvP_USCM_Faction</li>
 					</factions>
                     <goodwill>
                        <min>-10</min>
@@ -388,17 +388,17 @@
       </li>
     </tools>
     <race>
-	  <fleshType>RRY_SynthFlesh</fleshType>
+	  <fleshType>AvP_SynthFlesh</fleshType>
       <thinkTreeMain>Humanlike</thinkTreeMain>
       <thinkTreeConstant>HumanlikeConstant</thinkTreeConstant>
 	  <baseHungerRate>0.1</baseHungerRate>
       <intelligence>Humanlike</intelligence>
       <makesFootprints>true</makesFootprints>
       <lifeExpectancy>20</lifeExpectancy>
-      <leatherDef>RRY_Synthetic_Skin</leatherDef>
-      <body>RRY_Artificials_Synths_Body</body>
+      <leatherDef>AvP_Synthetic_Skin</leatherDef>
+      <body>AvP_Artificials_Synths_Body</body>
       <nameCategory>HumanStandard</nameCategory>
-	  <bloodDef>RRY_FilthBloodSynth</bloodDef>	
+	  <bloodDef>AvP_FilthBloodSynth</bloodDef>	
       <meatColor>(878,878,878)</meatColor>
       <baseBodySize>1</baseBodySize>
       <baseHealthScale>1.25</baseHealthScale>
@@ -411,11 +411,11 @@
       </litterSizeCurve>
       <lifeStageAges>
         <li>
-          <def>RRY_Synth_New</def>
+          <def>AvP_Synth_New</def>
           <minAge>0</minAge>
         </li>
         <li>
-          <def>RRY_Synth_Adult</def>
+          <def>AvP_Synth_Adult</def>
           <minAge>8</minAge>
         </li>
       </lifeStageAges>
@@ -451,8 +451,8 @@
         </points>
       </ageGenerationCurve>
       <hediffGiverSets>
-        <li>RRY_Artificials_Synth_Hediffgiver</li>
-		<li>RRY_Artificials_Inhibitor_Hediffgiver</li>
+        <li>AvP_Artificials_Synth_Hediffgiver</li>
+		<li>AvP_Artificials_Inhibitor_Hediffgiver</li>
       </hediffGiverSets>
     </race>
     <recipes>
@@ -478,7 +478,7 @@
       <li>RemoveBodyPart</li>
       <li>Euthanize</li>
       <li>Anesthetize</li>
-	  <li>RRY_RepairInhibitor</li>
+	  <li>AvP_RepairInhibitor</li>
     </recipes>
 	<butcherProducts>
 			<Plasteel>15</Plasteel>

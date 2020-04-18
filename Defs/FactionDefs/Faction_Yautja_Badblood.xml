@@ -2,7 +2,7 @@
 <Defs>
 
   <FactionDef>
-		<defName>RRY_Yautja_BadBloodFaction</defName>
+		<defName>AvP_Yautja_BadBloodFaction</defName>
 		<label>Yautja Badbloods</label>
     <description>The Bad Bloods are traitors, pariah and, worst of all, dishonored members of the Yautja society. They are banned from their parents clan and hunted out of spite. They live in chaos with no rules or lord except the will to live and to hunt. They do not obey to any code of Honor known to yautja society and their existence is considered an insult to the Clans.</description>
 	<pawnSingular>Badblood yautja</pawnSingular>
@@ -42,7 +42,7 @@
     </naturalColonyGoodwill>
     <visitorTraderKinds>
 	<!--
-      <li>RRY_Visitor_Yautja_Standard</li>
+      <li>AvP_Visitor_Yautja_Standard</li>
 	  -->
     </visitorTraderKinds>
    <caravanTraderKinds>
@@ -85,15 +85,15 @@
         <li>
         <kindDef>Peaceful</kindDef>
         <options>
-          <Colonist_RRY_Yautja>10</Colonist_RRY_Yautja>
-          <Slave_RRY_Yautja>13</Slave_RRY_Yautja>
+          <Colonist_AvP_Yautja>10</Colonist_AvP_Yautja>
+          <Slave_AvP_Yautja>13</Slave_AvP_Yautja>
           <YautjaAncient_RRY>1</YautjaAncient_RRY>
         </options>
       </li>
 	  <li>
       <kindDef>Trader</kindDef>
         <traders>
-          <Trader_RRY_Yautja>1</Trader_RRY_Yautja>
+          <Trader_AvP_Yautja>1</Trader_AvP_Yautja>
         </traders>
         <carriers>
           <Muffalo>2</Muffalo>
@@ -111,7 +111,7 @@
 	  <li>
         <kindDef>Settlement</kindDef>
         <options>
-          <Colonist_RRY_Yautja>5</Colonist_RRY_Yautja>
+          <Colonist_AvP_Yautja>5</Colonist_AvP_Yautja>
           <YautjaUnblooded_RRY>14</YautjaUnblooded_RRY>
           <YautjaYoungBlood_RRY>10</YautjaYoungBlood_RRY>
           <YautjaBlooded_RRY>8</YautjaBlooded_RRY>

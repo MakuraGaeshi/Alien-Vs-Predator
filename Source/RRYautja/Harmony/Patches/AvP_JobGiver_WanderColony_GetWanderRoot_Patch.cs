@@ -22,7 +22,7 @@ namespace RRYautja.HarmonyInstance
         [HarmonyPostfix]
         public static void GetWanderRoot(Pawn pawn, ref IntVec3 __result)
         {
-            if (!__result.GetFirstThing(pawn.Map, XenomorphDefOf.RRY_Xenomorph_Cocoon_Humanoid).DestroyedOrNull())
+            if (!__result.GetFirstThing(pawn.Map, XenomorphDefOf.AvP_Xenomorph_Cocoon_Humanoid).DestroyedOrNull())
             {
                 __result = pawn.Position;
             }

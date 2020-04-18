@@ -2,7 +2,7 @@
 <Defs>
 
   <TraderKindDef>
-    <defName>RRY_Base_USCM_Standard</defName>
+    <defName>AvP_Base_USCM_Standard</defName>
     <stockGenerators>
 
       <!-- Resources -->
@@ -212,7 +212,7 @@
 <!--================================================= Caravan =====================================================-->
 
   <TraderKindDef>
-    <defName>RRY_USCM_CombatSupplier</defName>
+    <defName>AvP_USCM_CombatSupplier</defName>
     <label>combat supplier</label>
     <stockGenerators>
 
@@ -249,7 +249,7 @@
         <countRange>1~1</countRange>
       </li>
       <li Class="StockGenerator_Category">
-        <categoryDef>RRY_USCM_Weapons</categoryDef>
+        <categoryDef>AvP_USCM_Weapons</categoryDef>
         <thingDefCountRange>6~6</thingDefCountRange>
         <countRange>1~1</countRange>
       </li>
@@ -264,7 +264,7 @@
         <countRange>5~5</countRange>
       </li>
       <li Class="StockGenerator_Category">
-        <categoryDef>RRY_USCM_Armour</categoryDef>
+        <categoryDef>AvP_USCM_Armour</categoryDef>
         <thingDefCountRange>6~6</thingDefCountRange>
         <countRange>1~1</countRange>
       </li>
@@ -293,7 +293,7 @@
 
 <!--================================================= Orbital =====================================================-->
   <TraderKindDef>
-    <defName>RRY_USCM_CombatSupplier_Orbital</defName>
+    <defName>AvP_USCM_CombatSupplier_Orbital</defName>
     <label>combat supplier</label>
     <orbital>true</orbital>
     <stockGenerators>
@@ -372,7 +372,7 @@
 <!--================================================= USCM Visitor Legal Hardware =====================================================-->
 
   <TraderKindDef>
-    <defName>RRY_USCM_Visitor_Official</defName>
+    <defName>AvP_USCM_Visitor_Official</defName>
     <label>bulk goods trader</label>
     <stockGenerators>
 
@@ -488,7 +488,7 @@
 
 <!--================================================= USCM Visitor Illegal Hardware=====================================================-->
   <TraderKindDef>
-    <defName>RRY_USCM_Visitor_Smuggler</defName>
+    <defName>AvP_USCM_Visitor_Smuggler</defName>
     <label>slaver</label>
     <requestable>false</requestable>
     <commonalityMultFromPopulationIntent>
@@ -527,7 +527,7 @@
         <countRange>1~10</countRange>
       </li>
       <li Class="StockGenerator_Category">
-        <categoryDef>RRY_USCM_Weapons</categoryDef>
+        <categoryDef>AvP_USCM_Weapons</categoryDef>
         <thingDefCountRange>6~6</thingDefCountRange>
         <countRange>1~1</countRange>
       </li>

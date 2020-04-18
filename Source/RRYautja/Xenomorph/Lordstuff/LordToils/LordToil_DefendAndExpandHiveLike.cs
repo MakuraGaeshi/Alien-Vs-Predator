@@ -24,7 +24,7 @@ namespace RimWorld
                 {
                     if (hiveFor.hasQueen)
                     {
-                        duty = new PawnDuty(XenomorphDefOf.RRY_Xenomorph_DefendHiveLoc, hiveFor, 16f);
+                        duty = new PawnDuty(XenomorphDefOf.AvP_Xenomorph_DefendHiveLoc, hiveFor, 16f);
                     }
                     else
                     {
@@ -33,7 +33,7 @@ namespace RimWorld
                 }
                 else if (hive.HiveWorkerlist.Contains(p))
                 {
-                    if (hive.potentialHosts.Any(x=> !x.isCocooned() && x.Downed))
+                    if (hive.potentialHosts.Any(x=> !x.Cocooned() && x.Downed))
                     {
                     //    duty = new PawnDuty(XenomorphDefOf.R, hiveFor, 16f);
                     }
@@ -47,7 +47,7 @@ namespace RimWorld
 
                 if (duty == null)
                 {
-                    duty = new PawnDuty(XenomorphDefOf.RRY_Xenomorph_DefendAndExpandHive, hiveFor, this.distToHiveToAttack);
+                    duty = new PawnDuty(XenomorphDefOf.AvP_Xenomorph_DefendAndExpandHive, hiveFor, this.distToHiveToAttack);
                 }
                 p.mindState.duty = duty;
             }

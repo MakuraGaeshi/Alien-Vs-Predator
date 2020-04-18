@@ -2,7 +2,7 @@
 <Defs>
 
   <TraderKindDef>
-    <defName>RRY_Orbital_BulkGoodsYautja</defName>
+    <defName>AvP_Orbital_BulkGoodsYautja</defName>
     <label>bulk goods trader</label>
     <orbital>true</orbital>
     <stockGenerators>
@@ -153,7 +153,7 @@
   <!--======================================================================================-->
 
   <TraderKindDef>
-    <defName>RRY_Orbital_CombatSupplierYautja</defName>
+    <defName>AvP_Orbital_CombatSupplierYautja</defName>
     <label>combat supplier</label>
     <orbital>true</orbital>
     <stockGenerators>
@@ -232,7 +232,7 @@
   <!--======================================================================================-->
 
   <TraderKindDef>
-    <defName>RRY_Orbital_ExoticYautja</defName>
+    <defName>AvP_Orbital_ExoticYautja</defName>
     <label>exotic goods trader</label>
     <orbital>true</orbital>
     <stockGenerators>
@@ -366,7 +366,7 @@
   <!--======================================================================================-->
 
   <TraderKindDef>
-    <defName>RRY_Orbital_PirateMerchantYautja</defName>
+    <defName>AvP_Orbital_PirateMerchantYautja</defName>
     <label>slave ship</label>
     <orbital>true</orbital>
     <requestable>false</requestable>

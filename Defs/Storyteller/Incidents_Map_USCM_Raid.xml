@@ -3,7 +3,7 @@
 	<!-- ============================== Big threats ============================== -->  
 
   <IncidentDef>
-    <defName>RRY_USCM_StartingRaid</defName>
+    <defName>AvP_USCM_StartingRaid</defName>
     <label>unknown hostiles</label>
     <targetTags>
       <li>Map_PlayerHome</li>

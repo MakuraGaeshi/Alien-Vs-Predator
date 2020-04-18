@@ -65,7 +65,7 @@ namespace RRYautja
         {
             get
             {
-                return Pawn.RaceProps.Humanlike ? XenomorphDefOf.RRY_Xenomorph_Cocoon_Humanoid : XenomorphDefOf.RRY_Xenomorph_Cocoon_Animal;
+                return Pawn.RaceProps.Humanlike ? XenomorphDefOf.AvP_Xenomorph_Cocoon_Humanoid : XenomorphDefOf.AvP_Xenomorph_Cocoon_Animal;
             }
         }
 
@@ -81,7 +81,7 @@ namespace RRYautja
             }
         }
 
-        PawnKindDef RoyalKindDef = XenomorphDefOf.RRY_Xenomorph_RoyaleHugger;
+        PawnKindDef RoyalKindDef = XenomorphDefOf.AvP_Xenomorph_RoyaleHugger;
         public bool RoyalPresent
         {
             get
@@ -90,9 +90,9 @@ namespace RRYautja
                 Predicate<Pawn> validator = delegate (Pawn t)
                 {
                     bool RoyalHugger = t.kindDef == RoyalKindDef;
-                    bool RoyalHuggerInfection = (t.health.hediffSet.HasHediff(XenomorphDefOf.RRY_FaceHuggerInfection) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_FaceHuggerInfection).TryGetComp<HediffComp_XenoFacehugger>().RoyaleHugger);
-                    bool RoyalImpregnation = (t.health.hediffSet.HasHediff(XenomorphDefOf.RRY_XenomorphImpregnation) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_XenomorphImpregnation).TryGetComp<HediffComp_XenoSpawner>().RoyaleHugger);
-                    bool RoyalHiddenImpregnation = (t.health.hediffSet.HasHediff(XenomorphDefOf.RRY_HiddenXenomorphImpregnation) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.RRY_HiddenXenomorphImpregnation).TryGetComp<HediffComp_XenoSpawner>().RoyaleHugger);
+                    bool RoyalHuggerInfection = (t.health.hediffSet.HasHediff(XenomorphDefOf.AvP_FaceHuggerInfection) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.AvP_FaceHuggerInfection).TryGetComp<HediffComp_XenoFacehugger>().RoyaleHugger);
+                    bool RoyalImpregnation = (t.health.hediffSet.HasHediff(XenomorphDefOf.AvP_XenomorphImpregnation) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.AvP_XenomorphImpregnation).TryGetComp<HediffComp_XenoSpawner>().RoyaleHugger);
+                    bool RoyalHiddenImpregnation = (t.health.hediffSet.HasHediff(XenomorphDefOf.AvP_HiddenXenomorphImpregnation) && t.health.hediffSet.GetFirstHediffOfDef(XenomorphDefOf.AvP_HiddenXenomorphImpregnation).TryGetComp<HediffComp_XenoSpawner>().RoyaleHugger);
 #if DEBUG
                     if (this.conversionProgress >= 1f && selected && Prefs.DevMode) Log.Message(string.Format("RoyalHugger: {0}, RoyalHuggerInfection: {1}, RoyalImpregnation: {2}, RoyalHiddenImpregnation: {3}", RoyalHugger , RoyalHuggerInfection , RoyalImpregnation , RoyalHiddenImpregnation));
 #endif
@@ -106,12 +106,12 @@ namespace RRYautja
         {
             get
             {
-                List<Pawn> pawns = MyMap.mapPawns.AllPawnsSpawned.Where(x => x.health.hediffSet.HasHediff(XenomorphDefOf.RRY_Hediff_Cocooned)).ToList();
+                List<Pawn> pawns = MyMap.mapPawns.AllPawnsSpawned.Where(x => x.health.hediffSet.HasHediff(XenomorphDefOf.AvP_Hediff_Cocooned)).ToList();
                 return pawns.Count;
             }
         }
 
-        PawnKindDef QueenKindDef = XenomorphDefOf.RRY_Xenomorph_Queen;
+        PawnKindDef QueenKindDef = XenomorphDefOf.AvP_Xenomorph_Queen;
         public bool QueenPresent
         {
             get
@@ -132,7 +132,7 @@ namespace RRYautja
             }
         }
 
-        PawnKindDef PredalienKindDef = XenomorphDefOf.RRY_Xenomorph_Predalien;
+        PawnKindDef PredalienKindDef = XenomorphDefOf.AvP_Xenomorph_Predalien;
         public bool PredalienPresent
         {
             get
@@ -148,7 +148,7 @@ namespace RRYautja
                 return MyMap.listerThings.ThingsOfDef(eggDef).Any(x => x is Building_XenoEgg egg && egg.eggType == Building_XenoEgg.EggType.Royal);
             }
         }
-        ThingDef eggDef = XenomorphDefOf.RRY_EggXenomorphFertilized;
+        ThingDef eggDef = XenomorphDefOf.AvP_EggXenomorphFertilized;
 
         public override void CompPostPostAdd(DamageInfo? dinfo)
         {
@@ -170,9 +170,9 @@ namespace RRYautja
                 }
                    this.Pawn.jobs.Notify_TuckedIntoBed(thing2);
             }
-            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Cocoons) && Pawn.IsColonist)
+            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.AvP_Concept_Cocoons) && Pawn.IsColonist)
             {
-                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.RRY_Concept_Cocoons, OpportunityType.Critical);
+                LessonAutoActivator.TeachOpportunity(XenomorphConceptDefOf.AvP_Concept_Cocoons, OpportunityType.Critical);
             }
         }
 

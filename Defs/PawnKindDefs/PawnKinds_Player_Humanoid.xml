@@ -27,16 +27,16 @@
 			<!--<li>Civil</li>
 			<li>Tribal</li>
 			<li>Raider</li>-->
-			<li>RRY_USCM_Backstories</li>
+			<li>AvP_USCM_Backstories</li>
   	</backstoryCategories>
   </PawnKindDef>
 
 <!--=============================================== USCM - Private ===============================================-->
 
   <PawnKindDef ParentName="BaseUSCMPawnKind">
-    <defName>RRY_USCM_PlayerPrivate</defName>
+    <defName>AvP_USCM_PlayerPrivate</defName>
     <label>marine</label>
-    <defaultFactionType>RRY_USCM_PlayerColony</defaultFactionType>
+    <defaultFactionType>AvP_USCM_PlayerColony</defaultFactionType>
     <apparelTags>
 		<li>USCM_StandardIssue_Apparel</li>
 	</apparelTags>

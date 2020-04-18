@@ -2,7 +2,7 @@
 <Defs>
 	<!--OG==================== Rebelrot's Yautja Mod - Research Tech =========================OG-->
 	<ResearchProjectDef>
-		<tab>RRY_RTab</tab>
+		<tab>AvP_RTab</tab>
 		<defName>AvP_Tech_Common_XenomorphCrafting</defName>
 		<label>Xenomorph Crafting</label>
 		<description>Allows you to create basic Weapons and Armours out of parts of Xenomorphs</description>
@@ -19,8 +19,8 @@
 	<!-- Commented out in case we ever want to revert back to Armour and Wapon Crafting later - acide_bob
 	
 	<ResearchProjectDef>
-		<tab>RRY_RTab</tab>
-		<defName>RRY_XenomorphArmour</defName>
+		<tab>AvP_RTab</tab>
+		<defName>AvP_XenomorphArmour</defName>
 		<label>Xenomorph Armour</label>
 		<description>Allows you to create basic Armour out of parts of Xenomorphs</description>
 		<baseCost>1000</baseCost>
@@ -36,7 +36,7 @@
 	
 	<!--OG==================== Rebelrot's Yautja Mod - Research Tech =========================OG-->
 	<ResearchProjectDef>
-		<tab>RRY_RTab</tab>
+		<tab>AvP_RTab</tab>
 		<defName>AvP_Tech_Yautja_T1</defName>
 		<label>Yautja Basic tech</label>
 		<description>Allows you to create basic level Yautja tech</description>
@@ -51,7 +51,7 @@
 	</ResearchProjectDef>
 	
 	<ResearchProjectDef>
-		<tab>RRY_RTab</tab>
+		<tab>AvP_RTab</tab>
 		<defName>AvP_Tech_Yautja_T2</defName>
 		<label>Yautja Common tech</label>
 		<description>Allows you to create mid level Yautja tech</description>
@@ -66,7 +66,7 @@
 	</ResearchProjectDef>
 	
 	<ResearchProjectDef>
-		<tab>RRY_RTab</tab>
+		<tab>AvP_RTab</tab>
 		<defName>AvP_Tech_Yautja_T3</defName>
 		<label>Yautja Advanced tech</label>
 		<description>Allows you to create high level Yautja tech</description>
@@ -86,7 +86,7 @@
 	<!--OG==================== Rebelrot's Yautja Mod - Research Weapons =========================OG-->
 	<!--OG==================== Rebelrot's Yautja Mod - Melee Weapons =========================OG-->
 	<ResearchProjectDef>
-		<tab>RRY_RTab</tab>
+		<tab>AvP_RTab</tab>
 		<defName>AvP_Tech_Yautja_Melee_T1</defName>
 		<label>Simple Melee Weapons</label>
 		<description>Allows you to create basic Yautja Melee Weapons</description>
@@ -101,7 +101,7 @@
 	</ResearchProjectDef>
 
 	<ResearchProjectDef>
-		<tab>RRY_RTab</tab>
+		<tab>AvP_RTab</tab>
 		<defName>AvP_Tech_Yautja_Melee_T2</defName>
 		<label>Special Melee Weapons</label>
 		<description>Allows you to create Special Yautja Melee Weapons</description>
@@ -118,7 +118,7 @@
 	
 	<!--OG==================== Rebelrot's Yautja Mod - Ranged Weapons =========================OG-->
 	<ResearchProjectDef>
-		<tab>RRY_RTab</tab>
+		<tab>AvP_RTab</tab>
 		<defName>AvP_Tech_Yautja_Ranged_T1</defName>
 		<label>Simple Ranged Weapons</label>
 		<description>Allows you to create basic Yautja Ranged Weapons</description>
@@ -132,7 +132,7 @@
 	</ResearchProjectDef>
 	
 	<ResearchProjectDef>
-		<tab>RRY_RTab</tab>
+		<tab>AvP_RTab</tab>
 		<defName>AvP_Tech_Yautja_Ranged_T2</defName>
 		<label>Ranged Weapons</label>
 		<description>Allows you to create common Yautja Ranged Weapons</description>
@@ -148,7 +148,7 @@
 	</ResearchProjectDef>
 	
 	<ResearchProjectDef>
-		<tab>RRY_RTab</tab>
+		<tab>AvP_RTab</tab>
 		<defName>AvP_Tech_Yautja_Ranged_T3</defName>
 		<label>Advanced Ranged Weapons</label>
 		<description>Allows you to create advanced Yautja Ranged Weapons</description>
@@ -168,7 +168,7 @@
 	
 	<!--OG==================== Rebelrot's Yautja Mod - Research Upgrades =========================OG-->
 	<ResearchProjectDef>
-		<tab>RRY_RTab</tab>
+		<tab>AvP_RTab</tab>
 		<defName>AvP_Tech_Yautja_MediComp</defName>
 		<label>Medi Comp</label>
 		<description>Adds a Medi Comp to the Wristblade Gauntlet</description>
@@ -184,7 +184,7 @@
 	</ResearchProjectDef>	
 	
 	<ResearchProjectDef>
-		<tab>RRY_RTab</tab>
+		<tab>AvP_RTab</tab>
 		<defName>AvP_Tech_Yautja_HealthShard</defName>
 		<label>Shard Injector</label>
 		<description>Adds a Shard Injector to the Wristblade Gauntlet's Medicomp</description>
@@ -204,7 +204,7 @@
 	</ResearchProjectDef>	
 	
 	<ResearchProjectDef>
-		<tab>RRY_RTab</tab>
+		<tab>AvP_RTab</tab>
 		<defName>AvP_Tech_Yautja_CloakGenerator</defName>
 		<label>Cloaking Generator</label>
 		<description>Adds a Cloaking Generator to the Wristblade Gauntlet</description>
@@ -224,7 +224,7 @@
 	
 	<!--OG==================== Rebelrot's Yautja Mod - Rearmable Traps =========================OG-->
 	<ResearchProjectDef>
-		<tab>RRY_RTab</tab>
+		<tab>AvP_RTab</tab>
 		<defName>AvP_Yautja_Traps</defName>
 		<label>Basic Yautja Traps</label>
 		<description>Allows you to create basic (Rearmable) Yautja Traps</description>

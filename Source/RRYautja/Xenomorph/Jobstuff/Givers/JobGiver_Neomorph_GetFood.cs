@@ -81,7 +81,7 @@ namespace RimWorld
             {
                 if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0} is corpse @ {1}", thing, thing.Position));
                 nutrition = FoodUtility.GetNutrition(thing, thingDef);
-                return new Job(XenomorphDefOf.RRY_Neomorph_Ingest, thing)
+                return new Job(XenomorphDefOf.AvP_Neomorph_Ingest, thing)
                 {
                     count = FoodUtility.WillIngestStackCountOf(pawn, thingDef, nutrition)
                 };
@@ -99,7 +99,7 @@ namespace RimWorld
             }
             nutrition = FoodUtility.GetNutrition(thing, thingDef);
             if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0} is thing @ {1}", thing, thing.Position));
-            return new Job(XenomorphDefOf.RRY_Neomorph_Ingest, thing)
+            return new Job(XenomorphDefOf.AvP_Neomorph_Ingest, thing)
             {
                 count = FoodUtility.WillIngestStackCountOf(pawn, thingDef, nutrition)
             };

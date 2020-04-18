@@ -5,7 +5,7 @@ using Verse;
 namespace RimWorld
 {
     // Token: 0x0200021E RID: 542
-    public class ThoughtWorker_RRY_Facehugger : ThoughtWorker
+    public class ThoughtWorker_AvP_Facehugger : ThoughtWorker
     {
         // Token: 0x06000A30 RID: 2608 RVA: 0x0004FE58 File Offset: 0x0004E258
         protected override ThoughtState CurrentStateInternal(Pawn p)
@@ -15,7 +15,7 @@ namespace RimWorld
             {
                 return ThoughtState.Inactive;
             }
-            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.RRY_Concept_Embryo) && p.Spawned && p.IsColonist)
+            if (!PlayerKnowledgeDatabase.IsComplete(XenomorphConceptDefOf.AvP_Concept_Embryo) && p.Spawned && p.IsColonist)
             {
                 return ThoughtState.Inactive;
             }

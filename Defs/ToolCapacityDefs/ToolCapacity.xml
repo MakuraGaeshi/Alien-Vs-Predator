@@ -3,15 +3,15 @@
 <Defs>
 
   <ToolCapacityDef>
-    <defName>RRY_FaceHuggerGrab</defName>
+    <defName>AvP_FaceHuggerGrab</defName>
   </ToolCapacityDef>
   
   <ToolCapacityDef>
-    <defName>RRY_TailWhip</defName>
+    <defName>AvP_TailWhip</defName>
   </ToolCapacityDef>
 
   <ToolCapacityDef>
-    <defName>RRY_AcidSplash</defName>
+    <defName>AvP_AcidSplash</defName>
   </ToolCapacityDef>
 
 </Defs>
