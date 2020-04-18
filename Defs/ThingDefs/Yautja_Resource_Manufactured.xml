@@ -55,13 +55,13 @@
     </recipeMaker>
     <comps>
       <li Class="CompProperties_Usable">
-        <compClass>RRYautja.CompUsable_HealthShard</compClass>
+        <compClass>AvP.CompUsable_HealthShard</compClass>
         <useJob>UseItem</useJob>
         <useLabel>Restock Health Shards</useLabel>
         <useDuration>300</useDuration>
       </li>
       <li Class="CompProperties_UseEffect">
-        <compClass>RRYautja.CompUseEffect_HealthShard</compClass>
+        <compClass>AvP.CompUseEffect_HealthShard</compClass>
       </li>
       <li Class="CompProperties_UseEffect">
         <compClass>CompUseEffect_DestroySelf</compClass>

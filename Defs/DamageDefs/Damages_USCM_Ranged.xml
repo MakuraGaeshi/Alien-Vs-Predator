@@ -3,7 +3,7 @@
 
 <!--==================== Base Damage Type - No Camera Shake =========================-->	
 	<DamageDef Name="RRYLocalRangedInjuryBaseFlameNoCamShake" Abstract="True">
-		<workerClass>RRYautja.DamageWorker_FlameNoCamShake</workerClass>
+		<workerClass>AvP.DamageWorker_FlameNoCamShake</workerClass>
 	</DamageDef>
 	
 <!--==================== Flamer Damage Type =========================-->

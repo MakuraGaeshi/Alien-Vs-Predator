@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using RimWorld;
-using RRYautja;
-using RRYautja.ExtensionMethods;
+using AvP;
+using AvP.ExtensionMethods;
 using UnityEngine;
 using Verse;
 using Verse.AI;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000B78 RID: 2936
     public class Plant_Neomorph : Plant

@@ -1,4 +1,4 @@
-﻿using RRYautja.ExtensionMethods;
+﻿using AvP.ExtensionMethods;
 using System;
 using Verse;
 
@@ -103,7 +103,7 @@ namespace RimWorld
             {
                 if (Rand.Value < this.LeaflessPlantKillChance && this.parent.Map.GooGrid().GetDepth(c) >= 1f)
                 {
-                    if (RRYautja.settings.SettingsHelper.latest.AllowNeomorphs)
+                    if (AvP.settings.SettingsHelper.latest.AllowNeomorphs)
                     {
                         Thing thing2;
 

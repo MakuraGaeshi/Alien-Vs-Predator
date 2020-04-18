@@ -2,13 +2,13 @@
 
 <Defs>
   <!-- ========================BaseDef================================== -->
-  <RRYautja.EquipmentAbilityDef Name="AvP_BaseAbility" Abstract="True">
+  <AvP.EquipmentAbilityDef Name="AvP_BaseAbility" Abstract="True">
     <iconPath>UI/Glow_Corrupt</iconPath>
-  </RRYautja.EquipmentAbilityDef>
+  </AvP.EquipmentAbilityDef>
   
  
-<ThingDef Name="AvP_BaseProjectileAbility" Class="RRYautja.ProjectileDef_Ability" ParentName="BaseBullet" Abstract="True">
-   <thingClass>RRYautja.Projectile_AbilityRRY</thingClass>
+<ThingDef Name="AvP_BaseProjectileAbility" Class="AvP.ProjectileDef_Ability" ParentName="BaseBullet" Abstract="True">
+   <thingClass>AvP.Projectile_AbilityRRY</thingClass>
    <label>Ability Projectile</label>
 		<graphicData>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -17,8 +17,8 @@
 		</graphicData>
  </ThingDef>
  
-<ThingDef Name="AvP_BaseThrownProjectileAbility" Class="RRYautja.ProjectileDef_Ability" ParentName="BaseBullet" Abstract="True">
-   <thingClass>RRYautja.Projectile_AbilityAvP_ThrownWeapon</thingClass>
+<ThingDef Name="AvP_BaseThrownProjectileAbility" Class="AvP.ProjectileDef_Ability" ParentName="BaseBullet" Abstract="True">
+   <thingClass>AvP.Projectile_AbilityAvP_ThrownWeapon</thingClass>
    <label>Ability Projectile</label>
 		<graphicData>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -28,8 +28,8 @@
  </ThingDef>
  
  
-<ThingDef Name="AvP_BaseThrownReturningProjectileAbility" Class="RRYautja.ProjectileDef_Ability" ParentName="BaseBullet" Abstract="True">
-   <thingClass>RRYautja.Projectile_AbilityAvP_ThrownReturning</thingClass>
+<ThingDef Name="AvP_BaseThrownReturningProjectileAbility" Class="AvP.ProjectileDef_Ability" ParentName="BaseBullet" Abstract="True">
+   <thingClass>AvP.Projectile_AbilityAvP_ThrownReturning</thingClass>
    <label>Ability Projectile</label>
 		<graphicData>
 			<graphicClass>Graphic_Single</graphicClass>

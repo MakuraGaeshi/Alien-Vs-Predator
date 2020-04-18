@@ -5,7 +5,7 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000E49 RID: 3657
     public abstract class Stuffable_Projectile : ThingWithComps

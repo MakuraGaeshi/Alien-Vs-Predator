@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     public class UnstrippableExtension : DefModExtension
     {

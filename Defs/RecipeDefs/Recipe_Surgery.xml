@@ -4,7 +4,7 @@
     <defName>AvP_GauntletRemoval</defName>
     <label>Attempt Gauntlet removal</label>
     <description>Gauntlet removal</description>
-    <workerClass>RRYautja.Recipe_Remove_Gauntlet</workerClass>
+    <workerClass>AvP.Recipe_Remove_Gauntlet</workerClass>
     <jobString>Attempting to remove yautja gauntlet</jobString>
     <workAmount>1500</workAmount>
     <removesHediff>AvP_Hediff_Yautja_Wristblade</removesHediff>
@@ -38,7 +38,7 @@
     <defName>AvP_FaceHuggerRemoval</defName>
     <label>Attempt Facehugger removal</label>
     <description>Facehugger removal</description>
-    <workerClass>RRYautja.Recipe_RemoveHugger</workerClass>
+    <workerClass>AvP.Recipe_RemoveHugger</workerClass>
     <jobString>Attempting to remove xenomorph parasite</jobString>
     <workAmount>1500</workAmount>
     <removesHediff>AvP_FaceHuggerInfection</removesHediff>

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using RimWorld;
-using RRYautja.HarmonyInstance;
+using AvP.HarmonyInstance;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
 
-namespace RRYautja
+namespace AvP
 {
     public class CompProperties_EquippableTurret : CompProperties
     {

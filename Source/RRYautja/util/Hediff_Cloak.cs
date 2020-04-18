@@ -9,7 +9,7 @@ using System.Reflection;
 using UnityEngine;
 using AlienRace;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000188 RID: 392
     public class Hediff_Cloak : HediffWithComps

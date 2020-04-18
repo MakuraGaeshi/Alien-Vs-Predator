@@ -1,7 +1,7 @@
 ﻿using System;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x020006C2 RID: 1730
     public static class XenomorphCocoonUtility

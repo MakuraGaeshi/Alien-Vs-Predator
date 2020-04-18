@@ -5,7 +5,7 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000695 RID: 1685
     public class MinifiedXenoEgg : MinifiedThing

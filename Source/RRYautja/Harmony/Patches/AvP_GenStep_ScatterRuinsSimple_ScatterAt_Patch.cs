@@ -10,12 +10,12 @@ using System.Linq;
 using Verse.AI.Group;
 using RimWorld.Planet;
 using UnityEngine;
-using RRYautja.settings;
-using RRYautja.ExtensionMethods;
+using AvP.settings;
+using AvP.ExtensionMethods;
 using AlienRace;
 using System.Reflection.Emit;
 
-namespace RRYautja.HarmonyInstance
+namespace AvP.HarmonyInstance
 {
 
     /*

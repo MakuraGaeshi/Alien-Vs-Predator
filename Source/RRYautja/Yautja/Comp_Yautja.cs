@@ -1,7 +1,7 @@
 ﻿using AlienRace;
 using HunterMarkingSystem;
 using RimWorld;
-using RRYautja;
+using AvP;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Text;
 using Verse;
 using Verse.AI;
 
-namespace RRYautja
+namespace AvP
 {
 
     public class CompProperties_Yautja : CompProperties

@@ -3,7 +3,7 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000011 RID: 17
     [StaticConstructorOnStartup]

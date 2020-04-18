@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x0200047F RID: 1151
     public class Recipe_Remove_Gauntlet : Recipe_Surgery

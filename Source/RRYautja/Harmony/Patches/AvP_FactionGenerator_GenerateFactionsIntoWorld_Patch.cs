@@ -10,10 +10,10 @@ using System.Linq;
 using Verse.AI.Group;
 using RimWorld.Planet;
 using UnityEngine;
-using RRYautja.settings;
-using RRYautja.ExtensionMethods;
+using AvP.settings;
+using AvP.ExtensionMethods;
 
-namespace RRYautja.HarmonyInstance
+namespace AvP.HarmonyInstance
 {
     // Prevents disabled factions from generating in a new world
     [HarmonyPatch(typeof(FactionGenerator), "GenerateFactionsIntoWorld", null)]

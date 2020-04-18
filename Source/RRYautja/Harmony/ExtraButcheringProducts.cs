@@ -5,7 +5,7 @@ using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000002 RID: 2
     [StaticConstructorOnStartup]

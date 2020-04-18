@@ -4,7 +4,7 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000013 RID: 19
     public class AvP_FlyingObject : ThingWithComps

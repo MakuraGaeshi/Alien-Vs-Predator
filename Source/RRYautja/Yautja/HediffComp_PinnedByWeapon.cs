@@ -6,7 +6,7 @@ using System.Text;
 using UnityEngine;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     public class HediffCompProperties_PinnedByWeapon : HediffCompProperties
     {

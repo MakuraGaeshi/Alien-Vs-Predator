@@ -10,12 +10,12 @@ using System.Linq;
 using Verse.AI.Group;
 using RimWorld.Planet;
 using UnityEngine;
-using RRYautja.settings;
-using RRYautja.ExtensionMethods;
+using AvP.settings;
+using AvP.ExtensionMethods;
 using HunterMarkingSystem;
 using HunterMarkingSystem.ExtensionMethods;
 
-namespace RRYautja.HarmonyInstance
+namespace AvP.HarmonyInstance
 {
 
     [HarmonyPatch(typeof(PawnGenerator), "GeneratePawn", new[] { typeof(PawnGenerationRequest) })]

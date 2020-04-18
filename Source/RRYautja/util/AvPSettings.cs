@@ -5,13 +5,13 @@ using System.Reflection;
 using HarmonyLib;
 using HunterMarkingSystem;
 using RimWorld;
-using RRYautja.ExtensionMethods;
-using RRYautja.Xenomorph;
+using AvP.ExtensionMethods;
+using AvP.Xenomorph;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
 
-namespace RRYautja.settings
+namespace AvP.settings
 {
     static internal class SettingsHelper
     {

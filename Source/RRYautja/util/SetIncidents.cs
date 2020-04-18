@@ -1,9 +1,9 @@
 ﻿using System;
 using RimWorld;
-using RRYautja.settings;
+using AvP.settings;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000007 RID: 7
     public static class SetIncidents

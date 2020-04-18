@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using RimWorld;
 using RimWorld.Planet;
-using RRYautja;
-using RRYautja.ExtensionMethods;
+using AvP;
+using AvP.ExtensionMethods;
 using Verse.AI.Group;
 
 namespace Verse

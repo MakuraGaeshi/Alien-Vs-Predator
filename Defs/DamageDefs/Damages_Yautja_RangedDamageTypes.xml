@@ -102,7 +102,7 @@
     <defName>AvP_RangedStab_Combi</defName>
     <label>stab</label>
     <workerClass>DamageWorker_AddInjury</workerClass>
-    <!-- <workerClass>RRYautja.DamageWorker_CombiPin</workerClass> -->
+    <!-- <workerClass>AvP.DamageWorker_CombiPin</workerClass> -->
     <externalViolence>true</externalViolence>
     <deathMessage>{0} has been fatally impaled.</deathMessage>
     <hediff>AvP_Impaled</hediff>

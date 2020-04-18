@@ -15,7 +15,7 @@
     <defName>StartYautjaTemple</defName>
     <label>start near a Yautja Temple (AvP)</label>
     <category>WorldThing</category>
-    <scenPartClass>RRYautja.ScenPart_StartTemple</scenPartClass>
+    <scenPartClass>AvP.ScenPart_StartTemple</scenPartClass>
 		<summaryPriority>490</summaryPriority>
     <maxUses>1</maxUses>
   </ScenPartDef>

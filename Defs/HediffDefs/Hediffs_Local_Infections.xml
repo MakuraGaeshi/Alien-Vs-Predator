@@ -84,11 +84,11 @@
 			</disappearsAfterTicks>
 		</li>
 		-->
-		<li Class="RRYautja.HediffCompProperties_XenoFacehugger">
+		<li Class="AvP.HediffCompProperties_XenoFacehugger">
 		<severityPerDay>1</severityPerDay>
 		</li>
-		<li Class="RRYautja.HediffCompProperties_DrawImplant">
-        <compClass>RRYautja.HediffComp_DrawImplant</compClass>
+		<li Class="AvP.HediffCompProperties_DrawImplant">
+        <compClass>AvP.HediffComp_DrawImplant</compClass>
         <implantDrawerType>Head</implantDrawerType>
 		<!--
 		<implantGraphicPath>Things/Pawn/Xenomorph/Xenomorph_FaceHugger_Mask</implantGraphicPath>
@@ -100,7 +100,7 @@
  
   <HediffDef ParentName="DiseaseBase">
     <defName>AvP_XenomorphImpregnation</defName>
-    <hediffClass>RRYautja.XenoHediffWithComps</hediffClass>
+    <hediffClass>AvP.XenoHediffWithComps</hediffClass>
     <label>xenomorph embryo</label>
     <description>xenomorph embryo</description>
     <labelNoun>a xenomorph impregnation</labelNoun>
@@ -153,7 +153,7 @@
 		<messageType>PawnDeath</messageType>
 		<letterType>NegativeEvent</letterType>
       </li>
-		<li Class="RRYautja.HediffCompProperties_XenoSpawner">
+		<li Class="AvP.HediffCompProperties_XenoSpawner">
 		<severityPerDay>1</severityPerDay>
 		<pawnKindDefs>
 			<li>AvP_Xenomorph_Queen</li>
@@ -228,7 +228,7 @@
       </li>
     </stages>
     <comps>
-		<li Class="RRYautja.HediffCompProperties_XenoSpawner">
+		<li Class="AvP.HediffCompProperties_XenoSpawner">
 		<severityPerDay>0.5</severityPerDay>
 		<pawnKindDefs>
 			<li>AvP_Xenomorph_Queen</li>
@@ -425,7 +425,7 @@
       </li>
     </stages>
     <comps>
-		<li Class="RRYautja.HediffCompProperties_NeoSpawner">
+		<li Class="AvP.HediffCompProperties_NeoSpawner">
 		<pawnKindDef>AvP_Xenomorph_Neomorph</pawnKindDef>
 		</li>
 		<li Class="HediffCompProperties_SeverityPerDay">
@@ -619,7 +619,7 @@
       </li>
     </stages>
     <comps>
-		<li Class="RRYautja.HediffCompProperties_NeoSpawner">
+		<li Class="AvP.HediffCompProperties_NeoSpawner">
 		<severityPerDay>0.3</severityPerDay>
 		<pawnKindDef>AvP_Xenomorph_Neomorph</pawnKindDef>
 		</li>

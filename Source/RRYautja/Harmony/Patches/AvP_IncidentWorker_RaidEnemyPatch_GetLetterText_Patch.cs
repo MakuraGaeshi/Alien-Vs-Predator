@@ -10,10 +10,10 @@ using System.Linq;
 using Verse.AI.Group;
 using RimWorld.Planet;
 using UnityEngine;
-using RRYautja.settings;
-using RRYautja.ExtensionMethods;
+using AvP.settings;
+using AvP.ExtensionMethods;
 
-namespace RRYautja.HarmonyInstance
+namespace AvP.HarmonyInstance
 {
     [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "GetLetterText")]
     public static class AvP_IncidentWorker_RaidEnemyPatch_GetLetterText_Patch

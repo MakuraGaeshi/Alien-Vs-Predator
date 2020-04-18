@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000010 RID: 16
     public class SynthTraitEntry

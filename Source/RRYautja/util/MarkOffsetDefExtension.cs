@@ -1,7 +1,7 @@
 ﻿using System;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000020 RID: 32
     public class OffsetDefExtension : DefModExtension

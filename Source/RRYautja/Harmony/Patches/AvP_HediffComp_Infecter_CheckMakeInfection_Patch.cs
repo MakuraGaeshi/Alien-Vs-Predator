@@ -10,10 +10,10 @@ using System.Linq;
 using Verse.AI.Group;
 using RimWorld.Planet;
 using UnityEngine;
-using RRYautja.settings;
-using RRYautja.ExtensionMethods;
+using AvP.settings;
+using AvP.ExtensionMethods;
 
-namespace RRYautja.HarmonyInstance
+namespace AvP.HarmonyInstance
 {
     // Protects Cocooned Pawns from wound infections
     [HarmonyPatch(typeof(HediffComp_Infecter), "CheckMakeInfection")]

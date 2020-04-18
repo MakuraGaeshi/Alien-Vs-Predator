@@ -10,9 +10,9 @@ using HarmonyLib;
 using Verse.Sound;
 using System.Reflection;
 using UnityEngine;
-using RRYautja.ExtensionMethods;
+using AvP.ExtensionMethods;
 
-namespace RRYautja.HarmonyInstance
+namespace AvP.HarmonyInstance
 {
     [HarmonyPatch(typeof(Verb_MeleeAttackDamage), "DamageInfosToApply")]
     public static class AvP_Verb_MeleeAttackDamage_DamageInfosToApply_Facehugger_Patch

@@ -1,7 +1,7 @@
-﻿using RRYautja.ExtensionMethods;
+﻿using AvP.ExtensionMethods;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     /// <summary>
     /// Adds a hediff to a character after it is generated/spawned.

@@ -5,7 +5,7 @@ using System.Text;
 using Verse;
 using HunterMarkingSystem;
 
-namespace RRYautja
+namespace AvP
 {
     public static class YautjaBloodedUtility
     {

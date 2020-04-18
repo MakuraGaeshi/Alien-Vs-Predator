@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000AAA RID: 2730
     public class CompAbilityEffect_Shoot : CompAbilityEffect_WithDest

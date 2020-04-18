@@ -4,7 +4,7 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     public class Filth_AddAcidDamageDef : ThingDef
     {

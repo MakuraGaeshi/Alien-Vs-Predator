@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000002 RID: 2
     public class TrailThrower

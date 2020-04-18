@@ -22,7 +22,7 @@
     </startingGoodwill>
     <fixedName>a Jungle Clan</fixedName>
 	<!--factionNameMaker>NamerRRYYautjaJungleClan</factionNameMaker-->
-	<settlementNameMaker>NamerRRYautjaBases</settlementNameMaker>
+	<settlementNameMaker>NamerAvPBases</settlementNameMaker>
 	<techLevel>Spacer</techLevel>
     <backstoryFilters>
       <li>

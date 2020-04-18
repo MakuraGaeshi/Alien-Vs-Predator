@@ -338,7 +338,7 @@
 			</li>
 			-->
 			
-			<li Class="RRYautja.JobGiver_EnterHiveTunnel"/>
+			<li Class="AvP.JobGiver_EnterHiveTunnel"/>
 			
 		  </subNodes>
 		</li>
@@ -428,7 +428,7 @@
 				<li Class="ThinkNode_Conditional_OverHealth">
 				  <pawnHealth>0.75</pawnHealth>
 				  <subNodes>
-					<li Class="RRYautja.JobGiver_WanderCloserToHosts">
+					<li Class="AvP.JobGiver_WanderCloserToHosts">
 					  <maxDanger>Deadly</maxDanger>
 					  <wanderRadius>12</wanderRadius>
 					  <locomotionUrgency>Jog</locomotionUrgency>
@@ -444,13 +444,13 @@
 		  <Brightness>0.75</Brightness>
 		  <subNodes>
 		  
-			<li Class="RRYautja.JobGiver_EnterHiveTunnel"/>
+			<li Class="AvP.JobGiver_EnterHiveTunnel"/>
 		  <!-- Runner -->
 		  <!--
 			<li Class="ThinkNode_ConditionalPawnKind">
 			  <pawnKind>AvP_Xenomorph_Runner</pawnKind>
 			  <subNodes>
-				<li Class="RRYautja.JobGiver_EnterHiveTunnel"/>
+				<li Class="AvP.JobGiver_EnterHiveTunnel"/>
 			  </subNodes>
 			</li>
 			-->

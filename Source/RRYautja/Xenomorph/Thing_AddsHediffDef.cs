@@ -4,7 +4,7 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000007 RID: 7
     public class Thing_AddsHediffDef : ThingDef

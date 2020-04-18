@@ -19,7 +19,7 @@
     </filth>
   </ThingDef>  
    
-  <ThingDef Class="RRYautja.Filth_AddAcidDamageDef" ParentName="BaseFilth">
+  <ThingDef Class="AvP.Filth_AddAcidDamageDef" ParentName="BaseFilth">
     <defName>AvP_FilthBloodXenomorph_Active</defName>
     <label>acidic blood</label>
     <statBases>
@@ -31,7 +31,7 @@
       <color>(250, 225, 0, 180)</color>
     </graphicData>
 	<tickerType>Normal</tickerType> 
-	<thingClass>RRYautja.Filth_AddAcidDamage</thingClass>
+	<thingClass>AvP.Filth_AddAcidDamage</thingClass>
     <filth>
       <rainWashes>true</rainWashes>
       <cleaningWorkToReduceThickness>90</cleaningWorkToReduceThickness>

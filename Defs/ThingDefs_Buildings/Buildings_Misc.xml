@@ -53,11 +53,11 @@
   </ThingDef>
 -->
 
-  <ThingDef Class="RRYautja.ThingDef_CryptosleepCasket" ParentName="BuildingBase">
+  <ThingDef Class="AvP.ThingDef_CryptosleepCasket" ParentName="BuildingBase">
     <defName>AvP_XenomorphCryptosleepCasket</defName>
     <label>ancient cryptosleep casket</label>
     <description>This cryptosleep casket looks like it has been here for a very long time. Who knows what it might contain?</description>
-    <thingClass>RRYautja.Building_XenomorphCryptosleepCasket</thingClass>
+    <thingClass>AvP.Building_XenomorphCryptosleepCasket</thingClass>
     <graphicData>
       <texPath>Things/Building/Ship/ShipCryptosleepCasket</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
@@ -107,11 +107,11 @@
     <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
   </ThingDef>
 
-  <ThingDef Class="RRYautja.ThingDef_CryptosleepCasket" ParentName="BuildingBase">
+  <ThingDef Class="AvP.ThingDef_CryptosleepCasket" ParentName="BuildingBase">
     <defName>AvP_Yautja_CryptosleepCasket_Tribute_XenoEgg</defName>
     <label>Yautja Blooding casket</label>
     <description>This cryptosleep casket contains a prospective Host and a Xenomorph Egg.</description>
-    <thingClass>RRYautja.Building_XenomorphCryptosleepCasket</thingClass>
+    <thingClass>AvP.Building_XenomorphCryptosleepCasket</thingClass>
 		<!-- <Faction>AvP_Xenomorph</Faction> -->
 		<PawnKinds>
 		  <li>WildMan</li>
@@ -169,11 +169,11 @@
     <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
   </ThingDef>
 
-<!--<ThingDef Class="RRYautja.ThingDef_CryptosleepCasket" ParentName="BuildingBase">
+<!--<ThingDef Class="AvP.ThingDef_CryptosleepCasket" ParentName="BuildingBase">
     <defName>AvP_Yautja_CryptosleepCasket_Tribute_Rewards</defName>
     <label>Yautja Blooding reward casket</label>
     <description>This cryptosleep casket contains the rewards for a blooding.</description>
-    <thingClass>RRYautja.Building_XenomorphCryptosleepCasket</thingClass>
+    <thingClass>AvP.Building_XenomorphCryptosleepCasket</thingClass>
 	
 	<spawnThing>AvP_Yautja_Equipment_PlasmaCaster</spawnThing>
     	
@@ -232,7 +232,7 @@
     <defName>MinifiedThingNoBox</defName>
 	<ignoreConfigErrors>true</ignoreConfigErrors>
     <label>minified thing</label>
-    <thingClass>RRYautja.MinifiedThingNoBox</thingClass>
+    <thingClass>AvP.MinifiedThingNoBox</thingClass>
     <category>Item</category>
     <useHitPoints>true</useHitPoints>
     <selectable>true</selectable>

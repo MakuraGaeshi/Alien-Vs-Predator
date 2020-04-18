@@ -11,7 +11,7 @@ using Verse.Sound;
 using UnityEngine;
 using System.Reflection;
 
-namespace RRYautja.HarmonyInstance
+namespace AvP.HarmonyInstance
 {
     
     [HarmonyPatch(typeof(NeurotrainerDefGenerator), "ImpliedThingDefs")]
@@ -24,7 +24,7 @@ namespace RRYautja.HarmonyInstance
                 CompProperties_Neurotrainer compProperties = item.GetCompProperties<CompProperties_Neurotrainer>();
                 if (compProperties.ability!=null)
                 {
-                    if (compProperties.ability.GetType() != typeof(RRYautja.EquipmentAbilityDef))
+                    if (compProperties.ability.GetType() != typeof(AvP.EquipmentAbilityDef))
                     {
                         yield return item;
                     }

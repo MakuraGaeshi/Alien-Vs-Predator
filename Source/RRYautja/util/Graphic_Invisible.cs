@@ -6,7 +6,7 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace RRYautja
+namespace AvP
 {
     public class Graphic_Invisible : Graphic
     {

@@ -2,7 +2,7 @@
 using UnityEngine;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x0200024D RID: 589
     public class CompProperties_FireOverlay : CompProperties

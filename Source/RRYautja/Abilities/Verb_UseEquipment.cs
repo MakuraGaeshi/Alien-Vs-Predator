@@ -6,7 +6,7 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 
-namespace RRYautja
+namespace AvP
 {
 
     // Token: 0x02000024 RID: 36

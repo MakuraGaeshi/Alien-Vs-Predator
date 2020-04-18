@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     public class Projectile_AbilityRRY : Projectile
     {

@@ -2,7 +2,7 @@
 using System;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
 	// Token: 0x02001598 RID: 5528
 	[StaticConstructorOnStartup]

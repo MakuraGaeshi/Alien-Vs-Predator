@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
 	// Token: 0x02000332 RID: 818
 	public class IncidentWorker_NeomorphFungusSprout : IncidentWorker

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     public static class DropShipArrivalActionUtility
     {

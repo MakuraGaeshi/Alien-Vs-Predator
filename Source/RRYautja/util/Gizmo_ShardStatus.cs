@@ -2,7 +2,7 @@
 using UnityEngine;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000003 RID: 3
     [StaticConstructorOnStartup]

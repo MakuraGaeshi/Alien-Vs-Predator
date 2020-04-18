@@ -1,6 +1,6 @@
-﻿using RRYautja;
-using RRYautja.ExtensionMethods;
-using RRYautja.Xenomorph.Hives;
+﻿using AvP;
+using AvP.ExtensionMethods;
+using AvP.Xenomorph.Hives;
 using System.Collections.Generic;
 using Verse;
 using Verse.AI;

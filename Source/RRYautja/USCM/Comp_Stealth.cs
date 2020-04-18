@@ -1,5 +1,5 @@
 ﻿using RimWorld;
-using RRYautja.ExtensionMethods;
+using AvP.ExtensionMethods;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ using UnityEngine;
 using Verse;
 using Verse.AI;
 
-namespace RRYautja
+namespace AvP
 {
     public class CompProperties_Stealth : CompProperties
     {

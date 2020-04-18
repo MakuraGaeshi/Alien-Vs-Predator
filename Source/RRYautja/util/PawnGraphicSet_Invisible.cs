@@ -6,7 +6,7 @@ using Verse;
 using Verse.AI;
 using RimWorld;
 
-namespace RRYautja
+namespace AvP
 {
     public class PawnGraphicSet_Invisible : PawnGraphicSet
     {

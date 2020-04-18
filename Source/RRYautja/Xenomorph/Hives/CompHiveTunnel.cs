@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x0200025D RID: 605
     public class CompProperties_HiveTunnel : CompProperties

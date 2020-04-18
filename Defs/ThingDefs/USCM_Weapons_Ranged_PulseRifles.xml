@@ -97,7 +97,7 @@
 			<graphicClass>Graphic_Single</graphicClass>		
 		</graphicData>	
 		<comps>   
-			<li Class="RRYautja.CompProperties_AbilityItem">
+			<li Class="AvP.CompProperties_AbilityItem">
 				<Abilities>
 					<li>AvP_Ability_LaunchM42AGrenade</li>
 				</Abilities>
@@ -119,7 +119,7 @@
 			<graphicClass>Graphic_Single</graphicClass>		
 		</graphicData>
 		<comps>   
-			<li Class="RRYautja.CompProperties_AbilityItem">
+			<li Class="AvP.CompProperties_AbilityItem">
 				<Abilities>
 					<li>AvP_Ability_LaunchM42BShotgun</li>
 				</Abilities>

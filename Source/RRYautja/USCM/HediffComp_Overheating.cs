@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     public class HediffCompProperties_Overheating : HediffCompProperties
     {

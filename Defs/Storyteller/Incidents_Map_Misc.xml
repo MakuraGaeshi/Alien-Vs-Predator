@@ -70,7 +70,7 @@
     <targetTags>
       <li>Map_PlayerHome</li>
     </targetTags>
-		<workerClass>RRYautja.IncidentWorker_NeomorphFungusSprout</workerClass>
+		<workerClass>AvP.IncidentWorker_NeomorphFungusSprout</workerClass>
 		<baseChance>0.0</baseChance>
 		<letterLabel>strange fungus spotted</letterLabel>
 		<letterText>A patch of small, black, spherical, fungus-like sacks has formed on the ground..</letterText>
@@ -92,7 +92,7 @@
     <targetTags>
       <li>Map_PlayerHome</li>
     </targetTags>
-		<workerClass>RRYautja.IncidentWorker_NeomorphFungusSprout</workerClass>
+		<workerClass>AvP.IncidentWorker_NeomorphFungusSprout</workerClass>
 		<baseChance>0.10</baseChance>
 		<allowedBiomes>
 			<li>TropicalRainforest</li>

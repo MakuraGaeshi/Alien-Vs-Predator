@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     /// <summary>
     /// Temporary Hediff for replacing Hediffs like MissingPartHeDiff.

@@ -8,9 +8,9 @@ using Verse.AI;
 using System.Reflection;
 using HarmonyLib;
 using UnityEngine;
-using RRYautja.ExtensionMethods;
+using AvP.ExtensionMethods;
 
-namespace RRYautja.HarmonyInstance
+namespace AvP.HarmonyInstance
 {
     [HarmonyPatch(typeof(PawnUIOverlay), "DrawPawnGUIOverlay")]
     public static class AvP_PawnUIOverlay_DrawPawnGUIOverlay_Stealth_Patch

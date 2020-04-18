@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using RimWorld;
 using RimWorld.Planet;
-using RRYautja.ExtensionMethods;
+using AvP.ExtensionMethods;
 using UnityEngine;
 using Verse;
 using Verse.AI;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000743 RID: 1859
     public class CompProperties_XenoHatcher : CompProperties

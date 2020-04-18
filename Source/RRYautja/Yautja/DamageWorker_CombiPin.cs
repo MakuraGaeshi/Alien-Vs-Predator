@@ -4,7 +4,7 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000D4B RID: 3403
     public class DamageWorker_CombiPin : DamageWorker

@@ -16,8 +16,8 @@
     <basicMemberKind>Colonist_AvP_Yautja</basicMemberKind>
     <pawnsPlural>Yautja</pawnsPlural>
     <playerInitialSettlementNameMaker>NamerInitialSettlementColony</playerInitialSettlementNameMaker>
-		<factionNameMaker>NamerRRYautjaFaction</factionNameMaker>
-    <settlementNameMaker>NamerRRYautjaBases</settlementNameMaker>
+		<factionNameMaker>NamerAvPFaction</factionNameMaker>
+    <settlementNameMaker>NamerAvPBases</settlementNameMaker>
     <techLevel>Ultra</techLevel>
     <backstoryFilters>
       <li>
@@ -77,8 +77,8 @@
     <label>Yautja Unblooded</label>
     <description>Considered ready for your first autonomous hunt, you are sent on an unknown world to make your first hunts and come back to your clan by your own mean. Death before dishonor.</description>
     <playerInitialSettlementNameMaker>NamerInitialSettlementColony</playerInitialSettlementNameMaker>
-		<factionNameMaker>NamerRRYautjaFaction</factionNameMaker>
-    <settlementNameMaker>NamerRRYautjaBases</settlementNameMaker>
+		<factionNameMaker>NamerAvPFaction</factionNameMaker>
+    <settlementNameMaker>NamerAvPBases</settlementNameMaker>
     <techLevel>Ultra</techLevel>
     <isPlayer>true</isPlayer>
     <basicMemberKind>Colonist_AvP_Yautja_Unblooded</basicMemberKind>
@@ -139,8 +139,8 @@
     <label>Yautja Blooded</label>
     <description>On a scouting mission to find new hunting grounds, something disastrous happened to your ship and you are possibly the only 5 survivors. Without a choice, you landed in unknown territory and have to face new dangers while you try to make your way back to your Clan.</description>
     <playerInitialSettlementNameMaker>NamerInitialSettlementColony</playerInitialSettlementNameMaker>
-		<factionNameMaker>NamerRRYautjaFaction</factionNameMaker>
-    <settlementNameMaker>NamerRRYautjaBases</settlementNameMaker>
+		<factionNameMaker>NamerAvPFaction</factionNameMaker>
+    <settlementNameMaker>NamerAvPBases</settlementNameMaker>
     <techLevel>Ultra</techLevel>
     <isPlayer>true</isPlayer>
     <basicMemberKind>Colonist_AvP_Yautja_Blooded</basicMemberKind>
@@ -204,8 +204,8 @@
     <label>Yautja Unblooded</label>
     <description>Considered ready for your first autonomous hunt, you are sent on an unknown world to make your first hunts and come back to your clan by your own mean. Death before dishonor.</description>
     <playerInitialSettlementNameMaker>NamerInitialSettlementColony</playerInitialSettlementNameMaker>
-		<factionNameMaker>NamerRRYautjaFaction</factionNameMaker>
-    <settlementNameMaker>NamerRRYautjaBases</settlementNameMaker>
+		<factionNameMaker>NamerAvPFaction</factionNameMaker>
+    <settlementNameMaker>NamerAvPBases</settlementNameMaker>
     <techLevel>Ultra</techLevel>
     <isPlayer>true</isPlayer>
     <basicMemberKind>Colonist_AvP_Yautja_Blooding</basicMemberKind>

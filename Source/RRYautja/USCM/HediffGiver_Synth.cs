@@ -2,7 +2,7 @@
 using System;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000D8F RID: 3471
     public class HediffGiver_Synth : HediffGiver

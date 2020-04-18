@@ -109,10 +109,10 @@
         </li>
 		<!--
         <li>
-            <compClass>RRYautja.Comp_Yautja</compClass>
+            <compClass>AvP.Comp_Yautja</compClass>
         </li>
 		-->
-		<li Class="RRYautja.CompProperties_Yautja">
+		<li Class="AvP.CompProperties_Yautja">
 			<bloodedDefs>
 			<li>HMS_Hediff_BloodedM</li>
 			<li>HMS_Hediff_BloodedMHuman</li>
@@ -750,7 +750,7 @@
 		<!-- West Angle overrides, will default to 0 if not set -->
 		<WestAngle>0</WestAngle>
 	  </li>
-	  <li Class="RRYautja.OffsetDefExtension">
+	  <li Class="AvP.OffsetDefExtension">
 		<!-- DefName of the hediff this applies to --> 
 		<hediff>AvP_FaceHuggerInfection</hediff>
 		<!-- adds the vanillia head offset for the current rotation, not sure if this will ever be useful, defaults to false if not set--> 

@@ -13,10 +13,10 @@
 		<tickerType>Normal</tickerType>
 		<comps>  
       <li>
-        <compClass>RRYautja.Comp_PinningWeapon</compClass>
+        <compClass>AvP.Comp_PinningWeapon</compClass>
       </li>
 	
-		<li Class="RRYautja.CompProperties_AbilityItem">
+		<li Class="AvP.CompProperties_AbilityItem">
 			<Abilities>
 				<li>AvP_Ability_Throw_CombiStick</li>
 			</Abilities>

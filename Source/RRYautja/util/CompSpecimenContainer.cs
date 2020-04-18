@@ -6,7 +6,7 @@ using System.Text;
 using Verse;
 using Verse.AI;
 
-namespace RRYautja
+namespace AvP
 {
     public class CompProperties_SpecimenContainer: CompProperties
     {

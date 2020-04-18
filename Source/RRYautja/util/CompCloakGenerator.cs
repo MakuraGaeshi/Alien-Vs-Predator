@@ -1,12 +1,12 @@
 ﻿using RimWorld;
-using RRYautja.HarmonyInstance;
+using AvP.HarmonyInstance;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
 
-namespace RRYautja
+namespace AvP
 {
     public class CompProperties_CompCloakGenerator : CompProperties
     {

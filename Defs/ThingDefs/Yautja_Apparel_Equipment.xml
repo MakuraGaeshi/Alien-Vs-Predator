@@ -9,7 +9,7 @@
 		<defName>AvP_Yautja_Equipment_Gauntlet</defName>
 		<label>Yautja Hunter Gauntlet</label>
 		<description>This wrist mounted gauntlet is the most basic piece of equipment a Hunter carries. They come in infinite variations. At its base it contains extendable claws and a self destruction device. Can be upgraded with a MediComp, Shard Injector and Cloaking device.</description>
-		<thingClass>RRYautja.Cloakgen</thingClass>
+		<thingClass>AvP.Cloakgen</thingClass>
 		<graphicData>
 			<texPath>Things/Apparel/Yautja_Gauntlet/Yautja_Gauntlet</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -23,10 +23,10 @@
 		  <li Class="AdeptusMechanicus.CompProperties_ToggleDef">
             <labelKey>AvP_Toggle_Gauntlet</labelKey>
 		  </li> 
-		  <li Class="RRYautja.CompProperties_WearableExplosive">
+		  <li Class="AvP.CompProperties_WearableExplosive">
 			<stability>2</stability>
 		  </li> 
-		  <li Class="RRYautja.CompProperties_MedicalInjector">
+		  <li Class="AvP.CompProperties_MedicalInjector">
 			<medicine>MedicineHerbal</medicine>
 			<Uses>3</Uses>
 		  </li>
@@ -85,7 +85,7 @@
 			<li>Apparel</li>
 		</tradeTags>
 	<modExtensions>
-	  <li Class="RRYautja.UnstrippableExtension">
+	  <li Class="AvP.UnstrippableExtension">
 		<!-- Apparel with this Extension are unabled to be stripped by --> 
 	  </li>
 	</modExtensions>
@@ -100,7 +100,7 @@
 			</bodyPartGroups>
         </apparel>
 		<comps> 
-		  <li Class="RRYautja.CompProperties_HediffApparel">
+		  <li Class="AvP.CompProperties_HediffApparel">
 			<dropOnPartLost>true</dropOnPartLost>
 			<hediffDef>AvP_Hediff_Yautja_Wristblade</hediffDef>
 			<partsToAffect>
@@ -123,7 +123,7 @@
 			</bodyPartGroups>
         </apparel>
 		<comps> 
-		  <li Class="RRYautja.CompProperties_HediffApparel">
+		  <li Class="AvP.CompProperties_HediffApparel">
 			<dropOnPartLost>true</dropOnPartLost>
 			<hediffDef>AvP_Hediff_Yautja_Wristblade</hediffDef>
 			<partsToAffect>
@@ -149,7 +149,7 @@
 		</graphicData>
 		<tickerType>Normal</tickerType>
 		<comps>  
-	      <li Class="RRYautja.CompProperties_EquippableTurret"> 
+	      <li Class="AvP.CompProperties_EquippableTurret"> 
 			<TurretDef>AvP_EquippableTurret</TurretDef>
 		  </li>
 		</comps>

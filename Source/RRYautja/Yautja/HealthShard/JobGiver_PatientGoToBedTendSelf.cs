@@ -3,7 +3,7 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x0200000D RID: 13
     public class JobGiver_PatientGoToBedTendSelf : ThinkNode

@@ -5,9 +5,9 @@ using System.Text;
 using RimWorld;
 using Verse;
 using HarmonyLib;
-using RRYautja.ExtensionMethods;
+using AvP.ExtensionMethods;
 
-namespace RRYautja.HarmonyInstance
+namespace AvP.HarmonyInstance
 {
     [HarmonyPatch(typeof(ThingSelectionUtility), "SelectableByMapClick")]
     public static class AvP_ThingSelectionUtility_SelectableByMapClick_HostileStealth_Patch

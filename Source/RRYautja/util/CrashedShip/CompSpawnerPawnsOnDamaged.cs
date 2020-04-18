@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using RimWorld.Planet;
-using RRYautja.settings;
+using AvP.settings;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;

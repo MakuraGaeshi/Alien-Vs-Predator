@@ -10,11 +10,11 @@ using System.Linq;
 using Verse.AI.Group;
 using RimWorld.Planet;
 using UnityEngine;
-using RRYautja.settings;
-using RRYautja.ExtensionMethods;
+using AvP.settings;
+using AvP.ExtensionMethods;
 using AlienRace;
 
-namespace RRYautja.HarmonyInstance
+namespace AvP.HarmonyInstance
 {
     [HarmonyPatch(typeof(SickPawnVisitUtility), "CanVisit")]
     public static class AvP_SickPawnVisitUtility_CanVisit_Synth_Patch

@@ -7,7 +7,7 @@ using System.Text;
 using Verse;
 using Verse.AI.Group;
 
-namespace RRYautja
+namespace AvP
 {
     public class DropShipLeaving : DropPodLeaving, IActiveDropPod, IThingHolder
     {

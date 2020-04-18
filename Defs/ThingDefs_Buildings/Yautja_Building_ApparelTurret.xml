@@ -22,7 +22,7 @@
     <label>shoulder-mounted plasma caster</label>
     <description>A shoulder-mounted automatic plasma caster turret. Its dumb AI brain can't be directly controlled, so beware of friendly fire.</description>
 	
-	<thingClass>RRYautja.Building_Turret_Shoulder</thingClass>
+	<thingClass>AvP.Building_Turret_Shoulder</thingClass>
     <!--
 	<thingClass>Building_TurretGun</thingClass>
     -->

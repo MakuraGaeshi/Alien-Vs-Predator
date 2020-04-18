@@ -6,7 +6,7 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x0200000E RID: 14
     public static class HealthShardTendUtility

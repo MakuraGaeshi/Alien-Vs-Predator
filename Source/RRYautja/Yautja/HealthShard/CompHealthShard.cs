@@ -5,7 +5,7 @@ using Verse;
 using Verse.AI;
 using System.Linq;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000005 RID: 5
     public class CompProperties_MedicalInjector : CompProperties

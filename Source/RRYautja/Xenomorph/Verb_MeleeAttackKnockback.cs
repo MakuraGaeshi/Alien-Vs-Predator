@@ -1,12 +1,12 @@
 ﻿using RimWorld;
-using RRYautja.HarmonyInstance;
+using AvP.HarmonyInstance;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000A0D RID: 2573
     public class Verb_MeleeAttackKnockback : Verb_MeleeAttack

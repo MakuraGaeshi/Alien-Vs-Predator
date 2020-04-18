@@ -6,7 +6,7 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000D7E RID: 3454
     public class XenoHediffWithComps : HediffWithComps

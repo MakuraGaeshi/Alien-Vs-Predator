@@ -9,7 +9,7 @@ using Verse.AI.Group;
 using HarmonyLib;
 using System.Reflection;
 
-namespace RRYautja.HarmonyInstance
+namespace AvP.HarmonyInstance
 {
     [HarmonyPatch(typeof(Building_Door), "PawnCanOpen")]
     public static class AvP_Building_Door_CanOpen_Cloaked_Patch

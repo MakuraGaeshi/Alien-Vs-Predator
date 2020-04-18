@@ -3,7 +3,7 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000475 RID: 1141
     public class Verb_LaunchProjectileEquipment : Verb_CastAbility

@@ -1,9 +1,9 @@
 ﻿using System;
 using UnityEngine;
 using Verse;
-using RRYautja.ExtensionMethods;
+using AvP.ExtensionMethods;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000CA1 RID: 3233
     internal class SectionLayer_Hive : SectionLayer

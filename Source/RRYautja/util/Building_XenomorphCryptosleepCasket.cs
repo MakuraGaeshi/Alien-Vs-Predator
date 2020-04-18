@@ -7,7 +7,7 @@ using Verse;
 using Verse.AI.Group;
 using Verse.Sound;
 
-namespace RRYautja
+namespace AvP
 {
     public class ThingDef_CryptosleepCasket : ThingDef
     {

@@ -70,7 +70,7 @@
   
   <HediffDef>
     <defName>AvP_Hediff_Cloaked</defName>
-    <hediffClass>RRYautja.Hediff_Cloak</hediffClass>
+    <hediffClass>AvP.Hediff_Cloak</hediffClass>
     <initialSeverity>1</initialSeverity>
     <label>Stealth</label>
     <description>Stealth</description>
@@ -84,7 +84,7 @@
   
   <HediffDef>
     <defName>AvP_Hediff_BouncedProjectile</defName>
-    <hediffClass>RRYautja.Hediff_Bouncer</hediffClass>
+    <hediffClass>AvP.Hediff_Bouncer</hediffClass>
     <initialSeverity>1</initialSeverity>
     <label>Stealth</label>
     <description>Stealth</description>
@@ -115,7 +115,7 @@
       </li>
     </stages>
     <comps> 
-		  <li Class="RRYautja.HediffCompProperties_XenomorphCocoon">
+		  <li Class="AvP.HediffCompProperties_XenomorphCocoon">
       </li>
     </comps>
   </HediffDef>
@@ -164,11 +164,11 @@
       </li>
     </stages>
     <comps> 
-		  <li Class="RRYautja.HediffCompProperties_PinnedByWeapon">
+		  <li Class="AvP.HediffCompProperties_PinnedByWeapon">
       </li>
 <!--
       <li>
-        <compClass>RRYautja.HediffComp_Blur</compClass>
+        <compClass>AvP.HediffComp_Blur</compClass>
       </li>
       <li Class="JecsTools.HediffCompProperties_Knockback">
         <knockbackChance>0.8</knockbackChance>

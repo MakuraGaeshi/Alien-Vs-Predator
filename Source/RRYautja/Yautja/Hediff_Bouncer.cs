@@ -3,7 +3,7 @@ using System.Linq;
 using RimWorld;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     public class Hediff_Bouncer : HediffWithComps
     {

@@ -3,7 +3,7 @@ using System;
 using System.Reflection;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     [StaticConstructorOnStartup]
     static class UtilCE

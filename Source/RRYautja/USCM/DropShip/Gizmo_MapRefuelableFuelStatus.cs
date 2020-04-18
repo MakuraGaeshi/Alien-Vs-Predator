@@ -4,7 +4,7 @@ using System.Text;
 using UnityEngine;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000759 RID: 1881
     [StaticConstructorOnStartup]

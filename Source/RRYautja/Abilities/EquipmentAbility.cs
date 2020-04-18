@@ -8,7 +8,7 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000AAD RID: 2733
     public class EquipmentAbility : Ability

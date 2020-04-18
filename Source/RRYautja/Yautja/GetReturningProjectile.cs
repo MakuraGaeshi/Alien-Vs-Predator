@@ -2,7 +2,7 @@
 using RimWorld;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
 
     public class GetReturningProjectile : MoteThrown

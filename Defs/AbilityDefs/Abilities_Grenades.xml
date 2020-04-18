@@ -28,15 +28,15 @@
 		</projectile>
 	</ThingDef>
 
-	<RRYautja.EquipmentAbilityDef ParentName="AvP_BaseAbility">
+	<AvP.EquipmentAbilityDef ParentName="AvP_BaseAbility">
         <defName>AvP_Ability_LaunchM42AGrenade</defName>
         <label>Underslung Grenade</label>
         <iconPath>Things/Projectile/Grenade</iconPath>
         <description>Launches a Grenade.</description>
-        <abilityClass>RRYautja.EquipmentAbility</abilityClass>
+        <abilityClass>AvP.EquipmentAbility</abilityClass>
 		<cooldown>30</cooldown>
-        <verbProperties Class="RRYautja.VerbProperties_EquipmentAbility">
-            <verbClass>RRYautja.Verb_ShootEquipment</verbClass>
+        <verbProperties Class="AvP.VerbProperties_EquipmentAbility">
+            <verbClass>AvP.Verb_ShootEquipment</verbClass>
             <hasStandardCommand>true</hasStandardCommand>
 			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
 			<defaultProjectile>AvP_Bullet_M42AGrenade</defaultProjectile>
@@ -53,24 +53,24 @@
         </verbProperties>
 		<comps>
 		  <li Class="CompProperties_EffectWithDest">
-			<compClass>RRYautja.CompAbilityEffect_Shoot</compClass>
+			<compClass>AvP.CompAbilityEffect_Shoot</compClass>
 			<psychic>false</psychic>
 			<goodwillImpact>0</goodwillImpact>
 			<screenShakeIntensity>0</screenShakeIntensity>
 			<clamorRadius>0</clamorRadius>
 		  </li>
 		</comps>
-	</RRYautja.EquipmentAbilityDef>
+	</AvP.EquipmentAbilityDef>
  
-	<RRYautja.EquipmentAbilityDef ParentName="AvP_BaseAbility">
+	<AvP.EquipmentAbilityDef ParentName="AvP_BaseAbility">
         <defName>AvP_Ability_LaunchM42BShotgun</defName>
         <label>Underslung Shotgun</label>
         <iconPath>Things/Projectile/Bullet_Shotgun</iconPath>
         <description>Fires the Underslung Shotgun.</description>
-        <abilityClass>RRYautja.EquipmentAbility</abilityClass>
+        <abilityClass>AvP.EquipmentAbility</abilityClass>
 		<cooldown>10</cooldown>
-        <verbProperties Class="RRYautja.VerbProperties_EquipmentAbility">
-            <verbClass>RRYautja.Verb_ShootEquipment</verbClass>
+        <verbProperties Class="AvP.VerbProperties_EquipmentAbility">
+            <verbClass>AvP.Verb_ShootEquipment</verbClass>
             <hasStandardCommand>true</hasStandardCommand>
 			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
 			<defaultProjectile>AvP_USCM_Bullet_M37A2S</defaultProjectile>
@@ -86,13 +86,13 @@
         </verbProperties>
 		<comps>
 		  <li Class="CompProperties_EffectWithDest">
-			<compClass>RRYautja.CompAbilityEffect_Shoot</compClass>
+			<compClass>AvP.CompAbilityEffect_Shoot</compClass>
 			<psychic>false</psychic>
 			<goodwillImpact>0</goodwillImpact>
 			<screenShakeIntensity>0</screenShakeIntensity>
 			<clamorRadius>0</clamorRadius>
 		  </li>
 		</comps>
-	</RRYautja.EquipmentAbilityDef>
+	</AvP.EquipmentAbilityDef>
  
 </Defs>

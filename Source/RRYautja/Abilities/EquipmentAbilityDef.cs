@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     public class EquipmentAbilityDef : AbilityDef
     {

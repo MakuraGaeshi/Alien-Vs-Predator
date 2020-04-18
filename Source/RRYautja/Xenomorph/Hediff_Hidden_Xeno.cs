@@ -5,9 +5,9 @@ using Verse.AI;
 using RimWorld;
 using System.Reflection;
 using UnityEngine;
-using RRYautja.ExtensionMethods;
+using AvP.ExtensionMethods;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000188 RID: 392
     public class Hediff_Hidden_Xeno : HediffWithComps

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     public class CompProperties_SynthProps : CompProperties
     {

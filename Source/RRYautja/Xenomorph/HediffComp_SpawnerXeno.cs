@@ -1,13 +1,13 @@
 ﻿using RimWorld;
-using RRYautja.ExtensionMethods;
-using RRYautja.settings;
+using AvP.ExtensionMethods;
+using AvP.settings;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000D5A RID: 3418
     public class HediffCompProperties_XenoSpawner : HediffCompProperties

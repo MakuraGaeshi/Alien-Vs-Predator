@@ -48,7 +48,7 @@
       <li>ITab_ContentsTransporter</li>
     </inspectorTabs>
     <comps>
-      <li Class="RRYautja.CompProperties_USCMDropship" />
+      <li Class="AvP.CompProperties_USCMDropship" />
       <li Class="CompProperties_Transporter">
         <massCapacity>999999</massCapacity>
         <max1PerGroup>true</max1PerGroup>

@@ -11,7 +11,7 @@
 			<li Class="PatchOperationAddModExtension">
 				<xpath>/Defs/ThingDef[defName = "Megasloth"]</xpath>
 				<value>
-				  <li Class="RRYautja.OffsetDefExtension">
+				  <li Class="AvP.OffsetDefExtension">
 				    <!-- DefName of the hediff this applies to --> 
 					<hediff>AvP_FaceHuggerInfection</hediff>
 					<!-- adds the vanillia head offset for the current rotation, not sure if this will ever be useful, defaults to false if not set--> 

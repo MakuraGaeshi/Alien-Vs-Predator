@@ -9,16 +9,16 @@
         <li>WordYautji(p=2)->[SylG]'[SylG][SylE]-[SylG]</li>
       </rulesStrings>
       <rulesFiles>
-        <li>AvP_NameYautjaMale->NameBanks/RRYautjaMale</li>
-        <li>AvP_NameYautjaMaleA->NameBanks/RRYautjaMaleA</li>
-        <li>AvP_NameYautjaMaleB->NameBanks/RRYautjaMaleB</li>
+        <li>AvP_NameYautjaMale->NameBanks/AvPMale</li>
+        <li>AvP_NameYautjaMaleA->NameBanks/AvPMaleA</li>
+        <li>AvP_NameYautjaMaleB->NameBanks/AvPMaleB</li>
 		
-        <li>AvP_NameYautjaFemale->NameBanks/RRYautjaFemale</li>
-        <li>AvP_NameYautjaFemaleA->NameBanks/RRYautjaFemaleA</li>
-        <li>AvP_NameYautjaFemaleB->NameBanks/RRYautjaFemaleB</li>
+        <li>AvP_NameYautjaFemale->NameBanks/AvPFemale</li>
+        <li>AvP_NameYautjaFemaleA->NameBanks/AvPFemaleA</li>
+        <li>AvP_NameYautjaFemaleB->NameBanks/AvPFemaleB</li>
 		
-        <li>AvP_NameYautjaUnisexNick->NameBanks/RRYautjaNick</li>
-        <li>AvP_NameYautjaFemaleNick->NameBanks/RRYautjaNickFemale</li>
+        <li>AvP_NameYautjaUnisexNick->NameBanks/AvPNick</li>
+        <li>AvP_NameYautjaFemaleNick->NameBanks/AvPNickFemale</li>
 		
         <li>SylE->WordParts/Syllables_English</li>
         <li>SylG->WordParts/Syllables_Galician</li>
@@ -27,15 +27,15 @@
   </RulePackDef>
 
 	<RulePackDef>
-		<defName>NamerRRYautjaFaction</defName>
+		<defName>NamerAvPFaction</defName>
 		<rulePack>
 		  <rulesStrings>
-			<li>name->[RRYautjaClans]</li>
+			<li>name->[AvPClans]</li>
 		  </rulesStrings>
 		  <rulesRaw>
 			<li Class="Rule_File">
-				<keyword>RRYautjaClans</keyword>
-				<path>NameBanks/RRYautjaClans</path>
+				<keyword>AvPClans</keyword>
+				<path>NameBanks/AvPClans</path>
 			</li>
 		  </rulesRaw>
 		</rulePack>
@@ -50,22 +50,22 @@
 		  <rulesRaw>
 			<li Class="Rule_File">
 				<keyword>AvP_Yautja_JungleClan</keyword>
-				<path>NameBanks/RRYautjaClanJungle</path>
+				<path>NameBanks/AvPClanJungle</path>
 			</li>
 		  </rulesRaw>
 		</rulePack>
 	</RulePackDef>
 	
 	<RulePackDef>
-		<defName>NamerRRYautjaBases</defName>
+		<defName>NamerAvPBases</defName>
 		<rulePack>
 			<rulesStrings>
-				<li>name->[RRYautjaBaseNames]</li>
+				<li>name->[AvPBaseNames]</li>
 			</rulesStrings>
 			<rulesRaw>
 				<li Class="Rule_File">
-					<keyword>RRYautjaBaseNames</keyword>
-					<path>NameBanks/RRYautjaBaseNames</path>
+					<keyword>AvPBaseNames</keyword>
+					<path>NameBanks/AvPBaseNames</path>
 				</li>
 			</rulesRaw>
 		</rulePack>

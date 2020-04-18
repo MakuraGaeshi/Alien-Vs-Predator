@@ -265,16 +265,16 @@
       <graphicClass>Graphic_Flicker</graphicClass>
       <shaderType>TransparentPostLight</shaderType>
     </graphicData>
-    <thingClass>RRYautja.Projectile_Fire</thingClass>
+    <thingClass>AvP.Projectile_Fire</thingClass>
 	<!--
     <modExtensions>
-      <li Class="RRYautja.AnimatedProjectileExtension">
+      <li Class="AvP.AnimatedProjectileExtension">
         <ticksPerFrame>15</ticksPerFrame>
       </li>
     </modExtensions>
 	-->
 	<modExtensions>
-	  <li Class="RRYautja.ProjectileDefExtension">
+	  <li Class="AvP.ProjectileDefExtension">
 		<ExtraShots>2</ExtraShots>
 	  </li>
 	</modExtensions>
@@ -382,16 +382,16 @@
       <graphicClass>Graphic_Flicker</graphicClass>
       <shaderType>TransparentPostLight</shaderType>
     </graphicData>
-    <thingClass>RRYautja.Projectile_Fire</thingClass>
+    <thingClass>AvP.Projectile_Fire</thingClass>
 	<!--
     <modExtensions>
-      <li Class="RRYautja.AnimatedProjectileExtension">
+      <li Class="AvP.AnimatedProjectileExtension">
         <ticksPerFrame>15</ticksPerFrame>
       </li>
     </modExtensions>
 	-->
 	<modExtensions>
-	  <li Class="RRYautja.ProjectileDefExtension">
+	  <li Class="AvP.ProjectileDefExtension">
 		<ExtraShots>4</ExtraShots>
 	  </li>
 	</modExtensions>
@@ -580,7 +580,7 @@
 			<speed>120</speed>
 		</projectile>
 	<modExtensions>
-	  <li Class="RRYautja.ProjectileDefExtension">
+	  <li Class="AvP.ProjectileDefExtension">
 		<ExtraShots>7</ExtraShots>
 	  </li>
 	</modExtensions>

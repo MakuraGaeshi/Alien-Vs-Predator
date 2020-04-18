@@ -2,9 +2,9 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Verse;
-using RRYautja.HarmonyInstance;
+using AvP.HarmonyInstance;
 
-namespace RRYautja
+namespace AvP
 {
 
     public class CompProperties_WearableExplosive : CompProperties

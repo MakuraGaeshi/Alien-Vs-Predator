@@ -6,10 +6,10 @@ using Verse.AI;
 using System.Linq;
 using HunterMarkingSystem.Settings;
 using HunterMarkingSystem.ExtensionMethods;
-using RRYautja.ExtensionMethods;
-using RRYautja.settings;
+using AvP.ExtensionMethods;
+using AvP.settings;
 
-namespace RRYautja.Xenomorph
+namespace AvP.Xenomorph
 {
     [StaticConstructorOnStartup]
     public class XenomorphHostSystem

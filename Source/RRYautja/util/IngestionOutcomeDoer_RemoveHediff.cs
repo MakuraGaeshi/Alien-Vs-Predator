@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000275 RID: 629
     public class IngestionOutcomeDoer_RemoveHediff : IngestionOutcomeDoer

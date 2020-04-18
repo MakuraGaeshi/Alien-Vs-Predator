@@ -5,7 +5,7 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     public class Projectile_Anim : Projectile
     {

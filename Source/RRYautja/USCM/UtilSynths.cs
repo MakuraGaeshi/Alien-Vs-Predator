@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     static class UtilSynths
     {

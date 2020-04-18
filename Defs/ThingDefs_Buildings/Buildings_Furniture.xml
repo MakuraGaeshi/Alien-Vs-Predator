@@ -84,7 +84,7 @@
 	  
 		<!--
       <li Class="CompProperties_UseEffect">
-        <compClass>RRYautja.CompUseEffect_Cocoon</compClass>
+        <compClass>AvP.CompUseEffect_Cocoon</compClass>
       </li>
 			<li Class="CompProperties_RoomIdentifier">
 				<roomStat>Impressiveness</roomStat>

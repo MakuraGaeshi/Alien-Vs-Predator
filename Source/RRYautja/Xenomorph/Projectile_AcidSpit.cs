@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000003 RID: 3
     public class Projectile_AcidSpit : Projectile

@@ -1,6 +1,6 @@
 ﻿using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000024 RID: 36
     public class Verb_UseEquipment_Thrown : Verb_UseEquipment

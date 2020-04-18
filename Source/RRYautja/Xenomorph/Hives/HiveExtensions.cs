@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 using Verse;
 
-namespace RRYautja.ExtensionMethods
+namespace AvP.ExtensionMethods
 {
 
     public static class HiveExtensions

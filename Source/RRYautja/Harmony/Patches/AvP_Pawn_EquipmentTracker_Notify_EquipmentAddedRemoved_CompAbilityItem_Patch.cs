@@ -2,9 +2,9 @@
 using RimWorld;
 using Verse;
 using HarmonyLib;
-using RRYautja.ExtensionMethods;
+using AvP.ExtensionMethods;
 
-namespace RRYautja.HarmonyInstance
+namespace AvP.HarmonyInstance
 {
     [HarmonyPatch(typeof(Pawn_EquipmentTracker), "Notify_EquipmentAdded")]
     public static class AvP_Pawn_EquipmentTracker_Notify_EquipmentAdded_CompAbilityItem_Patch

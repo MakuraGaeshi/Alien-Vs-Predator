@@ -7,7 +7,7 @@ using Verse;
 using Verse.AI;
 using Verse.AI.Group;
 
-namespace RRYautja
+namespace AvP
 {
     public class CompProperties_Facehugger : CompProperties
     {

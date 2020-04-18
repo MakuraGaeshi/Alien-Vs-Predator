@@ -1,11 +1,11 @@
 ﻿using RimWorld;
-using RRYautja.settings;
+using AvP.settings;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000480 RID: 1152
     public class Recipe_Surgery_RRY : RecipeWorker

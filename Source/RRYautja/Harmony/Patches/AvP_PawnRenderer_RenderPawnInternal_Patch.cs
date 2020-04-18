@@ -10,10 +10,10 @@ using System.Linq;
 using Verse.AI.Group;
 using RimWorld.Planet;
 using UnityEngine;
-using RRYautja.settings;
-using RRYautja.ExtensionMethods;
+using AvP.settings;
+using AvP.ExtensionMethods;
 
-namespace RRYautja.HarmonyInstance
+namespace AvP.HarmonyInstance
 {
     // Cocoon Draw Pos fix
     // Hediff_Implant Drawer
@@ -194,10 +194,10 @@ namespace RRYautja.HarmonyInstance
             OffsetDefExtension myDef = null;
             if (!pawn.def.modExtensions.NullOrEmpty())
             {
-                if (pawn.def.HasModExtension<RRYautja.OffsetDefExtension>())
+                if (pawn.def.HasModExtension<AvP.OffsetDefExtension>())
                 {
-                    List<DefModExtension> list = pawn.kindDef.race.modExtensions.Where((x) => x.GetType() == typeof(RRYautja.OffsetDefExtension)).ToList();
-                    if (list.Any((x) => hediff.def.defName.Contains(((RRYautja.OffsetDefExtension)x).hediff.defName)))
+                    List<DefModExtension> list = pawn.kindDef.race.modExtensions.Where((x) => x.GetType() == typeof(AvP.OffsetDefExtension)).ToList();
+                    if (list.Any((x) => hediff.def.defName.Contains(((AvP.OffsetDefExtension)x).hediff.defName)))
                     {
                         myDef = (OffsetDefExtension)list.First((x) => hediff.def.defName.Contains(((OffsetDefExtension)x).hediff.defName)) ?? null;
                     }

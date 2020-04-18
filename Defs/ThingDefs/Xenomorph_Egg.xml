@@ -5,7 +5,7 @@
     <defName>AvP_EggXenomorphFertilized</defName>
     <label>Xenomorph egg</label>
     <description>A Xenomorph egg. The eggs laid by the queen are ellipsoidal, leathery objects between one-half and one meter (two and three feet) high with a four-lobed opening at the top. The eggs can remain in a stasis mode for years, possibly indefinitely, until nearby movement is detected. As a potential host approaches, the egg's lobes unfold like flower petals, and the parasitic facehugger extracts itself from the egg and attaches itself to the potential host. why anyone would allow one of these to hatch is a mystery.</description>
-     <thingClass>RRYautja.Building_XenoEgg</thingClass>
+     <thingClass>AvP.Building_XenoEgg</thingClass>
     <drawerType>RealtimeOnly</drawerType>
     <minifiedDef>MinifiedXenoEgg</minifiedDef>
     <altitudeLayer>BuildingOnTop</altitudeLayer>
@@ -31,7 +31,7 @@
       <MarketValue>0</MarketValue>
     </statBases>
     <comps>
-      <li Class="RRYautja.CompProperties_XenoHatcher">
+      <li Class="AvP.CompProperties_XenoHatcher">
         <hatcherDaystoHatch>0.25</hatcherDaystoHatch>
         <triggerRadius>7</triggerRadius>
         <!--hatcherPawn>AvP_Xenomorph_FaceHugger</hatcherPawn-->
@@ -57,7 +57,7 @@
     <defName>MinifiedXenoEgg</defName>
 	<ignoreConfigErrors>true</ignoreConfigErrors>
     <label>selfinstalling minifed thing</label>
-    <thingClass>RRYautja.MinifiedXenoEgg</thingClass>
+    <thingClass>AvP.MinifiedXenoEgg</thingClass>
     <category>Item</category>
     <useHitPoints>true</useHitPoints>
     <selectable>true</selectable>

@@ -21,7 +21,7 @@
   <ThingDef ParentName="AvP_USCM_ShuttleSkyfallerBase">
     <defName>AvP_USCM_DropshipUD4LIncoming</defName>
     <label>UD4L (incoming)</label>
-    <!--<thingClass>RRYautja.DropshipIncoming</thingClass>-->
+    <!--<thingClass>AvP.DropshipIncoming</thingClass>-->
     <skyfaller>
       <anticipationSound>AvP_USCM_DropshipUD4L_Landing</anticipationSound>
       <anticipationSoundTicks>250</anticipationSoundTicks>
@@ -58,7 +58,7 @@
   <ThingDef ParentName="AvP_USCM_ShuttleSkyfallerBase">
     <defName>AvP_USCM_DropshipUD4LLeaving</defName>
     <label>UD4L (leaving)</label>
-    <thingClass>RRYautja.DropshipLeaving</thingClass>
+    <thingClass>AvP.DropshipLeaving</thingClass>
     <skyfaller>
       <reversed>true</reversed>
       <anticipationSound>AvP_USCM_DropshipUD4L_Leaving</anticipationSound>

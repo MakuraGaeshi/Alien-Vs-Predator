@@ -7,7 +7,7 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 
-namespace RRYautja
+namespace AvP
 {
     public class Building_Turret_Shoulder : Building_TurretGun
     {

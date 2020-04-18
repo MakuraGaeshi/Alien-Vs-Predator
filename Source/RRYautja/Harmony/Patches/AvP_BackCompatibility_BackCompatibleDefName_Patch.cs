@@ -10,7 +10,7 @@ using HarmonyLib;
 using Verse.Sound;
 using System.Text.RegularExpressions;
 
-namespace RRYautja.HarmonyInstance
+namespace AvP.HarmonyInstance
 {
     [HarmonyPatch(typeof(BackCompatibility), "BackCompatibleDefName")]
     public static class AvP_BackCompatibility_BackCompatibleDefName_Patch

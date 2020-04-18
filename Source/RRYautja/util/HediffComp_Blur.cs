@@ -2,7 +2,7 @@
 using RimWorld;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000016 RID: 22
     public class HediffComp_Blur : HediffComp

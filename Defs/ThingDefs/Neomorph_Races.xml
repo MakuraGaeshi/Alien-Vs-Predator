@@ -24,7 +24,7 @@
             <compClass>CompAttachBase</compClass>
         </li>
 		<!--
-		<li Class="RRYautja.CompProperties_Yautja">
+		<li Class="AvP.CompProperties_Yautja">
 			<bloodedDefs>
 			<li>HMS_Hediff_BloodedM</li>
 			</bloodedDefs>
@@ -54,7 +54,7 @@
       <ArmorRating_Heat>0.75</ArmorRating_Heat>
     </statBases>
     <race>
-      <!-- <deathActionWorkerClass>RRYautja.DeathActionWorker_Xenomorph</deathActionWorkerClass> -->
+      <!-- <deathActionWorkerClass>AvP.DeathActionWorker_Xenomorph</deathActionWorkerClass> -->
       <intelligence>ToolUser</intelligence>
       <trainability>Intermediate</trainability>
       <thinkTreeMain>AvP_Neomorph_ThinkTree</thinkTreeMain>
@@ -135,7 +135,7 @@
     </race>
     <comps> 
       <li>
-        <compClass>RRYautja.Comp_Neomorph</compClass>
+        <compClass>AvP.Comp_Neomorph</compClass>
       </li>
     </comps>
   </ThingDef>

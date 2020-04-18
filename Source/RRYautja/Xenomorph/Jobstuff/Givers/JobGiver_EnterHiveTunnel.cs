@@ -1,14 +1,14 @@
 ﻿using RimWorld;
-using RRYautja.ExtensionMethods;
+using AvP.ExtensionMethods;
 using System;
 using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
 
-namespace RRYautja
+namespace AvP
 {
-    // RRYautja.JobGiver_EnterHiveTunnel
+    // AvP.JobGiver_EnterHiveTunnel
     public class JobGiver_EnterHiveTunnel : ThinkNode_JobGiver
     {
         // Token: 0x060004C5 RID: 1221 RVA: 0x00030B6C File Offset: 0x0002EF6C

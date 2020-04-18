@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 
-namespace RRYautja.Xenomorph.Hives
+namespace AvP.Xenomorph.Hives
 {
     public static class HiveStructure
     {

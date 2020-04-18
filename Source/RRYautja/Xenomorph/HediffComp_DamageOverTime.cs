@@ -3,9 +3,9 @@ using System.Text;
 using RimWorld;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
-    // RRYautja.HediffCompProperties_DamageOverTime
+    // AvP.HediffCompProperties_DamageOverTime
     public class HediffCompProperties_DamageOverTime : HediffCompProperties
     {
         // Token: 0x0600012A RID: 298 RVA: 0x0000AF8C File Offset: 0x0000918C
@@ -36,7 +36,7 @@ namespace RRYautja
         public float repeatChance = 1f;
     }
 
-    // RRYautja.HediffCompDamageOverTime
+    // AvP.HediffCompDamageOverTime
     public class HediffComp_DamageOverTime : HediffComp
     {
 

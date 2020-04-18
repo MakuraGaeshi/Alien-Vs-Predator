@@ -1,11 +1,11 @@
 ﻿using RimWorld;
-using RRYautja.ExtensionMethods;
+using AvP.ExtensionMethods;
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
-using static RRYautja.XenomorphHiveUtility;
+using static AvP.XenomorphHiveUtility;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000067 RID: 103
     public class MapComponent_GooGrid : MapComponent

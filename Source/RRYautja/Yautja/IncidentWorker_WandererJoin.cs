@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000353 RID: 851
     public class IncidentWorker_WandererJoin : IncidentWorker

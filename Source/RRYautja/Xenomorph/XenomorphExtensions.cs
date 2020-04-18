@@ -8,7 +8,7 @@ using Verse;
 using Verse.AI;
 using Verse.AI.Group;
 
-namespace RRYautja.ExtensionMethods
+namespace AvP.ExtensionMethods
 {
     [StaticConstructorOnStartup]
     public static class XenomorphExtensions

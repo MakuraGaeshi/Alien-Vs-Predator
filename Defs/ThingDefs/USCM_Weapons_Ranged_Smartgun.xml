@@ -44,7 +44,7 @@
 				<southOffset>0.125,0.1,-0.15</southOffset>
 				<eastOffset>0.0,0.1,-0.0</eastOffset>
 			</li> 
-			<li Class="RRYautja.CompProperties_SmartgunSystem"> 
+			<li Class="AvP.CompProperties_SmartgunSystem"> 
 			<WarmUpReductionQualityAffected>false</WarmUpReductionQualityAffected>
 			<TargeterDef>AvP_Equipment_HMS</TargeterDef>
 			<HarnessDef>AvP_Apparel_M56CombatHarness</HarnessDef>

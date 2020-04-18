@@ -7,7 +7,7 @@ using Verse;
 
 #pragma warning disable IDE1006 // Naming Styles
 
-namespace RRYautja
+namespace AvP
 {
     public class CompProperties_HediffApparel : CompProperties
     {

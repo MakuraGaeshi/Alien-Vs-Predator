@@ -5,7 +5,7 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     //Code borrowed from More Mechanoid, no modification needed.
     //Credit to these 3 or combination, whoever responsible for this code. Orion, JoeysLucky22, Erdelf

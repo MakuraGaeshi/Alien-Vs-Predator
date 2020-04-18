@@ -1,12 +1,12 @@
 ﻿using RimWorld;
-using RRYautja.ExtensionMethods;
+using AvP.ExtensionMethods;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
-using static RRYautja.XenomorphHiveUtility;
+using static AvP.XenomorphHiveUtility;
 
-namespace RRYautja
+namespace AvP
 {
     public class PotentialXenomorphHiveLocation : IExposable
     {

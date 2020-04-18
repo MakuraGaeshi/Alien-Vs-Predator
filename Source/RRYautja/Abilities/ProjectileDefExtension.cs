@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     public class ProjectileDefExtension : DefModExtension
     {

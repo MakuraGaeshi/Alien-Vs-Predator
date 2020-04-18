@@ -81,7 +81,7 @@
         <li>
             <compClass>CompAttachBase</compClass>
         </li>
-      <li Class="RRYautja.CompProperties_FoodPoisonProtection">
+      <li Class="AvP.CompProperties_FoodPoisonProtection">
 		<Poisonable>false</Poisonable>
 		<FoodPoisonCause>
 			<li>DangerousFoodType</li>
@@ -91,7 +91,7 @@
 			<li>Unknown</li>
 		</FoodPoisonCause>
       </li>
-      <li Class="RRYautja.CompProperties_SynthProps">
+      <li Class="AvP.CompProperties_SynthProps">
 		<AllowedDiseases>
 			<li>MuscleParasites</li>
 			<li>FibrousMechanites</li>

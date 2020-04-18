@@ -4,7 +4,7 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x020006FF RID: 1791
     public class Stuffable_Bullet : Stuffable_Projectile

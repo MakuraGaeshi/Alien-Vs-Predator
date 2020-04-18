@@ -6,7 +6,7 @@ using Verse;
 using Verse.AI;
 using Verse.Sound;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000014 RID: 20
     [StaticConstructorOnStartup]

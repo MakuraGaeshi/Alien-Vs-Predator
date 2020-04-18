@@ -10,10 +10,10 @@ using System.Linq;
 using Verse.AI.Group;
 using RimWorld.Planet;
 using UnityEngine;
-using RRYautja.settings;
-using RRYautja.ExtensionMethods;
+using AvP.settings;
+using AvP.ExtensionMethods;
 
-namespace RRYautja.HarmonyInstance
+namespace AvP.HarmonyInstance
 {
     // Xenomorphs should prefer blunt attacks when attempting to gather host pawns
     [HarmonyPatch(typeof(Pawn_MeleeVerbs), "ChooseMeleeVerb")]

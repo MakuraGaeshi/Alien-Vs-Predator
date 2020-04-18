@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x0200024A RID: 586
     public class CompProperties_XenoEggLayer : CompProperties

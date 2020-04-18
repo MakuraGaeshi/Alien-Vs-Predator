@@ -3,19 +3,19 @@
 
 	<JobDef>
 		<defName>AvP_Yautja_TendSelf</defName>
-		<driverClass>RRYautja.JobDriver_TendSelf</driverClass>
+		<driverClass>AvP.JobDriver_TendSelf</driverClass>
 		<reportString>tending wounds.</reportString>
 	</JobDef>
 	
   <JobDef>
     <defName>AvP_Yautja_HealthShardUse</defName>
-    <driverClass>RRYautja.JobDriver_HealthShard</driverClass>
+    <driverClass>AvP.JobDriver_HealthShard</driverClass>
     <reportString>using health shard.</reportString>
   </JobDef>
   
   <JobDef>
     <defName>AvP_Yautja_HealthShardRestock</defName>
-    <driverClass>RRYautja.JobDriver_HealthShard</driverClass>
+    <driverClass>AvP.JobDriver_HealthShard</driverClass>
     <reportString>restocking health shards.</reportString>
   </JobDef>
   

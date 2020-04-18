@@ -88,7 +88,7 @@
       </li>
     </stages>
     <comps>
-      <li Class="RRYautja.HediffCompProperties_Overheating">
+      <li Class="AvP.HediffCompProperties_Overheating">
       </li>
     </comps>
   </HediffDef>
@@ -229,7 +229,7 @@
 		<li Class="HediffCompProperties_SeverityPerDay">
                     <severityPerDay>0.2</severityPerDay>
               </li>
-        <li Class="RRYautja.HediffCompProperties_DefectiveInhibitor">
+        <li Class="AvP.HediffCompProperties_DefectiveInhibitor">
             <traitsToGive>
                     <li>
                         <defName>Bloodlust</defName>
@@ -304,7 +304,7 @@
         <labelNoun>trauma</labelNoun>
         <comps>
         
-		<li Class="RRYautja.HediffCompProperties_DefectiveInhibitor">
+		<li Class="AvP.HediffCompProperties_DefectiveInhibitor">
             <traitsToGive>
                     <li>
                         <defName>Bloodlust</defName>

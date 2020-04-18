@@ -25,15 +25,15 @@
 		</projectile>
  </ThingDef>
 
-	<RRYautja.EquipmentAbilityDef>
+	<AvP.EquipmentAbilityDef>
         <defName>AvP_Ability_SpitAcid</defName>
         <label>Spit Acid</label>
         <iconPath>Things/Projectile/Smoke</iconPath>
         <description>Spits Acid at the target.</description>
-        <abilityClass>RRYautja.EquipmentAbility</abilityClass>
+        <abilityClass>AvP.EquipmentAbility</abilityClass>
 		<cooldown>30</cooldown>
-		<verbProperties Class="RRYautja.VerbProperties_EquipmentAbility">
-            <verbClass>RRYautja.Verb_ShootEquipment</verbClass>
+		<verbProperties Class="AvP.VerbProperties_EquipmentAbility">
+            <verbClass>AvP.Verb_ShootEquipment</verbClass>
             <hasStandardCommand>true</hasStandardCommand>
 			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
 			<defaultProjectile>AvP_Projectile_AcidSpit</defaultProjectile>
@@ -50,13 +50,13 @@
         </verbProperties>
 		<comps>
 		  <li Class="CompProperties_EffectWithDest">
-			<compClass>RRYautja.CompAbilityEffect_Shoot</compClass>
+			<compClass>AvP.CompAbilityEffect_Shoot</compClass>
 			<psychic>false</psychic>
 			<goodwillImpact>0</goodwillImpact>
 			<screenShakeIntensity>0</screenShakeIntensity>
 			<clamorRadius>0</clamorRadius>
 		  </li>
 		</comps>
-	</RRYautja.EquipmentAbilityDef>
+	</AvP.EquipmentAbilityDef>
  
 </Defs>

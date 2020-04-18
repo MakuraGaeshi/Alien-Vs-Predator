@@ -22,14 +22,14 @@
 		</projectile>
  </ThingDef>
 
-	<RRYautja.EquipmentAbilityDef ParentName="AvP_BaseAbility">
+	<AvP.EquipmentAbilityDef ParentName="AvP_BaseAbility">
         <defName>AvP_Ability_Throw_CombiStick</defName>
         <label>Throw Combistick</label>
         <iconPath>Things/Equipment/Melee/Yautja_Combistaff_New</iconPath>
         <description>Throw the Combistick.</description>
-        <abilityClass>RRYautja.EquipmentAbility</abilityClass>
-        <verbProperties Class="RRYautja.VerbProperties_EquipmentAbility">
-            <verbClass>RRYautja.Verb_UseEquipment_Thrown</verbClass>
+        <abilityClass>AvP.EquipmentAbility</abilityClass>
+        <verbProperties Class="AvP.VerbProperties_EquipmentAbility">
+            <verbClass>AvP.Verb_UseEquipment_Thrown</verbClass>
             <hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>AvP_Projectile_CombiStick</defaultProjectile>
             <warmupTime>2</warmupTime>
@@ -42,14 +42,14 @@
         </verbProperties>
 		<comps>
 		  <li Class="CompProperties_EffectWithDest">
-			<compClass>RRYautja.CompAbilityEffect_Shoot</compClass>
+			<compClass>AvP.CompAbilityEffect_Shoot</compClass>
 			<psychic>false</psychic>
 			<goodwillImpact>0</goodwillImpact>
 			<screenShakeIntensity>0</screenShakeIntensity>
 			<clamorRadius>0</clamorRadius>
 		  </li>
 		</comps>
- </RRYautja.EquipmentAbilityDef>
+ </AvP.EquipmentAbilityDef>
  
 <!-- ======================== Yautja - Throw Smart Disk Ability ================================== -->
 <ThingDef ParentName="AvP_BaseThrownReturningProjectileAbility">
@@ -69,15 +69,15 @@
 		</projectile>
  </ThingDef>
 
-	<RRYautja.EquipmentAbilityDef ParentName="AvP_BaseAbility">
+	<AvP.EquipmentAbilityDef ParentName="AvP_BaseAbility">
         <defName>AvP_Ability_Throw_SmartDisk</defName>
         <label>Throw Smart Disk</label>
         <iconPath>Things/Projectile/SmartDisk</iconPath>
         <description>Throw the Smart Disk.</description>
 		<cooldown>10</cooldown>
-        <abilityClass>RRYautja.EquipmentAbility</abilityClass>
-        <verbProperties Class="RRYautja.VerbProperties_EquipmentAbility">
-            <verbClass>RRYautja.Verb_UseEquipment_Thrown</verbClass>
+        <abilityClass>AvP.EquipmentAbility</abilityClass>
+        <verbProperties Class="AvP.VerbProperties_EquipmentAbility">
+            <verbClass>AvP.Verb_UseEquipment_Thrown</verbClass>
             <hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>AvP_Projectile_SmartDisk</defaultProjectile>
             <warmupTime>2</warmupTime>
@@ -90,13 +90,13 @@
         </verbProperties>
 		<comps>
 		  <li Class="CompProperties_EffectWithDest">
-			<compClass>RRYautja.CompAbilityEffect_Shoot</compClass>
+			<compClass>AvP.CompAbilityEffect_Shoot</compClass>
 			<psychic>false</psychic>
 			<goodwillImpact>0</goodwillImpact>
 			<screenShakeIntensity>0</screenShakeIntensity>
 			<clamorRadius>0</clamorRadius>
 		  </li>
 		</comps>
- </RRYautja.EquipmentAbilityDef>
+ </AvP.EquipmentAbilityDef>
  
  </Defs>

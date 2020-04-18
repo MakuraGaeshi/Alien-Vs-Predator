@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Verse;
 
-namespace RRYautja.ExtensionMethods
+namespace AvP.ExtensionMethods
 {
     /// <summary>
     /// Utility class for dealing with Pawn body parts.

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     public class CompProperties_AbilityItem : CompProperties
     {

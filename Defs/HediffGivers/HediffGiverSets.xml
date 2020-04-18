@@ -8,7 +8,7 @@
     <defName>AvP_Xenomorph_Infection_Humanlike</defName>
     <hediffGivers>
       
-      <li Class="RRYautja.HediffGiver_StartWithXenomorphHediff">
+      <li Class="AvP.HediffGiver_StartWithXenomorphHediff">
         <hediff>AvP_HiddenXenomorphImpregnation</hediff>
 		<partsToAffect>
 		<li>Torso</li>
@@ -16,7 +16,7 @@
 		<chance>5</chance>
       </li>
 	  
-      <li Class="RRYautja.HediffGiver_StartWithXenomorphHediff">
+      <li Class="AvP.HediffGiver_StartWithXenomorphHediff">
         <hediff>AvP_HiddenNeomorphImpregnation</hediff>
 		<partsToAffect>
 		<li>Torso</li>
@@ -84,7 +84,7 @@
     <defName>AvP_Artificials_Synth_Hediffgiver</defName>
 	<hediffGivers>
       
-		<li Class="RRYautja.HediffGiver_Synth">
+		<li Class="AvP.HediffGiver_Synth">
 			<hediff>AvP_Damaged_Inhibitor</hediff>
 			<partsToAffect>
 			  <li>AvP_BehavorialInhibitor</li>
@@ -101,7 +101,7 @@
 		<li Class="HediffGiver_Heat">
 			<hediff>AvP_Synth_Overheating</hediff>
 		</li>
-		<li Class="RRYautja.HediffGiver_StartWithHediff">
+		<li Class="AvP.HediffGiver_StartWithHediff">
         <hediff>AvP_Defective_Inhibitor</hediff>
 		<partsToAffect>
           <li>AvP_BehavorialInhibitor</li>

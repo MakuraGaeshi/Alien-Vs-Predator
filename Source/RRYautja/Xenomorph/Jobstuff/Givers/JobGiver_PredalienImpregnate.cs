@@ -1,5 +1,5 @@
-﻿using RRYautja;
-using RRYautja.settings;
+﻿using AvP;
+using AvP.settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;

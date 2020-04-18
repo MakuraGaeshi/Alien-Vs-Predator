@@ -9,7 +9,7 @@ using UnityEngine;
 using Verse;
 using Verse.AI;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000861 RID: 2145
     public class CompProperties_USCMDropship : CompProperties

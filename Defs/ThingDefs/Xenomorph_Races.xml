@@ -2,7 +2,7 @@
 <Defs>
 
 <ThingDef Name="AvP_BaseXenomorphPawn" Abstract="True">
-    <thingClass>RRYautja.XenomorphPawn</thingClass>
+    <thingClass>AvP.XenomorphPawn</thingClass>
     <category>Pawn</category>
     <selectable>true</selectable>
     <tickerType>Normal</tickerType>
@@ -46,7 +46,7 @@
     <race>
       <thinkTreeMain>AvP_Xenomorph_ThinkTree</thinkTreeMain>
       <thinkTreeConstant>XenomorphConstant</thinkTreeConstant>
-      <!-- <deathActionWorkerClass>RRYautja.DeathActionWorker_Xenomorph</deathActionWorkerClass> -->
+      <!-- <deathActionWorkerClass>AvP.DeathActionWorker_Xenomorph</deathActionWorkerClass> -->
       <herdAnimal>false</herdAnimal>
       <!--predator>true</predator-->
       <maxPreyBodySize>3.0</maxPreyBodySize>
@@ -135,10 +135,10 @@
     </race>
     <comps> 
       <li>
-        <compClass>RRYautja.Comp_Facehugger</compClass>
+        <compClass>AvP.Comp_Facehugger</compClass>
       </li>
       <li>
-        <compClass>RRYautja.Comp_Xenomorph</compClass>
+        <compClass>AvP.Comp_Xenomorph</compClass>
       </li>
     </comps>
   </ThingDef>
@@ -348,9 +348,9 @@
     </race>
     <comps> 
       <li>
-        <compClass>RRYautja.Comp_Xenomorph</compClass>
+        <compClass>AvP.Comp_Xenomorph</compClass>
       </li>
-      <li Class="RRYautja.CompProperties_XenoEggLayer">
+      <li Class="AvP.CompProperties_XenoEggLayer">
         <eggDef>AvP_EggXenomorphFertilized</eggDef>
         <eggCountMax>1</eggCountMax>
         <eggLayIntervalDays>0.1</eggLayIntervalDays>
@@ -498,7 +498,7 @@
     </race>
     <comps> 
       <li>
-        <compClass>RRYautja.Comp_Xenomorph</compClass>
+        <compClass>AvP.Comp_Xenomorph</compClass>
       </li>
 	  <!--
 	  <li Class="ExtraButcheringProducts.CompProperties_SpecialButcherChance">
@@ -649,7 +649,7 @@
     <comps> 
 	<!---
       <li Class="AbilityUser.CompProperties_AbilityUser">
-        <compClass>RRYautja.AvP_Xenomorph_AbilityUser</compClass>
+        <compClass>AvP.AvP_Xenomorph_AbilityUser</compClass>
 	  -->
     </comps>
   </ThingDef>
@@ -1478,11 +1478,11 @@
     </race>
     <comps> 
       <li>
-        <compClass>RRYautja.Comp_Xenomorph</compClass>
+        <compClass>AvP.Comp_Xenomorph</compClass>
       </li>
 	  
 	<!--
-      <li Class="RRYautja.CompProperties_XenoEggLayer">
+      <li Class="AvP.CompProperties_XenoEggLayer">
         <eggDef>AvP_EggXenomorphFertilized</eggDef>
         <eggCountMax>1</eggCountMax>
         <eggLayIntervalDays>0.1</eggLayIntervalDays>

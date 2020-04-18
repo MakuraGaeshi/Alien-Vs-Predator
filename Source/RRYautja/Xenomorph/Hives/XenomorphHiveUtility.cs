@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x02000CFE RID: 3326
     public static class XenomorphHiveUtility

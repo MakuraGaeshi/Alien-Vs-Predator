@@ -9,14 +9,14 @@
 			<li Class="PatchOperationAdd">
 				<xpath>/Defs/HediffGiverSetDef[defName = "OrganicStandard" or defName = "Human"]/hediffGivers</xpath>
 				<value>
-				  <li Class="RRYautja.HediffGiver_StartWithXenomorphHediff">
+				  <li Class="AvP.HediffGiver_StartWithXenomorphHediff">
 					<hediff>AvP_HiddenXenomorphImpregnation</hediff>
 					<partsToAffect>
 					<li>Torso</li>
 					</partsToAffect>
 					<chance>5</chance>
 				  </li>
-				  <li Class="RRYautja.HediffGiver_StartWithXenomorphHediff">
+				  <li Class="AvP.HediffGiver_StartWithXenomorphHediff">
 					<hediff>AvP_HiddenNeomorphImpregnation</hediff>
 					<partsToAffect>
 					<li>Torso</li>

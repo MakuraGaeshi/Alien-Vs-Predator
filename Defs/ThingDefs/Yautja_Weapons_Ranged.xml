@@ -4,7 +4,7 @@
   <ThingDef ParentName="BaseProjectileNeolithic">
     <defName>Arrow_Yautja_Hunting_Bow</defName>
     <label>yautja arrow</label>
-    <thingClass>RRYautja.Stuffable_Bullet</thingClass>
+    <thingClass>AvP.Stuffable_Bullet</thingClass>
     <graphicData>
       <texPath>Things/Projectile/Arrow_Small</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -93,7 +93,7 @@
 <!-- ====================== Compound Bow ===================== -->
   <ThingDef ParentName="BaseProjectileNeolithic">
     <defName>Arrow_Yautja_Compound_Bow</defName>
-    <thingClass>RRYautja.Stuffable_Bullet</thingClass>
+    <thingClass>AvP.Stuffable_Bullet</thingClass>
     <label>yautja arrow</label>
     <graphicData>
       <texPath>Things/Projectile/Arrow_Small</texPath>
@@ -453,6 +453,40 @@
   </ThingDef> 
   
 <!-- ====================== Smart Disk ===================== -->	 
+
+  <ThingDef ParentName="BaseProjectileNeolithic">
+    <defName>AvP_SmartDisk_Returning</defName>
+    <label>SmartDisk</label>
+    <graphicData>
+      <texPath>Things/Projectile/SmartDisk</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <flyOverhead>false</flyOverhead>
+      <damageDef>AvP_RangedCut</damageDef>
+      <damageAmountBase>0</damageAmountBase>
+      <stoppingPower>0</stoppingPower>
+      <armorPenetrationBase>0</armorPenetrationBase>
+      <speed>26</speed>
+    </projectile>
+  </ThingDef>
+	
+  <ThingDef ParentName="MoteBase">
+    <defName>AvP_SmartDisk_Mote</defName>
+    <thingClass>AvP.GetReturningProjectile</thingClass>
+    <graphicData>
+      <texPath>DummyTexture</texPath>
+      <shaderType>MoteGlow</shaderType>
+    </graphicData>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <drawOffscreen>true</drawOffscreen>
+    <mote>
+      <fadeInTime>0.01</fadeInTime>
+      <solidTime>0.01</solidTime>
+      <fadeOutTime>0.01</fadeOutTime>
+    </mote>
+  </ThingDef>
+
   <ThingDef ParentName="RRYBaseSimpleRanged">
     <defName>AvP_Yautja_Gun_SmartDisk</defName>
     <label>Yautja Smart Disk</label>
@@ -541,37 +575,4 @@
     </projectile>
   </ThingDef>
 	
-  <ThingDef ParentName="BaseProjectileNeolithic">
-    <defName>AvP_SmartDisk_Returning</defName>
-    <label>SmartDisk</label>
-    <graphicData>
-      <texPath>Things/Projectile/SmartDisk</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile>
-      <flyOverhead>false</flyOverhead>
-      <damageDef>AvP_RangedCut</damageDef>
-      <damageAmountBase>0</damageAmountBase>
-      <stoppingPower>0</stoppingPower>
-      <armorPenetrationBase>0</armorPenetrationBase>
-      <speed>26</speed>
-    </projectile>
-  </ThingDef>
-	
-  <ThingDef ParentName="MoteBase">
-    <defName>AvP_SmartDisk_Mote</defName>
-    <thingClass>RRYautja.GetReturningProjectile</thingClass>
-    <graphicData>
-      <texPath>DummyTexture</texPath>
-      <shaderType>MoteGlow</shaderType>
-    </graphicData>
-    <altitudeLayer>MoteOverhead</altitudeLayer>
-    <drawOffscreen>true</drawOffscreen>
-    <mote>
-      <fadeInTime>0.01</fadeInTime>
-      <solidTime>0.01</solidTime>
-      <fadeOutTime>0.01</fadeOutTime>
-    </mote>
-  </ThingDef>
-
 </Defs>

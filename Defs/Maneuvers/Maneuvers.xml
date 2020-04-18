@@ -4,7 +4,7 @@
     <defName>AvP_TailWhip</defName>
     <requiredCapacity>AvP_TailWhip</requiredCapacity>
     <verb>
-      <verbClass>RRYautja.Verb_MeleeAttackKnockback</verbClass>
+      <verbClass>AvP.Verb_MeleeAttackKnockback</verbClass>
       <meleeDamageDef>AvP_XenoTailWhipBlunt</meleeDamageDef>
     </verb>
     <logEntryDef>MeleeAttack</logEntryDef>

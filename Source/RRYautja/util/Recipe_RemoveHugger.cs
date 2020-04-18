@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     // Token: 0x0200047F RID: 1151
     public class Recipe_RemoveHugger : Recipe_Surgery_RRY

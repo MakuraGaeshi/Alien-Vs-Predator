@@ -20,8 +20,8 @@
       <min>-100</min>
       <max>0</max>
     </startingGoodwill>
-	<factionNameMaker>NamerRRYautjaFaction</factionNameMaker>
-	<settlementNameMaker>NamerRRYautjaBases</settlementNameMaker>
+	<factionNameMaker>NamerAvPFaction</factionNameMaker>
+	<settlementNameMaker>NamerAvPBases</settlementNameMaker>
 		<techLevel>Spacer</techLevel>
     <backstoryFilters>
       <li>

@@ -2,7 +2,7 @@
 using System.Linq;
 using Verse;
 
-namespace RRYautja
+namespace AvP
 {
     public class HediffCompProperties_NaturallyHealing : HediffCompProperties
     {

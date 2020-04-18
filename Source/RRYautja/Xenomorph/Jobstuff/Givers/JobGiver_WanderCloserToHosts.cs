@@ -1,12 +1,12 @@
 ﻿using Verse;
 using Verse.AI;
 using RimWorld;
-using RRYautja.ExtensionMethods;
+using AvP.ExtensionMethods;
 using System;
 
-namespace RRYautja
+namespace AvP
 {
-    // RRYautja.JobGiver_WanderCloserToHosts
+    // AvP.JobGiver_WanderCloserToHosts
     public class JobGiver_WanderCloserToHosts : JobGiver_Wander
     {
         // Token: 0x06003EF2 RID: 16114 RVA: 0x001D7E5D File Offset: 0x001D625D

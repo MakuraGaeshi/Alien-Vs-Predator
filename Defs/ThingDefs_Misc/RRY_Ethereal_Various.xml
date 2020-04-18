@@ -4,7 +4,7 @@
   <ThingDef ParentName="EtherealThingBase">
     <defName>AvP_Tunneler</defName>
     <label>tunnel</label>
-    <thingClass>RRYautja.TunnelSpawner</thingClass>
+    <thingClass>AvP.TunnelSpawner</thingClass>
     <tickerType>Normal</tickerType>
     <drawerType>RealtimeOnly</drawerType>
     <alwaysFlee>true</alwaysFlee>
