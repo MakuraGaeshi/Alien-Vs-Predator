@@ -86,6 +86,10 @@ namespace AvP
             {
                 return false;
             }
+            else
+            {
+                c = _Xenomorph.HiveLoc;
+            }
             MapComponent_HiveGrid hiveGrid = pawn.Map.GetComponent<MapComponent_HiveGrid>();
             bool selected = map != null ? Find.Selector.SelectedObjects.Contains(pawn) && (Prefs.DevMode) : false;
 
