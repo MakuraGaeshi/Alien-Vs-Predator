@@ -1,4 +1,5 @@
 ﻿using AvP;
+using AvP.ExtensionMethods;
 using System;
 using System.Collections.Generic;
 using Verse;
@@ -10,8 +11,8 @@ namespace RimWorld
     // Token: 0x020000A7 RID: 167
     public class JobGiver_LayXenoEgg : ThinkNode_JobGiver
     {
-        ThingDef namedA = XenomorphDefOf.RRY_Xenomorph_Cocoon_Humanoid;
-        ThingDef namedB = XenomorphDefOf.RRY_Xenomorph_Cocoon_Animal;
+        ThingDef namedA = XenomorphDefOf.AvP_Xenomorph_Cocoon_Humanoid;
+        ThingDef namedB = XenomorphDefOf.AvP_Xenomorph_Cocoon_Animal;
         // Token: 0x06000424 RID: 1060 RVA: 0x0002CE84 File Offset: 0x0002B284
         protected override Job TryGiveJob(Pawn pawn)
         {
@@ -70,7 +71,7 @@ namespace RimWorld
                         LordJob newJob = new LordJob_DefendAndExpandHiveLike(false, pawn.Faction, c, 40f);
                         pawn.CreateNewLord(c, newJob);
                     }
-                    return new Job(XenomorphDefOf.RRY_Job_Xenomorph_LayEgg, lc);
+                    return new Job(XenomorphDefOf.AvP_Job_Xenomorph_LayEgg, lc);
                 }
                 else
                 {
@@ -93,9 +94,9 @@ namespace RimWorld
 
                         bool b = RCellFinder.TryFindRandomCellNearWith(c, validator, pawn.Map, out IntVec3 lc, 6, 12);
 
-                        List<Thing> egglist = pawn.Map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_EggXenomorphFertilized).FindAll(x => lc.InHorDistOf(x.Position, 9));
+                        List<Thing> egglist = pawn.Map.listerThings.ThingsOfDef(XenomorphDefOf.AvP_EggXenomorphFertilized).FindAll(x => lc.InHorDistOf(x.Position, 9));
                         bool eggflag = egglist.CountAllowNull() < 40;
-                        return new Job(XenomorphDefOf.RRY_Job_Xenomorph_LayEgg, lc);
+                        return new Job(XenomorphDefOf.AvP_Job_Xenomorph_LayEgg, lc);
                     }
                     else
                     {
@@ -119,9 +120,9 @@ namespace RimWorld
 
                     bool b = RCellFinder.TryFindRandomCellNearWith(c, validator, pawn.Map, out IntVec3 lc, 6, 12);
 
-                    List<Thing> egglist = pawn.Map.listerThings.ThingsOfDef(XenomorphDefOf.RRY_EggXenomorphFertilized).FindAll(x => lc.InHorDistOf(x.Position, 9));
+                    List<Thing> egglist = pawn.Map.listerThings.ThingsOfDef(XenomorphDefOf.AvP_EggXenomorphFertilized).FindAll(x => lc.InHorDistOf(x.Position, 9));
                     bool eggflag = egglist.CountAllowNull() < 40;
-                    return new Job(XenomorphDefOf.RRY_Job_Xenomorph_LayEgg, lc);
+                    return new Job(XenomorphDefOf.AvP_Job_Xenomorph_LayEgg, lc);
                 }
             }
             return null;
