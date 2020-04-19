@@ -380,21 +380,25 @@
     <Folder Include="Xenomorph\Jobstuff\Workers\" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="1AnimatedProjectile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\AdMechArmoury\1.1\Assemblies\1AnimatedProjectile.dll</HintPath>
+    </Reference>
     <Reference Include="1CompActivatableEffect, Version=1.18.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\AdMechArmoury\1.1\Assemblies\1CompActivatableEffect.dll</HintPath>
+      <HintPath>..\..\..\AdMechArmoury\1.1\Assemblies\1CompActivatableEffect.dll</HintPath>
     </Reference>
     <Reference Include="1CompOversizedWeapon, Version=1.18.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\AdMechArmoury\1.1\Assemblies\1CompOversizedWeapon.dll</HintPath>
+      <HintPath>..\..\..\AdMechArmoury\1.1\Assemblies\1CompOversizedWeapon.dll</HintPath>
     </Reference>
     <Reference Include="1CompSlotLoadable, Version=1.18.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\AdMechArmoury\1.1\Assemblies\1CompSlotLoadable.dll</HintPath>
+      <HintPath>..\..\..\AdMechArmoury\1.1\Assemblies\1CompSlotLoadable.dll</HintPath>
     </Reference>
     <Reference Include="1CompToggleDef, Version=1.18.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\AdMechArmoury\1.1\Assemblies\1CompToggleDef.dll</HintPath>
+      <HintPath>..\..\..\AdMechArmoury\1.1\Assemblies\1CompToggleDef.dll</HintPath>
     </Reference>
     <Reference Include="AlienRace">
       <HintPath>..\..\..\..\..\..\workshop\content\294100\839005762\1.1\Assemblies\AlienRace.dll</HintPath>
