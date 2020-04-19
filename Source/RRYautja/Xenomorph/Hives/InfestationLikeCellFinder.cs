@@ -175,10 +175,6 @@ namespace RimWorld
                 return 0f;
             }
             int num = InfestationLikeCellFinder.StraightLineDistToUnroofed(cell, map);
-            if ((float)InfestationLikeCellFinder.distToColonyBuilding[cell] < 20f)
-            {
-                num-=20;
-            }
             float num2;
             if (region == null)
             {
@@ -205,6 +201,14 @@ namespace RimWorld
             if (num7 < 7.5f)
             {
                 return 0f;
+            }
+            if ((float)InfestationLikeCellFinder.distToColonyBuilding[cell] < 20f)
+            {
+                num7 = (int)(num7 * 0.75f);
+            }
+            if (map.areaManager.Home[cell])
+            {
+                num7 = (int)(num7 * 0.75f);
             }
             return num7;
         }

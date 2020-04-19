@@ -67,8 +67,20 @@ namespace RRYautja
             {
                 if (HiveX < 1 || HiveZ < 1)
                 {
-                //    Log.Message(string.Format("Finding new Hive loc for {0} @ {1}", pawn.NameShortColored, pawn.Position));
+                    //    Log.Message(string.Format("Finding new Hive loc for {0} @ {1}", pawn.NameShortColored, pawn.Position));
                     if (map!=null)
+                    {
+                        if (InfestationLikeCellFinder.TryFindCell(out IntVec3 hive, out IntVec3 vec3, map, true, false, true))
+                        {
+                            HiveX = hive.x;
+                            HiveZ = hive.z;
+                        }
+                    }
+                }
+                //    Log.Message(string.Format("Finding new Hive loc for {0} @ {1}", pawn.NameShortColored, pawn.Position));
+                if (map != null)
+                {
+                    if (map.areaManager.Home[new IntVec3(HiveX, 0, HiveZ)])
                     {
                         if (InfestationLikeCellFinder.TryFindCell(out IntVec3 hive, out IntVec3 vec3, map, true, false, true))
                         {
