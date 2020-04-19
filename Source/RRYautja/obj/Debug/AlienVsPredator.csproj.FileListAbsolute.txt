@@ -1,0 +1,4 @@
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Rebelrots-Yautja-Race\Assemblies\AlienVsPredator.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Rebelrots-Yautja-Race\Source\RRYautja\obj\Debug\AlienVsPredator.csprojAssemblyReference.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Rebelrots-Yautja-Race\Source\RRYautja\obj\Debug\AlienVsPredator.csproj.CopyComplete
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Rebelrots-Yautja-Race\Source\RRYautja\obj\Debug\AlienVsPredator.dll

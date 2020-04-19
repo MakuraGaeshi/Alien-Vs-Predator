@@ -81,4 +81,10 @@
   <AvP_MessageHiveReproduced>Xenomorph tunnel network expands.</AvP_MessageHiveReproduced>
   <AvP_HiveReproducesIn>Tunnel network expands in</AvP_HiveReproducesIn>
   <AvP_DormantHiveNotReproducing>Dormant: Not expanding.</AvP_DormantHiveNotReproducing>
+  
+  <!-- Yautja Outfits -->
+  <AvP_Yautja_OutfitAnything>Anything (Yautja)</AvP_Yautja_OutfitAnything>
+  <AvP_Yautja_OutfitWorker>Worker (Yautja)</AvP_Yautja_OutfitWorker>
+  <AvP_Yautja_OutfitSoldier>Soldier (Yautja)</AvP_Yautja_OutfitSoldier>
+  <AvP_Yautja_OutfitNudist>Nudist (Yautja)</AvP_Yautja_OutfitNudist>
 </LanguageData>

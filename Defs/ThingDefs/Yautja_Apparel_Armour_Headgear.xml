@@ -3,6 +3,20 @@
 	<!-- ========================= Yautja - Headgear base ========================== -->
 	<ThingDef Name="AvP_Yautja_Headgear_Base" ParentName="AvP_Armour_Base_Makeable" Abstract="true">
 	<description>Advanced Headgear of the Yautja</description>
+	<apparel>
+		<tags>
+			<li>YautjaHelmet</li>
+		</tags>
+		<defaultOutfitTags>
+			<li>Soldier</li>
+		</defaultOutfitTags>
+	</apparel>
+	<thingCategories>
+		<li>AvP_Headgear</li>
+	</thingCategories>
+	<tradeTags>
+		<li>Headgear</li>
+	</tradeTags>
 	</ThingDef>	
 
 	<!-- ========================= Yautja - Light Bio Mask ========================== -->
@@ -52,20 +66,9 @@
 			</layers>
 			<tags>
 				<li>YautjaLightBioMask</li>
-				<li>YautjaHelmet</li>
 				<li>YautjaLightArmour</li>
-				<li>YautjaNormalArmour</li>
 			</tags>
-			<defaultOutfitTags>
-				<li>Soldier</li>
-			</defaultOutfitTags>
 		</apparel>
-		<thingCategories>
-			<li>AvP_Headgear</li>
-		</thingCategories>
-		<tradeTags>
-			<li>Headgear</li>
-		</tradeTags>
 	</ThingDef>
 
 	<!-- ========================= Yautja - Bio Mask ========================== -->
@@ -114,20 +117,10 @@
 				<li>Overhead</li>
 			</layers>
 			<tags>
-				<li>YautjaBioMask</li>
-				<li>YautjaHelmet</li>
+				<li>YautjaNormalBioMask</li>
 				<li>YautjaNormalArmour</li>
 			</tags>
-			<defaultOutfitTags>
-				<li>Soldier</li>
-			</defaultOutfitTags>
 		</apparel>
-		<thingCategories>
-			<li>AvP_Headgear</li>
-		</thingCategories>
-		<tradeTags>
-			<li>Headgear</li>
-		</tradeTags>
 	</ThingDef>
 
 	<!-- ========================= Yautja - Elite Bio Mask ========================== -->
@@ -179,20 +172,11 @@
 				<li>Overhead</li>
 			</layers>
 			<tags>
-				<li>YautjaHelmet</li>
 				<li>YautjaEliteBioMask</li>
+				<li>YautjaEliteArmour</li>
 				<li>YautjaSpecialArmour</li>
 			</tags>
-			<defaultOutfitTags>
-				<li>Soldier</li>
-			</defaultOutfitTags>
 		</apparel>
-		<thingCategories>
-			<li>AvP_Headgear</li>
-		</thingCategories>
-		<tradeTags>
-			<li>Headgear</li>
-		</tradeTags>
 	</ThingDef>
 
 	<!-- ========================= Yautja - Falconer Bio Mask ========================== -->
@@ -244,20 +228,11 @@
 				<li>Overhead</li>
 			</layers>
 			<tags>
-				<li>YautjaHelmet</li>
 				<li>YautjaFalconerBioMask</li>
+				<li>YautjaEliteArmour</li>
 				<li>YautjaSpecialArmour</li>
 			</tags>
-			<defaultOutfitTags>
-				<li>Soldier</li>
-			</defaultOutfitTags>
 		</apparel>
-		<thingCategories>
-			<li>AvP_Headgear</li>
-		</thingCategories>
-		<tradeTags>
-			<li>Headgear</li>
-		</tradeTags>
 	</ThingDef>
 
 	<!-- ========================= Yautja - Ornate Bio Mask ========================== -->
@@ -313,20 +288,11 @@
 				<li>Overhead</li>
 			</layers>
 			<tags>
-				<li>YautjaHelmet</li>
 				<li>YautjaOrnateBioMask</li>
+				<li>YautjaOrnateArmour</li>
 				<li>YautjaSpecialArmour</li>
 			</tags>
-			<defaultOutfitTags>
-				<li>Soldier</li>
-			</defaultOutfitTags>
 		</apparel>
-		<thingCategories>
-			<li>AvP_Headgear</li>
-		</thingCategories>
-		<tradeTags>
-			<li>Headgear</li>
-		</tradeTags>
 	</ThingDef>
 
 </Defs>

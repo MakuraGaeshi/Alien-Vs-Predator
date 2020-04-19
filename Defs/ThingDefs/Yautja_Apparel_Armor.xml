@@ -6,6 +6,20 @@
 		<statBases>
 			<Flammability>0.4</Flammability>
 		</statBases>
+		<apparel>
+			<tags>
+				<li>YautjaArmour</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+		</apparel>
+		<thingCategories>
+			<li>AvP_Armour</li>
+		</thingCategories>
+		<tradeTags>
+			<li>Apparel</li>
+		</tradeTags>
 	</ThingDef>
 	
 	<!-- ========================= Yautja - Hunter Light Armour Chestplate ========================== -->
@@ -60,21 +74,10 @@
 				<li>Middle</li>
 			</layers>
 			<tags>
-				<li>YautjaChestplate</li>
-				<li>YautjaArmour</li>
+				<li>YautjaLightChestplate</li>
 				<li>YautjaLightArmour</li>
-				<li>YautjaNormalArmour</li>
 			</tags>
-			<defaultOutfitTags>
-				<li>Soldier</li>
-			</defaultOutfitTags>
 		</apparel>
-		<thingCategories>
-			<li>AvP_Armour</li>
-		</thingCategories>
-		<tradeTags>
-			<li>Apparel</li>
-		</tradeTags>
 	</ThingDef>
 
 	<!-- ========================= Yautja - Hunter Armour Chestplate ========================== -->
@@ -132,20 +135,9 @@
 			</layers>
 			<tags>
 				<li>YautjaChestplate</li>
-				<li>YautjaArmour</li>
-				<li>YautjaHunterArmour</li>
 				<li>YautjaNormalArmour</li>
 			</tags>
-			<defaultOutfitTags>
-				<li>Soldier</li>
-			</defaultOutfitTags>
 		</apparel>
-		<thingCategories>
-			<li>AvP_Armour</li>
-		</thingCategories>
-		<tradeTags>
-			<li>Apparel</li>
-		</tradeTags>
 	</ThingDef>
 
 	<!-- ========================= Yautja - Hunter Heavy Armour Chestplate ========================== -->
@@ -201,22 +193,10 @@
 				<li>Middle</li>
 			</layers>
 			<tags>
-				<li>YautjaChestplate</li>
-				<li>YautjaArmour</li>
+				<li>YautjaHeavyChestplate</li>
 				<li>YautjaHeavyArmour</li>
-				<li>YautjaNormalArmour</li>
-				
 			</tags>
-			<defaultOutfitTags>
-				<li>Soldier</li>
-			</defaultOutfitTags>
 		</apparel>
-		<thingCategories>
-			<li>AvP_Armour</li>
-		</thingCategories>
-		<tradeTags>
-			<li>Apparel</li>
-		</tradeTags>
 	</ThingDef>
 
 	<!-- ========================= Yautja - Elite Hunter Armour Chestplate ========================== -->
@@ -274,21 +254,11 @@
 				<li>Middle</li>
 			</layers>
 			<tags>
-				<li>YautjaChestplate</li>
-				<li>YautjaArmour</li>
+				<li>YautjaEliteChestplate</li>
 				<li>YautjaEliteArmour</li>
 				<li>YautjaSpecialArmour</li>
 			</tags>
-			<defaultOutfitTags>
-				<li>Soldier</li>
-			</defaultOutfitTags>
 		</apparel>
-		<thingCategories>
-			<li>AvP_Armour</li>
-		</thingCategories>
-		<tradeTags>
-			<li>Apparel</li>
-		</tradeTags>
 	</ThingDef>
 	
 	<!-- ========================= Yautja - Ornate Hunter Armour Chestplate ========================== -->
@@ -349,21 +319,11 @@
 				<li>Middle</li>
 			</layers>
 			<tags>
-				<li>YautjaChestplate</li>
-				<li>YautjaArmour</li>
+				<li>YautjaOrnateChestplate</li>
 				<li>YautjaOrnateArmour</li>
 				<li>YautjaSpecialArmour</li>
 			</tags>
-			<defaultOutfitTags>
-				<li>Soldier</li>
-			</defaultOutfitTags>
 		</apparel>
-		<thingCategories>
-			<li>AvP_Armour</li>
-		</thingCategories>
-		<tradeTags>
-			<li>Apparel</li>
-		</tradeTags>
 	</ThingDef>
 	
 	<!-- ========================= Yautja - Hunter Armour Greaves ========================== -->
@@ -417,19 +377,15 @@
 			<tags>
 				<li>YautjaGreaves</li>
 				<li>YautjaArmour</li>
+				<li>YautjaLightArmour</li>
 				<li>YautjaNormalArmour</li>
+				<li>YautjaHeavyArmour</li>
+				<li>YautjaEliteArmour</li>
+				<li>YautjaOrnateArmour</li>
+				<li>YautjaSpecialArmour</li>
 			</tags>
-			<defaultOutfitTags>
-				<li>Soldier</li>
-			</defaultOutfitTags>
 			<wornGraphicPath>Things/Apparel/Yautja_Undersuit/Yautja_HunterArmorUndersuit</wornGraphicPath>
 		</apparel>
-		<thingCategories>
-			<li>AvP_Armour</li>
-		</thingCategories>
-		<tradeTags>
-			<li>Apparel</li>
-		</tradeTags>
 	</ThingDef>
 
 </Defs>

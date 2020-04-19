@@ -9,16 +9,16 @@
         <li>WordYautji(p=2)->[SylG]'[SylG][SylE]-[SylG]</li>
       </rulesStrings>
       <rulesFiles>
-        <li>AvP_NameYautjaMale->NameBanks/AvPMale</li>
-        <li>AvP_NameYautjaMaleA->NameBanks/AvPMaleA</li>
-        <li>AvP_NameYautjaMaleB->NameBanks/AvPMaleB</li>
+        <li>AvP_NameYautjaMale->NameBanks/AvP_Yautja_Male</li>
+        <li>AvP_NameYautjaMaleA->NameBanks/AvP_Yautja_MaleA</li>
+        <li>AvP_NameYautjaMaleB->NameBanks/AvP_Yautja_MaleB</li>
 		
-        <li>AvP_NameYautjaFemale->NameBanks/AvPFemale</li>
-        <li>AvP_NameYautjaFemaleA->NameBanks/AvPFemaleA</li>
-        <li>AvP_NameYautjaFemaleB->NameBanks/AvPFemaleB</li>
+        <li>AvP_NameYautjaFemale->NameBanks/AvP_Yautja_Female</li>
+        <li>AvP_NameYautjaFemaleA->NameBanks/AvP_Yautja_FemaleA</li>
+        <li>AvP_NameYautjaFemaleB->NameBanks/AvP_Yautja_FemaleB</li>
 		
-        <li>AvP_NameYautjaUnisexNick->NameBanks/AvPNick</li>
-        <li>AvP_NameYautjaFemaleNick->NameBanks/AvPNickFemale</li>
+        <li>AvP_NameYautjaUnisexNick->NameBanks/AvP_Yautja_Nick</li>
+        <li>AvP_NameYautjaFemaleNick->NameBanks/AvP_Yautja_Nick_Female</li>
 		
         <li>SylE->WordParts/Syllables_English</li>
         <li>SylG->WordParts/Syllables_Galician</li>
@@ -27,22 +27,22 @@
   </RulePackDef>
 
 	<RulePackDef>
-		<defName>NamerAvPFaction</defName>
+		<defName>AvP_NamerYautjaFaction</defName>
 		<rulePack>
 		  <rulesStrings>
-			<li>name->[AvPClans]</li>
+			<li>name->[AvP_Yautja_Clans]</li>
 		  </rulesStrings>
 		  <rulesRaw>
 			<li Class="Rule_File">
-				<keyword>AvPClans</keyword>
-				<path>NameBanks/AvPClans</path>
+				<keyword>AvP_Yautja_Clans</keyword>
+				<path>NameBanks/AvP_Yautja_Clans</path>
 			</li>
 		  </rulesRaw>
 		</rulePack>
 	</RulePackDef>
 	
 	<RulePackDef>
-		<defName>NamerRRYYautjaJungleClan</defName>
+		<defName>AvP_NamerYautjaJungleClan</defName>
 		<rulePack>
 		  <rulesStrings>
 			<li>name->[AvP_Yautja_JungleClan]</li>
@@ -50,14 +50,14 @@
 		  <rulesRaw>
 			<li Class="Rule_File">
 				<keyword>AvP_Yautja_JungleClan</keyword>
-				<path>NameBanks/AvPClanJungle</path>
+				<path>NameBanks/AvP_Yautja_Clan_Jungle</path>
 			</li>
 		  </rulesRaw>
 		</rulePack>
 	</RulePackDef>
 	
 	<RulePackDef>
-		<defName>NamerAvPBases</defName>
+		<defName>AvP_NamerYautjaBases</defName>
 		<rulePack>
 			<rulesStrings>
 				<li>name->[AvPBaseNames]</li>
@@ -65,7 +65,7 @@
 			<rulesRaw>
 				<li Class="Rule_File">
 					<keyword>AvPBaseNames</keyword>
-					<path>NameBanks/AvPBaseNames</path>
+					<path>NameBanks/AvP_Yautja_BaseNames</path>
 				</li>
 			</rulesRaw>
 		</rulePack>
@@ -124,38 +124,6 @@
 			<li>nicktname(p=2)->[AnimalBadass]</li>
 			-->
 		  </rulesStrings>
-		</rulePack>
-	</RulePackDef>
-	
-	<!--======================================== USCM Faction and Character namer ================================================-->
-	
-	<RulePackDef>
-		<defName>Namer_AvP_USCM_Operations</defName>
-		<rulePack>
-		  <rulesStrings>
-			<li>name->[AvP_USCM_Operations]</li>
-		  </rulesStrings>
-		  <rulesRaw>
-			<li Class="Rule_File">
-				<keyword>AvP_USCM_Operations</keyword>
-				<path>NameBanks/AvP_USCM_Operations</path>
-			</li>
-		  </rulesRaw>
-		</rulePack>
-	</RulePackDef>
-	
-	<RulePackDef>
-		<defName>Namer_AvP_USCM_Squads</defName>
-		<rulePack>
-			<rulesStrings>
-				<li>name->[AvP_USCM_Squads]</li>
-			</rulesStrings>
-			<rulesRaw>
-				<li Class="Rule_File">
-					<keyword>AvP_USCM_Squads</keyword>
-					<path>NameBanks/AvP_USCM_Squads</path>
-				</li>
-			</rulesRaw>
 		</rulePack>
 	</RulePackDef>
 	

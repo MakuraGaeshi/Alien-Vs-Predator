@@ -21,8 +21,8 @@
       <max>0</max>
     </startingGoodwill>
     <fixedName>a Jungle Clan</fixedName>
-	<!--factionNameMaker>NamerRRYYautjaJungleClan</factionNameMaker-->
-	<settlementNameMaker>NamerAvPBases</settlementNameMaker>
+	<!--factionNameMaker>AvP_NamerYautjaJungleClan</factionNameMaker-->
+	<settlementNameMaker>AvP_NamerYautjaBases</settlementNameMaker>
 	<techLevel>Spacer</techLevel>
     <backstoryFilters>
       <li>

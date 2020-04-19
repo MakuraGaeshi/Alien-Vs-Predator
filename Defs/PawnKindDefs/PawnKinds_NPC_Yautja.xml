@@ -16,9 +16,11 @@
     <baseRecruitDifficulty>1</baseRecruitDifficulty>
     <apparelAllowHeadgearChance>0.85</apparelAllowHeadgearChance>
     <apparelTags>
-      <li>YautjaArmour</li>
+      <!--li>YautjaArmour</li>
       <li>YautjaWristblade</li>
-	  <li>YautjaHelmet</li>
+	  <li>YautjaHelmet</li-->
+	  <li>YautjaApparel</li>
+	  <li>YautjaWristblade</li>
     </apparelTags>
 	<modExtensions>
 	  <li Class="AlienRace.Info">
@@ -48,12 +50,7 @@
     <weaponTags>
 		<li>YautjaCombistaff</li>
 		<li>YautjaHuntingBow</li>
-		<li>YautjaSmartDisk</li>
 		<li>YautjaNeedler</li>
-		<!--<li>NeolithicMeleeBasic</li>
-		<li>NeolithicMeleeDecent</li>
-		<li>NeolithicMeleeAdvanced</li>
-		<li>NeolithicRangedHeavy</li>-->
     </weaponTags>
     <techHediffsMoney>
       <min>200</min>
@@ -107,11 +104,12 @@
       <li>YautjaGreaves</li>
       <li>YautjaOrnateArmour</li>
       <li>YautjaOrnateBioMask</li>
-	  <li>YautjaEliteBioMask</li>
-	  <li>YautjaEliteArmour</li>
 	  <li>YautjaWristblade</li>
 	  <li>YautjaShoulderCannon</li>
     </apparelTags>
+	<apparelRequired>
+        <li>AvP_Yautja_Apparel_ThermalMesh</li>
+	</apparelRequired>
     <weaponMoney>
       <min>10000</min>
       <max>15500</max>
@@ -148,8 +146,10 @@
     <defName>Slave_AvP_Yautja</defName>
     <label>Yautja slave</label>
 	<apparelTags Inherit="False">
-		<li>YautjaWebbing</li>
 	</apparelTags>	
+	<apparelRequired>
+        <li>Apparel_TribalA</li>
+	</apparelRequired>
   </PawnKindDef>
  
   <!-- ============================ Yautja AvP_Security ========================== -->
@@ -174,12 +174,8 @@
       <max>3000</max>
     </apparelMoney>
     <apparelTags>
-      <li>Yautja</li>
       <li>YautjaLightArmour</li>
-	  <li>YautjaHunterArmour</li>
-	  <li>YautjaHeavyArmour</li>
-	  <li>YautjaGreaves</li>
-      <li>YautjaBioMask</li>
+	  <li>YautjaNormalArmour</li>
     </apparelTags>
     <weaponMoney>
       <min>300</min>
@@ -222,10 +218,8 @@
       <max>2.3</max>
     </gearHealthRange>
     <apparelTags>
-      <li>Yautja</li>
-      <li>YautjaArmour</li>
-	  <li>YautjaGreaves</li>
-      <li>YautjaHelmet</li>
+      <li>YautjaLightArmour</li>
+	  <li>YautjaNormalArmour</li>
     </apparelTags>
     <apparelMoney>
       <min>1500</min>
@@ -277,9 +271,7 @@
       </li>
     </backstoryFiltersOverride>
     <apparelTags>
-	  <li>YautjaGreaves</li>
-      <li>YautjaArmour</li>
-      <li>YautjaHead</li>
+	
     </apparelTags>
   </PawnKindDef>
   
@@ -317,6 +309,9 @@
 		<li>YautjaGun</li>
 		<li>YautjaMelee</li>
     </weaponTags>
+    <apparelTags>
+	  <li>YautjaHeavyArmour</li>
+    </apparelTags>
   </PawnKindDef>
   
     <!-- ============================ Elite ========================== -->
@@ -333,10 +328,8 @@
         </categories>
       </li>
     </backstoryFiltersOverride>
-    <apparelTags Inherit="false">
+    <apparelTags>
 		<li>YautjaEliteArmour</li>
-		<li>YautjaEliteBioMask</li>
-		<li>YautjaGreaves</li>
 		<li>YautjaWristblade</li>
 		<li>YautjaShoulderCannon</li>
 	</apparelTags>
@@ -367,12 +360,11 @@
       <min>3000</min>
       <max>9000</max>
     </apparelMoney>
-    <apparelTags>
-      <li>Yautja</li>
-      <li>YautjaArmour</li>
-      <li>YautjaHelmet</li>
-	  <li>YautjaEquipment</li>
-    </apparelTags>
+    <apparelTags Inherit="false">
+		<li>YautjaEliteArmour</li>
+		<li>YautjaWristblade</li>
+		<li>YautjaShoulderCannon</li>
+	</apparelTags>
     <weaponMoney>
       <min>10000</min>
       <max>15500</max>

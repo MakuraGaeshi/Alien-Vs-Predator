@@ -583,9 +583,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Rebelrots-Yautja-Race\\Source\\RRYautja\\RRYautja.csproj",
-      "projectName": "RRYautja",
-      "projectPath": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Rebelrots-Yautja-Race\\Source\\RRYautja\\RRYautja.csproj",
+      "projectUniqueName": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Rebelrots-Yautja-Race\\Source\\RRYautja\\AlienVsPredator.csproj",
+      "projectName": "AlienVsPredator",
+      "projectPath": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Rebelrots-Yautja-Race\\Source\\RRYautja\\AlienVsPredator.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
       "outputPath": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Rebelrots-Yautja-Race\\Source\\RRYautja\\obj\\",
       "projectStyle": "PackageReference",

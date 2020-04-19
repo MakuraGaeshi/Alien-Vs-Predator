@@ -7,8 +7,8 @@
     <ProjectGuid>{98FCBC2D-8EA4-42E6-A745-D691C3576586}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RRYautja</RootNamespace>
-    <AssemblyName>RRYautja</AssemblyName>
+    <RootNamespace>AlienVsPredator</RootNamespace>
+    <AssemblyName>AlienVsPredator</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -35,9 +35,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Abilities\ProjectileDefExtension.cs" />
-    <Compile Include="Harmony\Patches\AVP_AEmptyPatch - Copy.cs" />
+    <Compile Include="Harmony\Patches\AVP_Dropship_Patches_WIP.cs" />
+    <Compile Include="Harmony\Patches\AvP_AEmpty_Patch - Copy %282%29.cs" />
+    <Compile Include="Harmony\Patches\AvP_BackCompatibility_BackCompatibleDefName_Patch - Copy.cs" />
     <Compile Include="Harmony\Patches\AvP_BackstoryDatabase_GetIdentifierClosestMatch_Patch.cs" />
-    <Compile Include="Harmony\Patches\AvP_AEmpty_Patch - Copy.cs" />
+    <Compile Include="Harmony\Patches\AvP_IncidentWorker_RaidEnemy_TryExecute_PowerCut_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Alert_StarvationColonists_StarvingColonists_Synth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_HealthUtility_AdjustSeverity_Cocooned_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_PawnGraphicSet_HairMatAt_Invis_Patch.cs" />
@@ -60,7 +62,8 @@
     <Compile Include="Harmony\Patches\AvP_Pawn_HealthTracker_MakeUndowned_Xenomorph_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Pawn_AgeTracker_RecalculateLifeStageIndex_Xenomorph_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Corpse_TickRare_Gestation_Patch.cs" />
-    <Compile Include="Harmony\Patches\AvP_RaidStrategyWorker_CanUsePawn_Xeno_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_RaidStrategyWorker_CanUsePawnGenOption_FactionLeader_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_RaidStrategyWorker_CanUsePawnGenOption_XenomorphQueen_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_SickPawnVisitUtility_CanVisit_Synth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_RecordWorker_TimeInBedForMedicalReasons_ShouldMeasureTimeNow_Synth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_IncidentWorker_DiseaseHuman_ActualVictims_Synth_Patch.cs" />
@@ -137,6 +140,7 @@
     <Compile Include="USCM\HediffComp_Overheating.cs" />
     <Compile Include="USCM\UtilSynths.cs" />
     <Compile Include="USCM\HediffGiver_Synth.cs" />
+    <Compile Include="util\Defs\Class1.cs" />
     <Compile Include="util\Gizmo_CompCloakStatus.cs" />
     <Compile Include="util\CompCloakGenerator.cs" />
     <Compile Include="util\CompSpecimenContainer.cs" />
