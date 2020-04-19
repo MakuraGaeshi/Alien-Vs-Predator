@@ -69,6 +69,7 @@ namespace RimWorld
         public static PawnsArrivalModeDef AvP_RandomDropThroughRoof;
         public static PawnsArrivalModeDef AvP_DropThroughRoofNearPower;
         public static PawnsArrivalModeDef AvP_RandomEnterFromTunnel;
+        public static PawnsArrivalModeDef AvP_EnterFromTunnel;
 
         // Xenomorph RaidStrategyDefs 
         public static RaidStrategyDef AvP_PowerCut;

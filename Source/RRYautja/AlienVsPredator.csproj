@@ -91,7 +91,7 @@
     <Compile Include="Harmony\Patches\AvP_HediffGiver_Hypothermia_OnIntervalPassed_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_IncidentWorker_RaidEnemyPatch_GetLetterText_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_IncidentWorker_RaidEnemy_Yautja_TryExecute_Patch.cs" />
-    <Compile Include="Harmony\Patches\AvP_IncidentWorker_RaidEnemy_Xenomorph_TryExecute_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_IncidentWorker_RaidEnemy_TryExecuteWorker_Xenomorph_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_AEmpty_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_JobGiver_WanderColony_GetWanderRoot_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Page_ScenarioLister_ScenariosInCategory_Patch.cs" />
@@ -145,7 +145,6 @@
     <Compile Include="util\CompCloakGenerator.cs" />
     <Compile Include="util\CompSpecimenContainer.cs" />
     <Compile Include="USCM\CompFireOverlay.cs" />
-    <None Include="USCM\Verb_ShootShotgun.cs.bak" />
     <Compile Include="USCM\DamageWorker_FlameNoCamShake.cs" />
     <Compile Include="USCM\HediffComp_DefectiveInhibitor.cs" />
     <Compile Include="USCM\USCMDefOf.cs" />

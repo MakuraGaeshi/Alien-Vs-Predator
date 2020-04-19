@@ -18,7 +18,7 @@ namespace RimWorld
             {
                 for (int j = 0; j < list[i].First.Count; j++)
                 {
-                    IntVec3 dropCenter = XenomorphUtil.SpawnedChildHivelikes(map).RandomElement().Position;
+                    IntVec3 dropCenter = XenomorphUtil.SpawnedHives(map).RandomElement().Position;
                     IntVec3 loc = CellFinder.RandomClosewalkCellNear(dropCenter, map, 8, null);
                     GenSpawn.Spawn(list[i].First[j], loc, map, parms.spawnRotation, WipeMode.Vanish, false);
                 }

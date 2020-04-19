@@ -4,7 +4,7 @@
 
 <!--=============================================== USCM - Player Faction ===============================================-->
 <!--=============================================== USCM - Base ===============================================-->
-  <PawnKindDef Abstract="True" Name="BaseUSCMPawnKind">
+  <PawnKindDef Abstract="True" Name="AvP_USCM_Base_Kind">
     <race>Human</race>
     <combatPower>50</combatPower>
     <baseRecruitDifficulty>1.0</baseRecruitDifficulty>
@@ -33,7 +33,7 @@
 
 <!--=============================================== USCM - Private ===============================================-->
 
-  <PawnKindDef ParentName="BaseUSCMPawnKind">
+  <PawnKindDef ParentName="AvP_USCM_Base_Kind">
     <defName>AvP_USCM_PlayerPrivate</defName>
     <label>marine</label>
     <defaultFactionType>AvP_USCM_PlayerColony</defaultFactionType>

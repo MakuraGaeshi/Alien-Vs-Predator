@@ -22,7 +22,11 @@ namespace AvP.HarmonyInstance
 		[HarmonyPostfix]
 		public static void Notify_LostBodyPart_Postfix(Pawn_ApparelTracker __instance)
 		{
-			if (__instance == null || __instance.WornApparel == null || __instance.WornApparel.Count == 0 || __instance.pawn==null || !__instance.pawn.RaceProps.Humanlike || (__instance.pawn.Map == null && __instance.pawn.MapHeld == null))
+			if (__instance == null || __instance.pawn == null || __instance.WornApparel == null || __instance.WornApparel.Count == 0)
+			{
+				return;
+			}
+			if (!__instance.pawn.RaceProps.Humanlike || (__instance.pawn.Map == null && __instance.pawn.MapHeld == null))
 			{
 				return;
 			}
@@ -35,16 +39,22 @@ namespace AvP.HarmonyInstance
 			{
 				Apparel apparel = AvP_Pawn_ApparelTracker_Notify_LostBodyPart_Patch.tmpApparel[j];
 				CompHediffApparel hdApp = apparel.TryGetComp<CompHediffApparel>();
-				if (!HasPartsToWear(__instance.pawn, apparel))
+				if (hdApp!=null)
 				{
-					//	Log.Message(string.Format("{0} no longer has parts for {1}", __instance.pawn, apparel));
-					Rand.PushState();
-					apparel.HitPoints -= Rand.RangeInclusive(0, apparel.MaxHitPoints);
-					Rand.PopState();
-					if (apparel.HitPoints > 0) 
-						__instance.TryDrop(apparel); 
-					else 
-						__instance.Remove(apparel);
+					if (hdApp.Props.dropOnPartLost)
+					{
+						if (!HasPartsToWear(__instance.pawn, apparel))
+						{
+							//	Log.Message(string.Format("{0} no longer has parts for {1}", __instance.pawn, apparel));
+							Rand.PushState();
+							apparel.HitPoints -= Rand.RangeInclusive(0, apparel.MaxHitPoints);
+							Rand.PopState();
+							if (apparel.HitPoints > 0)
+								__instance.TryDrop(apparel);
+							else
+								__instance.Remove(apparel);
+						}
+					}
 				}
 			}
 		}

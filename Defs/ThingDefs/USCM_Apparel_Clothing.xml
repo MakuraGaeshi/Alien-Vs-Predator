@@ -52,7 +52,7 @@
 			<li>AvP_Apparel</li>
 		</thingCategories>
 		<tradeTags>
-			<li>Apparel</li>
+			<li>ABP_USCM_Apparel</li>
 		</tradeTags>
   </ThingDef>
 	
@@ -94,8 +94,8 @@
 			<li>Overhead</li>
 		  </layers>
 		  <tags>
-			<li>IndustrialBasic</li>
-			<li>IndustrialMilitaryBasic</li>
+			<!--li>IndustrialBasic</li>
+			<li>IndustrialMilitaryBasic</li-->
 			<li>USCM_StandardIssue_Apparel</li>
 			<li>USCM_Clothing</li>
 			<li>USCM_Cap</li>
@@ -156,8 +156,8 @@
         <li>OnSkin</li>
       </layers>
       <tags>
-        <li>IndustrialBasic</li>
-		<li>IndustrialMilitaryBasic</li>
+		<!--li>IndustrialBasic</li>
+		<li>IndustrialMilitaryBasic</li-->
 		<li>USCM_StandardIssue_Apparel</li>
 		<li>USCM_Clothing</li>
 		<li>USCM_Fatigues</li>
@@ -211,7 +211,8 @@
         <li>OnSkin</li>
       </layers>
       <tags>
-        <li>IndustrialBasic</li>
+		<!--li>IndustrialBasic</li>
+		<li>IndustrialMilitaryBasic</li-->
 		<li>USCM_Clothing</li>
 		<li>USCM_Jumpsuit</li>
 		<li>WY_Jumpsuit</li>

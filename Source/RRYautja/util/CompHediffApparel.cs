@@ -18,7 +18,7 @@ namespace AvP
         public FilterMode filterMode = FilterMode.Contains;
         public SeverityMode severityMode = SeverityMode.None;
         public bool global;
-        public bool dropOnPartLost; 
+        public bool dropOnPartLost = false; 
 
         public CompProperties_HediffApparel()
         {
@@ -198,17 +198,6 @@ namespace AvP
 
             // We know our parent is an Apparel; cast it as such so we can access its Wearer member.
             Apparel apparel = parent as Apparel;
-            if (apparel.Wearer!=null)
-            {
-                if (apparel.Wearer.health.hediffSet.HasHediff(Props.hediffDef))
-                {
-                    (apparel.Wearer.health.hediffSet.hediffs.Find(x => x.def == Props.hediffDef)).Part.def.canSuggestAmputation = true;
-                    if (Props.dropOnPartLost && !apparel.Wearer.health.hediffSet.GetNotMissingParts().Contains(apparel.Wearer.health.hediffSet.hediffs.Find(x => x.def == Props.hediffDef).Part))
-                    {
-                        apparel.Wearer.apparel.TryDrop(apparel);
-                    }
-                }
-            }
             // Apparel has no signal for when it is first worn, so we check for this on CompTick().
             // We only need to do something if our wearer has changed, though.
             if (apparel.Wearer != lastWearer)

@@ -16,7 +16,7 @@ using AvP.ExtensionMethods;
 namespace AvP.HarmonyInstance
 {
     [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "TryExecuteWorker")]
-    public static class AvP_IncidentWorker_RaidEnemy_Xenomorph_TryExecute_Patch
+    public static class AvP_IncidentWorker_RaidEnemy_Xenomorph_TryExecuteWorker_Patch
     {
         [HarmonyPrefix]
         public static bool PreExecute(ref IncidentParms parms)
@@ -28,9 +28,12 @@ namespace AvP.HarmonyInstance
                     if ((parms.target is Map map))
                     {
                         parms.generateFightersOnly = true;
-                        int @int = Rand.Int;
                         bool extTunnels = !map.GetComponent<MapComponent_HiveGrid>().HiveChildlist.NullOrEmpty();
-                        if (Rand.ChanceSeeded(0.05f, AvPConstants.AvPSeed))
+                        Rand.PushState();
+                        int @int = Rand.Int;
+                        bool chance = Rand.ChanceSeeded(0.05f, AvPConstants.AvPSeed);
+                        Rand.PopState();
+                        if (chance)
                         {
                             parms.forced = true;
                             parms.points = Mathf.Max(parms.points * new FloatRange(1f, 1.6f).RandomInRange, parms.faction.def.MinPointsToGeneratePawnGroup(PawnGroupKindDefOf.Combat));
@@ -42,19 +45,37 @@ namespace AvP.HarmonyInstance
                             {
                                 parms.points *= 2;
                                 parms.raidArrivalMode = YautjaDefOf.EdgeWalkInGroups;
+                                Rand.PushState();
                                 if (Rand.Chance(0.05f))
                                 {
                                     parms.forced = true;
                                     parms.points = Mathf.Max(parms.points * new FloatRange(1f, 1.6f).RandomInRange, parms.faction.def.MinPointsToGeneratePawnGroup(PawnGroupKindDefOf.Combat));
                                 }
+                                Rand.PopState();
                             }
-                            if (extTunnels && Rand.ChanceSeeded(0.10f + (map.GetComponent<MapComponent_HiveGrid>().HiveChildlist.Count / 100f), AvPConstants.AvPSeed))
+                            Rand.PushState();
+                            bool chance1 = Rand.ChanceSeeded(0.10f + (map.GetComponent<MapComponent_HiveGrid>().HiveChildlist.Count / 100f), AvPConstants.AvPSeed);
+                            Rand.PopState();
+                            if (extTunnels && chance1)
                             {
                                 parms.raidStrategy = RaidStrategyDefOf.ImmediateAttack;
                                 parms.raidArrivalMode = XenomorphDefOf.AvP_RandomEnterFromTunnel;
                             }
                             else
                             {
+                                bool Hive = !map.GetComponent<MapComponent_HiveGrid>().Hivelist.NullOrEmpty();
+                                if (Hive && map.GetComponent<MapComponent_HiveGrid>().Hivelist.Any(x=> x as HiveLike is HiveLike hive && hive!=null && hive.caveColony))
+                                {
+                                    Rand.PushState();
+                                    bool chance2 = Rand.ChanceSeeded(0.10f + (map.GetComponent<MapComponent_HiveGrid>().Hivelist.Count / 100f), AvPConstants.AvPSeed);
+                                    Rand.PopState();
+                                    if (chance2)
+                                    {
+                                        parms.raidStrategy = RaidStrategyDefOf.ImmediateAttack;
+                                        parms.raidArrivalMode = XenomorphDefOf.AvP_EnterFromTunnel;
+                                    }
+                                }
+
                                 if (parms.raidArrivalMode != XenomorphDefOf.AvP_RandomEnterFromTunnel && parms.raidArrivalMode != XenomorphDefOf.AvP_DropThroughRoofNearPower)
                                 {
                                     parms.raidArrivalMode = PawnsArrivalModeDefOf.EdgeWalkIn;

@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
+  <PawnKindDef Name="AvP_USCM_NPC_Kind" ParentName="AvP_USCM_Base_Kind" Abstract="true"> <!-- Base in PawnKinds_Player_Humanoids.xml -->
+    <defaultFactionType>AvP_USCM_Faction</defaultFactionType>
+    <invNutrition>2.55</invNutrition>
+    <combatPower>60</combatPower>
+	<apparelTags>
+		<li>USCM_M10Pattern</li>
+		<li>USCM_Clothing</li>
+		<li>USCM_Armour</li>
+	</apparelTags>
+	<apparelRequired>
+        <li>AvP_USCM_Fatigues</li>
+	</apparelRequired>
+  </PawnKindDef>
+  
 
 <!--=============================================== USCM - NPC Faction ===============================================-->
 
-  <PawnKindDef ParentName="BaseUSCMPawnKind"> <!-- Base in PawnKinds_Player_Humanoids.xml -->
+  <PawnKindDef ParentName="AvP_USCM_NPC_Kind"> <!-- Base in PawnKinds_Player_Humanoids.xml -->
     <defName>AvP_USCM_Lieutenant</defName>
     <label>marine Lt</label>
-    <defaultFactionType>AvP_USCM_Faction</defaultFactionType>
     <chemicalAddictionChance>0.08</chemicalAddictionChance>
     <factionLeader>true</factionLeader>
+    <combatPower>120</combatPower>
     <gearHealthRange>
       <min>0.4</min>
       <max>1.4</max>
@@ -72,7 +86,7 @@
   
 <!--=============================================== USCM - Private ===============================================-->
 
-  <PawnKindDef ParentName="BaseUSCMPawnKind"> <!-- Base in PawnKinds_Player_Humanoids.xml -->
+  <PawnKindDef ParentName="AvP_USCM_NPC_Kind"> <!-- Base in PawnKinds_Player_Humanoids.xml -->
     <defName>AvP_USCM_Private</defName>
     <label>marine</label>
     <defaultFactionType>AvP_USCM_Faction</defaultFactionType>
@@ -134,9 +148,10 @@
   </PawnKindDef>
   
   <!--=============================================== USCM - M56 Smart Gun Operator ===============================================-->
-  <PawnKindDef ParentName="BaseUSCMPawnKind"> <!-- Base in PawnKinds_Player_Humanoids.xml -->
+  <PawnKindDef ParentName="AvP_USCM_NPC_Kind"> <!-- Base in PawnKinds_Player_Humanoids.xml -->
     <defName>AvP_USCM_Operator</defName>
     <label>operator</label>
+    <combatPower>90</combatPower>
     <defaultFactionType>AvP_USCM_Faction</defaultFactionType>
     <chemicalAddictionChance>0.08</chemicalAddictionChance>
     <gearHealthRange>
@@ -145,8 +160,7 @@
     </gearHealthRange>
 	<apparelTags>
 		<li>USCM_M10Pattern</li>
-		<li>USCM_Fatigues</li>
-		<li>USCM_HMS</li>
+		<li>USCM_M3Pattern</li>
 	</apparelTags>
 	<apparelMoney>
 		<min>5000</min>
@@ -193,12 +207,17 @@
         </li>
       </subOptionsChooseOne>
     </inventoryOptions>
+	<apparelRequired>
+        <li>AvP_Apparel_M56CombatHarness</li>
+        <li>AvP_Equipment_HMS</li>
+	</apparelRequired>
   </PawnKindDef>
   
   <!--=============================================== USCM - Public Affairs Officer ===============================================-->
-  <PawnKindDef ParentName="BaseUSCMPawnKind"> <!-- Base in PawnKinds_Player_Humanoids.xml -->
+  <PawnKindDef ParentName="AvP_USCM_NPC_Kind"> <!-- Base in PawnKinds_Player_Humanoids.xml -->
     <defName>AvP_USCM_PAO</defName>
     <label>public relation officer</label>
+    <combatPower>40</combatPower>
     <defaultFactionType>AvP_USCM_Faction</defaultFactionType>
     <chemicalAddictionChance>0.1</chemicalAddictionChance>
 	<trader>true</trader>
