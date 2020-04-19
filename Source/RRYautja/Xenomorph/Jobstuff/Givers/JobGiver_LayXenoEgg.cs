@@ -25,7 +25,7 @@ namespace RimWorld
             }
             ThingDef namedA = XenomorphDefOf.RRY_Xenomorph_Cocoon_Humanoid;
             ThingDef namedB = XenomorphDefOf.RRY_Xenomorph_Cocoon_Animal;
-            if (XenomorphKidnapUtility.TryFindGoodHiveLoc(pawn, out c))
+            if (XenomorphKidnapUtility.TryFindGoodHiveLoc(pawn, out c, null, true, false, true))
             {
                 bool selected = pawn.Map != null ? Find.Selector.SelectedObjects.Contains(pawn) && (Prefs.DevMode) : false;
                 if (c != IntVec3.Invalid && pawn.CanReach(c, PathEndMode.ClosestTouch, Danger.Deadly, true, TraverseMode.PassAllDestroyableThings))
