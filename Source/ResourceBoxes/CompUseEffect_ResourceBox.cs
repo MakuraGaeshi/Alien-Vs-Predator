@@ -14,10 +14,11 @@ namespace ResourceBoxes
         {
             this.compClass = typeof(CompUseEffect_ResourceBox);
         }
-        public List<ThingDef> possibleItems = new List<ThingDef>();
+        public List<ThingDefCountClass> possibleItems = new List<ThingDefCountClass>();
         public List<List<ThingDefCount>> possibleItemLists = new List<List<ThingDefCount>>();
         public List<Pair<ThingDef, int>> possibleItemsWithWeight = new List<Pair<ThingDef, int>>();
-        public int PerItemCount = 0;
+        public int PerItemCount = -1;
+        public bool randomCount = false;
         public int minItems = 1;
         public int maxItems = 1;
         public int minPerItem = 1;
@@ -108,23 +109,30 @@ namespace ResourceBoxes
             {
                 ThingDef named = null;
                 int PerItemCount;
-                if (PropsResourceBox.PerItemCount != 0)
+                if (PropsResourceBox.PerItemCount != -1)
                 {
                     PerItemCount = PropsResourceBox.PerItemCount;
                 }
                 else
                 {
-                    PerItemCount = Rand.RangeInclusive(PropsResourceBox.minPerItem, PropsResourceBox.maxPerItem);
+                    if (PropsResourceBox.randomCount)
+                    {
+                        PerItemCount = Rand.RangeInclusive(PropsResourceBox.minPerItem, PropsResourceBox.maxPerItem);
+                    }
+                    else
+                    {
+                        PerItemCount = PropsResourceBox.possibleItems[i].count;
+                    }
                 }
                 if (!PropsResourceBox.possibleItems.NullOrEmpty())
                 {
                     if (PropsResourceBox.spawnAll)
                     {
-                        named = PropsResourceBox.possibleItems[i];
+                        named = PropsResourceBox.possibleItems[i].thingDef;
                     }
                     else
                     {
-                        named = PropsResourceBox.possibleItems.RandomElement();
+                        named = PropsResourceBox.possibleItems.RandomElement().thingDef;
                     }
                 }
                 if (named != null)

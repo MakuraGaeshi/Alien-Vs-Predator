@@ -31,6 +31,7 @@
     </backstoryFilters>
     <startingResearchTags>
       <li>ClassicStart</li>
+      <li>YautjaStart</li>
     </startingResearchTags>
     <hairTags>
 		<li>Civil</li>
@@ -86,15 +87,16 @@
     <backstoryFilters>
       <li>
         <categories>
-		  <li>Raider</li>
+		  <li>Pirate</li>
+		  <li>Outlander</li>
+		  <li>Offworlder</li>
 		  <li>Tribal</li>
-		  <li>Civil</li>
-          <li>AvP_Yautja_Unblooded</li>
         </categories>
       </li>
     </backstoryFilters>
     <startingResearchTags>
       <li>ClassicStart</li>
+      <li>YautjaUnbloodedStart</li>
     </startingResearchTags>
     <hairTags>
 		<li>Civil</li>
@@ -152,12 +154,13 @@
 		  <li>Outlander</li>
 		  <li>Offworlder</li>
 		  <li>Tribal</li>
-          <li>AvP_Yautja_Blooded</li>
+          <!--li>AvP_Yautja_Blooded</li-->
         </categories>
       </li>
     </backstoryFilters>
     <startingResearchTags>
       <li>ClassicStart</li>
+      <li>YautjaBloodedStart</li>
     </startingResearchTags>
     <hairTags>
 		<li>Urban</li>
@@ -213,13 +216,16 @@
     <backstoryFilters>
       <li>
         <categories>
+		  <li>Pirate</li>
+		  <li>Outlander</li>
+		  <li>Offworlder</li>
 		  <li>Tribal</li>
-          <li>AvP_Yautja_Unblooded</li>
         </categories>
       </li>
     </backstoryFilters>
     <startingResearchTags>
       <li>ClassicStart</li>
+      <li>YautjaUnbloodedStart</li>
     </startingResearchTags>
     <hairTags>
 		<li>Civil</li>
@@ -228,6 +234,7 @@
     </hairTags>
     <apparelStuffFilter>
       <thingDefs>
+        <li>Steel</li>
         <li>Synthread</li>
         <li>AvP_Leather_Yautja</li>
         <li>Leather_Light</li>

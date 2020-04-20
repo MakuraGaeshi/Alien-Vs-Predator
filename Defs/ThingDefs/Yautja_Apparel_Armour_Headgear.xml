@@ -175,6 +175,8 @@
 				<li>YautjaEliteBioMask</li>
 				<li>YautjaEliteArmour</li>
 				<li>YautjaSpecialArmour</li>
+				<li>Royal</li>
+				<li>RoyalTier5</li>
 			</tags>
 		</apparel>
 	</ThingDef>
@@ -231,6 +233,8 @@
 				<li>YautjaFalconerBioMask</li>
 				<li>YautjaEliteArmour</li>
 				<li>YautjaSpecialArmour</li>
+				<li>Royal</li>
+				<li>RoyalTier6</li>
 			</tags>
 		</apparel>
 	</ThingDef>
@@ -291,6 +295,8 @@
 				<li>YautjaOrnateBioMask</li>
 				<li>YautjaOrnateArmour</li>
 				<li>YautjaSpecialArmour</li>
+				<li>Royal</li>
+				<li>RoyalTier7</li>
 			</tags>
 		</apparel>
 	</ThingDef>
