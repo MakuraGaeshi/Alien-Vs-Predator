@@ -116,7 +116,7 @@
     <Compile Include="Harmony\Patches\AvP_ShieldBelt_AllowVerbCast_YautjaWeapons_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_SnowUtility_AddSnowRadial_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_StatWorker_GetExplanationUnfinalized_Patch.cs" />
-    <Compile Include="Harmony\Patches\AvP_StatPart_StatWorker_TransformValue_Smartgun_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_StatPart_StatWorker_StatOffsetFromGear_Smartgun_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_StatWorker_GetValueUnfinalized_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_VerbUtility_HarmsHealth_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_WorkGiver_Tend_GoodLayingStatusForTend_Patch.cs" />

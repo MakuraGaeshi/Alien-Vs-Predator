@@ -55,14 +55,14 @@ namespace AvP.HarmonyInstance
         {
             if (stat == StatDefOf.MoveSpeed)
             {
-                Log.Message("speed stat mod");
+            //    Log.Message("speed stat mod");
                 if (gear != null)
                 {
-                    Log.Message(string.Format("on {0}", gear.LabelCap));
+                //    Log.Message(string.Format("on {0}", gear.LabelCap));
                     CompSmartgunSystem smartgunSystem = gear.TryGetComp<CompSmartgunSystem>();
                     if (smartgunSystem != null && smartgunSystem.hasHarness)
                     {
-                        Log.Message(string.Format("{0} hasHarness", gear.LabelCap));
+                    //    Log.Message(string.Format("{0} hasHarness", gear.LabelCap));
                         __result = 0f;
                     }
                 }
