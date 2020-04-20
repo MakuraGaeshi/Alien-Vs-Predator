@@ -46,8 +46,8 @@
 			<li Class="ResourceBoxes.CompProperties_UseEffect_ResourceBox">
 			
             <possibleItems>
-				<AvP_Headgear_M10PAttern>4</AvP_Headgear_M10PAttern>
-				<AvP_Apparel_M3Pattern>4</AvP_Apparel_M3Pattern>
+				<AvP_USCM_Headgear_M10PAttern>4</AvP_USCM_Headgear_M10PAttern>
+				<AvP_USCM_Armour_M3Pattern>4</AvP_USCM_Armour_M3Pattern>
 				<AvP_USCM_Gun_M41APR>2</AvP_USCM_Gun_M41APR>
 				<AvP_USCM_Gun_M39SMG>1</AvP_USCM_Gun_M39SMG>
 				<AvP_USCM_Gun_M240Incinerator>1</AvP_USCM_Gun_M240Incinerator>
@@ -73,10 +73,10 @@
 		<comps>
 			<li Class="ResourceBoxes.CompProperties_UseEffect_ResourceBox">
             <possibleItems>
-				<AvP_Apparel_M56CombatHarness>1</AvP_Apparel_M56CombatHarness>
-				<AvP_Apparel_M3Pattern>1</AvP_Apparel_M3Pattern>
+				<AvP_USCM_Armour_M56CombatHarness>1</AvP_USCM_Armour_M56CombatHarness>
+				<AvP_USCM_Armour_M3Pattern>1</AvP_USCM_Armour_M3Pattern>
 				<AvP_USCM_Gun_M56SmartGun>1</AvP_USCM_Gun_M56SmartGun>
-				<AvP_Equipment_HMS>1</AvP_Equipment_HMS>
+				<AvP_USCM_Equipment_HeadMountedSight>1</AvP_USCM_Equipment_HeadMountedSight>
 			</possibleItems>
             <spawnAll>true</spawnAll>
             <destoryOnUse>true</destoryOnUse>

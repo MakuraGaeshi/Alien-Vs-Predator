@@ -45,7 +45,7 @@ namespace AvP.HarmonyInstance
                 //    Log.Message(string.Format("Checking for replacement for {0} Type: {1}", defName, defType));
                 if (defType == typeof(ThingDef))
                 {
-                    if (defName.Contains("AvP_TableMachining"))
+                    if (defName.Contains("AvP_TableMachining") || defName.Contains("RRY_TableMachining"))
                     {
                         __result = "AvP_Yautja_TableMachining";
                     }
@@ -206,6 +206,47 @@ namespace AvP.HarmonyInstance
                         __result = "AvP_Alien_Yautja";
                     }
 
+
+                    if (defName.Contains("Equipment_HMS"))
+                    {
+                        __result = "AvP_USCM_Equipment_HeadMountedSight";
+                    }
+
+                    if (defName.Contains("Apparel_M56CombatHarness"))
+                    {
+                        __result = "AvP_USCM_Armour_M56CombatHarness";
+                    }
+
+                    if (defName.Contains("Apparel_M3Pattern"))
+                    {
+                        __result = "AvP_USCM_Armour_M3Pattern";
+                    }
+                    if (defName.Contains("Headgear_M10PAttern"))
+                    {
+                        __result = "AvP_USCM_Headgear_M10PAttern";
+                    }
+
+                    if (defName.Contains("USCM_MedicalJumpsuit"))
+                    {
+                        __result = "AvP_USCM_Apparel_Jumpsuit_Medical";
+                    }
+                    else
+                    if (defName.Contains("USCM_Jumpsuit"))
+                    {
+                        __result = "AvP_USCM_Apparel_Jumpsuit_Engineer";
+                    }
+                    if (defName.Contains("USCM_Fatigues"))
+                    {
+                        __result = "AvP_USCM_Apparel_Fatigues";
+                    }
+                    if (defName.Contains("USCM_Cap"))
+                    {
+                        __result = "AvP_USCM_Headgear_Cap";
+                    }
+                    if (defName.Contains("USCM_Bandana"))
+                    {
+                        __result = "AvP_USCM_Headgear_Bandana";
+                    }
 
                 }
                 if (defType == typeof(FactionDef))

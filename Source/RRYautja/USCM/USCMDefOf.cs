@@ -21,7 +21,8 @@ namespace RimWorld
         public static ThingDef AvP_Synth;
 
         // USCM ThingDefs  Equipment
-        public static ThingDef AvP_Equipment_HMS;
+        public static ThingDef AvP_USCM_Equipment_HeadMountedSight;
+        public static ThingDef AvP_USCM_Armour_M56CombatHarness;
 
         // USCM ThingDefs  Weapons
         //    public static ThingDef AvP_Gun_Hunting_Bow;

@@ -49,6 +49,7 @@
   <USCM_Dropship_CommandAddFuelDesc>Add fuel to Cargo Pod Transport</USCM_Dropship_CommandAddFuelDesc>
   <USCM_Dropship_NoFuelMsg>There is no available chemfuel.</USCM_Dropship_NoFuelMsg>
   <USCM_Dropship_AddFuelDoneMsg>Add {0} fuel,now fuel:{1}</USCM_Dropship_AddFuelDoneMsg>
+  <AvP_USCM_OutfitSmartgunner>Smartgun Operator</AvP_USCM_OutfitSmartgunner>
    <!-- Xenomorph -->
   <RoyalProgress>Royal hugger</RoyalProgress>
   <ColonistNeedsRescueFromCocoon>Colonist cocooned!</ColonistNeedsRescueFromCocoon>

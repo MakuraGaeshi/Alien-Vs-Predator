@@ -46,8 +46,8 @@
 			</li> 
 			<li Class="AvP.CompProperties_SmartgunSystem"> 
 			<WarmUpReductionQualityAffected>false</WarmUpReductionQualityAffected>
-			<TargeterDef>AvP_Equipment_HMS</TargeterDef>
-			<HarnessDef>AvP_Apparel_M56CombatHarness</HarnessDef>
+			<TargeterDef>AvP_USCM_Equipment_HeadMountedSight</TargeterDef>
+			<HarnessDef>AvP_USCM_Armour_M56CombatHarness</HarnessDef>
 			
 			</li>
 		</comps>

@@ -11,7 +11,7 @@
 		<li>USCM_Armour</li>
 	</apparelTags>
 	<apparelRequired>
-        <li>AvP_USCM_Fatigues</li>
+        <li>AvP_USCM_Apparel_Fatigues</li>
 	</apparelRequired>
   </PawnKindDef>
   
@@ -79,8 +79,8 @@
       </subOptionsChooseOne>
     </inventoryOptions>
 	<apparelRequired>
-        <li>AvP_Apparel_M3Pattern</li>
-        <li>AvP_USCM_Cap</li>
+        <li>AvP_USCM_Armour_M3Pattern</li>
+        <li>AvP_USCM_Headgear_Cap</li>
 	</apparelRequired>
   </PawnKindDef>
   
@@ -208,8 +208,8 @@
       </subOptionsChooseOne>
     </inventoryOptions>
 	<apparelRequired>
-        <li>AvP_Apparel_M56CombatHarness</li>
-        <li>AvP_Equipment_HMS</li>
+        <li>AvP_USCM_Armour_M56CombatHarness</li>
+        <li>AvP_USCM_Equipment_HeadMountedSight</li>
 	</apparelRequired>
   </PawnKindDef>
   

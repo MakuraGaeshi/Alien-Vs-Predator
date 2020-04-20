@@ -3,7 +3,7 @@
 	
 	<!-- ========================= USCM - M10 Pattern Ballistic Helmet ========================== -->
 	<ThingDef ParentName="AvP_USCM_ArmourHeadgearBase">
-		<defName>AvP_Headgear_M10PAttern</defName>
+		<defName>AvP_USCM_Headgear_M10PAttern</defName>
 		<label>M10 Pattern Ballistic Helmet</label>
 		<description>The M10 Pattern Ballistic Helmet is a helmet used primarily by the United States Colonial Marine Corps in conjunction with the M3 Pattern Personal Armour. In addition to providing head protection, it features an integrated video camera, infrared sight, transmitter and microphone.</description>
 		<graphicData>
@@ -63,7 +63,7 @@
 	
 <!-- ========================= USCM - M3 Pattern Personal Armour ========================== -->
 	<ThingDef ParentName="AvP_USCM_Armour_MakeableBase">
-		<defName>AvP_Apparel_M3Pattern</defName>
+		<defName>AvP_USCM_Armour_M3Pattern</defName>
 		<label>M3 Pattern Personal Armour</label>
 		<description>The M3 Pattern Personal Armour is the standard ballistic protective armour system employed by the United States Colonial Marine Corps. Manufactured by Armat Battlefield Systems, it is designed to balance lightness and comfort with optimum protection. The M3 system is primarily concerned with protecting the user's torso only.</description>
 		<graphicData>
@@ -123,7 +123,7 @@
 	
 <!-- ========================= USCM - M56 Combat Harness ========================== -->
 	<ThingDef ParentName="AvP_USCM_Armour_MakeableBase">
-		<defName>AvP_Apparel_M56CombatHarness</defName>
+		<defName>AvP_USCM_Armour_M56CombatHarness</defName>
 		<label>M56 Combat Harness</label>
 		<description>The M56 combat harness is the harness worn by the operator of an M56 Smartgun. The harness negates the bulkiness of the Smartgun while providing added armour but decreasing mobility a bit.</description>
 		<graphicData>
@@ -169,11 +169,13 @@
 				<li>Shell</li>
 			</layers>
 			<tags>
-				<li>USCM_M56CombatHarness</li>
 				<li>USCM_Armour</li>
+				<li>USCM_M56CombatHarness</li>
+				<li>USCM_M56SmartGunSystem</li>
 			</tags>
 			<defaultOutfitTags>
 				<li>Soldier</li>
+				<li>SmartGunOperator</li>
 			</defaultOutfitTags>
 		</apparel>
 		<tradeTags>

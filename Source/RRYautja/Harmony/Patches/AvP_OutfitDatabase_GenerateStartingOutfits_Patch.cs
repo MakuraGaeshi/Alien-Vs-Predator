@@ -76,7 +76,7 @@ namespace AvP.HarmonyInstance
 						{
 							if (AlienRace.RaceRestrictionSettings.apparelWhiteDict.TryGetValue(key: thingDef2).Contains(YautjaDefOf.AvP_Alien_Yautja))
 							{
-								outfit.filter.SetAllow(thingDef2, true);
+								outfit2.filter.SetAllow(thingDef2, true);
 							}
 						}
 					}
@@ -106,12 +106,32 @@ namespace AvP.HarmonyInstance
 						{
 							if (AlienRace.RaceRestrictionSettings.apparelWhiteDict.TryGetValue(key: thingDef3).Contains(YautjaDefOf.AvP_Alien_Yautja))
 							{
-								outfit.filter.SetAllow(thingDef3, true);
+								outfit3.filter.SetAllow(thingDef3, true);
 							}
 						}
 					}
 				}
 			}
+
+			Outfit outfit4 = __instance.MakeNewOutfit();
+			outfit4.label = "AvP_USCM_OutfitSmartgunner".Translate();
+			outfit4.filter.SetDisallowAll(null, null);
+			outfit4.filter.SetAllow(SpecialThingFilterDefOf.AllowDeadmansApparel, false);
+			foreach (ThingDef thingDef4 in DefDatabase<ThingDef>.AllDefs)
+			{
+				if (thingDef4.IsApparel)
+				{
+					if ((ApparelUtility.CanWearTogether(USCMDefOf.AvP_USCM_Armour_M56CombatHarness, thingDef4, BodyDefOf.Human) && ApparelUtility.CanWearTogether(USCMDefOf.AvP_USCM_Equipment_HeadMountedSight, thingDef4, BodyDefOf.Human)) || USCMDefOf.AvP_USCM_Armour_M56CombatHarness == thingDef4 || USCMDefOf.AvP_USCM_Equipment_HeadMountedSight == thingDef4)
+					{
+						if (thingDef4.apparel != null && thingDef4.apparel.defaultOutfitTags != null && (thingDef4.apparel.defaultOutfitTags.Contains("SmartGunOperator") || thingDef4.apparel.defaultOutfitTags.Contains("Soldier")))
+						{
+							outfit4.filter.SetAllow(thingDef4, true);
+						}
+					}
+				}
+				
+			}
+
 		}
     }
     
