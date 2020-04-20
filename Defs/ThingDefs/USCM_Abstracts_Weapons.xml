@@ -30,43 +30,6 @@
 		</graphicData>
 	</ThingDef>
 	
-
-  <ThingDef Name="AvP_USCM_BaseSimpleRanged" Abstract="True" ParentName="AvP_USCM_BaseWeapon">
-    <techLevel>Neolithic</techLevel>
-    <weaponTags>
-	
-    </weaponTags>
-    <thingCategories>
-      <li>WeaponsRanged</li>
-	  <li>AvP_USCM_Weapons</li>
-    </thingCategories>
-    <comps>
-      <li>
-        <compClass>CompQuality</compClass>
-      </li>
-    </comps>
-    <recipeMaker>
-      <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
-      <workSkill>Crafting</workSkill>
-      <recipeUsers>
-        <li>AvP_TableMachining</li>
-		
-      </recipeUsers>
-      <effectWorking>Smelt</effectWorking>
-      <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
-    <defaultIngredientFilter>
-      <categories>
-        <li>Root</li>
-      </categories>
-      <disallowedThingDefs>
-        <li>Silver</li>
-        <li>Gold</li>
-      </disallowedThingDefs>
-    </defaultIngredientFilter>
-    </recipeMaker>
-  </ThingDef>
-  
-
 	<!-- ==================== USCM - Base Gun Weapon Template ========================= -->		
 	<ThingDef Name="AvP_USCM_BaseGun" Abstract="True" ParentName="AvP_USCM_BaseWeapon">
 		<techLevel>Industrial</techLevel>
@@ -113,7 +76,8 @@
     <techLevel>Industrial</techLevel>
 		<smeltable>true</smeltable>
     <thingCategories>
-      <li>WeaponsMelee</li>
+		<li>WeaponsMelee</li>
+		<li>AvP_USCM_MeleeWeapons</li>
     </thingCategories>
 
     <recipeMaker>

@@ -14,7 +14,7 @@
 	</ThingDef>
 
   <ThingDef ParentName="AvP_BenchBase">
-    <defName>AvP_TableMachining</defName>
+    <defName>AvP_Yautja_TableMachining</defName>
     <label>Yautja machining table</label>
     <description>A Yautja work station for assembling or breaking down machinery like components, armour, guns and ammunition, or dead mechanoids.</description>
     <thingClass>Building_WorkTable</thingClass>

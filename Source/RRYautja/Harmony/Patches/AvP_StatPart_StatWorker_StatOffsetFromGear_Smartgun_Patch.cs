@@ -51,7 +51,7 @@ namespace AvP.HarmonyInstance
     public static class AvP_StatPart_StatWorker_StatOffsetFromGear_Smartgun_Patch
     {
         [HarmonyPostfix]
-        public static void StatOffsetFromGear_Postfix(StatWorker __instance, Thing gear, StatDef stat, ref float __result)
+        public static void StatOffsetFromGear_Postfix(Thing gear, StatDef stat, ref float __result)
         {
             if (stat == StatDefOf.MoveSpeed)
             {

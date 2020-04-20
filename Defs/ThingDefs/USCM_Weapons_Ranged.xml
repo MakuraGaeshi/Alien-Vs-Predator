@@ -330,7 +330,7 @@
 		<li>USCM_StandardIssue_Ranged</li>
 	</weaponTags>
 	<tradeTags>
-		<li>AvP_RangedWeapons</li>
+		<li>WeaponsRanged</li>
 		<li>AvP_USCM_RangedWeapons</li>
 	</tradeTags>
     <verbs>
@@ -445,7 +445,7 @@
 		<li>USCM_StandardIssue_Ranged</li>
 	</weaponTags>
 	<tradeTags>
-		<li>AvP_RangedWeapons</li>
+		<li>WeaponsRanged</li>
 		<li>AvP_USCM_RangedWeapons</li>
 	</tradeTags>
     <verbs>
@@ -555,7 +555,7 @@
 			<li>USCM_Weapons</li>
 		</weaponTags>
 		<tradeTags>
-			<li>AvP_RangedWeapons</li>
+			<li>WeaponsRanged</li>
 			<li>AvP_USCM_RangedWeapons</li>
 		</tradeTags>
 		<costList>				

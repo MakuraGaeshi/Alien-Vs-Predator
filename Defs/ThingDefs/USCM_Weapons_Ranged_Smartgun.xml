@@ -94,7 +94,7 @@
 			<MoveSpeed>-2.32</MoveSpeed>
 		</equippedStatOffsets>
 		<tradeTags>
-			<li>AvP_RangedWeapons</li>
+			<li>WeaponsRanged</li>
 			<li>AvP_USCM_RangedWeapons</li>
 		</tradeTags>
 		<costList>				

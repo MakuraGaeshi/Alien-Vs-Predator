@@ -70,9 +70,6 @@
 			<li>USCM_Melee</li>
 			<li>USCM_MaintenanceJack</li>
 		</weaponTags>
-		<thingCategories>
-			<li>AvP_MeleeWeapons</li>
-		</thingCategories>
     <tradeTags>
 		<li>ExoticMisc</li>
     </tradeTags>

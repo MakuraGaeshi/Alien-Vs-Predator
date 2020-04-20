@@ -1,26 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-	<!-- ========================= Yautja - Headgear base ========================== -->
-	<ThingDef Name="AvP_Yautja_Headgear_Base" ParentName="AvP_Armour_Base_Makeable" Abstract="true">
-	<description>Advanced Headgear of the Yautja</description>
-	<apparel>
-		<tags>
-			<li>YautjaHelmet</li>
-		</tags>
-		<defaultOutfitTags>
-			<li>Soldier</li>
-		</defaultOutfitTags>
-	</apparel>
-	<thingCategories>
-		<li>AvP_Headgear</li>
-	</thingCategories>
-	<tradeTags>
-		<li>Headgear</li>
-	</tradeTags>
-	</ThingDef>	
-
-	<!-- ========================= Yautja - Light Bio Mask ========================== -->
-	<ThingDef ParentName="AvP_Yautja_Headgear_Base">
+  <!-- ========================= Yautja - Armoured Headgear ========================== -->
+  <!-- ========================= Yautja - Light Bio Mask ========================== -->
+	<ThingDef ParentName="AvP_Yautja_ArmourHeadgearBase">
 		<defName>AvP_Yautja_Armour_BioMaskLight</defName>
 		<label>Yautja Light Bio Mask</label>
 		<description>A lighter variant of the standard Yautja bio mask. The helmet offers less protection than the standard variant while still incorporating a respirator to avoid inhaling toxic compounds. The helmet is also equipped with more advanced targeting system and vision enhancing utilities.</description>
@@ -71,8 +53,8 @@
 		</apparel>
 	</ThingDef>
 
-	<!-- ========================= Yautja - Bio Mask ========================== -->
-	<ThingDef ParentName="AvP_Yautja_Headgear_Base">
+  <!-- ========================= Yautja - Bio Mask ========================== -->
+	<ThingDef ParentName="AvP_Yautja_ArmourHeadgearBase">
 		<defName>AvP_Yautja_Armour_BioMask</defName>
 		<label>Yautja Bio Mask</label>
 		<description>Arguably the most iconic piece of equipment in the Yautja arsenal, the bio mask is part functional armour and part ritualistic object. It offers protection from harm in combat as well as a respirator to avoid inhaling toxic compounds. The helmet is also equipped with a targeting system and vision enhancing utilities.</description>
@@ -123,8 +105,8 @@
 		</apparel>
 	</ThingDef>
 
-	<!-- ========================= Yautja - Elite Bio Mask ========================== -->
-	<ThingDef ParentName="AvP_Yautja_Headgear_Base">
+  <!-- ========================= Yautja - Elite Bio Mask ========================== -->
+	<ThingDef ParentName="AvP_Yautja_ArmourHeadgearBase">
 		<defName>AvP_Yautja_Armour_BioMaskElite</defName>
 		<label>Elite Yautja Bio Mask</label>
 		<description>Worked with patience and care. This bio mask serves as a status symbol for the elite hunter. With augmented targeting capabilities, a new, more comfortable interior design and a quieter respirator, the new and improved Elite Bio Mask serves elite hunters well in the field.</description>
@@ -181,8 +163,8 @@
 		</apparel>
 	</ThingDef>
 
-	<!-- ========================= Yautja - Falconer Bio Mask ========================== -->
-	<ThingDef ParentName="AvP_Yautja_Headgear_Base">
+  <!-- ========================= Yautja - Falconer Bio Mask ========================== -->
+	<ThingDef ParentName="AvP_Yautja_ArmourHeadgearBase">
 		<defName>AvP_Yautja_Armour_BioMaskFalconer</defName>
 		<label>Falconer Yautja Bio Mask</label>
 		<description>Worked with patience and care. Falconer bio masks serves as a status symbol for the elite hunter. With augmented targeting capabilities, a new, more comfortable interior design and a quieter respirator, the new and improved Falconer Bio Mask serves elite hunters well in the field.</description>
@@ -239,8 +221,8 @@
 		</apparel>
 	</ThingDef>
 
-	<!-- ========================= Yautja - Ornate Bio Mask ========================== -->
-	<ThingDef ParentName="AvP_Yautja_Headgear_Base">
+  <!-- ========================= Yautja - Ornate Bio Mask ========================== -->
+	<ThingDef ParentName="AvP_Yautja_ArmourHeadgearBase">
 		<defName>AvP_Yautja_Armour_BioMaskOrnate</defName>
 		<label>Ornate Yautja Bio Mask</label>
 		<description>The expertly crafted bio mask of Yautja Clan Leader. Often customised by the leader themselves. All the same capabilities as the bio mask with the air of respect a leader commands.</description>

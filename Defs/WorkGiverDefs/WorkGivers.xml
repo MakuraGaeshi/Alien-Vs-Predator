@@ -10,7 +10,7 @@
 		<workType>Crafting</workType>
 		<priorityInType>45</priorityInType>
 		<fixedBillGiverDefs>
-			<li>AvP_TableMachining</li>
+			<li>AvP_Yautja_TableMachining</li>
 		</fixedBillGiverDefs>
 		<verb>Fabricate Resources</verb>
 		<gerund>Fabricating Resources at</gerund>

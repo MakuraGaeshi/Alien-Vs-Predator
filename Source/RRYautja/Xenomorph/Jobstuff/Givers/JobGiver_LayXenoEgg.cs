@@ -11,8 +11,8 @@ namespace RimWorld
     // Token: 0x020000A7 RID: 167
     public class JobGiver_LayXenoEgg : ThinkNode_JobGiver
     {
-        ThingDef namedA = XenomorphDefOf.AvP_Xenomorph_Cocoon_Humanoid;
-        ThingDef namedB = XenomorphDefOf.AvP_Xenomorph_Cocoon_Animal;
+        readonly ThingDef namedA = XenomorphDefOf.AvP_Xenomorph_Cocoon_Humanoid;
+        readonly ThingDef namedB = XenomorphDefOf.AvP_Xenomorph_Cocoon_Animal;
         // Token: 0x06000424 RID: 1060 RVA: 0x0002CE84 File Offset: 0x0002B284
         protected override Job TryGiveJob(Pawn pawn)
         {
@@ -38,8 +38,7 @@ namespace RimWorld
                 {
                     using (PawnPath pawnPath = pawn.Map.pathFinder.FindPath(pawn.Position, c, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.PassAllDestroyableThings, false), PathEndMode.OnCell))
                     {
-                        IntVec3 cellBeforeBlocker;
-                        Thing thing = pawnPath.FirstBlockingBuilding(out cellBeforeBlocker, pawn);
+                        Thing thing = pawnPath.FirstBlockingBuilding(out IntVec3 cellBeforeBlocker, pawn);
                         if (thing != null)
                         {
                             Job job = DigUtility.PassBlockerJob(pawn, thing, cellBeforeBlocker, true, true);
@@ -50,7 +49,7 @@ namespace RimWorld
                         }
                     }
                     Log.Message("queen can reach eggsite");
-                    Predicate<IntVec3> validator = delegate (IntVec3 y)
+                    bool validator(IntVec3 y)
                     {
                         bool adjacent = c.AdjacentTo8WayOrInside(y);
                         bool filled = y.Filled(pawn.Map);
@@ -59,7 +58,7 @@ namespace RimWorld
                         bool thingA = y.GetFirstThing(pawn.Map, namedA).DestroyedOrNull();
                         bool thingB = y.GetFirstThing(pawn.Map, namedB).DestroyedOrNull();
                         return !adjacent && !filled && edifice && building && thingA && thingB;
-                    };
+                    }
 
                     bool b = RCellFinder.TryFindRandomCellNearWith(c, validator, pawn.Map, out IntVec3 lc, 6, 12);
 
@@ -81,7 +80,7 @@ namespace RimWorld
                 {
                     if (c != IntVec3.Invalid && pawn.CanReach(c, PathEndMode.ClosestTouch, Danger.Deadly, true, TraverseMode.PassAllDestroyableThings))
                     {
-                        Predicate<IntVec3> validator = delegate (IntVec3 y)
+                        bool validator(IntVec3 y)
                         {
                             bool adjacent = c.AdjacentTo8WayOrInside(y);
                             bool filled = y.Filled(pawn.Map);
@@ -90,7 +89,7 @@ namespace RimWorld
                             bool thingA = y.GetFirstThing(pawn.Map, namedA).DestroyedOrNull();
                             bool thingB = y.GetFirstThing(pawn.Map, namedB).DestroyedOrNull();
                             return !adjacent && !filled && edifice && building && thingA && thingB;
-                        };
+                        }
 
                         bool b = RCellFinder.TryFindRandomCellNearWith(c, validator, pawn.Map, out IntVec3 lc, 6, 12);
 
@@ -107,7 +106,7 @@ namespace RimWorld
                 {
                     if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0} No Egglaying spot Found", this));
                     c = pawn.Position;
-                    Predicate<IntVec3> validator = delegate (IntVec3 y)
+                    bool validator(IntVec3 y)
                     {
                         bool adjacent = c.AdjacentTo8WayOrInside(y);
                         bool filled = y.Filled(pawn.Map);
@@ -116,7 +115,7 @@ namespace RimWorld
                         bool thingA = y.GetFirstThing(pawn.Map, namedA).DestroyedOrNull();
                         bool thingB = y.GetFirstThing(pawn.Map, namedB).DestroyedOrNull();
                         return !adjacent && !filled && edifice && building && thingA && thingB;
-                    };
+                    }
 
                     bool b = RCellFinder.TryFindRandomCellNearWith(c, validator, pawn.Map, out IntVec3 lc, 6, 12);
 
@@ -128,7 +127,5 @@ namespace RimWorld
             return null;
         }
 
-        // Token: 0x04000275 RID: 629
-        private const float LayRadius = 3f;
     }
 }

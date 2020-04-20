@@ -36,8 +36,8 @@
   <ItemGroup>
     <Compile Include="Abilities\ProjectileDefExtension.cs" />
     <Compile Include="Harmony\Patches\AVP_Dropship_Patches_WIP.cs" />
-    <Compile Include="Harmony\Patches\AvP_AEmpty_Patch - Copy %282%29.cs" />
-    <Compile Include="Harmony\Patches\AvP_BackCompatibility_BackCompatibleDefName_Patch - Copy.cs" />
+    <Compile Include="Harmony\Patches\AvP_OutfitDatabase_GenerateStartingOutfits_Patch.cs" />
+    <Compile Include="Harmony\Patches\AvP_BackCompatibility_GetBackCompatibleType_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_BackstoryDatabase_GetIdentifierClosestMatch_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_IncidentWorker_RaidEnemy_TryExecute_PowerCut_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_Alert_StarvationColonists_StarvingColonists_Synth_Patch.cs" />

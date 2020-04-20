@@ -16,7 +16,7 @@ namespace AvP.HarmonyInstance
     public static class AvP_BackCompatibility_BackCompatibleDefName_Patch
     {
         [HarmonyPostfix]
-        public static void BackCompatibleDefName_Postfix(Type defType, string defName, bool forDefInjections, ref string __result)
+        public static void BackCompatibleDefName_Postfix(Type defType, string defName, ref string __result)
         {
             if (GenDefDatabase.GetDefSilentFail(defType, defName, false) == null)
             {
@@ -45,6 +45,10 @@ namespace AvP.HarmonyInstance
                 //    Log.Message(string.Format("Checking for replacement for {0} Type: {1}", defName, defType));
                 if (defType == typeof(ThingDef))
                 {
+                    if (defName.Contains("AvP_TableMachining"))
+                    {
+                        __result = "AvP_Yautja_TableMachining";
+                    }
                     if (defName.Contains("RRY_Melee_Combistaff"))
                     {
                         __result = "AvP_Yautja_Melee_Combistaff";

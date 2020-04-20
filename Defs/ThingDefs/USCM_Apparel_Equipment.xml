@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-	<!-- ========================= USCM - Equipment base ========================== -->
-	<ThingDef Name="AvP_USCM_EquipmentBase" ParentName="AvP_USCM_Armour_MakeableBase" Abstract="true">
-	<description>Advanced equipment of the USCM</description>
-	</ThingDef>
-	
 	
 	<!-- ========================= USCM - HMS ========================== -->
 	<ThingDef ParentName="AvP_USCM_EquipmentBase">
@@ -57,9 +52,6 @@
 				<li>Soldier</li>
 			</defaultOutfitTags>
 		</apparel>
-		<thingCategories>
-			<li>AvP_Equipment</li>
-		</thingCategories>
 		<tradeTags>
 			<li>Apparel</li>
 		</tradeTags>

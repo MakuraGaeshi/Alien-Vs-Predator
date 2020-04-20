@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-	<!-- ========================= Yautja - Armour base ========================== -->
-	<ThingDef Name="AvP_Yautja_Armour_Base" ParentName="AvP_Armour_Base_Makeable" Abstract="true">
+  <!-- ========================= Yautja - Armour base ========================== -->
+	<ThingDef Name="AvP_Yautja_Armour_Base" ParentName="AvP_Yautja_Armour_Base_Makeable" Abstract="true">
 	<description>Advanced battle armour of the Yautja</description>
 		<statBases>
 			<Flammability>0.4</Flammability>
@@ -14,11 +14,8 @@
 				<li>Soldier</li>
 			</defaultOutfitTags>
 		</apparel>
-		<thingCategories>
-			<li>AvP_Armour</li>
-		</thingCategories>
 		<tradeTags>
-			<li>Apparel</li>
+			<li>YautjaApparel</li>
 		</tradeTags>
 	</ThingDef>
 	

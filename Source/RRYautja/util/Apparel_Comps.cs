@@ -72,7 +72,6 @@ namespace AvP
         public bool Armed;
 
         // Determine if this ThingComp is being worn presently. Returns True/False
-        protected virtual bool IsWorn => (GetWearer != null);
 
         public int nextUpdateTick;
         // Token: 0x060053DD RID: 21469 RVA: 0x00264E3D File Offset: 0x0026323D

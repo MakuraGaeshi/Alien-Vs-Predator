@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-	<!-- ========================= Yautja - Apparel ========================== -->
-	<!-- ========================= Yautja - Hunter Vest ========================== -->
-	<ThingDef ParentName="AvP_Apparel_Base_Makeable">
+  <!-- ========================= Yautja - Apparel ========================== -->
+  <!-- ========================= Yautja - Hunter Vest ========================== -->
+	<ThingDef ParentName="AvP_Yautja_Apparel_MakeableBase">
 		<defName>AvP_Yautja_Apparel_HunterVest</defName>
 		<label>Yautja Vest</label>
 		<description>It's a vest godarnit! XD</description>
@@ -26,9 +26,6 @@
       <StuffEffectMultiplierInsulation_Heat>0.55</StuffEffectMultiplierInsulation_Heat>
       <EquipDelay>1.5</EquipDelay>
 		</statBases>
-		<thingCategories>
-			<li>AvP_Apparel</li>
-		</thingCategories>
 		<apparel>
 			<bodyPartGroups>
 				<li>Torso</li>
@@ -45,7 +42,7 @@
 		<recipeMaker>
 			<researchPrerequisite>AvP_Tech_Yautja_T1</researchPrerequisite>
 			<recipeUsers>
-				<li>AvP_TableMachining</li>
+				<li>AvP_Yautja_TableMachining</li>
 			</recipeUsers>
 		</recipeMaker>
 		<colorGenerator Class="ColorGenerator_Options">
@@ -66,8 +63,8 @@
 		</colorGenerator>
 	</ThingDef>
 	
-	  <!-- ====================================== tribalwear =========================================== -->
-	<ThingDef ParentName="AvP_Apparel_Base_Makeable">
+  <!-- ====================================== Tribal Cloak =========================================== -->
+	<ThingDef ParentName="AvP_Yautja_Apparel_MakeableBase">
 		<defName>AvP_Yautja_Apparel_TribalCloak</defName>
 		<label>tribalcloak</label>
 		<description>A full-body garment crafted using neolithic tools. While it may look primitive, it is effective at insulating the wearer.</description>
@@ -92,9 +89,6 @@
       <StuffEffectMultiplierInsulation_Heat>0.55</StuffEffectMultiplierInsulation_Heat>
       <EquipDelay>1.5</EquipDelay>
 		</statBases>
-		<thingCategories>
-			<li>Apparel</li>
-		</thingCategories>
 		<apparel>
 		<useWornGraphicMask>true</useWornGraphicMask>
 			<bodyPartGroups>
@@ -115,7 +109,7 @@
 		<recipeMaker>
 			<recipeUsers>
 				<li>ElectricTailoringBench</li>
-				<li>AvP_TableMachining</li>
+				<li>AvP_Yautja_TableMachining</li>
 				<li>HandTailoringBench</li>
 				<li>CraftingSpot</li>
 			</recipeUsers>
@@ -138,8 +132,8 @@
 		</colorGenerator>
 	</ThingDef>
 
-	<!-- ========================= Yautja - Heated Mesh ========================== -->
-	<ThingDef ParentName="AvP_Apparel_Base_Makeable">
+  <!-- ========================= Yautja - Heated Mesh ========================== -->
+	<ThingDef ParentName="AvP_Yautja_Apparel_MakeableBase">
 		<defName>AvP_Yautja_Apparel_ThermalMesh</defName>
 		<label>Yautja Survival Mesh</label>
 		<description>A heated mesh to help the Yautja fight external elements. It mixes natural fibres with a self-regulating, plasteel mesh.</description>
@@ -167,9 +161,6 @@
       <StuffEffectMultiplierInsulation_Heat>0.55</StuffEffectMultiplierInsulation_Heat>
       <EquipDelay>2.5</EquipDelay>
 		</statBases>
-		<thingCategories>
-			<li>AvP_Apparel</li>
-		</thingCategories>
 		<apparel>
 			<bodyPartGroups>
 				<li>Torso</li>
@@ -190,7 +181,7 @@
 		<recipeMaker>
 			<researchPrerequisite>AvP_Tech_Yautja_T2</researchPrerequisite>
 			<recipeUsers>
-				<li>AvP_TableMachining</li>
+				<li>AvP_Yautja_TableMachining</li>
 			</recipeUsers>
 			<skillRequirements>
 				<Crafting>4</Crafting>

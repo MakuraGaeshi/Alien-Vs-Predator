@@ -50,9 +50,6 @@
 			<li>YautjaWristblade</li>
 			<li>Yautja</li>
 		</weaponTags>
-		<thingCategories>
-			<li>AvP_MeleeWeapons</li>
-		</thingCategories>
 		<tradeTags>
 			<li>AvP_MeleeWeapons</li>
 		</tradeTags>
@@ -122,9 +119,6 @@
 			<li>YautjaBladedMaul</li>
 			
 		</weaponTags>
-		<thingCategories>
-			<li>AvP_MeleeWeapons</li>
-		</thingCategories>
     <tradeTags>
 	
     </tradeTags>

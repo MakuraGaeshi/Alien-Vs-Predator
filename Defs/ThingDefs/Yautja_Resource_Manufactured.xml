@@ -45,7 +45,7 @@
       <workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
       <workSkill>Intellectual</workSkill>
       <recipeUsers>
-        <li>AvP_TableMachining</li>
+        <li>AvP_Yautja_TableMachining</li>
       </recipeUsers>
       <researchPrerequisite>AvP_Tech_Yautja_HealthShard</researchPrerequisite>
       <skillRequirements>

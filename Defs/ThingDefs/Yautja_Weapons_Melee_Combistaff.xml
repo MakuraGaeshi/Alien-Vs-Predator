@@ -44,9 +44,6 @@
 		<li>YautjaCombistaff</li>
 		
     </weaponTags>
-		<thingCategories>
-			<li>AvP_MeleeWeapons</li>
-		</thingCategories>
     <recipeMaker>
 			<researchPrerequisite>AvP_Tech_Yautja_Melee_T2</researchPrerequisite>
       <skillRequirements>

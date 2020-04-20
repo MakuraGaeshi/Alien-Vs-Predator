@@ -91,6 +91,6 @@ namespace AvP.HarmonyInstance
 			}
 			return false;
 		}
-		private static List<Apparel> tmpApparel = new List<Apparel>();
+		private static readonly List<Apparel> tmpApparel = new List<Apparel>();
 	}
 }
