@@ -13,7 +13,7 @@
 	<FactionDef ParentName="AvP_USCMFactionBase">
 		<defName>AvP_USCM_Faction</defName>
 		<label>USCM</label>
-    <description>The United States Colonial Marine Corps (USCM), commonly known as the Colonial Marines, is the United Americas' primary "force-in-readiness".\n\nThe primary duties of the Colonial Marine Corps are to maintain security for all United Americas signatories and at all extraterrestrial colonies that fall under United States of America's control, and serve as the vanguard of any major combat operation.</description>
+    <description>The United States Colonial Marine Corps (USCM), commonly known as the Colonial Marines, is the United Americas' primary "force-in-readiness".\n\nThe primary duties of the Colonial Marine Corps are to maintain security for all United Americas signatories and at all extraterrestrial colonies that fall under the United States of America's control, and serve as the vanguard of any major combat operation.</description>
 	<pawnSingular>Marine</pawnSingular>
     <pawnsPlural>Marines</pawnsPlural>
     <listOrderPriority>20</listOrderPriority>
