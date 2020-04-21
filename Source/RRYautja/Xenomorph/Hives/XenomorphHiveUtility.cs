@@ -35,7 +35,7 @@ namespace AvP
         }
 
         // Token: 0x0600268A RID: 9866 RVA: 0x00124ABC File Offset: 0x00122EBC
-        public static void Notify_HiveLikeDespawned(HiveLike hivelike, Map map)
+        public static void Notify_HiveLikeDespawned(XenomorphHive hivelike, Map map)
         {
             int num = GenRadial.NumCellsInRadius(2f);
             for (int i = 0; i < num; i++)

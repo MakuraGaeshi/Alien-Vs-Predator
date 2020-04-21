@@ -12,8 +12,13 @@ namespace RimWorld
     // Token: 0x0200092D RID: 2349
     public static class InfestationLikeCellFinder
     {
+        public static bool TryFindCell(out IntVec3 cell, Map map, bool allowFogged = false, bool allowUnroofed = false, bool allowDigging = false, bool forceNew = false)
+        {
+            return TryFindCell(out cell, out LocationCandidate locationC, map, allowFogged, allowUnroofed, allowDigging, forceNew);
+        }
+
         // Token: 0x0600368B RID: 13963 RVA: 0x001A0E1C File Offset: 0x0019F21C
-        public static bool TryFindCell(out IntVec3 cell, out IntVec3 locationC, Map map, bool allowFogged = false, bool allowUnroofed = false, bool allowDigging = false, bool forceNew = false)
+        public static bool TryFindCell(out IntVec3 cell, out LocationCandidate locationC, Map map, bool allowFogged = false, bool allowUnroofed = false, bool allowDigging = false, bool forceNew = false)
         {
             Predicate<IntVec3> validator = delegate (IntVec3 y)
             {
@@ -28,7 +33,7 @@ namespace RimWorld
                 bool filled = y.Filled(map) && !allowDigging;
                 bool edifice = y.GetEdifice(map).DestroyedOrNull() || allowDigging;
                 bool building = y.GetFirstBuilding(map).DestroyedOrNull() || allowDigging;
-                bool thing = !y.GetThingList(map).Any(x => x.GetType() == typeof(Building_XenomorphCocoon) || x.GetType() == typeof(Building_XenoEgg) || x.GetType() == typeof(HiveLike)) || !forceNew;
+                bool thing = !y.GetThingList(map).Any(x => x.GetType() == typeof(Building_XenomorphCocoon) || x.GetType() == typeof(Building_XenoEgg) || x.GetType() == typeof(XenomorphHive)) || !forceNew;
 
                 bool result = score && XenohiveA && XenohiveB && !filled && edifice && building && thing && roofed;
                 return result;
@@ -40,16 +45,16 @@ namespace RimWorld
                 {
                     Log.Message("using Hivelist");
                     cell = map.HiveGrid().Hivelist.RandomElement().Position;
-                    locationC = map.HiveGrid().Hivelist.RandomElement().Position;
-                    Log.Message(string.Format("Hivelist location candidate forceNew: {0}, locationC {1}: cell: {2}", forceNew, locationC, cell));
+                    locationC = new LocationCandidate(cell, InfestationLikeCellFinder.GetScoreAt(cell, map, allowFogged, allowUnroofed, allowDigging));
+                    Log.Message(string.Format("Hivelist location candidate forceNew: {0}, locationC {1}: cell: {2}", forceNew, locationC.score, cell));
                     return true;
                 }
                 if (!map.HiveGrid().HiveLoclist.NullOrEmpty())
                 {
                     Log.Message("using HiveLoclist");
                     cell = map.HiveGrid().HiveLoclist.RandomElement();
-                    locationC = map.HiveGrid().HiveLoclist.RandomElement();
-                    Log.Message(string.Format("HiveLoclist location candidate forceNew: {0}, locationC {1}: cell: {2}", forceNew, locationC, cell));
+                    locationC = new LocationCandidate(cell, InfestationLikeCellFinder.GetScoreAt(cell, map, allowFogged, allowUnroofed, allowDigging));
+                    Log.Message(string.Format("HiveLoclist location candidate forceNew: {0}, locationC {1}: cell: {2}", forceNew, locationC.score, cell));
                     return true;
                 }
             }
@@ -68,24 +73,24 @@ namespace RimWorld
                     if (!map.HiveGrid().PotentialHiveLoclist.NullOrEmpty())
                     {
                         Log.Message(string.Format("PotentialHiveLoc list contains {0} candidates", map.HiveGrid().PotentialHiveLoclist));
-                        if (map.HiveGrid().PotentialHiveLoclist.Any(x => validator(x.HiveLoc) && (x.X < 50 || x.Z < 50) && (!x.HiveLoc.GetThingList(map).Any(y => y.GetType() == typeof(HiveLike)))))
+                        if (map.HiveGrid().PotentialHiveLoclist.Any(x => validator(x.HiveLoc) && (x.X < 50 || x.Z < 50) && (!x.HiveLoc.GetThingList(map).Any(y => y.GetType() == typeof(XenomorphHive)))))
                         {
-                            cell = map.HiveGrid().PotentialHiveLoclist.Where(x => validator(x.HiveLoc) && (x.X < 50 || x.Z < 50) && (!x.HiveLoc.GetThingList(map).Any(y => y.GetType() == typeof(HiveLike)))).RandomElementByWeight(x => x.HiveLoc.DistanceTo(map.Center)).HiveLoc;
-                            locationC = cell;
-                            Log.Message(string.Format("PotentialHiveLoclist location candidates 50 forceNew: {0}, locationC {1}: cell: {2}", forceNew, locationC, cell));
+                            cell = map.HiveGrid().PotentialHiveLoclist.Where(x => validator(x.HiveLoc) && (x.X < 50 || x.Z < 50) && (!x.HiveLoc.GetThingList(map).Any(y => y.GetType() == typeof(XenomorphHive)))).RandomElementByWeight(x => x.HiveLoc.DistanceTo(map.Center)).HiveLoc;
+                            locationC = new LocationCandidate(cell, InfestationLikeCellFinder.GetScoreAt(cell, map, allowFogged, allowUnroofed, allowDigging));
+                            Log.Message(string.Format("PotentialHiveLoclist location candidates 50 forceNew: {0}, locationC {1}: cell: {2}", forceNew, locationC.score, cell));
                             return true;
                         }
-                        if (map.HiveGrid().PotentialHiveLoclist.Any(x => validator(x.HiveLoc) && (x.X < 75 || x.Z < 75) && (!x.HiveLoc.GetThingList(map).Any(y => y.GetType() == typeof(HiveLike)))))
+                        if (map.HiveGrid().PotentialHiveLoclist.Any(x => validator(x.HiveLoc) && (x.X < 75 || x.Z < 75) && (!x.HiveLoc.GetThingList(map).Any(y => y.GetType() == typeof(XenomorphHive)))))
                         {
-                            cell = map.HiveGrid().PotentialHiveLoclist.Where(x => validator(x.HiveLoc) && (x.X < 75 || x.Z < 75) && (!x.HiveLoc.GetThingList(map).Any(y => y.GetType() == typeof(HiveLike)))).RandomElementByWeight(x => x.HiveLoc.DistanceTo(map.Center)).HiveLoc;
-                            locationC = cell;
-                            Log.Message(string.Format("PotentialHiveLoclist location candidates 75 forceNew: {0}, locationC {1}: cell: {2}", forceNew, locationC, cell));
+                            cell = map.HiveGrid().PotentialHiveLoclist.Where(x => validator(x.HiveLoc) && (x.X < 75 || x.Z < 75) && (!x.HiveLoc.GetThingList(map).Any(y => y.GetType() == typeof(XenomorphHive)))).RandomElementByWeight(x => x.HiveLoc.DistanceTo(map.Center)).HiveLoc;
+                            locationC = new LocationCandidate(cell, InfestationLikeCellFinder.GetScoreAt(cell, map, allowFogged, allowUnroofed, allowDigging));
+                            Log.Message(string.Format("PotentialHiveLoclist location candidates 75 forceNew: {0}, locationC {1}: cell: {2}", forceNew, locationC.score, cell));
                             return true;
                         }
                         //    Log.Message(string.Format("PotentialHiveLoclist location candidates {0}", forceNew));
-                        cell = map.HiveGrid().PotentialHiveLoclist.Where(x => validator(x.HiveLoc) && (!x.HiveLoc.GetThingList(map).Any(y => y.GetType() == typeof(HiveLike)))).RandomElementByWeight(x => x.HiveLoc.DistanceTo(map.Center)).HiveLoc;
-                        locationC = cell;
-                        Log.Message(string.Format("PotentialHiveLoclist location candidates Any forceNew: {0}, locationC {1}: cell: {2}", forceNew, locationC, cell));
+                        cell = map.HiveGrid().PotentialHiveLoclist.Where(x => validator(x.HiveLoc) && (!x.HiveLoc.GetThingList(map).Any(y => y.GetType() == typeof(XenomorphHive)))).RandomElementByWeight(x => x.HiveLoc.DistanceTo(map.Center)).HiveLoc;
+                        locationC = new LocationCandidate(cell, InfestationLikeCellFinder.GetScoreAt(cell, map, allowFogged, allowUnroofed, allowDigging));
+                        Log.Message(string.Format("PotentialHiveLoclist location candidates Any forceNew: {0}, locationC {1}: cell: {2}", forceNew, locationC.score, cell));
                         return true;
                     }
                     else
@@ -94,13 +99,13 @@ namespace RimWorld
                     }
 
                     cell = IntVec3.Invalid;
-                    locationC = IntVec3.Invalid;
+                    locationC = new LocationCandidate();
                     return false;
                 }
             }
-            locationC = locationCandidate.cell;
+            locationC = locationCandidate;
             cell = CellFinder.FindNoWipeSpawnLocNear(locationCandidate.cell, map, XenomorphDefOf.AvP_Xenomorph_Hive, Rot4.North, 2, validator);
-            Log.Message(string.Format("locationC {0}: cell: {1}", locationC, cell));
+            Log.Message(string.Format("locationC {0}: cell: {1}", locationC.score, cell));
             return true;
         }
         /*
@@ -257,6 +262,10 @@ namespace RimWorld
                     if (scoreAt > minscore)
                     {
                         report += "\n" + cell + " Score: " + scoreAt;
+                        if (cell.GetTerrain(map).HasTag("Water") || cell.GetTerrain(map).defName.Contains("Water") || cell.GetTerrain(map).defName.Contains("Marsh"))
+                        {
+                            report += " Watery";
+                        }
                         //    Log.Message(string.Format("scoreAt {0} == {1}", cell, scoreAt));
                         InfestationLikeCellFinder.locationCandidates.Add(new InfestationLikeCellFinder.LocationCandidate(cell, scoreAt));
                     }
@@ -274,7 +283,7 @@ namespace RimWorld
             List<Thing> thingList = cell.GetThingList(map);
             for (int i = 0; i < thingList.Count; i++)
             {
-                if (thingList[i] is Pawn || thingList[i] is HiveLike || thingList[i] is TunnelHiveSpawner)
+                if (thingList[i] is Pawn || thingList[i] is XenomorphHive || thingList[i] is TunnelHiveSpawner)
                 {
                     return true;
                 }
@@ -539,7 +548,7 @@ namespace RimWorld
         private static List<KeyValuePair<IntVec3, float>> tmpDistanceResult = new List<KeyValuePair<IntVec3, float>>();
 
         // Token: 0x0200092E RID: 2350
-        private struct LocationCandidate
+        public struct LocationCandidate
         {
             // Token: 0x0600369C RID: 13980 RVA: 0x001A1A6D File Offset: 0x0019FE6D
             public LocationCandidate(IntVec3 cell, float score)

@@ -28,6 +28,49 @@ namespace AvP.HarmonyInstance
                     __result = type;
                 }
             }
+
+            
+            if (providedClassName.Contains("ThingDef_TunnelHiveLikeSpawner"))
+            {
+                string name = Regex.Replace(providedClassName, "ThingDef_TunnelHiveLikeSpawner", "ThingDef");
+                Type type = GenTypes.GetTypeInAnyAssembly(name, null);
+                if (type != null)
+                {
+                    __result = type;
+                }
+            }
+            else
+            if (providedClassName.Contains("TunnelHiveLikeSpawner"))
+            {
+                string name = Regex.Replace(providedClassName, "TunnelHiveLikeSpawner", "XenomorphTunnelSpawner");
+                Type type = GenTypes.GetTypeInAnyAssembly(name, null);
+                if (type != null)
+                {
+                    __result = type;
+                }
+            }
+            if (providedClassName.Contains("ThingDef_HiveLike"))
+            {
+                string name = Regex.Replace(providedClassName, "ThingDef_HiveLike", "ThingDef");
+                Type type = GenTypes.GetTypeInAnyAssembly(name, null);
+                if (type != null)
+                {
+                    __result = type;
+                }
+            }
+            else
+            if (providedClassName.Contains("HiveLike"))
+            {
+                string name = Regex.Replace(providedClassName, "HiveLike", "XenomorphHive");
+                Type type = GenTypes.GetTypeInAnyAssembly(name, null);
+                if (type != null)
+                {
+                    __result = type;
+                }
+            }
+            
+
+
         }
     }
 

@@ -18,7 +18,7 @@ namespace RimWorld
             for (int i = 0; i < this.lord.ownedPawns.Count; i++)
             {
                 Pawn p = this.lord.ownedPawns[i];
-                HiveLike hiveFor = base.GetHiveLikeFor(p);
+                XenomorphHive hiveFor = base.GetHiveLikeFor(p);
                 PawnDuty duty = null;
                 if (hive.HiveGuardlist.Contains(p))
                 {

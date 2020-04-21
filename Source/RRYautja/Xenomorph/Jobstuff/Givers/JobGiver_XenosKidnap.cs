@@ -86,7 +86,7 @@ namespace RimWorld
                         bool filled = y.Filled(pawn.Map);
                         bool edifice = y.GetEdifice(pawn.Map).DestroyedOrNull();
                         bool building = y.GetFirstBuilding(pawn.Map).DestroyedOrNull();
-                        bool thingA = y.GetThingList(pawn.Map).Any(x => x.GetType() == typeof(Building_XenoEgg) && x.GetType() == typeof(Building_XenomorphCocoon) && x.GetType() == typeof(HiveLike));
+                        bool thingA = y.GetThingList(pawn.Map).Any(x => x.GetType() == typeof(Building_XenoEgg) && x.GetType() == typeof(Building_XenomorphCocoon) && x.GetType() == typeof(XenomorphHive));
                         //    Log.Message(string.Format("{0}, adjacent: {1}, filled: {2}, edifice: {3}, building: {4}", y, !adjacent, !filled, edifice, building));
                         return !adjacent && !filled && edifice && building && !thingA && roofed && pawn.CanReserveAndReach(y, PathEndMode.OnCell, Danger.Deadly, layer: ReservationLayerDefOf.Floor);
                     };

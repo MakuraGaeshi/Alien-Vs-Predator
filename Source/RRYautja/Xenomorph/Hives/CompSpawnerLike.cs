@@ -82,7 +82,7 @@ namespace RimWorld
         public override void CompTick()
         {
             this.TickInterval(1);
-            if (this.parent is HiveLike hive)
+            if (this.parent is XenomorphHive hive)
             {
                 if (DebugSettings.godMode && hive.hasQueen)
                 {
@@ -108,7 +108,7 @@ namespace RimWorld
             {
                 return;
             }
-            if (this.parent is HiveLike hive)
+            if (this.parent is XenomorphHive hive)
             {
                 if (!hive.active)
                 {

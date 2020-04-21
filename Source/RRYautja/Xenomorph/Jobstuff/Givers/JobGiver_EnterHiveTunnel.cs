@@ -15,7 +15,7 @@ namespace AvP
         protected override Job TryGiveJob(Pawn pawn)
         {
             MapComponent_HiveGrid _HiveGrid = pawn.Map.GetComponent<MapComponent_HiveGrid>();
-            HiveLike Tunnel = null;
+            XenomorphHive Tunnel = null;
             Tunnel = JobGiver_EnterHiveTunnel.FindMyTunnel(pawn);
             if (Tunnel == null)
             {
@@ -42,20 +42,20 @@ namespace AvP
         }
 
         // Token: 0x060004C6 RID: 1222 RVA: 0x00030C6C File Offset: 0x0002F06C
-        public static HiveLike FindMyTunnel(Pawn pawn)
+        public static XenomorphHive FindMyTunnel(Pawn pawn)
         {
             if (pawn.def == XenomorphRacesDefOf.AvP_Xenomorph_Queen)
             {
                 if (XenomorphUtil.HivelikesPresent(pawn.Map))
                 {
-                    HiveLike hive = (HiveLike)XenomorphUtil.ClosestReachableHivelike(pawn);
+                    XenomorphHive hive = (XenomorphHive)XenomorphUtil.ClosestReachableHivelike(pawn);
                     if (!hive.hasQueen)
                     {
                         if (hive.Lord!=null && hive.Lord!=pawn.GetLord())
                         {
                             pawn.SwitchToLord(hive.Lord);
                         }
-                        return (HiveLike)XenomorphUtil.ClosestReachableHivelike(pawn);
+                        return (XenomorphHive)XenomorphUtil.ClosestReachableHivelike(pawn);
                     }
                 }
             }
@@ -82,12 +82,12 @@ namespace AvP
                 {
                     if (XenomorphUtil.HivelikesPresent(pawn.Map))
                     {
-                        HiveLike hive = (HiveLike)XenomorphUtil.ClosestReachableHivelike(pawn);
+                        XenomorphHive hive = (XenomorphHive)XenomorphUtil.ClosestReachableHivelike(pawn);
                         if (hive.Lord != null && hive.Lord != pawn.GetLord())
                         {
                             pawn.SwitchToLord(hive.Lord);
                         }
-                        return (HiveLike)XenomorphUtil.ClosestReachableHivelike(pawn);
+                        return (XenomorphHive)XenomorphUtil.ClosestReachableHivelike(pawn);
                     }
                 }
             }

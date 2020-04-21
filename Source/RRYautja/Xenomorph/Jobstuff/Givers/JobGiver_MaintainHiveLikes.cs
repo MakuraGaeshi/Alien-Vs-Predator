@@ -20,11 +20,11 @@ namespace RimWorld
 		protected override Job TryGiveJob(Pawn pawn)
         {
             ThingDef hiveDef = null;
-            List<ThingDef_HiveLike> hivedefs = DefDatabase<ThingDef_HiveLike>.AllDefsListForReading.FindAll(x => x.Faction == pawn.Faction.def);
-            foreach (ThingDef_HiveLike hivedef in hivedefs)
+            List<ThingDef> hivedefs = DefDatabase<ThingDef>.AllDefsListForReading.FindAll(x => x.HasModExtension<XenomorphHiveExtension>() && x.GetModExtension<XenomorphHiveExtension>().Faction == pawn.Faction.def);
+            foreach (ThingDef hivedef in hivedefs)
             {
             if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("JobGiver_MaintainHiveLikes found hiveDef: {0} for {1}", hiveDef, pawn));
-                if (hivedef.Faction == pawn.Faction.def)
+                if (hivedef.GetModExtension<XenomorphHiveExtension>().Faction == pawn.Faction.def)
                 {
                     hiveDef = hivedef;
                 if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("JobGiver_MaintainHiveLikes set hiveDef: {0} for {1}", hiveDef, pawn));
@@ -40,7 +40,7 @@ namespace RimWorld
 				{
 					if (intVec.GetRoom(pawn.Map, RegionType.Set_Passable) == room)
 					{
-						HiveLike hivelike = (HiveLike)pawn.Map.thingGrid.ThingAt(intVec, hiveDef);
+						XenomorphHive hivelike = (XenomorphHive)pawn.Map.thingGrid.ThingAt(intVec, hiveDef);
 						if (hivelike != null && pawn.CanReserve(hivelike, 1, -1, null, false))
 						{
 							CompMaintainableLike compMaintainable = hivelike.TryGetComp<CompMaintainableLike>();

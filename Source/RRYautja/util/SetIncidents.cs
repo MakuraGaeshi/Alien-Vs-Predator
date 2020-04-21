@@ -35,7 +35,7 @@ namespace AvP
                         incidentDef.baseChance = 0f;
                     }
                 }
-                if (incidentDef == XenomorphDefOf.AvP_XenomorphCrashedShipPartCrash)
+                if (incidentDef == XenomorphDefOf.AvP_Engineer_CrashedShipPartCrash || incidentDef == XenomorphDefOf.AvP_Xenomorph_CrashedShipPartCrash)
                 {
                     if (SettingsHelper.latest.AllowXenomorphFaction)
                     {
@@ -46,7 +46,7 @@ namespace AvP
                         incidentDef.baseChance = 0f;
                     }
                 }
-                if (incidentDef == XenomorphDefOf.AvP_XenomorphInfestation)
+                if (incidentDef == XenomorphDefOf.AvP_Xenomorph_Infestation)
                 {
                     if (SettingsHelper.latest.AllowXenomorphFaction)
                     {

@@ -24,19 +24,19 @@ namespace RimWorld
 			this.ticksBetweenWandersRange = new IntRange(125, 200);
 		}
 
-        private HiveLike FindClosestHiveLike(Pawn pawn)
+        private XenomorphHive FindClosestHiveLike(Pawn pawn)
         {
             ThingDef hiveDef = null;
-            List<ThingDef_HiveLike> hivedefs = DefDatabase<ThingDef_HiveLike>.AllDefsListForReading.FindAll(x => x.Faction == pawn.Faction.def);
+            List<ThingDef> hivedefs = DefDatabase<ThingDef>.AllDefsListForReading.FindAll(x => x.HasModExtension<XenomorphHiveExtension>() && x.GetModExtension<XenomorphHiveExtension>().Faction == pawn.Faction.def);
             if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("hivedefs found: {0}", hivedefs.Count));
-            foreach (ThingDef_HiveLike hivedef in hivedefs)
+            foreach (ThingDef hivedef in hivedefs)
             {
                 if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("LordToil_HiveLikeRelated found hiveDef: {0} for {1}", hiveDef, pawn));
-                if (hivedef.Faction == pawn.Faction.def)
+                if (hivedef.GetModExtension<XenomorphHiveExtension>().Faction == pawn.Faction.def)
                 {
                     hiveDef = hivedef;
                     if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("LordToil_HiveLikeRelated set hiveDef: {0} for {1}", hiveDef, pawn));
-                    return (HiveLike)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(hiveDef), PathEndMode.Touch, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn, false), 30f, (Thing x) => x.Faction == pawn.Faction, null, 0, 30, false, RegionType.Set_Passable, false);
+                    return (XenomorphHive)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(hiveDef), PathEndMode.Touch, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn, false), 30f, (Thing x) => x.Faction == pawn.Faction, null, 0, 30, false, RegionType.Set_Passable, false);
                 }
             }
             return null;

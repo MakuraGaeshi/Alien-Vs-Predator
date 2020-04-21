@@ -6,6 +6,7 @@ using System.Linq;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
+using static RimWorld.InfestationLikeCellFinder;
 
 namespace AvP
 {
@@ -104,7 +105,7 @@ namespace AvP
                 bool filled = y.Filled(map) && !allowDigging;
                 bool edifice = y.GetEdifice(map).DestroyedOrNull() || allowDigging;
                 bool building = y.GetFirstBuilding(map).DestroyedOrNull() || allowDigging;
-                bool thing = y.GetThingList(map).All(x => x.GetType() != typeof(Building_XenomorphCocoon) && x.GetType() != typeof(Building_XenoEgg) && x.GetType() != typeof(HiveLike));
+                bool thing = y.GetThingList(map).All(x => x.GetType() != typeof(Building_XenomorphCocoon) && x.GetType() != typeof(Building_XenoEgg) && x.GetType() != typeof(XenomorphHive));
                 bool r = score && !filled && edifice && building && thing && roofed;
                 return r;
             };
@@ -138,7 +139,7 @@ namespace AvP
             */
             if (c == IntVec3.Invalid || c.x < 1 || c.z < 1 || c == IntVec3.Zero || c.CloseToEdge(map, 10) || c.GetTerrain(map).HasTag("Water"))
             {
-                if (!InfestationLikeCellFinder.TryFindCell(out c, out IntVec3 lc, map, allowFogged, allowUnroofed, allowDigging))
+                if (!InfestationLikeCellFinder.TryFindCell(out c, out LocationCandidate lc, map, allowFogged, allowUnroofed, allowDigging))
                 {
                 //    Log.Message(string.Format("Cant find suitable hive location, defaulting to map edge"));
                     if (!InfestationCellFinder.TryFindCell(out c, map))
@@ -192,7 +193,7 @@ namespace AvP
                             return false;
                         }
                         bool roofed = (!allowUnroofed && y.Roofed(map)) || allowUnroofed;
-                        bool thing = y.GetThingList(map).Any(x => x.GetType() != typeof(Building_XenomorphCocoon) && x.GetType() != typeof(Building_XenoEgg) && x.GetType() != typeof(HiveLike) && x.GetType() != typeof(Building));
+                        bool thing = y.GetThingList(map).Any(x => x.GetType() != typeof(Building_XenomorphCocoon) && x.GetType() != typeof(Building_XenoEgg) && x.GetType() != typeof(XenomorphHive) && x.GetType() != typeof(Building));
                         bool r = thing && roofed;
                         //   Log.Message(string.Format("Cell: {0}, score: {1}, XenohiveA: {2}, XenohiveB: {3}, !filled: {4}, edifice: {5}, building: {6}, thingA: {7}, thingB: {8}, roofed: {9}\nResult: {10}", y, GetScoreAt(y, map, allowFogged), XenohiveA , XenohiveB , !filled , edifice , building , thingA , thingB, roofed, result));
                         return r;

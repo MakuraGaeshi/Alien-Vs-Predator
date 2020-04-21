@@ -29,13 +29,13 @@ namespace RimWorld
 		// Token: 0x0600087E RID: 2174 RVA: 0x00047560 File Offset: 0x00045960
 		protected void FilterOutUnspawnedHiveLikes()
 		{
-			this.Data.assignedHiveLikes.RemoveAll((KeyValuePair<Pawn, HiveLike> x) => x.Value == null || !x.Value.Spawned);
+			this.Data.assignedHiveLikes.RemoveAll((KeyValuePair<Pawn, XenomorphHive> x) => x.Value == null || !x.Value.Spawned);
 		}
 
         // Token: 0x0600087F RID: 2175 RVA: 0x00047590 File Offset: 0x00045990
-        protected HiveLike GetHiveLikeFor(Pawn pawn)
+        protected XenomorphHive GetHiveLikeFor(Pawn pawn)
         {
-            if (this.Data.assignedHiveLikes.TryGetValue(pawn, out HiveLike hive))
+            if (this.Data.assignedHiveLikes.TryGetValue(pawn, out XenomorphHive hive))
             {
                 return hive;
             }
@@ -49,9 +49,9 @@ namespace RimWorld
         
 
         // Token: 0x06000880 RID: 2176 RVA: 0x000475D8 File Offset: 0x000459D8
-        private HiveLike FindClosestHiveLike(Pawn pawn)
+        private XenomorphHive FindClosestHiveLike(Pawn pawn)
 		{
-            return (HiveLike)XenomorphUtil.ClosestReachableHivelike(pawn);
+            return (XenomorphHive)XenomorphUtil.ClosestReachableHivelike(pawn);
         }
 	}
 }

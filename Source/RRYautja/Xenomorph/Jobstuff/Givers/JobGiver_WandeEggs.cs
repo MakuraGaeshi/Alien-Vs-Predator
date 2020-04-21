@@ -22,15 +22,15 @@ namespace RimWorld
 			this.ticksBetweenWandersRange = new IntRange(125, 200);
 		}
 
-        private HiveLike FindClosestEgg(Pawn pawn)
+        private XenomorphHive FindClosestEgg(Pawn pawn)
         {
-            return (HiveLike)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.AvP_EggXenomorphFertilized), PathEndMode.Touch, TraverseParms.For(pawn, Danger.Some, TraverseMode.ByPawn, false), 30f, (Thing x) => x.Faction == pawn.Faction, null, 0, 30, false, RegionType.Set_Passable, false);
+            return (XenomorphHive)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(XenomorphDefOf.AvP_EggXenomorphFertilized), PathEndMode.Touch, TraverseParms.For(pawn, Danger.Some, TraverseMode.ByPawn, false), 30f, (Thing x) => x.Faction == pawn.Faction, null, 0, 30, false, RegionType.Set_Passable, false);
         }
 
         // Token: 0x06000420 RID: 1056 RVA: 0x0002CD30 File Offset: 0x0002B130
         protected override IntVec3 GetWanderRoot(Pawn pawn)
 		{
-			HiveLike hivelike = pawn.mindState.duty.focus.Thing as HiveLike;
+			XenomorphHive hivelike = pawn.mindState.duty.focus.Thing as XenomorphHive;
             if (hivelike==null)
             {
                 hivelike = FindClosestEgg(pawn);

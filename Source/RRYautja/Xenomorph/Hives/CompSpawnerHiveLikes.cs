@@ -51,22 +51,22 @@ namespace RimWorld
 			}
 		}
 
-        private HiveLike hiveLike
+        private XenomorphHive hiveLike
         {
             get
             {
-                return (HiveLike)parent;
+                return (XenomorphHive)parent;
             }
         }
         
-        public List<HiveLike> ChildHives
+        public List<XenomorphHive> ChildHives
         {
             get
             {
-                List<HiveLike> hives = new List<HiveLike>();
+                List<XenomorphHive> hives = new List<XenomorphHive>();
                 foreach (var item in parent.Map.listerThings.ThingsOfDef(XenomorphDefOf.AvP_Xenomorph_Hive_Child))
                 {
-                    hives.Add((HiveLike)item);
+                    hives.Add((XenomorphHive)item);
                 }
                 return hives;
             }
@@ -132,9 +132,9 @@ namespace RimWorld
                 this.nextHiveSpawnTick -= extra;
             }
 
-            if (this.parent is HiveLike hivelike && (hivelike == null || hivelike.active) && this.nextHiveSpawnTick <= 0)
+            if (this.parent is XenomorphHive hivelike && (hivelike == null || hivelike.active) && this.nextHiveSpawnTick <= 0)
 			{
-                if (this.TrySpawnChildHiveLike(MinTunnelSpawnPreferredDist, MaxTunnelSpawnRadius, out HiveLike t))
+                if (this.TrySpawnChildHiveLike(MinTunnelSpawnPreferredDist, MaxTunnelSpawnRadius, out XenomorphHive t))
                 {
                     Messages.Message("AvP_MessageHiveReproduced".Translate(), t, MessageTypeDefOf.NegativeEvent, true);
                 }
@@ -144,9 +144,9 @@ namespace RimWorld
                 }
             }
             else
-            if (this.parent is TunnelHiveLikeSpawner tunnellike && (tunnellike == null || tunnellike.active) && this.nextHiveSpawnTick <= 0)
+            if (this.parent is XenomorphTunnelSpawner tunnellike && (tunnellike == null || tunnellike.active) && this.nextHiveSpawnTick <= 0)
             {
-                if (this.TrySpawnChildHiveLike(MinTunnelSpawnPreferredDist, MaxTunnelSpawnRadius, out TunnelHiveLikeSpawner t))
+                if (this.TrySpawnChildHiveLike(MinTunnelSpawnPreferredDist, MaxTunnelSpawnRadius, out XenomorphTunnelSpawner t))
                 {
                     Messages.Message("AvP_MessageHiveReproduced".Translate(), t, MessageTypeDefOf.NegativeEvent, true);
                 }
@@ -201,7 +201,7 @@ namespace RimWorld
 				{
 					if (intVec.GetRoom(this.parent.Map, RegionType.Set_Passable) == room)
 					{
-						if (intVec.GetThingList(this.parent.Map).Any((Thing t) => t is HiveLike))
+						if (intVec.GetThingList(this.parent.Map).Any((Thing t) => t is XenomorphHive))
 						{
 							num++;
 						}
@@ -213,62 +213,62 @@ namespace RimWorld
 		}
 
         // Token: 0x060029E3 RID: 10723 RVA: 0x0013D300 File Offset: 0x0013B700
-        public bool TrySpawnChildHiveLike(float minDist, float maxDist, out HiveLike newHiveLike, bool ignoreRoofedRequirement = true, bool allowUnreachable = false, bool aggressive = false)
+        public bool TrySpawnChildHiveLike(float minDist, float maxDist, out XenomorphHive newHiveLike, bool ignoreRoofedRequirement = true, bool allowUnreachable = false, bool aggressive = false)
         {
             if (!this.CanSpawnChildHiveLike)
             {
                 newHiveLike = null;
                 return false;
             }
-            IntVec3 loc = CompSpawnerHiveLikes.FindChildHiveLocation(this.parent.Position, this.parent.Map, ((HiveLike)this.parent).Def.HiveDefchild, this.Props, minDist, maxDist, ignoreRoofedRequirement, allowUnreachable);
+            IntVec3 loc = CompSpawnerHiveLikes.FindChildHiveLocation(this.parent.Position, this.parent.Map, ((XenomorphHive)this.parent).Ext.HiveDefchild, this.Props, minDist, maxDist, ignoreRoofedRequirement, allowUnreachable);
             if (!loc.IsValid)
             {
                 newHiveLike = null;
                 return false;
             }
-            newHiveLike = (HiveLike)ThingMaker.MakeThing(this.parent.def, null);
+            newHiveLike = (XenomorphHive)ThingMaker.MakeThing(this.parent.def, null);
             if (newHiveLike.Faction != this.parent.Faction)
             {
                 newHiveLike.SetFaction(this.parent.Faction, null);
             }
-            if (this.parent is HiveLike hivelike)
+            if (this.parent is XenomorphHive hivelike)
             {
                 newHiveLike.active = hivelike.active;
                 newHiveLike.parentHiveLike = hivelike.parentHiveLike ?? hivelike;
                 //childHiveLikes.Add(newHiveLike);
             }
-            GenSpawn.Spawn(newHiveLike.Def.TunnelDefchild, loc, this.parent.Map, WipeMode.FullRefund);
+            GenSpawn.Spawn(newHiveLike.Ext.TunnelDefchild, loc, this.parent.Map, WipeMode.FullRefund);
             this.CalculateNextHiveLikeSpawnTick();
             return true;
         }
         // Token: 0x060029E3 RID: 10723 RVA: 0x0013D300 File Offset: 0x0013B700
-        public bool TrySpawnChildHiveLike(float minDist, float maxDist, out TunnelHiveLikeSpawner newTunnelLike, bool ignoreRoofedRequirement = true, bool allowUnreachable = false, bool aggressive = false)
+        public bool TrySpawnChildHiveLike(float minDist, float maxDist, out XenomorphTunnelSpawner newTunnelLike, bool ignoreRoofedRequirement = true, bool allowUnreachable = false, bool aggressive = false)
         {
             if (!this.CanSpawnChildHiveLike)
             {
                 newTunnelLike = null;
                 return false;
             }
-            IntVec3 loc = FindChildHiveLocation(this.parent.Position, this.parent.Map, ((HiveLike)this.parent).Def.HiveDefchild, this.Props, minDist, maxDist, ignoreRoofedRequirement, allowUnreachable);
+            IntVec3 loc = FindChildHiveLocation(this.parent.Position, this.parent.Map, ((XenomorphHive)this.parent).Ext.HiveDefchild, this.Props, minDist, maxDist, ignoreRoofedRequirement, allowUnreachable);
             if (!loc.IsValid)
             {
                 newTunnelLike = null;
                 return false;
             }
-            newTunnelLike = (TunnelHiveLikeSpawner)ThingMaker.MakeThing(((HiveLike)this.parent).Def.TunnelDefchild, null);
+            newTunnelLike = (XenomorphTunnelSpawner)ThingMaker.MakeThing(((XenomorphHive)this.parent).Ext.TunnelDefchild, null);
             /*
             if (newTunnelLike.Faction != this.parent.Faction)
             {
                 newTunnelLike.SetFaction(this.parent.Faction, null);
             }
             */
-            if (this.parent is TunnelHiveLikeSpawner hivelike)
+            if (this.parent is XenomorphTunnelSpawner hivelike)
             {
                 newTunnelLike.active = hivelike.active;
                 newTunnelLike.parentHiveLike = this.hiveLike;
             //    childTunnelLikes.Add(newTunnelLike);
             }
-            GenSpawn.Spawn(newTunnelLike.Def, loc, this.parent.Map, WipeMode.FullRefund);
+            GenSpawn.Spawn(newTunnelLike.def, loc, this.parent.Map, WipeMode.FullRefund);
             this.CalculateNextHiveLikeSpawnTick();
             return true;
         }
@@ -325,7 +325,7 @@ namespace RimWorld
 					List<Thing> thingList = c2.GetThingList(map);
 					for (int j = 0; j < thingList.Count; j++)
 					{
-						if (thingList[j] is HiveLike || thingList[j] is TunnelHiveLikeSpawner)
+						if (thingList[j] is XenomorphHive || thingList[j] is XenomorphTunnelSpawner)
 						{
 							return false;
 						}
@@ -369,7 +369,7 @@ namespace RimWorld
                     defaultDesc = string.Format("this hive has {0} child nodes MinTunnelSpawnPreferredDist: {1}, MaxTunnelSpawnRadius: {2}", ChildHives.Count, MinTunnelSpawnPreferredDist, MaxTunnelSpawnRadius),
                     action = delegate ()
                     {
-                        this.TrySpawnChildHiveLike(MinTunnelSpawnPreferredDist, MaxTunnelSpawnRadius, out HiveLike Hivelike, canSpawnUnroofed, canSpawnUnreachable, aggressiveSpawn);
+                        this.TrySpawnChildHiveLike(MinTunnelSpawnPreferredDist, MaxTunnelSpawnRadius, out XenomorphHive Hivelike, canSpawnUnroofed, canSpawnUnreachable, aggressiveSpawn);
                     },
                     groupKey = num
 				};
@@ -424,20 +424,20 @@ namespace RimWorld
             Scribe_Values.Look<bool>(ref this.canSpawnUnroofed, "canSpawnUnroofed", false, false);
             Scribe_Values.Look<bool>(ref this.canSpawnUnreachable, "canSpawnUnreachable", false, false);
             Scribe_Values.Look<bool>(ref this.aggressiveSpawn, "aggressiveSpawn", false, false);
-            Scribe_Collections.Look<HiveLike>(ref this.childHiveLikes, "childHiveLikes", LookMode.Reference, new object[0]);
+            Scribe_Collections.Look<XenomorphHive>(ref this.childHiveLikes, "childHiveLikes", LookMode.Reference, new object[0]);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                this.childHiveLikes.RemoveAll((HiveLike x) => x == null);
+                this.childHiveLikes.RemoveAll((XenomorphHive x) => x == null);
             }
-            Scribe_Collections.Look<TunnelHiveLikeSpawner>(ref this.childTunnelLikes, "childTunnelLikes", LookMode.Reference, new object[0]);
+            Scribe_Collections.Look<XenomorphTunnelSpawner>(ref this.childTunnelLikes, "childTunnelLikes", LookMode.Reference, new object[0]);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                this.childHiveLikes.RemoveAll((HiveLike x) => x == null);
+                this.childHiveLikes.RemoveAll((XenomorphHive x) => x == null);
             }
         }
 
-        public List<HiveLike> childHiveLikes = new List<HiveLike>();
-        public List<TunnelHiveLikeSpawner> childTunnelLikes = new List<TunnelHiveLikeSpawner>();
+        public List<XenomorphHive> childHiveLikes = new List<XenomorphHive>();
+        public List<XenomorphTunnelSpawner> childTunnelLikes = new List<XenomorphTunnelSpawner>();
         // Token: 0x0400173E RID: 5950
         private int nextHiveSpawnTick = -1;
 

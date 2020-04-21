@@ -24,7 +24,7 @@ namespace RimWorld
             return jobGiver_XenomorphHosthunter;
         }
 
-        public HiveLike hive = null;
+        public XenomorphHive hive = null;
 
         // Token: 0x040002FF RID: 767
         private int MinMeleeChaseTicks = 420;

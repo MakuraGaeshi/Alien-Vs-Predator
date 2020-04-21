@@ -24,12 +24,12 @@ namespace AvP
 
         public static bool HiveShipPresent(Map map)
         {
-            return map.listerThings.ThingsOfDef(XenomorphDefOf.AvP_XenomorphCrashedShipPart).Count > 0;
+            return map.listerThings.ThingsOfDef(XenomorphDefOf.AvP_Xenomorph_CrashedShipPart).Count > 0;
         }
 
         public static Thing ClosestReachableHiveShip(Pawn pawn)
         {
-            return pawn.Map.listerThings.ThingsOfDef(XenomorphDefOf.AvP_XenomorphCrashedShipPart).RandomElement();
+            return pawn.Map.listerThings.ThingsOfDef(XenomorphDefOf.AvP_Xenomorph_CrashedShipPart).RandomElement();
         }
 
         //    public static IntVec3 HiveLocation(Map map)
@@ -634,10 +634,10 @@ namespace AvP
             List<Thing> listb = map.listerThings.ThingsOfDef(XenomorphDefOf.AvP_Xenomorph_Hive_Child);
             return lista.Concat(listb).ToList();
         }
-        public static List<HiveLike> SpawnedHivelikes(Map map)
+        public static List<XenomorphHive> SpawnedHivelikes(Map map)
         {
-            List<HiveLike> list = new List<HiveLike>();
-            SpawnedHives(map).ForEach((x) => list.Add((HiveLike)x));
+            List<XenomorphHive> list = new List<XenomorphHive>();
+            SpawnedHives(map).ForEach((x) => list.Add((XenomorphHive)x));
             return list;
         }
 
@@ -645,10 +645,10 @@ namespace AvP
         {
             return map.listerThings.ThingsOfDef(XenomorphDefOf.AvP_Xenomorph_Hive);
         }
-        public static List<HiveLike> SpawnedParentHivelikes(Map map)
+        public static List<XenomorphHive> SpawnedParentHivelikes(Map map)
         {
-            List<HiveLike> list = new List<HiveLike>();
-            SpawnedParentHives(map).ForEach((x) => list.Add((HiveLike)x));
+            List<XenomorphHive> list = new List<XenomorphHive>();
+            SpawnedParentHives(map).ForEach((x) => list.Add((XenomorphHive)x));
             return list;
         }
         public static int TotalSpawnedParentHivelikeCount(Map map)
@@ -660,10 +660,10 @@ namespace AvP
         {
             return map.listerThings.ThingsOfDef(XenomorphDefOf.AvP_Xenomorph_Hive_Child);
         }
-        public static List<HiveLike> SpawnedChildHivelikes(Map map)
+        public static List<XenomorphHive> SpawnedChildHivelikes(Map map)
         {
-            List<HiveLike> list = new List<HiveLike>();
-            SpawnedChildHives(map).ForEach((x) => list.Add((HiveLike)x));
+            List<XenomorphHive> list = new List<XenomorphHive>();
+            SpawnedChildHives(map).ForEach((x) => list.Add((XenomorphHive)x));
             return list;
         }
         public static int TotalSpawnedChildHivelikeCount(Map map)

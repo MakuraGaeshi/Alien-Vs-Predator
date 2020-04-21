@@ -33,7 +33,7 @@ namespace RimWorld
                 PawnDuty duty;
                 if (!hive.Hivelist.NullOrEmpty())
                 {
-                    HiveLike hiveFor = base.GetHiveLikeFor(this.lord.ownedPawns[i]);
+                    XenomorphHive hiveFor = base.GetHiveLikeFor(this.lord.ownedPawns[i]);
                     if (hiveFor.parentHiveLike != null)
                     {
                         duty = new PawnDuty(XenomorphDefOf.AvP_Xenomorph_DefendHiveAggressively, hiveFor.parentHiveLike, this.distToHiveToAttack);

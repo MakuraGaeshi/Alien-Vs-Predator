@@ -58,7 +58,7 @@ namespace AvP
 
         public static bool CanCoexistWithGoo(ThingDef def)
         {
-            return def.category != ThingCategory.Building || def.Fillage != FillCategory.Full || def == XenomorphDefOf.AvP_XenomorphCrashedShipPart;
+            return def.category != ThingCategory.Building || def.Fillage != FillCategory.Full || def == XenomorphDefOf.AvP_Xenomorph_CrashedShipPart;
         }
 
         public void AddDepth(IntVec3 c, float depthToAdd)

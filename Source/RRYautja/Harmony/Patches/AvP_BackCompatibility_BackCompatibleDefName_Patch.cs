@@ -45,6 +45,26 @@ namespace AvP.HarmonyInstance
                 //    Log.Message(string.Format("Checking for replacement for {0} Type: {1}", defName, defType));
                 if (defType == typeof(ThingDef))
                 {
+
+                    if (defName .Contains ("XenomorphCrashedShipPart"))
+                    {
+                        __result = "AvP_Engineer_CrashedShipPart";
+                    }
+                    
+                    if (defName .Contains ("EggXenomorphFertilized"))
+                    {
+                        __result = "AvP_Xenomorph_Egg";
+                    }
+
+
+                    if (defName == "TunnelHiveLikeSpawner")
+                    {
+                        __result = "AvP_Xenomorph_HiveSpawner";
+                    }
+                    if (defName == "TunnelHiveLikeChildSpawner")
+                    {
+                        __result = "AvP_Xenomorph_TunnelSpawner";
+                    }
                     if (defName.Contains("AvP_TableMachining") || defName.Contains("RRY_TableMachining"))
                     {
                         __result = "AvP_Yautja_TableMachining";
@@ -353,6 +373,24 @@ namespace AvP.HarmonyInstance
                         __result = "AvP_Hediff_BouncedProjectile";
                     }
                 }
+
+                if (defType == typeof(IncidentDef))
+                {
+                    if (defName.Contains("XenomorphCrashedShipPartCrash"))
+                    {
+                        __result = "AvP_Engineer_CrashedShipPartCrash";
+                    }
+                    if (defName.Contains("XenomorphInfestation"))
+                    {
+                        __result = "AvP_Xenomorph_Infestation";
+                    }
+                    if (defName.Contains("PowerCut"))
+                    {
+                        __result = "AvP_Xenomorph_PowerCut";
+                    }
+                    
+                }
+                
             }
         }
     }

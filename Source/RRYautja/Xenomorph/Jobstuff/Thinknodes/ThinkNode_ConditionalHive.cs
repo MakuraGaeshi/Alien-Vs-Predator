@@ -23,7 +23,7 @@ namespace RimWorld
             return result;
         }
         
-        public static HiveLike Tunnel(Pawn pawn)
+        public static XenomorphHive Tunnel(Pawn pawn)
         {
             if (pawn.GetLord() != null && pawn.GetLord() is Lord lord)
             {

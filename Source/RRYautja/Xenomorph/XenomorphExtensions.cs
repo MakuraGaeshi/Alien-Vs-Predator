@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
+using static RimWorld.InfestationLikeCellFinder;
 
 namespace AvP.ExtensionMethods
 {
@@ -40,7 +41,7 @@ namespace AvP.ExtensionMethods
             }
             else
             {
-                if (InfestationLikeCellFinder.TryFindCell(out c, out IntVec3 lc, pawn.Map, false))
+                if (InfestationLikeCellFinder.TryFindCell(out c, out LocationCandidate lc, pawn.Map, false))
                 {
                     if (Prefs.DevMode && Find.Selector.SelectedObjects.Contains(pawn))
                     {

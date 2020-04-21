@@ -11,7 +11,7 @@ namespace AvP
     {
         // Token: 0x17000099 RID: 153
         // (get) Token: 0x060002E8 RID: 744 RVA: 0x0001C700 File Offset: 0x0001AB00
-        public HiveLike Transporter
+        public XenomorphHive Transporter
         {
             get
             {
@@ -20,7 +20,7 @@ namespace AvP
                 {
                     return null;
                 }
-                return (HiveLike)thing;
+                return (XenomorphHive)thing;
             }
         }
 
@@ -39,7 +39,7 @@ namespace AvP
             {
                 initAction = delegate ()
                 {
-                    HiveLike transporter = this.Transporter;
+                    XenomorphHive transporter = this.Transporter;
                     this.pawn.DeSpawn(DestroyMode.Vanish);
                     transporter.GetDirectlyHeldThings().TryAdd(this.pawn, false);
                 }

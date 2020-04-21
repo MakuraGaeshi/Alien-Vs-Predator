@@ -35,11 +35,11 @@ namespace RimWorld
             }
         }
 
-        private HiveLike hiveLike
+        private XenomorphHive hiveLike
         {
             get
             {
-                return (HiveLike)parent;
+                return (XenomorphHive)parent;
             }
         }
 

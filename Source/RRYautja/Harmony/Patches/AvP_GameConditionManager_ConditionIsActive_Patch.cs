@@ -15,6 +15,7 @@ using AvP.ExtensionMethods;
 
 namespace AvP.HarmonyInstance
 {
+    /*
     [HarmonyPatch(typeof(GameConditionManager), "ConditionIsActive")]
     internal static class AvP_GameConditionManager_ConditionIsActive_Patch
     {
@@ -31,4 +32,5 @@ namespace AvP.HarmonyInstance
             }
         }
     }
+    */
 }

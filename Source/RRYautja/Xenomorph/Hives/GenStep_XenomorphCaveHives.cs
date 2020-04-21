@@ -71,7 +71,7 @@ namespace RimWorld
                 return;
             }
             this.possibleSpawnCells.Remove(intVec);
-            HiveLike hive = (HiveLike)GenSpawn.Spawn(ThingMaker.MakeThing(XenomorphDefOf.AvP_Xenomorph_Hive, null), intVec, map, WipeMode.Vanish);
+            XenomorphHive hive = (XenomorphHive)GenSpawn.Spawn(ThingMaker.MakeThing(XenomorphDefOf.AvP_Xenomorph_Hive, null), intVec, map, WipeMode.Vanish);
             hive.SetFaction(Find.FactionManager.FirstFactionOfDef(XenomorphDefOf.AvP_Xenomorph), null);
             hive.caveColony = true;
             /*
@@ -125,7 +125,7 @@ namespace RimWorld
         private List<IntVec3> possibleSpawnCells = new List<IntVec3>();
 
         // Token: 0x04000ABA RID: 2746
-        private List<HiveLike> spawnedHives = new List<HiveLike>();
+        private List<XenomorphHive> spawnedHives = new List<XenomorphHive>();
 
         // Token: 0x04000ABB RID: 2747
         private const int MinDistToOpenSpace = 10;

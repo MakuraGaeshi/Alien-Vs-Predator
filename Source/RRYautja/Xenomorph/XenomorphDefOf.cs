@@ -113,8 +113,9 @@ namespace RimWorld
 
         public static ThingDef AvP_XenomorphCryptosleepCasket;
 
-        public static ThingDef AvP_XenomorphCrashedShipPart;
-        public static ThingDef TunnelHiveLikeSpawner;
+        public static ThingDef AvP_Xenomorph_CrashedShipPart;
+        public static ThingDef AvP_Xenomorph_HiveSpawner;
+        public static ThingDef AvP_Xenomorph_TunnelSpawner;
         public static ThingDef AvP_Xenomorph_Hive; 
         public static ThingDef AvP_Xenomorph_Hive_Child;
         public static ThingDef AvP_Xenomorph_Hive_Wall;
@@ -141,13 +142,13 @@ namespace RimWorld
         public static LifeStageDef AvP_NeomorphFormedMid;
         public static LifeStageDef AvP_NeomorphFullyFormed;
 
-        // Xenomorph IncidentDefs AvP_XenomorphInfestation
+        // Xenomorph IncidentDefs 
+        public static IncidentDef AvP_Engineer_CrashedShipPartCrash;
         public static IncidentDef AvP_Neomorph_FungusSprout;
         public static IncidentDef AvP_Neomorph_FungusSprout_Hidden;
-        public static IncidentDef AvP_XenomorphInfestation;
-        public static IncidentDef AvP_XenomorphCrashedShipPartCrash;
-    //    public static IncidentDef AvP_RaidEnemy_PowerCut_Xenomorph;
-        public static IncidentDef AvP_PowerCut_Xenomorph;
+        public static IncidentDef AvP_Xenomorph_Infestation;
+        public static IncidentDef AvP_Xenomorph_CrashedShipPartCrash;
+        public static IncidentDef AvP_Xenomorph_PowerCut; 
 
         // Xenomorph BodyPartDefs
         public static BodyPartDef AvP_Xeno_TailSpike;
@@ -157,7 +158,7 @@ namespace RimWorld
         public static AbilityDef AvP_Ability_SpitAcid;
 
         // Xenomorph GameCOnditionDefs
-        public static GameConditionDef AvP_Xenomorph_PowerCut;
+    //    public static GameConditionDef AvP_Xenomorph_PowerCut;
 
         // Xenomorph LifeStageDefs AvP_Xeno_Shell 
         //   public static LifeStageDef AvP_EggXenomorphFertilized;

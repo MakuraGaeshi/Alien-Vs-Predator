@@ -15,7 +15,7 @@ namespace AvP
         public Map MyMap => this.Map ?? this.MapHeld;
         public IntVec3 MyPos => this.Position != null ? this.Position : this.PositionHeld;
         bool selected => Find.Selector.SelectedObjects.Contains(this) && Prefs.DevMode && DebugSettings.godMode;
-        public bool QueenPresent => MyMap.mapPawns.AllPawnsSpawned.Any(x => x.kindDef == XenomorphDefOf.AvP_Xenomorph_Queen) || (XenomorphUtil.HivelikesPresent(MyMap) && ((XenomorphUtil.SpawnedHivelikes(MyMap)).Any<HiveLike>((HiveLike y) => y.hasQueen)));
+        public bool QueenPresent => MyMap.mapPawns.AllPawnsSpawned.Any(x => x.kindDef == XenomorphDefOf.AvP_Xenomorph_Queen) || (XenomorphUtil.HivelikesPresent(MyMap) && ((XenomorphUtil.SpawnedHivelikes(MyMap)).Any<XenomorphHive>((XenomorphHive y) => y.hasQueen)));
         public float hatchRange => xenoHatcher?.Props.triggerRadius ?? 5f;
         public float minGestationTemp => xenoHatcher?.Props.minGestationTemp ?? -30f;
         public bool NormalEgg => this.eggType == EggType.Normal;

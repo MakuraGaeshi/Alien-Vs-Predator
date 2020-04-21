@@ -10,6 +10,7 @@ using UnityEngine;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
+using static RimWorld.InfestationLikeCellFinder;
 
 namespace AvP
 {
@@ -70,7 +71,7 @@ namespace AvP
                     //    Log.Message(string.Format("Finding new Hive loc for {0} @ {1}", pawn.NameShortColored, pawn.Position));
                     if (map!=null)
                     {
-                        if (InfestationLikeCellFinder.TryFindCell(out IntVec3 hive, out IntVec3 vec3, map, true, false, true))
+                        if (InfestationLikeCellFinder.TryFindCell(out IntVec3 hive, out LocationCandidate vec3, map, true, false, true))
                         {
                             HiveX = hive.x;
                             HiveZ = hive.z;
@@ -82,7 +83,7 @@ namespace AvP
                 {
                     if (map.areaManager.Home[new IntVec3(HiveX, 0, HiveZ)])
                     {
-                        if (InfestationLikeCellFinder.TryFindCell(out IntVec3 hive, out IntVec3 vec3, map, true, false, true))
+                        if (InfestationLikeCellFinder.TryFindCell(out IntVec3 hive, out LocationCandidate vec3, map, true, false, true))
                         {
                             HiveX = hive.x;
                             HiveZ = hive.z;
@@ -203,7 +204,7 @@ namespace AvP
                         if (!map.HiveGrid().Hivelist.NullOrEmpty())
                         {
                         //    Log.Message("XenoLord Hives on map");
-                            HiveLike hive = (HiveLike)map.HiveGrid().Hivelist.RandomElement();
+                            XenomorphHive hive = (XenomorphHive)map.HiveGrid().Hivelist.RandomElement();
                             if (hive!=null)
                             {
                             //    Log.Message("XenoLord Hive");
@@ -287,10 +288,10 @@ namespace AvP
                     if (!map.HiveGrid().Hivelist.NullOrEmpty())
                     {
                     //    Log.Message("XenoLord Hivelist");
-                        List<HiveLike> hives = new List<HiveLike>();
-                        map.HiveGrid().Hivelist.ForEach(x=> hives.Add(((HiveLike)x)));
+                        List<XenomorphHive> hives = new List<XenomorphHive>();
+                        map.HiveGrid().Hivelist.ForEach(x=> hives.Add(((XenomorphHive)x)));
                         bool anyHiveHasLord = hives.Any(x => x.Lord != null);
-                        HiveLike hive = anyHiveHasLord ? hives.Where(x=> x.Lord !=null).RandomElement() : hives.RandomElement();
+                        XenomorphHive hive = anyHiveHasLord ? hives.Where(x=> x.Lord !=null).RandomElement() : hives.RandomElement();
                         if (hive != null)
                         {
                         //    Log.Message("XenoLord Hive");

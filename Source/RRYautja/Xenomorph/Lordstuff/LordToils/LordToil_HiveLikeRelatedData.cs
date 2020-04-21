@@ -13,19 +13,19 @@ namespace RimWorld
 		{
 			if (Scribe.mode == LoadSaveMode.Saving)
 			{
-				this.assignedHiveLikes.RemoveAll((KeyValuePair<Pawn, HiveLike> x) => x.Key.Destroyed);
+				this.assignedHiveLikes.RemoveAll((KeyValuePair<Pawn, XenomorphHive> x) => x.Key.Destroyed);
 			}
-			Scribe_Collections.Look<Pawn, HiveLike>(ref this.assignedHiveLikes, "assignedHives", LookMode.Reference, LookMode.Reference);
+			Scribe_Collections.Look<Pawn, XenomorphHive>(ref this.assignedHiveLikes, "assignedHives", LookMode.Reference, LookMode.Reference);
 			if (Scribe.mode == LoadSaveMode.PostLoadInit)
 			{
-				this.assignedHiveLikes.RemoveAll((KeyValuePair<Pawn, HiveLike> x) => x.Value == null);
+				this.assignedHiveLikes.RemoveAll((KeyValuePair<Pawn, XenomorphHive> x) => x.Value == null);
             }
             Scribe_Values.Look(ref HiveLoc, "HiveLoc");
             Scribe_References.Look(ref HiveQueen, "HiveQueen");
             Scribe_TargetInfo.Look(ref HiveFocus, "HiveFocus");
         }
         
-		public Dictionary<Pawn, HiveLike> assignedHiveLikes = new Dictionary<Pawn, HiveLike>();
+		public Dictionary<Pawn, XenomorphHive> assignedHiveLikes = new Dictionary<Pawn, XenomorphHive>();
         public LocalTargetInfo HiveFocus;
         public IntVec3 HiveLoc;
         public Pawn HiveQueen;

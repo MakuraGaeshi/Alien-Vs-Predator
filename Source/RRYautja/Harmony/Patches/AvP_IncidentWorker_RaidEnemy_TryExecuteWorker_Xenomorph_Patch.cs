@@ -64,7 +64,7 @@ namespace AvP.HarmonyInstance
                             else
                             {
                                 bool Hive = !map.GetComponent<MapComponent_HiveGrid>().Hivelist.NullOrEmpty();
-                                if (Hive && map.GetComponent<MapComponent_HiveGrid>().Hivelist.Any(x=> x as HiveLike is HiveLike hive && hive!=null && hive.caveColony))
+                                if (Hive && map.GetComponent<MapComponent_HiveGrid>().Hivelist.Any(x=> x as XenomorphHive is XenomorphHive hive && hive!=null && hive.caveColony))
                                 {
                                     Rand.PushState();
                                     bool chance2 = Rand.ChanceSeeded(0.10f + (map.GetComponent<MapComponent_HiveGrid>().Hivelist.Count / 100f), AvPConstants.AvPSeed);

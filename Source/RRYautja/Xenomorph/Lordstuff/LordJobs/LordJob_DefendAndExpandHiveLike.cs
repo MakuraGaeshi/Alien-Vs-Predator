@@ -193,9 +193,9 @@ namespace RimWorld
 			Transition transition = new Transition(lordToil_DefendAndExpandHiveLike, (!aggressive) ? (LordToil)lordToil_DefendHiveAggressively : (LordToil)lordToil_XenomrophAssaultColony, false, true);
 			transition.AddTrigger(new Trigger_PawnHarmed(0.5f, true, null));
 			transition.AddTrigger(new Trigger_PawnLostViolently(false));
-			transition.AddTrigger(new Trigger_Memo(HiveLike.MemoAttackedByEnemy));
-			transition.AddTrigger(new Trigger_Memo(HiveLike.MemoBurnedBadly));
-			transition.AddTrigger(new Trigger_Memo(HiveLike.MemoDestroyedNonRoofCollapse));
+			transition.AddTrigger(new Trigger_Memo(XenomorphHive.MemoAttackedByEnemy));
+			transition.AddTrigger(new Trigger_Memo(XenomorphHive.MemoBurnedBadly));
+			transition.AddTrigger(new Trigger_Memo(XenomorphHive.MemoDestroyedNonRoofCollapse));
 			transition.AddTrigger(new Trigger_Memo(HediffGiver_Heat.MemoPawnBurnedByAir));
 			transition.AddPostAction(new TransitionAction_EndAllJobs());
 			stateGraph.AddTransition(transition, false);
@@ -217,21 +217,21 @@ namespace RimWorld
 			stateGraph.AddTransition(transition4, false);
 
 			Transition transition6 = new Transition(lordToil_DefendAndExpandHiveLike, lordToil_DefendAndExpandHiveLike, true, true);
-			transition6.AddTrigger(new Trigger_Memo(HiveLike.MemoDeSpawned));
+			transition6.AddTrigger(new Trigger_Memo(XenomorphHive.MemoDeSpawned));
 			stateGraph.AddTransition(transition6, false);
 
 			Transition transition7 = new Transition(lordToil_DefendHiveAggressively, lordToil_DefendHiveAggressively, true, true);
-			transition7.AddTrigger(new Trigger_Memo(HiveLike.MemoDeSpawned));
+			transition7.AddTrigger(new Trigger_Memo(XenomorphHive.MemoDeSpawned));
 			stateGraph.AddTransition(transition7, false);
 
 			Transition transition8 = new Transition(lordToil_XenomrophAssaultColony, lordToil_DefendAndExpandHiveLike, false, true);
 			transition8.AddSource(lordToil_DefendHiveAggressively);
 			transition8.AddTrigger(new Trigger_TicksPassedWithoutHarmOrMemos(1200, new string[]
 			{
-				HiveLike.MemoAttackedByEnemy,
-				HiveLike.MemoBurnedBadly,
-				HiveLike.MemoDestroyedNonRoofCollapse,
-				HiveLike.MemoDeSpawned,
+				XenomorphHive.MemoAttackedByEnemy,
+				XenomorphHive.MemoBurnedBadly,
+				XenomorphHive.MemoDestroyedNonRoofCollapse,
+				XenomorphHive.MemoDeSpawned,
 				HediffGiver_Heat.MemoPawnBurnedByAir
 			}));
 			transition8.AddPostAction(new TransitionAction_EndAttackBuildingJobs());

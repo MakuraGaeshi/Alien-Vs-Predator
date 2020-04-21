@@ -119,7 +119,7 @@ namespace AvP
                 bool queenPresent = MyMap.mapPawns.AllPawnsSpawned.Any(x => x.kindDef == QueenKindDef);
                 if (!queenPresent && XenomorphUtil.HivelikesPresent(MyMap))
                 {
-                    foreach (HiveLike h in XenomorphUtil.SpawnedHivelikes(MyMap))
+                    foreach (XenomorphHive h in XenomorphUtil.SpawnedHivelikes(MyMap))
                     {
                         if (h.hasQueen)
                         {

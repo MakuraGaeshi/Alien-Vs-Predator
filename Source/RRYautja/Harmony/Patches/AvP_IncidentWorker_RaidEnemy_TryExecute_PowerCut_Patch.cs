@@ -49,7 +49,7 @@ namespace AvP.HarmonyInstance
                             defaultPawnGroupMakerParms.points = IncidentWorker_Raid.AdjustedRaidPoints(defaultPawnGroupMakerParms.points, XenomorphDefOf.AvP_DropThroughRoofNearPower, XenomorphDefOf.AvP_PowerCut, defaultPawnGroupMakerParms.faction, PawnGroupKindDefOf.Combat);
                             IEnumerable<PawnKindDef> pawnKinds = PawnGroupMakerUtility.GeneratePawnKindsExample(defaultPawnGroupMakerParms);
 
-                            QueuedIncident qi = new QueuedIncident(new FiringIncident(XenomorphDefOf.AvP_PowerCut_Xenomorph, null, raidParms), Find.TickManager.TicksGame + AvP_IncidentWorker_RaidEnemy_TryExecute_PowerCut_Patch.RaidDelay.RandomInRange, 0);
+                            QueuedIncident qi = new QueuedIncident(new FiringIncident(XenomorphDefOf.AvP_Xenomorph_PowerCut, null, raidParms), Find.TickManager.TicksGame + AvP_IncidentWorker_RaidEnemy_TryExecute_PowerCut_Patch.RaidDelay.RandomInRange, 0);
                             Find.Storyteller.incidentQueue.Add(qi);
                         }
                     }

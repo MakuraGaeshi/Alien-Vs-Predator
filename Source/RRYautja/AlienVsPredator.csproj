@@ -353,7 +353,7 @@
     <Compile Include="util\CrashedShip\CompSpawnerPawnsOnDamaged.cs" />
     <Compile Include="Xenomorph\Hives\CompSpawnerHiveLikes.cs" />
     <Compile Include="Xenomorph\Hives\CompSpawnerLike.cs" />
-    <Compile Include="Xenomorph\Hives\HiveLike.cs" />
+    <Compile Include="Xenomorph\Hives\XenomorphHive.cs" />
     <Compile Include="Xenomorph\Hives\IncidentWorker_Hivelike.cs" />
     <Compile Include="Xenomorph\Hives\InfestationLikeCellFinder.cs" />
     <Compile Include="Xenomorph\Jobstuff\Givers\JobGiver_HiveLikeDefense.cs" />
@@ -363,7 +363,7 @@
     <Compile Include="Xenomorph\Lordstuff\LordToils\LordToil_DefendAndExpandHiveLike.cs" />
     <Compile Include="Xenomorph\Lordstuff\LordToils\LordToil_HiveLikeRelated.cs" />
     <Compile Include="Xenomorph\Lordstuff\LordToils\LordToil_HiveLikeRelatedData.cs" />
-    <Compile Include="Xenomorph\Hives\TunnelHiveLikeSpawner.cs" />
+    <Compile Include="Xenomorph\Hives\XenomorphTunnelSpawner.cs" />
     <Compile Include="Xenomorph\IncidentWorker_CrashedShip.cs" />
     <Compile Include="util\CrashedShip\LordJob_PawnsDefendShip.cs" />
     <Compile Include="Yautja\YautjaThoughtDef.cs" />

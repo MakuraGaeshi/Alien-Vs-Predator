@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Verse;
 using AvP;
+using static RimWorld.InfestationLikeCellFinder;
 
 namespace RimWorld
 {
@@ -10,7 +11,7 @@ namespace RimWorld
     public class IncidentWorker_Xenomorph_Hivelike : IncidentWorker
     {
         IntVec3 intVec = IntVec3.Invalid;
-        IntVec3 lc = IntVec3.Invalid;
+        LocationCandidate lc = new LocationCandidate();
         // Token: 0x06000E63 RID: 3683 RVA: 0x0006B874 File Offset: 0x00069C74
         protected override bool CanFireNowSub(IncidentParms parms)
 		{
@@ -21,7 +22,7 @@ namespace RimWorld
             }
             Map map = (Map)parms.target;
             intVec = IntVec3.Invalid;
-            lc = IntVec3.Invalid;
+            lc = new LocationCandidate();
             if (!InfestationLikeCellFinder.TryFindCell(out intVec, out lc, map, true, false, true, true))
             {
                 if (!InfestationLikeCellFinder.TryFindCell(out intVec, out lc, map, true, true, true, true))
@@ -63,27 +64,16 @@ namespace RimWorld
 		{
 
             Map map = (Map)parms.target;
-            
-            if (intVec == IntVec3.Invalid)
+
+            if (!InfestationLikeCellFinder.TryFindCell(out intVec, out lc, map, true, false, true, true))
             {
-                if (!InfestationLikeCellFinder.TryFindCell(out intVec, out lc, map, true, false, true, true))
+                if (!InfestationLikeCellFinder.TryFindCell(out intVec, out lc, map, true, true, true, true))
                 {
-                    if (!InfestationLikeCellFinder.TryFindCell(out intVec, out lc, map, true, true, true, true))
-                    {
-                        Log.Warning(string.Format("InfestationLikeCellFinder Cant find any suitable location candidates"));
-                        return false;
-                    }
-                    else
-                    {
-                        Log.Message(string.Format("InfestationLikeCellFinder found suitable location candidate {0} {1} second try", intVec, lc));
-                    }
-                }
-                else
-                {
-                    Log.Message(string.Format("InfestationLikeCellFinder found suitable location candidate {0} {1} first try", intVec, lc));
+                    Log.Warning(string.Format("InfestationLikeCellFinder Cant find any suitable location candidates"));
+                    return false;
                 }
             }
-            
+
             if (intVec == IntVec3.Invalid)
             {
                 Log.Warning(string.Format("{0} intVec == IntVec3.Invalid",this));
@@ -122,18 +112,18 @@ namespace RimWorld
 
         }
 
-        private HiveLike SpawnHiveLikeCluster(int hiveCount, Map map, bool ignoreRoofedRequirement = false, bool allowUnreachable = false, float modifier = 1)
+        private XenomorphHive SpawnHiveLikeCluster(int hiveCount, Map map, bool ignoreRoofedRequirement = false, bool allowUnreachable = false, float modifier = 1)
         {;
             IntVec3 loc = intVec;
-            ThingDef_HiveLike thingDef = (ThingDef_HiveLike)this.def.mechClusterBuilding;
-            HiveLike hivelike = (HiveLike)ThingMaker.MakeThing(thingDef, null);
-            GenSpawn.Spawn(ThingMaker.MakeThing(hivelike.Def.TunnelDef, null), loc, map);
+            ThingDef thingDef = this.def.mechClusterBuilding;
+            XenomorphHive hivelike = (XenomorphHive)ThingMaker.MakeThing(thingDef, null);
+            GenSpawn.Spawn(ThingMaker.MakeThing(hivelike.Ext.TunnelDef, null), loc, map);
             hivelike.SetFaction(hivelike.OfFaction, null);
             IncidentWorker_Xenomorph_Hivelike.SpawnItemInstantly(hivelike);
             for (int i = 0; i < hiveCount - 1; i++)
             {
                 CompSpawnerHiveLikes c = hivelike.GetComp<CompSpawnerHiveLikes>();
-                if (hivelike.Spawned && hivelike.GetComp<CompSpawnerHiveLikes>().TrySpawnChildHiveLike(modifier, modifier, out HiveLike hivelike2, ignoreRoofedRequirement, allowUnreachable))
+                if (hivelike.Spawned && hivelike.GetComp<CompSpawnerHiveLikes>().TrySpawnChildHiveLike(modifier, modifier, out XenomorphHive hivelike2, ignoreRoofedRequirement, allowUnreachable))
                 {
                     IncidentWorker_Xenomorph_Hivelike.SpawnItemInstantly(hivelike2);
                     hivelike = hivelike2;
@@ -142,12 +132,12 @@ namespace RimWorld
             return hivelike;
         }
 
-        private TunnelHiveLikeSpawner SpawnTunnelLikeCluster(int hiveCount, Map map, IncidentParms parms, bool ignoreRoofedRequirement = false, bool allowUnreachable = false, float modifier = 1)
+        private XenomorphTunnelSpawner SpawnTunnelLikeCluster(int hiveCount, Map map, IncidentParms parms, bool ignoreRoofedRequirement = false, bool allowUnreachable = false, float modifier = 1)
         {
             IntVec3 loc = intVec;
-            ThingDef_HiveLike tD = (ThingDef_HiveLike)this.def.mechClusterBuilding;
-            ThingDef_TunnelHiveLikeSpawner thingDef = (ThingDef_TunnelHiveLikeSpawner)tD.TunnelDef;
-            TunnelHiveLikeSpawner hivelike = (TunnelHiveLikeSpawner)ThingMaker.MakeThing(thingDef, null);
+            ThingDef tD = this.def.mechClusterBuilding;
+            ThingDef thingDef = tD.GetModExtension<XenomorphHiveExtension>().TunnelDef;
+            XenomorphTunnelSpawner hivelike = (XenomorphTunnelSpawner)ThingMaker.MakeThing(thingDef, null);
             hivelike.hivePoints = parms.points / hiveCount;
             GenSpawn.Spawn(ThingMaker.MakeThing(hivelike.def, null), loc, map);
             //hivelike.SetFaction(hivelike.faction, null);
@@ -155,7 +145,7 @@ namespace RimWorld
             for (int i = 0; i < hiveCount - 1; i++)
             {
                 CompSpawnerHiveLikes c = hivelike.GetComp<CompSpawnerHiveLikes>();
-                if (hivelike.Spawned && hivelike.GetComp<CompSpawnerHiveLikes>().TrySpawnChildHiveLike(modifier, modifier,out TunnelHiveLikeSpawner hivelike2, ignoreRoofedRequirement, allowUnreachable))
+                if (hivelike.Spawned && hivelike.GetComp<CompSpawnerHiveLikes>().TrySpawnChildHiveLike(modifier, modifier,out XenomorphTunnelSpawner hivelike2, ignoreRoofedRequirement, allowUnreachable))
                 {
                     IncidentWorker_Xenomorph_Hivelike.SpawnItemInstantly(hivelike2);
                     hivelike = hivelike2;
@@ -167,7 +157,7 @@ namespace RimWorld
             return hivelike;
         }
 
-        private static void SpawnItemInstantly(HiveLike hive)
+        private static void SpawnItemInstantly(XenomorphHive hive)
         {
             CompXenomorph_SpawnerLike compSpawner = (CompXenomorph_SpawnerLike)hive.AllComps.Find(delegate (ThingComp x)
             {
@@ -180,7 +170,7 @@ namespace RimWorld
             }
         }
         
-        private static void SpawnItemInstantly(TunnelHiveLikeSpawner hive)
+        private static void SpawnItemInstantly(XenomorphTunnelSpawner hive)
         {
             CompXenomorph_SpawnerLike compSpawner = (CompXenomorph_SpawnerLike)hive.AllComps.Find(delegate (ThingComp x)
             {

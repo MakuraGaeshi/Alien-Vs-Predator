@@ -197,7 +197,7 @@ namespace RimWorld
                     {
                         if (THL.Data!=null)
                         {
-                            HiveLike hive = THL.Data.assignedHiveLikes.TryGetValue(pawn);
+                            XenomorphHive hive = THL.Data.assignedHiveLikes.TryGetValue(pawn);
                             if (hive!=null)
                             {
                                 flag1 = hive.def == XenomorphDefOf.AvP_Xenomorph_Hive;
@@ -232,7 +232,7 @@ namespace RimWorld
                     Building edifice = c.GetEdifice(pawn.Map);
                     if (edifice != null && edifice.def.size == IntVec2.One && edifice.def != ThingDefOf.CollapsedRocks && edifice.def != XenomorphDefOf.AvP_Xenomorph_Hive_Wall && pawn.CanReserveAndReach(edifice, PathEndMode.ClosestTouch, Danger.Deadly, 1, 1) && XenomorphUtil.DistanceBetween(edifice.Position, HiveCenter) <= MiningRange)
                     {
-                        bool xenobuilding = edifice.GetType() != typeof(Building_XenoEgg) && edifice.GetType() != typeof(Building_XenomorphCocoon) && edifice.GetType() != typeof(HiveLike);
+                        bool xenobuilding = edifice.GetType() != typeof(Building_XenoEgg) && edifice.GetType() != typeof(Building_XenomorphCocoon) && edifice.GetType() != typeof(XenomorphHive);
                         if (xenobuilding)
                         {
                             return new Job(JobDefOf.Mine, edifice)
