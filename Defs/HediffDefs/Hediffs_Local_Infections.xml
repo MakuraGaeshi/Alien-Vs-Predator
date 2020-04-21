@@ -72,7 +72,7 @@
       <li Class="HediffCompProperties_Discoverable">
         <sendLetterWhenDiscovered>true</sendLetterWhenDiscovered>
         <discoverLetterLabel>Xenomorph Facehugger</discoverLetterLabel>
-        <discoverLetterText>[PAWN_nameDef]'s been attacked by a facehugger which has attached itself to [PAWN_possessive] face, paralyzing [PAWN_possessive], but keeping them alive. Something needs to be done about this, but any attempt to remove the creature could kill the host.</discoverLetterText>
+        <discoverLetterText>[PAWN_nameDef] has been attacked by a facehugger which has attached itself to [PAWN_possessive] face, paralyzing [PAWN_objective], but keeping [PAWN_objective] alive. Something needs to be done about this, but any attempt to remove the creature could kill the host.</discoverLetterText>
 		<messageType>PawnDeath</messageType>
 		<letterType>NegativeEvent</letterType>
       </li>
@@ -149,7 +149,7 @@
       <li Class="HediffCompProperties_Discoverable">
         <sendLetterWhenDiscovered>true</sendLetterWhenDiscovered>
         <discoverLetterLabel>Xenomorph impregnation</discoverLetterLabel>
-        <discoverLetterText>[PAWN_nameDef] shudders violently as the facehugger spasms momentairly.....its still attached......something must have happened.....</discoverLetterText>
+        <discoverLetterText>the facehugger spasms momentairly and [PAWN_nameDef] shudders violently in response.....it's still attached......something must have happened.....</discoverLetterText>
 		<messageType>PawnDeath</messageType>
 		<letterType>NegativeEvent</letterType>
       </li>
@@ -631,7 +631,7 @@
     <defName>RRY_PostBurstWound</defName>
     <label>gaping wound</label>
     <labelNoun>a gaping wound</labelNoun>
-    <description>A Gaping wound that looks like its been shredded and torn from the inside out.</description>
+    <description>A Gaping wound that looks like something inside has ripped its way out.</description>
     <comps>
 	
     </comps>
