@@ -4,7 +4,7 @@
   <FactionDef ParentName="AvP_Yautja_NPCFactionBase">
 		<defName>AvP_Yautja_JungleClan</defName>
 		<label>Yautja Jungle Clan</label>
-    <description>The Jungle Clan is perhaps the most common and the most seen of all the Yautja clans. They are ruthless hunters with a strict code of honor. Their quest for glory is endless and inoxerable. Few survive their bloodlust.</description>
+    <description>The Jungle Clan is perhaps the most common and the most seen of all the Yautja clans. They are ruthless hunters with a strict honor code. Their search for worthy prey never ends. Few that are deemed worth hunting survive their bloodlust.</description>
 	<pawnSingular>Yautja</pawnSingular>
     <pawnsPlural>Yautja</pawnsPlural>
     <listOrderPriority>20</listOrderPriority>
