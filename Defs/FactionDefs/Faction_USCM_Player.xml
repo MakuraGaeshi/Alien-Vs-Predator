@@ -14,7 +14,7 @@
     <FactionDef Parent="AvP_USCMPlayerFactionBase">
     <defName>AvP_USCM_PlayerColony</defName>
     <label>USCM</label>
-    <description>Operation overwatched by the United States Colonial Marines Corp.</description>
+    <description>Operation overseen by the United States Colonial Marines Corp.</description>
     <isPlayer>true</isPlayer>
     <basicMemberKind>AvP_USCM_PlayerPrivate</basicMemberKind>
     <pawnsPlural>Marines</pawnsPlural>
