@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <Defs>
-<ThingDef Name="RRYBaseGrenadeAbility" Class="AbilityUser.ProjectileDef_Ability" ParentName="BaseGrenadeProjectile" Abstract="True">
+
+<!--ThingDef Name="AvP_Ability_GrenadeBase" Class="AbilityUser.ProjectileDef_Ability" ParentName="BaseGrenadeProjectile" Abstract="True">
    <thingClass>Projectile_Explosive</thingClass>
    <label>Launch Grenade</label>
 		<graphicData>
@@ -9,7 +10,8 @@
 			<texPath>Things/Projectile/Grenade</texPath>
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
- </ThingDef>
+ </ThingDef-->
+ 
 <!-- ======================== Grenade Ability Defs ================================== -->
 	<ThingDef ParentName="BaseGrenadeProjectile">
 		<defName>AvP_Bullet_M42AGrenade</defName>

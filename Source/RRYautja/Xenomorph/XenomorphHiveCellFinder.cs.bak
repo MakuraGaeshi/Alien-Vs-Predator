@@ -62,7 +62,7 @@ namespace RimWorld
             {
                 return 0f;
             }
-            if (cell.InNoBuildEdgeArea(map))
+            if (cell.CloseToEdge(map, 10))
             {
                 return 0f;
             }

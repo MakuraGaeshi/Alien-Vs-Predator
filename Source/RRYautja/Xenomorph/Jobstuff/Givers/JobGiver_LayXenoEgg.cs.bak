@@ -30,7 +30,7 @@ namespace RimWorld
             }
             ThingDef namedA = XenomorphDefOf.RRY_Xenomorph_Cocoon_Humanoid;
             ThingDef namedB = XenomorphDefOf.RRY_Xenomorph_Cocoon_Animal;
-            if (xenomorph.HiveLoc.InNoBuildEdgeArea(pawn.Map))
+            if (xenomorph.HiveLoc.CloseToEdge(pawn.Map, 10))
             {
                 if (XenomorphKidnapUtility.TryFindGoodHiveLoc(pawn, out c))
                 {

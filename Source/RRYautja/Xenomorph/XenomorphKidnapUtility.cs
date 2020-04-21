@@ -95,7 +95,7 @@ namespace AvP
 
             Predicate<IntVec3> validatora = delegate (IntVec3 y)
             {
-                if (y.GetTerrain(map).HasTag("Water"))
+                if (y.GetTerrain(map).HasTag("Water") || y.CloseToEdge(map, 10))
                 {
                     return false;
                 }
@@ -136,7 +136,7 @@ namespace AvP
             //    return true;
             }
             */
-            if (c == IntVec3.Invalid || c.x < 1 || c.z < 1 || c == IntVec3.Zero || c.InNoBuildEdgeArea(map) || c.InNoZoneEdgeArea(map) || c.GetTerrain(map).HasTag("Water"))
+            if (c == IntVec3.Invalid || c.x < 1 || c.z < 1 || c == IntVec3.Zero || c.CloseToEdge(map, 10) || c.GetTerrain(map).HasTag("Water"))
             {
                 if (!InfestationLikeCellFinder.TryFindCell(out c, out IntVec3 lc, map, allowFogged, allowUnroofed, allowDigging))
                 {
@@ -163,7 +163,7 @@ namespace AvP
                 //    Log.Message(string.Format("InfestationLikeCellFinder: {0}", c));
                 }
             }
-            if (c != IntVec3.Invalid && c.x > 1 && c.z > 1 && !c.InNoBuildEdgeArea(map) && !c.InNoZoneEdgeArea(map) && !c.GetTerrain(map).HasTag("Water"))
+            if (c != IntVec3.Invalid && c.x > 1 && c.z > 1 && !c.CloseToEdge(map, 10) && !c.GetTerrain(map).HasTag("Water"))
             {
                 if (pawn.GetLord() != null && pawn.GetLord() is Lord lord)
                 {
@@ -202,7 +202,7 @@ namespace AvP
                 return true;
             }
             else return false;
-            //return c != IntVec3.Invalid && c != IntVec3.Zero && !c.InNoBuildEdgeArea(map) && !c.InNoZoneEdgeArea(map) && !c.GetTerrain(map).HasTag("Water");
+            //return c != IntVec3.Invalid && c != IntVec3.Zero && !c.CloseToEdge(map, 10) && !c.GetTerrain(map).HasTag("Water");
         }
 
 

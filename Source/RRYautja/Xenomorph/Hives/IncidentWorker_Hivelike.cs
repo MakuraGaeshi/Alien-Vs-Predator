@@ -9,28 +9,46 @@ namespace RimWorld
     // Token: 0x02000340 RID: 832
     public class IncidentWorker_Xenomorph_Hivelike : IncidentWorker
     {
-        public IntVec3 intVec = IntVec3.Invalid;
-        public IntVec3 lc;
+        IntVec3 intVec = IntVec3.Invalid;
+        IntVec3 lc = IntVec3.Invalid;
         // Token: 0x06000E63 RID: 3683 RVA: 0x0006B874 File Offset: 0x00069C74
         protected override bool CanFireNowSub(IncidentParms parms)
 		{
-            
-			Map map = (Map)parms.target;
-
-            if (!InfestationLikeCellFinder.TryFindCell(out intVec, out lc, map, false, false, false, true))
+            if (!AvP.settings.SettingsHelper.latest.AllowXenomorphFaction)
             {
-                if (!InfestationLikeCellFinder.TryFindCell(out intVec, out lc, map, true, false, false, true))
+                Log.Error(string.Format("InfestationLikeCellFinder when Xeno disabled"));
+                return false;
+            }
+            Map map = (Map)parms.target;
+            intVec = IntVec3.Invalid;
+            lc = IntVec3.Invalid;
+            if (!InfestationLikeCellFinder.TryFindCell(out intVec, out lc, map, true, false, true, true))
+            {
+                if (!InfestationLikeCellFinder.TryFindCell(out intVec, out lc, map, true, true, true, true))
                 {
-                    if (!InfestationLikeCellFinder.TryFindCell(out intVec, out lc, map, true, true, false, true))
-                    {
-                        if (!InfestationLikeCellFinder.TryFindCell(out intVec, out lc, map, true, true, true, true))
-                        {
-                            return false;
-                        }
-                    }
+                    Log.Warning(string.Format("InfestationLikeCellFinder Cant find any suitable location candidates"));
+                    return false;
+                }
+                else
+                {
+                    Log.Message(string.Format("InfestationLikeCellFinder found suitable location candidate {0} {1} second try", intVec, lc));
                 }
             }
-            bool result = base.CanFireNowSub(parms) && XenomorphHiveUtility.TotalSpawnedHiveLikesCount(map) < 1;
+            else
+            {
+                Log.Message(string.Format("InfestationLikeCellFinder found suitable location candidate {0} {1} first try", intVec, lc));
+            }
+            bool hiveflag = XenomorphHiveUtility.TotalSpawnedHiveLikesCount(map) < 1;
+            if (!hiveflag)
+            {
+                Log.Warning(string.Format("Xeno hive already present"));
+            }
+            bool basecanfire = base.CanFireNowSub(parms);
+            if (!basecanfire)
+            {
+                Log.Warning(string.Format("! base.CanFireNowSub(parms)"));
+            }
+            bool result = basecanfire && hiveflag;
             
 			return result;
             
@@ -40,24 +58,43 @@ namespace RimWorld
             return base.CanFireNowSub(parms) && HiveLikeUtility.TotalSpawnedHiveLikesCount(map) < 100;
             */
         }
-
-		// Token: 0x06000E64 RID: 3684 RVA: 0x0006B8B4 File Offset: 0x00069CB4
-		protected override bool TryExecuteWorker(IncidentParms parms)
+        // Token: 0x06000E64 RID: 3684 RVA: 0x0006B8B4 File Offset: 0x00069CB4
+        protected override bool TryExecuteWorker(IncidentParms parms)
 		{
 
             Map map = (Map)parms.target;
-
+            
             if (intVec == IntVec3.Invalid)
             {
                 if (!InfestationLikeCellFinder.TryFindCell(out intVec, out lc, map, true, false, true, true))
                 {
                     if (!InfestationLikeCellFinder.TryFindCell(out intVec, out lc, map, true, true, true, true))
                     {
+                        Log.Warning(string.Format("InfestationLikeCellFinder Cant find any suitable location candidates"));
                         return false;
                     }
+                    else
+                    {
+                        Log.Message(string.Format("InfestationLikeCellFinder found suitable location candidate {0} {1} second try", intVec, lc));
+                    }
+                }
+                else
+                {
+                    Log.Message(string.Format("InfestationLikeCellFinder found suitable location candidate {0} {1} first try", intVec, lc));
                 }
             }
-			int hivelikeCount = Mathf.Max(GenMath.RoundRandom(parms.points / 220f), 1);
+            
+            if (intVec == IntVec3.Invalid)
+            {
+                Log.Warning(string.Format("{0} intVec == IntVec3.Invalid",this));
+                return false;
+            }
+            if (intVec.CloseToEdge(map, 10))
+            {
+                Log.Warning(string.Format("{0} intVec.CloseToEdge(map, 10)", this));
+                return false;
+            }
+            int hivelikeCount = Mathf.Max(GenMath.RoundRandom(parms.points / 220f), 1);
             if (def.tags.Contains("TunnelLike"))
             {
                 //Log.Message(string.Format("TunnelLike"));
@@ -156,7 +193,7 @@ namespace RimWorld
             }
         }
 
-        
+        /*
         // Token: 0x06000E65 RID: 3685 RVA: 0x0006B914 File Offset: 0x00069D14
         private Thing SpawnTunnels(int hivelikeCount, Map map)
 		{
@@ -179,7 +216,7 @@ namespace RimWorld
 			}
 			return thing;
 		}
-        
+        */
 
         // Token: 0x04000939 RID: 2361
         private const float HivePoints = 550f;

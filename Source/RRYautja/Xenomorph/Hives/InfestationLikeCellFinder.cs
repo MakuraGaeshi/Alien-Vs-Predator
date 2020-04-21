@@ -15,27 +15,9 @@ namespace RimWorld
         // Token: 0x0600368B RID: 13963 RVA: 0x001A0E1C File Offset: 0x0019F21C
         public static bool TryFindCell(out IntVec3 cell, out IntVec3 locationC, Map map, bool allowFogged = false, bool allowUnroofed = false, bool allowDigging = false, bool forceNew = false)
         {
-            InfestationLikeCellFinder.CalculateLocationCandidates(map, allowFogged, allowUnroofed, allowDigging, forceNew);
-            if (!forceNew)
-            {
-            //    Log.Message("exsisting hivelocs allowed");
-                if (!map.HiveGrid().Hivelist.NullOrEmpty())
-                {
-                    cell = map.HiveGrid().Hivelist.RandomElement().Position;
-                    locationC = map.HiveGrid().Hivelist.RandomElement().Position;
-                    return true;
-                }
-                if (!map.HiveGrid().HiveLoclist.NullOrEmpty())
-                {
-                    cell = map.HiveGrid().HiveLoclist.RandomElement();
-                    locationC = map.HiveGrid().HiveLoclist.RandomElement();
-                    return true;
-                }
-            }
-
             Predicate<IntVec3> validator = delegate (IntVec3 y)
             {
-                if (y.GetTerrain(map).HasTag("Water") || y.InNoBuildEdgeArea(map))
+                if (y.GetTerrain(map).HasTag("Water") || y.CloseToEdge(map, 10))
                 {
                     return false;
                 }
@@ -51,34 +33,64 @@ namespace RimWorld
                 bool result = score && XenohiveA && XenohiveB && !filled && edifice && building && thing && roofed;
                 return result;
             };
+            if (!forceNew)
+            {
+                Log.Message("Can use existing");
+                if (!map.HiveGrid().Hivelist.NullOrEmpty())
+                {
+                    Log.Message("using Hivelist");
+                    cell = map.HiveGrid().Hivelist.RandomElement().Position;
+                    locationC = map.HiveGrid().Hivelist.RandomElement().Position;
+                    Log.Message(string.Format("Hivelist location candidate forceNew: {0}, locationC {1}: cell: {2}", forceNew, locationC, cell));
+                    return true;
+                }
+                if (!map.HiveGrid().HiveLoclist.NullOrEmpty())
+                {
+                    Log.Message("using HiveLoclist");
+                    cell = map.HiveGrid().HiveLoclist.RandomElement();
+                    locationC = map.HiveGrid().HiveLoclist.RandomElement();
+                    Log.Message(string.Format("HiveLoclist location candidate forceNew: {0}, locationC {1}: cell: {2}", forceNew, locationC, cell));
+                    return true;
+                }
+            }
+            else
+            {
+                Log.Message("force New hive");
+            }
+            InfestationLikeCellFinder.CalculateLocationCandidates(map, allowFogged, allowUnroofed, allowDigging, forceNew);
             if (!InfestationLikeCellFinder.locationCandidates.Where(y=> validator(y.cell)).TryRandomElementByWeight((InfestationLikeCellFinder.LocationCandidate x) => x.score, out LocationCandidate locationCandidate))
             {
-            //    Log.Message(string.Format("Cant find any suitable location candidates"));
+                Log.Warning(string.Format("InfestationLikeCellFinder Cant find any suitable location candidates, trying Vanilla InfestationCellFinder"));
                 cell = IntVec3.Invalid;
                 if (!InfestationCellFinder.TryFindCell(out cell, map))
                 {
+                    Log.Warning(string.Format("InfestationCellFinder Cant find any suitable location candidates"));
                     if (!map.HiveGrid().PotentialHiveLoclist.NullOrEmpty())
                     {
-                        if (map.HiveGrid().PotentialHiveLoclist.Any(x => (x.X < 50 || x.Z < 50) && (!forceNew || !x.HiveLoc.GetThingList(map).Any(y => y.GetType() == typeof(HiveLike)))))
+                        Log.Message(string.Format("PotentialHiveLoc list contains {0} candidates", map.HiveGrid().PotentialHiveLoclist));
+                        if (map.HiveGrid().PotentialHiveLoclist.Any(x => validator(x.HiveLoc) && (x.X < 50 || x.Z < 50) && (!x.HiveLoc.GetThingList(map).Any(y => y.GetType() == typeof(HiveLike)))))
                         {
-                        //    Log.Message(string.Format("PotentialHiveLoclist location candidates 50 {0}", forceNew));
-                            cell = map.HiveGrid().PotentialHiveLoclist.Where(x => (x.X < 50 || x.Z < 50) && (!forceNew || !x.HiveLoc.GetThingList(map).Any(y => y.GetType() == typeof(HiveLike)))).RandomElement().HiveLoc;
+                            cell = map.HiveGrid().PotentialHiveLoclist.Where(x => validator(x.HiveLoc) && (x.X < 50 || x.Z < 50) && (!x.HiveLoc.GetThingList(map).Any(y => y.GetType() == typeof(HiveLike)))).RandomElementByWeight(x => x.HiveLoc.DistanceTo(map.Center)).HiveLoc;
                             locationC = cell;
+                            Log.Message(string.Format("PotentialHiveLoclist location candidates 50 forceNew: {0}, locationC {1}: cell: {2}", forceNew, locationC, cell));
+                            return true;
                         }
-                        else
-                        if (map.HiveGrid().PotentialHiveLoclist.Any(x => (x.X < 75 || x.Z < 75) && (!forceNew || !x.HiveLoc.GetThingList(map).Any(y => y.GetType() == typeof(HiveLike)))))
+                        if (map.HiveGrid().PotentialHiveLoclist.Any(x => validator(x.HiveLoc) && (x.X < 75 || x.Z < 75) && (!x.HiveLoc.GetThingList(map).Any(y => y.GetType() == typeof(HiveLike)))))
                         {
-                        //    Log.Message(string.Format("PotentialHiveLoclist location candidates 75 {0}", forceNew));
-                            cell = map.HiveGrid().PotentialHiveLoclist.Where(x => (x.X < 75 || x.Z < 75) && (!forceNew || !x.HiveLoc.GetThingList(map).Any(y => y.GetType() == typeof(HiveLike)))).RandomElement().HiveLoc;
+                            cell = map.HiveGrid().PotentialHiveLoclist.Where(x => validator(x.HiveLoc) && (x.X < 75 || x.Z < 75) && (!x.HiveLoc.GetThingList(map).Any(y => y.GetType() == typeof(HiveLike)))).RandomElementByWeight(x => x.HiveLoc.DistanceTo(map.Center)).HiveLoc;
                             locationC = cell;
+                            Log.Message(string.Format("PotentialHiveLoclist location candidates 75 forceNew: {0}, locationC {1}: cell: {2}", forceNew, locationC, cell));
+                            return true;
                         }
-                        else
-                        {
                         //    Log.Message(string.Format("PotentialHiveLoclist location candidates {0}", forceNew));
-                            cell = map.HiveGrid().PotentialHiveLoclist.Where(x=> (!forceNew || !x.HiveLoc.GetThingList(map).Any(y => y.GetType() == typeof(HiveLike)))).RandomElement().HiveLoc;
-                            locationC = cell;
-                        }
+                        cell = map.HiveGrid().PotentialHiveLoclist.Where(x => validator(x.HiveLoc) && (!x.HiveLoc.GetThingList(map).Any(y => y.GetType() == typeof(HiveLike)))).RandomElementByWeight(x => x.HiveLoc.DistanceTo(map.Center)).HiveLoc;
+                        locationC = cell;
+                        Log.Message(string.Format("PotentialHiveLoclist location candidates Any forceNew: {0}, locationC {1}: cell: {2}", forceNew, locationC, cell));
                         return true;
+                    }
+                    else
+                    {
+                        Log.Warning(string.Format("InfestationLikeCellFinder couldnt find any suitable hive locations"));
                     }
 
                     cell = IntVec3.Invalid;
@@ -88,8 +100,7 @@ namespace RimWorld
             }
             locationC = locationCandidate.cell;
             cell = CellFinder.FindNoWipeSpawnLocNear(locationCandidate.cell, map, XenomorphDefOf.AvP_Xenomorph_Hive, Rot4.North, 2, validator);
-            ThingDef td = XenomorphDefOf.AvP_Xenomorph_Hive_Slime;
-            GenSpawn.Spawn(td, cell, map);
+            Log.Message(string.Format("locationC {0}: cell: {1}", locationC, cell));
             return true;
         }
         /*
@@ -132,6 +143,14 @@ namespace RimWorld
         // Token: 0x0600368C RID: 13964 RVA: 0x001A0EAC File Offset: 0x0019F2AC
         public static float GetScoreAt(IntVec3 cell, Map map, bool allowFogged = false, bool allowUnroofed = false, bool allowDigging = false)
         {
+            if (cell.CloseToEdge(map, 10))
+            {
+                return 0f;
+            }
+            if (cell.DistanceTo(map.Center)<(map.Size.x / 10))
+            {
+                return 0f;
+            }
             if (cell.GetTerrain(map).HasTag("Water") || cell.GetTerrain(map).defName.Contains("Water") || cell.GetTerrain(map).defName.Contains("Marsh"))
             {
                 return 0f;
@@ -198,17 +217,19 @@ namespace RimWorld
             float num6 = Mathf.InverseLerp(-17f, -7f, temperature);
             float num7 = num2 * num3 * num5 * mountainousnessScoreAt * num4 * num6;
             num7 = Mathf.Pow(num7, 1.2f);
-            if (num7 < 7.5f)
+            /*
+            if (num7 < 2000f)
             {
                 return 0f;
             }
+            */
             if ((float)InfestationLikeCellFinder.distToColonyBuilding[cell] < 20f)
             {
                 num7 = (int)(num7 * 0.75f);
             }
             if (map.areaManager.Home[cell])
             {
-                num7 = (int)(num7 * 0.75f);
+                num7 = (int)(num7 * 0.5f);
             }
             return num7;
         }
@@ -222,6 +243,7 @@ namespace RimWorld
             InfestationLikeCellFinder.CalculateTraversalDistancesToUnroofed(map);
             InfestationLikeCellFinder.CalculateClosedAreaSizeGrid(map);
             InfestationLikeCellFinder.CalculateDistanceToColonyBuildingGrid(map);
+            string report = "Xeno Hive location report: Total : {0}";
             for (int i = 0; i < map.Size.z; i++)
             {
                 for (int j = 0; j < map.Size.x; j++)
@@ -232,14 +254,18 @@ namespace RimWorld
 
                     }
                     float scoreAt = InfestationLikeCellFinder.GetScoreAt(cell, map, allowFogged, allowUnroofed, allowDigging); // allowFogged
-                    
                     if (scoreAt > minscore)
                     {
-                    //    Log.Message(string.Format("scoreAt {0} == {1}", cell, scoreAt));
+                        report += "\n" + cell + " Score: " + scoreAt;
+                        //    Log.Message(string.Format("scoreAt {0} == {1}", cell, scoreAt));
                         InfestationLikeCellFinder.locationCandidates.Add(new InfestationLikeCellFinder.LocationCandidate(cell, scoreAt));
+                    }
+                    if (!cell.CloseToEdge(map, 10))
+                    {
                     }
                 }
             }
+            Log.Message(string.Format(report, InfestationLikeCellFinder.locationCandidates.Count));
         }
 
         // Token: 0x0600368F RID: 13967 RVA: 0x001A1318 File Offset: 0x0019F718
