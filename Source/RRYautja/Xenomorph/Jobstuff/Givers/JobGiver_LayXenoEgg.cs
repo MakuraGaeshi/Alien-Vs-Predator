@@ -48,7 +48,6 @@ namespace RimWorld
                             }
                         }
                     }
-                    Log.Message("queen can reach eggsite");
                     bool validator(IntVec3 y)
                     {
                         bool adjacent = c.AdjacentTo8WayOrInside(y);
@@ -74,7 +73,7 @@ namespace RimWorld
                 }
                 else
                 {
-                    Log.Warning("queen couldnt reach eggsite");
+                    if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent("queen couldnt reach eggsite");
                 }
                 if (XenomorphKidnapUtility.TryFindGoodHiveLoc(pawn, out c))
                 {

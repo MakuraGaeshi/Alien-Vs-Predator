@@ -120,24 +120,6 @@ namespace RimWorld
         }
         public Pawn Queen => hasQueen ? this.innerContainer.First(x => x.def == XenomorphRacesDefOf.AvP_Xenomorph_Queen && x.xenomorph().HiveLoc == this.Position) as Pawn : null ;
 
-        private PawnPath _pathtoCenter = null;
-        public PawnPath pathtoCenter
-        {
-            get
-            {
-                if (_pathtoCenter == null)
-                {
-                    Log.Message("finding new path to center");
-                    _pathtoCenter = Map.pathFinder.FindPath(this.Position, Map.Center, TraverseParms.For(TraverseMode.PassAllDestroyableThings, Danger.Deadly, true));
-                }
-                return _pathtoCenter;
-            }
-            set
-            {
-                _pathtoCenter = value;
-            }
-        }
-
         private List<IntVec3> walls;
         public List<IntVec3> HiveWalls
         {

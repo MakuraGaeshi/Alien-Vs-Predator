@@ -268,7 +268,7 @@ namespace Verse.AI
 
                 if (FindHost && pawn != null && !IsAcceptablePreyFor(searcherPawn, thing as Pawn))
                 {
-                    Log.Message(string.Format("Thing: {1} !IsAcceptablePreyFor searcher: {0}", searcherPawn, thing));
+                //    Log.Message(string.Format("Thing: {1} !IsAcceptablePreyFor searcher: {0}", searcherPawn, thing));
                     return false;
                 }
 
@@ -385,19 +385,19 @@ namespace Verse.AI
 
                     result = (IAttackTarget)GenClosest.ClosestThing_Global(searcherThing.Position, XenomorphHostFinder.tmpTargets, maxDist, validator2, null);
                 }
+                /*
                 string log = string.Format("{0} tmpTargets: {1}, maxDist: {2}", searcherThing, XenomorphHostFinder.tmpTargets.Count, maxDist);
 
                 if (result != null && result.Thing != null)
                 {
                     log += string.Format(", Result:{0}", result.Thing);
                 }
-                /*
                 foreach (var item in XenomorphHostFinder.tmpTargets)
                 {
                     log += "\n" + item.Thing.LabelShortCap;
                 }
-                */
                 Log.Message(log);
+                */
                 XenomorphHostFinder.tmpTargets.Clear();
                 return result;
             }

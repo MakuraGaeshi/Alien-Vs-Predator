@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Verse;
+using Verse.AI;
 
 namespace AvP.Xenomorph.Hives
 {
@@ -323,28 +324,15 @@ namespace AvP.Xenomorph.Hives
         {
             IntVec3 HiveCenter = Hive.Position;
             List<IntVec3> hiveStruct = new List<IntVec3>();
+            PawnPath pathtoCenter = Hive.Map.pathFinder.FindPath(Hive.Position, Hive.Map.Center, TraverseParms.For(TraverseMode.PassAllDestroyableThings, Danger.Deadly, true));
             foreach (var item in GenRadial.RadialCellsAround(HiveCenter, MiningRange, MiningRange + 2))
             {
-                if (!Hive.pathtoCenter.NodesReversed.Contains(item))
+                if (!pathtoCenter.NodesReversed.Contains(item))
                 {
                     hiveStruct.Add(item);
                 }
             }
-            return hiveStruct;
-        }
-
-        public static List<IntVec3> HiveWallGen(this XenomorphHive Hive)
-        {
-            float MiningRange = Hive.MiningRange;
-            IntVec3 HiveCenter = Hive.Position;
-            List<IntVec3> hiveStruct = new List<IntVec3>();
-            foreach (var item in GenRadial.RadialCellsAround(HiveCenter, MiningRange, MiningRange + 2))
-            {
-                if (!Hive.pathtoCenter.NodesReversed.Contains(item))
-                {
-                    hiveStruct.Add(item);
-                }
-            }
+            pathtoCenter.ReleaseToPool();
             return hiveStruct;
         }
 

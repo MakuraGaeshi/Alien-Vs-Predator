@@ -107,6 +107,7 @@ namespace RimWorld
                                 {
                                     if (structure.GetFirstThing(map, XenomorphDefOf.AvP_Xenomorph_Hive_Wall) == null)
                                     {
+                                        path.ReleaseToPool();
                                         return new Job(XenomorphDefOf.AvP_Job_Xenomorph_Construct_Hive_Wall, structure)
                                         {
                                             ignoreDesignations = false
@@ -115,7 +116,6 @@ namespace RimWorld
                                 }
                             }
                         }
-                        path.ReleaseToPool();
                      //   IntVec3 structure = hive.HiveWalls.RandomElement();
 
                     }
