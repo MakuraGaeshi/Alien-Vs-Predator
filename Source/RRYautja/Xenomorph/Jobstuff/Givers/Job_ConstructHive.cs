@@ -46,8 +46,12 @@ namespace RimWorld
             {
                 return null;
             }
-            bool centerNode = HiveCenter.GetFirstThing(pawn.Map, XenomorphDefOf.AvP_Xenomorph_Hive) != null;
-            bool centerChild = HiveCenter.GetFirstThing(pawn.Map, XenomorphDefOf.AvP_Xenomorph_Hive_Child) != null;
+            XenomorphHive hive = null;
+            XenomorphHive tunnel = null;
+            hive = HiveCenter.GetFirstThing(pawn.Map, XenomorphDefOf.AvP_Xenomorph_Hive) as XenomorphHive;
+            bool centerNode = hive != null;
+            tunnel = HiveCenter.GetFirstThing(pawn.Map, XenomorphDefOf.AvP_Xenomorph_Hive_Child) as XenomorphHive;
+            bool centerChild = tunnel != null;
             bool centerSlime = HiveCenter.GetFirstThing(pawn.Map, XenomorphDefOf.AvP_Xenomorph_Hive_Slime) != null;
             bool centerFilled = HiveCenter.Filled(pawn.Map);
 
@@ -65,10 +69,9 @@ namespace RimWorld
                     {
                         if (!centerNode)
                         {
-                            IntVec3 c = HiveCenter;
-                            if (c.InBounds(pawn.Map) && c.Roofed(pawn.Map) && pawn.CanReserveAndReach(c, PathEndMode.OnCell, Danger.Deadly))
+                            if (HiveCenter.InBounds(pawn.Map) && HiveCenter.Roofed(pawn.Map) && pawn.CanReserveAndReach(HiveCenter, PathEndMode.OnCell, Danger.Deadly))
                             {
-                                return new Job(XenomorphDefOf.AvP_Job_Xenomorph_Construct_Hive_Node, c)
+                                return new Job(XenomorphDefOf.AvP_Job_Xenomorph_Construct_Hive_Node, HiveCenter)
                                 {
                                     ignoreDesignations = false
                                 };
@@ -80,20 +83,45 @@ namespace RimWorld
             }
             if (!centerChild)
             {
-                foreach (var structure in HiveStructure.HiveStruct(HiveCenter).Where(x => x.GetThingList(map).Any(z => !z.def.defName.Contains("AvP_Xenomorph_Hive")) && x.DistanceTo(HiveCenter) <= MiningRange && pawn.CanReserveAndReach(x, PathEndMode.OnCell, Danger.Deadly, layer: ReservationLayerDefOf.Floor) && x.GetFirstBuilding(map) == null))
+                
+                foreach (IntVec3 structure in HiveStructure.HiveStruct(HiveCenter).Where(x => x.GetThingList(map).Any(z => !z.def.defName.Contains("AvP_Xenomorph_Hive")) && x.DistanceTo(HiveCenter) <= MiningRange && pawn.CanReserveAndReach(x, PathEndMode.OnCell, Danger.Deadly, layer: ReservationLayerDefOf.Floor) && x.GetFirstBuilding(map) == null))
                 {
                     return new Job(XenomorphDefOf.AvP_Job_Xenomorph_Construct_Hive_Wall, structure)
                     {
                         ignoreDesignations = false
                     };
                 }
-                foreach (var structure in HiveStructure.HiveWallGen(HiveCenter, MiningRange).Where(x => x.GetThingList(map).Any(z => !z.def.defName.Contains("AvP_Xenomorph_Hive")) && x.DistanceTo(HiveCenter) <= MiningRange + 2 && pawn.CanReserveAndReach(x, PathEndMode.OnCell, Danger.Deadly, layer: ReservationLayerDefOf.Floor) && x.GetFirstBuilding(map) == null))
+                
+                
+                if (centerNode)
                 {
-                    return new Job(XenomorphDefOf.AvP_Job_Xenomorph_Construct_Hive_Wall, structure)
+                    if (!hive.HiveWalls.NullOrEmpty())
                     {
-                        ignoreDesignations = false
-                    };
+                        PawnPath path = map.pathFinder.FindPath(pawn.Position, HiveCenter,pawn);
+
+                        foreach (IntVec3 structure in hive.HiveWalls.OrderByDescending(x=> x.DistanceTo(HiveCenter)))
+                        {
+                            if (structure.GetFirstPawn(map) == null)
+                            {
+                                if (pawn.CanReserveAndReach(structure, PathEndMode.Touch, Danger.Deadly, layer: ReservationLayerDefOf.Floor) && !path.NodesReversed.Contains(structure))
+                                {
+                                    if (structure.GetFirstThing(map, XenomorphDefOf.AvP_Xenomorph_Hive_Wall) == null)
+                                    {
+                                        return new Job(XenomorphDefOf.AvP_Job_Xenomorph_Construct_Hive_Wall, structure)
+                                        {
+                                            ignoreDesignations = false
+                                        };
+                                    }
+                                }
+                            }
+                        }
+                        path.ReleaseToPool();
+                     //   IntVec3 structure = hive.HiveWalls.RandomElement();
+
+                    }
                 }
+                
+                
                 Predicate<IntVec3> validator2 = delegate (IntVec3 y)
                 {
                     bool roofed = (y.Roofed(pawn.Map));
@@ -110,6 +138,7 @@ namespace RimWorld
                         };
                     }
                 }
+                
             }
             return null;
         }
@@ -148,6 +177,10 @@ namespace RimWorld
         {
             this.FailOnIncapable(PawnCapacityDefOf.Manipulation);
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
+            if (this.job.targetA.Cell.GetFirstPawn(this.pawn.Map)!=null)
+            {
+                yield break;
+            }
             Toil prepare = Toils_General.Wait(this.useDuration, TargetIndex.A);
             prepare.NPCWithProgressBarToilDelay(TargetIndex.A, false, -0.5f);
             prepare.FailOnDespawnedNullOrForbidden(TargetIndex.A);
@@ -161,6 +194,13 @@ namespace RimWorld
                 Pawn actor = use.actor;
                 Thing thing = ThingMaker.MakeThing(MyDef);
                 GenSpawn.Spawn(thing, TargetA.Cell, actor.Map, Rot4.South, WipeMode.FullRefund, false);
+                /*
+                XenomorphHive Hive = actor.xenomorph().HiveLoc.GetFirstThing(Map, XenomorphDefOf.AvP_Xenomorph_Hive) as XenomorphHive;
+                if (Hive!=null)
+                {
+                    Hive.WallBuilt(TargetA.Cell);
+                }
+                */
             };
             use.defaultCompleteMode = ToilCompleteMode.Instant;
             yield return use;

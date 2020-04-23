@@ -184,6 +184,10 @@ namespace AvP.ExtensionMethods
         {
             return p.RaceProps.FleshType == XenomorphRacesDefOf.AvP_Neomorph;
         }
+        public static bool isNeomorph(this Thing p)
+        {
+            return p.def.race?.FleshType == XenomorphRacesDefOf.AvP_Neomorph;
+        }
 
         public static bool isXenomorph(this PawnKindDef p)
         {

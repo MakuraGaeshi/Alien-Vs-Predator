@@ -358,6 +358,7 @@
         <li Class="JobGiver_MaintainHiveLikes">
           <onlyIfDamagingState>true</onlyIfDamagingState>
         </li>
+		
 		<!-- Not Queen -->
 		<li Class="ThinkNode_ConditionalNotPawnKind">
 		  <pawnKind>AvP_Xenomorph_Queen</pawnKind>
@@ -377,7 +378,7 @@
 				  <subNodes>
 					<li Class="JobGiver_XenomorphHosthunter"> 
 						<HuntingRange>40</HuntingRange>
-						<!--requireLOS>false</requireLOS-->
+						<requireLOS>true</requireLOS>
 					</li>
 				  </subNodes>
 				</li>
@@ -385,6 +386,7 @@
 			</li>
 		  </subNodes>
 		</li>
+
         <li Class="ThinkNode_ConditionalBodySize">
           <min>0.7</min>
           <subNodes>
@@ -399,6 +401,7 @@
             </li>
           </subNodes>
         </li>
+		
         <li Class="ThinkNode_Tagger">
           <tagToGive>SatisfyingNeeds</tagToGive>
           <subNodes>
@@ -456,7 +459,8 @@
 			-->
 		  </subNodes>
 		</li>
-        <li Class="JobGiver_WanderHiveLike">
+        
+		<li Class="JobGiver_WanderHiveLike">
           <maxDanger>Deadly</maxDanger>
         </li>
       </subNodes>

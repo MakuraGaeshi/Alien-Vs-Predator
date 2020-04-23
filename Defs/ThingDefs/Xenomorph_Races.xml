@@ -537,15 +537,25 @@
     <label>Drone</label>
     <description>Drones are an adult form of the species Xenomorph XX121, often said to be the most basic adult caste. They are loyal servants of the Queen, but essentially represents the lowliest class of Xenomorph, comparable to a worker ant. Drones construct Xenomorph Hives, using a resin-like secretion that they produce, and collect hosts for impregnation./n/n Drones are easily identified by their smooth head carapaces, among the smoothest of all Xenomorphs, and they are capable of spitting cysts of acidic blood at their enemies. They average around 8 feet tall when standing on hind legs, and about 14–15 feet long, tail included.</description>
     <statBases>
-      <MoveSpeed>5.2</MoveSpeed>
+      <MoveSpeed>6</MoveSpeed>
       <MeleeDodgeChance>1.75</MeleeDodgeChance>
       <MeleeHitChance>1.25</MeleeHitChance>
       <ArmorRating_Blunt>0.40</ArmorRating_Blunt>
+      <ArmorRating_Heat>0.40</ArmorRating_Heat>
       <ArmorRating_Sharp>0.60</ArmorRating_Sharp>
       <MeatAmount>30</MeatAmount>
       <LeatherAmount>30</LeatherAmount>
 		<ShootingAccuracyPawn>1.5</ShootingAccuracyPawn>
     </statBases>
+    <race>
+      <body>AvP_Xenomorph_Biped</body>
+	  <useMeatFrom>AvP_Xenomorph_FaceHugger</useMeatFrom>
+      <baseHealthScale>1.5</baseHealthScale>
+      <baseBodySize>1.25</baseBodySize>
+      <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
+      <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
+      <soundMeleeMiss>Pawn_Melee_Punch_Miss</soundMeleeMiss>
+    </race>
     <tools>
       <li>
         <label>left claw</label>
@@ -637,15 +647,6 @@
         <chanceFactor>0.2</chanceFactor>
       </li>
     </tools>
-    <race>
-      <body>AvP_Xenomorph_Biped</body>
-	  <useMeatFrom>AvP_Xenomorph_FaceHugger</useMeatFrom>
-      <baseHealthScale>0.72</baseHealthScale>
-      <baseBodySize>1.6</baseBodySize>
-      <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
-      <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
-      <soundMeleeMiss>Pawn_Melee_Punch_Miss</soundMeleeMiss>
-    </race>
     <comps> 
 	<!---
       <li Class="AbilityUser.CompProperties_AbilityUser">
@@ -749,10 +750,20 @@
       <Mass>85</Mass>
       <MoveSpeed>5.5</MoveSpeed>
       <ArmorRating_Blunt>0.55</ArmorRating_Blunt>
+      <ArmorRating_Heat>0.55</ArmorRating_Heat>
       <ArmorRating_Sharp>0.70</ArmorRating_Sharp>
       <MeatAmount>45</MeatAmount>
       <LeatherAmount>45</LeatherAmount>
     </statBases>
+    <race>
+      <body>AvP_Xenomorph_Biped</body>
+	  <useMeatFrom>AvP_Xenomorph_FaceHugger</useMeatFrom>
+      <baseHealthScale>2.25</baseHealthScale>
+      <baseBodySize>1.5</baseBodySize>
+      <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
+      <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
+      <soundMeleeMiss>Pawn_Melee_Punch_Miss</soundMeleeMiss>
+    </race>
     <tools>
       <li>
         <label>left claw</label>
@@ -844,15 +855,6 @@
         <chanceFactor>0.2</chanceFactor>
       </li>
     </tools>
-    <race>
-      <body>AvP_Xenomorph_Biped</body>
-	  <useMeatFrom>AvP_Xenomorph_FaceHugger</useMeatFrom>
-      <baseHealthScale>1.72</baseHealthScale>
-      <baseBodySize>2.0</baseBodySize>
-      <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
-      <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
-      <soundMeleeMiss>Pawn_Melee_Punch_Miss</soundMeleeMiss>
-    </race>
   </ThingDef>
 
   <PawnKindDef ParentName="AvP_BaseXenomorphKind">
@@ -947,6 +949,7 @@
       <Mass>60</Mass>
       <MoveSpeed>7.6</MoveSpeed>
       <ArmorRating_Blunt>0.25</ArmorRating_Blunt>
+      <ArmorRating_Heat>0.25</ArmorRating_Heat>
       <ArmorRating_Sharp>0.40</ArmorRating_Sharp>
       <MeatAmount>25</MeatAmount>
       <LeatherAmount>25</LeatherAmount>
@@ -1045,8 +1048,8 @@
     <race>
       <body>AvP_Xenomorph_Quadruped</body>
 	  <useMeatFrom>AvP_Xenomorph_FaceHugger</useMeatFrom>
-      <baseBodySize>1.4</baseBodySize>
       <baseHealthScale>1.32</baseHealthScale>
+      <baseBodySize>1.4</baseBodySize>
       <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
       <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
       <soundMeleeMiss>Pawn_Melee_Punch_Miss</soundMeleeMiss>
@@ -1128,10 +1131,20 @@
       <Mass>95</Mass>
       <MoveSpeed>5.6</MoveSpeed>
       <ArmorRating_Blunt>0.55</ArmorRating_Blunt>
+      <ArmorRating_Heat>0.55</ArmorRating_Heat>
       <ArmorRating_Sharp>0.80</ArmorRating_Sharp>
       <MeatAmount>25</MeatAmount>
       <LeatherAmount>25</LeatherAmount>
     </statBases>
+    <race>
+      <body>AvP_Xenomorph_Biped_Predalien</body>
+	  <useMeatFrom>AvP_Xenomorph_FaceHugger</useMeatFrom>
+      <baseHealthScale>3</baseHealthScale>
+      <baseBodySize>2.4</baseBodySize>
+      <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
+      <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
+      <soundMeleeMiss>Pawn_Melee_Punch_Miss</soundMeleeMiss>
+    </race>
     <tools>
       <li>
         <label>left claw</label>
@@ -1223,15 +1236,6 @@
         <chanceFactor>0.2</chanceFactor>
       </li>
     </tools>
-    <race>
-      <body>AvP_Xenomorph_Biped_Predalien</body>
-	  <useMeatFrom>AvP_Xenomorph_FaceHugger</useMeatFrom>
-      <baseHealthScale>2.72</baseHealthScale>
-      <baseBodySize>2.4</baseBodySize>
-      <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
-      <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
-      <soundMeleeMiss>Pawn_Melee_Punch_Miss</soundMeleeMiss>
-    </race>
 	<modExtensions>
 	  <li Class="HunterMarkingSystem.MarkDefExtension">
 		<!-- DefName of the Marking Hediff Kills of this race give --> 
@@ -1322,6 +1326,59 @@
       <PsychicSensitivity>0.5</PsychicSensitivity>
       <ToxicSensitivity>0.25</ToxicSensitivity>
     </statBases>
+    <race>
+      <intelligence>ToolUser</intelligence>
+      <thinkTreeMain>AvP_Xenomorph_ThinkTree</thinkTreeMain>
+      <body>AvP_Xenomorph_QuadrupedWithHorn</body>
+	  <useMeatFrom>AvP_Xenomorph_FaceHugger</useMeatFrom>
+      <baseBodySize>4</baseBodySize>
+      <baseHealthScale>8.0</baseHealthScale>
+      <manhunterOnDamageChance>1.00</manhunterOnDamageChance>
+      <lifeStageAges>
+        <li>
+          <def>AvP_XenomorphChestBursterBaby</def>
+          <minAge>0</minAge>
+          <soundWounded>AvP_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>AvP_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>AvP_Pawn_Xenomorph_Normal_Call</soundCall>
+        </li>
+        <li>
+          <def>AvP_XenomorphChestBursterBig</def>
+          <minAge>0.0041666666666666</minAge>
+          <soundWounded>AvP_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>AvP_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>AvP_Pawn_Xenomorph_Normal_Call</soundCall>
+        </li>
+        <li>
+          <def>AvP_XenomorphFormedBaby</def>
+          <minAge>0.0083333333333332</minAge>
+          <soundWounded>AvP_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>AvP_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>AvP_Pawn_Xenomorph_Normal_Call</soundCall>
+        </li>
+        <li>
+          <def>AvP_XenomorphFormedMid</def>
+          <minAge>0.0124999999999998</minAge>
+          <soundWounded>AvP_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>AvP_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>AvP_Pawn_Xenomorph_Normal_Call</soundCall>
+        </li>
+        <li>
+          <def>AvP_XenomorphFullyFormed</def>
+          <minAge>0.0166666666666667</minAge>
+          <soundWounded>AvP_Pawn_Xenomorph_Normal_Wounded</soundWounded>
+          <soundDeath>AvP_Pawn_Xenomorph_Normal_Death</soundDeath>
+          <soundCall>AvP_Pawn_Xenomorph_Normal_Call</soundCall>
+        </li>
+      </lifeStageAges>
+      <soundCallIntervalRange>
+        <min>1000</min>
+        <max>2000</max>
+      </soundCallIntervalRange>
+      <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
+      <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
+      <soundMeleeMiss>Pawn_Melee_Punch_Miss</soundMeleeMiss>
+    </race>
     <tools>
       <li>
         <label>horn</label>
@@ -1423,59 +1480,6 @@
         <chanceFactor>0.2</chanceFactor>
       </li>
     </tools>
-    <race>
-      <intelligence>ToolUser</intelligence>
-      <thinkTreeMain>AvP_Xenomorph_ThinkTree</thinkTreeMain>
-      <body>AvP_Xenomorph_QuadrupedWithHorn</body>
-	  <useMeatFrom>AvP_Xenomorph_FaceHugger</useMeatFrom>
-      <baseBodySize>4</baseBodySize>
-      <baseHealthScale>8.0</baseHealthScale>
-      <manhunterOnDamageChance>1.00</manhunterOnDamageChance>
-      <lifeStageAges>
-        <li>
-          <def>AvP_XenomorphChestBursterBaby</def>
-          <minAge>0</minAge>
-          <soundWounded>AvP_Pawn_Xenomorph_Normal_Wounded</soundWounded>
-          <soundDeath>AvP_Pawn_Xenomorph_Normal_Death</soundDeath>
-          <soundCall>AvP_Pawn_Xenomorph_Normal_Call</soundCall>
-        </li>
-        <li>
-          <def>AvP_XenomorphChestBursterBig</def>
-          <minAge>0.0041666666666666</minAge>
-          <soundWounded>AvP_Pawn_Xenomorph_Normal_Wounded</soundWounded>
-          <soundDeath>AvP_Pawn_Xenomorph_Normal_Death</soundDeath>
-          <soundCall>AvP_Pawn_Xenomorph_Normal_Call</soundCall>
-        </li>
-        <li>
-          <def>AvP_XenomorphFormedBaby</def>
-          <minAge>0.0083333333333332</minAge>
-          <soundWounded>AvP_Pawn_Xenomorph_Normal_Wounded</soundWounded>
-          <soundDeath>AvP_Pawn_Xenomorph_Normal_Death</soundDeath>
-          <soundCall>AvP_Pawn_Xenomorph_Normal_Call</soundCall>
-        </li>
-        <li>
-          <def>AvP_XenomorphFormedMid</def>
-          <minAge>0.0124999999999998</minAge>
-          <soundWounded>AvP_Pawn_Xenomorph_Normal_Wounded</soundWounded>
-          <soundDeath>AvP_Pawn_Xenomorph_Normal_Death</soundDeath>
-          <soundCall>AvP_Pawn_Xenomorph_Normal_Call</soundCall>
-        </li>
-        <li>
-          <def>AvP_XenomorphFullyFormed</def>
-          <minAge>0.0166666666666667</minAge>
-          <soundWounded>AvP_Pawn_Xenomorph_Normal_Wounded</soundWounded>
-          <soundDeath>AvP_Pawn_Xenomorph_Normal_Death</soundDeath>
-          <soundCall>AvP_Pawn_Xenomorph_Normal_Call</soundCall>
-        </li>
-      </lifeStageAges>
-      <soundCallIntervalRange>
-        <min>1000</min>
-        <max>2000</max>
-      </soundCallIntervalRange>
-      <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
-      <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
-      <soundMeleeMiss>Pawn_Melee_Punch_Miss</soundMeleeMiss>
-    </race>
     <comps> 
       <li>
         <compClass>AvP.Comp_Xenomorph</compClass>

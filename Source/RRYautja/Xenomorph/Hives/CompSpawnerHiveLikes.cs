@@ -1,6 +1,7 @@
 ﻿using AvP;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Verse;
 
@@ -117,19 +118,30 @@ namespace RimWorld
 			}
 		}
 
+        public int TunnelProgress
+        {
+            get
+            {
+                int extra = 0;
+                if (hiveLike.def == XenomorphDefOf.AvP_Xenomorph_Hive && canSpawnHiveLikes)
+                {
+                    extra += hiveLike.GetDirectlyHeldThings().Where(x => x.def != XenomorphRacesDefOf.AvP_Xenomorph_Queen).Count();
+                    foreach (var item in hiveLike.childHiveLikes)
+                    {
+                        extra += item.GetDirectlyHeldThings().Where(x => x.def != XenomorphRacesDefOf.AvP_Xenomorph_Queen).Count();
+                    }
+                }
+                return extra;
+            }
+        }
+
 		// Token: 0x060029E0 RID: 10720 RVA: 0x0013D10C File Offset: 0x0013B50C
 		public override void CompTick()
 		{
 			base.CompTick();
-            int extra = 0;
             if (hiveLike.def == XenomorphDefOf.AvP_Xenomorph_Hive && canSpawnHiveLikes)
             {
-                extra += hiveLike.GetDirectlyHeldThings().Count;
-                foreach (var item in hiveLike.childHiveLikes)
-                {
-                    extra += item.GetDirectlyHeldThings().Count;
-                }
-                this.nextHiveSpawnTick -= extra;
+                this.nextHiveSpawnTick -= TunnelProgress;
             }
 
             if (this.parent is XenomorphHive hivelike && (hivelike == null || hivelike.active) && this.nextHiveSpawnTick <= 0)
@@ -160,32 +172,22 @@ namespace RimWorld
 		// Token: 0x060029E1 RID: 10721 RVA: 0x0013D188 File Offset: 0x0013B588
 		public override string CompInspectStringExtra()
 		{
-			if (!this.canSpawnHiveLikes)
-			{
-				return "AvP_DormantHiveNotReproducing".Translate();
-			}
 			if (this.CanSpawnChildHiveLike)
             {
                 if (this.parent.HitPoints<this.parent.MaxHitPoints && Find.TickManager.TicksGame % 250 == 0)
                 {
                     this.parent.HitPoints++;
                 }
-                int extra = 0;
-                if (hiveLike.def == XenomorphDefOf.AvP_Xenomorph_Hive && canSpawnHiveLikes)
+                if (TunnelProgress > 0)
                 {
-                    extra += hiveLike.GetDirectlyHeldThings().Count;
-                    foreach (var item in hiveLike.childHiveLikes)
-                    {
-                        extra += item.GetDirectlyHeldThings().Count;
-                    }
+                    return "AvP_HiveReproducesIn".Translate() + ": " + ((this.nextHiveSpawnTick) / TunnelProgress).ToStringTicksToPeriod();
                 }
-                if (extra > 0)
-                {
-                    return "AvP_HiveReproducesIn".Translate() + ": " + ((this.nextHiveSpawnTick) / extra).ToStringTicksToPeriod();
-                }
-                return "AvP_HiveReproducesIn".Translate() + ": " + ((this.nextHiveSpawnTick)).ToStringTicksToPeriod();
+                return "AvP_HiveReproducesIn".Translate() + ": " + ((this.nextHiveSpawnTick)).ToStringTicksToPeriod() +": Halted";
 			}
-			return null;
+            else
+            {
+                return "AvP_DormantHiveNotReproducing".Translate();
+            }
 		}
 
 		// Token: 0x060029E2 RID: 10722 RVA: 0x0013D1E4 File Offset: 0x0013B5E4

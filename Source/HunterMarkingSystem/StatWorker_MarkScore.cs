@@ -173,7 +173,7 @@ namespace RimWorld
             basescore = num;
             meleescore = (MeleeDPS * meleeDamageFactor) * (1 * (MeleeHitChance + MeleeDodgeChance));
             healthscore = (baseHealthScale * healthScaleFactor);
-            sizescore = (baseBodySize * bodySizeFactor);
+            sizescore = (baseBodySize * bodySizeFactor) * 0.75f;
             armourscore = (ArmorRating_Blunt + ArmorRating_Sharp + ArmorRating_Heat) / 3;
             num = meleescore + ((basescore) + ((healthscore + sizescore) * (1 + armourscore)));
             // num *= (((MeleeDPS * meleeDamageFactor) * ((baseHealthScale * healthScaleFactor) + (baseBodySize * bodySizeFactor))) * (1 * ((ArmorRating_Blunt + ArmorRating_Sharp + ArmorRating_Heat) + (MeleeHitChance + MeleeDodgeChance))));

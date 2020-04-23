@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -318,12 +319,31 @@ namespace AvP.Xenomorph.Hives
             return hiveWalls;
         }
 
-        public static List<IntVec3> HiveWallGen(IntVec3 HiveCenter, float MiningRange)
+        public static List<IntVec3> HiveWallGen(this XenomorphHive Hive, float MiningRange)
         {
+            IntVec3 HiveCenter = Hive.Position;
             List<IntVec3> hiveStruct = new List<IntVec3>();
-            foreach (var item in GenRadial.RadialCellsAround(HiveCenter, MiningRange, MiningRange+2).Where(x=> x.x != HiveCenter.x && x.z != HiveCenter.z))
+            foreach (var item in GenRadial.RadialCellsAround(HiveCenter, MiningRange, MiningRange + 2))
             {
-                hiveStruct.Add(item);
+                if (!Hive.pathtoCenter.NodesReversed.Contains(item))
+                {
+                    hiveStruct.Add(item);
+                }
+            }
+            return hiveStruct;
+        }
+
+        public static List<IntVec3> HiveWallGen(this XenomorphHive Hive)
+        {
+            float MiningRange = Hive.MiningRange;
+            IntVec3 HiveCenter = Hive.Position;
+            List<IntVec3> hiveStruct = new List<IntVec3>();
+            foreach (var item in GenRadial.RadialCellsAround(HiveCenter, MiningRange, MiningRange + 2))
+            {
+                if (!Hive.pathtoCenter.NodesReversed.Contains(item))
+                {
+                    hiveStruct.Add(item);
+                }
             }
             return hiveStruct;
         }

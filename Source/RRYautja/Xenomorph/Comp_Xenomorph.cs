@@ -71,7 +71,7 @@ namespace AvP
                     //    Log.Message(string.Format("Finding new Hive loc for {0} @ {1}", pawn.NameShortColored, pawn.Position));
                     if (map!=null)
                     {
-                        if (InfestationLikeCellFinder.TryFindCell(out IntVec3 hive, out LocationCandidate vec3, map, true, false, true))
+                        if (InfestationLikeCellFinder.TryFindCell(out IntVec3 hive, out LocationCandidate vec3, map, true, false))
                         {
                             HiveX = hive.x;
                             HiveZ = hive.z;
@@ -98,6 +98,8 @@ namespace AvP
                 HiveZ = value.z;
             }
         }
+
+        public XenomorphHive Hive => map != null ? HiveLoc.GetFirstThing(map, XenomorphDefOf.AvP_Xenomorph_Hive) as XenomorphHive : null;
 
         public Pawn pawn
         {
@@ -253,7 +255,7 @@ namespace AvP
                                 if (XenomorphKidnapUtility.TryFindGoodHiveLoc(pawn, out c, null, true, false, true))
                                 {
                                 //    Log.Message(string.Format("XenoLord TryFindGoodHiveLoc for {0} Cell Found: {1}, Allow: Fogged, Digging", pawn.LabelShortCap, c));
-                                    LordJob newJob = new LordJob_DefendAndExpandHiveLike(false, pawn.Faction, c, 40f);
+                                    LordJob newJob = new LordJob_DefendAndExpandHiveLike(false, pawn.Faction, c, 40);
                                     pawn.CreateNewLord(c, newJob);
                                     this.HiveLoc = c;
                                 }
@@ -787,6 +789,8 @@ namespace AvP
             {
                 return false;
             }
+
+            /*
             if (findhost)
             {
                 if (prey.Downed && prey.Awake())
@@ -809,7 +813,6 @@ namespace AvP
                     return false;
                 }
             }
-            /*
             if (!prey.RaceProps.canBePredatorPrey)
             {
                 return false;
@@ -826,11 +829,11 @@ namespace AvP
             {
                 return false;
             }
-            */
             if (prey.BodySize > predator.RaceProps.maxPreyBodySize)
             {
                 return false;
             }
+            */
             if (!prey.Downed)
             {
                 if (prey.GetStatValue(StatDefOf.MeleeDPS) > 2f * predator.GetStatValue(StatDefOf.MeleeDPS))
@@ -865,15 +868,16 @@ namespace AvP
                 }
                 if (num >= num2)
                 {
-                    float num3 = map.mapPawns.AllPawns.Where(x => x.isXenomorph() && x.def == predator.def).Count();
-                    num2 *= num3;
+                    /*
+                    float num3 = map.HiveGrid().XenoList.Where(x => x.isXenomorph() && x.def == predator.def).Count();
+                    num2 *= num3;*/
                     if (num >= num2)
                     {
                         return false;
                     }
                 }
             }
-            return (predator.Faction == null || prey.Faction == null || predator.HostileTo(prey)) && (predator.Faction == null || prey.HostFaction == null || predator.HostileTo(prey)) && (predator.Faction != Faction.OfPlayer || prey.Faction != Faction.OfPlayer) && (!predator.RaceProps.herdAnimal || predator.def != prey.def);
+            return (predator.Faction == null || prey.Faction == null || predator.HostileTo(prey)) && (predator.Faction == null || prey.HostFaction == null || predator.HostileTo(prey)) && (predator.Faction != Faction.OfPlayer || prey.Faction != Faction.OfPlayer) /*&& (!predator.RaceProps.herdAnimal || predator.def != prey.def)*/;
         }
 
         // Token: 0x06000180 RID: 384 RVA: 0x0000E414 File Offset: 0x0000C814

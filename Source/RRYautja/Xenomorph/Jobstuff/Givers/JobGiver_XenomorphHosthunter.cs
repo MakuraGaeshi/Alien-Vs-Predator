@@ -23,9 +23,6 @@ namespace RimWorld
             jobGiver_XenomorphHosthunter.requireLOS = this.requireLOS;
             return jobGiver_XenomorphHosthunter;
         }
-
-        public XenomorphHive hive = null;
-
         // Token: 0x040002FF RID: 767
         private int MinMeleeChaseTicks = 420;
 
@@ -55,29 +52,13 @@ namespace RimWorld
             {
                 return job;
             }
-            if (pawn.GetLord() != null && pawn.GetLord() is Lord lord)
+            if (!pawn.isXenomorph(out Comp_Xenomorph xenomorph))
             {
-                if (lord.LordJob is LordJob_DefendAndExpandHiveLike hivejob)
-                {
-                    if (lord.CurLordToil is LordToil_DefendAndExpandHiveLike hivetoil)
-                    {
-                        if (hivetoil.Data.assignedHiveLikes.TryGetValue(pawn) != null)
-                        {
-                            hive = hivetoil.Data.assignedHiveLikes.TryGetValue(pawn);
-                        }
-                    }
-                }
-                else
-                if (lord.CurLordToil is LordToil_DefendHiveLikeAggressively hivetoilA)
-                {
-                    if (hivetoilA.Data.assignedHiveLikes.TryGetValue(pawn) != null)
-                    {
-                        hive = hivetoilA.Data.assignedHiveLikes.TryGetValue(pawn);
-                    }
-                }
+                return job;
             }
 
-        //    bool aggressive;
+            XenomorphHive hive = xenomorph.Hive; 
+            //    bool aggressive;
             Comp_Xenomorph _Xenomorph = pawn.TryGetComp<Comp_Xenomorph>();
             if (pawn.TryGetAttackVerb(null, false) == null)
             {
@@ -92,9 +73,9 @@ namespace RimWorld
                 {
                     if (!hive.hiveDormant)
                     {
-                        pawn2 = _Xenomorph.BestPawnToHuntForPredator(pawn, false, true);
+                    //    pawn2 = _Xenomorph.BestPawnToHuntForPredator(pawn, false, true);
                         requireLOS = false;
-                        HuntingRange = 40;
+                        HuntingRange = 60;
                     }
                     else
                     {
@@ -103,12 +84,17 @@ namespace RimWorld
                 }
                 else
                 {
-
+                    return null;
                 }
             }
             if (pawn2 == null)
             {
+            //    Log.Message("using this.FindPawnTarget");
                 pawn2 = this.FindPawnTarget(pawn);
+            }
+            else
+            {
+            //    Log.Message("using _Xenomorph.BestPawnToHuntForPredator");
             }
             if (pawn2 != null)
             {
@@ -154,11 +140,11 @@ namespace RimWorld
                         }
                     }
                 }
-                if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0}: {1} Job Found: {2}: {3}", this, pawn, job != null, job));
+                if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0}: {1} Job Found: {2}", this, job != null, job));
             }
             else
             {
-                if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0}: {1} No target Found: {2}: {3}", this, pawn, job != null, job));
+                if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0}: {1} No target Found: {2}", this, job != null, job));
             }
 
             return job;
@@ -175,7 +161,33 @@ namespace RimWorld
                 attackDoorIfTargetLost = true
             };
         }
+        // Token: 0x06002F03 RID: 12035 RVA: 0x001083A4 File Offset: 0x001065A4
+        private Pawn FindPawnTarget(Pawn pawn)
+        {
+            if (!pawn.isXenomorph(out Comp_Xenomorph xenomorph))
+            {
+                return null;
+            }
+            if (pawn.Map.skyManager.CurSkyGlow < 0.5f)
+            {
+                HuntingRange = HuntingRange * 2;
+                requireLOS = false;
+            }
+            TargetScanFlags scanFlags = TargetScanFlags.NeedReachable;
+            if (requireLOS)
+            {
+                scanFlags |= TargetScanFlags.NeedLOSToPawns;
+            }
+            Pawn tp = (Pawn)XenomorphHostFinder.BestAttackTarget(pawn, scanFlags, null, 0f, HuntingRange, default(IntVec3), float.MaxValue, true, true, Gender: this.Gender);
+            return tp;
+        }
 
+        // Token: 0x06002F04 RID: 12036 RVA: 0x001083FC File Offset: 0x001065FC
+        private Building FindTurretTarget(Pawn pawn)
+        {
+            return (Building)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedLOSToPawns | TargetScanFlags.NeedLOSToNonPawns | TargetScanFlags.NeedReachable | TargetScanFlags.NeedThreat | TargetScanFlags.NeedAutoTargetable, (Thing t) => t is Building, 0f, 70f, default(IntVec3), float.MaxValue, false, true);
+        }
+        /*
         // Token: 0x060005B9 RID: 1465 RVA: 0x00037BC0 File Offset: 0x00035FC0
         private Pawn FindPawnTarget(Pawn pawn)
         {
@@ -240,8 +252,10 @@ namespace RimWorld
                 if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("Xeno found no target hunt"));
                 return null;
             }
+            
         }
-        
+        */
+
         public bool forceScanWholeMap = true;
         
     }

@@ -66,13 +66,10 @@ namespace Verse.AI
                     Thing thing = pawnPath.FirstBlockingBuilding(out cellBeforeBlocker, pawn);
                     if (thing != null)
                     {
-                        if (!thing.def.defName.Contains("Xenomorph_Hive"))
+                        Job job = DigUtility.PassBlockerJob(pawn, thing, cellBeforeBlocker, true, true);
+                        if (job != null)
                         {
-                            Job job = DigUtility.PassBlockerJob(pawn, thing, cellBeforeBlocker, true, true);
-                            if (job != null)
-                            {
-                                return job;
-                            }
+                            return job;
                         }
                     }
                 }

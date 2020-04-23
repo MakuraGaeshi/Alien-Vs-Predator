@@ -220,10 +220,12 @@ namespace RimWorld
             {
                 MiningRange = 5;
             }
+            /*
             if (!pawn.CanReachMapEdge())
             {
                 MiningRange = 10;
             }
+            */
             for (int i = 0; i < GenRadial.NumCellsInRadius(MiningRange); i++)
             {
                 IntVec3 c = HiveCenter + GenRadial.RadialPattern[i];

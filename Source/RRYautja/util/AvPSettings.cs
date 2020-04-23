@@ -20,16 +20,21 @@ namespace AvP.settings
 
     class AvPSettings : ModSettings
     {
-        public string fachuggerRemovalFailureDeathChanceBuffer;
-        public string embryoRemovalFailureDeathChanceBuffer;
         public bool AllowXenoCocoonMetamorph = true;
         public bool AllowXenoEggMetamorph = true;
         public bool AllowNonHumanlikeHosts = true;
         public bool AllowThrumbomorphs = true;
         public bool AllowNeomorphs = true; 
         public bool AllowPredaliens = true;
-        public bool AllowXenomorphFaction = true, AllowYautjaFaction = true, AllowHiddenInfections = true, AllowPredalienImpregnations = true;
-        public float fachuggerRemovalFailureDeathChance = 0.35f, embryoRemovalFailureDeathChance = 0.35f;
+        public bool AllowXenomorphFaction = true;
+        public bool AllowXenomorphStealth = true;
+        public bool AllowYautjaFaction = true;
+        public bool AllowHiddenInfections = true;
+        public bool AllowPredalienImpregnations = true;
+        public string fachuggerRemovalFailureDeathChanceBuffer;
+        public string embryoRemovalFailureDeathChanceBuffer;
+        public float fachuggerRemovalFailureDeathChance = 0.35f;
+        public float embryoRemovalFailureDeathChance = 0.35f;
 
         public Dictionary<string, bool> RaceKeyPairs;
         
@@ -39,6 +44,7 @@ namespace AvP.settings
         public override void ExposeData()
         {
             base.ExposeData();
+            Scribe_Values.Look(ref this.AllowXenomorphStealth, "AllowXenomorphStealth", true);
             Scribe_Values.Look(ref this.AllowXenomorphFaction, "AllowXenomorphFaction", true);
             Scribe_Values.Look(ref this.AllowYautjaFaction, "AllowYautjaFaction", true);
             Scribe_Values.Look(ref this.AllowHiddenInfections, "AllowHiddenInfections", true);

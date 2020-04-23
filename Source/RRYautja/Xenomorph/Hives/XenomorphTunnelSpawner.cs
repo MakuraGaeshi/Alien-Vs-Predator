@@ -203,6 +203,10 @@ namespace RimWorld
             if (base.Spawned)
             {
                 XenomorphHive hive = (XenomorphHive)ThingMaker.MakeThing(hiveDef, null);
+                if (hiveDef == XenomorphDefOf.AvP_Xenomorph_Hive)
+                {
+                    hive.getsQueen = true;
+                }
                 this.sustainer.Maintain();
                 Vector3 vector = base.Position.ToVector3Shifted();
                 ResetStaticData();

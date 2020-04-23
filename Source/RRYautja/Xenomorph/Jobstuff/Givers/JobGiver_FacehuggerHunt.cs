@@ -83,7 +83,7 @@ namespace RimWorld
             if (pawn.jobs.debugLog) pawn.jobs.DebugLogEvent(string.Format("{0}\nisInfectablePawn: {1}, Alive: {2}", pawn.LabelShortCap, p.isPotentialHost(), !p.Dead));
                 return p.isPotentialHost();
             };
-            Pawn pawn2 = (Pawn)XenomorphTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, validator, 0f, HuntingRange, pawn.Position, float.MaxValue, true, true);
+            Pawn pawn2 = (Pawn)XenomorphHostFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, validator, 0f, HuntingRange, pawn.Position, float.MaxValue, true, true);
             /*
             while (pawn2==null && HuntingRange<50)
             {
@@ -104,7 +104,7 @@ namespace RimWorld
         // Token: 0x060005BA RID: 1466 RVA: 0x00037C14 File Offset: 0x00036014
         private Building FindTurretTarget(Pawn pawn)
         {
-            return (Building)XenomorphTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedLOSToPawns | TargetScanFlags.NeedLOSToNonPawns | TargetScanFlags.NeedReachable | TargetScanFlags.NeedThreat, (Thing t) => t is Building, 0f, 70f, default(IntVec3), float.MaxValue, false, true);
+            return (Building)XenomorphHostFinder.BestAttackTarget(pawn, TargetScanFlags.NeedLOSToPawns | TargetScanFlags.NeedLOSToNonPawns | TargetScanFlags.NeedReachable | TargetScanFlags.NeedThreat, (Thing t) => t is Building, 0f, 70f, default(IntVec3), float.MaxValue, false, true);
         }
 
         // RimWorld.FoodUtility

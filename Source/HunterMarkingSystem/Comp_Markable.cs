@@ -205,25 +205,24 @@ namespace HunterMarkingSystem
             */
             if (!respawningAfterLoad)
             {
-
-            }
-            if (markDataKill == null)
-            {
-                if (BloodStatus == BloodStatusMode.Marked)
+                if (markDataKill == null)
                 {
-                    Rand.PushState();
-                    int rand = Rand.RangeInclusive(0, HunterMarkingSystem.RaceDefaultMarkDict.Count - 1);
-                    Rand.PopState();
-                    markDataKill = HunterMarkingSystem.RaceDefaultMarkDict.ElementAt(rand).Value;
-                    if (markDataKill == null)
+                    if (BloodStatus == BloodStatusMode.Marked)
                     {
-                        Log.Warning(string.Format("markData null for {0} pawn {1}", BloodStatus.ToString(), pawn.Name.ToStringShort));
+                        Rand.PushState();
+                        int rand = Rand.RangeInclusive(0, HunterMarkingSystem.RaceDefaultMarkDict.Count - 1);
+                        Rand.PopState();
+                        markDataKill = HunterMarkingSystem.RaceDefaultMarkDict.ElementAt(rand).Value;
+                        if (markDataKill == null)
+                        {
+                            Log.Warning(string.Format("markData null for {0} pawn {1}", BloodStatus.ToString(), pawn.Name.ToStringShort));
+                        }
                     }
                 }
-            }
-            else
-            {
-            //    Log.Message(string.Format("markData exists for {0} pawn {1}, {2}", BloodStatus.ToString(), pawn.Name.ToStringShort, markDataKill.Label));
+                else
+                {
+                    //    Log.Message(string.Format("markData exists for {0} pawn {1}, {2}", BloodStatus.ToString(), pawn.Name.ToStringShort, markDataKill.Label));
+                }
             }
         }
         

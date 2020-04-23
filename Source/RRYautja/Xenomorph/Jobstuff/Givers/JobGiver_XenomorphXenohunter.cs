@@ -65,13 +65,13 @@ namespace RimWorld
         // Token: 0x060005B9 RID: 1465 RVA: 0x00037BC0 File Offset: 0x00035FC0
         private Pawn FindPawnTarget(Pawn pawn)
         {
-            return (Pawn)XenomorphTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedLOSToAll & TargetScanFlags.NeedReachable, (Thing x) => x is Pawn p && pawn.CanSee(p) && (p.isXenomorph() || p.isXenoHost()), 0f, 30f, default(IntVec3), float.MaxValue, true, true);
+            return (Pawn)XenomorphHostFinder.BestAttackTarget(pawn, TargetScanFlags.NeedLOSToAll & TargetScanFlags.NeedReachable, (Thing x) => x is Pawn p && pawn.CanSee(p) && (p.isXenomorph() || p.isXenoHost()), 0f, 30f, default(IntVec3), float.MaxValue, true, true);
         }
 
         // Token: 0x060005BA RID: 1466 RVA: 0x00037C14 File Offset: 0x00036014
         private Building FindTurretTarget(Pawn pawn)
         {
-            return (Building)XenomorphTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedLOSToPawns | TargetScanFlags.NeedLOSToNonPawns | TargetScanFlags.NeedReachable | TargetScanFlags.NeedThreat, (Thing t) => t is Building, 0f, 70f, default(IntVec3), float.MaxValue, false, true);
+            return (Building)XenomorphHostFinder.BestAttackTarget(pawn, TargetScanFlags.NeedLOSToPawns | TargetScanFlags.NeedLOSToNonPawns | TargetScanFlags.NeedReachable | TargetScanFlags.NeedThreat, (Thing t) => t is Building, 0f, 70f, default(IntVec3), float.MaxValue, false, true);
         }
 
         // Token: 0x040002FD RID: 765

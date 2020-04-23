@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AvP;
+using AvP.ExtensionMethods;
 using RimWorld;
 using UnityEngine;
 using Verse.AI.Group;
@@ -8,17 +10,162 @@ using Verse.AI.Group;
 namespace Verse.AI
 {
     // Token: 0x02000B16 RID: 2838
-    public static class XenomorphTargetFinder
+    public static class XenomorphHostFinder
     {
+        private static List<Pawn> tmpPredatorCandidates = new List<Pawn>();
+
+        // Token: 0x06002A3C RID: 10812 RVA: 0x000F5AC0 File Offset: 0x000F3CC0
+        private static int GetMaxRegionsToScan(Pawn getter, bool forceScanWholeMap)
+        {
+            if (getter.RaceProps.Humanlike)
+            {
+                return -1;
+            }
+            if (forceScanWholeMap)
+            {
+                return -1;
+            }
+            if (getter.Faction == Faction.OfPlayer)
+            {
+                return 100;
+            }
+            return 30;
+        }
+        // Token: 0x06002A42 RID: 10818 RVA: 0x000F5F58 File Offset: 0x000F4158
+        private static Pawn BestPawnToHuntForPredator(Pawn predator, bool forceScanWholeMap)
+        {
+            if (predator.meleeVerbs.TryGetMeleeVerb(null) == null)
+            {
+                return null;
+            }
+            bool flag = false;
+            if (predator.health.summaryHealth.SummaryHealthPercent < 0.25f)
+            {
+                flag = true;
+            }
+            XenomorphHostFinder.tmpPredatorCandidates.Clear();
+            if (XenomorphHostFinder.GetMaxRegionsToScan(predator, forceScanWholeMap) < 0)
+            {
+                XenomorphHostFinder.tmpPredatorCandidates.AddRange(predator.Map.mapPawns.AllPawnsSpawned);
+            }
+            else
+            {
+                TraverseParms traverseParms = TraverseParms.For(predator, Danger.Deadly, TraverseMode.ByPawn, false);
+                RegionTraverser.BreadthFirstTraverse(predator.Position, predator.Map, (Region from, Region to) => to.Allows(traverseParms, true), delegate (Region x)
+                {
+                    List<Thing> list = x.ListerThings.ThingsInGroup(ThingRequestGroup.Pawn);
+                    for (int j = 0; j < list.Count; j++)
+                    {
+                        XenomorphHostFinder.tmpPredatorCandidates.Add((Pawn)list[j]);
+                    }
+                    return false;
+                }, 999999, RegionType.Set_Passable);
+            }
+            Pawn pawn = null;
+            float num = 0f;
+            bool tutorialMode = TutorSystem.TutorialMode;
+            for (int i = 0; i < XenomorphHostFinder.tmpPredatorCandidates.Count; i++)
+            {
+                Pawn pawn2 = XenomorphHostFinder.tmpPredatorCandidates[i];
+                if (predator.GetRoom(RegionType.Set_Passable) == pawn2.GetRoom(RegionType.Set_Passable) && predator != pawn2 && (!flag || pawn2.Downed) && XenomorphHostFinder.IsAcceptablePreyFor(predator, pawn2) && predator.CanReach(pawn2, PathEndMode.ClosestTouch, Danger.Deadly, false, TraverseMode.ByPawn) && !pawn2.IsForbidden(predator) && (!tutorialMode || pawn2.Faction != Faction.OfPlayer))
+                {
+                    float preyScoreFor = XenomorphHostFinder.GetPreyScoreFor(predator, pawn2);
+                    if (preyScoreFor > num || pawn == null)
+                    {
+                        num = preyScoreFor;
+                        pawn = pawn2;
+                    }
+                }
+            }
+            XenomorphHostFinder.tmpPredatorCandidates.Clear();
+            return pawn;
+        }
+
+        // Token: 0x06002A43 RID: 10819 RVA: 0x000F60D4 File Offset: 0x000F42D4
+        public static bool IsAcceptablePreyFor(Pawn predator, Pawn prey, bool findhost = true)
+        {
+            if (prey.Downed && prey.Awake())
+            {
+                return false;
+            }
+            if (!prey.RaceProps.IsFlesh)
+            {
+                return false;
+            }
+            if (findhost)
+            {
+                if (prey.Downed && prey.Awake())
+                {
+                    return false;
+                }
+                if (!prey.isPotentialHost())
+                {
+                    return false;
+                }
+                if (prey.isNeomorph())
+                {
+                    return false;
+                }
+            }
+            if (!findhost)
+            {
+                if (prey.isPotentialHost())
+                {
+                    return false;
+                }
+            }
+            if (!prey.Downed)
+            {
+                if (prey.kindDef.combatPower > 2f * predator.kindDef.combatPower)
+                {
+                    return false;
+                }
+                float num = prey.kindDef.combatPower * prey.health.summaryHealth.SummaryHealthPercent * prey.ageTracker.CurLifeStage.bodySizeFactor;
+                float num2 = predator.kindDef.combatPower * predator.health.summaryHealth.SummaryHealthPercent * predator.ageTracker.CurLifeStage.bodySizeFactor;
+                if (num >= num2)
+                {
+                    return false;
+                }
+            }
+            return (predator.Faction == null || prey.Faction == null || predator.HostileTo(prey)) && (predator.Faction == null || prey.HostFaction == null || predator.HostileTo(prey)) && (predator.Faction != Faction.OfPlayer || prey.Faction != Faction.OfPlayer) && (!predator.RaceProps.herdAnimal || predator.def != prey.def);
+        }
+
+        // Token: 0x06002A44 RID: 10820 RVA: 0x000F6230 File Offset: 0x000F4430
+        public static float GetPreyScoreFor(Pawn predator, Pawn prey)
+        {
+            float num = prey.kindDef.combatPower / predator.kindDef.combatPower;
+            float num2 = prey.health.summaryHealth.SummaryHealthPercent;
+            float bodySizeFactor = prey.ageTracker.CurLifeStage.bodySizeFactor;
+            float lengthHorizontal = (predator.Position - prey.Position).LengthHorizontal;
+            if (prey.Downed)
+            {
+                num2 = Mathf.Min(num2, 0.2f);
+            }
+            float num3 = -lengthHorizontal - 56f * num2 * num2 * num * bodySizeFactor;
+            if (prey.RaceProps.Humanlike)
+            {
+                num3 -= 35f;
+            }
+            return num3;
+        }
+
         // Token: 0x06003F17 RID: 16151 RVA: 0x001D8758 File Offset: 0x001D6B58
-        public static IAttackTarget BestAttackTarget(IAttackTargetSearcher searcher, TargetScanFlags flags, Predicate<Thing> validator = null, float minDist = 0f, float maxDist = 9999f, IntVec3 locus = default(IntVec3), float maxTravelRadiusFromLocus = 3.40282347E+38f, bool canBash = false, bool canTakeTargetsCloserThanEffectiveMinRange = true)
+        public static IAttackTarget BestAttackTarget(IAttackTargetSearcher searcher, TargetScanFlags flags, Predicate<Thing> validator = null, float minDist = 0f, float maxDist = 9999f, IntVec3 locus = default(IntVec3), float maxTravelRadiusFromLocus = 3.40282347E+38f, bool canBash = false, bool canTakeTargetsCloserThanEffectiveMinRange = true, bool FindHost = true, Gender Gender = Gender.None)
         {
             Thing searcherThing = searcher.Thing;
             Pawn searcherPawn = searcher as Pawn;
+            if (!searcherPawn.isXenomorph(out Comp_Xenomorph Xeno))
+            {
+                return null;
+            }
             Verb verb = searcher.CurrentEffectiveVerb;
             if (verb == null)
             {
                 Log.Error("BestAttackTarget with " + searcher.ToStringSafe<IAttackTargetSearcher>() + " who has no attack verb.", false);
+                return null;
+            }
+            if (searcherThing.Map == null)
+            {
                 return null;
             }
             bool onlyTargetMachines = verb.IsEMP();
@@ -37,12 +184,29 @@ namespace Verse.AI
             Predicate<IAttackTarget> innerValidator = delegate (IAttackTarget t)
             {
                 Thing thing = t.Thing;
+                Pawn pawn = t as Pawn;
+                if (pawn == null)
+                {
+                    //    Log.Message(string.Format("Thing: {0} != Pawn", thing));
+                    return false;
+                }
+                if (pawn.Map == null)
+                {
+                    //    Log.Message(string.Format("Thing: {0} != Pawn", thing));
+                    return false;
+                }
                 if (t == searcher)
+                { 
+                //    Log.Message(string.Format("searcher: {0} == Thing: {1}", searcherPawn, thing));
+                    return false;
+                }
+                if (pawn.Cocooned())
                 {
                     return false;
                 }
                 if (minDistSquared > 0f && (float)(searcherThing.Position - thing.Position).LengthHorizontalSquared < minDistSquared)
                 {
+                //    Log.Message(string.Format("searcher: {0} too far from Thing: {1}", searcherPawn, thing));
                     return false;
                 }
                 if (!canTakeTargetsCloserThanEffectiveMinRange)
@@ -50,28 +214,33 @@ namespace Verse.AI
                     float num2 = verb.verbProps.EffectiveMinRange(thing, searcherThing);
                     if (num2 > 0f && (float)(searcherThing.Position - thing.Position).LengthHorizontalSquared < num2 * num2)
                     {
+                    //    Log.Message(string.Format("searcher: {0} too close to Thing: {1}", searcherPawn, thing));
                         return false;
                     }
                 }
                 if (maxTravelRadiusFromLocus < 9999f && (float)(thing.Position - locus).LengthHorizontalSquared > maxLocusDistSquared)
                 {
+                //    Log.Message(string.Format("searcher: {0} travel dist too far from Thing: {1}", searcherPawn, thing));
                     return false;
                 }
-                /*
                 if (!searcherThing.HostileTo(thing))
                 {
+                //    Log.Message(string.Format("searcher: {0} !HostileTo to Thing: {1}", searcherPawn, thing));
                     return false;
                 }
-                */
+                
                 if (validator != null && !validator(thing))
                 {
+                //    Log.Message(string.Format("searcher: {0} !validator({1})", searcherPawn, thing));
                     return false;
                 }
+                
                 if (searcherPawn != null)
                 {
                     Lord lord = searcherPawn.GetLord();
                     if (lord != null && !lord.LordJob.ValidateAttackTarget(searcherPawn, thing))
                     {
+                    //  Log.Message(string.Format("searcher: {0} !ValidateAttackTarget({1})", searcherPawn, thing)); ;
                         return false;
                     }
                 }
@@ -81,25 +250,48 @@ namespace Verse.AI
                     {
                         if ((byte)(flags & TargetScanFlags.NeedLOSToPawns) != 0)
                         {
+                        //    Log.Message(string.Format("searcher: {0} NeedLOSToPawns to Thing: {1}", searcherPawn, thing));
                             return false;
                         }
                     }
                     else if ((byte)(flags & TargetScanFlags.NeedLOSToNonPawns) != 0)
                     {
+                    //    Log.Message(string.Format("searcher: {0} NeedLOSToNonPawns to Thing: {1}", searcherPawn, thing));
                         return false;
                     }
                 }
                 if ((byte)(flags & TargetScanFlags.NeedThreat) != 0 && t.ThreatDisabled(searcher))
                 {
+                //    Log.Message(string.Format("searcher: {0} NeedThreat from Thing: {1}", searcherPawn, thing));
                     return false;
                 }
-                Pawn pawn = t as Pawn;
+
+                if (FindHost && pawn != null && !IsAcceptablePreyFor(searcherPawn, thing as Pawn))
+                {
+                    Log.Message(string.Format("Thing: {1} !IsAcceptablePreyFor searcher: {0}", searcherPawn, thing));
+                    return false;
+                }
+
+                /*
+                if (FindHost && pawn !=null && !Xeno.IsAcceptablePreyFor(searcherPawn, thing as Pawn, FindHost))
+                {
+                    Log.Message(string.Format("Thing: {1} !IsAcceptablePreyFor searcher: {0}", searcherPawn, thing));
+                    return false;
+                }
+                */
+                if (Gender!=Gender.None && pawn != null && pawn.gender != Gender)
+                {
+                //    Log.Message(string.Format("searcher: {0} !Gender Thing: {1}", searcherPawn, thing));
+                    return false;
+                }
                 if (onlyTargetMachines && pawn != null && pawn.RaceProps.IsFlesh)
                 {
+                //    Log.Message(string.Format("searcher: {0} onlyTargetMachines Thing: {1}", searcherPawn, thing));
                     return false;
                 }
                 if ((byte)(flags & TargetScanFlags.NeedNonBurning) != 0 && thing.IsBurning())
                 {
+                //    Log.Message(string.Format("searcher: {0} NeedNonBurning Thing: {1}", searcherPawn, thing));
                     return false;
                 }
                 if (searcherThing.def.race != null && searcherThing.def.race.intelligence >= Intelligence.Humanlike)
@@ -107,6 +299,7 @@ namespace Verse.AI
                     CompExplosive compExplosive = thing.TryGetComp<CompExplosive>();
                     if (compExplosive != null && compExplosive.wickStarted)
                     {
+                    //    Log.Message(string.Format("searcher: {0} wickStarted Thing: {1}", searcherPawn, thing));
                         return false;
                     }
                 }
@@ -114,6 +307,7 @@ namespace Verse.AI
                 {
                     if (thing.Position.Fogged(thing.Map))
                     {
+                    //    Log.Message(string.Format("searcher: {0} Fogged Thing: {1}", searcherPawn, thing));
                         return false;
                     }
                 }
@@ -133,25 +327,35 @@ namespace Verse.AI
                     }
                     if (!flag2)
                     {
+                    //    Log.Message(string.Format("searcher: {0} flag2 !Fogged Thing: {1}", searcherPawn, thing));
                         return false;
                     }
                 }
+            //    Log.Message("Win");
                 return true;
             };
-            if (XenomorphTargetFinder.HasRangedAttack(searcher))
+            
+            if (XenomorphHostFinder.HasRangedAttack(searcher))
             {
-                XenomorphTargetFinder.tmpTargets.Clear();
-                XenomorphTargetFinder.tmpTargets.AddRange(searcherThing.Map.attackTargetsCache.GetPotentialTargetsFor(searcher));
+                XenomorphHostFinder.tmpTargets.Clear();
+                if (FindHost)
+                {
+                    XenomorphHostFinder.tmpTargets.AddRange(searcher.Thing.Map.HiveGrid().potentialHosts);
+                }
+                else
+                {
+                    XenomorphHostFinder.tmpTargets.AddRange(searcherThing.Map.attackTargetsCache.GetPotentialTargetsFor(searcher));
+                }
                 if ((byte)(flags & TargetScanFlags.NeedReachable) != 0)
                 {
                     Predicate<IAttackTarget> oldValidator = innerValidator;
-                    innerValidator = ((IAttackTarget t) => oldValidator(t) && XenomorphTargetFinder.CanReach(searcherThing, t.Thing, canBash));
+                    innerValidator = ((IAttackTarget t) => oldValidator(t) && XenomorphHostFinder.CanReach(searcherThing, t.Thing, canBash));
                 }
                 bool flag = false;
-                for (int i = 0; i < XenomorphTargetFinder.tmpTargets.Count; i++)
+                for (int i = 0; i < XenomorphHostFinder.tmpTargets.Count; i++)
                 {
-                    IAttackTarget attackTarget = XenomorphTargetFinder.tmpTargets[i];
-                    if (attackTarget.Thing.Position.InHorDistOf(searcherThing.Position, maxDist) && innerValidator(attackTarget) && XenomorphTargetFinder.CanShootAtFromCurrentPosition(attackTarget, searcher, verb))
+                    IAttackTarget attackTarget = XenomorphHostFinder.tmpTargets[i];
+                    if (attackTarget.Thing.Position.InHorDistOf(searcherThing.Position, maxDist) && innerValidator(attackTarget) && XenomorphHostFinder.CanShootAtFromCurrentPosition(attackTarget, searcher, verb))
                     {
                         flag = true;
                         break;
@@ -160,23 +364,41 @@ namespace Verse.AI
                 IAttackTarget result;
                 if (flag)
                 {
-                    XenomorphTargetFinder.tmpTargets.RemoveAll((IAttackTarget x) => !x.Thing.Position.InHorDistOf(searcherThing.Position, maxDist) || !innerValidator(x));
-                    result = XenomorphTargetFinder.GetRandomShootingTargetByScore(XenomorphTargetFinder.tmpTargets, searcher, verb);
+                //    Log.Message("can shoot now");
+                    XenomorphHostFinder.tmpTargets.RemoveAll((IAttackTarget x) => !x.Thing.Position.InHorDistOf(searcherThing.Position, maxDist) || !innerValidator(x));
+                    result = XenomorphHostFinder.GetRandomShootingTargetByScore(XenomorphHostFinder.tmpTargets, searcher, verb);
                 }
                 else
                 {
+                //    Log.Message("cant shoot now");
                     Predicate<Thing> validator2;
                     if ((byte)(flags & TargetScanFlags.NeedReachableIfCantHitFromMyPos) != 0 && (byte)(flags & TargetScanFlags.NeedReachable) == 0)
                     {
-                        validator2 = ((Thing t) => innerValidator((IAttackTarget)t) && (XenomorphTargetFinder.CanReach(searcherThing, t, canBash) || XenomorphTargetFinder.CanShootAtFromCurrentPosition((IAttackTarget)t, searcher, verb)));
+                     //   Log.Message("NeedReachableIfCantHitFromMyPos");
+                        validator2 = ((Thing t) => innerValidator((IAttackTarget)t) && (XenomorphHostFinder.CanReach(searcherThing, t, canBash) || XenomorphHostFinder.CanShootAtFromCurrentPosition((IAttackTarget)t, searcher, verb)));
                     }
                     else
                     {
                         validator2 = ((Thing t) => innerValidator((IAttackTarget)t));
                     }
-                    result = (IAttackTarget)GenClosest.ClosestThing_Global(searcherThing.Position, XenomorphTargetFinder.tmpTargets, maxDist, validator2, null);
+
+
+                    result = (IAttackTarget)GenClosest.ClosestThing_Global(searcherThing.Position, XenomorphHostFinder.tmpTargets, maxDist, validator2, null);
                 }
-                XenomorphTargetFinder.tmpTargets.Clear();
+                string log = string.Format("{0} tmpTargets: {1}, maxDist: {2}", searcherThing, XenomorphHostFinder.tmpTargets.Count, maxDist);
+
+                if (result != null && result.Thing != null)
+                {
+                    log += string.Format(", Result:{0}", result.Thing);
+                }
+                /*
+                foreach (var item in XenomorphHostFinder.tmpTargets)
+                {
+                    log += "\n" + item.Thing.LabelShortCap;
+                }
+                */
+                Log.Message(log);
+                XenomorphHostFinder.tmpTargets.Clear();
                 return result;
             }
             if (searcherPawn != null && searcherPawn.mindState.duty != null && searcherPawn.mindState.duty.radius > 0f && !searcherPawn.InMentalState)
@@ -198,7 +420,7 @@ namespace Verse.AI
             IAttackTarget attackTarget2 = (IAttackTarget)GenClosest.ClosestThingReachable(position, map, thingReq, peMode, traverseParams, maxDist2, validator3, null, 0, searchRegionsMax, false, RegionType.Set_Passable, false);
             if (attackTarget2 != null && PawnUtility.ShouldCollideWithPawns(searcherPawn))
             {
-                IAttackTarget attackTarget3 = XenomorphTargetFinder.FindBestReachableMeleeTarget(innerValidator, searcherPawn, maxDist, canBash);
+                IAttackTarget attackTarget3 = XenomorphHostFinder.FindBestReachableMeleeTarget(innerValidator, searcherPawn, maxDist, canBash);
                 if (attackTarget3 != null)
                 {
                     float lengthHorizontal = (searcherPawn.Position - attackTarget2.Thing.Position).LengthHorizontal;
@@ -318,7 +540,7 @@ namespace Verse.AI
         private static IAttackTarget GetRandomShootingTargetByScore(List<IAttackTarget> targets, IAttackTargetSearcher searcher, Verb verb)
         {
             Pair<IAttackTarget, float> pair;
-            if (XenomorphTargetFinder.GetAvailableShootingTargetsByScore(targets, searcher, verb).TryRandomElementByWeight((Pair<IAttackTarget, float> x) => x.Second, out pair))
+            if (XenomorphHostFinder.GetAvailableShootingTargetsByScore(targets, searcher, verb).TryRandomElementByWeight((Pair<IAttackTarget, float> x) => x.Second, out pair))
             {
                 return pair.First;
             }
@@ -328,27 +550,27 @@ namespace Verse.AI
         // Token: 0x06003F1D RID: 16157 RVA: 0x001D8D98 File Offset: 0x001D7198
         private static List<Pair<IAttackTarget, float>> GetAvailableShootingTargetsByScore(List<IAttackTarget> rawTargets, IAttackTargetSearcher searcher, Verb verb)
         {
-            XenomorphTargetFinder.availableShootingTargets.Clear();
+            XenomorphHostFinder.availableShootingTargets.Clear();
             if (rawTargets.Count == 0)
             {
-                return XenomorphTargetFinder.availableShootingTargets;
+                return XenomorphHostFinder.availableShootingTargets;
             }
-            XenomorphTargetFinder.tmpTargetScores.Clear();
-            XenomorphTargetFinder.tmpCanShootAtTarget.Clear();
+            XenomorphHostFinder.tmpTargetScores.Clear();
+            XenomorphHostFinder.tmpCanShootAtTarget.Clear();
             float num = 0f;
             IAttackTarget attackTarget = null;
             for (int i = 0; i < rawTargets.Count; i++)
             {
-                XenomorphTargetFinder.tmpTargetScores.Add(float.MinValue);
-                XenomorphTargetFinder.tmpCanShootAtTarget.Add(false);
+                XenomorphHostFinder.tmpTargetScores.Add(float.MinValue);
+                XenomorphHostFinder.tmpCanShootAtTarget.Add(false);
                 if (rawTargets[i] != searcher)
                 {
-                    bool flag = XenomorphTargetFinder.CanShootAtFromCurrentPosition(rawTargets[i], searcher, verb);
-                    XenomorphTargetFinder.tmpCanShootAtTarget[i] = flag;
+                    bool flag = XenomorphHostFinder.CanShootAtFromCurrentPosition(rawTargets[i], searcher, verb);
+                    XenomorphHostFinder.tmpCanShootAtTarget[i] = flag;
                     if (flag)
                     {
-                        float shootingTargetScore = XenomorphTargetFinder.GetShootingTargetScore(rawTargets[i], searcher, verb);
-                        XenomorphTargetFinder.tmpTargetScores[i] = shootingTargetScore;
+                        float shootingTargetScore = XenomorphHostFinder.GetShootingTargetScore(rawTargets[i], searcher, verb);
+                        XenomorphHostFinder.tmpTargetScores[i] = shootingTargetScore;
                         if (attackTarget == null || shootingTargetScore > num)
                         {
                             attackTarget = rawTargets[i];
@@ -361,7 +583,7 @@ namespace Verse.AI
             {
                 if (attackTarget != null)
                 {
-                    XenomorphTargetFinder.availableShootingTargets.Add(new Pair<IAttackTarget, float>(attackTarget, 1f));
+                    XenomorphHostFinder.availableShootingTargets.Add(new Pair<IAttackTarget, float>(attackTarget, 1f));
                 }
             }
             else
@@ -371,19 +593,19 @@ namespace Verse.AI
                 {
                     if (rawTargets[j] != searcher)
                     {
-                        if (XenomorphTargetFinder.tmpCanShootAtTarget[j])
+                        if (XenomorphHostFinder.tmpCanShootAtTarget[j])
                         {
-                            float num3 = XenomorphTargetFinder.tmpTargetScores[j];
+                            float num3 = XenomorphHostFinder.tmpTargetScores[j];
                             if (num3 >= num2)
                             {
                                 float second = Mathf.InverseLerp(num - 30f, num, num3);
-                                XenomorphTargetFinder.availableShootingTargets.Add(new Pair<IAttackTarget, float>(rawTargets[j], second));
+                                XenomorphHostFinder.availableShootingTargets.Add(new Pair<IAttackTarget, float>(rawTargets[j], second));
                             }
                         }
                     }
                 }
             }
-            return XenomorphTargetFinder.availableShootingTargets;
+            return XenomorphHostFinder.availableShootingTargets;
         }
 
         // Token: 0x06003F1E RID: 16158 RVA: 0x001D8F3C File Offset: 0x001D733C
@@ -405,8 +627,8 @@ namespace Verse.AI
             {
                 num -= 50f;
             }
-            num += XenomorphTargetFinder.FriendlyFireBlastRadiusTargetScoreOffset(target, searcher, verb);
-            return num + XenomorphTargetFinder.FriendlyFireConeTargetScoreOffset(target, searcher, verb);
+            num += XenomorphHostFinder.FriendlyFireBlastRadiusTargetScoreOffset(target, searcher, verb);
+            return num + XenomorphHostFinder.FriendlyFireConeTargetScoreOffset(target, searcher, verb);
         }
 
         // Token: 0x06003F1F RID: 16159 RVA: 0x001D9068 File Offset: 0x001D7468
@@ -560,26 +782,26 @@ namespace Verse.AI
                 Log.Error("BestShootTargetFromCurrentPosition with " + searcher.ToStringSafe<IAttackTargetSearcher>() + " who has no attack verb.", false);
                 return null;
             }
-            return XenomorphTargetFinder.BestAttackTarget(searcher, flags, validator, Mathf.Max(minDistance, currentEffectiveVerb.verbProps.minRange), Mathf.Min(maxDistance, currentEffectiveVerb.verbProps.range), default(IntVec3), float.MaxValue, false, false);
+            return XenomorphHostFinder.BestAttackTarget(searcher, flags, validator, Mathf.Max(minDistance, currentEffectiveVerb.verbProps.minRange), Mathf.Min(maxDistance, currentEffectiveVerb.verbProps.range), default(IntVec3), float.MaxValue, false, false);
         }
 
         // Token: 0x06003F22 RID: 16162 RVA: 0x001D955C File Offset: 0x001D795C
         public static bool CanSeeTarget(this Thing seer, Thing target, Func<IntVec3, bool> validator = null)
         {
-            ShootLeanUtility.CalcShootableCellsOf(XenomorphTargetFinder.tempDestList, target);
-            for (int i = 0; i < XenomorphTargetFinder.tempDestList.Count; i++)
+            ShootLeanUtility.CalcShootableCellsOf(XenomorphHostFinder.tempDestList, target);
+            for (int i = 0; i < XenomorphHostFinder.tempDestList.Count; i++)
             {
-                if (GenSight.LineOfSight(seer.Position, XenomorphTargetFinder.tempDestList[i], seer.Map, true, validator, 0, 0))
+                if (GenSight.LineOfSight(seer.Position, XenomorphHostFinder.tempDestList[i], seer.Map, true, validator, 0, 0))
                 {
                     return true;
                 }
             }
-            ShootLeanUtility.LeanShootingSourcesFromTo(seer.Position, target.Position, seer.Map, XenomorphTargetFinder.tempSourceList);
-            for (int j = 0; j < XenomorphTargetFinder.tempSourceList.Count; j++)
+            ShootLeanUtility.LeanShootingSourcesFromTo(seer.Position, target.Position, seer.Map, XenomorphHostFinder.tempSourceList);
+            for (int j = 0; j < XenomorphHostFinder.tempSourceList.Count; j++)
             {
-                for (int k = 0; k < XenomorphTargetFinder.tempDestList.Count; k++)
+                for (int k = 0; k < XenomorphHostFinder.tempDestList.Count; k++)
                 {
-                    if (GenSight.LineOfSight(XenomorphTargetFinder.tempSourceList[j], XenomorphTargetFinder.tempDestList[k], seer.Map, true, validator, 0, 0))
+                    if (GenSight.LineOfSight(XenomorphHostFinder.tempSourceList[j], XenomorphHostFinder.tempDestList[k], seer.Map, true, validator, 0, 0))
                     {
                         return true;
                     }
@@ -605,13 +827,13 @@ namespace Verse.AI
             {
                 return;
             }
-            XenomorphTargetFinder.tmpTargets.Clear();
+            XenomorphHostFinder.tmpTargets.Clear();
             List<Thing> list = attackTargetSearcher.Thing.Map.listerThings.ThingsInGroup(ThingRequestGroup.AttackTarget);
             for (int i = 0; i < list.Count; i++)
             {
-                XenomorphTargetFinder.tmpTargets.Add((IAttackTarget)list[i]);
+                XenomorphHostFinder.tmpTargets.Add((IAttackTarget)list[i]);
             }
-            List<Pair<IAttackTarget, float>> availableShootingTargetsByScore = XenomorphTargetFinder.GetAvailableShootingTargetsByScore(XenomorphTargetFinder.tmpTargets, attackTargetSearcher, currentEffectiveVerb);
+            List<Pair<IAttackTarget, float>> availableShootingTargetsByScore = XenomorphHostFinder.GetAvailableShootingTargetsByScore(XenomorphHostFinder.tmpTargets, attackTargetSearcher, currentEffectiveVerb);
             for (int j = 0; j < availableShootingTargetsByScore.Count; j++)
             {
                 GenDraw.DrawLineBetween(attackTargetSearcher.Thing.DrawPos, availableShootingTargetsByScore[j].First.Thing.DrawPos);
@@ -645,14 +867,14 @@ namespace Verse.AI
                 {
                     string text;
                     Color red;
-                    if (!XenomorphTargetFinder.CanShootAtFromCurrentPosition((IAttackTarget)thing, attackTargetSearcher, currentEffectiveVerb))
+                    if (!XenomorphHostFinder.CanShootAtFromCurrentPosition((IAttackTarget)thing, attackTargetSearcher, currentEffectiveVerb))
                     {
                         text = "out of range";
                         red = Color.red;
                     }
                     else
                     {
-                        text = XenomorphTargetFinder.GetShootingTargetScore((IAttackTarget)thing, attackTargetSearcher, currentEffectiveVerb).ToString("F0");
+                        text = XenomorphHostFinder.GetShootingTargetScore((IAttackTarget)thing, attackTargetSearcher, currentEffectiveVerb).ToString("F0");
                         red = new Color(0.25f, 1f, 0.25f);
                     }
                     Vector2 screenPos = thing.DrawPos.MapToUIPosition();

@@ -35,6 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Abilities\ProjectileDefExtension.cs" />
+    <Compile Include="Harmony\Patches\AvP_GenHostility_HostileTo_Patches.cs" />
     <Compile Include="Harmony\Patches\AVP_Dropship_Patches_WIP.cs" />
     <Compile Include="Harmony\Patches\AvP_OutfitDatabase_GenerateStartingOutfits_Patch.cs" />
     <Compile Include="Harmony\Patches\AvP_BackCompatibility_GetBackCompatibleType_Patch.cs" />

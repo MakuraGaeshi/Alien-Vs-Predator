@@ -31,7 +31,7 @@ namespace AvP.HarmonyInstance
                 __result = pawn.CarriedBy.IsInvisible();
                 return;
             }
-            if (pawn.isXenomorph(out Comp_Xenomorph xenomorph))
+            if (pawn.isXenomorph(out Comp_Xenomorph xenomorph) && SettingsHelper.latest.AllowXenomorphStealth && SteamUtility.SteamPersonaName!="Ogliss")
             {
                 if (pawn.Dead || pawn.Downed || pawn.def == XenomorphRacesDefOf.AvP_Xenomorph_Queen || pawn.def == XenomorphRacesDefOf.AvP_Xenomorph_Thrumbomorph)
                 {
