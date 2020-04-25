@@ -4,7 +4,7 @@
   <FactionDef>
 		<defName>AvP_Yautja_BadBloodFaction</defName>
 		<label>Yautja Badbloods</label>
-    <description>The Bad Bloods are traitors, pariah and, worst of all, dishonored members of the Yautja society. They are banned from their parents clan and hunted out of spite. They live in chaos with no rules or lord except the will to live and to hunt. They do not obey to any code of Honor known to yautja society and their existence is considered an insult to the Clans.</description>
+    <description>The Bad Bloods are traitors, pariahs and, worst of all, dishonored members of yautja society. They are exiled from their parents' clan and hunted out of spite. They live in chaotic, self-formed clans with no rules except the will to live and hunt. They do not obey to any code of honor known to yautja society and their existence is considered an insult to the clans.</description>
 	<pawnSingular>Badblood yautja</pawnSingular>
     <pawnsPlural>Badblood yautja</pawnsPlural>
     <basicMemberKind>YautjaYoungBlood_RRY</basicMemberKind>
